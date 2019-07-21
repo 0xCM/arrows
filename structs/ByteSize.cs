@@ -56,9 +56,6 @@ namespace Z0
         public static implicit operator uint(ByteSize src)
             => (uint)src.Bytes;
 
-        [MethodImpl(Inline)]
-        public static implicit operator ByteSize(BitSize src)
-            => src.Bits/8;
 
         [MethodImpl(Inline)]
         public static implicit operator ByteSize(int src)
@@ -78,8 +75,8 @@ namespace Z0
         public readonly int Bytes;
 
         [MethodImpl(Inline)]
-        public BitSize ToBits()
-            => Bytes * 8;
+        public ulong ToBits()
+            => (ulong)Bytes * 8ul;
 
         public override string ToString()
             => Bytes.ToString();

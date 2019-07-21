@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public static class LoadVecX
+    partial class InXtend
     {
         /// <summary>
         /// Loads a 128-bit vector from a blocked span

@@ -17,6 +17,8 @@ namespace Z0
 
         public ulong NativeAddress {get;set;}
 
+        public NativeBlock[] NativeBody {get;set;}
+
         public MethodSig MethodSig {get; set;}
     
         public byte[] CilData {get;set;}

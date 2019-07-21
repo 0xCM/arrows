@@ -75,15 +75,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Char8 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char8>(offset, CharCount);
+            => ref src.AsIndividual<char,Char8>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char8 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char8>(offset, CharCount);
+            => ref src.AsIndividual<char,Char8>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char8 FromString(string src)
-            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsSingle<char,Char8>();
+            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char8>();
 
         [MethodImpl(Inline)]
         public static implicit operator Span<char>(Char8 src)
@@ -95,11 +95,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Char8(Span<char> src)
-            => src.AsSingle<char,Char8>();
+            => src.AsIndividual<char,Char8>();
 
         [MethodImpl(Inline)]
         public static implicit operator Char8(ReadOnlySpan<char> src)
-            => src.AsSingle<char,Char8>();
+            => src.AsIndividual<char,Char8>();
 
         /// <summary>
         /// Implicilty converts the source value to a string, removing any trailing whitespace characters
@@ -111,11 +111,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public unsafe Span<char> AsSpan()
-            => MemBlock.AsSpan<Char8,char>(ref this);
+            => SpanConvert.AsSpan<Char8,char>(ref this);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<char> AsReadOnlySpan()
-            => MemBlock.AsReadOnlySpan<Char8,char>(ref this);
+            => SpanConvert.AsReadOnlySpan<Char8,char>(ref this);
 
         [MethodImpl(Inline)]
         public string Format()

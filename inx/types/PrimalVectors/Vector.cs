@@ -41,7 +41,6 @@ namespace Z0
         public static implicit operator Span<T>(in Vector<T> src)
             =>  src.data;
 
-
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T>(in Vector<T> src)
             =>  src.data;
@@ -218,7 +217,7 @@ namespace Z0
         public Vector<T> Abs()
         {
             var x = unblock(data);
-            gmath.abs(ref x);
+            gmath.abs(in x);
             return this;
         }
 
@@ -227,7 +226,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gbits.and(ref x, y);
+            gbits.and(in x, y);
             return this;
         }
 
@@ -236,7 +235,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gbits.or(ref x, y);
+            gbits.or(in x, y);
             return this;
         }
 
@@ -245,7 +244,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gbits.xor(ref x, y);
+            gbits.xor(in x, y);
             return this;
         }
 
@@ -253,7 +252,7 @@ namespace Z0
         public Vector<T> Flip()
         {
             var x = unblock(data);
-            gbits.flip(ref x);
+            gbits.flip(in x);
             return this;
         }
 

@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "*.lhs": "haskell",
+        "*.hsc": "haskell",
+        ".dot": "dot",
+        "*.s": "asm",
+        "*-asm": "asm",
+        "*-asm-native": "asm",
+        "*.o": "hexdump",
+        "*.asm": "asm",
+        "*.el": "lisp",
+        "*.hsig": "haskell",
+        "*.rmd": "markdown",
+        "cmath": "cpp",
+        "simdpcg32.h": "c",
+        "xed-agen.h": "c",
+        "xed-decoded-inst.h": "c",
+        "xed-inst.h": "c",
+        "main.h": "c"
+    }
+}

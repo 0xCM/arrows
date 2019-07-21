@@ -9,7 +9,7 @@ namespace Z0
 
     using static zfunc;    
 
-    public static class ToScalar128X
+    partial class InXtend
     {
         [MethodImpl(Inline)]
         public static Num128<T> ToScalar128<T>(this Vec128<T> src, int index)

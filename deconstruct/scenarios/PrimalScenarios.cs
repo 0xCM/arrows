@@ -211,6 +211,8 @@ namespace Z0
         public ReadOnlySpan<uint> ReadU32Data(int count)
             => U32Data.Slice(0,count);
 
+        public void VoidReturn()
+            => Console.Write("");
     }
 
 

@@ -21,7 +21,7 @@ namespace Z0.Bench
         {
             var bitsize = SizeOf<T>.BitSize;
             var src = context.Random.ReadOnlySpan<T>(context.Samples);
-            var positions = context.Random.Span<int>(context.Samples, closed(0,bitsize - 1));
+            var positions = context.Random.Span<int>(context.Samples, closed(0,(int)bitsize - 1));
             var metrics = Metrics<T>.Zero;
             for(var i=0; i<context.Runs; i++)
             {

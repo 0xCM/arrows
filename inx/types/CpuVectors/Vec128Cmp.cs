@@ -28,6 +28,9 @@ namespace Z0
         }
     }
 
+    /// <summary>
+    /// Defines a 128-bit vector obtained from a comparison operation
+    /// </summary>
     public readonly struct Vec128Cmp<T>
         where T : struct
     {
@@ -66,5 +69,4 @@ namespace Z0
             return Bit.On;
         }
     }
-
 }

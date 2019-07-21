@@ -82,6 +82,14 @@ namespace Z0
             => new BitString(src);
 
         /// <summary>
+        /// Constructs a bitstring from bitspan
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString From(ReadOnlySpan<Bit> src)                
+            => new BitString(src);
+
+        /// <summary>
         /// Constructs a bitstring from a span of '0' and '1' characters
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -167,6 +175,14 @@ namespace Z0
             return src;
         }
 
+        BitString(Span<byte> src)
+        {
+            this.content2 = src.ToArray();
+            this.content = new char[src.Length];
+            for(var i=0; i<src.Length; i++)
+                this.content[i] = src[i] == 0 ? '0': '1';
+
+        }
 
         [MethodImpl(Inline)]
         BitString(string content)            
@@ -211,7 +227,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => content[index];
         }
-
             
         public uint Length
         {
@@ -252,6 +267,34 @@ namespace Z0
         }
 
         /// <summary>
+        ///  Partitions the bitstring into blocks of a specified maximum width
+        /// </summary>
+        /// <param name="width">The maximum block width</param>
+        /// <param name="tlz">Specifies whether leading source zeros should be exlcuded </param>
+        public BitString[] Blocks2(int width)
+        {
+            var minCount = Math.DivRem(content2.Length, width, out int remainder);
+            var count = remainder != 0 ? minCount + 1 : minCount;
+            Span<byte> src = content2;
+            var dst = new BitString[count];
+            var lastix = dst.Length - 1;            
+            for(int i=0, offset = 0; i< dst.Length; i++, offset += width)
+            {   
+                if(i == lastix && remainder != 0)
+                {
+                    Span<byte> fullBlock = new byte[width];
+                    src.Slice(offset,remainder).CopyTo(fullBlock);
+                    dst[i] = new BitString(fullBlock);
+                }                    
+                else
+                    dst[i] = new BitString(src.Slice(offset, width));
+            }
+            return dst;
+
+        }
+
+
+        /// <summary>
         /// Determines whether the value that another <see cref='BitString'/> represents is 
         /// equivalent to the value that this bitstring represents
         /// </summary>
@@ -259,8 +302,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool Eq(BitString other)
         {
-            var x = Format(true);
-            var y = Format(true);
+            var x = Format2(true);
+            var y = Format2(true);
             return x == y;
         }
              
@@ -307,12 +350,29 @@ namespace Z0
 
         public string Format2(bool tlz = false, bool specifier = false, int? blockWidth = null, char? blocksep = null)
         {            
-            Span<char> dst = stackalloc char[content2.Length];
-            var lastix = dst.Length - 1;
-            for(var i=0; i< dst.Length; i++)
-                dst[lastix - i] = content2[i] == 0 ? '0' : '1';
-            var x = new string(dst);
-            return tlz ? x.TrimStart('0') : x;
+                                
+            if(blockWidth == null)
+            {
+                Span<char> dst = stackalloc char[content2.Length];
+                var lastix = dst.Length - 1;
+                for(var i=0; i< dst.Length; i++)
+                    dst[lastix - i] = content2[i] == 0 ? '0' : '1';
+                
+                var x = new string(dst);
+                return tlz ? x.TrimStart('0') : x;
+            }
+            else
+            {
+                var sb = sbuild();
+                var blocks = Blocks2(blockWidth.Value).Reverse();
+                for(var i=0; i<blocks.Length; i++)
+                {
+                    sb.Append(blocks[i].Format2());
+                    sb.Append(blocksep ?? ' ');
+                }
+                return sb.ToString();
+            }
+            
         }
 
         /// <summary>
@@ -437,7 +497,7 @@ namespace Z0
             => dst = (long)parse(bs, offset, out ulong x);
  
         public string Format()
-            => Format(false, false, null, null);
+            => Format2(false, false, null, null);
 
         public override string ToString()
             => Format();

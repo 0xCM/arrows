@@ -208,7 +208,7 @@ namespace Z0
                 => src.ReadOnly().All(f);
 
         /// <summary>
-        /// Constructs a span from the entireity of a sequence
+        /// Constructs a span from a (presumeably finite) sequence
         /// </summary>
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The element type</typeparam>
@@ -216,10 +216,31 @@ namespace Z0
         public static Span<T> ToSpan<T>(this IEnumerable<T> src)
             => span(src);
 
+        /// <summary>
+        /// Constructs a span of a specified length from a sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <param name="length">The length of the result span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> TakeSpan<T>(this IEnumerable<T> src, int length)
             => span(src.Take(length));
 
+        /// <summary>
+        /// Fills an allocated span from a sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <param name="dst">The target spn</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static Span<T> FillSpan<T>(this IEnumerable<T> src, Span<T> dst)
+        {
+            var i = 0;
+            var e = src.GetEnumerator();
+            while(e.MoveNext() && i < dst.Length)
+                dst[i++] = e.Current;
+            return dst;
+        }
+            
         /// <summary>
         /// Constructs a span from a sequence selection
         /// </summary>
@@ -439,6 +460,21 @@ namespace Z0
         }
 
         /// <summary>
+        /// Replicates a source value into a span and returns the result
+        /// </summary>
+        /// <param name="src">The value to replicate</param>
+        /// <param name="count">The number of clones</param>
+        /// <typeparam name="T">The value type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> Replicate<T>(this T src, int count)
+            where T : struct
+        {
+            Span<T> dst = new T[count];
+            dst.Fill(src);
+            return dst;
+        }
+
+        /// <summary>
         /// Creates a new span by interposing a specified element between each element of an existing span
         /// </summary>
         /// <param name="src">The source span</param>
@@ -467,16 +503,17 @@ namespace Z0
             => src.ReadOnly().Intersperse(x);
 
 
+        /// <summary>
+        /// Populates a span of natural length from an unsized span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="size">The target size</param>
+        /// <typeparam name="N">The target type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]        
         public static Span<N,T> ToNatSpan<N,T>(this Span<T> src, N size = default)
             where N : ITypeNat, new()
-                => new Span<N, T>(src);
-       
-
-        [MethodImpl(Inline)]        
-        public static Span<T> Slice<N,T>(this Span<T> src, N start = default)
-            where N : ITypeNat, new()
-                => src.Slice((int)start.value);
+                => new Span<N, T>(src);       
  
         /// <summary>
         /// Presents a readonly span of one value-type as a span of another value-type
@@ -535,9 +572,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> Reverse<T>(this Span<T> src)        
             => src.ReadOnly().Reverse();
-
-        
-        //TODO: There ought to be an allocation-free way to do this
+            
         /// <summary>
         /// Lifts the content of a span into a LINQ enumerable
         /// </summary>
@@ -546,7 +581,6 @@ namespace Z0
         public static IEnumerable<T> ToEnumerable<T>(this ReadOnlySpan<T> src)
             => src.ToArray();
             
-
         /// <summary>
         /// Lifts the content of a span into a LINQ enumerable
         /// </summary>
@@ -638,6 +672,194 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string FormatAsVector<T>(this Span<T> src, string sep = ", ")
             => src.ReadOnly().FormatAsVector(sep);
+
+
+        [MethodImpl(Inline)]
+        public static Span<sbyte> AsInt8<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<byte> AsUInt8<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.AsBytes(src);
+
+       [MethodImpl(Inline)]
+        public static Span<short> AsInt16<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<ushort> AsUInt16<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<int> AsInt32<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<uint> AsUInt32<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<long> AsInt64<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<ulong> AsUInt64<T>(this Span<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,ulong>(src);
+        
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<sbyte> AsInt8<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,sbyte>(src);
+
+        /// <summary>
+        /// Reimagines a span of generic values as a span of bytes
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source value type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> AsUInt8<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.AsBytes(src);
+
+        /// <summary>
+        /// Reimagines a span of generic values as a span of int16
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source value type</typeparam>
+       [MethodImpl(Inline)]
+        public static ReadOnlySpan<short> AsInt16<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,short>(src);
+
+        /// <summary>
+        /// Reimagines a span of generic values as a span of uint16
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source value type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<ushort> AsUInt16<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<int> AsInt32<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<uint> AsUInt32<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<long> AsInt64<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<ulong> AsUInt64<T>(this ReadOnlySpan<T> src)
+            where T : struct        
+                => MemoryMarshal.Cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static T ReadValue<T>(this ReadOnlySpan<byte> src, int offset = 0)
+            where T : struct
+        {
+            if(MemoryMarshal.TryRead(src.Slice(offset), out T value))                
+                return value;
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static T ReadValue<T>(this Span<byte> src, int offset = 0)
+            where T : struct
+                => src.ReadOnly().ReadValue<T>(offset);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ReadValues<T>(this ReadOnlySpan<byte> src, int offset, int count)
+            where T : struct
+                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count * Unsafe.SizeOf<T>()));
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ReadValues<T>(this Span<byte> src, int offset, int count)
+            where T : struct
+                => src.ReadOnly().ReadValues<T>(offset,count);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ReadValues<T>(this ReadOnlySpan<byte> src)
+            where T : struct
+                => src.ReadValues<T>(0, src.Length/Unsafe.SizeOf<T>());
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ReadValues<T>(this Span<byte> src)
+            where T : struct        
+                => src.ReadOnly().ReadValues<T>();
+
+
+        [MethodImpl(Inline)]
+        public static Span<byte> ToBytes<T>(this T src)
+            where T : struct
+        {
+            Span<T> s = new T[1]{src};
+            return MemoryMarshal.AsBytes(s);
+        }        
+
+        [MethodImpl(Inline)]
+        public static T FromBytes<T>(this Span<byte> src)
+            where T : struct
+        {
+            if(MemoryMarshal.TryRead(src, out T value))
+                return value;
+            else
+                throw unsupported<T>();
+        }
+
+        /// <summary>
+        /// Reads a readonly span of bytes from a span of value types
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of source elements to skip from the head</param>
+        /// <param name="length">Tne number of source elements to read</param>
+        /// <typeparam name="T">The source element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> ReadBytes<T>(this ReadOnlySpan<T> src, int? offset = null, int? length = null)
+            where T : struct
+        {
+            if(offset == null && length == null)
+                return MemoryMarshal.AsBytes(src);
+            else if(offset != null && length == null)
+                return MemoryMarshal.AsBytes(src.Slice(offset.Value));
+            else
+                return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
+        }
+                
+        /// <summary>
+        /// Reads a span of bytes from a span of value types
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of source elements to skip from the head</param>
+        /// <param name="length">Tne number of source elements to read</param>
+        /// <typeparam name="T">The source element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<byte> ReadBytes<T>(this Span<T> src, int? offset = null, int? length = null)
+            where T : struct
+        {
+            if(offset == null && length == null)
+                return MemoryMarshal.AsBytes(src);
+            else if(offset != null && length == null)
+                return MemoryMarshal.AsBytes(src.Slice(offset.Value));
+            else
+                return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
+        }
 
     }
 }

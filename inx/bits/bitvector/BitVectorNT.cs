@@ -17,25 +17,18 @@ namespace Z0
     {
         Span<T> bits;
 
-        static readonly BitSize PrimalSize = SizeOf<T>.BitSize;
+        public static readonly BitSize SegmentCapacity = BitLayout.SegmentCapacity<T>();
 
-        static readonly BitSize BitCount = new N().value;
-
-        static readonly int SegLength = CalcSegLength();
+        public static readonly BitSize TotalBitCount = new N().value;
     
-        static readonly (int segment, int offset)[] BitMap
-            = CaclBitMap();
-
-        [MethodImpl(Inline)]
-        static (int segment, int offset) FindBit(int bitpos)
-            => BitMap[bitpos];
+        static readonly BitPos<T>[] BitMap = BitLayout.BitMap<T>(SegmentCapacity, TotalBitCount);
 
         [MethodImpl(Inline)]
         public BitVector(params T[] bits)
             : this()
         {
             this.bits =bits;
-            require(bits.Length * PrimalSize >= BitCount);
+            require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
         [MethodImpl(Inline)]
@@ -43,7 +36,7 @@ namespace Z0
             : this()
         {
             this.bits =bits;
-            require(bits.Length * PrimalSize >= BitCount);
+            require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
         [MethodImpl(Inline)]
@@ -51,7 +44,7 @@ namespace Z0
             : this()
         {
             this.bits =bits.Replicate();
-            require(bits.Length * PrimalSize >= BitCount);
+            require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
         [MethodImpl(Inline)]
@@ -72,29 +65,29 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator |(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.or(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.or(in lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.xor(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(ref src.bits));
+            => new BitVector<N,T>(gbits.flip(in src.bits));
         
         /// <summary>
         /// Retrieves the value of the bit at a specified position
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
         [MethodImpl(Inline)]
-        public Bit GetBit(in int pos)
+        public Bit GetBit(in int index)
         {
-            (var seg, var offset) = FindBit(pos);
-            return gbits.test(bits[seg], offset);
+            ref readonly var pos = ref BitMap[index];
+            return gbits.test(in bits[pos.SegIdx], pos.BitOffset);
         }
             
         /// <summary>
@@ -102,28 +95,28 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
         [MethodImpl(Inline)]
-        public void SetBit(in int pos, Bit value)
+        public void SetBit(in int index, Bit value)
         {
-            (var seg, var offset) = FindBit(pos);
-            gbits.set(ref bits[seg], pos, value);
+            ref readonly var pos = ref BitMap[index];
+            gbits.set(ref bits[pos.SegIdx], pos.BitOffset, in value);
         }
 
         /// <summary>
         /// A bit-level accessor/manipulator
         /// </summary>
-        public Bit this[in int pos]
+        public Bit this[in int index]
         {
             [MethodImpl(Inline)]
-            get => GetBit(pos);
+            get => GetBit(index);
             
             [MethodImpl(Inline)]
-            set => SetBit(pos, value);
+            set => SetBit(index, value);
         }
 
         /// <summary>
         /// The data over which the bitvector is constructed
         /// </summary>
-        public Span<T> Bits
+        Span<T> Bits
         {
             [MethodImpl(Inline)]
             get => bits;
@@ -133,13 +126,13 @@ namespace Z0
         /// The number of bits represented by the vector
         /// </summary>
         public int Length
-            => BitCount;
+            => TotalBitCount;
 
         [MethodImpl(Inline)]
-        public void Toggle(in int pos)
+        public void Toggle(in int index)
         {         
-            (var seg, var offset) = FindBit(pos);
-            gbits.toggle(ref bits[seg], in offset);
+            ref readonly var pos = ref BitMap[index];
+            gbits.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
         /// <summary>
@@ -147,10 +140,10 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
-        public void Enable(in int pos)
+        public void Enable(in int index)
         {
-            (var seg, var offset) = FindBit(pos);
-            gbits.enable(ref bits[seg], in offset);
+            ref readonly var pos = ref BitMap[index];
+            gbits.enable(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
         /// <summary>
@@ -158,23 +151,33 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The position of the bit to disable</param>
         [MethodImpl(Inline)]
-        public void Disable(in int pos)
+        public void Disable(in int index)
         {
-            (var seg, var offset) = FindBit(pos);
-            gbits.disable(ref bits[seg], in offset);
+            ref readonly var pos = ref BitMap[index];
+            gbits.disable(ref bits[pos.SegIdx], pos.BitOffset);
         }
 
         /// <summary>
         /// Tests the status of an identified bit
         /// </summary>
-        /// <param name="pos">The position of the bit to test</param>
+        /// <param name="index">The position of the bit to test</param>
         [MethodImpl(Inline)]
-        public bool Test(in int pos)
-            => GetBit(pos);
+        public bool Test(in int index)
+            => GetBit(index);
 
+        /// <summary>
+        /// Extracts the represented data as a span of bytes
+        /// </summary>
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
             => MemoryMarshal.AsBytes(Bits);
+
+        /// <summary>
+        /// Extracts the represented data as a bitstring
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitString ToBitString()
+            => Bits.ToBitString();
 
         /// <summary>
         /// Counts the vector's enabled bits
@@ -200,35 +203,6 @@ namespace Z0
             => throw new NotSupportedException();
         
         public override int GetHashCode()
-            => throw new NotSupportedException();
- 
-        static int CalcSegLength()
-        {
-            if(PrimalSize >= BitCount)
-                return 1;
-            else
-            {
-                var qr = math.quorem(BitCount, PrimalSize);
-                return qr.Remainder == 0 ? qr.Quotient : qr.Quotient + 1;
-            }
-        }
-
-        static (int segment, int offset)[] CaclBitMap()
-        {
-            var dst =  new (int segment, int offset)[BitCount];
-            for(int i = 0, seg = 0, offset = 0; i < BitCount; i++)          
-            {
-                if(i != 0)
-                {
-                    if((i % PrimalSize) == 0)
-                    {
-                        seg++;
-                        offset = 0;
-                    }
-                }
-                dst[i] = (seg, offset++);
-            }
-            return dst;
-        }
+            => throw new NotSupportedException(); 
     }
 }

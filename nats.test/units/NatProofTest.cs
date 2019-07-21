@@ -14,11 +14,8 @@ namespace Z0.Test
     using static Nats;
     using static nfunc;
 
-    [DisplayName("natural")]
     public class NatProofTest : UnitTest<NatProofTest>
-    {
-        
-
+    {    
         public static void equality()
         {
             NatProve.eq<N16>(16);
@@ -87,8 +84,5 @@ namespace Z0.Test
            var n19 = Nat.next(n18);
            Claim.eq(n19.value,19);
         }
-
     }
-
-
 }

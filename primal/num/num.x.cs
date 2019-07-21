@@ -65,7 +65,6 @@ namespace Z0
             where T : struct
                 =>  ref Num.single(ref gmath.xor(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
-
         [MethodImpl(Inline)]
         public static ref num<T> Inc<T>(this ref num<T> src)
             where T : struct

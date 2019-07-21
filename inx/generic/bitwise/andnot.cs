@@ -71,7 +71,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-
         [MethodImpl(Inline)]
         public static void andnot<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
             where T : struct

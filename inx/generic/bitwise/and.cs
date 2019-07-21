@@ -15,6 +15,12 @@ namespace Z0
 
     partial class ginx
     {
+        /// <summary>
+        /// Computes the bitwise and between two input vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> and<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
@@ -43,6 +49,12 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Computes the bitwise and between two input vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> and<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
@@ -71,7 +83,13 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-
+        /// <summary>
+        /// Computes the bitwise and between two input vectors and stores the result
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="dst">The storage target</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static void and<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
             where T : struct
@@ -100,6 +118,13 @@ namespace Z0
                 throw unsupported<T>();
         }
         
+        /// <summary>
+        /// Computes the bitwise and btween two input vectors and stores the result
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="dst">The storage target</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static void and<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
             where T : struct
@@ -127,7 +152,5 @@ namespace Z0
             else    
                 throw unsupported<T>();
         }
-
    }
-
 }

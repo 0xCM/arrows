@@ -40,15 +40,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Char32 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char32>(offset, CharCount);
+            => ref src.AsIndividual<char,Char32>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char32 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char32>(offset, CharCount);
+            => ref src.AsIndividual<char,Char32>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char32 FromString(string src)
-            => ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsSingle<char,Char32>(0,CharCount);
+            => ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char32>(0,CharCount);
 
         [MethodImpl(Inline)]
         public static implicit operator Char32(Span<char> src)
@@ -80,11 +80,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public unsafe Span<char> AsSpan()
-            => MemBlock.AsSpan<Char32,char>(ref this);
+            => SpanConvert.AsSpan<Char32,char>(ref this);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<char> AsReadOnlySpan()
-            => MemBlock.AsReadOnlySpan<Char32,char>(ref this);
+            => SpanConvert.AsReadOnlySpan<Char32,char>(ref this);
 
         [MethodImpl(Inline)]
         public string Format()

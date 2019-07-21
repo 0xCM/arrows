@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -5,7 +9,7 @@ namespace Z0
     using System.Runtime.InteropServices;
     using static zfunc;
 
-    public static class MemBlock
+    public static class SpanConvert
     {
         /// <summary>
         /// Renders a non-allocating mutable view over a source span segment that presents as an individual value of a target type
@@ -16,7 +20,7 @@ namespace Z0
         /// <typeparam name="S">The source element type</typeparam>
         /// <typeparam name="T">The target element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T AsSingle<S,T>(this Span<S> src, int offset = 0, int? length = null)
+        public static ref T AsIndividual<S,T>(this Span<S> src, int offset = 0, int? length = null)
             where S : struct
             where T : struct
         {
@@ -38,7 +42,7 @@ namespace Z0
         /// <typeparam name="S">The source element type</typeparam>
         /// <typeparam name="T">The target element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref readonly T AsSingle<S,T>(this ReadOnlySpan<S> src, int offset = 0, int? length = null)
+        public static ref readonly T AsIndividual<S,T>(this ReadOnlySpan<S> src, int offset = 0, int? length = null)
             where S : struct
             where T : struct
         {
@@ -66,6 +70,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> AsReadOnlySpan(this string src)
             => src;
+
+
     }
 
 

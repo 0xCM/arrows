@@ -27,7 +27,7 @@ namespace Z0
 
         static readonly BitGridSpec GridSpec = (SizeOf<T>.BitSize, (int)Dim.i, (int)Dim.j);
         
-        public static readonly BitGridLayout GridLayout = GridSpec.CalcLayout();
+        public static readonly BitLayout GridLayout = GridSpec.CalcLayout();
 
         /// <summary>
         /// Allocates a Zero-filled mxn matrix
@@ -43,8 +43,9 @@ namespace Z0
         public static BitMatrix<M,N,T> Ones()
         {
             Span<T> data = new T[GridLayout.TotalSegments];
+            var length = BitSize.Size<T>();
             for(var i=0; i<data.Length; i++)
-                for(var j = 0; j< SizeOf<T>.BitSize; j++)
+                for(var j = 0; j< length; j++)
                     gbits.enable(ref data[i], j);
             return new BitMatrix<M, N, T>(data);
         }
@@ -136,7 +137,7 @@ namespace Z0
                 this[row,col] = src[row];
         }
 
-        public BitGridLayout Layout
+        public BitLayout Layout
             => GridLayout;
     }
 }

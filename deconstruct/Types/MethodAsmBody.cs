@@ -18,13 +18,14 @@ namespace Z0
     /// </summary>
     public class MethodAsmBody
     {
-        public MethodAsmBody(MethodBase Method, IReadOnlyList<NativeBlock> RawData, Instruction[] Instructions)
+        public MethodAsmBody(MethodBase Method, NativeBlock[] NativeBlocks, Instruction[] Instructions)
         {
             this.Method = Method;
-            this.RawData = RawData;
+            this.NativeBlocks = NativeBlocks;
             this.Instructions = Instructions;
         }
 
+        
         public MethodBase Method {get;}
 
         public int MethodId
@@ -35,16 +36,20 @@ namespace Z0
 
         public Instruction[] Instructions {get;}
         
-        public IReadOnlyList<NativeBlock> RawData {get;}
-        
+        public NativeBlock[] NativeBlocks {get;}
+
 
         public override string ToString()
         {
             var desc = sbuild();
             desc.AppendLine(MethodName);
-            desc.AppendLine(AsciSym.LBrace.ToString());
+            desc.AppendLine(AsciSym.LBrace.ToString());            
             foreach(var i in Instructions)
-                desc.AppendLine($"    {i.ToString()}");
+            {
+                var asm = $"    {i.ToString()}";
+                desc.AppendLine(asm);
+                
+            }
             desc.AppendLine(AsciSym.RBrace.ToString());
             return desc.ToString();
 

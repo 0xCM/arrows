@@ -59,7 +59,7 @@ namespace Z0
         }
 
 
-        public Vector<N, ulong> Next()
+        public Span<N, ulong> Next()
         {
             var dst = NatSpan.alloc<N,ulong>();
             var next = Generators.Mapi((index ,g) => (index, value: g.Next()));

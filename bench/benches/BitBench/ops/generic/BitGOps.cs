@@ -20,7 +20,7 @@ namespace Z0.Bench
         {
             var bitsize = SizeOf<T>.BitSize;
             var src = context.Random.Span<T>(context.Samples).ReadOnly();
-            var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
+            var positions = context.Random.Array<byte>(context.Samples, closed((byte)0,(byte)(bitsize - 1)));            
             var metrics = Metrics<T>.Zero;
                     
             for(var i=0; i<context.Runs; i++)
@@ -37,7 +37,7 @@ namespace Z0.Bench
         {
             var bitsize = SizeOf<T>.BitSize;
             var src = context.Random.Span<T>(context.Samples).ReadOnly();
-            var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
+            var positions = context.Random.Array<byte>(context.Samples, closed((byte)0,(byte)(bitsize - 1)));            
             var metrics = Metrics<T>.Zero;
                     
             for(var i=0; i<context.Runs; i++)
@@ -54,7 +54,7 @@ namespace Z0.Bench
         {
             var bitsize = SizeOf<T>.BitSize;
             var src = context.Random.Span<T>(context.Samples).ReadOnly();
-            var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
+            var positions = context.Random.Array<byte>(context.Samples, closed((byte)0,(byte)(bitsize - 1)));            
             var metrics = Metrics<T>.Zero;
                     
             for(var i=0; i<context.Runs; i++)
@@ -85,7 +85,7 @@ namespace Z0.Bench
         {
             var bitsize = SizeOf<T>.BitSize;
             var src = context.Random.Span<T>(context.Samples).ReadOnly();
-            var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
+            var positions = context.Random.Array<byte>(context.Samples, closed((byte)0,(byte)(bitsize - 1)));            
             var metrics = Metrics<T>.Zero;
                     
             for(var i=0; i<context.Runs; i++)
@@ -97,7 +97,7 @@ namespace Z0.Bench
             return metrics;
         }
 
-        static Metrics<T> Toggle<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<int> positions)
+        static Metrics<T> Toggle<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<byte> pos)
             where T : struct
         {
             OpId opid =  Id<T>(OpKind.Toggle);
@@ -106,11 +106,11 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)
             for(var sample = 0; sample < dst.Length; sample++)
-                 dst[sample] = gbits.toggle(dst[sample], positions[sample]);                        
+                 dst[sample] = gbits.toggle(dst[sample], pos[sample]);                        
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
         
-        static Metrics<T> Enable<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<int> positions)
+        static Metrics<T> Enable<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<byte> pos)
             where T : struct
         {
             OpId opid =  Id<T>(OpKind.Enable);
@@ -121,7 +121,7 @@ namespace Z0.Bench
             for(var cycle = 1; cycle <= cycles; cycle++)
             {
                 for(var sample = 0; sample < dst.Length; sample++)
-                     gbits.enable(ref dst[sample], positions[sample]);
+                     gbits.enable(ref dst[sample], pos[sample]);
 
                 sw.Stop();
                 src.CopyTo(dst);
@@ -130,7 +130,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<T> Disable<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<int> positions)
+        static Metrics<T> Disable<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<byte> pos)
             where T : struct
         {
             OpId opid =  Id<T>(OpKind.Disable);
@@ -141,7 +141,7 @@ namespace Z0.Bench
             for(var cycle = 1; cycle <= cycles; cycle++)
             {
                 for(var sample = 0; sample < dst.Length; sample++)
-                     gbits.disable(ref dst[sample], positions[sample]);
+                     gbits.disable(ref dst[sample], pos[sample]);
 
                 sw.Stop();
                 src.CopyTo(dst);
@@ -163,7 +163,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<T> Test<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<int> positions)
+        static Metrics<T> Test<T>(this BitGContext context, ReadOnlySpan<T> src, ReadOnlySpan<byte> pos)
             where T : struct
         {
             OpId opid =  Id<T>(OpKind.Test);
@@ -172,7 +172,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)
             for(var sample = 0; sample < dst.Length; sample++)
-                 dst[sample] = gbits.test(src[sample], positions[sample]);                                                
+                 dst[sample] = gbits.test(src[sample], pos[sample]);                                                
             var time = snapshot(sw);
             var scalars = dst.ToScalars<T>();                 
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);

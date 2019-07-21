@@ -73,7 +73,7 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
+        public static ref readonly Span<T> abs<T>(in ReadOnlySpan<T> src, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -90,10 +90,10 @@ namespace Z0
                 math.abs(float64(src), float64(dst));
             else
                 throw unsupported<T>();
-            return dst;
+            return ref dst;
         }
 
-        public static ref Span<T> abs<T>(ref Span<T> io)
+        public static ref readonly Span<T> abs<T>(in Span<T> io)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))

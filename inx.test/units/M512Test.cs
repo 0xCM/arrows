@@ -12,7 +12,7 @@ namespace Z0.Test
     
     using static zfunc;
 
-    public class InX512Test : UnitTest<InX512Test>
+    public class M512Test : UnitTest<M512Test>
     {    
         public void TestM512PartsA()
         {
@@ -24,12 +24,12 @@ namespace Z0.Test
         }
 
 
-        public void TestM512PartsB()
-        {            
-            var point = Random.m512i<sbyte>();
-            Claim.eq(point.Part<sbyte>(22), point.Part<sbyte>(179));
-            Claim.eq(point.Part<int>(2), point.Part<int>(68));
-        }
+        // public void TestM512PartsB()
+        // {            
+        //     var point = Random.m512i<sbyte>();
+        //     Claim.eq(point.Part<sbyte>(22), point.Part<sbyte>(179));
+        //     Claim.eq(point.Part<int>(2), point.Part<int>(68));
+        // }
 
         public void TestM512PartsC()
         {

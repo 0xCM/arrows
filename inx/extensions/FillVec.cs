@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;    
 
-    public static class FillVec
+    partial class InXtend
     {
         /// <summary>
         /// Loads a 128-bit vector where each component is set to the same value

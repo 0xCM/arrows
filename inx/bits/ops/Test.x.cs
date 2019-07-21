@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in sbyte src, in int pos)
+        public static bool TestBit(this in sbyte src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in byte src, in int pos)
+        public static bool TestBit(this in byte src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in ushort src, in int pos)
+        public static bool TestBit(this in ushort src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in short src, in int pos)
+        public static bool TestBit(this in short src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in int src, in int pos)
+        public static bool TestBit(this in int src, byte pos)
             => test(src,pos);
 
        /// <summary>
@@ -65,7 +65,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in uint src, in int pos)
+        public static bool TestBit(this in uint src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in long src, in int pos)
+        public static bool TestBit(this in long src, byte pos)
             => test(src,pos);
  
         /// <summary>
@@ -83,7 +83,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in ulong src, in int pos)
+        public static bool TestBit(this in ulong src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in float src, in int pos)
+        public static bool TestBit(this in float src, byte pos)
             => test(src,pos);
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in double src, in int pos)
+        public static bool TestBit(this in double src, byte pos)
             => test(src,pos);
     }
 }

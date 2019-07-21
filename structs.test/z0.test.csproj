@@ -8,13 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\testing\z0.testing.csproj" />
-
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
-    <ProjectReference Include="..\inx\z0.inx.csproj" />
-    <ProjectReference Include="..\linear\z0.linear.csproj" />
-    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
-    <ProjectReference Include="..\nats\z0.nats.csproj" />
-    <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\func\z0.structs.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
   </ItemGroup>
 

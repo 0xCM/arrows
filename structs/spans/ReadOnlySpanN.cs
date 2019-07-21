@@ -32,8 +32,6 @@ namespace Z0
         public static bool operator != (ReadOnlySpan<N,T> lhs, ReadOnlySpan<N,T> rhs)
             => lhs.data != rhs.data;
 
-            
-
         [MethodImpl(Inline)]
         public ReadOnlySpan(ref T src)
             => data = MemoryMarshal.CreateReadOnlySpan(ref src, SpanLength);
@@ -61,6 +59,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public T[] ToArray()
             => data.ToArray();   
+
+        /// <summary>
+        /// Returns the represented content modulo type-level size information
+        /// </summary>
+        [MethodImpl(Inline)]
+        public ReadOnlySpan<T> Unsize()
+            => data;
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T>.Enumerator GetEnumerator()

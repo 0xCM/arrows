@@ -66,7 +66,7 @@ namespace Z0
         readonly struct Or<T>
             where T : struct
         {
-            public static readonly BinaryOp<T> Op = gmath.or<T>;
+            public static readonly BinaryOp<T> Op = gbits.or<T>;
         }
 
         readonly struct XOr<T>

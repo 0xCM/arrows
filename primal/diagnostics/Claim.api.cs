@@ -209,10 +209,24 @@ namespace Z0
                     throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
         }
 
+        [MethodImpl(Inline)]
+        public static void eq(ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => yea(lhs.Eq(rhs), null, caller, file, line);
+
+        [MethodImpl(Inline)]
+        public static void eq(Span<char> lhs, ReadOnlySpan<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => yea(lhs.Eq(rhs), null, caller, file, line);
+
+        [MethodImpl(Inline)]
+        public static void eq(Span<char> lhs, Span<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => yea(lhs.Eq(rhs), null, caller, file, line);
+
+        [MethodImpl(Inline)]
         public static void eq<T>(Span<T> lhs, Span<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
                 => eq(lhs.ReadOnly(), rhs.ReadOnly(), caller, file, line);
  
+        [MethodImpl(Inline)]
         public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
                 => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);

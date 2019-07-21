@@ -17,10 +17,10 @@ namespace Z0
     /// </summary>
     public readonly struct BitGridCell
     {   
-        public static implicit operator BitGridCell((int BitPos, int SegPos, int Row, int Col, int Offset) x)
+        public static implicit operator BitGridCell((int BitPos, int SegPos, int Row, int Col, byte Offset) x)
             => new BitGridCell(x.BitPos, x.SegPos, x.Row, x.Col, x.Offset);
 
-        public BitGridCell(int BitPos, int SegPos, int Row, int Col, int Offset)
+        public BitGridCell(int BitPos, int SegPos, int Row, int Col, byte Offset)
         {
             this.BitPos = BitPos;
             this.SegPos = SegPos;
@@ -49,7 +49,7 @@ namespace Z0
         /// <summary>
         /// The segment-relative column offset
         /// </summary>
-        public readonly int Offset;
+        public readonly byte Offset;
 
         public string Format()
             => $"(Bit = {BitPos}, Segment = {SegPos}, Row = {Row}, Col = {Col}, Offset = {Offset})";

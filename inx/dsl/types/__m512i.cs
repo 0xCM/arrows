@@ -118,32 +118,32 @@ namespace Z0
              + Bits.pop(this.x4) + Bits.pop(this.x5) + Bits.pop(this.x6) + Bits.pop(this.x7);        
 
         [MethodImpl(Inline)]
-        public Bit TestBit<T>(int partIx, int offset)
+        public Bit TestBit<T>(BitPos pos)
             where T : struct
-                => gbits.test(in this.Part<T>(partIx), offset);
+                => gbits.test(in this.Part<T>(pos.SegIdx), pos.BitOffset);
 
         [MethodImpl(Inline)]
-        public void EnableBit<T>(int partIx, int offset)
+        public void EnableBit<T>(BitPos pos)
             where T : struct
-                => gbits.enable(ref this.Part<T>(partIx), offset);
+                => gbits.enable(ref this.Part<T>(pos.SegIdx), pos.BitOffset);
 
         [MethodImpl(Inline)]
-        public void DisableBit<T>(int partIx, int offset)
+        public void DisableBit<T>(BitPos pos)
             where T : struct
-                => gbits.disable(ref this.Part<T>(partIx), offset);
+                => gbits.disable(ref this.Part<T>(pos.SegIdx), pos.BitOffset);
 
         [MethodImpl(Inline)]
-        public void ToggleBit<T>(int partIx, int offset)
+        public void ToggleBit<T>(int segment, int bit)
             where T : struct
-                => gbits.toggle(ref this.Part<T>(partIx), offset);
+                => gbits.toggle(ref this.Part<T>(segment), bit);
         
         public Bit this[int bitpos]
         {
             [MethodImpl(Inline)]
             get
             {
-                var qr = math.quorem(ByteSize, 8);
-                return TestBit<byte>(qr.Quotient, qr.Remainder);                
+                var qr = BitPos.Define(math.quorem(ByteSize, 8));                
+                return TestBit<byte>(qr);                
             }
         }
 

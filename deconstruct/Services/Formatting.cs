@@ -35,11 +35,33 @@ namespace Z0
             return format.ToString();
         }
 
+        public static string FormatNativeBlocks(this MethodDisassembly src)
+        {
+            var desc = sbuild();
+            desc.Append(AsciSym.Semicolon);
+            desc.Append(AsciSym.Semicolon);
+            desc.Append(AsciSym.Space);
+            foreach(var block in src.AsmBody.NativeBlocks)
+            {
+                foreach(var b in block.Data)
+                {
+                    desc.Append(b.ToHexString(true, false));
+                    desc.Append(AsciSym.Space);
+                }
+
+                    
+            }
+            desc.AppendLine();                
+            return desc.ToString();
+
+        }        
+
         public static string FormatAsm(this MethodDisassembly src)
         {
             var format = sbuild();
             
-            format.AppendLine($"{src.NativeAddress.ToHexString(false,false,true)}h: {src.MethodSig.Format()}");
+            format.AppendLine($"{src.NativeAddress.ToHexString(false,false,true)}h: {src.MethodSig.Format()}"); 
+            format.Append(src.FormatNativeBlocks());
             format.AppendLine("asm ".PadRight(80, '-'));                                    
             format.AppendLine(src.AsmBody.FormatAsm());
             format.AppendLine("end asm ".PadRight(80, '-'));
@@ -74,8 +96,8 @@ namespace Z0
             for(var j = 0; j< src.Instructions.Length; j++)
             {
                 ref var i = ref src.Instructions[j];
-                var address = i.IP;
-                var ra = (address - baseAddress).ToString("x4");
+                var startAddress = i.IP;
+                var ra = (startAddress - baseAddress).ToString("x4");
 
                 sb.Append($"  {ra}h  ");
                 formatter.Format(ref i, output);

@@ -1,4 +1,4 @@
-// 2019-07-14 13:27:23:738
+// 2019-07-20 02:42:57:544
 ReadOnlySpan<byte> get_U8Data()
 {
     IL_0000: ldsflda <PrivateImplementationDetails>/__StaticArrayInitTypeSize=64 <PrivateImplementationDetails>::4C95376F0126070C5E113DDFB17BBF8C2071FC7B
@@ -462,5 +462,12 @@ ReadOnlySpan<uint> ReadU32Data(int count)
     IL_0009: ldarg.1
     IL_000A: call System.ReadOnlySpan`1<System.UInt32> System.ReadOnlySpan`1<System.UInt32>::Slice(System.Int32,System.Int32)
     IL_000F: ret
+
+}
+void VoidReturn()
+{
+    IL_0000: ldstr ""
+    IL_0005: call System.Void System.Console::Write(System.String)
+    IL_000A: ret
 
 }

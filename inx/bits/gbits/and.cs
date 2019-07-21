@@ -38,7 +38,7 @@ namespace Z0
         }           
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref T and<T>(ref T lhs, T rhs)
+        public static ref T and<T>(ref T lhs, in T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -63,7 +63,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        public static ref readonly Span<T> and<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -84,16 +84,16 @@ namespace Z0
                 math.and(uint64(lhs), uint64(rhs), uint64(dst));
             else
                 throw unsupported<T>();
-            return dst;
+            return ref dst;
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        public static Span<T> and<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
-                => and(lhs,rhs, span<T>(length(lhs,rhs)));
+                => and(in lhs,in rhs, span<T>(length(lhs,rhs)));
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref Span<T> and<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static ref readonly Span<T> and<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -118,7 +118,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
-        public static ref Span<T> and<T>(ref Span<T> lhs, T rhs)
+        public static ref readonly Span<T> and<T>(in Span<T> lhs, in T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))

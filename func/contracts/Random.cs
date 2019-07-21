@@ -21,13 +21,45 @@ namespace System
     }
 
     /// <summary>
+    /// Characterizes source capable of producing an interminable sequence of points
+    /// </summary>
+    /// <typeparam name="T">The primal type</typeparam>
+    public interface IPointSource<out T>
+        where T : struct
+    {
+        T Next();    
+    }
+
+    /// <summary>
+    /// Characterizes source capable of producing an interminable sequence of N-dimensional points/vectors
+    /// </summary>
+    /// <typeparam name="T">The primal component type</typeparam>
+    public interface IPointSource<N,T>
+        where N : ITypeNat, new()
+        where T : struct
+    {
+        Span<N,T> Next();
+    }
+
+
+    /// <summary>
     /// Characterizes a pseudo-random or entropic point source
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRandomSource<out T> : IPointSource<T>
+    public interface IRandomSource<T> : IPointSource<T>
         where T : struct
     {
 
+    }
+
+
+    public interface IBoundRandomSource<T> : IRandomSource<T>
+        where T : struct
+    {
+        /// <summary>
+        /// The range of the underlying random variable
+        /// </summary>
+        Interval<T> Range {get;}
     }
 
     public interface IRandomSource<N,T> : IPointSource<N,T>

@@ -86,32 +86,33 @@ namespace Z0
         public static BitVector32 operator ~(in BitVector32 src)
             => ~src.data;
 
-        public Bit this[in int pos]
+        public Bit this[byte pos]
         {
             [MethodImpl(Inline)]
-            get => test(data, in pos);
+            get => test(in data, pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    enable(ref data, in pos);
+                    enable(ref data, pos);
                 else
-                    disable(ref data, in pos);                    
+                     disable(ref data, pos);                    
             }            
         }
-            
-        [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
-            => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
-            => disable(ref data, in pos);
+        public void EnableBit(byte pos)
+            => enable(ref data, pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
-            => test(in data, in pos);
+        public void DisableBit(byte pos)
+            => disable(ref data, pos);
+
+        [MethodImpl(Inline)]
+        public bool TestBit(byte pos)
+            => test(in data, pos);
+
 
         public BitVector16 Hi
         {

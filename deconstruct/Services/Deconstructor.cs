@@ -13,7 +13,6 @@ namespace Z0
     using Microsoft.Diagnostics.Runtime;
 	using Iced.Intel;
 
-
     using static zfunc;
     
     /// <summary>
@@ -40,9 +39,7 @@ namespace Z0
             var methods = from t in types
                           from m in t.DeclaredMethods().NonGeneric().Concrete()
                           select m;
-
-            return Disassemble(methods.ToArray());
-                        
+            return Disassemble(methods.ToArray());                        
         }
 
         static IEnumerable<MethodDisassembly> Disassemble(Action<string> onError, params MethodInfo[] methods)
@@ -88,6 +85,7 @@ namespace Z0
                     CilBody = MdIx.FindCil(method),
                     CilMap = MapCilToNative(clrMethod),
                     AsmBody =  asmBody,
+                    NativeBody = asmBody.NativeBlocks
                 };
 
                 return d;            
@@ -108,7 +106,7 @@ namespace Z0
                 instructions.AddRange(DecodeAsm(block));
                 blocks.Add(block);
             }
-            return new MethodAsmBody(method,blocks,instructions.ToArray());
+            return new MethodAsmBody(method, blocks.ToArray(), instructions.ToArray());
         }
 
         void IDisposable.Dispose()
@@ -141,7 +139,6 @@ namespace Z0
             {
                 error(errorMsg(e));
             }
-
         }
 
         static void Jit(IEnumerable<MethodBase> methods)
@@ -195,13 +192,11 @@ namespace Z0
                         var blocks = new List<NativeBlock>();
                         blocks.Add(native);
 
-                        var body = new MethodAsmBody(midx[(int)d.MethodId], blocks, instructions);
+                        var body = new MethodAsmBody(midx[(int)d.MethodId], blocks.ToArray(), instructions);
                         yield return body;
                     }
                 }
             }       
 		}
-
     }
-
 }

@@ -6,19 +6,29 @@ namespace Z0
 {
     using System;
 
+	/// <summary>
+	/// Represents a native code block
+	/// </summary>
 	public readonly struct NativeBlock 
     {
-		public readonly ulong Address;
-	
-    	public readonly byte[] Data;
-	
     	public NativeBlock(ulong address, byte[] data) 
         {
 			Address = address;
 			Data = data;
 		}
 
+		/// <summary>
+		/// The location of the block head
+		/// </summary>
+		public readonly ulong Address;
+	
+		/// <summary>
+		/// The block data
+		/// </summary>
+    	public readonly byte[] Data;
+	
+
 		public override string ToString() 
-			=> Data.ToBlockedHexString();
+			=> $"{Address.ToHexString()}: {Data.ToBlockedHexString()}";
 	}
 }

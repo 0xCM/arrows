@@ -11,9 +11,9 @@ namespace Z0
     
     using static zfunc;    
 
-
-    public static class CompareX
+    public static partial class InXtend
     {
+
         [MethodImpl(Inline)]
         public static Vec128Cmp<T> Gt<T>(in this Vec128<T> lhs, in Vec128<T> rhs )
             where T : struct
@@ -23,7 +23,5 @@ namespace Z0
         public static Vec256Cmp<T> Gt<T>(in this Vec256<T> lhs, in Vec256<T> rhs )
             where T : struct
                 => ginx.gt(lhs,rhs);
-
     }
-
 }

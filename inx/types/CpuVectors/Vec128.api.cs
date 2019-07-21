@@ -20,7 +20,6 @@ namespace Z0
     
     public static partial class Vec128
     {
-
         [MethodImpl(Inline)]
         public static ref readonly Vec128<T> zero<T>() 
             where T : struct
@@ -67,6 +66,12 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Stores an intrinsic vector to a memory location
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target location</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public unsafe static void store<T>(in Vec128<T> src, ref T dst)
             where T : struct
@@ -96,6 +101,13 @@ namespace Z0
                 throw unsupported<T>();
         }       
 
+        /// <summary>
+        /// Stores an intrinsic vector to a blocked span
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target span</param>
+        /// <param name="blockIndex">The block position in the target span where storage begins</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Span128<T> store<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
             where T : struct        

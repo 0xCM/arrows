@@ -14,7 +14,7 @@ namespace Z0
     partial class gbits
     {
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        public static ref readonly Span<T> xor<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -35,17 +35,17 @@ namespace Z0
                 math.xor(uint64(lhs), uint64(rhs), uint64(dst));
             else
                 throw unsupported<T>();
-            return dst;
+            return ref dst;
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        public static Span<T> xor<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
-                => xor(lhs,rhs, span<T>(length(lhs,rhs)));
+                => xor(in lhs,in rhs, span<T>(length(lhs,rhs)));
         
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref Span<T> xor<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static ref readonly Span<T> xor<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -70,7 +70,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref Span<T> xor<T>(ref Span<T> lhs, T rhs)
+        public static ref readonly Span<T> xor<T>(in Span<T> lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))

@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "*.lhs": "haskell",
+        "*.hsc": "haskell",
+        ".dot": "dot",
+        "*.s": "asm",
+        "*-asm": "asm",
+        "*-asm-native": "asm",
+        "*.o": "hexdump",
+        "*.asm": "asm",
+        "*.el": "lisp",
+        "*.hsig": "haskell",
+        "*.rmd": "markdown",
+        "cmath": "cpp",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "string": "cpp",
+        "ios": "cpp",
+        "xlocnum": "cpp",
+        "streambuf": "cpp",
+        "xiosbase": "cpp",
+        "system_error": "cpp",
+        "cerrno": "cpp"
+    }
+}

@@ -21,29 +21,29 @@ namespace Z0
         /// <param name="pos">The 0-based index of the bit to change</param>
         /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static ref T disable<T>(ref T src, in int pos)
+        public static ref T disable<T>(ref T src, byte pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.disable(ref int8(ref src), in pos);
+                Bits.disable(ref int8(ref src), pos);
             else if(typeof(T) == typeof(byte))
-                Bits.disable(ref uint8(ref src), in pos);
+                Bits.disable(ref uint8(ref src), pos);
             else if(typeof(T) == typeof(short))
-                Bits.disable(ref int16(ref src), in pos);
+                Bits.disable(ref int16(ref src), pos);
             else if(typeof(T) == typeof(ushort))
-                Bits.disable(ref uint16(ref src), in pos);
+                Bits.disable(ref uint16(ref src), pos);
             else if(typeof(T) == typeof(int))
-                Bits.disable(ref int32(ref src), in pos);
+                Bits.disable(ref int32(ref src), pos);
             else if(typeof(T) == typeof(uint))
-                Bits.disable(ref uint32(ref src), in pos);
+                Bits.disable(ref uint32(ref src), pos);
             else if(typeof(T) == typeof(long))
-                Bits.disable(ref int64(ref src), in pos);
+                Bits.disable(ref int64(ref src), pos);
             else if(typeof(T) == typeof(ulong))
-                Bits.disable(ref uint64(ref src), in pos);
+                Bits.disable(ref uint64(ref src), pos);
             else if(typeof(T) == typeof(float))
-                Bits.disable(ref float32(ref src), in pos);
+                Bits.disable(ref float32(ref src), pos);
             else if(typeof(T) == typeof(double))
-                Bits.disable(ref float64(ref src), in pos);
+                Bits.disable(ref float64(ref src), pos);
             else
                 throw unsupported<T>();
                 

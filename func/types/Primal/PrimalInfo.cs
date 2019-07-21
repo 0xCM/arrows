@@ -25,9 +25,9 @@ namespace Z0
 
         Option<T> Epsilon {get;}
 
-        BitSize BitSize {get;}
+        ulong BitSize {get;}
 
-        ByteSize ByteSize {get;}
+        int ByteSize {get;}
         
         bool Infinite {get;}
 
@@ -91,12 +91,12 @@ namespace Z0
                 => !Get<T>().Signed;
 
         [MethodImpl(Inline)]
-        public static BitSize bitsize<T>()
+        public static ulong bitsize<T>()
             where T : struct
                 => Get<T>().BitSize;
 
         [MethodImpl(Inline)]
-        public static ByteSize bytesize<T>()
+        public static int bytesize<T>()
             where T : struct
                 => Get<T>().ByteSize;
 
@@ -361,7 +361,7 @@ namespace Z0
     public readonly struct PrimalInfo<T> : IPrimalInfo<T>
         where T : struct
     {
-        public PrimalInfo((T min, T max) range, bool signed, T zero, T one, uint bitsize, T epsilon = default, bool infinite = false)
+        public PrimalInfo((T min, T max) range, bool signed, T zero, T one, ulong bitsize, T epsilon = default, bool infinite = false)
         {
             this.MinVal = range.min;
             this.MaxVal = range.max;
@@ -371,7 +371,7 @@ namespace Z0
             this.BitSize = bitsize;
             this.Infinite = infinite;
             this.Epsilon = ! epsilon.Equals(default) ? some(epsilon) : none<T>();
-            this.ByteSize = BitSize;
+            this.ByteSize = (int)(BitSize/8ul);
         }
 
         public T MinVal {get;}
@@ -386,9 +386,9 @@ namespace Z0
 
         public Option<T> Epsilon {get;}
 
-        public BitSize BitSize {get;}
+        public ulong BitSize {get;}
 
-        public ByteSize ByteSize {get;}
+        public int ByteSize {get;}
         
         public bool Infinite {get;}
         

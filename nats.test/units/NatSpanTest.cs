@@ -17,7 +17,6 @@ namespace Z0.Test
 
     public class NatSpanTest : UnitTest<NatSpanTest>
     {
-
         
         public void Transpose()
         {

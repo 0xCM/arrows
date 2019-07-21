@@ -17,6 +17,17 @@ namespace Z0
     /// </summary>
     public readonly struct BitSize
     {
+
+        /// <summary>
+        /// Returns the bit size of a type
+        /// </summary>
+        /// <typeparam name="T">The type to evaluate</typeparam>
+        [MethodImpl(Inline)]
+        public static BitSize Size<T>()
+            where T : struct
+                => Unsafe.SizeOf<T>()*8;
+        
+        [MethodImpl(Inline)]
         public static bool operator ==(BitSize lhs, BitSize rhs)
             => lhs.Bits == rhs.Bits;
 
@@ -55,6 +66,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitSize Define(ulong bits)
             => new BitSize(bits);
+
+        [MethodImpl(Inline)]
+        public static explicit operator byte(BitSize src)
+            => (byte)src.Bits;
 
         [MethodImpl(Inline)]
         public static implicit operator int(BitSize src)

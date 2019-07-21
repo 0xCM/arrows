@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="value">The value to be applied</param>
         /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref T set<T>(ref T src, in int pos, Bit value)            
+        public static ref T set<T>(ref T src, byte pos, in Bit value)            
             where T : struct
         {
             if(value)

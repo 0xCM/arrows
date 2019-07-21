@@ -17,12 +17,11 @@ namespace Z0
     public readonly struct Vec256<T>
         where T : struct
     {
-
         public static readonly int Length = Vector256<T>.Count;
 
         public static readonly ByteSize CellSize = SizeOf<T>.Size;
 
-        public static readonly int BitCount = SizeOf<T>.BitSize * CellSize;
+        public static readonly ulong BitCount = 256ul;
 
         public static readonly Vec256<T> Zero = Vector256<T>.Zero;
 
@@ -55,7 +54,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => component(this,idx);
         }
-
 
         [MethodImpl(Inline)]
         public Vec256<U> As<U>() 

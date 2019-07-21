@@ -380,7 +380,7 @@ partial class zfunc
         => constructor(typeof(T), argTypes);
 
     [MethodImpl(Inline)]
-    public static string method([CallerMemberName] string name = null)
+    public static string caller([CallerMemberName] string name = null)
         => name;
 
     /// <summary>
@@ -410,4 +410,12 @@ partial class zfunc
     public static void invoke(object o, string methodName, params object[] parms)
         => o.GetDelaredMethod(methodName).Invoke(o, parms);
 
+    /// <summary>
+    /// Finds the first method declared by a type that matches a specified name
+    /// </summary>
+    /// <param name="name">The method name</param>
+    /// <typeparam name="T">The declaring type</typeparam>
+    [MethodImpl(Inline)]
+    public static MethodInfo method<T>(string name)
+        => typeof(T).Methods().First(m => m.Name == name);
 }

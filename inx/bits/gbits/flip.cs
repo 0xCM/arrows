@@ -15,7 +15,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
-         public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
+         public static ref readonly Span<T> flip<T>(in ReadOnlySpan<T> src, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -36,11 +36,11 @@ namespace Z0
                 math.flip(uint64(src), uint64(dst));
             else
                 throw unsupported<T>();
-            return dst;
+            return ref dst;
         }
 
          [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
-        public static ref Span<T> flip<T>(ref Span<T> io)
+        public static ref readonly Span<T> flip<T>(in Span<T> io)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))

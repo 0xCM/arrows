@@ -106,8 +106,14 @@ namespace Z0.Test
         protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
 
+        protected void TypeCaseStart<A,B>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> executing", SeverityLevel.HiliteCL));
+
         protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<A,B>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> succeeded", SeverityLevel.HiliteCL));
 
         protected void TypeCaseEnd<C>(AppMsg msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));

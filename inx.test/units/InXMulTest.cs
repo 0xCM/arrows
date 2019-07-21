@@ -19,7 +19,7 @@ namespace Z0.Test
             for(var i=0; i<=63; i++)
             for(var j=0; j<=63; j++)
             {
-                var dst = dinx.umul128(Pow2.pow(i), Pow2.pow(j), out UInt128 _);
+                var dst = dinx.umul128(1ul << i, 1ul << j, out UInt128 _);
                 var bsActual = dst.ToBitString();
                 var bsExpect = BitString.FromPow2(i + j);
                 Claim.eq(bsExpect.Format2(true), bsActual.Format2(true));                

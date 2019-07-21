@@ -28,10 +28,12 @@ namespace Z0
         }
     }
 
+    /// <summary>
+    /// Defines a 256-bit vector obtained from a comparison operation
+    /// </summary>
     public readonly struct Vec256Cmp<T>
         where T : struct
-    {
-    
+    {    
         public static bool operator true(in Vec256Cmp<T> src)
             => src.Reduce();
 

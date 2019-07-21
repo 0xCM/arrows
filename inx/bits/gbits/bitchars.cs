@@ -14,7 +14,7 @@ namespace Z0
     partial class gbits
     {
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static char bitchar<T>(in T src, int pos)
+        public static char bitchar<T>(in T src, byte pos)
             where T : struct
                 => gbits.test(in src, pos)  ? AsciDigits.A1 : AsciDigits.A0;                
 

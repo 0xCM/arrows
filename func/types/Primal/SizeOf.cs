@@ -27,7 +27,7 @@ namespace Z0
         /// <summary>
         /// The size of the type in bits
         /// </summary>
-        public static readonly int BitSize = Size*8;
+        public static readonly ulong BitSize = Size*8;
         
         static int GetSize()
             => Primitive switch{

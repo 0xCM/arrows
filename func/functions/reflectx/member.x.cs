@@ -28,7 +28,6 @@ namespace Z0
         /// Determines whether the property has a public or non-public setter
         /// </summary>
         /// <param name="p"></param>
-        /// <returns></returns>
         public static bool HasSetter(this PropertyInfo p)
             => p.Setter().Exists;
 
@@ -68,7 +67,6 @@ namespace Z0
         /// Determines whether a method is an action
         /// </summary>
         /// <param name="m">The method to examine</param>
-        /// <returns></returns>
         public static bool IsAction(this MethodInfo m)
             => m.ReturnType == typeof(void);
 
@@ -76,7 +74,6 @@ namespace Z0
         /// Determines whether a method is a function
         /// </summary>
         /// <param name="m">The method to examine</param>
-        /// <returns></returns>
         public static bool IsFunction(this MethodInfo m)
             => m.ReturnType != typeof(void);
 
@@ -84,7 +81,6 @@ namespace Z0
         /// Determines whether the method is an implicit conversion operator
         /// </summary>
         /// <param name="m">The method to test</param>
-        /// <returns></returns>
         public static bool IsImplicitConverter(this MethodInfo m)
             => string.Equals(m.Name, "op_Implicit", StringComparison.InvariantCultureIgnoreCase);
 
@@ -92,7 +88,6 @@ namespace Z0
         /// Determines whether the method is an explicit conversion operator
         /// </summary>
         /// <param name="m">The method to test</param>
-        /// <returns></returns>
         public static bool IsExplicitConverter(this MethodInfo m)
             => string.Equals(m.Name, "op_Explicit", StringComparison.InvariantCultureIgnoreCase);
 
@@ -101,7 +96,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The type of attribute for which to check</typeparam>
         /// <param name="m">The member to examine</param>
-        /// <returns></returns>
         public static bool HasAttribute<A>(this MemberInfo m) where A : Attribute
             => System.Attribute.IsDefined(m, typeof(A));
 
@@ -195,7 +189,6 @@ namespace Z0
             var typeName = memberName.Replace($"`{args.Count}", string.Empty);
             return typeName + (args.Count != 0 ? angled(argFmt) : string.Empty);
         }
-
         
         public static MethodSig MethodSig(this MethodInfo src)
             => Z0.MethodSig.Define(src);
@@ -431,9 +424,15 @@ namespace Z0
         /// Selects the methods from a stream that return a particular type of value
         /// </summary>
         /// <param name="src">The source stream</param>
+        /// <param name="returnType">The method return type</param>
         public static IEnumerable<MethodInfo> Returns(this IEnumerable<MethodInfo> src, Type returnType)
             => src.Where(x => x.ReturnType == returnType);
 
+        /// <summary>
+        /// Selects methods from a stream that have a specified number of parameters
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="count">The parameter count</param>
         public static IEnumerable<MethodInfo> WithParameterCount(this IEnumerable<MethodInfo> src, int count)
             => src.Where(m => m.GetParameters().Length == count);
 
@@ -457,7 +456,6 @@ namespace Z0
         /// <param name="src">The properties to examine</param>
         public static IEnumerable<PropertyInfo> WithGetAndSet(this IEnumerable<PropertyInfo> src)
             => src.Where(p => p.GetGetMethod() != null && p.GetSetMethod() != null);
-
 
         /// <summary>
         /// Selects the members with a particular name
@@ -483,5 +481,16 @@ namespace Z0
         /// <param name="instance">The object instance, if applicable</param>
         public static Option<object> TryGetValue(this FieldInfo field, object instance = null)
             => Try(() => field.GetValue(instance));
+    
+        /// <summary>
+        /// JIT's the method and returns a pointer to the native body
+        /// </summary>
+        /// <param name="m">The method to JIT</param>
+        public static IntPtr Prepare(this MethodInfo m)
+        {            
+            RuntimeHelpers.PrepareMethod(m.MethodHandle);
+            var ptr = m.MethodHandle.GetFunctionPointer();
+            return ptr;
+        }    
     }
 }

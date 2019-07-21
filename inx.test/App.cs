@@ -30,22 +30,6 @@ namespace Z0.Test
 
         }
 
-        void Permute()
-        {
-            var subject = Vec256.define(11u, 13u, 17u, 19u, 27u, 31u, 37u, 39u);
-            var control = Vec256.define(7u, 5u, 6u, 4u, 3u, 2u, 1u, 0u);
-            var result = dinx.permute(subject,control);
-            inform($"{subject} >> {control} = {result}");
-            Claim.eq(dinx.reverse(subject), result);
-        }
-
-        void Swap()
-        {
-            var subject = Vec256.define(2, 4, 6, 8, 10, 12, 14, 16);
-            var swapped = dinx.swap(subject, 2, 3);
-            var expect = Vec256.define(2, 4, 8, 6, 10, 12, 14, 16);
-            Claim.eq(expect, swapped);
-        }
 
         void Shuffle()
         {
@@ -55,9 +39,9 @@ namespace Z0.Test
         }
         protected override void RunTests(string filter)
         {     
-            Swap();       
-            //base.RunTests("InXAddTest");
+            base.RunTests("BitVectorTest");
             //base.RunTests("NatModTest");
+            //base.RunTests(filter);
         }
 
         public static void Main(params string[] args)

@@ -25,10 +25,10 @@ namespace Z0.Test
 
         public void ByteToBinaryDigits()
         {
-            Claim.eq("100", BitString.From(0b00000100).Format(true));
-            Claim.eq("101", BitString.From(0b00000101).Format(true));
-            Claim.eq("1000101", BitString.From(0b01000101).Format(true));
-            Claim.eq("11010101", BitString.From(0b11010101).Format(true));
+            Claim.eq("100", BitString.From(0b00000100).Format2(true));
+            Claim.eq("101", BitString.From(0b00000101).Format2(true));
+            Claim.eq("1000101", BitString.From(0b01000101).Format2(true));
+            Claim.eq("11010101", BitString.From(0b11010101).Format2(true));
         }
 
         public void SByteToBinaryDigits()

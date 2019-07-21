@@ -53,9 +53,10 @@ namespace Z0
                 => new Span<T>(Unsafe.AsPointer(ref src), Vec512<T>.Length);
 
         [MethodImpl(Inline)]
-        public static string ToHexString<T>(this Vec512<T> src, bool blocked = false, int? bwidth = null, char? bsep = null)
+        public static string FormatHex<T>(this Vec512<T> src, int? bwidth = null, char? bsep = null)
             where T : struct
-                => src.Hi().ToHexString(blocked, bwidth, bsep) + src.Lo().ToHexString(blocked, bwidth, bsep);
+                => src.Hi().Extract().FormatHexBlocks(bwidth, bsep) 
+                    + src.Lo().Extract().FormatHexBlocks(bwidth, bsep);
     }
 
 }

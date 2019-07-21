@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;    
 
-    public static class ToSpanX
+    partial class InXtend
     {
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 
@@ -27,7 +27,6 @@ namespace Z0
             Vec128.store(in src, ref dst[0]);
             return dst;
         }                       
-
 
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 
@@ -54,6 +53,5 @@ namespace Z0
         public static Span<T> Extract<T>(this in Vec256<T> src)
             where T : struct            
                 => src.ToSpan().Unblock();
-
     }
 }

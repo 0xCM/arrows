@@ -74,7 +74,6 @@ namespace Z0.Test
             lastix = src2.Length -1;            
             for(var i=0; i<src2.Length; i++)
                 Claim.eq(rev2[lastix - i], src2[i]);
-
         }
 
         public void VerifyNonPrimal()
@@ -118,7 +117,7 @@ namespace Z0.Test
             var x = Random.Next<ulong>();
             var bv = x.ToBitVector();
             var bits = span<Bit>(sizeof(ulong)*8);
-            for(var i=0; i< bits.Length; i++)
+            for(byte i=0; i< bits.Length; i++)
                 bits[i] = bv[i];
             var bitBytes = bits.CompressToBytes();
             var xBytes = x.ToBytes();

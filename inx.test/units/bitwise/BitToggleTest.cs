@@ -37,7 +37,7 @@ namespace Z0.Test
             for(var i = 0; i< srcLen; i++)
             {
                 var x = src[i];
-                for(var j =0; j< tLen; j++)
+                for(byte j =0; j< tLen; j++)
                 {
                     var before = gbits.test(in x, j);
                     gbits.toggle(ref x, j);
@@ -54,28 +54,28 @@ namespace Z0.Test
 
         public void BitTest()
         {
-            Claim.yea(gbits.test(0b00000101, 0));
-            Claim.nea(gbits.test(0b00000101, 1));
-            Claim.yea(gbits.test(0b00000101, 2));
+            Claim.yea(gbits.test(0b00000101, (byte)0));
+            Claim.nea(gbits.test(0b00000101, (byte)1));
+            Claim.yea(gbits.test(0b00000101, (byte)2));
             
-            Claim.yea(gbits.test(0b00000111, 0));
-            Claim.yea(gbits.test(0b00000111, 1));
-            Claim.yea(gbits.test(0b00000111, 2));
+            Claim.yea(gbits.test(0b00000111, (byte)0));
+            Claim.yea(gbits.test(0b00000111, (byte)1));
+            Claim.yea(gbits.test(0b00000111, (byte)2));
         }
 
 
-        public void BitSize()
+        public void VerifyBitSize()
         {
-            Claim.eq(8, gmath.bitsize<byte>());
-            Claim.eq(8, gmath.bitsize<sbyte>());
-            Claim.eq(16, gmath.bitsize<short>());
-            Claim.eq(16, gmath.bitsize<ushort>());
-            Claim.eq(32, gmath.bitsize<int>());
-            Claim.eq(32, gmath.bitsize<uint>());
-            Claim.eq(64, gmath.bitsize<long>());
-            Claim.eq(64, gmath.bitsize<ulong>());
-            Claim.eq(32, gmath.bitsize<float>());
-            Claim.eq(64, gmath.bitsize<double>());
+            Claim.eq(8, BitSize.Size<byte>());
+            Claim.eq(8, BitSize.Size<sbyte>());
+            Claim.eq(16, BitSize.Size<short>());
+            Claim.eq(16, BitSize.Size<ushort>());
+            Claim.eq(32, BitSize.Size<int>());
+            Claim.eq(32, BitSize.Size<uint>());
+            Claim.eq(64, BitSize.Size<long>());
+            Claim.eq(64, BitSize.Size<ulong>());
+            Claim.eq(32, BitSize.Size<float>());
+            Claim.eq(64, BitSize.Size<double>());
         }
 
         public void EnableBits()

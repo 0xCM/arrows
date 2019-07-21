@@ -78,15 +78,15 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         [MethodImpl(Inline)]
-        public static bool StartsWithNumber(this string s)
+        public static bool StartsWithDigit(this string s)
             => nonempty(s) ? Char.IsDigit(s.First()) : false;
 
         /// <summary>
         /// Determines whether a string ends with a digit
         /// </summary>
         /// <param name="s">The string to search</param>
-        /// <returns></returns>
-        public static bool EndsWithNumber(this string s)
+        [MethodImpl(Inline)]
+        public static bool EndsWithDigit(this string s)
             => nonempty(s) ? Char.IsDigit(s.Last()) : false;
 
         /// <summary>
@@ -102,6 +102,11 @@ namespace Z0
             return false;
         }
 
+        /// <summary>
+        /// Joins a sequence of source characters with optional interspersed separator
+        /// </summary>
+        /// <param name="chars"></param>
+        /// <param name="sep"></param>
         public static string Concat(this IEnumerable<char> chars, char? sep = null)
         {
             if(sep == null)
@@ -169,7 +174,6 @@ namespace Z0
         /// <param name="substrings">The characters for which to search</param>
         public static bool ContainsAny(this string src, IEnumerable<string> substrings)
             => substrings.Any(ss => src.Contains(ss));
-
 
         /// <summary>
         /// Gets the string to the right of, but not including, a specified index
@@ -308,7 +312,6 @@ namespace Z0
         public static string Format<T>(this IEnumerable<T> src, string sep = ", ",  Func<T,string> formatter = null)
             => string.Join(sep, src.Select(x => formatter?.Invoke(x) ?? x.ToString())).TrimEnd();
 
-
         [MethodImpl(Inline)]   
         public static string Format(this ReadOnlySpan<char> src)
             => new string(src);
@@ -352,7 +355,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string that contains characters to be replaced</param>
         /// <param name="replacements">The characters that will be used to replace existing characters</param>
-        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ReplaceAny(this string s, IReadOnlyDictionary<char, char> replacements)
         {
@@ -524,7 +526,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="match">The substring to match</param>
-        /// <returns></returns>
         public static string RightOfLast(this string s, string match)
         {
             var idx = s.LastIndexOf(match);
@@ -534,12 +535,10 @@ namespace Z0
                 return string.Empty;
         }
 
-
         /// <summary>
         /// Returns true if a string is null or whitespace; otherwise, returns false
         /// </summary>
         /// <param name="s">The string to evaluate</param>
-        /// <returns></returns>
         static bool IsBlank(string s)
             => string.IsNullOrWhiteSpace(s);
 
@@ -547,7 +546,6 @@ namespace Z0
         /// Returns true if not blank as determined by <see cref="IsBlank(string)"/>, false otherwise
         /// </summary>
         /// <param name="s"></param>
-        /// <returns></returns>
         static bool HasValue(string s)
             => !IsBlank(s);
 
@@ -695,25 +693,32 @@ namespace Z0
             var groupValue = m.GetGroupValue(name);
             var valueType = typeof(T);
             if (valueType.IsString())
-            {
                 result = groupValue;
-            }
             else if (valueType.IsNullableType())
-            {
                 result = System.Convert.ChangeType(groupValue, Nullable.GetUnderlyingType(valueType));
-            }
             else
-            {
                 result = System.Convert.ChangeType(groupValue, valueType);
-            }
             return (T)result;
         }
 
-
         public static IEnumerable<string> Partition(this string src, int max)
         {
-            for(var i = 0; i< src.Length; i += max)
-                yield return src.Substring(i, max);
+            Span<char> buffer = stackalloc char[max];
+            for(int i = 0, j=0; i< src.Length; i++, j++)
+            {
+                if(j < max)
+                    buffer[j] = src[i];
+                else
+                {
+                    yield return new string(buffer);
+                    buffer = stackalloc char[max];
+                    j = 0;
+                    buffer[j] = src[i];
+                }
+            }
+            var trim = buffer.Trim();
+            if(trim.Length != 0)
+                yield return new string(trim);                
         }
 
         public static string Concat(this IEnumerable<string> src, string sep = null)
@@ -737,16 +742,49 @@ namespace Z0
         public static string SeparateBlocks(this string src, int blocklen, char sep)
             => src.Partition(blocklen).Concat(sep.ToString());
 
-        public static string Intersperse(this string src, char x)
+        /// <summary>
+        /// Creates a new string by weaving a specified character between each pari
+        /// of members in the source string
+        /// </summary>
+        /// <param name="src">The source string</param>
+        /// <param name="c">The character to intersperse</param>
+        public static string Intersperse(this string src, char c)
         {
             var sb = sbuild();
             foreach(var item in src)
             {
                 sb.Append(item);
-                sb.Append(x);
+                sb.Append(c);
             }
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Returns true if the character spans are equal as strings, false otherwise
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static bool Eq(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)        
+             =>  lhs.CompareTo(rhs, StringComparison.InvariantCulture) == 0;
+
+        /// <summary>
+        /// Returns true if the character spans are equal as strings, false otherwise
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static bool Eq(this Span<char> lhs, ReadOnlySpan<char> rhs)        
+             =>  lhs.ReadOnly().Eq(rhs);
+
+        /// <summary>
+        /// Returns true if the character spans are equal as strings, false otherwise
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static bool Eq(this Span<char> lhs, Span<char> rhs)        
+             =>  lhs.ReadOnly().Eq(rhs);
 
     }
 }

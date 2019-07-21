@@ -5,9 +5,6 @@
 namespace Z0
 {
     using System;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using static zfunc;
@@ -40,15 +37,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Char16 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char16>(offset, CharCount);
+            => ref src.AsIndividual<char,Char16>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char16 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsSingle<char,Char16>(offset, CharCount);
+            => ref src.AsIndividual<char,Char16>(offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char16 FromString(string src)
-            => ref src.PadRight(CharCount).Substring(0,CharCount).AsSpan().AsSingle<char,Char16>(0,CharCount);
+            => ref src.PadRight(CharCount).Substring(0,CharCount).AsSpan().AsIndividual<char,Char16>(0,CharCount);
 
         [MethodImpl(Inline)]
         public static implicit operator Span<char>(Char16 src)
@@ -80,11 +77,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public unsafe Span<char> AsSpan()
-            => MemBlock.AsSpan<Char16,char>(ref this);
+            => SpanConvert.AsSpan<Char16,char>(ref this);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<char> AsReadOnlySpan()
-            => MemBlock.AsReadOnlySpan<Char16,char>(ref this);
+            => SpanConvert.AsReadOnlySpan<Char16,char>(ref this);
 
         [MethodImpl(Inline)]
         public string Format()
@@ -93,6 +90,4 @@ namespace Z0
         public override string ToString()
             => Format();
     }
-
-
 }

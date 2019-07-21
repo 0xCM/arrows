@@ -20,7 +20,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
 
             var signed = gmath.signed<T>();
-            var bitsize = gmath.bitsize<T>();
+            var bitsize = BitSize.Size<T>();
             var bs10 = BitString.From("1" + repeat('0', bitsize - 1).Concat());
             var x10 = bs10.ToPrimalValue<T>();
             var bs11 = BitString.From("11" + repeat('0', bitsize - 2).Concat());

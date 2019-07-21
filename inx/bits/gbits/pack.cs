@@ -48,12 +48,12 @@ namespace Z0
             var srcIx = 0;
             var dstOffset = 0;
             var dstIx = 0;
-            var srcSize = SizeOf<S>.BitSize;
-            var dstSize = SizeOf<T>.BitSize;
+            var srcSize = (int)SizeOf<S>.BitSize;
+            var dstSize = (int)SizeOf<T>.BitSize;
             
             while(srcIx < src.Length && dstIx < dst.Length)
             {
-                for(var i = 0; i< srcSize; i++)
+                for(byte i = 0; i< srcSize; i++)
                     if(test(src[srcIx], i))
                        enable(ref dst[dstIx], dstOffset + i);
 

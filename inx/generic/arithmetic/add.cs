@@ -42,7 +42,6 @@ namespace Z0
                 return generic<T>(dinx.add(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-
         }
 
         [MethodImpl(Inline)]
@@ -72,7 +71,6 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
-
         
         [MethodImpl(Inline)]
         public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)

@@ -15,29 +15,7 @@ namespace Z0
 
     partial class gmath
     {
-        [MethodImpl(Inline)]
-        public static T or<T>(T lhs, T rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(math.or(int8(lhs),int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(math.or(uint8(lhs),uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(math.or(int16(lhs),int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(math.or(uint16(lhs),uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(math.or(int32(lhs),int32(rhs)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(math.or(uint32(lhs),uint32(rhs)));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(math.or(int64(lhs),int64(rhs)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(math.or(uint64(lhs),uint64(rhs)));
-            else            
-                throw unsupported<T>();
-        }           
+        
 
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, T rhs)

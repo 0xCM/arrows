@@ -141,7 +141,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.and(ref x, y);
+            gbits.and(in x, y);
             return ref lhs;
         }
 
@@ -159,7 +159,7 @@ namespace Z0
 
         {
             var x = lhs.Unsize();
-            gbits.and(ref x, rhs);
+            gbits.and(in x, in rhs);
             return ref lhs;
         }
 
@@ -177,7 +177,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.or(ref x, y);
+            gbits.or(in x, y);
             return ref lhs;
         }
 
@@ -195,7 +195,7 @@ namespace Z0
 
         {
             var x = lhs.Unsize();
-            gbits.or(ref x, rhs);
+            gbits.or(in x, in rhs);
             return ref lhs;
         }
 
@@ -214,7 +214,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.xor(ref x, y);
+            gbits.xor(in x, y);
             return ref lhs;
         }
 
@@ -232,7 +232,7 @@ namespace Z0
 
         {
             var x = lhs.Unsize();
-            gbits.xor(ref x, rhs);
+            gbits.xor(in x, rhs);
             return ref lhs;
         }
 
@@ -267,7 +267,7 @@ namespace Z0
 
         {
             var x = src.Unsize();
-            gbits.flip(ref x);
+            gbits.flip(in x);
             return ref src;
         }
 
@@ -333,7 +333,7 @@ namespace Z0
 
         {
             var x = src.Unsize();
-            gmath.abs(ref x);
+            gmath.abs(in x);
             return ref src;
         }
 

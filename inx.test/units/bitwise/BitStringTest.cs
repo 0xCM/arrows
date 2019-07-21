@@ -20,7 +20,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             
-            var partlen = SizeOf<T>.BitSize;
+            var partlen = (int)SizeOf<T>.BitSize;
             var v1 = Random.Vec128<T>();
             var bs = v1.ToBitString().Format(blockWidth:partlen, blocksep:' ');
             var parts = bs.Split(' ');
@@ -142,6 +142,23 @@ namespace Z0.Test
                 var value = wi.ToPrimalValue<int>();
                 Claim.eq(i, value);
             }
+        }
+
+        public void TestBlockage()
+        {
+            var src = "0000010100001100101010001";
+            var bs = BitString.From(src);
+            Claim.eq(bs.Length, 25);
+            
+            var b1 = bs.Blocks2(1);
+            Claim.eq(src.Length, b1.Length);
+            
+            var b5 = bs.Blocks(5);
+            Claim.eq(5,b5.Length);
+
+            var b3 = bs.Blocks(3);
+            Claim.eq(9,b3.Length);
+
         }
     }
 

@@ -120,7 +120,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         ulong IRandomSource.NextUInt64(ulong max)
-            => (this as IRandomSource<ulong>).NextUInt64(max);
+            => (this as IRandomSource<ulong>).Next(max);
 
         [MethodImpl(Inline)]
         int IRandomSource.NextInt32(int max)

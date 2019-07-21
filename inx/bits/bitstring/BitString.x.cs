@@ -136,7 +136,35 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static Span<char> ToBitChars(this Span<byte> src)
             => gbits.bitchars(src.ReadOnly());
-        
+
+        [MethodImpl(Inline)]        
+        public static Span<char> ToBitChars<T>(this Span<T> src)
+            where T : struct
+                => gbits.bitchars(src.AsBytes());
+
+        [MethodImpl(Inline)]        
+        public static Span<char> ToBitChars<T>(this ReadOnlySpan<T> src)
+            where T : struct
+                => gbits.bitchars(src.AsBytes());
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString<T>(this Span<T> src)
+            where T : struct
+                => src.ToBitChars().ToBitString();
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString<T>(this ReadOnlySpan<T> src)
+            where T : struct
+                => src.ToBitChars().ToBitString();
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString(this Span<Bit> src)
+                => BitString.From(src);
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString(this ReadOnlySpan<Bit> src)
+                => BitString.From(src);
+
         /// <summary>
         /// Converts a generic number to a bitstring
         /// </summary>

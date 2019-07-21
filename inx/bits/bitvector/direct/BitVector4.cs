@@ -112,8 +112,8 @@ namespace Z0
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
-            => test(in data, in pos);
+        public bool TestBit(byte pos)
+            => test(in data, pos);
 
          [MethodImpl(Inline)]
         public BitString BitString()

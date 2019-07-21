@@ -15,7 +15,6 @@ namespace Z0
 
     partial class ginx
     {
-
         [MethodImpl(Inline)]
         public static Vec128<T> sub<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct

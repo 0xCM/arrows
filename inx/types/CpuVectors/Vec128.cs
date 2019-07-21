@@ -22,7 +22,7 @@ namespace Z0
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
 
-        public static readonly int BitCount = SizeOf<T>.BitSize * CellSize;
+        public static readonly BitSize  BitSize = 128ul;
 
         public static readonly Vec128<T> Zero = Vector128<T>.Zero;
         

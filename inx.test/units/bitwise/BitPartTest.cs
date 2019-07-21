@@ -21,7 +21,7 @@ namespace Z0.Test
             {
                 Span<char> bc1 = gbits.bitchars(src[i]).ToSpan();
                 Span<char> bc2 = new char[SizeOf<T>.BitSize];
-                for(var j=0; j<bc2.Length; j++)
+                for(byte j=0; j<bc2.Length; j++)
                     bc2[j] = gbits.test(src[i], j) ? '1' : '0';
                 Claim.yea(bc1.SequenceEqual(bc2));
             }
@@ -73,7 +73,7 @@ namespace Z0.Test
                 var seqlen = x1.Length;
                 Claim.eq(seqlen, SizeOf<T>.BitSize);
 
-                for(var j = 0; j < seqlen; j++)
+                for(byte j = 0; j < seqlen; j++)
                     Claim.eq(gbits.test(x0, j), x1[j] == 1);
             }
 

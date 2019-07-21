@@ -1,4 +1,4 @@
-// 2019-07-14 13:27:24:684
+// 2019-07-20 02:42:58:640
 Vec128<byte> xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
 {
     IL_0000: ldtoken T
@@ -8263,7 +8263,7 @@ Vec256<byte> add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -8433,7 +8433,7 @@ Vec256<ushort> add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -8603,7 +8603,7 @@ Vec256<uint> add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -8773,7 +8773,7 @@ Vec256<ulong> add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -8943,7 +8943,7 @@ Vec256<sbyte> add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9113,7 +9113,7 @@ Vec256<short> add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9283,7 +9283,7 @@ Vec256<int> add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9453,7 +9453,7 @@ Vec256<long> add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9623,7 +9623,7 @@ Vec256<float> add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9793,7 +9793,7 @@ Vec256<double> add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0254: ldc.i4.s 73
+    IL_0254: ldc.i4.s 72
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -9943,7 +9943,7 @@ void add<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10093,7 +10093,7 @@ void add<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt1
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10243,7 +10243,7 @@ void add<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10393,7 +10393,7 @@ void add<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10543,7 +10543,7 @@ void add<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10693,7 +10693,7 @@ void add<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10843,7 +10843,7 @@ void add<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -10993,7 +10993,7 @@ void add<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -11143,7 +11143,7 @@ void add<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -11293,7 +11293,7 @@ void add<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Doubl
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0208: ldc.i4.s 102
+    IL_0208: ldc.i4.s 100
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -11443,7 +11443,7 @@ byref Byte add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte 
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -11595,7 +11595,7 @@ byref UInt16 add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byr
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -11747,7 +11747,7 @@ byref UInt32 add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UIn
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -11899,7 +11899,7 @@ byref UInt64 add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref 
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12051,7 +12051,7 @@ byref SByte add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref S
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12203,7 +12203,7 @@ byref Int16 add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref I
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12355,7 +12355,7 @@ byref Int32 add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 d
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12507,7 +12507,7 @@ byref Int64 add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int6
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12659,7 +12659,7 @@ byref Single add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref 
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12811,7 +12811,7 @@ byref Double add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byr
     IL_021E: br.s IL_023A
     IL_0220: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_0225: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_022A: ldc.i4 130
+    IL_022A: ldc.i4 128
     IL_022F: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0234: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0239: throw
@@ -12859,7 +12859,7 @@ Num128<byte> add<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -12905,7 +12905,7 @@ Num128<ushort> add<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -12951,7 +12951,7 @@ Num128<uint> add<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -12997,7 +12997,7 @@ Num128<ulong> add<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13043,7 +13043,7 @@ Num128<sbyte> add<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13089,7 +13089,7 @@ Num128<short> add<short>(byref Num128<short> lhs, byref Num128<short> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13135,7 +13135,7 @@ Num128<int> add<int>(byref Num128<int> lhs, byref Num128<int> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13181,7 +13181,7 @@ Num128<long> add<long>(byref Num128<long> lhs, byref Num128<long> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13227,7 +13227,7 @@ Num128<float> add<float>(byref Num128<float> lhs, byref Num128<float> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13273,7 +13273,7 @@ Num128<double> add<double>(byref Num128<double> lhs, byref Num128<double> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\add.cs"
-    IL_0084: ldc.i4 143
+    IL_0084: ldc.i4 141
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -13443,7 +13443,7 @@ Vec128<byte> sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -13613,7 +13613,7 @@ Vec128<ushort> sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -13783,7 +13783,7 @@ Vec128<uint> sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -13953,7 +13953,7 @@ Vec128<ulong> sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14123,7 +14123,7 @@ Vec128<sbyte> sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14293,7 +14293,7 @@ Vec128<short> sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14463,7 +14463,7 @@ Vec128<int> sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14633,7 +14633,7 @@ Vec128<long> sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14803,7 +14803,7 @@ Vec128<float> sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -14973,7 +14973,7 @@ Vec128<double> sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 44
+    IL_0254: ldc.i4.s 43
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15143,7 +15143,7 @@ Vec256<byte> sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15313,7 +15313,7 @@ Vec256<ushort> sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15483,7 +15483,7 @@ Vec256<uint> sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15653,7 +15653,7 @@ Vec256<ulong> sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15823,7 +15823,7 @@ Vec256<sbyte> sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -15993,7 +15993,7 @@ Vec256<short> sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -16163,7 +16163,7 @@ Vec256<int> sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -16333,7 +16333,7 @@ Vec256<long> sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -16503,7 +16503,7 @@ Vec256<float> sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -16673,7 +16673,7 @@ Vec256<double> sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0254: ldc.i4.s 72
+    IL_0254: ldc.i4.s 71
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -16823,7 +16823,7 @@ void sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -16973,7 +16973,7 @@ void sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt1
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17123,7 +17123,7 @@ void sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17273,7 +17273,7 @@ void sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17423,7 +17423,7 @@ void sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17573,7 +17573,7 @@ void sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17723,7 +17723,7 @@ void sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -17873,7 +17873,7 @@ void sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -18023,7 +18023,7 @@ void sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -18173,7 +18173,7 @@ void sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Doubl
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 99
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -18323,10 +18323,10 @@ void sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
@@ -18473,10 +18473,10 @@ void sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt1
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
@@ -18623,10 +18623,10 @@ void sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
@@ -18773,10 +18773,10 @@ void sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
@@ -18923,10 +18923,10 @@ void sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
@@ -19073,10 +19073,10 @@ void sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
@@ -19223,10 +19223,10 @@ void sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
@@ -19373,10 +19373,10 @@ void sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
@@ -19523,10 +19523,10 @@ void sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 void sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
@@ -19673,10 +19673,10 @@ void sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Doubl
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
+    IL_0208: ldc.i4.s 127
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
 
 }
 Num128<byte> sub<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
@@ -19719,7 +19719,7 @@ Num128<byte> sub<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19765,7 +19765,7 @@ Num128<ushort> sub<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19811,7 +19811,7 @@ Num128<uint> sub<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19857,7 +19857,7 @@ Num128<ulong> sub<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19903,7 +19903,7 @@ Num128<sbyte> sub<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19949,7 +19949,7 @@ Num128<short> sub<short>(byref Num128<short> lhs, byref Num128<short> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -19995,7 +19995,7 @@ Num128<int> sub<int>(byref Num128<int> lhs, byref Num128<int> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -20041,7 +20041,7 @@ Num128<long> sub<long>(byref Num128<long> lhs, byref Num128<long> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -20087,7 +20087,7 @@ Num128<float> sub<float>(byref Num128<float> lhs, byref Num128<float> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -20133,7 +20133,7 @@ Num128<double> sub<double>(byref Num128<double> lhs, byref Num128<double> rhs)
     IL_0079: ret
     IL_007A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
     IL_007F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\arithmetic\\sub.cs"
-    IL_0084: ldc.i4 139
+    IL_0084: ldc.i4 138
     IL_0089: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_008E: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0093: throw
@@ -20303,7 +20303,7 @@ Vec128<byte> and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -20473,7 +20473,7 @@ Vec128<ushort> and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -20643,7 +20643,7 @@ Vec128<uint> and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -20813,7 +20813,7 @@ Vec128<ulong> and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -20983,7 +20983,7 @@ Vec128<sbyte> and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -21153,7 +21153,7 @@ Vec128<short> and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -21323,7 +21323,7 @@ Vec128<int> and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -21493,7 +21493,7 @@ Vec128<long> and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -21663,7 +21663,7 @@ Vec128<float> and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -21833,7 +21833,7 @@ Vec128<double> and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 43
+    IL_0254: ldc.i4.s 49
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22003,7 +22003,7 @@ Vec256<byte> and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22173,7 +22173,7 @@ Vec256<ushort> and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22343,7 +22343,7 @@ Vec256<uint> and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22513,7 +22513,7 @@ Vec256<ulong> and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22683,7 +22683,7 @@ Vec256<sbyte> and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -22853,7 +22853,7 @@ Vec256<short> and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -23023,7 +23023,7 @@ Vec256<int> and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -23193,7 +23193,7 @@ Vec256<long> and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -23363,7 +23363,7 @@ Vec256<float> and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -23533,7 +23533,7 @@ Vec256<double> and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
     IL_0249: ret
     IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0254: ldc.i4.s 71
+    IL_0254: ldc.i4.s 83
     IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0260: throw
@@ -23683,7 +23683,7 @@ void and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -23833,7 +23833,7 @@ void and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt1
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -23983,7 +23983,7 @@ void and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24133,7 +24133,7 @@ void and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24283,7 +24283,7 @@ void and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24433,7 +24433,7 @@ void and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24583,7 +24583,7 @@ void and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24733,7 +24733,7 @@ void and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -24883,7 +24883,7 @@ void and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -25033,7 +25033,7 @@ void and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Doubl
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4.s 100
+    IL_0208: ldc.i4.s 118
     IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0214: throw
@@ -25183,7 +25183,7 @@ void and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -25333,7 +25333,7 @@ void and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt1
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -25483,7 +25483,7 @@ void and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -25633,7 +25633,7 @@ void and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -25783,7 +25783,7 @@ void and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -25933,7 +25933,7 @@ void and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 ds
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -26083,7 +26083,7 @@ void and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -26233,7 +26233,7 @@ void and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -26383,7 +26383,7 @@ void and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single d
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw
@@ -26533,7 +26533,7 @@ void and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Doubl
     IL_01FD: ret
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
-    IL_0208: ldc.i4 128
+    IL_0208: ldc.i4 153
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw

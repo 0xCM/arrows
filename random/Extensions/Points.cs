@@ -153,6 +153,7 @@ namespace Z0
             return whole + (float)src.NextDouble();
         }
 
+        
         [MethodImpl(Inline)]
         static double Next(this IRandomSource src, Interval<double> domain)
         {

@@ -9,33 +9,85 @@ namespace Z0
     
     using static zfunc;    
 
-    public static class ToHexStringX
+    partial class InXtend
     {
-        public static string FormatHex<T>(this Span<T> src)
+
+       [MethodImpl(Inline)]
+       public static string FormatHex<T>(this ReadOnlySpan<T> src, bool vectorize = false)
             where T : struct
         {
-            var bs = string.Empty;
+            var fmt = sbuild();
             var it = src.GetEnumerator();
             var len = src.Length;
-            for(var i=len - 1; i>= 0; i--)
-                bs += gmath.hexstring(src[i], specifier:false);
-            return bs;
+            var lastix = len - 1;
+            if(!vectorize)
+            {
+                for(var i=lastix; i>= 0; i--)
+                    fmt.Append(gmath.hexstring(src[i], specifier:false));
+            }
+            else
+            {
+                fmt.Append(AsciSym.Lt);
+                for(var i=lastix; i>= 0; i--)
+                {
+                    fmt.Append(gmath.hexstring(src[i]));
+                    if(i!= lastix)
+                        fmt.Append($", ");                
+                }
+                fmt.Append(AsciSym.Gt);
+            }
+            return fmt.ToString();
         }
-     
+
+       [MethodImpl(Inline)]
+       public static string FormatHex<T>(this Span<T> src, bool vectorize = false)
+            where T : struct
+                => src.ReadOnly().FormatHex(vectorize);
+
+       [MethodImpl(Inline)]
+       public static string FormatHex<N,T>(this Span<N,T> src, bool vectorize = false)
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Unsize().FormatHex(vectorize);
+
+       [MethodImpl(Inline)]
+       public static string FormatHex<N,T>(this ReadOnlySpan<N,T> src, bool vectorize = false)
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Unsize().FormatHex(vectorize);
+
+       [MethodImpl(Inline)]
+       public static string FormatHexBlocks<T>(this ReadOnlySpan<T> src,  int? width = null, char? sep = null)
+            where T : struct
+                => src.FormatHex().SeparateBlocks(width ?? Unsafe.SizeOf<T>(), sep ?? AsciSym.Space);
+
+       [MethodImpl(Inline)]
+       public static string FormatHexBlocks<T>(this Span<T> src, int? width = null, char? sep = null)
+            where T : struct
+                => src.ReadOnly().FormatHexBlocks(width, sep);
+
+       [MethodImpl(Inline)]
+       public static string FormatHexBlocks<N,T>(this Span<N,T> src, int? width = null, char? sep = null)
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Unsize().FormatHexBlocks(width,sep);
+
+       [MethodImpl(Inline)]
+       public static string FormatHexBlocks<N,T>(this ReadOnlySpan<N,T> src, int? width = null, char? sep = null)
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Unsize().FormatHexBlocks(width,sep);
+
        [MethodImpl(Inline)]
        public static string FormatHex<T>(this Vec128<T> src)
             where T : struct
-                => src.Extract().FormatHex();
+                => src.Extract().FormatHex(true);
 
-        [MethodImpl(Inline)]
-        public static string ToBlockedHexString<T>(this Vec128<T> src, int? width = null, char? sep = null)
+       [MethodImpl(Inline)]
+       public static string FormatHex<T>(this Vec256<T> src)
             where T : struct
-                => src.FormatHex().SeparateBlocks(width ?? SizeOf<T>.Size*2, sep ?? AsciSym.Space );
+                => src.Extract().FormatHex(true);
 
-        [MethodImpl(Inline)]
-       public static string ToHexString<T>(this Vec256<T> src, bool blocked = false, int? bwidth = null, char? bsep = null)
-            where T : struct
-                => blocked ? src.ToHexString().SeparateBlocks(bwidth ?? 2, bsep ?? AsciSym.Space ) 
-                    :  src.Extract().FormatHex();
+ 
     }
 }

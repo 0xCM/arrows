@@ -93,15 +93,9 @@ namespace Z0
             [MethodImpl(Inline)]
             get
             {
-                math.quorem(r.Value, 64, out Quorem<int> qr);
-                return part<ulong>(qr.Quotient).TestBit(qr.Remainder);                
+                var qr = BitPos.Define(math.quorem(r.Value, 64));
+                return part<ulong>(qr.SegIdx).TestBit(qr.BitOffset);                
             }
-        }
-
-        
+        }        
     }
-
-
-
-
 }

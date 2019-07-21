@@ -58,39 +58,70 @@ namespace  Z0
         public static float ClearNaN(this float x, float replacement = -1)
             => x.IsNaN() ? replacement : x;
 
+        /// <summary>
+        /// Returns true if a floating point value represents positive infinity, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool IsPosInf(this float src)
             => float.IsPositiveInfinity(src);
 
+        /// <summary>
+        /// Returns true if a floating point value represents positive infinity, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool IsPosInf(this double src)
             => double.IsPositiveInfinity(src);
 
+        /// <summary>
+        /// Returns true if a floating point value represents negative infinity, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool IsNegInf(this float src)
             => float.IsNegativeInfinity(src);
 
+        /// <summary>
+        /// Returns true if a floating point value represents negative infinity, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool IsNegInf(this double src)
             => double.IsNegativeInfinity(src);
 
+        /// <summary>
+        /// Returns true if a floating point value represents an infinite value, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool Infinite(this float src)
             => float.IsPositiveInfinity(src) || float.IsNegativeInfinity(src);
 
+        /// <summary>
+        /// Returns true if a floating point value represents an infinite value, false otherwise
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool Infinite(this double src)
             => double.IsPositiveInfinity(src) || double.IsNegativeInfinity(src);
 
 
+        /// <summary>
+        /// Returns true if a floating point value is non-infinite
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool Finite(this float src)
             => !float.IsPositiveInfinity(src) && !float.IsNegativeInfinity(src) && !float.IsNaN(src);
 
+        /// <summary>
+        /// Returns true if a floating point value is non-infinite
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static bool Finite(this double src)
             => !double.IsPositiveInfinity(src) && !double.IsNegativeInfinity(src) && !double.IsNaN(src);
-
 
         public static IEnumerable<ulong> ToU64Stream(this IEnumerable<Guid> guids)
         {
@@ -106,7 +137,6 @@ namespace  Z0
         public static ulong[] ToU64Array(this IEnumerable<Guid> guids)
             => guids.ToU64Stream().ToArray();
 
-
         [MethodImpl(Inline)]
         public static T ValueOrDefault<T>(this T? x, T @default = default)
             where T : struct
@@ -118,7 +148,6 @@ namespace  Z0
         /// <param name="src">The source digits</param>
         public static Bit[] ToBits(this IEnumerable<BinaryDigit> src)
             => src.Select(d => d == BinaryDigit.Zed ? Bit.Off : Bit.On).ToArray();
-
 
         /// <summary>
         /// Formats the supplied decimal value as currency to two decimal places
@@ -245,5 +274,4 @@ namespace  Z0
         public static IEnumerable<char> ToCharDigits(this IEnumerable<ulong> src)
             => src.Convert<byte>().ToCharDigits();
     }
-
 }

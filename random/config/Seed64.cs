@@ -20,7 +20,7 @@ namespace Z0
 
         public static ulong Lookup(uint i)
             => i <= 15 
-             ? RawBytes.ReadPrimalValue<ulong>((int)(i*8)) 
+             ? RawBytes.ReadValue<ulong>((int)(i*8)) 
              : Errors.ThrowOutOfRange<ulong>((int)i, 0, 15);
                             
         public static ulong Seed00 => Lookup(0);

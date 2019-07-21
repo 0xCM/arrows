@@ -65,11 +65,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Covector<N,T> Row(int i)
+        public Span<N,T> Row(int i)
             => data.Row(i);
 
         [MethodImpl(Inline)]
-        public Vector<M,T> Col(int j)
+        public Span<M,T> Col(int j)
             => data.Col(j);
 
         public Span<M,N,T> Data

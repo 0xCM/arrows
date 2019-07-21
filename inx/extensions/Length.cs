@@ -12,7 +12,7 @@ namespace Z0
     
     using static zfunc;    
 
-    public static class VecLenX
+    partial class InXtend
     {    
         /// <summary>
         /// Specifies the length, i.e. the number of components, of an

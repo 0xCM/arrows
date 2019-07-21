@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;    
 
 
-    public static class StoreToX
+    partial class InXtend
     {
         [MethodImpl(Inline)]
         public static Span<T> StoreTo<T>(this in Vec256<T> src, Span<T> dst, int offset = 0)

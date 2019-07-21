@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;    
 
 
-    public static class DecX
+    partial class InXtend
     {
         public static Vec128<T> Dec<T>(in this Vec128<T> src)
             where T : struct

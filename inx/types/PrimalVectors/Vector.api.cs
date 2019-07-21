@@ -14,16 +14,6 @@ namespace Z0
 
     public static class Vector
     {     
-        /// <summary>
-        /// Creates a generic bitvector from a source value
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> Bits<N,T>(N len, in T src)        
-            where N : ITypeNat, new()
-            where T : struct
-                => new BitVector<N,T>(src);
 
         /// <summary>
         /// Loads a vector from an existing span of commensuate length (Non-allocating)
@@ -51,7 +41,6 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => Vector<N,T>.Define(src);
-
 
         [MethodImpl(Inline)]
         public static Vector<N,T> Load<N,T>(N len, params T[] src)
@@ -132,7 +121,6 @@ namespace Z0
             return new Vector<T>(dst);
         }
 
-
         [MethodImpl(Inline)]
         public static Vector<T> Alloc<T>(int minlen)               
             where T : struct
@@ -144,7 +132,12 @@ namespace Z0
             return new Vector<T>(dst);
         } 
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]        
+        static Span<T> Slice<N,T>(this Span<T> src, N start = default)
+            where N : ITypeNat, new()
+                => src.Slice((int)start.value);
+
+        [MethodImpl(Inline)]
         public static Vector<P,T> Concat<M,N,P,T>(Vector<M,T> v1, Vector<N,T> v2, P sum = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()

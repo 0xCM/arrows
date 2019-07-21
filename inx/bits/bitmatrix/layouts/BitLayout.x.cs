@@ -11,7 +11,7 @@ namespace Z0
 
     using static zfunc;
 
-    public static class BitGridExtensions
+    public static class BitLayoutX
     {
         /// <summary>
         /// Computes the length of a primal span/array that is required to store a row of data
@@ -78,7 +78,8 @@ namespace Z0
                         segbits = spec.PrimalSize;
                     }
                    
-                   yield return (bit, seg, row, col, spec.PrimalSize - segbits);
+                   var offset = (byte)(spec.PrimalSize - segbits).Bits;
+                   yield return (bit, seg, row, col, offset);
                 }
 
                 seg++;
@@ -88,10 +89,10 @@ namespace Z0
             
         }
 
-        public static BitGridLayout CalcLayout(this BitGridSpec spec)
-            => new BitGridLayout(spec, spec.GridCells());
+        public static BitLayout CalcLayout(this BitGridSpec spec)
+            => new BitLayout(spec, spec.GridCells());
 
-        public static string Format(this BitGridLayout layout)
+        public static string Format(this BitLayout layout)
         {
             var format = sbuild();
             format.Append($"RowCount = {layout.RowCount}, ");

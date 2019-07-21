@@ -17,18 +17,21 @@ namespace Z0.Test
     public static class VecRandX
     {
 
-        public static DataSet<N,T> DataSet<N,T>(this IRandomSource random, N length = default)
+        public static RandomPair<N,T> DataSet<N,T>(this IRandomSource random, N length = default)
             where T : struct
             where N : ITypeNat, new()
-            => new DataSet<N, T>(random);
+            => new RandomPair<N, T>(random);
 
     }
 
-      public ref struct DataSet<N,T>
+    /// <summary>
+    /// Defines a pair of random vectors
+    /// </summary>
+      public ref struct RandomPair<N,T>
             where T : struct
             where N : ITypeNat, new()
         {
-            public DataSet(IRandomSource random)
+            public RandomPair(IRandomSource random)
             {
                 LeftSrc = random.Span<N,T>();
                 RightSrc = random.Span<N,T>();

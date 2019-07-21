@@ -49,7 +49,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="n">The natural length</param>
         /// <typeparam name="N">The natural type</typeparam>
-        /// <typeparam name="T">The primal type</typeparam>
+        /// <typeparam name="T">The primal segment type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<N,T> ToBitVector<N,T>(this Span<T> src, N n = default)
             where N : ITypeNat, new()
@@ -68,5 +68,28 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
+
+        /// <summary>
+        /// Constructs a bitvector where the length is determined by the capacity
+        /// of the source span if unspecified
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal segment type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<T> ToBitVector<T>(this Span<T> src, uint? dim = null)
+            where T : struct
+                => new BitVector<T>(src, dim ?? 0);
+
+        /// <summary>
+        /// Constructs a bitvector where the length is determined by the capacity
+        /// of the source span if unspecified
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal segment type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, uint? dim = null)
+            where T : struct
+                => new BitVector<T>(src, dim ?? 0);
+
     }
 }

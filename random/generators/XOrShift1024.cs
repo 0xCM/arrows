@@ -89,7 +89,7 @@ namespace Z0
             => NextUInt64();
 
         ulong IRandomSource.NextUInt64(ulong max)
-            => (this as IRandomSource<ulong>).NextUInt64(max);
+            => (this as IRandomSource<ulong>).Next(max);
 
         int IRandomSource.NextInt32(int max)
             => (this as IRandomSource<ulong>).NextInt32(max);
