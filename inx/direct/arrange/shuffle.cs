@@ -34,49 +34,61 @@ namespace Z0
         public static Vec256<int> shuffle(in Vec256<int> src, byte control)
             => Shuffle(src, control);
 
+        ///<intrinsic>__m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
             => Shuffle(src, control);
 
-        [MethodImpl(Inline)]
-        public static Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
-            => Shuffle(src, mask);
-
-        [MethodImpl(Inline)]
-        public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
-            => Shuffle(src, mask);
-
-        [MethodImpl(Inline)]
-        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
-            => Shuffle(src, mask);
-
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
-            => Shuffle(src, mask);
-
-        [MethodImpl(Inline)]
-        public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
-            => Shuffle(lhs,rhs, control);
-
-        [MethodImpl(Inline)]
-        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
-            =>  Shuffle(lhs,rhs, control);
-
+        ///<intrinsic>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<short> shuffleHi(in Vec128<short> src, byte control)
             => ShuffleHigh(src, control);
 
+        ///<intrinsic>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<ushort> shuffleHi(in Vec128<ushort> src, byte control)
             => ShuffleHigh(src, control);
 
+        ///<intrinsic>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<short> shuffleLow(in Vec128<short> src, byte control)
             => ShuffleLow(src, control);
 
+        ///<intrinsic>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<ushort> shuffleLow(in Vec128<ushort> src, byte control)
             => ShuffleLow(src, control);
+
+        ///<intrinsic>__m128i _mm_shuffle_epi8 (__m128i a, __m128i b) PSHUFB xmm, xmm/m128</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
+            => Shuffle(src, mask);
+
+        ///<intrinsic>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
+            => Shuffle(src, mask);
+
+        ///<intrinsic>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
+            => Shuffle(src, mask);
+
+        ///<intrinsic>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+            => Shuffle(src, mask);
+
+        ///<intrinsic>__m128 _mm_shuffle_ps (__m128 a, __m128 b, unsigned int control) SHUFPS xmm, xmm/m128, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
+            => Shuffle(lhs,rhs, control);
+
+        ///<intrinsic>__m128d _mm_shuffle_pd (__m128d a, __m128d b, int immediate) SHUFPD xmm, xmm/m128, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
+            =>  Shuffle(lhs,rhs, control);
+
     }
 
 }

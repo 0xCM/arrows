@@ -11,8 +11,18 @@ namespace Z0
 
 
     [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
-    public struct Char16
+    public struct Char16 : IFixedString<N16>
     {
+        /// <summary>
+        /// The number of characters represented by a value
+        /// </summary>
+        public const int CharCount = Char8.CharCount * 2;
+
+        /// <summary>
+        /// The number of bytes required to represent <see cref='CharCount'/> characters
+        /// </summary>
+        public const int ByteCount = Char8.ByteCount * 2;
+
         /// <summary>
         /// Placeholder for first half of the string
         /// </summary>
@@ -25,15 +35,28 @@ namespace Z0
         [FieldOffset(CharCount)]
         Char8 hi;
 
-        /// <summary>
-        /// The number of characters represented by a value
-        /// </summary>
-        public const int CharCount = 16;
+        [MethodImpl(Inline)]
+        public static Char16 FromChars(Char8 head, Char8 tail)
+            => new Char16(head, tail);
 
-        /// <summary>
-        /// The number of bytes required to represent <see cref='CharCount'/> characters
-        /// </summary>
-        public const int ByteCount = 32;
+        [MethodImpl(Inline)]
+        public static Char32 operator +(in Char16 head, in Char16 tail)
+            => Char32.FromChars(head,tail);
+
+        [MethodImpl(Inline)]
+        Char16(Char8 head, Char8 tail)
+        {
+            this.lo = head;
+            this.hi = tail;
+        }
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in Char16 x, in Char16 y)
+            => x.Equals(y);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in Char16 x, in Char16 y)
+            => !x.Equals(y);
 
         [MethodImpl(Inline)]
         public static ref Char16 FromSpan(Span<char> src, int offset = 0)
@@ -76,7 +99,7 @@ namespace Z0
             => src.AsReadOnlySpan();
 
         [MethodImpl(Inline)]
-        public unsafe Span<char> AsSpan()
+        public Span<char> AsSpan()
             => SpanConvert.AsSpan<Char16,char>(ref this);
 
         [MethodImpl(Inline)]
@@ -84,10 +107,33 @@ namespace Z0
             => SpanConvert.AsReadOnlySpan<Char16,char>(ref this);
 
         [MethodImpl(Inline)]
+        public void Fill(ReadOnlySpan<char> src)
+        {
+            lo = src[0..7];
+            hi = src[4..15];
+        }
+
+        public ref char this[int i]
+        {
+            [MethodImpl(Inline)]
+            get => ref AsSpan()[i];
+        }
+
+       [MethodImpl(Inline)]
         public string Format()
             => new string(AsSpan().TrimEnd()); 
 
         public override string ToString()
             => Format();
+
+        public override int GetHashCode()
+            => HashCode.Combine(lo,hi);
+ 
+         public bool Equals(Char16 rhs)
+            => lo == rhs.lo && hi == rhs.hi;
+
+        public override bool Equals(object rhs)
+            => rhs is Char16 x ? Equals(x) : false;
+
     }
 }

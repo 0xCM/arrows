@@ -84,6 +84,17 @@ namespace Z0
             }            
         }
 
+        public ushort this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get
+            {
+                var len = (byte)(range.Start.Value - range.End.Value + 1);
+                return Bits.extract(in data, (byte)range.Start.Value, len);
+            }
+        }
+
+
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)
             => enable(ref data, pos);

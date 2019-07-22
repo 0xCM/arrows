@@ -181,7 +181,6 @@ namespace Z0
             this.content = new char[src.Length];
             for(var i=0; i<src.Length; i++)
                 this.content[i] = src[i] == 0 ? '0': '1';
-
         }
 
         [MethodImpl(Inline)]

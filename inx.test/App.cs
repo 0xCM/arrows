@@ -37,11 +37,11 @@ namespace Z0.Test
             var v2 = dinx.shuffle(v1, 0b01010101);
             print(v2.ToString());
         }
-        protected override void RunTests(string filter)
+        protected override void RunTests(params string[] filters)
         {     
             //base.RunTests("BitPosTest");
             //base.RunTests("NatModTest");
-            base.RunTests(filter);
+            base.RunTests("ArrangementTests");
         }
 
         public static void Main(params string[] args)

@@ -165,11 +165,14 @@ namespace Z0.Test
                 Claim.eq(src.TestBit(i), bvSrc.TestBit(i));
         }
 
-        public void ScalarProduct1()
+        void ScalarProduct1()
         {
             var x = Random.BitMatrix<N5,N5,byte>();
             var y = x.Transpose();
+            
             var z = BitMatrix.Zeros<N5,byte>();
+            
+
             for(var i = 0; i<x.RowCount; i++)
             {
                 var rowX = x.Row(i);
@@ -182,7 +185,7 @@ namespace Z0.Test
             
         }
 
-        public void ScalarProduct2()
+        void ScalarProduct2()
         {
             byte xr0 = 0b10101;
             byte xr1 = 0b00101;
@@ -317,6 +320,15 @@ namespace Z0.Test
             Claim.eq((ulong)0b11010, bvz.Extract(20, 24));
             Claim.eq((ulong)0b01110, bvz.Extract(25, 29));
 
+        }
+
+
+        public void BitVector12Test()
+        {
+            var bv = BitVector.Define(new N12(), 0b101110001110);
+            Claim.eq(bv[0], Bit.Off);
+            Claim.eq(bv[1], Bit.On);
+            Claim.eq(bv[11], Bit.On);
 
         }
 

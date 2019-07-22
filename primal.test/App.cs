@@ -36,10 +36,9 @@ namespace Z0.Test
 
         }
         
-        protected override void RunTests(string filter)
+        protected override void RunTests(params string[] filters)
         {            
-            base.RunTests("BitMatrix");
-            //TestBitMatrix();
+            base.RunTests(filters);
             
         
         } 

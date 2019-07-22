@@ -27,6 +27,20 @@ namespace Z0
         public static void CopyTo<T>(this ReadOnlySpan<T> src, Span<T> dst, int offset)
             => src.CopyTo(dst.Slice(offset));
 
+        [MethodImpl(Inline)]
+        public static Span<T> Concat<T>(this ReadOnlySpan<T> head, ReadOnlySpan<T> tail)
+        {
+            Span<T> dst = new T[head.Length + tail.Length];
+            head.CopyTo(dst);
+            tail.CopyTo(dst, head.Length);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> Concat<T>(this Span<T> head, ReadOnlySpan<T> tail)
+            => head.ReadOnly().Concat(tail);
+
+
         /// <summary>
         /// Constructs a span from an aray
         /// </summary>
@@ -656,7 +670,7 @@ namespace Z0
         /// <param name="sep">The item separator</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static string FormatAsVector<T>(this ReadOnlySpan<T> src, string sep = ", ")
+        public static string FormatAsVector<T>(this ReadOnlySpan<T> src, string sep = ",")
         {
             var components = src.Map(x => x.ToString());
             var body = concat(components, sep);
@@ -670,7 +684,7 @@ namespace Z0
         /// <param name="sep">The item separator</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static string FormatAsVector<T>(this Span<T> src, string sep = ", ")
+        public static string FormatAsVector<T>(this Span<T> src, string sep = ",")
             => src.ReadOnly().FormatAsVector(sep);
 
 
@@ -860,6 +874,7 @@ namespace Z0
             else
                 return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
         }
+
 
     }
 }

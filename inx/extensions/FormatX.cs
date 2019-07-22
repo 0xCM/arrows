@@ -13,48 +13,42 @@ namespace Z0
     {
 
        [MethodImpl(Inline)]
-       public static string FormatHex<T>(this ReadOnlySpan<T> src, bool vectorize = false)
+       public static string FormatHex<T>(this ReadOnlySpan<T> src, bool vectorize = false, char? sep = null)
             where T : struct
         {
+            var delimiter = sep ?? (vectorize ? AsciSym.Comma : AsciSym.Space);
             var fmt = sbuild();
-            var it = src.GetEnumerator();
-            var len = src.Length;
-            var lastix = len - 1;
-            if(!vectorize)
-            {
-                for(var i=lastix; i>= 0; i--)
-                    fmt.Append(gmath.hexstring(src[i], specifier:false));
-            }
-            else
-            {
+            if(vectorize)
                 fmt.Append(AsciSym.Lt);
-                for(var i=lastix; i>= 0; i--)
-                {
-                    fmt.Append(gmath.hexstring(src[i]));
-                    if(i!= lastix)
-                        fmt.Append($", ");                
-                }
-                fmt.Append(AsciSym.Gt);
+            for(var i = 0; i<src.Length; i++)
+            {
+                fmt.Append(gmath.hexstring(src[i], true, false));
+                if(i != src.Length - 1)
+                    fmt.Append((char)delimiter);
             }
+            
+            if(vectorize)
+                fmt.Append(AsciSym.Gt);
             return fmt.ToString();
+
         }
 
        [MethodImpl(Inline)]
-       public static string FormatHex<T>(this Span<T> src, bool vectorize = false)
+       public static string FormatHex<T>(this Span<T> src, bool vectorize = false, char? sep = null)
             where T : struct
-                => src.ReadOnly().FormatHex(vectorize);
+                => src.ReadOnly().FormatHex(vectorize, sep);
 
        [MethodImpl(Inline)]
-       public static string FormatHex<N,T>(this Span<N,T> src, bool vectorize = false)
+       public static string FormatHex<N,T>(this Span<N,T> src, bool vectorize = false, char? sep = null)
             where N : ITypeNat, new()
             where T : struct
-                => src.Unsize().FormatHex(vectorize);
+                => src.Unsize().FormatHex(vectorize, sep);
 
        [MethodImpl(Inline)]
-       public static string FormatHex<N,T>(this ReadOnlySpan<N,T> src, bool vectorize = false)
+       public static string FormatHex<N,T>(this ReadOnlySpan<N,T> src, bool vectorize = false, char? sep = null)
             where N : ITypeNat, new()
             where T : struct
-                => src.Unsize().FormatHex(vectorize);
+                => src.Unsize().FormatHex(vectorize, sep);
 
        [MethodImpl(Inline)]
        public static string FormatHexBlocks<T>(this ReadOnlySpan<T> src,  int? width = null, char? sep = null)
@@ -79,14 +73,14 @@ namespace Z0
                 => src.Unsize().FormatHexBlocks(width,sep);
 
        [MethodImpl(Inline)]
-       public static string FormatHex<T>(this Vec128<T> src)
+       public static string FormatHex<T>(this Vec128<T> src, bool vectorize = true, char? sep = null)
             where T : struct
-                => src.Extract().FormatHex(true);
+                => src.Extract().FormatHex(vectorize,sep);
 
        [MethodImpl(Inline)]
-       public static string FormatHex<T>(this Vec256<T> src)
+       public static string FormatHex<T>(this Vec256<T> src, bool vectorize = true, char? sep = null)
             where T : struct
-                => src.Extract().FormatHex(true);
+                => src.Extract().FormatHex(vectorize,sep);
 
  
     }

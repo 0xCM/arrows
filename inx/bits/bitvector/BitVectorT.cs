@@ -28,41 +28,32 @@ namespace Z0
         readonly BitPos<T>[] BitMap;
 
         /// <summary>
-        /// An explicit bit count specification, bounded above by the capacity
-        /// </summary>
-        readonly int ImposedBitCount;
-
-        /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public int Length
-            => ImposedBitCount != 0 ? ImposedBitCount : MaxBitCount;
-
+        public readonly int Length;
+            
 
         [MethodImpl(Inline)]
-        public BitVector(Span<T> bits, uint bitCount = 0)
+        public BitVector(Span<T> bits, uint? dim = null)
         {
-            ImposedBitCount = (int)bitCount;
-            if(ImposedBitCount != 0)
-                require(bitCount <= bits.Length * SegCapacity);
-            
-            this.bits = bits;
             this.MaxBitCount = bits.Length * (int)SegCapacity;
+            this.Length = (int)(dim ?? (uint)MaxBitCount);
+            this.bits = bits;
             this.SegLength = BitLayout.MinSegmentCount<T>(MaxBitCount);            
             this.BitMap = BitLayout.BitMap<T>(MaxBitCount);
         }
 
 
         [MethodImpl(Inline)]
-        public BitVector(ReadOnlySpan<T> bits, uint bitcount = 0)
-            : this(bits.Replicate(), bitcount)
+        public BitVector(ReadOnlySpan<T> bits, uint? dim = null)
+            : this(bits.Replicate(),dim)
         {
 
         }
 
         [MethodImpl(Inline)]
         public static BitVector<T> Define(BitSize bitcount, params T[] src)
-            => new BitVector<T>(src, bitcount);    
+            => new BitVector<T>(src,bitcount);    
 
         [MethodImpl(Inline)]
         public static BitVector<T> Define(params T[] src)
@@ -94,7 +85,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<T> operator ~(BitVector<T> src)
-            => new BitVector<T>(gbits.flip(in src.bits), (uint)src.ImposedBitCount);
+            => new BitVector<T>(gbits.flip(in src.bits));
         
         /// <summary>
         /// Retrieves the value of the bit at a specified position
@@ -105,18 +96,6 @@ namespace Z0
         {
             ref readonly var pos = ref BitMap[bit];
             return gbits.test(in bits[pos.SegIdx], pos.BitOffset);
-        }
-
-        /// <summary>
-        /// Returns a reference to the segment in which a specified bit is defined
-        /// </summary>
-        /// <param name="bit">The absolute bit position</param>
-        /// <param name="pos">The segmented bit position</param>
-        [MethodImpl(Inline)]
-        public ref T GetSegment(in int bit, out BitPos<T> pos)
-        {
-            pos = BitMap[bit];
-            return ref bits[pos.SegIdx];
         }
 
         /// <summary>

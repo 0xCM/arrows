@@ -13,103 +13,105 @@ namespace Z0
     using static zfunc;
 
     [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
-    public struct Char8 : IFixedString<N8>
+    public struct Char4 : IFixedString<N4>
     {
         /// <summary>
         /// The number of characters represented by a value
         /// </summary>
-        public const int CharCount = Char4.CharCount * 2;
+        public const int CharCount = Char2.CharCount * 2;
 
         /// <summary>
         /// The number of bytes required to represent <see cref='CharCount'/> characters
         /// </summary>
-        public const int ByteCount = Char4.ByteCount * 2;
+        public const int ByteCount = Char2.ByteCount * 2;
 
         /// <summary>
-        /// Placeholder for first half of the string
+        /// Placeholder for the first half of the string
         /// </summary>
         [FieldOffset(0)]
-        Char4 lo;
+        Char2 lo;
 
         /// <summary>
-        /// Placeholder for second half of the string
+        /// Placeholder for the second character of the string
         /// </summary>
         [FieldOffset(CharCount)]
-        Char4 hi;
+        Char2 hi;
+
 
         [MethodImpl(Inline)]
-        public static Char8 FromChars(in Char4 head, in Char4 tail)
-            => new Char8(head,tail);
-        
+        public static Char4 FromChars(Char2 head, Char2 tail)
+            => new Char4(head,tail);
+
         [MethodImpl(Inline)]
-        Char8(in Char4 head, in Char4 tail)
+        public static Char8 operator +(in Char4 head, in Char4 tail)
+            => Char8.FromChars(head,tail);
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in Char4 x, in Char4 y)
+            => x.Equals(y);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in Char4 x, in Char4 y)
+            => !x.Equals(y);
+
+
+        [MethodImpl(Inline)]
+        Char4(Char2 head, Char2 tail)
         {
             this.lo = head;
             this.hi = tail;
         }
 
-        [MethodImpl(Inline)]
-        public static bool operator ==(in Char8 x, in Char8 y)
-            => x.Equals(y);
 
         [MethodImpl(Inline)]
-        public static bool operator !=(in Char8 x, in Char8 y)
-            => !x.Equals(y);
+        public static ref Char4 FromSpan(Span<char> src, int offset = 0)
+            => ref src.AsIndividual<char,Char4>(offset, CharCount);
 
         [MethodImpl(Inline)]
-        public static Char16 operator +(in Char8 x, in Char8 y)
-            => Char16.FromChars(x,y);
+        public static ref readonly Char4 FromSpan(ReadOnlySpan<char> src, int offset = 0)
+            => ref src.AsIndividual<char,Char4>(offset, CharCount);
 
         [MethodImpl(Inline)]
-        public static ref Char8 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char8>(offset, CharCount);
+        public static ref readonly Char4 FromString(string src)
+            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char4>();
 
         [MethodImpl(Inline)]
-        public static ref readonly Char8 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char8>(offset, CharCount);
-
-        [MethodImpl(Inline)]
-        public static ref readonly Char8 FromString(string src)
-            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char8>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Span<char>(in Char8 src)
+        public static implicit operator Span<char>(Char4 src)
             => src.AsSpan();
 
         [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<char>(in Char8 src)
+        public static implicit operator ReadOnlySpan<char>(Char4 src)
             => src.AsReadOnlySpan();
 
         [MethodImpl(Inline)]
-        public static implicit operator Char8(Span<char> src)
-            => src.AsIndividual<char,Char8>();
+        public static implicit operator Char4(Span<char> src)
+            => src.AsIndividual<char,Char4>();
 
         [MethodImpl(Inline)]
-        public static implicit operator Char8(ReadOnlySpan<char> src)
-            => src.AsIndividual<char,Char8>();
+        public static implicit operator Char4(ReadOnlySpan<char> src)
+            => src.AsIndividual<char,Char4>();
 
         /// <summary>
         /// Implicilty converts the source value to a string, removing any trailing whitespace characters
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static implicit operator Char8(string src)
+        public static implicit operator Char4(string src)
             => FromString(src);
 
         [MethodImpl(Inline)]
         public unsafe Span<char> AsSpan()
-            => SpanConvert.AsSpan<Char8,char>(ref this);
-
+            => SpanConvert.AsSpan<Char4,char>(ref this);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<char> AsReadOnlySpan()
-            => SpanConvert.AsReadOnlySpan<Char8,char>(ref this);
+            => SpanConvert.AsReadOnlySpan<Char4,char>(ref this);
 
         [MethodImpl(Inline)]
         public void Fill(ReadOnlySpan<char> src)
         {
-            lo = src[0..3];
-            hi = src[4..7];
+            lo = src[0..1];
+            hi = src[2..3];
         }
 
         public ref char this[int i]
@@ -124,17 +126,17 @@ namespace Z0
 
         public override string ToString()
             => Format();
- 
-         public override int GetHashCode()
+
+        public override int GetHashCode()
             => HashCode.Combine(lo,hi);
- 
+
         [MethodImpl(Inline)]
-        public bool Equals(Char8 rhs)
+        public bool Equals(Char4 rhs)
             => lo == rhs.lo && hi == rhs.hi;
 
         public override bool Equals(object rhs)
-            => rhs is Char8 x ? Equals(x) : false;
+            => rhs is Char4 x ? Equals(x) : false;
 
-   }
+    }
  
 }

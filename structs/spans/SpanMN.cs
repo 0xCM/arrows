@@ -133,7 +133,6 @@ namespace Z0
             get => ref Cell(i,j);
         }
 
-
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]

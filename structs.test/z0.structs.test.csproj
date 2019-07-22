@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\testing\z0.testing.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
-    <ProjectReference Include="..\func\z0.structs.csproj" />
+    <ProjectReference Include="..\structs\z0.structs.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
   </ItemGroup>
 

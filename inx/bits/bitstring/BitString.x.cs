@@ -118,44 +118,44 @@ namespace Z0
         /// Converts a readonly span of bytes to a bitstring
         /// </summary>
         /// <param name="src">The source bytes</param>
-        public static BitString ToBitString(this ReadOnlySpan<byte> src)
-            => gbits.bitchars(src);
+        public static BitString ToBitString(this ReadOnlySpan<byte> src, int? bitcount = null)
+            => gbits.bitchars(src, bitcount);
 
         /// <summary>
         /// Converts a span of bytes to a bitstring
         /// </summary>
         /// <param name="src">The source bytes</param>
         [MethodImpl(Inline)]        
-        public static BitString ToBitString(this Span<byte> src)
-            => src.ReadOnly().ToBitString();
+        public static BitString ToBitString(this Span<byte> src, int? bitcount = null)
+            => src.ReadOnly().ToBitString(bitcount);
 
         /// <summary>
         /// Converts a span of bytes to span of bit characters
         /// </summary>
         /// <param name="src">The source bytes</param>
         [MethodImpl(Inline)]        
-        public static Span<char> ToBitChars(this Span<byte> src)
-            => gbits.bitchars(src.ReadOnly());
+        public static Span<char> ToBitChars(this Span<byte> src, int? bitcount = null)
+            => gbits.bitchars(src.ReadOnly(), bitcount);
 
         [MethodImpl(Inline)]        
-        public static Span<char> ToBitChars<T>(this Span<T> src)
+        public static Span<char> ToBitChars<T>(this Span<T> src, int? bitcount = null)
             where T : struct
-                => gbits.bitchars(src.AsBytes());
+                => gbits.bitchars(src.AsBytes(), bitcount);
 
         [MethodImpl(Inline)]        
-        public static Span<char> ToBitChars<T>(this ReadOnlySpan<T> src)
+        public static Span<char> ToBitChars<T>(this ReadOnlySpan<T> src, int? bitcount = null)
             where T : struct
-                => gbits.bitchars(src.AsBytes());
+                => gbits.bitchars(src.AsBytes(), bitcount);
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Span<T> src)
+        public static BitString ToBitString<T>(this Span<T> src, int? bitcount = null)
             where T : struct
-                => src.ToBitChars().ToBitString();
+                => src.ToBitChars(bitcount).ToBitString();
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this ReadOnlySpan<T> src)
+        public static BitString ToBitString<T>(this ReadOnlySpan<T> src, int? bitcount = null)
             where T : struct
-                => src.ToBitChars().ToBitString();
+                => src.ToBitChars(bitcount).ToBitString();
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this Span<Bit> src)
@@ -192,11 +192,9 @@ namespace Z0
         /// <typeparam name="T">The underlying primal type</typeparam>
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec128<T> src)
-            where T : struct
-        {
-            return BitString.From(src.Extract());
-        }
-
+            where T : struct        
+                => BitString.From(src.Extract());
+        
         /// <summary>
         /// Converts an 256-bit intrinsic vector representation to a bistring
         /// </summary>
@@ -204,10 +202,9 @@ namespace Z0
         /// <typeparam name="T">The underlying primal type</typeparam>
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec256<T> src)
-            where T : struct
-        {
-            return BitString.From(src.Extract());
-        }
+            where T : struct        
+            => BitString.From(src.Extract());
+        
 
         /// <summary>
         /// Converts an 256-bit intrinsic integer representation to a bistring

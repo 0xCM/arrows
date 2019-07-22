@@ -24,11 +24,16 @@ namespace Z0.Test
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
 
-        void Run(Type host, string filter)
+
+        void Run(Type host, params string[] filters)
         {        
             var hostpath = host.DisplayName();
-            if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
-                return;
+            if(filters.Length != 0)
+            {
+                if(!(filters.Length == 1 && String.IsNullOrEmpty(filters[0])))                        
+                    if(!hostpath.ContainsAny(filters))
+                        return;
+            }
 
             try
             {
@@ -44,8 +49,8 @@ namespace Z0.Test
             }        
         }
 
-        void Run(string filter, bool concurrent)
-            => iter(Hosts(), h =>  Run(h,filter), concurrent);
+        void Run(bool concurrent, params string[] filters)
+            => iter(Hosts(), h =>  Run(h,filters), concurrent);
 
         IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods().Public().NonGeneric().WithParameterCount(0);
@@ -94,11 +99,11 @@ namespace Z0.Test
 
         }
 
-        protected virtual void RunTests(string filter)
+        protected virtual void RunTests(params string[] filters)
         {
             try
             {            
-                Run(filter, false);
+                Run(false,filters);
             }
             catch (Exception e)
             {
@@ -107,6 +112,6 @@ namespace Z0.Test
         }
 
         protected static void Run(params string[] args)
-            => new A().RunTests(string.Empty);
+            => new A().RunTests();
     }
 }

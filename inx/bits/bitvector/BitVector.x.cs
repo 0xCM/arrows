@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
 
     using static zfunc;
 
@@ -78,7 +79,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Span<T> src, uint? dim = null)
             where T : struct
-                => new BitVector<T>(src, dim ?? 0);
+                => new BitVector<T>(src,dim);
 
         /// <summary>
         /// Constructs a bitvector where the length is determined by the capacity
@@ -89,7 +90,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, uint? dim = null)
             where T : struct
-                => new BitVector<T>(src, dim ?? 0);
+                => new BitVector<T>(src,dim);
+
+
 
     }
 }

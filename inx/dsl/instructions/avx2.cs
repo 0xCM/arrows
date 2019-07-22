@@ -361,7 +361,6 @@ namespace Z0
         public static unsafe __m256i _mm256_broadcastsi128_si256(ref short mem_addr)
             => BroadcastVector128ToVector256(refptr(ref mem_addr));
 
-
         ///<intrinsic> __m256i _mm256_mulhi_epi16 (__m256i a, __m256i b) VPMULHW ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_mulhi_epi16(in __m256i a, in __m256i b)
@@ -472,19 +471,61 @@ namespace Z0
         public static __m256i _mm256_subs_epi8(in __m256i a, in __m256i b)
             => Subtract(v8i(a), v8i(b));
 
-        #if false
+        ///<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256i _mm256_bslli_epi128(in __m256i a, byte imm8)
+            => ShiftLeftLogical128BitLane(v64i(a),imm8);
+
+
+        ///<intrinsic> __m256i _mm256_sllv_epi64 (__m256i a, __m256i imm8) VPSLLVQ ymm, ymm, ymm/m256<intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256i _mm256_sllv_epi64(in __m256i a, in __m256i imm8)
+            => ShiftLeftLogicalVariable(v64i(a), imm8);
+        
+
+        ///<intrinsic> __m128i _mm_sllv_epi32 (__m128i a, __m128i count) VPSLLVD xmm, ymm, xmm/m128<intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_sllv_epi32(in __m128i a, in __m128i count)
+            => ShiftLeftLogicalVariable(v32i(a),count);
+
+        ///<intrinsic> __m128i _mm_sllv_epi64 (__m128i a, __m128i count) VPSLLVQ xmm, ymm, xmm/m128<intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_sllv_epi64(in __m128i a, in __m128i count)
+            => ShiftLeftLogicalVariable(v64i(a),count);
 
         ///<intrinsic> __m256i _mm256_adds_epi16 (__m256i a, __m256i b) VPADDSW ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epi16(in __m256i a, in __m256i b)
+            => AddSaturate(v16i(a),v16i(b));
 
         ///<intrinsic> __m256i _mm256_adds_epi8 (__m256i a, __m256i b) VPADDSB ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epi8(in __m256i a, in __m256i b)
+            => AddSaturate(v8i(a),v8i(b));
 
         ///<intrinsic> __m256i _mm256_adds_epu16 (__m256i a, __m256i b) VPADDUSW ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epu16(in __m256i a, in __m256i b)
+            => AddSaturate(v16u(a),v16u(b));
+
+        /// <intrinsic>void _mm_maskstore_epi64 (__int64* mem_addr, __m128i mask, __m128i a) VPMASKMOVQ __m128, xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm_maskstore_epi64(ref long mem_addr, in __m128i mask, in __m128i a)
+            => MaskStore(refptr(ref mem_addr), v64i(mask), v64i(a));
+
+        ///<intrinsic>void _mm256_maskstore_epi64 (__int64* mem_addr, __m256i mask, __m256i a) VPMASKMOVQ m256, ymm, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_maskstore_epi64(ref long mem_addr, in __m256i mask, in __m256i a)
+            => MaskStore(refptr(ref mem_addr), v64i(mask), v64i(a));
+
+        /// <intrinsic>void _mm256_maskstore_epi32 (ref int mem_addr, __m256i mask, __m256i a) VPMASKMOVD m256, ymm, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_maskstore_epi32(ref int mem_addr, in __m256i mask, in __m256i a)
+            => MaskStore(refptr(ref mem_addr), v32i(mask), v32i(a));
+
+
+        #if false
+
 
         // This intrinsic generates VPALIGNR that operates over bytes rather than elements of the vectors.
         ///<intrinsic> __m256i _mm256_alignr_epi8 (__m256i a, __m256i b, const int imm8) VPALIGNR ymm,ymm, ymm/m256, imm8</intrinsic>
@@ -494,10 +535,6 @@ namespace Z0
         ///<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, in m64</intrinsic>
         [MethodImpl(Inline)]
         public static __m128i _mm_broadcastq_epi64(ref ulong a)
-
-        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, xmm</intrinsic>
-        [MethodImpl(Inline)]
-        public static __m128i _mm_broadcastw_epi16(__m128i value)
 
         ///<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, in m32</intrinsic>
         [MethodImpl(Inline)]
@@ -516,7 +553,6 @@ namespace Z0
         //<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static __m128i _mm_broadcastd_epi32(in __m128i value)
-        //
 
         ///<intrinsic> __m128 _mm_broadcastss_ps (__m128 a) VBROADCASTSS xmm, xmm</intrinsic>
         [MethodImpl(Inline)]
@@ -656,7 +692,6 @@ namespace Z0
         public static __m256i _mm256_cvtepi16_epi64(ref ushort mem_addr);
         public static __m256i _mm256_cvtepi8_epi64(ref sbyte mem_addr);
         public static __m256i _mm256_cvtepi16_epi64(__m128i value);
-        //
 
 
         //<intrinsic> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
@@ -699,124 +734,105 @@ namespace Z0
         public static __m128i ExtractVector128(in __m256i a, byte index);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_mask_i64gather_epi64 (__m128i src, __int64 const* base_addr, __m128i
         //     vindex, __m128i mask, const int scale) VPGATHERQQ xmm, vm64x, xmm The scale parameter
         //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
         public static __m128i GatherMaskVector128(in __m128i src, ref ulong base_addr, in __m128i index, in __m128i mask, byte scale);
         //
 
-        //<intrinsic> __m128i _mm_mask_i32gather_epi64 (__m128i src, __int64 const* base_addr, __m128i
-        //     vindex, __m128i mask, const int scale) VPGATHERDQ xmm, vm32x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128i _mm_mask_i32gather_epi64 (__m128i src, __int64 const* base_addr, __m128i vindex, __m128i mask, const int scale) VPGATHERDQ xmm, vm32x, xmm </intrinsic>
         public static __m128i GatherMaskVector128(in __m128i src, ref ulong base_addr, in __m128i index, in __m128i mask, byte scale);
-        //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm256_mask_i64gather_epi32 (__m128i src, int const* base_addr, __m256i
         //     vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm32y, xmm The scale parameter
         //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
         public static __m128i GatherMaskVector128(in __m128i src, ref uint base_addr, in __m256i index, in __m128i mask, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_mask_i64gather_epi32 (__m128i src, int const* base_addr, __m128i
         //     vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm64x, xmm The scale parameter
         //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
         public static __m128i GatherMaskVector128(in __m128i src, ref uint base_addr, in __m128i index, in __m128i mask, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_mask_i32gather_epi32 (__m128i src, int const* base_addr, __m128i
         //     vindex, __m128i mask, const int scale) VPGATHERDD xmm, vm32x, xmm The scale parameter
         //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
         public static __m128i GatherMaskVector128(in __m128i src, ref uint base_addr, in __m128i index, in __m128i mask, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128 _mm256_mask_i64gather_ps (__m128 src, float const* base_addr, __m256i
         //     vindex, __m128 mask, const int scale) VGATHERQPS xmm, vm32y, xmm The scale parameter
         //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
         public static __m128d GatherMaskVector128(in __m128d src, ref float base_addr, in __m256i index, in __m128d mask, byte scale);
         //
 
-        //<intrinsic> __m128 _mm_mask_i64gather_ps (__m128 src, float const* base_addr, __m128i vindex,
-        //<intrinsic> __m128 mask, const int scale) VGATHERQPS xmm, vm64x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128 _mm_mask_i64gather_ps (__m128 src, float const* base_addr, __m128i vindex, __m128 mask, const int scale) VGATHERQPS xmm, vm64x, xmm</intrinsic>
         public static __m128d GatherMaskVector128(in __m128d src, ref float base_addr, in __m128i index, in __m128d mask, byte scale);
-        //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_mask_i64gather_epi64 (__m128i src, __int64 const* base_addr, __m128i
-        //     vindex, __m128i mask, const int scale) VPGATHERQQ xmm, vm64x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //     vindex, __m128i mask, const int scale) VPGATHERQQ xmm, vm64x, xmm
         public static __m128i GatherMaskVector128(in __m128i src, ref long base_addr, in __m128i index, in __m128i mask, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_mask_i32gather_epi64 (__m128i src, __int64 const* base_addr, __m128i
-        //     vindex, __m128i mask, const int scale) VPGATHERDQ xmm, vm32x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //     vindex, __m128i mask, const int scale) VPGATHERDQ xmm, vm32x, xmm
         public static __m128i GatherMaskVector128(in __m128i src, ref long base_addr, in __m128i index, in __m128i mask, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm256_mask_i64gather_epi32 (__m128i src, int const* base_addr, __m256i
-        //     vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm32y, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //     vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm32y, xmm
         public static __m128i GatherMaskVector128(in __m128i src, ref int base_addr, in __m256i index, in __m128i mask, byte scale);
-        //
 
-        //<intrinsic> __m128i _mm_mask_i64gather_epi32 (__m128i src, int const* base_addr, __m128i
-        //     vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm64x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128i _mm_mask_i64gather_epi32 (__m128i src, int const* base_addr, __m128i vindex, __m128i mask, const int scale) VPGATHERQD xmm, vm64x, xmm
         public static __m128i GatherMaskVector128(in __m128i src, ref int base_addr, in __m128i index, in __m128i mask, byte scale);
-        //
 
-        //<intrinsic> __m128i _mm_mask_i32gather_epi32 (__m128i src, int const* base_addr, __m128i
-        //     vindex, __m128i mask, const int scale) VPGATHERDD xmm, vm32x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128i _mm_mask_i32gather_epi32 (__m128i src, int const* base_addr, __m128i vindex, __m128i mask, const int scale) VPGATHERDD xmm, vm32x, xmm 
         public static __m128i GatherMaskVector128(in __m128i src, ref int base_addr, in __m128i index, in __m128i mask, byte scale);
-        //
 
-        //<intrinsic> __m128d _mm_mask_i64gather_pd (__m128d src, double const* base_addr, __m128i
-        //     vindex, __m128d mask, const int scale) VGATHERQPD xmm, vm64x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128d _mm_mask_i64gather_pd (__m128d src, double const* base_addr, __m128i vindex, __m128d mask, const int scale) VGATHERQPD xmm, vm64x, xmm
         public static __m128d GatherMaskVector128(in __m128d src, ref double base_addr, in __m128i index, in __m128d mask, byte scale);
-        //
 
-        //<intrinsic> __m128d _mm_mask_i32gather_pd (__m128d src, double const* base_addr, __m128i
-        //     vindex, __m128d mask, const int scale) VGATHERDPD xmm, vm32x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128d _mm_mask_i32gather_pd (__m128d src, double const* base_addr, __m128i vindex, __m128d mask, const int scale) VGATHERDPD xmm, vm32x, xmm
         public static __m128d GatherMaskVector128(in __m128d src, ref double base_addr, in __m128i index, in __m128d mask, byte scale);
-        //
 
-        //<intrinsic> __m128 _mm_mask_i32gather_ps (__m128 src, float const* base_addr, __m128i vindex,
-        //<intrinsic> __m128 mask, const int scale) VGATHERDPS xmm, vm32x, xmm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128 _mm_mask_i32gather_ps (__m128 src, float const* base_addr, __m128i vindex, __m128 mask, const int scale) VGATHERDPS xmm, vm32x, xmm
         public static __m128d GatherMaskVector128(in __m128d src, ref float base_addr, in __m128i index, in __m128d mask, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_mask_i64gather_epi64 (__m256i src, __int64 const* base_addr, __m256i
-        //     vindex, __m256i mask, const int scale) VPGATHERQQ ymm, vm32y, ymm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_mask_i64gather_epi64 (__m256i src, __int64 const* base_addr, __m256i vindex, __m256i mask, const int scale) VPGATHERQQ ymm, vm32y, ymm 
         public static __m256i GatherMaskVector256(in __m256i src, ref ulong base_addr, in __m256i index, in __m256i mask, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_mask_i32gather_epi64 (__m256i src, __int64 const* base_addr, __m128i
-        //     vindex, __m256i mask, const int scale) VPGATHERDQ ymm, vm32y, ymm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_mask_i32gather_epi64 (__m256i src, __int64 const* base_addr, __m128i vindex, __m256i mask, const int scale)
         public static __m256i GatherMaskVector256(in __m256i src, ref ulong base_addr, in __m128i index, in __m256i mask, byte scale);
-        //
 
-        //The scale parameter should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m256i _mm256_mask_i32gather_epi32 (__m256i src, int const* base_addr, __m256i vindex, __m256i mask, const int scale) VPGATHERDD ymm, vm32y, ymm
         public static __m256i GatherMaskVector256(in __m256i src, ref uint base_addr, in __m256i index, in __m256i mask, byte scale);
-        //
 
-        //<intrinsic> __m256 _mm256_mask_i32gather_ps (__m256 src, float const* base_addr, __m256i
-        //     vindex, __m256 mask, const int scale) VPGATHERDPS ymm, vm32y, ymm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256 _mm256_mask_i32gather_ps (__m256 src, float const* base_addr, __m256i vindex, __m256 mask, const int scale) VPGATHERDPS ymm, vm32y, ymm
         public static m256 GatherMaskVector256(in m256 src, ref float base_addr, in __m256i index, in m256 mask, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_mask_i32gather_epi64 (__m256i src, __int64 const* base_addr, __m128i
-        //     vindex, __m256i mask, const int scale) VPGATHERDQ ymm, vm32y, ymm The scale parameter
-        //     should be 1, 2, 4 or 8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_mask_i32gather_epi64 (__m256i src, __int64 const* base_addr, __m128i vindex, __m256i mask, const int scale) VPGATHERDQ ymm, vm32y, ymm
         public static __m256i GatherMaskVector256(in __m256i src, ref long base_addr, in __m128i index, in __m256i mask, byte scale);
-        //
 
         //<intrinsic> __m256i _mm256_mask_i32gather_epi32 (__m256i src, int const* base_addr, __m256i
         //     vindex, __m256i mask, const int scale) VPGATHERDD ymm, vm32y, ymm The scale parameter
@@ -855,173 +871,135 @@ namespace Z0
         public static __m128i GatherVector128(ref ulong base_addr, in __m128i index, byte scale);
         //
 
-        //<intrinsic> __m128i _mm256_i64gather_epi32 (int const* base_addr, __m256i vindex, const int
-        //     scale) VPGATHERQD xmm, vm64y, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //<intrinsic> __m128i _mm256_i64gather_epi32 (int const* base_addr, __m256i vindex, const int scale) VPGATHERQD xmm, vm64y, xmm 
         public static __m128i GatherVector128(ref uint base_addr, in __m256i index, byte scale);
-        //
 
-        //<intrinsic> __m128i _mm_i64gather_epi32 (int const* base_addr, __m128i vindex, const int
-        //     scale) VPGATHERQD xmm, vm64x, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //<intrinsic> __m128i _mm_i64gather_epi32 (int const* base_addr, __m128i vindex, const int scale) VPGATHERQD xmm, vm64x, xmm 
         public static __m128i GatherVector128(ref uint base_addr, in __m128i index, byte scale);
 
-        //The scale parameter should be 1, 2, 4 or 8,otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_i32gather_epi32 (int const* base_addr, __m128i vindex, const int scale) VPGATHERDD xmm, vm32x, xmm</intrinsic>
         public static __m128i GatherVector128(ref uint base_addr, in __m128i index, byte scale);
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128 _mm256_i64gather_ps (float const* base_addr, __m256i vindex, const int
-        //     scale) VGATHERQPS xmm, vm64y, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VGATHERQPS xmm, vm64y, xmm 
         public static __m128d GatherVector128(ref float base_addr, in __m256i index, byte scale);
-        //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128 _mm_i64gather_ps (float const* base_addr, __m128i vindex, const int scale)
-        //     VGATHERQPS xmm, vm64x, xmm The scale parameter should be 1, 2, 4 or 8, otherwise,
-        //     ArgumentOutOfRangeException will be thrown.
+        //     VGATHERQPS xmm, vm64x, xmm 
         public static __m128d GatherVector128(ref float base_addr, in __m128i index, byte scale);
-        //
 
-        //<intrinsic> __m128i _mm_i64gather_epi64 (__int64 const* base_addr, __m128i vindex, const
-        //     int scale) VPGATHERQQ xmm, vm64x, xmm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m128i _mm_i64gather_epi64 (__int64 const* base_addr, __m128i vindex, const int scale) VPGATHERQQ xmm, vm64x, xmm 
         public static __m128i GatherVector128(ref long base_addr, in __m128i index, byte scale);
-        //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_i32gather_epi64 (__int64 const* base_addr, __m128i vindex, const
-        //     int scale) VPGATHERDQ xmm, vm32x, xmm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //     int scale) VPGATHERDQ xmm, vm32x, xmm 
         public static __m128i GatherVector128(ref long base_addr, in __m128i index, byte scale);
-        //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm256_i64gather_epi32 (int const* base_addr, __m256i vindex, const int
-        //     scale) VPGATHERQD xmm, vm64y, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VPGATHERQD xmm, vm64y, xmm 
         public static __m128i GatherVector128(ref int base_addr, in __m256i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_i64gather_epi32 (int const* base_addr, __m128i vindex, const int
-        //     scale) VPGATHERQD xmm, vm64x, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VPGATHERQD xmm, vm64x, xmm 
         public static __m128i GatherVector128(ref int base_addr, in __m128i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128i _mm_i32gather_epi32 (int const* base_addr, __m128i vindex, const int
-        //     scale) VPGATHERDD xmm, vm32x, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VPGATHERDD xmm, vm32x, xmm 
         public static __m128i GatherVector128(ref int base_addr, in __m128i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128d _mm_i64gather_pd (double const* base_addr, __m128i vindex, const int
-        //     scale) VGATHERQPD xmm, vm64x, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VGATHERQPD xmm, vm64x, xmm 
         public static __m128d GatherVector128(ref double base_addr, in __m128i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128d _mm_i32gather_pd (double const* base_addr, __m128i vindex, const int
-        //     scale) VGATHERDPD xmm, vm32x, xmm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //     scale) VGATHERDPD xmm, vm32x, xmm 
         public static __m128d GatherVector128(ref double base_addr, in __m128i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m128 _mm_i32gather_ps (float const* base_addr, __m128i vindex, const int scale)
-        //     VGATHERDPS xmm, vm32x, xmm The scale parameter should be 1, 2, 4 or 8, otherwise,
-        //     ArgumentOutOfRangeException will be thrown.
+        //     VGATHERDPS xmm, vm32x, xmm 
         public static __m128d GatherVector128(ref float base_addr, in __m128i index, byte scale);
         //
 
+        //The scale parameter should be 1, 2, 4 or 8
         //<intrinsic> __m256i _mm256_i64gather_epi64 (__int64 const* base_addr, __m256i vindex, const
-        //     int scale) VPGATHERQQ ymm, vm64y, ymm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //     int scale) VPGATHERQQ ymm, vm64y, ymm 
         public static __m256i GatherVector256(ref ulong base_addr, in __m256i index, byte scale);
         //
 
-        //<intrinsic> __m256i _mm256_i32gather_epi64 (__int64 const* base_addr, __m128i vindex, const
-        //     int scale) VPGATHERDQ ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_i32gather_epi64 (__int64 const* base_addr, __m128i vindex, const int scale) VPGATHERDQ ymm, vm32y, ymm 
         public static __m256i GatherVector256(ref ulong base_addr, in __m128i index, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_i32gather_epi32 (int const* base_addr, __m256i vindex, const int
-        //     scale) VPGATHERDD ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_i32gather_epi32 (int const* base_addr, __m256i vindex, const int scale) VPGATHERDD ymm, vm32y, ymm 
         public static __m256i GatherVector256(ref uint base_addr, in __m256i index, byte scale);
-        //
 
-        //<intrinsic> __m256 _mm256_i32gather_ps (float const* base_addr, __m256i vindex, const int
-        //     scale) VGATHERDPS ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256 _mm256_i32gather_ps (float const* base_addr, __m256i vindex, const int scale) VGATHERDPS ymm, vm32y, ymm 
         public static m256 GatherVector256(ref float base_addr, in __m256i index, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_i32gather_epi64 (__int64 const* base_addr, __m128i vindex, const
-        //     int scale) VPGATHERDQ ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_i32gather_epi64 (__int64 const* base_addr, __m128i vindex, const int scale) VPGATHERDQ ymm, vm32y, ymm 
         public static __m256i GatherVector256(ref long base_addr, in __m128i index, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_i32gather_epi32 (int const* base_addr, __m256i vindex, const int
-        //     scale) VPGATHERDD ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_i32gather_epi32 (int const* base_addr, __m256i vindex, const int scale) VPGATHERDD ymm, vm32y, ymm 
         public static __m256i GatherVector256(ref int base_addr, in __m256i index, byte scale);
-        //
 
-        //<intrinsic> __m256d _mm256_i64gather_pd (double const* base_addr, __m256i vindex, const int
-        //     scale) VGATHERQPD ymm, vm64y, ymm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256d _mm256_i64gather_pd (double const* base_addr, __m256i vindex, const int scale) VGATHERQPD ymm, vm64y, ymm 
         public static m256d GatherVector256(ref double base_addr, in __m256i index, byte scale);
-        //
 
-        //<intrinsic> __m256d _mm256_i32gather_pd (double const* base_addr, __m128i vindex, const int
-        //     scale) VGATHERDPD ymm, vm32y, ymm The scale parameter should be 1, 2, 4 or 8,
-        //     otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256d _mm256_i32gather_pd (double const* base_addr, __m128i vindex, const int scale) VGATHERDPD ymm, vm32y, ymm 
         public static m256d GatherVector256(ref double base_addr, in __m128i index, byte scale);
-        //
 
-        //<intrinsic> __m256i _mm256_i64gather_epi64 (__int64 const* base_addr, __m256i vindex, const
-        //     int scale) VPGATHERQQ ymm, vm64y, ymm The scale parameter should be 1, 2, 4 or
-        //     8, otherwise, ArgumentOutOfRangeException will be thrown.
+        //The scale parameter should be 1, 2, 4 or 8
+        //<intrinsic> __m256i _mm256_i64gather_epi64 (__int64 const* base_addr, __m256i vindex, const int scale) VPGATHERQQ ymm, vm64y, ymm
         public static __m256i GatherVector256(ref long base_addr, in __m256i index, byte scale);
-        //
 
         //<intrinsic> __m256i _mm256_hadd_epi16 (__m256i a, __m256i b) VPHADDW ymm, ymm, ymm/m256
         public static __m256i HorizontalAdd(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_hadd_epi32 (__m256i a, __m256i b) VPHADDD ymm, ymm, ymm/m256
         public static __m256i HorizontalAdd(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_hadds_epi16 (__m256i a, __m256i b) VPHADDSW ymm, ymm, ymm/m256
         public static __m256i HorizontalAddSaturate(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_hsub_epi16 (__m256i a, __m256i b) VPHSUBW ymm, ymm, ymm/m256
         public static __m256i HorizontalSubtract(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_hsub_epi32 (__m256i a, __m256i b) VPHSUBD ymm, ymm, ymm/m256
         public static __m256i HorizontalSubtract(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_hsubs_epi16 (__m256i a, __m256i b) VPHSUBSW ymm, ymm, ymm/m256
         public static __m256i HorizontalSubtractSaturate(in __m256i a, in __m256i b);
-        //
 
-        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
-        //     ymm, ymm, xmm, imm8
+        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128 ymm, ymm, xmm, imm8
         public static __m256i InsertVector128(in __m256i a, in __m128i data, byte index);
-        //
 
-        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
-        //     ymm, ymm, xmm, imm8
+        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128 ymm, ymm, xmm, imm8
         public static __m256i InsertVector128(in __m256i a, in __m128i data, byte index);
-        //
 
-        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
-        //     ymm, ymm, xmm, imm8
+        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128 ymm, ymm, xmm, imm8
         public static __m256i InsertVector128(in __m256i a, in __m128i data, byte index);
-        //
 
         //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
         //     ymm, ymm, xmm, imm8
@@ -1037,35 +1015,26 @@ namespace Z0
         //     ymm, ymm, xmm, imm8
         public static __m256i _mm256_inserti128_si256(in __m256i a, in __m128i data, byte index);
 
-        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
-        //     ymm, ymm, xmm, imm8
+        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128 ymm, ymm, xmm, imm8
         public static __m256i _mm256_inserti128_si256(in __m256i a, in __m128i data, byte index);
-        //
 
-        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128
-        //     ymm, ymm, xmm, imm8
+        //<intrinsic> __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, const int imm8) VINSERTI128 ymm, ymm, xmm, imm8
         public static __m256i _mm256_inserti128_si256(in __m256i a, in __m128i data, byte index);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i _mm256_stream_load_si256(ref ulong mem_addr);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i _mm256_stream_load_si256(ref ushort mem_addr);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i _mm256_stream_load_si256(ref sbyte mem_addr);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i LoadAlignedVector256NonTemporal(ref uint mem_addr);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i LoadAlignedVector256NonTemporal(ref int mem_addr);
-        //
 
         //<intrinsic> __m256i _mm256_stream_load_si256 (__m256i const* mem_addr) VMOVNTDQA ymm, in m256
         public static __m256i LoadAlignedVector256NonTemporal(ref short mem_addr);
@@ -1100,28 +1069,13 @@ namespace Z0
         //<intrinsic> __m256i _mm256_maskload_epi64 (__int64 const* mem_addr, __m256i mask) VPMASKMOVQ ymm, ymm, in m256
         public static __m256i MaskLoad(ref ulong mem_addr, in __m256i mask);
 
-        //<intrinsic>void _mm_maskstore_epi64 (__int64* mem_addr, __m128i mask, __m128i a) VPMASKMOVQ __m128, xmm, xmm
-        public static void MaskStore(ref ulong mem_addr, in __m128i mask, in __m128i a);
-
-        //<intrinsic>void _mm256_maskstore_epi64 (__int64* mem_addr, __m256i mask, __m256i a) VPMASKMOVQ m256, ymm, ymm
-        public static void MaskStore(ref ulong mem_addr, in __m256i mask, in __m256i a);
-
-        //<intrinsic>void _mm256_maskstore_epi32 (ref int mem_addr, __m256i mask, __m256i a) VPMASKMOVD m256, ymm, ymm
-        public static void MaskStore(ref uint mem_addr, in __m256i mask, in __m256i a);
-
-        //<intrinsic>void _mm256_maskstore_epi32 (ref int mem_addr, __m256i mask, __m256i a) VPMASKMOVD m256, ymm, ymm
-        public static void MaskStore(ref int mem_addr, in __m256i mask, in __m256i a);
-
-        //<intrinsic>void _mm256_maskstore_epi64 (__int64* mem_addr, __m256i mask, __m256i a) VPMASKMOVQ m256, ymm, ymm
-        public static void MaskStore(ref long mem_addr, in __m256i mask, in __m256i a);
-
-        //<intrinsic>void _mm_maskstore_epi32 (ref int mem_addr, __m128i mask, __m128i a) VPMASKMOVD __m128, xmm, xmm
+        //<intrinsic>void _mm_maskstore_epi32 (ref int mem_addr, __m128i mask, __m128i a) VPMASKMOVD __m128, xmm, xmm</intrinsic>
         public static void MaskStore(ref uint mem_addr, in __m128i mask, in __m128i a);
 
-        //<intrinsic>void _mm_maskstore_epi32 (ref int mem_addr, __m128i mask, __m128i a) VPMASKMOVD __m128, xmm, xmm
+        //<intrinsic>void _mm_maskstore_epi32 (ref int mem_addr, __m128i mask, __m128i a) VPMASKMOVD __m128, xmm, xmm</intrinsic>
         public static void MaskStore(ref int mem_addr, in __m128i mask, in __m128i a);
 
-        //<intrinsic>void _mm_maskstore_epi64 (__int64* mem_addr, __m128i mask, __m128i a) VPMASKMOVQ __m128, xmm, xmm
+        //<intrinsic>void _mm_maskstore_epi64 (__int64* mem_addr, __m128i mask, __m128i a) VPMASKMOVQ __m128, xmm, xmm</intrinsic>
         public static void MaskStore(ref long mem_addr, in __m128i mask, in __m128i a);
 
         //<intrinsic> __m256i _mm256_max_epu8 (__m256i a, __m256i b) VPMAXUB ymm, ymm, ymm/m256
@@ -1132,107 +1086,66 @@ namespace Z0
 
         //<intrinsic> __m256i _mm256_max_epi32 (__m256i a, __m256i b) VPMAXSD ymm, ymm, ymm/m256
         public static __m256i Max(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_max_epi8 (__m256i a, __m256i b) VPMAXSB ymm, ymm, ymm/m256
         public static __m256i Max(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_max_epu16 (__m256i a, __m256i b) VPMAXUW ymm, ymm, ymm/m256
         public static __m256i Max(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_max_epu32 (__m256i a, __m256i b) VPMAXUD ymm, ymm, ymm/m256
         public static __m256i Max(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epu32 (__m256i a, __m256i b) VPMINUD ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epu16 (__m256i a, __m256i b) VPMINUW ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epi32 (__m256i a, __m256i b) VPMINSD ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epu8 (__m256i a, __m256i b) VPMINUB ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epi8 (__m256i a, __m256i b) VPMINSB ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_min_epi16 (__m256i a, __m256i b) VPMINSW ymm, ymm, ymm/m256
         public static __m256i Min(in __m256i a, in __m256i b);
-        //
 
-        //     int _mm256_movemask_epi8 (__m256i a) VPMOVMSKB reg, ymm
-        public static int MoveMask(in __m256i a);
-        //
-
-        //     int _mm256_movemask_epi8 (__m256i a) VPMOVMSKB reg, ymm
+        //<intrinsic> int _mm256_movemask_epi8 (__m256i a) VPMOVMSKB reg, ymm
         public static int MoveMask(in __m256i a);
 
+        //<intrinsic>int _mm256_movemask_epi8 (__m256i a) VPMOVMSKB reg, ymm
+        public static int MoveMask(in __m256i a);
 
         //<intrinsic> __m256i _mm256_mulhrs_epi16 (__m256i a, __m256i b) VPMULHRSW ymm, ymm, ymm/m256
         public static __m256i MultiplyHighRoundScale(in __m256i a, in __m256i b);
 
-
-
         //<intrinsic> __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
         public static __m256i Or(in __m256i a, in __m256i b);
-        //
-
-        //<intrinsic> __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
-        public static __m256i Or(in __m256i a, in __m256i b);
-        //
-
-        //<intrinsic> __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
-        public static __m256i Or(in __m256i a, in __m256i b);
-        //
-
-        //<intrinsic> __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
-        public static __m256i Or(in __m256i a, in __m256i b);
-        //
-
-        //<intrinsic> __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
-        public static __m256i Or(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_packs_epi16 (__m256i a, __m256i b) VPACKSSWB ymm, ymm, ymm/m256
         public static __m256i PackSignedSaturate(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_packs_epi32 (__m256i a, __m256i b) VPACKSSDW ymm, ymm, ymm/m256
         public static __m256i PackSignedSaturate(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_packus_epi16 (__m256i a, __m256i b) VPACKUSWB ymm, ymm, ymm/m256
         public static __m256i PackUnsignedSaturate(in __m256i a, in __m256i b);
-        //
 
         //<intrinsic> __m256i _mm256_packus_epi32 (__m256i a, __m256i b) VPACKUSDW ymm, ymm, ymm/m256
         public static __m256i PackUnsignedSaturate(in __m256i a, in __m256i b);
-        //
 
-        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
+        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
         public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
+        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
         public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
+        //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
         public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
         //     ymm, ymm, ymm/m256, imm8
@@ -1315,158 +1228,77 @@ namespace Z0
 
         //<intrinsic> __m256i _mm256_slli_epi16 (__m256i a, int imm8) VPSLLW ymm, ymm, imm8<intrinsic>
         public static __m256i ShiftLeftLogical(in __m256i a, byte count);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i ShiftLeftLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i ShiftLeftLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i ShiftLeftLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i ShiftLeftLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i ShiftLeftLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8<intrinsic>
-        public static __m256i _mm256_bslli_epi128(in __m256i a, byte imm8)
-            => ShiftLeftLogical128BitLane(a, imm8);
-
-
-
-        //<intrinsic> __m256i _mm256_sllv_epi64 (__m256i a, __m256i imm8) VPSLLVQ ymm, ymm, ymm/m256<intrinsic>
-        public static __m256i _mm256_sllv_epi64(in __m256i a, in __m256i imm8)
-            => ShiftLeftLogicalVariable(a, imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_sllv_epi32 (__m256i a, __m256i count) VPSLLVD ymm, ymm, ymm/m256<intrinsic>
-        public static __m256i ShiftLeftLogicalVariable(in __m256i a, in __m256i count);
-
-        //<intrinsic> __m256i _mm256_sllv_epi64 (__m256i a, __m256i count) VPSLLVQ ymm, ymm, ymm/m256<intrinsic>
-        public static __m256i ShiftLeftLogicalVariable(in __m256i a, in __m256i count);
-
-        //<intrinsic> __m128i _mm_sllv_epi32 (__m128i a, __m128i count) VPSLLVD xmm, ymm, xmm/m128<intrinsic>
-        public static __m128i ShiftLeftLogicalVariable(in __m128i value, in __m128i count);
-
-        //<intrinsic> __m128i _mm_sllv_epi64 (__m128i a, __m128i count) VPSLLVQ xmm, ymm, xmm/m128<intrinsic>
-        public static __m128i ShiftLeftLogicalVariable(in __m128i value, in __m128i count);
-
-        //<intrinsic> __m128i _mm_sllv_epi32 (__m128i a, __m128i count) VPSLLVD xmm, ymm, xmm/m128<intrinsic>
-        public static __m128i ShiftLeftLogicalVariable(in __m128i value, in __m128i count);
-
-        //<intrinsic> __m128i _mm_sllv_epi64 (__m128i a, __m128i count) VPSLLVQ xmm, ymm, xmm/m128
-        public static __m128i ShiftLeftLogicalVariable(in __m128i value, in __m128i count);
-
-        //<intrinsic> __m256i _mm256_sllv_epi32 (__m256i a, __m256i count) VPSLLVD ymm, ymm, ymm/m256
-        public static __m256i ShiftLeftLogicalVariable(in __m256i a, in __m256i count);
 
 
         //<intrinsic> __m128i _mm_srav_epi32 (__m128i a, __m128i imm8) VPSRAVD xmm, xmm, xmm/m128
         public static __m128i ShiftRightArithmeticVariable(in __m128i value, in __m128i imm8);
-        //
 
         //<intrinsic> __m256i _mm256_srav_epi32 (__m256i a, __m256i imm8) VPSRAVD ymm, ymm, ymm/m256
-        public static __m256i ShiftRightArithmeticVariable(in __m256i a, in __m256i imm8);
-        //
-
-
+        public static __m256i _mm256_srav_epi32(in __m256i a, in __m256i imm8)
+            => ShiftRightArithmeticVariable(a,imm8);
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
-        public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
+        public static __m256i _mm256_bsrli_epi128(in __m256i a, byte imm8)
+            => ShiftRightLogical128BitLane(a,imm8);
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
-        public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
-
-        //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
-        public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8)
+        public static __m256i _mm256_bsrli_epi128(in __m256i a, byte imm8)
             => ShiftRightLogical128BitLane(a, imm8);
-        //
+
+        //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
+        public static __m256i _mm256_bsrli_epi128 (in __m256i a, byte imm8)
+            => ShiftRightLogical128BitLane(a, imm8);
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         public static __m256i ShiftRightLogical128BitLane(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m128i _mm_srlv_epi32 (__m128i a, __m128i imm8) VPSRLVD xmm, xmm, xmm/m128
         public static __m128i ShiftRightLogicalVariable(in __m128i value, in __m128i imm8);
-        //
 
         //<intrinsic> __m128i _mm_srlv_epi64 (__m128i a, __m128i imm8) VPSRLVQ xmm, xmm, xmm/m128
         public static __m128i ShiftRightLogicalVariable(in __m128i value, in __m128i imm8);
-        //
 
         //<intrinsic> __m128i _mm_srlv_epi32 (__m128i a, __m128i imm8) VPSRLVD xmm, xmm, xmm/m128
         public static __m128i ShiftRightLogicalVariable(in __m128i value, in __m128i imm8);
-        //
 
         //<intrinsic> __m128i _mm_srlv_epi64 (__m128i a, __m128i imm8) VPSRLVQ xmm, xmm, xmm/m128
         public static __m128i ShiftRightLogicalVariable(in __m128i value, in __m128i imm8);
-        //
-
 
         //<intrinsic> __m256i _mm256_srlv_epi64 (__m256i a, __m256i imm8) VPSRLVQ ymm, ymm, ymm/m256
         public static __m256i ShiftRightLogicalVariable(in __m256i a, in __m256i imm8);
-        //
-
 
         //<intrinsic> __m256i _mm256_srlv_epi64 (__m256i a, __m256i imm8) VPSRLVQ ymm, ymm, ymm/m256
         public static __m256i ShiftRightLogicalVariable(in __m256i a, in __m256i imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256,
-        //     imm8
+        //<intrinsic> __m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256, imm8
         public static __m256i Shuffle(in __m256i a, byte imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256,
-        //     imm8
+        //<intrinsic> __m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256, imm8
         public static __m256i Shuffle(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256
         public static __m256i Shuffle(in __m256i a, in __m256i b);
 
-
-        //<intrinsic> __m256i _mm256_shufflehi_epi16 (__m256i a, const int imm8) VPSHUFHW ymm, ymm/m256,
-        //     imm8
+        //<intrinsic> __m256i _mm256_shufflehi_epi16 (__m256i a, const int imm8) VPSHUFHW ymm, ymm/m256, imm8
         public static __m256i ShuffleHigh(in __m256i a, byte imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_shufflehi_epi16 (__m256i a, const int imm8) VPSHUFHW ymm, ymm/m256,
-        //     imm8
+        //<intrinsic> __m256i _mm256_shufflehi_epi16 (__m256i a, const int imm8) VPSHUFHW ymm, ymm/m256, imm8
         public static __m256i ShuffleHigh(in __m256i a, byte imm8);
-        //
 
-        //<intrinsic> __m256i _mm256_shufflelo_epi16 (__m256i a, const int imm8) VPSHUFLW ymm, ymm/m256,
-        //     imm8
+        //<intrinsic> __m256i _mm256_shufflelo_epi16 (__m256i a, const int imm8) VPSHUFLW ymm, ymm/m256, imm8
         public static __m256i ShuffleLow(in __m256i a, byte imm8);
-        //
 
         //<intrinsic> __m256i _mm256_shufflelo_epi16 (__m256i a, const int imm8) VPSHUFLW ymm, ymm/m256, imm8
         public static __m256i ShuffleLow(in __m256i a, byte imm8);
@@ -1510,7 +1342,6 @@ namespace Z0
         //<intrinsic> __m256i _mm256_subs_epi16 (__m256i a, __m256i b) VPSUBSW ymm, ymm, ymm/m256<intrinsic>
         public static __m256i _mm256_subs_epi16(in __m256i a, in __m256i b);
 
- 
 
     #endif
     }

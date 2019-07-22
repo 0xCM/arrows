@@ -17,16 +17,27 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static __m128i _mm256_castsi256_si128(in __m256i a)
-        {
-            __m128i dst = default;
-            dst.x0 = a.x0;
-            dst.x1 = a.x1;
-            return dst;
-        }
+            => Vec128.define(a.x0, a.x1);
+
+        [MethodImpl(Inline)]
+        public static __m128d _mm256_castpd256_pd128(in __m256d a)
+            => Vec128.define(a.x0d, a.x1d);
+
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_castpd128_pd256(in __m128d a)
+            => Vec256.define(a.x0d, a.x1d, 0, 0);
 
         [MethodImpl(Inline)]
         public static __m256i _mm256_setzero_si256()
             => Vec256.zero<long>();
+
+        [MethodImpl(Inline)]
+        public static __m128d _mm_setzero_pd()
+            => Vec128.zero<double>();
+
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_setzero_pd()
+            => Vec256.zero<double>();
 
         [MethodImpl(Inline)]
         public static __m256 _mm256_set1_ps(float a)
@@ -63,7 +74,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi16(short x)
-            => Vec256.define(x);
+            => Vector256.Create(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -72,7 +83,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi16(ushort x)
-            => Vec256.define(x);
+            => Vector256.Create(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -81,7 +92,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi32(int x)
-            => Vec256.define(x);
+            => Vector256.Create(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -90,7 +101,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi32(uint x)
-            => Vec256.define(x);
+            => Vector256.Create(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -99,7 +110,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi64x(long x)
-            => Vec256.define(x);
+            => Vector256.Create(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -153,12 +164,12 @@ namespace Z0
 
         ///<intrinsic> __m256d _mm256_add_pd (__m256d a, __m256d b) VADDPD ymm, ymm, ymm/m256 </intrinsic>
         [MethodImpl(Inline)]
-        public static __m256d _mm256_add_pd (__m256d a, __m256d b)
+        public static __m256d _mm256_add_pd (in __m256d a, in __m256d b)
             => Add(a, b);
 
         ///<intrinsic> __m256 _mm256_add_ps (__m256 a, __m256 b) VADDPS ymm, ymm, ymm/m256 </intrinsic>
         [MethodImpl(Inline)]
-        public static __m256 _mm256_add_ps (__m256 a, __m256 b)
+        public static __m256 _mm256_add_ps (in __m256 a, in __m256 b)
             => Add(a,b);
         
         ///<intrinsic> __m256d _mm256_and_pd (__m256d a, __m256d b) VANDPD ymm, ymm, ymm/m256 </intrinsic>
@@ -426,8 +437,8 @@ namespace Z0
 
         /// <intrinsic>void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD m256, ymm</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_pd(ref double dst, in __m256d src)
-            => Store(refptr(ref dst), src);
+        public static unsafe void _mm256_storeu_pd(ref double mem_addr, in __m256d src)
+            => Store(refptr(ref mem_addr), src);
 
         ///<intrinsic> __m256 _mm256_dp_ps (__m256 a, __m256 b, const int imm8) VDPPS ymm, ymm, ymm/m256, imm8 </intrinsic>
         [MethodImpl(Inline)]
@@ -792,178 +803,215 @@ namespace Z0
         public static __m256 _mm256_round_ps(in __m256 a)
             => RoundCurrentDirection(a);        
 
-        //<intrinsic> __m256d _mm256_shuffle_pd (__m256d a, __m256d b, const int imm8) VSHUFPD ymm, ymm, ymm/m256, imm8
+        ///<intrinsic> __m256d _mm256_shuffle_pd (__m256d a, __m256d b, const int imm8) VSHUFPD ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static __m256d _mm256_shuffle_pd(in __m256d a, in __m256d b, byte imm8)
             => Shuffle(a,b,imm8);
         
-        //<intrinsic> __m256 _mm256_shuffle_ps (__m256 a, __m256 b, const int imm8) VSHUFPS ymm, ymm, ymm/m256, imm8
+        ///<intrinsic> __m256 _mm256_shuffle_ps (__m256 a, __m256 b, const int imm8) VSHUFPS ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static __m256 _mm256_shuffle_ps(in __m256 a, in __m256 b, byte imm8)
             => Shuffle(a,b,imm8);
 
+        ///<intrinsic> __m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256d _mm256_unpackhi_pd(in __m256d a, in __m256d b)
+            => UnpackHigh(a, b);
+        
+        ///<intrinsic> __m256 _mm256_unpackhi_ps (__m256 a, __m256 b) VUNPCKHPS ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256 _mm256_unpackhi_ps(in __m256 a, in __m256 b)
+            => UnpackHigh(a, b);
+        
+        ///<intrinsic> __m256d _mm256_unpacklo_pd (__m256d a, __m256d b) VUNPCKLPD ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256d _mm256_unpacklo_pd(in __m256d a, in __m256d b)
+            => UnpackLow(a, b);
+        
+        ///<intrinsic> __m256 _mm256_unpacklo_ps (__m256 a, __m256 b) VUNPCKLPS ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256 _mm256_unpacklo_ps(in __m256 a, in __m256 b)
+            => UnpackLow(a, b);
+            
+        ///<intrinsic> __m256d _mm256_xor_pd (__m256d a, __m256d b) VXORPS ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256d _mm256_xor_pd(in __m256d a, in __m256d b)
+            => Xor(a,b);
+        
+        ///<intrinsic> __m256 _mm256_xor_ps (__m256 a, __m256 b) VXORPS ymm, ymm, ymm/m256 </intrinsic>
+        public static __m256 _mm256_xor_ps(in __m256 a, in __m256 b)
+            => Xor(a,b);
+
+        ///<intrinsic> int _mm_testc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
+        public static bool _mm_testc_ps(in __m128 a, in __m128 b)
+            => TestC(a,b);
+        
+        ///<intrinsic> int _mm_testc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
+        public static bool _mm_testc_pd(in __m128d a, in __m128d b)
+            => TestC(a,b);
+        
+        ///<intrinsic> int _mm256_testnzc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
+        public static bool _mm256_testnzc_ps(in __m256 a, in __m256 b)
+            => TestNotZAndNotC(a, b);
+
+        ///<intrinsic> int _mm256_testnzc_pd (__m256d a, __m256d b) VTESTPD ymm, ymm/m256 </intrinsic>
+        public static bool _mm256_testnzc_pd(in __m256d a, in __m256d b)        
+            => TestNotZAndNotC(a, b);
+        
+        ///<intrinsic> int _mm_testnzc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
+        public static bool _mm_testnzc_ps(in __m128 a, in __m128 b)
+            => TestNotZAndNotC(a, b);
+        
+        ///<intrinsic> int _mm_testnzc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
+        public static bool _mm_testnzc_pd(in __m128d a, in __m128d b)
+            => TestNotZAndNotC(a,b);
+
         #if false
                                                                             
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(8)
-        // public static __m256d _mm256_round_pd(in __m256d a)
-        //      => RoundToNearestInteger(a);
+        ///<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(8)
+        public static __m256d _mm256_round_pd(in __m256d a)
+              => RoundToNearestInteger(a);
         
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(8)
-        // public static __m256 _mm256_round_ps(in __m256 a)
-        //     => RoundToNearestInteger(a);
+        ///<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(8)
+        public static __m256 _mm256_round_ps(in __m256 a)
+             => RoundToNearestInteger(a);
         
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(9)
-        // public static __m256d _mm256_round_pd(in __m256d a)
-        //     => RoundToNegativeInfinity(a);
+        ///<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(9)
+        public static __m256d _mm256_round_pd(in __m256d a)
+             => RoundToNegativeInfinity(a);
         
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(9)
-        // public static __m256 _mm256_round_ps(in __m256 a)
-        //     => RoundToNegativeInfinity(a);
+        ///<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(9)
+        public static __m256 _mm256_round_ps(in __m256 a)
+            => RoundToNegativeInfinity(a);
 
         //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(10)
         public static __m256d RoundToPositiveInfinity(in __m256d a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(10)
+        ///<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(10)
         public static __m256 RoundToPositiveInfinity(in __m256 value)
-        
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(11)
+            => RoundToPositiveInfinity(value);
+
+        ///<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(11)
         public static __m256 RoundToZero(in __m256 value)
+            => throw new NotImplementedException();
         
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(11)
+        ///<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(11)
         public static __m256d RoundToZero(in __m256d a)
-        
-        
-        
-        
-        
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+            => throw new NotImplementedException();        
+                    
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref ushort mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref ulong mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref uint mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_ps (float * mem_addr, __m256 a) VMOVAPS __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_ps (float * mem_addr, __m256 a) VMOVAPS __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref float mem_addr, in __m256 a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_pd (double * mem_addr, __m256d a) VMOVAPD __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_pd (double * mem_addr, __m256d a) VMOVAPD __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref double mem_addr, in __m256d a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref long mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref int mem_addr, in __m128i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref short mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref byte mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
         public static unsafe void StoreAligned(ref sbyte mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref ulong mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref ushort mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref uint mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_ps (float * mem_addr, __m256 a) MOVNTPS __m256, ymm <intrinsic>
-        public static unsafe void StoreAlignedNonTemporal(ref float mem_addr, in __m256 a)
-        
-        //<intrinsic> void _mm256_stream_pd (double * mem_addr, __m256d a) MOVNTPD __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_ps (float * mem_addr, __m256 a) MOVNTPS __m256, ymm <intrinsic>
+        public static unsafe void StoreAlignedNonTemporal(ref float mem_addr, in __m256 a)        
+            => throw new NotImplementedException();
+
+        ///<intrinsic> void _mm256_stream_pd (double * mem_addr, __m256d a) MOVNTPD __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref double mem_addr, in __m256d a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref long mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref sbyte mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref byte mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref int mem_addr, in __m128i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
+        ///<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
         public static unsafe void StoreAlignedNonTemporal(ref short mem_addr, in __m256i a)
+            => throw new NotImplementedException();
         
-        //<intrinsic> __m256d _mm256_sub_pd (__m256d a, __m256d b) VSUBPD ymm, ymm, ymm/m256 <intrinsic>
+        ///<intrinsic> __m256d _mm256_sub_pd (__m256d a, __m256d b) VSUBPD ymm, ymm, ymm/m256 <intrinsic>
         public static __m256d Subtract(in __m256d a, in __m256d b)
+            => throw new NotImplementedException();
         
-        //<intrinsic> __m256 _mm256_sub_ps (__m256 a, __m256 b) VSUBPS ymm, ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> __m256 _mm256_sub_ps (__m256 a, __m256 b) VSUBPS ymm, ymm, ymm/m256 </intrinsic>
         public static __m256 Subtract(in __m256 a, in __m256 b)
+            => throw new NotImplementedException();
         
-        //<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
         public static bool TestC(in __m256i a, in __m256i b)        
+            => throw new NotImplementedException();
         
-        //<intrinsic> int _mm256_testc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
         public static bool TestC(in __m256 a, in __m256 b)
+            => throw new NotImplementedException();
                
-        //<intrinsic> int _mm256_testc_pd (__m256d a, __m256d b) VTESTPS ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testc_pd (__m256d a, __m256d b) VTESTPS ymm, ymm/m256 </intrinsic>
         public static bool TestC(in __m256d a, in __m256d b)
+            => throw new NotImplementedException();
                 
-        //<intrinsic> int _mm_testc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
-        public static bool TestC(in __m128 a, in __m128 b)
-        
-        //<intrinsic> int _mm_testc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestC(in __m128d a, in __m128d b)
-        
-        //<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
         public static bool TestC(in __m128i a, in __m128i b)
+            => throw new NotImplementedException();
         
-        //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
         public static bool TestNotZAndNotC(in __m256i a, in __m256i b)
+            => throw new NotImplementedException();
         
-        //<intrinsic> int _mm256_testnzc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
-        public static bool TestNotZAndNotC(in __m256 a, in __m256 b)
                 
-        //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
         public static bool TestNotZAndNotC(in __m256i a, in __m256i b)
+            => throw new NotImplementedException();
                 
-        //<intrinsic> int _mm256_testnzc_pd (__m256d a, __m256d b) VTESTPD ymm, ymm/m256 </intrinsic>
-        public static bool TestNotZAndNotC(in __m256d a, in __m256d b)        
         
-        //<intrinsic> int _mm_testnzc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
-        public static bool TestNotZAndNotC(in __m128 a, in __m128 b)
-        
-        //<intrinsic> int _mm_testnzc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestNotZAndNotC(in __m128d a, in __m128d b)
-        
-        //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
         public static bool TestNotZAndNotC(in __m128i a, in __m128i b)
-            
-                
-        
-        //<intrinsic> int _mm_testz_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestZ(in __m128d a, in __m128d b)
-        
-        
-        //<intrinsic> __m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256d UnpackHigh(in __m256d a, in __m256d b)
-        
-        //<intrinsic> __m256 _mm256_unpackhi_ps (__m256 a, __m256 b) VUNPCKHPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256 UnpackHigh(in __m256 a, in __m256 b)
-        
-        //<intrinsic> __m256d _mm256_unpacklo_pd (__m256d a, __m256d b) VUNPCKLPD ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256d UnpackLow(in __m256d a, in __m256d b)
-        
-        //<intrinsic> __m256 _mm256_unpacklo_ps (__m256 a, __m256 b) VUNPCKLPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256 UnpackLow(in __m256 a, in __m256 b)
-        
-        //<intrinsic> __m256d _mm256_xor_pd (__m256d a, __m256d b) VXORPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256d Xor(in __m256d a, in __m256d b)
-        
-        //<intrinsic> __m256 _mm256_xor_ps (__m256 a, __m256 b) VXORPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256 Xor(in __m256 a, in __m256 b)
+            => throw new NotImplementedException();                    
                          
         #endif
 

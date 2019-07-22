@@ -20,6 +20,8 @@ namespace Z0
         public static readonly BitSize SegmentCapacity = BitLayout.SegmentCapacity<T>();
 
         public static readonly BitSize TotalBitCount = new N().value;
+
+        static readonly int MaxBitIndex = TotalBitCount - 1;
     
         static readonly BitPos<T>[] BitMap = BitLayout.BitMap<T>(TotalBitCount);
 
@@ -35,7 +37,7 @@ namespace Z0
         public BitVector(Span<T> bits)
             : this()
         {
-            this.bits =bits;
+            this.bits = bits;
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
@@ -43,7 +45,7 @@ namespace Z0
         public BitVector(ReadOnlySpan<T> bits)
             : this()
         {
-            this.bits =bits.Replicate();
+            this.bits = bits.Replicate();
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
@@ -77,8 +79,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(in src.bits));
-        
+            => new BitVector<N,T>(gbits.flip(in src.bits));        
+                
+        [MethodImpl(Inline)]
+        static int CheckIndex(int index)
+            => index >= 0 && index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<int>(index, 0, MaxBitIndex);
+
         /// <summary>
         /// Retrieves the value of the bit at a specified position
         /// </summary>
@@ -86,7 +92,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Bit GetBit(in int index)
         {
-            ref readonly var pos = ref BitMap[index];
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
             return gbits.test(in bits[pos.SegIdx], pos.BitOffset);
         }
             
@@ -97,7 +103,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public void SetBit(in int index, Bit value)
         {
-            ref readonly var pos = ref BitMap[index];
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
             gbits.set(ref bits[pos.SegIdx], pos.BitOffset, in value);
         }
 
@@ -131,7 +137,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Toggle(in int index)
         {         
-            ref readonly var pos = ref BitMap[index];
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
             gbits.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
@@ -142,7 +148,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Enable(in int index)
         {
-            ref readonly var pos = ref BitMap[index];
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
             gbits.enable(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
@@ -153,7 +159,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Disable(in int index)
         {
-            ref readonly var pos = ref BitMap[index];
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
             gbits.disable(ref bits[pos.SegIdx], pos.BitOffset);
         }
 
@@ -177,7 +183,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => Bits.ToBitString();
+            => Bits.ToBitString(TotalBitCount);
 
         /// <summary>
         /// Counts the vector's enabled bits
@@ -186,7 +192,7 @@ namespace Z0
         public ulong Pop()
         {
             var count = 0ul;
-            for(var i=0; i< bits.Length; i++)
+            for(var i=0; i < TotalBitCount; i++)
                 count += gbits.pop(bits[i]);
             return count;
         }

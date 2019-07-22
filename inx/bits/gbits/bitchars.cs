@@ -52,20 +52,19 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [PrimalKinds(PrimalKind.All)]
-        public static Span<char> bitchars<T>(ReadOnlySpan<T> src)
+        public static Span<char> bitchars<T>(ReadOnlySpan<T> src, int? bitcount = null)
             where T : struct
         {
             var seglen = Unsafe.SizeOf<T>()*8;
-            var bitcount = src.Length * seglen;
-            Span<char> dst = new char[bitcount];
+            Span<char> dst = new char[bitcount ?? src.Length * seglen];
             for(var i=0; i<src.Length; i++)
                 bitchars(src[i]).CopyTo(dst, i*seglen);
             return dst;
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static Span<char> bitchars<T>(Span<T> src)
+        public static Span<char> bitchars<T>(Span<T> src, int? bitcount = null)
             where T : struct
-            => bitchars(src.ReadOnly());    
+                => bitchars(src.ReadOnly(), bitcount);    
     }
 }

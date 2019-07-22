@@ -157,6 +157,16 @@ namespace Z0
         public bool NEq(in BitVector64 rhs)
             => data != rhs.data;
 
+        public ulong this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get
+            {
+                var len = (byte)(range.Start.Value - range.End.Value + 1);
+                return Bits.extract(in data, (byte)range.Start.Value, len);
+            }
+        }
+
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

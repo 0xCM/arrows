@@ -94,6 +94,7 @@ namespace Z0
     partial class dinx
     {
 
+        ///<intrinsic>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<float> permute(in Vec128<float> value, byte control)
             => Permute(value, control);
@@ -125,68 +126,68 @@ namespace Z0
 
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<long> permute(in Vec256<long> value, byte control)
+        public static Vec256<long> permute4x64(in Vec256<long> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> permute(in Vec256<ulong> value, byte control)
+        public static Vec256<ulong> permute4x64(in Vec256<ulong> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<double> permute(in Vec256<double> value, byte control)
+        public static Vec256<double> permute4x64(in Vec256<double> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> permute(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<sbyte> permute2x128(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<byte> permute(in Vec256<byte> lhs, in Vec256<byte> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<byte> permute2x128(in Vec256<byte> lhs, in Vec256<byte> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<short> permute(in Vec256<short> lhs, in Vec256<short> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<short> permute2x128(in Vec256<short> lhs, in Vec256<short> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> permute(in Vec256<ushort> lhs, in Vec256<ushort> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<ushort> permute2x128(in Vec256<ushort> lhs, in Vec256<ushort> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<int> permute(in Vec256<int> lhs, in Vec256<int> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<int> permute2x128(in Vec256<int> lhs, in Vec256<int> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<uint> permute(in Vec256<uint> lhs, in Vec256<uint> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<uint> permute2x128(in Vec256<uint> lhs, in Vec256<uint> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<long> permute(in Vec256<long> lhs, in Vec256<long> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<long> permute2x128(in Vec256<long> lhs, in Vec256<long> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> permute(in Vec256<ulong> lhs, in Vec256<ulong> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<ulong> permute2x128(in Vec256<ulong> lhs, in Vec256<ulong> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256 _mm256_permute2f128_ps (__m256 a, __m256 b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<float> permute(in Vec256<float> lhs, in Vec256<float> rhs, byte control)
-            => Permute2x128(lhs,rhs,control);
+        public static Vec256<float> permute2x128(in Vec256<float> lhs, in Vec256<float> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec);
 
         ///<intrinsic>__m256d _mm256_permute2f128_pd (__m256d a, __m256d b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec256<double> permute(in Vec256<double> lhs, in Vec256<double> rhs, byte control)
-            => Permute2x128(lhs,rhs,control); 
+        public static Vec256<double> permute2x128(in Vec256<double> lhs, in Vec256<double> rhs, byte spec)
+            => Permute2x128(lhs,rhs,spec); 
 
         /// <intrinsic>__m256i _mm256_permutevar8x32_epi32 (__m256i a, __m256i idx) VPERMD ymm, ymm/m256, ymm</intrinsic>
         [MethodImpl(Inline)]
