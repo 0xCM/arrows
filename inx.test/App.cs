@@ -41,7 +41,7 @@ namespace Z0.Test
         {     
             //base.RunTests("BitPosTest");
             //base.RunTests("NatModTest");
-            base.RunTests("ArrangementTests");
+            base.RunTests("BitMatrix");
         }
 
         public static void Main(params string[] args)

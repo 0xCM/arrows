@@ -109,11 +109,11 @@ namespace Z0
  
          [MethodImpl(Inline)]
         public bool Eq(in BitMatrix4 rhs)
-            => BitConverter.ToUInt16(bits) == BitConverter.ToUInt16(rhs.bits);
+            => bits.TakeUInt16() == rhs.bits.TakeUInt16();
 
         [MethodImpl(Inline)]
         public bool NEq(in BitMatrix4 rhs)
-            => BitConverter.ToUInt16(bits) != BitConverter.ToUInt16(rhs.bits);
+            => bits.TakeUInt16() != rhs.bits.TakeUInt16();
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

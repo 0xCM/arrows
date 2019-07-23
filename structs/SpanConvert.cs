@@ -65,7 +65,7 @@ namespace Z0
         public static unsafe ReadOnlySpan<S> AsReadOnlySpan<T,S>(this ref T src)
             where T : struct
             where S : struct
-                => new ReadOnlySpan<S>(Unsafe.AsPointer(ref Unsafe.AsRef(in src)), Unsafe.SizeOf<T>() / Unsafe.SizeOf<S>());
+                => new ReadOnlySpan<S>(Unsafe.AsPointer(ref src), Unsafe.SizeOf<T>() / Unsafe.SizeOf<S>());
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> AsReadOnlySpan(this string src)

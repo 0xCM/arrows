@@ -26,10 +26,11 @@ namespace Z0
                 => new BitGridCell<T>(bitPos, row, col);
 
         /// <summary>
-        /// Calculates a layout from a specification
+        /// Calculates a grid layout from a specification
         /// </summary>
         /// <param name="spec">The grid specification that characterizes the layout</param>
         /// <typeparam name="T">The storage type</typeparam>
+        [MethodImpl(Inline)]
         public static BitLayout<T> CalcLayout<T>(this BitGridSpec<T> spec)
             where T: struct
                 => new BitLayout<T>(spec, spec.GridCells());

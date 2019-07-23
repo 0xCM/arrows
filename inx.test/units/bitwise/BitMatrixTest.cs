@@ -327,6 +327,20 @@ namespace Z0.Test
             Transpose<N12,N14,short>(Pow2.T07);
             Transpose<N32,N32,byte>(Pow2.T07);
         }
+
+        public void Create8x8()
+        {
+            var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
+            while(src.MoveNext())
+            {
+                var m1 = BitMatrix.Define(src.Current);
+                var n = new N8();
+                var m2 = BitMatrix.Define(n,n, src.Current.ToByteArray());
+                for(var i=0; i<8; i++)
+                for(var j=0; j<8; j++)
+                    Claim.eq(m1[i,j], m2[i,j]);
+            }
+        }
     }
 
 

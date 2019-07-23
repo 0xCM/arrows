@@ -142,7 +142,7 @@ namespace Z0
             var sb = new StringBuilder();   
             var returnType = "(sbyte index, sbyte[] bitseq, char[] bitchars, string text)[]";
             var returnInit = "new (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[256]";
-            sb.AppendLine($"{indent8}static {returnType} GenEachAndEverySByte()");
+            sb.AppendLine($"{indent8}static {returnType} DefineI8Index()");
             sb.AppendLine(indent8 + "{");
             sb.AppendLine($"{indent12}var dst = {returnInit};");
             foreach(var bs in MakeBitStringsInt8())
@@ -160,7 +160,7 @@ namespace Z0
             var sb = new StringBuilder();   
             var returnType = "(byte index, byte[] bitseq, char[] bitchars, string text)[]";
             var returnInit = "new (byte index, byte[] bitseq, char[] bitchars, string text)[256]";
-            sb.AppendLine($"{indent8}static {returnType} GenEachAndEveryByte()");
+            sb.AppendLine($"{indent8}static {returnType} DefineU8Index()");
             sb.AppendLine(indent8 + "{");
             sb.AppendLine($"{indent12}var dst = {returnInit};");
             foreach(var bs in MakeBitStringsUInt8())

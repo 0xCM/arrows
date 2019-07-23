@@ -67,18 +67,6 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Constructs a sequence of 8 bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the
-        /// bit in the i'th position of the source is respecively disabled/enabled
-        /// </summary>
-        /// <param name="value">The source value</param>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<byte> bitseq(byte value)
-            => BitPartData.Lookup(value).bitseq;
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<sbyte> bitseq(sbyte value)
-            => BitPartData.Lookup(value).bitseq;
 
         /// <summary>
         /// Constructs a sequence of 16 bytes {bi} := [b15,...b0] over the domain {0,1} according to whether the
@@ -155,13 +143,6 @@ namespace Z0
             return dst;            
         }
 
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<char> bitchars(byte src)
-            => BitPartData.Lookup(src).bitchars;
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<char> bitchars(sbyte src)
-            => BitPartData.Lookup(src).bitchars;
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> bitchars(ushort src)
@@ -235,54 +216,6 @@ namespace Z0
             return dst;            
         }
 
-        [MethodImpl(Inline)]
-        public static string bstext(byte src)
-            => BitPartData.Lookup(src).text;
 
-        [MethodImpl(Inline)]
-        public static string bstext(sbyte src)
-            => BitPartData.Lookup(src).text;
-
-        [MethodImpl(Inline)]
-        public static string bstext(ushort src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
-
-        [MethodImpl(Inline)]
-        public static string bstext(short src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
-
-        [MethodImpl(Inline)]
-        public static string bstext(uint src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
-
-        [MethodImpl(Inline)]
-        public static string bstext(int src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
-
-        [MethodImpl(Inline)]
-        public static string bstext(ulong src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
-
-        [MethodImpl(Inline)]
-        public static string bstext(long src)
-        {
-            (var lo, var hi) = Bits.split(src);            
-            return bstext(hi) + bstext(lo);
-        }
     }
 }

@@ -43,6 +43,20 @@ namespace Z0
             => new Char2(head, tail);
 
         [MethodImpl(Inline)]
+        public static Char2 FromChars(int offset, params char[] chars)
+        {
+            Char2 dst = default;
+
+            if(chars.Length >= 1)
+                dst.lo = chars[offset + 0];
+            
+            if(chars.Length >= 2)
+                dst.hi = chars[offset + 1];
+
+            return dst;            
+        }
+
+        [MethodImpl(Inline)]
         public static Char4 operator +(in Char2 head, in Char2 tail)
             => Char4.FromChars(head,tail);
 

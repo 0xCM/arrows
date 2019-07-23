@@ -82,6 +82,22 @@ namespace Z0
             => new BitString(src);
 
         /// <summary>
+        /// Constructs a bitstring from bitseq
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString From(Span<byte> src)                
+            => new BitString(src);
+
+        /// <summary>
+        /// Constructs a bitstring from bitseq
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString From(ReadOnlySpan<byte> src)                
+            => new BitString(src);
+
+        /// <summary>
         /// Constructs a bitstring from bitspan
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -175,13 +191,17 @@ namespace Z0
             return src;
         }
 
-        BitString(Span<byte> src)
+        BitString(ReadOnlySpan<byte> src)
         {
             this.content2 = src.ToArray();
             this.content = new char[src.Length];
             for(var i=0; i<src.Length; i++)
                 this.content[i] = src[i] == 0 ? '0': '1';
         }
+
+        BitString(Span<byte> src)
+            : this(src.ReadOnly())
+        {}
 
         [MethodImpl(Inline)]
         BitString(string content)            
@@ -300,7 +320,7 @@ namespace Z0
         /// <param name="other">The bitstring with which the comparison will be made</param>
         [MethodImpl(Inline)]
         public bool Eq(BitString other)
-        {
+        {                        
             var x = Format2(true);
             var y = Format2(true);
             return x == y;
@@ -347,29 +367,38 @@ namespace Z0
                 return (specifier ? Specifier : string.Empty) + fmt;
         }
 
+        string FormatUnblocked(bool tlz, bool specifier)
+        {
+            Span<char> dst = stackalloc char[content2.Length];
+            var lastix = dst.Length - 1;
+            for(var i=0; i< dst.Length; i++)
+                dst[lastix - i] = content2[i] == 0 ? '0' : '1';
+            
+            var x = new string(dst);
+            return  
+                (specifier ? "0b" : string.Empty) 
+              + (tlz ? x.TrimStart('0') : x);
+        }
         public string Format2(bool tlz = false, bool specifier = false, int? blockWidth = null, char? blocksep = null)
-        {            
-                                
+        {                                            
             if(blockWidth == null)
-            {
-                Span<char> dst = stackalloc char[content2.Length];
-                var lastix = dst.Length - 1;
-                for(var i=0; i< dst.Length; i++)
-                    dst[lastix - i] = content2[i] == 0 ? '0' : '1';
-                
-                var x = new string(dst);
-                return tlz ? x.TrimStart('0') : x;
-            }
+                return FormatUnblocked(tlz,specifier);
             else
             {
+                var sep = blocksep ?? '_';
                 var sb = sbuild();
                 var blocks = Blocks2(blockWidth.Value).Reverse();
-                for(var i=0; i<blocks.Length; i++)
+                var lastix = blocks.Length - 1;
+                for(var i=0; i<=lastix; i++)
                 {
-                    sb.Append(blocks[i].Format2());
-                    sb.Append(blocksep ?? ' ');
+                    sb.Append(blocks[i].FormatUnblocked(false,false));
+                    if(i != lastix)
+                        sb.Append(sep);
                 }
-                return sb.ToString();
+                var x = sb.ToString();
+                return  
+                    (specifier ? "0b" : string.Empty) 
+                +   (tlz ? x.TrimStart('0') : x);
             }
             
         }

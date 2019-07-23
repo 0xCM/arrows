@@ -16,9 +16,14 @@ namespace Z0
     public struct Char8 : IFixedString<N8>
     {
         /// <summary>
+        /// The number of characters contained in the lower (or upper) half of the struct
+        /// </summary>
+        public const int Half = Char4.CharCount;
+
+        /// <summary>
         /// The number of characters represented by a value
         /// </summary>
-        public const int CharCount = Char4.CharCount * 2;
+        public const int CharCount = Half * 2;
 
         /// <summary>
         /// The number of bytes required to represent <see cref='CharCount'/> characters
@@ -41,6 +46,21 @@ namespace Z0
         public static Char8 FromChars(in Char4 head, in Char4 tail)
             => new Char8(head,tail);
         
+        [MethodImpl(Inline)]
+        public static Char8 FromChars(int offset, params char[] chars)
+        {
+            Char8 dst = default;
+            var srcLen = chars.Length;
+            
+            if(srcLen < Half || srcLen >= Half)
+                dst.lo = Char4.FromChars(offset, chars);
+            
+            if(srcLen >= Half)
+                dst.hi = Char4.FromChars(offset + Half, chars);
+
+            return dst;            
+        }
+
         [MethodImpl(Inline)]
         Char8(in Char4 head, in Char4 tail)
         {

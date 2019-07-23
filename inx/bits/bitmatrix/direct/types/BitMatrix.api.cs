@@ -15,10 +15,38 @@ namespace Z0
     public static class BitMatrix
     {
         /// <summary>
+        /// Defines an 8x8 bitmatrix from the bits in the source value
+        /// </summary>
+        /// <param name="src">The matrix bits</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 Define(ulong src)
+            => BitMatrix8.Define(src);
+
+        /// <summary>
+        /// Defines an 16x16 bitmatrix from the bits in an intrinsic vector
+        /// </summary>
+        /// <param name="src">The matrix bits</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix16 Define<T>(Vec256<T> src)
+            where T : struct
+                => BitMatrix16.Define(src.ToBytes());
+
+
+        /// <summary>
+        /// Defines a 32x32 bitmatrix from the bits in a pseudo-intrinsic 1024-bit vector
+        /// </summary>
+        /// <param name="src">The matrix bits</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix32 Define<T>(Vec1024<T> src)
+            where T : struct
+                => BitMatrix32.Define(src.ToBytes());
+
+        /// <summary>
         /// Allocates a zero-filled n-square matrix
         /// </summary>
         /// <typeparam name="N">The square dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
         public static BitMatrix<N,N,T> Zeros<N,T>()
             where N : ITypeNat, new()
             where T : struct
@@ -30,6 +58,7 @@ namespace Z0
         /// <typeparam name="M">The row dimension</typeparam>
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Zeros<M,N,T>(M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -42,6 +71,7 @@ namespace Z0
         /// <typeparam name="M">The row dimension</typeparam>
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
         public static BitMatrix<N,N,T> Ones<N,T>(N n = default)
             where N : ITypeNat, new()
             where T : struct
@@ -53,6 +83,7 @@ namespace Z0
         /// <typeparam name="M">The row dimension</typeparam>
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Ones<M,N,T>(M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -100,7 +131,7 @@ namespace Z0
                 => new BitMatrix<M,N,T>(src); 
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default,params T[] src)        
+        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default, params T[] src)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct

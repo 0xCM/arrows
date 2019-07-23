@@ -18,6 +18,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
+        ///<intrinsic>unsigned int _pdep_u32 (unsigned int a, unsigned int mask) PDEP r32a, r32b, reg/m32</intrinsic>
         [MethodImpl(Inline)]
         public static byte deposit(in byte src, in byte mask)  
             => (byte)Bmi2.ParallelBitDeposit(src,mask); 
@@ -52,49 +53,49 @@ namespace Z0
         /// <summary>
         /// Sets mask-identified bits in the source
         /// </summary>
-        /// <param name="src">The source value</param>
+        /// <param name="io">The value to be manipulated</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ref byte deposit(ref byte src, byte mask)        
+        public static ref byte deposit(ref byte io, byte mask)        
         {
-            src = (byte)Bmi2.ParallelBitDeposit(src,mask); 
-            return ref src;
+            io = (byte)Bmi2.ParallelBitDeposit(io,mask); 
+            return ref io;
         }
 
         /// <summary>
         /// Sets mask-identified bits in the source
         /// </summary>
-        /// <param name="src">The source value</param>
+        /// <param name="io">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ref ushort deposit(ref ushort src, ushort mask)        
+        public static ref ushort deposit(ref ushort io, ushort mask)        
         {
-            src = (ushort)Bmi2.ParallelBitDeposit(src,mask); 
-            return ref src;
+            io = (ushort)Bmi2.ParallelBitDeposit(io,mask); 
+            return ref io;
         }
 
         /// <summary>
         /// Sets mask-identified bits in the source
         /// </summary>
-        /// <param name="src">The source value</param>
+        /// <param name="io">The value to be manipulated</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ref uint deposit(ref uint src, uint mask)        
+        public static ref uint deposit(ref uint io, uint mask)        
         {
-            src = Bmi2.ParallelBitDeposit(src,mask); 
-            return ref src;
+            io = Bmi2.ParallelBitDeposit(io,mask); 
+            return ref io;
         }
 
         /// <summary>
         /// Sets mask-identified bits in the source
         /// </summary>
-        /// <param name="src">The source value</param>
+        /// <param name="io">The value to be manipulated</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ref ulong deposit(ref ulong src, ulong mask)        
+        public static ref ulong deposit(ref ulong io, ulong mask)        
         {
-            src = Bmi2.X64.ParallelBitDeposit(src,mask);
-            return ref src;
+            io = Bmi2.X64.ParallelBitDeposit(io,mask);
+            return ref io;
         }
             
     }

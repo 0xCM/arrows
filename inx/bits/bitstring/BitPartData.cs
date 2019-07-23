@@ -8,8 +8,110 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zfunc;
 
+    partial class Bits
+    {
+        /// <summary>
+        /// Constructs a sequence of 8 bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> bitseq(byte value)
+            => BitParts.BitSeq(value);
 
-    static class BitPartData
+        /// <summary>
+        /// Constructs a sequence of 8 signed bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled. The uppermost bit b7 determines
+        /// the sign
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<sbyte> bitseq(sbyte value)
+            => BitParts.BitSeq(value);
+
+        /// <summary>
+        /// Constructs a sequence of 8 characters {ci} := [c7,...c0] over the domain {'0','1'} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<char> bitchars(byte src)
+            => BitParts.BitChars(src);
+
+        /// <summary>
+        /// Constructs a sequence of 8 characters {ci} := [c7,...c0] over the domain {'0','1'} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<char> bitchars(sbyte src)
+            => BitParts.BitChars(src);
+
+        /// <summary>
+        /// Constructs an 8-character string, referred to as a bitstring, contains the character sequence 
+        /// {ci} := [c0,...c7] according to whether the bit in the i'th position of the source is respecively disabled/enabled
+        /// !Note the reversal of order
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public static string bstext(byte src)
+            => BitParts.BitText(src);
+
+        /// <summary>
+        /// Constructs an 8-character string, referred to as a bitstring, contains the character sequence 
+        /// {ci} := [c0,...c7] according to whether the bit in the i'th position of the source is respecively disabled/enabled
+        /// !Note the reversal of order
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public static string bstext(sbyte src)
+            => BitParts.BitText(src);
+
+        [MethodImpl(Inline)]
+        public static string bstext(ushort src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+        [MethodImpl(Inline)]
+        public static string bstext(short src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+        [MethodImpl(Inline)]
+        public static string bstext(uint src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+        [MethodImpl(Inline)]
+        public static string bstext(int src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+        [MethodImpl(Inline)]
+        public static string bstext(ulong src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+        [MethodImpl(Inline)]
+        public static string bstext(long src)
+        {
+            (var lo, var hi) = Bits.split(src);            
+            return bstext(hi) + bstext(lo);
+        }
+
+
+    }
+
+    static class BitParts
     {
         [MethodImpl(Inline)]
         public static (byte index, byte[] bitseq, char[] bitchars, string text) Lookup(byte index)
@@ -19,13 +121,37 @@ namespace Z0
         public static (sbyte index, sbyte[] bitseq, char[] bitchars, string text) Lookup(sbyte index)
             => I8Index[index + SByte.MaxValue + 1];
 
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<char> BitChars(byte index)
+            => U8Index[index].bitchars;
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> BitSeq(byte index)
+            => U8Index[index].bitseq;
+
+        [MethodImpl(Inline)]
+        public static string BitText(byte index)
+            => U8Index[index].text;
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<char> BitChars(sbyte index)
+            => I8Index[index + SByte.MaxValue + 1].bitchars;
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<sbyte> BitSeq(sbyte index)
+            => I8Index[index + SByte.MaxValue + 1].bitseq;
+
+        [MethodImpl(Inline)]
+        public static string BitText(sbyte index)
+            => I8Index[index + SByte.MaxValue + 1].text;
+
         static (byte index, byte[] bitseq, char[] bitchars, string text)[] U8Index
-            = GenEachAndEveryByte();        
+            = DefineU8Index();        
 
         static (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[] I8Index
-            = GenEachAndEverySByte();        
+            = DefineI8Index();        
 
-        static (byte index, byte[] bitseq, char[] bitchars, string text)[] GenEachAndEveryByte()
+        static (byte index, byte[] bitseq, char[] bitchars, string text)[] DefineU8Index()
         {
             var dst = new (byte index, byte[] bitseq, char[] bitchars, string text)[256];
             dst[0] =   (0b00000000, new byte[]{0,0,0,0,0,0,0,0}, new char[]{'0','0','0','0','0','0','0','0'}, "00000000");
@@ -288,7 +414,7 @@ namespace Z0
         }
 
 
-        static (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[] GenEachAndEverySByte()
+        static (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[] DefineI8Index()
         {
             var dst = new (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[256];
             dst[0] =   (-0b0000000, new sbyte[]{0,0,0,0,0,0,0,1}, new char[]{'0','0','0','0','0','0','0','1'}, "10000000");

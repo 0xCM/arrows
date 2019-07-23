@@ -40,7 +40,6 @@ namespace Z0
         public static Span<T> Concat<T>(this Span<T> head, ReadOnlySpan<T> tail)
             => head.ReadOnly().Concat(tail);
 
-
         /// <summary>
         /// Constructs a span from an aray
         /// </summary>
@@ -718,6 +717,7 @@ namespace Z0
             where T : struct        
                 => MemoryMarshal.Cast<T,uint>(src);
 
+
         [MethodImpl(Inline)]
         public static Span<long> AsInt64<T>(this Span<T> src)
             where T : struct        
@@ -784,6 +784,46 @@ namespace Z0
                 => MemoryMarshal.Cast<T,ulong>(src);
 
         [MethodImpl(Inline)]
+        public static sbyte TakeInt8<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsInt8()[0];
+
+        [MethodImpl(Inline)]
+        public static byte TakeUInt8<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsUInt8()[0];
+        
+        [MethodImpl(Inline)]
+        public static int TakeInt16<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsInt16()[0];
+
+        [MethodImpl(Inline)]
+        public static int TakeUInt16<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsUInt16()[0];
+
+        [MethodImpl(Inline)]
+        public static uint TakeUInt32<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsUInt32()[0];
+
+        [MethodImpl(Inline)]
+        public static int TakeInt32<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsInt32()[0];
+
+        [MethodImpl(Inline)]
+        public static long TakeInt64<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsInt64()[0];
+
+        [MethodImpl(Inline)]
+        public static ulong TakeUInt64<T>(this Span<T> src, int offset = 0)
+            where T : struct        
+                => src.Slice(offset).AsUInt64()[0];
+
+        [MethodImpl(Inline)]
         public static T ReadValue<T>(this ReadOnlySpan<byte> src, int offset = 0)
             where T : struct
         {
@@ -818,7 +858,6 @@ namespace Z0
             where T : struct        
                 => src.ReadOnly().ReadValues<T>();
 
-
         [MethodImpl(Inline)]
         public static Span<byte> ToBytes<T>(this T src)
             where T : struct
@@ -836,6 +875,30 @@ namespace Z0
             else
                 throw unsupported<T>();
         }
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this ushort src)
+            => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this short src)
+            => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this uint src)
+            => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this int src)
+            => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this ulong src)
+            => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static byte[] ToByteArray(this long src)
+            => BitConverter.GetBytes(src);
 
         /// <summary>
         /// Reads a readonly span of bytes from a span of value types
@@ -875,6 +938,41 @@ namespace Z0
                 return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
         }
 
+        /// <summary>
+        /// If the length of a source span is less than a specified length, a new span of the desired length
+        /// is allocated and then filled with the source span content; otherwise, the source span is returned
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="minlen">The desired minimum length</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> Extend<T>(this Span<T> src, int minlen)
+        {
+            if(src.Length >= minlen)
+                return src;
+            else
+            {
+                Span<T> dst = new T[minlen];
+                src.CopyTo(dst); 
+                return dst;               
+            }
+        }
+        
+        [MethodImpl(Inline)]
+        public static Span<T> ExtendSlice<T>(this Span<T> src, int offset, int slicelen)
+        {
+            var available = src.Length - offset;            
+            if(available <= slicelen)
+                return src.Slice(offset,slicelen);
+            else
+            {
+                Span<T> dst = new T[slicelen];
+                if(available <= 0)
+                    return dst;
 
+                src.Slice(offset).CopyTo(dst);
+                    return dst;
+            }                        
+        }
     }
 }

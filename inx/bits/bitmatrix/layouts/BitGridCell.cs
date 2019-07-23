@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Corrlates a bit position with a grid row and column
+    /// Correlates a bit position with a grid row and column
     /// </summary>
     public readonly struct BitGridCell<T>
         where T : struct

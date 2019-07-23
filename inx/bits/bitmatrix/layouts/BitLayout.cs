@@ -11,7 +11,6 @@ namespace Z0
 
     using static zfunc;
 
-
     public class BitLayout<T>
         where T : struct
     {        

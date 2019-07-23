@@ -203,8 +203,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec256<T> src)
             where T : struct        
-            => BitString.From(src.Extract());
-        
+            => BitString.From(src.Extract());        
 
         /// <summary>
         /// Converts an 256-bit intrinsic integer representation to a bistring

@@ -16,14 +16,20 @@ namespace Z0
     public struct Char4 : IFixedString<N4>
     {
         /// <summary>
+        /// The number of characters contained in the lower (or upper) half of the struct
+        /// </summary>
+        public const int Half = Char2.CharCount;
+
+        /// <summary>
         /// The number of characters represented by a value
         /// </summary>
-        public const int CharCount = Char2.CharCount * 2;
+        public const int CharCount = Half * 2;
 
         /// <summary>
         /// The number of bytes required to represent <see cref='CharCount'/> characters
         /// </summary>
         public const int ByteCount = Char2.ByteCount * 2;
+
 
         /// <summary>
         /// Placeholder for the first half of the string
@@ -41,6 +47,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Char4 FromChars(Char2 head, Char2 tail)
             => new Char4(head,tail);
+
+        [MethodImpl(Inline)]
+        public static Char4 FromChars(int offset, params char[] chars)
+        {
+            Char4 dst = default;
+            var srcLen = chars.Length;
+            
+            if(srcLen < Half || srcLen >= Half)
+                dst.lo = Char2.FromChars(offset, chars);
+            
+            if(srcLen >= Half)
+                dst.hi = Char2.FromChars(offset + Half, chars);
+
+            return dst;            
+        }
 
         [MethodImpl(Inline)]
         public static Char8 operator +(in Char4 head, in Char4 tail)

@@ -11,9 +11,9 @@ namespace Z0
 
     using static zfunc;
 
-
     public static class BitLayout
-    {
+    {        
+
         /// <summary>
         /// Defines a bit layout grid as determined by specified type parameters
         /// </summary>
