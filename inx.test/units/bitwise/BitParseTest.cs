@@ -20,8 +20,8 @@ namespace Z0.Test
             var src = Random.Span<T>(count);
             foreach(var x in src)
             {
-                var y = BitString.From(x);
-                var z = y.ToPrimalValue<T>();
+                var y = BitString.FromScalar(x);
+                var z = y.TakePrimalValue<T>();
                 Claim.eq(x,z);
 
             }
@@ -30,22 +30,22 @@ namespace Z0.Test
 
         public void ParseBits0()
         {
-            var x = BitString.From("01010111");
-            var y = x.ToPrimalValue<byte>();
+            var x = BitString.Parse("01010111");
+            var y = x.TakePrimalValue<byte>();
             Claim.eq((byte)0b01010111, y);
 
         }
         public void ParseBits1()
         {
             var x =  0b111010010110011010111001110000100001101ul;
-            var xbs = BitString.From("111010010110011010111001110000100001101");
+            var xbs = BitString.Parse("111010010110011010111001110000100001101");
             var ybs = x.ToBitString();
             Claim.eq(xbs, ybs);                
 
-            var y = xbs.ToPrimalValue<ulong>();
+            var y = xbs.TakePrimalValue<ulong>();
             Claim.eq(x, y);
 
-            var z = ybs.ToPrimalValue<ulong>();
+            var z = ybs.TakePrimalValue<ulong>();
             Claim.eq(x, z);
 
             var byx = BitConverter.GetBytes(x).ToSpan();
@@ -77,7 +77,7 @@ namespace Z0.Test
                 
                 var bytes = span<byte>(8);
                 for(var i=0; i<8; i++)         
-                    bytes[i] = blocks[i].ToPrimalValue<byte>();
+                    bytes[i] = blocks[i].TakePrimalValue<byte>();
                 
                 var j = 0;
                 var y = Bits.pack(

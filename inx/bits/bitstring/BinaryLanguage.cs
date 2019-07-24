@@ -48,7 +48,13 @@ namespace Z0
         {
             var count = Pow2.pow(length) - 1;
             for(var i=0ul; i <= count; i++)
-                yield return BitString.From(BitString.From(i).Format2(true).PadLeft(length, '0'));
+            {
+                var bs = BitString.FromScalar(i);
+                var bsfmt = bs.Format(true).PadLeft(length, '0');
+                Claim.eq(bsfmt.Length, length);
+                yield return BitString.Parse(bsfmt);
+            }
+                
         }                
     }
 }

@@ -62,6 +62,19 @@ namespace Z0
             return dst;
         }
 
+        [PrimalKinds(PrimalKind.All)]
+        public static Span<byte> bitseq<T>(ReadOnlySpan<T> src, int? bitcount = null)
+            where T : struct
+        {
+            require(typeof(T) != typeof(char));
+            
+            var seglen = Unsafe.SizeOf<T>()*8;
+            Span<byte> dst = new byte[bitcount ?? src.Length * seglen];
+            for(var i=0; i<src.Length; i++)
+                bitseq(src[i]).CopyTo(dst, i*seglen);
+            return dst;
+
+        }
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static Span<char> bitchars<T>(Span<T> src, int? bitcount = null)
             where T : struct

@@ -142,8 +142,7 @@ namespace Z0
         }           
 
         /// <summary>
-        /// Constructs a bytespan where each entry, ordered from lo to hi,
-        /// represents a single bit in the source value
+        /// Constructs a bytespan where each entry, ordered from lo to hi, represents a single bit in the source value
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The primal source type</typeparam>
@@ -153,8 +152,16 @@ namespace Z0
         {
             if(typeof(T) == typeof(byte))
                 return Bits.bitseq(uint8(src));
+            else if(typeof(T) == typeof(sbyte))
+                return Bits.bitseq(int8(src));
             else if(typeof(T) == typeof(ushort))
                 return Bits.bitseq(uint16(src));
+            else if(typeof(T) == typeof(short))
+                return Bits.bitseq(int16(src));
+            else if(typeof(T) == typeof(int))
+                return Bits.bitseq(int32(src));
+            else if(typeof(T) == typeof(long))
+                return Bits.bitseq(int64(src));
             else if(typeof(T) == typeof(uint))
                 return Bits.bitseq(uint32(src));
             else if(typeof(T) == typeof(ulong))
@@ -163,17 +170,18 @@ namespace Z0
                 throw unsupported<T>();            
         }        
 
+
         [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
         public static ref T packseq<T>(ReadOnlySpan<byte> src, out T dst)
             where T : struct
         {
-            if(typeof(T) == typeof(byte))
+            if(typeof(T) == typeof(byte) || typeof(T) == typeof(sbyte))
                 dst = generic<T>(ref Bits.packseq(src, out byte _));
-            else if(typeof(T) == typeof(ushort))
+            else if(typeof(T) == typeof(ushort) || typeof(T) == typeof(short))
                 dst = generic<T>(ref Bits.packseq(src, out ushort _));
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(T) == typeof(uint) || typeof(T) == typeof(int))
                 dst = generic<T>(ref Bits.packseq(src, out uint _));
-            else if(typeof(T) == typeof(ulong))
+            else if(typeof(T) == typeof(ulong) || typeof(T) == typeof(long))
                 dst = generic<T>(ref Bits.packseq(src, out ulong _));
             else            
                 throw unsupported<T>();            

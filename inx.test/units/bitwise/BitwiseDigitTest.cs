@@ -17,26 +17,27 @@ namespace Z0.Test
     {
         static void BinaryMatch<T>(string digits, num<T> value)
             where T : struct 
-                => Claim.eq(digits, value.ToBinaryDigits().Format());
+                => Claim.eq(digits, value.ToBinaryDigits().Format(true));
 
         static void DecimalMatch<T>(string digits, num<T> value)
             where T : struct 
                 => Claim.eq(digits, value.ToDecimalDigits().Format());
 
-        public void ByteToBinaryDigits()
+        public void Test0()
         {
-            Claim.eq("100", BitString.From(0b00000100).Format2(true));
-            Claim.eq("101", BitString.From(0b00000101).Format2(true));
-            Claim.eq("1000101", BitString.From(0b01000101).Format2(true));
-            Claim.eq("11010101", BitString.From(0b11010101).Format2(true));
+            Claim.eq("100", BitString.FromScalar(0b00000100).Format(true));
+            Claim.eq("101", BitString.FromScalar(0b00000101).Format(true));
+            Claim.eq("1000101", BitString.FromScalar(0b01000101).Format(true));
+            Claim.eq("11010101", BitString.FromScalar(0b11010101).Format(true));
         }
 
-        public void SByteToBinaryDigits()
+        public void ByteToBinaryDigits()
         {
-            BinaryMatch<sbyte>("0b00000100",0b00000100);
-            BinaryMatch<sbyte>("0b00000101",0b00000101);
-            BinaryMatch<sbyte>("0b01000101",0b01000101);
+            BinaryMatch<byte>("0b00000100",0b00000100);
+            BinaryMatch<byte>("0b00000101",0b00000101);
+            BinaryMatch<byte>("0b01000101",0b01000101);
         }
+
 
         public void ByteToDecimalDigits()
         {

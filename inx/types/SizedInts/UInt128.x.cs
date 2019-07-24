@@ -17,10 +17,10 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static BitString ToBitString(this in UInt128 src)
-            => BitString.From(src.x11) 
-            + BitString.From(src.x10) 
-            + BitString.From(src.x01) 
-            + BitString.From(src.x00);
+            => BitString.FromScalar(src.x11) 
+            + BitString.FromScalar(src.x10) 
+            + BitString.FromScalar(src.x01) 
+            + BitString.FromScalar(src.x00);
 
         [MethodImpl(Inline)]
         public static bool TestBit(this in UInt128 src, int pos)

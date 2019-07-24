@@ -469,7 +469,7 @@ namespace Z0
             => HexMap[data].ToString();
 
         public BitString ToBitString()
-            => BitString.From(Bits.bitseq(data).Slice(0,BitCount));
+            => BitString.FromBitSeq(Bits.bitseq(data).Slice(0,BitCount));
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

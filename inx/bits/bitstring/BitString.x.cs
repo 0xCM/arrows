@@ -10,8 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zfunc;
-    using static Bits;
-    using static BitString;
+
     public static class BitStringX
     {
         /// <summary>
@@ -22,7 +21,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this sbyte src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -32,7 +31,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this byte src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -42,7 +41,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this short src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -52,7 +51,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this ushort src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -62,7 +61,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this int src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -72,7 +71,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this uint src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -82,7 +81,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this long src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -92,7 +91,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this ulong src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -102,7 +101,7 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this float src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -112,14 +111,14 @@ namespace Z0
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this double src)
-            => From(src);
+            => BitString.FromScalar(src);
 
         /// <summary>
         /// Converts a readonly span of bytes to a bitstring
         /// </summary>
         /// <param name="src">The source bytes</param>
         public static BitString ToBitString(this ReadOnlySpan<byte> src, int? bitcount = null)
-            => gbits.bitchars(src, bitcount);
+            => BitString.FromScalars(gbits.bitchars(src, bitcount));
 
         /// <summary>
         /// Converts a span of bytes to a bitstring
@@ -143,27 +142,17 @@ namespace Z0
                 => gbits.bitchars(src.AsBytes(), bitcount);
 
         [MethodImpl(Inline)]        
-        public static Span<char> ToBitChars<T>(this ReadOnlySpan<T> src, int? bitcount = null)
-            where T : struct
-                => gbits.bitchars(src.AsBytes(), bitcount);
-
-        [MethodImpl(Inline)]        
         public static BitString ToBitString<T>(this Span<T> src, int? bitcount = null)
             where T : struct
-                => src.ToBitChars(bitcount).ToBitString();
-
-        [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this ReadOnlySpan<T> src, int? bitcount = null)
-            where T : struct
-                => src.ToBitChars(bitcount).ToBitString();
+                => gbits.bitchars(src.AsSBytes(), bitcount).ToBitString();
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this Span<Bit> src)
-                => BitString.From(src);
+                => BitString.FromBits(src);
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this ReadOnlySpan<Bit> src)
-                => BitString.From(src);
+                => BitString.FromBits(src);
 
         /// <summary>
         /// Converts a generic number to a bitstring
@@ -173,7 +162,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString ToBitString<T>(this num<T> src)
             where T : struct
-                => BitString.From<T>(src.Scalar());
+                => BitString.FromScalar<T>(src.Scalar());
 
         /// <summary>
         /// Converts a number to a string of decimal digits
@@ -181,9 +170,9 @@ namespace Z0
         /// <param name="src">The source integer</param>
         /// <typeparam name="T">The underlying primitive type</typeparam>
         [MethodImpl(Inline)]   
-        public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
+        public static ReadOnlySpan<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
             where T : struct    
-                =>  BinaryDigits.Parse(src.ToBitString());
+                =>  BitString.FromScalar(src.Scalar()).ToDigits();
 
         /// <summary>
         /// Converts an 128-bit intrinsic vector representation to a bistring
@@ -193,7 +182,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec128<T> src)
             where T : struct        
-                => BitString.From(src.Extract());
+                => BitString.FromScalars(src.Extract());
         
         /// <summary>
         /// Converts an 256-bit intrinsic vector representation to a bistring
@@ -203,7 +192,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec256<T> src)
             where T : struct        
-            => BitString.From(src.Extract());        
+            => BitString.FromScalars(src.Extract());        
 
         /// <summary>
         /// Converts an 256-bit intrinsic integer representation to a bistring
@@ -231,22 +220,6 @@ namespace Z0
         /// <param name="src">The source bitchars</param>
         [MethodImpl(Inline)]   
         public static BitString ToBitString(this Span<char> src)
-            => src;
-
-
-        /// <summary>
-        /// Converts a bitstring to a span of packed bytes
-        /// </summary>
-        /// <param name="src">The source bitstring</param>
-        /// <param name="dst">The target span</param>
-        public static ref Span<byte> ToPackedBytes(this BitString src, out Span<byte> dst)
-        {
-            dst = span<byte>(src.Length/8u);
-            for(var i=0; i<src.Length; i++)
-            for(var j=0; j < 8; j++)
-               if(src[i] == Bit.One) enable(ref dst[i], j);
-            return ref dst;
-        }
-
+            => BitString.FromScalars(src);
     }
 }

@@ -13,7 +13,6 @@ namespace Z0
 
     public static class BitLayout
     {        
-
         /// <summary>
         /// Defines a bit layout grid as determined by specified type parameters
         /// </summary>

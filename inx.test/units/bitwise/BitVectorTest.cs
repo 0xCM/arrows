@@ -97,7 +97,6 @@ namespace Z0.Test
                     }
 
                     var bsSrc = bvSrc.ToBitChars();
-                    var bsBv = bv.ToBitChars();
             
                     Claim.eq(bvSrc.ToBitString(), bv.ToBitString());
 
@@ -240,9 +239,9 @@ namespace Z0.Test
             var bvz = BitVector.Counted(40,z);
             Claim.eq(40, bvz.Length);
 
-            var bsy = bvy.ToBitString().Format2(true);
-            var bsx = bvx.ToBitString().Format2(true);
-            var bsz = bvz.ToBitString().Format2(true);
+            var bsy = bvy.ToBitString().Format(true);
+            var bsx = bvx.ToBitString().Format(true);
+            var bsz = bvz.ToBitString().Format(true);
             Claim.eq(bsx, "101100010011101101000111001010111010110");
             Claim.eq(bsx, bsy);
             Claim.eq(bsx, bsz);
@@ -295,8 +294,8 @@ namespace Z0.Test
 
             var bvx = BitVector.Define(xSrc.Slice(0,5).ToArray());
             var bvy = BitVector.Define(ySrc.Slice(0,2).ToArray());            
-            var bsx = bvx.ToBitString().Format2(true);
-            var bsz = bvz.ToBitString().Format2(true);
+            var bsx = bvx.ToBitString().Format(true);
+            var bsz = bvz.ToBitString().Format(true);
             Claim.eq(bsx, bsz);
 
             Claim.eq((byte)0b10110, bvx.Extract(0, 4));

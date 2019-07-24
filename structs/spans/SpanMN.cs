@@ -63,7 +63,6 @@ namespace Z0
         public static implicit operator Span<M,N,T>(T[] src)
             => new Span<M, N, T>(src);
 
-
         public static implicit operator Span<M,N,T>(Span<T> src)
             => new Span<M, N, T>(src);
 

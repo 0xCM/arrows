@@ -139,7 +139,7 @@ namespace Z0
         /// <param name="zpad">Specifies whether the numeric content should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static HexString ToHexString(this double src, bool zpad = true, bool specifier = true, bool uppercase = false)
             =>  BitConverter.DoubleToInt64Bits(src).ToHexString(zpad, specifier, uppercase);
 

@@ -14,15 +14,16 @@ namespace Z0.Test
 
     public class InXMulTest : UnitTest<InXMulTest>
     {
+
         public void VerifyUMul128Powers()
         {
             for(var i=0; i<=63; i++)
             for(var j=0; j<=63; j++)
             {
-                var dst = dinx.umul128(1ul << i, 1ul << j, out UInt128 _);
-                var bsActual = dst.ToBitString();
-                var bsExpect = BitString.FromPow2(i + j);
-                Claim.eq(bsExpect.Format2(true), bsActual.Format2(true));                
+                var product = dinx.umul128(1ul << i, 1ul << j, out UInt128 _);
+                var bsActual = product.ToBitString();
+                var bsExpect = BitString.FromPow2(i + j);                
+                Claim.eq(bsExpect,bsActual);                
             }                
 
         }

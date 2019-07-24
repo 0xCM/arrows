@@ -117,9 +117,11 @@ namespace Z0
         /// Formats a span of binary digits as a contiguous block
         /// </summary>
         /// <param name="src">The source digits</param>
-        public static string Format(this ReadOnlySpan<BinaryDigit> src)
+        public static string Format(this ReadOnlySpan<BinaryDigit> src, bool reorient = true)
         {
-            var dst = new char[src.Length + 2]; 
+            if(reorient)
+                src = src.Reverse();
+            var dst = new char[src.Length + 2];             
             dst[0] = '0';
             dst[1] = 'b';
             for(var i = 0; i < src.Length; i++)
@@ -133,7 +135,7 @@ namespace Z0
         /// <param name="src">The source digits</param>
         [MethodImpl(Inline)]   
         public static string Format(this Span<BinaryDigit> src)
-            => src.ReadOnly().Format();
+            => src.ReadOnly().Format(true);
 
         /// <summary>
         /// Formats a span of decimal digits as a contiguous block

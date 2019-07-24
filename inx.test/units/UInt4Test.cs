@@ -126,8 +126,7 @@ namespace Z0.Test
             Claim.eq(y0, x1 + x2);
             Claim.eq(z0, y0 + x1);
             Claim.eq(z1, z0 + y0);
-            
-
+        
         }
 
         public void VerifyHiLo()
@@ -145,10 +144,10 @@ namespace Z0.Test
 
         public void VerifyBitString()
         {
-            var x0 = ((UInt4)0b0111).ToBitString().Format2(true);
+            var x0 = ((UInt4)0b0111).ToBitString().Format(true);
             Claim.eq("111",x0);
 
-            var x1 = ((UInt4)0b1101).ToBitString().Format2(true);
+            var x1 = ((UInt4)0b1101).ToBitString().Format(true);
             Claim.eq("1101",x1);
 
         }

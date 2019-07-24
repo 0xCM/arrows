@@ -34,7 +34,7 @@ namespace Z0
         where A : struct, IAlphabet<A>
         where W : struct, IWord<W,A>, IFreeMonoid<W>
     {
-        ReadOnlySpan<char> Content {get;}
+        //ReadOnlySpan<char> Content {get;}
     }
 
 }

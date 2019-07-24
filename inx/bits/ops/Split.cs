@@ -12,8 +12,7 @@ namespace Z0
     using static Constants;
     
     partial class Bits
-    {                
-        
+    {                        
         /// <summary>
         /// Partitions a 16-bit signed integer into a pair of signed 8-bit integers
         /// (x0, x1) that repectively represent the lo and hi bits of the source where
@@ -126,8 +125,6 @@ namespace Z0
             (byte)(src >> 6*8),
             (byte)(src >> 7*8)
             );
-
-
     }
 
 }

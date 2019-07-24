@@ -21,12 +21,12 @@ namespace Z0.Test
 
             var signed = gmath.signed<T>();
             var bitsize = BitSize.Size<T>();
-            var bs10 = BitString.From("1" + repeat('0', bitsize - 1).Concat());
-            var x10 = bs10.ToPrimalValue<T>();
-            var bs11 = BitString.From("11" + repeat('0', bitsize - 2).Concat());
-            var x11 = bs11.ToPrimalValue<T>();
-            var bs01 = BitString.From("01" + repeat('0', bitsize - 2).Concat());
-            var x01 = bs01.ToPrimalValue<T>();
+            var bs10 = BitString.Parse("1" + repeat('0', bitsize - 1).Concat());
+            var x10 = bs10.TakePrimalValue<T>();
+            var bs11 = BitString.Parse("11" + repeat('0', bitsize - 2).Concat());
+            var x11 = bs11.TakePrimalValue<T>();
+            var bs01 = BitString.Parse("01" + repeat('0', bitsize - 2).Concat());
+            var x01 = bs01.TakePrimalValue<T>();
             var y = gbits.shiftr(x10, 1);
             if(signed)
                 Claim.eq(x11, y);

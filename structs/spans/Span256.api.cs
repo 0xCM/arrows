@@ -36,7 +36,6 @@ namespace Z0
             where T : struct        
                 => Span256<T>.Alloc(blocks);
 
-
         /// <summary>
         /// Allocates a blocked span of lenth N iff supplied left and right spans are
         /// of common length N
@@ -70,7 +69,6 @@ namespace Z0
         public static Span256<T> load<T>(T[] src, int offset = 0)
             where T : struct
                 => Span256<T>.Load(src, offset);
-
                 
         /// <summary>
         /// Loads a blocked readonly span from an unblocked readonly span
@@ -249,6 +247,5 @@ namespace Z0
                 where S : struct
                     => lhs.Length == rhs.Length ? lhs.Length 
                         : throw CountMismatch(lhs.Length, rhs.Length, caller, file, line);
-
    }
 }

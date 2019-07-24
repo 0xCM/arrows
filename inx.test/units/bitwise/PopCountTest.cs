@@ -47,14 +47,18 @@ namespace Z0.Test
         public void PopCount4()
         {
             var x =  0b111010010110011010111001110000100001101ul;
-            var xbs = BitString.From("111010010110011010111001110000100001101");
-            var y = xbs.ToPrimalValue<ulong>();
-            Claim.eq(x, y);
+            var xbs = BitString.Parse("111010010110011010111001110000100001101");
+            var packed = xbs.PackedBits(0, 8);
+            var joined = packed.TakeUInt64();
+            Claim.Equals(x,joined);
 
-            var pcx = Bits.pop(x);
-            Claim.eq(pcx, 20);
+            // var y = xbs.TakePrimalValue<ulong>();
+            // Claim.eq(x, y);
 
-            Claim.eq(Bits.pop(x), Bits.pop(y));
+            // var pcx = Bits.pop(x);
+            // Claim.eq(pcx, 20);
+
+            // Claim.eq(Bits.pop(x), Bits.pop(y));
         }
 
         public void PopCount5()
@@ -104,7 +108,7 @@ namespace Z0.Test
 
             for(var i = 0; i<src.Length; i++)
             {
-                var bs = BitString.From(in src[i]);
+                var bs = BitString.FromScalar(in src[i]);
             }
         }
 

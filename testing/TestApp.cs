@@ -28,6 +28,9 @@ namespace Z0.Test
         void Run(Type host, params string[] filters)
         {        
             var hostpath = host.DisplayName();
+            var execTime = Duration.Zero;
+            var runtimer = stopwatch();
+
             if(filters.Length != 0)
             {
                 if(!(filters.Length == 1 && String.IsNullOrEmpty(filters[0])))                        
@@ -41,22 +44,30 @@ namespace Z0.Test
                 var instance = host.CreateInstance<IUnitTest>();
                 instance.Configure(Config);
                 if(instance.Enabled)
-                    iter(Tests(host), t =>  Run(instance, hostpath, t));
+                    iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));
+                print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Benchmark));
+
             }
             catch(Exception e)
             {
                 error($"Host execution failed: {e}", this);
-            }        
+            }  
+            finally
+            {
+            }      
         }
 
         void Run(bool concurrent, params string[] filters)
             => iter(Hosts(), h =>  Run(h,filters), concurrent);
 
+        protected virtual bool PersistResults
+            =>false;
         IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods().Public().NonGeneric().WithParameterCount(0);
 
-        void Run(IUnitTest unit, string hostpath, MethodInfo test)
+        Duration Run(IUnitTest unit, string hostpath, MethodInfo test)
         {
+            var exectime = Duration.Zero;
             var messages = new List<AppMsg>();
             var testName = $"{hostpath}/{test.DisplayName()}";
             try
@@ -64,9 +75,9 @@ namespace Z0.Test
                 messages.Add(AppMsg.Define($"{testName} executing", SeverityLevel.HiliteBL));                
                 var sw = stopwatch();
                 test.Invoke(unit,null);                    
-                var ms = sw.ElapsedMilliseconds;
+                exectime = snapshot(sw);
                 messages.AddRange(unit.DequeueMessages());
-                messages.Add(AppMsg.Define($"{testName} executed. Runtime {ms}ms", SeverityLevel.Info));
+                messages.Add(AppMsg.Define($"{testName} executed. {exectime.Ms}ms", SeverityLevel.Info));
             }
             catch(Exception e)
             {                
@@ -84,8 +95,10 @@ namespace Z0.Test
             finally
             {            
                 print(messages);
-                log(messages, LogArea.Test);
+                if(PersistResults)
+                    log(messages, LogArea.Test);
             }
+            return exectime;
         }            
 
         protected TestApp()

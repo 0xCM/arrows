@@ -302,8 +302,7 @@ namespace Z0.Test
             VerifyExtract(Random.BitMatrix<N9,N9,ushort>());
             VerifyExtract(Random.BitMatrix<N128,N128,uint>());
             VerifyExtract(Random.BitMatrix<N16,N128,uint>());
-            VerifyExtract(Random.BitMatrix<N5,N7,uint>());
-            
+            VerifyExtract(Random.BitMatrix<N5,N7,uint>());            
         }
 
         void Transpose<M,N,T>(int count)
@@ -318,14 +317,19 @@ namespace Z0.Test
                 for(var i=0; i<tSrc.RowCount; i++)
                 for(var j=0; j<tSrc.ColCount; j++)
                     Claim.eq(tSrc[i,j], src[j,i]);
-
             }
+        }
+
+        void Transpose(BitMatrix16 src)
+        {
+            
         }
 
         public void Transpose()
         {
             Transpose<N12,N14,short>(Pow2.T07);
             Transpose<N32,N32,byte>(Pow2.T07);
+            Transpose<N8,N8,byte>(Pow2.T07);
         }
 
         public void Create8x8()

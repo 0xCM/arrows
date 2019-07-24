@@ -36,9 +36,9 @@ namespace Z0.Test
             var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
-                var bc1 =  BitString.From(src[i]).Format();
+                var bc1 =  BitString.FromScalar(src[i]).Format();
                 var bc2 = gbits.bstext(src[i]);
-                var bc3 = BitString.From(src[i]);
+                var bc3 = BitString.FromScalar(src[i]);
                 Claim.eq(bc1,bc2);
                 Claim.eq(bc1,bc3);
             }

@@ -35,14 +35,19 @@ namespace Z0.Test
         {
             for(var j = 0; j < Pow2.T08; j++)
             {
-                var point = Random.m512i<long>();
-                var bs1 = point.ToBitString();
-                var bs2 = new char[512];
-                for(var i=0; i< bs2.Length; i++)
-                    bs2[i] = point[i];
+                var point = Random.m512i<ulong>();
+                var blocks = point.ToBitString().Blocks(64);
+                Claim.eq(blocks.Length,  512/64);
+                
+                var bs1 = point.ToBytes().ToBitString();
+                var bs2 = point.ToBitString();
+                Claim.eq(bs1,bs2);
 
-                for(var i=0; i< bs2.Length; i++)
-                    Claim.eq(bs1[i], bs2[i]);
+                
+                
+                //Claim.eq(point.x0,   blocks[0].ToPrimalValue<ulong>());
+
+                
             }
         }
 

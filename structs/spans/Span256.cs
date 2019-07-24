@@ -69,7 +69,6 @@ namespace Z0
         public static Span256<T> Alloc(int blocks)
             => new Span256<T>(new T[blocks * BlockLength]);
     
-
         [MethodImpl(Inline)]
         public static Span256<T> Load(T[] src)
         {

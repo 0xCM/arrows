@@ -27,9 +27,7 @@ namespace Z0.Test
                 dinx.vumul256(x,y); 
             }
             return snapshot(sw);
-
         }
-
 
         void Shuffle()
         {
@@ -41,7 +39,9 @@ namespace Z0.Test
         {     
             //base.RunTests("BitPosTest");
             //base.RunTests("NatModTest");
+            //base.RunTests(new string[]{"M512Test", "BitString"});
             base.RunTests("BitMatrix");
+            //base.RunTests("InXMulTest");
         }
 
         public static void Main(params string[] args)

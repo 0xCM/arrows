@@ -96,7 +96,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => BitString.From(this.x0, this.x1, this.x2, this.x3, this.x4, this.x5, this.x6, this.x7);            
+            => BitString.FromScalars(this.x0, this.x1, this.x2, this.x3, this.x4, this.x5, this.x6, this.x7);            
          
         public HexString ToHexString()
         {   var src = this;

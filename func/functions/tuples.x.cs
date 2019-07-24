@@ -140,6 +140,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format<X,Y>(this IEnumerable<(X x,Y y)> src)
             => string.Join(", ", src.Select(x => x.Format()));
+
+        /// <summary>
+        /// Splits a range into a left/right tuple index
+        /// </summary>
+        /// <param name="left">The index at which the selection begins</param>
+        /// <param name="right">The index at which the selection ends</param>
+        [MethodImpl(Inline)]
+        public static (Index left, Index right) Split(this Range selection)
+            => (selection.Start, selection.End);
     }
 
 }
