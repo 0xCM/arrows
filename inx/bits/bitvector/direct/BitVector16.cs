@@ -15,6 +15,10 @@ namespace Z0
 
     public ref struct BitVector16
     {
+        public const int ByteSize = 2;
+
+        public const int BitSize = ByteSize * 8;
+
         ushort data;
 
         [MethodImpl(Inline)]
@@ -69,32 +73,6 @@ namespace Z0
         public static BitVector16 operator ~(in BitVector16 src)
             => Define((ushort) ~ src.data);
 
-        public Bit this[byte pos]
-        {
-            [MethodImpl(Inline)]
-            get => test(in data, pos);
-            
-            [MethodImpl(Inline)]
-            set
-            {
-                if(value)
-                    enable(ref data, pos);
-                else
-                     disable(ref data, pos);                    
-            }            
-        }
-
-        public ushort this[Range range]
-        {
-            [MethodImpl(Inline)]
-            get
-            {
-                var len = (byte)(range.Start.Value - range.End.Value + 1);
-                return Bits.extract(in data, (byte)range.Start.Value, len);
-            }
-        }
-
-
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)
             => enable(ref data, pos);
@@ -107,6 +85,41 @@ namespace Z0
         public bool TestBit(byte pos)
             => test(in data, pos);
 
+        public Bit this[byte pos]
+        {
+            [MethodImpl(Inline)]
+            get => test(in data, pos);
+            
+            [MethodImpl(Inline)]
+            set
+            {
+                if(value)
+                    enable(ref data, pos);
+                else
+                    disable(ref data, pos);                    
+            }            
+        }
+
+        public Bit this[int pos]
+        {
+            [MethodImpl(Inline)]
+            get => this[(byte)pos];
+            [MethodImpl(Inline)]
+            set => this[(byte)pos] = value;
+        }
+        
+        [MethodImpl(Inline)]
+        public ushort Extract(int first, int last)
+        {
+            var len = (byte)(last - first+ 1);
+            return Bits.extract(in data, (byte)first, len);
+        }
+
+        public ushort this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get => Extract(range.Start.Value, range.End.Value);
+        }
 
         public BitVector8 Hi
         {
@@ -121,7 +134,7 @@ namespace Z0
         }
 
          [MethodImpl(Inline)]
-        public BitString BitString()
+        public BitString ToBitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -155,6 +168,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool NEq(in BitVector16 rhs)
             => data != rhs.data;
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

@@ -15,7 +15,6 @@ namespace Z0.Test
     {
         const int Blocks = Pow2.T08;
 
-
         public void V128F32()
         {            
             var lhs = Random.Span128<float>(Blocks);

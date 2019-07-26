@@ -1,6 +1,6 @@
-# 2019-07-20 02:42:57:249
-7FF966E56FB0h: Vec128<sbyte> add1(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-;; c5 f8 77 66 90 c5 f9 10 02 c4 c1 79 10 08 c5 f9 fc c1 c5 f9 11 01 48 8b c1 c3 
+# 2019-07-24 20:36:13:221
+7FF959F47020h: Vec128<sbyte> add1(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+;; {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfc, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  vzeroupper
   0003h  xchg ax,ax
@@ -12,8 +12,8 @@ asm ----------------------------------------------------------------------------
   0019h  ret
 end asm ------------------------------------------------------------------------
 
-7FF966E56FE0h: Vec128<sbyte> add2(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
-;; c5 f8 77 66 90 c5 f9 10 02 c4 c1 79 10 08 c5 f9 fc c1 c5 f9 11 01 48 8b c1 c3 
+7FF959F47050h: Vec128<sbyte> add2(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+;; {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfc, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  vzeroupper
   0003h  xchg ax,ax
@@ -25,8 +25,8 @@ asm ----------------------------------------------------------------------------
   0019h  ret
 end asm ------------------------------------------------------------------------
 
-7FF966E57010h: Vector128<sbyte> add3(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
-;; c5 f8 77 66 90 c5 f9 10 02 c4 c1 79 fc 00 c5 f9 11 01 48 8b c1 c3 
+7FF959F47080h: Vector128<sbyte> add3(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
+;; {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0xfc, 0x00, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  vzeroupper
   0003h  xchg ax,ax
@@ -37,8 +37,8 @@ asm ----------------------------------------------------------------------------
   0015h  ret
 end asm ------------------------------------------------------------------------
 
-7FF966E57040h: Vector256<sbyte> add4(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
-;; c5 f8 77 66 90 c5 fd 10 02 c4 c1 7d fc 00 c5 fd 11 01 48 8b c1 c5 f8 77 c3 
+7FF959F470B0h: Vector256<sbyte> add4(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
+;; {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0xfc, 0x00, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  vzeroupper
   0003h  xchg ax,ax
@@ -50,8 +50,8 @@ asm ----------------------------------------------------------------------------
   0018h  ret
 end asm ------------------------------------------------------------------------
 
-7FF966E57070h: Vec256<sbyte> add5(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
-;; c5 f8 77 66 90 c5 fd 10 02 c4 c1 7d 10 08 c5 fd fc c1 c5 fd 11 01 48 8b c1 c5 f8 77 c3 
+7FF959F470E0h: Vec256<sbyte> add5(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
+;; {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfc, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  vzeroupper
   0003h  xchg ax,ax

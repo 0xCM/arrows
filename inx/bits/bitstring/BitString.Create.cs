@@ -40,7 +40,7 @@ namespace Z0
                   : new BitString(gbits.bitseq(src));
 
         /// <summary>
-        /// Constructs a bitstring from a span of primal values
+        /// Constructs a bitstring from span of scalar values
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
@@ -48,6 +48,18 @@ namespace Z0
         public static BitString FromScalars<T>(Span<T> src)
             where T : struct
                 => FromScalars(src.ReadOnly());
+
+        /// <summary>
+        /// Constructs a bitstring from span of scalar values
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="bitcount">The length of the bitstring</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]        
+        public static BitString FromScalars<T>(Span<T> src, int bitcount)
+            where T : struct
+                => BitString.FromScalars(gbits.bitchars(src.AsBytes(), bitcount));
 
         /// <summary>
         /// Assembles a bitstring from primal parts ordered from lo to hi

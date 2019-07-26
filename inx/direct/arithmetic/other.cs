@@ -21,10 +21,10 @@ namespace Z0
 
     partial class dinx
     {
-        public static Vec128<ushort> sad(Vec128<byte> lhs, Vec128<byte> rhs)
+        public static Vec128<ushort> sad(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => SumAbsoluteDifferences(lhs,rhs);
 
-        public static Vec256<ushort> sad(Vec256<byte> lhs, Vec256<byte> rhs)
+        public static Vec256<ushort> sad(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => SumAbsoluteDifferences(lhs,rhs);
 
 

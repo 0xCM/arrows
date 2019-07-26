@@ -57,8 +57,7 @@ namespace Z0
             for(var i=0; i<MemberCount; i++)
                 Generators[i] = new WyHash64(Seed[i]);
         }
-
-
+        
         public Span<N, ulong> Next()
         {
             var dst = NatSpan.alloc<N,ulong>();

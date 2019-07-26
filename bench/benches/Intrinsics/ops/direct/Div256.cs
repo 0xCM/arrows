@@ -33,7 +33,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.div(lhs, rhs, dst);            
+                lhs.Div(rhs, dst);            
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -43,7 +43,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.div(lhs, rhs, dst);            
+                lhs.Div(rhs, dst);            
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
     }

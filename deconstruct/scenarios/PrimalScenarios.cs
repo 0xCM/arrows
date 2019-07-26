@@ -39,41 +39,54 @@ namespace Z0
             0x4b708684, 0x64ee2b04
         };
 
-        [MethodImpl(NotInline)]
         public static sbyte AddI8(sbyte x, sbyte y)
             => (sbyte)(x + y);
 
-        [MethodImpl(Inline)]
-        public static sbyte AddI8Inline(sbyte x, sbyte y)
-            => (sbyte)(x + y);
+        public static byte AddU8(byte x, byte y)
+            => (byte)(x + y);
 
-        [MethodImpl(Inline)]
-        public static int AddI32Inline(int x, int y)
+        public static short AddI16(short x, short y)
+            => (short)(x + y);
+
+        public static ushort AddU16(ushort x, ushort y)
+            => (ushort)(x + y);
+
+        public static int AddI32(int x, int y)
             => x + y;
 
-        [MethodImpl(Inline)]
-        public static ulong AddU64Inline(ulong x, ulong y)
+        public static ulong AddU64(ulong x, ulong y)
             => x + y;
 
-        [MethodImpl(Inline)]
-        public static int SubI32Inline(int x, int y)
-            => x - y;
-
-        [MethodImpl(Inline)]
-        public static int MulI32Inline(int x, int y)
-            => x * y;
-
-        [MethodImpl(Inline)]
-        public static byte AndU8Inline(byte x, byte y)
+        public static byte AndU8(byte x, byte y)
             => (byte)(x & y);
 
-        [MethodImpl(Inline | Optimize)]
+        public static sbyte AndI8(sbyte x, sbyte y)
+            => (sbyte)(x & y);
+
+        public static short AndI16(short x, short y)
+            => (short)(x & y);
+
         public static ushort AndU16(ushort x, ushort y)
             => (ushort)(x & y);
 
-        [MethodImpl(Inline | Optimize)]
+        public static int AndI32(int x, int y)
+            => x & y;
+
+        public static uint AndU32(uint x, uint y)
+            => x & y;
+
+        public static long AndI64(long x, long y)
+            => x & y;
+
         public static ulong AndU64(ulong x, ulong y)
             => x & y;
+
+        public static int SubI32(int x, int y)
+            => x - y;
+
+        public static int MulI32(int x, int y)
+            => x * y;
+
 
         [MethodImpl(Inline)]
         public static int AddI32LoopInline()
@@ -211,8 +224,50 @@ namespace Z0
         public ReadOnlySpan<uint> ReadU32Data(int count)
             => U32Data.Slice(0,count);
 
+        [MethodImpl(NotInline)]
         public void VoidReturn()
             => Console.Write("");
+    
+        public int SizeTest()
+        {
+            var a = 0;
+            var b = 1;
+            var c = 2;
+
+            int d = 1, e = 2, f = 2;
+
+            var x = d * e * f;
+            var y = a + b + c;
+
+            return x + y;
+        }
+
+        public void VoidCalls1()
+        {
+            VoidReturn();
+        }
+
+        public void VoidCalls2()
+        {
+            VoidReturn();
+            VoidReturn();
+        }
+
+        public void VoidCalls3()
+        {
+            VoidReturn();
+            VoidReturn();
+            VoidReturn();
+        }
+
+        public void VoidCalls4()
+        {
+            VoidReturn();
+            VoidReturn();
+            VoidReturn();
+            VoidReturn();
+        }
+
     }
 
 

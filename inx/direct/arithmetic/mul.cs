@@ -60,11 +60,8 @@ namespace Z0
         {
             dst = default;
             dst.hi = Bmi2.X64.MultiplyNoFlags(lhs,rhs, refptr(ref dst.lo));
-            // fixed(ulong* pLo = &dst.lo)
-            //     dst.hi = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
             return ref dst;
         }
-
         
         /// <summary>
         /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:ulong where

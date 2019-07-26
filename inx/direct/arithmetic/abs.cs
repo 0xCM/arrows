@@ -16,8 +16,7 @@ namespace Z0
     using static zfunc;    
 
     partial class dinx
-    {
-        
+    {    
         [MethodImpl(Inline)]
         public static Vec128<byte> abs(in Vec128<sbyte> src)
             => Abs(src);

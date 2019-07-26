@@ -24,12 +24,20 @@ namespace Z0
 
         public static readonly BitSize  BitSize = 128ul;
 
-        public static readonly Vec128<T> Zero = Vector128<T>.Zero;
-        
+        public static readonly Vec128<T> Zero = Vec128.zero<T>();
+
+        public static readonly Vec128<T> Ones = Vec128.ones<T>();
+
         readonly Vector128<T> data;        
     
         public Vec128(in Vector128<T> src)
             => this.data = src;
+
+        public static bool operator ==(in Vec128<T> lhs, in Vec128<T> rhs)
+            => lhs.Equals(rhs);
+
+        public static bool operator !=(in Vec128<T> lhs, in Vec128<T> rhs)
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static implicit operator Vec128<T>(Vector128<T> src)
@@ -69,10 +77,17 @@ namespace Z0
                 => Unsafe.As<Vector128<T>, Vec128<U>>(ref Unsafe.AsRef(in data));         
 
         [MethodImpl(Inline)]
-        public bool Eq(Vec128<T> rhs)
+        public bool Equals(Vec128<T> rhs)
              => data.Equals(rhs.data);
 
         public override string ToString()
             => data.ToString();
+
+        public override int GetHashCode()
+            => data.GetHashCode();
+
+        public override bool Equals(object obj)
+            => obj is Vec128<T> v ? Equals(v) : false;
+
     }     
 }

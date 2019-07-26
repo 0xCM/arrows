@@ -96,26 +96,25 @@ namespace Z0.Test
                         segIndex++;
                     }
 
-                    var bsSrc = bvSrc.ToBitChars();
+                    var bs = BitString.FromScalars(bvSrc);
             
-                    Claim.eq(bvSrc.ToBitString(), bv.ToBitString());
+                    Claim.eq(bs, bv.ToBitString());
 
-                    if(bv[n] !=  Bit.Parse(bsSrc[n]))
+                    if(bv[n] !=  bs[n])
                     {
                         var bsAlt = string.Empty;
                         for(var m = 0; m < bv.Length; m++)
                             bsAlt += bv[m];
 
-                        Trace($"BitPos   = {bv.GetPos(n)}, Segment = {segIndex}, Component = {n}, Offset = {segOffset}");
+                        Trace($"BitPos   = {BitPos<T>.FromIndex(n)}, Segment = {segIndex}, Component = {n}, Offset = {segOffset}");
                         Trace($"BvSource = {bvSrc.ToBitString()}");
                         Trace($"Bv       = {bv.ToBitString()}");                        
                         Trace($"Bv (alt) = {bsAlt}");
 
                     }
-                    Claim.eq(bv[n], Bit.Parse(bsSrc[n]));
+                    Claim.eq(bv[n], bs[n]);
                                   
                 }
-
             }
 
             TypeCaseEnd<T>();
@@ -281,6 +280,53 @@ namespace Z0.Test
 
             for(var i=0; i<40; i++)
                 Claim.eq(bvz[i], bvx[i]);
+        }
+
+        public void ExtractRandomU64()
+        {
+            var src = Random.Stream<ulong>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,32)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
+            for(var i=0; i< Pow2.T12; i++)
+            {
+                var v1 = BitVector.Define(src[i]);
+                var v2 = BitVector64.Define(src[i]);
+                var r1 = v1.Extract(lower[i], upper[i]);
+                var r2 = v2.Extract(lower[i], upper[i]);
+                Claim.eq(r1,r2);
+                
+            }
+
+        }
+
+        public void ExtractRandomU32()
+        {
+            var src = Random.Stream<uint>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,16)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
+            for(var i=0; i< Pow2.T12; i++)
+            {
+                var v1 = BitVector.Define(src[i]);
+                var v2 = BitVector32.Define(src[i]);
+                var r1 = v1.Extract(lower[i], upper[i]);
+                var r2 = v2.Extract(lower[i], upper[i]);
+                Claim.eq(r1,r2);                
+            }
+        }
+
+        public void ExtractRandomU16()
+        {
+            var src = Random.Stream<ushort>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,8)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
+            for(var i=0; i< Pow2.T12; i++)
+            {
+                var v1 = BitVector.Define(src[i]);
+                var v2 = BitVector16.Define(src[i]);
+                var r1 = v1.Extract(lower[i], upper[i]);
+                var r2 = v2.Extract(lower[i], upper[i]);
+                Claim.eq(r1,r2);                
+            }
         }
 
         public void ExtractArbitraryRanges()

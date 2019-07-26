@@ -30,10 +30,10 @@ namespace Z0.Test
             var rhs = Random.Vec128<double>();
 
             var lDst = span<double>(2);
-            lhs.StoreTo(lDst);
+            lhs.ToSpan(lDst);
 
             var rDst = span<double>(2);
-            rhs.StoreTo(rDst);
+            rhs.ToSpan(rDst);
 
             var expect = math.fcmp(lDst, rDst, mode);
             var actual = dinx.cmpf(lhs, rhs, mode);

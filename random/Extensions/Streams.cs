@@ -57,6 +57,7 @@ namespace Z0
         public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
                 => random.UniformStream(domain,filter);
+        
 
         /// <summary>
         /// Produces a stream of nonzero uniformly random values

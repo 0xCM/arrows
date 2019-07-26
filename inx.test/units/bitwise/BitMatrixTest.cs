@@ -304,6 +304,14 @@ namespace Z0.Test
             VerifyExtract(Random.BitMatrix<N16,N128,uint>());
             VerifyExtract(Random.BitMatrix<N5,N7,uint>());            
         }
+        
+        public void ColumnExtract()
+        {
+            var m = Random.BitMatrix16();
+            var c = m.Col(3);
+            for(var i=0; i<16; i++)
+                Claim.eq(c[i], m[i,3]);
+        }
 
         void Transpose<M,N,T>(int count)
             where M : ITypeNat, new()

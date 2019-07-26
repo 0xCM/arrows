@@ -29,7 +29,7 @@ namespace Z0.Test
             TimeSeries.Evolve(closed(-250.75, 256.5),Show).Wait();            
         }
         
-        protected override void RunTests(string filter)
+        protected override void RunTests(params string[] filter)
         {
             var samples = Random.BernoulliStream(.2).Take(Pow2.T20).Freeze();
             var success = (double)samples.Where(x => x).Count();

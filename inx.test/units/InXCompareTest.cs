@@ -44,7 +44,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             var v1 = Random.Vec128<T>();                
             var v2 = v1.Inc();
-            var cmp = v2.Gt(v1);
+            var cmp =  ginx.gt(v2,v1);// v2.Gt(v1);
             Claim.yea(cmp);                    
             TypeCaseEnd<T>();
         }
@@ -55,7 +55,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             var v1 = Random.Vec256<T>();                
             var v2 = v1.Inc();
-            var cmp = v2.Gt(v1);
+            var cmp = ginx.gt(v2,v1);// v2.Gt(v1);
             Claim.yea(cmp);                    
             TypeCaseEnd<T>();
         }

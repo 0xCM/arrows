@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;    
 
-    partial class InXtend
+    partial class ginxs
     {
         /// <summary>
         /// Increments each component of the input vector by one

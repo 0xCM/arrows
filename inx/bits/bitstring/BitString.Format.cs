@@ -62,7 +62,5 @@ namespace Z0
                 (specifier ? "0b" : string.Empty) 
               + (tlz ? x.TrimStart('0') : x);
         }
-
     }
-
 }

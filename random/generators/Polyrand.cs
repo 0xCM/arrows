@@ -90,7 +90,6 @@ namespace Z0
         internal Polyrand(IRandomSource<ulong> Random)
         {
             this.Random = Random;            
-
         }
 
 
@@ -147,7 +146,6 @@ namespace Z0
         [MethodImpl(Inline)]
         ulong IPointSource<ulong>.Next()
             => Random.Next();
-
 
         [MethodImpl(Inline)]
         byte IPointSource<byte>.Next()

@@ -44,19 +44,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<uint> sub(in Vec128<uint> lhs, in Vec128<uint> rhs)
-            => Avx2.Subtract(lhs,rhs);
+            => Subtract(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<long> sub(in Vec128<long> lhs, in Vec128<long> rhs)
-            => Avx2.Subtract(lhs,rhs);
+            => Subtract(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<ulong> sub(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-            => Avx2.Subtract(lhs,rhs);
+            => Subtract(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<float> sub(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Avx2.Subtract(lhs,rhs);
+            => Subtract(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<double> sub(in Vec128<double> lhs, in Vec128<double> rhs)
@@ -68,7 +68,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<sbyte> sub(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => Avx2.Subtract(lhs, rhs);
+            => Subtract(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<short> sub(in Vec256<short> lhs, in Vec256<short> rhs)

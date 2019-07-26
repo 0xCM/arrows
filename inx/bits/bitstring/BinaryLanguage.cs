@@ -14,31 +14,17 @@ namespace Z0
         public static BinaryLanguage Get()
             => new BinaryLanguage();
         
-        static BinaryAlphabet Alphabet {get;} 
+        public static BinaryAlphabet Alphabet {get;} 
             = BinaryAlphabet.Get();
         
-        static Symbol<BinaryAlphabet> One {get;} 
+        public static Symbol<BinaryAlphabet> One {get;} 
             = Alphabet.One;
 
-        static Symbol<BinaryAlphabet> Zero {get;} 
+        public static Symbol<BinaryAlphabet> Zero {get;} 
             = Alphabet.Zero;
 
-        static Word<BinaryAlphabet> Word(params Symbol<BinaryAlphabet>[] symbols)
+        public static Word<BinaryAlphabet> Word(params Symbol<BinaryAlphabet>[] symbols)
             => new Word<BinaryAlphabet>(symbols);
-
-        static Word<BinaryAlphabet> Word(params int[] symbolIds)
-        {
-            var symbols = new Symbol<BinaryAlphabet>[symbolIds.Length];
-            for(var i=0; i<symbols.Length; i++)
-                symbols[i] = symbolIds[i] == 0 ? Zero : One;
-            return Word(symbols);
-        }
-            
-        static IEnumerable<int> CountToExclusive(int value)
-        {
-            for(var i=0; i<value; i++)
-                yield return i;
-        }
         
         /// <summary>
         /// Generates all words over the binary alphabet for a specified word length

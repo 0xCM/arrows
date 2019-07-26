@@ -15,7 +15,6 @@ namespace Z0
 
     partial class dinx
     {
-        //Align the sign of the left integers with those on the right
         [MethodImpl(Inline)]
         public static Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => Sign(lhs, rhs);
@@ -29,7 +28,6 @@ namespace Z0
             => Sign(lhs, rhs);
 
 
-        //Align the sign of the left integers with those on the right
         [MethodImpl(Inline)]
         public static Vec256<sbyte> sign(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => Sign(lhs, rhs);

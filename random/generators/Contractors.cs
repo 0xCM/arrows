@@ -109,28 +109,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong Next(this IRandomSource<ulong> src, ulong max) 
             => src.Next().Contract(max);
-
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        static ulong NextLegacy(this IRandomSource<ulong> src, ulong max) 
-        {
-            var m = src.Next().UMul128(max);
-            var l = m.lo;
-            if (l < max) 
-            {
-                var t = math.negate(max) % max;
-                while (l < t) 
-                {
-                    m = src.Next().UMul128(max);
-                    l = m.lo;                    
-                }
-            }
-            return m.ShiftRW(8).lo;                 
-        }
         
         /// <summary>
         /// Effects a component-wise contraction on the source vector on a source vector of unsigned primal type, 
@@ -159,7 +137,6 @@ namespace Z0
                 dst[i] = Contract(src[i],max[i]);
             return dst;
         }
-
 
         /// <summary>
         /// Effects a component-wise contraction on the source vector on a source vector of unsigned primal type, 

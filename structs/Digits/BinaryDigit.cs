@@ -21,16 +21,7 @@ namespace Z0
         /// <summary>
         /// Specifies 1 base 2
         /// </summary>
-        One = 1,
-
-        /// Identifies the last digit
-        /// </summary>
-        Last = One,
-        
-        /// <summary>
-        /// Specifies the base to which the digits are relative (10)
-        /// </summary>
-        Base = Last + One
+        One = 1
 
     }
 

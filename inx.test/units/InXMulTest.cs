@@ -15,14 +15,15 @@ namespace Z0.Test
     public class InXMulTest : UnitTest<InXMulTest>
     {
 
-        public void VerifyUMul128Powers()
+        void VerifyUMul128Powers()
         {
             for(var i=0; i<=63; i++)
             for(var j=0; j<=63; j++)
             {
                 var product = dinx.umul128(1ul << i, 1ul << j, out UInt128 _);
+                var bsExpect = BitString.FromPow2(i + j); 
                 var bsActual = product.ToBitString();
-                var bsExpect = BitString.FromPow2(i + j);                
+                Trace($"{product.Format()}");
                 Claim.eq(bsExpect,bsActual);                
             }                
 
@@ -42,8 +43,8 @@ namespace Z0.Test
                     var y = rhs.LoadVec256(block);
                     var z = dinx.vumul256(x,y); 
 
-                    var a = x.Extract().Replicate();
-                    var b = y.Extract();
+                    var a = x.ToSpan().Replicate();
+                    var b = y.ToSpan();
                     var c = a.Mul(b).LoadVec256(0);
                     Claim.eq(z,c);                                           
                 }

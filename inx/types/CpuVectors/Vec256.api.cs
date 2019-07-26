@@ -17,6 +17,7 @@ namespace Z0
     
     using static zfunc;
     using static As;
+    using static AsIn;
     using static AsInX;
 
     public static partial class Vec256
@@ -27,7 +28,35 @@ namespace Z0
                 => ref Vec256<T>.Zero;        
 
         [MethodImpl(Inline)]
-         public static ref readonly Vec256<T> one<T>()
+         public static Vec256<T> fill<T>(T value)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Vec256.fill(int8(value)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Vec256.fill(uint8(value)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Vec256.fill(int16(value)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Vec256.fill(uint16(value)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Vec256.fill(int32(value)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Vec256.fill(uint32(value)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Vec256.fill(int64(value)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Vec256.fill(uint64(value)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(Vec256.fill(float32(value)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(Vec256.fill(float64(value)));
+            else
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+         public static ref readonly Vec256<T> ones<T>()
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -176,25 +205,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(define(int8(src)));
+                return generic<T>(fill(int8(src)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(define(uint8(src)));
+                return generic<T>(fill(uint8(src)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(define(int16(src)));
+                return generic<T>(fill(int16(src)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(define(uint16(src)));
+                return generic<T>(fill(uint16(src)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(define(int32(src)));
+                return generic<T>(fill(int32(src)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(define(uint32(src)));
+                return generic<T>(fill(uint32(src)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(define(int64(src)));
+                return generic<T>(fill(int64(src)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(define(uint64(src)));
+                return generic<T>(fill(uint64(src)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(define(float32(src)));
+                return generic<T>(fill(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(define(float64(src)));
+                return generic<T>(fill(float64(src)));
             else 
                 throw unsupported<T>();
         }
@@ -215,43 +244,43 @@ namespace Z0
                 => load(src, block, out Vec256<T> dst);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> define(byte x0)
+        static Vec256<byte> fill(byte x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> define(sbyte x0)
+        static Vec256<sbyte> fill(sbyte x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> define(short x0)
+        static Vec256<short> fill(short x0)
             => Vector256.Create(x0);
         
         [MethodImpl(Inline)]
-        public static Vec256<ushort> define(ushort x0)
+        static Vec256<ushort> fill(ushort x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> define(int x0)
+        static Vec256<int> fill(int x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> define(uint x0)
+        static Vec256<uint> fill(uint x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<long> define(long x0)
+        static Vec256<long> fill(long x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> define(ulong x0)
+        static Vec256<ulong> fill(ulong x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> define(float x0)
+        static Vec256<float> fill(float x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> define(double x0)
+        static Vec256<double> fill(double x0)
             => Vector256.Create(x0);
 
         [MethodImpl(Inline)]
@@ -406,103 +435,64 @@ namespace Z0
                 => Vector256.Create(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<sbyte> load(ref sbyte head)
+        static unsafe Vec256<sbyte> load(ref sbyte head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<byte> load(ref byte head)
+        static unsafe Vec256<byte> load(ref byte head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<short> load(ref short head)
+        static unsafe Vec256<short> load(ref short head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<ushort> load(ref ushort head)
+        static unsafe Vec256<ushort> load(ref ushort head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<int> load(ref int head)
+        static unsafe Vec256<int> load(ref int head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<uint> load(ref uint head)
+        static unsafe Vec256<uint> load(ref uint head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<long> load(ref long head)
+        static unsafe Vec256<long> load(ref long head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<ulong> load(ref ulong head)
+        static unsafe Vec256<ulong> load(ref ulong head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<float> load(ref float head)
+        static unsafe Vec256<float> load(ref float head)
             => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<double> load(ref double head)
+        static unsafe Vec256<double> load(ref double head)
             => LoadVector256(refptr(ref head));
 
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> load(Span<sbyte> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<byte> load(Span<byte> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<short> load(Span<short> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> load(Span<ushort> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<int> load(Span<int> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<uint> load(Span<uint> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<long> load(Span<long> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ulong> load(Span<ulong> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> load(Span<float> src)
-            => load(ref src[0]);
-
-        [MethodImpl(Inline)]
-        public static Vec256<double> load(Span<double> src)
-            => load(ref src[0]);
         
-        static readonly Vec256<byte> OneU8 = Vec256.define((byte)1);
+        static readonly Vec256<byte> OneU8 = Vec256.fill((byte)1);
 
-        static readonly Vec256<sbyte> OneI8 = Vec256.define((sbyte)1);
+        static readonly Vec256<sbyte> OneI8 = Vec256.fill((sbyte)1);
 
-        static readonly Vec256<short> OneI16 = Vec256.define((short)1);
+        static readonly Vec256<short> OneI16 = Vec256.fill((short)1);
 
-        static readonly Vec256<ushort> OneU16 = Vec256.define((ushort)1);
+        static readonly Vec256<ushort> OneU16 = Vec256.fill((ushort)1);
 
-        static readonly Vec256<int> OneI32 = Vec256.define(1);
+        static readonly Vec256<int> OneI32 = Vec256.fill(1);
 
-        static readonly Vec256<uint> OneU32 = Vec256.define(1u);
+        static readonly Vec256<uint> OneU32 = Vec256.fill(1u);
 
-        static readonly Vec256<long> OneI64 = Vec256.define(1L);
+        static readonly Vec256<long> OneI64 = Vec256.fill(1L);
 
-        static readonly Vec256<ulong> OneU64 = Vec256.define(1ul);
+        static readonly Vec256<ulong> OneU64 = Vec256.fill(1ul);
 
-        static readonly Vec256<float> OneF32 = Vec256.define(1f);
+        static readonly Vec256<float> OneF32 = Vec256.fill(1f);
 
-        static readonly Vec256<double> OneF64 = Vec256.define(1d);
+        static readonly Vec256<double> OneF64 = Vec256.fill(1d);
     } 
 }

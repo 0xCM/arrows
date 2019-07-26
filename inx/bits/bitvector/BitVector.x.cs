@@ -92,7 +92,222 @@ namespace Z0
             where T : struct
                 => new BitVector<T>(src,dim);
 
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
+            where T : struct
+                => src.Bytes().First();
 
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
+            where T : struct
+                => BitConverter.ToUInt16(src.Bytes().Extend(BitVector16.ByteSize));
+
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
+            where T : struct
+                => BitConverter.ToUInt32(src.Bytes().Extend(BitVector32.ByteSize));
+
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
+            where T : struct
+                => BitConverter.ToUInt64(src.Bytes().Extend(BitVector64.ByteSize));
+
+
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this sbyte src)        
+            => (byte)src;
+
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this byte src)        
+            => src;
+
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this byte src)        
+            => src;
+
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this short src)        
+            => (ushort)src;
+
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this ushort src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this sbyte src)        
+            => (byte)src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this byte src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this ushort src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this short src)        
+            => (ushort)src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this uint src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this int src)        
+            => (uint)src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this byte src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this sbyte src)        
+            => (byte)src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this ushort src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this short src)        
+            => (ushort)src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this uint src)        
+            => src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this int src)        
+            => (uint)src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this long src)        
+            => (ulong)src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector an integer source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this ulong src)        
+            => src;
+
+        /// <summary>
+        /// Constructs an 8-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this Span<Bit> src)
+            => BitVector8.Define(src);
+
+        /// <summary>
+        /// Constructs an 8-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this ReadOnlySpan<Bit> src)
+            => BitVector8.Define(src);
+
+        /// <summary>
+        /// Constructs a 16-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this Span<Bit> src)
+            => BitVector16.Define(src);
+
+        /// <summary>
+        /// Constructs a 16-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this ReadOnlySpan<Bit> src)
+            => BitVector16.Define(src);
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this Span<Bit> src)
+            => BitVector32.Define(src);
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this ReadOnlySpan<Bit> src)
+            => BitVector32.Define(src);
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this Span<Bit> src)
+            => BitVector64.Define(src);
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector from a bitspan
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this ReadOnlySpan<Bit> src)
+            => BitVector64.Define(src);
 
     }
 }

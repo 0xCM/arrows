@@ -19,7 +19,6 @@ namespace Z0
 
     partial class dinx
     {
-
         ///<intrinsic>__m256i _mm256_broadcastb_epi8 (__m128i a) VPBROADCASTB ymm, m8</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec256<sbyte> broadcast(in sbyte src, out Vec256<sbyte> dst)
@@ -52,7 +51,7 @@ namespace Z0
             return ref dst;
         }
 
-        ///<intrinsic></intrinsic>
+        ///<intrinsic>__m256i _mm256_broadcastd_epi32 (__m128i a) VPBROADCASTD ymm, m32</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec256<int> broadcast(in int src, out Vec256<int> dst)
         {
@@ -60,7 +59,7 @@ namespace Z0
             return ref dst;
         }
 
-        ///<intrinsic></intrinsic>
+        ///<intrinsic>__m256i _mm256_broadcastd_epi32 (__m128i a) VPBROADCASTD ymm, m32</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec256<uint> broadcast(in uint src, out Vec256<uint> dst)
         {
@@ -124,7 +123,7 @@ namespace Z0
             return ref dst;
         }
 
-        ///<intrinsic></intrinsic>
+        ///<intrinsic>__m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, m16</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<ushort> broadcast(in ushort src, out Vec128<ushort> dst)
         {
@@ -132,7 +131,7 @@ namespace Z0
             return ref dst;
         }
 
-        ///<intrinsic></intrinsic>
+        ///<intrinsic>__m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, m32</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<int> broadcast(in int src, out Vec128<int> dst)
         {
@@ -156,7 +155,7 @@ namespace Z0
             return ref dst;
         }
 
-        ///<intrinsic></intrinsic>
+        ///<intrinsic>__m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, m64</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<ulong> broadcast(in ulong src, out Vec128<ulong> dst)
         {

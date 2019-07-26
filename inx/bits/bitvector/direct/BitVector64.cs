@@ -17,13 +17,16 @@ namespace Z0
 
     public ref struct BitVector64
     {
+        public const int ByteSize = 8;
+
+        public const int BitSize = 8*ByteSize;
+
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
             => new BitVector<N64,ulong>(src.data);
 
         ulong data;
 
-        const int BitSize = 64;
 
         [MethodImpl(Inline)]
         public BitVector64(in ulong data)
@@ -121,9 +124,6 @@ namespace Z0
             get => (uint)lo(data);    
         }
 
-        [MethodImpl(Inline)]
-        public BitString BitString()
-            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
@@ -157,16 +157,34 @@ namespace Z0
         public bool NEq(in BitVector64 rhs)
             => data != rhs.data;
 
+        [MethodImpl(Inline)]
+        public ulong Extract(int first, int last)
+        {
+            var len = (byte)(last - first + 1);
+            return Bits.extract(in data, (byte)first, len);
+        }
+
         public ulong this[Range range]
         {
             [MethodImpl(Inline)]
-            get
-            {
-                var len = (byte)(range.Start.Value - range.End.Value + 1);
-                return Bits.extract(in data, (byte)range.Start.Value, len);
-            }
+            get => Extract(range.Start.Value, range.End.Value);
         }
 
+        public Bit this[int pos]
+        {
+            [MethodImpl(Inline)]
+            get => this[(byte)pos];
+            [MethodImpl(Inline)]
+            set => this[(byte)pos] = value;
+        }
+
+        [MethodImpl(Inline)]
+        public BitString ToBitString()
+            => data.ToBitString();
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

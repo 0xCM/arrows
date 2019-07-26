@@ -143,9 +143,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<ulong> shiftl(in Vec256<ulong> src, in Vec256<ulong> shifts)
-            => ShiftLeftLogicalVariable(src, shifts); 
- 
-  
+            => ShiftLeftLogicalVariable(src, shifts);  
 
     }
 }

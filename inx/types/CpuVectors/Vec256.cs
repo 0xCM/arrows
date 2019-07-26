@@ -23,10 +23,18 @@ namespace Z0
 
         public static readonly ulong BitCount = 256ul;
 
-        public static readonly Vec256<T> Zero = Vector256<T>.Zero;
+        public static readonly Vec256<T> Zero = Vec256.zero<T>();
+
+        public static readonly Vec256<T> Ones = Vec256.ones<T>();
 
         readonly Vector256<T> data;        
     
+        public static bool operator ==(in Vec256<T> lhs, in Vec256<T> rhs)
+            => lhs.Equals(rhs);
+
+        public static bool operator !=(in Vec256<T> lhs, in Vec256<T> rhs)
+            => !lhs.Equals(rhs);
+
         [MethodImpl(Inline)]
         public static implicit operator Vec256<T>(in Vector256<T> src)
             => new Vec256<T>(src);
@@ -61,10 +69,17 @@ namespace Z0
                 => Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));        
 
         [MethodImpl(Inline)]
-        public bool Eq(Vec256<T> rhs)
+        public bool Equals(Vec256<T> rhs)
             => data.Equals(rhs.data);
 
         public override string ToString()
             => data.ToString();
+        
+        public override int GetHashCode()
+            => data.GetHashCode();
+
+        public override bool Equals(object obj)
+            => obj is Vec256<T> v ? Equals(v) : false;
+
     }     
 }

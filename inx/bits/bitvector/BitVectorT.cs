@@ -137,22 +137,18 @@ namespace Z0
             [MethodImpl(Inline)]
             set => SetBit(bit, value);
         }
-
         
-        [MethodImpl(Inline)]
-        public BitPos<T> GetPos(int bit)
-            => BitPos<T>.FromIndex((uint)bit);
 
         T Extract(in BitPos<T> first, in BitPos<T> last, bool debug = false)
         {
 
             var sameSeg = first.SegIdx == last.SegIdx;
-            var totalCount = last - first;
-            var firstCount = sameSeg ? totalCount : (int)SegCapacity - first.BitOffset;
-            var lastCount = totalCount - firstCount;
+            var wantedCount = last - first;
+            var firstCount = sameSeg ? wantedCount : (int)SegCapacity - first.BitOffset;
+            var lastCount = wantedCount - firstCount;
             
-            if(totalCount > SegCapacity)
-                throw new ArgumentException($"The total count {totalCount} exceeds segment capacity of {SegCapacity}");
+            if(wantedCount > SegCapacity)
+                throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegCapacity}");
 
             ref var seg1 = ref GetSegment(in first);
             var part1 = gbits.extract(in seg1, first.BitOffset, (byte)firstCount);
@@ -167,7 +163,7 @@ namespace Z0
             {
                 print($"first = {first}");
                 print($"last = {last}");
-                print($"totalCount = {totalCount}");
+                print($"totalCount = {wantedCount}");
                 print($"firstCount = {firstCount}");
                 print($"LastCount = {lastCount}");
             }
@@ -227,21 +223,6 @@ namespace Z0
         /// Extracts the represented data as a bitstring
         /// </summary>
         [MethodImpl(Inline)]
-        public ReadOnlySpan<char> ToBitChars(bool alt = false)
-            => alt ? bits.ToBitChars() : ToBitCharsAlt();
-
-        ReadOnlySpan<char> ToBitCharsAlt()
-        {
-            Span<char> dst = new char[MaxBitCount];
-            for(var i = 0; i < MaxBitCount; i++)
-                dst[i] =  this[i];
-            return dst;
-        }
-
-        /// <summary>
-        /// Extracts the represented data as a bitstring
-        /// </summary>
-        [MethodImpl(Inline)]
         public BitString ToBitString()
             => bits.ToBitString();
 
@@ -260,7 +241,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool Eq(in BitVector<T> rhs)
             => bits.Eq(rhs.bits);
-
+    
         [MethodImpl(Inline)]
         public bool NEq(in BitVector<T> rhs)
             => !bits.Eq(rhs.bits);

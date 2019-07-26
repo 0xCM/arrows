@@ -183,7 +183,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => Bits.ToBitString(TotalBitCount);
+            => BitString.FromScalars(Bits,TotalBitCount); //Bits.ToBitString(TotalBitCount);
 
         /// <summary>
         /// Counts the vector's enabled bits

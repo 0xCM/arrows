@@ -17,7 +17,7 @@ namespace Z0
     {    
         static string Format(this Span<byte> src, int rowlen)            
         {
-            var dst = src.ToBitChars();
+            var dst = gbits.bitchars(src);
             var sb = sbuild();
             for(var i=0; i<dst.Length; i+= rowlen)
             {

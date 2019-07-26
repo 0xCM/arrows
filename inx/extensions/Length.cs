@@ -12,7 +12,7 @@ namespace Z0
     
     using static zfunc;    
 
-    partial class InXtend
+    partial class dinxx
     {    
         /// <summary>
         /// Specifies the length, i.e. the number of components, of an

@@ -16,7 +16,6 @@ namespace Z0
 
     public static class AsInX
     {
-
         [MethodImpl(Inline)]
         public static ref Num128<sbyte> primal<T>(ref Num128<T> src, out Num128<sbyte> dst)
             where T : struct        

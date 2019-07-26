@@ -13,6 +13,39 @@ namespace Z0
     partial class dinxx
     {
         [MethodImpl(Inline)]
+        public static Vec128<sbyte> Or(this in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<byte> Or(this in Vec128<byte> lhs, in Vec128<byte> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<short> Or(this in Vec128<short> lhs, in Vec128<short> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> Or(this in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<int> Or(this in Vec128<int> lhs, in Vec128<int> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<uint> Or(this in Vec128<uint> lhs, in Vec128<uint> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<long> Or(this in Vec128<long> lhs, in Vec128<long> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> Or(this in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+            => dinx.or(in lhs, in rhs);
+
+
+        [MethodImpl(Inline)]
         public static Vec256<sbyte> Or(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => dinx.or(in lhs, in rhs);
 

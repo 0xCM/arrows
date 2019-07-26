@@ -111,7 +111,6 @@ namespace Z0
         public static Vec128<double> lo(in Vec128<double> lhs, in Vec128<double> rhs)
             => UnpackLow(lhs,rhs);
 
-
         /// <intrinsic>__m256i _mm256_unpacklo_epi8 (__m256i a, __m256i b) VPUNPCKLBW ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<byte> lo(in Vec256<byte> lhs, in Vec256<byte> rhs)

@@ -93,19 +93,28 @@ namespace Z0
         /// The number of rows in the matrix
         /// </summary>
         public int RowCount
-            => GridLayout.RowCount;
+        {
+            [MethodImpl(Inline)]
+            get => GridLayout.RowCount;
+        }
 
         /// <summary>
         /// The (padded) length of a primal span/array required to store a row of grid data.
         /// </summary>
         public int RowSegCount
-            => GridLayout.RowSegments;
+        {
+            [MethodImpl(Inline)]
+            get => GridLayout.RowSegments;
+        }
         
         /// <summary>
         /// The number of columns in the matrix
         /// </summary>
         public int ColCount
-            => GridLayout.ColCount;
+        {
+            [MethodImpl(Inline)]
+            get => GridLayout.ColCount;
+        }
 
         /// <summary>
         /// Provides direct access to the underlying bitstore
@@ -127,14 +136,22 @@ namespace Z0
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
         public BitVector<N,T> Row(int index)                    
-            => new BitVector<N,T>(RowData(index));        
-        
+            => new BitVector<N,T>(RowData(index));                
 
         [MethodImpl(Inline)]
-        public void ReplaceCol(int col, BitVector<M,T> src)
+        public void ReplaceCol(int colix, BitVector<M,T> src)
         {
-            for(var row=0; row< RowCount; row++)
-                this[row,col] = src[row];
+            for(var row=0; row < RowCount; row++)
+                this[row,colix] = src[row];
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector<M,T> Col(int colix)
+        {
+            var col = default(BitVector<M,T>);
+            for(var row=0; row < RowCount; row++)
+                col[row] = this[row, colix];
+            return col;
         }
 
         public BitLayout<T> Layout

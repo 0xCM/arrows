@@ -15,6 +15,16 @@ namespace Z0
 
     public ref struct BitVector32
     {
+        public const int ByteSize = 4;
+
+        public const int BitSize = ByteSize * 8;
+
+        /// <summary>
+        /// Creates the canonical zero bitvector
+        /// </summary>
+        public static BitVector32 Zero() 
+            => new BitVector32(0u);
+
         uint data;
 
         [MethodImpl(Inline)]
@@ -29,7 +39,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator BitVector32(uint src)
             => new BitVector32(src);
-
 
         [MethodImpl(Inline)]
         public BitVector32(in Bit[] src)
@@ -52,6 +61,9 @@ namespace Z0
         public static BitVector32 Define(in ReadOnlySpan<byte> src, int offset = 0)
             => Define(src[offset + 0], src[offset + 1], src[offset + 2], src[offset + 3]);
     
+        [MethodImpl(Inline)]
+        public static BitVector32 Define(in ReadOnlySpan<Bit> src)
+            => Define(in pack(src, out uint data));
 
         [MethodImpl(Inline)]
         public static implicit operator uint(in BitVector32 src)
@@ -97,19 +109,31 @@ namespace Z0
                 if(value)
                     enable(ref data, pos);
                 else
-                     disable(ref data, pos);                    
+                    disable(ref data, pos);                    
             }            
+        }
+
+        [MethodImpl(Inline)]
+        public uint Extract(int first, int last)
+        {
+            var len = (byte)(last - first + 1);
+            return Bits.extract(in data, (byte)first, len);
         }
 
         public uint this[Range range]
         {
             [MethodImpl(Inline)]
-            get
-            {
-                var len = (byte)(range.Start.Value - range.End.Value + 1);
-                return Bits.extract(in data, (byte)range.Start.Value, len);
-            }
+            get => Extract(range.Start.Value, range.End.Value);
         }
+
+        public Bit this[int pos]
+        {
+            [MethodImpl(Inline)]
+            get => this[(byte)pos];
+            [MethodImpl(Inline)]
+            set => this[(byte)pos] = value;
+        }
+
 
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)
@@ -136,9 +160,6 @@ namespace Z0
             get => lo(data);    
         }
 
-         [MethodImpl(Inline)]
-        public BitString BitString()
-            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
@@ -165,8 +186,12 @@ namespace Z0
             => data == 0;
 
         [MethodImpl(Inline)]
-        public string Format()
-            => BitString().ToString();
+        public BitString ToBitString()
+            => data.ToBitString();
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVector32 rhs)

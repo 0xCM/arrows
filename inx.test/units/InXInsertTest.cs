@@ -20,15 +20,15 @@ namespace Z0.Test
             for(var i=0; i < Pow2.T06; i++)
             {
                 var v128Src = Random.Vec128<T>();
-                var srcSpan = v128Src.Extract();
+                var srcSpan = v128Src.ToSpan();
 
                 var dst = Vec256.zero<T>();
                 
                 var vLo = ginx.insert(v128Src, dst,0);
-                var vLoSpan = vLo.Extract().Slice(0, vLo.Length()/2);
+                var vLoSpan = vLo.ToSpan().Slice(0, vLo.Length()/2);
 
                 var vHi = ginx.insert(v128Src, dst, 1);
-                var vHiSpan = vHi.Extract().Slice(vLo.Length()/2);
+                var vHiSpan = vHi.ToSpan().Slice(vLo.Length()/2);
 
                 Claim.eq(srcSpan, vLoSpan);
                 Claim.eq(srcSpan, vHiSpan);

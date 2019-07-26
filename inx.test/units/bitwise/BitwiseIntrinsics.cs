@@ -31,7 +31,7 @@ namespace Z0.Test
             var src = Random.Vec256<uint>();
             var shifts = Random.Vec256<uint>(closed(1u,7u));  
 
-            var expect = src.ToSpan();
+            var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
@@ -46,7 +46,7 @@ namespace Z0.Test
             var src = Random.Vec128<uint>();
             var shifts = Random.Vec128<uint>(closed(1u,7u));            
 
-            var expect = src.ToSpan();
+            var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
@@ -61,7 +61,7 @@ namespace Z0.Test
             var src = Random.Vec128<ulong>();
             var shifts = Random.Vec128<ulong>(closed(1ul,7ul));            
 
-            var expect = src.ToSpan();
+            var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
@@ -76,7 +76,7 @@ namespace Z0.Test
             var src = Random.Vec256<ulong>();
             var shifts = Random.Vec256<ulong>(closed(1ul,7ul));            
             
-            var expect = src.ToSpan();
+            var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             

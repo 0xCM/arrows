@@ -28,8 +28,8 @@ namespace Z0.Test
                 
                 var k = lhs.Length();
                 var j = k/2;
-                var y1 = lhs.Extract().Slice(j -1,  j);
-                var y2 = rhs.Extract().Slice(j - 1, j);
+                var y1 = lhs.ToSpan().Slice(j -1,  j);
+                var y2 = rhs.ToSpan().Slice(j - 1, j);
                 var y = Vec256.load(ref y1.Concat(y2)[0]);
                 
                 Claim.eq(x,y);                            

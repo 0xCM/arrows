@@ -55,8 +55,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string FormatHex<T>(this Vec512<T> src, int? bwidth = null, char? bsep = null)
             where T : struct
-                => src.Hi().Extract().FormatHexBlocks(bwidth, bsep) 
-                    + src.Lo().Extract().FormatHexBlocks(bwidth, bsep);
+                => src.Hi().ToSpan().FormatHexBlocks(bwidth, bsep) 
+                    + src.Lo().ToSpan().FormatHexBlocks(bwidth, bsep);
     }
 
 }

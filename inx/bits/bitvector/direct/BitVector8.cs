@@ -15,6 +15,10 @@ namespace Z0
 
     public ref struct BitVector8
     {
+        public const int ByteSize = 1;
+
+        public const int BitSize = ByteSize * 8;
+
         byte data;
 
         [MethodImpl(Inline)]
@@ -97,19 +101,32 @@ namespace Z0
                 if(value)
                     enable(ref data, pos);
                 else
-                     disable(ref data, pos);                    
+                    disable(ref data, pos);                    
             }            
+        }
+
+        [MethodImpl(Inline)]
+        public byte Extract(int first, int last)
+        {
+            var len = (byte)(last - first+ 1);
+            return Bits.extract(in data, (byte)first, len);
+
         }
 
         public byte this[Range range]
         {
             [MethodImpl(Inline)]
-            get
-            {
-                var len = (byte)(range.Start.Value - range.End.Value + 1);
-                return Bits.extract(in data, (byte)range.Start.Value, len);
-            }
+            get => Extract(range.Start.Value, range.End.Value);
         }
+
+        public Bit this[int pos]
+        {
+            [MethodImpl(Inline)]
+            get => this[(byte)pos];
+            [MethodImpl(Inline)]
+            set => this[(byte)pos] = value;
+        }
+
 
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)
@@ -124,7 +141,7 @@ namespace Z0
             => test(in data, pos);
 
          [MethodImpl(Inline)]
-        public BitString BitString()
+        public BitString ToBitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]

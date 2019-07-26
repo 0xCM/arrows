@@ -11,8 +11,38 @@ namespace Z0
     
     using static zfunc;    
 
-    partial class InXtend
+    partial class ginxs
     {
+        /// <summary>
+        /// Stores source vector conent in a target span
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target span</param>
+        /// <param name="offset">The target span offset</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> ToSpan<T>(this in Vec256<T> src, Span<T> dst, int offset = 0)
+            where T : struct
+        {            
+            Vec256.store(src, ref dst[offset]);
+            return  dst;
+        }
+
+        /// <summary>
+        /// Stores source vector conent in a target span
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target span</param>
+        /// <param name="offset">The target span offset</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> ToSpan<T>(this in Vec128<T> src, Span<T> dst, int offset = 0)
+            where T : struct
+        {            
+            Vec128.store(src, ref dst[offset]);
+            return  dst;
+        }
+
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 
         /// returned to the caller
@@ -20,7 +50,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span128<T> ToSpan<T>(this in Vec128<T> src)
+        public static Span128<T> ToSpan128<T>(this in Vec128<T> src)
             where T : struct     
         {
             var dst = Span128.alloc<T>(1);
@@ -35,7 +65,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> ToSpan<T>(this in Vec256<T> src)
+        public static Span256<T> ToSpan256<T>(this in Vec256<T> src)
             where T : struct            
         {
             var dst = Span256.alloc<T>(1);
@@ -44,14 +74,24 @@ namespace Z0
             return dst;
         }                       
 
+        /// <summary>
+        /// Extracts the components of an intrinsic vector to a span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> Extract<T>(this in Vec128<T> src)
+        public static Span<T> ToSpan<T>(this in Vec128<T> src)
             where T : struct            
-                => src.ToSpan().Unblock();
+                => src.ToSpan128().Unblock();
 
+        /// <summary>
+        /// Extracts the components of an intrinsic vector to a span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> Extract<T>(this in Vec256<T> src)
+        public static Span<T> ToSpan<T>(this in Vec256<T> src)
             where T : struct            
-                => src.ToSpan().Unblock();
+                => src.ToSpan256().Unblock();
     }
 }

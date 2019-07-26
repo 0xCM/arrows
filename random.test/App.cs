@@ -84,7 +84,7 @@ namespace Z0.Test
         
             var x1 = pcgSuite.Next();
             var y1S = rngAvx.Next();
-            var y1 = y1S.Extract();
+            var y1 = y1S.ToSpan();
 
             print($"pcg: {x1.Format()}");
             print($"pcg: {y1.Format()}");
@@ -107,10 +107,14 @@ namespace Z0.Test
             
         }
 
+        void RdRandTest()
+        {
+            inform(RdRand.Rand());
+            inform(RdRand.And(0b010101, 0b110011).ToBitString().Format(true));
+        }
 
         protected override void RunTests(params string[] filters)
         {     
-            
             base.RunTests(filters);        
         }
         public static void Main(params string[] args)

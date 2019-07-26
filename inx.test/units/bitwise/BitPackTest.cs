@@ -121,7 +121,7 @@ namespace Z0.Test
             {
                  var x = BitVector32.Define(BitConverter.ToUInt32(src.Slice(4*i)));
                  var y = BitVector32.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.BitString()} != {y.BitString()}"));
+                Claim.eq(x, y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }        
         }
 
@@ -137,7 +137,7 @@ namespace Z0.Test
             {
                  var x = BitVector64.Define(BitConverter.ToUInt64(src.Slice(8*i)));
                  var y = BitVector64.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.BitString()} != {y.BitString()}"));
+                Claim.eq(x, y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }
         
         }

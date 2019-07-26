@@ -1,4 +1,4 @@
-// 2019-07-20 02:42:57:544
+// 2019-07-24 20:36:13:527
 ReadOnlySpan<byte> get_U8Data()
 {
     IL_0000: ldsflda <PrivateImplementationDetails>/__StaticArrayInitTypeSize=64 <PrivateImplementationDetails>::4C95376F0126070C5E113DDFB17BBF8C2071FC7B
@@ -27,16 +27,34 @@ sbyte AddI8(sbyte x, sbyte y)
     IL_0004: ret
 
 }
-sbyte AddI8Inline(sbyte x, sbyte y)
+byte AddU8(byte x, byte y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: add
-    IL_0003: conv.i1
+    IL_0003: conv.u1
     IL_0004: ret
 
 }
-int AddI32Inline(int x, int y)
+short AddI16(short x, short y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: add
+    IL_0003: conv.i2
+    IL_0004: ret
+
+}
+ushort AddU16(ushort x, ushort y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: add
+    IL_0003: conv.u2
+    IL_0004: ret
+
+}
+int AddI32(int x, int y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -44,7 +62,7 @@ int AddI32Inline(int x, int y)
     IL_0003: ret
 
 }
-ulong AddU64Inline(ulong x, ulong y)
+ulong AddU64(ulong x, ulong y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -52,28 +70,30 @@ ulong AddU64Inline(ulong x, ulong y)
     IL_0003: ret
 
 }
-int SubI32Inline(int x, int y)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: sub
-    IL_0003: ret
-
-}
-int MulI32Inline(int x, int y)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: mul
-    IL_0003: ret
-
-}
-byte AndU8Inline(byte x, byte y)
+byte AndU8(byte x, byte y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: and
     IL_0003: conv.u1
+    IL_0004: ret
+
+}
+sbyte AndI8(sbyte x, sbyte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.i1
+    IL_0004: ret
+
+}
+short AndI16(short x, short y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.i2
     IL_0004: ret
 
 }
@@ -86,11 +106,51 @@ ushort AndU16(ushort x, ushort y)
     IL_0004: ret
 
 }
+int AndI32(int x, int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+uint AndU32(uint x, uint y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+long AndI64(long x, long y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
 ulong AndU64(ulong x, ulong y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: and
+    IL_0003: ret
+
+}
+int SubI32(int x, int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: sub
+    IL_0003: ret
+
+}
+int MulI32(int x, int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: mul
     IL_0003: ret
 
 }
@@ -469,5 +529,77 @@ void VoidReturn()
     IL_0000: ldstr ""
     IL_0005: call System.Void System.Console::Write(System.String)
     IL_000A: ret
+
+}
+int SizeTest()
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: ldc.i4.1
+    IL_0003: stloc.1
+    IL_0004: ldc.i4.2
+    IL_0005: stloc.2
+    IL_0006: ldc.i4.1
+    IL_0007: stloc.3
+    IL_0008: ldc.i4.2
+    IL_0009: stloc.s V_4
+    IL_000B: ldc.i4.2
+    IL_000C: stloc.s V_5
+    IL_000E: ldloc.3
+    IL_000F: ldloc.s V_4
+    IL_0011: mul
+    IL_0012: ldloc.s V_5
+    IL_0014: mul
+    IL_0015: stloc.s V_6
+    IL_0017: ldloc.0
+    IL_0018: ldloc.1
+    IL_0019: add
+    IL_001A: ldloc.2
+    IL_001B: add
+    IL_001C: stloc.s V_7
+    IL_001E: ldloc.s V_6
+    IL_0020: ldloc.s V_7
+    IL_0022: add
+    IL_0023: ret
+
+}
+void VoidCalls1()
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0006: ret
+
+}
+void VoidCalls2()
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0006: ldarg.0
+    IL_0007: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_000C: ret
+
+}
+void VoidCalls3()
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0006: ldarg.0
+    IL_0007: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_000C: ldarg.0
+    IL_000D: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0012: ret
+
+}
+void VoidCalls4()
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0006: ldarg.0
+    IL_0007: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_000C: ldarg.0
+    IL_000D: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0012: ldarg.0
+    IL_0013: call System.Void Z0.CommonPrimalScenarios::VoidReturn()
+    IL_0018: ret
 
 }

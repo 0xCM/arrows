@@ -22,7 +22,6 @@ namespace Z0
         public static Vec128<sbyte> flip(in Vec128<sbyte> src)
             => Xor(src, CompareEqual(src,src));
 
-
         [MethodImpl(Inline)]
         public static Vec128<byte> flip(in Vec128<byte> src)
             => Xor(src, CompareEqual(src,src));
@@ -42,6 +41,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<uint> flip(in Vec128<uint> src)
             => Xor(src, CompareEqual(src,src));
+
+        [MethodImpl(Inline)]
+        public static Vec128<long> flip(in Vec128<long> src)
+            => Vec128.define(~src[0], ~src[1]);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> flip(in Vec128<ulong> src)
+            => Vec128.define(~src[0], ~src[1]);
 
         [MethodImpl(Inline)]
         public static Vec256<sbyte> flip(in Vec256<sbyte> src)

@@ -1,26 +1,26 @@
-# 2019-07-20 02:42:57:529
-7FF9673DA7E0h: ReadOnlySpan<byte> get_U8Data()
-;; 0f 1f 44 00 00 48 b8 5c b1 e4 1d ea 01 00 00 48 89 01 c7 41 08 40 00 00 00 48 8b c1 c3 
+# 2019-07-24 20:36:13:515
+7FF95A4CA3C0h: ReadOnlySpan<byte> get_U8Data()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x80, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x89, 0x01, 0xc7, 0x41, 0x08, 0x40, 0x00, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,1EA1DE4B15Ch
+  0005h  mov rax,11E5455B380h
   000fh  mov [rcx],rax
   0012h  mov dword ptr [rcx+8],40h
   0019h  mov rax,rcx
   001ch  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA810h: ReadOnlySpan<uint> get_U32Data()
-;; 56 48 83 ec 20 c5 f8 77 48 8b f1 48 b9 20 2f 1a 67 f9 7f 00 00 ba 10 00 00 00 e8 71 e9 5e 5f 48 ba 1c b1 e4 1d ea 01 00 00 48 8d 48 10 c5 fa 6f 02 c5 fa 7f 01 c5 fa 6f 42 10 c5 fa 7f 41 10 c5 fa 6f 42 20 c5 fa 7f 41 20 c5 fa 6f 42 30 c5 fa 7f 41 30 48 83 c0 10 ba 10 00 00 00 48 89 06 89 56 08 48 8b c6 48 83 c4 20 5e c3 
+7FF95A4CA800h: ReadOnlySpan<uint> get_U32Data()
+;; {0x56, 0x48, 0x83, 0xec, 0x20, 0xc5, 0xf8, 0x77, 0x48, 0x8b, 0xf1, 0x48, 0xb9, 0x20, 0x2f, 0x29, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0xba, 0x10, 0x00, 0x00, 0x00, 0xe8, 0x81, 0xe9, 0x5f, 0x5f, 0x48, 0xba, 0x40, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x8d, 0x48, 0x10, 0xc5, 0xfa, 0x6f, 0x02, 0xc5, 0xfa, 0x7f, 0x01, 0xc5, 0xfa, 0x6f, 0x42, 0x10, 0xc5, 0xfa, 0x7f, 0x41, 0x10, 0xc5, 0xfa, 0x6f, 0x42, 0x20, 0xc5, 0xfa, 0x7f, 0x41, 0x20, 0xc5, 0xfa, 0x6f, 0x42, 0x30, 0xc5, 0xfa, 0x7f, 0x41, 0x30, 0x48, 0x83, 0xc0, 0x10, 0xba, 0x10, 0x00, 0x00, 0x00, 0x48, 0x89, 0x06, 0x89, 0x56, 0x08, 0x48, 0x8b, 0xc6, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  push rsi
   0001h  sub rsp,20h
   0005h  vzeroupper
   0008h  mov rsi,rcx
-  000bh  mov rcx,7FF9671A2F20h
+  000bh  mov rcx,7FF95A292F20h
   0015h  mov edx,10h
-  001ah  call 7FF9C69C91A0h
-  001fh  mov rdx,1EA1DE4B11Ch
+  001ah  call 7FF9B9AC91A0h
+  001fh  mov rdx,11E5455B340h
   0029h  lea rcx,[rax+10h]
   002dh  vmovdqu xmm0,xmmword ptr [rdx]
   0031h  vmovdqu xmmword ptr [rcx],xmm0
@@ -40,8 +40,8 @@ asm ----------------------------------------------------------------------------
   006ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA8A0h: sbyte AddI8(sbyte x, sbyte y)
-;; 0f 1f 44 00 00 48 0f be c1 48 0f be d2 03 c2 48 0f be c0 c3 
+7FF95A4CA890h: sbyte AddI8(sbyte x, sbyte y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  movsx rax,cl
@@ -51,53 +51,57 @@ asm ----------------------------------------------------------------------------
   0013h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA8D0h: sbyte AddI8Inline(sbyte x, sbyte y)
-;; 0f 1f 44 00 00 48 0f be c1 48 0f be d2 03 c2 48 0f be c0 c3 
+7FF95A4CA8C0h: byte AddU8(byte x, byte y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x03, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
-  0005h  movsx rax,cl
-  0009h  movsx rdx,dl
+  0005h  movzx eax,cl
+  0008h  movzx edx,dl
+  000bh  add eax,edx
+  000dh  movzx eax,al
+  0010h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CA8F0h: short AddI16(short x, short y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  movsx rax,cx
+  0009h  movsx rdx,dx
   000dh  add eax,edx
-  000fh  movsx rax,al
+  000fh  movsx rax,ax
   0013h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA900h: int AddI32Inline(int x, int y)
-;; 0f 1f 44 00 00 8d 04 11 c3 
+7FF95A4CA920h: ushort AddU16(ushort x, ushort y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x03, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  movzx eax,cx
+  0008h  movzx edx,dx
+  000bh  add eax,edx
+  000dh  movzx eax,ax
+  0010h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CA950h: int AddI32(int x, int y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  lea eax,[rcx+rdx]
   0008h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA920h: ulong AddU64Inline(ulong x, ulong y)
-;; 0f 1f 44 00 00 48 8d 04 11 c3 
+7FF95A4CA970h: ulong AddU64(ulong x, ulong y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8d, 0x04, 0x11, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  lea rax,[rcx+rdx]
   0009h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA940h: int SubI32Inline(int x, int y)
-;; 0f 1f 44 00 00 8b c1 2b c2 c3 
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  sub eax,edx
-  0009h  ret
-end asm ------------------------------------------------------------------------
-
-7FF9673DA960h: int MulI32Inline(int x, int y)
-;; 0f 1f 44 00 00 8b c1 0f af c2 c3 
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  imul eax,edx
-  000ah  ret
-end asm ------------------------------------------------------------------------
-
-7FF9673DA980h: byte AndU8Inline(byte x, byte y)
-;; 0f 1f 44 00 00 0f b6 c1 0f b6 d2 23 c2 0f b6 c0 c3 
+7FF95A4CA990h: byte AndU8(byte x, byte y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x23, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  movzx eax,cl
@@ -107,8 +111,30 @@ asm ----------------------------------------------------------------------------
   0010h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA9B0h: ushort AndU16(ushort x, ushort y)
-;; 0f 1f 44 00 00 0f b7 c1 0f b7 d2 23 c2 0f b7 c0 c3 
+7FF95A4CA9C0h: sbyte AndI8(sbyte x, sbyte y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  movsx rax,cl
+  0009h  movsx rdx,dl
+  000dh  and eax,edx
+  000fh  movsx rax,al
+  0013h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CA9F0h: short AndI16(short x, short y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  movsx rax,cx
+  0009h  movsx rdx,dx
+  000dh  and eax,edx
+  000fh  movsx rax,ax
+  0013h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAA20h: ushort AndU16(ushort x, ushort y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x23, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  movzx eax,cx
@@ -118,8 +144,26 @@ asm ----------------------------------------------------------------------------
   0010h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DA9E0h: ulong AndU64(ulong x, ulong y)
-;; 0f 1f 44 00 00 48 8b c1 48 23 c2 c3 
+7FF95A4CAA50h: int AndI32(int x, int y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov eax,ecx
+  0007h  and eax,edx
+  0009h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAA70h: uint AndU32(uint x, uint y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov eax,ecx
+  0007h  and eax,edx
+  0009h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAA90h: long AndI64(long x, long y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov rax,rcx
@@ -127,8 +171,35 @@ asm ----------------------------------------------------------------------------
   000bh  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAA00h: int AddI32LoopInline()
-;; 0f 1f 44 00 00 33 c0 33 d2 03 c2 ff c2 83 fa 64 7c f7 c3 
+7FF95A4CAAB0h: ulong AndU64(ulong x, ulong y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov rax,rcx
+  0008h  and rax,rdx
+  000bh  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAAD0h: int SubI32(int x, int y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x2b, 0xc2, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov eax,ecx
+  0007h  sub eax,edx
+  0009h  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAAF0h: int MulI32(int x, int y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0f, 0xaf, 0xc2, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov eax,ecx
+  0007h  imul eax,edx
+  000ah  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CAB10h: int AddI32LoopInline()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  xor eax,eax
@@ -140,8 +211,8 @@ asm ----------------------------------------------------------------------------
   0012h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAA30h: int AddI32Loop()
-;; 0f 1f 44 00 00 33 c0 33 d2 03 c2 ff c2 83 fa 64 7c f7 c3 
+7FF95A4CAB40h: int AddI32Loop()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  xor eax,eax
@@ -153,8 +224,8 @@ asm ----------------------------------------------------------------------------
   0012h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAA60h: int AddI32LoopInlineCall()
-;; 0f 1f 44 00 00 33 c0 33 d2 03 c2 ff c2 83 fa 64 7c f7 c3 
+7FF95A4CAB70h: int AddI32LoopInlineCall()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  xor eax,eax
@@ -166,16 +237,16 @@ asm ----------------------------------------------------------------------------
   0012h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAA90h: int AddI32LoopCall()
-;; 0f 1f 44 00 00 48 b8 30 aa 3d 67 f9 7f 00 00 48 ff e0 
+7FF95A4CABA0h: int AddI32LoopCall()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x40, 0xab, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,7FF9673DAA30h
+  0005h  mov rax,7FF95A4CAB40h
   000fh  jmp rax
 end asm ------------------------------------------------------------------------
 
-7FF9673DAAC0h: uint Or8Inline(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
-;; 0f 1f 44 00 00 0b d1 41 0b d0 41 0b d1 0b 54 24 28 0b 54 24 30 8b c2 0b 44 24 38 0b 44 24 40 c3 
+7FF95A4CABD0h: uint Or8Inline(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0b, 0xd1, 0x41, 0x0b, 0xd0, 0x41, 0x0b, 0xd1, 0x0b, 0x54, 0x24, 0x28, 0x0b, 0x54, 0x24, 0x30, 0x8b, 0xc2, 0x0b, 0x44, 0x24, 0x38, 0x0b, 0x44, 0x24, 0x40, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  or edx,ecx
@@ -189,8 +260,8 @@ asm ----------------------------------------------------------------------------
   001fh  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAAF0h: uint RotLU32Inline(uint x, int offset)
-;; 0f 1f 44 00 00 8b c1 8b ca d3 c0 c3 
+7FF95A4CAC00h: uint RotLU32Inline(uint x, int offset)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x8b, 0xca, 0xd3, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,ecx
@@ -199,17 +270,17 @@ asm ----------------------------------------------------------------------------
   000bh  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAB10h: int ChoiceSwitchInline(int x)
-;; 0f 1f 44 00 00 ff ca 83 fa 04 77 38 8b c2 48 8d 15 33 00 00 00 8b 14 82 48 8d 0d e6 ff ff ff 48 03 d1 ff e2 b8 01 00 00 00 c3 b8 04 00 00 00 c3 b8 08 00 00 00 c3 b8 10 00 00 00 eb 09 b8 20 00 00 00 eb 02 33 c0 c3 
+7FF95A4CAC20h: int ChoiceSwitchInline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xff, 0xca, 0x83, 0xfa, 0x04, 0x77, 0x38, 0x8b, 0xc2, 0x48, 0x8d, 0x15, 0x33, 0x00, 0x00, 0x00, 0x8b, 0x14, 0x82, 0x48, 0x8d, 0x0d, 0xe6, 0xff, 0xff, 0xff, 0x48, 0x03, 0xd1, 0xff, 0xe2, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x09, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  dec edx
   0007h  cmp edx,4
   000ah  ja short 0044h
   000ch  mov eax,edx
-  000eh  lea rdx,[7FF9673DAB58h]
+  000eh  lea rdx,[7FF95A4CAC68h]
   0015h  mov edx,[rdx+rax*4]
-  0018h  lea rcx,[7FF9673DAB15h]
+  0018h  lea rcx,[7FF95A4CAC25h]
   001fh  add rdx,rcx
   0022h  jmp rdx
   0024h  mov eax,1
@@ -226,8 +297,8 @@ asm ----------------------------------------------------------------------------
   0046h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAB80h: int ChoiceIfElse5Inline(int x)
-;; 0f 1f 44 00 00 83 fa 01 75 06 b8 01 00 00 00 c3 83 fa 02 75 06 b8 04 00 00 00 c3 83 fa 03 75 06 b8 08 00 00 00 c3 83 fa 04 75 07 b8 10 00 00 00 eb 0e 83 fa 05 75 07 b8 20 00 00 00 eb 02 33 c0 c3 
+7FF95A4CAC90h: int ChoiceIfElse5Inline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x06, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x02, 0x75, 0x06, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x03, 0x75, 0x06, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  cmp edx,1
@@ -254,8 +325,8 @@ asm ----------------------------------------------------------------------------
   0040h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DABE0h: int ChoiceIfElse10Inline(int x)
-;; 0f 1f 44 00 00 83 fa 01 75 06 b8 01 00 00 00 c3 83 fa 02 75 06 b8 04 00 00 00 c3 83 fa 03 75 06 b8 08 00 00 00 c3 83 fa 04 75 07 b8 10 00 00 00 eb 4a 83 fa 05 75 07 b8 20 00 00 00 eb 3e 83 fa 06 75 07 b8 40 00 00 00 eb 32 83 fa 07 75 07 b8 80 00 00 00 eb 26 83 fa 08 75 07 b8 00 01 00 00 eb 1a 83 fa 09 75 07 b8 00 02 00 00 eb 0e 83 fa 0a 75 07 b8 00 04 00 00 eb 02 33 c0 c3 
+7FF95A4CACF0h: int ChoiceIfElse10Inline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x06, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x02, 0x75, 0x06, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x03, 0x75, 0x06, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x4a, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x3e, 0x83, 0xfa, 0x06, 0x75, 0x07, 0xb8, 0x40, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x07, 0x75, 0x07, 0xb8, 0x80, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x08, 0x75, 0x07, 0xb8, 0x00, 0x01, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x09, 0x75, 0x07, 0xb8, 0x00, 0x02, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x0a, 0x75, 0x07, 0xb8, 0x00, 0x04, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  cmp edx,1
@@ -302,16 +373,16 @@ asm ----------------------------------------------------------------------------
   007ch  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAC70h: int CallChoiceSwitchInline(int x)
-;; 0f 1f 44 00 00 48 b8 10 ab 3d 67 f9 7f 00 00 48 ff e0 
+7FF95A4CAD80h: int CallChoiceSwitchInline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x20, 0xac, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,7FF9673DAB10h
+  0005h  mov rax,7FF95A4CAC20h
   000fh  jmp rax
 end asm ------------------------------------------------------------------------
 
-7FF9673DACA0h: int CallChoiceIfElse5Inline(int x)
-;; 0f 1f 44 00 00 83 fa 01 75 07 b8 01 00 00 00 eb 32 83 fa 02 75 07 b8 04 00 00 00 eb 26 83 fa 03 75 07 b8 08 00 00 00 eb 1a 83 fa 04 75 07 b8 10 00 00 00 eb 0e 83 fa 05 75 07 b8 20 00 00 00 eb 02 33 c0 c3 
+7FF95A4CADB0h: int CallChoiceIfElse5Inline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x07, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x02, 0x75, 0x07, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x03, 0x75, 0x07, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  cmp edx,1
@@ -338,8 +409,8 @@ asm ----------------------------------------------------------------------------
   0043h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAD00h: int CallChoiceIfElse10Inline(int x)
-;; 0f 1f 44 00 00 83 fa 01 75 07 b8 01 00 00 00 eb 6e 83 fa 02 75 07 b8 04 00 00 00 eb 62 83 fa 03 75 07 b8 08 00 00 00 eb 56 83 fa 04 75 07 b8 10 00 00 00 eb 4a 83 fa 05 75 07 b8 20 00 00 00 eb 3e 83 fa 06 75 07 b8 40 00 00 00 eb 32 83 fa 07 75 07 b8 80 00 00 00 eb 26 83 fa 08 75 07 b8 00 01 00 00 eb 1a 83 fa 09 75 07 b8 00 02 00 00 eb 0e 83 fa 0a 75 07 b8 00 04 00 00 eb 02 33 c0 c3 
+7FF95A4CAE10h: int CallChoiceIfElse10Inline(int x)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x07, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xeb, 0x6e, 0x83, 0xfa, 0x02, 0x75, 0x07, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xeb, 0x62, 0x83, 0xfa, 0x03, 0x75, 0x07, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xeb, 0x56, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x4a, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x3e, 0x83, 0xfa, 0x06, 0x75, 0x07, 0xb8, 0x40, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x07, 0x75, 0x07, 0xb8, 0x80, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x08, 0x75, 0x07, 0xb8, 0x00, 0x01, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x09, 0x75, 0x07, 0xb8, 0x00, 0x02, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x0a, 0x75, 0x07, 0xb8, 0x00, 0x04, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  cmp edx,1
@@ -386,8 +457,8 @@ asm ----------------------------------------------------------------------------
   007fh  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAD90h: int InvokeBinOp(Func<int,int,int> f, int x, int y)
-;; 50 0f 1f 40 00 48 89 14 24 48 8b 4a 08 41 8b d0 45 8b c1 48 8b 04 24 48 8b 40 18 48 83 c4 08 48 ff e0 
+7FF95A4CAEA0h: int InvokeBinOp(Func<int,int,int> f, int x, int y)
+;; {0x50, 0x0f, 0x1f, 0x40, 0x00, 0x48, 0x89, 0x14, 0x24, 0x48, 0x8b, 0x4a, 0x08, 0x41, 0x8b, 0xd0, 0x45, 0x8b, 0xc1, 0x48, 0x8b, 0x04, 0x24, 0x48, 0x8b, 0x40, 0x18, 0x48, 0x83, 0xc4, 0x08, 0x48, 0xff, 0xe0}
 asm ----------------------------------------------------------------------------
   0000h  push rax
   0001h  nop dword ptr [rax]
@@ -401,8 +472,8 @@ asm ----------------------------------------------------------------------------
   001fh  jmp rax
 end asm ------------------------------------------------------------------------
 
-7FF9673DADD0h: int AddMulInline(int x, int y)
-;; 0f 1f 44 00 00 8d 04 11 0f af c8 0f af c2 03 c1 c3 
+7FF95A4CAEE0h: int AddMulInline(int x, int y)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0x0f, 0xaf, 0xc8, 0x0f, 0xaf, 0xc2, 0x03, 0xc1, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  lea eax,[rcx+rdx]
@@ -412,8 +483,8 @@ asm ----------------------------------------------------------------------------
   0010h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAE00h: int CallInvokeBinOp(int x, int y)
-;; 57 56 55 53 48 83 ec 28 48 8b f1 8b fa 41 8b d8 48 b9 b0 d2 37 67 f9 7f 00 00 e8 51 e2 5e 5f 48 8b e8 48 8d 4d 08 48 8b d5 e8 32 cf 5e 5f 48 b9 f0 db d1 66 f9 7f 00 00 48 89 4d 18 48 b9 d0 ad 3d 67 f9 7f 00 00 48 89 4d 20 48 8b ce 48 8b d5 44 8b c7 44 8b cb 48 b8 90 ad 3d 67 f9 7f 00 00 48 83 c4 28 5b 5d 5e 5f 48 ff e0 
+7FF95A4CAF10h: int CallInvokeBinOp(int x, int y)
+;; {0x57, 0x56, 0x55, 0x53, 0x48, 0x83, 0xec, 0x28, 0x48, 0x8b, 0xf1, 0x8b, 0xfa, 0x41, 0x8b, 0xd8, 0x48, 0xb9, 0x78, 0xd0, 0x46, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0xe8, 0x41, 0xe1, 0x5f, 0x5f, 0x48, 0x8b, 0xe8, 0x48, 0x8d, 0x4d, 0x08, 0x48, 0x8b, 0xd5, 0xe8, 0x22, 0xce, 0x5f, 0x5f, 0x48, 0xb9, 0xf0, 0xdb, 0xe0, 0x59, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x89, 0x4d, 0x18, 0x48, 0xb9, 0xe0, 0xae, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x89, 0x4d, 0x20, 0x48, 0x8b, 0xce, 0x48, 0x8b, 0xd5, 0x44, 0x8b, 0xc7, 0x44, 0x8b, 0xcb, 0x48, 0xb8, 0xa0, 0xae, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x28, 0x5b, 0x5d, 0x5e, 0x5f, 0x48, 0xff, 0xe0}
 asm ----------------------------------------------------------------------------
   0000h  push rdi
   0001h  push rsi
@@ -423,21 +494,21 @@ asm ----------------------------------------------------------------------------
   0008h  mov rsi,rcx
   000bh  mov edi,edx
   000dh  mov ebx,r8d
-  0010h  mov rcx,7FF96737D2B0h
-  001ah  call 7FF9C69C9070h
+  0010h  mov rcx,7FF95A46D078h
+  001ah  call 7FF9B9AC9070h
   001fh  mov rbp,rax
   0022h  lea rcx,[rbp+8]
   0026h  mov rdx,rbp
-  0029h  call 7FF9C69C7D60h
-  002eh  mov rcx,7FF966D1DBF0h
+  0029h  call 7FF9B9AC7D60h
+  002eh  mov rcx,7FF959E0DBF0h
   0038h  mov [rbp+18h],rcx
-  003ch  mov rcx,7FF9673DADD0h
+  003ch  mov rcx,7FF95A4CAEE0h
   0046h  mov [rbp+20h],rcx
   004ah  mov rcx,rsi
   004dh  mov rdx,rbp
   0050h  mov r8d,edi
   0053h  mov r9d,ebx
-  0056h  mov rax,7FF9673DAD90h
+  0056h  mov rax,7FF95A4CAEA0h
   0060h  add rsp,28h
   0064h  pop rbx
   0065h  pop rbp
@@ -446,40 +517,40 @@ asm ----------------------------------------------------------------------------
   0068h  jmp rax
 end asm ------------------------------------------------------------------------
 
-7FF9673DAE90h: int JumpTarget1()
-;; 0f 1f 44 00 00 b8 01 00 00 00 c3 
+7FF95A4CAFA0h: int JumpTarget1()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,1
   000ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAEB0h: int JumpTarget2()
-;; 0f 1f 44 00 00 b8 02 00 00 00 c3 
+7FF95A4CAFC0h: int JumpTarget2()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x02, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,2
   000ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAED0h: int JumpTarget3()
-;; 0f 1f 44 00 00 b8 03 00 00 00 c3 
+7FF95A4CAFE0h: int JumpTarget3()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x03, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,3
   000ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAEF0h: int JumpTarget4()
-;; 0f 1f 44 00 00 b8 04 00 00 00 c3 
+7FF95A4CB000h: int JumpTarget4()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,4
   000ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAF10h: int Jump(int target)
-;; 0f 1f 44 00 00 83 fa 01 74 31 83 fa 02 74 1f 83 fa 03 74 0d 48 b8 f0 ae 3d 67 f9 7f 00 00 48 ff e0 48 b8 d0 ae 3d 67 f9 7f 00 00 48 ff e0 48 b8 b0 ae 3d 67 f9 7f 00 00 48 ff e0 48 b8 90 ae 3d 67 f9 7f 00 00 48 ff e0 
+7FF95A4CB020h: int Jump(int target)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x74, 0x31, 0x83, 0xfa, 0x02, 0x74, 0x1f, 0x83, 0xfa, 0x03, 0x74, 0x0d, 0x48, 0xb8, 0x00, 0xb0, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xe0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xc0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xa0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  cmp edx,1
@@ -488,18 +559,18 @@ asm ----------------------------------------------------------------------------
   000dh  je short 002eh
   000fh  cmp edx,3
   0012h  je short 0021h
-  0014h  mov rax,7FF9673DAEF0h
+  0014h  mov rax,7FF95A4CB000h
   001eh  jmp rax
-  0021h  mov rax,7FF9673DAED0h
+  0021h  mov rax,7FF95A4CAFE0h
   002bh  jmp rax
-  002eh  mov rax,7FF9673DAEB0h
+  002eh  mov rax,7FF95A4CAFC0h
   0038h  jmp rax
-  003bh  mov rax,7FF9673DAE90h
+  003bh  mov rax,7FF95A4CAFA0h
   0045h  jmp rax
 end asm ------------------------------------------------------------------------
 
-7FF9673DAF70h: uint CallRotLU32Inline(uint x, int offset)
-;; 0f 1f 44 00 00 41 8b c8 8b c2 d3 c0 c3 
+7FF95A4CB080h: uint CallRotLU32Inline(uint x, int offset)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x41, 0x8b, 0xc8, 0x8b, 0xc2, 0xd3, 0xc0, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov ecx,r8d
@@ -508,16 +579,16 @@ asm ----------------------------------------------------------------------------
   000ch  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAF90h: uint CallOr8InlineConst()
-;; 0f 1f 44 00 00 b8 7e 00 00 00 c3 
+7FF95A4CB0A0h: uint CallOr8InlineConst()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x7e, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  mov eax,7Eh
   000ah  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAFB0h: uint CallOr8InlineVar(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
-;; 0f 1f 44 00 00 41 0b d0 41 0b d1 0b 54 24 28 0b 54 24 30 0b 54 24 38 8b c2 0b 44 24 40 0b 44 24 48 c3 
+7FF95A4CB0C0h: uint CallOr8InlineVar(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x41, 0x0b, 0xd0, 0x41, 0x0b, 0xd1, 0x0b, 0x54, 0x24, 0x28, 0x0b, 0x54, 0x24, 0x30, 0x0b, 0x54, 0x24, 0x38, 0x8b, 0xc2, 0x0b, 0x44, 0x24, 0x40, 0x0b, 0x44, 0x24, 0x48, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
   0005h  or edx,r8d
@@ -531,26 +602,26 @@ asm ----------------------------------------------------------------------------
   0021h  ret
 end asm ------------------------------------------------------------------------
 
-7FF9673DAFF0h: ReadOnlySpan<byte> ReadU8Data(int count)
-;; 48 83 ec 28 90 41 8b c0 48 83 f8 40 77 19 48 b8 5c b1 e4 1d ea 01 00 00 48 89 02 44 89 42 08 48 8b c2 48 83 c4 28 c3 e8 44 18 a7 ff cc 
+7FF95A4CB100h: ReadOnlySpan<byte> ReadU8Data(int count)
+;; {0x48, 0x83, 0xec, 0x28, 0x90, 0x41, 0x8b, 0xc0, 0x48, 0x83, 0xf8, 0x40, 0x77, 0x19, 0x48, 0xb8, 0x80, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x89, 0x02, 0x44, 0x89, 0x42, 0x08, 0x48, 0x8b, 0xc2, 0x48, 0x83, 0xc4, 0x28, 0xc3, 0xe8, 0x34, 0x17, 0xa7, 0xff, 0xcc}
 asm ----------------------------------------------------------------------------
   0000h  sub rsp,28h
   0004h  nop
   0005h  mov eax,r8d
   0008h  cmp rax,40h
   000ch  ja short 0027h
-  000eh  mov rax,1EA1DE4B15Ch
+  000eh  mov rax,11E5455B380h
   0018h  mov [rdx],rax
   001bh  mov [rdx+8],r8d
   001fh  mov rax,rdx
   0022h  add rsp,28h
   0026h  ret
-  0027h  call 7FF966E4C860h
+  0027h  call 7FF959F3C860h
   002ch  int 3
 end asm ------------------------------------------------------------------------
 
-7FF9673DB040h: ReadOnlySpan<uint> ReadU32Data(int count)
-;; 57 56 48 83 ec 38 33 c0 48 89 44 24 28 48 89 44 24 30 48 8b f2 41 8b f8 48 8d 4c 24 28 e8 ae f7 ff ff 8b c7 8b 54 24 30 48 3b c2 77 15 48 8b 44 24 28 48 89 06 89 7e 08 48 8b c6 48 83 c4 38 5e 5f c3 e8 d9 17 a7 ff cc 
+7FF95A4CB150h: ReadOnlySpan<uint> ReadU32Data(int count)
+;; {0x57, 0x56, 0x48, 0x83, 0xec, 0x38, 0x33, 0xc0, 0x48, 0x89, 0x44, 0x24, 0x28, 0x48, 0x89, 0x44, 0x24, 0x30, 0x48, 0x8b, 0xf2, 0x41, 0x8b, 0xf8, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0xe8, 0x8e, 0xf6, 0xff, 0xff, 0x8b, 0xc7, 0x8b, 0x54, 0x24, 0x30, 0x48, 0x3b, 0xc2, 0x77, 0x15, 0x48, 0x8b, 0x44, 0x24, 0x28, 0x48, 0x89, 0x06, 0x89, 0x7e, 0x08, 0x48, 0x8b, 0xc6, 0x48, 0x83, 0xc4, 0x38, 0x5e, 0x5f, 0xc3, 0xe8, 0xc9, 0x16, 0xa7, 0xff, 0xcc}
 asm ----------------------------------------------------------------------------
   0000h  push rdi
   0001h  push rsi
@@ -561,7 +632,7 @@ asm ----------------------------------------------------------------------------
   0012h  mov rsi,rdx
   0015h  mov edi,r8d
   0018h  lea rcx,[rsp+28h]
-  001dh  call 7FF9673DA810h
+  001dh  call 7FF95A4CA800h
   0022h  mov eax,edi
   0024h  mov edx,[rsp+30h]
   0028h  cmp rax,rdx
@@ -574,17 +645,87 @@ asm ----------------------------------------------------------------------------
   003fh  pop rsi
   0040h  pop rdi
   0041h  ret
-  0042h  call 7FF966E4C860h
+  0042h  call 7FF959F3C860h
   0047h  int 3
 end asm ------------------------------------------------------------------------
 
-7FF9673DB410h: void VoidReturn()
-;; 0f 1f 44 00 00 48 b9 60 30 fc 2d ea 01 00 00 48 8b 09 48 b8 e8 b3 3d 67 f9 7f 00 00 48 ff e0 
+7FF95A4CB520h: void VoidReturn()
+;; {0x48, 0x83, 0xec, 0x28, 0x90, 0x48, 0xb9, 0x60, 0x30, 0x80, 0x64, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x8b, 0x09, 0xe8, 0xc1, 0xff, 0xff, 0xff, 0x90, 0x48, 0x83, 0xc4, 0x28, 0xc3}
+asm ----------------------------------------------------------------------------
+  0000h  sub rsp,28h
+  0004h  nop
+  0005h  mov rcx,11E64803060h
+  000fh  mov rcx,[rcx]
+  0012h  call 7FF95A4CB4F8h
+  0017h  nop
+  0018h  add rsp,28h
+  001ch  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CB560h: int SizeTest()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x07, 0x00, 0x00, 0x00, 0xc3}
 asm ----------------------------------------------------------------------------
   0000h  nop dword ptr [rax+rax]
-  0005h  mov rcx,1EA2DFC3060h
-  000fh  mov rcx,[rcx]
-  0012h  mov rax,7FF9673DB3E8h
-  001ch  jmp rax
+  0005h  mov eax,7
+  000ah  ret
+end asm ------------------------------------------------------------------------
+
+7FF95A4CB580h: void VoidCalls1()
+;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
+asm ----------------------------------------------------------------------------
+  0000h  nop dword ptr [rax+rax]
+  0005h  mov rax,7FF95A4CB520h
+  000fh  jmp rax
+end asm ------------------------------------------------------------------------
+
+7FF95A4CB5B0h: void VoidCalls2()
+;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0x60, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
+asm ----------------------------------------------------------------------------
+  0000h  push rsi
+  0001h  sub rsp,20h
+  0005h  mov rsi,rcx
+  0008h  mov rcx,rsi
+  000bh  call 7FF95A4CB520h
+  0010h  mov rcx,rsi
+  0013h  mov rax,7FF95A4CB520h
+  001dh  add rsp,20h
+  0021h  pop rsi
+  0022h  jmp rax
+end asm ------------------------------------------------------------------------
+
+7FF95A4CB5F0h: void VoidCalls3()
+;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0x20, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0x18, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
+asm ----------------------------------------------------------------------------
+  0000h  push rsi
+  0001h  sub rsp,20h
+  0005h  mov rsi,rcx
+  0008h  mov rcx,rsi
+  000bh  call 7FF95A4CB520h
+  0010h  mov rcx,rsi
+  0013h  call 7FF95A4CB520h
+  0018h  mov rcx,rsi
+  001bh  mov rax,7FF95A4CB520h
+  0025h  add rsp,20h
+  0029h  pop rsi
+  002ah  jmp rax
+end asm ------------------------------------------------------------------------
+
+7FF95A4CB640h: void VoidCalls4()
+;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0xd0, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0xc8, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0xc0, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
+asm ----------------------------------------------------------------------------
+  0000h  push rsi
+  0001h  sub rsp,20h
+  0005h  mov rsi,rcx
+  0008h  mov rcx,rsi
+  000bh  call 7FF95A4CB520h
+  0010h  mov rcx,rsi
+  0013h  call 7FF95A4CB520h
+  0018h  mov rcx,rsi
+  001bh  call 7FF95A4CB520h
+  0020h  mov rcx,rsi
+  0023h  mov rax,7FF95A4CB520h
+  002dh  add rsp,20h
+  0031h  pop rsi
+  0032h  jmp rax
 end asm ------------------------------------------------------------------------
 

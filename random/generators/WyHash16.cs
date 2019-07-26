@@ -69,6 +69,4 @@ namespace Z0
                 yield return Next();
         }
     }
-
-
 }

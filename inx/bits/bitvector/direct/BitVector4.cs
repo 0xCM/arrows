@@ -15,12 +15,18 @@ namespace Z0
 
     public ref struct BitVector4
     {
-        byte data;
+        UInt4 data;
 
         [MethodImpl(Inline)]
         public BitVector4(in byte data)
         {
             require(data <= 0xF);
+            this.data = (UInt4)data;
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector4(UInt4 data)
+        {
             this.data = data;
         }
 
@@ -37,31 +43,16 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        public static BitVector4 Define(byte? x0 = null, byte? x1 = null, byte? x2 = null, byte? x3 = null)
-        {
-            var x = default(byte);
-            if(x0 == 1) x |= (1 << 0);
-            if(x1 == 1) x |= (1 << 1);
-            if(x2 == 1) x |= (1 << 2);
-            if(x3 == 1) x |= (1 << 3);
-            return x;
-        }
+        public static implicit operator BitVector4(UInt4 src)
+            => new BitVector4(src);
+
+        [MethodImpl(Inline)]
+        public static BitVector4 Define(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
+            => UInt4.FromBits(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]
         public static BitVector4 Define(in byte src)
             => new BitVector4(src);
-
-        [MethodImpl(Inline)]
-        public static BitVector4 Define(in ReadOnlySpan<Bit> src)
-        {
-            require(src.Length == 4);
-            var x = default(byte);
-            if(src[0]) x |= (1 << 0);
-            if(src[1]) x |= (1 << 1);
-            if(src[2]) x |= (1 << 2);
-            if(src[3]) x |= (1 << 3);
-            return x;
-        }
             
 
         [MethodImpl(Inline)]
@@ -88,40 +79,34 @@ namespace Z0
         public static BitVector4 operator ~(in BitVector4 src)
             => Define((byte) ~ src.data);
 
-        public Bit this[in int pos]
-        {
-            [MethodImpl(Inline)]
-            get => test(in data, in pos);
-            
-            [MethodImpl(Inline)]
-            set
-            {
-                if(value)
-                    enable(ref data, in pos);
-                else
-                     disable(ref data, in pos);                    
-            }            
-        }
-
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)
-            => enable(ref data, in pos);
+            => data[pos] = Bit.On;
 
         [MethodImpl(Inline)]
         public void DisableBit(in int pos)
-            => disable(ref data, in pos);
+            => data[pos] = Bit.Off;
 
         [MethodImpl(Inline)]
         public bool TestBit(byte pos)
-            => test(in data, pos);
+            => data[pos];
 
-         [MethodImpl(Inline)]
-        public BitString BitString()
+        public Bit this[in int pos]
+        {
+            [MethodImpl(Inline)]
+            get => data[pos];
+            
+            [MethodImpl(Inline)]
+            set => data[pos] = value;
+        }
+
+        [MethodImpl(Inline)]
+        public BitString ToBitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            =>  bytes(in data);
+            => new byte[]{data};
 
         [MethodImpl(Inline)]
         public ulong PopCount()
@@ -150,6 +135,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool AllZeros()
             => data == 0;
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

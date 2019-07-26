@@ -37,11 +37,7 @@ namespace Z0.Test
         }
         protected override void RunTests(params string[] filters)
         {     
-            //base.RunTests("BitPosTest");
-            //base.RunTests("NatModTest");
-            //base.RunTests(new string[]{"M512Test", "BitString"});
-            base.RunTests("BitMatrix");
-            //base.RunTests("InXMulTest");
+            base.RunTests(filters);
         }
 
         public static void Main(params string[] args)

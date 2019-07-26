@@ -418,4 +418,27 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static MethodInfo method<T>(string name)
         => typeof(T).Methods().First(m => m.Name == name);
+
+
+    /// <summary>
+    /// Finds the first method declared by a type that matches a specified name
+    /// and returns a pointer to the method definition
+    /// </summary>
+    /// <param name="name">The method name</param>
+    /// <typeparam name="T">The declaring type</typeparam>
+    [MethodImpl(Inline)]
+    public static IntPtr methodPtr<T>(string name)
+        => method<T>(name).MethodHandle.GetFunctionPointer();
+
+
+    [MethodImpl(Inline)]
+    public static MethodInfo method<T>(string name, out IntPtr ptr)
+    {
+        var m = method<T>(name);
+        ptr = m.MethodHandle.GetFunctionPointer();
+        return m;
+    }
+        
+
+
 }

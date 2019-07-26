@@ -21,10 +21,10 @@ namespace Z0.Test
             for(var i=0; i<Pow2.T06; i++)                        
             {
                 var src = Random.Vec128<T>();
-                var srcData = src.Extract();
+                var srcData = src.ToSpan();
                 var expect  = Vec128.load(ref gbits.flip(in srcData)[0]);
                 var actual = ginx.flip(in src);
-                Claim.yea(expect.Eq(actual));
+                Claim.yea(expect.Equals(actual));
             }
             TypeCaseEnd<T>();            
         }
@@ -36,10 +36,10 @@ namespace Z0.Test
             for(var i=0; i<Pow2.T06; i++)                        
             {
                 var src = Random.Vec256<T>();
-                var srcData = src.Extract();
+                var srcData = src.ToSpan();
                 var expect  = Vec256.load(ref gbits.flip(in srcData)[0]);
                 var actual = ginx.flip(in src);
-                Claim.yea(expect.Eq(actual));
+                Claim.yea(expect.Equals(actual));
             }
             TypeCaseEnd<T>();            
         }

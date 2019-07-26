@@ -31,7 +31,7 @@ namespace Z0
                 digits = As.int16(src).ToString("x");
             else if(typeof(T) == typeof(ushort))
                 digits = As.uint16(src).ToString("x");
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(T) == typeof(int))
                 digits = As.int32(src).ToString("x");
             else if(typeof(T) == typeof(uint))
                 digits = As.uint32(src).ToString("x");

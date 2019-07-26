@@ -15,30 +15,6 @@ namespace Z0.Test
 
     public class BitStringTest : UnitTest<BitStringTest>
     {
-        void TestBsType<T>()
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            
-            var partlen = (int)SizeOf<T>.BitSize;
-            var v1 = Random.Vec128<T>();
-            var bs = v1.ToBitString().Format(blockWidth:partlen, blocksep:' ');
-            var parts = bs.Split(' ');
-
-            parts.ForEach(part => Claim.eq(partlen, part.Length));
-            
-            for(var i = 0; i < parts.Length; i++)
-            {
-                var part = BitString.Parse(parts[i]);
-                var x = part.TakePrimalValue<T>();
-                var y = v1[i];
-                Claim.eq(x,y);
-            }
-                
-            TypeCaseEnd<T>();                
-
-        }
-
 
         void BitStringToValue<T>()
             where T : struct
@@ -50,14 +26,14 @@ namespace Z0.Test
                 var x = src[i];
                 var bs = BitString.FromScalar(src[i]);
                 var y = bs.TakePrimalValue<T>();
-                Claim.eq(x,y);                
+                Claim.eq(x,y);
+                Claim.eq(bs.Format(), BitString.FromScalar(y).Format());
             }
 
             TypeCaseEnd<T>();                
-
         }
 
-        public void VerifyPow2Bitstrings()
+        public void VerifyPow2()
         {
             for(var i=0; i<=231; i++)
             {
@@ -81,16 +57,26 @@ namespace Z0.Test
 
         }
 
-        public void BitStringToValueU32()
+        public void VerifyU32Conversion()
         {
             var x0 = 0b_01011000_00001000_11111010_01100101u;
             var x1 = x0.ToBitString();
             var x2 = x1.TakePrimalValue<uint>();
             Claim.eq(x0,x2);            
 
+            var x = 0b10100001100101010001u;
+            var bsSrc = "0000010100001100101010001";
+            var bs1 = BitString.Parse(bsSrc);
+            Claim.eq((int)bs1.Length, bsSrc.Length);
+
+            var bs2 = BitString.FromScalar(x);
+            var y = bs1.TakePrimalValue<uint>();
+            Claim.eq(x,y);
+            Claim.yea(bs1.Eq(bs2));
+
         }
 
-        public void BitStringToValueU8()
+        public void VerifyU8Conversion()
         {
             var x = (byte)0b10110110;
             var y = x.ToBitString();
@@ -104,7 +90,7 @@ namespace Z0.Test
             Claim.eq(x, z[0]);
         }
 
-        public void BitStringToValue()
+        public void VerifyRepresentations()
         {
             BitStringToValue<byte>();
             BitStringToValue<ushort>();
@@ -113,16 +99,33 @@ namespace Z0.Test
 
         }
 
-        void TestBsTypes()
+        public void VerifyNlz()
         {
-            TestBsType<byte>();
-            TestBsType<ushort>();
-            TestBsType<uint>();
-            TestBsType<ulong>();
+            var src = Random.BitStrings(5, 60).Take(Pow2.T14);
+            foreach(var bs in src)
+            {
+                var bvX = bs.TakePrimalValue<ulong>().ToBitString();
+                var nlzX = bvX.PopCount();
+                var bv = BitVector64.Define(bs.ToBits());
+                var nlzY = bv.PopCount();
+                Claim.eq(nlzX, nlzY);
+            }
+
         }
 
-
         public void TestBsEquality()
+        {
+            var srcA = Random.Stream<uint>().Take(Pow2.T14);
+            var srcB = Random.Stream<uint>().Take(Pow2.T14);
+            var pairs = srcA.Zip(srcB);
+
+            foreach(var aVal in srcA)
+                Claim.eq(aVal.ToBitString(), aVal.ToBitString());
+            
+            foreach(var pair in pairs)
+                Claim.neq(pair.First.ToBitString(), pair.Second.ToBitString());
+        }
+        public void TestBsParse()
         {
             var bs1Source = "0000010100001100101010001";
             var bs2Source = BitString.Parse(bs1Source).Format();
@@ -135,20 +138,6 @@ namespace Z0.Test
             var bs1 = BitString.Parse(bs1Source);
             var bs2 = BitString.Parse(bs2Source);
             Claim.yea(bs1.Eq(bs2));
-
-        }
-
-        public void TestBsVariations()
-        {
-            var x = 0b10100001100101010001u;
-            var bsSrc = "0000010100001100101010001";
-            var bs1 = BitString.Parse(bsSrc);
-            Claim.eq((int)bs1.Length, bsSrc.Length);
-
-            var bs2 = BitString.FromScalar(0b10100001100101010001u);
-            var y = bs1.TakePrimalValue<uint>();
-            Claim.eq(x,y);
-            Claim.yea(bs1.Eq(bs2));
         }
 
         public void BitViewBitString()
@@ -160,7 +149,7 @@ namespace Z0.Test
             Claim.eq(ys,xs);
         }
 
-        public void GenerateWords()
+        public void VerifyWordGen()
         {            
             var wordLen = 8;
             var wordCount = (int)Pow2.pow(wordLen);
@@ -175,7 +164,7 @@ namespace Z0.Test
                 var value = w.TakePrimalValue<byte>();
                 Claim.eq(i, value);
             }
-        }
+        }    
 
         public void TestBlockage()
         {

@@ -41,16 +41,28 @@ namespace Z0
             desc.Append(AsciSym.Semicolon);
             desc.Append(AsciSym.Semicolon);
             desc.Append(AsciSym.Space);
-            foreach(var block in src.AsmBody.NativeBlocks)
-            {
-                foreach(var b in block.Data)
-                {
-                    desc.Append(b.ToHexString(true, false));
-                    desc.Append(AsciSym.Space);
-                }
+            desc.Append(AsciSym.LBrace);
 
-                    
+            var blocks = src.AsmBody.NativeBlocks;
+            var blockcount = blocks.Length;
+            for(var i=0; i<blockcount; i++)
+            {
+                var block = blocks[i];
+                var blockParts = block.Data;
+                var blocklen = blockParts.Length;
+                for(var j=0; j< blocklen; j++)
+                {
+                    var part = blockParts[j];
+                    desc.Append(part.ToHexString(true, true));
+                    if(j != blocklen - 1)
+                    {
+                        desc.Append(AsciSym.Comma);
+                        desc.Append(AsciSym.Space);
+                    }
+                }
             }
+            
+            desc.Append(AsciSym.RBrace);
             desc.AppendLine();                
             return desc.ToString();
 

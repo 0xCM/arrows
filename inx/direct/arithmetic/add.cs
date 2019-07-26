@@ -21,14 +21,13 @@ namespace Z0
 
     public static partial class dinx
     {
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static void add(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
             => store(AddScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void add(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
             => store(AddScalar(lhs, rhs), ref dst);
-
 
         [MethodImpl(Inline)]
         public static Num128<float> add(in Num128<float> lhs, in Num128<float> rhs)

@@ -55,7 +55,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi8(sbyte x)
-            => Vec256.define(x);
+            => Vec256.fill(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -64,7 +64,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi8(byte x)
-            => Vec256.define(x);
+            => Vec256.fill(x);
 
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi64x(ulong x)
-            => Vec256.define(x);
+            => Vec256.fill(x);
 
         [MethodImpl(Inline)]
         public static unsafe __m256i _mm256_setr_epi8(

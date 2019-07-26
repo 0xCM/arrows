@@ -150,6 +150,14 @@ namespace Z0
         public static explicit operator ulong(in UInt128 src)
             => src.lo;
 
+        public string Format()
+        {
+            if(hi != 0)
+                return $"{hi.ToHexString(false,true)}{lo.ToHexString(true,false)}";
+            else
+                return lo.ToHexString(false,true);
+        }
+
         [MethodImpl(Inline)]
         public UInt128(ulong lo, ulong hi)
         {

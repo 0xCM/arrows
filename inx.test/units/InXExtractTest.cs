@@ -20,7 +20,7 @@ namespace Z0.Test
             var len = Vec128<T>.Length;
             var src = Random.Vec128<T>();
             var expect = span<T>(len);
-            src.StoreTo(expect);
+            src.ToSpan(expect);
             for(byte i = 0; i< len; i++)
                 Claim.eq(expect[i], ginx.component(in src, i));
 
@@ -35,15 +35,15 @@ namespace Z0.Test
             var len = Vec256<T>.Length;
             var half = len >> 1;
             var src = Random.Vec256<T>();
-            var srcData = src.StoreTo(span<T>(len));
+            var srcData = src.ToSpan(span<T>(len));
             
             var x0 = ginx.lo(in src);
-            var y0 = x0.StoreTo(span<T>(half));
+            var y0 = x0.ToSpan(span<T>(half));
             var z0 = srcData.Slice(0, half);
             Claim.eq(y0,z0);
 
             var x1 = ginx.hi(in src);
-            var y1 = x1.StoreTo(span<T>(half));
+            var y1 = x1.ToSpan(span<T>(half));
             var z1 = srcData.Slice(half);
             Claim.eq(y1,z1);
 

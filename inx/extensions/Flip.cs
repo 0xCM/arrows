@@ -11,17 +11,16 @@ namespace Z0
     
     using static zfunc;    
 
-    public static partial class InXtend
+
+    partial class ginxs
     {
-
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<T> Gt<T>(in this Vec128<T> lhs, in Vec128<T> rhs )
+        public static Vec128<T> Flip<T>(in this Vec128<T> src)
             where T : struct
-                => ginx.gt(lhs,rhs);
+                => ginx.flip(in src);
 
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<T> Gt<T>(in this Vec256<T> lhs, in Vec256<T> rhs )
+        public static Vec256<T> Flip<T>(in this Vec256<T> src)
             where T : struct
-                => ginx.gt(lhs,rhs);
+                => ginx.flip(in src);
+
     }
 }

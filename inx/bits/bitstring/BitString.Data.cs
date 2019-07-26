@@ -110,16 +110,42 @@ namespace Z0
         }
 
         /// <summary>
+        /// Counts the number of leading zero bits
+        /// </summary>
+        public int Nlz()
+        {
+            var lastix = bitseq.Length - 1;
+            var count = 0;
+            for(var i=lastix; i>= 0; i--)
+            {
+                if(bitseq[i] != 0)
+                    break;
+                else
+                    count++;                
+            }
+            return count;
+        }
+
+        /// <summary>
         /// Determines whether the value that another <see cref='BitString'/> represents is 
         /// equivalent to the value that this bitstring represents
         /// </summary>
         /// <param name="other">The bitstring with which the comparison will be made</param>
         [MethodImpl(Inline)]
         public bool Eq(BitString other)
-        {                        
-            var x = Format(true);
-            var y = Format(true);
-            return x == y;
+        {                                                            
+            var xNlz = this.Nlz();
+            var yNlz = other.Nlz();
+            var xLastIx = bitseq.Length - 1 - xNlz;
+            var yLastIx = other.bitseq.Length - 1 - yNlz;
+            if(xLastIx != yLastIx)
+                return false;
+            
+            for(var i=xLastIx; i >=0; i--)
+                if(bitseq[i] != other.bitseq[i])
+                    return false;
+           
+            return true;
         }
                   
         public BitString Zero 
@@ -134,20 +160,24 @@ namespace Z0
             return count;
         }
         
-        public ReadOnlySpan<char> ToBitChars()
-        {
-            Span<char> dst = new char[bitseq.Length];
-            for(var i=0; i<dst.Length; i++)
-                dst[i] =  bitseq[i] == 0 ? '0' : '1';
-            return dst;
-        }
 
         public ReadOnlySpan<BinaryDigit> ToDigits()
         {
-            Span<BinaryDigit> digits = new BinaryDigit[bitseq.Length];
+            Span<BinaryDigit> dst = new BinaryDigit[bitseq.Length];
             for(var i=0; i< bitseq.Length; i++)
-                digits[i] = (BinaryDigit)bitseq[i];
-            return digits;
+                dst[i] = (BinaryDigit)bitseq[i];
+            return dst;
+        }
+
+        /// <summary>
+        /// Renders the content as a span of bits
+        /// </summary>
+        public ReadOnlySpan<Bit> ToBits()
+        {
+            Span<Bit> dst = new Bit[bitseq.Length];
+            for(var i=0; i< bitseq.Length; i++)
+                dst[i] = bitseq[i] == 1;
+            return dst;
         }
 
         public ReadOnlySpan<byte> ToBitSeq()

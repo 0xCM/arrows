@@ -53,8 +53,7 @@ namespace Z0
         public static Span<N,T> Values<N,T>(N n = default)
             where N : ITypeNat, new()
             where T : struct        
-                => Values<T>((int)n.value);    
-
+                => Values<T>((int)n.value);
 
         /// <summary>
         /// Produces a single entropic value of primal type

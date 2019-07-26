@@ -13,7 +13,6 @@ namespace Z0
 
     public static class BitVector
     {   
-
         /// <summary>
         /// Creates a generic bitvector of natural length
         /// </summary>
@@ -25,6 +24,11 @@ namespace Z0
             where T : struct
                 => new BitVector<N,T>(src);
 
+        /// <summary>
+        /// Creates a generic bitvector over an arbitrary number of elements
+        /// </summary>
+        /// <param name="src">The source values</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static BitVector<T> Define<T>(params T[] src)
             where T : struct
                 => BitVector<T>.Define(src);

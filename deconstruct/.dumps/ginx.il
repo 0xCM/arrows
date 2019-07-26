@@ -1,4 +1,6404 @@
-// 2019-07-20 02:42:58:640
+// 2019-07-24 20:36:14:568
+Vec128<byte> or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<ushort> or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<uint> or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<ulong> or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<sbyte> or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<short> or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<int> or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<long> or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<float> or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec128<double> or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec128`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec128`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec128`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec128`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec128`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec128`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec128`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec128`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec128`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec128`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 43
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<byte> or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<ushort> or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<uint> or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<ulong> or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<sbyte> or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<short> or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<int> or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<long> or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<float> or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+Vec256<double> or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_003A
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_002C: stloc.0
+    IL_002D: ldloca.s V_0
+    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
+    IL_0034: ldobj Z0.Vec256`1<T>
+    IL_0039: ret
+    IL_003A: ldtoken T
+    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0044: ldtoken System.Byte
+    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0053: brfalse.s IL_0074
+    IL_0055: ldarg.0
+    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005B: ldarg.1
+    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0066: stloc.1
+    IL_0067: ldloca.s V_1
+    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
+    IL_006E: ldobj Z0.Vec256`1<T>
+    IL_0073: ret
+    IL_0074: ldtoken T
+    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007E: ldtoken System.Int16
+    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_008D: brfalse.s IL_00AE
+    IL_008F: ldarg.0
+    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0095: ldarg.1
+    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_00A0: stloc.2
+    IL_00A1: ldloca.s V_2
+    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
+    IL_00A8: ldobj Z0.Vec256`1<T>
+    IL_00AD: ret
+    IL_00AE: ldtoken T
+    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00B8: ldtoken System.UInt16
+    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00C7: brfalse.s IL_00E8
+    IL_00C9: ldarg.0
+    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00CF: ldarg.1
+    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_00DA: stloc.3
+    IL_00DB: ldloca.s V_3
+    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
+    IL_00E2: ldobj Z0.Vec256`1<T>
+    IL_00E7: ret
+    IL_00E8: ldtoken T
+    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00F2: ldtoken System.Int32
+    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0101: brfalse.s IL_0123
+    IL_0103: ldarg.0
+    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_0109: ldarg.1
+    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0114: stloc.s V_4
+    IL_0116: ldloca.s V_4
+    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
+    IL_011D: ldobj Z0.Vec256`1<T>
+    IL_0122: ret
+    IL_0123: ldtoken T
+    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_012D: ldtoken System.UInt32
+    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_013C: brfalse.s IL_015E
+    IL_013E: ldarg.0
+    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0144: ldarg.1
+    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_014F: stloc.s V_5
+    IL_0151: ldloca.s V_5
+    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
+    IL_0158: ldobj Z0.Vec256`1<T>
+    IL_015D: ret
+    IL_015E: ldtoken T
+    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0168: ldtoken System.Int64
+    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0177: brfalse.s IL_0199
+    IL_0179: ldarg.0
+    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_017F: ldarg.1
+    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_018A: stloc.s V_6
+    IL_018C: ldloca.s V_6
+    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
+    IL_0193: ldobj Z0.Vec256`1<T>
+    IL_0198: ret
+    IL_0199: ldtoken T
+    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A3: ldtoken System.UInt64
+    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B2: brfalse.s IL_01D4
+    IL_01B4: ldarg.0
+    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01BA: ldarg.1
+    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_01C5: stloc.s V_7
+    IL_01C7: ldloca.s V_7
+    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
+    IL_01CE: ldobj Z0.Vec256`1<T>
+    IL_01D3: ret
+    IL_01D4: ldtoken T
+    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DE: ldtoken System.Single
+    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01ED: brfalse.s IL_020F
+    IL_01EF: ldarg.0
+    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01F5: ldarg.1
+    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
+    IL_0200: stloc.s V_8
+    IL_0202: ldloca.s V_8
+    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
+    IL_0209: ldobj Z0.Vec256`1<T>
+    IL_020E: ret
+    IL_020F: ldtoken T
+    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0219: ldtoken System.Double
+    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0228: brfalse.s IL_024A
+    IL_022A: ldarg.0
+    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0230: ldarg.1
+    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_023B: stloc.s V_9
+    IL_023D: ldloca.s V_9
+    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
+    IL_0244: ldobj Z0.Vec256`1<T>
+    IL_0249: ret
+    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0254: ldc.i4.s 71
+    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0260: throw
+
+}
+void or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4.s 100
+    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0214: throw
+
+}
+void or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
+void or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+{
+    IL_0000: ldtoken T
+    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_000A: ldtoken System.SByte
+    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0019: brfalse.s IL_0033
+    IL_001B: ldarg.0
+    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0021: ldarg.1
+    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
+    IL_0027: ldarg.2
+    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
+    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0032: ret
+    IL_0033: ldtoken T
+    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_003D: ldtoken System.Byte
+    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_004C: brfalse.s IL_0066
+    IL_004E: ldarg.0
+    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_0054: ldarg.1
+    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
+    IL_005A: ldarg.2
+    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
+    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0065: ret
+    IL_0066: ldtoken T
+    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0070: ldtoken System.Int16
+    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_007F: brfalse.s IL_0099
+    IL_0081: ldarg.0
+    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_0087: ldarg.1
+    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
+    IL_008D: ldarg.2
+    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
+    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0098: ret
+    IL_0099: ldtoken T
+    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00A3: ldtoken System.UInt16
+    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00B2: brfalse.s IL_00CC
+    IL_00B4: ldarg.0
+    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00BA: ldarg.1
+    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
+    IL_00C0: ldarg.2
+    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
+    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_00CB: ret
+    IL_00CC: ldtoken T
+    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00D6: ldtoken System.Int32
+    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_00E5: brfalse.s IL_00FF
+    IL_00E7: ldarg.0
+    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00ED: ldarg.1
+    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
+    IL_00F3: ldarg.2
+    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
+    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_00FE: ret
+    IL_00FF: ldtoken T
+    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0109: ldtoken System.UInt32
+    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_0118: brfalse.s IL_0132
+    IL_011A: ldarg.0
+    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0120: ldarg.1
+    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
+    IL_0126: ldarg.2
+    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
+    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0131: ret
+    IL_0132: ldtoken T
+    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_013C: ldtoken System.Int64
+    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_014B: brfalse.s IL_0165
+    IL_014D: ldarg.0
+    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0153: ldarg.1
+    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
+    IL_0159: ldarg.2
+    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
+    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0164: ret
+    IL_0165: ldtoken T
+    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_016F: ldtoken System.UInt64
+    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_017E: brfalse.s IL_0198
+    IL_0180: ldarg.0
+    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_0186: ldarg.1
+    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
+    IL_018C: ldarg.2
+    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
+    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0197: ret
+    IL_0198: ldtoken T
+    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01A2: ldtoken System.Single
+    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01B1: brfalse.s IL_01CB
+    IL_01B3: ldarg.0
+    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01B9: ldarg.1
+    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
+    IL_01BF: ldarg.2
+    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
+    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
+    IL_01CA: ret
+    IL_01CB: ldtoken T
+    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01D5: ldtoken System.Double
+    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
+    IL_01E4: brfalse.s IL_01FE
+    IL_01E6: ldarg.0
+    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01EC: ldarg.1
+    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
+    IL_01F2: ldarg.2
+    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
+    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
+    IL_01FD: ret
+    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
+    IL_0208: ldc.i4 128
+    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0217: throw
+
+}
 Vec128<byte> xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
 {
     IL_0000: ldtoken T
@@ -26534,6406 +32934,6 @@ void and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Doubl
     IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\and.cs"
     IL_0208: ldc.i4 153
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-Vec128<byte> or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<ushort> or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<uint> or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<ulong> or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<sbyte> or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<short> or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<int> or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<long> or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<float> or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec128<double> or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: call Z0.Vec128`1<System.SByte> Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec128`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0061: call Z0.Vec128`1<System.Byte> Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec128`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_009B: call Z0.Vec128`1<System.Int16> Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec128`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00D5: call Z0.Vec128`1<System.UInt16> Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec128`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_010F: call Z0.Vec128`1<System.Int32> Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec128`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_014A: call Z0.Vec128`1<System.UInt32> Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec128`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0185: call Z0.Vec128`1<System.Int64> Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec128`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_01C0: call Z0.Vec128`1<System.UInt64> Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec128`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01FB: call Z0.Vec128`1<System.Single> Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec128`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_0236: call Z0.Vec128`1<System.Double> Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec128`1<T>& Z0.AsInX::generic<T>(Z0.Vec128`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec128`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 43
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<byte> or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<ushort> or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<uint> or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<ulong> or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<sbyte> or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<short> or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<int> or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<long> or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<float> or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-Vec256<double> or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_003A
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: call Z0.Vec256`1<System.SByte> Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_002C: stloc.0
-    IL_002D: ldloca.s V_0
-    IL_002F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.SByte>&)
-    IL_0034: ldobj Z0.Vec256`1<T>
-    IL_0039: ret
-    IL_003A: ldtoken T
-    IL_003F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0044: ldtoken System.Byte
-    IL_0049: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_004E: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0053: brfalse.s IL_0074
-    IL_0055: ldarg.0
-    IL_0056: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005B: ldarg.1
-    IL_005C: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0061: call Z0.Vec256`1<System.Byte> Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_0066: stloc.1
-    IL_0067: ldloca.s V_1
-    IL_0069: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Byte>&)
-    IL_006E: ldobj Z0.Vec256`1<T>
-    IL_0073: ret
-    IL_0074: ldtoken T
-    IL_0079: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007E: ldtoken System.Int16
-    IL_0083: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0088: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_008D: brfalse.s IL_00AE
-    IL_008F: ldarg.0
-    IL_0090: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0095: ldarg.1
-    IL_0096: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_009B: call Z0.Vec256`1<System.Int16> Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_00A0: stloc.2
-    IL_00A1: ldloca.s V_2
-    IL_00A3: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int16>&)
-    IL_00A8: ldobj Z0.Vec256`1<T>
-    IL_00AD: ret
-    IL_00AE: ldtoken T
-    IL_00B3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00B8: ldtoken System.UInt16
-    IL_00BD: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00C2: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00C7: brfalse.s IL_00E8
-    IL_00C9: ldarg.0
-    IL_00CA: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00CF: ldarg.1
-    IL_00D0: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00D5: call Z0.Vec256`1<System.UInt16> Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
-    IL_00DA: stloc.3
-    IL_00DB: ldloca.s V_3
-    IL_00DD: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt16>&)
-    IL_00E2: ldobj Z0.Vec256`1<T>
-    IL_00E7: ret
-    IL_00E8: ldtoken T
-    IL_00ED: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00F2: ldtoken System.Int32
-    IL_00F7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00FC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0101: brfalse.s IL_0123
-    IL_0103: ldarg.0
-    IL_0104: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_0109: ldarg.1
-    IL_010A: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_010F: call Z0.Vec256`1<System.Int32> Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0114: stloc.s V_4
-    IL_0116: ldloca.s V_4
-    IL_0118: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int32>&)
-    IL_011D: ldobj Z0.Vec256`1<T>
-    IL_0122: ret
-    IL_0123: ldtoken T
-    IL_0128: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_012D: ldtoken System.UInt32
-    IL_0132: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0137: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_013C: brfalse.s IL_015E
-    IL_013E: ldarg.0
-    IL_013F: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0144: ldarg.1
-    IL_0145: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_014A: call Z0.Vec256`1<System.UInt32> Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_014F: stloc.s V_5
-    IL_0151: ldloca.s V_5
-    IL_0153: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt32>&)
-    IL_0158: ldobj Z0.Vec256`1<T>
-    IL_015D: ret
-    IL_015E: ldtoken T
-    IL_0163: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0168: ldtoken System.Int64
-    IL_016D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0172: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0177: brfalse.s IL_0199
-    IL_0179: ldarg.0
-    IL_017A: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_017F: ldarg.1
-    IL_0180: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0185: call Z0.Vec256`1<System.Int64> Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
-    IL_018A: stloc.s V_6
-    IL_018C: ldloca.s V_6
-    IL_018E: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Int64>&)
-    IL_0193: ldobj Z0.Vec256`1<T>
-    IL_0198: ret
-    IL_0199: ldtoken T
-    IL_019E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A3: ldtoken System.UInt64
-    IL_01A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B2: brfalse.s IL_01D4
-    IL_01B4: ldarg.0
-    IL_01B5: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01BA: ldarg.1
-    IL_01BB: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_01C0: call Z0.Vec256`1<System.UInt64> Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_01C5: stloc.s V_7
-    IL_01C7: ldloca.s V_7
-    IL_01C9: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.UInt64>&)
-    IL_01CE: ldobj Z0.Vec256`1<T>
-    IL_01D3: ret
-    IL_01D4: ldtoken T
-    IL_01D9: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DE: ldtoken System.Single
-    IL_01E3: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01E8: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01ED: brfalse.s IL_020F
-    IL_01EF: ldarg.0
-    IL_01F0: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01F5: ldarg.1
-    IL_01F6: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01FB: call Z0.Vec256`1<System.Single> Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0200: stloc.s V_8
-    IL_0202: ldloca.s V_8
-    IL_0204: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Single>&)
-    IL_0209: ldobj Z0.Vec256`1<T>
-    IL_020E: ret
-    IL_020F: ldtoken T
-    IL_0214: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0219: ldtoken System.Double
-    IL_021E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0223: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0228: brfalse.s IL_024A
-    IL_022A: ldarg.0
-    IL_022B: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0230: ldarg.1
-    IL_0231: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_0236: call Z0.Vec256`1<System.Double> Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_023B: stloc.s V_9
-    IL_023D: ldloca.s V_9
-    IL_023F: call Z0.Vec256`1<T>& Z0.AsInX::generic<T>(Z0.Vec256`1<System.Double>&)
-    IL_0244: ldobj Z0.Vec256`1<T>
-    IL_0249: ret
-    IL_024A: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_024F: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0254: ldc.i4.s 71
-    IL_0256: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_025B: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0260: throw
-
-}
-void or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec128`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec128`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec128`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec128`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec128`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec128`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec128`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec128`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec128`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec128`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec128`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec128`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec128`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec128`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec128`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec128`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec128`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec128`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec128`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec128`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4.s 100
-    IL_020A: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_020F: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0214: throw
-
-}
-void or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
-    IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0217: throw
-
-}
-void or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-{
-    IL_0000: ldtoken T
-    IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_000A: ldtoken System.SByte
-    IL_000F: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0014: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0019: brfalse.s IL_0033
-    IL_001B: ldarg.0
-    IL_001C: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0021: ldarg.1
-    IL_0022: call Z0.Vec256`1<System.SByte>& Z0.AsInX::int8<T>(Z0.Vec256`1<T>&)
-    IL_0027: ldarg.2
-    IL_0028: call System.SByte& Z0.As::int8<T>(T&)
-    IL_002D: call System.Void Z0.dinx::or(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.SByte&)
-    IL_0032: ret
-    IL_0033: ldtoken T
-    IL_0038: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_003D: ldtoken System.Byte
-    IL_0042: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0047: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_004C: brfalse.s IL_0066
-    IL_004E: ldarg.0
-    IL_004F: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_0054: ldarg.1
-    IL_0055: call Z0.Vec256`1<System.Byte>& Z0.AsInX::uint8<T>(Z0.Vec256`1<T>&)
-    IL_005A: ldarg.2
-    IL_005B: call System.Byte& Z0.As::uint8<T>(T&)
-    IL_0060: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte&)
-    IL_0065: ret
-    IL_0066: ldtoken T
-    IL_006B: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0070: ldtoken System.Int16
-    IL_0075: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_007A: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_007F: brfalse.s IL_0099
-    IL_0081: ldarg.0
-    IL_0082: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_0087: ldarg.1
-    IL_0088: call Z0.Vec256`1<System.Int16>& Z0.AsInX::int16<T>(Z0.Vec256`1<T>&)
-    IL_008D: ldarg.2
-    IL_008E: call System.Int16& Z0.As::int16<T>(T&)
-    IL_0093: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0098: ret
-    IL_0099: ldtoken T
-    IL_009E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00A3: ldtoken System.UInt16
-    IL_00A8: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00AD: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00B2: brfalse.s IL_00CC
-    IL_00B4: ldarg.0
-    IL_00B5: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00BA: ldarg.1
-    IL_00BB: call Z0.Vec256`1<System.UInt16>& Z0.AsInX::uint16<T>(Z0.Vec256`1<T>&)
-    IL_00C0: ldarg.2
-    IL_00C1: call System.UInt16& Z0.As::uint16<T>(T&)
-    IL_00C6: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_00CB: ret
-    IL_00CC: ldtoken T
-    IL_00D1: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00D6: ldtoken System.Int32
-    IL_00DB: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_00E0: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_00E5: brfalse.s IL_00FF
-    IL_00E7: ldarg.0
-    IL_00E8: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00ED: ldarg.1
-    IL_00EE: call Z0.Vec256`1<System.Int32>& Z0.AsInX::int32<T>(Z0.Vec256`1<T>&)
-    IL_00F3: ldarg.2
-    IL_00F4: call System.Int32& Z0.As::int32<T>(T&)
-    IL_00F9: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_00FE: ret
-    IL_00FF: ldtoken T
-    IL_0104: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0109: ldtoken System.UInt32
-    IL_010E: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0113: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_0118: brfalse.s IL_0132
-    IL_011A: ldarg.0
-    IL_011B: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0120: ldarg.1
-    IL_0121: call Z0.Vec256`1<System.UInt32>& Z0.AsInX::uint32<T>(Z0.Vec256`1<T>&)
-    IL_0126: ldarg.2
-    IL_0127: call System.UInt32& Z0.As::uint32<T>(T&)
-    IL_012C: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_0131: ret
-    IL_0132: ldtoken T
-    IL_0137: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_013C: ldtoken System.Int64
-    IL_0141: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0146: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_014B: brfalse.s IL_0165
-    IL_014D: ldarg.0
-    IL_014E: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0153: ldarg.1
-    IL_0154: call Z0.Vec256`1<System.Int64>& Z0.AsInX::int64<T>(Z0.Vec256`1<T>&)
-    IL_0159: ldarg.2
-    IL_015A: call System.Int64& Z0.As::int64<T>(T&)
-    IL_015F: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_0164: ret
-    IL_0165: ldtoken T
-    IL_016A: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_016F: ldtoken System.UInt64
-    IL_0174: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_0179: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_017E: brfalse.s IL_0198
-    IL_0180: ldarg.0
-    IL_0181: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_0186: ldarg.1
-    IL_0187: call Z0.Vec256`1<System.UInt64>& Z0.AsInX::uint64<T>(Z0.Vec256`1<T>&)
-    IL_018C: ldarg.2
-    IL_018D: call System.UInt64& Z0.As::uint64<T>(T&)
-    IL_0192: call System.Void Z0.dinx::or(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_0197: ret
-    IL_0198: ldtoken T
-    IL_019D: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01A2: ldtoken System.Single
-    IL_01A7: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01AC: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01B1: brfalse.s IL_01CB
-    IL_01B3: ldarg.0
-    IL_01B4: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01B9: ldarg.1
-    IL_01BA: call Z0.Vec256`1<System.Single>& Z0.AsInX::float32<T>(Z0.Vec256`1<T>&)
-    IL_01BF: ldarg.2
-    IL_01C0: call System.Single& Z0.As::float32<T>(T&)
-    IL_01C5: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_01CA: ret
-    IL_01CB: ldtoken T
-    IL_01D0: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01D5: ldtoken System.Double
-    IL_01DA: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
-    IL_01DF: call System.Boolean System.Type::op_Equality(System.Type,System.Type)
-    IL_01E4: brfalse.s IL_01FE
-    IL_01E6: ldarg.0
-    IL_01E7: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01EC: ldarg.1
-    IL_01ED: call Z0.Vec256`1<System.Double>& Z0.AsInX::float64<T>(Z0.Vec256`1<T>&)
-    IL_01F2: ldarg.2
-    IL_01F3: call System.Double& Z0.As::float64<T>(T&)
-    IL_01F8: call System.Void Z0.dinx::or(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_01FD: ret
-    IL_01FE: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0203: ldstr "J:\\dev\\projects\\z0\\inx\\generic\\bitwise\\or.cs"
-    IL_0208: ldc.i4 128
     IL_020D: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0212: call Z0.AppException zfunc::unsupported<T>(System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0217: throw

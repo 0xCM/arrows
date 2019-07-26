@@ -99,8 +99,5 @@ namespace Z0
             bitchars(hi).CopyTo(dst,midpoint);
             return dst;            
         }
-
-
     }
-
 }

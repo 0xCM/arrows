@@ -26,20 +26,43 @@ namespace Z0
                 => ref Vec128<T>.Zero;
 
         /// <summary>
-        /// Produces a vector a vector that has all bits set to 1
+        /// Creates a new vector where all components have been assigned the same value
         /// </summary>
-        /// <typeparam name="T">The component primitive type</typeparam>
-        [MethodImpl(Inline)]
-         public static ref readonly Vec128<T> ones<T>()
+        /// <param name="src">The fill value</param>
+         [MethodImpl(Inline)]
+         public static Vec128<T> fill<T>(T value)
             where T : struct
-                => ref Vec128Const<T>.Ones;
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Vec128.fill(int8(value)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Vec128.fill(uint8(value)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Vec128.fill(int16(value)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Vec128.fill(uint16(value)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Vec128.fill(int32(value)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Vec128.fill(uint32(value)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Vec128.fill(int64(value)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Vec128.fill(uint64(value)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(Vec128.fill(float32(value)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(Vec128.fill(float64(value)));
+            else
+                throw unsupported<T>();
+        }
 
         /// <summary>
         /// Produces a vector with each component assigned unit value
         /// </summary>
         /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
-         public static ref readonly Vec128<T> one<T>()
+         public static ref readonly Vec128<T> ones<T>()
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -253,25 +276,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(define(int8(src)));
+                return generic<T>(fill(int8(src)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(define(uint8(src)));
+                return generic<T>(fill(uint8(src)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(define(int16(src)));
+                return generic<T>(fill(int16(src)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(define(uint16(src)));
+                return generic<T>(fill(uint16(src)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(define(int32(src)));
+                return generic<T>(fill(int32(src)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(define(uint32(src)));
+                return generic<T>(fill(uint32(src)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(define(int64(src)));
+                return generic<T>(fill(int64(src)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(define(uint64(src)));
+                return generic<T>(fill(uint64(src)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(define(float32(src)));
+                return generic<T>(fill(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(define(float64(src)));
+                return generic<T>(fill(float64(src)));
             else 
                 throw unsupported<T>();
         }
@@ -280,92 +303,149 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
-            =>  load<T>(src, offset, out Vec128<T> dst);    
-
+                =>  load<T>(src, offset, out Vec128<T> dst);    
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<sbyte> load(ref sbyte src)
+        static unsafe Vec128<sbyte> load(ref sbyte src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<byte> load(ref byte src)
+        static unsafe Vec128<byte> load(ref byte src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<short> load(ref short src)
+        static unsafe Vec128<short> load(ref short src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ushort> load(ref ushort src)
+        static unsafe Vec128<ushort> load(ref ushort src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<int> load(ref int src)
+        static unsafe Vec128<int> load(ref int src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<uint> load(ref uint src)
+        static unsafe Vec128<uint> load(ref uint src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<long> load(ref long src)
+        static unsafe Vec128<long> load(ref long src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ulong> load(ref ulong src)
+        static unsafe Vec128<ulong> load(ref ulong src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<float> load(ref float src)
+        static unsafe Vec128<float> load(ref float src)
             => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<double> load(ref double src)
+        static unsafe Vec128<double> load(ref double src)
             => LoadVector128(refptr(ref src)); 
  
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<byte> define(byte x0)
-            => Vector128.Create(x0);
+        static Vec128<byte> fill(byte src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> define(sbyte x0)
-            => Vector128.Create(x0);
+        static Vec128<sbyte> fill(sbyte src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> define(short x0)
-            => Vector128.Create(x0);
+        static Vec128<short> fill(short src)
+            => Vector128.Create(src);
         
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> define(ushort x0)
-            => Vector128.Create(x0);
+        static Vec128<ushort> fill(ushort src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> define(int x0)
-            => Vector128.Create(x0);
+        static Vec128<int> fill(int src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> define(uint x0)
-            => Vector128.Create(x0);
+        static Vec128<uint> fill(uint src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> define(long x0)
-            => Vector128.Create(x0);
+        static Vec128<long> fill(long src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> define(ulong x0)
-            => Vector128.Create(x0);
+        static Vec128<ulong> fill(ulong src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> define(float x0)
-            => Vector128.Create(x0);
+        static Vec128<float> fill(float src)
+            => Vector128.Create(src);
 
+        /// <summary>
+        /// Creates a new vector where all components have been assigned the same value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> define(double x0)
-            => Vector128.Create(x0);
+        static Vec128<double> fill(double src)
+            => Vector128.Create(src);
 
-
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        /// <param name="x8">The component at index 8</param>
+        /// <param name="x9">The component at index 9</param>
+        /// <param name="x10">The component at index 10</param>
+        /// <param name="x11">The component at index 11</param>
+        /// <param name="x12">The component at index 12</param>
+        /// <param name="x13">The component at index 13</param>
+        /// <param name="x14">The component at index 14</param>
+        /// <param name="x15">The component at index 15</param>
         [MethodImpl(Inline)]
-        public static Vec128<byte> define(
+        public static Vec128<byte> parts(
             byte x0, byte x1, byte x2, byte x3,  
             byte x4, byte x5, byte x6, byte x7, 
             byte x8, byte x9, byte x10, byte x11,
@@ -373,8 +453,27 @@ namespace Z0
                 =>  Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
                     x8, x9, x10, x11,x12, x13, x14, x15);
 
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        /// <param name="x8">The component at index 8</param>
+        /// <param name="x9">The component at index 9</param>
+        /// <param name="x10">The component at index 10</param>
+        /// <param name="x11">The component at index 11</param>
+        /// <param name="x12">The component at index 12</param>
+        /// <param name="x13">The component at index 13</param>
+        /// <param name="x14">The component at index 14</param>
+        /// <param name="x15">The component at index 15</param>
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> define(
+        public static Vec128<sbyte> parts(
                 sbyte x00, sbyte x01, sbyte x02, sbyte x03, 
                 sbyte x04, sbyte x05, sbyte x06, sbyte x07,
                 sbyte x08, sbyte x09, sbyte x10, sbyte x11,
@@ -383,61 +482,118 @@ namespace Z0
                         x00, x01, x02, x03, x04, x05, x06, x07, 
                         x08, x09, x10, x11,x12, x13, x14, x15);
 
-
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
         [MethodImpl(Inline)]
         public static Vec128<short> define(
-                short x0, short x1, short x2, short x3, 
-                short x4, short x5, short x6, short x7) 
-                    => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
+            short x0, short x1, short x2, short x3, 
+            short x4, short x5, short x6, short x7) 
+                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
         [MethodImpl(Inline)]
         public static Vec128<ushort> define(
-                ushort x0, ushort x1, ushort x2, ushort x3, 
-                ushort x4, ushort x5, ushort x6, ushort x7)
-                    => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
+            ushort x0, ushort x1, ushort x2, ushort x3, 
+            ushort x4, ushort x5, ushort x6, ushort x7)
+                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
         [MethodImpl(Inline)]
         public static Vec128<int> define(int x0, int x1, int x2, int x3)
             => Vector128.Create(x0,x1,x2,x3);
                 
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
         [MethodImpl(Inline)]
         public static Vec128<uint> define(uint x0, uint x1, uint x2, uint x3)
             => Vector128.Create(x0,x1,x2,x3);        
         
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
         [MethodImpl(Inline)]
         public static Vec128<long> define(long x0, long x1)
             => Vector128.Create(x0,x1);
 
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
         [MethodImpl(Inline)]
         public static Vec128<ulong> define(ulong x0, ulong x1)
             => Vector128.Create(x0,x1);
         
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
         [MethodImpl(Inline)]
         public static Vec128<float> define(float x0, float x1, float x2, float x3)
             => Vector128.Create(x0,x1,x2,x3);
     
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
         [MethodImpl(Inline)]
         public static Vec128<double> define(double x0, double x1)
             => Vector128.Create(x0,x1);
  
-        static readonly Vec128<byte> OneU8 = Vec128.define((byte)1);
+        static readonly Vec128<byte> OneU8 = Vec128.fill((byte)1);
 
-        static readonly Vec128<sbyte> OneI8 = Vec128.define((sbyte)1);
+        static readonly Vec128<sbyte> OneI8 = Vec128.fill((sbyte)1);
 
-        static readonly Vec128<short> OneI16 = Vec128.define((short)1);
+        static readonly Vec128<short> OneI16 = Vec128.fill((short)1);
 
-        static readonly Vec128<ushort> OneU16 = Vec128.define((ushort)1);
+        static readonly Vec128<ushort> OneU16 = Vec128.fill((ushort)1);
 
-        static readonly Vec128<int> OneI32 = Vec128.define(1);
+        static readonly Vec128<int> OneI32 = Vec128.fill(1);
 
-        static readonly Vec128<uint> OneU32 = Vec128.define(1u);
+        static readonly Vec128<uint> OneU32 = Vec128.fill(1u);
 
-        static readonly Vec128<long> OneI64 = Vec128.define(1L);
+        static readonly Vec128<long> OneI64 = Vec128.fill(1L);
 
-        static readonly Vec128<ulong> OneU64 = Vec128.define(1ul);
+        static readonly Vec128<ulong> OneU64 = Vec128.fill(1ul);
 
-        static readonly Vec128<float> OneF32 = Vec128.define(1f);
+        static readonly Vec128<float> OneF32 = Vec128.fill(1f);
 
-        static readonly Vec128<double> OneF64 = Vec128.define(1d);
+        static readonly Vec128<double> OneF64 = Vec128.fill(1d);
     }
 }

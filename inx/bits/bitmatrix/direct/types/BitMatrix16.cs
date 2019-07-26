@@ -108,6 +108,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector16 Row(int index)
             => bits[index];
+        
+        public BitVector16 Col(int index)
+        {
+            ushort col = 0;
+            for(var r = 0; r < N; r++)
+                if(Bits.test(in bits[r], index))
+                    Bits.enable(ref col, r);
+            return col;
+        }
 
         [MethodImpl(Inline)]
         public bool Eq(in BitMatrix16 rhs)

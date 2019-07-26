@@ -31,6 +31,10 @@ namespace Z0
                 return generic<T>(dinx.flip(in int32(in src)));
             else if(typeof(T) == typeof(uint))
                 return generic<T>(dinx.flip(in uint32(in src)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.flip(in int64(in src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.flip(in uint64(in src)));
             else 
                 throw unsupported<T>();
         }

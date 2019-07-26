@@ -9,7 +9,7 @@ namespace Z0
 
     using static zfunc;    
 
-    partial class InXtend
+    partial class ginxs
     {
         [MethodImpl(Inline)]
         public static Num128<T> ToScalar128<T>(this Vec128<T> src, int index)
@@ -17,7 +17,7 @@ namespace Z0
                 => Num128.define(src[index]);
 
         /// <summary>
-        /// Loads a single intrinsic vector from a blocked span
+        /// Loads a scalar vector from a blocked span
         /// </summary>
         /// <param name="src">The source span</param>
         /// <param name="block">The block index</param>

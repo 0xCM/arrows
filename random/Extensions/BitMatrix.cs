@@ -46,7 +46,6 @@ namespace Z0
             where T : struct
                 => random.BitMatrix<N,N,T>();
                 
-
     }
 
 }
