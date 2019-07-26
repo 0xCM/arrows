@@ -46,10 +46,18 @@ namespace Z0
         public static int log2(ulong src)
             => BitOperations.Log2(src);
 
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static float log2(float src)
             => MathF.Log2(src);
 
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static double log2(double src)
             => Math.Log2(src);

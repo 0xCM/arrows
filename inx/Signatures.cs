@@ -191,7 +191,7 @@ namespace Z0
     /// </summary>
     /// <param name="src">The operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vec256<T> Vec256UnaryOp<T>(Vec256<T> src)
+    public delegate Vec256<T> Vec256UnaryOp<T>(in Vec256<T> src)
         where T : struct;
 
     /// <summary>

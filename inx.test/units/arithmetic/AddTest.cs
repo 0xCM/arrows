@@ -13,13 +13,13 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class IntrinsicAddTest : UnitTest<IntrinsicAddTest>
+    public class AddTest : UnitTest<AddTest>
     {
         void Add128<T>(int blocks)
             where T : struct
         {
             TypeCaseStart<T>();
-            InXBinOp.Verify(Random, blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
+            InXOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
 
@@ -27,7 +27,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXBinOp.Verify(Random, blocks, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
+            InXOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
 
@@ -35,7 +35,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXBinOp.Verify(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            InXOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 

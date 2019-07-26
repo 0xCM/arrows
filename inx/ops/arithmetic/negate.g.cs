@@ -35,6 +35,10 @@ namespace Z0
                 return generic<T>(dinx.negate(in int64(in src)));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.negate(in uint64(in src)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(dinx.negate(in float32(in src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.negate(in float64(in src)));
             else 
                 throw unsupported<T>();
         }
@@ -59,6 +63,10 @@ namespace Z0
                 return generic<T>(dinx.negate(in int64(in src)));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.negate(in uint64(in src)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(dinx.negate(in float32(in src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.negate(in float64(in src)));
             else 
                 throw unsupported<T>();
         }

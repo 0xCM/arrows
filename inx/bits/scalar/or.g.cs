@@ -14,6 +14,12 @@ namespace Z0
     partial class gbits
     {
 
+        /// <summary>
+        /// Computes the bitwise or of two primal operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
             where T : struct
@@ -38,6 +44,13 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        /// <summary>
+        /// Computes the bitwise or of two primal operands and stores the
+        /// result in the left operand
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, T rhs)
             where T : struct

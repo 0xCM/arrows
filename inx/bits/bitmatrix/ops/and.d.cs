@@ -59,13 +59,6 @@ namespace Z0
             return ref lhs;
         }
 
-        public static ref BitMatrix<M,N,T> And<M,N,T>(this ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
-            where N : ITypeNat, new()
-            where M : ITypeNat, new()
-            where T : struct
-        {
-            return ref lhs;
-        }
 
     }
 }

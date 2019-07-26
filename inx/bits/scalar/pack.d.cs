@@ -14,55 +14,6 @@ namespace Z0
     partial class Bits
     {         
         /// <summary>
-        /// Extracts the upper 4 bits from the source
-        /// </summary>
-        /// <param name="src">The soruce value</param>
-        [MethodImpl(Inline)]        
-        public static sbyte hi(in sbyte src)
-            => (sbyte)(src >> 4);
-
-        /// <summary>
-        /// Extracts the lower 4 bits from the source
-        /// </summary>
-        /// <param name="src">The soruce value</param>
-        [MethodImpl(Inline)]
-        public static sbyte lo(in sbyte src)
-            => (sbyte)(((sbyte)(src << 4)) >> 4);
-
-        /// <summary>
-        /// Extracts the upper 4 bits from the source
-        /// </summary>
-        /// <param name="src">The soruce value</param>
-        [MethodImpl(Inline)]
-        public static byte hi(in byte src)
-            => (byte)(src >> 4);
-
-        /// <summary>
-        /// Extracts the lower 4 bits from the source
-        /// </summary>
-        /// <param name="src">The soruce value</param>
-        [MethodImpl(Inline)]
-        public static byte lo(in byte src)
-            => (byte)(((byte)(src << 4)) >> 4);
-
-        /// <summary>
-        /// Extracts the upper 8 bits from the source
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static byte hi(in ushort src)
-            => (byte)(src >> 8);
-
-        /// <summary>
-        /// Extracts the lower 8 bits from the source
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static byte lo(in ushort src)
-            => (byte)src;
-
-
-        /// <summary>
         /// Condenses two uint8 values into a single uint16 value
         /// </summary>
         /// <param name="x0">The value to be mapped to the lo 8 bits of the output</param>
@@ -75,23 +26,6 @@ namespace Z0
             );
 
         /// <summary>
-        /// Extracts the upper 16 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static ushort hi(in uint src)
-            => (ushort)(src >> 16); 
-
-        /// <summary>
-        /// Extracts the lower 16 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static ushort lo(in uint src)
-            => (ushort)src;
-
-
-        /// <summary>
         /// Condenses two uint16 values into a single uint32 value
         /// </summary>
         /// <param name="x0">The value to be mapped to the lo 8 bits of the output</param>
@@ -100,23 +34,6 @@ namespace Z0
         public static uint pack(ushort x0, ushort x1)
               => (uint)x0 << 0 * 16
                | (uint)x1 << 1 * 16;
-
-
-        /// <summary>
-        /// Extracts the upper 32 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static uint hi(in ulong src)
-            => (uint)(src >> 32);
-
-        /// <summary>
-        /// Extracts the lower 32 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static uint lo(in ulong src)
-            => (uint)src;
 
         /// <summary>
         /// Condenses two uint32 values into a single uint64 value
@@ -155,9 +72,7 @@ namespace Z0
             | (ulong)x6 << 6 * 8
             | (ulong)x7 << 7 * 8
             ;
-        }
-
-        
+        }        
 
         /// <summary>
         /// Selects a bit from each byte at a specified position packs these 8 bits into a single byte
@@ -207,53 +122,85 @@ namespace Z0
         }
 
 
-         /// <summary>
-        /// Extracts the upper 8 bits from the source
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static sbyte hi(in short src)
-            => (sbyte)(src >> 8);            
+       public static ref sbyte pack(in ReadOnlySpan<Bit> src, out sbyte dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T03, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (sbyte)(I32One << i);
+            return ref dst;
+        }
 
-        /// <summary>
-        /// Extracts the lower 8 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static sbyte lo(in short src)
-            => (sbyte)src;
+        public static ref byte pack(in ReadOnlySpan<Bit> src, out byte dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T03, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (byte)(I32One << i);
+            return ref dst;
+        }
 
-        /// <summary>
-        /// Extracts the upper 16 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static short hi(in int src)
-            => (short)(src >> 16);
+        public static ref ushort pack(in ReadOnlySpan<Bit> src, out ushort dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T04, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (ushort)(I32One << i);
+            return ref dst;
+        }
 
-        /// <summary>
-        /// Extracts the lower 16 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static short lo(in int src)
-            => (short)src;        
+        public static ref short pack(in ReadOnlySpan<Bit> src, out short dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T04, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (short)(I32One << i);
+            return ref dst;
+        }
 
-        /// <summary>
-        /// Extracts the upper 16 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static int hi(in long src)
-            => (int)(src >> 32);
+        public static ref int pack(in ReadOnlySpan<Bit> src, out int dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T05, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1 << i);
+            return ref dst;
+        }
 
-        /// <summary>
-        /// Extracts the lower half of the bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static int lo(in long src)
-            => (int)src;
+        public static ref uint pack(in ReadOnlySpan<Bit> src, out uint dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T05, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1u << i);
+            return ref dst;
+        }
+        
+        public static ref long pack(in ReadOnlySpan<Bit> src, out long dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T06, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1L << i);
+            return ref dst;
+        }
 
+        public static ref ulong pack(in ReadOnlySpan<Bit> src, out ulong dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T06, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1ul << i);
+            return ref dst;
+        } 
+ 
     }
 }

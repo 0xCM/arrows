@@ -14,9 +14,79 @@ namespace Z0.Test
 
 
 
-    public static class InXBinOp
+    public static class InXOpVerify
     {
-        public static void Verify<T>(IRandomSource random, int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
+        public static void VerifyUnaryOp<T>(IRandomSource random, int blocks, Vec128UnaryOp<T> inXOp, Func<T,T> primalOp)
+            where T : struct
+        {
+            var blocklen = Span128<T>.BlockLength;                     
+            
+            var src = random.ReadOnlySpan128<T>(blocks);
+            Claim.eq(blocks*blocklen,src.Length);
+                        
+            var expect = Span128.alloc<T>(blocks);
+            Claim.eq(blocks, expect.BlockCount);
+
+            var actual = Span128.alloc<T>(blocks);
+            Claim.eq(blocks, actual.BlockCount);
+
+            var tmp = new T[blocklen];
+            
+            for(var block = 0; block < blocks; block++)
+            {
+                var offset = block*blocklen;
+                for(var i =0; i<blocklen; i++)
+                    tmp[i] = primalOp(src[offset + i]);
+
+                var vExpect = Vec128.load<T>(ref tmp[0]);
+             
+                var vX = src.LoadVec128(block);
+                var vActual = inXOp(vX);
+
+                Claim.eq(vExpect, vActual);
+            
+                ginx.store(vExpect, ref expect.Block(block));
+                ginx.store(vActual, ref actual.Block(block));
+            }
+            Claim.eq(expect, actual);
+        }
+
+        public static void VerifyUnaryOp<T>(IRandomSource random, int blocks, Vec256UnaryOp<T> inXOp, Func<T,T> primalOp)
+            where T : struct
+        {
+            var blocklen = Span256<T>.BlockLength;                     
+            
+            var src = random.ReadOnlySpan256<T>(blocks);
+            Claim.eq(blocks*blocklen,src.Length);
+                        
+            var expect = Span256.alloc<T>(blocks);
+            Claim.eq(blocks, expect.BlockCount);
+
+            var actual = Span256.alloc<T>(blocks);
+            Claim.eq(blocks, actual.BlockCount);
+
+            var tmp = new T[blocklen];
+            
+            for(var block = 0; block < blocks; block++)
+            {
+                var offset = block*blocklen;
+                for(var i =0; i<blocklen; i++)
+                    tmp[i] = primalOp(src[offset + i]);
+
+                var vExpect = Vec256.load<T>(ref tmp[0]);
+             
+                var vX = src.LoadVec256(block);
+                var vActual = inXOp(vX);
+
+                Claim.eq(vExpect, vActual);
+            
+                ginx.store(vExpect, ref expect.Block(block));
+                ginx.store(vActual, ref actual.Block(block));
+            }
+            Claim.eq(expect, actual);
+        }
+
+        public static void VerifyBinOp<T>(IRandomSource random, int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
             where T : struct
         {
             var blocklen = Span128<T>.BlockLength;                     
@@ -55,7 +125,7 @@ namespace Z0.Test
             Claim.eq(expect, actual);
         }
 
-        public static void Verify<T>(IRandomSource random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
+        public static void VerifyBinOp<T>(IRandomSource random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
             where T : struct
         {
             var blocklen = Span256<T>.BlockLength;                     

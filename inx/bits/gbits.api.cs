@@ -120,26 +120,6 @@ namespace Z0
         }       
  
  
-        /// <summary>
-        /// Returns the position of the least on bit in the source
-        /// </summary>
-        /// <param name="src">The source vale</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
-        public static T lopos<T>(T src)
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.lopos(uint8(src)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.lopos(uint16(src)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.lopos(uint32(src)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.lopos(uint64(src)));
-            else            
-                throw unsupported<T>();
-        }           
 
         /// <summary>
         /// Constructs a bytespan where each entry, ordered from lo to hi, represents a single bit in the source value
