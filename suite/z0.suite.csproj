@@ -19,6 +19,7 @@
     <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\stats\z0.stats.csproj" />
     <ProjectReference Include="..\structs\z0.structs.csproj" />
+    <ProjectReference Include="..\cpu\z0.cpu.csproj" />
 
   </ItemGroup>
 

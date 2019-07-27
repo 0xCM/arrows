@@ -309,8 +309,10 @@ namespace Z0
         /// <param name="sep">The item separator</param>
         /// <param name="formatter">An optional custom value formatter</formatter>
         /// <typeparam name="T">The item type</typeparam>
-        public static string Format<T>(this IEnumerable<T> src, string sep = ", ",  Func<T,string> formatter = null)
+        public static string FormatSequence<T>(this IEnumerable<T> src, string sep = ", ",  Func<T,string> formatter = null)
             => string.Join(sep, src.Select(x => formatter?.Invoke(x) ?? x.ToString())).TrimEnd();
+
+
 
         [MethodImpl(Inline)]   
         public static string Format(this ReadOnlySpan<char> src)

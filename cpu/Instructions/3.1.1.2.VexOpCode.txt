@@ -1,0 +1,61 @@
+;;In the Instruction Summary Table, the Opcode column presents each instruction encoded using the VEX prefix in following form 
+;;;;(including the modR/M byte if applicable, the immediate byte if applicable)
+
+VEX.[NDS].[128,256].[66,F2,F3].0F/0F3A/0F38.[W0,W1] opcode [/r] [/ib,/is4]
+• VEX — Indicates the presence of the VEX prefix is required. 
+// The VEX prefix can be encoded using the three-byte form (the first byte is C4H)
+// or using the two-byte form (the first byte is C5H). The two-byte form of VEX only applies to those instructions that do not require 
+// the following fields to be encoded 
+// Refer to Section 2.3 for more detail on the VEX prefix
+    -- VEX.mmmmm
+    -- VEX.W
+    -- VEX.X 
+    -- VEX.B. 
+The encoding of various sub-fields of the VEX prefix is described using the following notations:
+
+— NDS, NDD, DDS: Specifies that VEX.vvvv field is valid for the encoding of a register operand:
+    -- VEX.NDS: VEX.vvvv encodes the first source register in an instruction syntax where the content of source registers will be preserved.
+    -- VEX.NDD: VEX.vvvv encodes the destination register that cannot be encoded by ModR/M:reg field.
+    -- VEX.DDS: VEX.vvvv encodes the second source register in a three-operand instruction syntax where the content of first source register will be overwritten by the result.
+    -- If none of NDS, NDD, and DDS is present, VEX.vvvv must be 1111b (i.e. VEX.vvvv does not encode an operand). 
+    // The VEX.vvvv field can be encoded using either the 2-byte or 3-byte form of the VEX prefix.
+
+— 128,256: VEX.L field can be 0 (denoted by VEX.128 or VEX.LZ) or 1 (denoted by VEX.256). The VEX.L field can be encoded using either the 2-byte or 3-byte form of the VEX prefix. 
+//The presence of the notation VEX.256 or VEX.128 in the opcode column should be interpreted as follows:
+
+    -- If VEX.256 is present in the opcode column: 
+    // The semantics of the instruction must be encoded with VEX.L = 1. 
+    // An attempt to encode this instruction with VEX.L= 0 can result in one of two situations: 
+        --- (a) if VEX.128 version is defined, the processor will behave according to the defined VEX.128 behavior; 
+        --- (b) an #UD occurs if there is no VEX.128 version defined.
+
+    -- If VEX.128 is present in the opcode column but there is no VEX.256 version defined for the same opcode byte: Two situations apply: 
+            --- (a) For VEX-encoded, 128-bit SIMD integer instructions, software must encode the instruction with VEX.L = 0. 
+            // The processor will treat the opcode byte encoded with VEX.L= 1 by causing an #UD exception; 
+            --- (b) For VEX-encoded, 128-bit packed floating-point instructions, software must encode the instruction with VEX.L = 0. 
+            // The processor will treat the opcode byte encoded with VEX.L= 1 by causing an #UD exception (e.g. VMOVLPS).
+
+    -- If VEX.LIG is present in the opcode column: The VEX.L value is ignored. 
+    // This generally applies to VEX- encoded scalar SIMD floating-point instructions. Scalar SIMD floating-point instruction can be 
+    // distinguished from the mnemonic of the instruction. Generally, the last two letters of the instruction mnemonic would be either 
+    // “SS“, “SD“, or “SI“ for SIMD floating-point conversion instructions.
+    
+    -- If VEX.LZ is present in the opcode column: The VEX.L must be encoded to be 0B, an #UD occurs if VEX.L is not zero.
+
+    -— 66,F2,F3: The presence or absence of these values map to the VEX.pp field encodings. 
+    // If absent, this corresponds to VEX.pp=00B. If present, the corresponding VEX.pp value affects the “opcode” 
+    // byte in the same way as if a SIMD prefix (66H, F2H or F3H) does to the ensuing opcode byte. Thus a non-zero encoding of VEX.pp may be considered as an implied 66H/F2H/F3H prefix.  
+    // The VEX.pp field may be encoded using either the 2-byte or 3-byte form of the VEX prefix.
+
+    -— 0F,0F3A,0F38: The presence maps to a valid encoding of the VEX.mmmmm field. Only three encoded values of VEX.mmmmm are defined as valid, corresponding to the escape byte sequence of 0FH, 0F3AH and 0F38H. The effect of a valid VEX.mmmmm encoding on the ensuing opcode byte is same as if the corresponding escape byte sequence on the ensuing opcode byte for non-VEX encoded instructions. Thus a valid encoding of VEX.mmmmm may be consider as an implies escape byte sequence of either 0FH, 0F3AH or 0F38H. The VEX.mmmmm field must be encoded using the 3-byte form of VEX prefix.
+    -— 0F,0F3A,0F38 and 2-byte/3-byte VEX: The presence of 0F3A and 0F38 in the opcode column implies that opcode can only be encoded by the three-byte form of VEX. The presence of 0F in the opcode column does not preclude the opcode to be encoded by the two-byte of VEX if the semantics of the opcode does not require any subfield of VEX not present in the two-byte form of the VEX prefix.
+        -— W0: VEX.W=0.
+        -— W1: VEX.W=1.
+        -— The presence of W0/W1 in the opcode column applies to two situations: 
+            -- (a) it is treated as an extended opcode bit
+            -- (b) the instruction semantics support an operand size promotion to 64-bit of a general-purpose register operand or a 32-bit memory operand. The presence of W1 in the opcode column implies the opcode must be encoded using the 3-byte form of the VEX prefix. The presence of W0 in the opcode column does not preclude the opcode to be encoded using the C5H form of the VEX prefix, if the semantics of the opcode does not require other VEX subfields not present in the two-byte form of the VEX prefix. Please see Section 2.3 on the subfield definitions within VEX.
+        —- WIG: can use C5H form (if not requiring VEX.mmmmm) or VEX.W value is ignored in the C4H form of VEX prefix.
+        —- If WIG is present, the instruction may be encoded using either the two-byte form or the three-byte form of VEX. When encoding the instruction using the three-byte form of VEX, the value of VEX.W is ignored.
+    -- opcode — Instruction opcode.
+    -- /is4 — An 8-bit immediate byte is present containing a source register specifier in either imm8[7:4] (for 64-bit mode) or imm8[6:4] (for 32-bit mode), and instruction-specific payload in imm8[3:0].
+    -- In general, the encoding o f VEX.R, VEX.X, VEX.B field are not shown explicitly in the opcode column. The encoding scheme of VEX.R, VEX.X, VEX.B fields must follow the rules defined in Section 2.3.

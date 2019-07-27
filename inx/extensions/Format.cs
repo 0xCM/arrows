@@ -20,6 +20,7 @@ namespace Z0
             var fmt = sbuild();
             if(vectorize)
                 fmt.Append(AsciSym.Lt);
+
             for(var i = 0; i<src.Length; i++)
             {
                 fmt.Append(gmath.hexstring(src[i], true, false));
@@ -29,9 +30,15 @@ namespace Z0
             
             if(vectorize)
                 fmt.Append(AsciSym.Gt);
+            
             return fmt.ToString();
 
         }
+
+       [MethodImpl(Inline)]
+       public static string FormatHex<T>(this T[] src, bool vectorize = false, char? sep = null)
+            where T : struct
+                => FormatHex(src.ToReadOnlySpan(),vectorize,sep);
 
        [MethodImpl(Inline)]
        public static string FormatHex<T>(this Span<T> src, bool vectorize = false, char? sep = null)

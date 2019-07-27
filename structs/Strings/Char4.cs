@@ -86,15 +86,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Char4 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char4>(offset, CharCount);
+            => ref SpanConvert.TakeSingle<char,Char4>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char4 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char4>(offset, CharCount);
+            => ref SpanConvert.TakeSingle<char,Char4>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char4 FromString(string src)
-            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char4>();
+            => ref FromSpan(src.PadRight(CharCount).Substring(0,CharCount).ToReadOnlySpan());
 
         [MethodImpl(Inline)]
         public static implicit operator Span<char>(Char4 src)
@@ -106,11 +106,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Char4(Span<char> src)
-            => src.AsIndividual<char,Char4>();
+            => SpanConvert.TakeSingle<char, Char4>((ReadOnlySpan<char>)src);
 
         [MethodImpl(Inline)]
         public static implicit operator Char4(ReadOnlySpan<char> src)
-            => src.AsIndividual<char,Char4>();
+            => SpanConvert.TakeSingle<char,Char4>(src);
 
         /// <summary>
         /// Implicilty converts the source value to a string, removing any trailing whitespace characters

@@ -82,15 +82,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Char16 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char16>(offset, CharCount);
+            => ref SpanConvert.TakeSingle<char,Char16>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char16 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char16>(offset, CharCount);
+            => ref SpanConvert.TakeSingle<char,Char16>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char16 FromString(string src)
-            => ref src.PadRight(CharCount).Substring(0,CharCount).AsSpan().AsIndividual<char,Char16>(0,CharCount);
+            => ref FromSpan(src.PadRight(CharCount).Substring(0,CharCount).ToReadOnlySpan());
 
         [MethodImpl(Inline)]
         public static implicit operator Span<char>(Char16 src)

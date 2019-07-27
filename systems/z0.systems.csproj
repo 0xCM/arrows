@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\random\z0.random.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="2.0.44" />    
+  </ItemGroup>
+</Project>

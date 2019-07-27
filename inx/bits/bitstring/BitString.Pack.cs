@@ -59,7 +59,7 @@ namespace Z0
         {            
             var src = bitseq.ToReadOnlySpan();
             var packed = PackedBits(src,offset,minlen);
-            return packed.AsIndividual<byte,T>();
+            return SpanConvert.TakeSingle<byte,T>(packed);
         }
     }
 }

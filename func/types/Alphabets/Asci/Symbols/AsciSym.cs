@@ -16,16 +16,25 @@ namespace Z0
             _Symbols = new Symbol<AsciAlphabet>[]
             {
                 Amp, At, Bang, BSlash, Caret, Colon, Comma,Dollar, Dot, Eq,
-                FSlash, Gt, LBrace, LBracket, LParen, Lt, Minus, Pipe, Plus,
+                FSlash, Gt, Hash, LBrace, LBracket, LParen, Lt, Minus, Pipe, Plus,
                 Percent, Quote, RParen, RBrace, RBracket, Semicolon, Space,
                 SQuote, Star, Tilde,
             };            
         }
 
+        /// <summary>
+        /// Defines the '&' symbol
+        /// </summary>
         public const char Amp = '&';
 
+        /// <summary>
+        /// Defines the '@' symbol
+        /// </summary>
         public const char At = '@';
 
+        /// <summary>
+        /// Defines the '!' symbol
+        /// </summary>
         public const char Bang = '!';
 
         public const char BSlash = '\\';
@@ -38,29 +47,67 @@ namespace Z0
 
         public const char Dollar = '$';
 
+        /// <summary>
+        /// Defines the '.' symbol
+        /// </summary>
         public const char Dot = '.';
 
+        /// <summary>
+        /// Defines the '=' symbol
+        /// </summary>
         public const char Eq = '=';
 
+        /// <summary>
+        /// Defines the '/' symbol
+        /// </summary>
         public const char FSlash = '/';
 
+        /// <summary>
+        /// Defines the '>' symbol
+        /// </summary>
         public const char Gt = '>';
 
+        /// <summary>
+        /// Defines the '#' symbol
+        /// </summary>
+        public const char Hash = '#';
+
+        /// <summary>
+        /// Defines the '{' symbol
+        /// </summary>
         public const char LBrace = '{';
 
+        /// <summary>
+        /// Defines the '[' symbol
+        /// </summary>
         public const char LBracket = '[';
 
+        /// <summary>
+        /// Defines the '(' symbol
+        /// </summary>
         public const char LParen = '(';        
 
+        /// <summary>
+        /// Defines the '<' symbol
+        /// </summary>
         public const char Lt = '<';
 
+        /// <summary>
+        /// Defines the '-' symbol
+        /// </summary>
         public const char Minus = '-';
 
+        /// <summary>
+        /// Defines the '%' symbol
+        /// </summary>
+        public const char Percent = '%';
+
+        /// <summary>
+        /// Defines the '|' symbol
+        /// </summary>
         public const char Pipe = '|';
 
         public const char Plus = '+';
-
-        public const char Percent = '%';
 
         /// <summary>
         /// Specifies '"', the double-quote symbol
@@ -78,12 +125,18 @@ namespace Z0
         public const char Space = ' ';
 
         /// <summary>
-        /// Specifies ''', the single-quote symbol
+        /// Defines the ''' symbol
         /// </summary>
         public const char SQuote = '\'';
 
+        /// <summary>
+        /// Defines the '*' symbol
+        /// </summary>
         public const char Star = '*';
 
+        /// <summary>
+        /// Defines the '~' symbol
+        /// </summary>
         public const char Tilde = '~'; 
     }
 }

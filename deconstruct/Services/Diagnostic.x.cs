@@ -46,8 +46,8 @@ namespace Z0
                 dstFileName = FileName.Timestamped(dstFileName);
             var dstPath = dstFolder.CreateIfMissing() + dstFileName;
             return new StreamWriter(dstPath.ToString(),false);
-
         }
+        
         public static void DumpAsm(this IEnumerable<MethodDisassembly> disassembly, string name, bool timestamped = false)
         {
             using var writer = DumpWriter(name, "asm", timestamped);
@@ -64,19 +64,46 @@ namespace Z0
                 writer.WriteLine(d.FormatCil());
         }
 
-        public static void Dump(this IEnumerable<MethodDisassembly> disassembly, string name)
+        public static void Dump(this IEnumerable<MethodDisassembly> disassembly, string name, bool asm = true, bool cil = false)
         {
-            disassembly.DumpAsm(name); 
-            disassembly.DumpCil(name); 
+            if(asm)
+                disassembly.DumpAsm(name); 
+            
+            if(cil)
+                disassembly.DumpCil(name); 
         }
 
+        public static void Dump(this AsmFuncSpec[] specs, string name)
+        {
+            using var writer = DumpWriter(name, "asm", false);
+            writer.WriteLine($"# {now().ToLexicalString()}");
+            for(var i=0; i< specs.Length; i++)
+            {   
+                var spec = specs[i];             
+                writer.WriteLine(spec.Format());
+                if(i != i-1)
+                    writer.WriteLine(new string('-',120));
+            }
+        }
+
+        static MethodDisassembly[] Disassemble(this Type src)
+            => Deconstructor.Disassemble(src.DeclaredMethods().ToArray()).ToArray();
+        
         public static MethodDisassembly[] Deconstruct(this Type src, bool dump = true)
         {
-            var disassembly = Deconstructor.Disassemble(src.DeclaredMethods().ToArray()).ToArray();
+            var disassembly = src.Disassemble();
             if(dump)
                 disassembly.Dump(src.DisplayName());
             return disassembly;
+        }
 
+        public static AsmFuncSpec[] SpecifyAsm(this Type src)
+        {
+            var disassembly = src.Disassemble();
+            var dst = new AsmFuncSpec[disassembly.Length];
+            for(var i=0; i<disassembly.Length; i++)   
+                dst[i] = disassembly[i].DefineAsmSpec();
+            return dst;
         }
 
         public static MethodDisassembly[] Deconstruct(this IEnumerable<MethodInfo> src, string outname = null)

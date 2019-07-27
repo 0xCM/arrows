@@ -1,731 +1,673 @@
-# 2019-07-24 20:36:13:515
-7FF95A4CA3C0h: ReadOnlySpan<byte> get_U8Data()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x80, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x89, 0x01, 0xc7, 0x41, 0x08, 0x40, 0x00, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,11E5455B380h
-  000fh  mov [rcx],rax
-  0012h  mov dword ptr [rcx+8],40h
-  0019h  mov rax,rcx
-  001ch  ret
-end asm ------------------------------------------------------------------------
+# 2019-07-27 03:27:11:940
+7FFC86DAB220h sbyte add8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB220h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rdx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,d2} (4 bytes)
+000dh  add eax,edx   ; opcode := Add_r32_rm32 | encoded := {03,c2} (2 bytes)
+000fh  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB220h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA800h: ReadOnlySpan<uint> get_U32Data()
-;; {0x56, 0x48, 0x83, 0xec, 0x20, 0xc5, 0xf8, 0x77, 0x48, 0x8b, 0xf1, 0x48, 0xb9, 0x20, 0x2f, 0x29, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0xba, 0x10, 0x00, 0x00, 0x00, 0xe8, 0x81, 0xe9, 0x5f, 0x5f, 0x48, 0xba, 0x40, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x8d, 0x48, 0x10, 0xc5, 0xfa, 0x6f, 0x02, 0xc5, 0xfa, 0x7f, 0x01, 0xc5, 0xfa, 0x6f, 0x42, 0x10, 0xc5, 0xfa, 0x7f, 0x41, 0x10, 0xc5, 0xfa, 0x6f, 0x42, 0x20, 0xc5, 0xfa, 0x7f, 0x41, 0x20, 0xc5, 0xfa, 0x6f, 0x42, 0x30, 0xc5, 0xfa, 0x7f, 0x41, 0x30, 0x48, 0x83, 0xc0, 0x10, 0xba, 0x10, 0x00, 0x00, 0x00, 0x48, 0x89, 0x06, 0x89, 0x56, 0x08, 0x48, 0x8b, 0xc6, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  push rsi
-  0001h  sub rsp,20h
-  0005h  vzeroupper
-  0008h  mov rsi,rcx
-  000bh  mov rcx,7FF95A292F20h
-  0015h  mov edx,10h
-  001ah  call 7FF9B9AC91A0h
-  001fh  mov rdx,11E5455B340h
-  0029h  lea rcx,[rax+10h]
-  002dh  vmovdqu xmm0,xmmword ptr [rdx]
-  0031h  vmovdqu xmmword ptr [rcx],xmm0
-  0035h  vmovdqu xmm0,xmmword ptr [rdx+10h]
-  003ah  vmovdqu xmmword ptr [rcx+10h],xmm0
-  003fh  vmovdqu xmm0,xmmword ptr [rdx+20h]
-  0044h  vmovdqu xmmword ptr [rcx+20h],xmm0
-  0049h  vmovdqu xmm0,xmmword ptr [rdx+30h]
-  004eh  vmovdqu xmmword ptr [rcx+30h],xmm0
-  0053h  add rax,10h
-  0057h  mov edx,10h
-  005ch  mov [rsi],rax
-  005fh  mov [rsi+8],edx
-  0062h  mov rax,rsi
-  0065h  add rsp,20h
-  0069h  pop rsi
-  006ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB250h byte add8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x03, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB250h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  add eax,edx   ; opcode := Add_r32_rm32 | encoded := {03,c2} (2 bytes)
+000dh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB250h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA890h: sbyte AddI8(sbyte x, sbyte y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movsx rax,cl
-  0009h  movsx rdx,dl
-  000dh  add eax,edx
-  000fh  movsx rax,al
-  0013h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB280h short add16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB280h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rdx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,d2} (4 bytes)
+000dh  add eax,edx   ; opcode := Add_r32_rm32 | encoded := {03,c2} (2 bytes)
+000fh  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB280h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA8C0h: byte AddU8(byte x, byte y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x03, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movzx eax,cl
-  0008h  movzx edx,dl
-  000bh  add eax,edx
-  000dh  movzx eax,al
-  0010h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB2B0h ushort add16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x03, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB2B0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  add eax,edx   ; opcode := Add_r32_rm32 | encoded := {03,c2} (2 bytes)
+000dh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB2B0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA8F0h: short AddI16(short x, short y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x03, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movsx rax,cx
-  0009h  movsx rdx,dx
-  000dh  add eax,edx
-  000fh  movsx rax,ax
-  0013h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB2E0h int add32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0xc3}
+asm-body-begin 7FFC86DAB2E0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  lea eax,[rcx+rdx]   ; opcode := Lea_r32_m | encoded := {8d,04,11} (3 bytes)
+0008h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB2E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA920h: ushort AddU16(ushort x, ushort y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x03, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movzx eax,cx
-  0008h  movzx edx,dx
-  000bh  add eax,edx
-  000dh  movzx eax,ax
-  0010h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB300h uint add32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0xc3}
+asm-body-begin 7FFC86DAB300h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  lea eax,[rcx+rdx]   ; opcode := Lea_r32_m | encoded := {8d,04,11} (3 bytes)
+0008h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB300h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA950h: int AddI32(int x, int y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  lea eax,[rcx+rdx]
-  0008h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB320h long add64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8d, 0x04, 0x11, 0xc3}
+asm-body-begin 7FFC86DAB320h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  lea rax,[rcx+rdx]   ; opcode := Lea_r64_m | encoded := {48,8d,04,11} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB320h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA970h: ulong AddU64(ulong x, ulong y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8d, 0x04, 0x11, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  lea rax,[rcx+rdx]
-  0009h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB340h ulong add64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8d, 0x04, 0x11, 0xc3}
+asm-body-begin 7FFC86DAB340h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  lea rax,[rcx+rdx]   ; opcode := Lea_r64_m | encoded := {48,8d,04,11} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB340h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA990h: byte AndU8(byte x, byte y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x23, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movzx eax,cl
-  0008h  movzx edx,dl
-  000bh  and eax,edx
-  000dh  movzx eax,al
-  0010h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB360h float add32f(float x, float y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfa, 0x58, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB360h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vaddss xmm0,xmm0,xmm1   ; opcode := VEX_Vaddss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,58,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB360h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA9C0h: sbyte AndI8(sbyte x, sbyte y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movsx rax,cl
-  0009h  movsx rdx,dl
-  000dh  and eax,edx
-  000fh  movsx rax,al
-  0013h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB380h double add64f(double x, double y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfb, 0x58, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB380h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vaddsd xmm0,xmm0,xmm1   ; opcode := VEX_Vaddsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,58,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB380h ---------------------------------------------------------------------------------------------
 
-7FF95A4CA9F0h: short AndI16(short x, short y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movsx rax,cx
-  0009h  movsx rdx,dx
-  000dh  and eax,edx
-  000fh  movsx rax,ax
-  0013h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB3A0h byte and8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x23, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB3A0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+000dh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB3A0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAA20h: ushort AndU16(ushort x, ushort y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x23, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  movzx eax,cx
-  0008h  movzx edx,dx
-  000bh  and eax,edx
-  000dh  movzx eax,ax
-  0010h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB3D0h sbyte and8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB3D0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rdx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,d2} (4 bytes)
+000dh  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+000fh  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB3D0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAA50h: int AndI32(int x, int y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  and eax,edx
-  0009h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB400h short and16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x23, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB400h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rdx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,d2} (4 bytes)
+000dh  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+000fh  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB400h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAA70h: uint AndU32(uint x, uint y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  and eax,edx
-  0009h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB430h ushort and16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x23, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB430h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+000dh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB430h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAA90h: long AndI64(long x, long y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,rcx
-  0008h  and rax,rdx
-  000bh  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB460h int and32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB460h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB460h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAAB0h: ulong AndU64(ulong x, ulong y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,rcx
-  0008h  and rax,rdx
-  000bh  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB480h uint and32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x23, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB480h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  and eax,edx   ; opcode := And_r32_rm32 | encoded := {23,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB480h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAAD0h: int SubI32(int x, int y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x2b, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  sub eax,edx
-  0009h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB4A0h long and64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB4A0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  and rax,rdx   ; opcode := And_r64_rm64 | encoded := {48,23,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB4A0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAAF0h: int MulI32(int x, int y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0f, 0xaf, 0xc2, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  imul eax,edx
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB4C0h ulong and64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x23, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB4C0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  and rax,rdx   ; opcode := And_r64_rm64 | encoded := {48,23,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB4C0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAB10h: int AddI32LoopInline()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  xor eax,eax
-  0007h  xor edx,edx
-  0009h  add eax,edx
-  000bh  inc edx
-  000dh  cmp edx,64h
-  0010h  jl short 0009h
-  0012h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB4E0h sbyte div8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xca, 0x99, 0xf7, 0xf9, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB4E0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rcx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,ca} (4 bytes)
+000dh  cdq   ; opcode := Cdq | encoded := {99} (1 bytes)
+000eh  idiv ecx   ; opcode := Idiv_rm32 | encoded := {f7,f9} (2 bytes)
+0010h  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0014h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB4E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAB40h: int AddI32Loop()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  xor eax,eax
-  0007h  xor edx,edx
-  0009h  add eax,edx
-  000bh  inc edx
-  000dh  cmp edx,64h
-  0010h  jl short 0009h
-  0012h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB510h byte div8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xca, 0x99, 0xf7, 0xf9, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB510h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx ecx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,ca} (3 bytes)
+000bh  cdq   ; opcode := Cdq | encoded := {99} (1 bytes)
+000ch  idiv ecx   ; opcode := Idiv_rm32 | encoded := {f7,f9} (2 bytes)
+000eh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0011h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB510h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAB70h: int AddI32LoopInlineCall()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x33, 0xc0, 0x33, 0xd2, 0x03, 0xc2, 0xff, 0xc2, 0x83, 0xfa, 0x64, 0x7c, 0xf7, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  xor eax,eax
-  0007h  xor edx,edx
-  0009h  add eax,edx
-  000bh  inc edx
-  000dh  cmp edx,64h
-  0010h  jl short 0009h
-  0012h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB540h short div16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xca, 0x99, 0xf7, 0xf9, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB540h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rcx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,ca} (4 bytes)
+000dh  cdq   ; opcode := Cdq | encoded := {99} (1 bytes)
+000eh  idiv ecx   ; opcode := Idiv_rm32 | encoded := {f7,f9} (2 bytes)
+0010h  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0014h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB540h ---------------------------------------------------------------------------------------------
 
-7FF95A4CABA0h: int AddI32LoopCall()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x40, 0xab, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,7FF95A4CAB40h
-  000fh  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB570h ushort div16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xca, 0x99, 0xf7, 0xf9, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB570h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx ecx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,ca} (3 bytes)
+000bh  cdq   ; opcode := Cdq | encoded := {99} (1 bytes)
+000ch  idiv ecx   ; opcode := Idiv_rm32 | encoded := {f7,f9} (2 bytes)
+000eh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0011h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB570h ---------------------------------------------------------------------------------------------
 
-7FF95A4CABD0h: uint Or8Inline(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0b, 0xd1, 0x41, 0x0b, 0xd0, 0x41, 0x0b, 0xd1, 0x0b, 0x54, 0x24, 0x28, 0x0b, 0x54, 0x24, 0x30, 0x8b, 0xc2, 0x0b, 0x44, 0x24, 0x38, 0x0b, 0x44, 0x24, 0x40, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  or edx,ecx
-  0007h  or edx,r8d
-  000ah  or edx,r9d
-  000dh  or edx,[rsp+28h]
-  0011h  or edx,[rsp+30h]
-  0015h  mov eax,edx
-  0017h  or eax,[rsp+38h]
-  001bh  or eax,[rsp+40h]
-  001fh  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB5A0h int div32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x44, 0x8b, 0xc2, 0x8b, 0xc1, 0x99, 0x41, 0xf7, 0xf8, 0xc3}
+asm-body-begin 7FFC86DAB5A0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov r8d,edx   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c2} (3 bytes)
+0008h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+000ah  cdq   ; opcode := Cdq | encoded := {99} (1 bytes)
+000bh  idiv r8d   ; opcode := Idiv_rm32 | encoded := {41,f7,f8} (3 bytes)
+000eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB5A0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAC00h: uint RotLU32Inline(uint x, int offset)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x8b, 0xca, 0xd3, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,ecx
-  0007h  mov ecx,edx
-  0009h  rol eax,cl
-  000bh  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB5C0h uint div32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x44, 0x8b, 0xc2, 0x8b, 0xc1, 0x33, 0xd2, 0x41, 0xf7, 0xf0, 0xc3}
+asm-body-begin 7FFC86DAB5C0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov r8d,edx   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c2} (3 bytes)
+0008h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+000ah  xor edx,edx   ; opcode := Xor_r32_rm32 | encoded := {33,d2} (2 bytes)
+000ch  div r8d   ; opcode := Div_rm32 | encoded := {41,f7,f0} (3 bytes)
+000fh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB5C0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAC20h: int ChoiceSwitchInline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xff, 0xca, 0x83, 0xfa, 0x04, 0x77, 0x38, 0x8b, 0xc2, 0x48, 0x8d, 0x15, 0x33, 0x00, 0x00, 0x00, 0x8b, 0x14, 0x82, 0x48, 0x8d, 0x0d, 0xe6, 0xff, 0xff, 0xff, 0x48, 0x03, 0xd1, 0xff, 0xe2, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x09, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  dec edx
-  0007h  cmp edx,4
-  000ah  ja short 0044h
-  000ch  mov eax,edx
-  000eh  lea rdx,[7FF95A4CAC68h]
-  0015h  mov edx,[rdx+rax*4]
-  0018h  lea rcx,[7FF95A4CAC25h]
-  001fh  add rdx,rcx
-  0022h  jmp rdx
-  0024h  mov eax,1
-  0029h  ret
-  002ah  mov eax,4
-  002fh  ret
-  0030h  mov eax,8
-  0035h  ret
-  0036h  mov eax,10h
-  003bh  jmp short 0046h
-  003dh  mov eax,20h
-  0042h  jmp short 0046h
-  0044h  xor eax,eax
-  0046h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB5E0h long div64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x4c, 0x8b, 0xc2, 0x48, 0x8b, 0xc1, 0x48, 0x99, 0x49, 0xf7, 0xf8, 0xc3}
+asm-body-begin 7FFC86DAB5E0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov r8,rdx   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,c2} (3 bytes)
+0008h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+000bh  cqo   ; opcode := Cqo | encoded := {48,99} (2 bytes)
+000dh  idiv r8   ; opcode := Idiv_rm64 | encoded := {49,f7,f8} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB5E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAC90h: int ChoiceIfElse5Inline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x06, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x02, 0x75, 0x06, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x03, 0x75, 0x06, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  cmp edx,1
-  0008h  jne short 0010h
-  000ah  mov eax,1
-  000fh  ret
-  0010h  cmp edx,2
-  0013h  jne short 001bh
-  0015h  mov eax,4
-  001ah  ret
-  001bh  cmp edx,3
-  001eh  jne short 0026h
-  0020h  mov eax,8
-  0025h  ret
-  0026h  cmp edx,4
-  0029h  jne short 0032h
-  002bh  mov eax,10h
-  0030h  jmp short 0040h
-  0032h  cmp edx,5
-  0035h  jne short 003eh
-  0037h  mov eax,20h
-  003ch  jmp short 0040h
-  003eh  xor eax,eax
-  0040h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB610h ulong div64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x4c, 0x8b, 0xc2, 0x48, 0x8b, 0xc1, 0x33, 0xd2, 0x49, 0xf7, 0xf0, 0xc3}
+asm-body-begin 7FFC86DAB610h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov r8,rdx   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,c2} (3 bytes)
+0008h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+000bh  xor edx,edx   ; opcode := Xor_r32_rm32 | encoded := {33,d2} (2 bytes)
+000dh  div r8   ; opcode := Div_rm64 | encoded := {49,f7,f0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB610h ---------------------------------------------------------------------------------------------
 
-7FF95A4CACF0h: int ChoiceIfElse10Inline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x06, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x02, 0x75, 0x06, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x03, 0x75, 0x06, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xc3, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x4a, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x3e, 0x83, 0xfa, 0x06, 0x75, 0x07, 0xb8, 0x40, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x07, 0x75, 0x07, 0xb8, 0x80, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x08, 0x75, 0x07, 0xb8, 0x00, 0x01, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x09, 0x75, 0x07, 0xb8, 0x00, 0x02, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x0a, 0x75, 0x07, 0xb8, 0x00, 0x04, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  cmp edx,1
-  0008h  jne short 0010h
-  000ah  mov eax,1
-  000fh  ret
-  0010h  cmp edx,2
-  0013h  jne short 001bh
-  0015h  mov eax,4
-  001ah  ret
-  001bh  cmp edx,3
-  001eh  jne short 0026h
-  0020h  mov eax,8
-  0025h  ret
-  0026h  cmp edx,4
-  0029h  jne short 0032h
-  002bh  mov eax,10h
-  0030h  jmp short 007ch
-  0032h  cmp edx,5
-  0035h  jne short 003eh
-  0037h  mov eax,20h
-  003ch  jmp short 007ch
-  003eh  cmp edx,6
-  0041h  jne short 004ah
-  0043h  mov eax,40h
-  0048h  jmp short 007ch
-  004ah  cmp edx,7
-  004dh  jne short 0056h
-  004fh  mov eax,80h
-  0054h  jmp short 007ch
-  0056h  cmp edx,8
-  0059h  jne short 0062h
-  005bh  mov eax,100h
-  0060h  jmp short 007ch
-  0062h  cmp edx,9
-  0065h  jne short 006eh
-  0067h  mov eax,200h
-  006ch  jmp short 007ch
-  006eh  cmp edx,0Ah
-  0071h  jne short 007ah
-  0073h  mov eax,400h
-  0078h  jmp short 007ch
-  007ah  xor eax,eax
-  007ch  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB640h float div32f(float x, float y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfa, 0x5e, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB640h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vdivss xmm0,xmm0,xmm1   ; opcode := VEX_Vdivss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,5e,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB640h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAD80h: int CallChoiceSwitchInline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x20, 0xac, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,7FF95A4CAC20h
-  000fh  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB660h double div64f(double x, double y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfb, 0x5e, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB660h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vdivsd xmm0,xmm0,xmm1   ; opcode := VEX_Vdivsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,5e,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB660h ---------------------------------------------------------------------------------------------
 
-7FF95A4CADB0h: int CallChoiceIfElse5Inline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x07, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x02, 0x75, 0x07, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x03, 0x75, 0x07, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  cmp edx,1
-  0008h  jne short 0011h
-  000ah  mov eax,1
-  000fh  jmp short 0043h
-  0011h  cmp edx,2
-  0014h  jne short 001dh
-  0016h  mov eax,4
-  001bh  jmp short 0043h
-  001dh  cmp edx,3
-  0020h  jne short 0029h
-  0022h  mov eax,8
-  0027h  jmp short 0043h
-  0029h  cmp edx,4
-  002ch  jne short 0035h
-  002eh  mov eax,10h
-  0033h  jmp short 0043h
-  0035h  cmp edx,5
-  0038h  jne short 0041h
-  003ah  mov eax,20h
-  003fh  jmp short 0043h
-  0041h  xor eax,eax
-  0043h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB680h sbyte mul8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x0f, 0xaf, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB680h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rdx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,d2} (4 bytes)
+000dh  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+0010h  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0014h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB680h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAE10h: int CallChoiceIfElse10Inline(int x)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x75, 0x07, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xeb, 0x6e, 0x83, 0xfa, 0x02, 0x75, 0x07, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xeb, 0x62, 0x83, 0xfa, 0x03, 0x75, 0x07, 0xb8, 0x08, 0x00, 0x00, 0x00, 0xeb, 0x56, 0x83, 0xfa, 0x04, 0x75, 0x07, 0xb8, 0x10, 0x00, 0x00, 0x00, 0xeb, 0x4a, 0x83, 0xfa, 0x05, 0x75, 0x07, 0xb8, 0x20, 0x00, 0x00, 0x00, 0xeb, 0x3e, 0x83, 0xfa, 0x06, 0x75, 0x07, 0xb8, 0x40, 0x00, 0x00, 0x00, 0xeb, 0x32, 0x83, 0xfa, 0x07, 0x75, 0x07, 0xb8, 0x80, 0x00, 0x00, 0x00, 0xeb, 0x26, 0x83, 0xfa, 0x08, 0x75, 0x07, 0xb8, 0x00, 0x01, 0x00, 0x00, 0xeb, 0x1a, 0x83, 0xfa, 0x09, 0x75, 0x07, 0xb8, 0x00, 0x02, 0x00, 0x00, 0xeb, 0x0e, 0x83, 0xfa, 0x0a, 0x75, 0x07, 0xb8, 0x00, 0x04, 0x00, 0x00, 0xeb, 0x02, 0x33, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  cmp edx,1
-  0008h  jne short 0011h
-  000ah  mov eax,1
-  000fh  jmp short 007fh
-  0011h  cmp edx,2
-  0014h  jne short 001dh
-  0016h  mov eax,4
-  001bh  jmp short 007fh
-  001dh  cmp edx,3
-  0020h  jne short 0029h
-  0022h  mov eax,8
-  0027h  jmp short 007fh
-  0029h  cmp edx,4
-  002ch  jne short 0035h
-  002eh  mov eax,10h
-  0033h  jmp short 007fh
-  0035h  cmp edx,5
-  0038h  jne short 0041h
-  003ah  mov eax,20h
-  003fh  jmp short 007fh
-  0041h  cmp edx,6
-  0044h  jne short 004dh
-  0046h  mov eax,40h
-  004bh  jmp short 007fh
-  004dh  cmp edx,7
-  0050h  jne short 0059h
-  0052h  mov eax,80h
-  0057h  jmp short 007fh
-  0059h  cmp edx,8
-  005ch  jne short 0065h
-  005eh  mov eax,100h
-  0063h  jmp short 007fh
-  0065h  cmp edx,9
-  0068h  jne short 0071h
-  006ah  mov eax,200h
-  006fh  jmp short 007fh
-  0071h  cmp edx,0Ah
-  0074h  jne short 007dh
-  0076h  mov eax,400h
-  007bh  jmp short 007fh
-  007dh  xor eax,eax
-  007fh  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB6B0h byte mul8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x0f, 0xaf, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB6B0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+000eh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0011h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB6B0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAEA0h: int InvokeBinOp(Func<int,int,int> f, int x, int y)
-;; {0x50, 0x0f, 0x1f, 0x40, 0x00, 0x48, 0x89, 0x14, 0x24, 0x48, 0x8b, 0x4a, 0x08, 0x41, 0x8b, 0xd0, 0x45, 0x8b, 0xc1, 0x48, 0x8b, 0x04, 0x24, 0x48, 0x8b, 0x40, 0x18, 0x48, 0x83, 0xc4, 0x08, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  push rax
-  0001h  nop dword ptr [rax]
-  0005h  mov [rsp],rdx
-  0009h  mov rcx,[rdx+8]
-  000dh  mov edx,r8d
-  0010h  mov r8d,r9d
-  0013h  mov rax,[rsp]
-  0017h  mov rax,[rax+18h]
-  001bh  add rsp,8
-  001fh  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB6E0h short mul16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x0f, 0xaf, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB6E0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rdx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,d2} (4 bytes)
+000dh  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+0010h  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0014h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB6E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAEE0h: int AddMulInline(int x, int y)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8d, 0x04, 0x11, 0x0f, 0xaf, 0xc8, 0x0f, 0xaf, 0xc2, 0x03, 0xc1, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  lea eax,[rcx+rdx]
-  0008h  imul ecx,eax
-  000bh  imul eax,edx
-  000eh  add eax,ecx
-  0010h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB710h ushort mul16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x0f, 0xaf, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB710h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+000eh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0011h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB710h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAF10h: int CallInvokeBinOp(int x, int y)
-;; {0x57, 0x56, 0x55, 0x53, 0x48, 0x83, 0xec, 0x28, 0x48, 0x8b, 0xf1, 0x8b, 0xfa, 0x41, 0x8b, 0xd8, 0x48, 0xb9, 0x78, 0xd0, 0x46, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0xe8, 0x41, 0xe1, 0x5f, 0x5f, 0x48, 0x8b, 0xe8, 0x48, 0x8d, 0x4d, 0x08, 0x48, 0x8b, 0xd5, 0xe8, 0x22, 0xce, 0x5f, 0x5f, 0x48, 0xb9, 0xf0, 0xdb, 0xe0, 0x59, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x89, 0x4d, 0x18, 0x48, 0xb9, 0xe0, 0xae, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x89, 0x4d, 0x20, 0x48, 0x8b, 0xce, 0x48, 0x8b, 0xd5, 0x44, 0x8b, 0xc7, 0x44, 0x8b, 0xcb, 0x48, 0xb8, 0xa0, 0xae, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x28, 0x5b, 0x5d, 0x5e, 0x5f, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  push rdi
-  0001h  push rsi
-  0002h  push rbp
-  0003h  push rbx
-  0004h  sub rsp,28h
-  0008h  mov rsi,rcx
-  000bh  mov edi,edx
-  000dh  mov ebx,r8d
-  0010h  mov rcx,7FF95A46D078h
-  001ah  call 7FF9B9AC9070h
-  001fh  mov rbp,rax
-  0022h  lea rcx,[rbp+8]
-  0026h  mov rdx,rbp
-  0029h  call 7FF9B9AC7D60h
-  002eh  mov rcx,7FF959E0DBF0h
-  0038h  mov [rbp+18h],rcx
-  003ch  mov rcx,7FF95A4CAEE0h
-  0046h  mov [rbp+20h],rcx
-  004ah  mov rcx,rsi
-  004dh  mov rdx,rbp
-  0050h  mov r8d,edi
-  0053h  mov r9d,ebx
-  0056h  mov rax,7FF95A4CAEA0h
-  0060h  add rsp,28h
-  0064h  pop rbx
-  0065h  pop rbp
-  0066h  pop rsi
-  0067h  pop rdi
-  0068h  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB740h int mul32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0f, 0xaf, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB740h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+000ah  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB740h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAFA0h: int JumpTarget1()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,1
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB760h uint mul32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0f, 0xaf, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB760h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  imul eax,edx   ; opcode := Imul_r32_rm32 | encoded := {0f,af,c2} (3 bytes)
+000ah  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB760h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAFC0h: int JumpTarget2()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x02, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,2
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB780h long mul64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x0f, 0xaf, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB780h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  imul rax,rdx   ; opcode := Imul_r64_rm64 | encoded := {48,0f,af,c2} (4 bytes)
+000ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB780h ---------------------------------------------------------------------------------------------
 
-7FF95A4CAFE0h: int JumpTarget3()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x03, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,3
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB7A0h ulong mul64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x0f, 0xaf, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB7A0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  imul rax,rdx   ; opcode := Imul_r64_rm64 | encoded := {48,0f,af,c2} (4 bytes)
+000ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB7A0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB000h: int JumpTarget4()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x04, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,4
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB7C0h float mul32f(float x, float y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfa, 0x59, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB7C0h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vmulss xmm0,xmm0,xmm1   ; opcode := VEX_Vmulss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,59,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB7C0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB020h: int Jump(int target)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x83, 0xfa, 0x01, 0x74, 0x31, 0x83, 0xfa, 0x02, 0x74, 0x1f, 0x83, 0xfa, 0x03, 0x74, 0x0d, 0x48, 0xb8, 0x00, 0xb0, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xe0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xc0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0, 0x48, 0xb8, 0xa0, 0xaf, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  cmp edx,1
-  0008h  je short 003bh
-  000ah  cmp edx,2
-  000dh  je short 002eh
-  000fh  cmp edx,3
-  0012h  je short 0021h
-  0014h  mov rax,7FF95A4CB000h
-  001eh  jmp rax
-  0021h  mov rax,7FF95A4CAFE0h
-  002bh  jmp rax
-  002eh  mov rax,7FF95A4CAFC0h
-  0038h  jmp rax
-  003bh  mov rax,7FF95A4CAFA0h
-  0045h  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB7E0h double mul64f(double x, double y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfb, 0x59, 0xc1, 0xc3}
+asm-body-begin 7FFC86DAB7E0h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vmulsd xmm0,xmm0,xmm1   ; opcode := VEX_Vmulsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,59,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB7E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB080h: uint CallRotLU32Inline(uint x, int offset)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x41, 0x8b, 0xc8, 0x8b, 0xc2, 0xd3, 0xc0, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov ecx,r8d
-  0008h  mov eax,edx
-  000ah  rol eax,cl
-  000ch  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB800h byte or8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x0b, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB800h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+000dh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB800h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB0A0h: uint CallOr8InlineConst()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x7e, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,7Eh
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB830h sbyte or8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x0b, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB830h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rdx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,d2} (4 bytes)
+000dh  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+000fh  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB830h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB0C0h: uint CallOr8InlineVar(uint x0, uint x1, uint x2, uint x3, uint x4, uint x5, uint x6, uint x7)
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x41, 0x0b, 0xd0, 0x41, 0x0b, 0xd1, 0x0b, 0x54, 0x24, 0x28, 0x0b, 0x54, 0x24, 0x30, 0x0b, 0x54, 0x24, 0x38, 0x8b, 0xc2, 0x0b, 0x44, 0x24, 0x40, 0x0b, 0x44, 0x24, 0x48, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  or edx,r8d
-  0008h  or edx,r9d
-  000bh  or edx,[rsp+28h]
-  000fh  or edx,[rsp+30h]
-  0013h  or edx,[rsp+38h]
-  0017h  mov eax,edx
-  0019h  or eax,[rsp+40h]
-  001dh  or eax,[rsp+48h]
-  0021h  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB860h short or16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x0b, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB860h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rdx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,d2} (4 bytes)
+000dh  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+000fh  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB860h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB100h: ReadOnlySpan<byte> ReadU8Data(int count)
-;; {0x48, 0x83, 0xec, 0x28, 0x90, 0x41, 0x8b, 0xc0, 0x48, 0x83, 0xf8, 0x40, 0x77, 0x19, 0x48, 0xb8, 0x80, 0xb3, 0x55, 0x54, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x89, 0x02, 0x44, 0x89, 0x42, 0x08, 0x48, 0x8b, 0xc2, 0x48, 0x83, 0xc4, 0x28, 0xc3, 0xe8, 0x34, 0x17, 0xa7, 0xff, 0xcc}
-asm ----------------------------------------------------------------------------
-  0000h  sub rsp,28h
-  0004h  nop
-  0005h  mov eax,r8d
-  0008h  cmp rax,40h
-  000ch  ja short 0027h
-  000eh  mov rax,11E5455B380h
-  0018h  mov [rdx],rax
-  001bh  mov [rdx+8],r8d
-  001fh  mov rax,rdx
-  0022h  add rsp,28h
-  0026h  ret
-  0027h  call 7FF959F3C860h
-  002ch  int 3
-end asm ------------------------------------------------------------------------
+7FFC86DAB890h ushort or16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x0b, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB890h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+000dh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB890h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB150h: ReadOnlySpan<uint> ReadU32Data(int count)
-;; {0x57, 0x56, 0x48, 0x83, 0xec, 0x38, 0x33, 0xc0, 0x48, 0x89, 0x44, 0x24, 0x28, 0x48, 0x89, 0x44, 0x24, 0x30, 0x48, 0x8b, 0xf2, 0x41, 0x8b, 0xf8, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0xe8, 0x8e, 0xf6, 0xff, 0xff, 0x8b, 0xc7, 0x8b, 0x54, 0x24, 0x30, 0x48, 0x3b, 0xc2, 0x77, 0x15, 0x48, 0x8b, 0x44, 0x24, 0x28, 0x48, 0x89, 0x06, 0x89, 0x7e, 0x08, 0x48, 0x8b, 0xc6, 0x48, 0x83, 0xc4, 0x38, 0x5e, 0x5f, 0xc3, 0xe8, 0xc9, 0x16, 0xa7, 0xff, 0xcc}
-asm ----------------------------------------------------------------------------
-  0000h  push rdi
-  0001h  push rsi
-  0002h  sub rsp,38h
-  0006h  xor eax,eax
-  0008h  mov [rsp+28h],rax
-  000dh  mov [rsp+30h],rax
-  0012h  mov rsi,rdx
-  0015h  mov edi,r8d
-  0018h  lea rcx,[rsp+28h]
-  001dh  call 7FF95A4CA800h
-  0022h  mov eax,edi
-  0024h  mov edx,[rsp+30h]
-  0028h  cmp rax,rdx
-  002bh  ja short 0042h
-  002dh  mov rax,[rsp+28h]
-  0032h  mov [rsi],rax
-  0035h  mov [rsi+8],edi
-  0038h  mov rax,rsi
-  003bh  add rsp,38h
-  003fh  pop rsi
-  0040h  pop rdi
-  0041h  ret
-  0042h  call 7FF959F3C860h
-  0047h  int 3
-end asm ------------------------------------------------------------------------
+7FFC86DAB8C0h int or32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB8C0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB8C0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB520h: void VoidReturn()
-;; {0x48, 0x83, 0xec, 0x28, 0x90, 0x48, 0xb9, 0x60, 0x30, 0x80, 0x64, 0x1e, 0x01, 0x00, 0x00, 0x48, 0x8b, 0x09, 0xe8, 0xc1, 0xff, 0xff, 0xff, 0x90, 0x48, 0x83, 0xc4, 0x28, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  sub rsp,28h
-  0004h  nop
-  0005h  mov rcx,11E64803060h
-  000fh  mov rcx,[rcx]
-  0012h  call 7FF95A4CB4F8h
-  0017h  nop
-  0018h  add rsp,28h
-  001ch  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB8E0h uint or32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x0b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB8E0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  or eax,edx   ; opcode := Or_r32_rm32 | encoded := {0b,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB8E0h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB560h: int SizeTest()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0xb8, 0x07, 0x00, 0x00, 0x00, 0xc3}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov eax,7
-  000ah  ret
-end asm ------------------------------------------------------------------------
+7FFC86DAB900h long or64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x0b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB900h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  or rax,rdx   ; opcode := Or_r64_rm64 | encoded := {48,0b,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB900h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB580h: void VoidCalls1()
-;; {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  nop dword ptr [rax+rax]
-  0005h  mov rax,7FF95A4CB520h
-  000fh  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB920h ulong or64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x0b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DAB920h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  or rax,rdx   ; opcode := Or_r64_rm64 | encoded := {48,0b,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB920h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB5B0h: void VoidCalls2()
-;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0x60, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  push rsi
-  0001h  sub rsp,20h
-  0005h  mov rsi,rcx
-  0008h  mov rcx,rsi
-  000bh  call 7FF95A4CB520h
-  0010h  mov rcx,rsi
-  0013h  mov rax,7FF95A4CB520h
-  001dh  add rsp,20h
-  0021h  pop rsi
-  0022h  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB940h sbyte sub8i(sbyte x, sbyte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbe, 0xc1, 0x48, 0x0f, 0xbe, 0xd2, 0x2b, 0xc2, 0x48, 0x0f, 0xbe, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB940h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c1} (4 bytes)
+0009h  movsx rdx,dl   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,d2} (4 bytes)
+000dh  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+000fh  movsx rax,al   ; opcode := Movsx_r64_rm8 | encoded := {48,0f,be,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB940h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB5F0h: void VoidCalls3()
-;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0x20, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0x18, 0xff, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  push rsi
-  0001h  sub rsp,20h
-  0005h  mov rsi,rcx
-  0008h  mov rcx,rsi
-  000bh  call 7FF95A4CB520h
-  0010h  mov rcx,rsi
-  0013h  call 7FF95A4CB520h
-  0018h  mov rcx,rsi
-  001bh  mov rax,7FF95A4CB520h
-  0025h  add rsp,20h
-  0029h  pop rsi
-  002ah  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB970h byte sub8u(byte x, byte y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x2b, 0xc2, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB970h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+000dh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB970h ---------------------------------------------------------------------------------------------
 
-7FF95A4CB640h: void VoidCalls4()
-;; {0x56, 0x48, 0x83, 0xec, 0x20, 0x48, 0x8b, 0xf1, 0x48, 0x8b, 0xce, 0xe8, 0xd0, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0xc8, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0xe8, 0xc0, 0xfe, 0xff, 0xff, 0x48, 0x8b, 0xce, 0x48, 0xb8, 0x20, 0xb5, 0x4c, 0x5a, 0xf9, 0x7f, 0x00, 0x00, 0x48, 0x83, 0xc4, 0x20, 0x5e, 0x48, 0xff, 0xe0}
-asm ----------------------------------------------------------------------------
-  0000h  push rsi
-  0001h  sub rsp,20h
-  0005h  mov rsi,rcx
-  0008h  mov rcx,rsi
-  000bh  call 7FF95A4CB520h
-  0010h  mov rcx,rsi
-  0013h  call 7FF95A4CB520h
-  0018h  mov rcx,rsi
-  001bh  call 7FF95A4CB520h
-  0020h  mov rcx,rsi
-  0023h  mov rax,7FF95A4CB520h
-  002dh  add rsp,20h
-  0031h  pop rsi
-  0032h  jmp rax
-end asm ------------------------------------------------------------------------
+7FFC86DAB9A0h short sub16i(short x, short y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x0f, 0xbf, 0xc1, 0x48, 0x0f, 0xbf, 0xd2, 0x2b, 0xc2, 0x48, 0x0f, 0xbf, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB9A0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movsx rax,cx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c1} (4 bytes)
+0009h  movsx rdx,dx   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,d2} (4 bytes)
+000dh  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+000fh  movsx rax,ax   ; opcode := Movsx_r64_rm16 | encoded := {48,0f,bf,c0} (4 bytes)
+0013h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB9A0h ---------------------------------------------------------------------------------------------
+
+7FFC86DAB9D0h ushort sub16u(ushort x, ushort y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x2b, 0xc2, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DAB9D0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+000dh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0010h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DAB9D0h ---------------------------------------------------------------------------------------------
+
+7FFC86DABA00h int sub32i(int x, int y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x2b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DABA00h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABA00h ---------------------------------------------------------------------------------------------
+
+7FFC86DABA20h uint sub32u(uint x, uint y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x2b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DABA20h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  sub eax,edx   ; opcode := Sub_r32_rm32 | encoded := {2b,c2} (2 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABA20h ---------------------------------------------------------------------------------------------
+
+7FFC86DABA40h long sub64i(long x, long y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x2b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DABA40h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  sub rax,rdx   ; opcode := Sub_r64_rm64 | encoded := {48,2b,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABA40h ---------------------------------------------------------------------------------------------
+
+7FFC86DABA60h ulong sub64u(ulong x, ulong y)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x48, 0x2b, 0xc2, 0xc3}
+asm-body-begin 7FFC86DABA60h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  sub rax,rdx   ; opcode := Sub_r64_rm64 | encoded := {48,2b,c2} (3 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABA60h ---------------------------------------------------------------------------------------------
+
+7FFC86DABA80h float sub32f(float x, float y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfa, 0x5c, 0xc1, 0xc3}
+asm-body-begin 7FFC86DABA80h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vsubss xmm0,xmm0,xmm1   ; opcode := VEX_Vsubss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,5c,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABA80h ---------------------------------------------------------------------------------------------
+
+7FFC86DABAA0h double sub64f(double x, double y)
+# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfb, 0x5c, 0xc1, 0xc3}
+asm-body-begin 7FFC86DABAA0h -------------------------------------------------------------------------------------------
+0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
+0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
+0005h  vsubsd xmm0,xmm0,xmm1   ; opcode := VEX_Vsubsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,5c,c1} (4 bytes)
+0009h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABAA0h ---------------------------------------------------------------------------------------------
+
+7FFC86DABAC0h byte rotr8u(byte src, byte offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x8b, 0xca, 0x44, 0x8b, 0xc0, 0x41, 0xd3, 0xf8, 0x8b, 0xca, 0xf7, 0xd9, 0x83, 0xc1, 0x08, 0xd3, 0xe0, 0x41, 0x0b, 0xc0, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABAC0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000dh  mov r8d,eax   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c0} (3 bytes)
+0010h  sar r8d,cl   ; opcode := Sar_rm32_CL | encoded := {41,d3,f8} (3 bytes)
+0013h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0015h  neg ecx   ; opcode := Neg_rm32 | encoded := {f7,d9} (2 bytes)
+0017h  add ecx,8   ; opcode := Add_rm32_imm8 | encoded := {83,c1,08} (3 bytes)
+001ah  shl eax,cl   ; opcode := Shl_rm32_CL | encoded := {d3,e0} (2 bytes)
+001ch  or eax,r8d   ; opcode := Or_r32_rm32 | encoded := {41,0b,c0} (3 bytes)
+001fh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0022h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABAC0h ---------------------------------------------------------------------------------------------
+
+7FFC86DABB00h ushort rotr16u(ushort src, ushort offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x8b, 0xca, 0x44, 0x8b, 0xc0, 0x41, 0xd3, 0xf8, 0x8b, 0xca, 0xf7, 0xd9, 0x83, 0xc1, 0x10, 0xd3, 0xe0, 0x41, 0x0b, 0xc0, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABB00h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000dh  mov r8d,eax   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c0} (3 bytes)
+0010h  sar r8d,cl   ; opcode := Sar_rm32_CL | encoded := {41,d3,f8} (3 bytes)
+0013h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0015h  neg ecx   ; opcode := Neg_rm32 | encoded := {f7,d9} (2 bytes)
+0017h  add ecx,10h   ; opcode := Add_rm32_imm8 | encoded := {83,c1,10} (3 bytes)
+001ah  shl eax,cl   ; opcode := Shl_rm32_CL | encoded := {d3,e0} (2 bytes)
+001ch  or eax,r8d   ; opcode := Or_r32_rm32 | encoded := {41,0b,c0} (3 bytes)
+001fh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0022h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABB00h ---------------------------------------------------------------------------------------------
+
+7FFC86DABB40h uint rotr32u(uint src, uint offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x8b, 0xca, 0xd3, 0xc8, 0xc3}
+asm-body-begin 7FFC86DABB40h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0009h  ror eax,cl   ; opcode := Ror_rm32_CL | encoded := {d3,c8} (2 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABB40h ---------------------------------------------------------------------------------------------
+
+7FFC86DABB60h ulong rotr64u(ulong src, ulong offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x8b, 0xca, 0x48, 0xd3, 0xc8, 0xc3}
+asm-body-begin 7FFC86DABB60h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000ah  ror rax,cl   ; opcode := Ror_rm64_CL | encoded := {48,d3,c8} (3 bytes)
+000dh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABB60h ---------------------------------------------------------------------------------------------
+
+7FFC86DABB80h byte rotl8u(byte x, byte offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb6, 0xc1, 0x0f, 0xb6, 0xd2, 0x8b, 0xca, 0x44, 0x8b, 0xc0, 0x41, 0xd3, 0xe0, 0x8b, 0xca, 0xf7, 0xd9, 0x83, 0xc1, 0x08, 0xd3, 0xf8, 0x41, 0x0b, 0xc0, 0x0f, 0xb6, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABB80h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c1} (3 bytes)
+0008h  movzx edx,dl   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,d2} (3 bytes)
+000bh  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000dh  mov r8d,eax   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c0} (3 bytes)
+0010h  shl r8d,cl   ; opcode := Shl_rm32_CL | encoded := {41,d3,e0} (3 bytes)
+0013h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0015h  neg ecx   ; opcode := Neg_rm32 | encoded := {f7,d9} (2 bytes)
+0017h  add ecx,8   ; opcode := Add_rm32_imm8 | encoded := {83,c1,08} (3 bytes)
+001ah  sar eax,cl   ; opcode := Sar_rm32_CL | encoded := {d3,f8} (2 bytes)
+001ch  or eax,r8d   ; opcode := Or_r32_rm32 | encoded := {41,0b,c0} (3 bytes)
+001fh  movzx eax,al   ; opcode := Movzx_r32_rm8 | encoded := {0f,b6,c0} (3 bytes)
+0022h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABB80h ---------------------------------------------------------------------------------------------
+
+7FFC86DABBC0h ushort rotl16u(ushort x, ushort offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x0f, 0xb7, 0xc1, 0x0f, 0xb7, 0xd2, 0x8b, 0xca, 0x44, 0x8b, 0xc0, 0x41, 0xd3, 0xe0, 0x8b, 0xca, 0xf7, 0xd9, 0x83, 0xc1, 0x10, 0xd3, 0xe8, 0x41, 0x0b, 0xc0, 0x0f, 0xb7, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABBC0h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  movzx eax,cx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c1} (3 bytes)
+0008h  movzx edx,dx   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,d2} (3 bytes)
+000bh  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000dh  mov r8d,eax   ; opcode := Mov_r32_rm32 | encoded := {44,8b,c0} (3 bytes)
+0010h  shl r8d,cl   ; opcode := Shl_rm32_CL | encoded := {41,d3,e0} (3 bytes)
+0013h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0015h  neg ecx   ; opcode := Neg_rm32 | encoded := {f7,d9} (2 bytes)
+0017h  add ecx,10h   ; opcode := Add_rm32_imm8 | encoded := {83,c1,10} (3 bytes)
+001ah  shr eax,cl   ; opcode := Shr_rm32_CL | encoded := {d3,e8} (2 bytes)
+001ch  or eax,r8d   ; opcode := Or_r32_rm32 | encoded := {41,0b,c0} (3 bytes)
+001fh  movzx eax,ax   ; opcode := Movzx_r32_rm16 | encoded := {0f,b7,c0} (3 bytes)
+0022h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABBC0h ---------------------------------------------------------------------------------------------
+
+7FFC86DABC00h uint rotl32u(uint x, uint offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x8b, 0xc1, 0x8b, 0xca, 0xd3, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABC00h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov eax,ecx   ; opcode := Mov_r32_rm32 | encoded := {8b,c1} (2 bytes)
+0007h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+0009h  rol eax,cl   ; opcode := Rol_rm32_CL | encoded := {d3,c0} (2 bytes)
+000bh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABC00h ---------------------------------------------------------------------------------------------
+
+7FFC86DABC20h ulong rotl64u(ulong x, ulong offset)
+# encoding: {0x0f, 0x1f, 0x44, 0x00, 0x00, 0x48, 0x8b, 0xc1, 0x8b, 0xca, 0x48, 0xd3, 0xc0, 0xc3}
+asm-body-begin 7FFC86DABC20h -------------------------------------------------------------------------------------------
+0000h  nop dword ptr [rax+rax]   ; opcode := Nop_rm32 | encoded := {0f,1f,44,00,00} (5 bytes)
+0005h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
+0008h  mov ecx,edx   ; opcode := Mov_r32_rm32 | encoded := {8b,ca} (2 bytes)
+000ah  rol rax,cl   ; opcode := Rol_rm64_CL | encoded := {48,d3,c0} (3 bytes)
+000dh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
+asm-body-end 7FFC86DABC20h ---------------------------------------------------------------------------------------------
 

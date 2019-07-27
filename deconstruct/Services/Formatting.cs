@@ -12,12 +12,10 @@ namespace Z0
     using System.IO;
 
     using static zfunc;
+    
 
     public static class Formatting
-    {
-        public static string Format(this Instruction instruction)
-            => instruction.ToString();            
-        
+    {        
         static string FormatAsm(this MethodAsmBody src)
         {
             var formatter = new AsmFormatter();
@@ -38,8 +36,8 @@ namespace Z0
         public static string FormatNativeBlocks(this MethodDisassembly src)
         {
             var desc = sbuild();
-            desc.Append(AsciSym.Semicolon);
-            desc.Append(AsciSym.Semicolon);
+            desc.Append("# encoding");
+            desc.Append(AsciSym.Colon);
             desc.Append(AsciSym.Space);
             desc.Append(AsciSym.LBrace);
 
@@ -72,13 +70,18 @@ namespace Z0
         {
             var format = sbuild();
             
-            format.AppendLine($"{src.NativeAddress.ToHexString(false,false,true)}h: {src.MethodSig.Format()}"); 
+            format.AppendLine($"{src.NativeAddress.ToHexString(false,false,true)}h {src.MethodSig.Format()}"); 
             format.Append(src.FormatNativeBlocks());
-            format.AppendLine("asm ".PadRight(80, '-'));                                    
+            var startaddress = src.NativeBody.First().Address.ToHexString(false,false,true);
+            var endaddress = src.NativeBody.Last().Address.ToHexString(false,false,true);
+            format.AppendLine($"asm-body-begin {startaddress}h ".PadRight(120, '-'));                                    
             format.AppendLine(src.AsmBody.FormatAsm());
-            format.AppendLine("end asm ".PadRight(80, '-'));
+            format.AppendLine($"asm-body-end {endaddress}h ".PadRight(120, '-'));
             return format.ToString();
         }
+
+
+
 
     }
 
@@ -98,6 +101,8 @@ namespace Z0
             if(src.Instructions.Length == 0)
                 return string.Empty;
 
+            Span<byte> nativeData = src.NativeBlocks.Single().Data;
+
             var baseAddress = src.Instructions[0].IP;
 
             var formatter = new MasmFormatter(FormatOptions);
@@ -109,10 +114,17 @@ namespace Z0
             {
                 ref var i = ref src.Instructions[j];
                 var startAddress = i.IP;
-                var ra = (startAddress - baseAddress).ToString("x4");
+                var relAddress = (int)(startAddress - baseAddress);
+                var relAddressFmt = relAddress.ToString("x4");            
 
-                sb.Append($"  {ra}h  ");
+                sb.Append($"{relAddressFmt}h  ");
                 formatter.Format(ref i, output);
+
+                var padding = "   ";
+                var encoding = i.Encoding == EncodingKind.Legacy ? string.Empty : $" ({i.Encoding} encoded)";               
+                var encoded = embrace(nativeData.Slice(relAddress, i.ByteLength).FormatHex(false, ','));
+                sb.Append($"{padding}; opcode := {i.Code}{encoding} | encoded := {encoded} ({i.ByteLength} bytes)");
+                
                 if(j != src.Instructions.Length - 1)
                     sb.AppendLine();
             }
@@ -132,7 +144,16 @@ namespace Z0
         {
             this.Writer = writer;
             this.BaseAddress = BaseAddress;
+            this.LabelLength = 0;
+            this.InstructionLength = 0;
         }
+
+        public int LabelLength {get; private set;}
+        
+        public int InstructionLength {get; private set;}
+
+        
+        public string Instruction {get; private set;}
 
         public override void Write(string text, FormatterOutputTextKind kind)
         {
@@ -141,9 +162,12 @@ namespace Z0
                 case FormatterOutputTextKind.LabelAddress:
                     var address = ulong.Parse($"{text.Substring(0, text.Length - 1)}", System.Globalization.NumberStyles.HexNumber);
                     var ra = (address - BaseAddress).ToString("x4");
-                    Writer.Write($"{ra}h");
+                    var label = $"{ra}h";
+                    LabelLength = label.Length;
+                    Writer.Write(label);
                 break;
                 default:
+                    InstructionLength = text.Length;
                     Writer.Write(text);    
                 break;
             }

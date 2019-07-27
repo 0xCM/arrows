@@ -6,7 +6,6 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using Iced.Intel;
 
 	public sealed class NativeContent 
     {

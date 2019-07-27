@@ -53,7 +53,7 @@ partial class zfunc
     /// Encloses text content between left and right braces
     /// </summary>
     /// <param name="content">The content to be embraced</param>
-    public static string embrace(object content)      
+    public static string embrace(string content)      
         => $"{AsciSym.LBrace}{content}{AsciSym.RBrace}";
 
     /// <summary>
@@ -661,7 +661,7 @@ partial class zfunc
     /// </summary>
     [MethodImpl(Inline)]
     public static string emptyset()
-        => embrace(MathSym.EmptySet);
+        => embrace(MathSym.EmptySet.ToString());
 
     /// <summary>
     /// Splits the string into delimited and nonempy parts

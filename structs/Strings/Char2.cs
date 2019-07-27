@@ -76,18 +76,17 @@ namespace Z0
         public static bool operator !=(in Char2 x, in Char2 y)
             => !x.Equals(y);
         
+        [MethodImpl(Inline)]
+        public static ref readonly Char2 FromSpan(ReadOnlySpan<char> src, int offset = 0)
+            => ref SpanConvert.TakeSingle<char,Char2>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref Char2 FromSpan(Span<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char2>(offset, CharCount);
-
-        [MethodImpl(Inline)]
-        public static ref readonly Char2 FromSpan(ReadOnlySpan<char> src, int offset = 0)
-            => ref src.AsIndividual<char,Char2>(offset, CharCount);
+            => ref SpanConvert.TakeSingle<char,Char2>(src, offset, CharCount);
 
         [MethodImpl(Inline)]
         public static ref readonly Char2 FromString(string src)
-            =>ref src.PadRight(CharCount).Substring(0,CharCount).AsReadOnlySpan().AsIndividual<char,Char2>();
+            => ref FromSpan(src.PadRight(CharCount).Substring(0,CharCount).ToReadOnlySpan());
 
         [MethodImpl(Inline)]
         public static implicit operator Span<char>(Char2 src)
@@ -99,11 +98,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Char2(Span<char> src)
-            => src.AsIndividual<char,Char2>();
+            => SpanConvert.TakeSingle<char, Char2>((ReadOnlySpan<char>)src);
 
         [MethodImpl(Inline)]
         public static implicit operator Char2(ReadOnlySpan<char> src)
-            => src.AsIndividual<char,Char2>();
+            => SpanConvert.TakeSingle<char,Char2>(src);
 
         /// <summary>
         /// Implicilty converts the source value to a string, removing any trailing whitespace characters

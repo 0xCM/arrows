@@ -69,7 +69,9 @@ namespace Z0
             sigtext.Append(AsciSym.Space);
             sigtext.Append(MethodName);
             sigtext.Append(ValueParams.Format(true));
-            return sigtext.ToString();
+            var text = sigtext.ToString();
+            return text;
+            
         }
 
         public override string ToString()

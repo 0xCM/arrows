@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\package.targets" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\structs\z0.structs.csproj" />
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\inx\z0.inx.csproj" />
+
+  </ItemGroup>
+
+</Project>

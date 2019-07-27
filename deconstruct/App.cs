@@ -19,18 +19,32 @@ namespace Z0
     public class App
     {                
 
-        void Analyze(MethodDisassembly d)
+        void Disassemble<T>()
         {
-            magenta(d);
+            var t = typeof(T);
+            var specs = t.SpecifyAsm();
+            var name = $"{t.DisplayName()}.v2";
+            specs.Dump(name);
         }
 
+        void Dump(string name, IEnumerable<MethodDisassembly> methods)
+        {
+            var specs = methods.SpecifyAsm().ToArray();
+            specs.Dump(name);        
+        }
+        
         void Disassemble()
         {
 
-            typeof(CommonIntrinsicScenarios).Deconstruct();
-            typeof(CommonPrimalScenarios).Deconstruct();
-            GenericScenarios.GInX();
-            GenericScenarios.GMath();
+            // typeof(CommonIntrinsicScenarios).Deconstruct();
+            // typeof(CommonPrimalScenarios).Deconstruct();
+            //GenericScenarios.GInX();
+            //GenericScenarios.GMath();
+
+            Disassemble<CommonIntrinsicScenarios>();
+            Disassemble<CommonPrimalScenarios>();
+            Dump("ginx.v2", GenericScenarios.GInX());
+            Dump("gmath.v2", GenericScenarios.GMath());
 
 
         }
