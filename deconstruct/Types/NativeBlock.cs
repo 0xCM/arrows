@@ -29,6 +29,6 @@ namespace Z0
 	
 
 		public override string ToString() 
-			=> $"{Address.ToHexString()}: {Data.ToBlockedHexString()}";
+			=> $"{Address.FormatHex()}: {Data.FormatHexBlocks()}";
 	}
 }

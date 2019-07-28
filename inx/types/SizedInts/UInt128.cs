@@ -153,9 +153,9 @@ namespace Z0
         public string Format()
         {
             if(hi != 0)
-                return $"{hi.ToHexString(false,true)}{lo.ToHexString(true,false)}";
+                return $"{hi.FormatHex(false,true)}{lo.FormatHex(true,false)}";
             else
-                return lo.ToHexString(false,true);
+                return lo.FormatHex(false,true);
         }
 
         [MethodImpl(Inline)]

@@ -10,12 +10,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
     
     using static zfunc;    
     
-
-
     partial class MathX
     {
         [MethodImpl(Inline)]
@@ -122,6 +119,6 @@ namespace Z0
         public static Span<double> Sqrt(this Span<double> io)
             => math.sqrt(io);
 
-    }
+   }
 
 }

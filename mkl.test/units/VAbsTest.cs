@@ -73,13 +73,6 @@ namespace Z0.Mkl.Test
             
         }
 
-        public void vDivTest()
-        {
-            var x = 20f;
-            var y = 4.5f;
-            var z = mkl.div(x,y);
-            Trace($"{x} div {y} = {z}");
-        }
 
     }
 

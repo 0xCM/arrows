@@ -86,6 +86,26 @@ namespace Z0
                 Messages.Add(AppMsg.Define($"{msg}", SeverityLevel.Benchmark));
         }
 
+        /// <summary>
+        /// Emits a performance-related trace message
+        /// </summary>
+        /// <param name="msg">The message to emit</param>
+        protected void TracePerf(string label, Duration time, int? cycles = null, int? samples = null, int? pad = null)
+        {
+            if(TraceEnabled)
+            {
+                var cyclesFmt = cycles != null ? (cycles.ToString() + " cycles").PadRight(16) : string.Empty;
+                var samplesFmt = samples != null ? (samples.ToString() + " samples").PadRight(16) : string.Empty;
+                var content = concat(
+                    $"{label}".PadRight(pad ?? 30), 
+                    cyclesFmt,
+                    samplesFmt,  
+                    $"{time.Ms} ms"
+                    );
+                Messages.Add(AppMsg.Define(content, SeverityLevel.Benchmark));
+            }
+        }
+
     }
 
     public abstract class Context<T> : Context

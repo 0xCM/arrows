@@ -17,35 +17,8 @@ namespace Z0
     
 
     public static class AsmSpec
-    {
-
-        public static ReadOnlySpan<string> FormatInstructions(this MethodAsmBody src)
-        {
-            var inxcount = src.Instructions.Length;
-            if(inxcount == 0)
-                return ReadOnlySpan<string>.Empty;
-            
-            Span<string> dst = new string[inxcount];
-
-            var formatter = new MasmFormatter(FormatOptions);
-            var baseAddress = src.Instructions.First().IP;
-
-            var sb = sbuild();
-            var writer = new StringWriter(sb);
-            var output = new AsmFormatterOutput(writer, baseAddress);
-            for(var j = 0; j< src.Instructions.Length; j++)
-            {
-                ref var i = ref src.Instructions[j];
-                formatter.Format(ref i, output);
-                dst[j] = sb.ToString();
-                sb.Clear();
-            }
-
-            return dst;
-        }
-
-
-        public static IEnumerable<AsmFuncSpec> SpecifyAsm(this IEnumerable<MethodDisassembly> src)
+    {        
+        public static IEnumerable<AsmFuncSpec> DefineAsmSpecs(this IEnumerable<MethodDisassembly> src)
             => src.Select(DefineAsmSpec);
 
         public static AsmFuncSpec DefineAsmSpec(this MethodDisassembly src)
@@ -55,7 +28,7 @@ namespace Z0
             var code = asm.NativeBlocks.Single().Data;
             Span<byte> codespan = code;
             var startAddress = asm.Instructions.First().IP;
-            var endAddress = asm.Instructions.Last().IP - startAddress;
+            var endAddress = asm.Instructions.Last().IP;
             var inxs = new AsmFuncInstruction[inxcount];
             var inxsfmt = asm.FormatInstructions();
             for(var i=0; i<asm.Instructions.Length; i++)
@@ -71,15 +44,6 @@ namespace Z0
 
             return new AsmFuncSpec(startAddress, endAddress, src.MethodSig, inxs, code);            
         }
-
-        static readonly MasmFormatterOptions FormatOptions = new MasmFormatterOptions
-        {
-            DecimalDigitGroupSize = 4,
-            BranchLeadingZeroes = false,
-            HexDigitGroupSize = 4,
-            UpperCaseRegisters = false, 
-            LeadingZeroes = false,
-        };
 
     }
 

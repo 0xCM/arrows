@@ -33,10 +33,10 @@ namespace Z0
             iter(modules, IndexModule);
         }
 
-        public Option<MethodCilBody> FindCil(int methodId)
+        public Option<CilFuncSpec> FindCil(int methodId)
             => CilIndex.TryFind(methodId);
 
-        public Option<MethodCilBody> FindCil(MethodInfo mi)
+        public Option<CilFuncSpec> FindCil(MethodInfo mi)
             => FindCil(mi.MetadataToken);
 
         [MethodImpl(Inline)]
@@ -67,7 +67,7 @@ namespace Z0
         public IEnumerable<TypeDef> Types
             => TypeIndex.Values;
 
-        public IEnumerable<MethodCilBody> CilBodies
+        public IEnumerable<CilFuncSpec> CilBodies
             => CilIndex.Values;
 
         public IEnumerable<MethodDef> Methods
@@ -83,8 +83,8 @@ namespace Z0
             = new ConcurrentDictionary<int, TypeDef>();
         ConcurrentDictionary<int, MethodDef> MethodIndex 
             = new ConcurrentDictionary<int, MethodDef>();
-        ConcurrentDictionary<int, MethodCilBody> CilIndex 
-            = new ConcurrentDictionary<int, MethodCilBody>();
+        ConcurrentDictionary<int, CilFuncSpec> CilIndex 
+            = new ConcurrentDictionary<int, CilFuncSpec>();
 
         TypeDef ResolveType(ModuleDefMD mod, string fullName)
         {
@@ -109,11 +109,11 @@ namespace Z0
             return typeDef;
         }
 
-        MethodCilBody ExtractCil(MethodDef md)
+        CilFuncSpec ExtractCil(MethodDef md)
         {
             var mid = (int)md.MDToken.Raw;
             var instructions = md.Body.Instructions.ToReadOnlyList();
-            var mcil = new MethodCilBody(mid, md.FullName, instructions);
+            var mcil = new CilFuncSpec(mid, md.FullName, instructions);
             return mcil;
         }
         

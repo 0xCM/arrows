@@ -219,6 +219,22 @@ namespace Z0
              : target == 3 ? JumpTarget3()
              : JumpTarget4();
 
+        public static void divrem32i(int x, int y, out int q, out int r)
+        {
+            q = x / y;
+            r = x % y;
+        }
+
+        public static void divrem64i(long x, long y, out long q, out long r)
+        {
+            q = x / y;
+            r = x % y;
+        }
+
+        public static (ulong q, ulong r) divrem64u(ulong x, ulong y)
+            => (x/y, x % y);
+
+
     }
 
 }

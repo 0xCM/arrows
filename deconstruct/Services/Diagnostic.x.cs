@@ -37,7 +37,6 @@ namespace Z0
         public static ClrRuntime CoreRuntime(this DataTarget target)
             => target.ClrVersions.Single(x => x.Flavor == ClrFlavor.Core).CreateRuntime();
 
-
         static StreamWriter DumpWriter(string name, string extension, bool timestamped)
         {
             var dstFolder = FolderPath.Define(Settings.ProjectDir("deconstruct")) +  FolderName.Define(".dumps");
@@ -80,14 +79,14 @@ namespace Z0
             for(var i=0; i< specs.Length; i++)
             {   
                 var spec = specs[i];             
-                writer.WriteLine(spec.Format());
+                writer.Write(spec.Format());
                 if(i != i-1)
                     writer.WriteLine(new string('-',120));
             }
         }
 
         static MethodDisassembly[] Disassemble(this Type src)
-            => Deconstructor.Disassemble(src.DeclaredMethods().ToArray()).ToArray();
+            => Deconstructor.Disassemble(src.DeclaredMethods().NonGeneric().ToArray()).ToArray();
         
         public static MethodDisassembly[] Deconstruct(this Type src, bool dump = true)
         {
@@ -97,7 +96,7 @@ namespace Z0
             return disassembly;
         }
 
-        public static AsmFuncSpec[] SpecifyAsm(this Type src)
+        public static AsmFuncSpec[] ExtractAsm(this Type src)
         {
             var disassembly = src.Disassemble();
             var dst = new AsmFuncSpec[disassembly.Length];

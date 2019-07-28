@@ -16,6 +16,7 @@
         "xed-agen.h": "c",
         "xed-decoded-inst.h": "c",
         "xed-inst.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "arithmetic.h": "c"
     }
 }

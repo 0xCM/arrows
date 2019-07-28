@@ -1,0 +1,61 @@
+# Opcode Column in the Instruction Summary Table (Instructions without VEX Prefix)
+# The “Opcode” column shows the object code produced for each form of the instruction. When possible, codes are given as hexadecimal bytes in the same order in which they appear in memory. Definitions of entries other than hexadecimal bytes are as follows:
+
+## Opcode colum value interpretation
+value                  | Meaning
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+REX.W                  | Indicates the use of a REX prefix that affects operand size or instruction semantics. The ordering of the REX prefix and other optional/mandatory instruction prefixes are discussed Chapter 2. Note that REX prefixes that promote legacy instructions to 64-bit behavior are not listed explicitly in the opcode column.
+/digit                 | A digit between 0 and 7 indicates that the ModR/M byte of the instruction uses only the r/m (register or memory) operand. The reg field contains the digit that provides an extension to the instruction's opcode.
+/r                     | Indicates that the ModR/M byte of the instruction contains a register operand and an r/m operand.
+cb                     | A 1-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+cw                     | A 2-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+cd                     | A 4-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+cp                     | A 6-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+co                     | A 8-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+ct                     | A 10-byte value following the opcode, can be used to specify a code offset and possibly a new value for the code segment register.
+ib                     | A 1-byte immediate operand to the instruction that follows the opcode, ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words, doublewords and quadwords are given with the low-order byte first.
+iw                     | A 2-byte immediate operand to the instruction that follows the opcode, ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words, doublewords and quadwords are given with the low-order byte first.
+id                     | A 4-byte immediate operand to the instruction that follows the opcode, ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words, doublewords and quadwords are given with the low-order byte first. 
+io                     | A 8-byte immediate operand to the instruction that follows the opcode, ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words, doublewords and quadwords are given with the low-order byte first.  
++rb                    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
++rw                    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
++rd                    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
++ro                    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
++i                     | A number used in floating-point instructions when one of the operands is ST(i) from the FPU register stack. The number i (which can range from 0 to 7) is added to the hexadecimal byte given at the left of the plus sign to form a single opcode byte.
+
+;; [+rb, +rw, +rd, +ro]: the instruction lists the corresponding hexadecimal value of the opcode byte with low 3 bits as 000b.
+;;;; In non-64-bit mode, a register code, from 0 through 7, is added to the hexadecimal value of the opcode byte. 
+;;;; In 64-bit mode, indicates the four bit field of REX.b and opcode[2:0] field encodes the register operand of the instruction. 
+;;;; “+ro” is applicable only in 64-bit mode. 
+;;;; See Table 3-1 for the codes.
+
+## Table 3-1: Register Codes Associated With +rb, +rw, +rd, +ro
+-- N.E = Not Encodable
+-- Registers R8 - R15: Available in 64-Bit Mode Only
+-- quadword registers available in 64-Bit Mode only
+
+byte register                | word register                | dword register               | quadword register
+-------------------------------------------------------------------------------------------------------------------------
+Register | REX.B | Reg Field | Register | REX.B | Reg Field | Register | REX.B | Reg Field | Register | REX.B | Reg Field
+-------------------------------------------------------------------------------------------------------------------------
+AL       | None  | 0         | AX       | None  | 0         | EAX      | None  | 0         | RAX      | None  | 0
+CL       | None  | 1         | CX       | None  | 1         | ECX      | None  | 1         | RCX      | None  | 1
+DL       | None  | 2         | DX       | None  | 2         | EDX      | None  | 2         | RDX      | None  | 2
+BL       | None  | 3         | BX       | None  | 3         | EBX      | None  | 3         | RBX      | None  | 3
+AH       | N.E   | 4         | SP       | None  | 4         | ESP      | None  | 4         | N/A      | N/A   | N/A
+CH       | N.E.  | 5         | BP       | None  | 5         | EBP      | None  | 5         | N/A      | N/A   | N/A
+DH       | N.E.  | 6         | SI       | None  | 6         | ESI      | None  | 6         | N/A      | N/A   | N/A
+BH       | N.E.  | 7         | DI       | None  | 7         | EDI      | None  | 7         | N/A      | N/A   | N/A
+SPL      | Yes   | 4         | SP       | None  | 4         | ESP      | None  | 4         | RSP      | None  | 4
+BPL      | Yes   | 5         | BP       | None  | 5         | EBP      | None  | 5         | RBP      | None  | 5
+SIL      | Yes   | 6         | SI       | None  | 6         | ESI      | None  | 6         | RSI      | None  | 6
+DIL      | Yes   | 7         | DI       | None  | 7         | EDI      | None  | 7         | RDI      | None  | 7
+R8L      | Yes   | 0         | R8W      | Yes   | 0         | R8D      | Yes   | 0         | R8       | Yes   | 0
+R9L      | Yes   | 1         | R9W      | Yes   | 1         | R9D      | Yes   | 1         | R9       | Yes   | 1
+R10L     | Yes   | 2         | R10W     | Yes   | 2         | R10D     | Yes   | 2         | R10      | Yes   | 2
+R11L     | Yes   | 3         | R11W     | Yes   | 3         | R11D     | Yes   | 3         | R11      | Yes   | 3
+R12L     | Yes   | 4         | R12W     | Yes   | 4         | R12D     | Yes   | 4         | R12      | Yes   | 4
+R13L     | Yes   | 5         | R13W     | Yes   | 5         | R13D     | Yes   | 5         | R13      | Yes   | 5
+R14L     | Yes   | 6         | R14W     | Yes   | 6         | R14D     | Yes   | 6         | R14      | Yes   | 6
+R15L     | Yes   | 7         | R15W     | Yes   | 7         | R15D     | Yes   | 7         | R15      | Yes   | 7
+

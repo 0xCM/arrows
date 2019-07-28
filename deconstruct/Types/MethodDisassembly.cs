@@ -27,7 +27,7 @@ namespace Z0
 
         public MethodAsmBody AsmBody {get;set;}
 
-        public Option<MethodCilBody> CilBody {get;set;}
+        public Option<CilFuncSpec> CilBody {get;set;}
 
         public string DefiningAssembly 
             => MethodInfo.DeclaringType.Assembly.GetSimpleName();

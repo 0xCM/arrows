@@ -44,5 +44,17 @@ namespace Z0
             return methods;                                 
         }
 
+        public static IEnumerable<MethodInfo> UnaryOps()
+        {
+            var methods = 
+                from m in typeof(gmath).DeclaredMethods().OpenGeneric().Public()
+                 let p = m.GetParameters()
+                 where p.Length == 1
+                 let p0 = p[0]
+                 where p0.ParameterType.IsGenericMethodParameter
+                 select m;
+            return methods;                                 
+        }
+
     }
 }

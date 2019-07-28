@@ -101,14 +101,14 @@ namespace Z0
         public HexString ToHexString()
         {   var src = this;
             var sb = sbuild();
-            sb.Append(src.x7.ToHexString());
-            sb.Append(src.x6.ToHexString());
-            sb.Append(src.x5.ToHexString());
-            sb.Append(src.x4.ToHexString());
-            sb.Append(src.x3.ToHexString());
-            sb.Append(src.x2.ToHexString());
-            sb.Append(src.x1.ToHexString());
-            sb.Append(src.x0.ToHexString());
+            sb.Append(src.x7.FormatHex());
+            sb.Append(src.x6.FormatHex());
+            sb.Append(src.x5.FormatHex());
+            sb.Append(src.x4.FormatHex());
+            sb.Append(src.x3.FormatHex());
+            sb.Append(src.x2.FormatHex());
+            sb.Append(src.x1.FormatHex());
+            sb.Append(src.x0.FormatHex());
             return HexString.Define(sb.ToString());            
         }
         

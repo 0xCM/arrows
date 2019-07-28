@@ -27,7 +27,7 @@ namespace Z0
 
         public static readonly Vec256<T> Ones = Vec256.ones<T>();
 
-        readonly Vector256<T> data;        
+        public readonly Vector256<T> data;        
     
         public static bool operator ==(in Vec256<T> lhs, in Vec256<T> rhs)
             => lhs.Equals(rhs);

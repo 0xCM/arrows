@@ -13,9 +13,9 @@ namespace Z0
 
 
     [DisplayName("scenarios-primal")]
-    class CommonPrimalScenarios
+    class PrimalScenarios
     {
-        #region add
+        # region add
 
         public static sbyte add8i(sbyte x, sbyte y)
             => (sbyte)(x + y);
@@ -49,7 +49,41 @@ namespace Z0
 
         #endregion
 
-        #region and
+        # region add3
+
+        public static sbyte add8ix3(sbyte x, sbyte y, sbyte z)
+            => (sbyte)(x + y + z);
+
+        public static byte add8ux3(byte x, byte y, byte z)
+            => (byte)(x + y + z);
+
+        public static short add16ix3(short x, short y, short z)
+            => (short)(x + y + z);
+
+        public static ushort add16ux3(ushort x, ushort y, ushort z)
+            => (ushort)(x + y + z);
+
+        public static int add32ix3(int x, int y, int z)
+            => x + y + z;
+
+        public static uint add32ux3(uint x, uint y, uint z)
+            => x + y + z;
+
+        public static long add64ix3(long x, long y, long z)
+            => x + y + z;
+
+        public static ulong add64ux3(ulong x, ulong y, ulong z)
+            => x + y + z;
+
+        public static float add32fx3(float x, float y, float z)
+            => x + y + z;
+
+        public static double add64fx3(double x, double y, double z)
+            => x + y + z;
+
+        #endregion
+
+        # region and
 
         public static byte and8u(byte x, byte y)
             => (byte)(x & y);
@@ -145,7 +179,41 @@ namespace Z0
 
         #endregion
 
-        #region or
+        # region mod
+
+        public static sbyte mod8i(sbyte x, sbyte y)
+            => (sbyte)(x % y);
+
+        public static byte mod8u(byte x, byte y)
+            => (byte)(x % y);
+
+        public static short mod16i(short x, short y)
+            => (short)(x % y);
+
+        public static ushort mod16u(ushort x, ushort y)
+            => (ushort)(x % y);
+
+        public static int mod32i(int x, int y)
+            => x % y;
+
+        public static uint mod32u(uint x, uint y)
+            => x % y;
+
+        public static long mod64i(long x, long y)
+            => x % y;
+
+        public static ulong mod64u(ulong x, ulong y)
+            => x % y;
+
+        public static float mod32f(float x, float y)
+            => x % y;
+
+        public static double mod64f(double x, double y)
+            => x % y;
+
+        #endregion
+
+        # region or
 
         public static byte or8u(byte x, byte y)
             => (byte)(x | y);
@@ -236,19 +304,73 @@ namespace Z0
 
         #endregion
 
-        public static void divrem32i(int x, int y, out int q, out int r)
-        {
-            q = x / y;
-            r = x % y;
-        }
+        #region negate
 
-        public static void divrem64i(long x, long y, out long q, out long r)
-        {
-            q = x / y;
-            r = x % y;
-        }
+        public static sbyte negate(sbyte src)
+            => (sbyte)(- src);
 
-        public static (ulong q, ulong r) divrem64u(ulong x, ulong y)
-            => (x/y, x % y);
+        public static byte negate(byte src)
+            => (byte)(~src + 1);
+     
+        public static short negate(short src)
+            => (short)(- src);
+
+        public static ushort negate(ushort src)
+            => (ushort)(~src + 1);
+
+        public static int negate(int src)
+            => -src;
+
+        public static uint negate(uint src)
+            => ~src + 1;
+
+        public static long negate(long src)
+            => -src;
+
+        public static ulong negate(ulong src)
+            => ~src + 1;
+
+        public static float negate(float src)
+            => -src;
+
+        public static double negate(double src)
+            => -src;
+ 
+        #endregion
+
+        #region inc
+
+        public static sbyte inc(sbyte src)
+            => (sbyte)(src++);
+
+        public static byte inc(byte src)
+            => (byte)(src++);
+     
+        public static short inc(short src)
+            => (short)(src++);
+
+        public static ushort inc(ushort src)
+            => (ushort)(src++);
+
+        public static int inc(int src)
+            => src++;
+
+        public static uint inc(uint src)
+            => src++;
+
+        public static long inc(long src)
+            => src++;
+
+        public static ulong inc(ulong src)
+            => src++;
+
+        public static float inc(float src)
+            => src++;
+
+        public static double inc(double src)
+            => src++;
+ 
+        #endregion
+
     }
 }

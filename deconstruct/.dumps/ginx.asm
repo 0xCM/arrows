@@ -1,3121 +1,2681 @@
-# 2019-07-27 04:33:02:929
-7FFC86D85440h void sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xf8, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D85440h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubb xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f8,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D85440h ---------------------------------------------------------------------------------------------
-
-7FFC86D85880h void sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xf9, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D85880h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubw xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f9,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D85880h ---------------------------------------------------------------------------------------------
-
-7FFC86D85CC0h void sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfa, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D85CC0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubd xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fa,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D85CC0h ---------------------------------------------------------------------------------------------
-
-7FFC86D85CF0h void sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D85CF0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubq xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D85CF0h ---------------------------------------------------------------------------------------------
-
-7FFC86D86130h void sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xf8, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D86130h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubb xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f8,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D86130h ---------------------------------------------------------------------------------------------
-
-7FFC86D86160h void sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xf9, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D86160h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubw xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f9,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D86160h ---------------------------------------------------------------------------------------------
-
-7FFC86D865A0h void sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfa, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D865A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubd xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fa,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D865A0h ---------------------------------------------------------------------------------------------
-
-7FFC86D869E0h void sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86D869E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpsubq xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D869E0h ---------------------------------------------------------------------------------------------
-
-7FFC86D86A10h void sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf8, 0x5c, 0xc1, 0xc4, 0xc1, 0x78, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86D86A10h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vsubps xmm0,xmm0,xmm1   ; opcode := VEX_Vsubps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,5c,c1} (4 bytes)
-0011h  vmovups [r8],xmm0   ; opcode := VEX_Vmovups_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,78,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D86A10h ---------------------------------------------------------------------------------------------
-
-7FFC86D86E50h void sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0x5c, 0xc1, 0xc4, 0xc1, 0x79, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86D86E50h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vsubpd xmm0,xmm0,xmm1   ; opcode := VEX_Vsubpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,5c,c1} (4 bytes)
-0011h  vmovupd [r8],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,79,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D86E50h ---------------------------------------------------------------------------------------------
-
-7FFC86D87290h void sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xf8, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87290h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubb ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f8,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87290h ---------------------------------------------------------------------------------------------
-
-7FFC86D872C0h void sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xf9, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D872C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubw ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f9,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D872C0h ---------------------------------------------------------------------------------------------
-
-7FFC86D87700h void sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfa, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87700h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubd ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fa,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87700h ---------------------------------------------------------------------------------------------
-
-7FFC86D87730h void sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87730h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubq ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87730h ---------------------------------------------------------------------------------------------
-
-7FFC86D87B70h void sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xf8, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87B70h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubb ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f8,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87B70h ---------------------------------------------------------------------------------------------
-
-7FFC86D87BA0h void sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xf9, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87BA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubw ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f9,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87BA0h ---------------------------------------------------------------------------------------------
-
-7FFC86D87FE0h void sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfa, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D87FE0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubd ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fa,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D87FE0h ---------------------------------------------------------------------------------------------
-
-7FFC86D88010h void sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D88010h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpsubq ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D88010h ---------------------------------------------------------------------------------------------
-
-7FFC86D88450h void sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfc, 0x5c, 0xc1, 0xc4, 0xc1, 0x7c, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D88450h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vsubps ymm0,ymm0,ymm1   ; opcode := VEX_Vsubps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,5c,c1} (4 bytes)
-0011h  vmovups [r8],ymm0   ; opcode := VEX_Vmovups_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7c,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D88450h ---------------------------------------------------------------------------------------------
-
-7FFC86D88890h void sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0x5c, 0xc1, 0xc4, 0xc1, 0x7d, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86D88890h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vsubpd ymm0,ymm0,ymm1   ; opcode := VEX_Vsubpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,5c,c1} (4 bytes)
-0011h  vmovupd [r8],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7d,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D88890h ---------------------------------------------------------------------------------------------
-
-7FFC86D888C0h Num128<byte> sub<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xfb, 0x9c, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xe4, 0x9c, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xe1, 0xfd, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0xb1, 0xaf, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D888C0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,fb,9c,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,e4,9c,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D886F8h   ; opcode := Call_rel32_64 | encoded := {e8,e1,fd,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,b1,af,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D888C0h ---------------------------------------------------------------------------------------------
-
-7FFC86D88940h Num128<ushort> sub<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x7b, 0x9c, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x64, 0x9c, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xe1, 0xfd, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0x31, 0xaf, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D88940h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,7b,9c,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,64,9c,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88778h   ; opcode := Call_rel32_64 | encoded := {e8,e1,fd,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,31,af,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D88940h ---------------------------------------------------------------------------------------------
-
-7FFC86D889C0h Num128<uint> sub<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xfb, 0x9b, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xe4, 0x9b, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xd1, 0xfd, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0xb1, 0xae, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D889C0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,fb,9b,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,e4,9b,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D887E8h   ; opcode := Call_rel32_64 | encoded := {e8,d1,fd,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,b1,ae,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D889C0h ---------------------------------------------------------------------------------------------
-
-7FFC86D88A40h Num128<ulong> sub<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x7b, 0x9b, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x64, 0x9b, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xc1, 0xfd, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0x31, 0xae, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D88A40h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,7b,9b,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,64,9b,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88858h   ; opcode := Call_rel32_64 | encoded := {e8,c1,fd,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,31,ae,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D88A40h ---------------------------------------------------------------------------------------------
-
-7FFC86D88EC0h Num128<sbyte> sub<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xfb, 0x96, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xe4, 0x96, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0x51, 0xf9, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0xb1, 0xa9, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D88EC0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,fb,96,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,e4,96,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88868h   ; opcode := Call_rel32_64 | encoded := {e8,51,f9,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,b1,a9,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D88EC0h ---------------------------------------------------------------------------------------------
-
-7FFC86D88F40h Num128<short> sub<short>(byref Num128<short> lhs, byref Num128<short> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x7b, 0x96, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x64, 0x96, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xe1, 0xfb, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0x31, 0xa9, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D88F40h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,7b,96,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,64,96,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88B78h   ; opcode := Call_rel32_64 | encoded := {e8,e1,fb,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,31,a9,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D88F40h ---------------------------------------------------------------------------------------------
-
-7FFC86D88FC0h Num128<int> sub<int>(byref Num128<int> lhs, byref Num128<int> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xfb, 0x95, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0xe4, 0x95, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xd1, 0xfb, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0xb1, 0xa8, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D88FC0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,fb,95,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,e4,95,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88BE8h   ; opcode := Call_rel32_64 | encoded := {e8,d1,fb,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,b1,a8,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D88FC0h ---------------------------------------------------------------------------------------------
-
-7FFC86D89040h Num128<long> sub<long>(byref Num128<long> lhs, byref Num128<long> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8a, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x7b, 0x95, 0x6b, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x23, 0x2e, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x64, 0x95, 0x6b, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xc1, 0xfb, 0xff, 0xff, 0x48, 0x8b, 0xc8, 0xe8, 0x31, 0xa8, 0x51, 0x5f, 0xcc}
-asm-body-begin 7FFC86D89040h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Ah   ; opcode := Mov_r32_imm32 | encoded := {be,8a,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,7b,95,6b,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2E23h   ; opcode := Mov_r32_imm32 | encoded := {b9,23,2e,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,64,95,6b,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88C58h   ; opcode := Call_rel32_64 | encoded := {e8,c1,fb,ff,ff} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,31,a8,51,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86D89040h ---------------------------------------------------------------------------------------------
-
-7FFC86D894C0h Num128<float> sub<float>(byref Num128<float> lhs, byref Num128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xfa, 0x5c, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D894C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vsubss xmm0,xmm0,xmm1   ; opcode := VEX_Vsubss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D894C0h ---------------------------------------------------------------------------------------------
-
-7FFC86D894F0h Num128<double> sub<double>(byref Num128<double> lhs, byref Num128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xfb, 0x5c, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D894F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vsubsd xmm0,xmm0,xmm1   ; opcode := VEX_Vsubsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D894F0h ---------------------------------------------------------------------------------------------
-
-7FFC86D89520h Vec128<byte> and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89520h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89520h ---------------------------------------------------------------------------------------------
-
-7FFC86D89960h Vec128<ushort> and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89960h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89960h ---------------------------------------------------------------------------------------------
-
-7FFC86D89990h Vec128<uint> and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89990h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89990h ---------------------------------------------------------------------------------------------
-
-7FFC86D899C0h Vec128<ulong> and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D899C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D899C0h ---------------------------------------------------------------------------------------------
-
-7FFC86D89E00h Vec128<sbyte> and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89E00h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89E00h ---------------------------------------------------------------------------------------------
-
-7FFC86D89E30h Vec128<short> and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89E30h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89E30h ---------------------------------------------------------------------------------------------
-
-7FFC86D89E60h Vec128<int> and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D89E60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D89E60h ---------------------------------------------------------------------------------------------
-
-7FFC86D8A2A0h Vec128<long> and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xdb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D8A2A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D8A2A0h ---------------------------------------------------------------------------------------------
-
-7FFC86D8A2D0h Vec128<float> and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf8, 0x54, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86D8A2D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vandps xmm0,xmm0,xmm1   ; opcode := VEX_Vandps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,54,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86D8A2D0h ---------------------------------------------------------------------------------------------
-
-7FFC8682A410h Vec128<double> and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0x54, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC8682A410h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vandpd xmm0,xmm0,xmm1   ; opcode := VEX_Vandpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,54,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC8682A410h ---------------------------------------------------------------------------------------------
-
-7FFC86CB7F70h Vec256<byte> and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB7F70h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB7F70h ---------------------------------------------------------------------------------------------
-
-7FFC86CB7FA0h Vec256<ushort> and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB7FA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB7FA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB7FD0h Vec256<uint> and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB7FD0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB7FD0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8410h Vec256<ulong> and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8410h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8410h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8440h Vec256<sbyte> and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8440h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8440h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8470h Vec256<short> and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8470h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8470h ---------------------------------------------------------------------------------------------
-
-7FFC86CB88B0h Vec256<int> and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB88B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB88B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB88E0h Vec256<long> and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xdb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB88E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB88E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8910h Vec256<float> and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfc, 0x54, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8910h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vandps ymm0,ymm0,ymm1   ; opcode := VEX_Vandps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,54,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8910h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8D50h Vec256<double> and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0x54, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8D50h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vandpd ymm0,ymm0,ymm1   ; opcode := VEX_Vandpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,54,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8D50h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8D80h void and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8D80h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8D80h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8DB0h void and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8DB0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8DB0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8DE0h void and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8DE0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8DE0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8E10h void and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8E10h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8E10h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8E40h void and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8E40h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8E40h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8E70h void and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8E70h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8E70h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8EA0h void and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8EA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8EA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8ED0h void and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xdb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8ED0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpand xmm0,xmm0,xmm1   ; opcode := VEX_Vpand_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,db,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8ED0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8F00h void and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf8, 0x54, 0xc1, 0xc4, 0xc1, 0x78, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8F00h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vandps xmm0,xmm0,xmm1   ; opcode := VEX_Vandps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,54,c1} (4 bytes)
-0011h  vmovups [r8],xmm0   ; opcode := VEX_Vmovups_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,78,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8F00h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8F30h void and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0x54, 0xc1, 0xc4, 0xc1, 0x79, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CB8F30h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vandpd xmm0,xmm0,xmm1   ; opcode := VEX_Vandpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,54,c1} (4 bytes)
-0011h  vmovupd [r8],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,79,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8F30h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8F60h void and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8F60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8F60h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8F90h void and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8F90h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8F90h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8FC0h void and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8FC0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8FC0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB8FF0h void and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB8FF0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB8FF0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9020h void and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9020h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9020h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9050h void and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9050h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9050h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9080h void and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9080h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9080h ---------------------------------------------------------------------------------------------
-
-7FFC86CB90B0h void and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xdb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB90B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpand ymm0,ymm0,ymm1   ; opcode := VEX_Vpand_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,db,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB90B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB90E0h void and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfc, 0x54, 0xc1, 0xc4, 0xc1, 0x7c, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB90E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vandps ymm0,ymm0,ymm1   ; opcode := VEX_Vandps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,54,c1} (4 bytes)
-0011h  vmovups [r8],ymm0   ; opcode := VEX_Vmovups_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7c,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB90E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9110h void and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0x54, 0xc1, 0xc4, 0xc1, 0x7d, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9110h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vandpd ymm0,ymm0,ymm1   ; opcode := VEX_Vandpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,54,c1} (4 bytes)
-0011h  vmovupd [r8],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7d,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9110h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9140h Vec128<byte> or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9140h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9140h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9170h Vec128<ushort> or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9170h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9170h ---------------------------------------------------------------------------------------------
-
-7FFC86CB91A0h Vec128<uint> or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB91A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB91A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB91D0h Vec128<ulong> or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB91D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB91D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9200h Vec128<sbyte> or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9200h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9200h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9640h Vec128<short> or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9640h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9640h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9670h Vec128<int> or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9670h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9670h ---------------------------------------------------------------------------------------------
-
-7FFC86CB96A0h Vec128<long> or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xeb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB96A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB96A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB96D0h Vec128<float> or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf8, 0x56, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB96D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vorps xmm0,xmm0,xmm1   ; opcode := VEX_Vorps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,56,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB96D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9700h Vec128<double> or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0x56, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CB9700h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vorpd xmm0,xmm0,xmm1   ; opcode := VEX_Vorpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,56,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9700h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9730h Vec256<byte> or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9730h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9730h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9760h Vec256<ushort> or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9760h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9760h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9790h Vec256<uint> or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9790h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9790h ---------------------------------------------------------------------------------------------
-
-7FFC86CB97C0h Vec256<ulong> or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB97C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB97C0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB97F0h Vec256<sbyte> or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB97F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB97F0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9820h Vec256<short> or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9820h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9820h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9850h Vec256<int> or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9850h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9850h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9880h Vec256<long> or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xeb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9880h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9880h ---------------------------------------------------------------------------------------------
-
-7FFC86CB98B0h Vec256<float> or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfc, 0x56, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB98B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vorps ymm0,ymm0,ymm1   ; opcode := VEX_Vorps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,56,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB98B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB98E0h Vec256<double> or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0x56, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB98E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vorpd ymm0,ymm0,ymm1   ; opcode := VEX_Vorpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,56,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB98E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9910h void or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9910h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9910h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9940h void or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9940h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9940h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9970h void or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9970h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9970h ---------------------------------------------------------------------------------------------
-
-7FFC86CB99A0h void or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB99A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB99A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB99D0h void or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB99D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB99D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9A00h void or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9A00h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9A00h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9A30h void or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9A30h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9A30h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9A60h void or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xeb, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9A60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpor xmm0,xmm0,xmm1   ; opcode := VEX_Vpor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,eb,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9A60h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9A90h void or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf8, 0x56, 0xc1, 0xc4, 0xc1, 0x78, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9A90h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vorps xmm0,xmm0,xmm1   ; opcode := VEX_Vorps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,56,c1} (4 bytes)
-0011h  vmovups [r8],xmm0   ; opcode := VEX_Vmovups_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,78,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9A90h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9AC0h void or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0x56, 0xc1, 0xc4, 0xc1, 0x79, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CB9AC0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vorpd xmm0,xmm0,xmm1   ; opcode := VEX_Vorpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,56,c1} (4 bytes)
-0011h  vmovupd [r8],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,79,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9AC0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9AF0h void or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9AF0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9AF0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9B20h void or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9B20h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9B20h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9B50h void or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9B50h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9B50h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9B80h void or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9B80h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9B80h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9BB0h void or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9BB0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9BB0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9BE0h void or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9BE0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9BE0h ---------------------------------------------------------------------------------------------
-
-7FFC86CB9C10h void or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CB9C10h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CB9C10h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA050h void or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xeb, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA050h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpor ymm0,ymm0,ymm1   ; opcode := VEX_Vpor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,eb,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA050h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA080h void or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfc, 0x56, 0xc1, 0xc4, 0xc1, 0x7c, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA080h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vorps ymm0,ymm0,ymm1   ; opcode := VEX_Vorps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,56,c1} (4 bytes)
-0011h  vmovups [r8],ymm0   ; opcode := VEX_Vmovups_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7c,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA080h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA0B0h void or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0x56, 0xc1, 0xc4, 0xc1, 0x7d, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA0B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vorpd ymm0,ymm0,ymm1   ; opcode := VEX_Vorpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,56,c1} (4 bytes)
-0011h  vmovupd [r8],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7d,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA0B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA0E0h Vec128<byte> xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA0E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA0E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA110h Vec128<ushort> xor<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA110h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA110h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA140h Vec128<uint> xor<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA140h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA140h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA170h Vec128<ulong> xor<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA170h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA170h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA1A0h Vec128<sbyte> xor<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA1A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA1A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA1D0h Vec128<short> xor<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA1D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA1D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA200h Vec128<int> xor<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA200h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA200h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA230h Vec128<long> xor<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xef, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA230h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA230h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA260h Vec128<float> xor<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf8, 0x57, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA260h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vxorps xmm0,xmm0,xmm1   ; opcode := VEX_Vxorps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,57,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA260h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA290h Vec128<double> xor<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0x57, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBA290h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vxorpd xmm0,xmm0,xmm1   ; opcode := VEX_Vxorpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,57,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA290h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA2C0h Vec256<byte> xor<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA2C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA2C0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA2F0h Vec256<ushort> xor<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA2F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA2F0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA320h Vec256<uint> xor<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA320h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA320h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA350h Vec256<ulong> xor<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA350h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA350h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA380h Vec256<sbyte> xor<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA380h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA380h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA3B0h Vec256<short> xor<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA3B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA3B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA3E0h Vec256<int> xor<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA3E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA3E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA410h Vec256<long> xor<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xef, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA410h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA410h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA440h Vec256<float> xor<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfc, 0x57, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA440h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vxorps ymm0,ymm0,ymm1   ; opcode := VEX_Vxorps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,57,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA440h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA470h Vec256<double> xor<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0x57, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBA470h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vxorpd ymm0,ymm0,ymm1   ; opcode := VEX_Vxorpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,57,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA470h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA4A0h void xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA4A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA4A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA4D0h void xor<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA4D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA4D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA500h void xor<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA500h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA500h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA530h void xor<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA530h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA530h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA560h void xor<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA560h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA560h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA590h void xor<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA590h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA590h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA5C0h void xor<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA5C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA5C0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA5F0h void xor<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xef, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA5F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpxor xmm0,xmm0,xmm1   ; opcode := VEX_Vpxor_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,ef,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA5F0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBA620h void xor<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf8, 0x57, 0xc1, 0xc4, 0xc1, 0x78, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CBA620h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vxorps xmm0,xmm0,xmm1   ; opcode := VEX_Vxorps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,57,c1} (4 bytes)
-0011h  vmovups [r8],xmm0   ; opcode := VEX_Vmovups_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,78,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBA620h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAA60h void xor<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0x57, 0xc1, 0xc4, 0xc1, 0x79, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CBAA60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vxorpd xmm0,xmm0,xmm1   ; opcode := VEX_Vxorpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,57,c1} (4 bytes)
-0011h  vmovupd [r8],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,79,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAA60h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAA90h void xor<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAA90h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAA90h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAAC0h void xor<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAAC0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAAC0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAAF0h void xor<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAAF0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAAF0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAB20h void xor<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAB20h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAB20h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAB50h void xor<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAB50h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAB50h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAB80h void xor<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAB80h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAB80h ---------------------------------------------------------------------------------------------
-
-7FFC86CBABB0h void xor<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBABB0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBABB0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBABE0h void xor<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xef, 0xc1, 0xc4, 0xc1, 0x7e, 0x7f, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBABE0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpxor ymm0,ymm0,ymm1   ; opcode := VEX_Vpxor_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,ef,c1} (4 bytes)
-0011h  vmovdqu ymmword ptr [r8],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7e,7f,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBABE0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAC10h void xor<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfc, 0x57, 0xc1, 0xc4, 0xc1, 0x7c, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAC10h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vxorps ymm0,ymm0,ymm1   ; opcode := VEX_Vxorps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,57,c1} (4 bytes)
-0011h  vmovups [r8],ymm0   ; opcode := VEX_Vmovups_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7c,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAC10h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAC40h void xor<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0x57, 0xc1, 0xc4, 0xc1, 0x7d, 0x11, 0x00, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAC40h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vxorpd ymm0,ymm0,ymm1   ; opcode := VEX_Vxorpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,57,c1} (4 bytes)
-0011h  vmovupd [r8],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c4,c1,7d,11,00} (5 bytes)
-0016h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAC40h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAC70h Vec128<byte> add<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfc, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAC70h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddb xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fc,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAC70h ---------------------------------------------------------------------------------------------
-
-7FFC86CBACA0h Vec128<ushort> add<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfd, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBACA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddw xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fd,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBACA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBACD0h Vec128<uint> add<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfe, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBACD0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddd xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fe,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBACD0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAD00h Vec128<ulong> add<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xd4, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAD00h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddq xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,d4,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAD00h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAD30h Vec128<sbyte> add<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfc, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAD30h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddb xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fc,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAD30h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAD60h Vec128<short> add<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfd, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAD60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddw xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fd,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAD60h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAD90h Vec128<int> add<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfe, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAD90h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddd xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fe,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAD90h ---------------------------------------------------------------------------------------------
-
-7FFC86CBADC0h Vec128<long> add<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xd4, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBADC0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpaddq xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,d4,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBADC0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBADF0h Vec128<float> add<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf8, 0x58, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBADF0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vaddps xmm0,xmm0,xmm1   ; opcode := VEX_Vaddps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,58,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBADF0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAE20h Vec128<double> add<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0x58, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBAE20h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vaddpd xmm0,xmm0,xmm1   ; opcode := VEX_Vaddpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,58,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAE20h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAE50h Vec256<byte> add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfc, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAE50h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddb ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fc,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAE50h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAE80h Vec256<ushort> add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfd, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAE80h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddw ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fd,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAE80h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAEB0h Vec256<uint> add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfe, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAEB0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddd ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fe,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAEB0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAEE0h Vec256<ulong> add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xd4, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAEE0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddq ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,d4,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAEE0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAF10h Vec256<sbyte> add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfc, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAF10h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddb ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fc,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAF10h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAF40h Vec256<short> add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfd, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAF40h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddw ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fd,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAF40h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAF70h Vec256<int> add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfe, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAF70h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddd ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fe,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAF70h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAFA0h Vec256<long> add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xd4, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAFA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpaddq ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,d4,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAFA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBAFD0h Vec256<float> add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfc, 0x58, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBAFD0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vaddps ymm0,ymm0,ymm1   ; opcode := VEX_Vaddps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,58,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBAFD0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB000h Vec256<double> add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0x58, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB000h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vaddpd ymm0,ymm0,ymm1   ; opcode := VEX_Vaddpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,58,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB000h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB030h void add<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfc, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB030h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddb xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fc,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB030h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB470h void add<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfd, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB470h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddw xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fd,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB470h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB4A0h void add<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfe, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB4A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddd xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fe,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB4A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB4D0h void add<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xd4, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB4D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddq xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,d4,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB4D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB500h void add<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfc, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB500h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddb xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fc,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB500h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB530h void add<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfd, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB530h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddw xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fd,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB530h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB560h void add<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xfe, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB560h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddd xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fe,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB560h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB590h void add<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0xd4, 0xc1, 0xc4, 0xc1, 0x7a, 0x7f, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB590h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vpaddq xmm0,xmm0,xmm1   ; opcode := VEX_Vpaddq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,d4,c1} (4 bytes)
-0011h  vmovdqu xmmword ptr [r8],xmm0   ; opcode := VEX_Vmovdqu_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,7a,7f,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB590h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB5C0h void add<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf8, 0x58, 0xc1, 0xc4, 0xc1, 0x78, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB5C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vaddps xmm0,xmm0,xmm1   ; opcode := VEX_Vaddps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,58,c1} (4 bytes)
-0011h  vmovups [r8],xmm0   ; opcode := VEX_Vmovups_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,78,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB5C0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB5F0h void add<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x01, 0xc5, 0xf9, 0x10, 0x0a, 0xc5, 0xf9, 0x58, 0xc1, 0xc4, 0xc1, 0x79, 0x11, 0x00, 0xc3}
-asm-body-begin 7FFC86CBB5F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rcx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,01} (4 bytes)
-0009h  vmovupd xmm1,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,0a} (4 bytes)
-000dh  vaddpd xmm0,xmm0,xmm1   ; opcode := VEX_Vaddpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,58,c1} (4 bytes)
-0011h  vmovupd [r8],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c4,c1,79,11,00} (5 bytes)
-0016h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB5F0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB620h byref Byte add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfc, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB620h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddb ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fc,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB620h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB660h byref UInt16 add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfd, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB660h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddw ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fd,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB660h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB6A0h byref UInt32 add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfe, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB6A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddd ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fe,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB6A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB6E0h byref UInt64 add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xd4, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB6E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddq ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,d4,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB6E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB720h byref SByte add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfc, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB720h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddb ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fc,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB720h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB760h byref Int16 add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfd, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB760h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddw ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fd,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB760h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB7A0h byref Int32 add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xfe, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB7A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddd ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fe,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB7A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB7E0h byref Int64 add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0xd4, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfe, 0x7f, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB7E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vpaddq ymm0,ymm0,ymm1   ; opcode := VEX_Vpaddq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,d4,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovdqu ymmword ptr [rax],ymm0   ; opcode := VEX_Vmovdqu_ymmm256_ymm (VEX encoded) | encoded := {c5,fe,7f,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB7E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB820h byref Single add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfc, 0x58, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfc, 0x11, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB820h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vaddps ymm0,ymm0,ymm1   ; opcode := VEX_Vaddps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,58,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovups [rax],ymm0   ; opcode := VEX_Vmovups_ymmm256_ymm (VEX encoded) | encoded := {c5,fc,11,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB820h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB860h byref Double add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x01, 0xc5, 0xfd, 0x10, 0x0a, 0xc5, 0xfd, 0x58, 0xc1, 0x49, 0x8b, 0xc0, 0xc5, 0xfd, 0x11, 0x00, 0x49, 0x8b, 0xc0, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBB860h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rcx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,01} (4 bytes)
-0009h  vmovupd ymm1,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,0a} (4 bytes)
-000dh  vaddpd ymm0,ymm0,ymm1   ; opcode := VEX_Vaddpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,58,c1} (4 bytes)
-0011h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-0014h  vmovupd [rax],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,00} (4 bytes)
-0018h  mov rax,r8   ; opcode := Mov_r64_rm64 | encoded := {49,8b,c0} (3 bytes)
-001bh  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001eh  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBB860h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB8A0h Num128<byte> add<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x1b, 0x6d, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x04, 0x6d, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0x01, 0xce, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0xd1, 0x7f, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBB8A0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,1b,6d,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,04,6d,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D886F8h   ; opcode := Call_rel32_64 | encoded := {e8,01,ce,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,d1,7f,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBB8A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB920h Num128<ushort> add<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x9b, 0x6c, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x84, 0x6c, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0x01, 0xce, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0x51, 0x7f, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBB920h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,9b,6c,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,84,6c,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88778h   ; opcode := Call_rel32_64 | encoded := {e8,01,ce,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,51,7f,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBB920h ---------------------------------------------------------------------------------------------
-
-7FFC86CBB9A0h Num128<uint> add<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x1b, 0x6c, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x04, 0x6c, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xf1, 0xcd, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0xd1, 0x7e, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBB9A0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,1b,6c,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,04,6c,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D887E8h   ; opcode := Call_rel32_64 | encoded := {e8,f1,cd,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,d1,7e,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBB9A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBA20h Num128<ulong> add<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x9b, 0x6b, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x84, 0x6b, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xe1, 0xcd, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0x51, 0x7e, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBBA20h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,9b,6b,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,84,6b,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88858h   ; opcode := Call_rel32_64 | encoded := {e8,e1,cd,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,51,7e,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBBA20h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBAA0h Num128<sbyte> add<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x1b, 0x6b, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x04, 0x6b, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0x71, 0xcd, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0xd1, 0x7d, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBBAA0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,1b,6b,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,04,6b,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88868h   ; opcode := Call_rel32_64 | encoded := {e8,71,cd,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,d1,7d,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBBAA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBB20h Num128<short> add<short>(byref Num128<short> lhs, byref Num128<short> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x9b, 0x6a, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x84, 0x6a, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0x01, 0xd0, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0x51, 0x7d, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBBB20h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,9b,6a,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,84,6a,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88B78h   ; opcode := Call_rel32_64 | encoded := {e8,01,d0,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,51,7d,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBBB20h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBBA0h Num128<int> add<int>(byref Num128<int> lhs, byref Num128<int> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x1b, 0x6a, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x04, 0x6a, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xf1, 0xcf, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0xd1, 0x7c, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBBBA0h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,1b,6a,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,04,6a,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88BE8h   ; opcode := Call_rel32_64 | encoded := {e8,f1,cf,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,d1,7c,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBBBA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBC20h Num128<long> add<long>(byref Num128<long> lhs, byref Num128<long> rhs)
-# encoding: {0x57, 0x56, 0x53, 0x48, 0x83, 0xec, 0x30, 0xbe, 0x8d, 0x00, 0x00, 0x00, 0xbf, 0x01, 0x00, 0x00, 0x00, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x9b, 0x69, 0x78, 0x5f, 0x48, 0x8b, 0xd8, 0xb9, 0x45, 0x2c, 0x00, 0x00, 0x48, 0xba, 0x58, 0x0c, 0x93, 0x86, 0xfc, 0x7f, 0x00, 0x00, 0xe8, 0x84, 0x69, 0x78, 0x5f, 0x48, 0x8b, 0xd0, 0x48, 0x8d, 0x4c, 0x24, 0x28, 0x40, 0x88, 0x39, 0x89, 0x71, 0x04, 0x48, 0x8b, 0xcb, 0x4c, 0x8b, 0x44, 0x24, 0x28, 0xe8, 0xe1, 0xcf, 0x0c, 0x00, 0x48, 0x8b, 0xc8, 0xe8, 0x51, 0x7c, 0x5e, 0x5f, 0xcc}
-asm-body-begin 7FFC86CBBC20h -------------------------------------------------------------------------------------------
-0000h  push rdi   ; opcode := Push_r64 | encoded := {57} (1 bytes)
-0001h  push rsi   ; opcode := Push_r64 | encoded := {56} (1 bytes)
-0002h  push rbx   ; opcode := Push_r64 | encoded := {53} (1 bytes)
-0003h  sub rsp,30h   ; opcode := Sub_rm64_imm8 | encoded := {48,83,ec,30} (4 bytes)
-0007h  mov esi,8Dh   ; opcode := Mov_r32_imm32 | encoded := {be,8d,00,00,00} (5 bytes)
-000ch  mov edi,1   ; opcode := Mov_r32_imm32 | encoded := {bf,01,00,00,00} (5 bytes)
-0011h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-0016h  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0020h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,9b,69,78,5f} (5 bytes)
-0025h  mov rbx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d8} (3 bytes)
-0028h  mov ecx,2C45h   ; opcode := Mov_r32_imm32 | encoded := {b9,45,2c,00,00} (5 bytes)
-002dh  mov rdx,7FFC86930C58h   ; opcode := Mov_r64_imm64 | encoded := {48,ba,58,0c,93,86,fc,7f,00,00} (10 bytes)
-0037h  call 7FFCE64425E0h   ; opcode := Call_rel32_64 | encoded := {e8,84,69,78,5f} (5 bytes)
-003ch  mov rdx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,d0} (3 bytes)
-003fh  lea rcx,[rsp+28h]   ; opcode := Lea_r64_m | encoded := {48,8d,4c,24,28} (5 bytes)
-0044h  mov [rcx],dil   ; opcode := Mov_rm8_r8 | encoded := {40,88,39} (3 bytes)
-0047h  mov [rcx+4],esi   ; opcode := Mov_rm32_r32 | encoded := {89,71,04} (3 bytes)
-004ah  mov rcx,rbx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,cb} (3 bytes)
-004dh  mov r8,[rsp+28h]   ; opcode := Mov_r64_rm64 | encoded := {4c,8b,44,24,28} (5 bytes)
-0052h  call 7FFC86D88C58h   ; opcode := Call_rel32_64 | encoded := {e8,e1,cf,0c,00} (5 bytes)
-0057h  mov rcx,rax   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c8} (3 bytes)
-005ah  call 7FFCE62A38D0h   ; opcode := Call_rel32_64 | encoded := {e8,51,7c,5e,5f} (5 bytes)
-005fh  int 3   ; opcode := Int3 | encoded := {cc} (1 bytes)
-asm-body-end 7FFC86CBBC20h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBCA0h Num128<float> add<float>(byref Num128<float> lhs, byref Num128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xfa, 0x58, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBBCA0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vaddss xmm0,xmm0,xmm1   ; opcode := VEX_Vaddss_xmm_xmm_xmmm32 (VEX encoded) | encoded := {c5,fa,58,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBBCA0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBCD0h Num128<double> add<double>(byref Num128<double> lhs, byref Num128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xfb, 0x58, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBBCD0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vaddsd xmm0,xmm0,xmm1   ; opcode := VEX_Vaddsd_xmm_xmm_xmmm64 (VEX encoded) | encoded := {c5,fb,58,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBBCD0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBD00h Vec128<byte> sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xf8, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBBD00h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubb xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f8,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBBD00h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBD30h Vec128<ushort> sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xf9, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBBD30h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubw xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f9,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBBD30h ---------------------------------------------------------------------------------------------
-
-7FFC86CBBD60h Vec128<uint> sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfa, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBBD60h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubd xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fa,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBBD60h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC1A0h Vec128<ulong> sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC1A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubq xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC1A0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC1D0h Vec128<sbyte> sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xf8, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC1D0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubb xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubb_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f8,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC1D0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC200h Vec128<short> sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xf9, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC200h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubw xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubw_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,f9,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC200h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC230h Vec128<int> sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfa, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC230h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubd xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fa,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC230h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC260h Vec128<long> sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0xfb, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC260h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vpsubq xmm0,xmm0,xmm1   ; opcode := VEX_Vpsubq_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,fb,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC260h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC290h Vec128<float> sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf8, 0x5c, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC290h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vsubps xmm0,xmm0,xmm1   ; opcode := VEX_Vsubps_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f8,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC290h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC2C0h Vec128<double> sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xf9, 0x10, 0x02, 0xc4, 0xc1, 0x79, 0x10, 0x08, 0xc5, 0xf9, 0x5c, 0xc1, 0xc5, 0xf9, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc3}
-asm-body-begin 7FFC86CBC2C0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd xmm0,[rdx]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,10,02} (4 bytes)
-0009h  vmovupd xmm1,[r8]   ; opcode := VEX_Vmovupd_xmm_xmmm128 (VEX encoded) | encoded := {c4,c1,79,10,08} (5 bytes)
-000eh  vsubpd xmm0,xmm0,xmm1   ; opcode := VEX_Vsubpd_xmm_xmm_xmmm128 (VEX encoded) | encoded := {c5,f9,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],xmm0   ; opcode := VEX_Vmovupd_xmmm128_xmm (VEX encoded) | encoded := {c5,f9,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC2C0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC2F0h Vec256<byte> sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xf8, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC2F0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubb ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f8,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC2F0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC320h Vec256<ushort> sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xf9, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC320h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubw ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f9,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC320h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC350h Vec256<uint> sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfa, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC350h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubd ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fa,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC350h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC380h Vec256<ulong> sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC380h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubq ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC380h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC3B0h Vec256<sbyte> sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xf8, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC3B0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubb ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubb_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f8,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC3B0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC3E0h Vec256<short> sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xf9, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC3E0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubw ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubw_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,f9,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC3E0h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC410h Vec256<int> sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfa, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC410h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubd ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fa,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC410h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC440h Vec256<long> sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0xfb, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC440h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vpsubq ymm0,ymm0,ymm1   ; opcode := VEX_Vpsubq_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,fb,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC440h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC470h Vec256<float> sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfc, 0x5c, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC470h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vsubps ymm0,ymm0,ymm1   ; opcode := VEX_Vsubps_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fc,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC470h ---------------------------------------------------------------------------------------------
-
-7FFC86CBC4A0h Vec256<double> sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
-# encoding: {0xc5, 0xf8, 0x77, 0x66, 0x90, 0xc5, 0xfd, 0x10, 0x02, 0xc4, 0xc1, 0x7d, 0x10, 0x08, 0xc5, 0xfd, 0x5c, 0xc1, 0xc5, 0xfd, 0x11, 0x01, 0x48, 0x8b, 0xc1, 0xc5, 0xf8, 0x77, 0xc3}
-asm-body-begin 7FFC86CBC4A0h -------------------------------------------------------------------------------------------
-0000h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-0003h  xchg ax,ax   ; opcode := Nopw | encoded := {66,90} (2 bytes)
-0005h  vmovupd ymm0,[rdx]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,10,02} (4 bytes)
-0009h  vmovupd ymm1,[r8]   ; opcode := VEX_Vmovupd_ymm_ymmm256 (VEX encoded) | encoded := {c4,c1,7d,10,08} (5 bytes)
-000eh  vsubpd ymm0,ymm0,ymm1   ; opcode := VEX_Vsubpd_ymm_ymm_ymmm256 (VEX encoded) | encoded := {c5,fd,5c,c1} (4 bytes)
-0012h  vmovupd [rcx],ymm0   ; opcode := VEX_Vmovupd_ymmm256_ymm (VEX encoded) | encoded := {c5,fd,11,01} (4 bytes)
-0016h  mov rax,rcx   ; opcode := Mov_r64_rm64 | encoded := {48,8b,c1} (3 bytes)
-0019h  vzeroupper   ; opcode := VEX_Vzeroupper (VEX encoded) | encoded := {c5,f8,77} (3 bytes)
-001ch  ret   ; opcode := Retnq | encoded := {c3} (1 bytes)
-asm-body-end 7FFC86CBC4A0h ---------------------------------------------------------------------------------------------
-
+# 2019-07-27 22:39:09:943
+7FFC89E9F410h void sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubb xmm0,xmm0,xmm1         ; Vpsubb | VEX_Vpsubb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f8 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89E9F426h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,f8,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89E9F440h void sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubw xmm0,xmm0,xmm1         ; Vpsubw | VEX_Vpsubw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f9 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89E9F456h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,f9,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89E9F880h void sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubd xmm0,xmm0,xmm1         ; Vpsubd | VEX_Vpsubd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fa c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89E9F896h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fa,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89E9FCC0h void sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubq xmm0,xmm0,xmm1         ; Vpsubq | VEX_Vpsubq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89E9FCD6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89E9FCF0h void sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubb xmm0,xmm0,xmm1         ; Vpsubb | VEX_Vpsubb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f8 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89E9FD06h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,f8,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA0130h void sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubw xmm0,xmm0,xmm1         ; Vpsubw | VEX_Vpsubw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f9 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA0146h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,f9,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA0160h void sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubd xmm0,xmm0,xmm1         ; Vpsubd | VEX_Vpsubd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fa c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA0176h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fa,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA05A0h void sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpsubq xmm0,xmm0,xmm1         ; Vpsubq | VEX_Vpsubq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA05B6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA09E0h void sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vsubps xmm0,xmm0,xmm1         ; Vsubps | VEX_Vsubps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 5c c1 (4 bytes)
+0011h vmovups [r8],xmm0             ; Vmovups | VEX_Vmovups_xmmm128_xmm | encoding(VEX) = c4 c1 78 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA09F6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f8,5c,c1,c4,c1,78,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA0E20h void sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vsubpd xmm0,xmm0,xmm1         ; Vsubpd | VEX_Vsubpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 5c c1 (4 bytes)
+0011h vmovupd [r8],xmm0             ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c4 c1 79 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA0E36h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,5c,c1,c4,c1,79,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA0E50h void sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubb ymm0,ymm0,ymm1         ; Vpsubb | VEX_Vpsubb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f8 c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA0E69h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,f8,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1290h void sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubw ymm0,ymm0,ymm1         ; Vpsubw | VEX_Vpsubw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f9 c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA12A9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,f9,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA12C0h void sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubd ymm0,ymm0,ymm1         ; Vpsubd | VEX_Vpsubd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fa c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA12D9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fa,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1700h void sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubq ymm0,ymm0,ymm1         ; Vpsubq | VEX_Vpsubq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA1719h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1730h void sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubb ymm0,ymm0,ymm1         ; Vpsubb | VEX_Vpsubb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f8 c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA1749h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,f8,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1B70h void sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubw ymm0,ymm0,ymm1         ; Vpsubw | VEX_Vpsubw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f9 c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA1B89h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,f9,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1BA0h void sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubd ymm0,ymm0,ymm1         ; Vpsubd | VEX_Vpsubd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fa c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA1BB9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fa,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA1FE0h void sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpsubq ymm0,ymm0,ymm1         ; Vpsubq | VEX_Vpsubq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA1FF9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2010h void sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vsubps ymm0,ymm0,ymm1         ; Vsubps | VEX_Vsubps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 5c c1 (4 bytes)
+0011h vmovups [r8],ymm0             ; Vmovups | VEX_Vmovups_ymmm256_ymm | encoding(VEX) = c4 c1 7c 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA2029h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fc,5c,c1,c4,c1,7c,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2450h void sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vsubpd ymm0,ymm0,ymm1         ; Vsubpd | VEX_Vsubpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 5c c1 (4 bytes)
+0011h vmovupd [r8],ymm0             ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c4 c1 7d 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA2469h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,5c,c1,c4,c1,7d,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2480h Num128<byte> sub<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 3b 01 95 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 24 01 95 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2410h            ; Call | Call_rel32_64 | encoding() = e8 39 ff ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 f1 13 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA24DFh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,3b,01,95,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,24,01,95,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,39,ff,ff,ff,48,8b,c8,e8,f1,13,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2900h Num128<ushort> sub<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 bb fc 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 a4 fc 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2430h            ; Call | Call_rel32_64 | encoding() = e8 d9 fa ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 71 0f 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA295Fh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,bb,fc,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,a4,fc,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,d9,fa,ff,ff,48,8b,c8,e8,71,0f,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2980h Num128<uint> sub<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 3b fc 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 24 fc 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA25B8h            ; Call | Call_rel32_64 | encoding() = e8 e1 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 f1 0e 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA29DFh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,3b,fc,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,24,fc,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,e1,fb,ff,ff,48,8b,c8,e8,f1,0e,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2A00h Num128<ulong> sub<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 bb fb 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 a4 fb 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2628h            ; Call | Call_rel32_64 | encoding() = e8 d1 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 71 0e 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA2A5Fh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,bb,fb,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,a4,fb,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,d1,fb,ff,ff,48,8b,c8,e8,71,0e,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2A80h Num128<sbyte> sub<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 3b fb 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 24 fb 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2698h            ; Call | Call_rel32_64 | encoding() = e8 c1 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 f1 0d 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA2ADFh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,3b,fb,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,24,fb,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,c1,fb,ff,ff,48,8b,c8,e8,f1,0d,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2B00h Num128<short> sub<short>(byref Num128<short> lhs, byref Num128<short> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 bb fa 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 a4 fa 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2708h            ; Call | Call_rel32_64 | encoding() = e8 b1 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 71 0d 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA2B5Fh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,bb,fa,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,a4,fa,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,b1,fb,ff,ff,48,8b,c8,e8,71,0d,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2B80h Num128<int> sub<int>(byref Num128<int> lhs, byref Num128<int> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 3b fa 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 24 fa 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2778h            ; Call | Call_rel32_64 | encoding() = e8 a1 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 f1 0c 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA2BDFh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,3b,fa,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,24,fa,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,a1,fb,ff,ff,48,8b,c8,e8,f1,0c,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA2C00h Num128<long> sub<long>(byref Num128<long> lhs, byref Num128<long> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Ah                   ; Mov | Mov_r32_imm32 | encoding() = be 8a 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 bb f9 94 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2E23h                 ; Mov | Mov_r32_imm32 | encoding() = b9 23 2e 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 a4 f9 94 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA27E8h            ; Call | Call_rel32_64 | encoding() = e8 91 fb ff ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 71 0c 7b 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC89EA2C5Fh                       ; {57,56,53,48,83,ec,30,be,8a,00,00,00,bf,01,00,00,00,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,bb,f9,94,5f,48,8b,d8,b9,23,2e,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,a4,f9,94,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,91,fb,ff,ff,48,8b,c8,e8,71,0c,7b,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3080h Num128<float> sub<float>(byref Num128<float> lhs, byref Num128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vsubss xmm0,xmm0,xmm1         ; Vsubss | VEX_Vsubss_xmm_xmm_xmmm32 | encoding(VEX) = c5 fa 5c c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3099h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,fa,5c,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA30B0h Num128<double> sub<double>(byref Num128<double> lhs, byref Num128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vsubsd xmm0,xmm0,xmm1         ; Vsubsd | VEX_Vsubsd_xmm_xmm_xmmm64 | encoding(VEX) = c5 fb 5c c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA30C9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,fb,5c,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA34F0h Vec128<byte> and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3509h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3520h Vec128<ushort> and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3539h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3550h Vec128<uint> and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3569h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3990h Vec128<ulong> and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA39A9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA39C0h Vec128<sbyte> and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA39D9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA39F0h Vec128<short> and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3A09h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3E30h Vec128<int> and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3E49h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3E60h Vec128<long> and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3E79h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,db,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA3E90h Vec128<float> and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vandps xmm0,xmm0,xmm1         ; Vandps | VEX_Vandps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 54 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA3EA9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f8,54,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA42D0h Vec128<double> and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vandpd xmm0,xmm0,xmm1         ; Vandpd | VEX_Vandpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 54 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA42E9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,54,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4300h Vec256<byte> and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA431Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4330h Vec256<ushort> and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA434Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4770h Vec256<uint> and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA478Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA47A0h Vec256<ulong> and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA47BCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA47D0h Vec256<sbyte> and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA47ECh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4C10h Vec256<short> and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA4C2Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4C40h Vec256<int> and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA4C5Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA4C70h Vec256<long> and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA4C8Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,db,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA50B0h Vec256<float> and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vandps ymm0,ymm0,ymm1         ; Vandps | VEX_Vandps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 54 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA50CCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fc,54,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA50E0h Vec256<double> and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vandpd ymm0,ymm0,ymm1         ; Vandpd | VEX_Vandpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 54 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA50FCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,54,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5110h void and<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5126h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5140h void and<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5156h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5170h void and<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5186h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA51A0h void and<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA51B6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA51D0h void and<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA51E6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5200h void and<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5216h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5230h void and<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5246h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5260h void and<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpand xmm0,xmm0,xmm1          ; Vpand | VEX_Vpand_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 db c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5276h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,db,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5290h void and<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vandps xmm0,xmm0,xmm1         ; Vandps | VEX_Vandps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 54 c1 (4 bytes)
+0011h vmovups [r8],xmm0             ; Vmovups | VEX_Vmovups_xmmm128_xmm | encoding(VEX) = c4 c1 78 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA52A6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f8,54,c1,c4,c1,78,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA52C0h void and<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vandpd xmm0,xmm0,xmm1         ; Vandpd | VEX_Vandpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 54 c1 (4 bytes)
+0011h vmovupd [r8],xmm0             ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c4 c1 79 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA52D6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,54,c1,c4,c1,79,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA52F0h void and<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5309h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5320h void and<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5339h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5350h void and<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5369h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5380h void and<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5399h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA53B0h void and<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA53C9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA57F0h void and<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5809h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5820h void and<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5839h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5850h void and<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpand ymm0,ymm0,ymm1          ; Vpand | VEX_Vpand_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd db c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5869h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,db,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5880h void and<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vandps ymm0,ymm0,ymm1         ; Vandps | VEX_Vandps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 54 c1 (4 bytes)
+0011h vmovups [r8],ymm0             ; Vmovups | VEX_Vmovups_ymmm256_ymm | encoding(VEX) = c4 c1 7c 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5899h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fc,54,c1,c4,c1,7c,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA58B0h void and<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vandpd ymm0,ymm0,ymm1         ; Vandpd | VEX_Vandpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 54 c1 (4 bytes)
+0011h vmovupd [r8],ymm0             ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c4 c1 7d 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA58C9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,54,c1,c4,c1,7d,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA58E0h Vec128<byte> or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA58F9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5910h Vec128<ushort> or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5929h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5940h Vec128<uint> or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5959h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5970h Vec128<ulong> or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5989h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA59A0h Vec128<sbyte> or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA59B9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA59D0h Vec128<short> or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA59E9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5A00h Vec128<int> or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5A19h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5A30h Vec128<long> or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5A49h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,eb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5A60h Vec128<float> or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vorps xmm0,xmm0,xmm1          ; Vorps | VEX_Vorps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 56 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5A79h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f8,56,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5A90h Vec128<double> or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vorpd xmm0,xmm0,xmm1          ; Vorpd | VEX_Vorpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 56 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5AA9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,56,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5AC0h Vec256<byte> or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5ADCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5AF0h Vec256<ushort> or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5B0Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5B20h Vec256<uint> or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5B3Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5B50h Vec256<ulong> or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5B6Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5B80h Vec256<sbyte> or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5B9Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5BB0h Vec256<short> or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5BCCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5BE0h Vec256<int> or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5BFCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5C10h Vec256<long> or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5C2Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,eb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5C40h Vec256<float> or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vorps ymm0,ymm0,ymm1          ; Vorps | VEX_Vorps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 56 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5C5Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fc,56,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5C70h Vec256<double> or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vorpd ymm0,ymm0,ymm1          ; Vorpd | VEX_Vorpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 56 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5C8Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,56,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5CA0h void or<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5CB6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5CD0h void or<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5CE6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5D00h void or<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5D16h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5D30h void or<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5D46h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5D60h void or<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5D76h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5D90h void or<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5DA6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA5DC0h void or<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA5DD6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6200h void or<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpor xmm0,xmm0,xmm1           ; Vpor | VEX_Vpor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 eb c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6216h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,eb,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6230h void or<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vorps xmm0,xmm0,xmm1          ; Vorps | VEX_Vorps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 56 c1 (4 bytes)
+0011h vmovups [r8],xmm0             ; Vmovups | VEX_Vmovups_xmmm128_xmm | encoding(VEX) = c4 c1 78 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6246h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f8,56,c1,c4,c1,78,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6260h void or<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vorpd xmm0,xmm0,xmm1          ; Vorpd | VEX_Vorpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 56 c1 (4 bytes)
+0011h vmovupd [r8],xmm0             ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c4 c1 79 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6276h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,56,c1,c4,c1,79,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6290h void or<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA62A9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA62C0h void or<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA62D9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA62F0h void or<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6309h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6320h void or<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6339h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6350h void or<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6369h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6380h void or<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6399h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA63B0h void or<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA63C9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA63E0h void or<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpor ymm0,ymm0,ymm1           ; Vpor | VEX_Vpor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd eb c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA63F9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,eb,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6410h void or<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vorps ymm0,ymm0,ymm1          ; Vorps | VEX_Vorps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 56 c1 (4 bytes)
+0011h vmovups [r8],ymm0             ; Vmovups | VEX_Vmovups_ymmm256_ymm | encoding(VEX) = c4 c1 7c 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6429h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fc,56,c1,c4,c1,7c,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6440h void or<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vorpd ymm0,ymm0,ymm1          ; Vorpd | VEX_Vorpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 56 c1 (4 bytes)
+0011h vmovupd [r8],ymm0             ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c4 c1 7d 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6459h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,56,c1,c4,c1,7d,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6470h Vec128<byte> xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6489h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA64A0h Vec128<ushort> xor<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA64B9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA64D0h Vec128<uint> xor<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA64E9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6500h Vec128<ulong> xor<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6519h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6530h Vec128<sbyte> xor<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6549h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6560h Vec128<short> xor<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6579h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6590h Vec128<int> xor<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA65A9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA65C0h Vec128<long> xor<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA65D9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,ef,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA65F0h Vec128<float> xor<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vxorps xmm0,xmm0,xmm1         ; Vxorps | VEX_Vxorps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 57 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6609h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f8,57,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6620h Vec128<double> xor<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vxorpd xmm0,xmm0,xmm1         ; Vxorpd | VEX_Vxorpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 57 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA6639h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,57,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6650h Vec256<byte> xor<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA666Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6680h Vec256<ushort> xor<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA669Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA66B0h Vec256<uint> xor<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA66CCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA66E0h Vec256<ulong> xor<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA66FCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6710h Vec256<sbyte> xor<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA672Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6740h Vec256<short> xor<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA675Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA6770h Vec256<int> xor<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA678Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA67A0h Vec256<long> xor<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA67BCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,ef,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC89EA67D0h Vec256<float> xor<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vxorps ymm0,ymm0,ymm1         ; Vxorps | VEX_Vxorps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 57 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC89EA67ECh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fc,57,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050BD0h Vec256<double> xor<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vxorpd ymm0,ymm0,ymm1         ; Vxorpd | VEX_Vxorpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 57 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050BECh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,57,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050C00h void xor<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050C16h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050C30h void xor<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050C46h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050C60h void xor<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050C76h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050C90h void xor<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050CA6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050CC0h void xor<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050CD6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050CF0h void xor<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050D06h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050D20h void xor<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050D36h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050D50h void xor<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpxor xmm0,xmm0,xmm1          ; Vpxor | VEX_Vpxor_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 ef c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050D66h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,ef,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050D80h void xor<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vxorps xmm0,xmm0,xmm1         ; Vxorps | VEX_Vxorps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 57 c1 (4 bytes)
+0011h vmovups [r8],xmm0             ; Vmovups | VEX_Vmovups_xmmm128_xmm | encoding(VEX) = c4 c1 78 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050D96h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f8,57,c1,c4,c1,78,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050DB0h void xor<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vxorpd xmm0,xmm0,xmm1         ; Vxorpd | VEX_Vxorpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 57 c1 (4 bytes)
+0011h vmovupd [r8],xmm0             ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c4 c1 79 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050DC6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,57,c1,c4,c1,79,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050DE0h void xor<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050DF9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050E10h void xor<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050E29h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050E40h void xor<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050E59h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050E70h void xor<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050E89h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050EA0h void xor<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050EB9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050ED0h void xor<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050EE9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050F00h void xor<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050F19h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050F30h void xor<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpxor ymm0,ymm0,ymm1          ; Vpxor | VEX_Vpxor_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd ef c1 (4 bytes)
+0011h vmovdqu ymmword ptr [r8],ymm0 ; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c4 c1 7e 7f 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050F49h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,ef,c1,c4,c1,7e,7f,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050F60h void xor<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vxorps ymm0,ymm0,ymm1         ; Vxorps | VEX_Vxorps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 57 c1 (4 bytes)
+0011h vmovups [r8],ymm0             ; Vmovups | VEX_Vmovups_ymmm256_ymm | encoding(VEX) = c4 c1 7c 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050F79h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fc,57,c1,c4,c1,7c,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050F90h void xor<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vxorpd ymm0,ymm0,ymm1         ; Vxorpd | VEX_Vxorpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 57 c1 (4 bytes)
+0011h vmovupd [r8],ymm0             ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c4 c1 7d 11 00 (5 bytes)
+0016h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050FA9h                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,57,c1,c4,c1,7d,11,00,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050FC0h Vec128<byte> add<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddb xmm0,xmm0,xmm1         ; Vpaddb | VEX_Vpaddb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fc c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A050FD9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fc,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A050FF0h Vec128<ushort> add<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddw xmm0,xmm0,xmm1         ; Vpaddw | VEX_Vpaddw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fd c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051009h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fd,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051020h Vec128<uint> add<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddd xmm0,xmm0,xmm1         ; Vpaddd | VEX_Vpaddd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fe c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051039h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fe,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051050h Vec128<ulong> add<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddq xmm0,xmm0,xmm1         ; Vpaddq | VEX_Vpaddq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 d4 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051069h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,d4,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051080h Vec128<sbyte> add<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddb xmm0,xmm0,xmm1         ; Vpaddb | VEX_Vpaddb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fc c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051099h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fc,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0510B0h Vec128<short> add<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddw xmm0,xmm0,xmm1         ; Vpaddw | VEX_Vpaddw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fd c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0510C9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fd,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0510E0h Vec128<int> add<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddd xmm0,xmm0,xmm1         ; Vpaddd | VEX_Vpaddd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fe c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0510F9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fe,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051110h Vec128<long> add<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpaddq xmm0,xmm0,xmm1         ; Vpaddq | VEX_Vpaddq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 d4 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051129h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,d4,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051140h Vec128<float> add<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vaddps xmm0,xmm0,xmm1         ; Vaddps | VEX_Vaddps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 58 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051159h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f8,58,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051170h Vec128<double> add<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vaddpd xmm0,xmm0,xmm1         ; Vaddpd | VEX_Vaddpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 58 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051189h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,58,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0511A0h Vec256<byte> add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddb ymm0,ymm0,ymm1         ; Vpaddb | VEX_Vpaddb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fc c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0511BCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fc,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0515E0h Vec256<ushort> add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddw ymm0,ymm0,ymm1         ; Vpaddw | VEX_Vpaddw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fd c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0515FCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fd,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051610h Vec256<uint> add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddd ymm0,ymm0,ymm1         ; Vpaddd | VEX_Vpaddd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fe c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05162Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fe,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051640h Vec256<ulong> add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddq ymm0,ymm0,ymm1         ; Vpaddq | VEX_Vpaddq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd d4 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05165Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,d4,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051670h Vec256<sbyte> add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddb ymm0,ymm0,ymm1         ; Vpaddb | VEX_Vpaddb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fc c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05168Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fc,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0516A0h Vec256<short> add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddw ymm0,ymm0,ymm1         ; Vpaddw | VEX_Vpaddw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fd c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0516BCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fd,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0516D0h Vec256<int> add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddd ymm0,ymm0,ymm1         ; Vpaddd | VEX_Vpaddd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fe c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0516ECh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fe,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051700h Vec256<long> add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpaddq ymm0,ymm0,ymm1         ; Vpaddq | VEX_Vpaddq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd d4 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05171Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,d4,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051730h Vec256<float> add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vaddps ymm0,ymm0,ymm1         ; Vaddps | VEX_Vaddps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 58 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05174Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fc,58,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051760h Vec256<double> add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vaddpd ymm0,ymm0,ymm1         ; Vaddpd | VEX_Vaddpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 58 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05177Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,58,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051790h void add<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddb xmm0,xmm0,xmm1         ; Vpaddb | VEX_Vpaddb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fc c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0517A6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fc,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0517C0h void add<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddw xmm0,xmm0,xmm1         ; Vpaddw | VEX_Vpaddw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fd c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0517D6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fd,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0517F0h void add<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddd xmm0,xmm0,xmm1         ; Vpaddd | VEX_Vpaddd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fe c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051806h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fe,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051820h void add<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddq xmm0,xmm0,xmm1         ; Vpaddq | VEX_Vpaddq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 d4 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051836h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,d4,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051850h void add<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddb xmm0,xmm0,xmm1         ; Vpaddb | VEX_Vpaddb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fc c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051866h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fc,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051880h void add<short>(byref Vec128<short> lhs, byref Vec128<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddw xmm0,xmm0,xmm1         ; Vpaddw | VEX_Vpaddw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fd c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051896h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fd,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0518B0h void add<int>(byref Vec128<int> lhs, byref Vec128<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddd xmm0,xmm0,xmm1         ; Vpaddd | VEX_Vpaddd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fe c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0518C6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,fe,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0518E0h void add<long>(byref Vec128<long> lhs, byref Vec128<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vpaddq xmm0,xmm0,xmm1         ; Vpaddq | VEX_Vpaddq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 d4 c1 (4 bytes)
+0011h vmovdqu xmmword ptr [r8],xmm0 ; Vmovdqu | VEX_Vmovdqu_xmmm128_xmm | encoding(VEX) = c4 c1 7a 7f 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0518F6h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,d4,c1,c4,c1,7a,7f,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051910h void add<float>(byref Vec128<float> lhs, byref Vec128<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vaddps xmm0,xmm0,xmm1         ; Vaddps | VEX_Vaddps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 58 c1 (4 bytes)
+0011h vmovups [r8],xmm0             ; Vmovups | VEX_Vmovups_xmmm128_xmm | encoding(VEX) = c4 c1 78 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051926h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f8,58,c1,c4,c1,78,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051940h void add<double>(byref Vec128<double> lhs, byref Vec128<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rcx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 01 (4 bytes)
+0009h vmovupd xmm1,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 0a (4 bytes)
+000dh vaddpd xmm0,xmm0,xmm1         ; Vaddpd | VEX_Vaddpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 58 c1 (4 bytes)
+0011h vmovupd [r8],xmm0             ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c4 c1 79 11 00 (5 bytes)
+0016h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051956h                       ; {c5,f8,77,66,90,c5,f9,10,01,c5,f9,10,0a,c5,f9,58,c1,c4,c1,79,11,00,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051970h byref Byte add<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs, byref Byte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddb ymm0,ymm0,ymm1         ; Vpaddb | VEX_Vpaddb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fc c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05198Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fc,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0519B0h byref UInt16 add<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs, byref UInt16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddw ymm0,ymm0,ymm1         ; Vpaddw | VEX_Vpaddw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fd c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0519CEh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fd,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0519F0h byref UInt32 add<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs, byref UInt32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddd ymm0,ymm0,ymm1         ; Vpaddd | VEX_Vpaddd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fe c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051A0Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fe,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051A30h byref UInt64 add<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs, byref UInt64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddq ymm0,ymm0,ymm1         ; Vpaddq | VEX_Vpaddq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd d4 c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051A4Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,d4,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051A70h byref SByte add<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs, byref SByte dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddb ymm0,ymm0,ymm1         ; Vpaddb | VEX_Vpaddb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fc c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051A8Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fc,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051AB0h byref Int16 add<short>(byref Vec256<short> lhs, byref Vec256<short> rhs, byref Int16 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddw ymm0,ymm0,ymm1         ; Vpaddw | VEX_Vpaddw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fd c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051ACEh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fd,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051AF0h byref Int32 add<int>(byref Vec256<int> lhs, byref Vec256<int> rhs, byref Int32 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddd ymm0,ymm0,ymm1         ; Vpaddd | VEX_Vpaddd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fe c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051B0Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,fe,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051B30h byref Int64 add<long>(byref Vec256<long> lhs, byref Vec256<long> rhs, byref Int64 dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vpaddq ymm0,ymm0,ymm1         ; Vpaddq | VEX_Vpaddq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd d4 c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovdqu ymmword ptr [rax],ymm0; Vmovdqu | VEX_Vmovdqu_ymmm256_ymm | encoding(VEX) = c5 fe 7f 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051B4Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,d4,c1,49,8b,c0,c5,fe,7f,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051B70h byref Single add<float>(byref Vec256<float> lhs, byref Vec256<float> rhs, byref Single dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vaddps ymm0,ymm0,ymm1         ; Vaddps | VEX_Vaddps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 58 c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovups [rax],ymm0            ; Vmovups | VEX_Vmovups_ymmm256_ymm | encoding(VEX) = c5 fc 11 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051B8Eh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fc,58,c1,49,8b,c0,c5,fc,11,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051BB0h byref Double add<double>(byref Vec256<double> lhs, byref Vec256<double> rhs, byref Double dst)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rcx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 01 (4 bytes)
+0009h vmovupd ymm1,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 0a (4 bytes)
+000dh vaddpd ymm0,ymm0,ymm1         ; Vaddpd | VEX_Vaddpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 58 c1 (4 bytes)
+0011h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+0014h vmovupd [rax],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 00 (4 bytes)
+0018h mov rax,r8                    ; Mov | Mov_r64_rm64 | encoding() = 49 8b c0 (3 bytes)
+001bh vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001eh ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A051BCEh                       ; {c5,f8,77,66,90,c5,fd,10,01,c5,fd,10,0a,c5,fd,58,c1,49,8b,c0,c5,fd,11,00,49,8b,c0,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051BF0h Num128<byte> add<byte>(byref Num128<byte> lhs, byref Num128<byte> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 cb 09 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 b4 09 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2410h            ; Call | Call_rel32_64 | encoding() = e8 c9 07 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 81 1c 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051C4Fh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,cb,09,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,b4,09,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,c9,07,e5,ff,48,8b,c8,e8,81,1c,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051C70h Num128<ushort> add<ushort>(byref Num128<ushort> lhs, byref Num128<ushort> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 4b 09 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 34 09 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2430h            ; Call | Call_rel32_64 | encoding() = e8 69 07 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 01 1c 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051CCFh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,4b,09,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,34,09,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,69,07,e5,ff,48,8b,c8,e8,01,1c,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051CF0h Num128<uint> add<uint>(byref Num128<uint> lhs, byref Num128<uint> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 cb 08 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 b4 08 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA25B8h            ; Call | Call_rel32_64 | encoding() = e8 71 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 81 1b 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051D4Fh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,cb,08,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,b4,08,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,71,08,e5,ff,48,8b,c8,e8,81,1b,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051D70h Num128<ulong> add<ulong>(byref Num128<ulong> lhs, byref Num128<ulong> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 4b 08 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 34 08 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2628h            ; Call | Call_rel32_64 | encoding() = e8 61 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 01 1b 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051DCFh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,4b,08,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,34,08,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,61,08,e5,ff,48,8b,c8,e8,01,1b,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051DF0h Num128<sbyte> add<sbyte>(byref Num128<sbyte> lhs, byref Num128<sbyte> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 cb 07 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 b4 07 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2698h            ; Call | Call_rel32_64 | encoding() = e8 51 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 81 1a 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051E4Fh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,cb,07,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,b4,07,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,51,08,e5,ff,48,8b,c8,e8,81,1a,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051E70h Num128<short> add<short>(byref Num128<short> lhs, byref Num128<short> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 4b 07 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 34 07 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2708h            ; Call | Call_rel32_64 | encoding() = e8 41 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 01 1a 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051ECFh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,4b,07,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,34,07,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,41,08,e5,ff,48,8b,c8,e8,01,1a,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051EF0h Num128<int> add<int>(byref Num128<int> lhs, byref Num128<int> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 cb 06 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 b4 06 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA2778h            ; Call | Call_rel32_64 | encoding() = e8 31 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 81 19 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051F4Fh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,cb,06,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,b4,06,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,31,08,e5,ff,48,8b,c8,e8,81,19,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A051F70h Num128<long> add<long>(byref Num128<long> lhs, byref Num128<long> rhs)
+0000h push rdi                      ; Push | Push_r64 | encoding() = 57 (1 bytes)
+0001h push rsi                      ; Push | Push_r64 | encoding() = 56 (1 bytes)
+0002h push rbx                      ; Push | Push_r64 | encoding() = 53 (1 bytes)
+0003h sub rsp,30h                   ; Sub | Sub_rm64_imm8 | encoding() = 48 83 ec 30 (4 bytes)
+0007h mov esi,8Dh                   ; Mov | Mov_r32_imm32 | encoding() = be 8d 00 00 00 (5 bytes)
+000ch mov edi,1                     ; Mov | Mov_r32_imm32 | encoding() = bf 01 00 00 00 (5 bytes)
+0011h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+0016h mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0020h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 4b 06 7a 5f (5 bytes)
+0025h mov rbx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d8 (3 bytes)
+0028h mov ecx,2C45h                 ; Mov | Mov_r32_imm32 | encoding() = b9 45 2c 00 00 (5 bytes)
+002dh mov rdx,7FFC8A0BE6F8h         ; Mov | Mov_r64_imm64 | encoding() = 48 ba f8 e6 0b 8a fc 7f 00 00 (10 bytes)
+0037h call 7FFCE97F25E0h            ; Call | Call_rel32_64 | encoding() = e8 34 06 7a 5f (5 bytes)
+003ch mov rdx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b d0 (3 bytes)
+003fh lea rcx,[rsp+28h]             ; Lea | Lea_r64_m | encoding() = 48 8d 4c 24 28 (5 bytes)
+0044h mov [rcx],dil                 ; Mov | Mov_rm8_r8 | encoding() = 40 88 39 (3 bytes)
+0047h mov [rcx+4],esi               ; Mov | Mov_rm32_r32 | encoding() = 89 71 04 (3 bytes)
+004ah mov rcx,rbx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b cb (3 bytes)
+004dh mov r8,[rsp+28h]              ; Mov | Mov_r64_rm64 | encoding() = 4c 8b 44 24 28 (5 bytes)
+0052h call 7FFC89EA27E8h            ; Call | Call_rel32_64 | encoding() = e8 21 08 e5 ff (5 bytes)
+0057h mov rcx,rax                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c8 (3 bytes)
+005ah call 7FFCE96538D0h            ; Call | Call_rel32_64 | encoding() = e8 01 19 60 5f (5 bytes)
+005fh int 3                         ; Int | Int3 | encoding() = cc (1 bytes)
+7FFC8A051FCFh                       ; {57,56,53,48,83,ec,30,be,8d,00,00,00,bf,01,00,00,00,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,4b,06,7a,5f,48,8b,d8,b9,45,2c,00,00,48,ba,f8,e6,0b,8a,fc,7f,00,00,e8,34,06,7a,5f,48,8b,d0,48,8d,4c,24,28,40,88,39,89,71,04,48,8b,cb,4c,8b,44,24,28,e8,21,08,e5,ff,48,8b,c8,e8,01,19,60,5f,cc}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0523F0h Num128<float> add<float>(byref Num128<float> lhs, byref Num128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vaddss xmm0,xmm0,xmm1         ; Vaddss | VEX_Vaddss_xmm_xmm_xmmm32 | encoding(VEX) = c5 fa 58 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052409h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,fa,58,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052420h Num128<double> add<double>(byref Num128<double> lhs, byref Num128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vaddsd xmm0,xmm0,xmm1         ; Vaddsd | VEX_Vaddsd_xmm_xmm_xmmm64 | encoding(VEX) = c5 fb 58 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052439h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,fb,58,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052450h Vec128<byte> sub<byte>(byref Vec128<byte> lhs, byref Vec128<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubb xmm0,xmm0,xmm1         ; Vpsubb | VEX_Vpsubb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f8 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052469h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,f8,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052480h Vec128<ushort> sub<ushort>(byref Vec128<ushort> lhs, byref Vec128<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubw xmm0,xmm0,xmm1         ; Vpsubw | VEX_Vpsubw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f9 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052499h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,f9,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0524B0h Vec128<uint> sub<uint>(byref Vec128<uint> lhs, byref Vec128<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubd xmm0,xmm0,xmm1         ; Vpsubd | VEX_Vpsubd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fa c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0524C9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fa,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0524E0h Vec128<ulong> sub<ulong>(byref Vec128<ulong> lhs, byref Vec128<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubq xmm0,xmm0,xmm1         ; Vpsubq | VEX_Vpsubq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0524F9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052510h Vec128<sbyte> sub<sbyte>(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubb xmm0,xmm0,xmm1         ; Vpsubb | VEX_Vpsubb_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f8 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052529h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,f8,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052540h Vec128<short> sub<short>(byref Vec128<short> lhs, byref Vec128<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubw xmm0,xmm0,xmm1         ; Vpsubw | VEX_Vpsubw_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 f9 c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052559h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,f9,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052570h Vec128<int> sub<int>(byref Vec128<int> lhs, byref Vec128<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubd xmm0,xmm0,xmm1         ; Vpsubd | VEX_Vpsubd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fa c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052589h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fa,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0525A0h Vec128<long> sub<long>(byref Vec128<long> lhs, byref Vec128<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vpsubq xmm0,xmm0,xmm1         ; Vpsubq | VEX_Vpsubq_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 fb c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0525B9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,fb,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0525D0h Vec128<float> sub<float>(byref Vec128<float> lhs, byref Vec128<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vsubps xmm0,xmm0,xmm1         ; Vsubps | VEX_Vsubps_xmm_xmm_xmmm128 | encoding(VEX) = c5 f8 5c c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0525E9h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f8,5c,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052600h Vec128<double> sub<double>(byref Vec128<double> lhs, byref Vec128<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd xmm0,[rdx]            ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c5 f9 10 02 (4 bytes)
+0009h vmovupd xmm1,[r8]             ; Vmovupd | VEX_Vmovupd_xmm_xmmm128 | encoding(VEX) = c4 c1 79 10 08 (5 bytes)
+000eh vsubpd xmm0,xmm0,xmm1         ; Vsubpd | VEX_Vsubpd_xmm_xmm_xmmm128 | encoding(VEX) = c5 f9 5c c1 (4 bytes)
+0012h vmovupd [rcx],xmm0            ; Vmovupd | VEX_Vmovupd_xmmm128_xmm | encoding(VEX) = c5 f9 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A052619h                       ; {c5,f8,77,66,90,c5,f9,10,02,c4,c1,79,10,08,c5,f9,5c,c1,c5,f9,11,01,48,8b,c1,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052630h Vec256<byte> sub<byte>(byref Vec256<byte> lhs, byref Vec256<byte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubb ymm0,ymm0,ymm1         ; Vpsubb | VEX_Vpsubb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f8 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05264Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,f8,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052660h Vec256<ushort> sub<ushort>(byref Vec256<ushort> lhs, byref Vec256<ushort> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubw ymm0,ymm0,ymm1         ; Vpsubw | VEX_Vpsubw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f9 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05267Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,f9,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052690h Vec256<uint> sub<uint>(byref Vec256<uint> lhs, byref Vec256<uint> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubd ymm0,ymm0,ymm1         ; Vpsubd | VEX_Vpsubd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fa c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0526ACh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fa,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0526C0h Vec256<ulong> sub<ulong>(byref Vec256<ulong> lhs, byref Vec256<ulong> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubq ymm0,ymm0,ymm1         ; Vpsubq | VEX_Vpsubq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0526DCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0526F0h Vec256<sbyte> sub<sbyte>(byref Vec256<sbyte> lhs, byref Vec256<sbyte> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubb ymm0,ymm0,ymm1         ; Vpsubb | VEX_Vpsubb_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f8 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05270Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,f8,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052720h Vec256<short> sub<short>(byref Vec256<short> lhs, byref Vec256<short> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubw ymm0,ymm0,ymm1         ; Vpsubw | VEX_Vpsubw_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd f9 c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05273Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,f9,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052750h Vec256<int> sub<int>(byref Vec256<int> lhs, byref Vec256<int> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubd ymm0,ymm0,ymm1         ; Vpsubd | VEX_Vpsubd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fa c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05276Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fa,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A052780h Vec256<long> sub<long>(byref Vec256<long> lhs, byref Vec256<long> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vpsubq ymm0,ymm0,ymm1         ; Vpsubq | VEX_Vpsubq_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd fb c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A05279Ch                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,fb,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0527B0h Vec256<float> sub<float>(byref Vec256<float> lhs, byref Vec256<float> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vsubps ymm0,ymm0,ymm1         ; Vsubps | VEX_Vsubps_ymm_ymm_ymmm256 | encoding(VEX) = c5 fc 5c c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0527CCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fc,5c,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------
+7FFC8A0527E0h Vec256<double> sub<double>(byref Vec256<double> lhs, byref Vec256<double> rhs)
+0000h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+0003h xchg ax,ax                    ; Nop | Nopw | encoding() = 66 90 (2 bytes)
+0005h vmovupd ymm0,[rdx]            ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c5 fd 10 02 (4 bytes)
+0009h vmovupd ymm1,[r8]             ; Vmovupd | VEX_Vmovupd_ymm_ymmm256 | encoding(VEX) = c4 c1 7d 10 08 (5 bytes)
+000eh vsubpd ymm0,ymm0,ymm1         ; Vsubpd | VEX_Vsubpd_ymm_ymm_ymmm256 | encoding(VEX) = c5 fd 5c c1 (4 bytes)
+0012h vmovupd [rcx],ymm0            ; Vmovupd | VEX_Vmovupd_ymmm256_ymm | encoding(VEX) = c5 fd 11 01 (4 bytes)
+0016h mov rax,rcx                   ; Mov | Mov_r64_rm64 | encoding() = 48 8b c1 (3 bytes)
+0019h vzeroupper                    ; Vzeroupper | VEX_Vzeroupper | encoding(VEX) = c5 f8 77 (3 bytes)
+001ch ret                           ; Ret | Retnq | encoding() = c3 (1 bytes)
+7FFC8A0527FCh                       ; {c5,f8,77,66,90,c5,fd,10,02,c4,c1,7d,10,08,c5,fd,5c,c1,c5,fd,11,01,48,8b,c1,c5,f8,77,c3}
+------------------------------------------------------------------------------------------------------------------------

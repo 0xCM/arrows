@@ -78,7 +78,7 @@ namespace Z0
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
         public static HexString ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
-            => src.hi.ToHexString(false, true) + src.lo.ToHexString(true,false);
+            => src.hi.FormatHex(false, true) + src.lo.FormatHex(true,false);
 
         [MethodImpl(Inline)]
         public static ref UInt128 And(this ref UInt128 lhs, in UInt128 rhs)

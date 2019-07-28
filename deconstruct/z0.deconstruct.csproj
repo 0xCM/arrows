@@ -11,6 +11,7 @@
     <ProjectReference Include="..\structs\z0.structs.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />
+    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
   </ItemGroup>
 
   <ItemGroup>

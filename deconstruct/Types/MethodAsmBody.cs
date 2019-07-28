@@ -24,7 +24,6 @@ namespace Z0
             this.NativeBlocks = NativeBlocks;
             this.Instructions = Instructions;
         }
-
         
         public MethodBase Method {get;}
 
@@ -40,19 +39,19 @@ namespace Z0
 
 
         public override string ToString()
-        {
-            var desc = sbuild();
-            desc.AppendLine(MethodName);
-            desc.AppendLine(AsciSym.LBrace.ToString());            
-            foreach(var i in Instructions)
-            {
-                var asm = $"    {i.ToString()}";
-                desc.AppendLine(asm);
-                
-            }
-            desc.AppendLine(AsciSym.RBrace.ToString());
-            return desc.ToString();
+            => this.Format();
+        // {
+        //     var desc = sbuild();
+        //     desc.AppendLine(MethodName);
+        //     desc.AppendLine(AsciSym.LBrace.ToString());            
+        //     foreach(var i in Instructions)
+        //     {
+        //         var asm = $"    {i.ToString()}";
+        //         desc.AppendLine(asm);                
+        //     }
+        //     desc.AppendLine(AsciSym.RBrace.ToString());
+        //     return desc.ToString();
 
-        }
+        // }
     }
 }

@@ -217,15 +217,33 @@ partial class zfunc
     /// <summary>
     /// Produces a space character as a string
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string space()
         => " ";
 
     /// <summary>
+    /// Produces a line of content
+    /// </summary>
+    /// <param name="content">The line content</param>
+    [MethodImpl(Inline)]
+    public static string line(string content)
+        => content + eol();
+
+    /// <summary>
+    /// Produces a line of content for each item in an array
+    /// </summary>
+    /// <param name="content">An content array</param>
+    public static string lines(params string[] content)
+    {
+        var sb = sbuild();
+        foreach(var item in content)
+            sb.AppendLine(item);
+        return sb.ToString();
+    }
+
+    /// <summary>
     /// Produces a left-brace character as a string
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string lbrace() => "{";
 

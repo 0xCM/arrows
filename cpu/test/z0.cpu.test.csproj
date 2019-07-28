@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\testing\z0.testing.csproj" />
+    <ProjectReference Include="..\..\func\z0.zfunc.csproj" />
+    <ProjectReference Include="..\..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\..\random\z0.random.csproj" />
+    <ProjectReference Include="..\src\z0.cpu.csproj" />
+  </ItemGroup>
+
+</Project>

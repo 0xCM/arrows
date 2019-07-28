@@ -65,7 +65,7 @@ namespace Z0
 
 			var dst = new byte[(int)size];
 			if (!target.ReadProcessMemory(address, dst, dst.Length, out int bytesRead))
-				throw new Exception($"Memory access failure at address {address.ToHexString()}");
+				throw new Exception($"Memory access failure at address {address.FormatHex()}");
             
             if (dst.Length != size)
                 throw Errors.LengthMismatch(size, dst.Length);
@@ -91,8 +91,5 @@ namespace Z0
             if(cold.IsSome())
                 yield return cold.Value();                  
         }       
- 
-
     }
-
 }

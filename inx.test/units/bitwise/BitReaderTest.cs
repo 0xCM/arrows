@@ -24,13 +24,13 @@ namespace Z0.Test
             {
                 var u64 = src[i];
                 var bs = u64.ToBitString().Format(false,true,8);
-                Trace($"public const ulong U64_{i.ToHexString(true,false)} = {bs};");
+                Trace($"public const ulong U64_{i.FormatHex(true,false)} = {bs};");
 
                 (var u32_0, var u32_1) = Bits.split(u64);
                 var u32_0bs = u32_0.ToBitString().Format(false,true,8);
                 var u32_1bs = u32_1.ToBitString().Format(false,true,8);
-                Trace($"public const uint U32_{j++.ToHexString(true,false)} = {u32_0bs};");
-                Trace($"public const uint U32_{j++.ToHexString(true,false)} = {u32_1bs};");
+                Trace($"public const uint U32_{j++.FormatHex(true,false)} = {u32_0bs};");
+                Trace($"public const uint U32_{j++.FormatHex(true,false)} = {u32_1bs};");
             }
 
         }

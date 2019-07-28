@@ -18,34 +18,47 @@ namespace Z0
 
     public class App
     {                
-
-        void Disassemble<T>()
+        static void Disassemble(bool asm, bool cil, params Type[] types)
         {
-            var t = typeof(T);
-            var specs = t.SpecifyAsm();
-            var name = $"{t.DisplayName()}.v2";
-            specs.Dump(name);
-        }
+            foreach(var t in types)
+            {
+                var name = $"{t.DisplayName()}";
+                if(asm)
+                {
+                    t.ExtractAsm().Dump(name);
+                }
 
-        void Dump(string name, IEnumerable<MethodDisassembly> methods)
-        {
-            var specs = methods.SpecifyAsm().ToArray();
-            specs.Dump(name);        
+                if(cil)
+                    t.Deconstruct(false).DumpCil(name);
+            }
+
         }
         
-        void Disassemble()
+
+        static void Dump(bool asm, bool cil, string name, IEnumerable<MethodDisassembly> methods)
+        {
+            if(asm)
+            {
+                var specs = methods.DefineAsmSpecs().ToArray();
+                specs.Dump(name);        
+            }
+            if(cil)
+            {
+                methods.DumpCil(name);
+            }
+        }
+        
+        void Disassemble(bool asm, bool cil)
         {
 
-            // typeof(CommonIntrinsicScenarios).Deconstruct();
-            // typeof(CommonPrimalScenarios).Deconstruct();
-            //GenericScenarios.GInX();
-            //GenericScenarios.GMath();
+            Disassemble(asm,cil,
+                typeof(PrimalScenarios),
+                typeof(IntrinsicScenarios), 
+                typeof(dinx)
+                );
 
-            Disassemble<CommonIntrinsicScenarios>();
-            Disassemble<CommonPrimalScenarios>();
-            Dump("ginx.v2", GenericScenarios.GInX());
-            Dump("gmath.v2", GenericScenarios.GMath());
-
+            // Dump(asm,cil, "ginx", GenericScenarios.GInX());
+            // Dump(asm,cil, "gmath", GenericScenarios.GMath());
 
         }
 
@@ -54,7 +67,7 @@ namespace Z0
 
             try
             {
-                Disassemble();
+                Disassemble(true,true);
             }
             catch(Exception e)
             {

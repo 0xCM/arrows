@@ -105,7 +105,7 @@ namespace Z0.Test
         {
             var format = sbuild();
             var title = Method.Name;
-            format.Append(StartAddress.ToHexString(false,true));
+            format.Append(StartAddress.FormatHex(false,true));
             format.Append(AsciSym.Colon);
             format.Append(AsciSym.Space);
             format.AppendLine($"{title} Begin, {Length} bytes");
@@ -116,15 +116,15 @@ namespace Z0.Test
                     if(i != 0)
                         format.AppendLine();
 
-                    format.Append(i.ToHexString(true,false));
+                    format.Append(i.FormatHex(true,false));
                     format.Append(AsciLower.h);
                     format.Append(AsciSym.Space);
                 }
-                format.Append(Body[i].ToHexString(true, true));
+                format.Append(Body[i].FormatHex(true, true));
                 format.Append(AsciSym.Space);
             }
             format.AppendLine();   
-            format.Append(EndAddress.ToHexString(false,true));
+            format.Append(EndAddress.FormatHex(false,true));
             format.Append(AsciSym.Colon);
             format.Append(AsciSym.Space);
             format.Append($"{title} End");

@@ -6,6 +6,9 @@ namespace Z0
 {
     using System;
 
+    /// <summary>
+    /// Establishes a correlation between a block of CIL and and block of native code
+    /// </summary>
 	public struct CilNativeMap 
     {
         public CilNativeMap(int cilOffset, ulong startAddress, ulong endAddress)

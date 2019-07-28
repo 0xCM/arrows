@@ -168,9 +168,22 @@ partial class zfunc
         => s1 + concat(items);
 
     [MethodImpl(Inline)]
+    public static string concat(string s1, char c1, string s2, char c2, char c3, params string[] items)
+        => $"{s1}{c1}{s2}{c2}{c3}" + concat(items);
+
+    [MethodImpl(Inline)]
     public static string concat(string s1, string s2, params char[] items)
         => s1 + s2 + concat(items);
 
+    [MethodImpl(Inline)]
+    public static string concat(string s1, string s2, char c1, char c2, params string[] items)
+        => $"{s1}{s2}{c1}{c2}" + concat(items);
+
+
+    [MethodImpl(Inline)]
+    public static string concat(string s1, string s2, string s3, params char[] items)
+        => $"{s1}{s2}{s3}" + concat(items);
+         
     [MethodImpl(Inline)]
     public static string concat(string s1, char c1, string s2, params char[] items)
         => $"{s1}{c1}{s2}" + concat(items);

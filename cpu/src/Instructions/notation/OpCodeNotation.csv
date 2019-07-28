@@ -1,0 +1,28 @@
+Value       | Meaning
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+REX.W       | Indicates the use of a REX prefix that affects operand size or instruction semantics. 
+            | The ordering of the REX prefix and other optional/mandatory instruction prefixes are discussed Chapter 2. 
+            | Note that REX prefixes that promote legacy instructions to 64-bit behavior are not listed explicitly in the opcode column.
+/digit      | A digit between 0 and 7 indicates that the ModR/M byte of the instruction uses only the r/m (register or memory) operand. 
+            | The reg field contains the digit that provides an extension to the instruction's opcode.
+/r          | Indicates that the ModR/M byte of the instruction contains a register operand and an r/m operand.
+cb          | A 1-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+cw          | A 2-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+cd          | A 4-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+cp          | A 6-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+co          | A 8-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+ct          | A 10-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
+ib          | A 1-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
+            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.
+iw          | A 2-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
+            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.
+id          | A 4-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
+            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first. 
+io          | A 8-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
+            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.  
++rb         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
++rw         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
++rd         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
++ro         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
++i          | A number used in floating-point instructions when one of the operands is ST(i) from the FPU register stack. 
+            | The number i (which can range from 0 to 7) is added to the hexadecimal byte given at the left of the plus sign to form a single opcode byte.

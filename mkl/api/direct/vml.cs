@@ -24,7 +24,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> add(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsAdd(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsAdd(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -37,7 +37,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> add(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdAdd(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdAdd(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -50,7 +50,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> sub(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsSub(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsSub(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -63,7 +63,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> sub(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdSub(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdSub(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -76,7 +76,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> mul(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsMul(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsMul(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -89,7 +89,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> mul(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdMul(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdMul(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -102,22 +102,10 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> div(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsDiv(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsDiv(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
-        /// <summary>
-        /// Computes the quotient lhs/rhs
-        /// </summary>
-        /// <param name="lhs">The left scalar</param>
-        /// <param name="rhs">The right scalar</param>
-        [MethodImpl(Inline)]
-        public static float div(float lhs, float rhs)
-        {
-            var z = 0f;
-            VML.vsDiv(1, ref lhs, ref rhs, ref z);
-            return z;
-        }
 
 		/// <summary>
 		/// Computes dst[i] = lhs[i] / rhs[i] for i = 0...n-1
@@ -128,21 +116,8 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> div(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdDiv(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdDiv(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
-        }
-
-        /// <summary>
-        /// Computes the quotient lhs/rhs
-        /// </summary>
-        /// <param name="lhs">The left scalar</param>
-        /// <param name="rhs">The right scalar</param>
-        [MethodImpl(Inline)]
-        public static double div(double lhs, double rhs)
-        {
-            var z = 0d;
-            VML.vdDiv(1, ref lhs, ref rhs, ref z);
-            return z;
         }
 
 		/// <summary>
@@ -154,7 +129,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> fmod(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
         
@@ -162,7 +137,7 @@ namespace Z0.Mkl
         public static float fmod(float lhs, float rhs)
         {
             var z = 0f;
-            VML.vsModf(1, ref lhs, ref rhs, ref z);
+            VmlImport.vsModf(1, ref lhs, ref rhs, ref z);
             return z;
         }
 
@@ -175,7 +150,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> fmod(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -188,7 +163,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> rem(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsRemainder(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsRemainder(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -201,7 +176,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> rem(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdRemainder(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdRemainder(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -213,7 +188,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> sqrt(Span<float> src, Span<float> dst)        
         {
-            VML.vsSqrt(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsSqrt(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -225,7 +200,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> sqrt(Span<double> src, Span<double> dst)        
         {
-            VML.vdSqrt(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdSqrt(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -237,7 +212,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> square(Span<float> src, Span<float> dst)        
         {
-            VML.vsSqr(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsSqr(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -249,7 +224,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> square(Span<double> src, Span<double> dst)        
         {
-            VML.vdSqr(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdSqr(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -261,7 +236,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> abs(Span<float> src, Span<float> dst)        
         {
-            VML.vsAbs(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsAbs(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -273,7 +248,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> abs(Span<double> src, Span<double> dst)        
         {
-            VML.vdAbs(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdAbs(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -285,7 +260,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> recip(Span<float> src, Span<float> dst)        
         {
-            VML.vsInv(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsInv(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -297,7 +272,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> recip(Span<double> src, Span<double> dst)        
         {
-            VML.vdInv(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdInv(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -309,7 +284,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> cdfNorm(Span<float> src, Span<float> dst)        
         {
-            VML.vsCdfNorm(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsCdfNorm(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -321,7 +296,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> cdfNorm(Span<double> src, Span<double> dst)        
         {
-            VML.vdCdfNorm(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdCdfNorm(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -334,7 +309,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> pow(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
-            VML.vsPow(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vsPow(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -347,7 +322,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> pow(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
-            VML.vdPow(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            VmlImport.vdPow(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
 
@@ -360,7 +335,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> pow(Span<float> lhs, float rhs, Span<float> dst)
         {
-            VML.vsPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
+            VmlImport.vsPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
             return dst;
         }
 
@@ -373,7 +348,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> pow(Span<double> lhs, double rhs, Span<double> dst)
         {
-            VML.vdPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
+            VmlImport.vdPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
             return dst;
         }
  
@@ -385,7 +360,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<float> exp(Span<float> src, Span<float> dst)        
         {
-            VML.vsExp(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsExp(src.Length, ref head(src), ref head(dst));
             return dst;
         }
             
@@ -397,10 +372,83 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Span<double> exp(Span<double> src, Span<double> dst)        
         {
-            VML.vdExp(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdExp(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
+        /// <summary>
+        /// Computes the quotient lhs/rhs
+        /// </summary>
+        /// <param name="lhs">The left scalar</param>
+        /// <param name="rhs">The right scalar</param>
+        [MethodImpl(Inline)]
+        public static float div(float lhs, float rhs)
+        {
+            var z = 0f;
+            VmlImport.vsDiv(1, ref lhs, ref rhs, ref z);
+            return z;
+        }
+
+        /// <summary>
+        /// Computes the quotient of the operands and returns the result
+        /// </summary>
+        /// <param name="lhs">The left scalar</param>
+        /// <param name="rhs">The right scalar</param>
+        [MethodImpl(Inline)]
+        public static double div(double lhs, double rhs)
+        {
+            var z = 0d;
+            VmlImport.vdDiv(1, ref lhs, ref rhs, ref z);
+            return z;
+        }
+
+        /// <summary>
+        /// Computes the square of a source scalar and returns the result
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static float square(float src)
+        {
+            var dst = 0f;
+            VmlImport.vsSqr(1, ref src, ref dst);
+            return dst;
+        }
+ 
+        /// <summary>
+        /// Computes the square of a source scalar and writes the result to a target scalar
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        /// <param name="dst">The target scalar</param>
+        [MethodImpl(Inline)]
+        public static void square(float src, out float dst)
+        {
+            dst = 0;
+            VmlImport.vsSqr(1, ref src, ref dst);
+        }
+
+        /// <summary>
+        /// Computes the square of a source scalar and returns the result
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static double square(double src)
+        {
+            var dst = 0d;
+            VmlImport.vdSqr(1, ref src, ref dst);
+            return dst;
+        }
+ 
+        /// <summary>
+        /// Computes the square of a source scalar and writes the result to a target scalar
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        /// <param name="dst">The target scalar</param>
+        [MethodImpl(Inline)]
+        public static void square(double src, out double dst)
+        {
+            dst = 0;
+            VmlImport.vdSqr(1, ref src, ref dst);
+        }
 
     }
 

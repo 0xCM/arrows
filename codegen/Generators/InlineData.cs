@@ -49,7 +49,7 @@ namespace Z0
             dst.Append(linepad);
             for(var i=0; i<src.Length; i++)
             {
-                var h = $"{src[i].ToHexString()}{AsciSym.Comma}";
+                var h = $"{src[i].FormatHex()}{AsciSym.Comma}";
                 dst.Append($" {h}");
                 if((i + 1) % 8 == 0)
                 {
