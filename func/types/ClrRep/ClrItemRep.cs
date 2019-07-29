@@ -12,9 +12,8 @@ namespace Z0
 
     using static zfunc;
 
-
     /// <summary>
-    /// Defines a root for types that represent .Net artifacts
+    /// Defines a root abstraction for types that define succinct representatives of .Net artifacts
     /// </summary>
     public abstract class ClrItemRep
     {

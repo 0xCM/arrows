@@ -133,6 +133,7 @@ namespace Z0
                 IndexCil(md);
 
         }
+        
         void IndexType(TypeDef t)
         {
             Claim.yea(TypeIndex.TryAdd((int)t.MDToken.Raw, t));
@@ -140,6 +141,7 @@ namespace Z0
                 IndexMethod(md);
 
         }
+        
         void IndexModule(Module mod)
         {
             var modDef = GetModDef(mod);

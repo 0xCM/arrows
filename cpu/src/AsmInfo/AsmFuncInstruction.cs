@@ -2,7 +2,8 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Cpu
+
 {        
     using System;
     using System.Linq;
@@ -15,14 +16,15 @@ namespace Z0
     /// <summary>
     /// Represents an assembly instruction in the context of an <see cref='AsmFuncSpec' />
     /// </summary>
-    public class AsmFuncInstruction
+    public class AsmInstructionInfo
     {
-        public AsmFuncInstruction(ushort Offset, string Display, string Mnemonic,  string OpCode, string EncodingKind, byte[] Encoding)
+        public AsmInstructionInfo(ushort Offset, string Display, string Mnemonic, string OpCode, AsmOperandInfo[] Operands, string EncodingKind, byte[] Encoding)
         {
             this.Offset = Offset;
             this.Display = Display;
             this.Mnemonic = Mnemonic;
             this.OpCode = OpCode;
+            this.Operands = Operands;
             this.EncodingKind = EncodingKind;
             this.Encoding = Encoding;
         }
@@ -58,8 +60,7 @@ namespace Z0
         /// </summary>
         public byte[] Encoding {get;}
 
+        public AsmOperandInfo[] Operands {get;}
 
-        public override string ToString()
-            => this.Format();
     }
 }

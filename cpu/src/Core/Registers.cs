@@ -11,8 +11,6 @@ namespace Z0.Cpu
 
     using static zfunc;
 
-    using static BitWidth;
-
     partial class CpuCore
     {
 

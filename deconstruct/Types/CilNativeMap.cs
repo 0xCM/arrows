@@ -9,7 +9,7 @@ namespace Z0
     /// <summary>
     /// Establishes a correlation between a block of CIL and and block of native code
     /// </summary>
-	public struct CilNativeMap 
+	public readonly struct CilNativeMap 
     {
         public CilNativeMap(int cilOffset, ulong startAddress, ulong endAddress)
         {
@@ -18,11 +18,11 @@ namespace Z0
             this.EndAddress = endAddress;
         }
 		
-        public int CilOffset; 
+        public readonly int CilOffset; 
 		
-        public ulong StartAddress;
+        public readonly ulong StartAddress;
 		
-        public ulong EndAddress;
+        public readonly ulong EndAddress;
 	}
 
 }

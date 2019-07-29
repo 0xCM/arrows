@@ -17,7 +17,16 @@ namespace Z0
     /// </summary>
     public readonly struct BitSize
     {
+        /// <summary>
+        /// Specifies a bit count
+        /// </summary>
+        public readonly ulong Bits;
 
+        /// <summary>
+        /// The canonical zero size
+        /// </summary>
+        public static readonly BitSize Zero = default;
+         
         /// <summary>
         /// Returns the bit size of a type
         /// </summary>
@@ -120,10 +129,6 @@ namespace Z0
         public BitSize(ulong Bits)
             => this.Bits = Bits;
 
-        /// <summary>
-        /// Specifies the number of bits
-        /// </summary>
-        public readonly ulong Bits;
 
         public ByteSize ToBytes()
             =>  Bits / 8;
@@ -131,6 +136,7 @@ namespace Z0
         public override string ToString()
             => Bits.ToString();
 
+        [MethodImpl(Inline)]
         public bool Equals(BitSize rhs)
             => Bits == rhs.Bits;
 
@@ -139,5 +145,11 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is BitSize ? Equals((BitSize)obj) : false;
+ 
+        public bool IsNonZero
+        {
+            [MethodImpl(Inline)]
+            get => Bits != 0;
+        }
     }
 }

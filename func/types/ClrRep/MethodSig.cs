@@ -27,12 +27,11 @@ namespace Z0
                 method.DeclaringType.Name,
                 method.DisplayName(),
                 TypeRep.FromType(method.ReturnType),
-                method.GetParameters().Select(x => new ValueParamRep(TypeRep.FromType(x.ParameterType), x.Name, x.Position)).ToArray(),
+                method.GetParameters().Select(p => new MethodParamRep(TypeRep.FromParameter(p), p.Direction(), p.Name, p.Position)).ToArray(),
                 method.GenericSlots().Mapi((i,t) => new TypeParamRep(t.DisplayName(), i, t.IsGenericType)));
-
         }
 
-        public MethodSig(int MethodId, string DefiningAssembly, string DefiningModule, string DeclaringNamespace, string DeclaringType, string MethodName, TypeRep ReturnType, ValueParamReps ValueParams, TypeParamReps TypeParams)
+        public MethodSig(int MethodId, string DefiningAssembly, string DefiningModule, string DeclaringNamespace, string DeclaringType, string MethodName, TypeRep ReturnType, MethodParamReps ValueParams, TypeParamReps TypeParams)
         {
             this.MethodId = MethodId;
             this.DefiningAssembly = DefiningAssembly;
@@ -58,7 +57,7 @@ namespace Z0
 
         public TypeRep ReturnType {get; }
 
-        public ValueParamReps ValueParams {get; }
+        public MethodParamReps ValueParams {get; }
 
         public TypeParamReps TypeParams {get; }
                 

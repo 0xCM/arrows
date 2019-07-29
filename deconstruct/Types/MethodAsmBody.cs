@@ -12,13 +12,14 @@ namespace Z0
 
     using Iced.Intel;
     using static zfunc;
+    using Z0.Cpu;
         
     /// <summary>
     /// Adheres a set of IL instructions with the source method
     /// </summary>
     public class MethodAsmBody
     {
-        public MethodAsmBody(MethodBase Method, NativeBlock[] NativeBlocks, Instruction[] Instructions)
+        public MethodAsmBody(MethodBase Method, CodeBlock[] NativeBlocks, Instruction[] Instructions)
         {
             this.Method = Method;
             this.NativeBlocks = NativeBlocks;
@@ -35,23 +36,10 @@ namespace Z0
 
         public Instruction[] Instructions {get;}
         
-        public NativeBlock[] NativeBlocks {get;}
+        public CodeBlock[] NativeBlocks {get;}
 
 
         public override string ToString()
             => this.Format();
-        // {
-        //     var desc = sbuild();
-        //     desc.AppendLine(MethodName);
-        //     desc.AppendLine(AsciSym.LBrace.ToString());            
-        //     foreach(var i in Instructions)
-        //     {
-        //         var asm = $"    {i.ToString()}";
-        //         desc.AppendLine(asm);                
-        //     }
-        //     desc.AppendLine(AsciSym.RBrace.ToString());
-        //     return desc.ToString();
-
-        // }
     }
 }

@@ -7,7 +7,6 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.InteropServices;
 
-    using static BitWidth;
     
     partial class Registers
     {

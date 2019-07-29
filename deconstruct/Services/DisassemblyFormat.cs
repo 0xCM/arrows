@@ -13,7 +13,7 @@ namespace Z0
 
     using static zfunc;
     
-    public static class AsmFormatter
+    public static class DisassemblyFormat
     {
         static readonly MasmFormatterOptions FormatOptions = new MasmFormatterOptions
         {
@@ -22,56 +22,20 @@ namespace Z0
             HexDigitGroupSize = 4,
             UpperCaseRegisters = false, 
             LeadingZeroes = false,
+            DisplInBrackets = true,
+            
         };
 
-        public static string Format(this AsmFuncInstruction src, int? pad = null)
+        public static string FormatCil(this MethodDisassembly src)
         {
-            var label =$"{src.Offset.FormatHex(true,false)}h ";
-            var content = src.Display.PadRight(pad ?? 24, ' ');
-            var encoding = $"encoding({src.EncodingKind}) = " + src.Encoding.FormatHex(false, ' ');
-            var len = $"({src.Encoding.Length} bytes)";
-            return label + content + $"; {src.Mnemonic} | {src.OpCode} | {encoding} {len}";
+            var format = sbuild();
+            format.AppendLine(src.MethodSig.Format());
+            format.AppendLine(AsciSym.LBrace.ToString());
+            format.AppendLine(src.CilBody.ToString());
+            format.Append(AsciSym.RBrace.ToString());
+            return format.ToString();
         }
 
-        const int IPad = 30;
-        
-        public static string FormatInstructions(this AsmFuncSpec src, int? pad = null)
-        {
-            var format = sbuild();            
-            for(var i = 0; i< src.InstructionCount; i++)
-            {
-                var insx = src.Instructions[i];
-                var fmt = insx.Format(pad ?? IPad);
-                if(i != src.InstructionCount - 1)
-                    format.AppendLine(fmt);
-                else
-                    format.Append(fmt);
-            }
-            return format.ToString();
-        }    
-
-        public static string FormatHeader(this AsmFuncSpec src, int? pad = null)
-            => concat(
-                   src.StartAddress.FormatHex(false,true,true,false), 
-                   AsciSym.Space,
-                   src.Signature.Format()
-                   );
-
-        public static string FormatEncoding(this AsmFuncSpec src)
-            =>  embrace(src.Encoding.FormatHex(false,','));
-
-        public static string FormatFooter(this AsmFuncSpec src, int? pad = null)
-            => concat(
-                src.EndAddress.FormatHex(false,true,true,false).PadRight(pad ??  (IPad + 6)), 
-                AsciSym.Semicolon, 
-                AsciSym.Space, 
-                src.FormatEncoding()
-                ); 
-
-        public static string Format(this AsmFuncSpec src, int? pad = null)
-            => lines(src.FormatHeader(pad), 
-                src.FormatInstructions(pad),
-                src.FormatFooter(pad));                
 
         public static string Format(this MethodAsmBody src)
         {
@@ -191,6 +155,7 @@ namespace Z0
                 this.BaseAddress = BaseAddress;
             }
             
+
             public override void Write(string text, FormatterOutputTextKind kind)
             {
                 switch(kind)

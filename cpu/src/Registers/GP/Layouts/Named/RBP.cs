@@ -9,7 +9,7 @@ namespace Z0.Cpu
     using System.Runtime.InteropServices;
     
     using static zfunc;
-    using static BitWidth;
+    
 
     partial class Registers
     {

@@ -45,7 +45,7 @@ namespace Z0.Cpu
     }
 
 
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw64)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T06)]
     public enum GpRegId64 : ulong
     {
         /// <summary>

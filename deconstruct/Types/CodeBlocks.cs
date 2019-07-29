@@ -7,9 +7,11 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-	public sealed class NativeContent 
+	using Z0.Cpu;
+	
+	public sealed class CodeBlocks 
     {
-		public NativeContent(int MethodId, NativeBlock[] Blocks)
+		public CodeBlocks(int MethodId, CodeBlock[] Blocks)
 		{
 			this.MethodId = MethodId;
 			this.NativeCode = Blocks;
@@ -18,8 +20,7 @@ namespace Z0
     	public int MethodId;
 				
 
-    	public NativeBlock[] NativeCode {get;}
+    	public CodeBlock[] NativeCode {get;}
 	
-
 	}
 }

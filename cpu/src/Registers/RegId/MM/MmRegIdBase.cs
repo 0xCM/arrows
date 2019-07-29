@@ -11,13 +11,13 @@ namespace Z0.Cpu
     public enum MmRegIdBase : ulong
     {
                 
-        [Info(Desc.BaseRegIdLit, BitWidth.Bw128)]
+        [Info(Desc.BaseRegIdLit, Pow2.T07)]
         bmm128 = T31,
         
-        [Info(Desc.BaseRegIdLit, BitWidth.Bw256)]
+        [Info(Desc.BaseRegIdLit, Pow2.T08)]
         bmm256 = T32,
 
-        [Info(Desc.BaseRegIdLit, BitWidth.Bw512)]
+        [Info(Desc.BaseRegIdLit, Pow2.T09)]
         bmm512 = T33,
 
 

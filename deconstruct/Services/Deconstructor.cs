@@ -13,6 +13,7 @@ namespace Z0
     using Microsoft.Diagnostics.Runtime;
 	using Iced.Intel;
 
+    using Z0.Cpu;
     using static zfunc;
     
     /// <summary>
@@ -31,20 +32,12 @@ namespace Z0
 
         readonly MetadataIndex MdIx;
 
-        public static IEnumerable<MethodDisassembly> Disassemble(params MethodInfo[] methods)
+        public static IEnumerable<MethodDisassembly> Deconstruct(params MethodInfo[] methods)
             => Disassemble(x => error(x), methods);
-
-        public static IEnumerable<MethodDisassembly> Disassemble(params Type[] types)
-        {
-            var methods = from t in types
-                          from m in t.DeclaredMethods().NonGeneric().Concrete()
-                          select m;
-            return Disassemble(methods.ToArray());                        
-        }
 
         static IEnumerable<MethodDisassembly> Disassemble(Action<string> onError, params MethodInfo[] methods)
         {
-            Jit(methods);
+            methods.JitMethods();
             var modules = methods.Select(x => x.Module).Distinct();
             using var decon = new Deconstructor(modules);
             foreach(var m in methods)
@@ -53,27 +46,42 @@ namespace Z0
                 if(d)
                     yield return d.ValueOrDefault();
                 else
-                    onError($"Could not disassemble {m.Name}");
+                    onError($"Could not disassemble {MethodSig.Define(m).Format()}");
             }            
         }
         
         Deconstructor(IEnumerable<Module> modules)
         {
-            Target = InProcTarget();
-            Runtime = Target.CoreRuntime();
+            Target = DataTarget.AttachToProcess(Process.GetCurrentProcess().Id, uint.MaxValue, AttachFlag.Passive);
+            Runtime = CreateRuntime(Target);
             MdIx = MetadataIndex.Create(modules.ToArray());
         }
+
+        /// <summary>
+        /// Creates a .net core runtime predicated on a  target
+        /// </summary>
+        /// <param name="target">The target relative type which the runtime abstraction will be created</param>
+        static ClrRuntime CreateRuntime(DataTarget target)
+            => target.ClrVersions.Single(x => x.Flavor == ClrFlavor.Core).CreateRuntime();
+
+        /// <summary>
+        /// Queries the runtime for the runtime method corresponding to a supplied <see cref='MethodInfo'/>
+        /// </summary>
+        /// <param name="rt">The source runtime</param>
+        /// <param name="src">The represented method</param>
+        ClrMethod GetRuntimeMethod(MethodBase src)
+            =>  Runtime.GetMethodByAddress((ulong)src.MethodHandle.GetFunctionPointer());
 
         Option<MethodDisassembly> Disassemble(MethodInfo method)
         {
             try
             {
-                var clrMethod = Runtime.GetRuntimeMethod(method);
+                var clrMethod = GetRuntimeMethod(method);
                 if(clrMethod == null)
                     return null;
                 
                 var asmBody = DecodeAsm(method);
-                var ilBytes = Target.ReadCilBytes(clrMethod);            
+                var ilBytes = ReadCilBytes(clrMethod);            
                 Claim.eq(ilBytes, method.GetMethodBody().GetILAsByteArray()) ;
                         
                 var d = new MethodDisassembly
@@ -98,9 +106,9 @@ namespace Z0
 
         MethodAsmBody DecodeAsm(MethodBase method)
         {
-            var data = Target.ReadNativeContent(method);
+            var data = ReadNativeContent(method);
             var instructions = new List<Instruction>();
-            var blocks = new List<NativeBlock>();
+            var blocks = new List<CodeBlock>();
             foreach(var block in data.NativeCode)
             {
                 instructions.AddRange(DecodeAsm(block));
@@ -114,7 +122,7 @@ namespace Z0
             Target?.Dispose();
         }
 
-		static InstructionList DecodeAsm(NativeBlock src)
+		static InstructionList DecodeAsm(CodeBlock src)
 		{
             var dst = new InstructionList();
             var reader = new ByteArrayCodeReader(src.Data);
@@ -128,21 +136,6 @@ namespace Z0
             return dst;
 		}
 
-        [MethodImpl(Inline)]
-        static void Jit(MethodBase method)
-        {
-            try
-            {
-                RuntimeHelpers.PrepareMethod(method.MethodHandle);
-            }
-            catch(Exception e)
-            {
-                error(errorMsg(e));
-            }
-        }
-
-        static void Jit(IEnumerable<MethodBase> methods)
-            => iter(methods,Jit);
 
         static CilNativeMap[] MapCilToNative(ClrMethod method)
         {
@@ -170,33 +163,69 @@ namespace Z0
             return result;
         }
 
-        /// <summary>
-        /// Creates an in-process data target
-        /// </summary>
-        /// <returns>The (disposable) target</returns>
-        static DataTarget InProcTarget()
-            => DataTarget.AttachToProcess(Process.GetCurrentProcess().Id, uint.MaxValue, AttachFlag.Passive);
+        byte[] ReadCilBytes(ClrMethod method)
+        {
+            var ilAddress = method.IL.Address;
+            var ilSize = method.IL.Length;
+            var ilBytes = new byte[ilSize];
+            Target.ReadProcessMemory(ilAddress,ilBytes, ilSize, out int ilRead);
+            Claim.eq(ilRead, ilSize);                    
+            return ilBytes;
+        }
 
-		static IEnumerable<MethodAsmBody> DecodeAsm(DataTarget target, IEnumerable<MethodBase> methods)
-		{				
-			var runtime = target.CoreRuntime();
-            var midx = methods.Select(x => (x.MetadataToken, x)).ToDictionary();
-            var data = target.ReadNativeContent(runtime, methods);
-			foreach(var d in data)
-            {
-                foreach(var native in d.NativeCode)
-                {
-                    if(native.Data.Length != 0)
-                    {
-                        var instructions = DecodeAsm(native).ToArray();
-                        var blocks = new List<NativeBlock>();
-                        blocks.Add(native);
+        CodeBlocks ReadNativeContent(MethodBase method) 
+			=> ReadNativeContent(GetRuntimeMethod(method));
 
-                        var body = new MethodAsmBody(midx[(int)d.MethodId], blocks.ToArray(), instructions);
-                        yield return body;
-                    }
-                }
-            }       
+ 		CodeBlocks ReadNativeContent(ClrMethod method) 
+		{			
+            var blocks = new List<CodeBlock>();
+			iter(ReadNativeBlocks(method), nb => blocks.Add(nb));
+			return new CodeBlocks(
+                MethodId: (int)method.MetadataToken,
+                Blocks: blocks.ToArray()
+            );
 		}
+
+
+		/// <summary>
+		/// Reads a continuous block of memory
+		/// </summary>
+		/// <param name="target">The (source!) target </param>
+		/// <param name="address">The starting address</param>
+		/// <param name="size">The number of bytes to read</param>
+		Option<CodeBlock> ReadNativeBlock(ulong address, ByteSize size)
+		{
+			if (address == 0 || size == 0)
+				return zfunc.none<CodeBlock>();
+
+			var dst = new byte[(int)size];
+			if (!Target.ReadProcessMemory(address, dst, dst.Length, out int bytesRead))
+				throw new Exception($"Memory access failure at address {address.FormatHex()}");
+            
+            if (dst.Length != size)
+                throw Errors.LengthMismatch(size, dst.Length);
+
+			return new CodeBlock(address, dst);
+		}
+
+        /// <summary>
+        /// Reads the native code blocks that have been Jitted for a specified method
+        /// </summary>
+        /// <param name="target">The diagnostic target</param>
+        /// <param name="method">The runtime method</param>
+        /// <remarks>The content of this method was derived from https://github.com/0xd4d/JitDasm</remarks>
+        IEnumerable<CodeBlock> ReadNativeBlocks(ClrMethod method)
+        {
+			var codeInfo = method.HotColdInfo;
+			
+            var hot = ReadNativeBlock(codeInfo.HotStart, codeInfo.HotSize);
+            if(hot.IsSome())
+                yield return hot.Value();        
+			
+            var cold = ReadNativeBlock(codeInfo.ColdStart, codeInfo.ColdSize);
+            if(cold.IsSome())
+                yield return cold.Value();                  
+        }       
+
     }
 }

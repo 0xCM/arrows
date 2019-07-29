@@ -43,7 +43,7 @@ namespace Z0
             => Add(lhs, rhs);
 
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vec256<long> permute4x64(in Vec256<long> value, byte control)
             => Permute4x64(value,control);
 
@@ -53,38 +53,38 @@ namespace Z0
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vec256<double> permute4x64(in Vec256<double> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vector256<long> permute4x64(in Vector256<long> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vector256<ulong> permute4x64(in Vector256<ulong> value, byte control)
             => Permute4x64(value,control);
 
         ///<intrinsic>__m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vector256<double> permute4x64(in Vector256<double> value, byte control)
             => Permute4x64(value,control);
 
         /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline | Optimize)]
         public static Vector256<long> shiftlw(in Vector256<long> src, byte count)
             => ShiftLeftLogical128BitLane(src, count);
 
         /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vector256<ulong> shiftlw(in Vector256<ulong> src, byte count)
+        [MethodImpl(Inline | Optimize)]
+        public static Vector256<ulong> shiftlw(Vector256<ulong> src, byte count)
             => ShiftLeftLogical128BitLane(src, count); 
 
         /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<ulong> shiftlw(in Vec256<ulong> src, byte count)
+        [MethodImpl(Inline | Optimize)]
+        public static Vec256<ulong> shiftlw(Vec256<ulong> src, byte count)
             => ShiftLeftLogical128BitLane(src, count); 
 
     }

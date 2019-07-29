@@ -14,6 +14,20 @@ using Z0;
 partial class zfunc
 {
     [MethodImpl(Inline)]   
+    public static ref T imagine<S,T>(ref S src)
+    {
+        ref var dst = ref Unsafe.As<S,T>(ref src);
+        return ref dst;
+    }
+
+    [MethodImpl(Inline)]   
+    public static ref T imagine<S,T>(ref S src, out T dst)
+    {
+        dst = Unsafe.As<S,T>(ref src);
+        return ref dst;
+    }
+
+    [MethodImpl(Inline)]   
     public static T convert<S,T>(S src, out T dst)
         where T : struct
         where S : struct

@@ -15,7 +15,6 @@ namespace Z0.Asm
     public delegate T AsmQuadOp<T>(T x, T y, out T a, out T b)
         where T : struct;
 
-
     public static unsafe class AsmQuadOp
     {
 

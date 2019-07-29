@@ -10,14 +10,15 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
-
+    using Z0.Cpu;
+    
     public class MethodDisassembly
     {
         public MethodBase MethodInfo {get; set;}
 
         public ulong NativeAddress {get;set;}
 
-        public NativeBlock[] NativeBody {get;set;}
+        public CodeBlock[] NativeBody {get;set;}
 
         public MethodSig MethodSig {get; set;}
     

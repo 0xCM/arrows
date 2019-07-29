@@ -9,7 +9,7 @@ namespace Z0.Cpu
     using static MmRegIdBase;
     using static RegIdOffset;
 
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw256)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T08)]
     public enum YmmRegId : ulong
     {
         ymm0 = bmm256,

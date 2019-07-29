@@ -190,9 +190,19 @@ namespace Z0
             return typeName + (args.Count != 0 ? angled(argFmt) : string.Empty);
         }
         
+        /// <summary>
+        /// Constructs a method signature from a source method
+        /// </summary>
+        /// <param name="src">The source method</param>
         public static MethodSig MethodSig(this MethodInfo src)
             => Z0.MethodSig.Define(src);
 
+        /// <summary>
+        /// If a method is non-generic, returns an emtpy list.
+        /// If a method is open generic, returns a list describing the open parameters
+        /// If a method is closed generic, returns a list describing the closed parameters
+        /// </summary>
+        /// <param name="src">The type from which to extract existing closed/open generic parameters</param>
         public static Type[] GenericSlots(this MethodInfo src)
             => !(src.IsGenericMethod && !src.IsGenericMethodDefinition) ? new Type[]{} 
                : src.IsConstructedGenericMethod
@@ -211,11 +221,42 @@ namespace Z0
                ? src.GenericTypeArguments 
                : src.GetGenericTypeDefinition().GetGenericArguments();
     
-        /// <summary>
-        /// Constructs a display name for a type
-        /// </summary>
-        /// <param name="src">The source type</param>
-        public static string DisplayName(this Type src)
+        public static bool IsRef(this Type src)
+            =>  src.UnderlyingSystemType.IsByRef || src.UnderlyingSystemType.IsByRefLike;
+        
+
+        static string FormatGenericName(this Type src)
+        {
+            var name = src.Name;                
+            var args = src.GetGenericArguments();
+            if(args.Length != 0)
+            {
+                name = name.Replace($"`{args.Length}", string.Empty);
+                name += "<";
+                for(var i= 0; i< args.Length; i++)
+                {
+                    name += args[i].DisplayName();
+                    if(i != args.Length - 1)
+                        name += ",";
+                }                                
+                name += ">";
+            }
+            return name;
+
+        }
+
+
+        static bool IsSimpleName(this Type src)
+        {
+            return 
+                Attribute.IsDefined(src, typeof(DisplayNameAttribute))
+                || src.IsPrimalNumeric()
+                || src.IsBool()
+                || src.IsVoid()
+                || src.IsString();                            
+        }
+
+        static string FormatSimpleName(this Type src)
         {
             var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
             if (attrib != null)
@@ -231,28 +272,50 @@ namespace Z0
                 return "void";
             
             if(src.IsString())
-                return "string";            
-            
-            if(src.IsGenericType || src.IsByRef || src.IsByRefLike)
-            {
-                var name = src.Name.Replace("&", string.Empty);
-                name = src.IsByRef ? "byref " + name : name;
-                var args = src.GetGenericArguments();
-                if(args.Length != 0)
-                {
-                    name = name.Replace($"`{args.Length}", string.Empty);
-                    name += "<";
-                    for(var i= 0; i< args.Length; i++)
-                    {
-                        name += args[i].DisplayName();
-                        if(i != args.Length - 1)
-                            name += ",";
-                    }                                
-                    name += ">";
-                }
-                return name;
-            }
+                return "string";  
+
+            return src.Name;          
+        }
+
+        /// <summary>
+        /// Constructs a display name for a type
+        /// </summary>
+        /// <param name="src">The source type</param>
+        public static string DisplayName(this Type src)
+        {
+            if(src == null)
+                return "!null!";
+                
+            if(src.IsSimpleName())
+                return src.FormatSimpleName();
+
+            if(src.IsGenericType && !src.IsRef())
+                return src.FormatGenericName();
+
+            if(src.IsRef())
+                return src.GetElementType().DisplayName();
+
             return src.Name;
+        }
+
+        public static (string type, string name) DisplayName(this ParameterInfo param)
+        {
+            var modifier = string.Empty;
+            if(param.IsIn)
+                modifier = "in ";
+            else if(param.IsOut)
+                modifier = "out ";
+            else if(param.ParameterType.IsByRef)
+                modifier = "ref ";
+            var t = param.ParameterType.GetElementType();
+            return  (modifier + (t.IsGenericType ? t.FormatGenericName() : t.FormatSimpleName()), param.Name);
+        }
+
+        public static string FormatReference(this Type src, bool isIn = false, bool isOut = false)            
+        {
+            var dst = isIn ? "in " : isOut ? "out " : "ref ";
+            dst = dst + src.GetElementType().DisplayName();
+            return dst;
         }
 
         public static string DisplayName(this MethodInfo src)
@@ -267,15 +330,31 @@ namespace Z0
         public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)
             => src.Where(t => t.Interfaces().Contains(typeof(T)));
 
+        /// <summary>
+        /// Selects the concrete (not abstract) types from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
         public static IEnumerable<Type> Concrete(this IEnumerable<Type> src)
             => src.Where(t => !t.IsAbstract);
 
+        /// <summary>
+        /// Selects the concrete (not abstract) methods from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
         public static IEnumerable<MethodInfo> Concrete(this IEnumerable<MethodInfo> src)
             => src.Where(t => !t.IsAbstract);
 
+        /// <summary>
+        /// Selects the abstract methods from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
         public static IEnumerable<MethodInfo> Abstract(this IEnumerable<MethodInfo> src)
             => src.Where(t => t.IsAbstract);
 
+        /// <summary>
+        /// Selects the abstract types from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
         public static IEnumerable<Type> Abstract(this IEnumerable<Type> src)
             => src.Where(t => t.IsAbstract);
 
@@ -492,5 +571,22 @@ namespace Z0
             var ptr = m.MethodHandle.GetFunctionPointer();
             return ptr;
         }    
+ 
+        [MethodImpl(Inline)]
+        public static void JitMethod(this MethodBase method)
+        {
+            try
+            {
+                RuntimeHelpers.PrepareMethod(method.MethodHandle);
+            }
+            catch(Exception e)
+            {
+                error(errorMsg(e));
+            }
+        }
+
+        public static void JitMethods(this IEnumerable<MethodBase> methods)
+            => iter(methods,JitMethod);
+
     }
 }

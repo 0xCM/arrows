@@ -1,5 +1,5 @@
-// 2019-07-28 04:08:53:757
-Vec128<sbyte> add1(byref Vec128<sbyte> lhs, byref Vec128<sbyte> rhs)
+// 2019-07-29 03:15:51:354
+Vec128<sbyte> add1(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -52,7 +52,7 @@ Vec256<sbyte> add5(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
     IL_001B: ret
 
 }
-Vec256<long> permute4x64(byref Vec256<long> value, byte control)
+Vec256<long> permute4x64(in Vec256<long> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
@@ -64,7 +64,7 @@ Vec256<long> permute4x64(byref Vec256<long> value, byte control)
     IL_0014: ret
 
 }
-Vec256<ulong> permute4x64(byref Vec256<ulong> value, byte control)
+Vec256<ulong> permute4x64(in Vec256<ulong> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
@@ -76,7 +76,7 @@ Vec256<ulong> permute4x64(byref Vec256<ulong> value, byte control)
     IL_0014: ret
 
 }
-Vec256<double> permute4x64(byref Vec256<double> value, byte control)
+Vec256<double> permute4x64(in Vec256<double> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
@@ -88,7 +88,7 @@ Vec256<double> permute4x64(byref Vec256<double> value, byte control)
     IL_0014: ret
 
 }
-Vector256<long> permute4x64(byref Vector256<long> value, byte control)
+Vector256<long> permute4x64(in Vector256<long> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int64>
@@ -97,7 +97,7 @@ Vector256<long> permute4x64(byref Vector256<long> value, byte control)
     IL_000C: ret
 
 }
-Vector256<ulong> permute4x64(byref Vector256<ulong> value, byte control)
+Vector256<ulong> permute4x64(in Vector256<ulong> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt64>
@@ -106,7 +106,7 @@ Vector256<ulong> permute4x64(byref Vector256<ulong> value, byte control)
     IL_000C: ret
 
 }
-Vector256<double> permute4x64(byref Vector256<double> value, byte control)
+Vector256<double> permute4x64(in Vector256<double> value, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Double>
@@ -115,7 +115,7 @@ Vector256<double> permute4x64(byref Vector256<double> value, byte control)
     IL_000C: ret
 
 }
-Vector256<long> shiftlw(byref Vector256<long> src, byte count)
+Vector256<long> shiftlw(in Vector256<long> src, byte count)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int64>
@@ -124,26 +124,23 @@ Vector256<long> shiftlw(byref Vector256<long> src, byte count)
     IL_000C: ret
 
 }
-Vector256<ulong> shiftlw(byref Vector256<ulong> src, byte count)
+Vector256<ulong> shiftlw(Vector256<ulong> src, byte count)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt64>
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: ret
+    IL_0001: ldarg.1
+    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0007: ret
 
 }
-void shiftlw(byref Vec256<ulong> src, byte count, byref Vec256<ulong> dst)
+Vec256<ulong> shiftlw(Vec256<ulong> src, byte count)
 {
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
+    IL_0000: ldarga.s src
     IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
     IL_0007: ldarg.1
     IL_0008: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
     IL_000D: stloc.0
     IL_000E: ldloca.s V_0
     IL_0010: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>&)
-    IL_0015: stobj Z0.Vec256`1<System.UInt64>
-    IL_001A: ret
+    IL_0015: ret
 
 }

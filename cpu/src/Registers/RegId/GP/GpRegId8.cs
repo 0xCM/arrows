@@ -9,7 +9,7 @@ namespace Z0.Cpu
     using static GpRegIdBase;
     using static RegIdOffset;
 
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw8)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T03)]
     public enum GpRegId8 : ulong
     {
         /// <summary>

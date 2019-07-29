@@ -11,7 +11,7 @@ namespace Z0.Cpu
     using static Pow2;
 
 
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw64)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T06)]
     public enum ControlRegId : ulong
     {
         c0 = T15,

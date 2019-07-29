@@ -12,29 +12,51 @@ namespace Z0
 
     using static zfunc;
 
-
     /// <summary>
-    /// Represents a .Net type
+    /// A succinct representative of a .Net type
     /// </summary>
     public class TypeRep : ClrItemRep
     {        
         public static TypeRep FromType(Type src)
-            => new TypeRep(src.DisplayName(), src.IsConstructedGenericType,  
-                    src.IsGenericType && !src.IsConstructedGenericType);
+            => new TypeRep(src.DisplayName(), src.IsConstructedGenericType,  src.IsGenericType && !src.IsConstructedGenericType, src.IsByRef);
 
-        public TypeRep(string Name, bool IsOpenGeneric, bool IsClosedGeneric, ClrRepTag? Tag = null)
+        public static TypeRep FromParameter(ParameterInfo src)
+        {
+            var type = src.ParameterType;
+            var name = type.IsRef() ? type.GetElementType().DisplayName() : type.DisplayName();
+            
+            return new TypeRep(name, 
+                type.IsConstructedGenericType, 
+                type.IsGenericType && !type.IsConstructedGenericType,
+                type.IsRef(),
+                src.IsIn,
+                src.IsOut);
+        }
+
+        public TypeRep(string Name, bool IsOpenGeneric, bool IsClosedGeneric, bool IsByRef, bool IsIn = false, bool IsOut = false)
             : base(Name)
         {
             this.IsOpenGeneric = IsOpenGeneric;
             this.IsClosedGeneric = IsClosedGeneric;
+            this.IsByRef = IsByRef;
+            this.IsIn = IsIn;
+            this.IsOut = IsOut;
         }
 
         public bool IsOpenGeneric {get;}
 
         public bool IsClosedGeneric {get;}
-        
+
+        public bool IsByRef {get;}
+
+        public bool IsIn {get;}
+
+        public bool IsOut {get;}
+
+        string Modifier
+            => IsIn ? "in " : IsOut ? "out " : IsByRef ? "ref " : string.Empty;
+
+        public override string Format()
+            => $"{Modifier}{Name}";        
     }
-
-
-
 }

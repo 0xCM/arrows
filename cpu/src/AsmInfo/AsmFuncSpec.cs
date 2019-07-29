@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Cpu
 {        
     using System;
     using System.Linq;
@@ -16,8 +16,8 @@ namespace Z0
     /// Characterizes the assembly encoding for a function
     /// </summary>
     public class AsmFuncSpec
-    {        
-        public AsmFuncSpec(ulong StartAddress, ulong EndAddress, MethodSig Signature, AsmFuncInstruction[] Instructions, byte[] Encoding)
+    {   
+        public AsmFuncSpec(ulong StartAddress, ulong EndAddress, string Signature, AsmInstructionInfo[] Instructions, byte[] Encoding)
         {
             this.StartAddress = StartAddress;
             this.EndAddress = EndAddress;
@@ -39,7 +39,7 @@ namespace Z0
         /// <summary>
         /// The signature of the defined function
         /// </summary>
-        public MethodSig Signature {get;}
+        public string Signature {get;}
         
         /// <summary>
         /// The number of encoded instructions
@@ -50,15 +50,13 @@ namespace Z0
         /// <summary>
         /// The encoded instructions
         /// </summary>
-        public AsmFuncInstruction[] Instructions {get;}
+        public AsmInstructionInfo[] Instructions {get;}
 
         /// <summary>
         /// The instruction encoding
         /// </summary>
         public byte[] Encoding {get;}        
         
-        public override string ToString()
-            => this.Format();
     }
 
 }

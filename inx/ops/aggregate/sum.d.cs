@@ -9,8 +9,9 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using static zfunc;
-    
-    partial class dinx
+    using static dinx;
+
+    partial class dinxx
     {
         public static short Sum(this ReadOnlySpan<short> src, NumericSystem system = NumericSystem.Intrinsic)
         {

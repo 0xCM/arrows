@@ -12,10 +12,8 @@ namespace Z0
     
     using static zfunc;
 
-
     public static class BitReaderX
     {
-
         [MethodImpl(Inline)]
         public static void ReadBytes(this ushort src, ByteSize bytecount, Span<byte> dst, int offset)
         {
@@ -102,22 +100,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
-        public static Span<byte> ReadBits<T>(this T src, uint i0, uint i1)
-            where T : struct
-        {
-            var size = Unsafe.SizeOf<T>();
-            if(size == 1)
-                return As.uint8(src).ReadBits(i0, i1);
-            else if(size == 2)
-                return As.uint16(src).ReadBits(i0, i1);
-            else if(size == 3 || size == 4)
-                return As.uint32(src).ReadBits(i0, i1);
-            else if(size <= 8)
-                return As.uint64(src).ReadBits(i0, i1);
-            else
-                throw unsupported<T>();
-        }
 
         [MethodImpl(Inline)]
         static ByteSize ByteCount(uint i0, uint i1)

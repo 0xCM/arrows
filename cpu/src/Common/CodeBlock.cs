@@ -2,16 +2,16 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Cpu
 {
     using System;
 
 	/// <summary>
 	/// Represents a native code block
 	/// </summary>
-	public readonly struct NativeBlock 
+	public readonly struct CodeBlock 
     {
-    	public NativeBlock(ulong address, byte[] data) 
+    	public CodeBlock(ulong address, byte[] data) 
         {
 			Address = address;
 			Data = data;

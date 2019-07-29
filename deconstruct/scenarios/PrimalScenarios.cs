@@ -20,32 +20,122 @@ namespace Z0
         public static sbyte add8i(sbyte x, sbyte y)
             => (sbyte)(x + y);
 
+        public static sbyte add8i_In(in sbyte x, in sbyte y)
+            => (sbyte)(x + y);
+
+        public static ref sbyte add8i_Ref(ref sbyte x, in sbyte y)
+        {
+            x += y;
+            return ref x;
+        }
+
         public static byte add8u(byte x, byte y)
             => (byte)(x + y);
+
+        public static byte add8u_In(in byte x, in byte y)
+            => (byte)(x + y);
+
+        public static ref byte add8u_Ref(ref byte x, in byte y)
+        {
+            x += y;
+            return ref x;
+        }
 
         public static short add16i(short x, short y)
             => (short)(x + y);
 
+        public static short add16i_In(in short x, in short y)
+            => (short)(x + y);
+
+        public static ref short add16i_Ref(ref short x, in short y)
+        {
+            x += y;
+            return ref x;
+        }
+
         public static ushort add16u(ushort x, ushort y)
             => (ushort)(x + y);
+
+        public static ushort add16u_In(in ushort x, in ushort y)
+            => (ushort)(x + y);
+
+        public static ref ushort add16u_Ref(ref ushort x, in ushort y)
+        {
+            x += y;
+            return ref x;
+        }
 
         public static int add32i(int x, int y)
             => x + y;
 
+        public static int add32i_In(in int x, in int y)
+            => x + y;
+
+        public static ref int add32i_Ref(ref int x, in int y)
+        {
+            x += y;
+            return ref x;
+        }
+
         public static uint add32u(uint x, uint y)
             => x + y;
+
+        public static uint add32u_In(in uint x, in uint y)
+            => x + y;
+
+        public static ref uint add32u_Ref(ref uint x, in uint y)
+        {
+            x += y;
+            return ref x;
+        }
 
         public static long add64i(long x, long y)
             => x + y;
 
+        public static long add64i_In(in long x, in long y)
+            => x + y;
+
+        public static ref long add64i_Ref(ref long x, in long y)
+        {
+            x += y;
+            return ref x;
+        }
+
         public static ulong add64u(ulong x, ulong y)
             => x + y;
+
+        public static ulong add64u_In(in ulong x, in ulong y)
+            => x + y;
+
+        public static ref ulong add64u_Ref(ref ulong x, in ulong y)
+        {
+            x += y;
+            return ref x;
+        }
 
         public static float add32f(float x, float y)
             => x + y;
 
         public static double add64f(double x, double y)
             => x + y;
+
+        public static double add64f_In(in double x, in double y)
+            => x + y;
+
+        public static ref double add64f_Ref(ref double x, in double y)
+        {
+            x += y;
+            return ref x;
+        }
+
+        public static float add32f_In(in float x, in float y)
+            => x + y;
+
+        public static ref float add32f_Ref(ref float x, in float y)
+        {
+            x += y;
+            return ref x;
+        }
 
         #endregion
 
@@ -275,34 +365,6 @@ namespace Z0
 
         #endregion
 
-        #region rot
-
-        public static byte rotr8u(byte src, byte offset)
-            => (byte) ((src >> (int)offset) | (src << (8 - offset)));
-
-        public static ushort rotr16u(ushort src, ushort offset)
-            => (ushort) ((src >> (int)offset) | (src << (16 - offset)));
-
-        public static uint rotr32u(uint src, uint offset)
-            => (src >> (int)offset) | (src << (32 - (int)offset));
-
-        public static ulong rotr64u(ulong src, ulong offset)
-            => (src >> (int)offset) | (src << (64 - (int)offset));
-
-        public static byte rotl8u(byte x, byte offset)
-            => (byte)((x << (int)offset) | (x >> (int)(8 - offset)));
-
-        public static ushort rotl16u(ushort x, ushort offset)
-            => (ushort)(((uint)x << (int)offset) | ((uint)x >> (16 - offset)));
-
-        public static uint rotl32u(uint x, uint offset)
-            => (x << (int)offset) | (x >> (int)(32 - offset));
-
-        public static ulong rotl64u(ulong x, ulong offset)
-            => (x << (int)offset) | (x >> (int)(64 - offset));
-
-
-        #endregion
 
         #region negate
 

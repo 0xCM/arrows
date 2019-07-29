@@ -12,7 +12,6 @@ namespace Z0.Cpu
 
     using static zfunc;
 
-    using static BitWidth;
 
     /*
     uint mul<uint>(uint lhs, uint rhs)

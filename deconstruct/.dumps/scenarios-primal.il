@@ -1,4 +1,4 @@
-// 2019-07-28 04:08:53:663
+// 2019-07-29 03:15:51:316
 sbyte add8i(sbyte x, sbyte y)
 {
     IL_0000: ldarg.0
@@ -6,6 +6,31 @@ sbyte add8i(sbyte x, sbyte y)
     IL_0002: add
     IL_0003: conv.i1
     IL_0004: ret
+
+}
+sbyte add8i_In(in sbyte x, in sbyte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i1
+    IL_0002: ldarg.1
+    IL_0003: ldind.i1
+    IL_0004: add
+    IL_0005: conv.i1
+    IL_0006: ret
+
+}
+ref sbyte add8i_Ref(ref sbyte x, in sbyte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldarg.1
+    IL_0004: ldind.i1
+    IL_0005: add
+    IL_0006: conv.i1
+    IL_0007: stind.i1
+    IL_0008: ldarg.0
+    IL_0009: ret
 
 }
 byte add8u(byte x, byte y)
@@ -17,6 +42,31 @@ byte add8u(byte x, byte y)
     IL_0004: ret
 
 }
+byte add8u_In(in byte x, in byte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u1
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: add
+    IL_0005: conv.u1
+    IL_0006: ret
+
+}
+ref byte add8u_Ref(ref byte x, in byte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: ldind.u1
+    IL_0005: add
+    IL_0006: conv.u1
+    IL_0007: stind.i1
+    IL_0008: ldarg.0
+    IL_0009: ret
+
+}
 short add16i(short x, short y)
 {
     IL_0000: ldarg.0
@@ -24,6 +74,31 @@ short add16i(short x, short y)
     IL_0002: add
     IL_0003: conv.i2
     IL_0004: ret
+
+}
+short add16i_In(in short x, in short y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i2
+    IL_0002: ldarg.1
+    IL_0003: ldind.i2
+    IL_0004: add
+    IL_0005: conv.i2
+    IL_0006: ret
+
+}
+ref short add16i_Ref(ref short x, in short y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldarg.1
+    IL_0004: ldind.i2
+    IL_0005: add
+    IL_0006: conv.i2
+    IL_0007: stind.i2
+    IL_0008: ldarg.0
+    IL_0009: ret
 
 }
 ushort add16u(ushort x, ushort y)
@@ -35,12 +110,60 @@ ushort add16u(ushort x, ushort y)
     IL_0004: ret
 
 }
+ushort add16u_In(in ushort x, in ushort y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u2
+    IL_0002: ldarg.1
+    IL_0003: ldind.u2
+    IL_0004: add
+    IL_0005: conv.u2
+    IL_0006: ret
+
+}
+ref ushort add16u_Ref(ref ushort x, in ushort y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: ldind.u2
+    IL_0005: add
+    IL_0006: conv.u2
+    IL_0007: stind.i2
+    IL_0008: ldarg.0
+    IL_0009: ret
+
+}
 int add32i(int x, int y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: add
     IL_0003: ret
+
+}
+int add32i_In(in int x, in int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i4
+    IL_0002: ldarg.1
+    IL_0003: ldind.i4
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref int add32i_Ref(ref int x, in int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldarg.1
+    IL_0004: ldind.i4
+    IL_0005: add
+    IL_0006: stind.i4
+    IL_0007: ldarg.0
+    IL_0008: ret
 
 }
 uint add32u(uint x, uint y)
@@ -51,6 +174,29 @@ uint add32u(uint x, uint y)
     IL_0003: ret
 
 }
+uint add32u_In(in uint x, in uint y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u4
+    IL_0002: ldarg.1
+    IL_0003: ldind.u4
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref uint add32u_Ref(ref uint x, in uint y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: ldind.u4
+    IL_0005: add
+    IL_0006: stind.i4
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
 long add64i(long x, long y)
 {
     IL_0000: ldarg.0
@@ -59,12 +205,58 @@ long add64i(long x, long y)
     IL_0003: ret
 
 }
+long add64i_In(in long x, in long y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: ldarg.1
+    IL_0003: ldind.i8
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref long add64i_Ref(ref long x, in long y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: ldind.i8
+    IL_0005: add
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
 ulong add64u(ulong x, ulong y)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: add
     IL_0003: ret
+
+}
+ulong add64u_In(in ulong x, in ulong y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: ldarg.1
+    IL_0003: ldind.i8
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref ulong add64u_Ref(ref ulong x, in ulong y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: ldind.i8
+    IL_0005: add
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
 
 }
 float add32f(float x, float y)
@@ -81,6 +273,52 @@ double add64f(double x, double y)
     IL_0001: ldarg.1
     IL_0002: add
     IL_0003: ret
+
+}
+double add64f_In(in double x, in double y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.r8
+    IL_0002: ldarg.1
+    IL_0003: ldind.r8
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref double add64f_Ref(ref double x, in double y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldarg.1
+    IL_0004: ldind.r8
+    IL_0005: add
+    IL_0006: stind.r8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+float add32f_In(in float x, in float y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.r4
+    IL_0002: ldarg.1
+    IL_0003: ldind.r4
+    IL_0004: add
+    IL_0005: ret
+
+}
+ref float add32f_Ref(ref float x, in float y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldarg.1
+    IL_0004: ldind.r4
+    IL_0005: add
+    IL_0006: stind.r4
+    IL_0007: ldarg.0
+    IL_0008: ret
 
 }
 sbyte add8ix3(sbyte x, sbyte y, sbyte z)
@@ -657,159 +895,6 @@ double sub64f(double x, double y)
     IL_0001: ldarg.1
     IL_0002: sub
     IL_0003: ret
-
-}
-byte rotr8u(byte src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shl
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
-
-}
-ushort rotr16u(ushort src, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shl
-    IL_000F: or
-    IL_0010: conv.u2
-    IL_0011: ret
-
-}
-uint rotr32u(uint src, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 32
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shl
-    IL_000F: or
-    IL_0010: ret
-
-}
-ulong rotr64u(ulong src, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: conv.i4
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shr.un
-    IL_0007: ldarg.0
-    IL_0008: ldc.i4.s 64
-    IL_000A: ldarg.1
-    IL_000B: conv.i4
-    IL_000C: sub
-    IL_000D: ldc.i4.s 63
-    IL_000F: and
-    IL_0010: shl
-    IL_0011: or
-    IL_0012: ret
-
-}
-byte rotl8u(byte x, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shr
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
-
-}
-ushort rotl16u(ushort x, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shr.un
-    IL_000F: or
-    IL_0010: conv.u2
-    IL_0011: ret
-
-}
-uint rotl32u(uint x, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 32
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shr.un
-    IL_000F: or
-    IL_0010: ret
-
-}
-ulong rotl64u(ulong x, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: conv.i4
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: ldarg.0
-    IL_0008: ldc.i4.s 64
-    IL_000A: conv.i8
-    IL_000B: ldarg.1
-    IL_000C: sub
-    IL_000D: conv.i4
-    IL_000E: ldc.i4.s 63
-    IL_0010: and
-    IL_0011: shr.un
-    IL_0012: or
-    IL_0013: ret
 
 }
 sbyte negate(sbyte src)

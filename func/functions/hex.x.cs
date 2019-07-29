@@ -307,6 +307,26 @@ namespace Z0
          public static string FormatHexBlocks(this IEnumerable<byte> src, bool specifier = false, string sep = " ", bool uppercase = false, bool prespec = true)
             => src.FormatHex(true, specifier, uppercase, prespec).Select(x => x.ToString()).Concat(sep);
 
+        public static string FormatHex(this ReadOnlySpan<byte> src, char sep, bool zpad = true, bool specifier = true, bool uppercase = false, bool prespec = true)
+        {
+            var sb =sbuild();
+            var pre = (specifier && prespec) ? "0x" : string.Empty;
+            var post = (specifier && !prespec) ? "h" : string.Empty;
+            var spec = uppercase ? "X" : "x";
+            
+            for(var i=0; i<src.Length; i++)
+            {
+                var value = src[i].ToString(spec);
+                var padded = zpad ? value.PadLeft(2,AsciDigits.A0) : value;
+                sb.Append(concat(pre, padded, post));
+                if(i != src.Length - 1)
+                    sb.Append(sep);
+            }
+            return sb.ToString();
+        }
+
+        public static string FormatHex(this byte[] src, char sep, bool zpad = true, bool specifier = true, bool uppercase = false, bool prespec = true)
+            => src.ToReadOnlySpan().FormatHex(sep,zpad,specifier,uppercase,prespec);
     }
 
 }

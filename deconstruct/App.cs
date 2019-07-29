@@ -29,33 +29,21 @@ namespace Z0
                 }
 
                 if(cil)
-                    t.Deconstruct(false).DumpCil(name);
+                    t.Deconstruct().DumpCil(name);
             }
 
         }
-        
 
-        static void Dump(bool asm, bool cil, string name, IEnumerable<MethodDisassembly> methods)
-        {
-            if(asm)
-            {
-                var specs = methods.DefineAsmSpecs().ToArray();
-                specs.Dump(name);        
-            }
-            if(cil)
-            {
-                methods.DumpCil(name);
-            }
-        }
-        
         void Disassemble(bool asm, bool cil)
         {
 
-            Disassemble(asm,cil,
-                typeof(PrimalScenarios),
-                typeof(IntrinsicScenarios), 
+            Disassemble(asm, cil, 
+                typeof(InlineScenarios), 
+                typeof(PrimalScenarios), 
+                typeof(IntrinsicScenarios),
                 typeof(dinx)
                 );
+
 
             // Dump(asm,cil, "ginx", GenericScenarios.GInX());
             // Dump(asm,cil, "gmath", GenericScenarios.GMath());

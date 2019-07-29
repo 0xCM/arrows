@@ -9,9 +9,9 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
-    using Microsoft.Diagnostics.Runtime;
-	using Iced.Intel;
     using System.IO;
+
+    using Z0.Cpu;
 
 
     using static zfunc;
@@ -20,33 +20,35 @@ namespace Z0
     // Several of these methods resulted from shuffling source from https://github.com/0xd4d/JitDasm 
     // See License.txt
     //-----------------------------------------------------------------------------
-    public static class DiagnosticX
+    public static class DeconstructorX
     {                    
         /// <summary>
-        /// Queries the runtime for the runtime method corresponding to a supplied <see cref='MethodInfo'/>
+        /// Disassembles reified methods declared by the source type
         /// </summary>
-        /// <param name="rt">The source runtime</param>
-        /// <param name="src">The represented method</param>
-        public static ClrMethod GetRuntimeMethod(this ClrRuntime rt, MethodBase src)
-            =>  rt.GetMethodByAddress((ulong)src.MethodHandle.GetFunctionPointer());
+        /// <param name="src">The source type</param>
+        public static MethodDisassembly[] Deconstruct(this Type src)
+            => Deconstructor.Deconstruct(src.DeclaredMethods().NonGeneric().Concrete().ToArray()).ToArray();
 
         /// <summary>
-        /// Creates a .net core runtime predicated on a  target
+        /// Disassembles the source methods
         /// </summary>
-        /// <param name="target">The target relative type which the runtime abstraction will be created</param>
-        public static ClrRuntime CoreRuntime(this DataTarget target)
-            => target.ClrVersions.Single(x => x.Flavor == ClrFlavor.Core).CreateRuntime();
+        /// <param name="src">The source methods</param>
+        public static MethodDisassembly[] Deconstruct(this IEnumerable<MethodInfo> src)        
+            => Deconstructor.Deconstruct(src.ToArray()).ToArray();
 
-        static StreamWriter DumpWriter(string name, string extension, bool timestamped)
+        /// <summary>
+        /// Disassembles the assembly code for reified methods declared by the source type
+        /// </summary>
+        /// <param name="src">The source type</param>
+        public static AsmFuncSpec[] ExtractAsm(this Type src)
         {
-            var dstFolder = FolderPath.Define(Settings.ProjectDir("deconstruct")) +  FolderName.Define(".dumps");
-            var dstFileName = FileName.Define(name) + FileExtension.Define(extension);
-            if(timestamped)
-                dstFileName = FileName.Timestamped(dstFileName);
-            var dstPath = dstFolder.CreateIfMissing() + dstFileName;
-            return new StreamWriter(dstPath.ToString(),false);
+            var disassembly = src.Deconstruct();
+            var dst = new AsmFuncSpec[disassembly.Length];
+            for(var i=0; i<disassembly.Length; i++)   
+                dst[i] = disassembly[i].DefineAsmSpec();
+            return dst;
         }
-        
+
         public static void DumpAsm(this IEnumerable<MethodDisassembly> disassembly, string name, bool timestamped = false)
         {
             using var writer = DumpWriter(name, "asm", timestamped);
@@ -83,37 +85,30 @@ namespace Z0
                 if(i != i-1)
                     writer.WriteLine(new string('-',120));
             }
-        }
+        }        
 
-        static MethodDisassembly[] Disassemble(this Type src)
-            => Deconstructor.Disassemble(src.DeclaredMethods().NonGeneric().ToArray()).ToArray();
+        public static void DumpAsm(this IEnumerable<MethodInfo> methods, string name)
+            => methods.Deconstruct().DumpAsm(name);
         
-        public static MethodDisassembly[] Deconstruct(this Type src, bool dump = true)
+        public static void DumpCil(this IEnumerable<MethodInfo> methods, string name)
+            => methods.Deconstruct().DumpCil(name);
+
+        public static void DumpDisassembly(this IEnumerable<MethodInfo> methods, string name)
         {
-            var disassembly = src.Disassemble();
-            if(dump)
-                disassembly.Dump(src.DisplayName());
-            return disassembly;
+            var d = methods.Deconstruct();
+            d.DumpAsm(name);
+            d.DumpCil(name);            
         }
-
-        public static AsmFuncSpec[] ExtractAsm(this Type src)
+           
+        static StreamWriter DumpWriter(string name, string extension, bool timestamped)
         {
-            var disassembly = src.Disassemble();
-            var dst = new AsmFuncSpec[disassembly.Length];
-            for(var i=0; i<disassembly.Length; i++)   
-                dst[i] = disassembly[i].DefineAsmSpec();
-            return dst;
+            var dstFolder = FolderPath.Define(Settings.ProjectDir("deconstruct")) +  FolderName.Define(".dumps");
+            var dstFileName = FileName.Define(name) + FileExtension.Define(extension);
+            if(timestamped)
+                dstFileName = FileName.Timestamped(dstFileName);
+            var dstPath = dstFolder.CreateIfMissing() + dstFileName;
+            return new StreamWriter(dstPath.ToString(),false);
         }
-
-        public static MethodDisassembly[] Deconstruct(this IEnumerable<MethodInfo> src, string outname = null)
-        {
-            var disassembly = Deconstructor.Disassemble(src.ToArray()).ToArray();
-            if(outname != null)
-                disassembly.Dump(outname);
-            return disassembly;
-
-        }
-
     }
 
 }

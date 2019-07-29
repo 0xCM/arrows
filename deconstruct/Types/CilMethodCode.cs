@@ -10,30 +10,21 @@ namespace Z0
 
     using static zfunc;
 
-    public abstract class MethodCode<T>
+    public class CilMethodCode
     {
-        public T Content {get;}
-
-        protected MethodCode(T Content)
+        public CilMethodCode(Instruction Content)
         {
+            this.Offset = Offset;
             this.Content = Content;
         }
 
+        public uint Offset {get;}
+
+        public Instruction Content;
+ 
         public override string ToString()
         {
             return Content.ToString();
         }
-    }
-
-
-    public class MethodCilEntry : MethodCode<Instruction>
-    {
-        public MethodCilEntry(Instruction Content)
-            : base(Content)
-        {
-            this.Offset = Offset;
-        }
-
-        public uint Offset {get;}
-    }
+   }
 }

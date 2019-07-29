@@ -22,14 +22,14 @@ namespace Z0
         {
             this.MethodId = MethodId;
             this.FullName = FullName;
-            this.Instructions = Instructions.Select(i => new MethodCilEntry(i)).ToReadOnlyList();
+            this.Instructions = Instructions.Select(i => new CilMethodCode(i)).ToReadOnlyList();
         }
         
         public int MethodId {get;}
                 
         public string FullName {get;}
 
-        public IReadOnlyList<MethodCilEntry> Instructions {get;}
+        public IReadOnlyList<CilMethodCode> Instructions {get;}
 
         public string Format(bool onlyInstructions = true)
         {

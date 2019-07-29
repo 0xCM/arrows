@@ -10,7 +10,7 @@ namespace Z0.Cpu
     using static RegIdOffset;
 
 
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw512)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T09)]
     public enum ZmmRegId : ulong
     {
         zmm0 = bmm512,

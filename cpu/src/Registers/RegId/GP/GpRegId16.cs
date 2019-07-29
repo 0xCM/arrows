@@ -11,7 +11,7 @@ namespace Z0.Cpu
     using static RegIdOffset;
 
     
-    [Flags,Info(Desc.RegIdInfo, BitWidth.Bw16)]
+    [Flags,Info(Desc.RegIdInfo, Pow2.T04)]
     public enum GpRegId16 : ulong
     {
         
