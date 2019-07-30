@@ -47,7 +47,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span128<T> src)
-            => src.ToReadOnlySpan();
+            => src.ReadOnly();
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan128<T> (Span128<T> src)
@@ -155,7 +155,7 @@ namespace Z0
             => data;
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128<T> ToReadOnlySpan()
+        public ReadOnlySpan128<T> ReadOnly()
             => (ReadOnlySpan128<T>)data;
 
         [MethodImpl(Inline)]

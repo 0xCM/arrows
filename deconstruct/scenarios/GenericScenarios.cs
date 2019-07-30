@@ -26,7 +26,7 @@ namespace Z0
                          let gm = def.MakeGenericMethod(t)
                          select gm;
             var deconstructed = closed.Deconstruct();
-            deconstructed.Dump("ginx");
+            deconstructed.Emit("ginx");
             return deconstructed;
         }
 
@@ -58,7 +58,7 @@ namespace Z0
             var closedOps = closedBinOps.Union(closedUnaryOps);
             
             var deconstructed = closedOps.Deconstruct();
-            deconstructed.Dump("gmath");
+            deconstructed.Emit("gmath");
             return deconstructed;
 
         }

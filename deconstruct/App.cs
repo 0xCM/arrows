@@ -25,25 +25,34 @@ namespace Z0
                 var name = $"{t.DisplayName()}";
                 if(asm)
                 {
-                    t.ExtractAsm().Dump(name);
+                    t.DistillAsm().Emit(name);
                 }
 
                 if(cil)
-                    t.Deconstruct().DumpCil(name);
+                    t.Deconstruct().EmitCil(name);
             }
 
+        }
+
+        static void Disassemble<T>(IDeconstructable<T> src)
+        {
+            var deconstructed = typeof(T).Deconstruct();
+            deconstructed.EmitAsm(src.AsmTargetPath);
+            deconstructed.EmitCil(src.CilTargetPath);
+            
         }
 
         void Disassemble(bool asm, bool cil)
         {
 
-            Disassemble(asm, cil, 
-                typeof(InlineScenarios), 
-                typeof(PrimalScenarios), 
-                typeof(IntrinsicScenarios),
-                typeof(dinx)
-                );
+            // Disassemble(asm, cil, 
+            //     typeof(InlineScenarios) 
+            //     );
 
+            Disassemble(new IntrinsicScenarios());
+            Disassemble(new PrimalScenarios());
+            Disassemble(new SysMathCases());
+            Disassemble(new CompositeScenarios());
 
             // Dump(asm,cil, "ginx", GenericScenarios.GInX());
             // Dump(asm,cil, "gmath", GenericScenarios.GMath());

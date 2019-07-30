@@ -380,8 +380,16 @@ partial class zfunc
         => constructor(typeof(T), argTypes);
 
     [MethodImpl(Inline)]
-    public static string caller([CallerMemberName] string name = null)
-        => name;
+    public static string callername([CallerMemberName] string name = null)
+        => name ?? string.Empty;
+
+    [MethodImpl(Inline)]
+    public static string callerfile([CallerFilePath] string path = null)
+        => path ?? string.Empty;
+
+    [MethodImpl(Inline)]
+    public static int callerline([CallerLineNumber] int? line = null)
+        => line ?? 0;
 
     /// <summary>
     /// If non-nullable, returns the supplied type. If nullable, returns the underlying type

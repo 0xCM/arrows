@@ -1,3269 +1,5 @@
-// 2019-07-28 15:15:43:536
-ref Span<short> shiftl(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<int> rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int32>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int16 Z0.math::shiftl(System.Int16,System.Int32)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ushort> shiftl(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<int> rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.Int32>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt16 Z0.math::shiftl(System.UInt16,System.Int32)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<int> shiftl(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::shiftl(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<uint> shiftl(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<int> rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.Int32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt32 Z0.math::shiftl(System.UInt32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<long> shiftl(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<int> rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int32>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int64 Z0.math::shiftl(System.Int64,System.Int32)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ulong> shiftl(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<int> rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.Int32>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt64 Z0.math::shiftl(System.UInt64,System.Int32)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<sbyte> shiftl(ref ReadOnlySpan<sbyte> lhs, int rhs, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarg.1
-    IL_002F: call System.SByte Z0.math::shiftl(System.SByte,System.Int32)
-    IL_0034: stind.i1
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<byte> shiftl(ref ReadOnlySpan<byte> lhs, int rhs, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarg.1
-    IL_002F: call System.Byte Z0.math::shiftl(System.Byte,System.Int32)
-    IL_0034: stind.i1
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<short> shiftl(ref ReadOnlySpan<short> lhs, int rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarg.1
-    IL_002F: call System.Int16 Z0.math::shiftl(System.Int16,System.Int32)
-    IL_0034: stind.i2
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<ushort> shiftl(ref ReadOnlySpan<ushort> lhs, int rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarg.1
-    IL_002F: call System.UInt16 Z0.math::shiftl(System.UInt16,System.Int32)
-    IL_0034: stind.i2
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<int> shiftl(ref ReadOnlySpan<int> lhs, int rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarg.1
-    IL_002F: call System.Int32 Z0.math::shiftl(System.Int32,System.Int32)
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<uint> shiftl(ref ReadOnlySpan<uint> lhs, int rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarg.1
-    IL_002F: call System.UInt32 Z0.math::shiftl(System.UInt32,System.Int32)
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<long> shiftl(ref ReadOnlySpan<long> lhs, int rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_003C
-    IL_0020: ldarga.s dst
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: ldarga.s lhs
-    IL_002A: ldloc.1
-    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0030: ldind.i8
-    IL_0031: ldarg.1
-    IL_0032: call System.Int64 Z0.math::shiftl(System.Int64,System.Int32)
-    IL_0037: stind.i8
-    IL_0038: ldloc.1
-    IL_0039: ldc.i4.1
-    IL_003A: add
-    IL_003B: stloc.1
-    IL_003C: ldloc.1
-    IL_003D: ldloc.0
-    IL_003E: blt.s IL_0020
-    IL_0040: ldarg.2
-    IL_0041: ret
-
-}
-ref Span<ulong> shiftl(ref ReadOnlySpan<ulong> lhs, int rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_003C
-    IL_0020: ldarga.s dst
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: ldarga.s lhs
-    IL_002A: ldloc.1
-    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0030: ldind.i8
-    IL_0031: ldarg.1
-    IL_0032: call System.UInt64 Z0.math::shiftl(System.UInt64,System.Int32)
-    IL_0037: stind.i8
-    IL_0038: ldloc.1
-    IL_0039: ldc.i4.1
-    IL_003A: add
-    IL_003B: stloc.1
-    IL_003C: ldloc.1
-    IL_003D: ldloc.0
-    IL_003E: blt.s IL_0020
-    IL_0040: ldarg.2
-    IL_0041: ret
-
-}
-ref Span<sbyte> shiftl(ref Span<sbyte> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: conv.i1
-    IL_0014: stind.i1
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<byte> shiftl(ref Span<byte> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: conv.u1
-    IL_0014: stind.i1
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<short> shiftl(ref Span<short> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: conv.i2
-    IL_0014: stind.i2
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<ushort> shiftl(ref Span<ushort> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: conv.u2
-    IL_0014: stind.i2
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<int> shiftl(ref Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: stind.i4
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<uint> shiftl(ref Span<uint> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: stind.i4
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<long> shiftl(ref Span<long> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 63
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: stind.i8
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<ulong> shiftl(ref Span<ulong> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 63
-    IL_0011: and
-    IL_0012: shl
-    IL_0013: stind.i8
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<sbyte> shiftl(ref Span<sbyte> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: conv.i1
-    IL_001C: stind.i1
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<byte> shiftl(ref Span<byte> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: conv.u1
-    IL_001C: stind.i1
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<short> shiftl(ref Span<short> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: conv.i2
-    IL_001C: stind.i2
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<ushort> shiftl(ref Span<ushort> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: conv.u2
-    IL_001C: stind.i2
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<int> shiftl(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<uint> shiftl(ref Span<uint> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<long> shiftl(ref Span<long> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 63
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<ulong> shiftl(ref Span<ulong> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 63
-    IL_0019: and
-    IL_001A: shl
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<sbyte> shiftr(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<int> rhs, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.Int32>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.SByte Z0.math::shiftr(System.SByte,System.Int32)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<byte> shiftr(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<int> rhs, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Int32>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Byte Z0.math::shiftr(System.Byte,System.Int32)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<short> shiftr(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<int> rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int32>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int16 Z0.math::shiftr(System.Int16,System.Int32)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ushort> shiftr(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<int> rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.Int32>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt16 Z0.math::shiftr(System.UInt16,System.Int32)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<int> shiftr(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::shiftr(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<uint> shiftr(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<int> rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.Int32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt32 Z0.math::shiftr(System.UInt32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<long> shiftr(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<int> rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int32>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int64 Z0.math::shiftr(System.Int64,System.Int32)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ulong> shiftr(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<int> rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.Int32>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.UInt64 Z0.math::shiftr(System.UInt64,System.Int32)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<sbyte> shiftr(ref ReadOnlySpan<sbyte> lhs, int rhs, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarg.1
-    IL_002F: call System.SByte Z0.math::shiftr(System.SByte,System.Int32)
-    IL_0034: stind.i1
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<byte> shiftr(ref ReadOnlySpan<byte> lhs, int rhs, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarg.1
-    IL_002F: call System.Byte Z0.math::shiftr(System.Byte,System.Int32)
-    IL_0034: stind.i1
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<short> shiftr(ref ReadOnlySpan<short> lhs, int rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarg.1
-    IL_002F: call System.Int16 Z0.math::shiftr(System.Int16,System.Int32)
-    IL_0034: stind.i2
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<ushort> shiftr(ref ReadOnlySpan<ushort> lhs, int rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarg.1
-    IL_002F: call System.UInt16 Z0.math::shiftr(System.UInt16,System.Int32)
-    IL_0034: stind.i2
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<int> shiftr(ref ReadOnlySpan<int> lhs, int rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarg.1
-    IL_002F: call System.Int32 Z0.math::shiftr(System.Int32,System.Int32)
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<uint> shiftr(ref ReadOnlySpan<uint> lhs, int rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarg.1
-    IL_002F: call System.UInt32 Z0.math::shiftr(System.UInt32,System.Int32)
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-ref Span<long> shiftr(ref ReadOnlySpan<long> lhs, int rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_003C
-    IL_0020: ldarga.s dst
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: ldarga.s lhs
-    IL_002A: ldloc.1
-    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0030: ldind.i8
-    IL_0031: ldarg.1
-    IL_0032: call System.Int64 Z0.math::shiftr(System.Int64,System.Int32)
-    IL_0037: stind.i8
-    IL_0038: ldloc.1
-    IL_0039: ldc.i4.1
-    IL_003A: add
-    IL_003B: stloc.1
-    IL_003C: ldloc.1
-    IL_003D: ldloc.0
-    IL_003E: blt.s IL_0020
-    IL_0040: ldarg.2
-    IL_0041: ret
-
-}
-ref Span<ulong> shiftr(ref ReadOnlySpan<ulong> lhs, int rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "shiftr"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftR.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_003C
-    IL_0020: ldarga.s dst
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: ldarga.s lhs
-    IL_002A: ldloc.1
-    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0030: ldind.i8
-    IL_0031: ldarg.1
-    IL_0032: call System.UInt64 Z0.math::shiftr(System.UInt64,System.Int32)
-    IL_0037: stind.i8
-    IL_0038: ldloc.1
-    IL_0039: ldc.i4.1
-    IL_003A: add
-    IL_003B: stloc.1
-    IL_003C: ldloc.1
-    IL_003D: ldloc.0
-    IL_003E: blt.s IL_0020
-    IL_0040: ldarg.2
-    IL_0041: ret
-
-}
-ref Span<sbyte> shiftr(ref Span<sbyte> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: conv.i1
-    IL_0014: stind.i1
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<byte> shiftr(ref Span<byte> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: conv.u1
-    IL_0014: stind.i1
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<short> shiftr(ref Span<short> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: conv.i2
-    IL_0014: stind.i2
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<ushort> shiftr(ref Span<ushort> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0019
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: conv.u2
-    IL_0014: stind.i2
-    IL_0015: ldloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.0
-    IL_001A: ldarga.s lhs
-    IL_001C: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0021: blt.s IL_0004
-    IL_0023: ldarg.0
-    IL_0024: ret
-
-}
-ref Span<int> shiftr(ref Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: stind.i4
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<uint> shiftr(ref Span<uint> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 31
-    IL_0011: and
-    IL_0012: shr.un
-    IL_0013: stind.i4
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<long> shiftr(ref Span<long> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 63
-    IL_0011: and
-    IL_0012: shr
-    IL_0013: stind.i8
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<ulong> shiftr(ref Span<ulong> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0018
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: ldc.i4.s 63
-    IL_0011: and
-    IL_0012: shr.un
-    IL_0013: stind.i8
-    IL_0014: ldloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: add
-    IL_0017: stloc.0
-    IL_0018: ldloc.0
-    IL_0019: ldarga.s lhs
-    IL_001B: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0020: blt.s IL_0004
-    IL_0022: ldarg.0
-    IL_0023: ret
-
-}
-ref Span<sbyte> shiftr(ref Span<sbyte> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: conv.i1
-    IL_001C: stind.i1
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<byte> shiftr(ref Span<byte> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: conv.u1
-    IL_001C: stind.i1
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<short> shiftr(ref Span<short> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: conv.i2
-    IL_001C: stind.i2
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<ushort> shiftr(ref Span<ushort> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0021
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: conv.u2
-    IL_001C: stind.i2
-    IL_001D: ldloc.0
-    IL_001E: ldc.i4.1
-    IL_001F: add
-    IL_0020: stloc.0
-    IL_0021: ldloc.0
-    IL_0022: ldarga.s lhs
-    IL_0024: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0029: blt.s IL_0004
-    IL_002B: ldarg.0
-    IL_002C: ret
-
-}
-ref Span<int> shiftr(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<uint> shiftr(ref Span<uint> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 31
-    IL_0019: and
-    IL_001A: shr.un
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<long> shiftr(ref Span<long> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 63
-    IL_0019: and
-    IL_001A: shr
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<ulong> shiftr(ref Span<ulong> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarga.s rhs
-    IL_0010: ldloc.0
-    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0016: ldind.i4
-    IL_0017: ldc.i4.s 63
-    IL_0019: and
-    IL_001A: shr.un
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s lhs
-    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-ref Span<sbyte> sqrt(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldind.i1
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_002E: call System.SByte& Z0.math::sqrt(System.SByte,System.SByte&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<byte> sqrt(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldind.u1
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_002E: call System.Byte& Z0.math::sqrt(System.Byte,System.Byte&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<short> sqrt(ref ReadOnlySpan<short> src, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldind.i2
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_002E: call System.Int16& Z0.math::sqrt(System.Int16,System.Int16&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<ushort> sqrt(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldind.u2
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_002E: call System.UInt16& Z0.math::sqrt(System.UInt16,System.UInt16&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<int> sqrt(ref ReadOnlySpan<int> src, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldind.i4
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_002E: call System.Int32& Z0.math::sqrt(System.Int32,System.Int32&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<uint> sqrt(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldind.u4
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_002E: call System.UInt32& Z0.math::sqrt(System.UInt32,System.UInt32&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<long> sqrt(ref ReadOnlySpan<long> src, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldind.i8
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_002E: call System.Int64& Z0.math::sqrt(System.Int64,System.Int64&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<ulong> sqrt(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldind.i8
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_002E: call System.UInt64& Z0.math::sqrt(System.UInt64,System.UInt64&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<float> sqrt(ref ReadOnlySpan<float> src, ref Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldind.r4
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_002E: call System.Single& Z0.math::sqrt(System.Single,System.Single&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<double> sqrt(ref ReadOnlySpan<double> src, ref Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sqrt"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sqrt.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldind.r8
-    IL_0026: ldarga.s dst
-    IL_0028: ldloc.1
-    IL_0029: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_002E: call System.Double& Z0.math::sqrt(System.Double,System.Double&)
-    IL_0033: pop
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<sbyte> sqrt(ref Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::sqrt(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<byte> sqrt(ref Span<byte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: call System.Byte& Z0.math::sqrt(System.Byte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<short> sqrt(ref Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::sqrt(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<ushort> sqrt(ref Span<ushort> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: call System.UInt16& Z0.math::sqrt(System.UInt16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<int> sqrt(ref Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::sqrt(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<uint> sqrt(ref Span<uint> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: call System.UInt32& Z0.math::sqrt(System.UInt32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<long> sqrt(ref Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::sqrt(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<ulong> sqrt(ref Span<ulong> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: call System.UInt64& Z0.math::sqrt(System.UInt64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<float> sqrt(ref Span<float> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: call System.Single& Z0.math::sqrt(System.Single&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<double> sqrt(ref Span<double> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: call System.Double& Z0.math::sqrt(System.Double&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<sbyte> sub(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::sub(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<byte> sub(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::sub(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<short> sub(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::sub(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ushort> sub(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::sub(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<int> sub(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::sub(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<uint> sub(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::sub(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<long> sub(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::sub(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<ulong> sub(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::sub(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<float> sub(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::sub(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<double> sub(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::sub(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<sbyte> sub(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: sub
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<byte> sub(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: sub
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<short> sub(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: sub
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<ushort> sub(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: sub
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<int> sub(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: sub
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<uint> sub(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: sub
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<long> sub(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 149
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: sub
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<ulong> sub(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 157
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: sub
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<float> sub(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 165
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: sub
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<double> sub(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 173
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: sub
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<sbyte> xor(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+// 2019-07-29 18:32:31:264
+Span<sbyte> xor(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3300,7 +36,7 @@ ref Span<sbyte> xor(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0046: ret
 
 }
-ref Span<byte> xor(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> xor(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3337,7 +73,7 @@ ref Span<byte> xor(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<short> xor(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> xor(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3374,7 +110,7 @@ ref Span<short> xor(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0046: ret
 
 }
-ref Span<ushort> xor(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> xor(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3411,7 +147,7 @@ ref Span<ushort> xor(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs,
     IL_0046: ret
 
 }
-ref Span<int> xor(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> xor(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3448,7 +184,7 @@ ref Span<int> xor(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0046: ret
 
 }
-ref Span<uint> xor(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> xor(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3485,7 +221,7 @@ ref Span<uint> xor(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<long> xor(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> xor(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3522,7 +258,7 @@ ref Span<long> xor(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<ulong> xor(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> xor(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3559,7 +295,7 @@ ref Span<ulong> xor(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0046: ret
 
 }
-ref Span<sbyte> xor(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> xor(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3595,7 +331,7 @@ ref Span<sbyte> xor(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003C: ret
 
 }
-ref Span<byte> xor(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> xor(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3631,7 +367,7 @@ ref Span<byte> xor(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003C: ret
 
 }
-ref Span<short> xor(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> xor(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3667,7 +403,7 @@ ref Span<short> xor(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003C: ret
 
 }
-ref Span<ushort> xor(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> xor(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3703,7 +439,7 @@ ref Span<ushort> xor(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003C: ret
 
 }
-ref Span<int> xor(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> xor(Span<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3738,7 +474,7 @@ ref Span<int> xor(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_003B: ret
 
 }
-ref Span<uint> xor(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> xor(Span<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3773,7 +509,7 @@ ref Span<uint> xor(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003B: ret
 
 }
-ref Span<long> xor(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> xor(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3808,7 +544,7 @@ ref Span<long> xor(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> xor(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> xor(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -3843,7 +579,7 @@ ref Span<ulong> xor(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<sbyte> xor(ref Span<sbyte> lhs, sbyte rhs)
+Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3869,7 +605,7 @@ ref Span<sbyte> xor(ref Span<sbyte> lhs, sbyte rhs)
     IL_0021: ret
 
 }
-ref Span<byte> xor(ref Span<byte> lhs, byte rhs)
+Span<byte> xor(Span<byte> lhs, byte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3895,7 +631,7 @@ ref Span<byte> xor(ref Span<byte> lhs, byte rhs)
     IL_0021: ret
 
 }
-ref Span<short> xor(ref Span<short> lhs, short rhs)
+Span<short> xor(Span<short> lhs, short rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3921,7 +657,7 @@ ref Span<short> xor(ref Span<short> lhs, short rhs)
     IL_0021: ret
 
 }
-ref Span<ushort> xor(ref Span<ushort> lhs, ushort rhs)
+Span<ushort> xor(Span<ushort> lhs, ushort rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3947,7 +683,7 @@ ref Span<ushort> xor(ref Span<ushort> lhs, ushort rhs)
     IL_0021: ret
 
 }
-ref Span<int> xor(ref Span<int> lhs, int rhs)
+Span<int> xor(Span<int> lhs, int rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3972,7 +708,7 @@ ref Span<int> xor(ref Span<int> lhs, int rhs)
     IL_0020: ret
 
 }
-ref Span<uint> xor(ref Span<uint> lhs, uint rhs)
+Span<uint> xor(Span<uint> lhs, uint rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -3997,7 +733,7 @@ ref Span<uint> xor(ref Span<uint> lhs, uint rhs)
     IL_0020: ret
 
 }
-ref Span<long> xor(ref Span<long> lhs, long rhs)
+Span<long> xor(Span<long> lhs, long rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4022,7 +758,7 @@ ref Span<long> xor(ref Span<long> lhs, long rhs)
     IL_0020: ret
 
 }
-ref Span<ulong> xor(ref Span<ulong> lhs, ulong rhs)
+Span<ulong> xor(Span<ulong> lhs, ulong rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4047,649 +783,7 @@ ref Span<ulong> xor(ref Span<ulong> lhs, ulong rhs)
     IL_0020: ret
 
 }
-void mod(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::mod(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 44
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::mod(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 51
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::mod(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 58
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::mod(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 65
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::mod(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 72
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::mod(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 79
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::mod(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 86
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::mod(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-ref Span<sbyte> mod(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: rem
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<byte> mod(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: rem
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<short> mod(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: rem
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<ushort> mod(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: rem
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-ref Span<int> mod(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002F: ldind.i4
-    IL_0030: rem
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-ref Span<uint> mod(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: rem.un
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<long> mod(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: rem
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<ulong> mod(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 149
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: rem.un
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<float> mod(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 157
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: rem
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<double> mod(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 165
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: rem
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-ref Span<sbyte> mod(ref Span<sbyte> lhs, sbyte rhs)
+Span<sbyte> mod(Span<sbyte> lhs, sbyte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4715,7 +809,7 @@ ref Span<sbyte> mod(ref Span<sbyte> lhs, sbyte rhs)
     IL_0021: ret
 
 }
-ref Span<byte> mod(ref Span<byte> lhs, byte rhs)
+Span<byte> mod(Span<byte> lhs, byte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4741,7 +835,7 @@ ref Span<byte> mod(ref Span<byte> lhs, byte rhs)
     IL_0021: ret
 
 }
-ref Span<short> mod(ref Span<short> lhs, short rhs)
+Span<short> mod(Span<short> lhs, short rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4767,7 +861,7 @@ ref Span<short> mod(ref Span<short> lhs, short rhs)
     IL_0021: ret
 
 }
-ref Span<ushort> mod(ref Span<ushort> lhs, ushort rhs)
+Span<ushort> mod(Span<ushort> lhs, ushort rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4793,7 +887,7 @@ ref Span<ushort> mod(ref Span<ushort> lhs, ushort rhs)
     IL_0021: ret
 
 }
-ref Span<int> mod(ref Span<int> lhs, int rhs)
+Span<int> mod(Span<int> lhs, int rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4818,7 +912,7 @@ ref Span<int> mod(ref Span<int> lhs, int rhs)
     IL_0020: ret
 
 }
-ref Span<uint> mod(ref Span<uint> lhs, uint rhs)
+Span<uint> mod(Span<uint> lhs, uint rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4843,7 +937,7 @@ ref Span<uint> mod(ref Span<uint> lhs, uint rhs)
     IL_0020: ret
 
 }
-ref Span<long> mod(ref Span<long> lhs, long rhs)
+Span<long> mod(Span<long> lhs, long rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4868,7 +962,7 @@ ref Span<long> mod(ref Span<long> lhs, long rhs)
     IL_0020: ret
 
 }
-ref Span<ulong> mod(ref Span<ulong> lhs, ulong rhs)
+Span<ulong> mod(Span<ulong> lhs, ulong rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4893,7 +987,7 @@ ref Span<ulong> mod(ref Span<ulong> lhs, ulong rhs)
     IL_0020: ret
 
 }
-ref Span<float> mod(ref Span<float> lhs, float rhs)
+Span<float> mod(Span<float> lhs, float rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4918,7 +1012,7 @@ ref Span<float> mod(ref Span<float> lhs, float rhs)
     IL_0020: ret
 
 }
-ref Span<double> mod(ref Span<double> lhs, double rhs)
+Span<double> mod(Span<double> lhs, double rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -4943,7 +1037,7 @@ ref Span<double> mod(ref Span<double> lhs, double rhs)
     IL_0020: ret
 
 }
-void negate(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
+void negate(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -4975,7 +1069,7 @@ void negate(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
+void negate(ReadOnlySpan<byte> src, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5007,7 +1101,7 @@ void negate(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<short> src, ref Span<short> dst)
+void negate(ReadOnlySpan<short> src, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5039,7 +1133,7 @@ void negate(ref ReadOnlySpan<short> src, ref Span<short> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
+void negate(ReadOnlySpan<ushort> src, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5071,7 +1165,7 @@ void negate(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<int> src, ref Span<int> dst)
+void negate(ReadOnlySpan<int> src, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5103,7 +1197,7 @@ void negate(ref ReadOnlySpan<int> src, ref Span<int> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
+void negate(ReadOnlySpan<uint> src, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5135,7 +1229,7 @@ void negate(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<long> src, ref Span<long> dst)
+void negate(ReadOnlySpan<long> src, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5167,7 +1261,7 @@ void negate(ref ReadOnlySpan<long> src, ref Span<long> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
+void negate(ReadOnlySpan<ulong> src, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5199,7 +1293,7 @@ void negate(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<float> src, ref Span<float> dst)
+void negate(ReadOnlySpan<float> src, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5231,7 +1325,7 @@ void negate(ref ReadOnlySpan<float> src, ref Span<float> dst)
     IL_003C: ret
 
 }
-void negate(ref ReadOnlySpan<double> src, ref Span<double> dst)
+void negate(ReadOnlySpan<double> src, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5263,7 +1357,7 @@ void negate(ref ReadOnlySpan<double> src, ref Span<double> dst)
     IL_003C: ret
 
 }
-ref Span<sbyte> negate(ref Span<sbyte> io)
+Span<sbyte> negate(Span<sbyte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5285,7 +1379,7 @@ ref Span<sbyte> negate(ref Span<sbyte> io)
     IL_0021: ret
 
 }
-ref Span<byte> negate(ref Span<byte> io)
+Span<byte> negate(Span<byte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5307,7 +1401,7 @@ ref Span<byte> negate(ref Span<byte> io)
     IL_0021: ret
 
 }
-ref Span<short> negate(ref Span<short> io)
+Span<short> negate(Span<short> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5329,7 +1423,7 @@ ref Span<short> negate(ref Span<short> io)
     IL_0021: ret
 
 }
-ref Span<ushort> negate(ref Span<ushort> io)
+Span<ushort> negate(Span<ushort> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5351,7 +1445,7 @@ ref Span<ushort> negate(ref Span<ushort> io)
     IL_0021: ret
 
 }
-ref Span<int> negate(ref Span<int> io)
+Span<int> negate(Span<int> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5373,7 +1467,7 @@ ref Span<int> negate(ref Span<int> io)
     IL_0021: ret
 
 }
-ref Span<uint> negate(ref Span<uint> io)
+Span<uint> negate(Span<uint> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5395,7 +1489,7 @@ ref Span<uint> negate(ref Span<uint> io)
     IL_0021: ret
 
 }
-ref Span<long> negate(ref Span<long> io)
+Span<long> negate(Span<long> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5417,7 +1511,7 @@ ref Span<long> negate(ref Span<long> io)
     IL_0021: ret
 
 }
-ref Span<ulong> negate(ref Span<ulong> io)
+Span<ulong> negate(Span<ulong> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5439,7 +1533,7 @@ ref Span<ulong> negate(ref Span<ulong> io)
     IL_0021: ret
 
 }
-ref Span<float> negate(ref Span<float> io)
+Span<float> negate(Span<float> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5461,7 +1555,7 @@ ref Span<float> negate(ref Span<float> io)
     IL_0021: ret
 
 }
-ref Span<double> negate(ref Span<double> io)
+Span<double> negate(Span<double> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5483,7 +1577,7 @@ ref Span<double> negate(ref Span<double> io)
     IL_0021: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5513,7 +1607,7 @@ ref Span<bool> neq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5543,7 +1637,7 @@ ref Span<bool> neq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5573,7 +1667,7 @@ ref Span<bool> neq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5603,7 +1697,7 @@ ref Span<bool> neq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, r
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5633,7 +1727,7 @@ ref Span<bool> neq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Spa
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5663,7 +1757,7 @@ ref Span<bool> neq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5693,7 +1787,7 @@ ref Span<bool> neq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5723,7 +1817,7 @@ ref Span<bool> neq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5753,7 +1847,7 @@ ref Span<bool> neq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
+Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5783,7 +1877,7 @@ ref Span<bool> neq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, r
     IL_0033: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5799,7 +1893,7 @@ ref Span<bool> neq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5815,7 +1909,7 @@ ref Span<bool> neq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5831,7 +1925,7 @@ ref Span<bool> neq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5847,7 +1941,7 @@ ref Span<bool> neq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5863,7 +1957,7 @@ ref Span<bool> neq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5879,7 +1973,7 @@ ref Span<bool> neq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5895,7 +1989,7 @@ ref Span<bool> neq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5911,7 +2005,7 @@ ref Span<bool> neq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5927,7 +2021,7 @@ ref Span<bool> neq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> neq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5943,7 +2037,7 @@ ref Span<bool> neq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-ref Span<sbyte> or(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+Span<sbyte> or(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -5980,7 +2074,7 @@ ref Span<sbyte> or(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref
     IL_0046: ret
 
 }
-ref Span<byte> or(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> or(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6017,7 +2111,7 @@ ref Span<byte> or(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Sp
     IL_0046: ret
 
 }
-ref Span<short> or(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> or(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6054,7 +2148,7 @@ ref Span<short> or(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref
     IL_0046: ret
 
 }
-ref Span<ushort> or(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> or(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6091,7 +2185,7 @@ ref Span<ushort> or(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, 
     IL_0046: ret
 
 }
-ref Span<int> or(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> or(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6128,7 +2222,7 @@ ref Span<int> or(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<
     IL_0046: ret
 
 }
-ref Span<uint> or(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> or(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6165,7 +2259,7 @@ ref Span<uint> or(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Sp
     IL_0046: ret
 
 }
-ref Span<long> or(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> or(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6202,7 +2296,7 @@ ref Span<long> or(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Sp
     IL_0046: ret
 
 }
-ref Span<ulong> or(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> or(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6239,7 +2333,7 @@ ref Span<ulong> or(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref
     IL_0046: ret
 
 }
-ref Span<sbyte> or(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> or(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6275,7 +2369,7 @@ ref Span<sbyte> or(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003C: ret
 
 }
-ref Span<byte> or(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> or(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6311,7 +2405,7 @@ ref Span<byte> or(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003C: ret
 
 }
-ref Span<short> or(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> or(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6347,7 +2441,7 @@ ref Span<short> or(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003C: ret
 
 }
-ref Span<ushort> or(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> or(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6383,7 +2477,7 @@ ref Span<ushort> or(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003C: ret
 
 }
-ref Span<int> or(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> or(Span<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6418,7 +2512,7 @@ ref Span<int> or(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_003B: ret
 
 }
-ref Span<uint> or(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> or(Span<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6453,7 +2547,7 @@ ref Span<uint> or(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003B: ret
 
 }
-ref Span<long> or(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> or(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6488,7 +2582,7 @@ ref Span<long> or(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> or(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> or(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6523,7 +2617,7 @@ ref Span<ulong> or(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<sbyte> or(ref Span<sbyte> lhs, sbyte rhs)
+Span<sbyte> or(Span<sbyte> lhs, sbyte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6549,7 +2643,7 @@ ref Span<sbyte> or(ref Span<sbyte> lhs, sbyte rhs)
     IL_0021: ret
 
 }
-ref Span<byte> or(ref Span<byte> lhs, byte rhs)
+Span<byte> or(Span<byte> lhs, byte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6575,7 +2669,7 @@ ref Span<byte> or(ref Span<byte> lhs, byte rhs)
     IL_0021: ret
 
 }
-ref Span<short> or(ref Span<short> lhs, short rhs)
+Span<short> or(Span<short> lhs, short rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6601,7 +2695,7 @@ ref Span<short> or(ref Span<short> lhs, short rhs)
     IL_0021: ret
 
 }
-ref Span<ushort> or(ref Span<ushort> lhs, ushort rhs)
+Span<ushort> or(Span<ushort> lhs, ushort rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6627,7 +2721,7 @@ ref Span<ushort> or(ref Span<ushort> lhs, ushort rhs)
     IL_0021: ret
 
 }
-ref Span<int> or(ref Span<int> lhs, int rhs)
+Span<int> or(Span<int> lhs, int rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6652,7 +2746,7 @@ ref Span<int> or(ref Span<int> lhs, int rhs)
     IL_0020: ret
 
 }
-ref Span<uint> or(ref Span<uint> lhs, uint rhs)
+Span<uint> or(Span<uint> lhs, uint rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6677,7 +2771,7 @@ ref Span<uint> or(ref Span<uint> lhs, uint rhs)
     IL_0020: ret
 
 }
-ref Span<long> or(ref Span<long> lhs, long rhs)
+Span<long> or(Span<long> lhs, long rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6702,7 +2796,7 @@ ref Span<long> or(ref Span<long> lhs, long rhs)
     IL_0020: ret
 
 }
-ref Span<ulong> or(ref Span<ulong> lhs, ulong rhs)
+Span<ulong> or(Span<ulong> lhs, ulong rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -6727,7 +2821,7 @@ ref Span<ulong> or(ref Span<ulong> lhs, ulong rhs)
     IL_0020: ret
 
 }
-ref Span<sbyte> pow(ref Span<sbyte> b, ref ReadOnlySpan<sbyte> exp)
+Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6764,7 +2858,7 @@ ref Span<sbyte> pow(ref Span<sbyte> b, ref ReadOnlySpan<sbyte> exp)
     IL_0046: ret
 
 }
-ref Span<byte> pow(ref Span<byte> b, ref ReadOnlySpan<byte> exp)
+Span<byte> pow(Span<byte> b, ReadOnlySpan<byte> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6801,7 +2895,7 @@ ref Span<byte> pow(ref Span<byte> b, ref ReadOnlySpan<byte> exp)
     IL_0046: ret
 
 }
-ref Span<short> pow(ref Span<short> b, ref ReadOnlySpan<short> exp)
+Span<short> pow(Span<short> b, ReadOnlySpan<short> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6838,7 +2932,7 @@ ref Span<short> pow(ref Span<short> b, ref ReadOnlySpan<short> exp)
     IL_0046: ret
 
 }
-ref Span<ushort> pow(ref Span<ushort> b, ref ReadOnlySpan<ushort> exp)
+Span<ushort> pow(Span<ushort> b, ReadOnlySpan<ushort> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6875,7 +2969,7 @@ ref Span<ushort> pow(ref Span<ushort> b, ref ReadOnlySpan<ushort> exp)
     IL_0046: ret
 
 }
-ref Span<int> pow(ref Span<int> b, ref ReadOnlySpan<int> exp)
+Span<int> pow(Span<int> b, ReadOnlySpan<int> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6912,7 +3006,7 @@ ref Span<int> pow(ref Span<int> b, ref ReadOnlySpan<int> exp)
     IL_0046: ret
 
 }
-ref Span<uint> pow(ref Span<uint> b, ref ReadOnlySpan<uint> exp)
+Span<uint> pow(Span<uint> b, ReadOnlySpan<uint> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6949,7 +3043,7 @@ ref Span<uint> pow(ref Span<uint> b, ref ReadOnlySpan<uint> exp)
     IL_0046: ret
 
 }
-ref Span<long> pow(ref Span<long> b, ref ReadOnlySpan<long> exp)
+Span<long> pow(Span<long> b, ReadOnlySpan<long> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -6986,7 +3080,7 @@ ref Span<long> pow(ref Span<long> b, ref ReadOnlySpan<long> exp)
     IL_0046: ret
 
 }
-ref Span<ulong> pow(ref Span<ulong> b, ref ReadOnlySpan<ulong> exp)
+Span<ulong> pow(Span<ulong> b, ReadOnlySpan<ulong> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -7023,7 +3117,7 @@ ref Span<ulong> pow(ref Span<ulong> b, ref ReadOnlySpan<ulong> exp)
     IL_0046: ret
 
 }
-ref Span<float> pow(ref Span<float> b, ref ReadOnlySpan<float> exp)
+Span<float> pow(Span<float> b, ReadOnlySpan<float> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -7060,7 +3154,7 @@ ref Span<float> pow(ref Span<float> b, ref ReadOnlySpan<float> exp)
     IL_0046: ret
 
 }
-ref Span<double> pow(ref Span<double> b, ref ReadOnlySpan<double> exp)
+Span<double> pow(Span<double> b, ReadOnlySpan<double> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -7097,7 +3191,7 @@ ref Span<double> pow(ref Span<double> b, ref ReadOnlySpan<double> exp)
     IL_0046: ret
 
 }
-ref Span<sbyte> pow(ref Span<sbyte> b, sbyte exp)
+Span<sbyte> pow(Span<sbyte> b, sbyte exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7124,7 +3218,7 @@ ref Span<sbyte> pow(ref Span<sbyte> b, sbyte exp)
     IL_002B: ret
 
 }
-ref Span<byte> pow(ref Span<byte> b, byte exp)
+Span<byte> pow(Span<byte> b, byte exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7151,7 +3245,7 @@ ref Span<byte> pow(ref Span<byte> b, byte exp)
     IL_002B: ret
 
 }
-ref Span<short> pow(ref Span<short> b, short exp)
+Span<short> pow(Span<short> b, short exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7178,7 +3272,7 @@ ref Span<short> pow(ref Span<short> b, short exp)
     IL_002B: ret
 
 }
-ref Span<ushort> pow(ref Span<ushort> b, ushort exp)
+Span<ushort> pow(Span<ushort> b, ushort exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7205,7 +3299,7 @@ ref Span<ushort> pow(ref Span<ushort> b, ushort exp)
     IL_002B: ret
 
 }
-ref Span<int> pow(ref Span<int> b, int exp)
+Span<int> pow(Span<int> b, int exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7232,7 +3326,7 @@ ref Span<int> pow(ref Span<int> b, int exp)
     IL_002B: ret
 
 }
-ref Span<uint> pow(ref Span<uint> b, uint exp)
+Span<uint> pow(Span<uint> b, uint exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7259,7 +3353,7 @@ ref Span<uint> pow(ref Span<uint> b, uint exp)
     IL_002B: ret
 
 }
-ref Span<long> pow(ref Span<long> b, long exp)
+Span<long> pow(Span<long> b, long exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7286,7 +3380,7 @@ ref Span<long> pow(ref Span<long> b, long exp)
     IL_002B: ret
 
 }
-ref Span<ulong> pow(ref Span<ulong> b, ulong exp)
+Span<ulong> pow(Span<ulong> b, ulong exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7313,7 +3407,7 @@ ref Span<ulong> pow(ref Span<ulong> b, ulong exp)
     IL_002B: ret
 
 }
-ref Span<float> pow(ref Span<float> b, float exp)
+Span<float> pow(Span<float> b, float exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7340,7 +3434,7 @@ ref Span<float> pow(ref Span<float> b, float exp)
     IL_002B: ret
 
 }
-ref Span<double> pow(ref Span<double> b, double exp)
+Span<double> pow(Span<double> b, double exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7367,7 +3461,7 @@ ref Span<double> pow(ref Span<double> b, double exp)
     IL_002B: ret
 
 }
-ref Span<float> round(ref ReadOnlySpan<float> src, int scale, ref Span<float> dst)
+Span<float> round(ReadOnlySpan<float> src, int scale, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.2
@@ -7401,7 +3495,7 @@ ref Span<float> round(ref ReadOnlySpan<float> src, int scale, ref Span<float> ds
     IL_003E: ret
 
 }
-ref Span<double> round(ref ReadOnlySpan<double> src, int scale, ref Span<double> dst)
+Span<double> round(ReadOnlySpan<double> src, int scale, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.2
@@ -7435,7 +3529,7 @@ ref Span<double> round(ref ReadOnlySpan<double> src, int scale, ref Span<double>
     IL_003E: ret
 
 }
-ref Span<float> round(ref Span<float> io, int scale)
+Span<float> round(Span<float> io, int scale)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7458,7 +3552,7 @@ ref Span<float> round(ref Span<float> io, int scale)
     IL_0022: ret
 
 }
-ref Span<double> round(ref Span<double> io, int scale)
+Span<double> round(Span<double> io, int scale)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7481,7 +3575,7 @@ ref Span<double> round(ref Span<double> io, int scale)
     IL_0022: ret
 
 }
-ref Span<sbyte> scale(ref ReadOnlySpan<sbyte> src, sbyte factor, ref Span<sbyte> dst)
+Span<sbyte> scale(ReadOnlySpan<sbyte> src, sbyte factor, Span<sbyte> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7508,7 +3602,7 @@ ref Span<sbyte> scale(ref ReadOnlySpan<sbyte> src, sbyte factor, ref Span<sbyte>
     IL_002B: ret
 
 }
-ref Span<byte> scale(ref ReadOnlySpan<byte> src, byte factor, ref Span<byte> dst)
+Span<byte> scale(ReadOnlySpan<byte> src, byte factor, Span<byte> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7535,7 +3629,7 @@ ref Span<byte> scale(ref ReadOnlySpan<byte> src, byte factor, ref Span<byte> dst
     IL_002B: ret
 
 }
-ref Span<short> scale(ref ReadOnlySpan<short> src, short factor, ref Span<short> dst)
+Span<short> scale(ReadOnlySpan<short> src, short factor, Span<short> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7562,7 +3656,7 @@ ref Span<short> scale(ref ReadOnlySpan<short> src, short factor, ref Span<short>
     IL_002B: ret
 
 }
-ref Span<ushort> scale(ref ReadOnlySpan<ushort> src, ushort factor, ref Span<ushort> dst)
+Span<ushort> scale(ReadOnlySpan<ushort> src, ushort factor, Span<ushort> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7589,7 +3683,7 @@ ref Span<ushort> scale(ref ReadOnlySpan<ushort> src, ushort factor, ref Span<ush
     IL_002B: ret
 
 }
-ref Span<int> scale(ref ReadOnlySpan<int> src, int factor, ref Span<int> dst)
+Span<int> scale(ReadOnlySpan<int> src, int factor, Span<int> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7616,7 +3710,7 @@ ref Span<int> scale(ref ReadOnlySpan<int> src, int factor, ref Span<int> dst)
     IL_002B: ret
 
 }
-ref Span<uint> scale(ref ReadOnlySpan<uint> src, uint factor, ref Span<uint> dst)
+Span<uint> scale(ReadOnlySpan<uint> src, uint factor, Span<uint> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7643,7 +3737,7 @@ ref Span<uint> scale(ref ReadOnlySpan<uint> src, uint factor, ref Span<uint> dst
     IL_002B: ret
 
 }
-ref Span<long> scale(ref ReadOnlySpan<long> src, long factor, ref Span<long> dst)
+Span<long> scale(ReadOnlySpan<long> src, long factor, Span<long> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7670,7 +3764,7 @@ ref Span<long> scale(ref ReadOnlySpan<long> src, long factor, ref Span<long> dst
     IL_002B: ret
 
 }
-ref Span<ulong> scale(ref ReadOnlySpan<ulong> src, ulong factor, ref Span<ulong> dst)
+Span<ulong> scale(ReadOnlySpan<ulong> src, ulong factor, Span<ulong> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7697,7 +3791,7 @@ ref Span<ulong> scale(ref ReadOnlySpan<ulong> src, ulong factor, ref Span<ulong>
     IL_002B: ret
 
 }
-ref Span<float> scale(ref ReadOnlySpan<float> src, float factor, ref Span<float> dst)
+Span<float> scale(ReadOnlySpan<float> src, float factor, Span<float> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7724,7 +3818,7 @@ ref Span<float> scale(ref ReadOnlySpan<float> src, float factor, ref Span<float>
     IL_002B: ret
 
 }
-ref Span<double> scale(ref ReadOnlySpan<double> src, double factor, ref Span<double> dst)
+Span<double> scale(ReadOnlySpan<double> src, double factor, Span<double> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7751,15 +3845,15 @@ ref Span<double> scale(ref ReadOnlySpan<double> src, double factor, ref Span<dou
     IL_002B: ret
 
 }
-ref Span<sbyte> shiftl(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<int> rhs, ref Span<sbyte> dst)
+Span<sbyte> sub(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
     IL_000C: ldc.i4.s 21
     IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.Int32>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0018: stloc.0
     IL_0019: ldc.i4.0
     IL_001A: stloc.1
@@ -7773,9 +3867,9 @@ ref Span<sbyte> shiftl(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<int> rhs, r
     IL_002D: ldind.i1
     IL_002E: ldarga.s rhs
     IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.SByte Z0.math::shiftl(System.SByte,System.Int32)
+    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0036: ldind.i1
+    IL_0037: call System.SByte Z0.math::sub(System.SByte,System.SByte)
     IL_003C: stind.i1
     IL_003D: ldloc.1
     IL_003E: ldc.i4.1
@@ -7788,15 +3882,15 @@ ref Span<sbyte> shiftl(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<int> rhs, r
     IL_0046: ret
 
 }
-ref Span<byte> shiftl(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<int> rhs, ref Span<byte> dst)
+Span<byte> sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "shiftl"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\ShiftL.cs"
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
     IL_000C: ldc.i4.s 29
     IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Int32>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_0018: stloc.0
     IL_0019: ldc.i4.0
     IL_001A: stloc.1
@@ -7810,9 +3904,9 @@ ref Span<byte> shiftl(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<int> rhs, ref
     IL_002D: ldind.u1
     IL_002E: ldarga.s rhs
     IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Byte Z0.math::shiftl(System.Byte,System.Int32)
+    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0036: ldind.u1
+    IL_0037: call System.Byte Z0.math::sub(System.Byte,System.Byte)
     IL_003C: stind.i1
     IL_003D: ldloc.1
     IL_003E: ldc.i4.1
@@ -7825,405 +3919,657 @@ ref Span<byte> shiftl(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<int> rhs, ref
     IL_0046: ret
 
 }
-ref Span<short> flip(ref ReadOnlySpan<short> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int16> Z0.xfunc::Replicate<System.Int16>(System.ReadOnlySpan`1<System.Int16>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int16>& Z0.math::flip(System.Span`1<System.Int16>&)
-    IL_000E: ldobj System.Span`1<System.Int16>
-    IL_0013: ret
-
-}
-ref Span<ushort> flip(ref ReadOnlySpan<ushort> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt16> Z0.xfunc::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt16>& Z0.math::flip(System.Span`1<System.UInt16>&)
-    IL_000E: ldobj System.Span`1<System.UInt16>
-    IL_0013: ret
-
-}
-ref Span<int> flip(ref ReadOnlySpan<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int32> Z0.xfunc::Replicate<System.Int32>(System.ReadOnlySpan`1<System.Int32>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int32>& Z0.math::flip(System.Span`1<System.Int32>&)
-    IL_000E: ldobj System.Span`1<System.Int32>
-    IL_0013: ret
-
-}
-ref Span<uint> flip(ref ReadOnlySpan<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt32> Z0.xfunc::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt32>& Z0.math::flip(System.Span`1<System.UInt32>&)
-    IL_000E: ldobj System.Span`1<System.UInt32>
-    IL_0013: ret
-
-}
-ref Span<long> flip(ref ReadOnlySpan<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int64> Z0.xfunc::Replicate<System.Int64>(System.ReadOnlySpan`1<System.Int64>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int64>& Z0.math::flip(System.Span`1<System.Int64>&)
-    IL_000E: ldobj System.Span`1<System.Int64>
-    IL_0013: ret
-
-}
-ref Span<ulong> flip(ref ReadOnlySpan<ulong> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt64> Z0.xfunc::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt64>& Z0.math::flip(System.Span`1<System.UInt64>&)
-    IL_000E: ldobj System.Span`1<System.UInt64>
-    IL_0013: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::gt(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::gt(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::gt(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::gt(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gt(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::gt(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::gt(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-ref Span<bool> gt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<short> sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 104
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 37
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002D: ldind.i2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0036: ldind.i2
+    IL_0037: call System.Int16 Z0.math::sub(System.Int16,System.Int16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<ushort> sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 108
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 45
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002D: ldind.u2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0036: ldind.u2
+    IL_0037: call System.UInt16 Z0.math::sub(System.UInt16,System.UInt16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<int> sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 53
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002D: ldind.i4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0036: ldind.i4
+    IL_0037: call System.Int32 Z0.math::sub(System.Int32,System.Int32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<uint> sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 61
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_002D: ldind.u4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0036: ldind.u4
+    IL_0037: call System.UInt32 Z0.math::sub(System.UInt32,System.UInt32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<long> sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 69
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.Int64 Z0.math::sub(System.Int64,System.Int64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<ulong> sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 77
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.UInt64 Z0.math::sub(System.UInt64,System.UInt64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<float> sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 85
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_002D: ldind.r4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0036: ldind.r4
+    IL_0037: call System.Single Z0.math::sub(System.Single,System.Single)
+    IL_003C: stind.r4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<double> sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 93
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_002D: ldind.r8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0036: ldind.r8
+    IL_0037: call System.Double Z0.math::sub(System.Double,System.Double)
+    IL_003C: stind.r8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<sbyte> sub(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 101
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002F: ldind.i1
+    IL_0030: sub
+    IL_0031: conv.i1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<byte> sub(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 109
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002F: ldind.u1
+    IL_0030: sub
+    IL_0031: conv.u1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<short> sub(Span<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 117
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002F: ldind.i2
+    IL_0030: sub
+    IL_0031: conv.i2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<ushort> sub(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4.s 125
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002F: ldind.u2
+    IL_0030: sub
+    IL_0031: conv.u2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<int> sub(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 133
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: sub
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> sub(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 141
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: sub
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> sub(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 149
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: sub
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> sub(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 157
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: sub
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> sub(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 165
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: sub
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> sub(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
+    IL_000C: ldc.i4 173
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: sub
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8239,7 +4585,7 @@ ref Span<bool> gt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8255,7 +4601,7 @@ ref Span<bool> gt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8271,7 +4617,7 @@ ref Span<bool> gt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8287,7 +4633,7 @@ ref Span<bool> gt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8303,7 +4649,7 @@ ref Span<bool> gt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8319,7 +4665,7 @@ ref Span<bool> gt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8335,7 +4681,7 @@ ref Span<bool> gt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8351,7 +4697,7 @@ ref Span<bool> gt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8381,7 +4727,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8411,7 +4757,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8441,7 +4787,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8471,7 +4817,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, 
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8501,7 +4847,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8531,7 +4877,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8561,7 +4907,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8591,7 +4937,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8621,7 +4967,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
+Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8651,7 +4997,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, 
     IL_0033: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8667,7 +5013,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8683,7 +5029,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8699,7 +5045,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8715,7 +5061,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8731,7 +5077,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8747,7 +5093,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8763,7 +5109,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8779,7 +5125,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8795,7 +5141,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> gteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8811,7 +5157,7 @@ ref Span<bool> gteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-ref Span<sbyte> inc(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
+Span<sbyte> inc(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8844,7 +5190,7 @@ ref Span<sbyte> inc(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
     IL_003D: ret
 
 }
-ref Span<byte> inc(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
+Span<byte> inc(ReadOnlySpan<byte> src, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8877,7 +5223,7 @@ ref Span<byte> inc(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
     IL_003D: ret
 
 }
-ref Span<short> inc(ref ReadOnlySpan<short> src, ref Span<short> dst)
+Span<short> inc(ReadOnlySpan<short> src, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8910,7 +5256,7 @@ ref Span<short> inc(ref ReadOnlySpan<short> src, ref Span<short> dst)
     IL_003D: ret
 
 }
-ref Span<ushort> inc(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
+Span<ushort> inc(ReadOnlySpan<ushort> src, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8943,7 +5289,7 @@ ref Span<ushort> inc(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
     IL_003D: ret
 
 }
-ref Span<int> inc(ref ReadOnlySpan<int> src, ref Span<int> dst)
+Span<int> inc(ReadOnlySpan<int> src, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -8976,7 +5322,7 @@ ref Span<int> inc(ref ReadOnlySpan<int> src, ref Span<int> dst)
     IL_003D: ret
 
 }
-ref Span<uint> inc(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
+Span<uint> inc(ReadOnlySpan<uint> src, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9009,7 +5355,7 @@ ref Span<uint> inc(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
     IL_003D: ret
 
 }
-ref Span<long> inc(ref ReadOnlySpan<long> src, ref Span<long> dst)
+Span<long> inc(ReadOnlySpan<long> src, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9042,7 +5388,7 @@ ref Span<long> inc(ref ReadOnlySpan<long> src, ref Span<long> dst)
     IL_003D: ret
 
 }
-ref Span<ulong> inc(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
+Span<ulong> inc(ReadOnlySpan<ulong> src, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9075,7 +5421,7 @@ ref Span<ulong> inc(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
     IL_003D: ret
 
 }
-ref Span<float> inc(ref ReadOnlySpan<float> src, ref Span<float> dst)
+Span<float> inc(ReadOnlySpan<float> src, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9108,7 +5454,7 @@ ref Span<float> inc(ref ReadOnlySpan<float> src, ref Span<float> dst)
     IL_003D: ret
 
 }
-ref Span<double> inc(ref ReadOnlySpan<double> src, ref Span<double> dst)
+Span<double> inc(ReadOnlySpan<double> src, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9141,7 +5487,7 @@ ref Span<double> inc(ref ReadOnlySpan<double> src, ref Span<double> dst)
     IL_003D: ret
 
 }
-ref Span<sbyte> inc(ref Span<sbyte> io)
+Span<sbyte> inc(Span<sbyte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9163,7 +5509,7 @@ ref Span<sbyte> inc(ref Span<sbyte> io)
     IL_0021: ret
 
 }
-ref Span<byte> inc(ref Span<byte> io)
+Span<byte> inc(Span<byte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9185,7 +5531,7 @@ ref Span<byte> inc(ref Span<byte> io)
     IL_0021: ret
 
 }
-ref Span<short> inc(ref Span<short> io)
+Span<short> inc(Span<short> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9207,7 +5553,7 @@ ref Span<short> inc(ref Span<short> io)
     IL_0021: ret
 
 }
-ref Span<ushort> inc(ref Span<ushort> io)
+Span<ushort> inc(Span<ushort> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9229,7 +5575,7 @@ ref Span<ushort> inc(ref Span<ushort> io)
     IL_0021: ret
 
 }
-ref Span<int> inc(ref Span<int> io)
+Span<int> inc(Span<int> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9251,7 +5597,7 @@ ref Span<int> inc(ref Span<int> io)
     IL_0021: ret
 
 }
-ref Span<uint> inc(ref Span<uint> io)
+Span<uint> inc(Span<uint> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9273,7 +5619,7 @@ ref Span<uint> inc(ref Span<uint> io)
     IL_0021: ret
 
 }
-ref Span<long> inc(ref Span<long> io)
+Span<long> inc(Span<long> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9295,7 +5641,7 @@ ref Span<long> inc(ref Span<long> io)
     IL_0021: ret
 
 }
-ref Span<ulong> inc(ref Span<ulong> io)
+Span<ulong> inc(Span<ulong> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9317,7 +5663,7 @@ ref Span<ulong> inc(ref Span<ulong> io)
     IL_0021: ret
 
 }
-ref Span<float> inc(ref Span<float> io)
+Span<float> inc(Span<float> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9339,7 +5685,7 @@ ref Span<float> inc(ref Span<float> io)
     IL_0021: ret
 
 }
-ref Span<double> inc(ref Span<double> io)
+Span<double> inc(Span<double> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9361,7 +5707,7 @@ ref Span<double> inc(ref Span<double> io)
     IL_0021: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9391,7 +5737,7 @@ ref Span<bool> lt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9421,7 +5767,7 @@ ref Span<bool> lt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9451,7 +5797,7 @@ ref Span<bool> lt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9481,7 +5827,7 @@ ref Span<bool> lt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9511,7 +5857,7 @@ ref Span<bool> lt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9541,7 +5887,7 @@ ref Span<bool> lt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9571,7 +5917,7 @@ ref Span<bool> lt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9601,7 +5947,7 @@ ref Span<bool> lt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9631,7 +5977,7 @@ ref Span<bool> lt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
+Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9661,7 +6007,7 @@ ref Span<bool> lt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9677,7 +6023,7 @@ ref Span<bool> lt(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9693,7 +6039,7 @@ ref Span<bool> lt(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9709,7 +6055,7 @@ ref Span<bool> lt(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9725,7 +6071,7 @@ ref Span<bool> lt(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9741,7 +6087,7 @@ ref Span<bool> lt(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9757,7 +6103,7 @@ ref Span<bool> lt(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9773,7 +6119,7 @@ ref Span<bool> lt(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9789,7 +6135,7 @@ ref Span<bool> lt(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9805,7 +6151,7 @@ ref Span<bool> lt(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -9821,7 +6167,7 @@ ref Span<bool> lt(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9851,7 +6197,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9881,7 +6227,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9911,7 +6257,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9941,7 +6287,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, 
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -9971,7 +6317,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -10001,7 +6347,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -10031,7 +6377,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -10061,7 +6407,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -10091,7 +6437,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
+Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -10121,7 +6467,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, 
     IL_0033: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10137,7 +6483,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10153,7 +6499,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10169,7 +6515,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10185,7 +6531,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10201,7 +6547,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10217,7 +6563,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10233,7 +6579,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10249,7 +6595,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10265,7 +6611,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> lteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -10281,7 +6627,7 @@ ref Span<bool> lteq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-sbyte max(ref ReadOnlySpan<sbyte> src)
+sbyte max(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
@@ -10319,7 +6665,7 @@ sbyte max(ref ReadOnlySpan<sbyte> src)
     IL_003E: ret
 
 }
-byte max(ref ReadOnlySpan<byte> src)
+byte max(ReadOnlySpan<byte> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
@@ -10357,7 +6703,7 @@ byte max(ref ReadOnlySpan<byte> src)
     IL_003E: ret
 
 }
-short max(ref ReadOnlySpan<short> src)
+short max(ReadOnlySpan<short> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
@@ -10395,7 +6741,7 @@ short max(ref ReadOnlySpan<short> src)
     IL_003E: ret
 
 }
-ushort max(ref ReadOnlySpan<ushort> src)
+ushort max(ReadOnlySpan<ushort> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
@@ -10433,7 +6779,7 @@ ushort max(ref ReadOnlySpan<ushort> src)
     IL_003E: ret
 
 }
-int max(ref ReadOnlySpan<int> src)
+int max(ReadOnlySpan<int> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
@@ -10471,7 +6817,7 @@ int max(ref ReadOnlySpan<int> src)
     IL_003E: ret
 
 }
-uint max(ref ReadOnlySpan<uint> src)
+uint max(ReadOnlySpan<uint> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
@@ -10509,7 +6855,7 @@ uint max(ref ReadOnlySpan<uint> src)
     IL_003E: ret
 
 }
-long max(ref ReadOnlySpan<long> src)
+long max(ReadOnlySpan<long> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
@@ -10548,7 +6894,7 @@ long max(ref ReadOnlySpan<long> src)
     IL_003F: ret
 
 }
-ulong max(ref ReadOnlySpan<ulong> src)
+ulong max(ReadOnlySpan<ulong> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
@@ -10587,7 +6933,7 @@ ulong max(ref ReadOnlySpan<ulong> src)
     IL_003F: ret
 
 }
-float max(ref ReadOnlySpan<float> src)
+float max(ReadOnlySpan<float> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
@@ -10625,7 +6971,7 @@ float max(ref ReadOnlySpan<float> src)
     IL_0042: ret
 
 }
-double max(ref ReadOnlySpan<double> src)
+double max(ReadOnlySpan<double> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
@@ -10663,7 +7009,7 @@ double max(ref ReadOnlySpan<double> src)
     IL_0046: ret
 
 }
-sbyte min(ref ReadOnlySpan<sbyte> src)
+sbyte min(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
@@ -10701,7 +7047,7 @@ sbyte min(ref ReadOnlySpan<sbyte> src)
     IL_003E: ret
 
 }
-byte min(ref ReadOnlySpan<byte> src)
+byte min(ReadOnlySpan<byte> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
@@ -10739,7 +7085,7 @@ byte min(ref ReadOnlySpan<byte> src)
     IL_003E: ret
 
 }
-short min(ref ReadOnlySpan<short> src)
+short min(ReadOnlySpan<short> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
@@ -10777,7 +7123,7 @@ short min(ref ReadOnlySpan<short> src)
     IL_003E: ret
 
 }
-ushort min(ref ReadOnlySpan<ushort> src)
+ushort min(ReadOnlySpan<ushort> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
@@ -10815,7 +7161,7 @@ ushort min(ref ReadOnlySpan<ushort> src)
     IL_003E: ret
 
 }
-int min(ref ReadOnlySpan<int> src)
+int min(ReadOnlySpan<int> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
@@ -10853,7 +7199,7 @@ int min(ref ReadOnlySpan<int> src)
     IL_003E: ret
 
 }
-uint min(ref ReadOnlySpan<uint> src)
+uint min(ReadOnlySpan<uint> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
@@ -10891,7 +7237,7 @@ uint min(ref ReadOnlySpan<uint> src)
     IL_003E: ret
 
 }
-long min(ref ReadOnlySpan<long> src)
+long min(ReadOnlySpan<long> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
@@ -10930,7 +7276,7 @@ long min(ref ReadOnlySpan<long> src)
     IL_003F: ret
 
 }
-ulong min(ref ReadOnlySpan<ulong> src)
+ulong min(ReadOnlySpan<ulong> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
@@ -10969,7 +7315,7 @@ ulong min(ref ReadOnlySpan<ulong> src)
     IL_003F: ret
 
 }
-float min(ref ReadOnlySpan<float> src)
+float min(ReadOnlySpan<float> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
@@ -11007,7 +7353,7 @@ float min(ref ReadOnlySpan<float> src)
     IL_0042: ret
 
 }
-double min(ref ReadOnlySpan<double> src)
+double min(ReadOnlySpan<double> src)
 {
     IL_0000: ldarga.s src
     IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
@@ -11045,7 +7391,7 @@ double min(ref ReadOnlySpan<double> src)
     IL_0046: ret
 
 }
-ref Span<sbyte> mod(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+Span<sbyte> mod(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11082,7 +7428,7 @@ ref Span<sbyte> mod(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0046: ret
 
 }
-ref Span<byte> mod(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> mod(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11119,48 +7465,480 @@ ref Span<byte> mod(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<int> add(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+void mod(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 175
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: add
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 37
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002D: ldind.i2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0036: ldind.i2
+    IL_0037: call System.Int16 Z0.math::mod(System.Int16,System.Int16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
 
 }
-ref Span<uint> add(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+void mod(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 183
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 44
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002D: ldind.u2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0036: ldind.u2
+    IL_0037: call System.UInt16 Z0.math::mod(System.UInt16,System.UInt16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 51
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002D: ldind.i4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0036: ldind.i4
+    IL_0037: call System.Int32 Z0.math::mod(System.Int32,System.Int32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 58
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_002D: ldind.u4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0036: ldind.u4
+    IL_0037: call System.UInt32 Z0.math::mod(System.UInt32,System.UInt32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 65
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.Int64 Z0.math::mod(System.Int64,System.Int64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 72
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.UInt64 Z0.math::mod(System.UInt64,System.UInt64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 79
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_002D: ldind.r4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0036: ldind.r4
+    IL_0037: call System.Single Z0.math::mod(System.Single,System.Single)
+    IL_003C: stind.r4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+void mod(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 86
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_002D: ldind.r8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0036: ldind.r8
+    IL_0037: call System.Double Z0.math::mod(System.Double,System.Double)
+    IL_003C: stind.r8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ret
+
+}
+Span<sbyte> mod(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 93
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002F: ldind.i1
+    IL_0030: rem
+    IL_0031: conv.i1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<byte> mod(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 101
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002F: ldind.u1
+    IL_0030: rem
+    IL_0031: conv.u1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<short> mod(Span<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 109
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002F: ldind.i2
+    IL_0030: rem
+    IL_0031: conv.i2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<ushort> mod(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 117
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002F: ldind.u2
+    IL_0030: rem
+    IL_0031: conv.u2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<int> mod(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4.s 125
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0036
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i4
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002F: ldind.i4
+    IL_0030: rem
+    IL_0031: stind.i4
+    IL_0032: ldloc.1
+    IL_0033: ldc.i4.1
+    IL_0034: add
+    IL_0035: stloc.1
+    IL_0036: ldloc.1
+    IL_0037: ldloc.0
+    IL_0038: blt.s IL_001D
+    IL_003A: ldarg.0
+    IL_003B: ret
+
+}
+Span<uint> mod(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4 133
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
@@ -11176,7 +7954,7 @@ ref Span<uint> add(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_002C: ldloc.1
     IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
     IL_0032: ldind.u4
-    IL_0033: add
+    IL_0033: rem.un
     IL_0034: stind.i4
     IL_0035: ldloc.1
     IL_0036: ldc.i4.1
@@ -11189,13 +7967,13 @@ ref Span<uint> add(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003E: ret
 
 }
-ref Span<long> add(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> mod(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 191
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4 141
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
@@ -11211,7 +7989,7 @@ ref Span<long> add(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_002C: ldloc.1
     IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
     IL_0032: ldind.i8
-    IL_0033: add
+    IL_0033: rem
     IL_0034: stind.i8
     IL_0035: ldloc.1
     IL_0036: ldc.i4.1
@@ -11224,13 +8002,13 @@ ref Span<long> add(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> add(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> mod(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 199
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4 149
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
@@ -11246,7 +8024,7 @@ ref Span<ulong> add(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_002C: ldloc.1
     IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
     IL_0032: ldind.i8
-    IL_0033: add
+    IL_0033: rem.un
     IL_0034: stind.i8
     IL_0035: ldloc.1
     IL_0036: ldc.i4.1
@@ -11259,13 +8037,13 @@ ref Span<ulong> add(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<float> add(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<float> mod(Span<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 207
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4 157
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
@@ -11281,7 +8059,7 @@ ref Span<float> add(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_002C: ldloc.1
     IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
     IL_0032: ldind.r4
-    IL_0033: add
+    IL_0033: rem
     IL_0034: stind.r4
     IL_0035: ldloc.1
     IL_0036: ldc.i4.1
@@ -11294,13 +8072,13 @@ ref Span<float> add(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_003E: ret
 
 }
-ref Span<double> add(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<double> mod(Span<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 215
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
+    IL_000C: ldc.i4 165
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
@@ -11316,7 +8094,7 @@ ref Span<double> add(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_002C: ldloc.1
     IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
     IL_0032: ldind.r8
-    IL_0033: add
+    IL_0033: rem
     IL_0034: stind.r8
     IL_0035: ldloc.1
     IL_0036: ldc.i4.1
@@ -11329,335 +8107,7 @@ ref Span<double> add(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_003E: ret
 
 }
-ref Span<sbyte> add(ref Span<sbyte> lhs, sbyte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<byte> add(ref Span<byte> lhs, byte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<short> add(ref Span<short> lhs, short rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<ushort> add(ref Span<ushort> lhs, ushort rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<int> add(ref Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<uint> add(ref Span<uint> lhs, uint rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<long> add(ref Span<long> lhs, long rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<ulong> add(ref Span<ulong> lhs, ulong rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<float> add(ref Span<float> lhs, float rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.r4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<double> add(ref Span<double> lhs, double rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.r8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-ref Span<sbyte> and(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::and(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<byte> and(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::and(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-ref Span<short> and(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> and(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11694,7 +8144,7 @@ ref Span<short> and(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0046: ret
 
 }
-ref Span<ushort> and(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> and(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11731,7 +8181,7 @@ ref Span<ushort> and(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs,
     IL_0046: ret
 
 }
-ref Span<int> and(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> and(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11768,7 +8218,7 @@ ref Span<int> and(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0046: ret
 
 }
-ref Span<uint> and(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> and(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11805,7 +8255,7 @@ ref Span<uint> and(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<long> and(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> and(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11842,7 +8292,7 @@ ref Span<long> and(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<ulong> and(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> and(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11879,7 +8329,7 @@ ref Span<ulong> and(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0046: ret
 
 }
-ref Span<sbyte> and(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> and(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11915,7 +8365,7 @@ ref Span<sbyte> and(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003C: ret
 
 }
-ref Span<byte> and(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> and(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11951,7 +8401,7 @@ ref Span<byte> and(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003C: ret
 
 }
-ref Span<short> and(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> and(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -11987,7 +8437,7 @@ ref Span<short> and(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003C: ret
 
 }
-ref Span<ushort> and(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> and(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12023,7 +8473,7 @@ ref Span<ushort> and(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003C: ret
 
 }
-ref Span<int> and(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> and(Span<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12058,7 +8508,7 @@ ref Span<int> and(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_003B: ret
 
 }
-ref Span<uint> and(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> and(Span<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12093,7 +8543,7 @@ ref Span<uint> and(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003B: ret
 
 }
-ref Span<long> and(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> and(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12128,7 +8578,7 @@ ref Span<long> and(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> and(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> and(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12163,7 +8613,7 @@ ref Span<ulong> and(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<sbyte> and(ref Span<sbyte> lhs, sbyte rhs)
+Span<sbyte> and(Span<sbyte> lhs, sbyte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12189,7 +8639,7 @@ ref Span<sbyte> and(ref Span<sbyte> lhs, sbyte rhs)
     IL_0021: ret
 
 }
-ref Span<byte> and(ref Span<byte> lhs, byte rhs)
+Span<byte> and(Span<byte> lhs, byte rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12215,7 +8665,7 @@ ref Span<byte> and(ref Span<byte> lhs, byte rhs)
     IL_0021: ret
 
 }
-ref Span<short> and(ref Span<short> lhs, short rhs)
+Span<short> and(Span<short> lhs, short rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12241,7 +8691,7 @@ ref Span<short> and(ref Span<short> lhs, short rhs)
     IL_0021: ret
 
 }
-ref Span<ushort> and(ref Span<ushort> lhs, ushort rhs)
+Span<ushort> and(Span<ushort> lhs, ushort rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12267,7 +8717,7 @@ ref Span<ushort> and(ref Span<ushort> lhs, ushort rhs)
     IL_0021: ret
 
 }
-ref Span<int> and(ref Span<int> lhs, int rhs)
+Span<int> and(Span<int> lhs, int rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12292,7 +8742,7 @@ ref Span<int> and(ref Span<int> lhs, int rhs)
     IL_0020: ret
 
 }
-ref Span<uint> and(ref Span<uint> lhs, uint rhs)
+Span<uint> and(Span<uint> lhs, uint rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12317,7 +8767,7 @@ ref Span<uint> and(ref Span<uint> lhs, uint rhs)
     IL_0020: ret
 
 }
-ref Span<long> and(ref Span<long> lhs, long rhs)
+Span<long> and(Span<long> lhs, long rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12342,7 +8792,7 @@ ref Span<long> and(ref Span<long> lhs, long rhs)
     IL_0020: ret
 
 }
-ref Span<ulong> and(ref Span<ulong> lhs, ulong rhs)
+Span<ulong> and(Span<ulong> lhs, ulong rhs)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12367,7 +8817,7 @@ ref Span<ulong> and(ref Span<ulong> lhs, ulong rhs)
     IL_0020: ret
 
 }
-ref Span<sbyte> dec(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
+Span<sbyte> dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12400,7 +8850,7 @@ ref Span<sbyte> dec(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
     IL_003D: ret
 
 }
-ref Span<byte> dec(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
+Span<byte> dec(ReadOnlySpan<byte> src, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12433,7 +8883,7 @@ ref Span<byte> dec(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
     IL_003D: ret
 
 }
-ref Span<short> dec(ref ReadOnlySpan<short> src, ref Span<short> dst)
+Span<short> dec(ReadOnlySpan<short> src, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12466,7 +8916,7 @@ ref Span<short> dec(ref ReadOnlySpan<short> src, ref Span<short> dst)
     IL_003D: ret
 
 }
-ref Span<ushort> dec(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
+Span<ushort> dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12499,7 +8949,7 @@ ref Span<ushort> dec(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
     IL_003D: ret
 
 }
-ref Span<int> dec(ref ReadOnlySpan<int> src, ref Span<int> dst)
+Span<int> dec(ReadOnlySpan<int> src, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12532,7 +8982,7 @@ ref Span<int> dec(ref ReadOnlySpan<int> src, ref Span<int> dst)
     IL_003D: ret
 
 }
-ref Span<uint> dec(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
+Span<uint> dec(ReadOnlySpan<uint> src, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12565,7 +9015,7 @@ ref Span<uint> dec(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
     IL_003D: ret
 
 }
-ref Span<long> dec(ref ReadOnlySpan<long> src, ref Span<long> dst)
+Span<long> dec(ReadOnlySpan<long> src, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12598,7 +9048,7 @@ ref Span<long> dec(ref ReadOnlySpan<long> src, ref Span<long> dst)
     IL_003D: ret
 
 }
-ref Span<ulong> dec(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
+Span<ulong> dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12631,7 +9081,7 @@ ref Span<ulong> dec(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
     IL_003D: ret
 
 }
-ref Span<float> dec(ref ReadOnlySpan<float> src, ref Span<float> dst)
+Span<float> dec(ReadOnlySpan<float> src, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12664,7 +9114,7 @@ ref Span<float> dec(ref ReadOnlySpan<float> src, ref Span<float> dst)
     IL_003D: ret
 
 }
-ref Span<double> dec(ref ReadOnlySpan<double> src, ref Span<double> dst)
+Span<double> dec(ReadOnlySpan<double> src, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12697,7 +9147,7 @@ ref Span<double> dec(ref ReadOnlySpan<double> src, ref Span<double> dst)
     IL_003D: ret
 
 }
-ref Span<sbyte> dec(ref Span<sbyte> io)
+Span<sbyte> dec(Span<sbyte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12719,7 +9169,7 @@ ref Span<sbyte> dec(ref Span<sbyte> io)
     IL_0021: ret
 
 }
-ref Span<byte> dec(ref Span<byte> io)
+Span<byte> dec(Span<byte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12741,7 +9191,7 @@ ref Span<byte> dec(ref Span<byte> io)
     IL_0021: ret
 
 }
-ref Span<short> dec(ref Span<short> io)
+Span<short> dec(Span<short> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12763,7 +9213,7 @@ ref Span<short> dec(ref Span<short> io)
     IL_0021: ret
 
 }
-ref Span<ushort> dec(ref Span<ushort> io)
+Span<ushort> dec(Span<ushort> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12785,7 +9235,7 @@ ref Span<ushort> dec(ref Span<ushort> io)
     IL_0021: ret
 
 }
-ref Span<int> dec(ref Span<int> io)
+Span<int> dec(Span<int> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12807,7 +9257,7 @@ ref Span<int> dec(ref Span<int> io)
     IL_0021: ret
 
 }
-ref Span<uint> dec(ref Span<uint> io)
+Span<uint> dec(Span<uint> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12829,7 +9279,7 @@ ref Span<uint> dec(ref Span<uint> io)
     IL_0021: ret
 
 }
-ref Span<long> dec(ref Span<long> io)
+Span<long> dec(Span<long> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12851,7 +9301,7 @@ ref Span<long> dec(ref Span<long> io)
     IL_0021: ret
 
 }
-ref Span<ulong> dec(ref Span<ulong> io)
+Span<ulong> dec(Span<ulong> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12873,7 +9323,7 @@ ref Span<ulong> dec(ref Span<ulong> io)
     IL_0021: ret
 
 }
-ref Span<float> dec(ref Span<float> io)
+Span<float> dec(Span<float> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12895,7 +9345,7 @@ ref Span<float> dec(ref Span<float> io)
     IL_0021: ret
 
 }
-ref Span<double> dec(ref Span<double> io)
+Span<double> dec(Span<double> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -12917,7 +9367,7 @@ ref Span<double> dec(ref Span<double> io)
     IL_0021: ret
 
 }
-ref Span<sbyte> div(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+Span<sbyte> div(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12954,7 +9404,7 @@ ref Span<sbyte> div(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0046: ret
 
 }
-ref Span<byte> div(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> div(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -12991,7 +9441,7 @@ ref Span<byte> div(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<short> div(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> div(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13028,7 +9478,7 @@ ref Span<short> div(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0046: ret
 
 }
-ref Span<ushort> div(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> div(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13065,7 +9515,7 @@ ref Span<ushort> div(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs,
     IL_0046: ret
 
 }
-ref Span<int> div(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> div(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13102,7 +9552,7 @@ ref Span<int> div(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0046: ret
 
 }
-ref Span<uint> div(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> div(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13139,7 +9589,7 @@ ref Span<uint> div(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<long> div(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> div(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13176,7 +9626,7 @@ ref Span<long> div(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<ulong> div(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> div(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13213,7 +9663,7 @@ ref Span<ulong> div(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0046: ret
 
 }
-ref Span<float> div(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<float> dst)
+Span<float> div(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13250,7 +9700,7 @@ ref Span<float> div(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, re
     IL_0046: ret
 
 }
-ref Span<double> div(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<double> dst)
+Span<double> div(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13287,7 +9737,7 @@ ref Span<double> div(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs,
     IL_0046: ret
 
 }
-ref Span<sbyte> div(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> div(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13323,7 +9773,7 @@ ref Span<sbyte> div(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003C: ret
 
 }
-ref Span<byte> div(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> div(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13359,7 +9809,7 @@ ref Span<byte> div(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003C: ret
 
 }
-ref Span<short> div(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> div(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13395,7 +9845,7 @@ ref Span<short> div(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003C: ret
 
 }
-ref Span<ushort> div(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> div(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13431,7 +9881,7 @@ ref Span<ushort> div(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003C: ret
 
 }
-ref Span<int> div(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> div(Span<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13466,7 +9916,7 @@ ref Span<int> div(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_003E: ret
 
 }
-ref Span<uint> div(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> div(Span<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13501,7 +9951,7 @@ ref Span<uint> div(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003E: ret
 
 }
-ref Span<long> div(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> div(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13536,7 +9986,7 @@ ref Span<long> div(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> div(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> div(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13571,7 +10021,7 @@ ref Span<ulong> div(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<float> div(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<float> div(Span<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13606,7 +10056,7 @@ ref Span<float> div(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_003E: ret
 
 }
-ref Span<double> div(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<double> div(Span<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -13641,7 +10091,7 @@ ref Span<double> div(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_003E: ret
 
 }
-sbyte dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+sbyte dot(in ReadOnlySpan<sbyte> lhs, in ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.SByte>
@@ -13683,7 +10133,7 @@ sbyte dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0048: ret
 
 }
-byte dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+byte dot(in ReadOnlySpan<byte> lhs, in ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Byte>
@@ -13725,7 +10175,7 @@ byte dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0048: ret
 
 }
-short dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+short dot(in ReadOnlySpan<short> lhs, in ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Int16>
@@ -13767,7 +10217,7 @@ short dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0048: ret
 
 }
-ushort dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+ushort dot(in ReadOnlySpan<ushort> lhs, in ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.UInt16>
@@ -13809,7 +10259,7 @@ ushort dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0048: ret
 
 }
-int dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+int dot(in ReadOnlySpan<int> lhs, in ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Int32>
@@ -13849,7 +10299,7 @@ int dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0046: ret
 
 }
-uint dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+uint dot(in ReadOnlySpan<uint> lhs, in ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.UInt32>
@@ -13889,7 +10339,7 @@ uint dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0046: ret
 
 }
-long dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+long dot(in ReadOnlySpan<long> lhs, in ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Int64>
@@ -13930,7 +10380,7 @@ long dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0047: ret
 
 }
-ulong dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+ulong dot(in ReadOnlySpan<ulong> lhs, in ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.UInt64>
@@ -13971,7 +10421,7 @@ ulong dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_0047: ret
 
 }
-float dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+float dot(in ReadOnlySpan<float> lhs, in ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Single>
@@ -14011,7 +10461,7 @@ float dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_004A: ret
 
 }
-double dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
+double dot(in ReadOnlySpan<double> lhs, in ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.ReadOnlySpan`1<System.Double>
@@ -14051,7 +10501,7 @@ double dot(ref ReadOnlySpan`1& lhs, ref ReadOnlySpan`1& rhs)
     IL_004E: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14081,7 +10531,7 @@ ref Span<bool> eq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14111,7 +10561,7 @@ ref Span<bool> eq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14141,7 +10591,7 @@ ref Span<bool> eq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14171,7 +10621,7 @@ ref Span<bool> eq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14201,7 +10651,7 @@ ref Span<bool> eq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14231,7 +10681,7 @@ ref Span<bool> eq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14261,7 +10711,7 @@ ref Span<bool> eq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Sp
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14291,7 +10741,7 @@ ref Span<bool> eq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14321,7 +10771,7 @@ ref Span<bool> eq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref 
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<bool> dst)
+Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14351,7 +10801,7 @@ ref Span<bool> eq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, re
     IL_0033: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14367,7 +10817,7 @@ ref Span<bool> eq(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14383,7 +10833,7 @@ ref Span<bool> eq(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14399,7 +10849,7 @@ ref Span<bool> eq(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14415,7 +10865,7 @@ ref Span<bool> eq(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14431,7 +10881,7 @@ ref Span<bool> eq(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14447,7 +10897,7 @@ ref Span<bool> eq(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14463,7 +10913,7 @@ ref Span<bool> eq(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0024: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14479,7 +10929,7 @@ ref Span<bool> eq(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14495,7 +10945,7 @@ ref Span<bool> eq(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<bool> eq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14511,7 +10961,7 @@ ref Span<bool> eq(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-ref Span<sbyte> flip(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
+Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14544,7 +10994,7 @@ ref Span<sbyte> flip(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
     IL_003D: ret
 
 }
-ref Span<byte> flip(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
+Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14577,7 +11027,7 @@ ref Span<byte> flip(ref ReadOnlySpan<byte> src, ref Span<byte> dst)
     IL_003D: ret
 
 }
-ref Span<short> flip(ref ReadOnlySpan<short> src, ref Span<short> dst)
+Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14610,7 +11060,7 @@ ref Span<short> flip(ref ReadOnlySpan<short> src, ref Span<short> dst)
     IL_003D: ret
 
 }
-ref Span<ushort> flip(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
+Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14643,7 +11093,7 @@ ref Span<ushort> flip(ref ReadOnlySpan<ushort> src, ref Span<ushort> dst)
     IL_003D: ret
 
 }
-ref Span<int> flip(ref ReadOnlySpan<int> src, ref Span<int> dst)
+Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14676,7 +11126,7 @@ ref Span<int> flip(ref ReadOnlySpan<int> src, ref Span<int> dst)
     IL_003D: ret
 
 }
-ref Span<uint> flip(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
+Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14709,7 +11159,7 @@ ref Span<uint> flip(ref ReadOnlySpan<uint> src, ref Span<uint> dst)
     IL_003D: ret
 
 }
-ref Span<long> flip(ref ReadOnlySpan<long> src, ref Span<long> dst)
+Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14742,7 +11192,7 @@ ref Span<long> flip(ref ReadOnlySpan<long> src, ref Span<long> dst)
     IL_003D: ret
 
 }
-ref Span<ulong> flip(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
+Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -14775,7 +11225,7 @@ ref Span<ulong> flip(ref ReadOnlySpan<ulong> src, ref Span<ulong> dst)
     IL_003D: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<sbyte> flip(ref Span<sbyte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14797,7 +11247,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<byte> flip(ref Span<byte> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14819,7 +11269,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<short> flip(ref Span<short> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14841,7 +11291,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<ushort> flip(ref Span<ushort> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14863,7 +11313,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<int> flip(ref Span<int> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14885,7 +11335,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<uint> flip(ref Span<uint> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14907,7 +11357,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<long> flip(ref Span<long> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14929,7 +11379,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span`1& flip(ref Span`1& io)
+ref Span<ulong> flip(ref Span<ulong> io)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -14951,7 +11401,7 @@ ref Span`1& flip(ref Span`1& io)
     IL_001F: ret
 
 }
-ref Span<sbyte> flip(ref ReadOnlySpan<sbyte> src)
+Span<sbyte> flip(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Span`1<System.SByte> Z0.xfunc::Replicate<System.SByte>(System.ReadOnlySpan`1<System.SByte>)
@@ -14962,7 +11412,7 @@ ref Span<sbyte> flip(ref ReadOnlySpan<sbyte> src)
     IL_0013: ret
 
 }
-ref Span<byte> flip(ref ReadOnlySpan<byte> src)
+Span<byte> flip(ReadOnlySpan<byte> src)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Span`1<System.Byte> Z0.xfunc::Replicate<System.Byte>(System.ReadOnlySpan`1<System.Byte>)
@@ -14973,7 +11423,405 @@ ref Span<byte> flip(ref ReadOnlySpan<byte> src)
     IL_0013: ret
 
 }
-ref Int32& sub(ref Int32& lhs, int rhs)
+Span<short> flip(ReadOnlySpan<short> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.Int16> Z0.xfunc::Replicate<System.Int16>(System.ReadOnlySpan`1<System.Int16>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.Int16>& Z0.math::flip(System.Span`1<System.Int16>&)
+    IL_000E: ldobj System.Span`1<System.Int16>
+    IL_0013: ret
+
+}
+Span<ushort> flip(ReadOnlySpan<ushort> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.UInt16> Z0.xfunc::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.UInt16>& Z0.math::flip(System.Span`1<System.UInt16>&)
+    IL_000E: ldobj System.Span`1<System.UInt16>
+    IL_0013: ret
+
+}
+Span<int> flip(ReadOnlySpan<int> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.Int32> Z0.xfunc::Replicate<System.Int32>(System.ReadOnlySpan`1<System.Int32>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.Int32>& Z0.math::flip(System.Span`1<System.Int32>&)
+    IL_000E: ldobj System.Span`1<System.Int32>
+    IL_0013: ret
+
+}
+Span<uint> flip(ReadOnlySpan<uint> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.UInt32> Z0.xfunc::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.UInt32>& Z0.math::flip(System.Span`1<System.UInt32>&)
+    IL_000E: ldobj System.Span`1<System.UInt32>
+    IL_0013: ret
+
+}
+Span<long> flip(ReadOnlySpan<long> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.Int64> Z0.xfunc::Replicate<System.Int64>(System.ReadOnlySpan`1<System.Int64>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.Int64>& Z0.math::flip(System.Span`1<System.Int64>&)
+    IL_000E: ldobj System.Span`1<System.Int64>
+    IL_0013: ret
+
+}
+Span<ulong> flip(ReadOnlySpan<ulong> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Span`1<System.UInt64> Z0.xfunc::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>)
+    IL_0006: stloc.0
+    IL_0007: ldloca.s V_0
+    IL_0009: call System.Span`1<System.UInt64>& Z0.math::flip(System.Span`1<System.UInt64>&)
+    IL_000E: ldobj System.Span`1<System.UInt64>
+    IL_0013: ret
+
+}
+Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::gt(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::gt(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::gt(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::gt(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gt(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::gt(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::gt(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
+    IL_000E: ldc.i4.s 104
+    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0024: ret
+
+}
+Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
+    IL_000E: ldc.i4.s 108
+    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0024: ret
+
+}
+ref int sub(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -14985,7 +11833,7 @@ ref Int32& sub(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& sub(ref UInt32& lhs, uint rhs)
+ref uint sub(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -14997,7 +11845,7 @@ ref UInt32& sub(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& sub(ref Int64& lhs, long rhs)
+ref long sub(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15009,7 +11857,7 @@ ref Int64& sub(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& sub(ref UInt64& lhs, ulong rhs)
+ref ulong sub(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15021,7 +11869,7 @@ ref UInt64& sub(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Single& sub(ref Single& lhs, float rhs)
+ref float sub(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15033,7 +11881,7 @@ ref Single& sub(ref Single& lhs, float rhs)
     IL_0007: ret
 
 }
-ref Double& sub(ref Double& lhs, double rhs)
+ref double sub(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15638,7 +12486,7 @@ ulong xor(ulong lhs, ulong rhs)
     IL_0003: ret
 
 }
-ref SByte& xor(ref SByte& lhs, sbyte rhs)
+ref sbyte xor(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15651,7 +12499,7 @@ ref SByte& xor(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& xor(ref Byte& lhs, byte rhs)
+ref byte xor(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15664,7 +12512,7 @@ ref Byte& xor(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& xor(ref Int16& lhs, short rhs)
+ref short xor(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15677,7 +12525,7 @@ ref Int16& xor(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& xor(ref UInt16& lhs, ushort rhs)
+ref ushort xor(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15690,7 +12538,7 @@ ref UInt16& xor(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& xor(ref Int32& lhs, int rhs)
+ref int xor(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15702,7 +12550,7 @@ ref Int32& xor(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& xor(ref UInt32& lhs, uint rhs)
+ref uint xor(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15714,7 +12562,7 @@ ref UInt32& xor(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& xor(ref Int64& lhs, long rhs)
+ref long xor(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15726,7 +12574,7 @@ ref Int64& xor(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& xor(ref UInt64& lhs, ulong rhs)
+ref ulong xor(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -15738,7 +12586,7 @@ ref UInt64& xor(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Span<sbyte> Mul(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+Span<sbyte> Mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15775,7 +12623,7 @@ ref Span<sbyte> Mul(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0046: ret
 
 }
-ref Span<byte> Mul(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> Mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15812,7 +12660,7 @@ ref Span<byte> Mul(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<short> Mul(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> Mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15849,7 +12697,7 @@ ref Span<short> Mul(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0046: ret
 
 }
-ref Span<ushort> Mul(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> Mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15886,7 +12734,7 @@ ref Span<ushort> Mul(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs,
     IL_0046: ret
 
 }
-ref Span<int> Mul(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> Mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15923,7 +12771,7 @@ ref Span<int> Mul(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0046: ret
 
 }
-ref Span<uint> Mul(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> Mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15960,7 +12808,7 @@ ref Span<uint> Mul(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<long> Mul(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> Mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -15997,7 +12845,7 @@ ref Span<long> Mul(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<ulong> Mul(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> Mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16034,7 +12882,7 @@ ref Span<ulong> Mul(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0046: ret
 
 }
-ref Span<float> Mul(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<float> dst)
+Span<float> Mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16071,7 +12919,7 @@ ref Span<float> Mul(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, re
     IL_0046: ret
 
 }
-ref Span<double> Mul(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<double> dst)
+Span<double> Mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16108,7 +12956,7 @@ ref Span<double> Mul(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs,
     IL_0046: ret
 
 }
-ref Span<sbyte> Mul(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> Mul(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16144,7 +12992,7 @@ ref Span<sbyte> Mul(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003C: ret
 
 }
-ref Span<byte> Mul(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> Mul(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16180,7 +13028,7 @@ ref Span<byte> Mul(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003C: ret
 
 }
-ref Span<short> Mul(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> Mul(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16216,7 +13064,7 @@ ref Span<short> Mul(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003C: ret
 
 }
-ref Span<ushort> Mul(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> Mul(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16252,7 +13100,7 @@ ref Span<ushort> Mul(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003C: ret
 
 }
-ref Span<int> Mul(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> Mul(Span<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16287,7 +13135,7 @@ ref Span<int> Mul(ref Span<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_003E: ret
 
 }
-ref Span<uint> Mul(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> Mul(Span<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16322,7 +13170,7 @@ ref Span<uint> Mul(ref Span<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_003E: ret
 
 }
-ref Span<long> Mul(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> Mul(Span<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16357,7 +13205,7 @@ ref Span<long> Mul(ref Span<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_003E: ret
 
 }
-ref Span<ulong> Mul(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> Mul(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16392,7 +13240,7 @@ ref Span<ulong> Mul(ref Span<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_003E: ret
 
 }
-ref Span<float> Mul(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<float> Mul(Span<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16427,7 +13275,7 @@ ref Span<float> Mul(ref Span<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_003E: ret
 
 }
-ref Span<double> Mul(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<double> Mul(Span<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16462,391 +13310,7 @@ ref Span<double> Mul(ref Span<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_003E: ret
 
 }
-ref Span<sbyte> abs(ref ReadOnlySpan<sbyte> src, ref Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 20
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: call System.SByte& Z0.math::abs(System.SByte&,System.SByte&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<short> abs(ref ReadOnlySpan<short> src, ref Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 28
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: call System.Int16& Z0.math::abs(System.Int16&,System.Int16&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<int> abs(ref ReadOnlySpan<int> src, ref Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 36
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: call System.Int32& Z0.math::abs(System.Int32&,System.Int32&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<long> abs(ref ReadOnlySpan<long> src, ref Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 44
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: call System.Int64& Z0.math::abs(System.Int64&,System.Int64&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<float> abs(ref ReadOnlySpan<float> src, ref Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 52
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_002D: call System.Single& Z0.math::abs(System.Single&,System.Single&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<double> abs(ref ReadOnlySpan<double> src, ref Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "abs"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Abs.cs"
-    IL_000C: ldc.i4.s 60
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s dst
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_002D: call System.Double& Z0.math::abs(System.Double&,System.Double&)
-    IL_0032: pop
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.1
-    IL_003C: ret
-
-}
-ref Span<sbyte> abs(ref Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::abs(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<short> abs(ref Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::abs(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<int> abs(ref Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::abs(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<long> abs(ref Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::abs(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<float> abs(ref Span<float> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: call System.Single& Z0.math::abs(System.Single&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<double> abs(ref Span<double> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: call System.Double& Z0.math::abs(System.Double&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-ref Span<sbyte> abs(ref ReadOnlySpan<sbyte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0008: call System.Span`1<System.SByte> zfunc::span<System.SByte>(System.Int32)
-    IL_000D: call System.Span`1<System.SByte> Z0.math::abs(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>)
-    IL_0012: ret
-
-}
-ref Span<short> abs(ref ReadOnlySpan<short> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0008: call System.Span`1<System.Int16> zfunc::span<System.Int16>(System.Int32)
-    IL_000D: call System.Span`1<System.Int16> Z0.math::abs(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>)
-    IL_0012: ret
-
-}
-ref Span<int> abs(ref ReadOnlySpan<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0008: call System.Span`1<System.Int32> zfunc::span<System.Int32>(System.Int32)
-    IL_000D: call System.Span`1<System.Int32> Z0.math::abs(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>)
-    IL_0012: ret
-
-}
-ref Span<long> abs(ref ReadOnlySpan<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0008: call System.Span`1<System.Int64> zfunc::span<System.Int64>(System.Int32)
-    IL_000D: call System.Span`1<System.Int64> Z0.math::abs(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>)
-    IL_0012: ret
-
-}
-ref Span<float> abs(ref ReadOnlySpan<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0008: call System.Span`1<System.Single> zfunc::span<System.Single>(System.Int32)
-    IL_000D: call System.Span`1<System.Single> Z0.math::abs(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>)
-    IL_0012: ret
-
-}
-ref Span<double> abs(ref ReadOnlySpan<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarga.s src
-    IL_0003: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0008: call System.Span`1<System.Double> zfunc::span<System.Double>(System.Int32)
-    IL_000D: call System.Span`1<System.Double> Z0.math::abs(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>)
-    IL_0012: ret
-
-}
-ref Span<sbyte> add(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
+Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16883,7 +13347,7 @@ ref Span<sbyte> add(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs, re
     IL_0046: ret
 
 }
-ref Span<byte> add(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref Span<byte> dst)
+Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16921,7 +13385,7 @@ ref Span<byte> add(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs, ref S
     IL_0043: ret
 
 }
-ref Span<short> add(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, ref Span<short> dst)
+Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16958,7 +13422,7 @@ ref Span<short> add(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs, re
     IL_0046: ret
 
 }
-ref Span<ushort> add(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
+Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -16995,7 +13459,7 @@ ref Span<ushort> add(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs,
     IL_0046: ret
 
 }
-ref Span<int> add(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span<int> dst)
+Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17032,7 +13496,7 @@ ref Span<int> add(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs, ref Span
     IL_0046: ret
 
 }
-ref Span<uint> add(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref Span<uint> dst)
+Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17069,7 +13533,7 @@ ref Span<uint> add(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<long> add(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref Span<long> dst)
+Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17106,7 +13570,7 @@ ref Span<long> add(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs, ref S
     IL_0046: ret
 
 }
-ref Span<ulong> add(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
+Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17143,7 +13607,7 @@ ref Span<ulong> add(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs, re
     IL_0046: ret
 
 }
-ref Span<float> add(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, ref Span<float> dst)
+Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17180,7 +13644,7 @@ ref Span<float> add(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs, re
     IL_0046: ret
 
 }
-ref Span<double> add(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs, ref Span<double> dst)
+Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17217,7 +13681,7 @@ ref Span<double> add(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs,
     IL_0046: ret
 
 }
-ref Span<sbyte> add(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17233,7 +13697,7 @@ ref Span<sbyte> add(ref ReadOnlySpan<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_0024: ret
 
 }
-ref Span<byte> add(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17249,7 +13713,7 @@ ref Span<byte> add(ref ReadOnlySpan<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_0024: ret
 
 }
-ref Span<short> add(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17265,7 +13729,7 @@ ref Span<short> add(ref ReadOnlySpan<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_0024: ret
 
 }
-ref Span<ushort> add(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17281,7 +13745,7 @@ ref Span<ushort> add(ref ReadOnlySpan<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_0024: ret
 
 }
-ref Span<int> add(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
+Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17297,7 +13761,7 @@ ref Span<int> add(ref ReadOnlySpan<int> lhs, ref ReadOnlySpan<int> rhs)
     IL_0024: ret
 
 }
-ref Span<uint> add(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
+Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17313,7 +13777,7 @@ ref Span<uint> add(ref ReadOnlySpan<uint> lhs, ref ReadOnlySpan<uint> rhs)
     IL_0024: ret
 
 }
-ref Span<long> add(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
+Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17329,7 +13793,7 @@ ref Span<long> add(ref ReadOnlySpan<long> lhs, ref ReadOnlySpan<long> rhs)
     IL_0024: ret
 
 }
-ref Span<ulong> add(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
+Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17345,7 +13809,7 @@ ref Span<ulong> add(ref ReadOnlySpan<ulong> lhs, ref ReadOnlySpan<ulong> rhs)
     IL_0027: ret
 
 }
-ref Span<float> add(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
+Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17361,7 +13825,7 @@ ref Span<float> add(ref ReadOnlySpan<float> lhs, ref ReadOnlySpan<float> rhs)
     IL_0027: ret
 
 }
-ref Span<double> add(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
+Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17377,7 +13841,7 @@ ref Span<double> add(ref ReadOnlySpan<double> lhs, ref ReadOnlySpan<double> rhs)
     IL_0027: ret
 
 }
-ref Span<sbyte> add(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
+Span<sbyte> add(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17413,7 +13877,7 @@ ref Span<sbyte> add(ref Span<sbyte> lhs, ref ReadOnlySpan<sbyte> rhs)
     IL_003F: ret
 
 }
-ref Span<byte> add(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
+Span<byte> add(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17449,7 +13913,7 @@ ref Span<byte> add(ref Span<byte> lhs, ref ReadOnlySpan<byte> rhs)
     IL_003F: ret
 
 }
-ref Span<short> add(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
+Span<short> add(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17485,7 +13949,7 @@ ref Span<short> add(ref Span<short> lhs, ref ReadOnlySpan<short> rhs)
     IL_003F: ret
 
 }
-ref Span<ushort> add(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
+Span<ushort> add(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -17521,7 +13985,545 @@ ref Span<ushort> add(ref Span<ushort> lhs, ref ReadOnlySpan<ushort> rhs)
     IL_003F: ret
 
 }
-ref Quorem<long> quorem(ref Int64& lhs, ref Int64& rhs)
+Span<int> add(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 175
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: add
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> add(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 183
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: add
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> add(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 191
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: add
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> add(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 199
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: add
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> add(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 207
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: add
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> add(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
+    IL_000C: ldc.i4 215
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: add
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<sbyte> add(Span<sbyte> lhs, sbyte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i1
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.i1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<byte> add(Span<byte> lhs, byte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u1
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.u1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<short> add(Span<short> lhs, short rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i2
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.i2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<ushort> add(Span<ushort> lhs, ushort rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u2
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.u2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<int> add(Span<int> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<uint> add(Span<uint> lhs, uint rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<long> add(Span<long> lhs, long rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<ulong> add(Span<ulong> lhs, ulong rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<float> add(Span<float> lhs, float rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.r4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<double> add(Span<double> lhs, double rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.r8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<sbyte> and(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "and"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
+    IL_000C: ldc.i4.s 21
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002D: ldind.i1
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0036: ldind.i1
+    IL_0037: call System.SByte Z0.math::and(System.SByte,System.SByte)
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<byte> and(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "and"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
+    IL_000C: ldc.i4.s 29
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002D: ldind.u1
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0036: ldind.u1
+    IL_0037: call System.Byte Z0.math::and(System.Byte,System.Byte)
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Quorem<long> quorem(in long lhs, in long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i8
@@ -17535,7 +14537,7 @@ ref Quorem<long> quorem(ref Int64& lhs, ref Int64& rhs)
     IL_0016: ret
 
 }
-ref Quorem<ulong> quorem(ref UInt64& lhs, ref UInt64& rhs)
+Quorem<ulong> quorem(in ulong lhs, in ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i8
@@ -17557,7 +14559,7 @@ ref Quorem<ulong> quorem(ref UInt64& lhs, ref UInt64& rhs)
     IL_001B: ret
 
 }
-ref Quorem<float> quorem(ref Single& lhs, ref Single& rhs)
+Quorem<float> quorem(in float lhs, in float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.r4
@@ -17580,7 +14582,7 @@ ref Quorem<float> quorem(ref Single& lhs, ref Single& rhs)
     IL_0020: ret
 
 }
-ref Quorem<double> quorem(ref Double& lhs, ref Double& rhs)
+Quorem<double> quorem(in double lhs, in double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.r8
@@ -17603,7 +14605,7 @@ ref Quorem<double> quorem(ref Double& lhs, ref Double& rhs)
     IL_0020: ret
 
 }
-ref Quorem<Decimal> quorem(ref Decimal& lhs, ref Decimal& rhs)
+Quorem<Decimal> quorem(in Decimal lhs, in Decimal rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj System.Decimal
@@ -17625,7 +14627,7 @@ ref Quorem<Decimal> quorem(ref Decimal& lhs, ref Decimal& rhs)
     IL_0033: ret
 
 }
-ref Quorem<BigInteger> quorem(ref BigInteger& lhs, ref BigInteger& rhs)
+Quorem<BigInteger> quorem(in BigInteger lhs, in BigInteger rhs)
 {
     IL_0000: call System.Numerics.BigInteger System.Numerics.BigInteger::get_Zero()
     IL_0005: stloc.0
@@ -17642,7 +14644,7 @@ ref Quorem<BigInteger> quorem(ref BigInteger& lhs, ref BigInteger& rhs)
     IL_0023: ret
 
 }
-ref Quorem`1& quorem(ref SByte& lhs, ref SByte& rhs, ref Quorem`1& dst)
+ref Quorem<sbyte> quorem(in sbyte lhs, in sbyte rhs, out Quorem<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldloca.s V_0
@@ -17673,7 +14675,7 @@ ref Quorem`1& quorem(ref SByte& lhs, ref SByte& rhs, ref Quorem`1& dst)
     IL_002E: ret
 
 }
-ref Quorem`1& quorem(ref Byte& lhs, ref Byte& rhs, ref Quorem`1& dst)
+ref Quorem<byte> quorem(in byte lhs, in byte rhs, out Quorem<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u1
@@ -17700,7 +14702,7 @@ ref Quorem`1& quorem(ref Byte& lhs, ref Byte& rhs, ref Quorem`1& dst)
     IL_0020: ret
 
 }
-ref Quorem`1& quorem(ref Int16& lhs, ref Int16& rhs, ref Quorem`1& dst)
+ref Quorem<short> quorem(in short lhs, in short rhs, out Quorem<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldloca.s V_0
@@ -17731,7 +14733,7 @@ ref Quorem`1& quorem(ref Int16& lhs, ref Int16& rhs, ref Quorem`1& dst)
     IL_002E: ret
 
 }
-ref Quorem`1& quorem(ref UInt16& lhs, ref UInt16& rhs, ref Quorem`1& dst)
+ref Quorem<ushort> quorem(in ushort lhs, in ushort rhs, out Quorem<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u2
@@ -17758,7 +14760,7 @@ ref Quorem`1& quorem(ref UInt16& lhs, ref UInt16& rhs, ref Quorem`1& dst)
     IL_0020: ret
 
 }
-ref Quorem`1& quorem(ref Int32& lhs, ref Int32& rhs, ref Quorem`1& dst)
+ref Quorem<int> quorem(in int lhs, in int rhs, out Quorem<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldloca.s V_0
@@ -17787,7 +14789,7 @@ ref Quorem`1& quorem(ref Int32& lhs, ref Int32& rhs, ref Quorem`1& dst)
     IL_002C: ret
 
 }
-ref Quorem`1& quorem(ref UInt32& lhs, ref UInt32& rhs, ref Quorem`1& dst)
+ref Quorem<uint> quorem(in uint lhs, in uint rhs, out Quorem<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u4
@@ -17812,7 +14814,7 @@ ref Quorem`1& quorem(ref UInt32& lhs, ref UInt32& rhs, ref Quorem`1& dst)
     IL_001E: ret
 
 }
-ref Quorem`1& quorem(ref Int64& lhs, ref Int64& rhs, ref Quorem`1& dst)
+ref Quorem<long> quorem(in long lhs, in long rhs, out Quorem<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldloca.s V_0
@@ -17841,7 +14843,7 @@ ref Quorem`1& quorem(ref Int64& lhs, ref Int64& rhs, ref Quorem`1& dst)
     IL_002C: ret
 
 }
-ref Quorem`1& quorem(ref UInt64& lhs, ref UInt64& rhs, ref Quorem`1& dst)
+ref Quorem<ulong> quorem(in ulong lhs, in ulong rhs, out Quorem<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i8
@@ -17950,7 +14952,7 @@ double round(double src, int scale)
     IL_0007: ret
 
 }
-ref Single& round(ref Single& src, int scale)
+ref float round(ref float src, int scale)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -17962,7 +14964,7 @@ ref Single& round(ref Single& src, int scale)
     IL_000B: ret
 
 }
-ref Double& round(ref Double& src, int scale)
+ref double round(ref double src, int scale)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18058,7 +15060,7 @@ ulong shiftl(ulong lhs, int rhs)
     IL_0006: ret
 
 }
-ref SByte& shiftl(ref SByte& lhs, int rhs)
+ref sbyte shiftl(ref sbyte lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18073,7 +15075,7 @@ ref SByte& shiftl(ref SByte& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Byte& shiftl(ref Byte& lhs, int rhs)
+ref byte shiftl(ref byte lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18088,7 +15090,7 @@ ref Byte& shiftl(ref Byte& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Int16& shiftl(ref Int16& lhs, int rhs)
+ref short shiftl(ref short lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18103,7 +15105,7 @@ ref Int16& shiftl(ref Int16& lhs, int rhs)
     IL_000B: ret
 
 }
-ref UInt16& shiftl(ref UInt16& lhs, int rhs)
+ref ushort shiftl(ref ushort lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18118,7 +15120,7 @@ ref UInt16& shiftl(ref UInt16& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Int32& shiftl(ref Int32& lhs, int rhs)
+ref int shiftl(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18132,7 +15134,7 @@ ref Int32& shiftl(ref Int32& lhs, int rhs)
     IL_000A: ret
 
 }
-ref UInt32& shiftl(ref UInt32& lhs, int rhs)
+ref uint shiftl(ref uint lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18146,7 +15148,7 @@ ref UInt32& shiftl(ref UInt32& lhs, int rhs)
     IL_000A: ret
 
 }
-ref Int64& shiftl(ref Int64& lhs, int rhs)
+ref long shiftl(ref long lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18160,7 +15162,7 @@ ref Int64& shiftl(ref Int64& lhs, int rhs)
     IL_000A: ret
 
 }
-ref UInt64& shiftl(ref UInt64& lhs, int rhs)
+ref ulong shiftl(ref ulong lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18258,7 +15260,7 @@ ulong shiftr(ulong lhs, int rhs)
     IL_0006: ret
 
 }
-ref SByte& shiftr(ref SByte& lhs, int rhs)
+ref sbyte shiftr(ref sbyte lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18273,7 +15275,7 @@ ref SByte& shiftr(ref SByte& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Byte& shiftr(ref Byte& lhs, int rhs)
+ref byte shiftr(ref byte lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18288,7 +15290,7 @@ ref Byte& shiftr(ref Byte& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Int16& shiftr(ref Int16& lhs, int rhs)
+ref short shiftr(ref short lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18303,7 +15305,7 @@ ref Int16& shiftr(ref Int16& lhs, int rhs)
     IL_000B: ret
 
 }
-ref UInt16& shiftr(ref UInt16& lhs, int rhs)
+ref ushort shiftr(ref ushort lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18318,7 +15320,7 @@ ref UInt16& shiftr(ref UInt16& lhs, int rhs)
     IL_000B: ret
 
 }
-ref Int32& shiftr(ref Int32& lhs, int rhs)
+ref int shiftr(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18332,7 +15334,7 @@ ref Int32& shiftr(ref Int32& lhs, int rhs)
     IL_000A: ret
 
 }
-ref UInt32& shiftr(ref UInt32& lhs, int rhs)
+ref uint shiftr(ref uint lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18346,7 +15348,7 @@ ref UInt32& shiftr(ref UInt32& lhs, int rhs)
     IL_000A: ret
 
 }
-ref Int64& shiftr(ref Int64& lhs, int rhs)
+ref long shiftr(ref long lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18360,7 +15362,7 @@ ref Int64& shiftr(ref Int64& lhs, int rhs)
     IL_000A: ret
 
 }
-ref UInt64& shiftr(ref UInt64& lhs, int rhs)
+ref ulong shiftr(ref ulong lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18462,7 +15464,7 @@ double sqrt(double src)
     IL_0006: ret
 
 }
-ref SByte& sqrt(ref SByte& src)
+ref sbyte sqrt(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18475,7 +15477,7 @@ ref SByte& sqrt(ref SByte& src)
     IL_000C: ret
 
 }
-ref Byte& sqrt(ref Byte& src)
+ref byte sqrt(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18488,7 +15490,7 @@ ref Byte& sqrt(ref Byte& src)
     IL_000C: ret
 
 }
-ref Int16& sqrt(ref Int16& src)
+ref short sqrt(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18501,7 +15503,7 @@ ref Int16& sqrt(ref Int16& src)
     IL_000C: ret
 
 }
-ref UInt16& sqrt(ref UInt16& src)
+ref ushort sqrt(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18514,7 +15516,7 @@ ref UInt16& sqrt(ref UInt16& src)
     IL_000C: ret
 
 }
-ref Int32& sqrt(ref Int32& src)
+ref int sqrt(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18527,7 +15529,7 @@ ref Int32& sqrt(ref Int32& src)
     IL_000C: ret
 
 }
-ref UInt32& sqrt(ref UInt32& src)
+ref uint sqrt(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18541,7 +15543,7 @@ ref UInt32& sqrt(ref UInt32& src)
     IL_000D: ret
 
 }
-ref Int64& sqrt(ref Int64& src)
+ref long sqrt(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18554,7 +15556,7 @@ ref Int64& sqrt(ref Int64& src)
     IL_000C: ret
 
 }
-ref UInt64& sqrt(ref UInt64& src)
+ref ulong sqrt(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18568,7 +15570,7 @@ ref UInt64& sqrt(ref UInt64& src)
     IL_000D: ret
 
 }
-ref Single& sqrt(ref Single& src)
+ref float sqrt(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18579,7 +15581,7 @@ ref Single& sqrt(ref Single& src)
     IL_000A: ret
 
 }
-ref Double& sqrt(ref Double& src)
+ref double sqrt(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18590,7 +15592,7 @@ ref Double& sqrt(ref Double& src)
     IL_000A: ret
 
 }
-ref SByte& sqrt(sbyte src, ref SByte& dst)
+ref sbyte sqrt(sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18601,7 +15603,7 @@ ref SByte& sqrt(sbyte src, ref SByte& dst)
     IL_000B: ret
 
 }
-ref Byte& sqrt(byte src, ref Byte& dst)
+ref byte sqrt(byte src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18612,7 +15614,7 @@ ref Byte& sqrt(byte src, ref Byte& dst)
     IL_000B: ret
 
 }
-ref Int16& sqrt(short src, ref Int16& dst)
+ref short sqrt(short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18623,7 +15625,7 @@ ref Int16& sqrt(short src, ref Int16& dst)
     IL_000B: ret
 
 }
-ref UInt16& sqrt(ushort src, ref UInt16& dst)
+ref ushort sqrt(ushort src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18634,7 +15636,7 @@ ref UInt16& sqrt(ushort src, ref UInt16& dst)
     IL_000B: ret
 
 }
-ref Int32& sqrt(int src, ref Int32& dst)
+ref int sqrt(int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18645,7 +15647,7 @@ ref Int32& sqrt(int src, ref Int32& dst)
     IL_000B: ret
 
 }
-ref UInt32& sqrt(uint src, ref UInt32& dst)
+ref uint sqrt(uint src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18656,7 +15658,7 @@ ref UInt32& sqrt(uint src, ref UInt32& dst)
     IL_000B: ret
 
 }
-ref Int64& sqrt(long src, ref Int64& dst)
+ref long sqrt(long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18667,7 +15669,7 @@ ref Int64& sqrt(long src, ref Int64& dst)
     IL_000B: ret
 
 }
-ref UInt64& sqrt(ulong src, ref UInt64& dst)
+ref ulong sqrt(ulong src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18678,7 +15680,7 @@ ref UInt64& sqrt(ulong src, ref UInt64& dst)
     IL_000B: ret
 
 }
-ref Single& sqrt(float src, ref Single& dst)
+ref float sqrt(float src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18689,7 +15691,7 @@ ref Single& sqrt(float src, ref Single& dst)
     IL_000B: ret
 
 }
-ref Double& sqrt(double src, ref Double& dst)
+ref double sqrt(double src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18781,7 +15783,7 @@ double square(double src)
     IL_0007: ret
 
 }
-ref SByte& square(ref SByte& src)
+ref sbyte square(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18795,7 +15797,7 @@ ref SByte& square(ref SByte& src)
     IL_0009: ret
 
 }
-ref Byte& square(ref Byte& src)
+ref byte square(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18809,7 +15811,7 @@ ref Byte& square(ref Byte& src)
     IL_0009: ret
 
 }
-ref Int16& square(ref Int16& src)
+ref short square(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18823,7 +15825,7 @@ ref Int16& square(ref Int16& src)
     IL_0009: ret
 
 }
-ref UInt16& square(ref UInt16& src)
+ref ushort square(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18837,7 +15839,7 @@ ref UInt16& square(ref UInt16& src)
     IL_0009: ret
 
 }
-ref Int32& square(ref Int32& src)
+ref int square(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18850,7 +15852,7 @@ ref Int32& square(ref Int32& src)
     IL_0008: ret
 
 }
-ref UInt32& square(ref UInt32& src)
+ref uint square(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18863,7 +15865,7 @@ ref UInt32& square(ref UInt32& src)
     IL_0008: ret
 
 }
-ref Int64& square(ref Int64& src)
+ref long square(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18876,7 +15878,7 @@ ref Int64& square(ref Int64& src)
     IL_0008: ret
 
 }
-ref UInt64& square(ref UInt64& src)
+ref ulong square(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18889,7 +15891,7 @@ ref UInt64& square(ref UInt64& src)
     IL_0008: ret
 
 }
-ref Single& square(ref Single& src)
+ref float square(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18902,7 +15904,7 @@ ref Single& square(ref Single& src)
     IL_0008: ret
 
 }
-ref Double& square(ref Double& src)
+ref double square(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -18915,7 +15917,7 @@ ref Double& square(ref Double& src)
     IL_0008: ret
 
 }
-ref SByte& square(sbyte src, ref SByte& dst)
+ref sbyte square(sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18926,7 +15928,7 @@ ref SByte& square(sbyte src, ref SByte& dst)
     IL_000B: ret
 
 }
-ref Byte& square(byte src, ref Byte& dst)
+ref byte square(byte src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18937,7 +15939,7 @@ ref Byte& square(byte src, ref Byte& dst)
     IL_000B: ret
 
 }
-ref Int16& square(short src, ref Int16& dst)
+ref short square(short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18948,7 +15950,7 @@ ref Int16& square(short src, ref Int16& dst)
     IL_000B: ret
 
 }
-ref UInt16& square(ushort src, ref UInt16& dst)
+ref ushort square(ushort src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18959,7 +15961,7 @@ ref UInt16& square(ushort src, ref UInt16& dst)
     IL_000B: ret
 
 }
-ref Int32& square(int src, ref Int32& dst)
+ref int square(int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18970,7 +15972,7 @@ ref Int32& square(int src, ref Int32& dst)
     IL_000B: ret
 
 }
-ref UInt32& square(uint src, ref UInt32& dst)
+ref uint square(uint src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18981,7 +15983,7 @@ ref UInt32& square(uint src, ref UInt32& dst)
     IL_000B: ret
 
 }
-ref Int64& square(long src, ref Int64& dst)
+ref long square(long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -18992,7 +15994,7 @@ ref Int64& square(long src, ref Int64& dst)
     IL_000B: ret
 
 }
-ref UInt64& square(ulong src, ref UInt64& dst)
+ref ulong square(ulong src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -19003,7 +16005,7 @@ ref UInt64& square(ulong src, ref UInt64& dst)
     IL_000B: ret
 
 }
-ref Single& square(float src, ref Single& dst)
+ref float square(float src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -19014,7 +16016,7 @@ ref Single& square(float src, ref Single& dst)
     IL_000B: ret
 
 }
-ref Double& square(double src, ref Double& dst)
+ref double square(double src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarga.s src
@@ -19109,7 +16111,7 @@ double sub(double lhs, double rhs)
     IL_0003: ret
 
 }
-ref SByte& sub(ref SByte& lhs, sbyte rhs)
+ref sbyte sub(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19122,7 +16124,7 @@ ref SByte& sub(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& sub(ref Byte& lhs, byte rhs)
+ref byte sub(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19135,7 +16137,7 @@ ref Byte& sub(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& sub(ref Int16& lhs, short rhs)
+ref short sub(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19148,7 +16150,7 @@ ref Int16& sub(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& sub(ref UInt16& lhs, ushort rhs)
+ref ushort sub(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19161,7 +16163,7 @@ ref UInt16& sub(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Single& mod(ref Single& lhs, float rhs)
+ref float mod(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19173,7 +16175,7 @@ ref Single& mod(ref Single& lhs, float rhs)
     IL_0007: ret
 
 }
-ref Double& mod(ref Double& lhs, double rhs)
+ref double mod(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19269,7 +16271,7 @@ double mul(double lhs, double rhs)
     IL_0003: ret
 
 }
-ref SByte& mul(ref SByte& lhs, sbyte rhs)
+ref sbyte mul(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19282,7 +16284,7 @@ ref SByte& mul(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& mul(ref Byte& lhs, byte rhs)
+ref byte mul(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19295,7 +16297,7 @@ ref Byte& mul(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& mul(ref Int16& lhs, short rhs)
+ref short mul(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19308,7 +16310,7 @@ ref Int16& mul(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& mul(ref UInt16& lhs, ushort rhs)
+ref ushort mul(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19321,7 +16323,7 @@ ref UInt16& mul(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& mul(ref Int32& lhs, int rhs)
+ref int mul(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19333,7 +16335,7 @@ ref Int32& mul(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& mul(ref UInt32& lhs, uint rhs)
+ref uint mul(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19345,7 +16347,7 @@ ref UInt32& mul(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& mul(ref Int64& lhs, long rhs)
+ref long mul(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19357,7 +16359,7 @@ ref Int64& mul(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& mul(ref UInt64& lhs, ulong rhs)
+ref ulong mul(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19369,7 +16371,7 @@ ref UInt64& mul(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Single& mul(ref Single& lhs, float rhs)
+ref float mul(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19381,7 +16383,7 @@ ref Single& mul(ref Single& lhs, float rhs)
     IL_0007: ret
 
 }
-ref Double& mul(ref Double& lhs, double rhs)
+ref double mul(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19476,7 +16478,7 @@ double negate(double src)
     IL_0002: ret
 
 }
-ref SByte& negate(ref SByte& src)
+ref sbyte negate(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19488,7 +16490,7 @@ ref SByte& negate(ref SByte& src)
     IL_0007: ret
 
 }
-ref Byte& negate(ref Byte& src)
+ref byte negate(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19499,7 +16501,7 @@ ref Byte& negate(ref Byte& src)
     IL_000A: ret
 
 }
-ref Int16& negate(ref Int16& src)
+ref short negate(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19511,7 +16513,7 @@ ref Int16& negate(ref Int16& src)
     IL_0007: ret
 
 }
-ref UInt16& negate(ref UInt16& src)
+ref ushort negate(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19522,7 +16524,7 @@ ref UInt16& negate(ref UInt16& src)
     IL_000A: ret
 
 }
-ref Int32& negate(ref Int32& src)
+ref int negate(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19533,7 +16535,7 @@ ref Int32& negate(ref Int32& src)
     IL_0006: ret
 
 }
-ref UInt32& negate(ref UInt32& src)
+ref uint negate(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19544,7 +16546,7 @@ ref UInt32& negate(ref UInt32& src)
     IL_000A: ret
 
 }
-ref Int64& negate(ref Int64& src)
+ref long negate(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19555,7 +16557,7 @@ ref Int64& negate(ref Int64& src)
     IL_0006: ret
 
 }
-ref UInt64& negate(ref UInt64& src)
+ref ulong negate(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19566,7 +16568,7 @@ ref UInt64& negate(ref UInt64& src)
     IL_000A: ret
 
 }
-ref Single& negate(ref Single& src)
+ref float negate(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19577,7 +16579,7 @@ ref Single& negate(ref Single& src)
     IL_0006: ret
 
 }
-ref Double& negate(ref Double& src)
+ref double negate(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19835,7 +16837,7 @@ bool nonzero(double src)
     IL_000F: ret
 
 }
-ref SByte& or(ref SByte& lhs, sbyte rhs)
+ref sbyte or(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19848,7 +16850,7 @@ ref SByte& or(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& or(ref Byte& lhs, byte rhs)
+ref byte or(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19861,7 +16863,7 @@ ref Byte& or(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& or(ref Int16& lhs, short rhs)
+ref short or(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19874,7 +16876,7 @@ ref Int16& or(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& or(ref UInt16& lhs, ushort rhs)
+ref ushort or(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19887,7 +16889,7 @@ ref UInt16& or(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& or(ref Int32& lhs, int rhs)
+ref int or(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19899,7 +16901,7 @@ ref Int32& or(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& or(ref UInt32& lhs, uint rhs)
+ref uint or(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19911,7 +16913,7 @@ ref UInt32& or(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& or(ref Int64& lhs, long rhs)
+ref long or(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -19923,7 +16925,7 @@ ref Int64& or(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& or(ref UInt64& lhs, ulong rhs)
+ref ulong or(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -20231,7 +17233,7 @@ ulong or(ulong x1, ulong x2, UInt64[] more)
     IL_001D: ret
 
 }
-sbyte parse(string src, ref SByte& dst)
+sbyte parse(string src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20243,7 +17245,7 @@ sbyte parse(string src, ref SByte& dst)
     IL_000B: ret
 
 }
-byte parse(string src, ref Byte& dst)
+byte parse(string src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20255,7 +17257,7 @@ byte parse(string src, ref Byte& dst)
     IL_000B: ret
 
 }
-short parse(string src, ref Int16& dst)
+short parse(string src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20267,7 +17269,7 @@ short parse(string src, ref Int16& dst)
     IL_000B: ret
 
 }
-ushort parse(string src, ref UInt16& dst)
+ushort parse(string src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20279,7 +17281,7 @@ ushort parse(string src, ref UInt16& dst)
     IL_000B: ret
 
 }
-int parse(string src, ref Int32& dst)
+int parse(string src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20291,7 +17293,7 @@ int parse(string src, ref Int32& dst)
     IL_000B: ret
 
 }
-uint parse(string src, ref UInt32& dst)
+uint parse(string src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20303,7 +17305,7 @@ uint parse(string src, ref UInt32& dst)
     IL_000B: ret
 
 }
-long parse(string src, ref Int64& dst)
+long parse(string src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20315,7 +17317,7 @@ long parse(string src, ref Int64& dst)
     IL_000B: ret
 
 }
-ulong parse(string src, ref UInt64& dst)
+ulong parse(string src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20327,7 +17329,7 @@ ulong parse(string src, ref UInt64& dst)
     IL_000B: ret
 
 }
-float parse(string src, ref Single& dst)
+float parse(string src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20339,7 +17341,7 @@ float parse(string src, ref Single& dst)
     IL_000B: ret
 
 }
-double parse(string src, ref Double& dst)
+double parse(string src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20351,7 +17353,7 @@ double parse(string src, ref Double& dst)
     IL_000B: ret
 
 }
-Decimal parse(string src, ref Decimal& dst)
+Decimal parse(string src, out Decimal dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20363,7 +17365,7 @@ Decimal parse(string src, ref Decimal& dst)
     IL_000F: ret
 
 }
-BigInteger parse(string src, ref BigInteger& dst)
+BigInteger parse(string src, out BigInteger dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -20745,7 +17747,7 @@ bool isPow2(ulong src)
     IL_000A: ret
 
 }
-ref Quorem<sbyte> quorem(ref SByte& lhs, ref SByte& rhs)
+Quorem<sbyte> quorem(in sbyte lhs, in sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i1
@@ -20772,7 +17774,7 @@ ref Quorem<sbyte> quorem(ref SByte& lhs, ref SByte& rhs)
     IL_0028: ret
 
 }
-ref Quorem<byte> quorem(ref Byte& lhs, ref Byte& rhs)
+Quorem<byte> quorem(in byte lhs, in byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u1
@@ -20795,7 +17797,7 @@ ref Quorem<byte> quorem(ref Byte& lhs, ref Byte& rhs)
     IL_001C: ret
 
 }
-ref Quorem<short> quorem(ref Int16& lhs, ref Int16& rhs)
+Quorem<short> quorem(in short lhs, in short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i2
@@ -20822,7 +17824,7 @@ ref Quorem<short> quorem(ref Int16& lhs, ref Int16& rhs)
     IL_0028: ret
 
 }
-ref Quorem<ushort> quorem(ref UInt16& lhs, ref UInt16& rhs)
+Quorem<ushort> quorem(in ushort lhs, in ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u2
@@ -20845,7 +17847,7 @@ ref Quorem<ushort> quorem(ref UInt16& lhs, ref UInt16& rhs)
     IL_001C: ret
 
 }
-ref Quorem<int> quorem(ref Int32& lhs, ref Int32& rhs)
+Quorem<int> quorem(in int lhs, in int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.i4
@@ -20859,7 +17861,7 @@ ref Quorem<int> quorem(ref Int32& lhs, ref Int32& rhs)
     IL_0016: ret
 
 }
-ref Quorem<uint> quorem(ref UInt32& lhs, ref UInt32& rhs)
+Quorem<uint> quorem(in uint lhs, in uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldind.u4
@@ -21067,7 +18069,7 @@ double inc(double src)
     IL_000E: ret
 
 }
-ref SByte& inc(sbyte src, ref SByte& dst)
+ref sbyte inc(sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21081,7 +18083,7 @@ ref SByte& inc(sbyte src, ref SByte& dst)
     IL_000A: ret
 
 }
-ref Byte& inc(byte src, ref Byte& dst)
+ref byte inc(byte src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21095,7 +18097,7 @@ ref Byte& inc(byte src, ref Byte& dst)
     IL_000A: ret
 
 }
-ref Int16& inc(short src, ref Int16& dst)
+ref short inc(short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21109,7 +18111,7 @@ ref Int16& inc(short src, ref Int16& dst)
     IL_000A: ret
 
 }
-ref UInt16& inc(ushort src, ref UInt16& dst)
+ref ushort inc(ushort src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21123,7 +18125,7 @@ ref UInt16& inc(ushort src, ref UInt16& dst)
     IL_000A: ret
 
 }
-ref Int32& inc(int src, ref Int32& dst)
+ref int inc(int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21136,7 +18138,7 @@ ref Int32& inc(int src, ref Int32& dst)
     IL_0009: ret
 
 }
-ref UInt32& inc(uint src, ref UInt32& dst)
+ref uint inc(uint src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21149,7 +18151,7 @@ ref UInt32& inc(uint src, ref UInt32& dst)
     IL_0009: ret
 
 }
-ref Int64& inc(long src, ref Int64& dst)
+ref long inc(long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21163,7 +18165,7 @@ ref Int64& inc(long src, ref Int64& dst)
     IL_000A: ret
 
 }
-ref UInt64& inc(ulong src, ref UInt64& dst)
+ref ulong inc(ulong src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21177,7 +18179,7 @@ ref UInt64& inc(ulong src, ref UInt64& dst)
     IL_000A: ret
 
 }
-ref Single& inc(float src, ref Single& dst)
+ref float inc(float src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21190,7 +18192,7 @@ ref Single& inc(float src, ref Single& dst)
     IL_000D: ret
 
 }
-ref Double& inc(double src, ref Double& dst)
+ref double inc(double src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -21203,7 +18205,7 @@ ref Double& inc(double src, ref Double& dst)
     IL_0011: ret
 
 }
-ref SByte& inc(ref SByte& src)
+ref sbyte inc(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21216,7 +18218,7 @@ ref SByte& inc(ref SByte& src)
     IL_0008: ret
 
 }
-ref Byte& inc(ref Byte& src)
+ref byte inc(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21229,7 +18231,7 @@ ref Byte& inc(ref Byte& src)
     IL_0008: ret
 
 }
-ref Int16& inc(ref Int16& src)
+ref short inc(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21242,7 +18244,7 @@ ref Int16& inc(ref Int16& src)
     IL_0008: ret
 
 }
-ref UInt16& inc(ref UInt16& src)
+ref ushort inc(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21255,7 +18257,7 @@ ref UInt16& inc(ref UInt16& src)
     IL_0008: ret
 
 }
-ref Int32& inc(ref Int32& src)
+ref int inc(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21267,7 +18269,7 @@ ref Int32& inc(ref Int32& src)
     IL_0007: ret
 
 }
-ref UInt32& inc(ref UInt32& src)
+ref uint inc(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21279,7 +18281,7 @@ ref UInt32& inc(ref UInt32& src)
     IL_0007: ret
 
 }
-ref Int64& inc(ref Int64& src)
+ref long inc(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21292,7 +18294,7 @@ ref Int64& inc(ref Int64& src)
     IL_0008: ret
 
 }
-ref UInt64& inc(ref UInt64& src)
+ref ulong inc(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21305,7 +18307,7 @@ ref UInt64& inc(ref UInt64& src)
     IL_0008: ret
 
 }
-ref Single& inc(ref Single& src)
+ref float inc(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -21317,7 +18319,7 @@ ref Single& inc(ref Single& src)
     IL_000B: ret
 
 }
-ref Double& inc(ref Double& src)
+ref double inc(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22202,7 +19204,7 @@ double mod(double lhs, double rhs)
     IL_0003: ret
 
 }
-ref SByte& mod(ref SByte& lhs, sbyte rhs)
+ref sbyte mod(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22215,7 +19217,7 @@ ref SByte& mod(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& mod(ref Byte& lhs, byte rhs)
+ref byte mod(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22228,7 +19230,7 @@ ref Byte& mod(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& mod(ref Int16& lhs, short rhs)
+ref short mod(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22241,7 +19243,7 @@ ref Int16& mod(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& mod(ref UInt16& lhs, ushort rhs)
+ref ushort mod(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22254,7 +19256,7 @@ ref UInt16& mod(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& mod(ref Int32& lhs, int rhs)
+ref int mod(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22266,7 +19268,7 @@ ref Int32& mod(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& mod(ref UInt32& lhs, uint rhs)
+ref uint mod(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22278,7 +19280,7 @@ ref UInt32& mod(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& mod(ref Int64& lhs, long rhs)
+ref long mod(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22290,7 +19292,7 @@ ref Int64& mod(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& mod(ref UInt64& lhs, ulong rhs)
+ref ulong mod(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22302,7 +19304,7 @@ ref UInt64& mod(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Single& dec(float src, ref Single& dst)
+ref float dec(float src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -22315,7 +19317,7 @@ ref Single& dec(float src, ref Single& dst)
     IL_000D: ret
 
 }
-ref Double& dec(double src, ref Double& dst)
+ref double dec(double src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -22428,7 +19430,7 @@ BigInteger div(BigInteger lhs, BigInteger rhs)
     IL_0007: ret
 
 }
-ref SByte& div(ref SByte& lhs, sbyte rhs)
+ref sbyte div(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22441,7 +19443,7 @@ ref SByte& div(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& div(ref Byte& lhs, byte rhs)
+ref byte div(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22454,7 +19456,7 @@ ref Byte& div(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& div(ref Int16& lhs, short rhs)
+ref short div(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22467,7 +19469,7 @@ ref Int16& div(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& div(ref UInt16& lhs, ushort rhs)
+ref ushort div(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22480,7 +19482,7 @@ ref UInt16& div(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& div(ref Int32& lhs, int rhs)
+ref int div(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22492,7 +19494,7 @@ ref Int32& div(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& div(ref UInt32& lhs, uint rhs)
+ref uint div(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22504,7 +19506,7 @@ ref UInt32& div(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& div(ref Int64& lhs, long rhs)
+ref long div(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22516,7 +19518,7 @@ ref Int64& div(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& div(ref UInt64& lhs, ulong rhs)
+ref ulong div(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22528,7 +19530,7 @@ ref UInt64& div(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Single& div(ref Single& lhs, float rhs)
+ref float div(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22540,7 +19542,7 @@ ref Single& div(ref Single& lhs, float rhs)
     IL_0007: ret
 
 }
-ref Double& div(ref Double& lhs, double rhs)
+ref double div(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -22981,7 +19983,7 @@ bool fcmp(double x, double y, byte mode)
     IL_017C: ret
 
 }
-Boolean[] fcmp(ref Span<double> lhs, ref Span<double> rhs, byte kind)
+Boolean[] fcmp(Span<double> lhs, Span<double> rhs, byte kind)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -23081,7 +20083,7 @@ ulong flip(ulong src)
     IL_0002: ret
 
 }
-ref SByte& flip(sbyte src, ref SByte& dst)
+ref sbyte flip(sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23092,7 +20094,7 @@ ref SByte& flip(sbyte src, ref SByte& dst)
     IL_0006: ret
 
 }
-ref Byte& flip(byte src, ref Byte& dst)
+ref byte flip(byte src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23103,7 +20105,7 @@ ref Byte& flip(byte src, ref Byte& dst)
     IL_0006: ret
 
 }
-ref Int16& flip(short src, ref Int16& dst)
+ref short flip(short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23114,7 +20116,7 @@ ref Int16& flip(short src, ref Int16& dst)
     IL_0006: ret
 
 }
-ref UInt16& flip(ushort src, ref UInt16& dst)
+ref ushort flip(ushort src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23125,7 +20127,7 @@ ref UInt16& flip(ushort src, ref UInt16& dst)
     IL_0006: ret
 
 }
-ref Int32& flip(int src, ref Int32& dst)
+ref int flip(int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23135,7 +20137,7 @@ ref Int32& flip(int src, ref Int32& dst)
     IL_0005: ret
 
 }
-ref UInt32& flip(uint src, ref UInt32& dst)
+ref uint flip(uint src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23145,7 +20147,7 @@ ref UInt32& flip(uint src, ref UInt32& dst)
     IL_0005: ret
 
 }
-ref Int64& flip(long src, ref Int64& dst)
+ref long flip(long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23155,7 +20157,7 @@ ref Int64& flip(long src, ref Int64& dst)
     IL_0005: ret
 
 }
-ref UInt64& flip(ulong src, ref UInt64& dst)
+ref ulong flip(ulong src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -23165,7 +20167,7 @@ ref UInt64& flip(ulong src, ref UInt64& dst)
     IL_0005: ret
 
 }
-ref SByte& flip(ref SByte& src)
+ref sbyte flip(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23177,7 +20179,7 @@ ref SByte& flip(ref SByte& src)
     IL_0007: ret
 
 }
-ref Byte& flip(ref Byte& src)
+ref byte flip(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23189,7 +20191,7 @@ ref Byte& flip(ref Byte& src)
     IL_0007: ret
 
 }
-ref Int16& flip(ref Int16& src)
+ref short flip(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23201,7 +20203,7 @@ ref Int16& flip(ref Int16& src)
     IL_0007: ret
 
 }
-ref UInt16& flip(ref UInt16& src)
+ref ushort flip(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23213,7 +20215,7 @@ ref UInt16& flip(ref UInt16& src)
     IL_0007: ret
 
 }
-ref Int32& flip(ref Int32& src)
+ref int flip(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23224,7 +20226,7 @@ ref Int32& flip(ref Int32& src)
     IL_0006: ret
 
 }
-ref UInt32& flip(ref UInt32& src)
+ref uint flip(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23235,7 +20237,7 @@ ref UInt32& flip(ref UInt32& src)
     IL_0006: ret
 
 }
-ref Int64& flip(ref Int64& src)
+ref long flip(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23246,7 +20248,7 @@ ref Int64& flip(ref Int64& src)
     IL_0006: ret
 
 }
-ref UInt64& flip(ref UInt64& src)
+ref ulong flip(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23630,7 +20632,7 @@ BigInteger gcd(BigInteger lhs, BigInteger rhs)
     IL_0007: ret
 
 }
-ref SByte& gcd(ref SByte& lhs, sbyte rhs)
+ref sbyte gcd(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23642,7 +20644,7 @@ ref SByte& gcd(ref SByte& lhs, sbyte rhs)
     IL_000B: ret
 
 }
-ref Byte& gcd(ref Byte& lhs, byte rhs)
+ref byte gcd(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23654,7 +20656,7 @@ ref Byte& gcd(ref Byte& lhs, byte rhs)
     IL_000B: ret
 
 }
-ref Int16& gcd(ref Int16& lhs, short rhs)
+ref short gcd(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23666,7 +20668,7 @@ ref Int16& gcd(ref Int16& lhs, short rhs)
     IL_000B: ret
 
 }
-ref UInt16& gcd(ref UInt16& lhs, ushort rhs)
+ref ushort gcd(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23678,7 +20680,7 @@ ref UInt16& gcd(ref UInt16& lhs, ushort rhs)
     IL_000B: ret
 
 }
-ref Int32& gcd(ref Int32& lhs, int rhs)
+ref int gcd(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23690,7 +20692,7 @@ ref Int32& gcd(ref Int32& lhs, int rhs)
     IL_000B: ret
 
 }
-ref UInt32& gcd(ref UInt32& lhs, uint rhs)
+ref uint gcd(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23702,7 +20704,7 @@ ref UInt32& gcd(ref UInt32& lhs, uint rhs)
     IL_000B: ret
 
 }
-ref Int64& gcd(ref Int64& lhs, long rhs)
+ref long gcd(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23714,7 +20716,7 @@ ref Int64& gcd(ref Int64& lhs, long rhs)
     IL_000B: ret
 
 }
-ref UInt64& gcd(ref UInt64& lhs, ulong rhs)
+ref ulong gcd(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23726,7 +20728,7 @@ ref UInt64& gcd(ref UInt64& lhs, ulong rhs)
     IL_000B: ret
 
 }
-ref Single& gcd(ref Single& lhs, float rhs)
+ref float gcd(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23738,7 +20740,7 @@ ref Single& gcd(ref Single& lhs, float rhs)
     IL_000B: ret
 
 }
-ref Double& gcd(ref Double& lhs, double rhs)
+ref double gcd(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -23850,7 +20852,7 @@ bool gteq(byte lhs, byte rhs)
     IL_0007: ret
 
 }
-sbyte avg(ref ReadOnlySpan<sbyte> src)
+sbyte avg(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -23883,7 +20885,7 @@ sbyte avg(ref ReadOnlySpan<sbyte> src)
     IL_002D: ret
 
 }
-byte avg(ref ReadOnlySpan<byte> src)
+byte avg(ReadOnlySpan<byte> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -23916,7 +20918,7 @@ byte avg(ref ReadOnlySpan<byte> src)
     IL_002D: ret
 
 }
-short avg(ref ReadOnlySpan<short> src)
+short avg(ReadOnlySpan<short> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -23949,7 +20951,7 @@ short avg(ref ReadOnlySpan<short> src)
     IL_002D: ret
 
 }
-ushort avg(ref ReadOnlySpan<ushort> src)
+ushort avg(ReadOnlySpan<ushort> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -23982,7 +20984,7 @@ ushort avg(ref ReadOnlySpan<ushort> src)
     IL_002D: ret
 
 }
-int avg(ref ReadOnlySpan<int> src)
+int avg(ReadOnlySpan<int> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24015,7 +21017,7 @@ int avg(ref ReadOnlySpan<int> src)
     IL_002D: ret
 
 }
-uint avg(ref ReadOnlySpan<uint> src)
+uint avg(ReadOnlySpan<uint> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24048,7 +21050,7 @@ uint avg(ref ReadOnlySpan<uint> src)
     IL_002D: ret
 
 }
-long avg(ref ReadOnlySpan<long> src)
+long avg(ReadOnlySpan<long> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24079,7 +21081,7 @@ long avg(ref ReadOnlySpan<long> src)
     IL_002B: ret
 
 }
-ulong avg(ref ReadOnlySpan<ulong> src)
+ulong avg(ReadOnlySpan<ulong> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24110,7 +21112,7 @@ ulong avg(ref ReadOnlySpan<ulong> src)
     IL_002B: ret
 
 }
-float avg(ref ReadOnlySpan<float> src)
+float avg(ReadOnlySpan<float> src)
 {
     IL_0000: ldc.r8 0
     IL_0009: stloc.0
@@ -24143,7 +21145,7 @@ float avg(ref ReadOnlySpan<float> src)
     IL_0035: ret
 
 }
-double avg(ref ReadOnlySpan<double> src)
+double avg(ReadOnlySpan<double> src)
 {
     IL_0000: ldc.r8 0
     IL_0009: stloc.0
@@ -24173,7 +21175,7 @@ double avg(ref ReadOnlySpan<double> src)
     IL_0032: ret
 
 }
-sbyte sum(ref ReadOnlySpan<sbyte> src)
+sbyte sum(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24200,7 +21202,7 @@ sbyte sum(ref ReadOnlySpan<sbyte> src)
     IL_0022: ret
 
 }
-byte sum(ref ReadOnlySpan<byte> src)
+byte sum(ReadOnlySpan<byte> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24227,7 +21229,7 @@ byte sum(ref ReadOnlySpan<byte> src)
     IL_0022: ret
 
 }
-short sum(ref ReadOnlySpan<short> src)
+short sum(ReadOnlySpan<short> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24254,7 +21256,7 @@ short sum(ref ReadOnlySpan<short> src)
     IL_0022: ret
 
 }
-ushort sum(ref ReadOnlySpan<ushort> src)
+ushort sum(ReadOnlySpan<ushort> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24281,7 +21283,7 @@ ushort sum(ref ReadOnlySpan<ushort> src)
     IL_0022: ret
 
 }
-int sum(ref ReadOnlySpan<int> src)
+int sum(ReadOnlySpan<int> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24307,7 +21309,7 @@ int sum(ref ReadOnlySpan<int> src)
     IL_0021: ret
 
 }
-uint sum(ref ReadOnlySpan<uint> src)
+uint sum(ReadOnlySpan<uint> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -24333,7 +21335,7 @@ uint sum(ref ReadOnlySpan<uint> src)
     IL_0021: ret
 
 }
-long sum(ref ReadOnlySpan<long> src)
+long sum(ReadOnlySpan<long> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24360,7 +21362,7 @@ long sum(ref ReadOnlySpan<long> src)
     IL_0022: ret
 
 }
-ulong sum(ref ReadOnlySpan<ulong> src)
+ulong sum(ReadOnlySpan<ulong> src)
 {
     IL_0000: ldc.i4.0
     IL_0001: conv.i8
@@ -24387,7 +21389,7 @@ ulong sum(ref ReadOnlySpan<ulong> src)
     IL_0022: ret
 
 }
-float sum(ref ReadOnlySpan<float> src)
+float sum(ReadOnlySpan<float> src)
 {
     IL_0000: ldc.r4 0
     IL_0005: stloc.0
@@ -24413,7 +21415,7 @@ float sum(ref ReadOnlySpan<float> src)
     IL_0025: ret
 
 }
-double sum(ref ReadOnlySpan<double> src)
+double sum(ReadOnlySpan<double> src)
 {
     IL_0000: ldc.r8 0
     IL_0009: stloc.0
@@ -24439,7 +21441,7 @@ double sum(ref ReadOnlySpan<double> src)
     IL_0029: ret
 
 }
-ref SByte& abs(ref SByte& src)
+ref sbyte abs(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24450,7 +21452,7 @@ ref SByte& abs(ref SByte& src)
     IL_000A: ret
 
 }
-ref Int16& abs(ref Int16& src)
+ref short abs(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24461,7 +21463,7 @@ ref Int16& abs(ref Int16& src)
     IL_000A: ret
 
 }
-ref Int32& abs(ref Int32& src)
+ref int abs(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24472,7 +21474,7 @@ ref Int32& abs(ref Int32& src)
     IL_000A: ret
 
 }
-ref Int64& abs(ref Int64& src)
+ref long abs(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24483,7 +21485,7 @@ ref Int64& abs(ref Int64& src)
     IL_000A: ret
 
 }
-ref Single& abs(ref Single& src)
+ref float abs(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24494,7 +21496,7 @@ ref Single& abs(ref Single& src)
     IL_000A: ret
 
 }
-ref Double& abs(ref Double& src)
+ref double abs(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24505,7 +21507,7 @@ ref Double& abs(ref Double& src)
     IL_000A: ret
 
 }
-ref SByte& abs(ref SByte& src, ref SByte& dst)
+ref sbyte abs(in sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24516,7 +21518,7 @@ ref SByte& abs(ref SByte& src, ref SByte& dst)
     IL_000A: ret
 
 }
-ref Int16& abs(ref Int16& src, ref Int16& dst)
+ref short abs(in short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24527,7 +21529,7 @@ ref Int16& abs(ref Int16& src, ref Int16& dst)
     IL_000A: ret
 
 }
-ref Int32& abs(ref Int32& src, ref Int32& dst)
+ref int abs(in int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24538,7 +21540,7 @@ ref Int32& abs(ref Int32& src, ref Int32& dst)
     IL_000A: ret
 
 }
-ref Int64& abs(ref Int64& src, ref Int64& dst)
+ref long abs(in long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24549,7 +21551,7 @@ ref Int64& abs(ref Int64& src, ref Int64& dst)
     IL_000A: ret
 
 }
-ref Single& abs(ref Single& src, ref Single& dst)
+ref float abs(in float src, out float dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24560,7 +21562,7 @@ ref Single& abs(ref Single& src, ref Single& dst)
     IL_000A: ret
 
 }
-ref Double& abs(ref Double& src, ref Double& dst)
+ref double abs(in double src, out double dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -24729,7 +21731,7 @@ double add(double lhs, double rhs)
     IL_0003: ret
 
 }
-ref SByte& add(ref SByte& lhs, sbyte rhs)
+ref sbyte add(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24742,7 +21744,7 @@ ref SByte& add(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& add(ref Byte& lhs, byte rhs)
+ref byte add(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24755,7 +21757,7 @@ ref Byte& add(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& add(ref Int16& lhs, short rhs)
+ref short add(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24768,7 +21770,7 @@ ref Int16& add(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& add(ref UInt16& lhs, ushort rhs)
+ref ushort add(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24781,7 +21783,7 @@ ref UInt16& add(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& add(ref Int32& lhs, int rhs)
+ref int add(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24793,7 +21795,7 @@ ref Int32& add(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& add(ref UInt32& lhs, uint rhs)
+ref uint add(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24805,7 +21807,7 @@ ref UInt32& add(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& add(ref Int64& lhs, long rhs)
+ref long add(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24817,7 +21819,7 @@ ref Int64& add(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& add(ref UInt64& lhs, ulong rhs)
+ref ulong add(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24829,7 +21831,7 @@ ref UInt64& add(ref UInt64& lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref Single& add(ref Single& lhs, float rhs)
+ref float add(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24841,7 +21843,7 @@ ref Single& add(ref Single& lhs, float rhs)
     IL_0007: ret
 
 }
-ref Double& add(ref Double& lhs, double rhs)
+ref double add(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -24853,7 +21855,7 @@ ref Double& add(ref Double& lhs, double rhs)
     IL_0007: ret
 
 }
-sbyte add(sbyte lhs, sbyte rhs, ref SByte& dst)
+sbyte add(sbyte lhs, sbyte rhs, out sbyte dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24867,7 +21869,7 @@ sbyte add(sbyte lhs, sbyte rhs, ref SByte& dst)
     IL_0009: ret
 
 }
-byte add(byte lhs, byte rhs, ref Byte& dst)
+byte add(byte lhs, byte rhs, out byte dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24881,7 +21883,7 @@ byte add(byte lhs, byte rhs, ref Byte& dst)
     IL_0009: ret
 
 }
-short add(short lhs, short rhs, ref Int16& dst)
+short add(short lhs, short rhs, out short dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24895,7 +21897,7 @@ short add(short lhs, short rhs, ref Int16& dst)
     IL_0009: ret
 
 }
-ushort add(ushort lhs, ushort rhs, ref UInt16& dst)
+ushort add(ushort lhs, ushort rhs, out ushort dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24909,7 +21911,7 @@ ushort add(ushort lhs, ushort rhs, ref UInt16& dst)
     IL_0009: ret
 
 }
-int add(int lhs, int rhs, ref Int32& dst)
+int add(int lhs, int rhs, out int dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24922,7 +21924,7 @@ int add(int lhs, int rhs, ref Int32& dst)
     IL_0008: ret
 
 }
-uint add(uint lhs, uint rhs, ref UInt32& dst)
+uint add(uint lhs, uint rhs, out uint dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24935,7 +21937,7 @@ uint add(uint lhs, uint rhs, ref UInt32& dst)
     IL_0008: ret
 
 }
-long add(long lhs, long rhs, ref Int64& dst)
+long add(long lhs, long rhs, out long dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24948,7 +21950,7 @@ long add(long lhs, long rhs, ref Int64& dst)
     IL_0008: ret
 
 }
-ulong add(ulong lhs, ulong rhs, ref UInt64& dst)
+ulong add(ulong lhs, ulong rhs, out ulong dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24961,7 +21963,7 @@ ulong add(ulong lhs, ulong rhs, ref UInt64& dst)
     IL_0008: ret
 
 }
-float add(float lhs, float rhs, ref Single& dst)
+float add(float lhs, float rhs, out float dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -24974,7 +21976,7 @@ float add(float lhs, float rhs, ref Single& dst)
     IL_0008: ret
 
 }
-double add(double lhs, double rhs, ref Double& dst)
+double add(double lhs, double rhs, out double dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
@@ -25055,7 +22057,7 @@ ulong and(ulong lhs, ulong rhs)
     IL_0003: ret
 
 }
-ref SByte& and(ref SByte& lhs, sbyte rhs)
+ref sbyte and(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25068,7 +22070,7 @@ ref SByte& and(ref SByte& lhs, sbyte rhs)
     IL_0008: ret
 
 }
-ref Byte& and(ref Byte& lhs, byte rhs)
+ref byte and(ref byte lhs, byte rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25081,7 +22083,7 @@ ref Byte& and(ref Byte& lhs, byte rhs)
     IL_0008: ret
 
 }
-ref Int16& and(ref Int16& lhs, short rhs)
+ref short and(ref short lhs, short rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25094,7 +22096,7 @@ ref Int16& and(ref Int16& lhs, short rhs)
     IL_0008: ret
 
 }
-ref UInt16& and(ref UInt16& lhs, ushort rhs)
+ref ushort and(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25107,7 +22109,7 @@ ref UInt16& and(ref UInt16& lhs, ushort rhs)
     IL_0008: ret
 
 }
-ref Int32& and(ref Int32& lhs, int rhs)
+ref int and(ref int lhs, int rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25119,7 +22121,7 @@ ref Int32& and(ref Int32& lhs, int rhs)
     IL_0007: ret
 
 }
-ref UInt32& and(ref UInt32& lhs, uint rhs)
+ref uint and(ref uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25131,7 +22133,7 @@ ref UInt32& and(ref UInt32& lhs, uint rhs)
     IL_0007: ret
 
 }
-ref Int64& and(ref Int64& lhs, long rhs)
+ref long and(ref long lhs, long rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25143,7 +22145,7 @@ ref Int64& and(ref Int64& lhs, long rhs)
     IL_0007: ret
 
 }
-ref UInt64& and(ref UInt64& lhs, ulong rhs)
+ref ulong and(ref ulong lhs, ulong rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25425,7 +22427,7 @@ double dec(double src)
     IL_000E: ret
 
 }
-ref SByte& dec(ref SByte& src)
+ref sbyte dec(ref sbyte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25438,7 +22440,7 @@ ref SByte& dec(ref SByte& src)
     IL_0008: ret
 
 }
-ref Byte& dec(ref Byte& src)
+ref byte dec(ref byte src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25451,7 +22453,7 @@ ref Byte& dec(ref Byte& src)
     IL_0008: ret
 
 }
-ref Int16& dec(ref Int16& src)
+ref short dec(ref short src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25464,7 +22466,7 @@ ref Int16& dec(ref Int16& src)
     IL_0008: ret
 
 }
-ref UInt16& dec(ref UInt16& src)
+ref ushort dec(ref ushort src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25477,7 +22479,7 @@ ref UInt16& dec(ref UInt16& src)
     IL_0008: ret
 
 }
-ref Int32& dec(ref Int32& src)
+ref int dec(ref int src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25489,7 +22491,7 @@ ref Int32& dec(ref Int32& src)
     IL_0007: ret
 
 }
-ref UInt32& dec(ref UInt32& src)
+ref uint dec(ref uint src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25501,7 +22503,7 @@ ref UInt32& dec(ref UInt32& src)
     IL_0007: ret
 
 }
-ref Int64& dec(ref Int64& src)
+ref long dec(ref long src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25514,7 +22516,7 @@ ref Int64& dec(ref Int64& src)
     IL_0008: ret
 
 }
-ref UInt64& dec(ref UInt64& src)
+ref ulong dec(ref ulong src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25527,7 +22529,7 @@ ref UInt64& dec(ref UInt64& src)
     IL_0008: ret
 
 }
-ref Single& dec(ref Single& src)
+ref float dec(ref float src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25539,7 +22541,7 @@ ref Single& dec(ref Single& src)
     IL_000B: ret
 
 }
-ref Double& dec(ref Double& src)
+ref double dec(ref double src)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
@@ -25551,7 +22553,7 @@ ref Double& dec(ref Double& src)
     IL_000F: ret
 
 }
-ref SByte& dec(sbyte src, ref SByte& dst)
+ref sbyte dec(sbyte src, out sbyte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25565,7 +22567,7 @@ ref SByte& dec(sbyte src, ref SByte& dst)
     IL_000A: ret
 
 }
-ref Byte& dec(byte src, ref Byte& dst)
+ref byte dec(byte src, out byte dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25579,7 +22581,7 @@ ref Byte& dec(byte src, ref Byte& dst)
     IL_000A: ret
 
 }
-ref Int16& dec(short src, ref Int16& dst)
+ref short dec(short src, out short dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25593,7 +22595,7 @@ ref Int16& dec(short src, ref Int16& dst)
     IL_000A: ret
 
 }
-ref UInt16& dec(ushort src, ref UInt16& dst)
+ref ushort dec(ushort src, out ushort dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25607,7 +22609,7 @@ ref UInt16& dec(ushort src, ref UInt16& dst)
     IL_000A: ret
 
 }
-ref Int32& dec(int src, ref Int32& dst)
+ref int dec(int src, out int dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25620,7 +22622,7 @@ ref Int32& dec(int src, ref Int32& dst)
     IL_0009: ret
 
 }
-ref UInt32& dec(uint src, ref UInt32& dst)
+ref uint dec(uint src, out uint dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25633,7 +22635,7 @@ ref UInt32& dec(uint src, ref UInt32& dst)
     IL_0009: ret
 
 }
-ref Int64& dec(long src, ref Int64& dst)
+ref long dec(long src, out long dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
@@ -25647,7 +22649,7 @@ ref Int64& dec(long src, ref Int64& dst)
     IL_000A: ret
 
 }
-ref UInt64& dec(ulong src, ref UInt64& dst)
+ref ulong dec(ulong src, out ulong dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0

@@ -389,9 +389,9 @@ partial class zfunc
         => enclose(c, AsciSym.SQuote.ToString());
 
     /// <summary>
-    /// Encloses text between '(' and ')' characters
+    /// Encloses content between '(' and ')' characters
     /// </summary>
-    /// <param name="content"></param>
+    /// <param name="content">The items to be enclosed</param>
     [MethodImpl(Inline)]
     public static string paren(params object[] content)
         => enclose(concat(content.Select(x => x.ToString())), lparen(), rparen());

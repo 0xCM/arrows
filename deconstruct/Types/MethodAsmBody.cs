@@ -24,9 +24,19 @@ namespace Z0
             this.Method = Method;
             this.NativeBlocks = NativeBlocks;
             this.Instructions = Instructions;
+            this.StartAddress = Instructions.First().IP;
+            this.EndAddress = Instructions.Last().IP;
         }
         
         public MethodBase Method {get;}
+
+        public ulong StartAddress {get;}
+            
+        public ulong EndAddress {get;}
+
+        public Instruction[] Instructions {get;}
+        
+        public CodeBlock[] NativeBlocks {get;}
 
         public int MethodId
             => Method.MetadataToken;
@@ -34,9 +44,6 @@ namespace Z0
         public string MethodName 
             => Method.Name;
 
-        public Instruction[] Instructions {get;}
-        
-        public CodeBlock[] NativeBlocks {get;}
 
 
         public override string ToString()

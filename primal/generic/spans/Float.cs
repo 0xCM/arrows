@@ -61,25 +61,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.sqrt(int8(io));
+                int8(io).Sqrt();
             else if(typeof(T) == typeof(byte))
-                math.sqrt(uint8(io));
+                uint8(io).Sqrt();
             else if(typeof(T) == typeof(short))
-                math.sqrt(int16(io));
+                int16(io).Sqrt();
             else if(typeof(T) == typeof(ushort))
-                math.sqrt(uint16(io));
+                uint16(io).Sqrt();
             else if(typeof(T) == typeof(int))
-                math.sqrt(int32(io));
+                int32(io).Sqrt();
             else if(typeof(T) == typeof(uint))
-                math.sqrt(uint32(io));
+                uint32(io).Sqrt();
             else if(typeof(T) == typeof(long))
-                math.sqrt(int64(io));
+                int64(io).Sqrt();
             else if(typeof(T) == typeof(ulong))
-                math.sqrt(uint64(io));
+                uint64(io).Sqrt();
             else if(typeof(T) == typeof(float))
-                math.sqrt(float32(io));
+                float32(io).Sqrt();
             else if(typeof(T) == typeof(double))
-                math.sqrt(float64(io));
+                float64(io).Sqrt();
             else
                  throw unsupported<T>();                
            

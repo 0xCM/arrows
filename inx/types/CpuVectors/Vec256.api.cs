@@ -139,6 +139,35 @@ namespace Z0
                 throw unsupported<T>();            
         }
 
+        [MethodImpl(Inline)]
+        public static Vec256<T> loadi<T>(in T src)
+            where T : struct  
+        {
+            
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(load(ref int8(ref asRef(in src))));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(load(ref uint8(ref asRef(in src))));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(load(ref int16(ref asRef(in src))));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(load(ref uint16(ref asRef(in src))));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(load(ref int32(ref asRef(in src))));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(load(ref uint32(ref asRef(in src))));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(load(ref int64(ref asRef(in src))));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(load(ref uint64(ref asRef(in src))));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(load(ref float32(ref asRef(in src))));
+            else if(typeof(T) == typeof(double))
+                return  generic<T>(load(ref float64(ref asRef(in src))));
+            else 
+                throw unsupported<T>();            
+        }
+
 
         [MethodImpl(Inline)]
         public static ref Vec256<T> load<T>(in ReadOnlySpan256<T> src, int block, out Vec256<T> dst)

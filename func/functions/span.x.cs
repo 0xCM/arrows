@@ -190,17 +190,11 @@ namespace Z0
             return Z0.Span256.load<T>(dst);
         }
 
-        /// <summary>
-        /// Replicates a source value into a span and returns the result
-        /// </summary>
-        /// <param name="src">The value to replicate</param>
-        /// <param name="count">The number of clones</param>
-        /// <typeparam name="T">The value type</typeparam>
+
         [MethodImpl(Inline)]
-        public static Span<T> Replicate<T>(this T src, int count)
-            where T : struct
+        public static Span<char> Replicate(this char src, int count)
         {
-            Span<T> dst = new T[count];
+            Span<char> dst = new char[count];
             dst.Fill(src);
             return dst;
         }

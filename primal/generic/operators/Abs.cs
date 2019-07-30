@@ -77,17 +77,17 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.abs(int8(src), int8(dst));
+                int8(src).Abs(int8(dst));
             else if(typeof(T) == typeof(short))
-                math.abs(int16(src), int16(dst));
+                int16(src).Abs(int16(dst));
             else if(typeof(T) == typeof(int))
-                math.abs(int32(src), int32(dst));
+                int32(src).Abs(int32(dst));
             else if(typeof(T) == typeof(long))
-                math.abs(int64(src), int64(dst));
+                int64(src).Abs(int64(dst));
             else if(typeof(T) == typeof(float))
-                math.abs(float32(src), float32(dst));
+                float32(src).Abs(float32(dst));
             else if(typeof(T) == typeof(double))
-                math.abs(float64(src), float64(dst));
+                float64(src).Abs(float64(dst));
             else
                 throw unsupported<T>();
             return ref dst;
@@ -97,17 +97,17 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.abs(int8(io));
+                int8(io).Abs();
             else if(typeof(T) == typeof(short))
-                math.abs(int16(io));
+                int16(io).Abs();
             else if(typeof(T) == typeof(int))
-                math.abs(int32(io));
+                int32(io).Abs();
             else if(typeof(T) == typeof(long))
-                math.abs(int64(io));
+                int64(io).Abs();
             else if(typeof(T) == typeof(float))
-                math.abs(float32(io));
+                float32(io).Abs();
             else if(typeof(T) == typeof(double))
-                math.abs(float64(io));
+                float64(io).Abs();
             else
                 throw unsupported<T>();
             return ref io;

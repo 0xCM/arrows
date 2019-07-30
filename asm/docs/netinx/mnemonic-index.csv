@@ -1,0 +1,543 @@
+id,               nm,                 um,     mr,           mi,           rm,           flags
+invalid,          "INVALID",          IUM_RD, BAD_CODE,     BAD_CODE,     BAD_CODE,         INS_FLAGS_None; rr=BAD_CODE; a4=BAD_CODE
+push,             "push",             IUM_RD, 0x0030FE,     0x000068,     BAD_CODE,         INS_FLAGS_None; rr=0x000050; a4=BAD_CODE
+pop,              "pop",              IUM_WR, 0x00008E,     BAD_CODE,     BAD_CODE,     INS_FLAGS_None; rr=0x000058; a4=BAD_CODE
+push_hide,        "push",             IUM_RD, 0x0030FE,     0x000068,     BAD_CODE,     INS_FLAGS_None; rr=0x000050; a4=BAD_CODE
+pop_hide,         "pop",              IUM_WR, 0x00008E,     BAD_CODE,     BAD_CODE,     INS_FLAGS_None; a4=BAD_CODE
+inc,              "inc",              IUM_RW, 0x0000FE,     BAD_CODE,     BAD_CODE,     INS_FLAGS_WritesFlags; rr=0x000040; a4=BAD_CODE
+inc_l,            "inc",              IUM_RW, 0x0000FE,     BAD_CODE,     BAD_CODE,     INS_FLAGS_WritesFlags; rr=0x00C0FE; a4=BAD_CODE
+dec,              "dec",              IUM_RW, 0x0008FE,     BAD_CODE,     BAD_CODE,     INS_FLAGS_WritesFlags; rr=0x000048; a4=BAD_CODE
+dec_l,            "dec",              IUM_RW, 0x0008FE,     BAD_CODE,     BAD_CODE,     INS_FLAGS_WritesFlags; rr=0x00C8FE; a4=BAD_CODE
+bswap,            "bswap",            IUM_RW, 0x0F00C8,     BAD_CODE,     BAD_CODE,     INS_FLAGS_None; rr=0x00C80F; a4=BAD_CODE
+add,              "add",              IUM_RW, 0x000000,     0x000080,     0x000002,     INS_FLAGS_WritesFlags; a4=0x000004
+or,               "or",               IUM_RW, 0x000008,     0x000880,     0x00000A,     INS_FLAGS_WritesFlags; a4=0x00000C
+adc,              "adc",              IUM_RW, 0x000010,     0x001080,     0x000012,     INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags; a4=0x000014
+sbb,              "sbb",              IUM_RW, 0x000018,     0x001880,     0x00001A,     INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags; a4=0x00001C
+and,              "and",              IUM_RW, 0x000020,     0x002080,     0x000022,     INS_FLAGS_WritesFlags; a4=0x000024
+sub,              "sub",              IUM_RW, 0x000028,     0x002880,     0x00002A,     INS_FLAGS_WritesFlags; a4=0x00002C
+xor,              "xor",              IUM_RW, 0x000030,     0x003080,     0x000032,     INS_FLAGS_WritesFlags; a4=0x000034
+cmp,              "cmp",              IUM_RD, 0x000038,     0x003880,     0x00003A,     INS_FLAGS_WritesFlags; a4=0x00003C
+test,             "test",             IUM_RD, 0x000084,     0x0000F6,     0x000084,     INS_FLAGS_WritesFlags; a4=0x0000A8
+mov,              "mov",              IUM_WR, 0x000088,     0x0000C6,     0x00008A,     INS_FLAGS_None; a4=0x0000B0
+lea,              "lea",              IUM_WR, BAD_CODE,     BAD_CODE,     0x00008D,     INS_FLAGS_None; a4=BAD_CODE
+bt,               "bt",               IUM_RD, 0x0F00A3,     BAD_CODE,     0x0F00A3,     INS_FLAGS_WritesFlags
+movsx,            "movsx",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F00BE,         INS_FLAGS_None
+movsxd,           "movsxd",           IUM_WR, BAD_CODE,     BAD_CODE,     0x4800000063,    INS_FLAGS_None
+movzx,            "movzx",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F00B6, INS_FLAGS_None
+cmovo,            "cmovo",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0040, INS_FLAGS_ReadsFlags
+cmovno,           "cmovno",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0041, INS_FLAGS_ReadsFlags
+cmovb,            "cmovb",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0042, INS_FLAGS_ReadsFlags
+cmovae,           "cmovae",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0043, INS_FLAGS_ReadsFlags
+cmove,            "cmove",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0044, INS_FLAGS_ReadsFlags
+cmovne,           "cmovne",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0045, INS_FLAGS_ReadsFlags
+cmovbe,           "cmovbe",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0046, INS_FLAGS_ReadsFlags
+cmova,            "cmova",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0047, INS_FLAGS_ReadsFlags
+cmovs,            "cmovs",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0048, INS_FLAGS_ReadsFlags
+cmovns,           "cmovns",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F0049, INS_FLAGS_ReadsFlags
+cmovp,            "cmovp",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004A, INS_FLAGS_ReadsFlags
+cmovnp,           "cmovnp",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004B, INS_FLAGS_ReadsFlags
+cmovl,            "cmovl",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004C, INS_FLAGS_ReadsFlags
+cmovge,           "cmovge",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004D, INS_FLAGS_ReadsFlags
+cmovle,           "cmovle",           IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004E, INS_FLAGS_ReadsFlags
+cmovg,            "cmovg",            IUM_WR, BAD_CODE,     BAD_CODE,     0x0F004F, INS_FLAGS_ReadsFlags
+xchg,             "xchg",             IUM_RW, 0x000086,     BAD_CODE,     0x000086, INS_FLAGS_None
+imul,             "imul",             IUM_RW, 0x0F00AC,     BAD_CODE,     0x0F00AF, INS_FLAGS_WritesFlags // op1 *= op2
+imul_AX,        "imul",             IUM_RD,     BAD_CODE,     0x000068,     BAD_CODE,   INS_FLAGS_WritesFlags
+imul_CX,        "imul",             IUM_RD,     BAD_CODE,     0x000868,     BAD_CODE,   INS_FLAGS_WritesFlags
+imul_DX,        "imul",             IUM_RD,     BAD_CODE,     0x001068,     BAD_CODE,   INS_FLAGS_WritesFlags
+imul_BX,        "imul",             IUM_RD,     BAD_CODE,     0x001868,     BAD_CODE,   INS_FLAGS_WritesFlags
+imul_SP,        "imul",             IUM_RD,     BAD_CODE,     BAD_CODE,     BAD_CODE,   INS_FLAGS_WritesFlags
+imul_BP,        "imul",             IUM_RD,     BAD_CODE,     0x002868,     BAD_CODE, INS_FLAGS_WritesFlags
+imul_SI,        "imul",             IUM_RD,     BAD_CODE,     0x003068,     BAD_CODE, INS_FLAGS_WritesFlags
+imul_DI,        "imul",             IUM_RD,     BAD_CODE,     0x003868,     BAD_CODE, INS_FLAGS_WritesFlags
+imul_08,        "imul",             IUM_RD,     BAD_CODE,     0x4400000068, BAD_CODE, INS_FLAGS_WritesFlags
+imul_09,        "imul",             IUM_RD,     BAD_CODE,     0x4400000868, BAD_CODE, INS_FLAGS_WritesFlags
+imul_10,        "imul",             IUM_RD,     BAD_CODE,     0x4400001068, BAD_CODE,           INS_FLAGS_WritesFlags
+imul_11,        "imul",             IUM_RD,     BAD_CODE,     0x4400001868, BAD_CODE,           INS_FLAGS_WritesFlags
+imul_12,        "imul",             IUM_RD,     BAD_CODE,     0x4400002068, BAD_CODE,           INS_FLAGS_WritesFlags
+imul_13,        "imul",             IUM_RD,     BAD_CODE,     0x4400002868, BAD_CODE,           INS_FLAGS_WritesFlags
+imul_14,        "imul",             IUM_RD,     BAD_CODE,     0x4400003068, BAD_CODE,           INS_FLAGS_WritesFlags
+imul_15,        "imul",             IUM_RD,     BAD_CODE,     0x4400003868, BAD_CODE,           INS_FLAGS_WritesFlags
+mov_i2xmm,        "movd",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x6E),    INS_FLAGS_None; Move int reg to a xmm reg. reg1=xmm reg reg2=int reg
+mov_xmm2i,        "movd",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x7E),    INS_FLAGS_None; Move xmm reg to an int reg. reg1=xmm reg reg2=int reg
+pmovmskb,         "pmovmskb",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD7),    INS_FLAGS_None; Move the MSB bits of all bytes in a xmm reg to an int reg
+movmskpd,         "movmskpd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x50),    INS_FLAGS_None; Extract 2-bit sign mask from xmm and store in reg. The upper bits of r32 or r64 are filled with zeros.
+movd,             "movd",             IUM_WR, PCKDBL(0x7E), BAD_CODE,     PCKDBL(0x6E),    INS_FLAGS_None
+movq,             "movq",             IUM_WR, PCKDBL(0xD6), BAD_CODE,     SSEFLT(0x7E),    INS_FLAGS_None
+movsdsse2,        "movsd",            IUM_WR, SSEDBL(0x11), BAD_CODE,     SSEDBL(0x10),    INS_Flags_IsDstSrcSrcAVXInstruction
+punpckldq,        "punpckldq",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x62),    INS_Flags_IsDstDstSrcAVXInstruction
+xorps,            "xorps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x57),    INS_Flags_IsDstDstSrcAVXInstruction; XOR packed singles
+cvttsd2si,        "cvttsd2si",        IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x2C),    INS_FLAGS_None; cvt with trunc scalar double to signed DWORDs
+movntdq,          "movntdq",          IUM_WR, PCKDBL(0xE7), BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+movnti,           "movnti",           IUM_WR, PCKFLT(0xC3), BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+movntpd,          "movntpd",          IUM_WR, PCKDBL(0x2B), BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+movntps,          "movntps",          IUM_WR, PCKFLT(0x2B), BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+movdqu,           "movdqu",           IUM_WR, SSEFLT(0x7F), BAD_CODE,     SSEFLT(0x6F),    INS_FLAGS_None
+movdqa,           "movdqa",           IUM_WR, PCKDBL(0x7F), BAD_CODE,     PCKDBL(0x6F),    INS_FLAGS_None
+movlpd,           "movlpd",           IUM_WR, PCKDBL(0x13), BAD_CODE,     PCKDBL(0x12),    INS_Flags_IsDstSrcSrcAVXInstruction
+movlps,           "movlps",           IUM_WR, PCKFLT(0x13), BAD_CODE,     PCKFLT(0x12),    INS_Flags_IsDstSrcSrcAVXInstruction
+movhpd,           "movhpd",           IUM_WR, PCKDBL(0x17), BAD_CODE,     PCKDBL(0x16),    INS_Flags_IsDstSrcSrcAVXInstruction
+movhps,           "movhps",           IUM_WR, PCKFLT(0x17), BAD_CODE,     PCKFLT(0x16),    INS_Flags_IsDstSrcSrcAVXInstruction
+movss,            "movss",            IUM_WR, SSEFLT(0x11), BAD_CODE,     SSEFLT(0x10),    INS_Flags_IsDstSrcSrcAVXInstruction
+movapd,           "movapd",           IUM_WR, PCKDBL(0x29), BAD_CODE,     PCKDBL(0x28),    INS_FLAGS_None
+movaps,           "movaps",           IUM_WR, PCKFLT(0x29), BAD_CODE,     PCKFLT(0x28),    INS_FLAGS_None
+movupd,           "movupd",           IUM_WR, PCKDBL(0x11), BAD_CODE,     PCKDBL(0x10),    INS_FLAGS_None
+movups,           "movups",           IUM_WR, PCKFLT(0x11), BAD_CODE,     PCKFLT(0x10),    INS_FLAGS_None
+movhlps,          "movhlps",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x12),    INS_Flags_IsDstDstSrcAVXInstruction
+movlhps,          "movlhps",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x16),    INS_Flags_IsDstDstSrcAVXInstruction
+movmskps,         "movmskps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x50),    INS_FLAGS_None
+unpckhps,         "unpckhps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x15),    INS_Flags_IsDstDstSrcAVXInstruction
+unpcklps,         "unpcklps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x14),    INS_Flags_IsDstDstSrcAVXInstruction
+maskmovdqu,       "maskmovdqu",       IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF7),    INS_FLAGS_None
+shufps,           "shufps",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0xC6),    INS_Flags_IsDstDstSrcAVXInstruction
+shufpd,           "shufpd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xC6),    INS_Flags_IsDstDstSrcAVXInstruction
+punpckhdq,        "punpckhdq",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x6A),    INS_Flags_IsDstDstSrcAVXInstruction
+lfence,           "lfence",           IUM_RD, 0x000FE8AE,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+mfence,           "mfence",           IUM_RD, 0x000FF0AE,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+prefetchnta,      "prefetchnta",      IUM_RD, 0x000F0018,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+prefetcht0,       "prefetcht0",       IUM_RD, 0x000F0818,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+prefetcht1,       "prefetcht1",       IUM_RD, 0x000F1018,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+prefetcht2,       "prefetcht2",       IUM_RD, 0x000F1818,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+sfence,           "sfence",           IUM_RD, 0x000FF8AE,   BAD_CODE,     BAD_CODE,         INS_FLAGS_None
+addps,            "addps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x58),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed singles
+addss,            "addss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x58),    INS_Flags_IsDstDstSrcAVXInstruction; Add scalar singles
+addpd,            "addpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x58),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed doubles
+addsd,            "addsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x58),    INS_Flags_IsDstDstSrcAVXInstruction; Add scalar doubles
+mulps,            "mulps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x59),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply packed singles
+mulss,            "mulss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x59),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply scalar single
+mulpd,            "mulpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x59),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply packed doubles
+mulsd,            "mulsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x59),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply scalar doubles
+subps,            "subps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5C),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed singles
+subss,            "subss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5C),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract scalar singles
+subpd,            "subpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5C),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed doubles
+subsd,            "subsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x5C),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract scalar doubles
+minps,            "minps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5D),    INS_Flags_IsDstDstSrcAVXInstruction; Return Minimum packed singles
+minss,            "minss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5D),    INS_Flags_IsDstDstSrcAVXInstruction; Return Minimum scalar single
+minpd,            "minpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5D),    INS_Flags_IsDstDstSrcAVXInstruction; Return Minimum packed doubles
+minsd,            "minsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x5D),    INS_Flags_IsDstDstSrcAVXInstruction; Return Minimum scalar double
+divps,            "divps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5E),    INS_Flags_IsDstDstSrcAVXInstruction; Divide packed singles
+divss,            "divss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5E),    INS_Flags_IsDstDstSrcAVXInstruction; Divide scalar singles
+divpd,            "divpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5E),    INS_Flags_IsDstDstSrcAVXInstruction; Divide packed doubles
+divsd,            "divsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x5E),    INS_Flags_IsDstDstSrcAVXInstruction; Divide scalar doubles
+maxps,            "maxps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5F),    INS_Flags_IsDstDstSrcAVXInstruction; Return Maximum packed singles
+maxss,            "maxss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5F),    INS_Flags_IsDstDstSrcAVXInstruction; Return Maximum scalar single
+maxpd,            "maxpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5F),    INS_Flags_IsDstDstSrcAVXInstruction; Return Maximum packed doubles
+maxsd,            "maxsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x5F),    INS_Flags_IsDstDstSrcAVXInstruction; Return Maximum scalar double
+xorpd,            "xorpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x57),    INS_Flags_IsDstDstSrcAVXInstruction; XOR packed doubles
+andps,            "andps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x54),    INS_Flags_IsDstDstSrcAVXInstruction; AND packed singles
+andpd,            "andpd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x54),    INS_Flags_IsDstDstSrcAVXInstruction; AND packed doubles
+sqrtps,           "sqrtps",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x51),    INS_FLAGS_None; Sqrt of packed singles
+sqrtss,           "sqrtss",           IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x51),    INS_Flags_IsDstSrcSrcAVXInstruction; Sqrt of scalar single
+sqrtpd,           "sqrtpd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x51),    INS_FLAGS_None; Sqrt of packed doubles
+sqrtsd,           "sqrtsd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x51),    INS_Flags_IsDstSrcSrcAVXInstruction; Sqrt of scalar double
+andnps,           "andnps",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x55),    INS_Flags_IsDstDstSrcAVXInstruction; And-Not packed singles
+andnpd,           "andnpd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x55),    INS_Flags_IsDstDstSrcAVXInstruction; And-Not packed doubles
+orps,             "orps",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x56),    INS_Flags_IsDstDstSrcAVXInstruction; Or packed singles
+orpd,             "orpd",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x56),    INS_Flags_IsDstDstSrcAVXInstruction; Or packed doubles
+haddpd,           "haddpd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x7C),    INS_Flags_IsDstDstSrcAVXInstruction; Horizontal add packed doubles
+haddps,           "haddps",           IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x7C),    INS_Flags_IsDstDstSrcAVXInstruction; Horizontal add packed floats
+hsubpd,           "hsubpd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x7D),    INS_Flags_IsDstDstSrcAVXInstruction; Horizontal subtract packed doubles
+hsubps,           "hsubps",           IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x7D),    INS_Flags_IsDstDstSrcAVXInstruction; Horizontal subtract packed floats
+addsubps,         "addsubps",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0xD0),    INS_Flags_IsDstDstSrcAVXInstruction; Add/Subtract packed singles
+addsubpd,         "addsubpd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD0),    INS_Flags_IsDstDstSrcAVXInstruction; Add/Subtract packed doubles
+rcpps,            "rcpps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x53),    INS_FLAGS_None; Reciprocal of packed singles
+rcpss,            "rcpss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x53),    INS_Flags_IsDstSrcSrcAVXInstruction; Reciprocal of scalar single
+rsqrtps,          "rsqrtps",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x52),    INS_FLAGS_None; Reciprocal Sqrt of packed singles
+rsqrtss,          "rsqrtss",          IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x52),    INS_Flags_IsDstSrcSrcAVXInstruction; Reciprocal Sqrt of scalar single
+cvtpi2ps,         "cvtpi2ps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x2A),    INS_FLAGS_None; cvt packed DWORDs to singles
+cvtsi2ss,         "cvtsi2ss",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x2A),    INS_Flags_IsDstDstSrcAVXInstruction; cvt DWORD to scalar single
+cvtpi2pd,         "cvtpi2pd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x2A),    INS_FLAGS_None; cvt packed DWORDs to doubles
+cvtsi2sd,         "cvtsi2sd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x2A),    INS_Flags_IsDstDstSrcAVXInstruction; cvt DWORD to scalar double
+cvttps2pi,        "cvttps2pi",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x2C),    INS_FLAGS_None; cvt with trunc packed singles to DWORDs
+cvttss2si,        "cvttss2si",        IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x2C),    INS_FLAGS_None; cvt with trunc scalar single to DWORD
+cvttpd2pi,        "cvttpd2pi",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x2C),    INS_FLAGS_None; cvt with trunc packed doubles to DWORDs
+cvtps2pi,         "cvtps2pi",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x2D),    INS_FLAGS_None; cvt packed singles to DWORDs
+cvtss2si,         "cvtss2si",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x2D),    INS_FLAGS_None; cvt scalar single to DWORD
+cvtpd2pi,         "cvtpd2pi",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x2D),    INS_FLAGS_None; cvt packed doubles to DWORDs
+cvtsd2si,         "cvtsd2si",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x2D),    INS_FLAGS_None; cvt scalar double to DWORD
+cvtps2pd,         "cvtps2pd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5A),    INS_FLAGS_None; cvt packed singles to doubles
+cvtpd2ps,         "cvtpd2ps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5A),    INS_FLAGS_None; cvt packed doubles to singles
+cvtss2sd,         "cvtss2sd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5A),    INS_Flags_IsDstDstSrcAVXInstruction; cvt scalar single to scalar doubles
+cvtsd2ss,         "cvtsd2ss",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x5A),    INS_Flags_IsDstDstSrcAVXInstruction; cvt scalar double to scalar singles
+cvtdq2ps,         "cvtdq2ps",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x5B),    INS_FLAGS_None; cvt packed DWORDs to singles
+cvtps2dq,         "cvtps2dq",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x5B),    INS_FLAGS_None; cvt packed singles to DWORDs
+cvttps2dq,        "cvttps2dq",        IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x5B),    INS_FLAGS_None; cvt with trunc packed singles to DWORDs
+cvtpd2dq,         "cvtpd2dq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0xE6),    INS_FLAGS_None; cvt packed doubles to DWORDs
+cvttpd2dq,        "cvttpd2dq",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE6),    INS_FLAGS_None; cvt with trunc packed doubles to DWORDs
+cvtdq2pd,         "cvtdq2pd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xE6),    INS_FLAGS_None; cvt packed DWORDs to doubles
+comiss,           "comiss",           IUM_RD, BAD_CODE,     BAD_CODE,     PCKFLT(0x2F),    INS_FLAGS_None; ordered compare singles
+comisd,           "comisd",           IUM_RD, BAD_CODE,     BAD_CODE,     PCKDBL(0x2F),    INS_FLAGS_None; ordered compare doubles
+ucomiss,          "ucomiss",          IUM_RD, BAD_CODE,     BAD_CODE,     PCKFLT(0x2E),    INS_FLAGS_None; unordered compare singles
+ucomisd,          "ucomisd",          IUM_RD, BAD_CODE,     BAD_CODE,     PCKDBL(0x2E),    INS_FLAGS_None; unordered compare doubles
+cmpps,            "cmpps",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0xC2),    INS_Flags_IsDstDstSrcAVXInstruction; compare packed singles
+cmppd,            "cmppd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xC2),    INS_Flags_IsDstDstSrcAVXInstruction; compare packed doubles
+cmpss,            "cmpss",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xC2),    INS_Flags_IsDstDstSrcAVXInstruction; compare scalar singles
+cmpsd,            "cmpsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0xC2),    INS_Flags_IsDstDstSrcAVXInstruction; compare scalar doubles
+paddb,            "paddb",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xFC),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed byte integers
+paddw,            "paddw",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xFD),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed word (16-bit) integers
+paddd,            "paddd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xFE),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed double-word (32-bit) integers
+paddq,            "paddq",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD4),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed quad-word (64-bit) integers
+paddsb,           "paddsb",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xEC),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed signed byte integers and saturate the results
+paddsw,           "paddsw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xED),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed signed word integers and saturate the results
+paddusb,          "paddusb",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDC),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed unsigned byte integers and saturate the results
+paddusw,          "paddusw",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDD),    INS_Flags_IsDstDstSrcAVXInstruction; Add packed unsigned word integers and saturate the results
+pavgb,            "pavgb",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE0),    INS_Flags_IsDstDstSrcAVXInstruction; Average of packed byte integers
+pavgw,            "pavgw",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE3),    INS_Flags_IsDstDstSrcAVXInstruction; Average of packed word integers
+psubb,            "psubb",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF8),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed word (16-bit) integers
+psubw,            "psubw",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF9),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed word (16-bit) integers
+psubd,            "psubd",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xFA),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed double-word (32-bit) integers
+psubq,            "psubq",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xFB),    INS_Flags_IsDstDstSrcAVXInstruction; subtract packed quad-word (64-bit) integers
+pmaddwd,          "pmaddwd",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF5),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply packed signed 16-bit integers in a and b, producing intermediate signed 32-bit integers. Horizontally add adjacent pairs of intermediate 32-bit integers, and pack the results in dst
+pmulhw,           "pmulhw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE5),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply high the packed 16-bit signed integers
+pmulhuw,          "pmulhuw",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE4),    INS_Flags_IsDstDstSrcAVXInstruction; Multiply high the packed 16-bit unsigned integers
+pmuludq,          "pmuludq",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF4),    INS_Flags_IsDstDstSrcAVXInstruction; packed multiply 32-bit unsigned integers and store 64-bit result
+pmullw,           "pmullw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD5),    INS_Flags_IsDstDstSrcAVXInstruction; Packed multiply 16 bit unsigned integers and store lower 16 bits of each result
+pand,             "pand",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDB),    INS_Flags_IsDstDstSrcAVXInstruction; Packed bit-wise AND of two xmm regs
+pandn,            "pandn",            IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDF),    INS_Flags_IsDstDstSrcAVXInstruction; Packed bit-wise AND NOT of two xmm regs
+por,              "por",              IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xEB),    INS_Flags_IsDstDstSrcAVXInstruction; Packed bit-wise OR of two xmm regs
+pxor,             "pxor",             IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xEF),    INS_Flags_IsDstDstSrcAVXInstruction; Packed bit-wise XOR of two xmm regs
+psadbw,           "psadbw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xF6),    INS_Flags_IsDstDstSrcAVXInstruction; Compute the sum of absolute differences of packed unsigned 8-bit integers
+psubsb,           "psubsb",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE8),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed 8-bit integers in b from packed 8-bit integers in a using saturation
+psubusb,          "psubusb",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD8),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed unsigned 8-bit integers in b from packed unsigned 8-bit integers in a using saturation
+psubsw,           "psubsw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xE9),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed 16-bit integers in b from packed 16-bit integers in a using saturation
+psubusw,          "psubusw",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xD9),    INS_Flags_IsDstDstSrcAVXInstruction; Subtract packed unsigned 16-bit integers in b from packed unsigned 16-bit integers in a using saturation
+psrldq,           "psrldq",           IUM_WR, BAD_CODE,     PCKDBL(0x73), BAD_CODE,         INS_Flags_IsDstDstSrcAVXInstruction; Shift right logical of xmm reg by given number of bytes
+pslldq,           "pslldq",           IUM_WR, BAD_CODE,     PCKDBL(0x73), BAD_CODE,         INS_Flags_IsDstDstSrcAVXInstruction; Shift left logical of xmm reg by given number of bytes
+psllw,            "psllw",            IUM_WR, BAD_CODE,     PCKDBL(0x71), PCKDBL(0xF1),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift left logical of 16-bit integers
+pslld,            "pslld",            IUM_WR, BAD_CODE,     PCKDBL(0x72), PCKDBL(0xF2),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift left logical of 32-bit integers
+psllq,            "psllq",            IUM_WR, BAD_CODE,     PCKDBL(0x73), PCKDBL(0xF3),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift left logical of 64-bit integers
+psrlw,            "psrlw",            IUM_WR, BAD_CODE,     PCKDBL(0x71), PCKDBL(0xD1),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift right logical of 16-bit integers
+psrld,            "psrld",            IUM_WR, BAD_CODE,     PCKDBL(0x72), PCKDBL(0xD2),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift right logical of 32-bit integers
+psrlq,            "psrlq",            IUM_WR, BAD_CODE,     PCKDBL(0x73), PCKDBL(0xD3),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift right logical of 64-bit integers
+psraw,            "psraw",            IUM_WR, BAD_CODE,     PCKDBL(0x71), PCKDBL(0xE1),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift right arithmetic of 16-bit integers
+psrad,            "psrad",            IUM_WR, BAD_CODE,     PCKDBL(0x72), PCKDBL(0xE2),    INS_Flags_IsDstDstSrcAVXInstruction; Packed shift right arithmetic of 32-bit integers
+pmaxub,           "pmaxub",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDE),    INS_Flags_IsDstDstSrcAVXInstruction; packed maximum unsigned bytes
+pminub,           "pminub",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xDA),    INS_Flags_IsDstDstSrcAVXInstruction; packed minimum unsigned bytes
+pmaxsw,           "pmaxsw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xEE),    INS_Flags_IsDstDstSrcAVXInstruction; packed maximum signed words
+pminsw,           "pminsw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xEA),    INS_Flags_IsDstDstSrcAVXInstruction; packed minimum signed words
+pcmpeqd,          "pcmpeqd",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x76),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 32-bit integers for equality
+pcmpgtd,          "pcmpgtd",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x66),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 32-bit signed integers for greater than
+pcmpeqw,          "pcmpeqw",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x75),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 16-bit integers for equality
+pcmpgtw,          "pcmpgtw",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x65),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 16-bit signed integers for greater than
+pcmpeqb,          "pcmpeqb",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x74),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 8-bit integers for equality
+pcmpgtb,          "pcmpgtb",          IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x64),    INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 8-bit signed integers for greater than
+pshufd,           "pshufd",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x70),    INS_FLAGS_None; Packed shuffle of 32-bit integers
+pshufhw,          "pshufhw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x70),    INS_FLAGS_None; Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+pshuflw,          "pshuflw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x70),    INS_FLAGS_None; Shuffle the low words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+pextrw,           "pextrw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xC5),    INS_FLAGS_None; Extract 16-bit value into a r32 with zero extended to 32-bits
+pinsrw,           "pinsrw",           IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0xC4),    INS_Flags_IsDstDstSrcAVXInstruction; Insert word at index
+punpckhbw,        "punpckhbw",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x68),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ubyte to ushort (hi)
+punpcklbw,        "punpcklbw",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x60),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ubyte to ushort (lo)
+punpckhqdq,       "punpckhqdq",       IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x6D),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen uint to ulong (hi)
+punpcklqdq,       "punpcklqdq",       IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x6C),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen uint to ulong (lo)
+punpckhwd,        "punpckhwd",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x69),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ushort to uint (hi)
+punpcklwd,        "punpcklwd",        IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x61),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ushort to uint (lo)
+unpckhpd,         "unpckhpd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x15),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ubyte to ushort (hi)
+unpcklpd,         "unpcklpd",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x14),    INS_Flags_IsDstDstSrcAVXInstruction; Packed logical (unsigned) widen ubyte to ushort (hi)
+packssdw,         "packssdw",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x6B),    INS_Flags_IsDstDstSrcAVXInstruction; Pack (narrow) int to short with saturation
+packsswb,         "packsswb",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x63),    INS_Flags_IsDstDstSrcAVXInstruction; Pack (narrow) short to byte with saturation
+packuswb,         "packuswb",         IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x67),    INS_Flags_IsDstDstSrcAVXInstruction; Pack (narrow) short to unsigned byte with saturation
+dpps,             "dpps",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x40),     INS_Flags_IsDstDstSrcAVXInstruction; Packed dot product of two float vector regs
+dppd,             "dppd",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x41),     INS_Flags_IsDstDstSrcAVXInstruction; Packed dot product of two double vector regs
+insertps,         "insertps",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x21),     INS_Flags_IsDstDstSrcAVXInstruction; Insert packed single precision float value
+pcmpeqq,          "pcmpeqq",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x29),     INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 64-bit integers for equality
+pcmpgtq,          "pcmpgtq",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x37),     INS_Flags_IsDstDstSrcAVXInstruction; Packed compare 64-bit integers for equality
+pmulld,           "pmulld",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x40),     INS_Flags_IsDstDstSrcAVXInstruction; Packed multiply 32 bit unsigned integers and store lower 32 bits of each result
+ptest,            "ptest",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x17),     INS_FLAGS_None; Packed logical compare
+phaddd,           "phaddd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x02),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal add
+pabsb,            "pabsb",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x1C),     INS_FLAGS_None; Packed absolute value of bytes
+pabsw,            "pabsw",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x1D),     INS_FLAGS_None; Packed absolute value of 16-bit integers
+pabsd,            "pabsd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x1E),     INS_FLAGS_None; Packed absolute value of 32-bit integers
+palignr,          "palignr",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0F),     INS_Flags_IsDstDstSrcAVXInstruction; Packed Align Right
+pmaddubsw,        "pmaddubsw",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x04),     INS_Flags_IsDstDstSrcAVXInstruction; Multiply and Add Packed Signed and Unsigned Bytes
+pmulhrsw,         "pmulhrsw",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0B),     INS_Flags_IsDstDstSrcAVXInstruction; Packed Multiply High with Round and Scale
+pshufb,           "pshufb",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x00),     INS_Flags_IsDstDstSrcAVXInstruction; Packed Shuffle Bytes
+psignb,           "psignb",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x08),     INS_Flags_IsDstDstSrcAVXInstruction; Packed SIGN
+psignw,           "psignw",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x09),     INS_Flags_IsDstDstSrcAVXInstruction; Packed SIGN
+psignd,           "psignd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0A),     INS_Flags_IsDstDstSrcAVXInstruction; Packed SIGN
+pminsb,           "pminsb",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x38),     INS_Flags_IsDstDstSrcAVXInstruction; packed minimum signed bytes
+pminsd,           "pminsd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x39),     INS_Flags_IsDstDstSrcAVXInstruction; packed minimum 32-bit signed integers
+pminuw,           "pminuw",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3A),     INS_Flags_IsDstDstSrcAVXInstruction; packed minimum 16-bit unsigned integers
+pminud,           "pminud",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3B),     INS_Flags_IsDstDstSrcAVXInstruction; packed minimum 32-bit unsigned integers
+pmaxsb,           "pmaxsb",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3C),     INS_Flags_IsDstDstSrcAVXInstruction; packed maximum signed bytes
+pmaxsd,           "pmaxsd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3D),     INS_Flags_IsDstDstSrcAVXInstruction; packed maximum 32-bit signed integers
+pmaxuw,           "pmaxuw",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3E),     INS_Flags_IsDstDstSrcAVXInstruction; packed maximum 16-bit unsigned integers
+pmaxud,           "pmaxud",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x3F),     INS_Flags_IsDstDstSrcAVXInstruction; packed maximum 32-bit unsigned integers
+pmovsxbw,         "pmovsxbw",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x20),     INS_FLAGS_None; Packed sign extend byte to short
+pmovsxbd,         "pmovsxbd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x21),     INS_FLAGS_None; Packed sign extend byte to int
+pmovsxbq,         "pmovsxbq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x22),     INS_FLAGS_None; Packed sign extend byte to long
+pmovsxwd,         "pmovsxwd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x23),     INS_FLAGS_None; Packed sign extend short to int
+pmovsxwq,         "pmovsxwq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x24),     INS_FLAGS_None; Packed sign extend short to long
+pmovsxdq,         "pmovsxdq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x25),     INS_FLAGS_None; Packed sign extend int to long
+pmovzxbw,         "pmovzxbw",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x30),     INS_FLAGS_None; Packed zero extend byte to short
+pmovzxbd,         "pmovzxbd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x31),     INS_FLAGS_None; Packed zero extend byte to intg
+pmovzxbq,         "pmovzxbq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x32),     INS_FLAGS_None; Packed zero extend byte to lon
+pmovzxwd,         "pmovzxwd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x33),     INS_FLAGS_None; Packed zero extend short to int
+pmovzxwq,         "pmovzxwq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x34),     INS_FLAGS_None; Packed zero extend short to long
+pmovzxdq,         "pmovzxdq",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x35),     INS_FLAGS_None; Packed zero extend int to long
+packusdw,         "packusdw",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x2B),     INS_Flags_IsDstDstSrcAVXInstruction; Pack (narrow) int to unsigned short with saturation
+roundps,          "roundps",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x08),     INS_FLAGS_None; Round packed single precision floating-point values
+roundss,          "roundss",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0A),     INS_Flags_IsDstSrcSrcAVXInstruction; Round scalar single precision floating-point values
+roundpd,          "roundpd",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x09),     INS_FLAGS_None; Round packed double precision floating-point values
+roundsd,          "roundsd",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0B),     INS_Flags_IsDstSrcSrcAVXInstruction; Round scalar double precision floating-point values
+pmuldq,           "pmuldq",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x28),     INS_Flags_IsDstDstSrcAVXInstruction; packed multiply 32-bit signed integers and store 64-bit result
+blendps,          "blendps",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0C),     INS_Flags_IsDstDstSrcAVXInstruction; Blend Packed Single Precision Floating-Point Values
+blendvps,         "blendvps",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x14),     INS_FLAGS_None; Variable Blend Packed Singles
+blendpd,          "blendpd",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0D),     INS_Flags_IsDstDstSrcAVXInstruction; Blend Packed Double Precision Floating-Point Values
+blendvpd,         "blendvpd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x15),     INS_FLAGS_None; Variable Blend Packed Doubles
+pblendw,          "pblendw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x0E),     INS_Flags_IsDstDstSrcAVXInstruction; Blend Packed Words
+pblendvb,         "pblendvb",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x10),     INS_FLAGS_None; Variable Blend Packed Bytes
+phaddw,           "phaddw",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x01),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal add of 16-bit integers
+phsubw,           "phsubw",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x05),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal subtract of 16-bit integers
+phsubd,           "phsubd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x06),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal subtract of 32-bit integers
+phaddsw,          "phaddsw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x03),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal add of 16-bit integers with saturation
+phsubsw,          "phsubsw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x07),     INS_Flags_IsDstDstSrcAVXInstruction; Packed horizontal subtract of 16-bit integers with saturation
+lddqu,            "lddqu",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0xF0),    INS_FLAGS_None; Load Unaligned integer
+movntdqa,         "movntdqa",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x2A),     INS_FLAGS_None; Load Double Quadword Non-Temporal Aligned Hint
+movddup,          "movddup",          IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x12),    INS_FLAGS_None; Replicate Double FP Values
+movsldup,         "movsldup",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x12),    INS_FLAGS_None; Replicate even-indexed Single FP Values
+movshdup,         "movshdup",         IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x16),    INS_FLAGS_None; Replicate odd-indexed Single FP Values
+phminposuw,       "phminposuw",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x41),     INS_FLAGS_None; Packed Horizontal Word Minimum
+mpsadbw,          "mpsadbw",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x42),     INS_Flags_IsDstDstSrcAVXInstruction; Compute Multiple Packed Sums of Absolute Difference
+pinsrb,           "pinsrb",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x20),     INS_Flags_IsDstDstSrcAVXInstruction; Insert Byte
+pinsrd,           "pinsrd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x22),     INS_Flags_IsDstDstSrcAVXInstruction; Insert Dword
+pinsrq,           "pinsrq",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x22),     INS_Flags_IsDstDstSrcAVXInstruction; Insert Qword
+pextrb,           "pextrb",           IUM_WR, SSE3A(0x14),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract Byte
+pextrd,           "pextrd",           IUM_WR, SSE3A(0x16),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract Dword
+pextrq,           "pextrq",           IUM_WR, SSE3A(0x16),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract Qword
+pextrw_sse41,     "pextrw",           IUM_WR, SSE3A(0x15),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract Word
+extractps,        "extractps",        IUM_WR, SSE3A(0x17),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract Packed Floating-Point Values
+pclmulqdq,        "pclmulqdq" ,       IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x44),     INS_Flags_IsDstDstSrcAVXInstruction   // Perform a carry-less multiplication of two quadwords
+aesdec,           "aesdec",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xDE),     INS_Flags_IsDstDstSrcAVXInstruction   // Perform one round of an AES decryption flow
+aesdeclast,       "aesdeclast",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xDF),     INS_Flags_IsDstDstSrcAVXInstruction   // Perform last round of an AES decryption flow
+aesenc,           "aesenc",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xDC),     INS_Flags_IsDstDstSrcAVXInstruction   // Perform one round of an AES encryption flow
+aesenclast,       "aesenclast",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xDD),     INS_Flags_IsDstDstSrcAVXInstruction   // Perform last round of an AES encryption flow
+aesimc,           "aesimc",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xDB),     INS_FLAGS_None   // Perform the AES InvMixColumn Transformation
+aeskeygenassist,  "aeskeygenassist",  IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0xDF),     INS_FLAGS_None   // AES Round Key Generation Assist
+vbroadcastss,     "broadcastss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x18),     INS_FLAGS_None; Broadcast float value read from memory to entire ymm register
+vbroadcastsd,     "broadcastsd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x19),     INS_FLAGS_None; Broadcast float value read from memory to entire ymm register
+vpbroadcastb,     "pbroadcastb",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x78),     INS_FLAGS_None; Broadcast int8 value from reg/memory to entire ymm register
+vpbroadcastw,     "pbroadcastw",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x79),     INS_FLAGS_None; Broadcast int16 value from reg/memory to entire ymm register
+vpbroadcastd,     "pbroadcastd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x58),     INS_FLAGS_None; Broadcast int32 value from reg/memory to entire ymm register
+vpbroadcastq,     "pbroadcastq",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x59),     INS_FLAGS_None; Broadcast int64 value from reg/memory to entire ymm register
+vextractf128,     "extractf128",      IUM_WR, SSE3A(0x19),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract 128-bit packed floating point values
+vextracti128,     "extracti128",      IUM_WR, SSE3A(0x39),  BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Extract 128-bit packed integer values
+vinsertf128,      "insertf128",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x18),     INS_Flags_IsDstDstSrcAVXInstruction; Insert 128-bit packed floating point values
+vinserti128,      "inserti128",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x38),     INS_Flags_IsDstDstSrcAVXInstruction; Insert 128-bit packed integer values
+vzeroupper,       "zeroupper",        IUM_WR, 0xC577F8,     BAD_CODE,     BAD_CODE,         INS_FLAGS_None; Zero upper 128-bits of all YMM regs (includes 2-byte fixed VEX prefix)
+vperm2i128,       "perm2i128",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x46),     INS_Flags_IsDstDstSrcAVXInstruction; Permute 128-bit halves of input register
+vpermq,           "permq",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x00),     INS_FLAGS_None; Permute 64-bit of input register
+vpblendd,         "pblendd",          IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x02),     INS_Flags_IsDstDstSrcAVXInstruction; Blend Packed DWORDs
+vblendvps,        "blendvps",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x4A),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Blend Packed Singles
+vblendvpd,        "blendvpd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x4B),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Blend Packed Doubles
+vpblendvb,        "pblendvb",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x4C),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Blend Packed Bytes
+vtestps,          "testps",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0E),     INS_FLAGS_None; Packed Bit Test
+vtestpd,          "testpd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0F),     INS_FLAGS_None; Packed Bit Test
+vpsrlvd,          "psrlvd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x45),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Bit Shift Right Logical
+vpsrlvq,          "psrlvq",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x45),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Bit Shift Right Logical
+vpsravd,          "psravd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x46),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Bit Shift Right Arithmetic
+vpsllvd,          "psllvd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x47),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Bit Shift Left Logical
+vpsllvq,          "psllvq",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x47),     INS_Flags_IsDstDstSrcAVXInstruction; Variable Bit Shift Left Logical
+vpermilps,        "permilps",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x04),     INS_FLAGS_None; Permute In-Lane of Quadruples of Single-Precision Floating-Point Values
+vpermilpd,        "permilpd",         IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x05),     INS_FLAGS_None; Permute In-Lane of Quadruples of Double-Precision Floating-Point Values
+vpermilpsvar,     "permilpsvar",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0C),     INS_Flags_IsDstDstSrcAVXInstruction; Permute In-Lane of Quadruples of Single-Precision Floating-Point Values
+vpermilpdvar,     "permilpdvar",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x0D),     INS_Flags_IsDstDstSrcAVXInstruction; Permute In-Lane of Quadruples of Double-Precision Floating-Point Values
+vperm2f128,       "perm2f128",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x06),     INS_Flags_IsDstDstSrcAVXInstruction; Permute Floating-Point Values
+vpermpd,          "permpd",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE3A(0x01),     INS_FLAGS_None; Permute Double-Precision Floating-Point Values
+vpermd,           "permd",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x36),     INS_Flags_IsDstDstSrcAVXInstruction; Permute Packed Doublewords Elements
+vpermps,          "permps",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x16),     INS_Flags_IsDstDstSrcAVXInstruction; Permute Single-Precision Floating-Point Elements
+vbroadcastf128,   "broadcastf128",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x1A),     INS_FLAGS_None; Broadcast packed float values read from memory to entire ymm register
+vbroadcasti128,   "broadcasti128",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x5A),     INS_FLAGS_None; Broadcast packed integer values read from memory to entire ymm register
+vmaskmovps,       "maskmovps",        IUM_WR, SSE38(0x2E),  BAD_CODE,     SSE38(0x2C),     INS_Flags_IsDstDstSrcAVXInstruction; Conditional SIMD Packed Single-Precision Floating-Point Loads and Stores
+vmaskmovpd,       "maskmovpd",        IUM_WR, SSE38(0x2F),  BAD_CODE,     SSE38(0x2D),     INS_Flags_IsDstDstSrcAVXInstruction; Conditional SIMD Packed Double-Precision Floating-Point Loads and Stores
+vpmaskmovd,       "pmaskmovd",        IUM_WR, SSE38(0x8E),  BAD_CODE,     SSE38(0x8C),     INS_Flags_IsDstDstSrcAVXInstruction; Conditional SIMD Integer Packed Dword Loads and Stores
+vpmaskmovq,       "pmaskmovq",        IUM_WR, SSE38(0x8E),  BAD_CODE,     SSE38(0x8C),     INS_Flags_IsDstDstSrcAVXInstruction; Conditional SIMD Integer Packed Qword Loads and Stores
+vpgatherdd,       "pgatherdd",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x90),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed Dword Values Using Signed Dword
+vpgatherqd,       "pgatherqd",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x91),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed Dword Values Using Signed Qword
+vpgatherdq,       "pgatherdq",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x90),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed Dword with Signed Dword Indices
+vpgatherqq,       "pgatherqq",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x91),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed Qword with Signed Dword Indices
+vgatherdps,       "gatherdps",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x92),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed SP FP values Using Signed Dword Indices
+vgatherqps,       "gatherqps",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x93),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed SP FP values Using Signed Qword Indices
+vgatherdpd,       "gatherdpd",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x92),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed DP FP Values Using Signed Dword Indices
+vgatherqpd,       "gatherqpd",        IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x93),     INS_Flags_IsDstDstSrcAVXInstruction; Gather Packed DP FP Values Using Signed Qword Indices
+vfmadd132pd,      "fmadd132pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x98),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+vfmadd213pd,      "fmadd213pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA8),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd231pd,      "fmadd231pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB8),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd132ps,      "fmadd132ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x98),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Add of Packed Single-Precision Floating-Point Values
+vfmadd213ps,      "fmadd213ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA8),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd231ps,      "fmadd231ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB8),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd132sd,      "fmadd132sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x99),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Add of Scalar Double-Precision Floating-Point Values
+vfmadd213sd,      "fmadd213sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA9),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd231sd,      "fmadd231sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB9),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd132ss,      "fmadd132ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x99),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Add of Scalar Single-Precision Floating-Point Values
+vfmadd213ss,      "fmadd213ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA9),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmadd231ss,      "fmadd231ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB9),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmaddsub132pd,   "fmaddsub132pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x96),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
+vfmaddsub213pd,   "fmaddsub213pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA6),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmaddsub231pd,   "fmaddsub231pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB6),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmaddsub132ps,   "fmaddsub132ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x96),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values
+vfmaddsub213ps,   "fmaddsub213ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA6),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmaddsub231ps,   "fmaddsub231ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB6),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsubadd132pd,   "fmsubadd132pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x97),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values
+vfmsubadd213pd,   "fmsubadd213pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA7),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsubadd231pd,   "fmsubadd231pd",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB7),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsubadd132ps,   "fmsubadd132ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x97),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values
+vfmsubadd213ps,   "fmsubadd213ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xA7),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsubadd231ps,   "fmsubadd231ps",    IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xB7),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub132pd,      "fmsub132pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9A),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values
+vfmsub213pd,      "fmsub213pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAA),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub231pd,      "fmsub231pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBA),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub132ps,      "fmsub132ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9A),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values
+vfmsub213ps,      "fmsub213ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAA),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub231ps,      "fmsub231ps",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBA),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub132sd,      "fmsub132sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9B),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values
+vfmsub213sd,      "fmsub213sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAB),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub231sd,      "fmsub231sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBB),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub132ss,      "fmsub132ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9B),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values
+vfmsub213ss,      "fmsub213ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAB),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfmsub231ss,      "fmsub231ss",       IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBB),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd132pd,     "fmnadd132pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9C),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
+vfnmadd213pd,     "fmnadd213pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAC),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd231pd,     "fmnadd231pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBC),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd132ps,     "fmnadd132ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9C),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values
+vfnmadd213ps,     "fmnadd213ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAC),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd231ps,     "fmnadd231ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBC),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd132sd,     "fmnadd132sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9D),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values
+vfnmadd213sd,     "fmnadd213sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAD),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd231sd,     "fmnadd231sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBD),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd132ss,     "fmnadd132ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9D),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values
+vfnmadd213ss,     "fmnadd213ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAD),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmadd231ss,     "fmnadd231ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBD),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub132pd,     "fmnsub132pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9E),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
+vfnmsub213pd,     "fmnsub213pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAE),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub231pd,     "fmnsub231pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBE),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub132ps,     "fmnsub132ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9E),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
+vfnmsub213ps,     "fmnsub213ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAE),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub231ps,     "fmnsub231ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBE),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub132sd,     "fmnsub132sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9F),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
+vfnmsub213sd,     "fmnsub213sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAF),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub231sd,     "fmnsub231sd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBF),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub132ss,     "fmnsub132ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0x9F),     INS_Flags_IsDstDstSrcAVXInstruction; Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values
+vfnmsub213ss,     "fmnsub213ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xAF),     INS_Flags_IsDstDstSrcAVXInstruction; 
+vfnmsub231ss,     "fmnsub231ss",      IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xBF),     INS_Flags_IsDstDstSrcAVXInstruction; 
+andn,             "andn",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF2),     INS_Flags_IsDstDstSrcAVXInstruction; Logical AND NOT
+blsi,             "blsi",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF3),     INS_Flags_IsDstDstSrcAVXInstruction; Extract Lowest Set Isolated Bit
+blsmsk,           "blsmsk",           IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF3),     INS_Flags_IsDstDstSrcAVXInstruction; Get Mask Up to Lowest Set Bit
+blsr,             "blsr",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF3),     INS_Flags_IsDstDstSrcAVXInstruction; Reset Lowest Set Bit
+bextr,            "bextr",            IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF7),     INS_Flags_IsDstDstSrcAVXInstruction; Bit Field Extract
+pdep,             "pdep",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF5),     INS_Flags_IsDstDstSrcAVXInstruction; Parallel Bits Deposit
+pext,             "pext",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF5),     INS_Flags_IsDstDstSrcAVXInstruction; Parallel Bits Extract
+bzhi,             "bzhi",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF5),     INS_Flags_IsDstDstSrcAVXInstruction; Zero High Bits Starting with Specified Bit Position
+mulx,             "mulx",             IUM_WR, BAD_CODE,     BAD_CODE,     SSE38(0xF6),                  INS_Flags_IsDstDstSrcAVXInstruction; Unsigned Multiply Without Affecting Flags
+crc32,            "crc32",            IUM_WR, BAD_CODE,     BAD_CODE,     PACK4(0xF2 0x0F 0x38 0xF0),           INS_FLAGS_None
+tzcnt,            "tzcnt",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xBC),                 INS_FLAGS_None; Count the Number of Trailing Zero Bits
+lzcnt,            "lzcnt",            IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xBD),                 INS_FLAGS_None
+popcnt,           "popcnt",           IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xB8),                 INS_FLAGS_None
+ret,              "ret",              IUM_RD, 0x0000C3,     0x0000C2,       _,                              INS_FLAGS_None
+loop,             "loop",             IUM_RD, BAD_CODE,     0x0000E2,       _,                              INS_FLAGS_None
+call,             "call",             IUM_RD, 0x0010FF,     0x0000E8,       _,                              INS_FLAGS_WritesFlags
+rol,              "rol",              IUM_RW, 0x0000D2,     BAD_CODE,   _,            INS_FLAGS_WritesFlags
+rol_1,            "rol",              IUM_RW, 0x0000D0,     0x0000D0,   _,            INS_FLAGS_WritesFlags
+rol_N,            "rol",              IUM_RW, 0x0000C0,     0x0000C0,   _,            INS_FLAGS_WritesFlags
+ror,              "ror",              IUM_RW, 0x0008D2,     BAD_CODE,   _,            INS_FLAGS_WritesFlags
+ror_1,            "ror",              IUM_RW, 0x0008D0,     0x0008D0,   _,            INS_FLAGS_WritesFlags
+ror_N,            "ror",              IUM_RW, 0x0008C0,     0x0008C0,   _,            INS_FLAGS_WritesFlags
+rcl,              "rcl",              IUM_RW, 0x0010D2,     BAD_CODE,   _,             INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+rcl_1,            "rcl",              IUM_RW, 0x0010D0,     0x0010D0,   _,             INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+rcl_N,            "rcl",              IUM_RW, 0x0010C0,     0x0010C0,   _,            INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+rcr,              "rcr",              IUM_RW, 0x0018D2,     BAD_CODE,   _,            INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+rcr_1,            "rcr",              IUM_RW, 0x0018D0,     0x0018D0,   _,            INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+rcr_N,            "rcr",              IUM_RW, 0x0018C0,     0x0018C0,   _,            INS_FLAGS_ReadsFlags | INS_FLAGS_WritesFlags
+shl,              "shl",              IUM_RW, 0x0020D2,     BAD_CODE,   _,            INS_FLAGS_WritesFlags
+shl_1,            "shl",              IUM_RW, 0x0020D0,     0x0020D0,   _,            INS_FLAGS_WritesFlags
+shl_N,            "shl",              IUM_RW, 0x0020C0,     0x0020C0,   _,            INS_FLAGS_WritesFlags
+shr,              "shr",              IUM_RW, 0x0028D2,     BAD_CODE,   _,            INS_FLAGS_WritesFlags
+shr_1,            "shr",              IUM_RW, 0x0028D0,     0x0028D0,   _,            INS_FLAGS_WritesFlags
+shr_N,            "shr",              IUM_RW, 0x0028C0,     0x0028C0,   _,            INS_FLAGS_WritesFlags
+sar,              "sar",              IUM_RW, 0x0038D2,     BAD_CODE,   _,            INS_FLAGS_WritesFlags
+sar_1,            "sar",              IUM_RW, 0x0038D0,     0x0038D0,   _,            INS_FLAGS_WritesFlags
+sar_N,            "sar",              IUM_RW, 0x0038C0,     0x0038C0,   _,            INS_FLAGS_WritesFlags
+r_movsb,          "rep movsb",        IUM_RD, 0x00A4F3,              _, _,                          INS_FLAGS_None
+r_movsd,          "rep movsd",        IUM_RD, 0x00A5F3,              _, _,                           INS_FLAGS_None
+r_movsq,          "rep movsq",        IUM_RD, 0xF3A548,              _, _,                           INS_FLAGS_None
+movsb,            "movsb",            IUM_RD, 0x0000A4,              _, _,                           INS_FLAGS_None
+movsd,            "movsd",            IUM_RD, 0x0000A5,   _, _,                           INS_FLAGS_None
+movsq,            "movsq",            IUM_RD, 0x00A548,   _, _,                           INS_FLAGS_None
+r_stosb,          "rep stosb",        IUM_RD, 0x00AAF3,   _, _,                           INS_FLAGS_None
+r_stosd,          "rep stosd",        IUM_RD, 0x00ABF3,   _, _,                           INS_FLAGS_None
+r_stosq,          "rep stosq",        IUM_RD, 0xF3AB48,   _, _,                           INS_FLAGS_None
+stosb,            "stosb",            IUM_RD, 0x0000AA,   _, _,                           INS_FLAGS_None
+stosd,            "stosd",            IUM_RD, 0x0000AB,   _, _,                           INS_FLAGS_None
+stosq,            "stosq",            IUM_RD, 0x00AB48,   _, _,                           INS_FLAGS_None
+int3,             "int3",             IUM_RD, 0x0000CC,   _, _,                           INS_FLAGS_None
+nop,              "nop",              IUM_RD, 0x000090,   _, _,                           INS_FLAGS_None
+lock,             "lock",             IUM_RD, 0x0000F0,   _, _,                           INS_FLAGS_None
+leave,            "leave",            IUM_RD, 0x0000C9,   _, _,                           INS_FLAGS_None
+neg,              "neg",              IUM_RW, 0x0018F6,   _, _,                           INS_FLAGS_WritesFlags
+not,              "not",              IUM_RW, 0x0010F6,   _, _,                           INS_FLAGS_WritesFlags
+cdq,              "cdq",              IUM_RD, 0x000099,   _, _,                           INS_FLAGS_WritesFlags
+idiv,             "idiv",             IUM_RD, 0x0038F6,   _, _,                           INS_FLAGS_WritesFlags
+imulEAX,          "imul",             IUM_RD, 0x0028F6,   _, _,                           INS_FLAGS_WritesFlags // edx:eax = eax*op1
+div,              "div",              IUM_RD, 0x0030F6,   _, _,                           INS_FLAGS_WritesFlags
+mulEAX,           "mul",              IUM_RD, 0x0020F6,   _, _,                          INS_FLAGS_WritesFlags
+sahf,             "sahf",             IUM_RD, 0x00009E,   _, _,                          INS_FLAGS_WritesFlags
+xadd,             "xadd",             IUM_RW, 0x0F00C0,   _, _,                          INS_FLAGS_WritesFlags
+cmpxchg,          "cmpxchg",          IUM_RW, 0x0F00B0,   _, _,                          INS_FLAGS_WritesFlags
+shld,             "shld",             IUM_RW, 0x0F00A4,   _, _,                          INS_FLAGS_WritesFlags
+shrd,             "shrd",             IUM_RW, 0x0F00AC,   _, _,                          INS_FLAGS_WritesFlags
+fld,              "fld",              IUM_WR, 0x0000D9,   _, _,                          INS_FLAGS_x87Instr
+fstp,             "fstp",             IUM_WR, 0x0018D9,   _, _,                          INS_FLAGS_x87Instr
+seto,             "seto",             IUM_WR, 0x0F0090,   _, _,                          INS_FLAGS_ReadsFlags
+setno,            "setno",            IUM_WR, 0x0F0091,   _, _,                          INS_FLAGS_ReadsFlags
+setb,             "setb",             IUM_WR, 0x0F0092,   _, _,                          INS_FLAGS_ReadsFlags
+setae,            "setae",            IUM_WR, 0x0F0093,   _, _,                         INS_FLAGS_ReadsFlags
+sete,             "sete",             IUM_WR, 0x0F0094,   _, _,                         INS_FLAGS_ReadsFlags
+setne,            "setne",            IUM_WR, 0x0F0095,   _, _,  INS_FLAGS_ReadsFlags
+setbe,            "setbe",            IUM_WR, 0x0F0096,   _, _,  INS_FLAGS_ReadsFlags
+seta,             "seta",             IUM_WR, 0x0F0097,   _, _,  INS_FLAGS_ReadsFlags
+sets,             "sets",             IUM_WR, 0x0F0098,   _, _,  INS_FLAGS_ReadsFlags
+setns,            "setns",            IUM_WR, 0x0F0099,   _, _,  INS_FLAGS_ReadsFlags
+setp,             "setp",             IUM_WR, 0x0F009A,   _, _,   INS_FLAGS_ReadsFlags
+setnp,            "setnp",            IUM_WR, 0x0F009B,   _, _,  INS_FLAGS_ReadsFlags
+setl,             "setl",             IUM_WR, 0x0F009C,   _, _,  INS_FLAGS_ReadsFlags
+setge,            "setge",            IUM_WR, 0x0F009D,   _, _,  INS_FLAGS_ReadsFlags
+setle,            "setle",            IUM_WR, 0x0F009E,   _, _,  INS_FLAGS_ReadsFlags
+setg,             "setg",             IUM_WR, 0x0F009F,   _, _,  INS_FLAGS_ReadsFlags
+rex_jmp,          "rex.jmp",          IUM_RD, 0x0020FE,   _, _,  INS_FLAGS_None
+i_jmp,            "jmp",              IUM_RD, 0x0020FE,   _, _,  INS_FLAGS_None
+jmp,              "jmp",              IUM_RD, 0x0000EB,   _, _,  INS_FLAGS_None
+jo,               "jo",               IUM_RD, 0x000070,   _, _,  INS_FLAGS_ReadsFlags
+jno,              "jno",              IUM_RD, 0x000071,   _, _,  INS_FLAGS_ReadsFlags
+jb,               "jb",               IUM_RD, 0x000072,   _, _,  INS_FLAGS_ReadsFlags
+jae,              "jae",              IUM_RD, 0x000073,   _, _,  INS_FLAGS_ReadsFlags
+je,               "je",               IUM_RD, 0x000074,   _, _,  INS_FLAGS_ReadsFlags
+jne,              "jne",              IUM_RD, 0x000075,   _, _,  INS_FLAGS_ReadsFlags
+jbe,              "jbe",              IUM_RD, 0x000076,   _, _,  INS_FLAGS_ReadsFlags
+ja,               "ja",               IUM_RD, 0x000077,   _, _,  INS_FLAGS_ReadsFlags
+js,               "js",               IUM_RD, 0x000078,   _, _,  INS_FLAGS_ReadsFlags
+jns,              "jns",              IUM_RD, 0x000079,   _, _,  INS_FLAGS_ReadsFlags
+jp,               "jp",               IUM_RD, 0x00007A,   _, _,  INS_FLAGS_ReadsFlags
+jnp,              "jnp",              IUM_RD, 0x00007B,   _, _,  INS_FLAGS_ReadsFlags
+jl,               "jl",               IUM_RD, 0x00007C,   _, _,  INS_FLAGS_ReadsFlags
+jge,              "jge",              IUM_RD, 0x00007D,   _, _,  INS_FLAGS_ReadsFlags
+jle,              "jle",              IUM_RD, 0x00007E,   _, _,  INS_FLAGS_ReadsFlags
+jg,               "jg",               IUM_RD, 0x00007F,   _, _,  INS_FLAGS_ReadsFlags
+l_jmp,            "jmp",              IUM_RD, 0x0000E9,   _, _,  INS_FLAGS_None
+l_jo,             "jo",               IUM_RD, 0x00800F,   _, _,  INS_FLAGS_ReadsFlags
+l_jno,            "jno",              IUM_RD, 0x00810F,   _, _,  INS_FLAGS_ReadsFlags
+l_jb,             "jb",               IUM_RD, 0x00820F,   _, _,  INS_FLAGS_ReadsFlags
+l_jae,            "jae",              IUM_RD, 0x00830F,   _, _,  INS_FLAGS_ReadsFlags
+l_je,             "je",               IUM_RD, 0x00840F,   _, _,  INS_FLAGS_ReadsFlags
+l_jne,            "jne",              IUM_RD, 0x00850F,   _, _,  INS_FLAGS_ReadsFlags
+l_jbe,            "jbe",              IUM_RD, 0x00860F,   _, _,     INS_FLAGS_ReadsFlags
+l_ja,             "ja",               IUM_RD, 0x00870F,   _, _,    INS_FLAGS_ReadsFlags
+l_js,             "js",               IUM_RD, 0x00880F,   _, _,     INS_FLAGS_ReadsFlags
+l_jns,            "jns",              IUM_RD, 0x00890F,   _, _,     INS_FLAGS_ReadsFlags
+l_jp,             "jp",               IUM_RD, 0x008A0F,   _, _,     INS_FLAGS_ReadsFlags
+l_jnp,            "jnp",              IUM_RD, 0x008B0F,   _, _,     INS_FLAGS_ReadsFlags
+l_jl,             "jl",               IUM_RD, 0x008C0F,   _, _,     INS_FLAGS_ReadsFlags
+l_jge,            "jge",              IUM_RD, 0x008D0F,   _, _,     INS_FLAGS_ReadsFlags
+l_jle,            "jle",              IUM_RD, 0x008E0F,   _, _,     INS_FLAGS_ReadsFlags
+l_jg,             "jg",               IUM_RD, 0x008F0F,   _, _,    INS_FLAGS_ReadsFlags
+align,            "align",            IUM_RD, BAD_CODE,   _, _,    INS_FLAGS_None
+

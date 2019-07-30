@@ -222,7 +222,7 @@ namespace Z0
                : src.GetGenericTypeDefinition().GetGenericArguments();
     
         public static bool IsRef(this Type src)
-            =>  src.UnderlyingSystemType.IsByRef || src.UnderlyingSystemType.IsByRefLike;
+            =>  src.UnderlyingSystemType.IsByRef;
         
 
         static string FormatGenericName(this Type src)
@@ -281,10 +281,10 @@ namespace Z0
         /// Constructs a display name for a type
         /// </summary>
         /// <param name="src">The source type</param>
-        public static string DisplayName(this Type src)
+        public static string DisplayName(this Type src, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         {
             if(src == null)
-                return "!null!";
+                throw new ArgumentNullException(nameof(src), $"Called from {line} {file}");
                 
             if(src.IsSimpleName())
                 return src.FormatSimpleName();

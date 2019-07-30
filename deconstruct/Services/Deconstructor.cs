@@ -136,7 +136,6 @@ namespace Z0
             return dst;
 		}
 
-
         static CilNativeMap[] MapCilToNative(ClrMethod method)
         {
             var map = method.ILOffsetMap;

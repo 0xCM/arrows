@@ -49,6 +49,9 @@ namespace Z0
         public FolderName FolderName
             => FolderName.Define(Directory.GetParent(FolderPath.Name).Name);
 
+        public string FullPath
+            => Name;
+
         public Option<FileExtension> Extension
             => FileName.Extension;
         

@@ -7,6 +7,8 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
 
+    using Z0.Asm;
+
     using static zfunc;
 
 
@@ -45,10 +47,10 @@ namespace Z0.Cpu
         public Imm64(ulong src)
             => this.Value = src;
         
-        public ImmInfo Description 
+        public AsmOperandImm Description 
         {
             [MethodImpl(Inline)]
-            get => new ImmInfo(Size,Value);
+            get => new AsmOperandImm(Size,Value);
         }
 
         ulong IImm<ulong>.Value 

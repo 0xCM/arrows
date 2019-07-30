@@ -39,6 +39,19 @@ namespace Z0
 
         public bool IsSignExtended(IImm<byte> src)
             => src.IsSignExtended;
+    
+        [MethodImpl(Inline)]
+        public static int For(int min,  int max)
+        {
+            int j = 0;
+            for(var i= min; i<max; i++)
+                j--;
+            return j;
+        }   
+
+        public static int DoFor(int min, int max)
+            => For(min,max);
+    
     }
 
 }

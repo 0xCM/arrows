@@ -123,7 +123,7 @@ namespace Z0
         [MethodImpl(Inline)]
         ReadOnlySpan128(Span128<T> src)
         {
-            data = src.ToReadOnlySpan();
+            data = src.ReadOnly();
         }
 
         [MethodImpl(Inline)]

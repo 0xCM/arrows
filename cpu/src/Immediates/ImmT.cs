@@ -7,7 +7,9 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
 
+    using Z0.Asm;
     using static zfunc;
+
 
 
     /// <summary>
@@ -102,8 +104,8 @@ namespace Z0.Cpu
             get => Value;
         }
 
-        public ImmInfo Description 
-            => new ImmInfo(Width, imagine(ref Unsafe.AsRef(in Value), out ulong _));
+        public AsmOperandImm Description 
+            => new AsmOperandImm(Width, imagine(ref Unsafe.AsRef(in Value), out ulong _));
 
         [MethodImpl(Inline)]
         public Imm<T> Redefine(T src)         

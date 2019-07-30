@@ -55,69 +55,156 @@ namespace Z0
         public static ref double Sqrt(this ref double src)
             => ref math.sqrt(ref src);
  
-        [MethodImpl(Inline)]
         public static ReadOnlySpan<sbyte> Sqrt(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
 
-        [MethodImpl(Inline)]
+        public static Span<byte> Sqrt(this ReadOnlySpan<byte> src, Span<byte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;
+        }
+
+        public static Span<ushort> Sqrt(this ReadOnlySpan<ushort> src, Span<ushort> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
+
         public static ReadOnlySpan<short> Sqrt(this ReadOnlySpan<short> src, Span<short> dst)
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<int> Sqrt(this ReadOnlySpan<int> src, Span<int> dst)
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
 
-        [MethodImpl(Inline)]
+        public static Span<uint> Sqrt(this ReadOnlySpan<uint> src, Span<uint> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
+
         public static ReadOnlySpan<long> Sqrt(this ReadOnlySpan<long> src, Span<long> dst)
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
 
-        [MethodImpl(Inline)]
+        public static Span<ulong> Sqrt(this ReadOnlySpan<ulong> src, Span<ulong> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
+
         public static ReadOnlySpan<float> Sqrt(this ReadOnlySpan<float> src, Span<float> dst )
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
 
-        [MethodImpl(Inline)]
         public static ReadOnlySpan<double> Sqrt(this ReadOnlySpan<double> src, Span<double> dst )
-            => math.sqrt(src,dst);            
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                math.sqrt(src[i], out dst[i]);
+            return dst;                
+        }
  
-        [MethodImpl(Inline)]
         public static Span<sbyte> Sqrt(this Span<sbyte> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<byte> Sqrt(this Span<byte> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<short> Sqrt(this Span<short> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<ushort> Sqrt(this Span<ushort> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<int> Sqrt(this Span<int> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<uint> Sqrt(this Span<uint> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<long> Sqrt(this Span<long> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<ulong> Sqrt(this Span<ulong> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<float> Sqrt(this Span<float> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
-        [MethodImpl(Inline)]
         public static Span<double> Sqrt(this Span<double> io)
-            => math.sqrt(io);
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.sqrt(ref io[i]);
+            return io;
+        }
 
    }
 

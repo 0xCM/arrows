@@ -162,26 +162,8 @@ namespace Z0.Cpu
         public readonly OperandTarget Targets;
     }
 
-    public enum Mnemonic
-    {
-        VPERMPD,
-    }
 
 
-    public readonly struct InstructionSpec
-    {
-        public readonly Mnemonic Kind;
-
-        public readonly OperandSpec Operand1;
-
-        public readonly OperandSpec Operand2;
-
-        public readonly OperandSpec Operand3;
-
-        public readonly OperandSpec Operand4;
-    
-    
-    }
 
 
 }

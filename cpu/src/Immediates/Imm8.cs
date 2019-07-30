@@ -7,8 +7,9 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
 
-    using static zfunc;
+    using Z0.Asm;
 
+    using static zfunc;
 
     /// <summary>
     /// Defines an 8-bit immediate
@@ -41,10 +42,10 @@ namespace Z0.Cpu
         public Imm8(byte src)
             => this.Value = src;
 
-        public ImmInfo Description 
+        public AsmOperandImm Description 
         {
             [MethodImpl(Inline)]
-            get => new ImmInfo(Size,Value);
+            get => new AsmOperandImm(Size,Value);
         }
             
 

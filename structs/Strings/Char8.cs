@@ -155,6 +155,9 @@ namespace Z0
         public override bool Equals(object rhs)
             => rhs is Char8 x ? Equals(x) : false;
 
+        public bool IsEmpty
+            => Format() == string.Empty;
+
    }
  
 }

@@ -25,4 +25,12 @@ namespace Z0
     {
 
     }
+
+    public static class FixedStringX
+    {
+     
+        public static bool IsEmpy(this Char8? src)
+            => !src.HasValue ? true : src.Value.IsEmpty;
+
+    }
 }

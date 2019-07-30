@@ -7,11 +7,14 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
 
+    using Z0.Asm;
+    
     using static zfunc;
+
 
     public interface IImm
     {
-        ImmInfo Description {get;}   
+        AsmOperandImm Description {get;}   
     }
 
     /// <summary>

@@ -98,50 +98,50 @@ namespace Z0
             return dst;
         }
 
-        static string FormatNativeBlocks(this MethodDisassembly src)
-        {
-            var desc = sbuild();
-            desc.Append("# encoding");
-            desc.Append(AsciSym.Colon);
-            desc.Append(AsciSym.Space);
-            desc.Append(AsciSym.LBrace);
+        // static string FormatNativeBlocks(this MethodDisassembly src)
+        // {
+        //     var desc = sbuild();
+        //     desc.Append("# encoding");
+        //     desc.Append(AsciSym.Colon);
+        //     desc.Append(AsciSym.Space);
+        //     desc.Append(AsciSym.LBrace);
 
-            var blocks = src.AsmBody.NativeBlocks;
-            var blockcount = blocks.Length;
-            for(var i=0; i<blockcount; i++)
-            {
-                var block = blocks[i];
-                var blockParts = block.Data;
-                var blocklen = blockParts.Length;
-                for(var j=0; j< blocklen; j++)
-                {
-                    var part = blockParts[j];
-                    desc.Append(part.FormatHex(true, true));
-                    if(j != blocklen - 1)
-                    {
-                        desc.Append(AsciSym.Comma);
-                        desc.Append(AsciSym.Space);
-                    }
-                }
-            }
+        //     var blocks = src.AsmBody.NativeBlocks;
+        //     var blockcount = blocks.Length;
+        //     for(var i=0; i<blockcount; i++)
+        //     {
+        //         var block = blocks[i];
+        //         var blockParts = block.Data;
+        //         var blocklen = blockParts.Length;
+        //         for(var j=0; j< blocklen; j++)
+        //         {
+        //             var part = blockParts[j];
+        //             desc.Append(part.FormatHex(true, true));
+        //             if(j != blocklen - 1)
+        //             {
+        //                 desc.Append(AsciSym.Comma);
+        //                 desc.Append(AsciSym.Space);
+        //             }
+        //         }
+        //     }
             
-            desc.Append(AsciSym.RBrace);
-            desc.AppendLine();                
-            return desc.ToString();
-        }        
+        //     desc.Append(AsciSym.RBrace);
+        //     desc.AppendLine();                
+        //     return desc.ToString();
+        // }        
 
-        public static string FormatAsm(this MethodDisassembly src)
-        {
-            var format = sbuild();            
-            format.AppendLine($"{src.NativeAddress.FormatHex(false,false,true)}h {src.MethodSig.Format()}"); 
-            format.Append(src.FormatNativeBlocks());
-            var startaddress = src.NativeBody.First().Address.FormatHex(false,false,true);
-            var endaddress = src.NativeBody.Last().Address.FormatHex(false,false,true);
-            format.AppendLine($"asm-body-begin {startaddress}h ".PadRight(120, '-'));                                    
-            format.AppendLine(src.AsmBody.Format());
-            format.AppendLine($"asm-body-end {endaddress}h ".PadRight(120, '-'));
-            return format.ToString();
-        }
+        // public static string FormatAsm(this MethodDisassembly src)
+        // {
+        //     var format = sbuild();            
+        //     format.AppendLine($"{src.NativeAddress.FormatHex(false,false,true)}h {src.MethodSig.Format()}"); 
+        //     format.Append(src.FormatNativeBlocks());
+        //     var startaddress = src.NativeBody.First().Address.FormatHex(false,false,true);
+        //     var endaddress = src.NativeBody.Last().Address.FormatHex(false,false,true);
+        //     format.AppendLine($"asm-body-begin {startaddress}h ".PadRight(120, '-'));                                    
+        //     format.AppendLine(src.AsmBody.Format());
+        //     format.AppendLine($"asm-body-end {endaddress}h ".PadRight(120, '-'));
+        //     return format.ToString();
+        // }
 
         class AsmFormatterOutput : FormatterOutput
         {

@@ -92,21 +92,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offsets, int8(dst));
+                int8(src).ShiftR(offsets, int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offsets, uint8(dst));
+                ShiftX.ShiftR(uint8(src), offsets, uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offsets, int16(dst));
+                ShiftX.ShiftR(int16(src), offsets, int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offsets, uint16(dst));
+                ShiftX.ShiftR(uint16(src), offsets, uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offsets, int32(dst));
+                ShiftX.ShiftR(int32(src), offsets, int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offsets, uint32(dst));
+                ShiftX.ShiftR(uint32(src), offsets, uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offsets, int64(dst));
+                ShiftX.ShiftR(int64(src), offsets, int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offsets, uint64(dst));
+                ShiftX.ShiftR(uint64(src), offsets, uint64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -117,21 +117,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offset, int8(dst));
+                ShiftX.ShiftR(int8(src), offset, int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offset, uint8(dst));
+                ShiftX.ShiftR(uint8(src), offset, uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offset, int16(dst));
+                ShiftX.ShiftR(int16(src), offset, int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offset, uint16(dst));
+                ShiftX.ShiftR(uint16(src), offset, uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offset, int32(dst));
+                ShiftX.ShiftR(int32(src), offset, int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offset, uint32(dst));
+                ShiftX.ShiftR(uint32(src), offset, uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offset, int64(dst));
+                ShiftX.ShiftR(int64(src), offset, int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offset, uint64(dst));
+                ShiftX.ShiftR(uint64(src), offset, uint64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -146,21 +146,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offset);
+                ShiftX.ShiftR(int8(src), offset);
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offset);
+                ShiftX.ShiftR(uint8(src), offset);
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offset);
+                ShiftX.ShiftR(int16(src), offset);
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offset);
+                ShiftX.ShiftR(uint16(src), offset);
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offset);
+                ShiftX.ShiftR(int32(src), offset);
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offset);
+                ShiftX.ShiftR(uint32(src), offset);
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offset);
+                ShiftX.ShiftR(int64(src), offset);
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offset);
+                ShiftX.ShiftR(uint64(src), offset);
             else
                 throw unsupported<T>();
             return ref src;
@@ -171,21 +171,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offsets);
+                ShiftX.ShiftR(int8(src), offsets);
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offsets);
+                ShiftX.ShiftR(uint8(src), offsets);
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offsets);
+                ShiftX.ShiftR(int16(src), offsets);
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offsets);
+                ShiftX.ShiftR(uint16(src), offsets);
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offsets);
+                ShiftX.ShiftR(int32(src), offsets);
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offsets);
+                ShiftX.ShiftR(uint32(src), offsets);
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offsets);
+                ShiftX.ShiftR(int64(src), offsets);
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offsets);
+                ShiftX.ShiftR(uint64(src), offsets);
             else
                 throw unsupported<T>();
             return ref src;

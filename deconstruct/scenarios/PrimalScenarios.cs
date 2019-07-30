@@ -8,13 +8,19 @@ namespace Z0
     using System.Linq;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using System.IO;
 
     using static zfunc;
 
-
-    [DisplayName("scenarios-primal")]
-    class PrimalScenarios
+    class PrimalScenarios : Deconstructable<PrimalScenarios>
     {
+        public PrimalScenarios()
+            : base(callerfile())
+        {
+
+        }
+
+
         # region add
 
         public static sbyte add8i(sbyte x, sbyte y)
@@ -252,6 +258,12 @@ namespace Z0
         public static int mul32i(int x, int y)
             => x * y;
 
+        public static int mul32i(int x, int y, int z)
+            => x * y * z;
+
+        public static int mul32i(int a, int b, int c, int d, int e, int f)
+            => a*b*c*d*e*f;
+
         public static uint mul32u(uint x, uint y)
             => x * y;
 
@@ -317,6 +329,9 @@ namespace Z0
         public static ushort or16u(ushort x, ushort y)
             => (ushort)(x | y);
 
+        public static ushort or16u_2(ushort x, ushort y)
+            => x |=y;
+
         public static int or32i(int x, int y)
             => x | y;
 
@@ -326,6 +341,7 @@ namespace Z0
         public static long or64i(long x, long y)
             => x | y;
 
+        [MethodImpl(Inline | Optimize)]
         public static ulong or64u(ulong x, ulong y)
             => x | y;
         
@@ -333,71 +349,93 @@ namespace Z0
 
         # region sub
 
+        [MethodImpl(Inline | Optimize)]
         public static sbyte sub8i(sbyte x, sbyte y)
             => (sbyte)(x - y);
 
+        [MethodImpl(Inline | Optimize)]
         public static byte sub8u(byte x, byte y)
             => (byte)(x - y);
 
+        [MethodImpl(Inline | Optimize)]
         public static short sub16i(short x, short y)
             => (short)(x - y);
 
+        [MethodImpl(Inline | Optimize)]
         public static ushort sub16u(ushort x, ushort y)
             => (ushort)(x - y);
 
+        [MethodImpl(Inline | Optimize)]
         public static int sub32i(int x, int y)
             => x - y;
 
+        [MethodImpl(Inline | Optimize)]
         public static uint sub32u(uint x, uint y)
             => x - y;
 
+        [MethodImpl(Inline | Optimize)]
         public static long sub64i(long x, long y)
             => x - y;
 
+        [MethodImpl(Inline | Optimize)]
         public static ulong sub64u(ulong x, ulong y)
             => x - y;
 
+        [MethodImpl(Inline | Optimize)]
         public static float sub32f(float x, float y)
             => x - y;
 
+        [MethodImpl(Inline | Optimize)]
         public static double sub64f(double x, double y)
             => x - y;
 
         #endregion
 
-
         #region negate
 
-        public static sbyte negate(sbyte src)
+        [MethodImpl(Inline | Optimize)]
+        public static sbyte negate8i(sbyte src)
             => (sbyte)(- src);
 
-        public static byte negate(byte src)
+        [MethodImpl(Inline | Optimize)]
+        public static byte negate8u(byte src)
             => (byte)(~src + 1);
      
-        public static short negate(short src)
+        [MethodImpl(Inline | Optimize)]
+        public static short negate16i(short src)
             => (short)(- src);
 
-        public static ushort negate(ushort src)
+        [MethodImpl(Inline | Optimize)]
+        public static ushort negate16u(ushort src)
             => (ushort)(~src + 1);
 
-        public static int negate(int src)
+        [MethodImpl(Inline | Optimize)]
+        public static int negate32i(int src)
             => -src;
 
-        public static uint negate(uint src)
+        [MethodImpl(Inline | Optimize)]
+        public static uint negate32u(uint src)
             => ~src + 1;
 
-        public static long negate(long src)
+        [MethodImpl(Inline | Optimize)]
+        public static long negate64i(long src)
             => -src;
 
-        public static ulong negate(ulong src)
+        [MethodImpl(Inline | Optimize)]
+        public static ulong negate64u(ulong src)
             => ~src + 1;
 
-        public static float negate(float src)
-            => -src;
+        [MethodImpl(Inline | Optimize)]
+        public static float negate32f(float src)
+            => 0 - src;
 
-        public static double negate(double src)
-            => -src;
+        [MethodImpl(Inline | Optimize)]
+        public static double negate64f(double src)
+            => 0 - src;
  
+        const double zed = 0;
+
+
         #endregion
 
         #region inc
@@ -433,6 +471,18 @@ namespace Z0
             => src++;
  
         #endregion
+
+
+        [MethodImpl(Inline | Optimize)]
+        public static int abs(int x)
+        {
+            var mask = x >> 31;
+            return (x ^ mask) - mask; 
+        }
+
+        [MethodImpl(Inline | Optimize)]
+        public static short abs(short x)
+            => (short)abs((int)x);
 
     }
 }

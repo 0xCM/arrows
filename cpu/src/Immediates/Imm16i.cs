@@ -7,6 +7,8 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
 
+    using Z0.Asm;
+
     using static zfunc;
 
     /// <summary>
@@ -44,10 +46,10 @@ namespace Z0.Cpu
         public Imm16i(short src)
             => this.Value = src;
 
-        public ImmInfo Description 
+        public AsmOperandImm Description 
         {
             [MethodImpl(Inline)]
-            get => new ImmInfo(Size,Value);
+            get => new AsmOperandImm(Size,Value);
         }
 
         short IImm<short>.Value 

@@ -38,9 +38,6 @@ namespace Z0
         
         public string MethodName 
             => MethodInfo.Name;
-        
-
-        public override string ToString()
-            => this.FormatAsm();
+    
     }
 }

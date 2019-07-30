@@ -36,7 +36,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginxs.Add(lhs, rhs, dst);
+                lhs.Add(rhs, dst);
             return context.CaptureMetrics(opid,snapshot(sw), dst);
         }
 
@@ -47,7 +47,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginxs.Sub(lhs, rhs, dst);
+                lhs.Sub(rhs, dst);
             return context.CaptureMetrics(opid,snapshot(sw), dst);
         }
 

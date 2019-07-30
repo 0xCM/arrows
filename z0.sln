@@ -53,19 +53,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		directory.build.props = directory.build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.devops", "devops\z0.devops.csproj", "{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.devops", "devops\z0.devops.csproj", "{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.codegen", "codegen\z0.codegen.csproj", "{3F4FABFA-4201-4008-AC17-5E5170BEB1A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.codegen", "codegen\z0.codegen.csproj", "{3F4FABFA-4201-4008-AC17-5E5170BEB1A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.structs.test", "structs.test\z0.structs.test.csproj", "{F1E50969-7505-4EAB-8B29-87816DF460FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.structs.test", "structs.test\z0.structs.test.csproj", "{F1E50969-7505-4EAB-8B29-87816DF460FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.systems", "systems\z0.systems.csproj", "{BE777F0B-E92D-4C28-9BA3-315E13C9CDB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.systems", "systems\z0.systems.csproj", "{BE777F0B-E92D-4C28-9BA3-315E13C9CDB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cpu", "cpu", "{F4427A40-06CC-4E53-822A-66AFE91C6B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.cpu", "cpu\src\z0.cpu.csproj", "{E3702799-D1DA-44F0-A7A2-B9F77CE2FCDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.cpu", "cpu\src\z0.cpu.csproj", "{E3702799-D1DA-44F0-A7A2-B9F77CE2FCDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.cpu.test", "cpu\test\z0.cpu.test.csproj", "{A04B598D-58BB-44D0-8D26-B76FF7AE0546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.cpu.test", "cpu\test\z0.cpu.test.csproj", "{A04B598D-58BB-44D0-8D26-B76FF7AE0546}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.asm", "asm\src\z0.asm.csproj", "{ADCF7315-946F-4BCD-BC92-D25E3254E33F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.asm.test", "asm\test\z0.asm.test.csproj", "{308B62AA-6649-4CE5-8B99-6A576AE8EE57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -185,15 +189,23 @@ Global
 		{A04B598D-58BB-44D0-8D26-B76FF7AE0546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A04B598D-58BB-44D0-8D26-B76FF7AE0546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04B598D-58BB-44D0-8D26-B76FF7AE0546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCF7315-946F-4BCD-BC92-D25E3254E33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCF7315-946F-4BCD-BC92-D25E3254E33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCF7315-946F-4BCD-BC92-D25E3254E33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCF7315-946F-4BCD-BC92-D25E3254E33F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308B62AA-6649-4CE5-8B99-6A576AE8EE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308B62AA-6649-4CE5-8B99-6A576AE8EE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308B62AA-6649-4CE5-8B99-6A576AE8EE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308B62AA-6649-4CE5-8B99-6A576AE8EE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B25BF6D0-13CC-4F6F-B23A-D4D8878FED3E}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E3702799-D1DA-44F0-A7A2-B9F77CE2FCDD} = {F4427A40-06CC-4E53-822A-66AFE91C6B5A}
 		{A04B598D-58BB-44D0-8D26-B76FF7AE0546} = {F4427A40-06CC-4E53-822A-66AFE91C6B5A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B25BF6D0-13CC-4F6F-B23A-D4D8878FED3E}
 	EndGlobalSection
 EndGlobal

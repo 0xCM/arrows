@@ -200,7 +200,7 @@ namespace Z0
 
         public static bool Eq<T>(this Span128<T> lhs, Span128<T> rhs)        
             where T : struct        
-                => lhs.ToReadOnlySpan().Eq(rhs);
+                => lhs.ReadOnly().Eq(rhs);
 
         [MethodImpl(Inline)]
         public static bool Eq<T>(this Span<T> lhs, Span<T> rhs)  

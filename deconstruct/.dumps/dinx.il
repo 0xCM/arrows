@@ -1,4 +1,4 @@
-// 2019-07-29 03:15:52:185
+// 2019-07-29 18:32:30:365
 ref Vec256<ushort> loadDqu(in ushort src, out Vec256<ushort> dst)
 {
     IL_0000: ldarg.1
@@ -4974,7 +4974,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_001C: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span128<byte> abs(in Span128<sbyte> src, Span128<byte> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5012,7 +5012,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_004F: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span128<ushort> abs(in Span128<short> src, Span128<ushort> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5050,7 +5050,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_004F: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span128<uint> abs(in Span128<int> src, Span128<uint> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5088,7 +5088,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_004F: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span256<byte> abs(in Span256<sbyte> src, Span256<byte> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5128,7 +5128,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_0054: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span256<ushort> abs(in Span256<short> src, Span256<ushort> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -5168,7 +5168,7 @@ void abs(in Vec256<int> src, ref uint dst)
     IL_0054: ret
 
 }
-!null! abs(in !null! src, ref !null! dst)
+Span256<uint> abs(in Span256<int> src, Span256<uint> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7904,7 +7904,7 @@ Num128<double> sqrt(in Num128<double> src)
     IL_0013: ret
 
 }
-!null! sqrt(in !null! src, ref !null! dst)
+Span256<double> sqrt(in Span256<double> src, Span256<double> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -7944,7 +7944,7 @@ Num128<double> sqrt(in Num128<double> src)
     IL_0054: ret
 
 }
-!null! sqrt(in !null! src, ref !null! dst)
+Span256<float> sqrt(in Span256<float> src, Span256<float> dst)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
@@ -8075,7 +8075,7 @@ Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_0020: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<uint> shiftr(ReadOnlySpan256<uint> lhs, byte count, Span256<uint> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.UInt32>::get_BlockWidth()
@@ -8108,7 +8108,7 @@ Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<long> shiftr(ReadOnlySpan256<long> lhs, byte count, Span256<long> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.Int64>::get_BlockWidth()
@@ -8141,7 +8141,7 @@ Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<ulong> shiftr(ReadOnlySpan256<ulong> lhs, byte count, Span256<ulong> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.UInt64>::get_BlockWidth()
@@ -11323,7 +11323,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_0010: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span128<int> shiftr(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span128`1<System.Int32>
@@ -11375,7 +11375,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span128<uint> shiftr(in ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span128`1<System.UInt32>
@@ -11427,7 +11427,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span128<long> shiftr(in ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<long> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span128`1<System.Int64>
@@ -11479,7 +11479,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span128<ulong> shiftr(in ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span128`1<System.UInt64>
@@ -11531,7 +11531,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span256<int> shiftr(in ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> rhs, in Span256<int> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span256`1<System.Int32>
@@ -11583,7 +11583,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span256<uint> shiftr(in ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span256`1<System.UInt32>
@@ -11635,7 +11635,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span256<long> shiftr(in ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<long> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span256`1<System.Int64>
@@ -11687,7 +11687,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(in !null! lhs, in !null! rhs, in !null! dst)
+Span256<ulong> shiftr(in ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldobj Z0.Span256`1<System.UInt64>
@@ -11739,7 +11739,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_007B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<short> shiftr(ReadOnlySpan128<short> lhs, byte count, Span128<short> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.Int16>::get_BlockWidth()
@@ -11772,7 +11772,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<ushort> shiftr(ReadOnlySpan128<ushort> lhs, byte count, Span128<ushort> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.UInt16>::get_BlockWidth()
@@ -11805,7 +11805,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<int> shiftr(ReadOnlySpan128<int> lhs, byte count, Span128<int> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.Int32>::get_BlockWidth()
@@ -11838,7 +11838,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<uint> shiftr(ReadOnlySpan128<uint> lhs, byte count, Span128<uint> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.UInt32>::get_BlockWidth()
@@ -11871,7 +11871,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<long> shiftr(ReadOnlySpan128<long> lhs, byte count, Span128<long> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.Int64>::get_BlockWidth()
@@ -11904,7 +11904,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span128<ulong> shiftr(ReadOnlySpan128<ulong> lhs, byte count, Span128<ulong> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span128`1<System.UInt64>::get_BlockWidth()
@@ -11937,7 +11937,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<short> shiftr(ReadOnlySpan256<short> lhs, byte count, Span256<short> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.Int16>::get_BlockWidth()
@@ -11970,7 +11970,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<ushort> shiftr(ReadOnlySpan256<ushort> lhs, byte count, Span256<ushort> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.UInt16>::get_BlockWidth()
@@ -12003,7 +12003,7 @@ void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
     IL_003B: ret
 
 }
-!null! shiftr(ref !null! lhs, byte count, ref !null! dst)
+Span256<int> shiftr(ReadOnlySpan256<int> lhs, byte count, Span256<int> dst)
 {
     IL_0000: ldarga.s dst
     IL_0002: call System.Int32 Z0.Span256`1<System.Int32>::get_BlockWidth()

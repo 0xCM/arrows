@@ -26,16 +26,6 @@ namespace Z0
             where T : struct
                 => add(in src, in Vec256.ones<T>());
 
-        [MethodImpl(Inline)]
-        public static Vec128<T> dec<T>(in Vec128<T> src)
-            where T : struct
-                => sub(in src, in Vec128.ones<T>());
-
-        [MethodImpl(Inline)]
-        public static Vec256<T> dec<T>(in Vec256<T> src)
-            where T : struct
-                => sub(in src, in Vec256.ones<T>());
-
     }
 
 }

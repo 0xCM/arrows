@@ -16,8 +16,7 @@ namespace Z0.Test
 
 
     public class ShiftTest : UnitTest<ShiftTest>
-    {
-        const int Samples = Pow2.T04;
+    {        
 
         void Shift<T>(Orientation dir, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
             where T : struct

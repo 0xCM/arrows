@@ -1,4 +1,4 @@
-// 2019-07-29 03:15:51:239
+// 2019-07-29 18:32:29:211
 BitSize GetWidth(IImm<byte> src)
 {
     IL_0000: ldarg.1
@@ -58,5 +58,35 @@ bool IsSignExtended(IImm<byte> src)
     IL_0000: ldarg.1
     IL_0001: callvirt System.Boolean Z0.Cpu.IImm`1<System.Byte>::get_IsSignExtended()
     IL_0006: ret
+
+}
+int For(int min, int max)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: ldarg.0
+    IL_0003: stloc.1
+    IL_0004: br.s IL_000E
+    IL_0006: ldloc.0
+    IL_0007: ldc.i4.1
+    IL_0008: sub
+    IL_0009: stloc.0
+    IL_000A: ldloc.1
+    IL_000B: ldc.i4.1
+    IL_000C: add
+    IL_000D: stloc.1
+    IL_000E: ldloc.1
+    IL_000F: ldarg.1
+    IL_0010: blt.s IL_0006
+    IL_0012: ldloc.0
+    IL_0013: ret
+
+}
+int DoFor(int min, int max)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Int32 Z0.InlineScenarios::For(System.Int32,System.Int32)
+    IL_0007: ret
 
 }
