@@ -16,8 +16,10 @@ namespace Z0.Asm.Test
 
     public class AddTest : UnitTest<AddTest>
     {
-        static readonly AsmBinOp<int> addIL = AsmCodeBank.Add32I.CreateBinOp<int>("add");
-                
+        //static readonly AsmBinOp<int> addIL = AsmAdd.Add32I.CreateBinOp<int>("add");
+        static readonly AsmBinOp<int> add = AsmAdd.Op<int>();      
+
+        static readonly AsmBinOp<int> add2 = AsmAdd.Op<int>();      
 
         public AddTest()
         {
@@ -34,7 +36,7 @@ namespace Z0.Asm.Test
         public void VerifyIL()
         {                        
             for(var i=0; i<Samples; i++)
-                Claim.eq(Lhs[i] + Rhs[i], addIL(Lhs[i], Rhs[i]));                                        
+                Claim.eq(Lhs[i] + Rhs[i], add2(Lhs[i], Rhs[i]));                                        
         }
 
 
@@ -52,7 +54,7 @@ namespace Z0.Asm.Test
             var sw2 = stopwatch();
             for(var j=0; j<Cycles; j++)
             for(var i=0; i<Samples; i++)
-                result = addIL(Lhs[i], Rhs[i]);                                        
+                result = add(Lhs[i], Rhs[i]);                                        
             TracePerf("add/IL", snapshot(sw2), Cycles, Samples);
         }
 

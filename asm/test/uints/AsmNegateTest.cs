@@ -24,6 +24,8 @@ namespace Z0.Asm.Test
             VerifyOp(AsmNegate.Op<float>(), math.negate, Samples);
             VerifyOp(AsmNegate.Op<double>(), math.negate, Samples);
         }
+
+         
     }
 
 }

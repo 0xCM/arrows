@@ -62,7 +62,7 @@ namespace Z0
                 inxs[i] = new AsmInstructionInfo(offset, inxsfmt[i], mnemonic, opcode, operands, enckind, encoded);
             }
 
-            return new AsmFuncSpec(asm.StartAddress, asm.EndAddress, src.MethodSig.Format(), inxs, code);            
+            return new AsmFuncSpec(asm.StartAddress, asm.EndAddress, src.MethodSig, inxs, code);            
         }
 
         /// <summary>

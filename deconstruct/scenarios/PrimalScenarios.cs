@@ -20,6 +20,9 @@ namespace Z0
 
         }
 
+        
+
+        
 
         # region add
 
@@ -433,8 +436,6 @@ namespace Z0
         public static double negate64f(double src)
             => 0 - src;
  
-        const double zed = 0;
-
 
         #endregion
 
@@ -469,6 +470,50 @@ namespace Z0
 
         public static double inc(double src)
             => src++;
+ 
+        #endregion
+
+        #region flip
+        
+        [MethodImpl(Inline | Optimize)]
+        public static sbyte flip8i(sbyte src)
+            => (sbyte)(~src);
+
+        [MethodImpl(Inline | Optimize)]
+        public static byte flip8u(byte src)
+            => (byte)(~src);
+     
+        [MethodImpl(Inline | Optimize)]
+        public static short flip16i(short src)
+            => (short)(~src);
+
+        [MethodImpl(Inline | Optimize)]
+        public static ushort flip16u(ushort src)
+            => (ushort)(~src);
+
+        [MethodImpl(Inline | Optimize)]
+        public static int flip32i(int src)
+            => ~src;
+
+        [MethodImpl(Inline | Optimize)]
+        public static uint flip32u(uint src)
+            => ~src;
+
+        [MethodImpl(Inline | Optimize)]
+        public static long flip64i(long src)
+            => ~src;
+
+        [MethodImpl(Inline | Optimize)]
+        public static ulong flip64u(ulong src)
+            => ~src;
+
+        [MethodImpl(Inline | Optimize)]
+        public static float flip32f(float src)
+            => BitConverter.Int32BitsToSingle(~BitConverter.SingleToInt32Bits(src));
+
+        [MethodImpl(Inline | Optimize)]
+        public static double flip64f(double src)
+            => BitConverter.Int64BitsToDouble(~BitConverter.DoubleToInt64Bits(src));
  
         #endregion
 

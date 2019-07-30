@@ -16,6 +16,10 @@ namespace Z0.Asm
     /// </summary>
     public readonly ref struct AsmCode
     {
+        public static AsmCode<T> FromBytes<T>(in ReadOnlySpan<byte> Bytes)
+            where T:struct
+                => Bytes;
+        
         [MethodImpl(Inline)]
         public static implicit operator AsmCode(in ReadOnlySpan<byte> Bytes)
             => new AsmCode(in Bytes);
@@ -35,41 +39,16 @@ namespace Z0.Asm
         /// </summary>
         public readonly ReadOnlySpan<byte> Bytes;
 
-        /// <summary>
-        /// Specfies the length of the encoded bytes
-        /// </summary>
-        public int Length
-        {
-            [MethodImpl(Inline)]
-            get => Bytes.Length;
-        }
 
         /// <summary>
         /// Returns a pointer to the endoded bytes
         /// </summary>
-        public IntPtr Pointer
-        {
-            [MethodImpl(Inline)]
-            get => GetPointer();
-        }
+        public readonly IntPtr Pointer
+            => GetPointer();
 
-        /// <summary>
-        /// Returns the address of the encoded bytes
-        /// </summary>
-        public ulong Address
-        {
-            get => (ulong)Pointer;
-        }
-
-        [MethodImpl(Inline)]
-        unsafe IntPtr GetPointer()
-        {
-            var pCode = (IntPtr)As.refptr(ref As.asRef(in Bytes[0]));
-            if (!WinApi.VirtualProtectEx(ProcHandle, pCode, (UIntPtr)Length, 0x40 /* EXECUTE_READWRITE */, out uint _))
-                throw new Exception("VirtualProtectEx failed");     
-            return pCode;
-            
-        }
+        unsafe IntPtr GetPointer()        
+            => (IntPtr)Unsafe.AsPointer(ref  As.asRef( in Bytes[0]));
+        
 
         /// <summary>
         /// Creates a delegate to execute the encapsulated code
@@ -80,27 +59,8 @@ namespace Z0.Asm
             where T : Delegate        
                 => Marshal.GetDelegateForFunctionPointer<T>(Pointer);
 
-        /// <summary>
-        /// The handle for the current process
-        /// </summary>
-        static readonly IntPtr ProcHandle = System.Diagnostics.Process.GetCurrentProcess().Handle;
-
-        /// <summary>
-        /// Windows API that applies memory protection attributes
-        /// </summary>
-        [DllImport("kernel32.dll")]
-        static extern bool VirtualProtectEx(IntPtr hProc, IntPtr pCode, UIntPtr codelen, uint flags, out uint oldFlags); 
     }
 
-    static class WinApi
-    {
-        /// <summary>
-        /// Windows API that applies memory protection attributes
-        /// </summary>
-        [DllImport("kernel32.dll")]
-        public static extern bool VirtualProtectEx(IntPtr hProc, IntPtr pCode, UIntPtr codelen, uint flags, out uint oldFlags); 
-
-    }
     
     /// <summary>
     /// Encapsulates a block of encoded assembly
@@ -120,15 +80,8 @@ namespace Z0.Asm
         public AsmCode(in ReadOnlySpan<byte> Bytes)
         {
             this.Bytes = Bytes;
-            this.Pointer = GetPointer(in Bytes[0], Bytes.Length);
         }
 
-        [MethodImpl(Inline)]
-        AsmCode(in ReadOnlySpan<byte> Bytes, IntPtr Pointer)
-        {
-            this.Bytes = Bytes;
-            this.Pointer = Pointer;
-        }
 
         /// <summary>
         /// Specifies the encoded asm bytes
@@ -136,36 +89,14 @@ namespace Z0.Asm
         public readonly ReadOnlySpan<byte> Bytes;
 
         /// <summary>
-        /// Specfies the length of the encoded bytes
-        /// </summary>
-        public int Length
-        {
-            [MethodImpl(Inline)]
-            get => Bytes.Length;
-        }
-
-        /// <summary>
         /// Returns a pointer to the endoded bytes
         /// </summary>
-        public IntPtr Pointer {get;}
+        public readonly IntPtr Pointer
+            => GetPointer();
 
-        /// <summary>
-        /// Returns the address of the encoded bytes
-        /// </summary>
-        public ulong Address
-        {
-            get => (ulong)Pointer;
-        }
-
-        [MethodImpl(Inline)]
-        static unsafe IntPtr GetPointer(in byte src, int len)
-        {
-            var pCode = (IntPtr)Z0.As.refptr(ref Z0.As.asRef(in src));
-            if (!WinApi.VirtualProtectEx(ProcHandle, pCode, (UIntPtr)len, 0x40, out uint _))
-                throw new Exception("VirtualProtectEx failed");     
-            return pCode;
-        }
-
+        unsafe IntPtr GetPointer()        
+            => (IntPtr)Unsafe.AsPointer(ref  Z0.As.asRef( in Bytes[0]));
+        
         /// <summary>
         /// Creates a delegate to execute the encapsulated code
         /// </summary>
@@ -178,12 +109,7 @@ namespace Z0.Asm
         [MethodImpl(Inline)]
         public AsmCode<S> As<S>()
             where S : struct
-                => new AsmCode<S>(Bytes, Pointer);
-
-        /// <summary>
-        /// The handle for the current process
-        /// </summary>
-        static readonly IntPtr ProcHandle = System.Diagnostics.Process.GetCurrentProcess().Handle;
+                => new AsmCode<S>(Bytes);        
 
     }
 

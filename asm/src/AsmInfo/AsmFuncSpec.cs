@@ -17,7 +17,7 @@ namespace Z0.Asm
     /// </summary>
     public class AsmFuncSpec
     {   
-        public AsmFuncSpec(ulong StartAddress, ulong EndAddress, string Signature, AsmInstructionInfo[] Instructions, byte[] Encoding)
+        public AsmFuncSpec(ulong StartAddress, ulong EndAddress, MethodSig Signature, AsmInstructionInfo[] Instructions, byte[] Encoding)
         {
             this.StartAddress = StartAddress;
             this.EndAddress = EndAddress;
@@ -39,7 +39,10 @@ namespace Z0.Asm
         /// <summary>
         /// The signature of the defined function
         /// </summary>
-        public string Signature {get;}
+        public MethodSig Signature {get;}
+
+        public string FunctionName
+            => Signature.MethodName;
         
         /// <summary>
         /// The number of encoded instructions

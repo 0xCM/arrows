@@ -103,7 +103,7 @@ namespace Z0.Asm
         /// <param name="pad"></param>
         public static string FormatHeader(this AsmFuncSpec src)
             => concat(
-                   line(concat(BeginComment, $"function: {src.Signature}")),
+                   line(concat(BeginComment, $"function: {src.Signature.Format()}")),
                    concat(BeginComment, $"location: {src.StartAddress.GlobalHexRange(src.EndAddress)}" )
                    );
 
@@ -119,7 +119,10 @@ namespace Z0.Asm
         /// </summary>
         /// <param name="src">The source function</param>
         public static string FormatFooter(this AsmFuncSpec src)
-            => concat(BeginComment, $"code = new byte[{src.Encoding.Length}]", src.FormatEncoding(),AsciSym.Semicolon); 
+        {
+            var propdecl = $"static ReadOnlySpan<byte> {src.FunctionName}Bytes";
+            return concat(BeginComment, $"{propdecl} => new byte[{src.Encoding.Length}]", src.FormatEncoding(),AsciSym.Semicolon);              
+        }
 
 
         const string BeginComment = "; ";

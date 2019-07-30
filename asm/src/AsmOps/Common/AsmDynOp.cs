@@ -29,7 +29,6 @@ namespace Z0.Asm
         /// <param name="code">The code to execute</param>
         /// <param name="name">The operator name</param>
         /// <typeparam name="T">The operand type</typeparam>
-        [MethodImpl(Inline)]
         public static AsmUnaryOp<T> CreateUnaryOp<T>(this AsmCode<T> code, string name = null)
             where T : struct
         {
@@ -52,7 +51,6 @@ namespace Z0.Asm
         /// <param name="code">The code to execute</param>
         /// <param name="name">The operator name</param>
         /// <typeparam name="T">The operand type</typeparam>
-        [MethodImpl(Inline)]
         public static AsmBinOp<T> CreateBinOp<T>(this AsmCode<T> code, string name = null)
             where T : struct
         {
@@ -68,6 +66,7 @@ namespace Z0.Asm
             g.Emit(OpCodes.Ret);
             return (AsmBinOp<T>)method.CreateDelegate(typeof(AsmBinOp<T>));
         }
+
 
     }
 

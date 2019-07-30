@@ -74,6 +74,7 @@ namespace Z0
             QueryPerformanceFrequency(ref CounterFrequency);
         }
 
+
         
         [DllImport(kernel)]
         static extern int QueryPerformanceCounter(ref long count);
@@ -123,6 +124,11 @@ namespace Z0
         [DllImport(kernel)]
         static extern void QueryInterruptTimePrecise(ref ulong time);
 
-                
+         /// <summary>
+        /// Windows API that applies memory protection attributes
+        /// </summary>
+        [DllImport("kernel32.dll")]
+        public static extern bool VirtualProtectEx(IntPtr hProc, IntPtr pCode, UIntPtr codelen, uint flags, out uint oldFlags); 
+               
     }
 }

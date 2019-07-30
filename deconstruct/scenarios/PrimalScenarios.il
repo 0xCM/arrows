@@ -1,4 +1,44 @@
-// 2019-07-30 03:30:04:347
+// 2019-07-30 13:37:35:621
+float flip32f(float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 System.BitConverter::SingleToInt32Bits(System.Single)
+    IL_0006: not
+    IL_0007: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
+    IL_000C: ret
+
+}
+double flip64f(double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64 System.BitConverter::DoubleToInt64Bits(System.Double)
+    IL_0006: not
+    IL_0007: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
+    IL_000C: ret
+
+}
+int abs(int x)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 31
+    IL_0003: shr
+    IL_0004: stloc.0
+    IL_0005: ldarg.0
+    IL_0006: ldloc.0
+    IL_0007: xor
+    IL_0008: ldloc.0
+    IL_0009: sub
+    IL_000A: ret
+
+}
+short abs(short x)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 Z0.PrimalScenarios::abs(System.Int32)
+    IL_0006: conv.i2
+    IL_0007: ret
+
+}
 sbyte add8i(sbyte x, sbyte y)
 {
     IL_0000: ldarg.0
@@ -1125,25 +1165,63 @@ double inc(double src)
     IL_000E: ret
 
 }
-int abs(int x)
+sbyte flip8i(sbyte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 31
-    IL_0003: shr
-    IL_0004: stloc.0
-    IL_0005: ldarg.0
-    IL_0006: ldloc.0
-    IL_0007: xor
-    IL_0008: ldloc.0
-    IL_0009: sub
-    IL_000A: ret
+    IL_0001: not
+    IL_0002: conv.i1
+    IL_0003: ret
 
 }
-short abs(short x)
+byte flip8u(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Int32 Z0.PrimalScenarios::abs(System.Int32)
-    IL_0006: conv.i2
-    IL_0007: ret
+    IL_0001: not
+    IL_0002: conv.u1
+    IL_0003: ret
+
+}
+short flip16i(short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.i2
+    IL_0003: ret
+
+}
+ushort flip16u(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.u2
+    IL_0003: ret
+
+}
+int flip32i(int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+uint flip32u(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+long flip64i(long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+ulong flip64u(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
 
 }
