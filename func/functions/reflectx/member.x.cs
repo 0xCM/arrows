@@ -369,6 +369,15 @@ namespace Z0
             => src.Where(x => x.IsStatic);
 
         /// <summary>
+        /// Selects the fields from the stream for which the field type name contains the search string
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="search">The search string</param>
+        /// <returns></returns>
+        public static IEnumerable<FieldInfo> WithTypeNameLike(this IEnumerable<FieldInfo> src, string search)
+            => src.Where(x => x.FieldType.Name.Contains(search));
+
+        /// <summary>
         /// Selects the static methods from a stream
         /// </summary>
         /// <param name="src">The source stream</param>
@@ -544,7 +553,16 @@ namespace Z0
         public static IEnumerable<T> WithName<T>(this IEnumerable<T> src, string name)
             where T : MemberInfo
             => src.Where(x => x.Name == name); 
- 
+
+        /// <summary>
+        /// Selects the members with names that contain the supplied search field
+        /// </summary>
+        /// <param name="src">The members to examine</param>
+        /// <param name="search">The name to match</param>
+        public static IEnumerable<T> WithNameLike<T>(this IEnumerable<T> src, string search)
+            where T : MemberInfo
+            => src.Where(x => x.Name.Contains(search)); 
+
         /// <summary>
         /// Attempts to retrieve the value of an instance or static property
         /// </summary>

@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 
 class zfunc
 {
+
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
     
     public static bool require(bool condition, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)

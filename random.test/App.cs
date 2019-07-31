@@ -107,11 +107,6 @@ namespace Z0.Test
             
         }
 
-        void RdRandTest()
-        {
-            inform(RdRand.Rand());
-            inform(RdRand.And(0b010101, 0b110011).ToBitString().Format(true));
-        }
 
         protected override void RunTests(params string[] filters)
         {     

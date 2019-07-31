@@ -89,4 +89,17 @@ partial class zfunc
         for(var i = start; i < limit; i += step)   
             f(i);             
     }
+
+    /// <summary>
+    /// Inovkes an action for each element in a source span
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <param name="f">The receiver</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static void iter<T>(ReadOnlySpan<T> src, Action<T> f)
+    {
+        for(var i=0; i<src.Length; i++)
+            f(src[i]);
+    }
 }

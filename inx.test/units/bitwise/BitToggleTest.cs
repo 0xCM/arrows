@@ -81,13 +81,13 @@ namespace Z0.Test
         public void EnableBits()
         {
             var x1 = (sbyte)0;
-            var y1 = Bits.enable(ref x1, 7);
+            var y1 = BitMask.enable(ref x1, 7);
             Claim.eq(SByte.MinValue, y1);
             Claim.eq("10000000", y1.ToBitString());
 
 
             var x2 = (byte)0;
-            var y2 = Bits.enable(ref x2, 7);
+            var y2 = BitMask.enable(ref x2, 7);
             Claim.eq(SByte.MinValue, (sbyte)y1);
             Claim.eq("10000000", y1.ToBitString());
 

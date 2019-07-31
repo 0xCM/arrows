@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -324,6 +325,7 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static T propval<T>(object o, string propname)
         => (T)propval(o, propname);
+
 
     /// <summary>
     /// Sets the identified property on the object to the supplied value

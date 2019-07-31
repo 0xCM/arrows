@@ -71,10 +71,10 @@ namespace Z0.Cpu
             this.Value = Value;
         }
     
-        public AsmOperandImm Description 
+        public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
-            get => new AsmOperandImm(Size,Value);
+            get => new AsmImmInfo(Size,Value);
         }
 
         long IImm<long>.Value 

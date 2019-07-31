@@ -167,8 +167,8 @@ namespace Z0
         long IPointSource<long>.Next()
         {
             var next = (long)Random.Next(Int64.MaxValue);
-            var negative = Bits.test(next, 7);
-            var result = Bits.test(next, 7) ? Bits.enable(ref next, 63) : next;
+            var negative = BitMask.test(next, 7);
+            var result = BitMask.test(next, 7) ? BitMask.enable(ref next, 63) : next;
             return result;
         }
 

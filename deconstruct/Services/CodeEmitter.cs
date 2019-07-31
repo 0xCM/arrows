@@ -57,13 +57,13 @@ namespace Z0
                 disassembly.EmitCil(name); 
         }
 
-        public static void Emit(this AsmFuncSpec[] src, FilePath dstfile)
+        public static void Emit(this AsmFuncInfo[] src, FilePath dstfile)
         {
             using var dst = EmissionWriter(dstfile);
             src.Emit(dst);
         }
 
-        public static void Emit(this AsmFuncSpec[] src, string name)
+        public static void Emit(this AsmFuncInfo[] src, string name)
         {
             using var dst = EmissionWriter(name, "asm", false);
             src.Emit(dst);
@@ -83,7 +83,7 @@ namespace Z0
             return new StreamWriter(dst.FullPath, false);
         }
 
-        static void Emit(this AsmFuncSpec[] src, StreamWriter dst)
+        static void Emit(this AsmFuncInfo[] src, StreamWriter dst)
         {
             dst.WriteLine($"; {now().ToLexicalString()}");
             for(var i=0; i< src.Length; i++)

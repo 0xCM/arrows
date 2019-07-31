@@ -21,16 +21,16 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool TestBit(this in UInt128 src, int pos)
-            => pos < 64 ? Bits.test(src.lo, pos) : Bits.test(src.hi, pos) ;
+            => pos < 64 ? BitMask.test(src.lo, pos) : BitMask.test(src.hi, pos) ;
 
 
         [MethodImpl(Inline)]
         public static ref UInt128 EnableBit(this ref UInt128 src, int pos)
         {
             if(pos < 64)
-                Bits.enable(ref src.lo, pos);
+                BitMask.enable(ref src.lo, pos);
             else
-                Bits.enable(ref src.hi, pos);
+                BitMask.enable(ref src.hi, pos);
             return ref src;
         }
 
@@ -38,9 +38,9 @@ namespace Z0
         public static ref UInt128 DisableBit(this ref UInt128 src, int pos)
         {
             if(pos < 64)
-                Bits.disable(ref src.lo, pos);
+                BitMask.disable(ref src.lo, pos);
             else
-                Bits.disable(ref src.hi, pos);
+                BitMask.disable(ref src.hi, pos);
             return ref src;               
         }
 

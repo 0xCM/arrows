@@ -12,28 +12,32 @@ namespace Z0.Asm
     using System.Reflection.Emit;
 
     using static zfunc;
-    using static AsmCodeBank;
-    public static class AsmAdd
+    using static AsmOps;
+
+    partial class AsmOps
     {
-        readonly struct Host<T>
+    
+        readonly struct AddHost<T>
             where T : struct
         {
-            public static readonly Host<T> TheOnly = default;
+            
+            public static readonly AddHost<T> TheOnly = default;
 
-            static readonly AsmBinOp<T> Reified = Code<T>().CreateBinOp();
+            static readonly AsmBinOp<T> Reified = AddCode<T>().CreateBinOp();
             
             public AsmBinOp<T> Operator
                 => Reified;
         }
-
-
-        public static AsmBinOp<T> Op<T>()
-            where T : struct
-            => Host<T>.TheOnly.Operator;
-
+    
+        
 
         [MethodImpl(Inline)]
-        public static AsmCode<T> Code<T>()
+        public static AsmBinOp<T> Add<T>()
+            where T : struct
+            => AddHost<T>.TheOnly.Operator;
+
+
+        static AsmCode<T> AddCode<T>()
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -59,6 +63,28 @@ namespace Z0.Asm
             else 
                 throw unsupported<T>();
         }
+
+        static ReadOnlySpan<byte> rand32uBytes => new byte[] { 0x0f, 0xc7, 0xf0, 0x0f, 0x92, 0x01, 0xc3};            
+
+        static ReadOnlySpan<byte> add8iBytes => new byte[20]{0x0F,0x1F,0x44,0x00,0x00,0x48,0x0F,0xBE,0xC1,0x48,0x0F,0xBE,0xD2,0x03,0xC2,0x48,0x0F,0xBE,0xC0,0xC3};    
+
+        static ReadOnlySpan<byte> add8uBytes => new byte[17]{0x0F,0x1F,0x44,0x00,0x00,0x0F,0xB6,0xC1,0x0F,0xB6,0xD2,0x03,0xC2,0x0F,0xB6,0xC0,0xC3};
+  
+        static ReadOnlySpan<byte> add16iBytes => new byte[20]{0x0F,0x1F,0x44,0x00,0x00,0x48,0x0F,0xBF,0xC1,0x48,0x0F,0xBF,0xD2,0x03,0xC2,0x48,0x0F,0xBF,0xC0,0xC3};        
+
+        static ReadOnlySpan<byte> add16uBytes => new byte[17]{0x0F,0x1F,0x44,0x00,0x00,0x0F,0xB7,0xC1,0x0F,0xB7,0xD2,0x03,0xC2,0x0F,0xB7,0xC0,0xC3};        
+
+        static ReadOnlySpan<byte> add32iBytes => new byte[9]{0x0F,0x1F,0x44,0x00,0x00,0x8D,0x04,0x11,0xC3};
+  
+        static ReadOnlySpan<byte> add32uBytes => new byte[9]{0x0F,0x1F,0x44,0x00,0x00,0x8D,0x04,0x11,0xC3};
+
+        static ReadOnlySpan<byte> add64iBytes => new byte[10]{0x0F,0x1F,0x44,0x00,0x00,0x48,0x8D,0x04,0x11,0xC3};        
+  
+        static ReadOnlySpan<byte> add64uBytes => new byte[10]{0x0F,0x1F,0x44,0x00,0x00,0x48,0x8D,0x04,0x11,0xC3};
+        
+        static ReadOnlySpan<byte> add32fBytes => new byte[10]{0xC5,0xF8,0x77,0x66,0x90,0xC5,0xFA,0x58,0xC1,0xC3};
+        
+        static ReadOnlySpan<byte> add64fBytes => new byte[10]{0xC5,0xF8,0x77,0x66,0x90,0xC5,0xFB,0x58,0xC1,0xC3};
 
     }
 

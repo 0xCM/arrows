@@ -360,7 +360,7 @@ namespace Z0
         /// <param name="pos">The 0-based absolute bit position</param>
         [MethodImpl(Inline)]
         public bool TestBit(byte pos)
-            => pos < BitCount ? Bits.test(in data, pos) : false;
+            => pos < BitCount ? BitMask.test(in data, pos) : false;
 
         [MethodImpl(Inline)]
         public static UInt4 Mul(UInt4 lhs, UInt4 rhs)
@@ -400,7 +400,7 @@ namespace Z0
         public void DisableBit(byte pos)
         {
             if(pos < BitCount)
-                Bits.disable(ref data, pos);
+                BitMask.disable(ref data, pos);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace Z0
         public void SetBit(byte pos, Bit bit)
         {
             if(pos < BitCount)
-                Bits.set(ref data, pos, bit);
+                BitMask.set(ref data, pos, bit);
         }
 
         /// <summary>

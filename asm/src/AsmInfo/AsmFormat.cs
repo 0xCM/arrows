@@ -19,14 +19,14 @@ namespace Z0.Asm
         /// </summary>
         /// <param name="src">The source function</param>
         /// <param name="pad">The padding between each instruction and associated commentary</param>
-        public static string Format(this AsmFuncSpec src, int? pad = null)
+        public static string Format(this AsmFuncInfo src, int? pad = null)
             => lines(src.FormatHeader(),  src.FormatInstructions(pad), src.FormatFooter());                
 
         /// <summary>
         /// Formats a single operand
         /// </summary>
         /// <param name="src">The source operand</param>
-        public static string Format(this AsmOperand src)
+        public static string Format(this AsmOperandInfo src)
         {
             var fmt = src.ImmInfo.Map(i => $"{i.Value.FormatHex(false,true,false,false)}:{i.Label}", () => string.Empty);
             fmt += src.Register.Map(r => r.RegisterName, () => string.Empty);
@@ -81,7 +81,7 @@ namespace Z0.Asm
 
         const int IPad = 30;
         
-        public static string FormatInstructions(this AsmFuncSpec src, int? pad = null)
+        public static string FormatInstructions(this AsmFuncInfo src, int? pad = null)
         {
             var format = sbuild();            
             for(var i = 0; i< src.InstructionCount; i++)
@@ -101,7 +101,7 @@ namespace Z0.Asm
         /// </summary>
         /// <param name="src">The source function</param>
         /// <param name="pad"></param>
-        public static string FormatHeader(this AsmFuncSpec src)
+        public static string FormatHeader(this AsmFuncInfo src)
             => concat(
                    line(concat(BeginComment, $"function: {src.Signature.Format()}")),
                    concat(BeginComment, $"location: {src.StartAddress.GlobalHexRange(src.EndAddress)}" )
@@ -111,14 +111,14 @@ namespace Z0.Asm
         /// Formats the function body encoding
         /// </summary>
         /// <param name="src">The source function</param>
-        public static string FormatEncoding(this AsmFuncSpec src)
+        public static string FormatEncoding(this AsmFuncInfo src)
             =>  embrace(src.Encoding.FormatHex(AsciSym.Comma, true, true, true));
 
         /// <summary>
         /// Formats the encoded bytes as a comment
         /// </summary>
         /// <param name="src">The source function</param>
-        public static string FormatFooter(this AsmFuncSpec src)
+        public static string FormatFooter(this AsmFuncInfo src)
         {
             var propdecl = $"static ReadOnlySpan<byte> {src.FunctionName}Bytes";
             return concat(BeginComment, $"{propdecl} => new byte[{src.Encoding.Length}]", src.FormatEncoding(),AsciSym.Semicolon);              
@@ -135,13 +135,13 @@ namespace Z0.Asm
             => bracket(concat(start.HexFormat(),AsciSym.Comma, AsciSym.Space, end.HexFormat()));
 
 
-        static string Format(this AsmBranch src)
+        static string Format(this AsmBranchInfo src)
         {
             var target = src.Near ? src.Target - src.Base : src.Target;
             return $"{target.HexFormat()}:{src.Label}";
         }
 
-        static string Format(this AsmOperandMemory src)
+        static string Format(this AsmMemInfo src)
         {
             var items = new List<(string value, string type)>();
             

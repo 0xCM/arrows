@@ -26,21 +26,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.enable(ref int8(ref src), in pos);
+                BitMask.enable(ref int8(ref src), in pos);
             else if(typeof(T) == typeof(byte))
-                Bits.enable(ref uint8(ref src), in pos);
+                BitMask.enable(ref uint8(ref src), in pos);
             else if(typeof(T) == typeof(short))
-                Bits.enable(ref int16(ref src), in pos);
+                BitMask.enable(ref int16(ref src), in pos);
             else if(typeof(T) == typeof(ushort))
-                Bits.enable(ref uint16(ref src), in pos);
+                BitMask.enable(ref uint16(ref src), in pos);
             else if(typeof(T) == typeof(int))
-                Bits.enable(ref int32(ref src), in pos);
+                BitMask.enable(ref int32(ref src), in pos);
             else if(typeof(T) == typeof(uint))
-                Bits.enable(ref uint32(ref src), in pos);
+                BitMask.enable(ref uint32(ref src), in pos);
             else if(typeof(T) == typeof(long))
-                Bits.enable(ref int64(ref src), in pos);
+                BitMask.enable(ref int64(ref src), in pos);
             else if(typeof(T) == typeof(ulong))
-                Bits.enable(ref uint64(ref src), in pos);
+                BitMask.enable(ref uint64(ref src), in pos);
             else
                 throw unsupported<T>();
 
@@ -58,21 +58,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.enable(int8(src), pos));
+                return generic<T>(BitMask.enable(int8(src), pos));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.enable(uint8(src), pos));
+                return generic<T>(BitMask.enable(uint8(src), pos));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.enable(int16(src), pos));
+                return generic<T>(BitMask.enable(int16(src), pos));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.enable(uint16(src), pos));
+                return generic<T>(BitMask.enable(uint16(src), pos));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.enable(int32(src), pos));
+                return generic<T>(BitMask.enable(int32(src), pos));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.enable(uint32(src), pos));
+                return generic<T>(BitMask.enable(uint32(src), pos));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.enable(int64(src), pos));
+                return generic<T>(BitMask.enable(int64(src), pos));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.enable(uint64(src), pos));
+                return generic<T>(BitMask.enable(uint64(src), pos));
             else
                 throw unsupported<T>();            
         }

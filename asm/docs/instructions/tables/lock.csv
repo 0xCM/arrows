@@ -1,0 +1,9 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode | Instruction | Op/En | 64-Bit Mode | Compat/Leg Mode | Description                                                        |
+| F0     | LOCK        | ZO    | Valid       | Valid           | Asserts LOCK# signal for duration of the accompanying instruction. |
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Operand 1 | Operand 2 | Operand 3 | Operand 4 |
+| ZO    | NA        | NA        | NA        | NA        |

@@ -212,15 +212,15 @@ namespace Z0
             return SequenceEqual(ref lhs[0], ref rhs[0], lhs.Length);
         }
 
-        [MethodImpl(Inline)]
-        public static bool Contains<T>(this Span<T> lhs, T match)  
-            where T : struct       
-            => Contains(ref lhs[0], match, lhs.Length);
+        // [MethodImpl(Inline)]
+        // public static bool Contains<T>(this Span<T> lhs, T match)  
+        //     where T : struct       
+        //     => Contains(ref lhs[0], match, lhs.Length);
 
-        [MethodImpl(Inline)]
-        public static bool Contains<T>(this ReadOnlySpan<T> lhs, T match)  
-            where T : struct       
-            => Contains(ref asRef(in lhs[0]), match, lhs.Length);
+        // [MethodImpl(Inline)]
+        // public static bool Contains<T>(this ReadOnlySpan<T> lhs, T match)  
+        //     where T : struct       
+        //     => Contains(ref asRef(in lhs[0]), match, lhs.Length);
 
         [MethodImpl(Inline)]
         public static bool Eq<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)  

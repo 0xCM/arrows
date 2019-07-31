@@ -344,9 +344,36 @@ namespace Z0
         public static long or64i(long x, long y)
             => x | y;
 
-        [MethodImpl(Inline | Optimize)]
         public static ulong or64u(ulong x, ulong y)
             => x | y;
+        
+        #endregion
+
+        # region or
+
+        public static byte xor8u(byte x, byte y)
+            => (byte)(x ^ y);
+
+        public static sbyte xor8i(sbyte x, sbyte y)
+            => (sbyte)(x ^ y);
+
+        public static short xor16i(short x, short y)
+            => (short)(x ^ y);
+
+        public static ushort xor16u(ushort x, ushort y)
+            => (ushort)(x ^ y);
+            
+        public static int xor32i(int x, int y)
+            => x ^ y;
+
+        public static uint xor32u(uint x, uint y)
+            => x ^ y;
+
+        public static long xor64i(long x, long y)
+            => x ^ y;
+
+        public static ulong xor64u(ulong x, ulong y)
+            => x ^ y;
         
         #endregion
 
@@ -518,6 +545,64 @@ namespace Z0
         #endregion
 
 
+        #region emit
+
+        public sbyte emit8i()
+        {
+            return -0x25;
+        }
+
+        public byte emit8u()
+        {
+            return 0x25;
+        }
+
+        public short emit16i()
+        {
+            return - 0x5432;
+        }
+
+        public ushort emit16u()
+        {
+            return 0x5432;
+        }
+
+        public int emit32i()
+        {
+            return -0x212425;
+        }
+
+        public uint emit32u()
+        {
+            return 0x44033022;
+        }
+
+        public long emit64i()
+        {
+
+            return Int64.MinValue;
+        }
+
+        public ulong emit64u()
+        {
+
+            return 0x66055044033022;
+        }
+
+        public float emit32f()
+        {
+
+            return 20304050.335255f;
+        }
+
+        public double emit64f()
+        {
+
+            return -358298783.335255;
+        }
+
+        #endregion
+ 
         [MethodImpl(Inline | Optimize)]
         public static int abs(int x)
         {

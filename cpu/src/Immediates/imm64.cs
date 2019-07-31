@@ -47,10 +47,10 @@ namespace Z0.Cpu
         public Imm64(ulong src)
             => this.Value = src;
         
-        public AsmOperandImm Description 
+        public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
-            get => new AsmOperandImm(Size,Value);
+            get => new AsmImmInfo(Size,Value);
         }
 
         ulong IImm<ulong>.Value 

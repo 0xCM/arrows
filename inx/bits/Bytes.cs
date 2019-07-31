@@ -86,7 +86,7 @@ namespace Z0
         public static bool TestBit(this Span<byte> src, int pos)
         {
             var q = Math.DivRem(pos, 8, out int r);
-            return Bits.test(src[q], r);
+            return BitMask.test(src[q], r);
         }
     }
 }

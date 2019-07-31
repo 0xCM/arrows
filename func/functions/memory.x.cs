@@ -20,6 +20,23 @@ namespace  Z0
         public static Memory<T> ToMemory<T>(this IEnumerable<T> src)
             => src.ToArray();
 
+
+        /// <summary>
+        /// Uses the (void*) explicit operator defined by the source type to
+        /// present said source as a void*
+        /// </summary>
+        /// <param name="src">The source pointer representative</param>
+        [MethodImpl(Inline)]
+        public static unsafe void* ToVoid(this IntPtr src)
+            => (void*)src;
+
+        /// <summary>
+        /// Gets the void* for the identified field
+        /// </summary>
+        /// <param name="src">The runtime field handle</param>
+        [MethodImpl(Inline)]
+        public static unsafe void* ToVoid(this RuntimeFieldHandle src)
+            => src.Value.ToVoid();
     }
 
 }

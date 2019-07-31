@@ -1,4 +1,64 @@
-// 2019-07-30 13:37:35:621
+// 2019-07-31 03:55:30:185
+sbyte flip8i(sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.i1
+    IL_0003: ret
+
+}
+byte flip8u(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.u1
+    IL_0003: ret
+
+}
+short flip16i(short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.i2
+    IL_0003: ret
+
+}
+ushort flip16u(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: conv.u2
+    IL_0003: ret
+
+}
+int flip32i(int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+uint flip32u(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+long flip64i(long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
+ulong flip64u(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: not
+    IL_0002: ret
+
+}
 float flip32f(float src)
 {
     IL_0000: ldarg.0
@@ -15,6 +75,66 @@ double flip64f(double src)
     IL_0006: not
     IL_0007: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
     IL_000C: ret
+
+}
+sbyte emit8i()
+{
+    IL_0000: ldc.i4.s -37
+    IL_0002: ret
+
+}
+byte emit8u()
+{
+    IL_0000: ldc.i4.s 37
+    IL_0002: ret
+
+}
+short emit16i()
+{
+    IL_0000: ldc.i4 -21554
+    IL_0005: ret
+
+}
+ushort emit16u()
+{
+    IL_0000: ldc.i4 21554
+    IL_0005: ret
+
+}
+int emit32i()
+{
+    IL_0000: ldc.i4 -2171941
+    IL_0005: ret
+
+}
+uint emit32u()
+{
+    IL_0000: ldc.i4 1141059618
+    IL_0005: ret
+
+}
+long emit64i()
+{
+    IL_0000: ldc.i8 -9223372036854775808
+    IL_0009: ret
+
+}
+ulong emit64u()
+{
+    IL_0000: ldc.i8 28716289921069090
+    IL_0009: ret
+
+}
+float emit32f()
+{
+    IL_0000: ldc.r4 20304050
+    IL_0005: ret
+
+}
+double emit64f()
+{
+    IL_0000: ldc.r8 -358298783.335255
+    IL_0009: ret
 
 }
 int abs(int x)
@@ -890,6 +1010,74 @@ ulong or64u(ulong x, ulong y)
     IL_0003: ret
 
 }
+byte xor8u(byte x, byte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: conv.u1
+    IL_0004: ret
+
+}
+sbyte xor8i(sbyte x, sbyte y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: conv.i1
+    IL_0004: ret
+
+}
+short xor16i(short x, short y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: conv.i2
+    IL_0004: ret
+
+}
+ushort xor16u(ushort x, ushort y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: conv.u2
+    IL_0004: ret
+
+}
+int xor32i(int x, int y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: ret
+
+}
+uint xor32u(uint x, uint y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: ret
+
+}
+long xor64i(long x, long y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: ret
+
+}
+ulong xor64u(ulong x, ulong y)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: xor
+    IL_0003: ret
+
+}
 sbyte sub8i(sbyte x, sbyte y)
 {
     IL_0000: ldarg.0
@@ -1163,65 +1351,5 @@ double inc(double src)
     IL_000B: add
     IL_000C: starg.s src
     IL_000E: ret
-
-}
-sbyte flip8i(sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: conv.i1
-    IL_0003: ret
-
-}
-byte flip8u(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: conv.u1
-    IL_0003: ret
-
-}
-short flip16i(short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: conv.i2
-    IL_0003: ret
-
-}
-ushort flip16u(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: conv.u2
-    IL_0003: ret
-
-}
-int flip32i(int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ret
-
-}
-uint flip32u(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ret
-
-}
-long flip64i(long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ret
-
-}
-ulong flip64u(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ret
 
 }

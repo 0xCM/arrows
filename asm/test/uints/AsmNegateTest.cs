@@ -13,16 +13,16 @@ namespace Z0.Asm.Test
     {        
         public void VerifyNegate()
         {
-            VerifyOp(AsmNegate.Op<sbyte>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<byte>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<short>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<ushort>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<int>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<uint>(), math.negate, Samples);            
-            VerifyOp(AsmNegate.Op<long>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<ulong>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<float>(), math.negate, Samples);
-            VerifyOp(AsmNegate.Op<double>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<sbyte>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<byte>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<short>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<ushort>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<int>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<uint>(), math.negate, Samples);            
+            VerifyOp(AsmOps.Negate<long>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<ulong>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<float>(), math.negate, Samples);
+            VerifyOp(AsmOps.Negate<double>(), math.negate, Samples);
         }
 
          

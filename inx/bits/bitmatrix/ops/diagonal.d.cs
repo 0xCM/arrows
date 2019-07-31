@@ -18,7 +18,7 @@ namespace Z0
             var dst = (byte)0;
             for(byte i=0; i < BitMatrix4.N; i++)
                 if(src[i,i])
-                    Bits.enable(ref dst, i);
+                    BitMask.enable(ref dst, i);
             return dst;                    
         }
 
@@ -28,7 +28,7 @@ namespace Z0
             var dst = (byte)0;
             for(byte i=0; i < BitMatrix8.N; i++)
                 if(src[i,i])
-                    Bits.enable(ref dst, i);
+                    BitMask.enable(ref dst, i);
             return dst;                    
         }
 
@@ -38,7 +38,7 @@ namespace Z0
             var dst = (ushort)0;
             for(byte i=0; i < BitMatrix16.N; i++)
                 if(src[i,i])
-                    Bits.enable(ref dst, i);
+                    BitMask.enable(ref dst, i);
             return dst;                    
         }
 
@@ -48,7 +48,7 @@ namespace Z0
             var dst = (uint)0;
             for(byte i=0; i < BitMatrix32.N; i++)
                 if(src[i,i])
-                    Bits.enable(ref dst, i);
+                    BitMask.enable(ref dst, i);
             return dst;                    
         }
 
@@ -58,7 +58,7 @@ namespace Z0
             var dst = (ulong)0;
             for(byte i=0; i < BitMatrix64.N; i++)
                 if(src[i,i])
-                    Bits.enable(ref dst, i);
+                    BitMask.enable(ref dst, i);
             return dst;                    
         }
 

@@ -48,10 +48,10 @@ namespace Z0.Cpu
         public Imm16(ushort src)
             => this.Value = src;
 
-        public AsmOperandImm Description 
+        public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
-            get => new AsmOperandImm(Size,Value);
+            get => new AsmImmInfo(Size,Value);
         }
 
         ushort IImm<ushort>.Value 

@@ -18,7 +18,7 @@ namespace Z0
             dst = span<byte>(src.Length/8);
             for(var i=0; i<src.Length; i++)
             for(var j=0; j < 8; j++)
-               if(src[i]) Bits.enable(ref dst[i], j);
+               if(src[i]) BitMask.enable(ref dst[i], j);
             return ref dst;
         }
 

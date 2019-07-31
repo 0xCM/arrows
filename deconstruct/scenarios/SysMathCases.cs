@@ -75,8 +75,14 @@ namespace Z0
         [MethodImpl(Inline | Optimize)]
         public static sbyte Max(sbyte val1, sbyte val2)
             => (val1 >= val2) ? val1 : val2;
-        
 
+        [MethodImpl(Inline | Optimize)]
+        public static float SqrtF32(float src)       
+            => MathF.Sqrt(src);
+
+        [MethodImpl(Inline | Optimize)]
+        public static double SqrtF64(double src)       
+            => Math.Sqrt(src);
 
     }
 

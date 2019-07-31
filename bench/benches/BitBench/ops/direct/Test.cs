@@ -63,7 +63,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<sbyte>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -77,7 +77,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<byte>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -91,7 +91,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<short>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -105,7 +105,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<ushort>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -119,7 +119,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<int>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -133,7 +133,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<uint>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -147,7 +147,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<long>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);
@@ -161,7 +161,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var sample=0; sample < dst.Length; sample++)
-                dst[sample] = Bits.test(src[sample], pos[sample]);            
+                dst[sample] = BitMask.test(src[sample], pos[sample]);            
             var time = snapshot(sw);
             var scalars = dst.ToScalars<ulong>();
             return opid.CaptureMetrics(cycles*dst.Length, time, scalars);

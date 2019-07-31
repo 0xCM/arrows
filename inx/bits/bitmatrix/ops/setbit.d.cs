@@ -19,36 +19,36 @@ namespace Z0
         static void Set(this ref Span<byte> src, int row, int col, Bit value)
         {
             if(value)
-                Bits.enable(ref src[row], col); 
+                BitMask.enable(ref src[row], col); 
             else
-                Bits.disable(ref src[row], col);
+                BitMask.disable(ref src[row], col);
         }
 
         [MethodImpl(Inline)]
         static void Set(this ref Span<ushort> src, int row, int col, Bit value)
         {
             if(value)
-                Bits.enable(ref src[row], col); 
+                BitMask.enable(ref src[row], col); 
             else
-                Bits.disable(ref src[row], col);
+                BitMask.disable(ref src[row], col);
         }
 
         [MethodImpl(Inline)]
         static void Set(this ref Span<uint> src, int row, int col, Bit value)
         {
             if(value)
-                Bits.enable(ref src[row], col); 
+                BitMask.enable(ref src[row], col); 
             else
-                Bits.disable(ref src[row], col);
+                BitMask.disable(ref src[row], col);
         }
 
         [MethodImpl(Inline)]
         static void Set(this ref Span<ulong> src, int row, int col, Bit value)
         {
             if(value)
-                Bits.enable(ref src[row], col); 
+                BitMask.enable(ref src[row], col); 
             else
-                Bits.disable(ref src[row], col);
+                BitMask.disable(ref src[row], col);
         }
 
         [MethodImpl(Inline)]

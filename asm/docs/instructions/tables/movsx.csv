@@ -1,0 +1,20 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode            | Instruction       | Op/En | 64-Bit Mode | Compat/Leg Mode | Description                                        |
+| 0F BE / r         | MOVSX r16, r/m8   | RM    | Valid       | Valid           | Move byte to word with sign-extension.             |
+| 0F BE / r         | MOVSX r32, r/m8   | RM    | Valid       | Valid           | Move byte to doubleword with sign-extension.       |
+| REX.W + 0F BE / r | MOVSX r64, r/m8   | RM    | Valid       | N.E.            | Move byte to quadword with sign-extension.         |
+| 0F BF / r         | MOVSX r32, r/m16  | RM    | Valid       | Valid           | Move word to doubleword, with sign-extension.      |
+| REX.W + 0F BF / r | MOVSX r64, r/m16  | RM    | Valid       | N.E.            | Move word to quadword with sign-extension.         |
+| 63 / r*           | MOVSXD r16, r/m16 | RM    | Valid       | Valid           | Move word to word with sign-extension.             |
+| 63 / r*           | MOVSXD r32, r/m32 | RM    | Valid       | Valid           | Move doubleword to doubleword with sign-extension. |
+| REX.W + 63 / r    | MOVSXD r64, r/m32 | RM    | Valid       | N.E.            | Move doubleword to quadword with sign-extension.   |
+
+Notes
+-------------------------------------------------------------------------------------------------------------------------------------------
+* The useof MOVSXD without REX.Win64-bitmode is discouraged. Regular MOV should be used instead of using MOVSXD without REX.W.
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Operand 1     | Operand 2     | Operand 3 | Operand 4 |
+| RM    | ModRM:reg (w) | ModRM:r/m (r) | NA        | NA        |

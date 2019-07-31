@@ -65,7 +65,7 @@ namespace Z0.Test
                 var bv = bvSrc.ToBitVector(dim);
                 var x = Bits.pack(bvSrc[0], bvSrc[1]);
                 for(var j = 0; j < dim; j++)
-                    Claim.eq(Bits.test(x,j).ToBit(), bv[j]);                
+                    Claim.eq(BitMask.test(x,j).ToBit(), bv[j]);                
             }
             TypeCaseEnd<N64,uint>();
         }

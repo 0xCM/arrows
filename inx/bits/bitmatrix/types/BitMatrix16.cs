@@ -113,8 +113,8 @@ namespace Z0
         {
             ushort col = 0;
             for(var r = 0; r < N; r++)
-                if(Bits.test(in bits[r], index))
-                    Bits.enable(ref col, r);
+                if(BitMask.test(in bits[r], index))
+                    BitMask.enable(ref col, r);
             return col;
         }
 

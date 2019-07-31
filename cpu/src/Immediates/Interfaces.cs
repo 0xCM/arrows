@@ -14,7 +14,7 @@ namespace Z0.Cpu
 
     public interface IImm
     {
-        AsmOperandImm Description {get;}   
+        AsmImmInfo Description {get;}   
     }
 
     /// <summary>

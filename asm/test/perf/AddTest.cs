@@ -16,10 +16,7 @@ namespace Z0.Asm.Test
 
     public class AddTest : UnitTest<AddTest>
     {
-        //static readonly AsmBinOp<int> addIL = AsmAdd.Add32I.CreateBinOp<int>("add");
-        static readonly AsmBinOp<int> add = AsmAdd.Op<int>();      
-
-        static readonly AsmBinOp<int> add2 = AsmAdd.Op<int>();      
+        static readonly AsmBinOp<int> add = AsmOps.Add<int>();      
 
         public AddTest()
         {
@@ -36,7 +33,7 @@ namespace Z0.Asm.Test
         public void VerifyIL()
         {                        
             for(var i=0; i<Samples; i++)
-                Claim.eq(Lhs[i] + Rhs[i], add2(Lhs[i], Rhs[i]));                                        
+                Claim.eq(Lhs[i] + Rhs[i], add(Lhs[i], Rhs[i]));                                        
         }
 
 

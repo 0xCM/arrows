@@ -38,7 +38,7 @@ namespace Z0
             this.data = 0;
             for(var i = 0; i< Math.Min(BitSize, src.Length); i++)
                 if(src[i])
-                    enable(ref data, i);
+                    BitMask.enable(ref data, i);
         }
 
         [MethodImpl(Inline)]
@@ -88,29 +88,29 @@ namespace Z0
         public Bit this[byte pos]
         {
             [MethodImpl(Inline)]
-            get => test(in data, pos);
+            get => BitMask.test(in data, pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    enable(ref data, pos);
+                    BitMask.enable(ref data, pos);
                 else
-                     disable(ref data, pos);                    
+                     BitMask.disable(ref data, pos);                    
             }            
         }
 
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)
-            => enable(ref data, pos);
+            => BitMask.enable(ref data, pos);
 
         [MethodImpl(Inline)]
         public void DisableBit(byte pos)
-            => disable(ref data, pos);
+            => BitMask.disable(ref data, pos);
 
         [MethodImpl(Inline)]
         public bool TestBit(byte pos)
-            => test(in data, pos);
+            => BitMask.test(in data, pos);
 
         public BitVector32 Hi
         {

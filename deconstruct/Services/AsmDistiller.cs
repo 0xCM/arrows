@@ -35,10 +35,10 @@ namespace Z0
         public static MethodDisassembly[] Deconstruct(this IEnumerable<MethodInfo> src)        
             => Deconstructor.Deconstruct(src.ToArray()).ToArray();
 
-        public static IEnumerable<AsmFuncSpec> DistillAsm(this IEnumerable<MethodDisassembly> src)
+        public static IEnumerable<AsmFuncInfo> DistillAsm(this IEnumerable<MethodDisassembly> src)
             => src.Select(DistillAsm);
 
-        public static AsmFuncSpec DistillAsm(this MethodDisassembly src)
+        public static AsmFuncInfo DistillAsm(this MethodDisassembly src)
         {
             var asm = src.AsmBody;
             var inxcount = asm.Instructions.Length;
@@ -62,17 +62,17 @@ namespace Z0
                 inxs[i] = new AsmInstructionInfo(offset, inxsfmt[i], mnemonic, opcode, operands, enckind, encoded);
             }
 
-            return new AsmFuncSpec(asm.StartAddress, asm.EndAddress, src.MethodSig, inxs, code);            
+            return new AsmFuncInfo(asm.StartAddress, asm.EndAddress, src.MethodSig, inxs, code);            
         }
 
         /// <summary>
         /// Disassembles the assembly code for reified methods declared by the source type
         /// </summary>
         /// <param name="src">The source type</param>
-        public static AsmFuncSpec[] DistillAsm(this Type src)
+        public static AsmFuncInfo[] DistillAsm(this Type src)
         {
             var disassembly = src.Deconstruct();
-            var dst = new AsmFuncSpec[disassembly.Length];
+            var dst = new AsmFuncInfo[disassembly.Length];
             for(var i=0; i<disassembly.Length; i++)   
                 dst[i] = disassembly[i].DistillAsm();
             return dst;
@@ -82,9 +82,9 @@ namespace Z0
         /// Extracts operand information from an instruction
         /// </summary>
         /// <param name="inx">The source instruction</param>
-        static AsmOperand[] DistillOperands(this Instruction inx, MethodAsmBody asm)        
+        static AsmOperandInfo[] DistillOperands(this Instruction inx, MethodAsmBody asm)        
         {
-            var args = new AsmOperand[inx.OpCount];
+            var args = new AsmOperandInfo[inx.OpCount];
             for(byte j=0; j< inx.OpCount; j++)
             {
                 var operandKind = inx.GetOpKind(j);
@@ -92,7 +92,7 @@ namespace Z0
                 var reg = operandKind == AsmOpKind.Register ? inx.RegisterInfo(j) : null;
                 var mem = operandKind.IsMemory() ? inx.MemoryInfo(j) : null;
                 var branch = operandKind.IsBranch() ? inx.BranchInfo(j, asm.StartAddress) : null;
-                args[j] = new AsmOperand(j, operandKind.ToString(), imm, mem, reg, branch);
+                args[j] = new AsmOperandInfo(j, operandKind.ToString(), imm, mem, reg, branch);
             }
             return args;
         }
@@ -102,13 +102,13 @@ namespace Z0
         /// </summary>
         /// <param name="inx">The source instruction</param>
         /// <param name="operand">The operand index</param>
-        static Option<AsmOperandRegister> RegisterInfo(this Instruction inx, int operand)
+        static Option<AsmRegisterInfo> RegisterInfo(this Instruction inx, int operand)
         {
             var kind = inx.GetOpKind(operand);
             if(kind.IsRegister())
             {
                 var reg = inx.GetOpRegister(operand);
-                return new AsmOperandRegister(reg.ToString());                
+                return new AsmRegisterInfo(reg.ToString());                
             }
 
             return default;
@@ -135,13 +135,13 @@ namespace Z0
         /// </summary>
         /// <param name="inx">The source instruction</param>
         /// <param name="operand">The operand index</param>
-        static Option<AsmOperandMemory> MemoryInfo(this Instruction inx, byte operand)
+        static Option<AsmMemInfo> MemoryInfo(this Instruction inx, byte operand)
         {            
             var kind = inx.GetOpKind(operand);
             if(!kind.IsMemory())
                 return default;
 
-            var info = new AsmOperandMemory();
+            var info = new AsmMemInfo();
             info.Size = inx.MemorySize.Format();
 
             if(kind.IsMemDirect())
@@ -168,24 +168,24 @@ namespace Z0
             return info;
         }
 
-        static Option<AsmBranch> BranchInfo(this Instruction inx, int operand, ulong baseAddress)
+        static Option<AsmBranchInfo> BranchInfo(this Instruction inx, int operand, ulong baseAddress)
         {
-            var result = none<AsmBranch>();
+            var result = none<AsmBranchInfo>();
             var kind = inx.GetOpKind(operand);
             if(kind.IsBranch())
             {
                 switch(kind)
                 {
                     case AsmOpKind.NearBranch16:
-                        return new AsmBranch(BitSize.x16, inx.NearBranch16, true, baseAddress);
+                        return new AsmBranchInfo(BitSize.x16, inx.NearBranch16, true, baseAddress);
                     case AsmOpKind.NearBranch32:
-                        return new AsmBranch(BitSize.x32, inx.NearBranch32, true, baseAddress);
+                        return new AsmBranchInfo(BitSize.x32, inx.NearBranch32, true, baseAddress);
                     case AsmOpKind.NearBranch64:
-                        return new AsmBranch(BitSize.x64, inx.NearBranch64, true, baseAddress);
+                        return new AsmBranchInfo(BitSize.x64, inx.NearBranch64, true, baseAddress);
                     case AsmOpKind.FarBranch16:
-                        return new AsmBranch(BitSize.x16, inx.FarBranch16, false, baseAddress);
+                        return new AsmBranchInfo(BitSize.x16, inx.FarBranch16, false, baseAddress);
                     case AsmOpKind.FarBranch32:
-                        return new AsmBranch(BitSize.x32, inx.FarBranch32, false, baseAddress);
+                        return new AsmBranchInfo(BitSize.x32, inx.FarBranch32, false, baseAddress);
 
                 }
             }
@@ -198,9 +198,9 @@ namespace Z0
         /// </summary>
         /// <param name="inx">The source instruction</param>
         /// <param name="operand">The operand index</param>
-        static Option<AsmOperandImm> ImmediateInfo(this Instruction inx, int operand)
+        static Option<AsmImmInfo> ImmediateInfo(this Instruction inx, int operand)
         {
-            var result = none<AsmOperandImm>();
+            var result = none<AsmImmInfo>();
             var kind = inx.GetOpKind(operand);
             int size = kind.GetImmediateSize();
             if(size != 0)

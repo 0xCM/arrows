@@ -17,19 +17,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Bit Get(this Span<byte> src, int row, int col)
-            => Bits.test(in src[row], col);
+            => BitMask.test(in src[row], col);
 
         [MethodImpl(Inline)]
         static Bit Get(this Span<ushort> src, int row, int col)
-            => Bits.test(in src[row], col);
+            => BitMask.test(in src[row], col);
 
         [MethodImpl(Inline)]
         static Bit Get(this Span<uint> src, int row, int col)
-            => Bits.test(in src[row], col);
+            => BitMask.test(in src[row], col);
 
         [MethodImpl(Inline)]
         static Bit Get(this Span<ulong> src, int row, int col)
-            => Bits.test(in src[row], col);
+            => BitMask.test(in src[row], col);
 
         [MethodImpl(Inline)]
         public static Bit GetBit(this in BitMatrix4 src, int row, int col)

@@ -16,10 +16,10 @@ namespace Z0
     public class Byte256 : CodeGenerator
     {
         char MakeBitChar(byte src, int pos)
-            => Bits.test(src, pos) ? '1' : '0';
+            => BitMask.test(src, pos) ? '1' : '0';
 
         char MakeBitChar(sbyte src, int pos)
-            => Bits.test(src, pos) ? '1' : '0';
+            => BitMask.test(src, pos) ? '1' : '0';
 
         string MakeBsArray(byte src)
         {

@@ -143,7 +143,7 @@ namespace Z0.Test
         public void BitViewBitString()
         {
             var x = Random.Vec256<int>();
-            var y = x.ToBitView();
+            var y = BitView.ViewBits(ref x);
             var ys = y.ToSpan().ToBitString();
             var xs = x.ToBitString();
             Claim.eq(ys,xs);

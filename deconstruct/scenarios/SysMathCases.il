@@ -1,4 +1,4 @@
-// 2019-07-30 13:37:35:665
+// 2019-07-31 03:55:30:209
 sbyte Abs(sbyte value)
 {
     IL_0000: ldarg.0
@@ -103,5 +103,19 @@ sbyte Max(sbyte val1, sbyte val2)
     IL_0005: ret
     IL_0006: ldarg.0
     IL_0007: ret
+
+}
+float SqrtF32(float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Single System.MathF::Sqrt(System.Single)
+    IL_0006: ret
+
+}
+double SqrtF64(double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Double System.Math::Sqrt(System.Double)
+    IL_0006: ret
 
 }

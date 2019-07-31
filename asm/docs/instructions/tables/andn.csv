@@ -1,0 +1,10 @@
+OpCodes
+-----------------------------------------------------------------------------------------------------------------------
+| Opcode                | Instruction            | Op/En | 64/32 -bit Mode | CPUID Feature Flag | Description                                                    |
+| VEX.LZ.0F38.W0 F2 /r  | ANDN r32a, r32b, r/m32 | RVM   | V/V             | BMI1               | Bitwise AND of inverted r32b with r/m32, store result in r32a. |
+| VEX.LZ. 0F38.W1 F2 /r | ANDN r64a, r64b, r/m64 | RVM   | V/NE            | BMI1               | Bitwise AND of inverted r64b with r/m64, store result in r64a. |
+
+Encoding
+-----------------------------------------------------------------------------------------------------------------------
+| Op/En | Operand 1     | Operand 2    | Operand 3     | Operand 4 |
+| RVM   | ModRM:reg (w) | VEX.vvvv (r) | ModRM:r/m (r) | NA        |

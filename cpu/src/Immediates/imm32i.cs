@@ -48,10 +48,10 @@ namespace Z0.Cpu
         public Imm32i(int src)
             => this.Value = src;
 
-        public AsmOperandImm Description 
+        public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
-            get => new AsmOperandImm(Size,Value);
+            get => new AsmImmInfo(Size,Value);
         }
 
         int IImm<int>.Value 

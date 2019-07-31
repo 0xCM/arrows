@@ -1,0 +1,16 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode        | Instruction | Op/En | 64-Bit Mode | Compat/Leg Mode | Description                                                                             |
+| F6 /7         | IDIV r/m8   | M     | Valid       | Valid           | Signed divide AX by r/m 8, with result stored in: AL ← Quotient, AH ← Remainder.        |
+| REX + F6 /7   | IDIV r/m8*  | M     | Valid       | N.E.            | Signed divide AX by r/m 8, with result stored in AL ← Quotient, AH ← Remainder.         |
+| F7 /7         | IDIV r/m16  | M     | Valid       | Valid           | Signed divide DX:AX by r/m16 , with result stored in AX ← Quotient, DX ← Remainder.     |
+| F7 /7         | IDIV r/m32  | M     | Valid       | Valid           | Signed divide EDX:EAX by r/m32 , with result stored in EAX ← Quotient, EDX ← Remainder. |
+| REX.W + F7 /7 | IDIV r/m64  | M     | Valid       | N.E.            | Signed divide RDX:RAX by r/m64 , with result stored in RAX ← Quotient, RDX ← Remainder. |
+
+Notes
+* In64-bitmode r/m8 cannot be encoded to access the following byte registers if a REX prefix is used:AH,BH,CH,DH.
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Operand 1     | Operand 2 | Operand 3 | Operand 4 |
+| M     | ModRM:r/m (r) | NA        | NA        | NA        |

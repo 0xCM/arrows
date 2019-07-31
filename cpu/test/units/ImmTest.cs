@@ -19,7 +19,7 @@ namespace Z0.Cpu.Test
 
         public void VerifyWidth()
         {
-            var imm8 = Imm.Define(4);
+            var imm8 = Imm.Define((byte)4);
             Claim.eq(8, Imm<byte>.Width);
             Claim.eq("imm8", imm8.Label);
 
