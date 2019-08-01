@@ -30,9 +30,15 @@ Marker | Note
 -------------------------------------------------------------------------------------------------------------------------------------------
 *      | In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH
 
+Encoding
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Op/En | Operand 1        | Operand 2     | Operand 3 | Operand 4 |
 | I     | AL/AX/EAX/RAX    | imm8/16/32    | NA        | NA        |
 | MI    | ModRM:r/m (r, w) | imm8/16/32    | NA        | NA        |
 | MR    | ModRM:r/m (r, w) | ModRM:reg (r) | NA        | NA        |
 | RM    | ModRM:reg (r, w) | ModRM:r/m (r) | NA        | NA        |
+
+Examples
+-------------------------------------------------------------------------------------------------------------------------------------------
+Instruction                    | Encoding
+xor rax,rdx                    | encoding(3 bytes) = 48 33 c2

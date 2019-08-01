@@ -83,7 +83,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref UInt128 And(this ref UInt128 lhs, in UInt128 rhs)
         {
-            dinx.and(lhs, rhs, out lhs);
+            Bits.and(lhs, rhs, out lhs);
             return ref lhs;
         }
 

@@ -201,7 +201,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec256<double> src, ref double dst)
             => Store(refptr(ref dst),src);            
-  
+ 
     }
 
 }

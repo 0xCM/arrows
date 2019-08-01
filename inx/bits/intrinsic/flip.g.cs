@@ -40,6 +40,30 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static void flip<T>(in Vec128<T> src, ref T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                dinx.flip(in int8(in src), ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                dinx.flip(in uint8(in src), ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                dinx.flip(in int16(in src), ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                dinx.flip(in uint16(in src), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                dinx.flip(in int32(in src), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.flip(in uint32(in src), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                dinx.flip(in int64(in src), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.flip(in uint64(in src), ref uint64(ref dst));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
         public static Vec256<T> flip<T>(in Vec256<T> src)
             where T : struct
         {
@@ -62,5 +86,30 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
+ 
+         [MethodImpl(Inline)]
+        public static void flip<T>(in Vec256<T> src, ref T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                dinx.flip(in int8(in src), ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                dinx.flip(in uint8(in src), ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                dinx.flip(in int16(in src), ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                dinx.flip(in uint16(in src), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                dinx.flip(in int32(in src), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.flip(in uint32(in src), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                dinx.flip(in int64(in src), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.flip(in uint64(in src), ref uint64(ref dst));
+            else 
+                throw unsupported<T>();
+        }
+
     }
 }

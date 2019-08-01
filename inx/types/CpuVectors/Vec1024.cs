@@ -20,9 +20,9 @@ namespace Z0
         public static ref Vec1024<uint> Merge(in Vec256<ulong> x, in Vec256<ulong> y, out Vec1024<uint> dst)
         {
             var loMask = Vec256.fill(Bits.LoMask64);            
-            var xl = dinx.and(x, loMask).As<uint>();
+            var xl = Bits.and(x, loMask).As<uint>();
             var xh = dinx.shiftr(x, 32).As<uint>();
-            var yl = dinx.and(y, loMask).As<uint>();
+            var yl = Bits.and(y, loMask).As<uint>();
             var yh = dinx.shiftr(y, 32).As<uint>();
             dst = Vec1024.Define(xl, xh, yl, yh);
             return ref dst;

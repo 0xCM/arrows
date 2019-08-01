@@ -15,7 +15,6 @@ namespace Z0
             (
                 nameof(ginx.add),
                 nameof(ginx.sub),
-                nameof(ginx.and),
                 nameof(ginx.or),
                 nameof(ginx.xor)
             );

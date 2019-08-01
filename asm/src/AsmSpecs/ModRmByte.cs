@@ -24,19 +24,11 @@ namespace Z0.Asm
         M11 = 0b11
     }
 
-    public enum ModRmSegment
-    {
-
-    }
 
     public struct ModRm16
     {
         byte data;
 
-        public void Apply(ModCode mod)
-        {
-
-        }
 
     }
 

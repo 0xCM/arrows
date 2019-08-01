@@ -16,42 +16,42 @@ namespace Z0
     partial class dinxx
     {
         [MethodImpl(Inline)]
-        public static Vec128<float> Div(this in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vec128<float> Div(this Vec128<float> lhs, in Vec128<float> rhs)
             => dinx.div(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> Div(this in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vec128<double> Div(this Vec128<double> lhs, in Vec128<double> rhs)
             => dinx.div(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static void Div(this in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+        public static void Div(this Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
             => dinx.div(in lhs, in rhs, ref dst);        
 
         [MethodImpl(Inline)]
-        public static void Div(this in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+        public static void Div(this Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
             => dinx.div(in lhs, in rhs, ref dst);        
 
         [MethodImpl(Inline)]
-        public static Vec256<float> Div(this in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vec256<float> Div(this Vec256<float> lhs, in Vec256<float> rhs)
             => dinx.div(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> Div(this in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vec256<double> Div(this Vec256<double> lhs, in Vec256<double> rhs)
             => dinx.div(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static void Div(this in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
+        public static void Div(this Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
             => dinx.div(in lhs, in rhs, ref dst);        
 
         [MethodImpl(Inline)]
-        public static void Div(this in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
+        public static void Div(this Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => dinx.div(in lhs, in rhs, ref dst);        
 
         public static Span128<float> Div(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
+                dinx.store(Divide(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -59,7 +59,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
+                dinx.store(Divide(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -67,7 +67,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
+                dinx.store(Divide(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -75,7 +75,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
+                dinx.store(Divide(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }    
 

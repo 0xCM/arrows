@@ -17,6 +17,7 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Avx2;
     using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Sse41;
 
     using static zfunc;
 
@@ -29,11 +30,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline | Optimize)]
-        public static Vec128<sbyte> add1(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vector128<sbyte> addv8u128(in Vector128<sbyte> lhs, in Vector128<sbyte> rhs)
             => Add(lhs, rhs);
 
         [MethodImpl(Inline | Optimize)]
-        public static Vec128<sbyte> add2(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+        public static Vector128<sbyte> add2(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
             => Add(lhs, rhs);
         
         [MethodImpl(Inline | Optimize)]
@@ -45,7 +46,7 @@ namespace Z0
             => Add(lhs, rhs);
 
         [MethodImpl(Inline | Optimize)]
-        public static Vec256<sbyte> add5(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
+        public static Vector256<sbyte> add5(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
             => Add(lhs, rhs);
 
         /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
@@ -56,11 +57,6 @@ namespace Z0
         /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
         [MethodImpl(Inline | Optimize)]
         public static Vector256<ulong> shiftlw(Vector256<ulong> src, byte count)
-            => ShiftLeftLogical128BitLane(src, count); 
-
-        /// <intrinsic>__m256i _mm256_bslli_epi128 (__m256i a, const int imm8) VPSLLDQ ymm, ymm, imm8</intrinsic>
-        [MethodImpl(Inline | Optimize)]
-        public static Vec256<ulong> shiftlw(Vec256<ulong> src, byte count)
             => ShiftLeftLogical128BitLane(src, count); 
 
          ///<intrinsic>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
@@ -173,6 +169,44 @@ namespace Z0
         public static Vector256<double> permute4x64(in Vector256<double> value, byte control)
             => Permute4x64(value,control);
 
+        #region testz
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector128<byte> lhs, in Vector128<byte> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector128<long> lhs, in Vector128<long> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector128<ulong> lhs, in Vector128<ulong> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector128<float> lhs, in Vector128<float> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector128<double> lhs, in Vector128<double> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector256<long> lhs, in Vector256<long> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector256<ulong> lhs, in Vector256<ulong> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector256<float> lhs, in Vector256<float> rhs)
+            => TestZ(lhs,rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testz(in Vector256<double> lhs, in Vector256<double> rhs)
+            => TestZ(lhs,rhs);        
+        #endregion
     }
 
 

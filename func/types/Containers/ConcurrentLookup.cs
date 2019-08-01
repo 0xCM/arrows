@@ -19,6 +19,8 @@ namespace Z0
     public interface IConcurrentLookup<K,V>
     {
         V Acquire(K key, Func<K,V> factory);
+        void Add(K key, V value);
+        
     }
 
     public static class ConcurrentLookup
@@ -41,6 +43,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public V Acquire(K key, Func<K,V> factory)
             => Index.Acquire(key,factory);
+
+        [MethodImpl(Inline)]
+        public void Add(K key, V value)
+            => Index.Add(key,value);
     }
 
     
@@ -90,8 +96,38 @@ namespace Z0
             return cacheEntry;
         }
 
+        async Task<V> TryAdd(K key, V value)
+        {
+            V cacheEntry;
+    
+            if (!_index.TryGetValue(key, out cacheEntry))// Look for cache key.
+            {
+                SemaphoreSlim mylock = _locks.GetOrAdd(key, k => new SemaphoreSlim(1, 1));
+    
+                await mylock.WaitAsync();
+                try
+                {
+                    if (!_index.TryGetValue(key, out cacheEntry))
+                        _index.Add(key, value);
+                }
+                finally
+                {
+                    mylock.Release();
+                }
+                
+            }
+            return cacheEntry;
+        }
+
         [MethodImpl(Inline)]
         public V Acquire(K key, Func<K,V> factory)
             => GetOrCreate(key, () => task(factory,key)).Result;
+
+        [MethodImpl(Inline)]
+        public void Add(K key, V value)        
+            => TryAdd(key, value).Wait();
+        
+            
+
     }
 }

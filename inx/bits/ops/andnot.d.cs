@@ -5,19 +5,35 @@
 namespace Z0
 {
     using System;
-    using System.Runtime.CompilerServices;    
-    using System.Runtime.Intrinsics;
+    using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
+    using Z0;
     
     using static System.Runtime.Intrinsics.X86.Sse;
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Avx2;
-    
+ 
     using static zfunc;
+    
+    public static partial class Bits
+    {                
+        [MethodImpl(Inline)]
+        public static ulong andnot(in ulong lhs, in ulong rhs)
+            => Bmi1.X64.AndNot(lhs,rhs);
 
-    partial class dinx
-    {
+        [MethodImpl(Inline)]
+        public static uint andnot(in uint lhs, in uint rhs)
+            => Bmi1.AndNot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort andnot(in ushort lhs, in ushort rhs)
+            => (ushort)Bmi1.AndNot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static byte andnot(in byte lhs, in byte rhs) 
+            => (byte)Bmi1.AndNot(lhs,rhs);
+
         [MethodImpl(Inline)]
         public static Vec128<sbyte> andnot(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => AndNot(lhs, rhs);
@@ -100,83 +116,83 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void andnot(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => store(AndNot(lhs, rhs), ref dst);
+            => vstore(AndNot(lhs, rhs), ref dst);
 
     }
 }

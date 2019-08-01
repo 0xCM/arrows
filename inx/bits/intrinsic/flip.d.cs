@@ -108,6 +108,14 @@ namespace Z0
             => store(flip(in src), ref dst);
 
         [MethodImpl(Inline)]
+        public static void flip(in Vec128<long> src, ref long dst)
+            => store(flip(in src), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void flip(in Vec128<ulong> src, ref ulong dst)
+            => store(flip(in src), ref dst);
+
+        [MethodImpl(Inline)]
         public static void flip(in Vec256<sbyte> src, ref sbyte dst)
             => store(flip(in src), ref dst);
 

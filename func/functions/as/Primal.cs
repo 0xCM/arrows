@@ -147,6 +147,14 @@ namespace Z0
         public static ref uint uint32<T>(ref T src)
             => ref Unsafe.As<T,uint>(ref src);
 
+        // [MethodImpl(Inline)]
+        // public static ref long int64<T>(ref T src)
+        //     => ref Unsafe.As<T,long>(ref src);
+
+        // [MethodImpl(Inline)]
+        // public static ref ulong uint64<T>(ref T src)
+        //     => ref Unsafe.As<T,ulong>(ref src);
+
         [MethodImpl(Inline)]
         public static long int64<T>(T src)
             => Unsafe.As<T,long>(ref src);

@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="lhs">The left source vector</param>
         /// <param name="rhs">The right source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec128<T> XOr<T>(in this Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vec128<T> XOr<T>(this Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
                 => ginx.xor(in lhs,in rhs);
 
@@ -30,40 +30,40 @@ namespace Z0
         /// <param name="lhs">The left source vector</param>
         /// <param name="rhs">The right source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec256<T> XOr<T>(in this Vec256<T> lhs, in Vec256<T> rhs)
+        public static Vec256<T> XOr<T>(this Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
                 => ginx.xor(in lhs,in rhs);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+        public static void XOr(this Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+        public static void XOr(this Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+        public static void XOr(this Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+        public static void XOr(this Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+        public static void XOr(this Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+        public static void XOr(this Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+        public static void XOr(this Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
-        public static void XOr(this in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+        public static void XOr(this Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
             => dinx.xor(in lhs, in rhs, ref dst);
 
 

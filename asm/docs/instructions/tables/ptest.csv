@@ -1,0 +1,17 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode                    | Instruction            | Op/En | 64/32 bit Mode Support | CPUID Feature Flag | Description                                                                                       |
+| 66 0F 38 17 /r            | PTEST xmm1, xmm2/m128  | RM    | V/V                    | SSE4_1             | Set ZF if xmm2/m128 AND xmm1 result is all 0s. Set CF if xmm2/m128 AND NOT xmm1 result is all 0s. |
+| VEX.128.66.0F38.WIG 17 /r | VPTEST xmm1, xmm2/m128 | RM    | V/V                    | AVX                | Set ZF and CF depending on bitwise AND and ANDN of sources.                                       |
+| VEX.256.66.0F38.WIG 17 /r | VPTEST ymm1, ymm2/m256 | RM    | V/V                    | AVX                | Set ZF and CF depending on bitwise AND and ANDN of sources.                                       |
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Operand 1     | Operand 2     | Operand 3 | Operand 4 |
+| RM    | ModRM:reg (r) | ModRM:r/m (r) | NA        | NA        |
+
+Examples
+-------------------------------------------------------------------------------------------------------------------------------------------
+Instruction                   | Encoding
+vptest xmm0,xmmword ptr [rdx] | encoding(VEX, 5 bytes) = c4 e2 79 17 02
+vptest ymm0,ymmword ptr [rdx] | encoding(VEX, 5 bytes) = c4 e2 7d 17 02

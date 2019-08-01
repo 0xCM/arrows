@@ -13,7 +13,7 @@ namespace Z0
     using static As;
     using static AsInX;
 
-    partial class ginxs
+    partial class gbitsx
     {
         /// <summary>
         /// Computes the bitwise and of the operands
@@ -22,9 +22,9 @@ namespace Z0
         /// <param name="rhs">The right source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> And<T>(in this Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vec128<T> And<T>(this Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
-                => ginx.and(in lhs,in rhs);
+                => gbits.and(in lhs,in rhs);
 
         /// <summary>
         /// Computes the bitwise and of the operands
@@ -33,9 +33,9 @@ namespace Z0
         /// <param name="rhs">The right source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> And<T>(in this Vec256<T> lhs, in Vec256<T> rhs)
+        public static Vec256<T> And<T>(this Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
-                => ginx.and(in lhs,in rhs);
+                => gbits.and(in lhs,in rhs);
 
         [MethodImpl(Inline)]
         public static Span128<T> And<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)

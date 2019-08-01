@@ -1,4 +1,4 @@
-        ML64 [ /options ] filelist [ /link linkoptions ]
+ML64 [ /options ] filelist [ /link linkoptions ]
 
 /Bl<linker> Use alternate linker          
 /Sf Generate first pass listing
@@ -34,7 +34,8 @@
 /Zp[n] Set structure alignment
 /Sa Maximize source listing               
 /Zs Perform syntax check only
-/ZH:SHA_256 Use SHA256 for checksum in debug info (experimental)
+/ZH:SHA_256 Use SHA256 for checksum
+    in debug info (experimental)
 /Gy[-] separate functions for linker
 /errorReport:<option> Report internal assembler errors to Microsoft
     none - do not send report
