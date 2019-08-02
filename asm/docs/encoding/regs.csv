@@ -1,0 +1,161 @@
+; Derived from xed-regs.txt; see license
+
+| name       | class     | width | enclosure | regid | alt-name |
+| RAX        | gpr       | 64    | RAX       | 0     |          |
+| EAX        | gpr       | 32    | RAX       | 0     |          |
+| AX         | gpr       | 16    | EAX       | 0     |          |
+| AH         | gpr       | 8     | AX        | 4     |          |
+| AL         | gpr       | 8     | AX        | 0     |          |
+| RCX        | gpr       | 64    | RCX       | 1     |          |
+| ECX        | gpr       | 32    | RCX       | 1     |          |
+| CX         | gpr       | 16    | ECX       | 1     |          |
+| CH         | gpr       | 8     | CX        | 5     |          |
+| CL         | gpr       | 8     | CX        | 1     |          |
+| RDX        | gpr       | 64    | RDX       | 2     |          |
+| EDX        | gpr       | 32    | RDX       | 2     |          |
+| DX         | gpr       | 16    | EDX       | 2     |          |
+| DH         | gpr       | 8     | DX        | 6     |          |
+| DL         | gpr       | 8     | DX        | 2     |          |
+| RBX        | gpr       | 64    | RBX       | 3     |          |
+| EBX        | gpr       | 32    | RBX       | 3     |          |
+| BX         | gpr       | 16    | EBX       | 3     |          |
+| BH         | gpr       | 8     | BX        | 7     |          |
+| BL         | gpr       | 8     | BX        | 3     |          |
+| RSP        | gpr       | 64    | RSP       | 4     |          |
+| ESP        | gpr       | 32    | RSP       | 4     |          |
+| SP         | gpr       | 16    | ESP       | 4     |          |
+| SPL        | gpr       | 8     | SP        | 4     |          |
+| RBP        | gpr       | 64    | RBP       | 5     |          |
+| EBP        | gpr       | 32    | RBP       | 5     |          |
+| BP         | gpr       | 16    | EBP       | 5     |          |
+| BPL        | gpr       | 8     | BP        | 5     |          |
+| RSI        | gpr       | 64    | RSI       | 6     |          |
+| ESI        | gpr       | 32    | RSI       | 6     |          |
+| SI         | gpr       | 16    | ESI       | 6     |          |
+| SIL        | gpr       | 8     | SI        | 6     |          |
+| RDI        | gpr       | 64    | RDI       | 7     |          |
+| EDI        | gpr       | 32    | RDI       | 7     |          |
+| DI         | gpr       | 16    | EDI       | 7     |          |
+| DIL        | gpr       | 8     | DI        | 7     |          |
+| R8         | gpr       | 64    | R8        | 8     |          |
+| R8D        | gpr       | 32    | R8        | 8     |          |
+| R8W        | gpr       | 16    | R8D       | 8     |          |
+| R8B        | gpr       | 8     | R8W       | 8     |          |
+| R9         | gpr       | 64    | R9        | 9     |          |
+| R9D        | gpr       | 32    | R9        | 9     |          |
+| R9W        | gpr       | 16    | R9D       | 9     |          |
+| R9B        | gpr       | 8     | R9W       | 9     |          |
+| R10        | gpr       | 64    | R10       | 10    |          |
+| R10D       | gpr       | 32    | R10       | 10    |          |
+| R10W       | gpr       | 16    | R10D      | 10    |          |
+| R10B       | gpr       | 8     | R10W      | 10    |          |
+| R11        | gpr       | 64    | R11       | 11    |          |
+| R11D       | gpr       | 32    | R11       | 11    |          |
+| R11W       | gpr       | 16    | R11D      | 11    |          |
+| R11B       | gpr       | 8     | R11W      | 11    |          |
+| R12        | gpr       | 64    | R12       | 12    |          |
+| R12D       | gpr       | 32    | R12       | 12    |          |
+| R12W       | gpr       | 16    | R12D      | 12    |          |
+| R12B       | gpr       | 8     | R12W      | 12    |          |
+| R13        | gpr       | 64    | R13       | 13    |          |
+| R13D       | gpr       | 32    | R13       | 13    |          |
+| R13W       | gpr       | 16    | R13D      | 13    |          |
+| R13B       | gpr       | 8     | R13W      | 13    |          |
+| R14        | gpr       | 64    | R14       | 14    |          |
+| R14D       | gpr       | 32    | R14       | 14    |          |
+| R14W       | gpr       | 16    | R14D      | 14    |          |
+| R14B       | gpr       | 8     | R14W      | 14    |          |
+| R15        | gpr       | 64    | R15       | 15    |          |
+| R15D       | gpr       | 32    | R15       | 15    |          |
+| R15W       | gpr       | 16    | R15D      | 15    |          |
+| R15B       | gpr       | 8     | R15W      | 15    |          |
+| MMX0       | mmx       | 64    | MMX0      | 0     | mm0      |
+| MMX1       | mmx       | 64    | MMX1      | 1     | mm1      |
+| MMX2       | mmx       | 64    | MMX2      | 2     | mm2      |
+| MMX3       | mmx       | 64    | MMX3      | 3     | mm3      |
+| MMX4       | mmx       | 64    | MMX4      | 4     | mm4      |
+| MMX5       | mmx       | 64    | MMX5      | 5     | mm5      |
+| MMX6       | mmx       | 64    | MMX6      | 6     | mm6      |
+| MMX7       | mmx       | 64    | MMX7      | 7     | mm7      |
+| XMM0       | xmm       | 128   | XMM0      | 0     |          |
+| XMM1       | xmm       | 128   | XMM1      | 1     |          |
+| XMM2       | xmm       | 128   | XMM2      | 2     |          |
+| XMM3       | xmm       | 128   | XMM3      | 3     |          |
+| XMM4       | xmm       | 128   | XMM4      | 4     |          |
+| XMM5       | xmm       | 128   | XMM5      | 5     |          |
+| XMM6       | xmm       | 128   | XMM6      | 6     |          |
+| XMM7       | xmm       | 128   | XMM7      | 7     |          |
+| XMM8       | xmm       | 128   | XMM8      | 8     |          |
+| XMM9       | xmm       | 128   | XMM9      | 9     |          |
+| XMM10      | xmm       | 128   | XMM10     | 10    |          |
+| XMM11      | xmm       | 128   | XMM11     | 11    |          |
+| XMM12      | xmm       | 128   | XMM12     | 12    |          |
+| XMM13      | xmm       | 128   | XMM13     | 13    |          |
+| XMM14      | xmm       | 128   | XMM14     | 14    |          |
+| XMM15      | xmm       | 128   | XMM15     | 15    |          |
+| ST0        | x87       | 80    | ST0       | 0     | st(0)    |
+| ST1        | x87       | 80    | ST1       | 1     | st(1)    |
+| ST2        | x87       | 80    | ST2       | 2     | st(2)    |
+| ST3        | x87       | 80    | ST3       | 3     | st(3)    |
+| ST4        | x87       | 80    | ST4       | 4     | st(4)    |
+| ST5        | x87       | 80    | ST5       | 5     | st(5)    |
+| ST6        | x87       | 80    | ST6       | 6     | st(6)    |
+| ST7        | x87       | 80    | ST7       | 7     | st(7)    |
+| CR0        | cr        | 32/64 | CR0       | 0     |          |
+| CR1        | cr        | 32/64 | CR1       | 1     |          |
+| CR2        | cr        | 32/64 | CR2       | 2     |          |
+| CR3        | cr        | 32/64 | CR3       | 3     |          |
+| CR4        | cr        | 32/64 | CR4       | 4     |          |
+| CR5        | cr        | 32/64 | CR5       | 5     |          |
+| CR6        | cr        | 32/64 | CR6       | 6     |          |
+| CR7        | cr        | 32/64 | CR7       | 7     |          |
+| CR8        | cr        | 32/64 | CR8       | 8     |          |
+| CR9        | cr        | 32/64 | CR9       | 9     |          |
+| CR10       | cr        | 32/64 | CR10      | 10    |          |
+| CR11       | cr        | 32/64 | CR11      | 11    |          |
+| CR12       | cr        | 32/64 | CR12      | 12    |          |
+| CR13       | cr        | 32/64 | CR13      | 13    |          |
+| CR14       | cr        | 32/64 | CR14      | 14    |          |
+| CR15       | cr        | 32/64 | CR15      | 15    |          |
+| DR0        | dr        | 32/64 | DR0       | 0     |          |
+| DR1        | dr        | 32/64 | DR1       | 1     |          |
+| DR2        | dr        | 32/64 | DR2       | 2     |          |
+| DR3        | dr        | 32/64 | DR3       | 3     |          |
+| DR4        | dr        | 32/64 | DR4       | 4     |          |
+| DR5        | dr        | 32/64 | DR5       | 5     |          |
+| DR6        | dr        | 32/64 | DR6       | 6     |          |
+| DR7        | dr        | 32/64 | DR7       | 7     |          |
+| RIP        | ip        | 64    | RIP       |       |          |
+| EIP        | ip        | 32    | RIP       |       |          |
+| IP         | ip        | 16    | RIP       |       |          |
+| RFLAGS     | flags     | 64    | RFLAGS    |       |          |
+| EFLAGS     | flags     | 32    | RFLAGS    |       |          |
+| FLAGS      | flags     | 16    | EFLAGS    |       |          |
+| CS         | sr        | 16    | CS        |       |          |
+| DS         | sr        | 16    | DS        |       |          |
+| ES         | sr        | 16    | ES        |       |          |
+| SS         | sr        | 16    | SS        |       |          |
+| FS         | sr        | 16    | FS        |       |          |
+| GS         | sr        | 16    | GS        |       |          |
+| STACKPUSH  | pseudo    | NA    |           |       |          |
+| STACKPOP   | pseudo    | NA    |           |       |          |
+| GDTR       | pseudo    | 80    |           |       |          |
+| LDTR       | pseudo    | 80    |           |       |          |
+| IDTR       | pseudo    | 80    |           |       |          |
+| TR         | pseudo    | 80    |           |       |          |
+| TSC        | pseudo    | 32    |           |       |          |
+| TSCAUX     | pseudo    | 32    |           |       |          |
+| MSRS       | pseudo    | NA    |           |       |          |
+| X87CONTROL | pseudox87 | 16    |           |       |          |
+| X87STATUS  | pseudox87 | 16    |           |       |          |
+| X87TAG     | pseudox87 | 16    |           |       |          |
+| X87PUSH    | pseudox87 | NA    |           |       |          |
+| X87POP     | pseudox87 | NA    |           |       |          |
+| X87POP2    | pseudox87 | NA    |           |       |          |
+| X87OPCODE  | pseudox87 | 11    |           |       |          |
+| X87LASTCS  | pseudox87 | 16    |           |       |          |
+| X87LASTIP  | pseudox87 | 32/64 |           |       |          |
+| X87LASTDS  | pseudox87 | 16    |           |       |          |
+| X87LASTDP  | pseudox87 | 32/64 |           |       |          |
+| XCR0       | xcr       | 64    |           |       |          |
+| MXCSR      | mxcsr     | 32    |           |       |          |

@@ -52,7 +52,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator & (BitMatrix64 lhs, BitMatrix64 rhs)
-            => lhs.And(rhs);
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator | (BitMatrix64 lhs, BitMatrix64 rhs)
@@ -60,19 +60,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator ^ (BitMatrix64 lhs, BitMatrix64 rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator ~ (BitMatrix64 src)
-            => src.Flip();
+            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix64 lhs, BitMatrix64 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitMatrix64 lhs, BitMatrix64 rhs)
-            => lhs.NEq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         BitMatrix64(Span<ulong> src)
@@ -91,10 +91,10 @@ namespace Z0
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
-            get => this.GetBit(row,col);
+            get => BitMask.test(in bits[row], col);
 
             [MethodImpl(Inline)]
-            set => this.SetBit(row,col,value);
+            set => BitMask.set(ref bits[row], (byte)col, value);
         }            
 
         public int RowDim
@@ -107,13 +107,80 @@ namespace Z0
         public BitVector64 Row(int index)
             => bits[index];
 
+        /// <summary>
+        /// Returns the underlying matrix data as a span of bytes
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        [MethodImpl(Inline)] 
+        public Span<byte> Bytes()
+            => bits.AsBytes();
+
         [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix64 rhs)
+        public bool Equals(in BitMatrix64 rhs)
             => this.AndNot(rhs).IsZero();
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitMatrix64 rhs)
-            => !this.AndNot(rhs).IsZero();
+        public string Format()
+            => MemoryMarshal.AsBytes(bits).FormatMatrixBits(64);
+
+        [MethodImpl(Inline)]
+        public bool IsZero()
+        {
+            const int rowstep = 4;
+            for(var i=0; i< RowDim; i += rowstep)
+            {
+                this.LoadVector(out Vec256<ulong> vSrc, i);
+                if(!vSrc.TestZ(vSrc))
+                    return false;
+            }
+            return true;
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector64 Diagonal()
+        {
+            var dst = (ulong)0;
+            for(byte i=0; i < N; i++)
+                if(this[i,i])
+                    BitMask.enable(ref dst, i);
+            return dst;                    
+        }
+
+
+        static ref BitMatrix64 And(ref BitMatrix64 lhs, in BitMatrix64 rhs)
+        {
+            const int rowstep = 4;
+            for(var i=0; i< lhs.RowDim; i += rowstep)
+            {
+                lhs.LoadVector(out Vec256<ulong> vLhs, i);
+                rhs.LoadVector(out Vec256<ulong> vRhs, i);
+                vLhs.And(vRhs, ref lhs.bits[i]);                
+            }
+            return ref lhs;
+        }
+
+        static ref BitMatrix64 XOr(ref BitMatrix64 lhs, in BitMatrix64 rhs)
+        {
+            const int rowstep = 4;
+            for(var i=0; i< lhs.RowDim; i += rowstep)
+            {
+                lhs.LoadVector(out Vec256<ulong> vLhs, i);
+                rhs.LoadVector(out Vec256<ulong> vRhs, i);
+                vLhs.XOr(vRhs, ref lhs.bits[i]);                
+            }
+            return ref lhs;
+        }
+
+        static ref BitMatrix64 Flip(ref BitMatrix64 src)
+        {
+            const int rowstep = 4;
+            for(var i=0; i< src.RowDim; i += rowstep)
+            {
+                src.LoadVector(out Vec256<ulong> vSrc, i);
+                vSrc.Flip(ref src.bits[i]);
+            }
+            return ref src;
+        }
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

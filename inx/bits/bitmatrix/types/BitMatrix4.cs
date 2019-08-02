@@ -12,10 +12,18 @@ namespace Z0
 
     using static zfunc;
 
+
     public ref struct BitMatrix4
     {        
-        internal Span<byte> bits;
+        Memory<byte> data;
 
+        internal Span<byte> bits
+            => data.Span;
+
+        public const uint Size = 16;
+
+        public const uint RowSize = 4;
+        
         public static readonly N4 N = default;
 
         public static BitMatrix4 Identity 
@@ -55,65 +63,154 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix4 lhs, BitMatrix4 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitMatrix4 lhs, BitMatrix4 rhs)
-            => lhs.NEq(rhs);
+            => !(lhs.Equals(rhs));
 
         [MethodImpl(Inline)]
         public static BitMatrix4 operator & (BitMatrix4 lhs, BitMatrix4 rhs)
-            => lhs.And(rhs);
+            => And(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix4 operator | (BitMatrix4 lhs, BitMatrix4 rhs)
-            => lhs.Or(rhs);
+            => Or(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix4 operator ^ (BitMatrix4 lhs, BitMatrix4 rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix4 operator ~ (BitMatrix4 src)
-            => src.Flip();
+            => Flip(ref src);
             
         [MethodImpl(Inline)]
         BitMatrix4(params byte[] src)
         {                    
             require(src.Length == Pow2.T01);
-            this.bits = src;
+            this.data = src;
         }
 
         [MethodImpl(Inline)]
         BitMatrix4(ReadOnlySpan<byte> src)
         {                    
             require(src.Length == Pow2.T01);
-            this.bits = src.Replicate();
+            this.data = src.ToArray();
         }
 
         [MethodImpl(Inline)]
         BitMatrix4(Span<byte> src)
         {
             require(src.Length == Pow2.T01);
-            this.bits = src;
+            this.data = src.ToArray();
+        }
+
+        public int RowDim
+            => N;
+
+        public int ColDim
+            => N;
+
+        [MethodImpl(Inline)]
+        Bit GetBit(int row, int col)
+        {
+            var index = row <= 1 ? 0 : 1;
+            var pos = (row == 0 || row == 2) ? col : col + 4;
+            return gbits.test(in bits[index],pos);
+        }
+
+        [MethodImpl(Inline)]
+        void SetBit(int row, int col, Bit value)
+        {
+            var index = row <= 1 ? 0 : 1;
+            var pos = (row == 0 || row == 2) ? col : col + 4;
+            gbits.set(ref bits[index], (byte)pos, value);
         }
 
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
-            get => this.GetBit(row,col);
+            get => GetBit(row,col);
 
             [MethodImpl(Inline)]
-            set => this.SetBit(row,col,value);
+            set => SetBit(row, col,value);
         }            
- 
-         [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix4 rhs)
+
+        [MethodImpl(Inline)]
+        public bool IsZero()
+            => BitConverter.ToUInt16(bits) == 0;
+
+        /// <summary>
+        /// Returns the underlying matrix data as a span of bytes
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        [MethodImpl(Inline)] 
+        public Span<byte> Bytes()
+            => bits;
+
+        [MethodImpl(Inline)] 
+        public BitMatrix4 AndNot(in BitMatrix4 rhs)
+            => AndNot(ref this, rhs);
+
+        public BitVector4 Diagonal()
+        {
+            var dst = (byte)0;
+            for(byte i=0; i < BitMatrix4.N; i++)
+                if(this[i,i])
+                    BitMask.enable(ref dst, i);
+            return dst;                    
+        }
+
+        [MethodImpl(Inline)] 
+        public BitMatrix4 Replicate()
+            => BitMatrix4.Define(bits.ReadOnly());
+
+
+        [MethodImpl(Inline)]
+        public bool Equals(in BitMatrix4 rhs)
             => bits.TakeUInt16() == rhs.bits.TakeUInt16();
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitMatrix4 rhs)
-            => bits.TakeUInt16() != rhs.bits.TakeUInt16();
+        public string Format()
+            => bits.FormatMatrixBits(4);
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix4 And(ref BitMatrix4 lhs, in BitMatrix4 rhs)
+        {
+             lhs.data = BitConverter.GetBytes((ushort) ((ushort)lhs & (ushort)rhs));
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix4 XOr(ref BitMatrix4 lhs, in BitMatrix4 rhs)
+        {
+             lhs.data = BitConverter.GetBytes((ushort) ((ushort)lhs ^ (ushort)rhs));
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix4 Or(ref BitMatrix4 lhs, in BitMatrix4 rhs)
+        {
+             lhs.data =  BitConverter.GetBytes((ushort) ((ushort)lhs | (ushort)rhs));
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix4 AndNot(ref BitMatrix4 lhs, in BitMatrix4 rhs)
+        {
+             lhs.data = BitConverter.GetBytes((ushort)lhs &~ (ushort)rhs);
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix4 Flip(ref BitMatrix4 src)
+        {
+             src.data = BitConverter.GetBytes(((ushort) (~(ushort)src)));
+             return ref src;
+        }
+
+
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

@@ -25,11 +25,5 @@ namespace Z0.Asm
     }
 
 
-    public struct ModRm16
-    {
-        byte data;
-
-
-    }
 
 }

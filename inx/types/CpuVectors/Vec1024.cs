@@ -21,9 +21,9 @@ namespace Z0
         {
             var loMask = Vec256.fill(Bits.LoMask64);            
             var xl = Bits.and(x, loMask).As<uint>();
-            var xh = dinx.shiftr(x, 32).As<uint>();
+            var xh = Bits.shiftr(x, 32).As<uint>();
             var yl = Bits.and(y, loMask).As<uint>();
-            var yh = dinx.shiftr(y, 32).As<uint>();
+            var yh = Bits.shiftr(y, 32).As<uint>();
             dst = Vec1024.Define(xl, xh, yl, yh);
             return ref dst;
         }

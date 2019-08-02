@@ -11,9 +11,6 @@ namespace Z0
 
     partial class BitMatrixOps
     {   
-        [MethodImpl(Inline)] 
-        public static BitMatrix4 Replicate(this BitMatrix4 src)
-            => BitMatrix4.Define(src.bits.ReadOnly());
 
         [MethodImpl(Inline)] 
         public static BitMatrix8 Replicate(this BitMatrix8 src)

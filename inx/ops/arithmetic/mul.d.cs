@@ -23,19 +23,6 @@ namespace Z0
 
     partial class dinx
     {
-        [MethodImpl(Inline)]
-        public static unsafe void mul(uint lhs, uint rhs, out uint lo, out uint hi)
-        {
-            lo = 0;
-            hi = Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref lo));
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe uint umulHi(uint lhs, uint rhs)
-        {
-            var lo = 0u;
-            return  Bmi2.MultiplyNoFlags(lhs,rhs, refptr(ref lo));
-        }
 
         /// <summary>
         /// Returns the unsigned 64-bit product of two unsigned 32-bit integers
@@ -45,8 +32,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ulong umul64(uint lhs, uint rhs)
         {
-            var dst = 0u;
-            return (((ulong)Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref dst))) << 32) | dst;
+            UMul.mul(lhs,rhs, out ulong dst);
+            return dst;
         }
 
         /// <summary>
@@ -58,8 +45,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ref UInt128 umul128(ulong lhs, ulong rhs, out UInt128 dst)
         {
-            dst = default;
-            dst.hi = Bmi2.X64.MultiplyNoFlags(lhs,rhs, refptr(ref dst.lo));
+            dst = 0;
+            UMul.mul(lhs,rhs, out dst.lo, out dst.hi);
             return ref dst;
         }
         
@@ -69,11 +56,17 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public static ulong umulHi(ulong lhs, ulong rhs)
-            => umul128(lhs, rhs, out UInt128 _).hi;
+        {
+            UMul.mulHi(lhs,rhs, out ulong hi);
+            return hi;
+        }
 
         [MethodImpl(Inline)]
         public static ulong umulLo(ulong lhs, ulong rhs)
-            => umul128(lhs, rhs, out UInt128 _).lo;
+        {
+            UMul.mulLo(lhs,rhs, out ulong lo);
+            return lo;
+        }
 
         /// <summary>
         /// Multiplies two two 256-bit/u64 vectors to yield a 256-bit/u64 vector
@@ -90,10 +83,10 @@ namespace Z0
             ref var yl = ref m.At(0);
 
             var xh_yl = dinx.mul(xh, yl);
-            var hl = dinx.shiftl(xh_yl, 32);
+            var hl = Bits.shiftl(xh_yl, 32);
 
             var xh_mh = dinx.mul(xh, yh);
-            var lh = dinx.shiftl(xh_mh, 32);
+            var lh = Bits.shiftl(xh_mh, 32);
 
             var xl_yl = dinx.mul(xl, yl);
 

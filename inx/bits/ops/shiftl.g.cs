@@ -11,6 +11,7 @@ namespace Z0
     using static zfunc;
     using static As;
     using static AsIn;
+    using static AsInX;
 
     partial class gbits
     {
@@ -104,21 +105,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                ShiftX.ShiftL(int8(src), offsets, int8(dst));
+                int8(src).ShiftL(offsets, int8(dst));
             else if (typeof(T) == typeof(byte))
-                ShiftX.ShiftL(uint8(src), offsets, uint8(dst));
+                uint8(src).ShiftL(offsets, uint8(dst));
             else if (typeof(T) == typeof(short))
-                ShiftX.ShiftL(int16(src), offsets, int16(dst));
+                int16(src).ShiftL(offsets, int16(dst));
             else if (typeof(T) == typeof(ushort))
-                ShiftX.ShiftL(uint16(src), offsets, uint16(dst));
+                uint16(src).ShiftL(offsets, uint16(dst));
             else if (typeof(T) == typeof(int))
-                ShiftX.ShiftL(int32(src), offsets, int32(dst));
+                int32(src).ShiftL(offsets, int32(dst));
             else if (typeof(T) == typeof(uint))
-                ShiftX.ShiftL(uint32(src), offsets, uint32(dst));
+                uint32(src).ShiftL(offsets, uint32(dst));
             else if (typeof(T) == typeof(long))
-                ShiftX.ShiftL(int64(src), offsets, int64(dst));
+                int64(src).ShiftL(offsets, int64(dst));
             else if (typeof(T) == typeof(ulong))
-                ShiftX.ShiftL(uint64(src), offsets, uint64(dst));
+                uint64(src).ShiftL(offsets, uint64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -130,21 +131,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                ShiftX.ShiftL(int8(src), offset, int8(dst));
+                int8(src).ShiftL(offset, int8(dst));
             else if (typeof(T) == typeof(byte))
-                ShiftX.ShiftL(uint8(src), offset, uint8(dst));
+                uint8(src).ShiftL(offset, uint8(dst));
             else if (typeof(T) == typeof(short))
-                ShiftX.ShiftL(int16(src), offset, int16(dst));
+                int16(src).ShiftL(offset, int16(dst));
             else if (typeof(T) == typeof(ushort))
-                ShiftX.ShiftL(uint16(src), offset, uint16(dst));
+                uint16(src).ShiftL(offset, uint16(dst));
             else if (typeof(T) == typeof(int))
-                ShiftX.ShiftL(int32(src), offset, int32(dst));
+                int32(src).ShiftL(offset, int32(dst));
             else if (typeof(T) == typeof(uint))
-                ShiftX.ShiftL(uint32(src), offset, uint32(dst));
+                uint32(src).ShiftL(offset, uint32(dst));
             else if (typeof(T) == typeof(long))
-                ShiftX.ShiftL(int64(src), offset, int64(dst));
+                int64(src).ShiftL(offset, int64(dst));
             else if (typeof(T) == typeof(ulong))
-                ShiftX.ShiftL(uint64(src), offset, uint64(dst));
+                uint64(src).ShiftL(offset, uint64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -161,21 +162,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                ShiftX.ShiftL(int8(src), offset);
+                int8(src).ShiftL(offset);
             else if (typeof(T) == typeof(byte))
-                ShiftX.ShiftL(uint8(src), offset);
+                uint8(src).ShiftL(offset);
             else if (typeof(T) == typeof(short))
-                ShiftX.ShiftL(int16(src), offset);
+                int16(src).ShiftL(offset);
             else if (typeof(T) == typeof(ushort))
-                ShiftX.ShiftL(uint16(src), offset);
+                uint16(src).ShiftL(offset);
             else if (typeof(T) == typeof(int))
-                ShiftX.ShiftL(int32(src), offset);
+                int32(src).ShiftL(offset);
             else if (typeof(T) == typeof(uint))
-                ShiftX.ShiftL(uint32(src), offset);
+                uint32(src).ShiftL(offset);
             else if (typeof(T) == typeof(long))
-                ShiftX.ShiftL(int64(src), offset);
+                int64(src).ShiftL(offset);
             else if (typeof(T) == typeof(ulong))
-                ShiftX.ShiftL(uint64(src), offset);
+                uint64(src).ShiftL(offset);
             else
                 throw unsupported<T>();
             return ref src;
@@ -187,24 +188,339 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                ShiftX.ShiftL(int8(src), offsets);
+                int8(src).ShiftL(offsets);
             else if (typeof(T) == typeof(byte))
-                ShiftX.ShiftL(uint8(src), offsets);
+                uint8(src).ShiftL(offsets);
             else if (typeof(T) == typeof(short))
-                ShiftX.ShiftL(int16(src), offsets);
+                int16(src).ShiftL(offsets);
             else if (typeof(T) == typeof(ushort))
-                ShiftX.ShiftL(uint16(src), offsets);
+                uint16(src).ShiftL(offsets);
             else if (typeof(T) == typeof(int))
-                ShiftX.ShiftL(int32(src), offsets);
+                int32(src).ShiftL(offsets);
             else if (typeof(T) == typeof(uint))
-                ShiftX.ShiftL(uint32(src), offsets);
+                uint32(src).ShiftL(offsets);
             else if (typeof(T) == typeof(long))
-                ShiftX.ShiftL(int64(src), offsets);
+                int64(src).ShiftL(offsets);
             else if (typeof(T) == typeof(ulong))
-                ShiftX.ShiftL(uint64(src), offsets);
+                uint64(src).ShiftL(offsets);
             else
                 throw unsupported<T>();
             return ref src;
         }
+ 
+         [MethodImpl(Inline)]
+        public static Vec128<S> shiftl<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
+            where S : struct
+            where T : struct
+        {
+            if(typeof(S) == typeof(int))
+                return generic<S>(Bits.shiftl(in int32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(uint)) 
+                return generic<S>(Bits.shiftl(in uint32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(long))
+                return generic<S>(Bits.shiftl(in int64(lhs), in uint64(in shifts)));
+            else if(typeof(S) == typeof(ulong))
+                return generic<S>(Bits.shiftl(in uint64(lhs), in uint64(in shifts)));
+            else
+                throw unsupported<S>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<S> shiftl<S,T>(in Vec256<S> lhs, in Vec256<T> shifts)
+            where S : struct
+            where T : struct
+        {
+            if(typeof(S) == typeof(int))
+                return generic<S>(Bits.shiftl(in int32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(uint)) 
+                return generic<S>(Bits.shiftl(in uint32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(long))
+                return generic<S>(Bits.shiftl(in int64(lhs), in uint64(in shifts)));
+            else if(typeof(S) == typeof(ulong))
+                return generic<S>(Bits.shiftl(in uint64(lhs), in uint64(in shifts)));
+            else
+                throw unsupported<S>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> shiftlw<T>(in Vec128<T> lhs, byte count)
+            where T : struct
+        {
+            if(typeof(T) == typeof(short))
+                return generic<T>(Bits.shiftlw(in int16(in lhs), count));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.shiftlw(in uint16(in lhs), count));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.shiftlw(in int32(in lhs), count));
+            else if(typeof(T) == typeof(uint)) 
+                return generic<T>(Bits.shiftlw(in uint32(in lhs), count));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.shiftlw(in int64(in lhs), count));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.shiftlw(in uint64(in lhs), count));
+            else
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<T> shiftlw<T>(in Vec256<T> lhs, byte count)
+            where T : struct
+        {
+            if(typeof(T) == typeof(short))
+                return generic<T>(Bits.shiftlw(in int16(in lhs), count));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.shiftlw(in uint16(in lhs), count));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.shiftlw(in int32(in lhs), count));
+            else if(typeof(T) == typeof(uint)) 
+                return generic<T>(Bits.shiftlw(in uint32(in lhs), count));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.shiftlw(in int64(in lhs), count));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.shiftlw(in uint64(in lhs), count));
+            else
+                throw unsupported<T>();
+        }
+
+        static Span<sbyte> ShiftL(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, Span<sbyte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<byte> ShiftL(this ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs, Span<byte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<short> ShiftL(this ReadOnlySpan<short> lhs, ReadOnlySpan<int> rhs, Span<short> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<ushort> ShiftL(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<int> rhs, Span<ushort> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<int> ShiftL(this ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<uint> ShiftL(this ReadOnlySpan<uint> lhs, ReadOnlySpan<int> rhs, Span<uint> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<long> ShiftL(this ReadOnlySpan<long> lhs, ReadOnlySpan<int> rhs, Span<long> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+        static Span<ulong> ShiftL(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<int> rhs, Span<ulong> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs[i]);
+            return dst;                
+        }
+ 
+        static Span<sbyte> ShiftL(this ReadOnlySpan<sbyte> lhs, int rhs, Span<sbyte> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<byte> ShiftL(this ReadOnlySpan<byte> lhs, int rhs, Span<byte> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<short> ShiftL(this ReadOnlySpan<short> lhs, int rhs, Span<short> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<ushort> ShiftL(this ReadOnlySpan<ushort> lhs, int rhs, Span<ushort> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<int> ShiftL(this ReadOnlySpan<int> lhs, int rhs, Span<int> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<uint> ShiftL(this ReadOnlySpan<uint> lhs, int rhs, Span<uint> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<long> ShiftL(this ReadOnlySpan<long> lhs, int rhs, Span<long> dst)
+        {
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<ulong> ShiftL(this ReadOnlySpan<ulong> lhs, int rhs, Span<ulong> dst)
+        {            
+            var len = length(lhs,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.shiftl(lhs[i], rhs);
+            return dst;                
+        }
+
+        static Span<sbyte> ShiftL(this Span<sbyte> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<byte> ShiftL(this Span<byte> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<short> ShiftL(this Span<short> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<ushort> ShiftL(this Span<ushort> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<int> ShiftL(this Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<uint> ShiftL(this Span<uint> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<long> ShiftL(this Span<long> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<ulong> ShiftL(this Span<ulong> lhs, int rhs)
+        {            
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs;
+            return lhs;                
+        }
+
+        static Span<sbyte> ShiftL(this Span<sbyte> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<byte> ShiftL(this Span<byte> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<short> ShiftL(this Span<short> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<ushort> ShiftL(this Span<ushort> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<int> ShiftL(this Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<uint> ShiftL(this Span<uint> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<long> ShiftL(this Span<long> lhs, ReadOnlySpan<int> rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
+        static Span<ulong> ShiftL(this Span<ulong> lhs, ReadOnlySpan<int> rhs)
+        {            
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] <<= rhs[i];
+            return lhs;                
+        }
+
    }
 }

@@ -12,15 +12,6 @@ namespace Z0
 
     partial class BitMatrixOps
     {    
-       [MethodImpl(Inline)]
-        public static BitVector4 Diagonal(this in BitMatrix4 src)
-        {
-            var dst = (byte)0;
-            for(byte i=0; i < BitMatrix4.N; i++)
-                if(src[i,i])
-                    BitMask.enable(ref dst, i);
-            return dst;                    
-        }
 
        [MethodImpl(Inline)]
         public static BitVector8 Diagonal(this in BitMatrix8 src)
@@ -47,16 +38,6 @@ namespace Z0
         {
             var dst = (uint)0;
             for(byte i=0; i < BitMatrix32.N; i++)
-                if(src[i,i])
-                    BitMask.enable(ref dst, i);
-            return dst;                    
-        }
-
-        [MethodImpl(Inline)]
-        public static BitVector64 Diagonal(this in BitMatrix64 src)
-        {
-            var dst = (ulong)0;
-            for(byte i=0; i < BitMatrix64.N; i++)
                 if(src[i,i])
                     BitMask.enable(ref dst, i);
             return dst;                    

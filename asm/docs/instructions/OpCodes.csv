@@ -1,29 +1,5 @@
 # Source: https://github.com/0xd4d/iced/blob/master/Iced/Intel/Code.cs
 
-
-EncodingKind {Legacy, VEX, EVEX, XOP, D3NOW}
-
-EncFlags1 
-{   CodeMask = (1U << Instruction.TEST_CodeBits) - 1
-    EncodingShift = 13
-    EncodingMask = 7
-    Legacy = EncodingKind.Legacy << 13
-    VEX = EncodingKind.VEX << 13
-    EVEX = EncodingKind.EVEX << 13,
-    XOP = EncodingKind.XOP << 13,
-    D3NOW = EncodingKind.D3NOW << 13,
-    OpCodeShift = 16
-}
-
-LegacyFlags3
-{
-    OpMask = 0xFF, 
-    Op1Shift = 8, 
-    Op2Shift = 16, 
-    Op3Shift = 24
-}
-
-
 Add_rm8_r8,        0x00,   LF.Encodable_Any,                             LOK.Eb | LOK.Gb
 Add_rm16_r16,      0x01,   LF.Encodable_Any | LF.o16,                    LOK.Ew | LOK.Gw
 Add_rm32_r32,      0x01,   LF.Encodable_Any | LF.o32,                    LOK.Ed | LOK.Gd

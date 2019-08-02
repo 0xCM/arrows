@@ -29,7 +29,6 @@ namespace Z0
             return (byte)(((src * 0x80200802ul) & 0x0884422110ul) * 0x0101010101ul >> 32);
         }
 
-
     }
 
 }

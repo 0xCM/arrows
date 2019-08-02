@@ -1,0 +1,19 @@
+YMM register layout
+-------------------------------------------------------------------------------
+| [255:0] | [127:0] |
+| YMM0    | XMM0    |
+| YMM1    | XMM1    |
+| YMM2    | XMM2    |
+| YMM3    | XMM3    |
+| YMM4    | XMM4    |
+| YMM5    | XMM5    |
+| YMM6    | XMM6    |
+| YMM7    | XMM7    |
+| YMM8    | XMM8    |
+| YMM9    | XMM9    |
+| YMM10   | XMM10   |
+| YMM11   | XMM11   |
+| YMM12   | XMM12   |
+| YMM13   | XMM13   |
+| YMM14   | XMM14   |
+| YMM15   | XMM15   |

@@ -13,12 +13,6 @@ namespace Z0
     partial class BitMatrixOps
     {    
 
-        [MethodImpl(Inline)]
-        public static ref BitMatrix4 Or(this ref BitMatrix4 lhs, in BitMatrix4 rhs)
-        {
-             lhs.bits = ((ushort) ((ushort)lhs | (ushort)rhs)).ToBytes();
-             return ref lhs;
-        }
 
         [MethodImpl(Inline)]
         public static ref BitMatrix8 Or(this ref BitMatrix8 lhs, in BitMatrix8 rhs)

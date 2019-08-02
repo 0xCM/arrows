@@ -24,10 +24,10 @@ namespace Z0.Test
             for(var i = 0; i< blocks; i++)
             {
                 var v = Vec128.load(ref src.Block(i));
-                Claim.yea(ginx.nonzero(v));
+                Claim.yea(gbits.nonzero(v));
             }
             
-            Claim.nea(ginx.nonzero(Vec128.zero<T>()));
+            Claim.nea(gbits.nonzero(Vec128.zero<T>()));
             TypeCaseEnd<T>();
         }
 
@@ -39,10 +39,10 @@ namespace Z0.Test
             for(var i = 0; i< blocks; i++)
             {
                 var v = Vec256.load(ref src.Block(i));
-                Claim.yea(ginx.nonzero(v));
+                Claim.yea(gbits.nonzero(v));
             }
             
-            Claim.nea(ginx.nonzero(Vec256.zero<T>()));
+            Claim.nea(gbits.nonzero(Vec256.zero<T>()));
             TypeCaseEnd<T>();
         }
 

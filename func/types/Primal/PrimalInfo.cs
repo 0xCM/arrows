@@ -7,8 +7,24 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
 
     using static zfunc;
+    using System.Diagnostics.CodeAnalysis;
+
+    class ScalarComparer<T> : Comparer<T>
+        where T : struct
+    {
+        public ScalarComparer(Func<T,T,int> comparer)
+        {
+            this.comparer = comparer;
+        }
+
+        readonly Func<T,T,int> comparer;
+
+        public override int Compare(T x, T y)
+            => comparer(x,y);
+    }
 
     public interface IPrimalInfo<T>
         where T : struct
@@ -24,6 +40,8 @@ namespace Z0
         T Zero {get;}
 
         Option<T> Epsilon {get;}
+
+        Comparer<T> Comparer {get;}
 
         ulong BitSize {get;}
 
@@ -101,6 +119,11 @@ namespace Z0
                 => Get<T>().ByteSize;
 
         [MethodImpl(Inline)]
+        public static Comparer<T> comparer<T>()
+            where T : struct
+                => Get<T>().Comparer;
+
+        [MethodImpl(Inline)]
         static IPrimalDescriptor<T> Provider<T>() 
             where T : struct
                 => cast<IPrimalDescriptor<T>>(Inhabitant);
@@ -158,8 +181,18 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<sbyte> Summary 
-            = new PrimalInfo<sbyte>((MinVal,MaxVal), Signed, Zero, One, BitSize);
-    }            
+            = new PrimalInfo<sbyte>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+        
+        [MethodImpl(Inline)]
+        static int Compare(sbyte x, sbyte y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<sbyte> Comparer 
+            = new ScalarComparer<sbyte>(Compare);
+            
+        
+    }
+
 
     readonly struct UInt8Info
     {
@@ -176,7 +209,15 @@ namespace Z0
         public const bool Signed = false;
         
         public static readonly PrimalInfo<byte> Summary 
-            = new PrimalInfo<byte>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<byte>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(byte x, byte y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<byte> Comparer 
+            = new ScalarComparer<byte>(Compare);
+
     }            
 
     readonly struct Int16Info
@@ -194,7 +235,14 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<short> Summary 
-            = new PrimalInfo<short>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<short>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(short x, short y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<short> Comparer 
+            = new ScalarComparer<short>(Compare);
     }            
 
     readonly struct UInt16Info
@@ -212,7 +260,14 @@ namespace Z0
         public const bool Signed = false;
         
         public static readonly PrimalInfo<ushort> Summary 
-            = new PrimalInfo<ushort>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<ushort>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(ushort x, ushort y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<ushort> Comparer 
+            = new ScalarComparer<ushort>(Compare);
     }            
 
     readonly struct Int32Info
@@ -230,7 +285,14 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<int> Summary 
-            = new PrimalInfo<int>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<int>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(int x, int y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<int> Comparer 
+            = new ScalarComparer<int>(Compare);
     }            
 
     readonly struct UInt32Info
@@ -248,7 +310,15 @@ namespace Z0
         public const bool Signed = false;
         
         public static readonly PrimalInfo<uint> Summary 
-            = new PrimalInfo<uint>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<uint>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+
+        [MethodImpl(Inline)]
+        static int Compare(uint x, uint y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<uint> Comparer 
+            = new ScalarComparer<uint>(Compare);
     }            
 
     readonly struct Int64Info
@@ -266,7 +336,16 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<long> Summary 
-            = new PrimalInfo<long>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<long>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+
+        [MethodImpl(Inline)]
+        static int Compare(long x, long y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<long> Comparer 
+            = new ScalarComparer<long>(Compare);
+
     }            
 
     readonly struct UInt64Info
@@ -284,7 +363,14 @@ namespace Z0
         public const bool Signed = false;
         
         public static readonly PrimalInfo<ulong> Summary 
-            = new PrimalInfo<ulong>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<ulong>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(ulong x, ulong y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<ulong> Comparer 
+            = new ScalarComparer<ulong>(Compare);
     }            
 
     readonly struct Float32Info
@@ -304,7 +390,15 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<float> Summary 
-            = new PrimalInfo<float>((MinVal,MaxVal), Signed, Zero, One, BitSize, Epsilon);
+            = new PrimalInfo<float>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer, Epsilon);
+
+        [MethodImpl(Inline)]
+        static int Compare(float x, float y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<float> Comparer 
+            = new ScalarComparer<float>(Compare);
+
     }        
 
     readonly struct Float64Info
@@ -324,7 +418,14 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<double> Summary 
-            = new PrimalInfo<double>((MinVal,MaxVal), Signed, Zero, One, BitSize,Epsilon);
+            = new PrimalInfo<double>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer, Epsilon);
+
+        [MethodImpl(Inline)]
+        static int Compare(double x, double y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<double> Comparer 
+            = new ScalarComparer<double>(Compare);
     }            
 
     readonly struct DecimalInfo
@@ -342,7 +443,15 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<decimal> Summary 
-            = new PrimalInfo<decimal>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+            = new PrimalInfo<decimal>((MinVal,MaxVal), Signed, Zero, One, BitSize, Comparer);
+
+        [MethodImpl(Inline)]
+        static int Compare(decimal x, decimal y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<decimal> Comparer 
+            = new ScalarComparer<decimal>(Compare);
+
     }                
 
     readonly struct BigIntegerInfo
@@ -356,12 +465,20 @@ namespace Z0
         public const bool Signed = true;
         
         public static readonly PrimalInfo<BigInteger> Summary 
-            = new PrimalInfo<BigInteger>((0,0), Signed, Zero, One, BitSize,0,true);
+            = new PrimalInfo<BigInteger>((0,0), Signed, Zero, One, BitSize, Comparer,0,true);
+
+        [MethodImpl(Inline)]
+        static int Compare(BigInteger x, BigInteger y)
+            => x.CompareTo(y);
+        
+        public static readonly Comparer<BigInteger> Comparer 
+            = new ScalarComparer<BigInteger>(Compare);
+
     }                   
     public readonly struct PrimalInfo<T> : IPrimalInfo<T>
         where T : struct
     {
-        public PrimalInfo((T min, T max) range, bool signed, T zero, T one, ulong bitsize, T epsilon = default, bool infinite = false)
+        public PrimalInfo((T min, T max) range, bool signed, T zero, T one, ulong bitsize, Comparer<T> comparer, T epsilon = default, bool infinite = false)
         {
             this.MinVal = range.min;
             this.MaxVal = range.max;
@@ -369,6 +486,7 @@ namespace Z0
             this.One = one;
             this.Zero = zero;
             this.BitSize = bitsize;
+            this.Comparer = comparer;
             this.Infinite = infinite;
             this.Epsilon = ! epsilon.Equals(default) ? some(epsilon) : none<T>();
             this.ByteSize = (int)(BitSize/8ul);
@@ -384,6 +502,8 @@ namespace Z0
 
         public T Zero {get;}
 
+        public Comparer<T> Comparer {get;}
+
         public Option<T> Epsilon {get;}
 
         public ulong BitSize {get;}
@@ -391,7 +511,7 @@ namespace Z0
         public int ByteSize {get;}
         
         public bool Infinite {get;}
-        
+
     }
 
 }

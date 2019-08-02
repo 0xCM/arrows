@@ -13,7 +13,6 @@ namespace Z0
     
     partial class Bits
     {         
-
         public static Span<Bit> unpack(in sbyte src, out Span<Bit> dst)
         {
             dst = new Bit[Pow2.T03];

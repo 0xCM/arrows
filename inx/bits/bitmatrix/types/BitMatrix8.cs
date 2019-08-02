@@ -53,15 +53,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix8 lhs, BitMatrix8 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitMatrix8 lhs, BitMatrix8 rhs)
-            => lhs.NEq(rhs);
+            => !(lhs.Equals(rhs));
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator & (BitMatrix8 lhs, BitMatrix8 rhs)
-            => lhs.And(rhs);
+            => And(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator | (BitMatrix8 lhs, BitMatrix8 rhs)
@@ -97,13 +97,14 @@ namespace Z0
             this.bits = src;
         }
 
+
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
-            get => this.GetBit(row,col);
+            get => BitMask.test(in bits[row], col);
 
             [MethodImpl(Inline)]
-            set => this.SetBit(row,col,value);
+            set => BitMask.set(ref bits[row], (byte)col, value);
         }            
     
         public int RowDim
@@ -112,17 +113,41 @@ namespace Z0
         public int ColDim
             => N;
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public BitVector8 Row(int index)
             => bits[index];
 
         [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix8 rhs)
+        public bool Equals(in BitMatrix8 rhs)
             => BitConverter.ToUInt64(bits) == BitConverter.ToUInt64(rhs.bits);
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitMatrix8 rhs)
-            => BitConverter.ToUInt64(bits) != BitConverter.ToUInt64(rhs.bits);
+        public BitMatrix8 AndNot(in BitMatrix8 rhs)
+        {
+             bits = ((ulong)this &~ (ulong)rhs).ToBytes();
+             return this;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)
+        {
+             lhs.bits =((ulong)lhs & (ulong)rhs).ToBytes();
+             return ref lhs;
+        }
+
+ 
+        /// <summary>
+        /// Returns the underlying matrix data as a span of bytes
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        [MethodImpl(Inline)] 
+        public Span<byte> Bytes()
+            => bits;
+
+        [MethodImpl(Inline)]
+        public string Format()
+            => bits.FormatMatrixBits(8);
+
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

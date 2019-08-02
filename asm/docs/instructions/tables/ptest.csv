@@ -12,6 +12,6 @@ Encoding
 
 Examples
 -------------------------------------------------------------------------------------------------------------------------------------------
-Instruction                   | Encoding
+Asm                           | Encoding
 vptest xmm0,xmmword ptr [rdx] | encoding(VEX, 5 bytes) = c4 e2 79 17 02
 vptest ymm0,ymmword ptr [rdx] | encoding(VEX, 5 bytes) = c4 e2 7d 17 02

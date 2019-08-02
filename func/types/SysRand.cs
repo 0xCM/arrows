@@ -12,6 +12,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
+
     /// <summary>
     /// Adapter for client code that expects to interface with the System.Random class
     /// </summary>

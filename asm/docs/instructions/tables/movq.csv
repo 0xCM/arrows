@@ -1,0 +1,20 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode                  | Instruction         | Op/ En | 64/32-bit Mode | CPUID Feature Flag | Description                                   |
+| NP 0F 6E / r            | MOVD mm, r/m32      | A      | V/V            | MMX                | Move doubleword from r/m32 to mm .            |
+| NP REX.W + 0F 6E / r    | MOVQ mm, r/m64      | A      | V/N.E.         | MMX                | Move quadword from r/m64 to mm .              |
+| NP 0F 7E / r            | MOVD r/m32, mm      | B      | V/V            | MMX                | Move doubleword from mm to r/m32 .            |
+| NP REX.W + 0F 7E / r    | MOVQ r/m64, mm      | B      | V/N.E.         | MMX                | Move quadword from mm to r/m64 .              |
+| 66 0F 6E / r            | MOVD xmm , r/m32    | A      | V/V            | SSE2               | Move doubleword from r/m32 to xmm .           |
+| 66 REX.W 0F 6E / r      | MOVQ xmm , r/m64    | A      | V/N.E.         | SSE2               | Move quadword from r/m64 to xmm .             |
+| 66 0F 7E / r            | MOVD r/m32 , xmm    | B      | V/V            | SSE2               | Move doubleword from xmm register to r/m32 .  |
+| 66 REX.W 0F 7E / r      | MOVQ r/m64 , xmm    | B      | V/N.E.         | SSE2               | Move quadword from xmm register to r/m64 .    |
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Tuple Type    | Operand 1     | Operand 2     | Operand 3 | Operand 4 |
+| A     | NA            | ModRM:reg (w) | ModRM:r/m (r) | NA        | NA        |
+| B     | NA            | ModRM:r/m (w) | ModRM:reg (r) | NA        | NA        |
+| C     | Tuple1 Scalar | ModRM:reg (w) | ModRM:r/m (r) | NA        | NA        |
+| D     | Tuple1 Scalar | ModRM:r/m (w) | ModRM:reg (r) | NA        | NA        |
+

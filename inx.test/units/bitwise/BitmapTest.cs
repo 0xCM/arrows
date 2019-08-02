@@ -11,72 +11,32 @@ namespace Z0.Test
     using static zfunc;
     using D = BitwiseDelegates;
 
-    public class BitmapTest : UnitTest<BitmapTest>
+    public class BitMapTest : UnitTest<BitMapTest>
     {
 
-        public void Bitmap1()
+        public void Verify32u()
         {
             var src = 0b1110101_10111_0011111u;
-            var srcOffset = (byte)7;
-            var srcLen = (byte)5;
             var dst = 0b10110100u;
-            var dstOffset = (byte)9;
             var expect = 0b10111_010110100u;
-            var actual = Bits.bitmap(src,srcOffset, srcLen, dst, dstOffset);
-            Claim.eq(expect,actual);
+            Bits.bitmap(src, srcOffset : 7, len:5, dstOffset:9, ref dst);
+            Claim.eq(expect,dst);
         }
 
-
-        public void And()
+        public void Verify64u()
         {
-            var op = OpKind.And;
-            VerifyOp(op, (x,y) => (sbyte)(x & y), D.and<sbyte>());
-            VerifyOp(op, (x,y) => (byte)(x & y), D.and<byte>());
-            VerifyOp(op, (x,y) => (short)(x & y), D.and<short>());
-            VerifyOp(op, (x,y) => (ushort)(x & y), D.and<ushort>());
-            VerifyOp(op, (x,y) => (x & y), D.and<int>());
-            VerifyOp(op, (x,y) => (x & y), D.and<uint>());
-            VerifyOp(op, (x,y) => (x & y), D.and<long>());
-            VerifyOp(op, (x,y) => (x & y), D.and<ulong>());
-        }
+            var src = 0b11111111_11111111_11111111_11111111_11111111_11111111_11111111_11111111ul;
+            var dst = 0b11111111_11111111_11111111_11111111_11111111_00000000_11111111_11111111ul;
+            var exp = 0b11111111_11111111_11111111_11111111_11111111_11111111_11111111_11111111ul;
+            Bits.bitmap(src,srcOffset:16, len:8, dstOffset:16, ref dst);
+            Claim.eq(exp, dst);
 
-        public void Or()
-        {
-            var op = OpKind.Or;
-            VerifyOp(op, (x,y) => (sbyte)(x | y), D.or<sbyte>());
-            VerifyOp(op, (x,y) => (byte)(x | y), D.or<byte>());
-            VerifyOp(op, (x,y) => (short)(x | y), D.or<short>());
-            VerifyOp(op, (x,y) => (ushort)(x | y), D.or<ushort>());
-            VerifyOp(op, (x,y) => (x | y), D.or<int>());
-            VerifyOp(op, (x,y) => (x | y), D.or<uint>());
-            VerifyOp(op, (x,y) => (x | y), D.or<long>());
-            VerifyOp(op, (x,y) => (x | y), D.or<ulong>());
-        }
+            src = 0b11111111_11111111_11111111_11111111_11111111_11111101_01011111_11111111ul;
+            dst = 0;
+            exp = 0b00000000_00000000_00000000_00000000_00000000_00000101_01000000_00000000ul;
+            Bits.bitmap(src,srcOffset:13, len:6, dstOffset:13, ref dst);
+            Claim.eq(exp, dst);
 
-        public void XOr()
-        {
-            var op = OpKind.XOr;
-            VerifyOp(op, (x,y) => (sbyte)(x ^ y), D.xor<sbyte>());
-            VerifyOp(op, (x,y) => (byte)(x ^ y), D.xor<byte>());
-            VerifyOp(op, (x,y) => (short)(x ^ y), D.xor<short>());
-            VerifyOp(op, (x,y) => (ushort)(x ^ y), D.xor<ushort>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<int>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<uint>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<long>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<ulong>());              
-        }
-
-        public void Flip()
-        {
-            var op = OpKind.Flip;
-            VerifyOp(op, x => (sbyte) ~x, D.flip<sbyte>());
-            VerifyOp(op, x => (byte) ~x, D.flip<byte>());
-            VerifyOp(op, x => (short) ~x, D.flip<short>());
-            VerifyOp(op, x => (ushort) ~x, D.flip<ushort>());
-            VerifyOp(op, x => ~x, D.flip<int>());
-            VerifyOp(op, x => ~x, D.flip<uint>());
-            VerifyOp(op, x => ~x, D.flip<long>());
-            VerifyOp(op, x => ~x, D.flip<ulong>());              
         }
 
     }

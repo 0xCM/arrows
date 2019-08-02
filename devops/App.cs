@@ -5,21 +5,31 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Linq;
+    using System.Runtime.CompilerServices;
+    
+    using static zfunc;    
 
 
-
-    class App
+    class App : Context
     {
 
-        public void Run(params string[] args)
+        public App()
+             :base(SysRandSource.Create())
         {
-            Console.WriteLine(CommonProps.CreateGroup());
+            
         }
-        static void Main(params string[] args)
-            => new App().Run(args);
+        
+        void Run(params string[] args)
+        {
+            var b256 = new Byte256();
+            print(b256.GenerateSourceInt8().Format());
 
+
+        }
+            
+
+
+        static void Main(params string[] args)
+            => new App().Run();
     }
 }

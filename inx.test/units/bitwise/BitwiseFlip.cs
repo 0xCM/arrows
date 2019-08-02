@@ -23,7 +23,7 @@ namespace Z0.Test
                 var src = Random.Vec128<T>();
                 var srcData = src.ToSpan();
                 var expect  = Vec128.load(ref gbits.flip(in srcData)[0]);
-                var actual = ginx.flip(in src);
+                var actual = gbits.flip(in src);
                 Claim.yea(expect.Equals(actual));
             }
             TypeCaseEnd<T>();            
@@ -38,7 +38,7 @@ namespace Z0.Test
                 var src = Random.Vec256<T>();
                 var srcData = src.ToSpan();
                 var expect  = Vec256.load(ref gbits.flip(in srcData)[0]);
-                var actual = ginx.flip(in src);
+                var actual = gbits.flip(in src);
                 Claim.yea(expect.Equals(actual));
             }
             TypeCaseEnd<T>();            

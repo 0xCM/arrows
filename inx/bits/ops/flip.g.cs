@@ -10,9 +10,106 @@ namespace Z0
     using static zfunc;
     using static As;
     using static AsIn;
+    using static AsInX;
 
     partial class gbits
     {
+        [MethodImpl(Inline)]
+        public static Vec128<T> flip<T>(in Vec128<T> src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Bits.flip(in int8(in src)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.flip(in uint8(in src)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Bits.flip(in int16(in src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.flip(in uint16(in src)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.flip(in int32(in src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.flip(in uint32(in src)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.flip(in int64(in src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.flip(in uint64(in src)));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static void flip<T>(in Vec128<T> src, ref T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.flip(in int8(in src), ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                Bits.flip(in uint8(in src), ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                Bits.flip(in int16(in src), ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                Bits.flip(in uint16(in src), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                Bits.flip(in int32(in src), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                Bits.flip(in uint32(in src), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                Bits.flip(in int64(in src), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                Bits.flip(in uint64(in src), ref uint64(ref dst));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<T> flip<T>(in Vec256<T> src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Bits.flip(in int8(in src)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.flip(in uint8(in src)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Bits.flip(in int16(in src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.flip(in uint16(in src)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.flip(in int32(in src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.flip(in uint32(in src)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.flip(in int64(in src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.flip(in uint64(in src)));
+            else 
+                throw unsupported<T>();
+        }
+ 
+         [MethodImpl(Inline)]
+        public static void flip<T>(in Vec256<T> src, ref T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.flip(in int8(in src), ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                Bits.flip(in uint8(in src), ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                Bits.flip(in int16(in src), ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                Bits.flip(in uint16(in src), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                Bits.flip(in int32(in src), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                Bits.flip(in uint32(in src), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                Bits.flip(in int64(in src), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                Bits.flip(in uint64(in src), ref uint64(ref dst));
+            else 
+                throw unsupported<T>();
+        }
+
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
          public static ref readonly Span<T> flip<T>(in ReadOnlySpan<T> src, in Span<T> dst)

@@ -1,0 +1,19 @@
+OpCodes
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Opcode                  | Instruction         | Op/ En | 64/32-bit Mode | CPUID Feature Flag | Description                                   |
+| VEX.128.66.0F.W0 6E /   | VMOVD xmm1, r32/m32 | A      | V/V            | AVX                | Move doubleword from r/m32 to xmm1 .          |
+| VEX.128.66.0F.W1 6E /r  | VMOVQ xmm1, r64/m64 | A      | V/N.E 1 .      | AVX                | Move quadword from r/m64 to xmm1 .            |
+| VEX.128.66.0F.W0 7E /r  | VMOVD r32/m32, xmm1 | B      | V/V            | AVX                | Move doubleword from xmm1 register to r/m32 . |
+| VEX.128.66.0F.W1 7E /r  | VMOVQ r64/m64, xmm1 | B      | V/N.E 1 .      | AVX                | Move quadword from xmm1 register to r/m64 .   |
+| EVEX.128.66.0F.W0 6E /r | VMOVD xmm1, r32/m32 | C      | V/V            | AVX512F            | Move doubleword from r/m32 to xmm1.           |
+| EVEX.128.66.0F.W1 6E /r | VMOVQ xmm1, r64/m64 | C      | V/N.E. 1       | AVX512F            | Move quadword from r/m64 to xmm1.             |
+| EVEX.128.66.0F.W0 7E /r | VMOVD r32/m32, xmm1 | D      | V/V            | AVX512F            | Move doubleword from xmm1 register to r/m32.  |
+| EVEX.128.66.0F.W1 7E /r | VMOVQ r64/m64, xmm1 | D      | V/N.E. 1       | AVX512F            | Move quadword from xmm1 register to r/m64.    |
+
+Encoding
+-------------------------------------------------------------------------------------------------------------------------------------------
+| Op/En | Tuple Type    | Operand 1     | Operand 2     | Operand 3 | Operand 4 |
+| A     | NA            | ModRM:reg (w) | ModRM:r/m (r) | NA        | NA        |
+| B     | NA            | ModRM:r/m (w) | ModRM:reg (r) | NA        | NA        |
+| C     | Tuple1 Scalar | ModRM:reg (w) | ModRM:r/m (r) | NA        | NA        |
+| D     | Tuple1 Scalar | ModRM:r/m (w) | ModRM:reg (r) | NA        | NA        |

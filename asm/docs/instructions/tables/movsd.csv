@@ -1,34 +1,13 @@
 OpCodes
 -----------------------------------------------------------------------------------------------------------------------
 | Opcode                  | Instruction                     | Op / En | 64/32 bit Mode Support | CPUID Feature Flag | Description                                                                                                 |
------------------------------------------------------------------------------------------------------------------------
 | F2 0F 10 /r             | MOVSD xmm1, xmm2                | A       | V/V                    | SSE2               | Move scalar double-precision floating-point value from xmm2 to xmm1 register.                               |
 | F2 0F 10 /r             | MOVSD xmm1, m64                 | A       | V/V                    | SSE2               | Load scalar double-precision floating-point value from m64 to xmm1 register.                                |
 | F2 0F 11 /r             | MOVSD xmm1/m64, xmm2            | C       | V/V                    | SSE2               | Move scalar double-precision floating-point value from xmm2 register to xmm1/m64.                           |
-| VEX.LIG.F2.0F.WIG 10 /r | VMOVSD xmm1, xmm2, xmm3         | B       | V/V                    | AVX                | Merge scalar double-precision floating-point value from xmm2 and xmm3 to xmm1 register.                     |
-| VEX.LIG.F2.0F.WIG 10 /r | VMOVSD xmm1, m64                | D       | V/V                    | AVX                | Load scalar double-precision floating-point value from m64 to xmm1 register.                                |
-| VEX.LIG.F2.0F.WIG 11 /r | VMOVSD xmm1, xmm2, xmm3         | E       | V/V                    | AVX                | Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1.                    |
-| VEX.LIG.F2.0F.WIG 11 /r | VMOVSD m64, xmm1                | C       | V/V                    | AVX                | Store scalar double-precision floating-point value from xmm1 register to m64.                               |
-| EVEX.LIG.F2.0F.W1 10 /r | VMOVSD xmm1 {k1}{z}, xmm2, xmm3 | B       | V/V                    | AVX512F            | Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1 under writemask k1. |
-| EVEX.LIG.F2.0F.W1 10 /r | VMOVSD xmm1 {k1}{z}, m64        | F       | V/V                    | AVX512F            | Load scalar double-precision floating-point value from m64 to xmm1 register under writemask k1.             |
-| EVEX.LIG.F2.0F.W1 11 /r | VMOVSD xmm1 {k1}{z}, xmm2, xmm3 | E       | V/V                    | AVX512F            | Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1 under writemask k1. |
-| EVEX.LIG.F2.0F.W1 11 /r | VMOVSD m64 {k1}, xmm1           | G       | V/V                    | AVX512F            | Store scalar double-precision floating-point value from xmm1 register to m64 under writemask k1.            |
 
 Encoding
 -----------------------------------------------------------------------------------------------------------------------
 | Op/En | Tuple Type    | Operand 1        | Operand 2     | Operand 3     | Operand 4 |
------------------------------------------------------------------------------------------------------------------------
 | A     | NA            | ModRM:reg (r, w) | ModRM:r/m (r) | NA            | NA        |
-| B     | NA            | ModRM:reg (w)    | VEX.vvvv (r)  | ModRM:r/m (r) | NA        |
 | C     | NA            | ModRM:r/m (w)    | ModRM:reg (r) | NA            | NA        |
-| D     | NA            | ModRM:reg (w)    | ModRM:r/m (r) | NA            | NA        |
-| E     | NA            | ModRM:r/m (w)    | vvvv (r)      | ModRM:reg (r) | NA        |
-| F     | Tuple1 Scalar | ModRM:reg (r, w) | ModRM:r/m (r) | NA            | NA        |
-| G     | Tuple1 Scalar | ModRM:r/m (w)    | ModRM:reg (r) | NA            | NA        |
-
-Examples
------------------------------------------------------------------------------------------------------------------------
-| Asm                                             | Encoding
------------------------------------------------------------------------------------------------------------------------
-| vmovsd xmm0,qword ptr [7FFC7CC01B50h]           | encoding(VEX, 8 bytes) = c5 fb 10 05 03 00 00 00
 

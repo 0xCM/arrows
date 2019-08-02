@@ -247,8 +247,6 @@ namespace Z0
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<double>>(ref asRef(in src));
 
-
-
         [MethodImpl(Inline)]
         internal static ref Vec128<T> generic<T>(in Vec128<sbyte> src)
             where T : struct        

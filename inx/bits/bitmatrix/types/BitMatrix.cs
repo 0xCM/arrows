@@ -156,5 +156,23 @@ namespace Z0
 
         public BitLayout<T> Layout
             => GridLayout;
+
+       [MethodImpl(Inline)]
+        public string Format()
+            => Bits.AsBytes().FormatMatrixBits(ColCount);
+
+        public BitMatrix<N,M,T> Transpose()
+        {
+            var dst = BitMatrix.Define<N,M,T>();
+            for(var row = 0; row < RowCount; row++)
+                dst.ReplaceCol(row, Row(row));            
+            return dst;
+        }
+
+        public static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -37,6 +37,13 @@ OpCodes
 | C7 / 0 id         | MOV r/m32, imm32         | MI    | Valid       | Valid           | Move imm32 to r/m32.                                           |
 | REX.W + C7 / 0 id | MOV r/m64, imm32         | MI    | Valid       | N.E.            | Move imm32 sign extended to 64-bits to r/m64.                  |
 
+Notes
+-------------------------------------------------------------------------------------------------------------------------------------------
+*   | The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base,where 8,16,32 and 64 refer to the size of the data. 
+    | The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits.
+**  | In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following “Description” section for further information).
+*** | In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+
 Encoding
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Op/En | Operand 1       | Operand 2     | Operand 3 | Operand 4 |

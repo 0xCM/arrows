@@ -17,13 +17,13 @@ namespace Z0.Test
 
         public void Nonzero()
         {
-            Claim.yea(ginx.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
-            Claim.yea(ginx.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
-            Claim.nea(ginx.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
+            Claim.yea(gbits.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
+            Claim.yea(gbits.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
+            Claim.nea(gbits.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
 
-            Claim.yea(ginx.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
-            Claim.yea(ginx.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
-            Claim.nea(ginx.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
+            Claim.yea(gbits.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
+            Claim.yea(gbits.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
+            Claim.nea(gbits.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
         }
 
         public void LeftShiftV256U32()
@@ -36,7 +36,7 @@ namespace Z0.Test
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.LoadVec256();
-            var v2 = ginx.shiftl(src, shifts);            
+            var v2 = gbits.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -51,7 +51,7 @@ namespace Z0.Test
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.LoadVec128();
-            var v2 = ginx.shiftl(src, shifts);            
+            var v2 = gbits.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -66,7 +66,7 @@ namespace Z0.Test
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.LoadVec128();
-            var v2 = ginx.shiftl(src, shifts);            
+            var v2 = gbits.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -81,7 +81,7 @@ namespace Z0.Test
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.LoadVec256();
-            var v2 = ginx.shiftl(src, shifts);            
+            var v2 = gbits.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }

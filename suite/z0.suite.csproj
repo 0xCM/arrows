@@ -8,6 +8,8 @@
   <Import Project="..\package.targets" />
 
   <ItemGroup>
+    <ProjectReference Include="..\asm\src\z0.asm.csproj" />
+    <ProjectReference Include="..\cpu\src\z0.cpu.csproj" />
     <ProjectReference Include="..\deconstruct\z0.deconstruct.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />
@@ -19,8 +21,7 @@
     <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\stats\z0.stats.csproj" />
     <ProjectReference Include="..\structs\z0.structs.csproj" />
-    <ProjectReference Include="..\cpu\src\z0.cpu.csproj" />
-    <ProjectReference Include="..\asm\src\z0.asm.csproj" />
+    <ProjectReference Include="..\systems\src\z0.systems.csproj" />
 
   </ItemGroup>
 

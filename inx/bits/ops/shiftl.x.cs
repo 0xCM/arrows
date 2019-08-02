@@ -5,256 +5,232 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Diagnostics;
-    
+    using System.Runtime.CompilerServices;    
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Avx2;
     
     using static zfunc;
+    using static Span256;
+    using static Span128;
+    using static As;
+    using static AsInX;
 
-    public static partial class ShiftX
+    partial class dinxx
     {
-        public static Span<sbyte> ShiftL(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, Span<sbyte> dst)
+
+        [MethodImpl(Inline)]
+        public static Span128<S> ShiftL<S,T>(this ReadOnlySpan128<S> lhs, ReadOnlySpan128<T> shifts, Span128<S> dst)
+            where S : struct
+            where T : struct
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            if(typeof(S) == typeof(int))
+                shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
+            else if(typeof(S) == typeof(uint)) 
+                shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
+            else if(typeof(S) == typeof(long))
+                shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
+            else if(typeof(S) == typeof(ulong))
+                shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
+            else
+                throw unsupported<S>();
+            return dst;
         }
 
-        public static Span<byte> ShiftL(this ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs, Span<byte> dst)
+        public static Span256<T> ShiftL<S,T>(this ReadOnlySpan256<T> lhs,  ReadOnlySpan256<S> shifts, Span256<T> dst)
+            where T : struct
+            where S : struct
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            if(typeof(S) == typeof(int))
+                shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
+            else if(typeof(S) == typeof(uint)) 
+                shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
+            else if(typeof(S) == typeof(long))
+                shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
+            else if(typeof(S) == typeof(ulong))
+                shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
+            else
+                throw unsupported<S>();
+            return dst;
         }
 
-        public static Span<short> ShiftL(this ReadOnlySpan<short> lhs, ReadOnlySpan<int> rhs, Span<short> dst)
+        [MethodImpl(Inline)]
+        public static UInt128 ShiftRW(this UInt128 src, byte offset)
+            => Bits.shiftrw(src.ToVec128(), offset).ToUInt128();
+
+        [MethodImpl(Inline)]
+        public static UInt128 ShiftLW(this UInt128 src, byte offset)
+            => Bits.shiftlw(src.ToVec128(), offset).ToUInt128();
+
+        static Span128<int> shiftl(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> shifts, in Span128<int> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec128(i), shifts.LoadVec128(i)), ref dst[i]);            
+            return dst;
         }
 
-        public static Span<ushort> ShiftL(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<int> rhs, Span<ushort> dst)
+        static Span128<uint> shiftl(in ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> shifts, in Span128<uint> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+            return dst;
         }
 
-        public static Span<int> ShiftL(this ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        static Span128<long> shiftl(in ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> shifts, in Span128<long> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+            return dst;
         }
 
-        public static Span<uint> ShiftL(this ReadOnlySpan<uint> lhs, ReadOnlySpan<int> rhs, Span<uint> dst)
+        static Span128<ulong> shiftl(in ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> shifts, in Span128<ulong> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+            return dst;
         }
 
-        public static Span<long> ShiftL(this ReadOnlySpan<long> lhs, ReadOnlySpan<int> rhs, Span<long> dst)
+        static Span256<int> shiftl(in ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> shifts, in Span256<int> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+            return dst;            
         }
 
-        public static Span<ulong> ShiftL(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<int> rhs, Span<ulong> dst)
+        static Span256<uint> shiftl(in ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> shifts, in Span256<uint> dst)
         {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
-            return dst;                
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+            return dst;            
         }
+
+        static Span256<long> shiftl(in ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> shifts, in Span256<long> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        static Span256<ulong> shiftl(in ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> shifts, in Span256<ulong> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,shifts);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+       }
  
-        public static Span<sbyte> ShiftL(this ReadOnlySpan<sbyte> lhs, int rhs, Span<sbyte> dst)
+        public static Span128<short> ShiftL(this ReadOnlySpan128<short> lhs, byte count, Span128<short> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<byte> ShiftL(this ReadOnlySpan<byte> lhs, int rhs, Span<byte> dst)
+        public static Span128<ushort> ShiftL(this ReadOnlySpan128<ushort> lhs, byte count, Span128<ushort> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<short> ShiftL(this ReadOnlySpan<short> lhs, int rhs, Span<short> dst)
+        public static Span128<int> ShiftL(this ReadOnlySpan128<int> lhs, byte count, Span128<int> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<ushort> ShiftL(this ReadOnlySpan<ushort> lhs, int rhs, Span<ushort> dst)
+        public static Span128<uint> ShiftL(this ReadOnlySpan128<uint> lhs, byte count,  Span128<uint> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<int> ShiftL(this ReadOnlySpan<int> lhs, int rhs, Span<int> dst)
+        public static Span128<long> ShiftL(this ReadOnlySpan128<long> lhs, byte count, Span128<long> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<uint> ShiftL(this ReadOnlySpan<uint> lhs, int rhs, Span<uint> dst)
+        public static Span128<ulong> ShiftL(this ReadOnlySpan128<ulong> lhs, byte count, Span128<ulong> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<long> ShiftL(this ReadOnlySpan<long> lhs, int rhs, Span<long> dst)
+        public static Span256<short> ShiftL(this ReadOnlySpan256<short> lhs, byte count, Span256<short> dst)
         {
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<ulong> ShiftL(this ReadOnlySpan<ulong> lhs, int rhs, Span<ulong> dst)
-        {            
-            var len = length(lhs,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
-            return dst;                
-        }
-
-        public static Span<sbyte> ShiftL(this Span<sbyte> lhs, int rhs)
+        public static Span256<ushort> ShiftL(this ReadOnlySpan256<ushort> lhs, byte count, Span256<ushort> dst)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<byte> ShiftL(this Span<byte> lhs, int rhs)
+        public static Span256<int> ShiftL(this ReadOnlySpan256<int> lhs, byte count, Span256<int> dst)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<short> ShiftL(this Span<short> lhs, int rhs)
+        public static Span256<uint> ShiftL(this ReadOnlySpan256<uint> lhs, byte count, Span256<uint> dst)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<ushort> ShiftL(this Span<ushort> lhs, int rhs)
+        public static Span256<long> ShiftL(this ReadOnlySpan256<long> lhs, byte count, Span256<long> dst)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<int> ShiftL(this Span<int> lhs, int rhs)
+        public static Span256<ulong> ShiftL(this ReadOnlySpan256<ulong> lhs, byte count, Span256<ulong> dst)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+            return dst;
         }
 
-        public static Span<uint> ShiftL(this Span<uint> lhs, int rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
-        }
-
-        public static Span<long> ShiftL(this Span<long> lhs, int rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
-        }
-
-        public static Span<ulong> ShiftL(this Span<ulong> lhs, int rhs)
-        {            
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs;
-            return lhs;                
-        }
-
-        public static Span<sbyte> ShiftL(this Span<sbyte> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<byte> ShiftL(this Span<byte> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<short> ShiftL(this Span<short> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<ushort> ShiftL(this Span<ushort> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<int> ShiftL(this Span<int> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<uint> ShiftL(this Span<uint> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<long> ShiftL(this Span<long> lhs, ReadOnlySpan<int> rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
-        public static Span<ulong> ShiftL(this Span<ulong> lhs, ReadOnlySpan<int> rhs)
-        {            
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] <<= rhs[i];
-            return lhs;                
-        }
-
+ 
     }
 }

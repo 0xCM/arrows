@@ -10,4 +10,9 @@
   <ItemGroup>
     <Compile Include="../.settings/Settings.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
+  </ItemGroup>
+
 </Project>

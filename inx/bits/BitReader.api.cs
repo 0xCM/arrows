@@ -12,7 +12,6 @@ namespace Z0
     
     using static zfunc;
 
-
     public static class BitReader
     {
         /// <summary>

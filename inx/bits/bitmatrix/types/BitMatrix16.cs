@@ -62,7 +62,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
-            => lhs.And(rhs);
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator | (BitMatrix16 lhs, BitMatrix16 rhs)
@@ -93,10 +93,11 @@ namespace Z0
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
-            get => this.GetBit(row,col);
+            get => BitMask.test(in bits[row], col);
 
             [MethodImpl(Inline)]
-            set => this.SetBit(row,col,value);
+            set => BitMask.set(ref bits[row], (byte)col, value);
+
         }            
 
         public int RowDim
@@ -117,6 +118,23 @@ namespace Z0
                     BitMask.enable(ref col, r);
             return col;
         }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix16 And(ref BitMatrix16 lhs, in BitMatrix16 rhs)
+        {
+            lhs.LoadVector(out Vec256<ushort> vLhs);
+            rhs.LoadVector(out Vec256<ushort> vRhs);
+            vLhs.And(vRhs, ref lhs.bits[0]);
+            return ref lhs;
+        }
+
+        /// <summary>
+        /// Returns the underlying matrix data as a span of bytes
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        [MethodImpl(Inline)] 
+        public Span<byte> Bytes()
+            => bits.AsBytes();
 
         [MethodImpl(Inline)]
         public bool Eq(in BitMatrix16 rhs)

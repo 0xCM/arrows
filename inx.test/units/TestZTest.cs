@@ -25,8 +25,8 @@ namespace Z0.Test
             var a = Vec128.define(0x55550000BBBB9999ul, 0x0123456789ABCDEFul);
             var b = Vec128.define(0xAAAAFFFF44446666ul, 0xFEDCBA9876543210ul);
             var c = Vec128.define(0x55550000BBCB9999ul, 0x0123456789ABCDEFul);
-            Claim.yea(dinx.testz(a,b));
-            Claim.nea(dinx.testz(c,b));
+            Claim.yea(Bits.testz(a,b));
+            Claim.nea(Bits.testz(c,b));
             
         }
         
@@ -37,11 +37,11 @@ namespace Z0.Test
             var v3 = Vec128.fill((byte)0b11111111);
             
             //Should be true since the logical and of V1 and V2 is zero
-            Claim.yea(dinx.testz(v1,v2));
+            Claim.yea(Bits.testz(v1,v2));
 
             //Should be false since the logical and of both V1 and V2 with V3 is nonzero
-            Claim.nea(dinx.testz(v1,v3));
-            Claim.nea(dinx.testz(v2,v3));
+            Claim.nea(Bits.testz(v1,v3));
+            Claim.nea(Bits.testz(v2,v3));
         
 
         }

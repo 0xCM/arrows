@@ -90,21 +90,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref UInt128 Or(this ref UInt128 lhs, in UInt128 rhs)
         {
-            dinx.or(lhs, rhs, out lhs);
+            Bits.or(lhs, rhs, out lhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         public static ref UInt128 XOr(this ref UInt128 lhs, in UInt128 rhs)
         {
-            dinx.xor(lhs, rhs, out lhs);
+            Bits.xor(lhs, rhs, out lhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         public static ref UInt128 ShiftLW(this ref UInt128 lhs, byte count)
         {
-            dinx.shiftlw(lhs, count);
+            Bits.shiftlw(lhs, count);
             return ref lhs;
         }
 

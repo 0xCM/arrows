@@ -14,6 +14,6 @@ Encoding
 
 Examples
 -------------------------------------------------------------------------------------------------------------------------------------------
-Instruction       | Encoding              
+Asm               | Encoding              
 movzx eax,cl      | encoding(3 bytes) = 0f b6 c1
 movzx edx,dl      | encoding(3 bytes) = 0f b6 d2

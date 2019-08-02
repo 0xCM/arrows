@@ -23,10 +23,7 @@ namespace Z0
             return OneData.Slice(0, total);
         }
 
-        public static ReadOnlySpan<byte> Identity4x4 => new byte[]
-        {
-            (0b0010 << 4) | 0b0001, (0b1000 << 4) | 0b0100
-        };
+        public static ReadOnlySpan<byte> Identity4x4 => new byte[] {0b10000100, 0b00100001};
 
         
         public static ReadOnlySpan<byte> Identity8x8 => new byte[]

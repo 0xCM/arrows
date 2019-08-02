@@ -52,15 +52,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix32 lhs, BitMatrix32 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitMatrix32 lhs, BitMatrix32 rhs)
-            => lhs.NEq(rhs);
+            => !(lhs.Equals(rhs));
 
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static BitMatrix32 operator & (BitMatrix32 lhs, BitMatrix32 rhs)
-            => lhs.And(rhs);
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 operator | (BitMatrix32 lhs, BitMatrix32 rhs)
@@ -68,7 +68,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix32 operator ^ (BitMatrix32 lhs, BitMatrix32 rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 operator ~ (BitMatrix32 src)
@@ -91,10 +91,11 @@ namespace Z0
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
-            get => this.GetBit(row,col);
+            get => BitMask.test(in bits[row], col);
 
             [MethodImpl(Inline)]
-            set => this.SetBit(row,col,value);
+            set => BitMask.set(ref bits[row], (byte)col, value);
+
         }            
 
         public int RowDim
@@ -107,13 +108,54 @@ namespace Z0
         public BitVector32 Row(int index)
             => bits[index];
 
+        /// <summary>
+        /// Returns the underlying matrix data as a span of bytes
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        [MethodImpl(Inline)] 
+        public Span<byte> Bytes()
+            => bits.AsBytes();
+
         [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix32 rhs)
+        public bool Equals(in BitMatrix32 rhs)
             => this.AndNot(rhs).IsZero();
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitMatrix32 rhs)
-            => !this.AndNot(rhs).IsZero();
+        public bool IsZero()
+        {
+            const int rowstep = 8;
+            for(var i=0; i< RowDim; i += rowstep)
+            {
+                this.LoadVector(out Vec256<uint> vSrc, i);
+                if(!vSrc.TestZ(vSrc))
+                    return false;
+            }
+            return true;
+        }
+
+        static ref BitMatrix32 And(ref BitMatrix32 lhs, in BitMatrix32 rhs)
+        {
+            const int rowstep = 8;
+            for(var i=0; i< lhs.RowDim; i += rowstep)
+            {
+                lhs.LoadVector(out Vec256<uint> vLhs, i);
+                rhs.LoadVector(out Vec256<uint> vRhs, i);
+                vLhs.And(vRhs, ref lhs.bits[i]);                
+            }
+            return ref lhs;
+        }
+
+        static ref BitMatrix32 XOr(ref BitMatrix32 lhs, in BitMatrix32 rhs)
+        {
+            const int rowstep = 8;
+            for(var i=0; i< lhs.RowDim; i += rowstep)
+            {
+                lhs.LoadVector(out Vec256<uint> vLhs, i);
+                rhs.LoadVector(out Vec256<uint> vRhs, i);
+                vLhs.XOr(vRhs, ref lhs.bits[i]);                
+            }
+            return ref lhs;
+        }
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();
