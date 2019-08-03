@@ -10,26 +10,23 @@ namespace Z0.Machines
 
     using static zfunc;
 
-    public static class TransRule
+    /// <summary>
+    /// Characterizes a state transition (input : E, source : S) -> target : S 
+    /// </summary>
+    /// <typeparam name="E">The input event type</typeparam>
+    /// <typeparam name="S">The state type</typeparam>
+    public readonly struct TransRule<E,S>
     {
         /// <summary>
-        /// Defines a state transition rule of the form (input : I, source : S) -> target : S 
+        /// Constructs a state transition rule from an (input,source,target) triple
         /// </summary>
-        /// <param name="input">The input value</param>
+        /// <param name="input">The input event</param>
         /// <param name="source">The source state</param>
         /// <param name="target">The target state</param>
-        /// <typeparam name="I">The input type</typeparam>
-        /// <typeparam name="S">The state type</typeparam>
-        public static TransRule<I,S> Define<I,S>(I input, S source, S target)
-            => new TransRule<I, S>(input,source,target);            
-    }
-
-    /// <summary>
-    /// Characterizes a state transition (input : I, source : S) -> target : S 
-    /// </summary>
-    public readonly struct TransRule<I,S>
-    {
-        public TransRule(I input, S source, S target)
+        public static implicit operator TransRule<E,S>((E input, S source, S target) x)
+            => new TransRule<E, S>(x.input, x.source, x.target);
+        
+        public TransRule(E input, S source, S target)
         {
             this.Input = input;
             this.Source = source;
@@ -37,9 +34,9 @@ namespace Z0.Machines
         }
         
         /// <summary>
-        /// The input value
+        /// The incoming event
         /// </summary>
-        public readonly I Input;
+        public readonly E Input;
         
         /// <summary>
         /// The state upon which the rule is predicated

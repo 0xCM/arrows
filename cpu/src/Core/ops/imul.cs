@@ -8,6 +8,7 @@ namespace Z0.Cpu
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
 
+    using Z0.Asm;
     using static zfunc;
 
     partial class CpuCore

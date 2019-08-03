@@ -8,25 +8,16 @@ namespace Z0.Machines
     using System.Threading.Tasks;
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
+
     using static zfunc;
 
-    public delegate void InputReceipt<E>(E input);
-    
-    public delegate void Transitioned<S>(S prior, S current);
 
-    public delegate void Completed<S>(S endstate, bool asPlanned);
-
-    public delegate void ErrorRaised(Exception error);
-
-
-    public static class Fsm
-    {
-        public static Fsm<I,S> Define<I,S>(S s0, S sZ, TransFunc<I,S> f)
-                =>  new Fsm<I, S>(s0, sZ, f);
-    }
-
-
-    public sealed class Fsm<E,S>
+    /// <summary>
+    /// Defines a minimalistic finite state machine
+    /// </summary>
+    /// <typeparam name="E">The incoming event type</typeparam>
+    /// <typeparam name="S">The state type</typeparam>
+    public class Fsm<E,S>
     {
         public Fsm(S GroundState, S EndState, TransFunc<E,S> Transition)
         {
@@ -80,9 +71,12 @@ namespace Z0.Machines
         public bool Finished
             => CurrentState.Equals(EndState) || Error.IsSome();
 
+        /// <summary>
+        /// Records the time at which execution began
+        /// </summary>
         public ulong StartTime {get;}
 
-        public ulong EndTime {get; private set;}
+        public ulong? EndTime {get; private set;}
 
         /// <summary>
         /// Submits input to the machine
@@ -123,7 +117,29 @@ namespace Z0.Machines
         }
 
         void OnTransition(S s0, S s1)
-            => Transitioned?.Invoke(s0, s1);
+        {
+            Transitioned?.Invoke(s0, s1);
+            OnExit(s0);
+            OnEntry(s1);
+        }
+
+        /// <summary>
+        /// Called whenever a state has been entered
+        /// </summary>
+        /// <param name="entry">The entry state</param>
+        protected virtual void OnEntry(S entry)
+        {
+
+        }
+
+        /// <summary>
+        /// Called whenever a state has been exited
+        /// </summary>
+        /// <param name="exit">The exit state</param>
+        protected virtual void OnExit(S exit)
+        {
+
+        }
 
         void OnReceipt(E input)
             => InputReceipt?.Invoke(input);            
@@ -132,4 +148,5 @@ namespace Z0.Machines
             => Oops?.Invoke(e);
     }
 
+ 
 }

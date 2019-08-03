@@ -8,9 +8,8 @@ namespace Z0.Cpu
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
 
-    using static RegIdOffset;
-    using static Pow2;
     using static zfunc;
+    using Z0.Asm;
 
     public static class GpRegOps
     {
@@ -57,7 +56,6 @@ namespace Z0.Cpu
         [MethodImpl(Inline)]
         public static ref byte Ref(this ref GpRegBank bank, BankAddress address)
             => ref Unsafe.Add(ref bank.Head(), (int)address.Offset);
-
 
         [MethodImpl(Inline)]
         public static void CopyTo(this ref byte src, ref byte dst, ByteSize count)

@@ -10,7 +10,8 @@ namespace Z0.Cpu
     
     using static zfunc;
     
-    
+    using Z0.Asm;
+
     partial class Registers
     {
         [StructLayout(LayoutKind.Explicit)]

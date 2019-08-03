@@ -440,18 +440,6 @@ namespace Z0
             => GetEnumerator();
     }
 
-    public class EnumKinds<E> : EnumKinds<EnumKinds<E>, E>
-        where E : Enum
-    {
-        public static readonly EnumKinds<E> Instance = new EnumKinds<E>();
-    }
-
-    public static class EnumKinds
-    {
-        public static IEnumerable<E> All<E>()
-            where E : Enum
-                => EnumKinds<E>.All;
-    }
 
     public class OpKinds : EnumKinds<OpKinds, OpKind>
     {

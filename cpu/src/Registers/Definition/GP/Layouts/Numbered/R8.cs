@@ -7,6 +7,7 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using Z0.Asm;
     
     using static zfunc;
 

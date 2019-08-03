@@ -7,7 +7,8 @@ namespace Z0.Cpu
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    
+    using Z0.Asm;
+
     using static zfunc;
     
     partial class Registers
@@ -18,7 +19,8 @@ namespace Z0.Cpu
             [FieldOffset(0)]
             public byte r8b;
 
-            public const GpRegId Id = GpRegId.r8b;          
+            public const GpRegId Id = GpRegId.r8b;
+
 
             [MethodImpl(Inline)]
             public static implicit operator byte(R8B src)
@@ -33,7 +35,8 @@ namespace Z0.Cpu
                 => this.r8b = src;
 
             GpRegId IGpReg.Id 
-                => Id; 
+                => Id;
+
         }
     }
 }

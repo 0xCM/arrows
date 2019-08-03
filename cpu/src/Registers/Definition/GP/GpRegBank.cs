@@ -10,248 +10,280 @@ namespace Z0.Cpu
     
     using static zfunc;
     using static Registers;
-    using Offsets = Gp64Offsets;
+
 
 
     [StructLayout(LayoutKind.Explicit, Size = 128)]
     public struct GpRegBank
     {
 
-        [FieldOffset(Offsets.RAX)]
+        [FieldOffset(RaxOffset)]
         public RAX rax;
 
-        [FieldOffset(Offsets.RAX)]
+        [FieldOffset(RaxOffset)]
         public EAX eax;
 
-        [FieldOffset(Offsets.RAX)]
+        [FieldOffset(RaxOffset)]
         public AX ax;
 
-        [FieldOffset(Offsets.RAX)]
+        [FieldOffset(RaxOffset)]
         public AL al;
     
-        [FieldOffset(Offsets.RAX + 1)]
+        [FieldOffset(RaxOffset + 1)]
         public AH ah;
 
         //!--
         
-        [FieldOffset(Offsets.RBX)]
+        [FieldOffset(RbxOffset)]
         public RBX rbx;
 
-        [FieldOffset(Offsets.RBX)]
+        [FieldOffset(RbxOffset)]
         public EBX ebx;
 
-        [FieldOffset(Offsets.RBX)]
+        [FieldOffset(RbxOffset)]
         public BX bx;
 
-        [FieldOffset(Offsets.RBX)]
+        [FieldOffset(RbxOffset)]
         public BL bl;
 
-        [FieldOffset(Offsets.RBX + 1)]
+        [FieldOffset(RbxOffset + 1)]
         public BH bh;
         
         //!--
 
-        [FieldOffset(Offsets.RCX)]        
+        [FieldOffset(RcxOffset)]        
         public RCX rcx;
 
-        [FieldOffset(Offsets.RCX)]
+        [FieldOffset(RcxOffset)]
         public ECX ecx;
 
-        [FieldOffset(Offsets.RCX)]
+        [FieldOffset(RcxOffset)]
         public CX cx;
 
-        [FieldOffset(Offsets.RCX)]
+        [FieldOffset(RcxOffset)]
         public CL cl;
 
-        [FieldOffset(Offsets.RCX + 1)]
+        [FieldOffset(RcxOffset + 1)]
         public CH ch;
 
         //!--
 
-        [FieldOffset(Offsets.RDX)]
+        [FieldOffset(RdxOffset)]
         public RDX rdx;
 
-        [FieldOffset(Offsets.RDX)]
+        [FieldOffset(RdxOffset)]
         public EDX edx;
 
-        [FieldOffset(Offsets.RDX)]
+        [FieldOffset(RdxOffset)]
         public DX dx;
 
-        [FieldOffset(Offsets.RDX)]
+        [FieldOffset(RdxOffset)]
         public DL dl;
 
-        [FieldOffset(Offsets.RDX + 1)]
+        [FieldOffset(RdxOffset + 1)]
         public DH dh;
 
         //!--
 
-        [FieldOffset(Offsets.RSI)]
+        [FieldOffset(RsiOffset)]
         public RSI rsi;
 
-        [FieldOffset(Offsets.RSI)]
+        [FieldOffset(RsiOffset)]
         public ESI esi;
 
-        [FieldOffset(Offsets.RSI)]
+        [FieldOffset(RsiOffset)]
         public SI si;
 
-        [FieldOffset(Offsets.RSI)]
+        [FieldOffset(RsiOffset)]
         public SIL sil;
 
         //!--
 
-        [FieldOffset(Offsets.RDI)]
+        [FieldOffset(RdiOffset)]
         public RDI rdi;
 
-        [FieldOffset(Offsets.RDI)]
+        [FieldOffset(RdiOffset)]
         public EDI edi;
 
-        [FieldOffset(Offsets.RDI)]
+        [FieldOffset(RdiOffset)]
         public DI di;
 
-        [FieldOffset(Offsets.RDI)]
+        [FieldOffset(RdiOffset)]
         public DIL dil;
 
         //!--
 
-        [FieldOffset(Offsets.RSP)]
+        [FieldOffset(RspOffset)]
         public RSP rsp;
 
-        [FieldOffset(Offsets.RSP)]
+        [FieldOffset(RspOffset)]
         public ESP esp;
 
-        [FieldOffset(Offsets.RSP)]
+        [FieldOffset(RspOffset)]
         public SP sp;
 
-        [FieldOffset(Offsets.RSP)]
+        [FieldOffset(RspOffset)]
         public SPL spl;
         
         //!--
 
-        [FieldOffset(Offsets.RBP)]
+        [FieldOffset(RbpOffset)]
         public RBP rbp;
 
-        [FieldOffset(Offsets.RBP)]
+        [FieldOffset(RbpOffset)]
         public EBP ebp;
 
-        [FieldOffset(Offsets.RBP)]
+        [FieldOffset(RbpOffset)]
         public BP bp;
 
-        [FieldOffset(Offsets.RBP)]
+        [FieldOffset(RbpOffset)]
         public BPL bpl;
 
         //!--
 
-        [FieldOffset(Offsets.R8)]
+        [FieldOffset(R8Offset)]
         public R8 r8;
 
-        [FieldOffset(Offsets.R8)]
+        [FieldOffset(R8Offset)]
         public R8D r8d;
 
-        [FieldOffset(Offsets.R8)]
+        [FieldOffset(R8Offset)]
         public R8W r8w;
 
-        [FieldOffset(Offsets.R8)]
+        [FieldOffset(R8Offset)]
         public R8B r8b;
 
         //!--
 
-        [FieldOffset(Offsets.R9)]
+        [FieldOffset(R9Offset)]
         public R9 r9;
 
-        [FieldOffset(Offsets.R9)]
+        [FieldOffset(R9Offset)]
         public R9D r9d;
 
-        [FieldOffset(Offsets.R9)]
+        [FieldOffset(R9Offset)]
         public R9W r9w;
 
-        [FieldOffset(Offsets.R9)]
+        [FieldOffset(R9Offset)]
         public R9B r9b;
 
         //!--
 
-        [FieldOffset(Offsets.R10)]
+        [FieldOffset(R10Offset)]
         public R10 r10;
 
-        [FieldOffset(Offsets.R10)]
+        [FieldOffset(R10Offset)]
         public R10D r10d;
 
-        [FieldOffset(Offsets.R10)]
+        [FieldOffset(R10Offset)]
         public R10W r10w;
 
-        [FieldOffset(Offsets.R10)]
+        [FieldOffset(R10Offset)]
         public R10B r10b;
 
         //!--
 
-        [FieldOffset(Offsets.R11)]
+        [FieldOffset(R11Offset)]
         public R11 r11;
 
-        [FieldOffset(Offsets.R11)]
+        [FieldOffset(R11Offset)]
         public R11D r11d;
 
-        [FieldOffset(Offsets.R11)]
+        [FieldOffset(R11Offset)]
         public R11W r11w;
 
-        [FieldOffset(Offsets.R11)]
+        [FieldOffset(R11Offset)]
         public R11B r11b;
 
 
         //!--
 
-        [FieldOffset(Offsets.R12)]
+        [FieldOffset(R12Offset)]
         public R12 r12;
 
-        [FieldOffset(Offsets.R12)]
+        [FieldOffset(R12Offset)]
         public R12D r12d;
 
-        [FieldOffset(Offsets.R12)]
+        [FieldOffset(R12Offset)]
         public R12W r12w;
 
-        [FieldOffset(Offsets.R12)]
+        [FieldOffset(R12Offset)]
         public R12B r12b;
 
         //!--
 
-        [FieldOffset(Offsets.R13)]
+        [FieldOffset(R13Offset)]
         public R13 r13;
 
-        [FieldOffset(Offsets.R13)]
+        [FieldOffset(R13Offset)]
         public R13D r13d;
 
-        [FieldOffset(Offsets.R13)]
+        [FieldOffset(R13Offset)]
         public R13W r13w;
 
-        [FieldOffset(Offsets.R13)]
+        [FieldOffset(R13Offset)]
         public R13B r13b;
 
         //!--
 
-        [FieldOffset(Offsets.R14)]
+        [FieldOffset(R14Offset)]
         public R14 r14;
 
-        [FieldOffset(Offsets.R14)]
+        [FieldOffset(R14Offset)]
         public R14D r14d;
 
-        [FieldOffset(Offsets.R14)]
+        [FieldOffset(R14Offset)]
         public R14W r14w;
 
-        [FieldOffset(Offsets.R14)]
+        [FieldOffset(R14Offset)]
         public R14B r14b;
         //!--
 
-        [FieldOffset(Offsets.R15)]
+        [FieldOffset(R15Offset)]
         public R15 r15;
 
-        [FieldOffset(Offsets.R15)]
+        [FieldOffset(R15Offset)]
         public R15D r15d;
 
-        [FieldOffset(Offsets.R15)]
+        [FieldOffset(R15Offset)]
         public R15W r15w;
 
-        [FieldOffset(Offsets.R15)]
+        [FieldOffset(R15Offset)]
         public R15B r15b;
 
 
+
+        const int RaxOffset = 0;
+        
+        const int RbxOffset = 8;
+
+        const int RcxOffset = 16;
+
+        const int RdxOffset = 24;
+
+        const int RsiOffset = 32;
+
+        const int RdiOffset = 40;
+
+        const int RspOffset = 48;
+
+        const int RbpOffset = 56;
+
+        const int R8Offset = 64;
+
+        const int R9Offset = 72;
+
+        const int R10Offset = 80;
+
+        const int R11Offset = 88;
+
+        const int R12Offset = 96;
+
+        const int R13Offset = 104;
+
+        const int R14Offset = 112;
+
+        const int R15Offset = 120;
 
     }
 

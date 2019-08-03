@@ -10,8 +10,6 @@ namespace Z0.Cpu
     
     using static zfunc;
     using static Registers;
-    using Offsets = Gp64Offsets;
-
 
     [StructLayout(LayoutKind.Explicit)]
     public struct ZmmBank

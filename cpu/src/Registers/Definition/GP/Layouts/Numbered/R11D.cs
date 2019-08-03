@@ -8,15 +8,15 @@ namespace Z0.Cpu
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     
-    using static zfunc;
-    
+    using Z0.Asm;
+
+    using static zfunc;    
 
     partial class Registers 
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct R11D : IGpReg32<R11>
         {
-
             [FieldOffset(0)]
             public uint r11d;
 
