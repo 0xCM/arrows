@@ -88,6 +88,24 @@ namespace Z0
             return count;
         }
 
+
+
+        /// <summary>
+        /// Determines whether a file exists
+        /// </summary>
+        /// <param name="src">The file for which existence is in question</param>
+        public static bool Exists(this FilePath src)
+            => File.Exists(src.FullPath);
+
+        /// <summary>
+        /// Creates a reader initialized with the source file. The caller
+        /// if responsible for cleanup
+        /// </summary>
+        /// <param name="src">The source file</param>
+        public static StreamReader Reader(this FilePath src)
+            => new StreamReader(src.FullPath);
+
+
         public static int Append(this FilePath dst, params string[] src)
             => dst.Append((IEnumerable<string>)src);
             

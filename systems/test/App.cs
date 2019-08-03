@@ -53,7 +53,7 @@ namespace Z0.Test
         protected override void RunTests(params string[] filters)
         {
             this.AgentContext = new AgentContext(Random);
-            ManageServerComplex();
+            //ManageServerComplex();
 
             base.RunTests();
         
