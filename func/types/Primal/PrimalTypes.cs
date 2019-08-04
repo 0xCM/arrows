@@ -73,6 +73,12 @@ namespace Z0
                 return string.Empty;
         }
 
+        [MethodImpl(Inline)]
+        public static string PrialNumericName<T>()
+            where T : struct
+                => typeof(T).PrialNumericName();
+        
+    
         /// <summary>
         /// Determines whether a supplied type or underlying type is a byte
         /// </summary>

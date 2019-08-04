@@ -240,11 +240,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVector<T> rhs)
-            => bits.Eq(rhs.bits);
+            => bits.Identical(rhs.bits);
     
         [MethodImpl(Inline)]
         public bool NEq(in BitVector<T> rhs)
-            => !bits.Eq(rhs.bits);
+            => !bits.Identical(rhs.bits);
             
         public override bool Equals(object obj)
             => throw new NotSupportedException();

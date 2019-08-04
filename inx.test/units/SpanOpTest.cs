@@ -11,7 +11,7 @@ namespace Z0.Test
     using System.IO;
 
 
-    public class InXSpanOps : UnitTest<InXSpanOps>
+    public class SpanOpTest : UnitTest<SpanOpTest>
     {
         const int Blocks = Pow2.T08;
 

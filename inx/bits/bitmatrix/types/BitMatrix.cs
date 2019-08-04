@@ -51,6 +51,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> operator &(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
+            => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
         {
             require(src.Length == GridLayout.TotalSegments, 
@@ -171,7 +175,8 @@ namespace Z0
 
         public static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            throw new NotImplementedException();
+            gbits.and(lhs.bits, rhs.bits, lhs.Bits);
+            return ref lhs;
         }
 
     }

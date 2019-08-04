@@ -14,7 +14,6 @@ namespace Z0
 
     public static class Vector
     {     
-
         /// <summary>
         /// Loads a vector from an existing span of commensuate length (Non-allocating)
         /// </summary>
@@ -72,10 +71,10 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Load<N,T>(in ReadOnlySpan<T> src, N length = default)
+        public static Vector<N,T> Load<N,T>(ReadOnlySpan<T> src, N length = default)
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N,T>.Define(in src);
+                => Vector<N,T>.Define(src);
         
         [MethodImpl(Inline)]
         public static Vector<T> Zero<T>(int minlen)
@@ -149,7 +148,5 @@ namespace Z0
             v2.Unsize().CopyTo(dst.Slice(new M()));
             return Vector<P,T>.Define(dst);
         }
-
     }
-
 }

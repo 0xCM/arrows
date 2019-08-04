@@ -37,7 +37,7 @@ namespace Z0
             var filename = FileName.Define($"divisors{src.Range}.csv");
             var outpath = dst + filename;
             var lists = src.Lists.OrderBy(x => x.Dividend);
-            return outpath.Overwrite(map(lists, d => d.ToString()));
+            return outpath.Overwrite(lists.Select(d => d.ToString()).ToArray());
         }
 
         //Adapted from corefx repo
@@ -176,7 +176,7 @@ namespace Z0
             return false;        
         }
 
-        public static bool Eq<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)        
+        public static bool Identical<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)        
                 where T : struct        
         {
             for(var i = 0; i< Span128.length(lhs,rhs); i++)
@@ -185,7 +185,7 @@ namespace Z0
             return true;
         }
 
-        public static bool Eq<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)        
+        public static bool Identical<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)        
             where T : struct        
         {
             for(var i = 0; i< length(lhs,rhs); i++)
@@ -194,16 +194,16 @@ namespace Z0
             return true;
         }
 
-        public static bool Eq<T>(this Span256<T> lhs, Span256<T> rhs)        
+        public static bool Identical<T>(this Span256<T> lhs, Span256<T> rhs)        
             where T : struct        
-                => lhs.ToReadOnlySpan().Eq(rhs);
+                => lhs.ReadOnly().Identical(rhs);
 
-        public static bool Eq<T>(this Span128<T> lhs, Span128<T> rhs)        
+        public static bool Identical<T>(this Span128<T> lhs, Span128<T> rhs)        
             where T : struct        
-                => lhs.ReadOnly().Eq(rhs);
+                => lhs.ReadOnly().Identical(rhs);
 
         [MethodImpl(Inline)]
-        public static bool Eq<T>(this Span<T> lhs, Span<T> rhs)  
+        public static bool Identical<T>(this Span<T> lhs, Span<T> rhs)  
             where T : struct       
         {
             
@@ -212,18 +212,8 @@ namespace Z0
             return SequenceEqual(ref lhs[0], ref rhs[0], lhs.Length);
         }
 
-        // [MethodImpl(Inline)]
-        // public static bool Contains<T>(this Span<T> lhs, T match)  
-        //     where T : struct       
-        //     => Contains(ref lhs[0], match, lhs.Length);
-
-        // [MethodImpl(Inline)]
-        // public static bool Contains<T>(this ReadOnlySpan<T> lhs, T match)  
-        //     where T : struct       
-        //     => Contains(ref asRef(in lhs[0]), match, lhs.Length);
-
         [MethodImpl(Inline)]
-        public static bool Eq<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)  
+        public static bool Identical<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)  
             where T : struct       
         {
             if(lhs.Length != rhs.Length)

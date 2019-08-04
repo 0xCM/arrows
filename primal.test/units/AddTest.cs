@@ -24,7 +24,7 @@ namespace Z0.Test
             for(var i =0; i< lhsSrc.Length; i++)
                 expect[i] = lhsSrc[i] + rhs[i];
             
-            Claim.yea(lhs.Eq(expect));
+            Claim.yea(lhs.Identical(expect));
 
         }
 
@@ -39,7 +39,7 @@ namespace Z0.Test
             for(var i =0; i< lhsSrc.Length; i++)
                 expect[i] = lhsSrc[i] + rhs[i];
             
-            Claim.yea(lhs.Eq(expect));
+            Claim.yea(lhs.Identical(expect));
 
         }
 

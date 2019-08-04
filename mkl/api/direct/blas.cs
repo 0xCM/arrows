@@ -83,6 +83,25 @@ namespace Z0.Mkl
             return dst;
         }    
 
+        public static Span256<float> gemm<M,K,N>(Span256<float> A, Span256<float> B)
+            where M : ITypeNat, new()
+            where K : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+
+            var m = nati<M>();
+            var k = nati<K>();
+            var n = nati<N>();
+            var lda = k;
+            var ldb = n;
+            var ldc = n;
+            var dst = Span256.alloc<float>(Span256.blocks<float>(nati<M>()*nati<N>()));
+
+            CBLAS.cblas_sgemm(RowMajor, NoTranspose, NoTranspose,            
+                m, n, k, 1.0f, ref A[0], lda, ref B[0], ldb, 0, ref dst[0], ldc);
+            return dst;
+        }
+
         /// <summary>
         /// Allocates a target matrix and populates it with the product of the operands
         /// </summary>
@@ -108,5 +127,25 @@ namespace Z0.Mkl
                 m, n, k, 1.0, ref A[0], lda, ref B[0], ldb, 0, ref dst[0], ldc);
             return dst;
         }
+
+        
+        public static Span256<double> gemm<M,K,N>(Span256<double> A, Span256<double> B)
+            where M : ITypeNat, new()
+            where K : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+            var m = nati<M>();
+            var k = nati<K>();
+            var n = nati<N>();
+            var lda = k;
+            var ldb = n;
+            var ldc = n;
+            var dst = Span256.alloc<double>(Span256.blocks<double>(nati<M>()*nati<N>()));
+
+            CBLAS.cblas_dgemm(RowMajor, NoTranspose, NoTranspose,            
+                m, n, k, 1.0, ref A[0], lda, ref B[0], ldb, 0, ref dst[0], ldc);
+            return dst;
+        }
+
     }
 }

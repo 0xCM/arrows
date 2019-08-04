@@ -8,6 +8,7 @@ namespace Z0
     using System.Linq;
     using System.Reflection;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
         
     using static zfunc;
 
@@ -56,5 +57,14 @@ namespace Z0
             return methods;                                 
         }
 
+        /// <summary>
+        /// Determines whether a primal type is a floating point type, i.e. a 32-bit 
+        /// or 64-bit float
+        /// </summary>
+        /// <typeparam name="T">The type to evaluate</typeparam>
+        [MethodImpl(Inline)]
+        public static bool isFloat<T>()
+            where T : struct
+                => typeof(T) == typeof(double) || typeof(T) == typeof(float);
     }
 }

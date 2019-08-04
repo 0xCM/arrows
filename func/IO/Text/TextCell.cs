@@ -9,6 +9,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     
+    /// <summary>
+    /// Defiens a text segment in the context of a line in a file
+    /// </summary>
     public sealed class TextCell
     {
         

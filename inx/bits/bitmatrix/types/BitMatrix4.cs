@@ -211,7 +211,6 @@ namespace Z0
         }
 
 
-
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

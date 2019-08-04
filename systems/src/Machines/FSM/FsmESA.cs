@@ -10,7 +10,13 @@ namespace Z0.Machines
     using System.Runtime.CompilerServices;
     using static zfunc;
 
-   public class Fsm<E,S,A> : Fsm<E,S>
+   /// <summary>
+   /// Defines a state machine that supports state entry actions
+   /// </summary>
+   /// <typeparam name="E">The incoming event type</typeparam>
+   /// <typeparam name="S">The state type</typeparam>
+   /// <typeparam name="A">The action type</typeparam>
+    public class Fsm<E,S,A> : Fsm<E,S>
     {
         public Fsm(S GroundState, S EndState, TransFunc<E,S> Transition, EntryFunc<S,A> Entry)
             : base(GroundState, EndState, Transition)
@@ -30,6 +36,9 @@ namespace Z0.Machines
             StatedEntered?.Invoke(entry,action);
         }
 
+        /// <summary>
+        /// Event that signals state entry
+        /// </summary>
         public event StateEntry<S,A> StatedEntered;
     }
 

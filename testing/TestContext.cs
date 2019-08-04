@@ -12,6 +12,7 @@ namespace Z0.Test
 
     
     using static zfunc;
+    using static nfunc;
 
     public interface ITestContext : IContext
     {
@@ -109,6 +110,12 @@ namespace Z0.Test
         protected void TypeCaseStart<A,B>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> executing", SeverityLevel.HiliteCL));
 
+        protected void TypeCaseStart<M,N,S>([CallerMemberName] string caller = null)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where S : struct
+                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{nati<M>()}x{nati<N>()}:{PrimalKinds.kind<S>()}> executing", SeverityLevel.HiliteCL));
+
         protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded", SeverityLevel.HiliteCL));
 
@@ -118,6 +125,11 @@ namespace Z0.Test
         protected void TypeCaseEnd<C>(AppMsg msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));
 
+        protected void TypeCaseEnd<M,N,S>([CallerMemberName] string caller = null)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where S : struct
+                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{nati<M>()}x{nati<N>()}:{PrimalKinds.kind<S>()}> succeeded", SeverityLevel.HiliteCL));
 
     }
 }

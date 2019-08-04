@@ -13,7 +13,7 @@ namespace Z0.Machines
 
 
     /// <summary>
-    /// Defines a minimalistic finite state machine
+    /// Defines a state machine with minimal feature-set
     /// </summary>
     /// <typeparam name="E">The incoming event type</typeparam>
     /// <typeparam name="S">The state type</typeparam>
@@ -124,16 +124,13 @@ namespace Z0.Machines
         }
 
         /// <summary>
-        /// Called whenever a state has been entered
+        /// Called upon state entry
         /// </summary>
         /// <param name="entry">The entry state</param>
-        protected virtual void OnEntry(S entry)
-        {
-
-        }
+        protected virtual void OnEntry(S entry){}
 
         /// <summary>
-        /// Called whenever a state has been exited
+        /// Called upon state exit
         /// </summary>
         /// <param name="exit">The exit state</param>
         protected virtual void OnExit(S exit)

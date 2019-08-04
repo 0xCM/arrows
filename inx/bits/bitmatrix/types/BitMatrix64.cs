@@ -56,7 +56,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator | (BitMatrix64 lhs, BitMatrix64 rhs)
-            => lhs.Or(rhs);
+            => Or(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator ^ (BitMatrix64 lhs, BitMatrix64 rhs)
@@ -104,8 +104,17 @@ namespace Z0
             => N;
 
         [MethodImpl(Inline)]
-        public BitVector64 Row(int index)
-            => bits[index];
+        public BitVector64 Row(int row)
+            => bits[row];
+
+        public BitVector64 Col(int col)
+        {
+            var dst = 0ul;
+            for(var row = 0; row < RowDim; row++)
+                gbits.set(ref dst, (byte)row, this[row,col]);
+            return dst;
+        }
+
 
         /// <summary>
         /// Returns the underlying matrix data as a span of bytes
@@ -123,7 +132,6 @@ namespace Z0
         public string Format()
             => MemoryMarshal.AsBytes(bits).FormatMatrixBits(64);
 
-        [MethodImpl(Inline)]
         public bool IsZero()
         {
             const int rowstep = 4;
@@ -136,7 +144,6 @@ namespace Z0
             return true;
         }
 
-        [MethodImpl(Inline)]
         public BitVector64 Diagonal()
         {
             var dst = (ulong)0;
@@ -146,6 +153,22 @@ namespace Z0
             return dst;                    
         }
 
+        public BitMatrix64 AndNot(in BitMatrix64 rhs)
+        {
+            const int rowstep = 4;
+            for(var i=0; i< RowDim; i += rowstep)
+            {
+                this.LoadVector(out Vec256<ulong> vLhs, i);
+                rhs.LoadVector(out Vec256<ulong> vRhs, i);
+                vLhs.AndNot(vRhs, ref bits[i]);                
+            }
+            return this;
+
+        }
+
+        [MethodImpl(Inline)] 
+        public BitMatrix64 Replicate()
+            => Define(bits.ReadOnly()); 
 
         static ref BitMatrix64 And(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {
@@ -181,6 +204,19 @@ namespace Z0
             }
             return ref src;
         }
+
+        static ref BitMatrix64 Or(ref BitMatrix64 lhs, in BitMatrix64 rhs)
+        {
+            const int rowstep = 4;
+            for(var i=0; i< lhs.RowDim; i += rowstep)
+            {
+                lhs.LoadVector(out Vec256<ulong> vLhs, i);
+                rhs.LoadVector(out Vec256<ulong> vRhs, i);
+                vLhs.Or(vRhs, ref lhs.bits[i]);                
+            }
+            return ref lhs;
+        }
+        
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

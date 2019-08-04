@@ -8,6 +8,9 @@ namespace Z0
 
     using System.Runtime.Serialization;
     using System.Runtime.CompilerServices;
+    using File = System.Runtime.CompilerServices.CallerFilePathAttribute;
+    using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
+    using Line = System.Runtime.CompilerServices.CallerLineNumberAttribute;
 
     using static zfunc;
 
@@ -54,7 +57,6 @@ namespace Z0
         public static AppMsg NotFalse(string msg, string caller, string file, int? line)
             => AppMsg.Define($"{msg ?? "The source value is required to be false and yet it is true"}", 
                     SeverityLevel.Error, caller, file, line);
-
         public static AppMsg CountMismatch(int lhs, int rhs, string caller, string file, int? line)
             => AppMsg.Define($"Count mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 
@@ -73,5 +75,8 @@ namespace Z0
         public static AppMsg Unanticipated(Exception e, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => AppMsg.Define(e.ToString(), SeverityLevel.Error, caller, file, line);
+    
+        public static AppMsg FileDoesNotExist(FilePath path, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)    
+            => AppMsg.Define($"The file {path} does not exist", SeverityLevel.Error, caller, file, line);
     }
 }

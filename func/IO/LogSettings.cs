@@ -55,6 +55,13 @@ namespace Z0
             return LogPath(target, ext, elapsed);
         }
 
+        /// <summary>
+        /// Gets the path to a file in the test log directory
+        /// </summary>
+        /// <param name="filename">The bare filename</param>
+        public FilePath TestLogPath(FileName filename)
+            => LogDir(LogArea.Test) + filename;
+
         public FilePath LogPath(LogArea area, FileExtension ext = null, long? timestamp = null)
             => LogDir(area) + FileName.Define($"{area}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
 

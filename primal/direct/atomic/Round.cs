@@ -13,16 +13,15 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
         [MethodImpl(Inline)]
         public static float round(float src, int scale)
-            => MathF.Round(src,scale);
+            => MathF.Round(src, scale);
 
         [MethodImpl(Inline)]
         public static double round(double src, int scale)
-            => Math.Round(src,scale);
+            => Math.Round(src, scale);
 
         [MethodImpl(Inline)]
         public static ref float round(ref float src, int scale)

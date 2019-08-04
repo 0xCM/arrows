@@ -50,11 +50,10 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static void mul(uint lhs, uint rhs, out ulong dst)
+        public static ulong mul(uint lhs, uint rhs)
         {
-            var tmp = 0u;
-            dst = 0;
-            dst = (((ulong)Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref tmp))) << 32) | dst;
+            var dst = 0u;
+            return (((ulong)Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref dst))) << 32) | dst;
         }
 
         /// <summary>
@@ -67,6 +66,17 @@ namespace Z0
         {
             var lo = 0u;
             return  Bmi2.MultiplyNoFlags(lhs,rhs, refptr(ref lo));
+        }
+
+        /// <summary>
+        /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:ulong where
+        /// the result is obtained from the hi 64 bits of the 128-bit product
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static ulong mulHi(ulong lhs, ulong rhs)
+        {
+            UMul.mulHi(lhs,rhs, out ulong hi);
+            return hi;
         }
 
         /// <summary>
@@ -88,6 +98,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static void mulLo(ulong lhs, ulong rhs, out ulong dst)
             => mul(lhs,rhs, out dst, out ulong hi);
+
+        [MethodImpl(Inline)]
+        public static ulong mulLo(ulong lhs, ulong rhs)
+        {
+            mulLo(lhs,rhs, out ulong lo);
+            return lo;
+        }
 
     }
 

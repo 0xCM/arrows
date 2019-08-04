@@ -126,7 +126,7 @@ namespace Z0
         /// <param name="a">The dividend</param>
         [MethodImpl(Inline)]
         public uint mod(uint a)
-            => (uint) dinx.umulHi(M * a, n);
+            => (uint) UMul.mulHi(M * a, n);
 
         /// <summary>
         /// Computes the quotient a / n
@@ -134,7 +134,7 @@ namespace Z0
         /// <param name="a">The dividend</param>
         [MethodImpl(Inline)]
         public uint div(uint a)        
-            => (uint) dinx.umulHi(M, a);
+            => (uint) UMul.mulHi(M, a);
 
         /// <summary>
         /// Computes whether a % n == 0

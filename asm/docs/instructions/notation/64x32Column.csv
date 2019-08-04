@@ -1,0 +1,8 @@
+# 64/32-bit Mode Column in the Instruction Summary Table
+| Notation | Meaning                                                                                                                                                                                                        |
+| V        | Supported                                                                                                                                                                                                      |
+| I        | Not Supported                                                                                                                                                                                                  |
+| N.E.     | Indicates an instruction syntax is not encodable in 64-bit mode (it may represent part of a sequence of valid instructions in other modes)                                                                     |
+| N.P.     | Indicates the REX prefix does not affect the legacy instruction in 64-bit mode.                                                                                                                                |
+| N.I.     | Indicates the opcode is treated as a new instruction in 64-bit mode.                                                                                                                                           |
+| N.S.     | Indicates an instruction syntax that requires an address override prefix in 64-bit mode and is not supported. Using an address override prefix in 64-bit mode may result in model-specific execution behavior. |

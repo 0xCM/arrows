@@ -99,11 +99,9 @@ namespace Z0
             => ref data[index];
 
 
-
         [MethodImpl(Inline)]
         public Span<T> Unsize()
             => data.Unsize();
-
  
         public override bool Equals(object other)
             => throw new NotSupportedException();

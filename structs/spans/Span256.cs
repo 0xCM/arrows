@@ -11,10 +11,8 @@ namespace Z0
     using System.Runtime.InteropServices;    
     using System.Runtime.Intrinsics;    
     using System.Diagnostics;
-    
-    
+        
     using static zfunc;
-
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
@@ -147,14 +145,27 @@ namespace Z0
             get => ref data[ix];
         }
 
+        /// <summary>
+        /// Slices a block from the encapsulated source
+        /// </summary>
+        /// <param name="blockIndex">The index of the desired block</param>
         [MethodImpl(Inline)]
         public ref T Block(int blockIndex)
             => ref this[blockIndex*BlockLength];
 
+        /// <summary>
+        /// Slices an elementwise span from the source
+        /// </summary>
+        /// <param name="start">The index of the start element (not the block!)</param>
         [MethodImpl(Inline)]
         public Span<T> Slice(int start)
             => data.Slice(start);
 
+        /// <summary>
+        /// Slices an elementwise span from the source
+        /// </summary>
+        /// <param name="start">The index of the start element (not the block!)</param>
+        /// <param name="length">The length of the desired span</param>
         [MethodImpl(Inline)]
         public Span<T> Slice(int start, int length)
             => data.Slice(start,length);
@@ -174,8 +185,11 @@ namespace Z0
         public Span<T> Unblock()
             => data;
 
+        /// <summary>
+        /// Presents the allocated data as a blocked read-only span
+        /// </summary>
         [MethodImpl(Inline)]
-        public ReadOnlySpan256<T> ToReadOnlySpan()
+        public ReadOnlySpan256<T> ReadOnly()
             => (ReadOnlySpan256<T>)data;
 
         [MethodImpl(Inline)]
@@ -195,11 +209,11 @@ namespace Z0
             => ref data.GetPinnableReference();
 
         [MethodImpl(Inline)]
-        public void CopyTo (Span<T> dst)
+        public void CopyTo(Span<T> dst)
             => data.CopyTo(dst);
 
         [MethodImpl(Inline)]
-        public bool TryCopyTo (Span<T> dst)
+        public bool TryCopyTo(Span<T> dst)
             => data.TryCopyTo(dst);
                 
         [MethodImpl(Inline)]

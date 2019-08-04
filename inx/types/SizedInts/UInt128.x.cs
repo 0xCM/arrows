@@ -12,7 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-
     public static class UInt128X
     {
         [MethodImpl(Inline)]
@@ -22,7 +21,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool TestBit(this in UInt128 src, int pos)
             => pos < 64 ? BitMask.test(src.lo, pos) : BitMask.test(src.hi, pos) ;
-
 
         [MethodImpl(Inline)]
         public static ref UInt128 EnableBit(this ref UInt128 src, int pos)

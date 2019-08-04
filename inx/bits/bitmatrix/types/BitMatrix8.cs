@@ -103,15 +103,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator | (BitMatrix8 lhs, BitMatrix8 rhs)
-            => lhs.Or(rhs);
+            => Or(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator ^ (BitMatrix8 lhs, BitMatrix8 rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator ~ (BitMatrix8 src)
-            => src.Flip();
+            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(BitMatrix8 src)
@@ -151,6 +151,10 @@ namespace Z0
             => N;
  
         [MethodImpl(Inline)]
+        public bool IsZero()
+            => BitConverter.ToUInt64(bits) == 0;
+
+        [MethodImpl(Inline)]
         public BitVector8 Row(int index)
             => bits[index];
 
@@ -165,11 +169,46 @@ namespace Z0
              return this;
         }
 
+        public BitVector8 Diagonal()
+        {
+            var dst = (byte)0;
+            for(byte i=0; i < RowDim; i++)
+                if(this[i,i])
+                    BitMask.enable(ref dst, i);
+            return dst;                    
+        }
+
+        [MethodImpl(Inline)] 
+        public BitMatrix8 Replicate()
+            => Define(bits.ReadOnly());
+
+
         [MethodImpl(Inline)]
         static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)
         {
              lhs.bits =((ulong)lhs & (ulong)rhs).ToBytes();
              return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix8 Or(ref BitMatrix8 lhs, in BitMatrix8 rhs)
+        {
+             lhs.bits = ((ulong)lhs | (ulong)rhs).ToBytes();
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix8 XOr(ref BitMatrix8 lhs, in BitMatrix8 rhs)
+        {
+             lhs.bits = ((ulong)lhs ^ (ulong)rhs).ToBytes();
+             return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref BitMatrix8 Flip(ref BitMatrix8 src)
+        {
+             src.bits = (~(ulong)src).ToBytes();
+             return ref src;
         }
 
         /// <summary>

@@ -29,6 +29,9 @@ namespace Z0
         public ReadOnlySpan<TextRow> Rows
             => LineData;
         
+        public ref readonly TextRow this[int index]
+            => ref Rows[index];
+
         public uint TotalLineCount {get;}
         
         public uint DataLineCount

@@ -32,6 +32,20 @@ namespace Z0.Test
             TypeCaseEnd<T>();
         }
 
+        void SubSpans256<T>(int len)
+            where T : struct
+        {
+            TypeCaseStart<T>();
+            var lhs = Random.Span256<T>(len).ReadOnly();
+            var rhs = Random.Span256<T>(len).ReadOnly();
+            var dstA = ginx.sub(lhs, rhs, lhs.Replicate());
+            var dstB = Span256.alloc<T>(lhs.BlockCount);
+            for(var i = 0; i < dstA.Length; i++)
+                dstB[i] = gmath.sub(lhs[i], rhs[i]);
+            Claim.yea(dstA.Identical(dstB));
+            TypeCaseEnd<T>();
+        }
+
         public void Sub128()
         {
             var blocks = Pow2.T08;
@@ -62,6 +76,12 @@ namespace Z0.Test
             Sub256<double>(blocks);
         }
 
+        public void SubSpans256()
+        {
+            SubSpans256<long>(Pow2.T12);
+            SubSpans256<int>(500);
+            SubSpans256<byte>(789);
+        }
     }
 
 }

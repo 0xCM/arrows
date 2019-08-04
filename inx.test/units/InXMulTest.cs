@@ -66,7 +66,7 @@ namespace Z0.Test
                     var xi = x[i];
                     var yi = y[i];
                     var z = (ulong)xi * (ulong)yi;
-                    Claim.eq(z, dinx.umul64(xi,yi));
+                    Claim.eq(z, UMul.mul(xi,yi));
                 }
                 PointSamplesEnd(samples);
             }

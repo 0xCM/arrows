@@ -46,8 +46,9 @@ namespace Z0
             =>  src.data;
 
         [MethodImpl(Inline)]
-        public static Vector<T> operator + (in Vector<T> lhs, in Vector<T> rhs) 
-            => gmath.add(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+        public static Vector<T> operator + (Vector<T> lhs, in Vector<T> rhs)         
+            => lhs.data.ReadOnly().Add(rhs.data, lhs.data);
+                    
 
         [MethodImpl(Inline)]
         public static Vector<T> operator - (in Vector<T> lhs, in Vector<T> rhs) 

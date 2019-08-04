@@ -15,6 +15,7 @@ namespace Z0
 
     partial class dinx
     {
+        /// <intrinsic>__m128i _mm_sign_epi8 (__m128i a, __m128i b) PSIGNB xmm, xmm/m128</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => Sign(lhs, rhs);
@@ -26,7 +27,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<int> sign(in Vec128<int> lhs, in Vec128<int> rhs)
             => Sign(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static Vec256<sbyte> sign(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)

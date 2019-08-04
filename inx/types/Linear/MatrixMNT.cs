@@ -18,72 +18,144 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct    
     {
+        
         public static readonly Dim<M,N> Dim = default;        
 
-        Span<M,N,T> data;
+        /// <summary>
+        /// The number of rows in the structure
+        /// </summary>
+        public static readonly int RowCount = nati<M>();
 
-        public static implicit operator Matrix<M,N,T>(Span<M,N,T> src)
-            => new Matrix<M, N, T>(src);
+        /// <summary>
+        /// The number of columns in the structure
+        /// </summary>
+        public static readonly int ColCount = nati<N>();
+
+        /// <summary>
+        /// The number of cells in each row
+        /// </summary>
+        public static readonly int RowLenth = ColCount;
+
+        /// <summary>
+        /// The number of cells in each column
+        /// </summary>
+        public static readonly int ColLength = RowCount;
+
+        /// <summary>
+        /// The total number of allocated elements
+        /// </summary>
+        public static readonly int CellCount = RowLenth * ColLength;
+
+        /// <summary>
+        /// The Row dimension representative
+        /// </summary>
+        public static M RowRep = default;
+
+        /// <summary>
+        /// The Column dimension representative
+        /// </summary>
+        public static N ColRep = default;
 
         [MethodImpl(Inline)]
-        public static implicit operator Span<M,N,T>(Matrix<M,N,T> src)
-            => src.data;
+        public static bool operator == (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator != (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => !lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> operator + (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.Add(rhs);
+
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> operator - (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.Sub(rhs);
+
+        Span256<T> data;
 
 
         [MethodImpl(Inline)]
-        public Matrix(Span<M,N,T> src)
+        public Matrix(Span256<T> src)
         {
-            this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        public Matrix(params T[] src)
-        {
-            data = src;            
-        }
-
-        [MethodImpl(Inline)]
-        public Matrix(IEnumerable<T> src)
-        {
-            data = src.ToArray();
+            require(src.Length >= CellCount);
+            data = src;
         }
 
         [MethodImpl(Inline)]        
-        public ref T Cell(int i, int j)
-            => ref data[i,j];
+        public ref T Cell(int r, int c)
+            => ref data[RowLenth*r + c];
 
-        public ref T this[int i, int j]
+        public ref T this[int r, int c]
         {
             [MethodImpl(Inline)]        
-            get => ref data[i,j];
+            get => ref Cell(r,c);
         }
 
-        public ref T this[uint i, uint j]
+        public ref T this[uint r, uint c]
         {
             [MethodImpl(Inline)]        
-            get => ref data.Cell(i,j);
+            get => ref Cell((int)r,(int)c);
         }
 
         [MethodImpl(Inline)]
-        public Span<N,T> Row(int i)
-            => data.Row(i);
-
-        [MethodImpl(Inline)]
-        public Span<M,T> Col(int j)
-            => data.Col(j);
-
-        public Span<M,N,T> Data
+        public Span<N,T> Row(int r)
         {
+            if(r < 0 || r >= RowCount)
+                throw Errors.OutOfRange(r, 0, RowCount - 1);
             
+            return data.Slice(r * RowLenth, RowLenth);
+        }
+
+        public Span<M,T> Col(int col)
+        {
+            if(col < 0 || col >= ColCount)
+                throw Errors.OutOfRange(col, 0, ColCount - 1);
+            
+            var v = NatSpan.alloc<M,T>();
+            for(var r = 0; r < ColLength; r++)
+                v[r] = data[r + col];
+            return v;
+        }
+
+        public Span256<T> Data
+        {            
             [MethodImpl(Inline)]
             get => data;
         }
 
-        public Matrix<I,J,T> SubMatrix<I,J>((uint r, uint c) origin, Dim<I,J> dstdim)
-            where I : ITypeNat, new()
-            where J : ITypeNat, new()
-                => data.SubSpan(origin, dstdim);
+        /// <summary>
+        /// Applies a function to each cell and overwites the existing cell value with the result
+        /// </summary>
+        /// <param name="f"></param>
+        public void Apply(Func<T,T> f)
+        {
+            for(var r = 0; r < RowCount; r++)
+            for(var c = 0; c < ColCount; c++)
+                this[r,c] = f(this[r,c]);
+        }
 
+
+        public bool IsZero
+        {
+            get
+            {
+                for(var i = 0; i < data.Length; i++)
+                    if(gmath.nonzero(data[i]))
+                        return false;
+                return true;
+            }
+        }
+
+        public bool Equals(Matrix<M,N,T> rhs)
+        {
+            for(var r = 0; r < (int)RowCount; r ++)
+            for(var c = 0; c < (int)ColCount; c ++)
+                if(!gmath.eq(this[r,c], rhs[r,c]))
+                    return false;
+            return true;
+
+        }
 
         public override bool Equals(object other)
             => throw new NotSupportedException();

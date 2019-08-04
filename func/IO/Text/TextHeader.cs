@@ -10,6 +10,9 @@ namespace Z0
     using System.Linq;
     
 
+    /// <summary>
+    /// Defines header content in a text data file
+    /// </summary>
     public sealed class TextHeader
     {        
         string[] Names;
@@ -22,8 +25,11 @@ namespace Z0
         public ReadOnlySpan<string> HeaderNames
             => Names;
 
+        public string Format(char? sep = null)
+            => string.Join(sep ?? AsciSym.Pipe, Names);
+
         public override string ToString()
-            => string.Join(AsciSym.Pipe, Names);
+            => Format();
     }
 
 }

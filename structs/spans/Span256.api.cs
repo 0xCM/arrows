@@ -13,6 +13,7 @@ namespace Z0
     
     using static zfunc;    
     using static Span256;
+    using static nfunc;
 
     public static class Span256
     {
@@ -35,6 +36,26 @@ namespace Z0
         public static Span256<T> alloc<T>(int blocks)
             where T : struct        
                 => Span256<T>.Alloc(blocks);
+
+        /// <summary>
+        /// Allocates the minimum amount of memory required to align matrix/tabular data in 256-bit blocks
+        /// </summary>
+        /// <typeparam name="M">The row type </typeparam>
+        /// <typeparam name="N">The column type</typeparam>
+        /// <typeparam name="T">The scalar type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> alloc<M,N,T>()
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var dataLen = nati<M>() * nati<N>();
+            Span256.alignment<T>(dataLen, out int blocklen, out int fullBlocks, out int remainder);            
+            if(remainder == 0)
+                return alloc<T>(fullBlocks);
+            else
+                return Span256.alloc<T>(fullBlocks + 1);
+        }
 
         /// <summary>
         /// Allocates a blocked span of lenth N iff supplied left and right spans are
@@ -117,6 +138,13 @@ namespace Z0
         public static int blocks<T>(int length)
             where T : struct  
                 => length / blocklength<T>();
+        
+        [MethodImpl(Inline)]
+        public static int blocks<T>(int length, out int remainder)
+            where T : struct  
+        {
+            return Math.DivRem(length, blocklength<T>(), out remainder);
+        }
 
         /// <summary>
         /// Calculates the number of bytes represented by the span

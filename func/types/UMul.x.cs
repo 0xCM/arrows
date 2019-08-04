@@ -44,8 +44,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong Mul64(this uint lhs, uint rhs)
         {
-            UMul.mul(lhs,rhs, out ulong dst);
-            return dst;
+            return UMul.mul(lhs,rhs);
         }
             
     }

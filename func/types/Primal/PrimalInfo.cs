@@ -49,12 +49,39 @@ namespace Z0
         
         bool Infinite {get;}
 
+        PrimalKind Kind {get;}
+
     }
 
     public interface IPrimalDescriptor<T>
         where T : struct
     {
         IPrimalInfo<T> Description {get;}
+    }
+
+    public static class PrimalRep
+    {
+        public static PrimalRep<T> Get<T>(T exemplar = default)
+            where T : struct
+                => PrimalRep<T>.TheOnly;
+    }
+
+    public readonly struct PrimalRep<T> 
+        where T : struct
+    {
+
+        internal static PrimalRep<T> TheOnly = default;
+         
+        readonly T exeplar;
+
+        public PrimalRep(T exemplar = default)
+        {
+            this.exeplar = exemplar;
+        }
+
+        [MethodImpl(Inline)]
+        public static implicit operator T(PrimalRep<T> src)
+            => src.exeplar;
     }
 
     public readonly struct PrimalInfo : 
@@ -490,6 +517,7 @@ namespace Z0
             this.Infinite = infinite;
             this.Epsilon = ! epsilon.Equals(default) ? some(epsilon) : none<T>();
             this.ByteSize = (int)(BitSize/8ul);
+            this.Kind = PrimalKinds.kind<T>();
         }
 
         public T MinVal {get;}
@@ -512,6 +540,8 @@ namespace Z0
         
         public bool Infinite {get;}
 
+        public PrimalKind Kind {get;}
+            
     }
 
 }

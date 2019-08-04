@@ -28,7 +28,7 @@ namespace Z0
             => new Vector<N,T>(src);
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Define(in ReadOnlySpan<T> src)
+        public static Vector<N,T> Define(ReadOnlySpan<T> src)
             => new Vector<N,T>(src);
 
         [MethodImpl(Inline)]

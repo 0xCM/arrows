@@ -1,39 +1,26 @@
-Opcode Column in the Instruction Summary Table (Instructions without VEX Prefix)
+# Opcode Column in the Instruction Summary Table (Instructions without VEX Prefix)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Value       | Meaning
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-NP          | Indicates the use of 66/F2/F3 prefixes (beyond those already part of the instructions opcode) are not 
-            | allowed with the instruction. Such use will either cause an invalid-opcode exception (#UD) or result in the 
-            | encoding for a different instruction
-NFx         | Indicates the use of F2/F3 prefixes (beyond those already part of the instructions opcode) are not allowed 
-            | with the instruction. Such use will either cause an invalid-opcode exception (#UD) or result in the
-            | encoding for a different instruction.
-REX.W       | Indicates the use of a REX prefix that affects operand size or instruction semantics. 
-            | The ordering of the REX prefix and other optional/mandatory instruction prefixes are discussed Chapter 2. 
-            | Note that REX prefixes that promote legacy instructions to 64-bit behavior are not listed explicitly in the opcode column.
-/digit      | A digit between 0 and 7 indicates that the ModR/M byte of the instruction uses only the r/m (register or memory) operand. 
-            | The reg field contains the digit that provides an extension to the instruction's opcode.
-/r          | Indicates that the ModR/M byte of the instruction contains a register operand and an r/m operand.
-cb          | A 1-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-cw          | A 2-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-cd          | A 4-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-cp          | A 6-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-co          | A 8-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-ct          | A 10-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.
-ib          | A 1-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
-            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.
-iw          | A 2-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
-            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.
-id          | A 4-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
-            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first. 
-io          | A 8-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. 
-            | The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.  
-+rb         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
-+rw         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
-+rd         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.  
-+ro         | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte. 
-+i          | A number used in floating-point instructions when one of the operands is ST(i) from the FPU register stack. 
-            | The number i (which can range from 0 to 7) is added to the hexadecimal byte given at the left of the plus sign to form a single opcode byte.
+| Value  | Meaning                                                                                                                                                                                                                                                      |
+| NP     | Indicates the use of 66/F2/F3 prefixes (beyond those already part of the instructions opcode) are not allowed with the instruction                                                                                                                           |
+| NFx    | Indicates the use of F2/F3 prefixes (beyond those already part of the instructions opcode) are not allowed with the instruction.                                                                                                                             |
+| REX.W  | Indicates the use of a REX prefix that affects operand size or instruction semantics ;REX prefixes that promote legacy instructions to 64-bit behavior are not listed explicitly in the opcode column.                                                       |
+| /digit | A digit between 0 and 7 indicates that the ModR/M byte of the instruction uses only the r/m (register or memory) operand. The reg field contains the digit that provides an extension to the instruction's opcode.                                           |
+| /r     | Indicates that the ModR/M byte of the instruction contains a register operand and an r/m operand.                                                                                                                                                            |
+| cb     | A 1-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                            |
+| cw     | A 2-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                            |
+| cd     | A 4-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                            |
+| cp     | A 6-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                            |
+| co     | A 8-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                            |
+| ct     | A 10-byte value following the opcode; can be used to specify a code offset and possibly a new value for the code segment register.                                                                                                                           |
+| ib     | A 1-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.      |
+| iw     | A 2-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.      |
+| id     | A 4-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.      |
+| io     | A 8-byte immediate operand to the instruction that follows the opcode or ModR/M bytes or scale-indexing bytes. The opcode determines if the operand is a signed value. All words and doublewords and quadwords are given with the low-order byte first.      |
+| +rb    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.                                                                                                                                                  |
+| +rw    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.                                                                                                                                                  |
+| +rd    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.                                                                                                                                                  |
+| +ro    | Indicates the lower 3 bits of the opcode byte is used to encode the register operand without a modR/M byte.                                                                                                                                                  |
+| +i     | A number used in floating-point instructions when one of the operands is ST(i) (i is an integer between 0 and 7) from the FPU register stack. The number i is added to the hexadecimal byte given at the left of the plus sign to form a single opcode byte. |
 
 Notes
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,99 +35,82 @@ op code column       | The opcode column shows the object code produced for each
 
 Register Codes Associated With +rb, +rw, +rd, +ro; N.E = Not Encodable, Registers R8 - R15: Available in 64-Bit Mode Only,quadword registers available in 64-Bit Mode only
 
-8-bit registers
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Reg Field | Register | REX.B | 64-bit Only
----------------------------------------------------------------------------------------------------------------------------------------
-0         | AL       | None  | False
-1         | CL       | None  | False
-2         | DL       | None  | False
-3         | BL       | None  | False
-4         | AH       | N.E.  | False
-5         | CH       | N.E.  | False
-6         | DH       | N.E.  | False
-7         | BH       | N.E.  | False
-0         | R8L      | Yes   | True
-1         | R9L      | Yes   | True
-2         | R10L     | Yes   | True
-3         | R11L     | Yes   | True
-4         | R12L     | Yes   | True
-5         | R13L     | Yes   | True
-6         | R14L     | Yes   | True
-7         | R15L     | Yes   | True
-4         | SPL      | Yes   | False
-5         | BPL      | Yes   | False
-6         | SIL      | Yes   | False
-7         | DIL      | Yes   | False
-
-16-bit registers
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Reg Field | Register | Rex.B | 64-bit Only
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-0         | AX      | None   | False
-1         | CX      | None   | False
-2         | DX      | None   | False 
-3         | BX      | None   | False
-4         | SP      | None   | False
-5         | BP      | None   | False
-6         | SI      | None   | False
-7         | DI      | None   | False
-4         | SP      | None   | False
-5         | BP      | None   | False
-6         | SI      | None   | False
-7         | DI      | None   | False
-0         | R8W     | Yes    | True
-1         | R9W     | Yes    | True
-2         | R10W    | Yes    | True
-3         | R11W    | Yes    | True
-4         | R12W    | Yes    | True
-5         | R13W    | Yes    | True
-6         | R14W    | Yes    | True
-7         | R15W    | Yes    | True
-
-32-bit registers
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Reg Field | Register | Rex.B | 64-bit Only
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-0         | EAX      | None  | False 
-1         | ECX      | None  | False 
-2         | EDX      | None  | False
-3         | EBX      | None  | False 
-4         | ESP      | None  | False 
-5         | EBP      | None  | False 
-6         | ESI      | None  | False 
-7         | EDI      | None  | False 
-4         | ESP      | None  | False 
-5         | EBP      | None  | False 
-6         | ESI      | None  | False 
-7         | EDI      | None  | False
-0         | R8D      | Yes   | True 
-1         | R9D      | Yes   | True
-2         | R10D     | Yes   | True 
-3         | R11D     | Yes   | True 
-4         | R12D     | Yes   | True 
-5         | R13D     | Yes   | True 
-6         | R14D     | Yes   | True 
-7         | R15D     | Yes   | True 
-
-
-64-bit registers
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Reg Field | Register | Rex.B | 64-bit Only
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-0 | RAX      | 64    | None  | True
-1 | RCX      | 64    | None  | True
-2 | RDX      | 64    | None  | True
-3 | RBX      | 64    | None  | True
-4 | RSP      | 64    | None  | True
-5 | RBP      | 64    | None  | True
-6 | RSI      | 64    | None  | True
-7 | RDI      | 64    | None  | True
-0 | R8       | 64    | Yes   | True
-1 | R9       | 64    | Yes   | True
-2 | R10      | 64    | Yes   | True
-3 | R11      | 64    | Yes   | True
-4 | R12      | 64    | Yes   | True
-5 | R13      | 64    | Yes   | True
-6 | R14      | 64    | Yes   | True
-7 | R15      | 64    | Yes   | True
+# Register Field Codes
+------------------------------------------------------------------
+| Reg Field | Register | Width | REX.B | 64-bit Only |
+| 0         | AL       | 8     | None  | False       |
+| 1         | CL       | 8     | None  | False       |
+| 2         | DL       | 8     | None  | False       |
+| 3         | BL       | 8     | None  | False       |
+| 4         | AH       | 8     | N.E.  | False       |
+| 5         | CH       | 8     | N.E.  | False       |
+| 6         | DH       | 8     | N.E.  | False       |
+| 7         | BH       | 8     | N.E.  | False       |
+| 0         | R8L      | 8     | Yes   | True        |
+| 1         | R9L      | 8     | Yes   | True        |
+| 2         | R10L     | 8     | Yes   | True        |
+| 3         | R11L     | 8     | Yes   | True        |
+| 4         | R12L     | 8     | Yes   | True        |
+| 5         | R13L     | 8     | Yes   | True        |
+| 6         | R14L     | 8     | Yes   | True        |
+| 7         | R15L     | 8     | Yes   | True        |
+| 4         | SPL      | 8     | Yes   | False       |
+| 5         | BPL      | 8     | Yes   | False       |
+| 6         | SIL      | 8     | Yes   | False       |
+| 7         | DIL      | 8     | Yes   | False       |
+| 0         | AX       | 16    | None  | False       |
+| 1         | CX       | 16    | None  | False       |
+| 2         | DX       | 16    | None  | False       |
+| 3         | BX       | 16    | None  | False       |
+| 4         | SP       | 16    | None  | False       |
+| 5         | BP       | 16    | None  | False       |
+| 6         | SI       | 16    | None  | False       |
+| 7         | DI       | 16    | None  | False       |
+| 4         | SP       | 16    | None  | False       |
+| 5         | BP       | 16    | None  | False       |
+| 6         | SI       | 16    | None  | False       |
+| 7         | DI       | 16    | None  | False       |
+| 0         | R8W      | 16    | Yes   | True        |
+| 1         | R9W      | 16    | Yes   | True        |
+| 2         | R10W     | 16    | Yes   | True        |
+| 3         | R11W     | 16    | Yes   | True        |
+| 4         | R12W     | 16    | Yes   | True        |
+| 5         | R13W     | 16    | Yes   | True        |
+| 6         | R14W     | 16    | Yes   | True        |
+| 7         | R15W     | 16    | Yes   | True        |
+| 0         | EAX      | 32    | None  | False       |
+| 1         | ECX      | 32    | None  | False       |
+| 2         | EDX      | 32    | None  | False       |
+| 3         | EBX      | 32    | None  | False       |
+| 4         | ESP      | 32    | None  | False       |
+| 5         | EBP      | 32    | None  | False       |
+| 6         | ESI      | 32    | None  | False       |
+| 7         | EDI      | 32    | None  | False       |
+| 4         | ESP      | 32    | None  | False       |
+| 5         | EBP      | 32    | None  | False       |
+| 6         | ESI      | 32    | None  | False       |
+| 7         | EDI      | 32    | None  | False       |
+| 0         | R8D      | 32    | Yes   | True        |
+| 1         | R9D      | 32    | Yes   | True        |
+| 2         | R10D     | 32    | Yes   | True        |
+| 3         | R11D     | 32    | Yes   | True        |
+| 4         | R12D     | 32    | Yes   | True        |
+| 5         | R13D     | 32    | Yes   | True        |
+| 6         | R14D     | 32    | Yes   | True        |
+| 7         | R15D     | 32    | Yes   | True        |
+| 0         | RAX      | 64    | None  | True        |
+| 1         | RCX      | 64    | None  | True        |
+| 2         | RDX      | 64    | None  | True        |
+| 3         | RBX      | 64    | None  | True        |
+| 4         | RSP      | 64    | None  | True        |
+| 5         | RBP      | 64    | None  | True        |
+| 6         | RSI      | 64    | None  | True        |
+| 7         | RDI      | 64    | None  | True        |
+| 0         | R8       | 64    | Yes   | True        |
+| 1         | R9       | 64    | Yes   | True        |
+| 2         | R10      | 64    | Yes   | True        |
+| 3         | R11      | 64    | Yes   | True        |
+| 4         | R12      | 64    | Yes   | True        |
+| 5         | R13      | 64    | Yes   | True        |
+| 6         | R14      | 64    | Yes   | True        |
+| 7         | R15      | 64    | Yes   | True        |

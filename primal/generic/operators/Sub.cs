@@ -21,25 +21,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return subI8(lhs,rhs);
+                return generic<T>((sbyte)(int8(lhs) - int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return subU8(lhs, rhs);
+                return generic<T>((byte)(uint8(lhs) - uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return subI16(lhs, rhs);
+                return generic<T>((short)(int16(lhs) - int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return subU16(lhs,rhs);
+                return generic<T>((ushort)(uint16(lhs) - uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return subI32(lhs, rhs);
+                return generic<T>(int32(lhs) - int32(rhs));
             else if(typeof(T) == typeof(uint))
-                return subU32(lhs, rhs);
+                return generic<T>(uint32(lhs) - uint32(rhs));
             else if(typeof(T) == typeof(long))
-                return subI64(lhs,rhs);
+                return generic<T>(int64(lhs) - int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                return subU64(lhs,rhs);
+                return generic<T>(uint64(lhs) - uint64(rhs));
             else if(typeof(T) == typeof(float))
-                return subF32(lhs, rhs);
+                return generic<T>(float32(lhs) - float32(rhs));
             else if(typeof(T) == typeof(double))
-                return subF64(lhs,rhs);
+                return generic<T>(float64(lhs) - float64(rhs));
             else            
                 throw unsupported<T>();
         }
@@ -73,45 +73,6 @@ namespace Z0
         }
 
         
-        [MethodImpl(Inline)]
-        static T subI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) - int8(rhs)));
-
-        [MethodImpl(Inline)]
-        static T subU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) - uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        static T subI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) - int16(rhs)));
-
-        [MethodImpl(Inline)]
-        static T subU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) - uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        static T subI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) - int32(rhs));
-        
-        [MethodImpl(Inline)]
-        static T subU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) - uint32(rhs));
-
-        [MethodImpl(Inline)]
-        static T subI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) - int64(rhs));
-
-        [MethodImpl(Inline)]
-        static T subU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) - uint64(rhs));
-
-        [MethodImpl(Inline)]
-        static T subF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) - float32(rhs));
-
-        [MethodImpl(Inline)]
-        static T subF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) - float64(rhs));
 
         [MethodImpl(Inline)]
         static ref T subI8<T>(ref T lhs, T rhs)

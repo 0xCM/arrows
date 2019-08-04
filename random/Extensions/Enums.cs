@@ -14,6 +14,7 @@ namespace Z0
 
     partial class RngX
     {
+
         public static IEnumerable<E> EnumStream<E>(this IRandomSource random)
             where E : struct, Enum
         {
