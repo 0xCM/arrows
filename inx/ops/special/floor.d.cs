@@ -48,19 +48,6 @@ namespace Z0
         public static void floor(Vec256<double> src, ref double dst)
             => store(Ceiling(src), ref dst);
 
-        [MethodImpl(Inline)]
-        public static ref Num128<float> floor(ref Num128<float> src)
-        {
-            src = FloorScalar(src);
-            return ref src;
-        }
-        
-        [MethodImpl(Inline)]
-        public static ref Num128<double> floor(ref Num128<double> src)
-        {
-            src = FloorScalar(src);
-            return ref src;
-        }
     
     }
 

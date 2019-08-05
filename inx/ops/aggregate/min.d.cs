@@ -83,13 +83,6 @@ namespace Z0
         public static Vec256<double> min(in Vec256<double> lhs, in Vec256<double> rhs)
             => Min(lhs, rhs); 
  
-        [MethodImpl(Inline)]
-        public static Num128<float> min(in Num128<float> lhs, in Num128<float> rhs)
-            => MinScalar(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Num128<double> min(in Num128<double> lhs, in Num128<double> rhs)
-            => MinScalar(lhs, rhs);
 
     }
 }

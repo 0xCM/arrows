@@ -21,7 +21,7 @@ namespace Z0.Mkl
         /// <param name="n">The number of vector components</param>
         /// <param name="X">A reference to the vector head</param>
         /// <param name="incX">?</param>
-        [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern float cblas_sasum(int n, ref float X, int incX);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0.Mkl
         /// <param name="n">The number of vector components</param>
         /// <param name="X">A reference to the vector head</param>
         /// <param name="incX">?</param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern double cblas_dasum(int n, ref double X, int incX);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0.Mkl
         /// <param name="n">The number of vector components</param>
         /// <param name="X">A reference to the vector head</param>
         /// <param name="incX">?</param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern float cblas_scasum(int n, ref ComplexF32 X, int incX);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0.Mkl
         /// <param name="n">The number of vector components</param>
         /// <param name="X">A reference to the vector head</param>
         /// <param name="incX">?</param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern double cblas_dzasum(int n, ref ComplexF64 X, int incX);
     }
 

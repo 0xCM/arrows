@@ -250,48 +250,26 @@ namespace Z0
         public T Or(T rhs)
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(math.or(int8(x),int8(rhs)));
+                return generic<T>((sbyte)(int8(x) | int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(math.or(uint8(x),uint8(rhs)));
+                return generic<T>((byte)(uint8(x) | uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(math.or(int16(x),int16(rhs)));
+                return generic<T>((short)(int16(x) | int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(math.or(uint16(x),uint16(rhs)));
+                return generic<T>((ushort)(uint16(x) | uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(math.or(int32(x),int32(rhs)));
+                return generic<T>(int32(x) | int32(x));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(math.or(uint32(x),uint32(rhs)));
+                return generic<T>(uint32(x) | uint32(rhs));
             else if(typeof(T) == typeof(long))
-                return generic<T>(math.or(int64(x),int64(rhs)));
+                return generic<T>(int64(x) | int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(math.or(uint64(x),uint64(rhs)));
+                return generic<T>(uint64(x) | uint64(rhs));
             else            
                 throw unsupported<T>();
         }       
 
-        [MethodImpl(Inline)]
-        static ref T or(ref T lhs, T rhs)
-        {
-            if(typeof(T) == typeof(sbyte))
-                math.or(ref int8(ref lhs), int8(rhs));
-            else if(typeof(T) == typeof(byte))
-                math.or(ref uint8(ref lhs), uint8(rhs));
-            else if(typeof(T) == typeof(short))
-                math.or(ref int16(ref lhs), int16(rhs));
-            else if(typeof(T) == typeof(ushort))
-                math.or(ref uint16(ref lhs), uint16(rhs));
-            else if(typeof(T) == typeof(int))
-                math.or(ref int32(ref lhs), int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                math.or(ref uint32(ref lhs), uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                math.or(ref int64(ref lhs), int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                math.or(ref uint64(ref lhs), uint64(rhs));
-            else            
-                throw unsupported<T>();
-            return ref lhs;
-        }
+
 
 
     }

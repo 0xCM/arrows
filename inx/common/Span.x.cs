@@ -94,21 +94,6 @@ namespace Z0
             where T : struct            
                 => src.ToSpan256().Unblock();
  
-         [MethodImpl(Inline)]
-        public static Num128<T> ToScalar128<T>(this Vec128<T> src, int index)
-            where T : struct            
-                => Num128.define(src[index]);
-
-        /// <summary>
-        /// Loads a scalar vector from a blocked span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="block">The block index</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Num128<T> ToScalar128<T>(this ReadOnlySpan128<T> src, int block = 0)            
-            where T : struct            
-                => Num128.load(src,block);
 
     }
 }

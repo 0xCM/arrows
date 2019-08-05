@@ -168,11 +168,12 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> Replicate<T>(this Span256<T> src)
+        public static Span256<T> Replicate<T>(this Span256<T> src, bool structureOnly = false)
             where T : struct
         {
             var dst = span<T>(src.Length);
-            src.CopyTo(dst);
+            if(!structureOnly)
+                src.CopyTo(dst);
             return Z0.Span256.load<T>(dst);
         }
 

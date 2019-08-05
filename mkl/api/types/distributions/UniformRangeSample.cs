@@ -7,7 +7,7 @@ namespace Z0.Mkl
     using System;
     using System.Linq;
     using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
@@ -21,7 +21,6 @@ namespace Z0.Mkl
             this.Range = range;
             this.SampleData = data;
         }
-
 
         /// <summary>
         /// The generator used during sample generation
@@ -44,6 +43,4 @@ namespace Z0.Mkl
         public string Format()
             => SampleData.Format();
     }
-
-
 }

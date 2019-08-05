@@ -16,9 +16,6 @@ namespace Z0.Mkl
     [SuppressUnmanagedCodeSecurity]
     public static class MklImports
     {
-        internal const string MklDll = "mkl_rt.dll";
-
-
         internal const CallingConvention Cdecl = CallingConvention.Cdecl;
 
     }

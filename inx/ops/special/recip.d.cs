@@ -17,22 +17,6 @@ namespace Z0
     {
 
 
-        [MethodImpl(Inline)]
-        public static Vec128<float> recip(Vec128<float> src)
-            => Reciprocal(src);
-
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> recip(Vec256<float> src)
-            => Reciprocal(src);
-
-
-        [MethodImpl(Inline)]
-        public static ref Num128<float> recip(ref Num128<float> src)
-        {
-            src = ReciprocalScalar(src);
-            return ref src;
-        }
 
     }
 

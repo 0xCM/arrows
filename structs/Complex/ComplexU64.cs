@@ -29,6 +29,22 @@ namespace Z0
 			return MemoryMarshal.Cast<ulong,ComplexU64>(src);
 		}
 
+		/// <summary>
+		/// Implicitly constructs a <see cref='Complex<float>'/> value from its equivalent non-generic representation
+		/// </summary>
+		/// <param name="src">The source value</param>
+		[MethodImpl(Inline)]
+		public static implicit operator Complex<ulong>(ComplexU64 src)
+			=> (src.re, src.im);
+
+		/// <summary>
+		/// Implicitly constructs a <see cref='ComplexF32'/> value from its equivalent generic representation
+		/// </summary>
+		/// <param name="src">The source value</param>
+		[MethodImpl(Inline)]
+		public static implicit operator ComplexU64(Complex<ulong> src)
+			=> (src.re, src.im);
+
         /// <summary>
         /// Tests the operands for equality
         /// </summary>
@@ -114,17 +130,17 @@ namespace Z0
 		}		
 
         /// <summary>
-        /// Renders the value as a string per supplied options
+        /// Formats the real and imaginar parts of a complex number in one of two canonical forms
         /// </summary>
         /// <param name="tupelize">Whether the value should be represented as a tuple (re,im) or in canonical form re +imi</param>
-		public string Format(bool tupleize = false)
-			=> tupleize ? $"({re}, {im})" : $"{re} + {im}i";			
+		public string Format(bool tupelize = false)
+			=> Complex<ulong>.Format(re,im,tupelize);
+
+        public override int GetHashCode()
+             => Complex<ulong>.Hash(re,im);
 
 		public override string ToString() 
-			=>  Format();
-        
-        public override int GetHashCode()
-            => $"{re}{im}".GetHashCode();
+			=>  Format();        
 
         public override bool Equals(object src)
             => src is ComplexU64 c ? (c == this) : false;

@@ -19,13 +19,14 @@ namespace Z0
         /// <summary>
         /// Loads a sample from a span
         /// </summary>
-        /// <param name="dim">The sample dimension</param>
         /// <param name="src">The source span</param>
+        /// <param name="dim">The sample dimension</param>
         /// <param name="offset">The offset into the source span from to begin the load</param>
         /// <typeparam name="T">The sample data type</typeparam>
-        public static Sample<T> Load<T>(int dim, Span<T> src, int offset = 0)
+        [MethodImpl(Inline)]
+        public static Sample<T> Load<T>(Span<T> src, int dim = 1,  int offset = 0)
             where T : struct
-                => Sample<T>.Load(dim, src, offset);
+                => Sample<T>.Load(src, dim, offset);
 
         /// <summary>
         /// Allocates a sample 
@@ -43,6 +44,13 @@ namespace Z0
     public ref struct Sample<T>
         where T : struct
     {
+        /// <summary>
+        /// The number of observations that comprise the sample
+        /// </summary>
+        public readonly int Count;
+
+        public readonly int Dimension;
+
 
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Sample<T> src)
@@ -58,16 +66,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator != (Sample<T> lhs, Sample<T> rhs)
-            => lhs.data != rhs.data;
-        
+            => lhs.data != rhs.data;        
         
         [MethodImpl(Inline)]
         public static Sample<T> Alloc(int dim, int count)
             => new Sample<T>(dim, new T[count * dim]);
     
         [MethodImpl(Inline)]
-        public static Sample<T> Load(int dim, Span<T> src, int offset = 0)
-            => offset != 0 ? new Sample<T>(dim, src.Slice(offset)) : new Sample<T>(dim, src);
+        public static Sample<T> Load(Span<T> src, int dim,  int offset = 0)
+            => offset != 0 ? new Sample<T>(src.Slice(offset), dim) : new Sample<T>(src, dim);
         
         [MethodImpl(Inline)]
         public static unsafe Sample<T> Load(int dim, void* src, int srcLen)        
@@ -94,7 +101,7 @@ namespace Z0
         }
                 
         [MethodImpl(Inline)]
-        Sample(int dim, ReadOnlySpan<T> src)
+        Sample(ReadOnlySpan<T> src, int dim)
         {
             this.Dimension = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
@@ -103,7 +110,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        Sample(int dim, Span<T> src)
+        Sample(Span<T> src, int dim)
         {
             this.Dimension = dim;
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
@@ -129,7 +136,7 @@ namespace Z0
         public Sample<T> Observation(int vecix)
         {
             var slice = data.Slice(vecix * Dimension, Dimension); 
-            return new Sample<T>(Dimension, slice);
+            return new Sample<T>(slice, Dimension);
         }
 
         /// <summary>
@@ -140,7 +147,7 @@ namespace Z0
         /// <param name="count">The number of observations to retrieve</param>
         [MethodImpl(Inline)]
         public Sample<T> Observations(int vecix, int count)
-            => new Sample<T>(Dimension, data.Slice(vecix * Dimension, count * Dimension));
+            => new Sample<T>(data.Slice(vecix * Dimension, count * Dimension), Dimension);
             
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
@@ -177,7 +184,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Sample<S> As<S>()                
             where S : struct
-                => Sample<S>.Load(Dimension, MemoryMarshal.Cast<T,S>(data));                    
+                => Sample<S>.Load(MemoryMarshal.Cast<T,S>(data),Dimension);                    
 
         /// <summary>
         /// The (non-blocked) data length
@@ -187,13 +194,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => data.Length;
         }
-
-        /// <summary>
-        /// The number of observations that comprise the sample
-        /// </summary>
-        public readonly int Count;
-
-        public readonly int Dimension;
 
         public bool IsEmpty
         {

@@ -131,23 +131,24 @@ namespace Z0
 		}		
 
         /// <summary>
-        /// Renders the value as a string per supplied options
+        /// Formats the real and imaginar parts of a complex number in one of two canonical forms
         /// </summary>
         /// <param name="tupelize">Whether the value should be represented as a tuple (re,im) or in canonical form re +imi</param>
-		public string Format(bool tupleize = false)
-			=> tupleize ? $"({re}, {im})" : $"{re} + {im}i";			
+		public string Format(bool tupelize = false)
+			=> Complex<sbyte>.Format(re,im,tupelize);
 
-		public override string ToString() 
-			=>  Format();
-
-       public override int GetHashCode()
-            => $"{re}{im}".GetHashCode();
-
-        public override bool Equals(object src)
-            => src is ComplexI8 c ? (c == this) : false;
+        public override int GetHashCode()
+             => Complex<sbyte>.Hash(re,im);
 
         [MethodImpl(Inline)]
         public bool Equals(ComplexI8 src)
             => this == src;
+
+		public override string ToString() 
+			=>  Format();
+
+        public override bool Equals(object src)
+            => src is ComplexI8 c ? (c == this) : false;
+
 	}
 }

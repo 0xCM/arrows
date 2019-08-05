@@ -55,10 +55,6 @@ namespace Z0
             where T : struct
                 =>  ref Num.single(ref gmath.mod(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
-        [MethodImpl(Inline)]
-        public static ref num<T> Or<T>(this ref num<T> lhs, num<T> rhs)
-            where T : struct
-                =>  ref Num.single(ref gmath.or(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> XOr<T>(this ref num<T> lhs, num<T> rhs)

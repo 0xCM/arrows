@@ -132,16 +132,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
-        public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.sub(in float32(in lhs), in float32(in rhs)).As<T>();
-            else if(typeof(T) == typeof(double))
-                return dinx.sub(in float64(in lhs), in float64(in rhs)).As<T>();
-                throw unsupported<T>();
-        }
 
         public static Span128<T> sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct

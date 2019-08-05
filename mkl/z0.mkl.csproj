@@ -15,12 +15,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>z0-vml-clib.dll</TargetPath>
     </ContentWithTargetPath>
-  </ItemGroup>
 
-  <ItemGroup>
     <ContentWithTargetPath Include="lib\dll\z0-vsl-clib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>z0-vsl-clib.dll</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="lib\dll\z0-cblas-clib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>z0-cblas-clib.dll</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="lib\dll\z0-lapack-clib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>z0-lapack-clib.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
 

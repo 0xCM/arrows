@@ -81,12 +81,25 @@ namespace Z0.Test
             VerifyExtract(Random.BitMatrix<N5,N7,uint>());            
         }
         
-        public void ColumnExtract()
+        public void ColumnExtract16()
         {
             var m = Random.BitMatrix16();
             var c = m.Col(3);
             for(var i=0; i<16; i++)
                 Claim.eq(c[i], m[i,3]);
+        }
+
+
+        public void ColumnExtract64()
+        {
+            for(var j = 0; j< Pow2.T14; j++)
+            {
+                var m = Random.BitMatrix64();
+                var colidx = 13;
+                var c = m.Col(colidx);
+                for(var i=0; i<m.RowDim; i++)
+                    Claim.eq(c[i], m[i,colidx]);
+            }
         }
 
 

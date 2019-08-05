@@ -21,7 +21,7 @@ namespace Z0.Mkl
         /// <param name="n">The number of cmponents in the source vector</param>
         /// <param name="X">A reference the source vector head</param>
         /// <param name="incX"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern ulong cblas_isamax(int n, ref float X, int incX);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0.Mkl
         /// <param name="X">A reference the source vector head</param>
         /// <param name="incX"></param>
         /// <returns></returns>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern ulong cblas_idamax(int n, ref double X, int incX);
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Z0.Mkl
         /// <param name="X">A reference the source vector head</param>
         /// <param name="incX"></param>
         /// <returns></returns>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern ulong cblas_icamax(int n, ref ComplexF32 X, int incX);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="n">The number of cmponents in the source vector</param>
         /// <param name="X">A reference the source vector head</param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern ulong cblas_izamax(int n, ref ComplexF64 X, int incX);
 
     }

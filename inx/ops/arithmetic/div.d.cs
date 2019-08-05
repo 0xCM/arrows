@@ -52,21 +52,6 @@ namespace Z0
         public static void div(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => store(Divide(lhs, rhs), ref dst);
 
-        [MethodImpl(Inline)]
-        public static Num128<float> div(in Num128<float> lhs, in Num128<float> rhs)
-            => DivideScalar(lhs, rhs);
-            
-        [MethodImpl(Inline)]
-        public static Num128<double> div(in Num128<double> lhs, in Num128<double> rhs)
-            => DivideScalar(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static void div(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
-            => store(DivideScalar(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void div(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
-            => store(DivideScalar(lhs, rhs), ref dst);
 
     }
 }

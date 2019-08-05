@@ -12,10 +12,10 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public ref struct UniformBitsSample<T>
+    public readonly ref struct UniformBitsSample<T>
         where T : struct
     {
-        public UniformBitsSample(BRNG rng, Span<T> data)
+        public UniformBitsSample(BRNG rng,  Span<T> data)
         {
             this.SourceRng = rng;
             this.SampleData = data;
@@ -24,12 +24,12 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Span<T> SampleData;                
 
         /// <summary>
         /// Rnders the sample data as text
@@ -37,6 +37,5 @@ namespace Z0.Mkl
         public string Format()
             => SampleData.Format();
     }
-
 
 }

@@ -23,7 +23,7 @@ namespace Z0.Mkl
 		/// <param name="incX"></param>
 		/// <param name="Y">The second vector</param>
 		/// <param name="incY"></param>
-        [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern float cblas_sdot(int n, ref float X, int incX, ref float Y, int incY);
 
 		/// <summary>
@@ -34,13 +34,13 @@ namespace Z0.Mkl
 		/// <param name="incX"></param>
 		/// <param name="Y">The second vector</param>
 		/// <param name="incY"></param>
-        [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern double cblas_ddot(int n, ref double X, int incX, ref double Y, int incY);
 
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern double cblas_dsdot(int n, ref float X, int incX, ref float Y, int incY);
 
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern float cblas_sdsdot(int n, ref float sb, ref float X, int incX, ref float Y, int incY);
 
     }

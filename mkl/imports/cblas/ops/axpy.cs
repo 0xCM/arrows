@@ -24,7 +24,7 @@ namespace Z0.Mkl
         /// <param name="incx"></param>
         /// <param name="y">The second vector to be used as both input and output</param>
         /// <param name="incy"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_saxpy (int n, float a, ref float x, int incx, ref float y, int incy);
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Z0.Mkl
         /// <param name="incx"></param>
         /// <param name="y">The second vector to be used as both input and output</param>
         /// <param name="incy"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_daxpy (int n, double a, ref double x, int incx, ref double y, int incy);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0.Mkl
         /// <param name="incx"></param>
         /// <param name="y">The second vector to be used as both input and output</param>
         /// <param name="incy"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_caxpy (int n, ref ComplexF32 a, ref ComplexF32 x, int incx, ref ComplexF32 y, int incy);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Z0.Mkl
         /// <param name="incx"></param>
         /// <param name="y">The second vector to be used as both input and output</param>
         /// <param name="incy"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_zaxpy (int n, ref ComplexF64 a, ref ComplexF64 x, int incx, ref ComplexF64 y, int incy);        
 
 

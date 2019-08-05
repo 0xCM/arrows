@@ -83,6 +83,37 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,T> Or<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            lhs.Data.ReadOnly().Or(rhs.Data, lhs.Data);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,T> And<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            lhs.Data.ReadOnly().And(rhs.Data, lhs.Data);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,T> XOr<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            lhs.Data.ReadOnly().XOr(rhs.Data, lhs.Data);
+            return ref lhs;
+        }
+
+
         /// <summary>
         /// Writes the matrix to a delimited file
         /// </summary>

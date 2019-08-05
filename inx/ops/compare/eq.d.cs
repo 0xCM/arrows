@@ -101,13 +101,6 @@ namespace Z0
         public static Vec256Cmp<double> eq(in Vec256<double> lhs, in Vec256<double> rhs)
             => Vec256Cmp.Define<double>(Compare(lhs,rhs, FloatComparisonMode.UnorderedEqualNonSignaling));
 
-        [MethodImpl(Inline)]
-        public static bool eq(in Num128<float> lhs,in Num128<float> rhs)
-            => CompareScalarUnorderedEqual(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static bool eq(in Num128<double> lhs,in Num128<double> rhs)
-            => CompareScalarUnorderedEqual(lhs, rhs);
 
     }
 }

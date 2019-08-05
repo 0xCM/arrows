@@ -6,8 +6,7 @@ namespace Z0.Mkl
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
@@ -17,7 +16,7 @@ namespace Z0.Mkl
     /// the BRNG identifier and distribution parameters that were specified
     /// when the sample was taken
     /// </summary>
-    public ref struct ChiSquareSample<T>
+    public readonly ref struct ChiSquareSample<T>
         where T : struct
     {
         public ChiSquareSample(BRNG rng, int freedom, Span<T> data)
@@ -30,17 +29,17 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
         /// <summary>
         /// The degrees of freedom
         /// </summary>
-        public int Freedom;
+        public readonly int Freedom;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Span<T> SampleData;        
 
         /// <summary>
         /// Rnders the sample data as text

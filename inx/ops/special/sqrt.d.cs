@@ -32,13 +32,6 @@ namespace Z0
         public static Vec256<double> sqrt(in Vec256<double> src)
             => Sqrt(src);
 
-        [MethodImpl(Inline)]
-        public static Num128<float> sqrt(in Num128<float> src)
-            => SqrtScalar(src);
-
-        [MethodImpl(Inline)]
-        public static Num128<double> sqrt(in Num128<double> src)
-            => SqrtScalar(src);
 
     }
 }

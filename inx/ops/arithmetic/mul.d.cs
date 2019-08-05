@@ -157,15 +157,6 @@ namespace Z0
         public static void mul(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => store(Multiply(lhs, rhs), ref dst);
 
-        /// <intrinsic>__m128 _mm_mul_ss (__m128 a, __m128 b) MULPS xmm, xmm/m32</intrinsic>
-        [MethodImpl(Inline)]
-        public static Num128<float> mul(in Num128<float> lhs, in Num128<float> rhs)
-            =>  MultiplyScalar(lhs, rhs);
-
-        /// <intrinsic>__m128d _mm_mul_sd (__m128d a, __m128d b) MULSD xmm, xmm/m64</intrinsic>
-        [MethodImpl(Inline)]
-        public static Num128<double> mul(in Num128<double> lhs, in Num128<double> rhs)
-            =>  MultiplyScalar(lhs, rhs);
 
     }
 }

@@ -18,7 +18,8 @@ namespace Z0.Mkl
 	[SuppressUnmanagedCodeSecurity]
     public static partial class CBLAS
     {
-    
+        const string CBlasDll = "z0-cblas-clib.dll";
+
 
     }
 

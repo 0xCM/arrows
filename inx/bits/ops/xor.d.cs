@@ -20,7 +20,63 @@ namespace Z0
 
     partial class Bits
     {
+        [MethodImpl(Inline)]
+        public static ref sbyte or(ref sbyte lhs, sbyte rhs)
+        {
+            lhs = (sbyte)(lhs | rhs);
+            return ref lhs;
+        }
 
+        [MethodImpl(Inline)]
+        public static ref byte or(ref byte lhs, byte rhs)
+        {
+            lhs = (byte)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short or(ref short lhs, short rhs)
+        {
+            lhs = (short)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort or(ref ushort lhs, ushort rhs)
+        {
+            lhs = (ushort)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int or(ref int lhs, int rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint or(ref uint lhs, uint rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long or(ref long lhs, long rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong or(ref ulong lhs, ulong rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+ 
         [MethodImpl(Inline)]
         public static UInt128 xor(in UInt128 lhs, in UInt128 rhs)
             => xor(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();
@@ -191,7 +247,127 @@ namespace Z0
         [MethodImpl(Inline)]
         public unsafe static void xor(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => vstore(Xor(lhs,rhs), ref dst);
-         
+
+        public static Span<sbyte> xor(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<byte> xor(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<short> xor(Span<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ushort> xor(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<int> xor(Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<uint> xor(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<long> xor(Span<long> lhs, ReadOnlySpan<long> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ulong> xor(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<byte> xor(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<short> xor(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<ushort> xor(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<int> xor(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<uint> xor(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<long> xor(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<ulong> xor(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
     }
 
     partial class dinx

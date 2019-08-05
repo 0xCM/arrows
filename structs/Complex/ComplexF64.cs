@@ -16,6 +16,16 @@ namespace Z0
 	public struct ComplexF64
 	{
 		/// <summary>
+		/// Specifies the real component
+		/// </summary>
+		public double re;
+        
+ 		/// <summary>
+		/// Specifies the imaginary component
+		/// </summary>
+        public double im;
+
+		/// <summary>
 		/// Loads a span of span of complext values from a source span where adjacent 
 		/// entries (i,i+j) are interpreted respectively as real and imaginary components
 		/// </summary>
@@ -27,6 +37,32 @@ namespace Z0
 				throw new Exception("Missing component");
 			return MemoryMarshal.Cast<double,ComplexF64>(src);
 		}
+
+		/// <summary>
+		/// Implcitly converts a complex value to a 2-tuple
+		/// </summary>
+		/// <param name="x">The source value</param>
+		/// <param name="re">The real component</param>
+		/// <param name="im">The imaginary component</param>
+		[MethodImpl(Inline)]
+		public static implicit operator (double re, double im)(in ComplexF64 x)
+			=> (x.re, x.im);
+
+		/// <summary>
+		/// Implicitly constructs a <see cref='Complex<float>'/> value from its equivalent non-generic representation
+		/// </summary>
+		/// <param name="src">The source value</param>
+		[MethodImpl(Inline)]
+		public static implicit operator Complex<double>(ComplexF64 src)
+			=> (src.re, src.im);
+
+		/// <summary>
+		/// Implicitly constructs a <see cref='ComplexF32'/> value from its equivalent generic representation
+		/// </summary>
+		/// <param name="src">The source value</param>
+		[MethodImpl(Inline)]
+		public static implicit operator ComplexF64(Complex<double> src)
+			=> (src.re, src.im);
 
         /// <summary>
         /// Tests the operands for exact equality
@@ -73,25 +109,6 @@ namespace Z0
 		public static implicit operator ComplexF64(in (double re, double im) x)
 			=> new ComplexF64(x);
 
-		/// <summary>
-		/// Implcitly converts a complex value to a 2-tuple
-		/// </summary>
-		/// <param name="x">The source value</param>
-		/// <param name="re">The real component</param>
-		/// <param name="im">The imaginary component</param>
-		[MethodImpl(Inline)]
-		public static implicit operator (double re, double im)(in ComplexF64 x)
-			=> (x.re, x.im);
-
-		/// <summary>
-		/// Specifies the real component
-		/// </summary>
-		public double re;
-        
- 		/// <summary>
-		/// Specifies the imaginary component
-		/// </summary>
-        public double im;
 
 		/// <summary>
 		/// Constructs the complex number from a tuple with real and imaginary parts
@@ -130,22 +147,17 @@ namespace Z0
 		}		
 
         /// <summary>
-        /// Renders the value as a string per supplied options
+        /// Formats the real and imaginar parts of a complex number in one of two canonical forms
         /// </summary>
         /// <param name="tupelize">Whether the value should be represented as a tuple (re,im) or in canonical form re +imi</param>
-        /// <param name="scale">If specified, the presented scale of each component</param>
-		public string Format(bool tupelize = false, int? scale = null)
-		{
-			var x = (scale != null ? Math.Round(re,scale.Value) : re).ToString();
-			var y = (scale != null ? Math.Round(im,scale.Value) : im).ToString();
-			return tupelize ? $"({x}, {y})" : $"{x} + {y}i";					
-		}
+		public string Format(bool tupelize = false)
+			=> Complex<double>.Format(re,im);
 
 		public override string ToString() 
-			=>  Format(false, 4);
+			=>  Format();
 
         public override int GetHashCode()
-            => $"{re}{im}".GetHashCode();
+            => HashCode.Combine(re,im);
 
         public override bool Equals(object src)
             => src is ComplexF64 c ? (c == this) : false;

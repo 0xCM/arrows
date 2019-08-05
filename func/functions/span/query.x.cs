@@ -17,7 +17,6 @@ namespace Z0
 
     partial class xfunc
     {
-
         /// <summary>
         /// Determines whether any elements of the source match the target
         /// </summary>
@@ -106,10 +105,43 @@ namespace Z0
             return false;
         }
 
+        /// <summary>
+        /// Determines whether any elements of a span satisfy a supplied predicate
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="f">The predicate</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static bool Any<T>(this Span<T> src, Func<T,bool> f)
              where T : struct
                 => src.ReadOnly().Any(f);
+
+        /// <summary>
+        /// Counts the number of values in the source that satisfy the predicate
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="f">The predicate to evaluate over each element</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static int Count<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
+             where T : struct
+        {
+            int count = 0;
+            for(var i=0; i< src.Length; i++)
+                if(f(src[i]))
+                    count++;
+            return count;
+        }
+
+        /// <summary>
+        /// Counts the number of values in the source that satisfy the predicate
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="f">The predicate to evaluate over each element</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static int Count<T>(this Span<T> src, Func<T,bool> f)
+             where T : struct
+             => src.ReadOnly().Count(f);
 
         /// <summary>
         /// Determines whether all of the elements of a source span satisfy a supplied predicate
@@ -137,7 +169,5 @@ namespace Z0
         public static bool All<T>(this Span<T> src, Func<T,bool> f)
              where T : struct
                 => src.ReadOnly().All(f);
-
     }
-
 }

@@ -160,11 +160,6 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static num<T> or<T>(num<T> lhs, num<T> rhs)
-            where T : struct
-                => lhs.Or(rhs);
-
-        [MethodImpl(Inline)]
         public static num<T> xor<T>(num<T> lhs, num<T> rhs)
             where T : struct
                 => lhs.XOr(rhs);

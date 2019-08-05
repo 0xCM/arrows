@@ -44,220 +44,152 @@ namespace Z0
             where T : struct
                 => gbits.xor(in lhs, in rhs, ref dst);
 
-        public static Span128<T> XOr<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
+         [MethodImpl(Inline)]
+         public static Span128<T> XOr<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                int8(lhs).XOr(int8(rhs), int8(dst));
-            else if (typeof(T) == typeof(byte))
-                uint8(lhs).XOr(uint8(rhs), uint8(dst));                    
-            else if (typeof(T) == typeof(short))
-                int16(lhs).XOr(int16(rhs), int16(dst));
-            else if (typeof(T) == typeof(ushort))
-                uint16(lhs).XOr(uint16(rhs), uint16(dst));
-            else if(typeof(T) == typeof(int))
-                int32(lhs).XOr(int32(rhs), int32(dst));
-            else if(typeof(T) == typeof(uint))
-                uint32(lhs).XOr(uint32(rhs), uint32(dst));
-            else if(typeof(T) == typeof(long))
-                int64(lhs).XOr(int64(rhs), int64(dst));
-            else if(typeof(T) == typeof(ulong))
-                uint64(lhs).XOr(uint64(rhs), uint64(dst));
-            else if(typeof(T) == typeof(float))
-                float32(lhs).XOr(float32(rhs), float32(dst));
-            else if(typeof(T) == typeof(double))
-                float64(lhs).XOr(float64(rhs), float64(dst));                
-            else    
-                throw unsupported<T>();
-            return dst;   
-        }
+                => gbits.xor(lhs,rhs,dst);
 
+        [MethodImpl(Inline)]
         public static Span256<T> XOr<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
             where T : struct
+                => gbits.xor(lhs,rhs,dst);
+        
+        
+        /// <summary>
+        /// Computes a correctly-typed bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref sbyte XOr(this ref sbyte lhs, sbyte rhs)
         {
-            if (typeof(T) == typeof(sbyte))
-                int8(lhs).XOr(int8(rhs), int8(dst));
-            else if (typeof(T) == typeof(byte))
-                uint8(lhs).XOr(uint8(rhs), uint8(dst));                    
-            else if (typeof(T) == typeof(short))
-                int16(lhs).XOr(int16(rhs), int16(dst));
-            else if (typeof(T) == typeof(ushort))
-                uint16(lhs).XOr(uint16(rhs), uint16(dst));
-            else if(typeof(T) == typeof(int))
-                int32(lhs).XOr(int32(rhs), int32(dst));
-            else if(typeof(T) == typeof(uint))
-                uint32(lhs).XOr(uint32(rhs), uint32(dst));
-            else if(typeof(T) == typeof(long))
-                int64(lhs).XOr(int64(rhs), int64(dst));
-            else if(typeof(T) == typeof(ulong))
-                uint64(lhs).XOr(uint64(rhs), uint64(dst));
-            else if(typeof(T) == typeof(float))
-                float32(lhs).XOr(float32(rhs), float32(dst));
-            else if(typeof(T) == typeof(double))
-                float64(lhs).XOr(float64(rhs), float64(dst));                
-            else    
-                throw unsupported<T>();
-            return dst;   
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<sbyte> XOr(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
+        /// <summary>
+        /// Computes a correctly-typed bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref byte XOr(this ref byte lhs, byte rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<byte> XOr(this ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, in Span128<byte> dst)
+        /// <summary>
+        /// Computes a correctly-typed bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref ushort XOr(this ref ushort lhs, ushort rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<short> XOr(this ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, in Span128<short> dst)
+        /// <summary>
+        /// Computes a correctly-typed bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref short XOr(this ref short lhs, short rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<ushort> XOr(this ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, in Span128<ushort> dst)
+        /// <summary>
+        /// Computes a bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref int XOr(this ref int lhs, int rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<int> XOr(this ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, in Span128<int> dst)
+        /// <summary>
+        /// Computes a bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref uint XOr(this ref uint lhs, uint rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<uint> XOr(this ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
+        /// <summary>
+        /// Computes a bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+
+        [MethodImpl(Inline)]
+        public static ref long XOr(this ref long lhs, long rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
 
-        static Span128<long> XOr(this ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, in Span128<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
-        }
+        /// <summary>
+        /// Computes a bitwise or of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
 
-        static Span128<ulong> XOr(this ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
+        [MethodImpl(Inline)]
+        public static ref ulong XOr(this ref ulong lhs, ulong rhs)
         {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
+            lhs ^= rhs;
+            return ref lhs;
         }
+ 
+        [MethodImpl(Inline)]
+        public static Span<byte> XOr(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+            => math.xor(lhs, rhs, span<byte>(length(lhs,rhs)));
 
-        static Span128<float> XOr(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, in Span128<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<sbyte> XOr(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+            => math.xor(lhs, rhs, span<sbyte>(length(lhs,rhs)));
 
-        static Span128<double> XOr(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, in Span128<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<short> XOr(this ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+            => math.xor(lhs, rhs, span<short>(length(lhs,rhs)));
 
-        static Span256<sbyte> XOr(this ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, in Span256<sbyte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<ushort> XOr(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+            => math.xor(lhs, rhs, span<ushort>(length(lhs,rhs)));
 
-        static Span256<byte> XOr(this ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, in Span256<byte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<int> XOr(this ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+            => math.xor(lhs, rhs, span<int>(length(lhs,rhs)));
 
-        static Span256<short> XOr(this ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, in Span256<short> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<uint> XOr(this ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+            => math.xor(lhs, rhs, span<uint>(length(lhs,rhs)));
 
-        static Span256<ushort> XOr(this ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, in Span256<ushort> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
+        [MethodImpl(Inline)]
+        public static Span<long> XOr(this ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+            => math.xor(lhs, rhs, span<long>(length(lhs,rhs)));
 
-        static Span256<int> XOr(this ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, in Span256<int> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
-
-        static Span256<uint> XOr(this ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
-
-        static Span256<long> XOr(this ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, in Span256<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
-
-        static Span256<ulong> XOr(this ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
-
-        static Span256<float> XOr(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, in Span256<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        }
-
-        static Span256<double> XOr(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, in Span256<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
-            return dst;            
-        } 
-    }
+        [MethodImpl(Inline)]
+        public static Span<ulong> XOr(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+            => math.xor(lhs, rhs, span<ulong>(length(lhs,rhs)));
+ 
+   }
 }

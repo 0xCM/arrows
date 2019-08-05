@@ -50,21 +50,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.xor(int8(lhs), int8(rhs));
+                Bits.xor(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.xor(uint8(lhs), uint8(rhs));
+                Bits.xor(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.xor(int16(lhs), int16(rhs));
+                Bits.xor(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.xor(uint16(lhs), uint16(rhs));
+                Bits.xor(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.xor(int32(lhs), int32(rhs));
+                Bits.xor(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.xor(uint32(lhs), uint32(rhs));
+                Bits.xor(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                math.xor(int64(lhs), int64(rhs));
+                Bits.xor(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.xor(uint64(lhs), uint64(rhs));
+                Bits.xor(uint64(lhs), uint64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -75,21 +75,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.xor(int8(lhs), int8(rhs));
+                Bits.xor(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.xor(uint8(lhs), uint8(rhs));
+                Bits.xor(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.xor(int16(lhs), int16(rhs));
+                Bits.xor(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.xor(uint16(lhs), uint16(rhs));
+                Bits.xor(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.xor(int32(lhs), int32(rhs));
+                Bits.xor(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.xor(uint32(lhs), uint32(rhs));
+                Bits.xor(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                math.xor(int64(lhs), int64(rhs));
+                Bits.xor(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.xor(uint64(lhs), uint64(rhs));
+                Bits.xor(uint64(lhs), uint64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -207,6 +207,223 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        [MethodImpl(Inline)]
+         public static Span128<T> xor<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                int8(lhs).XOrSpan(int8(rhs), int8(dst));
+            else if (typeof(T) == typeof(byte))
+                uint8(lhs).XOrSpan(uint8(rhs), uint8(dst));                    
+            else if (typeof(T) == typeof(short))
+                int16(lhs).XOrSpan(int16(rhs), int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                uint16(lhs).XOrSpan(uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                int32(lhs).XOrSpan(int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                uint32(lhs).XOrSpan(uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                int64(lhs).XOrSpan(int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                uint64(lhs).XOrSpan(uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                float32(lhs).XOrSpan(float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                float64(lhs).XOrSpan(float64(rhs), float64(dst));                
+            else    
+                throw unsupported<T>();
+            return dst;   
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<T> xor<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                int8(lhs).XOrSpan(int8(rhs), int8(dst));
+            else if (typeof(T) == typeof(byte))
+                uint8(lhs).XOrSpan(uint8(rhs), uint8(dst));                    
+            else if (typeof(T) == typeof(short))
+                int16(lhs).XOrSpan(int16(rhs), int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                uint16(lhs).XOrSpan(uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                int32(lhs).XOrSpan(int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                uint32(lhs).XOrSpan(uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                int64(lhs).XOrSpan(int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                uint64(lhs).XOrSpan(uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                float32(lhs).XOrSpan(float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                float64(lhs).XOrSpan(float64(rhs), float64(dst));                
+            else    
+                throw unsupported<T>();
+            return dst;   
+        }
+
+        static Span128<sbyte> XOrSpan(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<byte> XOrSpan(this ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, in Span128<byte> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<short> XOrSpan(this ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, in Span128<short> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<ushort> XOrSpan(this ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, in Span128<ushort> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<int> XOrSpan(this ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, in Span128<int> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<uint> XOrSpan(this ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<long> XOrSpan(this ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, in Span128<long> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<ulong> XOrSpan(this ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<float> XOrSpan(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, in Span128<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span128<double> XOrSpan(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, in Span128<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<sbyte> XOrSpan(this ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, in Span256<sbyte> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<byte> XOrSpan(this ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, in Span256<byte> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<short> XOrSpan(this ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, in Span256<short> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<ushort> XOrSpan(this ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, in Span256<ushort> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<int> XOrSpan(this ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, in Span256<int> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<uint> XOrSpan(this ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<long> XOrSpan(this ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, in Span256<long> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<ulong> XOrSpan(this ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<float> XOrSpan(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, in Span256<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        }
+
+        static Span256<double> XOrSpan(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, in Span256<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+            return dst;            
+        } 
  
     }
 }

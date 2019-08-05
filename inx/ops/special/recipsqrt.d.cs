@@ -17,17 +17,6 @@ namespace Z0
     partial class dinx
     {
 
-        [MethodImpl(Inline)]
-        public static Vec128<float> recipsqrt(Vec128<float> src)
-            => Avx2.ReciprocalSqrt(src);
-    
-     
-        [MethodImpl(Inline)]
-        public static ref Num128<float> recipsqrt(ref Num128<float> src)
-        {
-            src = ReciprocalSqrtScalar(src);
-            return ref src;
-        }
 
     }
 

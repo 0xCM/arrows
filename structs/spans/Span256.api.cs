@@ -58,6 +58,37 @@ namespace Z0
         }
 
         /// <summary>
+        /// Computes the minimum number of blocks that can hold data of a specified byte length
+        /// </summary>
+        /// <param name="srclen">The length of the source data</param>
+        /// <typeparam name="T">The scalar type</typeparam>
+        [MethodImpl(Inline)]
+        public static int minblocks<T>(ByteSize srclen)
+            where T : struct        
+        {
+            var bz = blocks<T>(srclen, out int remainder);
+            return remainder == 0 ? bz : bz + 1;
+        }
+
+        /// <summary>
+        /// Computes the minimum number of 256-bit blocks that can hold a table of data
+        /// </summary>
+        /// <param name="srclen">The length of the source data</param>
+        /// <typeparam name="M">The row type </typeparam>
+        /// <typeparam name="N">The column type</typeparam>
+        /// <typeparam name="T">The scalar type</typeparam>
+        [MethodImpl(Inline)]
+        public static int minblocks<M,N,T>()
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct        
+        {
+            var srclen = nati<M>() * nati<N>();
+            var bz = blocks<T>(srclen, out int remainder);
+            return remainder == 0 ? bz : bz + 1;
+        }
+
+        /// <summary>
         /// Allocates a blocked span of lenth N iff supplied left and right spans are
         /// of common length N
         /// </summary>

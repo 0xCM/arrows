@@ -48,19 +48,6 @@ namespace Z0
         public static void ceil(in Vec256<double> src, ref double dst)
             => store(Ceiling(src), ref dst);
 
-        [MethodImpl(Inline)]
-        public static ref Num128<float> ceil(ref Num128<float> src)
-        {
-            src = CeilingScalar(src);
-            return ref src;
-        }
-        
-        [MethodImpl(Inline)]
-        public static ref Num128<double> ceil(ref Num128<double> src)
-        {
-            src = CeilingScalar(src);
-            return ref src;
-        }
 
     }
 

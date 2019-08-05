@@ -27,13 +27,13 @@ namespace Z0.Mkl
 		/// <param name="K">The number of columns in A and rows in B</param>
 		/// <param name="alpha">Scales the prodduct of the matrices A and B</param>
 		/// <param name="A">An MxK matrix</param>
-		/// <param name="lda"></param>
+		/// <param name="lda">The leading dimension of A</param>
 		/// <param name="B">A KxN matrix</param>
-		/// <param name="ldb"></param>
+		/// <param name="ldb">The leading dimension of B</param>
 		/// <param name="beta">Scales the matrix C</param>
 		/// <param name="C">An MxN matrix</param>
 		/// <param name="ldc"></param>
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
 		public static extern void cblas_dgemm(
 				CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB, 
 				int M, int N, int K, 
@@ -42,7 +42,7 @@ namespace Z0.Mkl
 				double beta, ref double C, int ldc);
 
 
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
 		public static extern void cblas_cgemm(
 				CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB, 
 				int M, int N, int K,
@@ -51,7 +51,7 @@ namespace Z0.Mkl
 				ref ComplexF32 beta, ref ComplexF32 C, int ldc);
 
 	
-		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
 		public static extern void cblas_sgemm(CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA,
 					CBLAS_TRANSPOSE TransB, int M, int n,
 					int K, float alpha, ref float A,

@@ -26,13 +26,6 @@ namespace Z0
             => CompareNotLessThan(lhs, rhs);
 
 
-        [MethodImpl(Inline)]
-        public static bool nlt(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
-        
-        [MethodImpl(Inline)]
-        public static bool nlt(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
 
     }
 

@@ -26,13 +26,6 @@ namespace Z0
         public static bool[] cmpf(in Vec128<double> lhs,in Vec128<double> rhs, FloatComparisonMode mode)
             => Compare(lhs,rhs,mode).TestNaN();
 
-        [MethodImpl(Inline)]
-        public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
-            => CompareScalar(lhs,rhs,mode).IsNaN(0);
-
-        [MethodImpl(Inline)]
-        public static bool cmpf(in Num128<double> lhs, in Num128<double> rhs, FloatComparisonMode mode)
-            => CompareScalar(lhs,rhs, mode).IsNaN(0);
          
         /// <summary>
         /// Determines whether the componenents are assigned the NaN value and

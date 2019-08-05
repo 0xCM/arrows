@@ -5,13 +5,10 @@
 namespace Z0.Mkl
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
-
 
     /// <summary>
     /// Encapsulates data sampled from a Gaussian distribution joined with
@@ -54,7 +51,5 @@ namespace Z0.Mkl
         /// </summary>
         public string Format()
             => SampleData.Format();
-
     }
-
 }

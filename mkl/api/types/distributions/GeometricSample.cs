@@ -6,12 +6,10 @@ namespace Z0.Mkl
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
-
 
     public ref struct GeometricSample<T>
         where T : struct
@@ -43,8 +41,5 @@ namespace Z0.Mkl
         /// </summary>
         public string Format()
             => SampleData.Format();
-
     }
-
-
 }

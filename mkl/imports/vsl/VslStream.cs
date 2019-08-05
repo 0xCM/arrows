@@ -11,34 +11,8 @@ namespace Z0.Mkl
 	using static zfunc;
     using static MklImports;
 
-
-    public struct VslStream : IDisposable
-    {
-        public static implicit operator VslStream(IntPtr src)
-            => new VslStream(src);
-
-        public static implicit operator IntPtr(VslStream src)
-            => src.Pointer;
-    
-        IntPtr Pointer;
-
-        public VslStream(IntPtr Pointer)
-            => this.Pointer = Pointer;
-
-        public void Dispose()
-        {
-            if(Pointer != IntPtr.Zero)
-                VSL.vslDeleteStream(ref Pointer);
-        }
-
-        public IntPtr Raw()
-            => Pointer;
-    }
-
-
     partial class VSL
     {        
-
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vslNewStream(ref IntPtr stream, BRNG brng, uint seed);
 
@@ -60,6 +34,5 @@ namespace Z0.Mkl
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern BRNG vslGetStreamStateBrng(IntPtr stream);
-
     }
 }

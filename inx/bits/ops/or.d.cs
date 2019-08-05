@@ -21,6 +21,107 @@ namespace Z0
 
     partial class Bits
     {
+        [MethodImpl(Inline)]
+        public static sbyte or(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs | rhs);
+
+        [MethodImpl(Inline)]
+        public static sbyte or(sbyte x1, sbyte x2, params sbyte[] more)
+        {
+            var result = (sbyte)(x1 | x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+            
+        [MethodImpl(Inline)]
+        public static byte or(byte lhs, byte rhs)
+            => (byte)(lhs | rhs);
+
+        [MethodImpl(Inline)]
+        public static byte or(byte x1, byte x2, params byte[] more)
+        {
+            var result = (byte)(x1 | x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static short or(short lhs, short rhs)
+            => (short)(lhs | rhs);
+
+
+        [MethodImpl(Inline)]
+        public static short or(short x1, short x2, params short[] more)
+        {
+            short result = (short)(x1 | x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static ushort or(ushort lhs, ushort rhs)
+            => (ushort)(lhs | rhs);
+
+
+        public static ushort or(ushort x1, ushort x2, params ushort[] more)
+        {
+            var result = (ushort)(x1 | x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static int or(int lhs, int rhs)
+            => lhs | rhs;
+
+        public static int or(int x1, int x2, params int[] more)
+        {
+            var result = x1 | x2;
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static uint or(uint lhs, uint rhs)
+            => lhs | rhs;
+
+        public static uint or(uint x1, uint x2, params uint[] more)
+        {
+            var result = x1 | x2;
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static long or(long lhs, long rhs)
+            => lhs | rhs;
+
+        public static long or(long x1, long x2, params long[] more)
+        {
+            var result = x1| x2;
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static ulong or(ulong lhs, ulong rhs)
+            => lhs | rhs;
+
+        public static ulong or(ulong x1, ulong x2, params ulong[] more)
+        {
+            var result = x1 | x2;
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+         
        [MethodImpl(Inline)]
         public static UInt128 or(in UInt128 lhs, in UInt128 rhs)
             => or(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();

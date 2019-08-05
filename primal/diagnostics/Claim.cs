@@ -48,7 +48,11 @@ namespace Z0
 
         Lt,
 
+        LtEq,
+        
         Gt,
+        
+        GtEq,
         
         False,
 

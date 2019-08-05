@@ -17,8 +17,7 @@ namespace Z0
         where M : ITypeNat, new()
         where N : ITypeNat, new()
         where T : struct    
-    {
-        
+    {        
         public static readonly Dim<M,N> Dim = default;        
 
         /// <summary>
@@ -56,6 +55,12 @@ namespace Z0
         /// </summary>
         public static N ColRep = default;
 
+        public static implicit operator Matrix<M,N,T>(Span256<T> src)
+            => new Matrix<M,N,T>(src);
+
+        public static implicit operator Span256<T>(Matrix<M,N,T> src)
+            => src.data;
+
         [MethodImpl(Inline)]
         public static bool operator == (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
             => lhs.Equals(rhs);
@@ -72,8 +77,18 @@ namespace Z0
         public static Matrix<M,N,T> operator - (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
             => lhs.Sub(rhs);
 
-        Span256<T> data;
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> operator | (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.Or(rhs);
 
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> operator & (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> operator ^ (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
+            => lhs.XOr(rhs);
+        Span256<T> data;
 
         [MethodImpl(Inline)]
         public Matrix(Span256<T> src)
@@ -135,7 +150,6 @@ namespace Z0
                 this[r,c] = f(this[r,c]);
         }
 
-
         public bool IsZero
         {
             get
@@ -154,7 +168,6 @@ namespace Z0
                 if(!gmath.eq(this[r,c], rhs[r,c]))
                     return false;
             return true;
-
         }
 
         public override bool Equals(object other)

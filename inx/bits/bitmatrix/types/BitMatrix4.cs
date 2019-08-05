@@ -162,6 +162,7 @@ namespace Z0
             return dst;                    
         }
 
+
         [MethodImpl(Inline)] 
         public BitMatrix4 Replicate()
             => BitMatrix4.Define(bits.ReadOnly());

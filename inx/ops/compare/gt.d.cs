@@ -62,12 +62,5 @@ namespace Z0
         public static Vec256Cmp<double> gt(in Vec256<double> lhs, in Vec256<double> rhs)
             => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
 
-        [MethodImpl(Inline)]
-        public static bool gt(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarOrderedGreaterThan(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static bool gt(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarOrderedGreaterThan(lhs, rhs);
     }
 }

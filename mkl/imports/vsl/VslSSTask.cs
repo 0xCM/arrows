@@ -11,12 +11,8 @@ namespace Z0.Mkl
     using static zfunc;
     using static MklImports;
 
-
-
-
     partial class VSL
     {        
-
         /// <summary>
         /// Creates a new single-precisiion summary statistics task
         /// </summary>
@@ -31,18 +27,6 @@ namespace Z0.Mkl
         public static extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
             ref float observations, ref float weights, ref int indices);
 
-        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
-            ref float observations, ref float weights, int* pIndices = null);
-
-        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
-            ref float observations, float* pWeights, ref int indices);
-
-        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
-            ref float observations, float* pWeights = null, int* pIndices = null);
-
         /// <summary>
         /// Creates a new double-precisiion summary statistics task
         /// </summary>
@@ -56,6 +40,18 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
             ref double observations, ref double weights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, ref float weights, int* pIndices = null);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, float* pWeights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, float* pWeights = null, int* pIndices = null);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static unsafe extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
@@ -76,16 +72,14 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslSSStatus vslSSDeleteTask(ref IntPtr task);
 
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslSSStatus vsliSSEditTask(IntPtr task, VslSSTaskParameter param, ref int value);
 
-         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-         public static extern VslSSStatus vsliSSEditTask(IntPtr task, VslSSTaskParameter param, ref int value);
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslSSStatus vslsSSEditTask(IntPtr task, VslSSTaskParameter param, ref float value);
 
-         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-         public static extern VslSSStatus vslsSSEditTask(IntPtr task, VslSSTaskParameter param, ref float value);
-
-         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-         public static extern VslSSStatus vsldSSEditTask(IntPtr task, VslSSTaskParameter param, ref double value);
-
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslSSStatus vsldSSEditTask(IntPtr task, VslSSTaskParameter param, ref double value);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslSSStatus vslsSSCompute(IntPtr task, VslSSComputeRoutine routines, VslSSComputeMethod methods);

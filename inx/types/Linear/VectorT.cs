@@ -47,8 +47,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vector<T> operator + (Vector<T> lhs, in Vector<T> rhs)         
-            => lhs.data.ReadOnly().Add(rhs.data, lhs.data);
-                    
+            => lhs.data.ReadOnly().Add(rhs.data, lhs.data);                    
 
         [MethodImpl(Inline)]
         public static Vector<T> operator - (in Vector<T> lhs, in Vector<T> rhs) 
@@ -67,16 +66,16 @@ namespace Z0
             => gmath.mod(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static Vector<T> operator & (in Vector<T> lhs, in Vector<T> rhs) 
-            => gbits.and(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+        public static Vector<T> operator & (Vector<T> lhs, in Vector<T> rhs) 
+            => gbits.and(lhs.data, rhs.data, lhs.data);
 
         [MethodImpl(Inline)]
-        public static Vector<T> operator | (in Vector<T> lhs, in Vector<T> rhs) 
-            => gbits.or(lhs.data, rhs.data, span<T>(count(lhs,rhs))).ToSpan256();
+        public static Vector<T> operator | (Vector<T> lhs, in Vector<T> rhs) 
+            => gbits.or(lhs.data.ReadOnly(), rhs.data.ReadOnly(), lhs.data);
 
         [MethodImpl(Inline)]
-        public static Vector<T> operator ^ (in Vector<T> lhs, in Vector<T> rhs) 
-            => gbits.xor(lhs.data, rhs.data, lhs.data.ToSpan()).ToSpan256();
+        public static Vector<T> operator ^ (Vector<T> lhs, in Vector<T> rhs) 
+            => gbits.xor(lhs.data, rhs.data, lhs.data);
 
         [MethodImpl(Inline)]
         public static Vector<T> operator << (in Vector<T> lhs, int rhs) 
