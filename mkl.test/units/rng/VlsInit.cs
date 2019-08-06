@@ -14,6 +14,25 @@ namespace Z0.Mkl.Test
 
     public class VlSInitTest : UnitTest<VlSInitTest>
     {
+        public void VerifyBernoulli()
+        {
+            var pTarget = 0.7;
+            var tolerance = .02;
+            var samples = Pow2.T24;
+            var rng = mkl.gRandom();
+            var source = rng.Bernoulli(pTarget).Take(samples);
+            
+            var sum = 0.0;
+            foreach(var point in source)
+                if(point) sum++;
+
+            var pActual = sum / ((double)samples);
+            var radius = closed(pTarget - tolerance, pTarget + tolerance);
+            Claim.yea(radius.Contains(pActual));
+
+        }
+
+
         public void CreateMt2203Generators()
         {
             var gencount = Pow2.T08;
@@ -23,29 +42,31 @@ namespace Z0.Mkl.Test
             for(var i=0; i<gencount; i++)
                 streams[i] = mkl.gMt2203(seeds[i], i);
             
-            Span<double> bufferF64 = new double[samplesize];
-            Span<uint> bufferU32 = new uint[samplesize];
-            Span<int> bufferI32 = new int[samplesize];
+            var bufferF64 = new double[samplesize];
+            var bufferU32 = new uint[samplesize];
+            var bufferI32 = new int[samplesize];
             var ufRange = closed(1.0, 250.0);
             for(var i=0; i<gencount; i++)
             {
                 var stream = streams[i];
                 var uniform = mkl.uniform(stream, ufRange, bufferF64);
-                Claim.eq(BRNG.VSL_BRNG_MT2203 + i, uniform.SourceRng);
+                Claim.eq(BRNG.MT2203 + i, uniform.SourceRng);
                 var extrema = Sample.Load(bufferF64,1).Extrema();
                 var max = Sample.Load(bufferF64,1).Max()[0];
                 Claim.lteq(max, ufRange.Right);
                 Claim.neq(max,0);
 
                 var ubits = mkl.ubits(stream, bufferU32);
-                Claim.eq(BRNG.VSL_BRNG_MT2203 + i, ubits.SourceRng);
+                Claim.eq(BRNG.MT2203 + i, ubits.SourceRng);
 
                 var bernoulli = mkl.bernoulli(stream, .40, bufferI32);
                 for(var j=0; j<samplesize; j++)
                     Claim.yea(bernoulli[j] == 0 || bernoulli[j] == 1);
 
                 var gaussian = mkl.gaussian(stream, .75, .75, bufferF64);
-                Claim.eq(BRNG.VSL_BRNG_MT2203 + i, gaussian.SourceRng);
+                Claim.eq(BRNG.MT2203 + i, gaussian.SourceRng);
+
+                var laplace = mkl.laplace(stream, .5, .5, bufferF64);
             }
 
             for(var i=0; i<gencount; i++)
@@ -65,24 +86,24 @@ namespace Z0.Mkl.Test
                 return msg;
             };
 
-            using(var stream = mkl.stream(BRNG.VSL_BRNG_NONDETERM, 1))
+            using(var stream = mkl.stream(BRNG.NONDETERM, 1))
             {
                 //VSL.viRngUniform(0, stream, buffer.Length, ref buffer[0], -200, 200).ThrowOnError();
-                var i32 = mkl.uniform(stream, closed(-200, 200), span<int>(10));
+                var i32 = mkl.uniform(stream, closed(-200, 200), array<int>(10));
                 var i32Fmt = i32.Format();                
                 append($"Discrete uniform i32 {appMsg(i32Fmt)}");
 
-                var f32 = mkl.uniform(stream, closed(-250f, 250f), span<float>(10));
+                var f32 = mkl.uniform(stream, closed(-250f, 250f), array<float>(10));
                 append($"Continuous uniform f32 {appMsg(f32.Format())}");
 
-                var f64 = mkl.uniform(stream, closed(-250d, 250d), span<double>(10));
+                var f64 = mkl.uniform(stream, closed(-250d, 250d), array<double>(10));
                 append($"Continuous uniform f64 {appMsg(f64.Format())}");
 
-                var u32 = mkl.ubits(stream, span<uint>(10));
+                var u32 = mkl.ubits(stream, array<uint>(10));
                 var u32Fmt = u32.Format();
                 append(u32Fmt);
 
-                var u64 = mkl.ubits(stream, span<ulong>(10));
+                var u64 = mkl.ubits(stream, array<ulong>(10));
                 var u64Fmt = u64.Format();
                 append(u64Fmt);
 

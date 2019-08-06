@@ -142,7 +142,6 @@ namespace Z0
             get => data.Length;            
         }
 
-
         [MethodImpl(Inline)]
         public Vector<T> Add(in Vector<T> rhs)
         {
@@ -287,6 +286,13 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public Vector<U> As<U>()
+            where U : struct
+                => data.As<U>();
+        public string Format(char delimiter = ',')
+            => data.Unblock().Format(delimiter);
+
+        [MethodImpl(Inline)]
         static Span<T> alloc(Vector<T> src)
             => span<T>(src.Count);
 
@@ -302,8 +308,6 @@ namespace Z0
         static Span<T> unblock(in Span256<T> src)
             => src;
 
-        public string Format(char delimiter = ',')
-            => data.Unblock().Format(delimiter);
 
         public override bool Equals(object rhs)
             => throw new NotSupportedException();

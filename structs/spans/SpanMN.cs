@@ -188,8 +188,8 @@ namespace Z0
         {            
             var  dst = NatSpan.alloc<I,J,T>();
             var curidx = 0;
-            for(var i = origin.r; i < (origin.r + dim.i); i++)
-            for(var j = origin.c; j < (origin.c + dim.j); j++)
+            for(var i = origin.r; i < (origin.r + dim.I); i++)
+            for(var j = origin.c; j < (origin.c + dim.J); j++)
                 dst[curidx++] = this[(int)i,(int)j];
 
             return dst;

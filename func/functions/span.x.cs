@@ -241,21 +241,24 @@ namespace Z0
             where N : ITypeNat, new()
                 => new Span<N, T>(src);       
   
+        /// <summary>
+        /// Produces a reversed span from a readonly span
+        /// </summary>
+        /// <param name="src">The soruce span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> Reverse<T>(this ReadOnlySpan<T> src)        
-        {
-            var dst = span<T>(src.Length);
-            var lastix = dst.Length - 1;
-            for(var i=0; i<dst.Length; i++)
-                dst[lastix - i] = src[i];
-            return dst;
-        }              
+            => reverse(src.ToArray());
 
+        /// <summary>
+        /// Reverses a span in-place
+        /// </summary>
+        /// <param name="src">The soruce span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> Reverse<T>(this Span<T> src)        
-            => src.ReadOnly().Reverse();
-            
- 
+            => reverse(src);
+             
         [MethodImpl(Inline)]
         public static Span<byte> ToBytes<T>(this T src)
             where T : struct

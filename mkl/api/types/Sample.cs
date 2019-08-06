@@ -28,6 +28,16 @@ namespace Z0
             where T : struct
                 => Sample<T>.Load(src, dim, offset);
 
+        [MethodImpl(Inline)]
+        public static Sample<T> Load<T>(Memory<T> src, int dim = 1)
+            where T : struct
+                => Sample<T>.Load(src, dim);
+
+        [MethodImpl(Inline)]
+        public static Sample<T> Load<T>(T[] src, int dim = 1)
+            where T : struct
+                => Sample<T>.Load(src, dim);
+
         /// <summary>
         /// Allocates a sample 
         /// </summary>
@@ -70,12 +80,16 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static Sample<T> Alloc(int dim, int count)
-            => new Sample<T>(dim, new T[count * dim]);
+            => new Sample<T>(new T[count * dim], dim);
     
         [MethodImpl(Inline)]
         public static Sample<T> Load(Span<T> src, int dim,  int offset = 0)
             => offset != 0 ? new Sample<T>(src.Slice(offset), dim) : new Sample<T>(src, dim);
-        
+
+        [MethodImpl(Inline)]
+        public static Sample<T> Load(Memory<T> src, int dim)
+            => new Sample<T>(src.Span,dim);
+
         [MethodImpl(Inline)]
         public static unsafe Sample<T> Load(int dim, void* src, int srcLen)        
             => new Sample<T>(dim, src, srcLen);        
@@ -92,7 +106,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        Sample(int dim,  T[] src)
+        Sample(T[] src, int dim)
         {
             this.Dimension = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    

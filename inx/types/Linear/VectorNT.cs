@@ -9,6 +9,7 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     
     using static nfunc;
     using static zfunc;
@@ -17,6 +18,8 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct    
     {
+        Span<N,T> data {get;}
+
         static readonly N NatRep = new N();
 
         [MethodImpl(Inline)]
@@ -97,7 +100,6 @@ namespace Z0
             data = src;
         }
         
-        Span<N,T> data {get;}
 
         public int Length
             => NatLength;
@@ -109,6 +111,11 @@ namespace Z0
         public Span<T> Unsize()
             => data.Unsize();
  
+        [MethodImpl(Inline)]
+        public Span<N,U> As<U>()
+            where U : struct
+                => MemoryMarshal.Cast<T,U>(Unsize());
+
         public override bool Equals(object other)
             => throw new NotSupportedException();
  

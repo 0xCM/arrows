@@ -73,7 +73,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static Span<byte> Unpack<T>(this T src, out Span<byte> dst)
             where T : struct
-                => dst = Bytes.bytes(in src);
+                => dst = bytes(in src);
 
         /// <summary>
         /// Converts the source value to an array of bits

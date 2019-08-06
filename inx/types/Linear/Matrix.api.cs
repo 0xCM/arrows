@@ -10,21 +10,56 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Text;
-    using Z0.Mkl;
 
     using static nfunc;
     using static zfunc;
 
-
     public static class Matrix
     {
-        public static Matrix<M,N,T> Load<M,N,T>(Span256<T> src)
+        /// <summary>
+        /// Allocates a square matrix of natual dimension
+        /// </summary>
+        /// <param name="n">The square dimension; specified, if desired, to aid type inference</param>
+        /// <param name="exemplar">An example value; specified, if desired, to aid type inference</param>
+        /// <typeparam name="N">The natural dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<N,N,T> Alloc<N,T>(N n = default, T exemplar = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => Span256.alloc<N,N,T>(); 
+
+        /// <summary>
+        /// Allocates a matrix of natual dimensions
+        /// </summary>
+        /// <param name="m">The row count, specified if desired to aid type inference</param>
+        /// <param name="n">The column count, specified if desired to aid type inference</param>
+        /// <param name="exemplar">An example value, specified if desired to aid type inference</param>
+        /// <typeparam name="M">The row count type</typeparam>
+        /// <typeparam name="N">The col count type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> Alloc<M,N,T>(M m = default, N n = default, T exemplar = default)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => Span256.alloc<M,N,T>(); 
+         
+        /// <summary>
+        /// Loads a matrix of natural dimensions from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="M">The row count type</typeparam>
+        /// <typeparam name="N">The col count type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> Load<M,N,T>(Span256<T> src,M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
                 => new Matrix<M, N, T>(src);
         
-        public static Matrix<M,N,T> Load<M,N,T>(Span<T> src)
+        public static Matrix<M,N,T> Load<M,N,T>(Span<T> src,M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
@@ -113,7 +148,6 @@ namespace Z0
                 sb.AppendLine();
             }
             return sb.ToString();            
-
         }
 
         /// <summary>
@@ -146,24 +180,12 @@ namespace Z0
                 sb.AppendLine();
             }
             sb.Append(Format(src,_fmt));
-
-            // for(var row = 0; row < rows; row++)
-            // {
-            //     for(var col = 0; col<cols; col++)
-            //     {
-            //         sb.Append(src[row,col]);
-            //         if(col != cols - 1)
-            //             sb.Append(sep);
-            //     }
-            //     sb.AppendLine();
-            // }
             
             if(overwrite)
                 dst.Overwrite(sb.ToString());
             else
                 dst.Append(sb.ToString());
         }
-
    }
 
 }

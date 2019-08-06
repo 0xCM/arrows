@@ -32,7 +32,7 @@ namespace Z0
          
         [MethodImpl(Inline)]
         public static bool operator ==(Permutation lhs, Permutation rhs)
-            => lhs.spec.ReallyEqual(rhs.spec);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(Permutation lhs, Permutation rhs)
@@ -75,6 +75,12 @@ namespace Z0
         }
 
         /// <summary>
+        /// The raw data that defines the permuation
+        /// </summary>
+        public int[] Data
+            => spec;
+
+        /// <summary>
         /// Effects a transposition
         /// </summary>
         /// <remarks>
@@ -109,6 +115,19 @@ namespace Z0
         public override int GetHashCode()
             => spec.GetHashCode();
         
+        public bool Equals(Permutation rhs)
+        {   
+            var len = rhs.Length;
+            if(len != spec.Length)
+                return(false);
+            
+            for(var i=0; i<len; i++)
+                if(spec[i] != rhs.spec[i])
+                    return false;
+            
+            return true;
+
+        }
         public override bool Equals(object o)
             => (o is Permutation p) ? p == this : false;
     }
@@ -195,7 +214,7 @@ namespace Z0
             return p;
         }
             
-        public ReadOnlySpan<T> Terms
+        public T[] Terms
             => terms;
 
         public override int GetHashCode()

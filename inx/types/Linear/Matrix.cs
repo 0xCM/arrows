@@ -18,6 +18,8 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct    
     {        
+        Span256<T> data;
+
         public static readonly Dim<M,N> Dim = default;        
 
         /// <summary>
@@ -88,7 +90,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Matrix<M,N,T> operator ^ (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
             => lhs.XOr(rhs);
-        Span256<T> data;
 
         [MethodImpl(Inline)]
         public Matrix(Span256<T> src)
@@ -114,15 +115,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Span<N,T> Row(int r)
+        public Vector<N,T> Row(int r)
         {
             if(r < 0 || r >= RowCount)
                 throw Errors.OutOfRange(r, 0, RowCount - 1);
             
-            return data.Slice(r * RowLenth, RowLenth);
+            return Vector.Load(data.Slice(r * RowLenth, RowLenth), ColRep);
         }
 
-        public Span<M,T> Col(int col)
+        public Vector<M,T> Col(int col)
         {
             if(col < 0 || col >= ColCount)
                 throw Errors.OutOfRange(col, 0, ColCount - 1);

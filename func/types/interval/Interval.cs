@@ -105,30 +105,26 @@ namespace Z0
         /// <summary>
         /// Converts the left and right underlying values
         /// </summary>
-        /// <typeparam name="U"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="U">The target type</typeparam>
         [MethodImpl(Inline)]
         public Interval<U> Convert<U>()
             where U : struct
                 => new Interval<U>(
-                    convert(Left, out U x), 
-                    LeftClosed, 
-                    convert(Right, out U y), 
-                    RightClosed
+                    convert(Left, out U x), LeftClosed, 
+                    convert(Right, out U y), RightClosed
                     );
 
         [MethodImpl(Inline)]
         public Interval<U> As<U>()
             where U : struct
                 => new Interval<U>(
-                    AsIn.generic<T,U>(in Left),
-                    LeftClosed, 
-                    AsIn.generic<T,U>(in Right),
-                    RightClosed
+                    AsIn.generic<T,U>(in Left), LeftClosed, 
+                    AsIn.generic<T,U>(in Right), RightClosed
                     );
 
         public Interval<T> WithEndpoints(T Left, T Right)
             => new Interval<T>(Left, LeftClosed, Right, RightClosed);
+
         public string Format()
             => concat(
                 LeftClosed ? "[": "(", 

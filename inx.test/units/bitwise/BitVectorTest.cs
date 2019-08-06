@@ -160,7 +160,7 @@ namespace Z0.Test
             var bvSrc = BitVector64.Define(BitConverter.ToUInt64(src));
 
             for(byte i=0; i< Pow2.T03*8; i++)
-                Claim.eq(src.TestBit(i), bvSrc.TestBit(i));
+                Claim.eq(gbits.test(src[i],i), bvSrc.TestBit(i));
         }
 
         void ScalarProduct1()

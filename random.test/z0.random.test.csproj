@@ -14,6 +14,7 @@
     <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\stats\z0.stats.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
+    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
 
   </ItemGroup>
 

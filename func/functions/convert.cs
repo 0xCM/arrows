@@ -130,4 +130,28 @@ partial class zfunc
         where T : struct
             => convert<double,T>(src);
 
+    /// <summary>
+    /// Converts a source value of any value type to its bytespan representation
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<byte> bytes<T>(in T src)
+        where T : struct
+    {
+        Span<T> s = new T[1]{src};
+        return MemoryMarshal.AsBytes(s);
+    }       
+
+    /// <summary>
+    /// Converts a source value of any value type to its bytespan representation
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static void bytes<T>(in T src, Span<byte> dst)
+        where T : struct
+            => As.generic<T>(ref dst[0]) = src;
+
+
 }

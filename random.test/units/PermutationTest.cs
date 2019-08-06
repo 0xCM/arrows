@@ -15,8 +15,26 @@ namespace Z0.Test
     
     public class PermutationTest : UnitTest<PermutationTest>
     {
+        OpTime Shuffle(int n, int count, out int duplicates)
+        {
+            duplicates = 0;
 
-        public void Test1()
+            var sw = stopwatch();
+            var p0 = Permutation.Identity(n);
+            var p1 = Random.Shuffle(in p0);
+            var p2 = Random.Shuffle(in p0);
+            for(var i=0; i<count; i++)
+            {
+                p1 = Random.Shuffle(in p1);
+                p2 = Random.Shuffle(in p2);
+                if(p1 == p2)
+                    duplicates++;
+            }
+            
+            return (count,snapshot(sw));
+        }
+
+        public void Shuffle1()
         {
             var p1 = Permutation.Define(N4, 'A', 'B', 'C', 'D');            
             var p2x = Permutation.Define(N4, 'A', 'D', 'C', 'B');
@@ -29,7 +47,7 @@ namespace Z0.Test
             
         }
 
-        public void Test2()
+        public void Shuffle2()
         {
             var p1 = Permutation.Define(N26, AsciUpper.All);            
             
@@ -42,6 +60,19 @@ namespace Z0.Test
                 Claim.nea(a && b);
             }            
         }
+        
+        public void Shuffle3()
+        {
+            var time = Shuffle(Pow2.T08, Pow2.T11, out int duplicates);
+            Claim.eq(0,duplicates);
+        }
+
+        public void Shuffle4()
+        {
+            var time = Shuffle(Pow2.T02, Pow2.T13, out int duplicates);
+            Claim.neq(0,duplicates);
+        }
+            
     }
 
 }

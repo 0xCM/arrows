@@ -18,12 +18,6 @@ namespace Z0
     public static class CovectorX
     {
 
-        [MethodImpl(Inline)]
-        public static Matrix<M,P,double> Mul<M,N,P>(this Matrix<M,N,double> lhs, Matrix<N,P,double> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where P : ITypeNat, new()
-                => Matrix.Load<M,P,double>(mkl.gemm<M,N,P>(lhs.Data,rhs.Data));
 
     }
 }

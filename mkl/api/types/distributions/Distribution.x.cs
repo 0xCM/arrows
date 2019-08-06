@@ -14,6 +14,10 @@ namespace Z0.Mkl
 
     public static partial class mklx
     {
+        [MethodImpl(Inline)]    
+        internal static IntPtr Handle(this IMklTask src)
+            => (src as MklTask);
+
         /// <summary>
         /// Defines a sample taken from a Gaussian distribution
         /// </summary>
@@ -23,7 +27,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <typeparam name="T">The primal type of the sample data</typeparam>
         [MethodImpl(Inline)]    
-        internal static GaussianSample<T> GaussianSample<T>(this BRNG rng, double mu, double sigma, Span<T> data)
+        internal static GaussianSample<T> GaussianSample<T>(this BRNG rng, double mu, double sigma, Memory<T> data)
             where T : struct
                 => new GaussianSample<T>(rng, mu, sigma, data);
 
@@ -34,12 +38,12 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <typeparam name="T">The primal type of the sample data</typeparam>
         [MethodImpl(Inline)]    
-        internal static UniformBitsSample<T> UniformBitsSampled<T>(this BRNG rng, Span<T> data)
+        internal static UniformBitsSample<T> UniformBitsSampled<T>(this BRNG rng, T[] data)
             where T : struct
                 => new UniformBitsSample<T>(rng,data);
 
         [MethodImpl(Inline)]    
-        internal static UniformRangeSample<T> UniformRangeSampled<T>(this BRNG rng, Interval<T> range, Span<T> data)
+        internal static UniformRangeSample<T> UniformRangeSampled<T>(this BRNG rng, Interval<T> range, Memory<T> data)
             where T : struct
                 => new UniformRangeSample<T>(rng, range, data);
 
@@ -68,10 +72,26 @@ namespace Z0.Mkl
             where T : struct
                 => new PoissonSample<T>(rng, lambda, data);
 
+
+        /// <summary>
+        /// Defines a sample taken from a Laplace distribution
+        /// </summary>
+        /// <param name="rng">The generator in use</param>
+        /// <param name="mean">The distribution mean</param>
+        /// <param name="beta">The distribution scale</param>
+        /// <param name="data">The sampled data</param>
+        /// <typeparam name="T">The primal type of the sample data</typeparam>
         [MethodImpl(Inline)]    
-        internal static IntPtr Handle(this IMklTask src)
-            => (src as MklTask);
-    
+        internal static LaplaceSample<T> LaplaceSample<T>(this BRNG rng, T mean, T beta, Memory<T> data)
+            where T : struct
+                => new LaplaceSample<T>(rng, mean, beta, data);
+
+
+        [MethodImpl(Inline)]    
+        internal static CauchySample<T> CauchySample<T>(this BRNG rng, T mean, T beta, Memory<T> data)
+            where T : struct
+                => new CauchySample<T>(rng, mean, beta, data);
+
     }
 
 }

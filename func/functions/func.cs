@@ -54,4 +54,19 @@ partial class zfunc
     public static int bitsize<T>()
         where T :struct
             => Unsafe.SizeOf<T>()*8;
+
+    /// <summary>
+    /// The canonical swap function
+    /// </summary>
+    /// <param name="lhs">The left value</param>
+    /// <param name="rhs">The right value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static void swap<T>(ref T lhs, ref T rhs)
+    {
+        var temp = lhs;
+        lhs = rhs;
+        rhs = temp;
+    }
+
 }

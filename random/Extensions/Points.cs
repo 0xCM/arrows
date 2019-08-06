@@ -148,7 +148,8 @@ namespace Z0
         static float Next(this IRandomSource src, Interval<float> domain)
         {
             var whole = (float)src.Next(domain.Convert<int>());
-            return whole + (float)src.NextDouble();
+            return whole + (float)src.NextDouble();            
+
         }
 
         

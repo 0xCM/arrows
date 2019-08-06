@@ -194,10 +194,10 @@ namespace Z0.Mkl
         public static extern VslRngStatus vdRngExponential(int method, IntPtr stream, int count, ref double values, double dx, double beta);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern VslRngStatus vsRngLaplace(int method, IntPtr stream, int count, ref float values, float dx, float beta);
+        public static extern VslRngStatus vsRngLaplace(int method, IntPtr stream, int count, ref float values, float mean, float beta);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern VslRngStatus vdRngLaplace(int method, IntPtr stream, int count, ref double values, double dx, double beta);
+        public static extern VslRngStatus vdRngLaplace(int method, IntPtr stream, int count, ref double values, double mean, double beta);
 
 
     }

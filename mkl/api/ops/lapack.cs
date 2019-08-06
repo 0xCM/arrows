@@ -29,7 +29,7 @@ namespace Z0.Mkl
             var wr = NatSpan.alloc<N,double>();
             var wi = NatSpan.alloc<N,double>();
             var lVec = A.Replicate(true);
-            var rVec = A.Replicate(true);            
+            var rVec = A.Replicate(true);             
                         
             LAPACK.DGEEV(
                 ref v, ref v, ref n, 
@@ -37,7 +37,8 @@ namespace Z0.Mkl
                 ref wr[0], ref wi[0], 
                 ref lVec[0], ref ldvl, 
                 ref rVec[0], ref ldvr, 
-                ref ws[0], ref wslen, ref exitcode);
+                ref ws[0], ref wslen, 
+                ref exitcode);
 
             if(exitcode != 0)
                 MklException.Throw(exitcode);

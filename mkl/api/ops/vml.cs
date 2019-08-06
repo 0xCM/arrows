@@ -106,7 +106,6 @@ namespace Z0.Mkl
             return dst;
         }
 
-
 		/// <summary>
 		/// Computes dst[i] = lhs[i] / rhs[i] for i = 0...n-1
 		/// </summary>
@@ -127,20 +126,12 @@ namespace Z0.Mkl
   		/// <param name="rhs">The right vector</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<float> fmod(Span<float> lhs, Span<float> rhs, Span<float> dst)
+        public static Span<float> mod(Span<float> lhs, Span<float> rhs, Span<float> dst)
         {
             VmlImport.vsFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
         
-        [MethodImpl(Inline)]
-        public static float fmod(float lhs, float rhs)
-        {
-            var z = 0f;
-            VmlImport.vsModf(1, ref lhs, ref rhs, ref z);
-            return z;
-        }
-
 		/// <summary>
 		/// Computes dst[i] = lhs[i] % rhs[i] for i = 0...n-1
 		/// </summary>
@@ -148,11 +139,40 @@ namespace Z0.Mkl
   		/// <param name="rhs">The right vector</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<double> fmod(Span<double> lhs, Span<double> rhs, Span<double> dst)
+        public static Span<double> mod(Span<double> lhs, Span<double> rhs, Span<double> dst)
         {
             VmlImport.vdFmod(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
             return dst;
         }
+
+        /// <summary>
+        /// Truncates the source vector and deposits the result in trunc and the fractional part 
+        /// that was removed when producing the truncation
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="trunc">The vector that receives the truncated components</param>
+        /// <param name="rem">The vector that receives the fractional remainders</param>
+        [MethodImpl(Inline)]
+        public static Span<float> truncRem(Span<float> src, Span<float> trunc, Span<float> rem)
+        {
+            VmlImport.vsModf(length(src,trunc), ref head(src), ref head(trunc), ref head(rem));
+            return rem;
+        }
+
+        /// <summary>
+        /// Truncates the source vector and deposits the result in trunc and the fractional part 
+        /// that was removed when producing the truncation
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="trunc">The vector that receives the truncated components</param>
+        /// <param name="rem">The vector that receives the fractional remainders</param>
+        [MethodImpl(Inline)]
+        public static Span<double> truncRem(Span<double> lhs, Span<double> rhs, Span<double> dst)
+        {
+            VmlImport.vdModf(length(lhs,rhs), ref head(lhs), ref head(rhs), ref head(dst));
+            return dst;
+        }
+        
 
 		/// <summary>
 		/// Computes dst[i] = remainder(lhs[i] / rhs[i]) for i = 0...n-1 
@@ -181,26 +201,26 @@ namespace Z0.Mkl
         }
 
 		/// <summary>
-		/// Computes dst[i] = (src[i])^(1/2) for i=0..n-1
+		/// Computes the fractional part of each component
 		/// </summary>
 		/// <param name="src">The source vector</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<float> sqrt(Span<float> src, Span<float> dst)        
+        public static Span<float> frac(Span<float> src, Span<float> dst)        
         {
-            VmlImport.vsSqrt(src.Length, ref head(src), ref head(dst));
+            VmlImport.vsFrac(src.Length, ref head(src), ref head(dst));
             return dst;
         }
-            
+
 		/// <summary>
-		/// Computes dst[i] = (src[i])^(1/2) for i=0..n-1
+		/// Computes the fractional part of each component
 		/// </summary>
 		/// <param name="src">The source vector</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<double> sqrt(Span<double> src, Span<double> dst)        
+        public static Span<double> frac(Span<double> src, Span<double> dst)        
         {
-            VmlImport.vdSqrt(src.Length, ref head(src), ref head(dst));
+            VmlImport.vdFrac(src.Length, ref head(src), ref head(dst));
             return dst;
         }
 
@@ -229,6 +249,30 @@ namespace Z0.Mkl
         }
 
 		/// <summary>
+		/// Computes dst[i] = (src[i])^(1/2) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> sqrt(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsSqrt(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+            
+		/// <summary>
+		/// Computes dst[i] = (src[i])^(1/2) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> sqrt(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdSqrt(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
 		/// Computes dst[i] = |src[i]| for i=0..n-1
 		/// </summary>
 		/// <param name="src">The source vector</param>
@@ -251,6 +295,119 @@ namespace Z0.Mkl
             VmlImport.vdAbs(src.Length, ref head(src), ref head(dst));
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static Span<float> max(Span<float> a, Span<float> b, Span<float> dst)
+        {
+            VmlImport.vsFmax(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> max(Span<double> a, Span<double> b, Span<double> dst)
+        {
+            VmlImport.vdFmax(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<float> maxAbs(Span<float> a, Span<float> b, Span<float> dst)
+        {
+            VmlImport.vsMaxMag(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> maxAbs(Span<double> a, Span<double> b, Span<double> dst)
+        {
+            VmlImport.vdMaxMag(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<float> minAbs(Span<float> a, Span<float> b, Span<float> dst)
+        {
+            VmlImport.vsMinMag(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> minAbs(Span<double> a, Span<double> b, Span<double> dst)
+        {
+            VmlImport.vdMinMag(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Span<float> copySign(Span<float> a, Span<float> b, Span<float> dst)        
+        {
+            VmlImport.vsCopySign(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> copySign(Span<double> a, Span<double> b, Span<double> dst)        
+        {
+            VmlImport.vdCopySign(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> inc(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdNextAfter(dst.Length, ref head(src), ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =floor(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> floor(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsFloor(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =floor(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> floor(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdFloor(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] = ceil(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> ceil(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsCeil(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] = ceil(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> ceil(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdCeil(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
 
 		/// <summary>
 		/// Computes dst[i] = 1/src[i] for i=0..n-1
@@ -303,28 +460,28 @@ namespace Z0.Mkl
         }
 
 		/// <summary>
-		/// Computes dst[i] = lhs[i]^rhs for i = 0...n-1 
+		/// Computes dst[i] = src[i]^exp for i = 0...n-1 
 		/// </summary>
-		/// <param name="lhs">The left vector</param>
-  		/// <param name="rhs">The right scalar</param>
+		/// <param name="src">The left vector</param>
+  		/// <param name="exp">The right scalar</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<float> pow(Span<float> lhs, float rhs, Span<float> dst)
+        public static Span<float> pow(Span<float> src, float exp, Span<float> dst)
         {
-            VmlImport.vsPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
+            VmlImport.vsPowx(length(src,dst), ref head(src), exp, ref head(dst));
             return dst;
         }
 
 		/// <summary>
-		/// Computes dst[i] = lhs[i]^rhs for i = 0...n-1 
+		/// Computes dst[i] = src[i]^exp for i = 0...n-1 
 		/// </summary>
-		/// <param name="lhs">The left vector</param>
-  		/// <param name="rhs">The right scalar</param>
+		/// <param name="src">The left vector</param>
+  		/// <param name="exp">The right scalar</param>
 		/// <param name="dst">The caller-allocated target vector</param>
         [MethodImpl(Inline)]
-        public static Span<double> pow(Span<double> lhs, double rhs, Span<double> dst)
+        public static Span<double> pow(Span<double> src, double exp, Span<double> dst)
         {
-            VmlImport.vdPowx(length(lhs,dst), ref head(lhs), rhs, ref head(dst));
+            VmlImport.vdPowx(length(src,dst), ref head(src), exp, ref head(dst));
             return dst;
         }
  
@@ -520,6 +677,79 @@ namespace Z0.Mkl
             return dst;
         }
 
+		/// <summary>
+		/// Computes the complementary error function dst[i] =erfc(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> erfc(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsErfc(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+ 
+		/// <summary>
+		/// Computes the complementary error function dst[i] =erfc(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> erfc(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdErfc(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+ 
+		/// <summary>
+		/// Computes the inverse complementary error function dst[i] =erfcInv(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> erfcInv(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsErfcInv(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+		/// <summary>
+		/// Computes the inverse complementary error function dst[i] =erfcInv(src[i]) for i=0..n-1
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> erfcInv(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdErfcInv(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+        /// <summary>
+        /// Computes the exponential integral function dst[i] = E(src[i]) for i=0..n-1 where
+        /// E(x) = ∫[x, ∞](e^(-t)/t)dt = ∫[1, ∞](e^(-xt)/t)dt
+        /// </summary>
+        /// <param name="src">The source vector containing the lower integration bounds</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> expInt(Span<float> src, Span<float> dst)        
+        {
+            VmlImport.vsExpInt1(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
+
+        /// <summary>
+        /// Computes the exponential integral function dst[i] = E(src[i]) for i=0..n-1 where
+        /// E(x) = ∫[x, ∞](e^(-t)/t)dt = ∫[1, ∞](e^(-xt)/t)dt
+        /// </summary>
+        /// <param name="src">The source vector containing the lower integration bounds</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> expInt(Span<double> src, Span<double> dst)        
+        {
+            VmlImport.vdExpInt1(src.Length, ref head(src), ref head(dst));
+            return dst;
+        }
 
 		/// <summary>
 		/// Computes dst[i] = cdfnorm(src[i]) for i=0..n-1
@@ -617,7 +847,30 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = sqrt(a[i]^2 + b[i]^2)
+        /// </summary>
+        /// <param name="a">The first vector</param>
+        /// <param name="b">The second vector</param>
+        /// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> hypot(Span<float> a, Span<float> b, Span<float> dst)
+        {
+            VmlImport.vsHypot(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
 
+        /// Computes dst[i] = sqrt(a[i]^2 + b[i]^2)
+        /// </summary>
+        /// <param name="a">The first vector</param>
+        /// <param name="b">The second vector</param>
+        /// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> hypot(Span<double> a, Span<double> b, Span<double> dst)
+        {
+            VmlImport.vdHypot(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
     }
 
 }

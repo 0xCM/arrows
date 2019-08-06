@@ -135,15 +135,21 @@ namespace  Z0
         /// <typeparam name="T">The target type</typeparam>
         /// <param name="src">The source sequence</param>
         /// <param name="f">The mapping function</param>
-        public static IReadOnlyList<T> Map<S, T>(this IEnumerable<S> src, Func<S, T> f)
-            => src.Select(item => f(item)).ToList();
+        public static T[] Map<S, T>(this IEnumerable<S> src, Func<S, T> f)
+            =>  src.Select(item => f(item)).ToArray();
 
-        public static IEnumerable<T> Mapi<S, T>(this IEnumerable<S> src, Func<int,S, T> f)
+        /// <summary>
+        /// Constructs an integrally-indexed stream from a source stream
+        /// </summary>
+        /// <param name="index">The 0-based element index</param>
+        /// <param name="value">The indexed value</param>
+        /// <typeparam name="T">The value type</typeparam>
+        public static IEnumerable<(int index, T value)> Index<T>(this IEnumerable<T> src)
         {
             var i = 0;
             var it = src.GetEnumerator();            
             while(it.MoveNext())
-                yield return f(i++, it.Current);
+                yield return (i++, it.Current);
         }
             
         /// <summary>
@@ -183,13 +189,6 @@ namespace  Z0
             return dst;
         }
 
-        /// <summary>
-        /// Creates a read-only list from list
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<T> ToReadOnlyList<T>(this List<T> src)
-            => src;
 
         /// <summary>
         /// Creates a read-only list from a source sequence
@@ -235,9 +234,8 @@ namespace  Z0
         /// <param name="src">The source sequence</param>
         /// <param name="default">The replacement value if the sequence is empty</param>
         [MethodImpl(Inline)]
-        public static T LastOrDefault<T>(this IEnumerable<T> src, T @default)
+        public static T LastOrDefault<T>(this IEnumerable<T> src, T @default = default)
             => src.Any() ? src.Last() : @default;
-
 
         /// <summary>
         /// Returns the last element if it exists; otherwise returns the value supplied
@@ -249,22 +247,6 @@ namespace  Z0
         [MethodImpl(Inline)]
         public static T LastOrDefault<T>(this IEnumerable<T> src, Func<T> @default)
             => src.Any() ? src.Last() : @default();
-
-        /// <summary>
-        /// Returns true if the predicate is satisfied by some item in the sequence
-        /// </summary>
-        /// <typeparam name="T">The item type</typeparam>
-        /// <param name="items">The items to search</param>
-        /// <param name="f">The predicate to evaluate</param>
-        /// <returns>True if the predicate is satisfied by some element in the supplied sequence</returns>
-        [MethodImpl(Inline)]
-        public static bool Exists<T>(this IEnumerable<T> items, Predicate<T> f)
-        {
-            foreach (var item in items)
-                if (f(item))
-                    return true;
-            return false;
-        }
 
         /// <summary>
         /// Splits the input into two parts according to a supplied predicate

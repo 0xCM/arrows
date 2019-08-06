@@ -10,7 +10,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Text;
-        
+    using Z0.Mkl;        
+
     using static zfunc;
     using static nfunc;
 
@@ -113,7 +114,6 @@ namespace Z0
             return ref lhs;
         }
 
-
         /// <summary>
         /// Writes the matrix to a delimited file
         /// </summary>
@@ -127,6 +127,30 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
                 => Matrix.WriteTo(src,dst,overwrite,fmt);
+
+        /// <summary>
+        /// Evaluates whether a square matrix is right-stochasitc, i.e. the sum of the entries
+        /// in each row is equal to 1
+        /// </summary>
+        /// <param name="src">The matrix to evaluate</param>
+        /// <param name="n">The natural dimension value</param>
+        /// <typeparam name="N">The natural dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+         public static bool IsRightStochastic<N,T>(this Matrix<N,N,T> src, N n = default)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var tol = .0001;
+            var radius = closed(1 - tol,1 + tol);   
+            for(var r = 0; r < (int)n.value; r ++)
+            {
+                var row = src.Row(r);
+                var sum =  convert<T,double>(gmath.sum(row.Unsize()));
+                if(!radius.Contains(sum))
+                    return false;
+            }
+            return true;
+        }
 
     }
 }

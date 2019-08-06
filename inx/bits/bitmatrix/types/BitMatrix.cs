@@ -25,7 +25,7 @@ namespace Z0
         /// </summary>
         static readonly Dim<M,N> Dim = default;
 
-        static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.i, (int)Dim.j);
+        static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
         
         public static readonly BitLayout<T> GridLayout = GridSpec.CalcLayout();
 

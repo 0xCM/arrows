@@ -58,7 +58,6 @@ namespace Z0
             where T : struct
                 => random.UniformStream(domain,filter);
         
-
         /// <summary>
         /// Produces a stream of nonzero uniformly random values
         /// </summary>

@@ -37,15 +37,6 @@ partial class zfunc
     /// <param name="len">The length of the array</param>
     /// <typeparam name="T">The array element type</typeparam>
     [MethodImpl(Inline)]
-    public static T[] alloc<T>(long len)
-        => new T[len];
-
-    /// <summary>
-    /// Creates, but does not populate, a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
     public static T[] alloc<T>(int len)
         => new T[len];
 
@@ -75,6 +66,20 @@ partial class zfunc
         for(var idx = 0U; idx < count; idx ++)
             dst[idx] = value;
         return dst;            
+    }
+
+    /// <summary>
+    /// Reverses an array in-place
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The element type</typeparam>
+    public static T[] reverse<T>(T[] src)
+    {
+        var min = 0;
+        var max = src.Length - 1;
+        while (min < --max)
+            swap(ref src[min++], ref src[max]);
+        return src;
     }
 
     [MethodImpl(Inline)]   

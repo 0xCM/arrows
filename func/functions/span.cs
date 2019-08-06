@@ -76,6 +76,20 @@ partial class zfunc
         return dst;
     }
 
+    /// <summary>
+    /// Reverses a span in-place
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The element type</typeparam>
+    public static Span<T> reverse<T>(Span<T> src)
+    {
+        var min = 0;
+        var max = src.Length - 1;
+        while (min < --max)
+            swap(ref src[min++], ref src[max]);
+        return src;
+    }
+
     [MethodImpl(Inline)]
     public static ref readonly T first<T>(ReadOnlySpan<byte> src)
         where T : struct

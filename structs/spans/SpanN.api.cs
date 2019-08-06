@@ -32,7 +32,6 @@ namespace Z0
                                     
             return dst;
         }
-
         
         /// <summary>
         /// Loads a natural span from a reference
@@ -168,6 +167,5 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => new Span<M,N,T>(src.ToArray());
-
     }
 }

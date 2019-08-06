@@ -64,6 +64,7 @@ namespace Z0
         public static Span<T> MapRange<S,T>(this Span<S> src, int offset, int length, Func<S, T> f)
             => src.ReadOnly().MapRange(offset,length, f);
 
+
     }
 
 }

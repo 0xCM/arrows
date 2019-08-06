@@ -126,5 +126,52 @@ namespace Z0
         public static Span<double> Div(this ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
             => math.div(lhs, rhs, span<double>(length(lhs,rhs)));
 
+        public static Span<uint> Div(this Span<uint> io, uint rhs)
+        {
+            for(var i=0; i< io.Length; i++)
+                io[i] /= rhs;
+            return io;                
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<uint> Div(this ReadOnlySpan<uint> src, uint rhs)
+            => src.Replicate().Div(rhs);
+
+        public static Span<float> Div(this Span<float> io, float rhs)
+        {
+            for(var i=0; i< io.Length; i++)
+                io[i] /= rhs;
+            return io;                
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<float> Div(this ReadOnlySpan<float> src, float rhs)
+            => src.Replicate().Div(rhs);
+
+        public static Span<double> Div(this Span<double> io, double rhs)
+        {
+            for(var i=0; i< io.Length; i++)
+                io[i] /= rhs;
+            return io;                
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> Div(this ReadOnlySpan<double> io, double rhs)
+            => io.Replicate().Div(rhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<float> Div(this Span256<float> src, float rhs)
+        {
+            src.Unblock().Div(rhs);
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<double> Div(this Span256<double> src, double rhs)
+        {
+            src.Unblock().Div(rhs);
+            return src;
+        }
+
     }
 }

@@ -64,29 +64,5 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Span<byte> bytes<T>(in T src, out Span<byte> dst)
-            where T : struct
-        {
-            dst = span<byte>(Unsafe.SizeOf<T>());            
-            As.generic<T>(ref dst[0]) = src;
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<byte> bytes<T>(in T src)
-            where T : struct
-        {
-            var dst = span<byte>(Unsafe.SizeOf<T>());            
-            As.generic<T>(ref dst[0]) = src;
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static bool TestBit(this Span<byte> src, int pos)
-        {
-            var q = Math.DivRem(pos, 8, out int r);
-            return BitMask.test(src[q], r);
-        }
     }
 }

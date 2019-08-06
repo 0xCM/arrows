@@ -112,6 +112,26 @@ namespace Z0
                 => Span256<T>.Load(src, offset);
 
         /// <summary>
+        /// Loads (potentially) unaligned data
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The data type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> loadu<T>(Span<T> src)
+            where T : struct
+        {
+            var bz = blocks<T>(src.Length, out int remainder);
+            if(remainder == 0)
+                return load(src);
+            else
+            {
+                var dst = alloc<T>(bz + 1);
+                src.CopyTo(dst);
+                return dst;
+            }
+        }
+
+        /// <summary>
         /// Loads a blocked span from an array
         /// </summary>
         /// <param name="src">The source span</param>

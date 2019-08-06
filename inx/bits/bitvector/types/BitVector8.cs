@@ -11,7 +11,6 @@ namespace Z0
 
     using static zfunc;    
     using static Bits;
-    using static Bytes;
 
     public ref struct BitVector8
     {

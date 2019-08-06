@@ -52,6 +52,7 @@ namespace Z0
         public static double Avg(this Span<double> src)
             => math.avg(src);
 
+
         [MethodImpl(Inline)]
         public static sbyte Avg(this ReadOnlySpan<sbyte> src)
             => math.avg(src);
@@ -91,6 +92,23 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double Avg(this ReadOnlySpan<double> src)
             => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static float Avg(this Span256<float> src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static double Avg(this Span256<double> src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static float Avg(this ReadOnlySpan256<float> src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static double Avg(this ReadOnlySpan256<double> src)
+            => math.avg(src);
+
     }
 
 }

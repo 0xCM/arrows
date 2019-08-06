@@ -15,6 +15,19 @@ namespace Z0
     public static class Vector
     {     
         /// <summary>
+        /// Allocates a vector of natural length
+        /// </summary>
+        /// <param name="n">The length, to aid type inference</param>
+        /// <param name="exemplar">An example value to aid type inference</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vector<N,T> Alloc<N,T>(N n = default, T exemplar = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => NatSpan.alloc<N,T>();
+ 
+        /// <summary>
         /// Loads a vector from an existing span of commensuate length (Non-allocating)
         /// </summary>
         /// <param name="src">The source span</param>
@@ -29,7 +42,6 @@ namespace Z0
         
         /// <summary>
         /// Loads a vector from an natural span of commensuate length (Non-allocating)
-        /// 
         /// </summary>
         /// <param name="src">The source span</param>
         /// <param name="length">The natural length</param>
@@ -75,7 +87,18 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => Vector<N,T>.Define(src);
-        
+
+        [MethodImpl(Inline)]
+        public static Vector<T> Alloc<T>(int minlen)               
+            where T : struct
+        {
+            var blocklen = Span256.blocklength<T>();                        
+            var qr = math.quorem(minlen, blocklen); 
+            var blocks = qr.Quotient + (qr.Remainder == 0 ? 0 : 1);
+            var dst = Span256.alloc<T>(blocks);
+            return new Vector<T>(dst);
+        } 
+
         [MethodImpl(Inline)]
         public static Vector<T> Zero<T>(int minlen)
             where T : struct
@@ -120,16 +143,6 @@ namespace Z0
             return new Vector<T>(dst);
         }
 
-        [MethodImpl(Inline)]
-        public static Vector<T> Alloc<T>(int minlen)               
-            where T : struct
-        {
-            var blocklen = Span256.blocklength<T>();                        
-            var qr = math.quorem(minlen, blocklen); 
-            var blocks = qr.Quotient + (qr.Remainder == 0 ? 0 : 1);
-            var dst = Span256.alloc<T>(blocks);
-            return new Vector<T>(dst);
-        } 
  
         [MethodImpl(Inline)]        
         static Span<T> Slice<N,T>(this Span<T> src, N start = default)

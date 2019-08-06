@@ -5,22 +5,26 @@
 namespace Z0.Mkl
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
 
-    public ref struct UniformRangeSample<T>
+    /// <summary>
+    /// Encapsulates data sampled from a Gaussian distribution joined with
+    /// the BRNG identifier and distribution parameters that were specified
+    /// when the sample was taken
+    /// </summary>
+    public ref struct GaussianSample<T>
         where T : struct
     {
-        public UniformRangeSample(BRNG rng, Interval<T> range, Span<T> data)
+        public GaussianSample(BRNG rng, double mu, double sigma, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.Range = range;
-            this.SampleData = data;
-        }
+            this.Mu = mu;
+            this.Sigma = sigma;
+            this.SampleData = data.Span;
+        }        
 
         /// <summary>
         /// The generator used during sample generation
@@ -28,10 +32,15 @@ namespace Z0.Mkl
         public BRNG SourceRng;
 
         /// <summary>
-        /// The range of values over which the sample was taken
+        /// The mean
         /// </summary>
-        public Interval<T> Range;
+        public double Mu;
 
+        /// <summary>
+        /// The standard deviation
+        /// </summary>
+        public double Sigma;
+        
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
