@@ -11,10 +11,10 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public ref struct GeometricSample<T>
+    public readonly struct GeometricSample<T>
         where T : struct
     {
-        public GeometricSample(BRNG rng, double p, Span<T> data)
+        public GeometricSample(BRNG rng, double p, Memory<T> data)
         {
             this.SourceRng = rng;
             this.P = p;
@@ -24,22 +24,24 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
         /// <summary>
         /// The probability of trial success
         /// </summary>
-        public double P;
+        public readonly double P;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Format();
+            => SampleData.Span.Format();
+
+
     }
 }

@@ -12,10 +12,10 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public readonly ref struct PoissonSample<T>
+    public readonly struct PoissonSample<T>
         where T : struct
     {
-        public PoissonSample(BRNG rng, double lambda, Span<T> data)
+        public PoissonSample(BRNG rng, double lambda, Memory<T> data)
         {
             this.SourceRng = rng;
             this.Lambda = lambda;
@@ -32,13 +32,13 @@ namespace Z0.Mkl
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public readonly Span<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Format();
+            => SampleData.Span.Format();
     }
 
 }

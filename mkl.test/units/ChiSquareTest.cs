@@ -21,9 +21,9 @@ namespace Z0.Mkl.Test
             using(var stream = mkl.stream(BRNG.SFMT19937, 1))
             {
                 
-                Span<float> buffer = stackalloc float[Pow2.T04];
+                var buffer = new float[Pow2.T04];
                 var sample = mkl.chi2(stream, 4, buffer);
-                Trace(sample.Format());
+                Trace(sample.SampleData.Span.Format());
 
                 Claim.eq(BRNG.SFMT19937, mkl.brng(stream));
 

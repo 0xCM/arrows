@@ -41,7 +41,6 @@ namespace Z0.Mkl
 
     public static class VslStreamX
     {
-
         static IEnumerable<T> Stream<T>(this VslStream vsls, Action<T[]> refill)
             where T : struct
         {
@@ -58,10 +57,11 @@ namespace Z0.Mkl
             }
 
         }
+
         public static IEnumerable<ulong> UniformBits(this VslStream vsls)
         {
             void Refill(ulong[] buffer)            
-                => mkl.ubits(vsls, buffer);
+                => mkl.bits(vsls, buffer);
             
             return vsls.Stream<ulong>(Refill);
         }
@@ -110,6 +110,7 @@ namespace Z0.Mkl
         {
             void Refill(int[] buffer)
                 => mkl.bernoulli(vsls,p, buffer);
+            
             foreach(var value in vsls.Stream<int>(Refill))
                 yield return value;
         }
@@ -127,9 +128,6 @@ namespace Z0.Mkl
                 => mkl.chi2(vsls,freedom, buffer);
             return vsls.Stream<double>(Refill);
         }
-
     }
-
-
 
 }

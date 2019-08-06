@@ -9,7 +9,6 @@ namespace Z0.Mkl
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static nfunc;
 
     public readonly struct CauchySample<T>
         where T : struct
@@ -42,10 +41,5 @@ namespace Z0.Mkl
         /// </summary>
         public readonly Memory<T> SampleData;        
 
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Span.Format();
     }
 }

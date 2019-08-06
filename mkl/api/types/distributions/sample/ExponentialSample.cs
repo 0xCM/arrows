@@ -7,20 +7,19 @@ namespace Z0.Mkl
     using System;
     using System.Linq;
     using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static nfunc;
 
     /// <summary>
     /// Encapsulates data sampled from an exponential distribution joined with
     /// the BRNG identifier and distribution parameters that were specified
     /// when the sample was taken
     /// </summary>
-    public ref struct ExponentialSample<T>
+    public readonly struct ExponentialSample<T>
         where T : struct
     {
-        public ExponentialSample(BRNG rng, T Dx, T Beta, Span<T> data)
+        public ExponentialSample(BRNG rng, T Dx, T Beta, Memory<T> data)
         {
             this.SourceRng = rng;
             this.Dx = Dx;
@@ -31,25 +30,20 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
         /// <summary>
         /// The displacement
         /// </summary>
-        public T Dx; 
+        public readonly T Dx; 
 
-        public T Beta;
+        public readonly T Beta;
 
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Format();
     }
 
 }

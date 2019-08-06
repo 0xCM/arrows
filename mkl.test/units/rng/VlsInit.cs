@@ -56,12 +56,13 @@ namespace Z0.Mkl.Test
                 Claim.lteq(max, ufRange.Right);
                 Claim.neq(max,0);
 
-                var ubits = mkl.ubits(stream, bufferU32);
+                var ubits = mkl.bits(stream, bufferU32);
                 Claim.eq(BRNG.MT2203 + i, ubits.SourceRng);
 
                 var bernoulli = mkl.bernoulli(stream, .40, bufferI32);
+                var bData = bernoulli.SampleData.Span;
                 for(var j=0; j<samplesize; j++)
-                    Claim.yea(bernoulli[j] == 0 || bernoulli[j] == 1);
+                    Claim.yea(bData[j] == 0 || bData[j] == 1);
 
                 var gaussian = mkl.gaussian(stream, .75, .75, bufferF64);
                 Claim.eq(BRNG.MT2203 + i, gaussian.SourceRng);
@@ -73,7 +74,7 @@ namespace Z0.Mkl.Test
                 streams[i].Dispose();
 
         }
-        void TestVlsInit()
+        public void TestVlsInit()
         {
             var report = sbuild();
             bool silent = true;
@@ -99,18 +100,18 @@ namespace Z0.Mkl.Test
                 var f64 = mkl.uniform(stream, closed(-250d, 250d), array<double>(10));
                 append($"Continuous uniform f64 {appMsg(f64.Format())}");
 
-                var u32 = mkl.ubits(stream, array<uint>(10));
+                var u32 = mkl.bits(stream, array<uint>(10));
                 var u32Fmt = u32.Format();
                 append(u32Fmt);
 
-                var u64 = mkl.ubits(stream, array<ulong>(10));
+                var u64 = mkl.bits(stream, array<ulong>(10));
                 var u64Fmt = u64.Format();
                 append(u64Fmt);
 
-                var bernoulli = mkl.bernoulli(stream, .5, span<Bit>(10));
+                var bernoulli = mkl.bernoulli(stream, .5, array<int>(10));
                 append($"Bernoulli  {bernoulli.Format()}");
 
-                var geometric = mkl.geometric(stream, .5, span<int>(20));
+                var geometric = mkl.geometric(stream, .5, array<int>(20));
                 append(geometric.Format());
             }                    
         }

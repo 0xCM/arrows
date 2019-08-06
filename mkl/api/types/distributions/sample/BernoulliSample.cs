@@ -6,22 +6,19 @@ namespace Z0.Mkl
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
+    using static nfunc;
 
-    /// <summary>
-    /// Encapsulates data sampled from a Chi^2 distribution joined with
-    /// the BRNG identifier and distribution parameters that were specified
-    /// when the sample was taken
-    /// </summary>
-    public readonly struct ChiSquareSample<T>
+    public readonly struct BernoulliSample<T>
         where T : struct
     {
-        public ChiSquareSample(BRNG rng, int freedom, Memory<T> data)
+        public BernoulliSample(BRNG rng, double p, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.Freedom = freedom;
+            this.P = p;
             this.SampleData = data;
         }        
 
@@ -31,15 +28,28 @@ namespace Z0.Mkl
         public readonly BRNG SourceRng;
 
         /// <summary>
-        /// The degrees of freedom
+        /// The probability of trial success
         /// </summary>
-        public readonly int Freedom;
+        public readonly double P;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public readonly Memory<T> SampleData;    
+
+        public Span<Bit> GetBits()
+        {
+            Span<Bit> dst = new Bit[SampleData.Length];
+            for(var i=0; i<dst.Length; i++)
+                dst[i] =As.int32(SampleData.Span[i]);
+            return dst;
+        }
+
+        /// <summary>
+        /// Rnders the sample data as text
+        /// </summary>
+        public string Format()
+            => SampleData.Span.Format();
 
     }
-
 }

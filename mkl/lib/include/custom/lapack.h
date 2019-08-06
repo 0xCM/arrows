@@ -21,6 +21,17 @@ typedef MKL_INT (*MKL_Z_SELECT_FUNCTION_2) ( const MKL_Complex16*, const MKL_Com
 #include "mkl_lapack_stdcall.h"
 #else
 
+void SGEEV( const char* jobvl, const char* jobvr, const MKL_INT* n, float* a,
+            const MKL_INT* lda, float* wr, float* wi, float* vl,
+            const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr, float* work,
+            const MKL_INT* lwork, MKL_INT* info );
+
+
+void DGEEV( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
+            const MKL_INT* lda, double* wr, double* wi, double* vl,
+            const MKL_INT* ldvl, double* vr, const MKL_INT* ldvr, double* work,
+            const MKL_INT* lwork, MKL_INT* info );
+
 void CGELQ( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
             const MKL_INT* lda, MKL_Complex8* t, const MKL_INT* tsize,
             MKL_Complex8* work, const MKL_INT* lwork, MKL_INT* info );
@@ -282,92 +293,26 @@ void ZLAMTSQR( const char* side, const char* trans, const MKL_INT* m,
                const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* c,
                const MKL_INT* ldc, MKL_Complex16* work, const MKL_INT* lwork,
                MKL_INT* info );
-void ZLAMTSQR_( const char* side, const char* trans, const MKL_INT* m,
-                const MKL_INT* n, const MKL_INT* k, const MKL_INT* mb,
-                const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-                const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* c,
-                const MKL_INT* ldc, MKL_Complex16* work, const MKL_INT* lwork,
-                MKL_INT* info );
-void zlamtsqr( const char* side, const char* trans, const MKL_INT* m,
-               const MKL_INT* n, const MKL_INT* k, const MKL_INT* mb,
-               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-               const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* c,
-               const MKL_INT* ldc, MKL_Complex16* work, const MKL_INT* lwork,
-               MKL_INT* info );
-void zlamtsqr_( const char* side, const char* trans, const MKL_INT* m,
-                const MKL_INT* n, const MKL_INT* k, const MKL_INT* mb,
-                const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-                const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* c,
-                const MKL_INT* ldc, MKL_Complex16* work, const MKL_INT* lwork,
-                MKL_INT* info );
 
 void ZLASWLQ( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
               const MKL_INT* lwork, MKL_INT* info );
-void ZLASWLQ_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-               const MKL_INT* lwork, MKL_INT* info );
-void zlaswlq( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-              const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-              MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-              const MKL_INT* lwork, MKL_INT* info );
-void zlaswlq_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-               const MKL_INT* lwork, MKL_INT* info );
 
 void ZLATSQR( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
               const MKL_INT* lwork, MKL_INT* info );
-void ZLATSQR_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-               const MKL_INT* lwork, MKL_INT* info );
-void zlatsqr( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-              const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-              MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-              const MKL_INT* lwork, MKL_INT* info );
-void zlatsqr_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* mb,
-               const MKL_INT* nb, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* work,
-               const MKL_INT* lwork, MKL_INT* info );
 
 void ZTPLQT( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
              const MKL_INT* mb, MKL_Complex16* a, const MKL_INT* lda,
              MKL_Complex16* b, const MKL_INT* ldb, MKL_Complex16* t,
              const MKL_INT* ldt, MKL_Complex16* work, MKL_INT* info );
-void ZTPLQT_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-              const MKL_INT* mb, MKL_Complex16* a, const MKL_INT* lda,
-              MKL_Complex16* b, const MKL_INT* ldb, MKL_Complex16* t,
-              const MKL_INT* ldt, MKL_Complex16* work, MKL_INT* info );
-void ztplqt( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-             const MKL_INT* mb, MKL_Complex16* a, const MKL_INT* lda,
-             MKL_Complex16* b, const MKL_INT* ldb, MKL_Complex16* t,
-             const MKL_INT* ldt, MKL_Complex16* work, MKL_INT* info );
-void ztplqt_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-              const MKL_INT* mb, MKL_Complex16* a, const MKL_INT* lda,
-              MKL_Complex16* b, const MKL_INT* ldb, MKL_Complex16* t,
-              const MKL_INT* ldt, MKL_Complex16* work, MKL_INT* info );
 
 void ZTPLQT2( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
               MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
               const MKL_INT* ldb, MKL_Complex16* t, const MKL_INT* ldt,
               MKL_INT* info );
-void ZTPLQT2_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-               MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-               const MKL_INT* ldb, MKL_Complex16* t, const MKL_INT* ldt,
-               MKL_INT* info );
-void ztplqt2( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-              const MKL_INT* ldb, MKL_Complex16* t, const MKL_INT* ldt,
-              MKL_INT* info );
-void ztplqt2_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* l,
-               MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-               const MKL_INT* ldb, MKL_Complex16* t, const MKL_INT* ldt,
-               MKL_INT* info );
 
 void ZTPMLQT( const char* side, const char* trans, const MKL_INT* m,
               const MKL_INT* n, const MKL_INT* k, const MKL_INT* l,
@@ -375,54 +320,15 @@ void ZTPMLQT( const char* side, const char* trans, const MKL_INT* m,
               const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* a,
               const MKL_INT* lda, MKL_Complex16* b, const MKL_INT* ldb,
               MKL_Complex16* work, MKL_INT* info );
-void ZTPMLQT_( const char* side, const char* trans, const MKL_INT* m,
-               const MKL_INT* n, const MKL_INT* k, const MKL_INT* l,
-               const MKL_INT* mb, const MKL_Complex16* v, const MKL_INT* ldv,
-               const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* a,
-               const MKL_INT* lda, MKL_Complex16* b, const MKL_INT* ldb,
-               MKL_Complex16* work, MKL_INT* info );
-void ztpmlqt( const char* side, const char* trans, const MKL_INT* m,
-              const MKL_INT* n, const MKL_INT* k, const MKL_INT* l,
-              const MKL_INT* mb, const MKL_Complex16* v, const MKL_INT* ldv,
-              const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* a,
-              const MKL_INT* lda, MKL_Complex16* b, const MKL_INT* ldb,
-              MKL_Complex16* work, MKL_INT* info );
-void ztpmlqt_( const char* side, const char* trans, const MKL_INT* m,
-               const MKL_INT* n, const MKL_INT* k, const MKL_INT* l,
-               const MKL_INT* mb, const MKL_Complex16* v, const MKL_INT* ldv,
-               const MKL_Complex16* t, const MKL_INT* ldt, MKL_Complex16* a,
-               const MKL_INT* lda, MKL_Complex16* b, const MKL_INT* ldb,
-               MKL_Complex16* work, MKL_INT* info );
 
 void CHESV_AA( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
                MKL_Complex8* a, const MKL_INT* lda, MKL_INT* ipiv,
                MKL_Complex8* b, const MKL_INT* ldb, MKL_Complex8* work,
                const MKL_INT* lwork, MKL_INT* info );
-void CHESV_AA_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-                MKL_Complex8* a, const MKL_INT* lda, MKL_INT* ipiv,
-                MKL_Complex8* b, const MKL_INT* ldb, MKL_Complex8* work,
-                const MKL_INT* lwork, MKL_INT* info );
-void chesv_aa( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-               MKL_Complex8* a, const MKL_INT* lda, MKL_INT* ipiv,
-               MKL_Complex8* b, const MKL_INT* ldb, MKL_Complex8* work,
-               const MKL_INT* lwork, MKL_INT* info );
-void chesv_aa_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-                MKL_Complex8* a, const MKL_INT* lda, MKL_INT* ipiv,
-                MKL_Complex8* b, const MKL_INT* ldb, MKL_Complex8* work,
-                const MKL_INT* lwork, MKL_INT* info );
 
 void CHETRF_AA( const char* uplo, const MKL_INT* n, MKL_Complex8* a,
                 const MKL_INT* lda, MKL_INT* ipiv, MKL_Complex8* work,
                 const MKL_INT* lwork, MKL_INT* info );
-void CHETRF_AA_( const char* uplo, const MKL_INT* n, MKL_Complex8* a,
-                 const MKL_INT* lda, MKL_INT* ipiv, MKL_Complex8* work,
-                 const MKL_INT* lwork, MKL_INT* info );
-void chetrf_aa( const char* uplo, const MKL_INT* n, MKL_Complex8* a,
-                const MKL_INT* lda, MKL_INT* ipiv, MKL_Complex8* work,
-                const MKL_INT* lwork, MKL_INT* info );
-void chetrf_aa_( const char* uplo, const MKL_INT* n, MKL_Complex8* a,
-                 const MKL_INT* lda, MKL_INT* ipiv, MKL_Complex8* work,
-                 const MKL_INT* lwork, MKL_INT* info );
 
 void CHETRS_AA( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
                 const MKL_Complex8* a, const MKL_INT* lda, const MKL_INT* ipiv,
@@ -7597,129 +7503,36 @@ void CGESVXX( const char* fact, const char* trans, const MKL_INT* n,
               const MKL_INT* n_err_bnds, float* err_bnds_norm,
               float* err_bnds_comp, const MKL_INT* nparams, float* params,
               MKL_Complex8* work, float* rwork, MKL_INT* info );
-void CGESVXX_( const char* fact, const char* trans, const MKL_INT* n,
-               const MKL_INT* nrhs, MKL_Complex8* a, const MKL_INT* lda,
-               MKL_Complex8* af, const MKL_INT* ldaf, MKL_INT* ipiv,
-               char* equed, float* r, float* c, MKL_Complex8* b,
-               const MKL_INT* ldb, MKL_Complex8* x, const MKL_INT* ldx,
-               float* rcond, float* rpvgrw, float* berr,
-               const MKL_INT* n_err_bnds, float* err_bnds_norm,
-               float* err_bnds_comp, const MKL_INT* nparams, float* params,
-               MKL_Complex8* work, float* rwork, MKL_INT* info );
-void cgesvxx( const char* fact, const char* trans, const MKL_INT* n,
-              const MKL_INT* nrhs, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_Complex8* af, const MKL_INT* ldaf, MKL_INT* ipiv,
-              char* equed, float* r, float* c, MKL_Complex8* b,
-              const MKL_INT* ldb, MKL_Complex8* x, const MKL_INT* ldx,
-              float* rcond, float* rpvgrw, float* berr,
-              const MKL_INT* n_err_bnds, float* err_bnds_norm,
-              float* err_bnds_comp, const MKL_INT* nparams, float* params,
-              MKL_Complex8* work, float* rwork, MKL_INT* info );
-void cgesvxx_( const char* fact, const char* trans, const MKL_INT* n,
-               const MKL_INT* nrhs, MKL_Complex8* a, const MKL_INT* lda,
-               MKL_Complex8* af, const MKL_INT* ldaf, MKL_INT* ipiv,
-               char* equed, float* r, float* c, MKL_Complex8* b,
-               const MKL_INT* ldb, MKL_Complex8* x, const MKL_INT* ldx,
-               float* rcond, float* rpvgrw, float* berr,
-               const MKL_INT* n_err_bnds, float* err_bnds_norm,
-               float* err_bnds_comp, const MKL_INT* nparams, float* params,
-               MKL_Complex8* work, float* rwork, MKL_INT* info );
 
 void CGETC2( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
              MKL_INT* ipiv, MKL_INT* jpiv, MKL_INT* info );
-void CGETC2_( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_INT* ipiv, MKL_INT* jpiv, MKL_INT* info );
-void cgetc2( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-             MKL_INT* ipiv, MKL_INT* jpiv, MKL_INT* info );
-void cgetc2_( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_INT* ipiv, MKL_INT* jpiv, MKL_INT* info );
 
 void CGETF2( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void CGETF2_( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void cgetf2( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void cgetf2_( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
 
 void CGETRF( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void CGETRF_( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void cgetrf( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void cgetrf_( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
 
 void MKL_CGETRFNPI( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
                     MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void MKL_CGETRFNPI_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                     MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_cgetrfnpi( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                    MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_cgetrfnpi_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                     MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
 
 void CGETRI( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
              const MKL_INT* ipiv, MKL_Complex8* work, const MKL_INT* lwork,
              MKL_INT* info );
-void CGETRI_( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              const MKL_INT* ipiv, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void cgetri( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-             const MKL_INT* ipiv, MKL_Complex8* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void cgetri_( const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              const MKL_INT* ipiv, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void CGETRS( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
              const MKL_Complex8* a, const MKL_INT* lda, const MKL_INT* ipiv,
              MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* info );
-void CGETRS_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const MKL_Complex8* a, const MKL_INT* lda, const MKL_INT* ipiv,
-              MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* info );
-void cgetrs( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-             const MKL_Complex8* a, const MKL_INT* lda, const MKL_INT* ipiv,
-             MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* info );
-void cgetrs_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const MKL_Complex8* a, const MKL_INT* lda, const MKL_INT* ipiv,
-              MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* info );
 
 void CGGBAK( const char* job, const char* side, const MKL_INT* n,
              const MKL_INT* ilo, const MKL_INT* ihi, const float* lscale,
              const float* rscale, const MKL_INT* m, MKL_Complex8* v,
              const MKL_INT* ldv, MKL_INT* info );
-void CGGBAK_( const char* job, const char* side, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, const float* lscale,
-              const float* rscale, const MKL_INT* m, MKL_Complex8* v,
-              const MKL_INT* ldv, MKL_INT* info );
-void cggbak( const char* job, const char* side, const MKL_INT* n,
-             const MKL_INT* ilo, const MKL_INT* ihi, const float* lscale,
-             const float* rscale, const MKL_INT* m, MKL_Complex8* v,
-             const MKL_INT* ldv, MKL_INT* info );
-void cggbak_( const char* job, const char* side, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, const float* lscale,
-              const float* rscale, const MKL_INT* m, MKL_Complex8* v,
-              const MKL_INT* ldv, MKL_INT* info );
 
 void CGGBAL( const char* job, const MKL_INT* n, MKL_Complex8* a,
              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
              MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
              float* work, MKL_INT* info );
-void CGGBAL_( const char* job, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-              float* work, MKL_INT* info );
-void cggbal( const char* job, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-             MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-             float* work, MKL_INT* info );
-void cggbal_( const char* job, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-              float* work, MKL_INT* info );
 
 void CGGES( const char* jobvsl, const char* jobvsr, const char* sort,
             MKL_C_SELECT_FUNCTION_2 selctg, const MKL_INT* n, MKL_Complex8* a,
@@ -7728,27 +7541,6 @@ void CGGES( const char* jobvsl, const char* jobvsr, const char* sort,
             MKL_Complex8* vsl, const MKL_INT* ldvsl, MKL_Complex8* vsr,
             const MKL_INT* ldvsr, MKL_Complex8* work, const MKL_INT* lwork,
             float* rwork, MKL_INT* bwork, MKL_INT* info );
-void CGGES_( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_C_SELECT_FUNCTION_2 selctg, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-             MKL_INT* sdim, MKL_Complex8* alpha, MKL_Complex8* beta,
-             MKL_Complex8* vsl, const MKL_INT* ldvsl, MKL_Complex8* vsr,
-             const MKL_INT* ldvsr, MKL_Complex8* work, const MKL_INT* lwork,
-             float* rwork, MKL_INT* bwork, MKL_INT* info );
-void cgges( const char* jobvsl, const char* jobvsr, const char* sort,
-            MKL_C_SELECT_FUNCTION_2 selctg, const MKL_INT* n, MKL_Complex8* a,
-            const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-            MKL_INT* sdim, MKL_Complex8* alpha, MKL_Complex8* beta,
-            MKL_Complex8* vsl, const MKL_INT* ldvsl, MKL_Complex8* vsr,
-            const MKL_INT* ldvsr, MKL_Complex8* work, const MKL_INT* lwork,
-            float* rwork, MKL_INT* bwork, MKL_INT* info );
-void cgges_( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_C_SELECT_FUNCTION_2 selctg, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-             MKL_INT* sdim, MKL_Complex8* alpha, MKL_Complex8* beta,
-             MKL_Complex8* vsl, const MKL_INT* ldvsl, MKL_Complex8* vsr,
-             const MKL_INT* ldvsr, MKL_Complex8* work, const MKL_INT* lwork,
-             float* rwork, MKL_INT* bwork, MKL_INT* info );
 
 void CGGESX( const char* jobvsl, const char* jobvsr, const char* sort,
              MKL_C_SELECT_FUNCTION_2 selctg, const char* sense,
@@ -7759,33 +7551,6 @@ void CGGESX( const char* jobvsl, const char* jobvsr, const char* sort,
              float* rconde, float* rcondv, MKL_Complex8* work,
              const MKL_INT* lwork, float* rwork, MKL_INT* iwork,
              const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
-void CGGESX_( const char* jobvsl, const char* jobvsr, const char* sort,
-              MKL_C_SELECT_FUNCTION_2 selctg, const char* sense,
-              const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* sdim,
-              MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vsl,
-              const MKL_INT* ldvsl, MKL_Complex8* vsr, const MKL_INT* ldvsr,
-              float* rconde, float* rcondv, MKL_Complex8* work,
-              const MKL_INT* lwork, float* rwork, MKL_INT* iwork,
-              const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
-void cggesx( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_C_SELECT_FUNCTION_2 selctg, const char* sense,
-             const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-             MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* sdim,
-             MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vsl,
-             const MKL_INT* ldvsl, MKL_Complex8* vsr, const MKL_INT* ldvsr,
-             float* rconde, float* rcondv, MKL_Complex8* work,
-             const MKL_INT* lwork, float* rwork, MKL_INT* iwork,
-             const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
-void cggesx_( const char* jobvsl, const char* jobvsr, const char* sort,
-              MKL_C_SELECT_FUNCTION_2 selctg, const char* sense,
-              const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_Complex8* b, const MKL_INT* ldb, MKL_INT* sdim,
-              MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vsl,
-              const MKL_INT* ldvsl, MKL_Complex8* vsr, const MKL_INT* ldvsr,
-              float* rconde, float* rcondv, MKL_Complex8* work,
-              const MKL_INT* lwork, float* rwork, MKL_INT* iwork,
-              const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
 
 void CGGEV( const char* jobvl, const char* jobvr, const MKL_INT* n,
             MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
@@ -7793,24 +7558,6 @@ void CGGEV( const char* jobvl, const char* jobvr, const MKL_INT* n,
             MKL_Complex8* vl, const MKL_INT* ldvl, MKL_Complex8* vr,
             const MKL_INT* ldvr, MKL_Complex8* work, const MKL_INT* lwork,
             float* rwork, MKL_INT* info );
-void CGGEV_( const char* jobvl, const char* jobvr, const MKL_INT* n,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-             const MKL_INT* ldb, MKL_Complex8* alpha, MKL_Complex8* beta,
-             MKL_Complex8* vl, const MKL_INT* ldvl, MKL_Complex8* vr,
-             const MKL_INT* ldvr, MKL_Complex8* work, const MKL_INT* lwork,
-             float* rwork, MKL_INT* info );
-void cggev( const char* jobvl, const char* jobvr, const MKL_INT* n,
-            MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-            const MKL_INT* ldb, MKL_Complex8* alpha, MKL_Complex8* beta,
-            MKL_Complex8* vl, const MKL_INT* ldvl, MKL_Complex8* vr,
-            const MKL_INT* ldvr, MKL_Complex8* work, const MKL_INT* lwork,
-            float* rwork, MKL_INT* info );
-void cggev_( const char* jobvl, const char* jobvr, const MKL_INT* n,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-             const MKL_INT* ldb, MKL_Complex8* alpha, MKL_Complex8* beta,
-             MKL_Complex8* vl, const MKL_INT* ldvl, MKL_Complex8* vr,
-             const MKL_INT* ldvr, MKL_Complex8* work, const MKL_INT* lwork,
-             float* rwork, MKL_INT* info );
 
 void CGGEVX( const char* balanc, const char* jobvl, const char* jobvr,
              const char* sense, const MKL_INT* n, MKL_Complex8* a,
@@ -7821,96 +7568,24 @@ void CGGEVX( const char* balanc, const char* jobvl, const char* jobvr,
              float* abnrm, float* bbnrm, float* rconde, float* rcondv,
              MKL_Complex8* work, const MKL_INT* lwork, float* rwork,
              MKL_INT* iwork, MKL_INT* bwork, MKL_INT* info );
-void CGGEVX_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vl,
-              const MKL_INT* ldvl, MKL_Complex8* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-              float* abnrm, float* bbnrm, float* rconde, float* rcondv,
-              MKL_Complex8* work, const MKL_INT* lwork, float* rwork,
-              MKL_INT* iwork, MKL_INT* bwork, MKL_INT* info );
-void cggevx( const char* balanc, const char* jobvl, const char* jobvr,
-             const char* sense, const MKL_INT* n, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-             MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vl,
-             const MKL_INT* ldvl, MKL_Complex8* vr, const MKL_INT* ldvr,
-             MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-             float* abnrm, float* bbnrm, float* rconde, float* rcondv,
-             MKL_Complex8* work, const MKL_INT* lwork, float* rwork,
-             MKL_INT* iwork, MKL_INT* bwork, MKL_INT* info );
-void cggevx_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_Complex8* alpha, MKL_Complex8* beta, MKL_Complex8* vl,
-              const MKL_INT* ldvl, MKL_Complex8* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, float* lscale, float* rscale,
-              float* abnrm, float* bbnrm, float* rconde, float* rcondv,
-              MKL_Complex8* work, const MKL_INT* lwork, float* rwork,
-              MKL_INT* iwork, MKL_INT* bwork, MKL_INT* info );
 
 void CGGGLM( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p,
              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
              const MKL_INT* ldb, MKL_Complex8* d, MKL_Complex8* x,
              MKL_Complex8* y, MKL_Complex8* work, const MKL_INT* lwork,
              MKL_INT* info );
-void CGGGLM_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-              const MKL_INT* ldb, MKL_Complex8* d, MKL_Complex8* x,
-              MKL_Complex8* y, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void cggglm( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-             const MKL_INT* ldb, MKL_Complex8* d, MKL_Complex8* x,
-             MKL_Complex8* y, MKL_Complex8* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void cggglm_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-              const MKL_INT* ldb, MKL_Complex8* d, MKL_Complex8* x,
-              MKL_Complex8* y, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void CGGHRD( const char* compq, const char* compz, const MKL_INT* n,
              const MKL_INT* ilo, const MKL_INT* ihi, MKL_Complex8* a,
              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
              MKL_Complex8* q, const MKL_INT* ldq, MKL_Complex8* z,
              const MKL_INT* ldz, MKL_INT* info );
-void CGGHRD_( const char* compq, const char* compz, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_Complex8* q, const MKL_INT* ldq, MKL_Complex8* z,
-              const MKL_INT* ldz, MKL_INT* info );
-void cgghrd( const char* compq, const char* compz, const MKL_INT* n,
-             const MKL_INT* ilo, const MKL_INT* ihi, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-             MKL_Complex8* q, const MKL_INT* ldq, MKL_Complex8* z,
-             const MKL_INT* ldz, MKL_INT* info );
-void cgghrd_( const char* compq, const char* compz, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_Complex8* b, const MKL_INT* ldb,
-              MKL_Complex8* q, const MKL_INT* ldq, MKL_Complex8* z,
-              const MKL_INT* ldz, MKL_INT* info );
 
 void CGGLSE( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p,
              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
              const MKL_INT* ldb, MKL_Complex8* c, MKL_Complex8* d,
              MKL_Complex8* x, MKL_Complex8* work, const MKL_INT* lwork,
              MKL_INT* info );
-void CGGLSE_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-              const MKL_INT* ldb, MKL_Complex8* c, MKL_Complex8* d,
-              MKL_Complex8* x, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void cgglse( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-             const MKL_INT* ldb, MKL_Complex8* c, MKL_Complex8* d,
-             MKL_Complex8* x, MKL_Complex8* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void cgglse_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* b,
-              const MKL_INT* ldb, MKL_Complex8* c, MKL_Complex8* d,
-              MKL_Complex8* x, MKL_Complex8* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void CGGQRF( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p,
              MKL_Complex8* a, const MKL_INT* lda, MKL_Complex8* taua,
@@ -13037,10 +12712,6 @@ void DGEESX( const char* jobvs, const char* sort,
              const MKL_INT* lwork, MKL_INT* iwork, const MKL_INT* liwork,
              MKL_INT* bwork, MKL_INT* info );
 
-void DGEEV( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
-            const MKL_INT* lda, double* wr, double* wi, double* vl,
-            const MKL_INT* ldvl, double* vr, const MKL_INT* ldvr, double* work,
-            const MKL_INT* lwork, MKL_INT* info );
 
 void DGEEVX( const char* balanc, const char* jobvl, const char* jobvr,
              const char* sense, const MKL_INT* n, double* a,
@@ -13565,77 +13236,26 @@ void dgetf2_( const MKL_INT* m, const MKL_INT* n, double* a,
 
 void DGETRF( const MKL_INT* m, const MKL_INT* n, double* a, const MKL_INT* lda,
              MKL_INT* ipiv, MKL_INT* info );
-void DGETRF_( const MKL_INT* m, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
-void dgetrf( const MKL_INT* m, const MKL_INT* n, double* a, const MKL_INT* lda,
-             MKL_INT* ipiv, MKL_INT* info );
-void dgetrf_( const MKL_INT* m, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* ipiv, MKL_INT* info );
 
 void MKL_DGETRFNPI( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
                     double* a, const MKL_INT* lda, MKL_INT* info );
-void MKL_DGETRFNPI_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                     double* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_dgetrfnpi( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                    double* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_dgetrfnpi_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* nfact,
-                     double* a, const MKL_INT* lda, MKL_INT* info );
 
 void DGETRI( const MKL_INT* n, double* a, const MKL_INT* lda,
              const MKL_INT* ipiv, double* work, const MKL_INT* lwork,
              MKL_INT* info );
-void DGETRI_( const MKL_INT* n, double* a, const MKL_INT* lda,
-              const MKL_INT* ipiv, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void dgetri( const MKL_INT* n, double* a, const MKL_INT* lda,
-             const MKL_INT* ipiv, double* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void dgetri_( const MKL_INT* n, double* a, const MKL_INT* lda,
-              const MKL_INT* ipiv, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void DGETRS( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
              const double* a, const MKL_INT* lda, const MKL_INT* ipiv,
              double* b, const MKL_INT* ldb, MKL_INT* info );
-void DGETRS_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* a, const MKL_INT* lda, const MKL_INT* ipiv,
-              double* b, const MKL_INT* ldb, MKL_INT* info );
-void dgetrs( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-             const double* a, const MKL_INT* lda, const MKL_INT* ipiv,
-             double* b, const MKL_INT* ldb, MKL_INT* info );
-void dgetrs_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* a, const MKL_INT* lda, const MKL_INT* ipiv,
-              double* b, const MKL_INT* ldb, MKL_INT* info );
 
 void DGGBAK( const char* job, const char* side, const MKL_INT* n,
              const MKL_INT* ilo, const MKL_INT* ihi, const double* lscale,
              const double* rscale, const MKL_INT* m, double* v,
              const MKL_INT* ldv, MKL_INT* info );
-void DGGBAK_( const char* job, const char* side, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, const double* lscale,
-              const double* rscale, const MKL_INT* m, double* v,
-              const MKL_INT* ldv, MKL_INT* info );
-void dggbak( const char* job, const char* side, const MKL_INT* n,
-             const MKL_INT* ilo, const MKL_INT* ihi, const double* lscale,
-             const double* rscale, const MKL_INT* m, double* v,
-             const MKL_INT* ldv, MKL_INT* info );
-void dggbak_( const char* job, const char* side, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, const double* lscale,
-              const double* rscale, const MKL_INT* m, double* v,
-              const MKL_INT* ldv, MKL_INT* info );
 
 void DGGBAL( const char* job, const MKL_INT* n, double* a, const MKL_INT* lda,
              double* b, const MKL_INT* ldb, MKL_INT* ilo, MKL_INT* ihi,
              double* lscale, double* rscale, double* work, MKL_INT* info );
-void DGGBAL_( const char* job, const MKL_INT* n, double* a, const MKL_INT* lda,
-              double* b, const MKL_INT* ldb, MKL_INT* ilo, MKL_INT* ihi,
-              double* lscale, double* rscale, double* work, MKL_INT* info );
-void dggbal( const char* job, const MKL_INT* n, double* a, const MKL_INT* lda,
-             double* b, const MKL_INT* ldb, MKL_INT* ilo, MKL_INT* ihi,
-             double* lscale, double* rscale, double* work, MKL_INT* info );
-void dggbal_( const char* job, const MKL_INT* n, double* a, const MKL_INT* lda,
-              double* b, const MKL_INT* ldb, MKL_INT* ilo, MKL_INT* ihi,
-              double* lscale, double* rscale, double* work, MKL_INT* info );
 
 void DGGES( const char* jobvsl, const char* jobvsr, const char* sort,
             MKL_D_SELECT_FUNCTION_3 selctg, const MKL_INT* n, double* a,
@@ -13644,27 +13264,6 @@ void DGGES( const char* jobvsl, const char* jobvsr, const char* sort,
             const MKL_INT* ldvsl, double* vsr, const MKL_INT* ldvsr,
             double* work, const MKL_INT* lwork, MKL_INT* bwork,
             MKL_INT* info );
-void DGGES_( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_D_SELECT_FUNCTION_3 selctg, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, MKL_INT* sdim,
-             double* alphar, double* alphai, double* beta, double* vsl,
-             const MKL_INT* ldvsl, double* vsr, const MKL_INT* ldvsr,
-             double* work, const MKL_INT* lwork, MKL_INT* bwork,
-             MKL_INT* info );
-void dgges( const char* jobvsl, const char* jobvsr, const char* sort,
-            MKL_D_SELECT_FUNCTION_3 selctg, const MKL_INT* n, double* a,
-            const MKL_INT* lda, double* b, const MKL_INT* ldb, MKL_INT* sdim,
-            double* alphar, double* alphai, double* beta, double* vsl,
-            const MKL_INT* ldvsl, double* vsr, const MKL_INT* ldvsr,
-            double* work, const MKL_INT* lwork, MKL_INT* bwork,
-            MKL_INT* info );
-void dgges_( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_D_SELECT_FUNCTION_3 selctg, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, MKL_INT* sdim,
-             double* alphar, double* alphai, double* beta, double* vsl,
-             const MKL_INT* ldvsl, double* vsr, const MKL_INT* ldvsr,
-             double* work, const MKL_INT* lwork, MKL_INT* bwork,
-             MKL_INT* info );
 
 void DGGESX( const char* jobvsl, const char* jobvsr, const char* sort,
              MKL_D_SELECT_FUNCTION_3 selctg, const char* sense,
@@ -13674,53 +13273,12 @@ void DGGESX( const char* jobvsl, const char* jobvsr, const char* sort,
              const MKL_INT* ldvsr, double* rconde, double* rcondv,
              double* work, const MKL_INT* lwork, MKL_INT* iwork,
              const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
-void DGGESX_( const char* jobvsl, const char* jobvsr, const char* sort,
-              MKL_D_SELECT_FUNCTION_3 selctg, const char* sense,
-              const MKL_INT* n, double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, MKL_INT* sdim, double* alphar,
-              double* alphai, double* beta, double* vsl, const MKL_INT* ldvsl,
-              double* vsr, const MKL_INT* ldvsr, double* rconde,
-              double* rcondv, double* work, const MKL_INT* lwork,
-              MKL_INT* iwork, const MKL_INT* liwork, MKL_INT* bwork,
-              MKL_INT* info );
-void dggesx( const char* jobvsl, const char* jobvsr, const char* sort,
-             MKL_D_SELECT_FUNCTION_3 selctg, const char* sense,
-             const MKL_INT* n, double* a, const MKL_INT* lda, double* b,
-             const MKL_INT* ldb, MKL_INT* sdim, double* alphar, double* alphai,
-             double* beta, double* vsl, const MKL_INT* ldvsl, double* vsr,
-             const MKL_INT* ldvsr, double* rconde, double* rcondv,
-             double* work, const MKL_INT* lwork, MKL_INT* iwork,
-             const MKL_INT* liwork, MKL_INT* bwork, MKL_INT* info );
-void dggesx_( const char* jobvsl, const char* jobvsr, const char* sort,
-              MKL_D_SELECT_FUNCTION_3 selctg, const char* sense,
-              const MKL_INT* n, double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, MKL_INT* sdim, double* alphar,
-              double* alphai, double* beta, double* vsl, const MKL_INT* ldvsl,
-              double* vsr, const MKL_INT* ldvsr, double* rconde,
-              double* rcondv, double* work, const MKL_INT* lwork,
-              MKL_INT* iwork, const MKL_INT* liwork, MKL_INT* bwork,
-              MKL_INT* info );
 
 void DGGEV( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* alphar,
             double* alphai, double* beta, double* vl, const MKL_INT* ldvl,
             double* vr, const MKL_INT* ldvr, double* work,
             const MKL_INT* lwork, MKL_INT* info );
-void DGGEV_( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* alphar,
-             double* alphai, double* beta, double* vl, const MKL_INT* ldvl,
-             double* vr, const MKL_INT* ldvr, double* work,
-             const MKL_INT* lwork, MKL_INT* info );
-void dggev( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
-            const MKL_INT* lda, double* b, const MKL_INT* ldb, double* alphar,
-            double* alphai, double* beta, double* vl, const MKL_INT* ldvl,
-            double* vr, const MKL_INT* ldvr, double* work,
-            const MKL_INT* lwork, MKL_INT* info );
-void dggev_( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* alphar,
-             double* alphai, double* beta, double* vl, const MKL_INT* ldvl,
-             double* vr, const MKL_INT* ldvr, double* work,
-             const MKL_INT* lwork, MKL_INT* info );
 
 void DGGEVX( const char* balanc, const char* jobvl, const char* jobvr,
              const char* sense, const MKL_INT* n, double* a,
@@ -13731,118 +13289,30 @@ void DGGEVX( const char* balanc, const char* jobvl, const char* jobvr,
              double* rconde, double* rcondv, double* work,
              const MKL_INT* lwork, MKL_INT* iwork, MKL_INT* bwork,
              MKL_INT* info );
-void DGGEVX_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb,
-              double* alphar, double* alphai, double* beta, double* vl,
-              const MKL_INT* ldvl, double* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, double* lscale, double* rscale,
-              double* abnrm, double* bbnrm, double* rconde, double* rcondv,
-              double* work, const MKL_INT* lwork, MKL_INT* iwork,
-              MKL_INT* bwork, MKL_INT* info );
-void dggevx( const char* balanc, const char* jobvl, const char* jobvr,
-             const char* sense, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* alphar,
-             double* alphai, double* beta, double* vl, const MKL_INT* ldvl,
-             double* vr, const MKL_INT* ldvr, MKL_INT* ilo, MKL_INT* ihi,
-             double* lscale, double* rscale, double* abnrm, double* bbnrm,
-             double* rconde, double* rcondv, double* work,
-             const MKL_INT* lwork, MKL_INT* iwork, MKL_INT* bwork,
-             MKL_INT* info );
-void dggevx_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb,
-              double* alphar, double* alphai, double* beta, double* vl,
-              const MKL_INT* ldvl, double* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, double* lscale, double* rscale,
-              double* abnrm, double* bbnrm, double* rconde, double* rcondv,
-              double* work, const MKL_INT* lwork, MKL_INT* iwork,
-              MKL_INT* bwork, MKL_INT* info );
 
 void DGGGLM( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* d,
              double* x, double* y, double* work, const MKL_INT* lwork,
              MKL_INT* info );
-void DGGGLM_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* d,
-              double* x, double* y, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void dggglm( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* d,
-             double* x, double* y, double* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void dggglm_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* d,
-              double* x, double* y, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void DGGHRD( const char* compq, const char* compz, const MKL_INT* n,
              const MKL_INT* ilo, const MKL_INT* ihi, double* a,
              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* q,
              const MKL_INT* ldq, double* z, const MKL_INT* ldz,
              MKL_INT* info );
-void DGGHRD_( const char* compq, const char* compz, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* q,
-              const MKL_INT* ldq, double* z, const MKL_INT* ldz,
-              MKL_INT* info );
-void dgghrd( const char* compq, const char* compz, const MKL_INT* n,
-             const MKL_INT* ilo, const MKL_INT* ihi, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* q,
-             const MKL_INT* ldq, double* z, const MKL_INT* ldz,
-             MKL_INT* info );
-void dgghrd_( const char* compq, const char* compz, const MKL_INT* n,
-              const MKL_INT* ilo, const MKL_INT* ihi, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* q,
-              const MKL_INT* ldq, double* z, const MKL_INT* ldz,
-              MKL_INT* info );
 
 void DGGLSE( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, double* a,
              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* c,
              double* d, double* x, double* work, const MKL_INT* lwork,
              MKL_INT* info );
-void DGGLSE_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* c,
-              double* d, double* x, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void dgglse( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb, double* c,
-             double* d, double* x, double* work, const MKL_INT* lwork,
-             MKL_INT* info );
-void dgglse_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb, double* c,
-              double* d, double* x, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void DGGQRF( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
              double* taub, double* work, const MKL_INT* lwork, MKL_INT* info );
-void DGGQRF_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-              double* taub, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void dggqrf( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-             const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-             double* taub, double* work, const MKL_INT* lwork, MKL_INT* info );
-void dggqrf_( const MKL_INT* n, const MKL_INT* m, const MKL_INT* p, double* a,
-              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-              double* taub, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void DGGRQF( const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
              double* taub, double* work, const MKL_INT* lwork, MKL_INT* info );
-void DGGRQF_( const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-              double* taub, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
-void dggrqf( const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-             double* taub, double* work, const MKL_INT* lwork, MKL_INT* info );
-void dggrqf_( const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* taua, double* b, const MKL_INT* ldb,
-              double* taub, double* work, const MKL_INT* lwork,
-              MKL_INT* info );
 
 void DGGSVD( const char* jobu, const char* jobv, const char* jobq,
              const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, MKL_INT* k,
@@ -13850,26 +13320,6 @@ void DGGSVD( const char* jobu, const char* jobv, const char* jobq,
              const MKL_INT* ldb, double* alpha, double* beta, double* u,
              const MKL_INT* ldu, double* v, const MKL_INT* ldv, double* q,
              const MKL_INT* ldq, double* work, MKL_INT* iwork, MKL_INT* info );
-void DGGSVD_( const char* jobu, const char* jobv, const char* jobq,
-              const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, MKL_INT* k,
-              MKL_INT* l, double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, double* alpha, double* beta, double* u,
-              const MKL_INT* ldu, double* v, const MKL_INT* ldv, double* q,
-              const MKL_INT* ldq, double* work, MKL_INT* iwork,
-              MKL_INT* info );
-void dggsvd( const char* jobu, const char* jobv, const char* jobq,
-             const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, MKL_INT* k,
-             MKL_INT* l, double* a, const MKL_INT* lda, double* b,
-             const MKL_INT* ldb, double* alpha, double* beta, double* u,
-             const MKL_INT* ldu, double* v, const MKL_INT* ldv, double* q,
-             const MKL_INT* ldq, double* work, MKL_INT* iwork, MKL_INT* info );
-void dggsvd_( const char* jobu, const char* jobv, const char* jobq,
-              const MKL_INT* m, const MKL_INT* n, const MKL_INT* p, MKL_INT* k,
-              MKL_INT* l, double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, double* alpha, double* beta, double* u,
-              const MKL_INT* ldu, double* v, const MKL_INT* ldv, double* q,
-              const MKL_INT* ldq, double* work, MKL_INT* iwork,
-              MKL_INT* info );
 
 void DGGSVP( const char* jobu, const char* jobv, const char* jobq,
              const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
@@ -13878,27 +13328,6 @@ void DGGSVP( const char* jobu, const char* jobv, const char* jobq,
              double* u, const MKL_INT* ldu, double* v, const MKL_INT* ldv,
              double* q, const MKL_INT* ldq, MKL_INT* iwork, double* tau,
              double* work, MKL_INT* info );
-void DGGSVP_( const char* jobu, const char* jobv, const char* jobq,
-              const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb,
-              const double* tola, const double* tolb, MKL_INT* k, MKL_INT* l,
-              double* u, const MKL_INT* ldu, double* v, const MKL_INT* ldv,
-              double* q, const MKL_INT* ldq, MKL_INT* iwork, double* tau,
-              double* work, MKL_INT* info );
-void dggsvp( const char* jobu, const char* jobv, const char* jobq,
-             const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-             const MKL_INT* lda, double* b, const MKL_INT* ldb,
-             const double* tola, const double* tolb, MKL_INT* k, MKL_INT* l,
-             double* u, const MKL_INT* ldu, double* v, const MKL_INT* ldv,
-             double* q, const MKL_INT* ldq, MKL_INT* iwork, double* tau,
-             double* work, MKL_INT* info );
-void dggsvp_( const char* jobu, const char* jobv, const char* jobq,
-              const MKL_INT* m, const MKL_INT* p, const MKL_INT* n, double* a,
-              const MKL_INT* lda, double* b, const MKL_INT* ldb,
-              const double* tola, const double* tolb, MKL_INT* k, MKL_INT* l,
-              double* u, const MKL_INT* ldu, double* v, const MKL_INT* ldv,
-              double* q, const MKL_INT* ldq, MKL_INT* iwork, double* tau,
-              double* work, MKL_INT* info );
 
 void DGSVJ0( const char* jobv, const MKL_INT* m, const MKL_INT* n, double* a,
              const MKL_INT* lda, double* d, double* sva, const MKL_INT* mv,
@@ -19548,22 +18977,6 @@ void sgeesx_( const char* jobvs, const char* sort,
               MKL_INT* iwork, const MKL_INT* liwork, MKL_INT* bwork,
               MKL_INT* info );
 
-void SGEEV( const char* jobvl, const char* jobvr, const MKL_INT* n, float* a,
-            const MKL_INT* lda, float* wr, float* wi, float* vl,
-            const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr, float* work,
-            const MKL_INT* lwork, MKL_INT* info );
-void SGEEV_( const char* jobvl, const char* jobvr, const MKL_INT* n, float* a,
-             const MKL_INT* lda, float* wr, float* wi, float* vl,
-             const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr, float* work,
-             const MKL_INT* lwork, MKL_INT* info );
-void sgeev( const char* jobvl, const char* jobvr, const MKL_INT* n, float* a,
-            const MKL_INT* lda, float* wr, float* wi, float* vl,
-            const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr, float* work,
-            const MKL_INT* lwork, MKL_INT* info );
-void sgeev_( const char* jobvl, const char* jobvr, const MKL_INT* n, float* a,
-             const MKL_INT* lda, float* wr, float* wi, float* vl,
-             const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr, float* work,
-             const MKL_INT* lwork, MKL_INT* info );
 
 void SGEEVX( const char* balanc, const char* jobvl, const char* jobvr,
              const char* sense, const MKL_INT* n, float* a, const MKL_INT* lda,
@@ -19571,26 +18984,6 @@ void SGEEVX( const char* balanc, const char* jobvl, const char* jobvr,
              const MKL_INT* ldvr, MKL_INT* ilo, MKL_INT* ihi, float* scale,
              float* abnrm, float* rconde, float* rcondv, float* work,
              const MKL_INT* lwork, MKL_INT* iwork, MKL_INT* info );
-void SGEEVX_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, float* a,
-              const MKL_INT* lda, float* wr, float* wi, float* vl,
-              const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, float* scale, float* abnrm,
-              float* rconde, float* rcondv, float* work, const MKL_INT* lwork,
-              MKL_INT* iwork, MKL_INT* info );
-void sgeevx( const char* balanc, const char* jobvl, const char* jobvr,
-             const char* sense, const MKL_INT* n, float* a, const MKL_INT* lda,
-             float* wr, float* wi, float* vl, const MKL_INT* ldvl, float* vr,
-             const MKL_INT* ldvr, MKL_INT* ilo, MKL_INT* ihi, float* scale,
-             float* abnrm, float* rconde, float* rcondv, float* work,
-             const MKL_INT* lwork, MKL_INT* iwork, MKL_INT* info );
-void sgeevx_( const char* balanc, const char* jobvl, const char* jobvr,
-              const char* sense, const MKL_INT* n, float* a,
-              const MKL_INT* lda, float* wr, float* wi, float* vl,
-              const MKL_INT* ldvl, float* vr, const MKL_INT* ldvr,
-              MKL_INT* ilo, MKL_INT* ihi, float* scale, float* abnrm,
-              float* rconde, float* rcondv, float* work, const MKL_INT* lwork,
-              MKL_INT* iwork, MKL_INT* info );
 
 void SGEGS( const char* jobvsl, const char* jobvsr, const MKL_INT* n, float* a,
             const MKL_INT* lda, float* b, const MKL_INT* ldb, float* alphar,
@@ -33877,51 +33270,6 @@ void ZLA_SYRFSX_EXTENDED( const MKL_INT* prec_type, const char* uplo,
                           const MKL_INT* ithresh, const double* rthresh,
                           const double* dz_ub, const MKL_INT* ignore_cwise,
                           MKL_INT* info );
-void ZLA_SYRFSX_EXTENDED_( const MKL_INT* prec_type, const char* uplo,
-                           const MKL_INT* n, const MKL_INT* nrhs,
-                           const MKL_Complex16* a, const MKL_INT* lda,
-                           const MKL_Complex16* af, const MKL_INT* ldaf,
-                           const MKL_INT* ipiv, const MKL_INT* colequ,
-                           const double* c, const MKL_Complex16* b,
-                           const MKL_INT* ldb, MKL_Complex16* y,
-                           const MKL_INT* ldy, double* berr_out,
-                           const MKL_INT* n_norms, double* err_bnds_norm,
-                           double* err_bnds_comp, MKL_Complex16* res,
-                           double* ayb, MKL_Complex16* dy,
-                           MKL_Complex16* y_tail, const double* rcond,
-                           const MKL_INT* ithresh, const double* rthresh,
-                           const double* dz_ub, const MKL_INT* ignore_cwise,
-                           MKL_INT* info );
-void zla_syrfsx_extended( const MKL_INT* prec_type, const char* uplo,
-                          const MKL_INT* n, const MKL_INT* nrhs,
-                          const MKL_Complex16* a, const MKL_INT* lda,
-                          const MKL_Complex16* af, const MKL_INT* ldaf,
-                          const MKL_INT* ipiv, const MKL_INT* colequ,
-                          const double* c, const MKL_Complex16* b,
-                          const MKL_INT* ldb, MKL_Complex16* y,
-                          const MKL_INT* ldy, double* berr_out,
-                          const MKL_INT* n_norms, double* err_bnds_norm,
-                          double* err_bnds_comp, MKL_Complex16* res,
-                          double* ayb, MKL_Complex16* dy,
-                          MKL_Complex16* y_tail, const double* rcond,
-                          const MKL_INT* ithresh, const double* rthresh,
-                          const double* dz_ub, const MKL_INT* ignore_cwise,
-                          MKL_INT* info );
-void zla_syrfsx_extended_( const MKL_INT* prec_type, const char* uplo,
-                           const MKL_INT* n, const MKL_INT* nrhs,
-                           const MKL_Complex16* a, const MKL_INT* lda,
-                           const MKL_Complex16* af, const MKL_INT* ldaf,
-                           const MKL_INT* ipiv, const MKL_INT* colequ,
-                           const double* c, const MKL_Complex16* b,
-                           const MKL_INT* ldb, MKL_Complex16* y,
-                           const MKL_INT* ldy, double* berr_out,
-                           const MKL_INT* n_norms, double* err_bnds_norm,
-                           double* err_bnds_comp, MKL_Complex16* res,
-                           double* ayb, MKL_Complex16* dy,
-                           MKL_Complex16* y_tail, const double* rcond,
-                           const MKL_INT* ithresh, const double* rthresh,
-                           const double* dz_ub, const MKL_INT* ignore_cwise,
-                           MKL_INT* info );
 
 double ZLA_SYRPVGRW( const char* uplo, const MKL_INT* n, const MKL_INT* info,
                      const MKL_Complex16* a, const MKL_INT* lda,
@@ -33955,24 +33303,6 @@ void ZTPRFB( const char* side, const char* trans, const char* direct,
              const MKL_INT* ldv, const MKL_Complex16* t, const MKL_INT* ldt,
              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
              const MKL_INT* ldb, MKL_Complex16* work, const MKL_INT* ldwork );
-void ZTPRFB_( const char* side, const char* trans, const char* direct,
-              const char* storev, const MKL_INT* m, const MKL_INT* n,
-              const MKL_INT* k, const MKL_INT* l, const MKL_Complex16* v,
-              const MKL_INT* ldv, const MKL_Complex16* t, const MKL_INT* ldt,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-              const MKL_INT* ldb, MKL_Complex16* work, const MKL_INT* ldwork );
-void ztprfb( const char* side, const char* trans, const char* direct,
-             const char* storev, const MKL_INT* m, const MKL_INT* n,
-             const MKL_INT* k, const MKL_INT* l, const MKL_Complex16* v,
-             const MKL_INT* ldv, const MKL_Complex16* t, const MKL_INT* ldt,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-             const MKL_INT* ldb, MKL_Complex16* work, const MKL_INT* ldwork );
-void ztprfb_( const char* side, const char* trans, const char* direct,
-              const char* storev, const MKL_INT* m, const MKL_INT* n,
-              const MKL_INT* k, const MKL_INT* l, const MKL_Complex16* v,
-              const MKL_INT* ldv, const MKL_Complex16* t, const MKL_INT* ldt,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-              const MKL_INT* ldb, MKL_Complex16* work, const MKL_INT* ldwork );
 
 /* Intel(R) MKL specific routines */
 
@@ -34103,56 +33433,20 @@ void ddtsvb_( const MKL_INT* n, const MKL_INT* nrhs, double* dl, double* d,
 
 void DDTTRFB( const MKL_INT* n, double* dl, double* d, const double* du,
               MKL_INT* info );
-void DDTTRFB_( const MKL_INT* n, double* dl, double* d, const double* du,
-               MKL_INT* info );
-void ddttrfb( const MKL_INT* n, double* dl, double* d, const double* du,
-              MKL_INT* info );
-void ddttrfb_( const MKL_INT* n, double* dl, double* d, const double* du,
-               MKL_INT* info );
 
 void DDTTRSB( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
               const double* dl, const double* d, const double* du, double* b,
               const MKL_INT* ldb, MKL_INT* info );
-void DDTTRSB_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-               const double* dl, const double* d, const double* du, double* b,
-               const MKL_INT* ldb, MKL_INT* info );
-void ddttrsb( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* dl, const double* d, const double* du, double* b,
-              const MKL_INT* ldb, MKL_INT* info );
-void ddttrsb_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-               const double* dl, const double* d, const double* du, double* b,
-               const MKL_INT* ldb, MKL_INT* info );
 
 void SDTSVB( const MKL_INT* n, const MKL_INT* nrhs, float* dl, float* d,
              const float* du, float* b, const MKL_INT* ldb, MKL_INT* info );
-void SDTSVB_( const MKL_INT* n, const MKL_INT* nrhs, float* dl, float* d,
-              const float* du, float* b, const MKL_INT* ldb, MKL_INT* info );
-void sdtsvb( const MKL_INT* n, const MKL_INT* nrhs, float* dl, float* d,
-             const float* du, float* b, const MKL_INT* ldb, MKL_INT* info );
-void sdtsvb_( const MKL_INT* n, const MKL_INT* nrhs, float* dl, float* d,
-              const float* du, float* b, const MKL_INT* ldb, MKL_INT* info );
 
 void SDTTRFB( const MKL_INT* n, float* dl, float* d, const float* du,
               MKL_INT* info );
-void SDTTRFB_( const MKL_INT* n, float* dl, float* d, const float* du,
-               MKL_INT* info );
-void sdttrfb( const MKL_INT* n, float* dl, float* d, const float* du,
-              MKL_INT* info );
-void sdttrfb_( const MKL_INT* n, float* dl, float* d, const float* du,
-               MKL_INT* info );
 
 void SDTTRSB( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
               const float* dl, const float* d, const float* du, float* b,
               const MKL_INT* ldb, MKL_INT* info );
-void SDTTRSB_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-               const float* dl, const float* d, const float* du, float* b,
-               const MKL_INT* ldb, MKL_INT* info );
-void sdttrsb( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-              const float* dl, const float* d, const float* du, float* b,
-              const MKL_INT* ldb, MKL_INT* info );
-void sdttrsb_( const char* trans, const MKL_INT* n, const MKL_INT* nrhs,
-               const float* dl, const float* d, const float* du, float* b,
-               const MKL_INT* ldb, MKL_INT* info );
 
 void ZDTSVB( const MKL_INT* n, const MKL_INT* nrhs, MKL_Complex16* dl,
              MKL_Complex16* d, const MKL_Complex16* du, MKL_Complex16* b,
@@ -34199,52 +33493,16 @@ void MKL_CTPPACK( const char* uplo, const char* trans, const MKL_INT* n,
                   MKL_Complex8* ap, const MKL_INT* i, const MKL_INT* j,
                   const MKL_INT* rows, const MKL_INT* cols,
                   const MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void MKL_CTPPACK_( const char* uplo, const char* trans, const MKL_INT* n,
-                   MKL_Complex8* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_ctppack( const char* uplo, const char* trans, const MKL_INT* n,
-                  MKL_Complex8* ap, const MKL_INT* i, const MKL_INT* j,
-                  const MKL_INT* rows, const MKL_INT* cols,
-                  const MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_ctppack_( const char* uplo, const char* trans, const MKL_INT* n,
-                   MKL_Complex8* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const MKL_Complex8* a, const MKL_INT* lda, MKL_INT* info );
 
 void MKL_DTPPACK( const char* uplo, const char* trans, const MKL_INT* n,
                   double* ap, const MKL_INT* i, const MKL_INT* j,
                   const MKL_INT* rows, const MKL_INT* cols,
                   const double* a, const MKL_INT* lda, MKL_INT* info );
-void MKL_DTPPACK_( const char* uplo, const char* trans, const MKL_INT* n,
-                   double* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const double* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_dtppack( const char* uplo, const char* trans, const MKL_INT* n,
-                  double* ap, const MKL_INT* i, const MKL_INT* j,
-                  const MKL_INT* rows, const MKL_INT* cols,
-                  const double* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_dtppack_( const char* uplo, const char* trans, const MKL_INT* n,
-                   double* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const double* a, const MKL_INT* lda, MKL_INT* info );
 
 void MKL_STPPACK( const char* uplo, const char* trans, const MKL_INT* n,
                   float* ap, const MKL_INT* i, const MKL_INT* j,
                   const MKL_INT* rows, const MKL_INT* cols,
                   const float* a, const MKL_INT* lda, MKL_INT* info );
-void MKL_STPPACK_( const char* uplo, const char* trans, const MKL_INT* n,
-                   float* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const float* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_stppack( const char* uplo, const char* trans, const MKL_INT* n,
-                  float* ap, const MKL_INT* i, const MKL_INT* j,
-                  const MKL_INT* rows, const MKL_INT* cols,
-                  const float* a, const MKL_INT* lda, MKL_INT* info );
-void mkl_stppack_( const char* uplo, const char* trans, const MKL_INT* n,
-                   float* ap, const MKL_INT* i, const MKL_INT* j,
-                   const MKL_INT* rows, const MKL_INT* cols,
-                   const float* a, const MKL_INT* lda, MKL_INT* info );
 
 void MKL_ZTPPACK( const char* uplo, const char* trans, const MKL_INT* n,
                   MKL_Complex16* ap, const MKL_INT* i, const MKL_INT* j,
@@ -34683,30 +33941,6 @@ void ZLATM5( const MKL_INT* prtype, const MKL_INT* m, const MKL_INT* n,
              MKL_Complex16* r, const MKL_INT* ldr, MKL_Complex16* l,
              const MKL_INT* ldl, const double* alpha, const MKL_INT* qblcka,
              const MKL_INT* qblckb );
-void ZLATM5_( const MKL_INT* prtype, const MKL_INT* m, const MKL_INT* n,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-              const MKL_INT* ldb, MKL_Complex16* c, const MKL_INT* ldc,
-              MKL_Complex16* d, const MKL_INT* ldd, MKL_Complex16* e,
-              const MKL_INT* lde, MKL_Complex16* f, const MKL_INT* ldf,
-              MKL_Complex16* r, const MKL_INT* ldr, MKL_Complex16* l,
-              const MKL_INT* ldl, const double* alpha, const MKL_INT* qblcka,
-              const MKL_INT* qblckb );
-void zlatm5( const MKL_INT* prtype, const MKL_INT* m, const MKL_INT* n,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-             const MKL_INT* ldb, MKL_Complex16* c, const MKL_INT* ldc,
-             MKL_Complex16* d, const MKL_INT* ldd, MKL_Complex16* e,
-             const MKL_INT* lde, MKL_Complex16* f, const MKL_INT* ldf,
-             MKL_Complex16* r, const MKL_INT* ldr, MKL_Complex16* l,
-             const MKL_INT* ldl, const double* alpha, const MKL_INT* qblcka,
-             const MKL_INT* qblckb );
-void zlatm5_( const MKL_INT* prtype, const MKL_INT* m, const MKL_INT* n,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_Complex16* b,
-              const MKL_INT* ldb, MKL_Complex16* c, const MKL_INT* ldc,
-              MKL_Complex16* d, const MKL_INT* ldd, MKL_Complex16* e,
-              const MKL_INT* lde, MKL_Complex16* f, const MKL_INT* ldf,
-              MKL_Complex16* r, const MKL_INT* ldr, MKL_Complex16* l,
-              const MKL_INT* ldl, const double* alpha, const MKL_INT* qblcka,
-              const MKL_INT* qblckb );
 
 void DLATM6( const MKL_INT* type, const MKL_INT* n, double* a,
              const MKL_INT* lda, double* b, double* x, const MKL_INT* ldx,
@@ -35428,129 +34662,40 @@ void dlagge_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
 void SLAGGE( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
              const MKL_INT* ku, const float* d, float* a, const MKL_INT* lda,
              MKL_INT* iseed, float* work, MKL_INT* info );
-void SLAGGE_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const float* d, float* a,
-              const MKL_INT* lda, MKL_INT* iseed, float* work,
-              MKL_INT* info );
-void slagge( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-             const MKL_INT* ku, const float* d, float* a, const MKL_INT* lda,
-             MKL_INT* iseed, float* work, MKL_INT* info );
-void slagge_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const float* d, float* a,
-              const MKL_INT* lda, MKL_INT* iseed, float* work,
-              MKL_INT* info );
 
 void CLAGGE( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
              const MKL_INT* ku, const float* d, MKL_Complex8* a,
              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex8* work,
              MKL_INT* info );
-void CLAGGE_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const float* d, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex8* work,
-              MKL_INT* info );
-void clagge( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-             const MKL_INT* ku, const float* d, MKL_Complex8* a,
-             const MKL_INT* lda, MKL_INT* iseed, MKL_Complex8* work,
-             MKL_INT* info );
-void clagge_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const float* d, MKL_Complex8* a,
-              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex8* work,
-              MKL_INT* info );
 
 void ZLAGGE( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
              const MKL_INT* ku, const double* d, MKL_Complex16* a,
              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex16* work,
              MKL_INT* info );
-void ZLAGGE_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const double* d, MKL_Complex16* a,
-              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex16* work,
-              MKL_INT* info );
-void zlagge( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-             const MKL_INT* ku, const double* d, MKL_Complex16* a,
-             const MKL_INT* lda, MKL_INT* iseed, MKL_Complex16* work,
-             MKL_INT* info );
-void zlagge_( const MKL_INT* m, const MKL_INT* n, const MKL_INT* kl,
-              const MKL_INT* ku, const double* d, MKL_Complex16* a,
-              const MKL_INT* lda, MKL_INT* iseed, MKL_Complex16* work,
-              MKL_INT* info );
 
 void CLAGSY( const MKL_INT* n, const MKL_INT* k, const float* d,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex8* work, MKL_INT* info );
-void CLAGSY_( const MKL_INT* n, const MKL_INT* k, const float* d,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex8* work, MKL_INT* info );
-void clagsy( const MKL_INT* n, const MKL_INT* k, const float* d,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex8* work, MKL_INT* info );
-void clagsy_( const MKL_INT* n, const MKL_INT* k, const float* d,
              MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
              MKL_Complex8* work, MKL_INT* info );
 
 void DLAGSY( const MKL_INT* n, const MKL_INT* k, const double* d,
              double* a, const MKL_INT* lda, MKL_INT* iseed, double* work,
              MKL_INT* info );
-void DLAGSY_( const MKL_INT* n, const MKL_INT* k, const double* d,
-              double* a, const MKL_INT* lda, MKL_INT* iseed, double* work,
-              MKL_INT* info );
-void dlagsy( const MKL_INT* n, const MKL_INT* k, const double* d,
-             double* a, const MKL_INT* lda, MKL_INT* iseed, double* work,
-             MKL_INT* info );
-void dlagsy_( const MKL_INT* n, const MKL_INT* k, const double* d,
-              double* a, const MKL_INT* lda, MKL_INT* iseed, double* work,
-              MKL_INT* info );
 
 void SLAGSY( const MKL_INT* n, const MKL_INT* k, const float* d,
-             float* a, const MKL_INT* lda, MKL_INT* iseed, float* work,
-             MKL_INT* info );
-void SLAGSY_( const MKL_INT* n, const MKL_INT* k, const float* d,
-             float* a, const MKL_INT* lda, MKL_INT* iseed, float* work,
-             MKL_INT* info );
-void slagsy( const MKL_INT* n, const MKL_INT* k, const float* d,
-             float* a, const MKL_INT* lda, MKL_INT* iseed, float* work,
-             MKL_INT* info );
-void slagsy_( const MKL_INT* n, const MKL_INT* k, const float* d,
              float* a, const MKL_INT* lda, MKL_INT* iseed, float* work,
              MKL_INT* info );
 
 void ZLAGSY( const MKL_INT* n, const MKL_INT* k, const double* d,
              MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
              MKL_Complex16* work, MKL_INT* info );
-void ZLAGSY_( const MKL_INT* n, const MKL_INT* k, const double* d,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex16* work, MKL_INT* info );
-void zlagsy( const MKL_INT* n, const MKL_INT* k, const double* d,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex16* work, MKL_INT* info );
-void zlagsy_( const MKL_INT* n, const MKL_INT* k, const double* d,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex16* work, MKL_INT* info );
 
 void CLAGHE( const MKL_INT* n, const MKL_INT* k, const float* d,
              MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
              MKL_Complex8* work, MKL_INT* info );
-void CLAGHE_( const MKL_INT* n, const MKL_INT* k, const float* d,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-              MKL_Complex8* work, MKL_INT* info );
-void claghe( const MKL_INT* n, const MKL_INT* k, const float* d,
-             MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex8* work, MKL_INT* info );
-void claghe_( const MKL_INT* n, const MKL_INT* k, const float* d,
-              MKL_Complex8* a, const MKL_INT* lda, MKL_INT* iseed,
-              MKL_Complex8* work, MKL_INT* info );
 
 void ZLAGHE( const MKL_INT* n, const MKL_INT* k, const double* d,
              MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
              MKL_Complex16* work, MKL_INT* info );
-void ZLAGHE_( const MKL_INT* n, const MKL_INT* k, const double* d,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-              MKL_Complex16* work, MKL_INT* info );
-void zlaghe( const MKL_INT* n, const MKL_INT* k, const double* d,
-             MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-             MKL_Complex16* work, MKL_INT* info );
-void zlaghe_( const MKL_INT* n, const MKL_INT* k, const double* d,
-              MKL_Complex16* a, const MKL_INT* lda, MKL_INT* iseed,
-              MKL_Complex16* work, MKL_INT* info );
 
 /* Intel(R) MKL extensions */
 

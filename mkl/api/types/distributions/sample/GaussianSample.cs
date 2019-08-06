@@ -15,7 +15,7 @@ namespace Z0.Mkl
     /// the BRNG identifier and distribution parameters that were specified
     /// when the sample was taken
     /// </summary>
-    public ref struct GaussianSample<T>
+    public readonly struct GaussianSample<T>
         where T : struct
     {
         public GaussianSample(BRNG rng, double mu, double sigma, Memory<T> data)
@@ -23,33 +23,28 @@ namespace Z0.Mkl
             this.SourceRng = rng;
             this.Mu = mu;
             this.Sigma = sigma;
-            this.SampleData = data.Span;
+            this.SampleData = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
         /// <summary>
         /// The mean
         /// </summary>
-        public double Mu;
+        public readonly double Mu;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
-        public double Sigma;
+        public readonly double Sigma;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Format();
     }
 }

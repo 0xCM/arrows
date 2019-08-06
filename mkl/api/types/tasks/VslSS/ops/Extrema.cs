@@ -23,7 +23,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<float> Mean(this Sample<float> src)        
-            => src.CalcMean(Sample.Alloc<float>(src.Dimension,1));
+            => src.CalcMean(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// Finds the mean for each dimension
@@ -31,7 +31,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<double> Mean(this Sample<double> src)        
-            => src.CalcMean(Sample.Alloc<double>(src.Dimension,1));
+            => src.CalcMean(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the sum
@@ -39,7 +39,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<float> Sum(this Sample<float> src)        
-            => src.CalcSum(Sample.Alloc<float>(src.Dimension,1));
+            => src.CalcSum(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the sum
@@ -47,7 +47,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<double> Sum(this Sample<double> src)        
-            => src.CalcSum(Sample.Alloc<double>(src.Dimension,1));
+            => src.CalcSum(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum sample value
@@ -55,7 +55,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<float> Min(this Sample<float> src)        
-            => src.CalcMin(Sample.Alloc<float>(src.Dimension,1));
+            => src.CalcMin(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum sample value
@@ -63,7 +63,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<double> Min(this Sample<double> src)        
-            => src.CalcMin(Sample.Alloc<double>(src.Dimension,1));
+            => src.CalcMin(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the maximum sample value
@@ -71,7 +71,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<float> Max(this Sample<float> src)        
-            => src.CalcMax(Sample.Alloc<float>(src.Dimension,1));
+            => src.CalcMax(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the maximum sample value
@@ -79,7 +79,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<double> Max(this Sample<double> src)        
-            => src.CalcMax(Sample.Alloc<double>(src.Dimension,1));
+            => src.CalcMax(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum and maxim sample value
@@ -87,7 +87,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<float> Extrema(this Sample<float> src)        
-            => src.CalcExtrema(Sample.Alloc<float>(src.Dimension,2));
+            => src.CalcExtrema(Sample.Alloc<float>(src.Dim,2));
 
         /// <summary>
         /// For each dimension, finds the minimum and maxim sample value
@@ -95,7 +95,7 @@ namespace Z0.Mkl
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
         public static Sample<double> Extrema(this Sample<double> src)        
-            => src.CalcExtrema(Sample.Alloc<double>(src.Dimension,2));
+            => src.CalcExtrema(Sample.Alloc<double>(src.Dim,2));
 
         static unsafe Sample<T> CalcMin<T>(this Sample<T> samples, Sample<T> dst)        
             where T : struct

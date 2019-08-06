@@ -20,7 +20,7 @@ namespace Z0.Mkl
             => new VslSSTaskHandle<T>(ptr);
 
         public static unsafe VslSSTaskHandle<T> Create(Sample<T> samples)
-            => new VslSSTaskHandle<T>(samples, samples.Dimension);
+            => new VslSSTaskHandle<T>(samples, samples.Dim);
 
         public static implicit operator IntPtr(VslSSTaskHandle<T> handle)
             => handle.TaskPtr;

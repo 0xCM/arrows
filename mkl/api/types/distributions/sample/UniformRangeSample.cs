@@ -16,7 +16,7 @@ namespace Z0.Mkl
     /// Captures a sample from a uniform distribution 
     /// </summary>
     /// <remarks>https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)</remarks>
-    public struct UniformRangeSample<T>
+    public readonly struct UniformRangeSample<T>
         where T : struct
     {
         public UniformRangeSample(BRNG rng, Interval<T> range, Memory<T> data)
@@ -29,17 +29,17 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
         /// <summary>
         /// The range of values over which the sample was taken
         /// </summary>
-        public Interval<T> Range;
+        public readonly Interval<T> Range;
 
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Memory<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
         /// <summary>
         /// Rnders the sample data as text

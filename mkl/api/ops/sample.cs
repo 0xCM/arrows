@@ -16,7 +16,7 @@ namespace Z0.Mkl
     {            
 
         /// <summary>
-        /// Generates a discrete uniform distribution confined to a specified range
+        /// Samples a discrete uniform distribution over specified range
         /// </summary>
         /// <param name="stream">The brng state stream</param>
         /// <param name="range">The range of possible values</param>
@@ -28,6 +28,12 @@ namespace Z0.Mkl
             return stream.Brng().UniformRangeSampled(range,buffer);
         }
 
+        /// <summary>
+        /// Samples a continuous uniform distribution over specified range
+        /// </summary>
+        /// <param name="stream">The brng state stream</param>
+        /// <param name="range">The range of possible values</param>
+        /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
         public static UniformRangeSample<float> uniform(VslStream stream, Interval<float> range, Memory<float> buffer)
         {
@@ -35,6 +41,12 @@ namespace Z0.Mkl
             return stream.Brng().UniformRangeSampled(range,buffer);
         }
 
+        /// <summary>
+        /// Samples a continuous uniform distribution over specified range
+        /// </summary>
+        /// <param name="stream">The brng state stream</param>
+        /// <param name="range">The range of possible values</param>
+        /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
         public static UniformRangeSample<double> uniform(VslStream stream, Interval<double> range, Memory<double> buffer)
         {
@@ -42,6 +54,13 @@ namespace Z0.Mkl
             return stream.Brng().UniformRangeSampled(range,buffer);
         }
 
+        /// <summary>
+        /// Samples a Cauchy distribution
+        /// </summary>
+        /// <param name="stream">The brng state stream</param>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
         public static CauchySample<float> cauchy(VslStream stream, float a, float b, Memory<float> buffer)
         {
@@ -57,26 +76,26 @@ namespace Z0.Mkl
         }
 
         /// <summary>
-        /// Generates uniformly distributed bits in 32-bit chunks.
+        /// Samples uniformly distributed bits in 32-bit chunks.
         /// </summary>
         /// <param name="stream">The brng state stream</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static UniformBitsSample<uint> ubits(VslStream stream, uint[] buffer)
+        public static UniformBitsSample<uint> bits(VslStream stream, Memory<uint> buffer)
         {            
-            VSL.viRngUniformBits32(0,stream, buffer.Length, ref buffer[0]).ThrowOnError();
+            VSL.viRngUniformBits32(0,stream, buffer.Length, ref buffer.Span[0]).ThrowOnError();
             return stream.Brng().UniformBitsSampled(buffer);
         }
 
         /// <summary>
-        /// Generates uniformly distributed bits in 64-bit chunks.
+        /// Samples uniformly distributed bits in 64-bit chunks.
         /// </summary>
         /// <param name="stream">The brng state stream</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static UniformBitsSample<ulong> ubits(VslStream stream, ulong[] buffer)
+        public static UniformBitsSample<ulong> bits(VslStream stream, Memory<ulong> buffer)
         {
-            VSL.viRngUniformBits64(0,stream, buffer.Length, ref buffer[0]).ThrowOnError();
+            VSL.viRngUniformBits64(0,stream, buffer.Length, ref buffer.Span[0]).ThrowOnError();
             return stream.Brng().UniformBitsSampled(buffer);
         }
 
@@ -87,10 +106,10 @@ namespace Z0.Mkl
         /// <param name="p">The proability of a trial succeeding</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static GeometricSample<int> geometric(VslStream stream, double p, Span<int> buffer)
+        public static GeometricSample<int> geometric(VslStream stream, double p, Memory<int> buffer)
         {
-            VSL.viRngGeometric(0, stream, buffer.Length, ref buffer[0], p).ThrowOnError();
-            return stream.Brng().GeometricSampled(p, buffer);
+            VSL.viRngGeometric(0, stream, buffer.Length, ref buffer.Span[0], p).ThrowOnError();
+            return stream.Brng().GeometricSample(p, buffer);
         }
 
         /// <summary>
@@ -109,24 +128,24 @@ namespace Z0.Mkl
         }
 
         [MethodImpl(Inline)]    
-        public static Span<int> bernoulli(VslStream stream, double p, Span<int> buffer)
+        public static BernoulliSample<int> bernoulli(VslStream stream, double p, Memory<int> buffer)
         {
-            VSL.viRngBernoulli(0, stream, buffer.Length, ref buffer[0],p).ThrowOnError();
-            return buffer;
+            VSL.viRngBernoulli(0, stream, buffer.Length, ref buffer.Span[0],p).ThrowOnError();
+            return stream.Brng().BernoulliSample(p, buffer);
         }
 
         [MethodImpl(Inline)]    
-        public static ChiSquareSample<float> chi2(VslStream stream, int freedom, Span<float> buffer)
+        public static ChiSquareSample<float> chi2(VslStream stream, int freedom, Memory<float> buffer)
         {
-            VSL.vsRngChiSquare(0, stream, buffer.Length, ref buffer[0], freedom).ThrowOnError();
-            return stream.Brng().ChiSquareSampled(freedom,buffer);
+            VSL.vsRngChiSquare(0, stream, buffer.Length, ref buffer.Span[0], freedom).ThrowOnError();
+            return stream.Brng().ChiSquareSample(freedom,buffer);
         }
 
         [MethodImpl(Inline)]    
-        public static ChiSquareSample<double> chi2(VslStream stream, int freedom, Span<double> buffer)
+        public static ChiSquareSample<double> chi2(VslStream stream, int freedom, Memory<double> buffer)
         {
-            VSL.vdRngChiSquare(0, stream, buffer.Length, ref buffer[0], freedom).ThrowOnError();
-            return stream.Brng().ChiSquareSampled(freedom,buffer);
+            VSL.vdRngChiSquare(0, stream, buffer.Length, ref buffer.Span[0], freedom).ThrowOnError();
+            return stream.Brng().ChiSquareSample(freedom,buffer);
         }
 
         /// <summary>
@@ -166,9 +185,9 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static GammaSample<float> gamma(VslStream stream, float alpha, float dx, float beta, Span<float> buffer)
+        public static GammaSample<float> gamma(VslStream stream, float alpha, float dx, float beta, Memory<float> buffer)
         {
-            VSL.vsRngGamma(VslGammaMethod.GNorm, stream, buffer.Length, ref buffer[0], alpha, dx, beta).ThrowOnError();
+            VSL.vsRngGamma(VslGammaMethod.GNorm, stream, buffer.Length, ref buffer.Span[0], alpha, dx, beta).ThrowOnError();
             return stream.Brng().GammaSample(alpha, dx, beta, buffer);
         }
 
@@ -181,9 +200,9 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static GammaSample<double> gamma(VslStream stream, double alpha, double dx, double beta, Span<double> buffer)
+        public static GammaSample<double> gamma(VslStream stream, double alpha, double dx, double beta, Memory<double> buffer)
         {
-            VSL.vdRngGamma(VslGammaMethod.GNorm, stream, buffer.Length, ref buffer[0], alpha, dx, beta).ThrowOnError();
+            VSL.vdRngGamma(VslGammaMethod.GNorm, stream, buffer.Length, ref buffer.Span[0], alpha, dx, beta).ThrowOnError();
             return stream.Brng().GammaSample(alpha, dx, beta, buffer);
         }
 
@@ -195,9 +214,9 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static ExponentialSample<float> exp(VslStream stream, float dx, float beta, Span<float> buffer)
+        public static ExponentialSample<float> exp(VslStream stream, float dx, float beta, Memory<float> buffer)
         {
-            VSL.vsRngExponential(0, stream, buffer.Length, ref buffer[0], dx, beta).ThrowOnError();
+            VSL.vsRngExponential(0, stream, buffer.Length, ref buffer.Span[0], dx, beta).ThrowOnError();
             return stream.Brng().ExponentialSample(dx, beta, buffer);
         }
 
@@ -209,9 +228,9 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static ExponentialSample<double> exp(VslStream stream, double dx, double beta, Span<double> buffer)
+        public static ExponentialSample<double> exp(VslStream stream, double dx, double beta, Memory<double> buffer)
         {
-            VSL.vdRngExponential(0, stream, buffer.Length, ref buffer[0], dx, beta).ThrowOnError();
+            VSL.vdRngExponential(0, stream, buffer.Length, ref buffer.Span[0], dx, beta).ThrowOnError();
             return stream.Brng().ExponentialSample(dx, beta, buffer);
         }
 
@@ -222,10 +241,10 @@ namespace Z0.Mkl
         /// <param name="alpha"></param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static PoissonSample<int> poisson(VslStream stream, double alpha, Span<int> buffer)
+        public static PoissonSample<int> poisson(VslStream stream, double alpha, Memory<int> buffer)
         {
-            VSL.viRngPoisson(0, stream, buffer.Length, ref buffer[0], alpha).ThrowOnError();
-            return stream.Brng().PoissonSample(alpha,  buffer);
+            VSL.viRngPoisson(0, stream, buffer.Length, ref buffer.Span[0], alpha).ThrowOnError();
+            return stream.Brng().PoissonSample(alpha, buffer);
         }
  
         /// <summary>
@@ -255,7 +274,5 @@ namespace Z0.Mkl
             VSL.vdRngLaplace(0, stream, buffer.Length, ref buffer.Span[0], mean, beta).ThrowOnError();
             return stream.Brng().LaplaceSample(mean,beta,buffer);
         }
-
-
     }
 }

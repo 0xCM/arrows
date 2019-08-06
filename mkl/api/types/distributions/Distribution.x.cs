@@ -38,7 +38,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <typeparam name="T">The primal type of the sample data</typeparam>
         [MethodImpl(Inline)]    
-        internal static UniformBitsSample<T> UniformBitsSampled<T>(this BRNG rng, T[] data)
+        internal static UniformBitsSample<T> UniformBitsSampled<T>(this BRNG rng, Memory<T> data)
             where T : struct
                 => new UniformBitsSample<T>(rng,data);
 
@@ -48,27 +48,32 @@ namespace Z0.Mkl
                 => new UniformRangeSample<T>(rng, range, data);
 
         [MethodImpl(Inline)]    
-        internal static GeometricSample<T> GeometricSampled<T>(this BRNG rng, double p, Span<T> data)
+        internal static GeometricSample<T> GeometricSample<T>(this BRNG rng, double p, Memory<T> data)
             where T : struct
                 => new GeometricSample<T>(rng, p, data);
 
         [MethodImpl(Inline)]    
-        internal static ChiSquareSample<T> ChiSquareSampled<T>(this BRNG rng, int freedom, Span<T> data)
+        internal static BernoulliSample<T> BernoulliSample<T>(this BRNG rng, double p, Memory<T> data)
+            where T : struct
+                => new BernoulliSample<T>(rng, p, data);
+
+        [MethodImpl(Inline)]    
+        internal static ChiSquareSample<T> ChiSquareSample<T>(this BRNG rng, int freedom, Memory<T> data)
             where T : struct
                 => new ChiSquareSample<T>(rng, freedom, data);
 
         [MethodImpl(Inline)]    
-        internal static GammaSample<T> GammaSample<T>(this BRNG rng, T alpha, T dx, T beta, Span<T> data)
+        internal static GammaSample<T> GammaSample<T>(this BRNG rng, T alpha, T dx, T beta, Memory<T> data)
             where T : struct
                 => new GammaSample<T>(rng, alpha, dx, beta, data);
 
         [MethodImpl(Inline)]    
-        internal static ExponentialSample<T> ExponentialSample<T>(this BRNG rng, T dx, T beta, Span<T> data)
+        internal static ExponentialSample<T> ExponentialSample<T>(this BRNG rng, T dx, T beta, Memory<T> data)
             where T : struct
                 => new ExponentialSample<T>(rng, dx, beta, data);
 
         [MethodImpl(Inline)]    
-        internal static PoissonSample<T> PoissonSample<T>(this BRNG rng, double lambda, Span<T> data)
+        internal static PoissonSample<T> PoissonSample<T>(this BRNG rng, double lambda, Memory<T> data)
             where T : struct
                 => new PoissonSample<T>(rng, lambda, data);
 

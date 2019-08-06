@@ -13,14 +13,14 @@ namespace Z0.Mkl
     using static nfunc;
 
     /// <summary>
-    /// Encapsulates data sampled from a Chi^2 distribution joined with
+    /// Encapsulates data sampled from a Gamma distribution joined with
     /// the BRNG identifier and distribution parameters that were specified
     /// when the sample was taken
     /// </summary>
-    public ref struct GammaSample<T>
+    public readonly struct GammaSample<T>
         where T : struct
     {
-        public GammaSample(BRNG rng, T Alpha, T Dx, T Beta, Span<T> data)
+        public GammaSample(BRNG rng, T Alpha, T Dx, T Beta, Memory<T> data)
         {
             this.SourceRng = rng;
             this.Alpha = Alpha;
@@ -32,27 +32,22 @@ namespace Z0.Mkl
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public BRNG SourceRng;
+        public readonly BRNG SourceRng;
 
-        public T Alpha;
+        public readonly T Alpha;
 
         /// <summary>
         /// The displacement
         /// </summary>
-        public T Dx; 
+        public readonly T Dx; 
 
-        public T Beta;
+        public readonly T Beta;
 
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public Span<T> SampleData;        
+        public readonly Memory<T> SampleData;        
 
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Format();
     }
 
 }

@@ -44,7 +44,7 @@ namespace Z0.Mkl
         /// <param name="dim">The common dimension of each vector</param>
         [MethodImpl(Inline)]
         public static Sample<float> RadixSort(this Sample<float> samples)        
-            => samples.ApplyRadixSort(Sample.Alloc<float>(samples.Dimension, samples.Count));
+            => samples.ApplyRadixSort(Sample.Alloc<float>(samples.Dim, samples.Count));
 
         /// <summary>
         /// Applies the radix sort method to order the components in each observation vector
@@ -53,13 +53,13 @@ namespace Z0.Mkl
         /// <param name="dim">The common dimension of each vector</param>
         [MethodImpl(Inline)]
         public static Span<double> RadixSort(this Sample<double> samples)        
-            => samples.ApplyRadixSort(Sample.Alloc<double>(samples.Dimension, samples.Count));
+            => samples.ApplyRadixSort(Sample.Alloc<double>(samples.Dim, samples.Count));
 
 
          static unsafe Sample<T> ApplyRadixSort<T>(this Sample<T> samples, Sample<T> dst)        
             where T : struct
         {
-            var dim = samples.Dimension;
+            var dim = samples.Dim;
             var sampleCount = samples.Count;
             var iStorage = (int)VslSSMatrixStorage.VSL_SS_MATRIX_STORAGE_ROWS;
             var mformat = VslSSMatrixStorage.VSL_SS_MATRIX_STORAGE_ROWS;
