@@ -77,11 +77,19 @@ namespace Z0
             this.data = src;
         }
 
-
         public ref readonly T this[int ix] 
         {
             [MethodImpl(Inline)]
             get => ref data[ix];
+        }
+
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public ReadOnlySpan<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data;
         }
 
         [MethodImpl(Inline)]
@@ -103,10 +111,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
-
         
         public int Length 
-            => CellCount;
+        {
+            [MethodImpl(Inline)]
+            get => CellCount;
+        }
             
         public bool IsEmpty
             => data.IsEmpty;

@@ -150,9 +150,6 @@ namespace Z0
         public Span256<T> ToBlockedSpan()
             => Span256<T>.Load(data.ToArray());
 
-        [MethodImpl(Inline)]
-        public ReadOnlySpan<T> UnBlock()
-            => data;
 
         [MethodImpl(Inline)]
         public T[] ToArray()
@@ -178,6 +175,16 @@ namespace Z0
         public ReadOnlySpan256<S> As<S>()                
             where S : struct
                 => (ReadOnlySpan256<S>)MemoryMarshal.Cast<T,S>(data);                    
+ 
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public ReadOnlySpan<T> Unblocked
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         public int Length 
         {
             [MethodImpl(Inline)]

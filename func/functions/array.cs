@@ -75,11 +75,8 @@ partial class zfunc
     /// <typeparam name="T">The element type</typeparam>
     public static T[] reverse<T>(T[] src)
     {
-        var min = 0;
-        var max = src.Length - 1;
-        while (min < --max)
-            swap(ref src[min++], ref src[max]);
-        return src;
+        Array.Reverse(src);
+        return src;        
     }
 
     [MethodImpl(Inline)]   

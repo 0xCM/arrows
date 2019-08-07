@@ -13,9 +13,8 @@ namespace Z0
     using System.Diagnostics;
 
     using static zfunc;
-    using static As;
 
-    partial class xfunc
+    public static class SpanConversion
     {
         /// <summary>
         /// Lifts the content of a span into a LINQ enumerable
@@ -32,18 +31,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<T> ToEnumerable<T>(this Span<T> src)
-            => src.ReadOnly().ToEnumerable();
-
-        /// <summary>
-        /// Constructs a span from an array selection
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="start">The array index where the span is to begin</param>
-        /// <param name="length">The number of elements to cover from the aray</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this T[] src, Index start, int length)
-            => span(src,start.Value,length);
+            => src.ReadOnly().ToEnumerable();            
 
         /// <summary>
         /// Constructs a span from an array
@@ -62,7 +50,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this ReadOnlySpan<T> src)
         {
-            var dst = span<T>(src.Length);
+            Span<T> dst = new T[src.Length];
             src.CopyTo(dst);
             return dst;
         }
@@ -77,13 +65,29 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a span from a (presumeably finite) sequence
+        /// Constructs a span from a (presumeably finite) sequence selection
         /// </summary>
         /// <param name="src">The source sequence</param>
+        /// <param name="offset">The number of elements to skip from the head of the sequence</param>
+        /// <param name="length">The number of elements to take from the sequence</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this IEnumerable<T> src)
-            => span(src);
+        public static Span<T> TakeSpan<T>(this IEnumerable<T> src, int? offset = null, int? length = null)
+        {
+            var elements = length == null ? src.Skip(offset ?? 0) : src.Skip(offset ?? 0).Take(length.Value);
+            return elements.ToArray();
+        }
+
+        /// <summary>
+        /// Constructs a span from an array selection
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="start">The array index where the span is to begin</param>
+        /// <param name="length">The number of elements to cover from the aray</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> TakeSpan<T>(this T[] src, int offset, int length)
+            => new Span<T>(src, offset, length);
 
         /// <summary>
         /// Creates a set from a span
@@ -166,7 +170,8 @@ namespace Z0
         public static byte[] ToByteArray(this long src)
             => BitConverter.GetBytes(src);
 
- 
+
+
 
     }
 

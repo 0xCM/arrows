@@ -18,7 +18,7 @@ namespace Z0.Mkl.Test
         {
             var pTarget = 0.7;
             var tolerance = .02;
-            var samples = Pow2.T24;
+            var samples = Pow2.T13;
             var rng = mkl.gRandom();
             var source = rng.Bernoulli(pTarget).Take(samples);
             
@@ -33,7 +33,7 @@ namespace Z0.Mkl.Test
         }
 
 
-        public void CreateMt2203Generators()
+        void CreateMt2203Generators()
         {
             var gencount = Pow2.T08;
             var samplesize = Pow2.T16;
@@ -87,33 +87,33 @@ namespace Z0.Mkl.Test
                 return msg;
             };
 
-            using(var stream = mkl.stream(BRNG.NONDETERM, 1))
-            {
+            using var stream = mkl.stream(BRNG.NONDETERM, 1);
+            
                 //VSL.viRngUniform(0, stream, buffer.Length, ref buffer[0], -200, 200).ThrowOnError();
-                var i32 = mkl.uniform(stream, closed(-200, 200), array<int>(10));
-                var i32Fmt = i32.Format();                
-                append($"Discrete uniform i32 {appMsg(i32Fmt)}");
+            var i32 = mkl.uniform(stream, closed(-200, 200), array<int>(10));
+            var i32Fmt = i32.Format();                
+            append($"Discrete uniform i32 {appMsg(i32Fmt)}");
 
-                var f32 = mkl.uniform(stream, closed(-250f, 250f), array<float>(10));
-                append($"Continuous uniform f32 {appMsg(f32.Format())}");
+            var f32 = mkl.uniform(stream, closed(-250f, 250f), array<float>(10));
+            append($"Continuous uniform f32 {appMsg(f32.Format())}");
 
-                var f64 = mkl.uniform(stream, closed(-250d, 250d), array<double>(10));
-                append($"Continuous uniform f64 {appMsg(f64.Format())}");
+            var f64 = mkl.uniform(stream, closed(-250d, 250d), array<double>(10));
+            append($"Continuous uniform f64 {appMsg(f64.Format())}");
 
-                var u32 = mkl.bits(stream, array<uint>(10));
-                var u32Fmt = u32.Format();
-                append(u32Fmt);
+            var u32 = mkl.bits(stream, array<uint>(10));
+            var u32Fmt = u32.Format();
+            append(u32Fmt);
 
-                var u64 = mkl.bits(stream, array<ulong>(10));
-                var u64Fmt = u64.Format();
-                append(u64Fmt);
+            var u64 = mkl.bits(stream, array<ulong>(10));
+            var u64Fmt = u64.Format();
+            append(u64Fmt);
 
-                var bernoulli = mkl.bernoulli(stream, .5, array<int>(10));
-                append($"Bernoulli  {bernoulli.Format()}");
+            var bernoulli = mkl.bernoulli(stream, .5, array<int>(10));
+            append($"Bernoulli  {bernoulli.Format()}");
 
-                var geometric = mkl.geometric(stream, .5, array<int>(20));
-                append(geometric.Format());
-            }                    
+            var geometric = mkl.geometric(stream, .5, array<int>(20));
+            append(geometric.Format());
+            
         }
     }
 }

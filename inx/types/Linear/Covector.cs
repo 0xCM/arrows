@@ -98,6 +98,11 @@ namespace Z0
         public ref T this[int index] 
             => ref data[index];
 
+        public Span<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         [MethodImpl(Inline)]
         public Span<T> Unsize()

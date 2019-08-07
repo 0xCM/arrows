@@ -28,8 +28,8 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gmath.add(ref x, y);
             return ref lhs;
         }
@@ -46,7 +46,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
+            var x = lhs.Unsized;
             gmath.add(ref x, rhs);
             return ref lhs;
         }
@@ -63,8 +63,8 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gmath.sub(ref x, y);
             return ref lhs;
         }
@@ -82,8 +82,8 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gmath.mul(ref x, y);
             return ref lhs;
         }
@@ -101,8 +101,8 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gmath.div(ref x, y);
             return ref lhs;
         }
@@ -120,8 +120,8 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gmath.mod(ref x, y);
             return ref lhs;
         }
@@ -139,8 +139,8 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gbits.and(in x, y);
             return ref lhs;
         }
@@ -158,7 +158,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
+            var x = lhs.Unsized;
             gbits.and(in x, in rhs);
             return ref lhs;
         }
@@ -175,8 +175,8 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gbits.or(in x, y);
             return ref lhs;
         }
@@ -194,7 +194,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
+            var x = lhs.Unsized;
             gbits.or(in x, in rhs);
             return ref lhs;
         }
@@ -212,8 +212,8 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
             gbits.xor(in x, y);
             return ref lhs;
         }
@@ -231,7 +231,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
+            var x = lhs.Unsized;
             gbits.xor(in x, rhs);
             return ref lhs;
         }
@@ -249,7 +249,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
+            var x = lhs.Unsized;
             gmath.pow(ref x, rhs);
             return ref lhs;
         }
@@ -266,7 +266,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = src.Unsize();
+            var x = src.Unsized;
             gbits.flip(in x);
             return ref src;
         }
@@ -276,7 +276,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = src.Unsize();
+            var x = src.Unsized;
             gmath.negate(ref x);
             return ref src;
         }
@@ -293,7 +293,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = io.Unsize();
+            var x = io.Unsized;
             gmath.inc(ref x);
             return ref io;
         }
@@ -310,7 +310,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = io.Unsize();
+            var x = io.Unsized;
             gmath.dec(ref x);
             return ref io;
         }
@@ -321,7 +321,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = src.Unsize();
+            var x = src.Unsized;
             gmath.sqrt(ref x);
             return ref src;
         }
@@ -332,7 +332,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = src.Unsize();
+            var x = src.Unsized;
             gmath.abs(in x);
             return ref src;
         }
@@ -344,9 +344,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.eq<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.eq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -355,9 +355,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.neq<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.neq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -366,9 +366,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.gt<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.gt<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -377,9 +377,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.gteq<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.gteq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -388,9 +388,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.lt<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.lt<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -399,9 +399,9 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            return gmath.lteq<T>(x, y).ToNatSpan<N,bool>();            
+            var x = lhs.Unsized;
+            var y = rhs.Unsized;
+            return gmath.lteq<T>(x, y).ToNatural<N,bool>();            
         }
 
         /// <summary>
@@ -415,7 +415,7 @@ namespace Z0
         public static T Dot<N,T>(in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
-                => gmath.dot<T>(lhs.Unsize(),rhs.Unsize());
+                => gmath.dot<T>(lhs.Unsized,rhs.Unsized);
 
         /// <summary>
         /// Renders the source vector as text
@@ -427,7 +427,7 @@ namespace Z0
         public static string Format<N,T>(in Vector<N,T> src)
             where T : struct    
             where N: ITypeNat, new()
-                => src.Unsize().Format();
+                => src.Unsized.FormatList();
 
         /// <summary>
         /// Returns true of each component of the source vector equals a specified value; otherwise, returns false
@@ -451,7 +451,12 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N, T>.Define(src.Unsize());
+                => Vector<N, T>.Define(src.Unsized);
+
+        [MethodImpl(Inline)]        
+        static Span<T> Slice<N,T>(this Span<T> src, N start = default)
+            where N : ITypeNat, new()
+                => src.Slice((int)start.value);
 
         [MethodImpl(Inline)]
         public static Vector<P,T> Concat<M,N,P,T>(this Vector<M,T> head, Vector<N,T> tail, P sum = default)
@@ -459,6 +464,11 @@ namespace Z0
             where N : ITypeNat, new()
             where P : INatSum<M,N>, new()
             where T : struct
-                => Vector.Concat(head, tail, sum);
+        {
+            var dst = span<T>(new NatSum<M,N>());
+            head.Unsized.CopyTo(dst);
+            tail.Unsized.CopyTo(dst.Slice(new M()));
+            return Vector<P,T>.Define(dst);
+        }
     }
 }

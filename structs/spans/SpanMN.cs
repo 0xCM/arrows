@@ -13,16 +13,24 @@ namespace Z0
 
     using static nfunc;
     using static zfunc;
-
+    #pragma warning disable 414 // Disables "The field F is assigned but its value is never used" warning
 
     /// <summary>
-    /// Defines a span of natural length MxN which is presented as a logical grid/matrix
+    /// Defines a tabular span of dimension MxN 
     /// </summary>
-    public ref struct Span<M,N,T>
+    /// <typeparam name="M">The row count type</typeparam>
+    /// <typeparam name="N">The row count type</typeparam>
+    /// <typeparam name="T">The span element type</typeparam>
+     public ref struct Span<M,N,T>
         where M : ITypeNat, new()
         where N : ITypeNat, new()
+        where T : struct
     {
         Span<T> data;
+
+        Span<M,T> colbuffer;
+
+        bool Blocked256;
 
         /// <summary>
         /// The number of rows in the structure
@@ -59,11 +67,13 @@ namespace Z0
         /// </summary>
         public static N ColRep = default;
 
-
         public static implicit operator Span<M,N,T>(T[] src)
             => new Span<M, N, T>(src);
 
         public static implicit operator Span<M,N,T>(Span<T> src)
+            => new Span<M, N, T>(src);
+
+        public static implicit operator Span<M,N,T>(Span256<T> src)
             => new Span<M, N, T>(src);
 
         public static implicit operator Span<T>(Span<M,N,T> src)
@@ -80,6 +90,8 @@ namespace Z0
         public Span(ref T src)
         {
             data = MemoryMarshal.CreateSpan(ref src, CellCount);
+            colbuffer = NatSpan.alloc<M,T>();
+            this.Blocked256 = false;
         }
 
         [MethodImpl(Inline)]        
@@ -87,6 +99,8 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src;
+            colbuffer = NatSpan.alloc<M,T>();
+            this.Blocked256 = false;
         }
 
         [MethodImpl(Inline)]        
@@ -94,6 +108,8 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src;
+            colbuffer = NatSpan.alloc<M,T>();
+            this.Blocked256 = false;
         }
 
         [MethodImpl(Inline)]
@@ -101,6 +117,8 @@ namespace Z0
         {         
             this.data = new Span<T>(new T[CellCount]);
             this.data.Fill(value);
+            colbuffer = NatSpan.alloc<M,T>();
+            this.Blocked256 = false;
         }
 
         [MethodImpl(Inline)]
@@ -108,8 +126,19 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src.ToArray();
-            src.CopyTo(data);
+            colbuffer = NatSpan.alloc<M,T>();
+            this.Blocked256 = false;
         }
+
+        [MethodImpl(Inline)]
+        public Span(Span256<T> src)
+        {
+            require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
+            colbuffer = NatSpan.alloc<M,T>();
+            this.data = src.Unblocked;
+            this.Blocked256 = true;
+        }
+
 
         [MethodImpl(Inline)]        
         public ref T Cell(int r, int c)
@@ -138,6 +167,15 @@ namespace Z0
             get => ref data[ix];
         }
 
+        /// <summary>
+        /// Provides access to the underlying linear storage
+        /// </summary>
+        public Span<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         public Dim<M,N> Dim 
             => default;    
 
@@ -158,21 +196,16 @@ namespace Z0
             => ref data.GetPinnableReference();
 
         [MethodImpl(Inline)]
-        public void CopyTo (Span<T> dst)
+        public void CopyTo(Span<T> dst)
             => data.CopyTo(dst);
 
         [MethodImpl(Inline)]
-        public bool TryCopyTo (Span<T> dst)
+        public bool TryCopyTo(Span<T> dst)
             => data.TryCopyTo(dst);
-
-        [MethodImpl(Inline)]
-        public Span<T> Unsize()
-            => data;
 
         [MethodImpl(Inline)]
         public Span<M,N,T> Replicate()        
             => new Span<M, N, T>(data.ToArray());
-
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<M,N,T> ReadOnly()        
@@ -195,16 +228,23 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Extracts a column of data
+        /// </summary>
+        /// <param name="col">The column index</param>
+        /// <remarks>Unfortunately, this method needs to allocate to get a contiguous block of memory</remarks>
         [MethodImpl(Inline)]
         public Span<M,T> Col(int col)
+            => Col(col, ref colbuffer);
+
+        public ref Span<M,T> Col(int col, ref Span<M,T> dst)
         {
             if(col < 0 || col >= ColCount)
-                throw OutOfRange(col, 0, ColCount - 1);
-            
-            var v = NatSpan.alloc<M,T>();
-            for(var r = 0; r < ColLength; r++)
-                v[r] = data[r + col];
-            return v;
+                ThrowOutOfRange(col, 0, ColCount - 1);
+
+            for(var row = 0; row < ColLength; row++)
+                dst[row] = data[row*RowLenth + col];
+            return ref dst;
         }
 
         [MethodImpl(Inline)]
@@ -233,29 +273,6 @@ namespace Z0
             for(var c = 0; c < ColCount; c++)
                 dst[c, r] = this[r, c];
             return dst;            
-        }
-
-        public string Format(char cellsep = ',', char rowsep = '\n', int? zpad = null)
-        {
-            var sb = new StringBuilder("\r\n");
-            var lastIx = CellCount - 1;
-            for(var i=0; i< CellCount; i++)
-            {
-                if(i != 0)
-                {
-                    if(IsRowHead(i))
-                        sb.Append($"{rowsep}");
-                    else
-                        sb.Append($"{cellsep} ");
-                }
-                if(zpad == null)
-                    sb.Append($"{data[i]}");
-                else
-                    sb.Append(data[i].ToString().PadLeft(zpad.Value, '0'));
-             
-            }
-
-            return sb.ToString();            
         }
 
        public override bool Equals(object rhs) 

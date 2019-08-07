@@ -19,7 +19,7 @@ namespace Z0.Test
         const uint Seed = 0x78941u;
         public void ProbabilityVectors0()
         {
-            var rng = mkl.gMcg31(Seed);
+            using var rng = mkl.gMcg31(Seed);
             var src = rng.Uniform(closed(.0001, .0100)).Select(x => x.Round(4));
             var sum = 0.0;
             var count = 0;
@@ -163,7 +163,7 @@ namespace Z0.Test
             for(var i=0; i< count; i++)
             {
                 Random.MarkovVector(ref v);
-                var sum =  convert<T,double>(gmath.sum(v.Unsize()));
+                var sum =  convert<T,double>(gmath.sum(v.Unsized));
                 Claim.yea(radius.Contains(sum));
             }
         }

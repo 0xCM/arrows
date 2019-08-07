@@ -53,12 +53,12 @@ namespace Z0
         /// <typeparam name="N">The col count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Matrix<M,N,T> Load<M,N,T>(Span256<T> src,M m = default, N n = default)
+        public static Matrix<M,N,T> Load<M,N,T>(Span256<T> src, M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
                 => new Matrix<M, N, T>(src);
-        
+
         public static Matrix<M,N,T> Load<M,N,T>(Span<T> src,M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -127,65 +127,6 @@ namespace Z0
             return dst;
         }
 
-        public static string Format<M,N,T>(Matrix<M,N,T> src, TextFormat? fmt = null)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            var _fmt = fmt ?? TextFormat.Default;
-            var sep = _fmt.Delimiter;
-            var rows = nati<M>();
-            var cols = nati<N>();
-            var sb = new StringBuilder();                        
-            for(var row = 0; row < rows; row++)
-            {
-                for(var col = 0; col<cols; col++)
-                {
-                    sb.Append(src[row,col]);
-                    if(col != cols - 1)
-                        sb.Append(sep);
-                }
-                sb.AppendLine();
-            }
-            return sb.ToString();            
-        }
-
-        /// <summary>
-        /// Writes a matrix to a delimited file
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        /// <param name="dst">The target file</param>
-        /// <typeparam name="M">The row count type</typeparam>
-        /// <typeparam name="N">The column count type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        public static void WriteTo<M,N,T>(Matrix<M,N,T> src, FilePath dst, bool overwrite = true, TextFormat? fmt = null)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            var _fmt = fmt ?? TextFormat.Default;
-            var sep = _fmt.Delimiter;
-            var rows = nati<M>();
-            var cols = nati<N>();
-            var sb = new StringBuilder();                        
-            sb.AppendLine($"{_fmt.CommentPrefix} {typeof(T).Name}[{rows}x{cols}]");
-            if(_fmt.HasHeader)
-            {
-                for(var i = 0; i<cols; i++)
-                {
-                    sb.Append($"Col{i}");
-                    if(i != cols - 1)
-                        sb.Append(sep);
-                }
-                sb.AppendLine();
-            }
-            sb.Append(Format(src,_fmt));
-            
-            if(overwrite)
-                dst.Overwrite(sb.ToString());
-            else
-                dst.Append(sb.ToString());
-        }
    }
 
 }

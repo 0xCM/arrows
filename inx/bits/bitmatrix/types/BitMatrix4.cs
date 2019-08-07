@@ -74,6 +74,10 @@ namespace Z0
             => And(ref lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix4 operator * (BitMatrix4 lhs, BitMatrix4 rhs)
+            => And(ref lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static BitMatrix4 operator | (BitMatrix4 lhs, BitMatrix4 rhs)
             => Or(ref lhs, rhs);
 
@@ -161,6 +165,14 @@ namespace Z0
                     BitMask.enable(ref dst, i);
             return dst;                    
         }
+
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> dst);
 
 
         [MethodImpl(Inline)] 

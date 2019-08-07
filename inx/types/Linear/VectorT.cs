@@ -79,11 +79,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vector<T> operator << (in Vector<T> lhs, int rhs) 
-            => gbits.shiftl(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
+            => gbits.shiftl(lhs.data.Unblocked.ReadOnly(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator >> (in Vector<T> lhs, int rhs) 
-            => gbits.shiftr(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
+            => gbits.shiftr(lhs.data.Unblocked.ReadOnly(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator - (in Vector<T> src) 
@@ -146,7 +146,7 @@ namespace Z0
         public Vector<T> Add(in Vector<T> rhs)
         {
             var x = unblock(data);
-            var y = rhs.data.Unblock();
+            var y = rhs.data.Unblocked;
             gmath.add(ref x, y);
             return this;
         }
@@ -154,8 +154,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public Vector<T> Sub(in Vector<T> rhs)
         {
-            var x = data.Unblock();
-            var y = rhs.data.Unblock();
+            var x = data.Unblocked;
+            var y = rhs.data.Unblocked;
             gmath.sub(ref x, y);
             return this;
         }
@@ -164,7 +164,7 @@ namespace Z0
         public Vector<T> Mul(in Vector<T> rhs)
         {
             var x = unblock(data);
-            var y = rhs.data.Unblock();
+            var y = rhs.data.Unblocked;
             gmath.mul(ref x, y);
             return this;
         }
@@ -173,7 +173,7 @@ namespace Z0
         public Vector<T> Div(in Vector<T> rhs)
         {
             var x = unblock(data);
-            var y = rhs.data.Unblock();
+            var y = rhs.data.Unblocked;
             gmath.div(ref x, y);
             return this;
         }
@@ -182,7 +182,7 @@ namespace Z0
         public Vector<T> Mod(in Vector<T> rhs)
         {
             var x = unblock(data);
-            var y = rhs.data.Unblock();
+            var y = rhs.data.Unblocked;
             gmath.mod(ref x, y);
             return this;
         }
@@ -290,7 +290,7 @@ namespace Z0
             where U : struct
                 => data.As<U>();
         public string Format(char delimiter = ',')
-            => data.Unblock().Format(delimiter);
+            => data.Unblocked.FormatList(delimiter);
 
         [MethodImpl(Inline)]
         static Span<T> alloc(Vector<T> src)
@@ -298,7 +298,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static int count(in Vector<T> lhs, in Vector<T> rhs)        
-            => length(lhs.data.Unblock(),rhs.data.Unblock());
+            => length(lhs.data.Unblocked,rhs.data.Unblocked);
         
         [MethodImpl(Inline)]
         static Span<T> alloc(in Vector<T> lhs, in Vector<T> rhs)

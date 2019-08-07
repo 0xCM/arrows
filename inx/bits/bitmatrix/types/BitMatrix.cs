@@ -55,6 +55,10 @@ namespace Z0
             => lhs.And(rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> operator *(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
+            => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
         {
             require(src.Length == GridLayout.TotalSegments, 
@@ -157,6 +161,14 @@ namespace Z0
                 col[row] = this[row, colix];
             return col;
         }
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.AsBytes().Unpack(out Span<Bit> dst);
+
 
         public BitLayout<T> Layout
             => GridLayout;

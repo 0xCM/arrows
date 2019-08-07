@@ -17,9 +17,11 @@ namespace Z0
     {        
         internal Span<byte> bits;
 
-        public const uint Size = 64;
+        public const uint BitCount = 64;
 
-        public const uint RowSize = 8;
+        public const uint Dimension = 8;
+        
+        
         
         public static readonly N8 N = default;
 
@@ -99,6 +101,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator & (BitMatrix8 lhs, BitMatrix8 rhs)
+            => And(ref lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 operator * (BitMatrix8 lhs, BitMatrix8 rhs)
             => And(ref lhs,rhs);
 
         [MethodImpl(Inline)]
@@ -222,6 +228,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public string Format()
             => bits.FormatMatrixBits(8);
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> dst);
 
 
         public override bool Equals(object obj)

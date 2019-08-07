@@ -55,6 +55,10 @@ namespace Z0
             => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix64 operator * (BitMatrix64 lhs, BitMatrix64 rhs)
+            => And(ref lhs, rhs);
+
+        [MethodImpl(Inline)]
         public static BitMatrix64 operator | (BitMatrix64 lhs, BitMatrix64 rhs)
             => Or(ref lhs,rhs);
 
@@ -115,6 +119,12 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> dst);
 
         /// <summary>
         /// Returns the underlying matrix data as a span of bytes

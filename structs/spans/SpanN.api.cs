@@ -86,23 +86,27 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static Span<N,T> adapt<N,T>(Span<N,T> src, N n = default(N))    
             where N : ITypeNat, new()
+            where T : struct
                 => new Span<N,T>(src);
 
         [MethodImpl(Inline)]   
         public static Span<M,N,T> adapt<M,N,T>(Span<T> src, M m = default, N n = default)    
             where M : ITypeNat, new()
             where N : ITypeNat, new()
+            where T : struct
                 => new Span<M,N,T>(src);
 
         [MethodImpl(Inline)]   
         public static Span<N,T> alloc<N,T>(T value = default(T), N n = default) 
             where N : ITypeNat, new()
+            where T : struct
                 => new Span<N,T>(value);
 
         [MethodImpl(Inline)]   
         public static Span<M,N,T> alloc<M,N,T>(T value = default(T), M m = default, N n = default) 
             where M : ITypeNat, new()
             where N : ITypeNat, new()
+            where T : struct
                 => new Span<M,N,T>(value);
 
         [MethodImpl(Inline)]   

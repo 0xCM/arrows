@@ -23,8 +23,6 @@ namespace Z0.Mkl.Test
                 
                 var buffer = new float[Pow2.T04];
                 var sample = mkl.chi2(stream, 4, buffer);
-                Trace(sample.SampleData.Span.Format());
-
                 Claim.eq(BRNG.SFMT19937, mkl.brng(stream));
 
             }

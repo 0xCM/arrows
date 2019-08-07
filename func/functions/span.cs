@@ -58,42 +58,12 @@ partial class zfunc
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
     public static Span<T> span<T>(IEnumerable<T> src)
-        => span(src.ToArray());
-
-    [MethodImpl(Inline)]
-    public static Span<T> replicate<T>(ReadOnlySpan<T> src)
-    {
-        var dst = span<T>(src.Length);
-        src.CopyTo(dst);
-        return dst;
-    }
-
-    [MethodImpl(Inline)]
-    public static Span<T> replicate<T>(Span<T> src)
-    {
-        var dst = span<T>(src.Length);
-        src.CopyTo(dst);
-        return dst;
-    }
-
-    /// <summary>
-    /// Reverses a span in-place
-    /// </summary>
-    /// <param name="src">The source array</param>
-    /// <typeparam name="T">The element type</typeparam>
-    public static Span<T> reverse<T>(Span<T> src)
-    {
-        var min = 0;
-        var max = src.Length - 1;
-        while (min < --max)
-            swap(ref src[min++], ref src[max]);
-        return src;
-    }
+        => src.TakeSpan();
 
     [MethodImpl(Inline)]
     public static ref readonly T first<T>(ReadOnlySpan<byte> src)
         where T : struct
-            =>  ref MemoryMarshal.AsRef<T>(src);
+            => ref MemoryMarshal.AsRef<T>(src);
 
     [MethodImpl(Inline)]
     public static ref T first<T>(Span<byte> src)
@@ -124,72 +94,6 @@ partial class zfunc
         where T : struct
             => dst = MemoryMarshal.Cast<S,T>(src);
 
-    [MethodImpl(Inline)]   
-    public static int length<T>(Span<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(Span<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Count ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(IReadOnlyList<T> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Count == rhs.Length ? lhs.Count
-                : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlySpan<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Count ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(IReadOnlyList<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Count == rhs.Length ? lhs.Count
-                : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            where T : struct
-            where S :struct
-        =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs,  [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     /// <summary>
     /// Constructs a span from an array
@@ -203,6 +107,7 @@ partial class zfunc
     [MethodImpl(Inline)]   
     public static Span<T> span<T>(ref T first, int length)
         => MemoryMarshal.CreateSpan(ref first, length);
+
 
     /// <summary>
     /// Constructs a span from a sequence selection
@@ -284,18 +189,73 @@ partial class zfunc
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
-    /// <summary>
-    /// Allocates a blocked span of lenth N iff supplied left and right spans are
-    /// of common length N
-    /// </summary>
-    /// <param name="lhs">The left span</param>
-    /// <param name="rhs">The right span</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-        where T : struct
-            => Span128.alloc(lhs,rhs);
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
-    
-     
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Count ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(IReadOnlyList<T> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Count == rhs.Length ? lhs.Count
+                : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Count ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(IReadOnlyList<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Count == rhs.Length ? lhs.Count
+                : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct
+            where S :struct
+        =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs,  [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+
+
 }

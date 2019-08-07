@@ -81,7 +81,7 @@ namespace Z0
                     => random.UniformStream(domain, gmath.nonzero);
 
         /// <summary>
-        /// Fills a client-allocated target with a specified number of uniformly random values
+        /// Fills a caller-allocated target with a specified number of values from the source
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="domain">The domain of the random variable</param>
@@ -93,6 +93,22 @@ namespace Z0
             where T : struct
         {
             var it = random.Stream<T>(domain,filter).Take(count).GetEnumerator();
+            var counter = 0;
+            while(it.MoveNext())
+                Unsafe.Add(ref dst, counter++) = it.Current;
+        }
+
+        /// <summary>
+        /// Fills a caller-allocated target with a specified number of values from the source
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="count">The number of values to send to the target</param>
+        /// <param name="dst">A reference to the target location</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void StreamTo<T>(this IRandomSource random, int count, ref T dst)
+            where T : struct
+        {
+            var it = random.Stream<T>().Take(count).GetEnumerator();
             var counter = 0;
             while(it.MoveNext())
                 Unsafe.Add(ref dst, counter++) = it.Current;

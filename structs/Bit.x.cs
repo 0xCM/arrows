@@ -22,13 +22,6 @@ namespace Z0
         public static Bit ToBit(this bool src)
             => src;
 
-        [MethodImpl(Inline)]
-        internal static Span<byte> ToBytes<T>(this T src)
-            where T : struct
-        {
-            Span<T> s = new T[1]{src};
-            return MemoryMarshal.AsBytes(s);
-        }        
 
     }
 

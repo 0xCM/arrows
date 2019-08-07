@@ -148,10 +148,7 @@ namespace Z0.Test
                 values.AsParallel().ForAll(v => Count(dst, v));                
             else
                 values.ForEach(v => Count(dst, v));
-
         }
-
-
 
         void UniformRange<T>(Interval<T> domain, int count)
             where T : struct
@@ -168,7 +165,8 @@ namespace Z0.Test
             Claim.yea(gmath.between(max, domain.Left, domain.Right));
             Claim.yea(gmath.between(min, domain.Left, domain.Right));
 
-            TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time}"));
+            TypeCaseEnd<T>();
+            //TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time}"));
         }
 
         void UniformBounded<T>(int count)
@@ -181,7 +179,8 @@ namespace Z0.Test
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
             var avg = gmath.avg<T>(samples);
-            TypeCaseEnd<T>(appMsg($"min = {min} | max = {max} | avg = {avg}, time = {time}"));
+            TypeCaseEnd<T>();
+            //TypeCaseEnd<T>(appMsg($"min = {min} | max = {max} | avg = {avg}, time = {time}"));
         }
 
         public void TestUniformRange()

@@ -170,7 +170,7 @@ namespace Z0.Mkl
             var n = 10;
             var incx = 1;
             var x = floats(1.0,  -2.0,  3.0,  4.0,  -5.0,  6.0,  -7.0,  8.0,  -9.0,  10.0);
-            input(x.FormatAsVector());
+            input(x.FormatVector());
 
             var sw = stopwatch();
             var result = CBLAS.cblas_sasum(n, ref x[0], incx);
@@ -189,7 +189,7 @@ namespace Z0.Mkl
             var n = 4;
             var incx = 1;
             var x =  ComplexF64.Load(doubles(1.2, 2.5, 3.0, 1.7, 4.0, 0.53, -5.5, -0.29));
-            msg += input(x.FormatAsVector(),silent);
+            msg += input(x.FormatVector(),silent);
             
             var expect = x.Map(z => Math.Abs(z.re) + Math.Abs(z.im)).Reduce((a,b) => a + b);
             expected(expect);
@@ -210,13 +210,13 @@ namespace Z0.Mkl
             var alpha = .5f;
             var x = floats(1, 2, 3, 4, 5);
             var y = floats(.5, .5, .5, .5, .5);
-            input($"alpha={alpha}, x = {x.FormatAsVector()}, y = {y.FormatAsVector()}");
+            input($"alpha={alpha}, x = {x.FormatVector()}, y = {y.FormatVector()}");
 
             var sw = stopwatch();
             CBLAS.cblas_saxpy(n, alpha, ref x[0], incx, ref y[0], incy);
             var time = snapshot(sw);            
 
-            output(y.FormatAsVector());
+            output(y.FormatVector());
             conclude(time);                                    
         }
 
@@ -240,14 +240,14 @@ namespace Z0.Mkl
             var b = NatSpan.load<N,M,double>(ref srcB[0]);
 
             (var timer, var startMsg) = input(
-                nameof(a), a.Format(zpad: a.EntryPadWidth()), 
-                nameof(b), b.Format(zpad: b.EntryPadWidth()),
+                nameof(a), a.Format(a.EntryPadWidth()), 
+                nameof(b), b.Format(b.EntryPadWidth()),
                 silent
                 );            
 
             var c = mkl.gemm(a,b);            
             var time = snapshot(timer); 
-            var finaleMsg = finale(nameof(c), c.Format(zpad: c.EntryPadWidth()), timer, silent, method);
+            var finaleMsg = finale(nameof(c), c.Format(c.EntryPadWidth()), timer, silent, method);
                 
             var report = sbuild();
             report.AppendLine(introMsg);

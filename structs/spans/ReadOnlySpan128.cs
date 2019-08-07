@@ -21,6 +21,8 @@ namespace Z0
     public ref struct ReadOnlySpan128<T>
         where T : struct
     {
+        ReadOnlySpan<T> data;
+
         /// <summary>
         /// The number of cells in the block
         /// </summary>
@@ -99,7 +101,6 @@ namespace Z0
             return new ReadOnlySpan128<T>(src,length);
         }
 
-        ReadOnlySpan<T> data;
 
         [MethodImpl(Inline)]
         unsafe ReadOnlySpan128(void* src, int length)    
@@ -167,10 +168,6 @@ namespace Z0
             => new Span<T>(data.ToArray());
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan<T> Unblock()
-            => data;
-
-        [MethodImpl(Inline)]
         public T[] ToArray()
             => data.ToArray();   
 
@@ -194,6 +191,16 @@ namespace Z0
         public ReadOnlySpan128<S> As<S>()                
             where S : struct
                 => (ReadOnlySpan128<S>)MemoryMarshal.Cast<T,S>(data);                    
+
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public ReadOnlySpan<T> Unblocked
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         public int Length 
         {
             [MethodImpl(Inline)]

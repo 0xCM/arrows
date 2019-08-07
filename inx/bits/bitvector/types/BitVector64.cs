@@ -112,6 +112,10 @@ namespace Z0
         public bool TestBit(byte pos)
             => BitMask.test(in data, pos);
 
+        [MethodImpl(Inline)]
+        public bool TestBit(int pos)
+            => BitMask.test(in data, pos);
+
         public BitVector32 Hi
         {
             [MethodImpl(Inline)]

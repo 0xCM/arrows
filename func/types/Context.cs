@@ -75,6 +75,12 @@ namespace Z0
                 TracePerf(timing.Format());
         }
 
+        protected void TracePerf(OpTime time)
+        {
+            if(TraceEnabled)
+                TracePerf(time.Format());
+        }
+
 
         /// <summary>
         /// Emits a performance-related trace message

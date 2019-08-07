@@ -86,8 +86,8 @@ namespace Z0.Test
             var y1S = rngAvx.Next();
             var y1 = y1S.ToSpan();
 
-            print($"pcg: {x1.Format()}");
-            print($"pcg: {y1.Format()}");
+            print($"pcg: {x1.FormatList()}");
+            print($"pcg: {y1.FormatList()}");
 
             var sw1 = stopwatch();
             for(var i=0; i<n; i++)

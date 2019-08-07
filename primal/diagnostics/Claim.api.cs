@@ -213,7 +213,7 @@ namespace Z0
             where T : struct 
         {
             for(var i = 0; i< length(lhs,rhs); i++)
-                if(!gmath.eq(lhs[i],rhs[i]))
+                if(gmath.neq(lhs[i],rhs[i]))
                     throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
         }
 
@@ -239,8 +239,28 @@ namespace Z0
             where T : struct 
                 => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);
 
+        [MethodImpl(Inline)]
         public static void eq<T>(Span256<T> lhs, Span256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);
+                => eq(lhs.Unblocked, rhs.Unblocked, caller, file, line);
+ 
+        /// <summary>
+        /// Asserts equality for two spans of natural dimension MxN 
+        /// </summary>
+        /// <param name="lhs">The left span</param>
+        /// <param name="rhs">The right span</param>
+        /// <param name="caller">The invoking function</param>
+        /// <param name="file">The file in which the invoking function is defined </param>
+        /// <param name="line">The file line number of invocation</param>
+        /// <typeparam name="M">The row dimension type</typeparam>
+        /// <typeparam name="N">The column dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static void eq<M,N,T>(Span<M,N,T> lhs, Span<M,N,T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where N : ITypeNat, new()
+            where M : ITypeNat, new()
+            where T : struct 
+                => eq(lhs.Unsized, rhs.Unsized, caller, file, line);
+ 
     }
 }

@@ -110,9 +110,9 @@ namespace Z0
         public static string Concat(this IEnumerable<char> chars, char? sep = null)
         {
             if(sep == null)
-                return new string(chars.ToSpan());
+                return new string(chars.TakeSpan());
             else
-                return new string(chars.Intersperse(sep.Value).ToSpan());                        
+                return new string(chars.Intersperse(sep.Value).TakeSpan());                        
         }
 
         /// <summary>
@@ -339,9 +339,9 @@ namespace Z0
             return sb.ToString();
         }
 
-        [MethodImpl(Inline)]   
-        public static string Concat(this Span<string> src, string sep = null)        
-            => src.ReadOnly().Concat(sep);
+        // [MethodImpl(Inline)]   
+        // public static string Concat(this Span<string> src, string sep = null)        
+        //     => src.ReadOnly().Concat(sep);
 
         /// <summary>
         /// Defines an unsigned alterantive to the intrinsic Count property

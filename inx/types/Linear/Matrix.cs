@@ -20,6 +20,8 @@ namespace Z0
     {        
         Span256<T> data;
 
+        Vector<M,T> colbuffer;
+
         public static readonly Dim<M,N> Dim = default;        
 
         /// <summary>
@@ -60,8 +62,11 @@ namespace Z0
         public static implicit operator Matrix<M,N,T>(Span256<T> src)
             => new Matrix<M,N,T>(src);
 
+        public static implicit operator Span<M,N,T>(Matrix<M,N,T> src)
+            => src.Natural;
+
         public static implicit operator Span256<T>(Matrix<M,N,T> src)
-            => src.data;
+            => src.Unsized;
 
         [MethodImpl(Inline)]
         public static bool operator == (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
@@ -96,6 +101,7 @@ namespace Z0
         {
             require(src.Length >= CellCount);
             data = src;
+            colbuffer = Vector.Alloc<M,T>();
         }
 
         [MethodImpl(Inline)]        
@@ -115,27 +121,51 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,T> Row(int r)
+        public Vector<N,T> Row(int row)
         {
-            if(r < 0 || r >= RowCount)
-                throw Errors.OutOfRange(r, 0, RowCount - 1);
+            if(row < 0 || row >= RowCount)
+                throw Errors.OutOfRange(row, 0, RowCount - 1);
             
-            return Vector.Load(data.Slice(r * RowLenth, RowLenth), ColRep);
+            return Vector.Load(data.Slice(row * RowLenth, RowLenth), ColRep);
         }
 
-        public Vector<M,T> Col(int col)
+        public ref Vector<M,T> Col(int col, ref Vector<M,T> dst)
         {
             if(col < 0 || col >= ColCount)
                 throw Errors.OutOfRange(col, 0, ColCount - 1);
             
-            var v = NatSpan.alloc<M,T>();
-            for(var r = 0; r < ColLength; r++)
-                v[r] = data[r + col];
-            return v;
+            for(var row = 0; row < ColLength; row++)
+                dst[row] = data[row*RowLenth + col];
+            return ref dst;
         }
 
-        public Span256<T> Data
+        [MethodImpl(Inline)]
+        public Vector<M,T> Col(int col)
+            => Col(col, ref colbuffer);            
+
+        /// <summary>
+        /// Provides access to the underlying data as a linear unblocked span
+        /// </summary>
+        public Span<T> Unblocked
         {            
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+        /// <summary>
+        /// Provides access to the underlying data as a 256-bit blocked span
+        /// </summary>
+        public Span256<T> Unsized
+        {            
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+        /// <summary>
+        /// Provides access to the underlying data as a span of natural dimensions
+        /// </summary>
+        public Span<M,N,T> Natural
+        {
             [MethodImpl(Inline)]
             get => data;
         }
@@ -143,7 +173,7 @@ namespace Z0
         /// <summary>
         /// Applies a function to each cell and overwites the existing cell value with the result
         /// </summary>
-        /// <param name="f"></param>
+        /// <param name="f">The function to apply</param>
         public void Apply(Func<T,T> f)
         {
             for(var r = 0; r < RowCount; r++)

@@ -15,47 +15,39 @@ namespace Z0
     {
         public static readonly OpTime Zero = new OpTime(0, Duration.Zero);
         
-        public static implicit operator (string Label, long OpCount, Duration WorkTime)(OpTime src)
-            => (src.Label, src.OpCount, src.WorkTime);
+        public static implicit operator (long OpCount, Duration WorkTime, string Label)(OpTime src)
+            => (src.OpCount, src.WorkTime,src.Label);
 
         public static implicit operator OpTime((long OpCount, Duration WorkTime) src)
             => Define(src.OpCount, src.WorkTime);        
 
-        public static implicit operator OpTime((string Label, long OpCount, Duration WorkTime) src)
-            => Define(src.Label, src.OpCount, src.WorkTime);        
+        public static implicit operator OpTime((long OpCount, Duration WorkTime, string Label) src)
+            => Define(src.OpCount, src.WorkTime, src.Label);        
 
-        public static OpTime Define(long OpCount, Duration WorkTime)
-            => new OpTime(OpCount, WorkTime);
-
-        public static OpTime Define(string Label, long OpCount, Duration WorkTime)
-            => new OpTime(Label, OpCount, WorkTime);
+        public static OpTime Define(long OpCount, Duration WorkTime, string label = null)
+            => new OpTime(OpCount, WorkTime, label);
 
         public static OpTime operator +(OpTime lhs, OpTime rhs)
-            => new OpTime($"{lhs.Label}/{rhs.Label}", lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime);
+            => new OpTime(lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, $"{lhs.Label}/{rhs.Label}");
 
-        public OpTime(string Label, long OpCount, Duration WorkTime)
+        public OpTime(long OpCount, Duration WorkTime, string Label = null)
         {
-            this.Label = Label;
+            this.Label = Label ?? "?";
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;
-        }
-
-        public OpTime(long OpCount, Duration WorkTime)
-        {
-            this.Label = string.Empty;
-            this.OpCount = OpCount;
-            this.WorkTime = WorkTime;
-        }
-            
-        public readonly string Label {get;}
+        }            
 
         public readonly long OpCount {get;}
 
         public readonly Duration WorkTime {get;}
 
+        public readonly string Label {get;}
 
+        public string Format(int? labelPad = null)
+            => $"{Label}".PadRight(labelPad ?? 20) + $"| Ops = {OpCount} " + $"| Time = {WorkTime}";
+        
         public override string ToString()
-            => $"{Label} | {OpCount} ops".PadRight(30) + $"| {WorkTime}";
+            => Format();
     }
 
     public readonly struct OpTimePair
@@ -92,12 +84,7 @@ namespace Z0
             => Format();
 
         public string Format()
-        {
-            var x = $"{LeftLabel}".PadRight(20) + $"| Ops = {OpCount} " + $"| Time = {Left.WorkTime}";
-            var y = $"{RightLabel}".PadRight(20) + $"| Ops = {OpCount} " + $"| Time = {Right.WorkTime}";
-            return x + eol() + y;
-
-        }
+            => concat(Left.Format(), eol(), Right.Format());
             
     }
 

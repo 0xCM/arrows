@@ -80,7 +80,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> Unpack(this in byte src, out Span<Bit> dst)
+        public static Span<Bit> Unpack(this byte src, out Span<Bit> dst)
             => Bits.unpack(in src, out dst);
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> Unpack(this in ushort src, out Span<Bit> dst)
+        public static Span<Bit> Unpack(this ushort src, out Span<Bit> dst)
             => Bits.unpack(in src, out dst);
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> Unpack(this in int src, out Span<Bit> dst)
+        public static Span<Bit> Unpack(this int src, out Span<Bit> dst)
             => Bits.unpack(in src, out dst);
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> Unpack(this in ulong src, out Span<Bit> dst)
+        public static Span<Bit> Unpack(this ulong src, out Span<Bit> dst)
             => Bits.unpack(in src, out dst);
 
         public static Span<Bit> Unpack(this ReadOnlySpan<byte> src, out Span<Bit> dst)
@@ -119,6 +119,19 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static Span<Bit> Unpack(this Span<byte> src, out Span<Bit> dst)
             => src.ReadOnly().Unpack(out dst);
+
+        [MethodImpl(Inline)]        
+        public static Span<Bit> Unpack(this Span<ushort> src, out Span<Bit> dst)
+            => src.AsBytes().Unpack(out dst);
+
+        [MethodImpl(Inline)]        
+        public static Span<Bit> Unpack(this Span<uint> src, out Span<Bit> dst)
+            => src.AsBytes().Unpack(out dst);
+
+        [MethodImpl(Inline)]        
+        public static Span<Bit> Unpack(this Span<ulong> src, out Span<Bit> dst)
+            => src.AsBytes().Unpack(out dst);
+
 
     }
 

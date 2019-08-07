@@ -40,7 +40,7 @@ namespace Z0.Mkl
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.Format();
+            => SampleData.Span.FormatList();
 
 
     }

@@ -63,6 +63,11 @@ namespace Z0
             => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix32 operator * (BitMatrix32 lhs, BitMatrix32 rhs)
+            => And(ref lhs, rhs);
+
+
+        [MethodImpl(Inline)]
         public static BitMatrix32 operator | (BitMatrix32 lhs, BitMatrix32 rhs)
             => Or(ref lhs, rhs);
 
@@ -110,6 +115,13 @@ namespace Z0
         [MethodImpl(Inline)] 
         public BitMatrix32 Replicate()
             => Define(bits.ReadOnly()); 
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> dst);
 
         public int RowDim
             => N;

@@ -142,7 +142,10 @@ namespace Z0
         /// <param name="src">The source array</param>
         /// <typeparam name="T">The element type</typeparam>
         public static T[] Reverse<T>(this T[] src)
-            => reverse(src);
+        {
+            Array.Reverse(src);
+            return src;
+        }
 
         [MethodImpl(Inline)]
         public static bool ReallyEqual<T>(this T[] lhs, T[] rhs, Func<T,T,bool> predicate = null)

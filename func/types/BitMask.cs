@@ -11,6 +11,11 @@ namespace Z0
     
      public static class BitMask
      {
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref sbyte enable(ref sbyte src, in int pos)
           {
@@ -18,6 +23,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref byte enable(ref byte src, in int pos)
           {
@@ -25,6 +35,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref short enable(ref short src, in int pos)
           {
@@ -32,6 +47,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref ushort enable(ref ushort src, in int pos)
           {
@@ -39,6 +59,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref int enable(ref int src, in int pos)
           {
@@ -46,6 +71,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref uint enable(ref uint src, in int pos)
           {
@@ -53,6 +83,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref long enable(ref long src, in int pos)
           {
@@ -60,6 +95,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref ulong enable(ref ulong src, in int pos)
           {
@@ -67,6 +107,11 @@ namespace Z0
                return ref src;
           }          
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref float enable(ref float src, in int pos)
           {
@@ -76,6 +121,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref double enable(ref double src, in int pos)
           {               
@@ -85,38 +135,83 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static sbyte enable(sbyte src, int pos)
             =>  src |= (sbyte)(1 << pos);
                
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static byte enable(byte src, int pos)
             =>  src |= (byte)(1 << pos);
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static short enable(short src, int pos)
             =>  src |= (short)(1 << pos);
                
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ushort enable(ushort src, int pos)
             =>  src |= (ushort)(1 << pos);
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static int enable(int src, int pos)
             =>  src |= (1 << pos);
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static uint enable(uint src, int pos)
             =>  src |= (1u << pos);
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static long enable(long src, int pos)
             =>  src |= (1L << pos);
 
+         /// <summary>
+         /// Enables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ulong enable(ulong src, int pos)
             =>  src |= (1ul << pos);
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref byte disable(ref byte src, in int pos)
           {
@@ -125,6 +220,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref sbyte disable(ref sbyte src, in int pos)
           {
@@ -133,6 +233,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref short disable(ref short src, in int pos)
           {
@@ -141,6 +246,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref ushort disable(ref ushort src, in int pos)
           {
@@ -149,6 +259,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref int disable(ref int src, in int pos)
           {
@@ -157,6 +272,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref uint disable(ref uint src, in int pos)
           {
@@ -165,6 +285,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref long disable(ref long src, in int pos)
           {
@@ -173,6 +298,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref ulong disable(ref ulong src, in int pos)
           {
@@ -181,6 +311,11 @@ namespace Z0
                return ref src;
           }
 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
           [MethodImpl(Inline)]
           public static ref float disable(ref float src, in int pos)
           {
@@ -190,97 +325,201 @@ namespace Z0
                return ref src;
           } 
 
-          [MethodImpl(Inline)]
-          public static ref double disable(ref double src, in int pos)
-          {
-               ref var bits = ref Unsafe.As<double,long>(ref src);
-               var m = 1L << pos;
-               bits &= ~m;
-               return ref src;
-          } 
+         /// <summary>
+         /// Disables a specified source bit
+         /// </summary>
+         /// <param name="src">The source value to manipulate</param>
+         /// <param name="pos">The position of the bit to disable</param>
+         [MethodImpl(Inline)]
+         public static ref double disable(ref double src, in int pos)
+         {
+              ref var bits = ref Unsafe.As<double,long>(ref src);
+              var m = 1L << pos;
+              bits &= ~m;
+              return ref src;
+         } 
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in sbyte src, in int pos)
             => (src & (1 << pos)) != 0;
             
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in byte src, in int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in short src, in int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in ushort src, in int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in int src, in int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in uint src, in int pos)
             => (src & (1u << pos)) != 0u;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in long src, in int pos)
             => (src & (1L << pos)) != 0L;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in ulong src, in int pos)
             => (src & (1ul << pos)) != 0ul;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in float src, in int pos)
             => test(BitConverter.SingleToInt32Bits(src),pos); 
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in double src, in int pos)
             => test(BitConverter.DoubleToInt64Bits(src),pos);
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in sbyte src, byte pos)
             => (src & (1 << pos)) != 0;
             
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in byte src, byte pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in short src, byte pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in ushort src, byte pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in int src, byte pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in uint src, byte pos)
             => (src & (1u << pos)) != 0u;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in long src, byte pos)
             => (src & (1L << pos)) != 0L;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in ulong src, byte pos)
             => (src & (1ul << pos)) != 0ul;
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in float src, byte pos)
             => test(BitConverter.SingleToInt32Bits(src),pos); 
 
+        /// <summary>
+        /// Determines whether a bit in a specified position is enabled
+        /// </summary>
+        /// <param name="src">The value to interrogate</param>
+        /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool test(in double src, byte pos)
             => test(BitConverter.DoubleToInt64Bits(src),pos);
 
- 
-         /// <summary>
+        /// <summary>
         /// Aligns an index-identified bit in a source value with a supplied bit value
         /// </summary>
         /// <param name="src">The source</param>
@@ -419,9 +658,5 @@ namespace Z0
             else disable(ref src, index);
             return ref src;
         }
-
-
      }
-
-
 }

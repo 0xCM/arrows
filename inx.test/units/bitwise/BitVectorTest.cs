@@ -149,9 +149,7 @@ namespace Z0.Test
 
             BitVectorCreate<ulong>(63, samples);
             BitVectorCreate<ushort>(13, samples);
-            BitVectorCreate<uint>(32, samples);
-            
-
+            BitVectorCreate<uint>(32, samples);            
         }
 
         public void TestSpanBits()
@@ -159,8 +157,12 @@ namespace Z0.Test
             var src = Random.Span<byte>(Pow2.T03);
             var bvSrc = BitVector64.Define(BitConverter.ToUInt64(src));
 
-            for(byte i=0; i< Pow2.T03*8; i++)
-                Claim.eq(gbits.test(src[i],i), bvSrc.TestBit(i));
+            for(var i=0; i<src.Length; i++)
+            {
+                ref var x = ref src[i];
+                for(var j = 0; j < 8; j++)
+                    Claim.eq(gbits.test(x,j), bvSrc.TestBit(i*8 + j));
+            }
         }
 
         void ScalarProduct1()

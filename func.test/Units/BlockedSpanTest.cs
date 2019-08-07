@@ -187,7 +187,7 @@ namespace Z0.Test
                     dst[block*blocklen + i] = src[block*blocklen + i];                
             }
 
-            Claim.eq(src.Unblock(),dst.Unblock());
+            Claim.eq(src.Unblocked,dst.Unblocked);
 
         }
 

@@ -29,7 +29,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {            
-            var lhsSrc = src.Unsize();
+            var lhsSrc = src.Unsized;
             var dataLen = nati<M>() * nati<N>();
             Span256.alignment<T>(dataLen, out int blocklen, out int fullBlocks, out int remainder);            
             if(remainder == 0)
@@ -42,11 +42,27 @@ namespace Z0
             }            
         }
 
-        public static string Format<M,N,T>(this Matrix<M,N,T> src, TextFormat? fmt = null)
+        public static string Format<M,N,T>(this Matrix<M,N,T> src, char? cellsep = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
-                => Matrix.Format<M,N,T>(src, fmt);
+        {
+            var sep = cellsep ?? '|';
+            var rows = nati<M>();
+            var cols = nati<N>();
+            var sb = new StringBuilder();                        
+            for(var row = 0; row < rows; row++)
+            {
+                for(var col = 0; col<cols; col++)
+                {
+                    sb.Append(src[row,col]);
+                    if(col != cols - 1)
+                        sb.Append(sep);
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();            
+        }
 
         /// <summary>
         /// Computes the sum of two matrices and stores the result in the left matrix
@@ -62,7 +78,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Data.ReadOnly().Add(rhs.Data, lhs.Data);
+            lhs.Unsized.ReadOnly().Add(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -80,7 +96,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Data.ReadOnly().Sub(rhs.Data, lhs.Data);
+            lhs.Unsized.ReadOnly().Sub(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -90,7 +106,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Data.ReadOnly().Or(rhs.Data, lhs.Data);
+            lhs.Unsized.ReadOnly().Or(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -100,7 +116,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Data.ReadOnly().And(rhs.Data, lhs.Data);
+            lhs.Unsized.ReadOnly().And(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -110,7 +126,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Data.ReadOnly().XOr(rhs.Data, lhs.Data);
+            lhs.Unsized.ReadOnly().XOr(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -126,7 +142,31 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
-                => Matrix.WriteTo(src,dst,overwrite,fmt);
+        {
+            var _fmt = fmt ?? TextFormat.Default;
+            var sep = _fmt.Delimiter;
+            var rows = nati<M>();
+            var cols = nati<N>();
+            var sb = new StringBuilder();                        
+            sb.AppendLine($"{_fmt.CommentPrefix} {typeof(T).Name}[{rows}x{cols}]");
+            if(_fmt.HasHeader)
+            {
+                for(var i = 0; i<cols; i++)
+                {
+                    sb.Append($"Col{i}");
+                    if(i != cols - 1)
+                        sb.Append(sep);
+                }
+                sb.AppendLine();
+            }
+            sb.Append(src.Format(sep));
+            
+            if(overwrite)
+                dst.Overwrite(sb.ToString());
+            else
+                dst.Append(sb.ToString());
+        }
+
 
         /// <summary>
         /// Evaluates whether a square matrix is right-stochasitc, i.e. the sum of the entries
@@ -145,7 +185,7 @@ namespace Z0
             for(var r = 0; r < (int)n.value; r ++)
             {
                 var row = src.Row(r);
-                var sum =  convert<T,double>(gmath.sum(row.Unsize()));
+                var sum =  convert<T,double>(gmath.sum(row.Unsized));
                 if(!radius.Contains(sum))
                     return false;
             }

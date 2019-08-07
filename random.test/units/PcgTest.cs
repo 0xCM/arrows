@@ -15,9 +15,9 @@ namespace Z0.Test
         public void RetreatTest()
         {
             var rng = RNG.Pcg32(Seed64.Seed00);
-            var sample1 = rng.Stream().TakeSpan(5).Format();
+            var sample1 = rng.Stream().TakeSpan(5).FormatList();
             rng.Retreat(5);
-            var sample2 = rng.Stream().TakeSpan(5).Format();
+            var sample2 = rng.Stream().TakeSpan(5).FormatList();
 
             Claim.eq(sample1,sample2);
 

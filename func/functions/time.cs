@@ -13,17 +13,41 @@ using Z0;
 
 partial class zfunc
 {
+    /// <summary>
+    /// Creates a new stopwatch and optionally start it
+    /// </summary>
+    /// <param name="start">Whether to start the new stopwatch</param>
     [MethodImpl(Inline)]   
     public static Stopwatch stopwatch(bool start = true) 
         => start ? Stopwatch.StartNew() : new Stopwatch();
 
-    [MethodImpl(Inline)]   
-    public static long elapsed(Stopwatch sw) 
-        => sw.ElapsedTicks;
-
+    /// <summary>
+    /// Captures a stopwatch duration
+    /// </summary>
+    /// <param name="sw">A running/stopped stopwatch</param>
     [MethodImpl(Inline)]   
     public static Duration snapshot(Stopwatch sw)     
         => Duration.Define(sw.ElapsedTicks);        
+
+    /// <summary>
+    /// Captures a stopwatch duration and the number of operations executed within the duration period
+    /// </summary>
+    /// <param name="sw">The running/stopped stopwatch</param>
+    /// <param name="opcount">The operation count</param>
+    /// <param name="label">The label associated with the measure, if specified</param>
+    [MethodImpl(Inline)]   
+    public static OpTime optime(long opcount, Stopwatch sw, [CallerMemberName] string label = null)
+        => OpTime.Define(opcount, snapshot(sw), label);
+
+    /// <summary>
+    /// Captures a duration and the number of operations executed within the period
+    /// </summary>
+    /// <param name="time">The running time</param>
+    /// <param name="opcount">The operation count</param>
+    /// <param name="label">The label associated with the measure, if specified</param>
+    [MethodImpl(Inline)]   
+    public static OpTime optime(long opcount, Duration time, [CallerMemberName] string label = null)
+        => OpTime.Define(opcount, time, label);
 
     static readonly long TicksPerMs 
         = Stopwatch.Frequency/1000L;
@@ -39,8 +63,8 @@ partial class zfunc
         => DateTime.Today;
 
     /// <summary>
-    /// Measures the respective times required to execute a pair of functions,
-    /// each of which iterate a computational block a specified number of times
+    /// Measures the respective times required to execute a pair of functions, each of which 
+    /// iterate a computational block a specified number of times
     /// </summary>
     /// <param name="n">The number of computational block iterations</param>
     /// <param name="left">The first function</param>
@@ -49,13 +73,11 @@ partial class zfunc
     {
         var lTimer = stopwatch();
         left(n);
-        var lTime = OpTime.Define(leftLabel, n, snapshot(lTimer));
+        var lTime = OpTime.Define(n, snapshot(lTimer),leftLabel);
         var rTimer = stopwatch();
         right(n);
-        var rTime = OpTime.Define(rightLabel, n, snapshot(rTimer));
+        var rTime = OpTime.Define(n, snapshot(rTimer),rightLabel);
         OpTimePair result = (lTime, rTime);
         return result;
     }
-
-
 }

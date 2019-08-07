@@ -26,13 +26,24 @@ namespace Z0
         /// Specifies the canonical unit interval over the underlying primitive
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
-        public static readonly Interval<T> Unit = new Interval<T>(PrimalInfo.zero<T>(), true, PrimalInfo.one<T>(), true);
+        public static readonly Interval<T> Unit 
+            = new Interval<T>(PrimalInfo.zero<T>(), true, PrimalInfo.one<T>(), true);
 
         /// <summary>
         /// Specifies the interval where the left boundary is the smallest value within the range of the type
         /// and the right boundary is the largest value within the range of the type.
         /// <typeparam name="T">The primal type</typeparam>
-        public static readonly Interval<T> Full = new Interval<T>(PrimalInfo.minval<T>(), true, PrimalInfo.maxval<T>(), true);
+        public static readonly Interval<T> Full 
+            = new Interval<T>(PrimalInfo.minval<T>(), true, PrimalInfo.maxval<T>(), true);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Interval<T>((T left, T right) x)
+            => new Interval<T>(x.left, true, x.right, true);
+
+        [MethodImpl(Inline)]
+        public static implicit operator (T left, T right)(Interval<T> x)
+            => (x.Left, x.Right);
+
 
         [MethodImpl(Inline)]
         public Interval(T left, bool leftclosed, T right, bool rightclosed)

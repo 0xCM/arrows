@@ -78,14 +78,15 @@ namespace Z0
     }
 
     public class Polyrand : 
-        IRandomSource<ulong>, 
-        IRandomSource<double>, 
-        IRandomSource<uint>, 
-        IRandomSource<int>, 
-        IRandomSource<float>,
-        IRandomSource<long>,
         IRandomSource<byte>,
-        IRandomSource<ushort>
+        IRandomSource<ushort>,
+        IRandomSource<int>, 
+        IRandomSource<uint>, 
+        IRandomSource<long>,
+        IRandomSource<ulong>, 
+        IRandomSource<float>,
+        IRandomSource<double> 
+
     {
         internal Polyrand(IRandomSource<ulong> Random)
         {
@@ -95,12 +96,6 @@ namespace Z0
 
         readonly IRandomSource<ulong> Random;
 
-        IPointSource<int> Int32Source
-        {
-            [MethodImpl(Inline)]
-            get => this;
-        }
-
         IPointSource<byte> UInt8Source
         {
             [MethodImpl(Inline)]
@@ -108,6 +103,12 @@ namespace Z0
         }
 
         IPointSource<ushort> UInt16Source
+        {
+            [MethodImpl(Inline)]
+            get => this;
+        }
+
+        IPointSource<int> Int32Source
         {
             [MethodImpl(Inline)]
             get => this;
@@ -205,7 +206,6 @@ namespace Z0
                 return generic<T>(Float64Source.Next());                
             else 
                 throw unsupported<T>();                
-
         }
             
         public IEnumerable<T> Take<T>(int? count = null)

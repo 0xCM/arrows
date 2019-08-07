@@ -273,7 +273,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.eq<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.eq<T>(x, y).ToNatural<N,bool>();            
         }
 
        [MethodImpl(Inline)]
@@ -284,7 +284,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.neq<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.neq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -295,7 +295,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.gt<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.gt<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -306,7 +306,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.gteq<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.gteq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -317,7 +317,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.lt<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.lt<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -328,7 +328,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            return gmath.lteq<T>(x, y).ToNatSpan<N,bool>();            
+            return gmath.lteq<T>(x, y).ToNatural<N,bool>();            
         }
 
         [MethodImpl(Inline)]
@@ -341,7 +341,7 @@ namespace Z0
         public static string Format<N,T>(in Covector<N,T> src)
             where T : struct    
             where N: ITypeNat, new()
-                => src.Unsize().Format();
+                => src.Unsize().FormatList();
     
         public static bool All<N,T>(this Covector<N,T> src, T match)
             where N : ITypeNat, new()

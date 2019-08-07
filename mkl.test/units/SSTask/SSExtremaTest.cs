@@ -57,13 +57,13 @@ namespace Z0.Mkl.Test
             var sw1 = stopwatch();
             for(var i=0; i<cycles; i++)
                 last = (long)Sample.Load(dSrc).Mean()[0];
-            var t1 = OpTime.Define("mkl", cycles*samples, snapshot(sw1));
+            var t1 = OpTime.Define(cycles*samples, snapshot(sw1),"mkl");
 
 
             var sw2 = stopwatch();
             for(var i=0; i<cycles; i++)
                 last = src.Avg();            
-            var t2 = OpTime.Define("direct", cycles*samples, snapshot(sw2));
+            var t2 = OpTime.Define(cycles*samples, snapshot(sw2),"direct");
             TracePerf((t1,t2));
         }
         

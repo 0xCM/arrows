@@ -56,6 +56,17 @@ namespace Z0
             get => ref data[ix];
         }
 
+
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public ReadOnlySpan<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+
         [MethodImpl(Inline)]
         public T[] ToArray()
             => data.ToArray();   

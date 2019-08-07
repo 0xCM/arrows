@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
@@ -84,6 +84,12 @@ namespace Z0
             get => ref data[ix];
         }
 
+        public Span<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         [MethodImpl(Inline)]
         public T[] ToArray()
             => data.ToArray();   
@@ -106,8 +112,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool TryCopyTo (Span<T> dst)
-            => data.TryCopyTo(dst);
-
+            => data.TryCopyTo(dst);        
+        
         [MethodImpl(Inline)]
         public Span<T> Unsize()
             => data;

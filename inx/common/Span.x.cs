@@ -92,7 +92,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this in Vec256<T> src)
             where T : struct            
-                => src.ToSpan256().Unblock();
+                => src.ToSpan256().Unblocked;
  
 
     }

@@ -162,14 +162,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<float> Div(this Span256<float> src, float rhs)
         {
-            src.Unblock().Div(rhs);
+            src.Unblocked.Div(rhs);
             return src;
         }
 
         [MethodImpl(Inline)]
         public static Span256<double> Div(this Span256<double> src, double rhs)
         {
-            src.Unblock().Div(rhs);
+            src.Unblocked.Div(rhs);
             return src;
         }
 

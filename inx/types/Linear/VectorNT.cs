@@ -100,21 +100,22 @@ namespace Z0
             data = src;
         }
         
-
         public int Length
             => NatLength;
             
         public ref T this[int index] 
             => ref data[index];
 
-        [MethodImpl(Inline)]
-        public Span<T> Unsize()
-            => data.Unsize();
+        public Span<T> Unsized
+        {
+            [MethodImpl(Inline)]
+            get => data.Unsized;
+        }
  
         [MethodImpl(Inline)]
         public Span<N,U> As<U>()
             where U : struct
-                => MemoryMarshal.Cast<T,U>(Unsize());
+                => MemoryMarshal.Cast<T,U>(Unsized);
 
         public override bool Equals(object other)
             => throw new NotSupportedException();

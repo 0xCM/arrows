@@ -179,13 +179,23 @@ namespace Z0
             => data.CopyTo(dst);
 
         [MethodImpl(Inline)]
-        public bool TryCopyTo (Span<T> dst)
+        public bool TryCopyTo(Span<T> dst)
             => data.TryCopyTo(dst);
                 
         [MethodImpl(Inline)]
         public Span128<S> As<S>()                
             where S : struct
                 => Span128.load(MemoryMarshal.Cast<T,S>(data));                    
+
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public Span<T> Unblocked
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         public int Length 
         {
             [MethodImpl(Inline)]

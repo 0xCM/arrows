@@ -88,7 +88,7 @@ namespace Z0
             where T : struct
         {
             var dst = Vector.Alloc<N,T>();
-            random.MarkovVector(dst.Unsize());
+            random.MarkovVector(dst.Unsized);
             return dst;
 
         }
@@ -100,7 +100,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="rep"></param>
         /// <param name="dim"></param>
-        /// <typeparam name="N"></typeparam>
+        /// <typeparam name="N">The row dimension type</typeparam>
         /// <typeparam name="T"></typeparam>
         public static Matrix<N,N,T> MarkovMatrix<N,T>(this IRandomSource random, T rep = default, N dim = default)
             where T : struct
@@ -118,7 +118,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
         {
-            random.MarkovVector(dst.Unsize());
+            random.MarkovVector(dst.Unsized);
             return ref dst;
         }
 
@@ -126,7 +126,7 @@ namespace Z0
             where T : struct
             where N : ITypeNat, new()
         {
-            var data = dst.Data;
+            var data = dst.Unsized;
             var n = nati<N>();
             for(int row=0; row < n; row++)
                 random.MarkovVector<T>(data.Slice(row*n, n));                            

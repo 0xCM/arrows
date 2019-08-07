@@ -44,7 +44,7 @@ partial class zfunc
     /// </summary>
     /// <param name="chars">The characters to be printed in a continguous sequence</param>
     public static void print(IEnumerable<char> chars)
-        => terminal.WriteLine(new string(chars.ToSpan()));
+        => terminal.WriteLine(new string(chars.TakeSpan()));
 
     /// <summary>
     /// Emits an information-level message

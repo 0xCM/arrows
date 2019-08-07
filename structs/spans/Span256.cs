@@ -181,10 +181,6 @@ namespace Z0
         public Span256<T> Blocks(int blockIndex, int blockCount)
             => Span256.load(Slice(blockIndex * BlockLength, blockCount * BlockLength));
             
-        [MethodImpl(Inline)]
-        public Span<T> Unblock()
-            => data;
-
         /// <summary>
         /// Presents the allocated data as a blocked read-only span
         /// </summary>
@@ -220,6 +216,16 @@ namespace Z0
         public Span256<S> As<S>()                
             where S : struct
                 => Span256.load(MemoryMarshal.Cast<T,S>(data));                    
+ 
+        /// <summary>
+        /// Provides access to the underlying storage
+        /// </summary>
+        public Span<T> Unblocked
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -244,15 +250,10 @@ namespace Z0
             get => data.IsEmpty;
         }
 
-        [MethodImpl(Inline)]
-        public Span<T> ToSpan()
-            => data;
-
         public override bool Equals(object rhs) 
             => throw new NotSupportedException();
 
         public override int GetHashCode() 
-            => throw new NotSupportedException();        
-        
+            => throw new NotSupportedException();                
     }
 }
