@@ -11,7 +11,7 @@ namespace Z0
     using System.Linq;
 
     using static zfunc;
-
+    using static nfunc;
 
     public static class SpanExtensions
     {
@@ -56,7 +56,6 @@ namespace Z0
         public static void CopyTo<T>(this ReadOnlySpan<T> src, Span<T> dst, int offset)
             => src.CopyTo(dst.Slice(offset));
 
-
         /// <summary>
         /// Forms a new span by the concatenation [head,tail]
         /// </summary>
@@ -91,7 +90,6 @@ namespace Z0
         public static ReadOnlySpan<T> ReadOnly<T>(this Span<T> src)
             => src;
 
-
         /// <summary>
         /// Constructs a span of a specified length from a sequence
         /// </summary>
@@ -100,8 +98,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> TakeSpan<T>(this IEnumerable<T> src, int length)
-            => src.Take(length).ToArray();
-            
+            => src.Take(length).ToArray();            
 
         /// <summary>
         /// Fills an allocated span from a sequence
@@ -117,6 +114,32 @@ namespace Z0
                 dst[i++] = e.Current;
             return dst;
         }            
+
+        /// <summary>
+        /// Fills a span of natural length with streamed elements
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="N">The span length type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void StreamTo<N,T>(this IEnumerable<T> src, Span<N,T> dst, N n = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Take(nati<N>()).StreamTo(dst.Unsized);
+
+        /// <summary>
+        /// Fills a tabular span of natural dimensions with streamed elements
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="M">The row dimension type</typeparam>
+        /// <typeparam name="N">The column dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void StreamTo<M,N,T>(this IEnumerable<T> src, Span<M,N,T> dst)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Take(nati<M>() *nati<N>()).StreamTo(dst.Unsized);
 
         /// <summary>
         /// Clones the source span into a new span
@@ -240,7 +263,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => lhs.ReadOnly().Eq(rhs);
         
-
         /// <summary>
         /// Populates a span of natural length from an unsized span
         /// </summary>
@@ -252,7 +274,6 @@ namespace Z0
         public static Span<N,T> ToNatural<N,T>(this Span<T> src, N size = default)
             where N : ITypeNat, new()
                 => new Span<N, T>(src);       
-
 
         /// <summary>
         /// Clones a blocked span
@@ -300,16 +321,25 @@ namespace Z0
         }
 
         /// <summary>
-        /// Projects a source span to target span via a supplied transformation
+        /// Projects a source span to target span
         /// </summary>
-        /// <param name="src">The source</param>
-        /// <param name="f">The transformation</param>
+        /// <param name="src">The source span</param>
+        /// <param name="f">The projector</param>
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> Map<S,T>(this Span<S> src, Func<S, T> f)
             => src.ReadOnly().Map(f);
 
+        /// <summary>
+        /// Projects a range of elements from a source span to a target span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The source offset</param>
+        /// <param name="length">The length of the segment to project</param>
+        /// <param name="f">The projector</param>
+        /// <typeparam name="S">The source type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
         public static Span<T> MapRange<S,T>(this ReadOnlySpan<S> src, int offset, int length, Func<S, T> f)
         {
             Span<T> dst = new T[length];
@@ -318,6 +348,15 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Projects a range of elements from a source span to a target span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The source offset</param>
+        /// <param name="length">The length of the segment to project</param>
+        /// <param name="f">The projector</param>
+        /// <typeparam name="S">The source type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> MapRange<S,T>(this Span<S> src, int offset, int length, Func<S, T> f)
             => src.ReadOnly().MapRange(offset,length, f);
@@ -328,7 +367,7 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            var dst = NatSpan.alloc<M,N,T>();
+            var dst = NatSpan.Alloc<M,N,T>();
             var m = nfunc.nati<M>();
             var n = nfunc.nati<N>();
             for(var i=0; i < m; i++)

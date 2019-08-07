@@ -24,13 +24,13 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-		/// <param name="alpha">Scales the prodduct of the matrices A and B</param>
-		/// <param name="A">An MxK matrix</param>
+		/// <param name="alpha">Scales the product of the matrices A and B</param>
+		/// <param name="A">An mxk matrix</param>
 		/// <param name="lda">The leading dimension of A</param>
-		/// <param name="B">A KxN matrix</param>
+		/// <param name="B">A kxn matrix</param>
 		/// <param name="ldb">The leading dimension of B</param>
 		/// <param name="beta">Scales the matrix C</param>
-		/// <param name="C">An MxN matrix</param>
+		/// <param name="C">An mxn matrix</param>
 		/// <param name="ldc">The leading dimension of C</param>
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
 		public static extern void cblas_dgemm(CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB, 

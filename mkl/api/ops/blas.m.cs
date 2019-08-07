@@ -76,7 +76,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldx = n;
-            var X = NatSpan.alloc<M,N,float>();
+            var X = NatSpan.Alloc<M,N,float>();
             CBLAS.cblas_sgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0f, ref A[0], lda, ref B[0], ldb, 0, ref X[0], ldx);
             return X;
         }    
@@ -100,7 +100,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldx = n;
-            var X = NatSpan.alloc<M,N,double>();
+            var X = NatSpan.Alloc<M,N,double>();
             CBLAS.cblas_dgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0, ref A[0], lda, ref B[0], ldb, 0, ref X[0], ldx);
             return X;
         }
@@ -150,7 +150,7 @@ namespace Z0.Mkl
         }
 
         /// <summary>
-        /// Allocates and computes an matrix X = AB of dimension MxN 
+        /// Allocates and computes a matrix X = AB of dimension MxN 
         /// </summary>
         /// <param name="A">The left matrix of dimension MxK</param>
         /// <param name="B">The right matrix of dimension KxN</param>
@@ -231,6 +231,24 @@ namespace Z0.Mkl
             var ldb = n;
             var ldc = n;
             CBLAS.cblas_dgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0, ref a[0], lda, ref b[0], ldb, 0, ref dst[0], ldc);
+        }
+
+        /// <summary>
+        /// Computes the matrix-vector product y = A*x;
+        /// </summary>
+        /// <param name="A">A source matrix of dimension MxN</param>
+        /// <param name="x">A source vector of length N</param>
+        /// <param name="y">A target vector of length M</param>
+        /// <typeparam name="M">The row dimension type of A</typeparam>
+        /// <typeparam name="N">The column dimension type of A</typeparam>
+        public static void gemv<M,N>(Span<M,N,double> A, Span<N,double> x, Span<M,double> y)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+            var m = nati<M>();
+            var n = nati<N>();
+            var lda = n;
+            CBLAS.cblas_dgemv(RowMajor, NoTranspose, m, n, alpha: 1.0, ref A[0], lda, ref x[0], incX: 1, beta: 0, ref y[0], incY: 1);
         }
 
     }

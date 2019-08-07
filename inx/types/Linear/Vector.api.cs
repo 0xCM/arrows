@@ -25,7 +25,7 @@ namespace Z0
         public static Vector<N,T> Alloc<N,T>(N n = default, T exemplar = default)
             where N : ITypeNat, new()
             where T : struct
-                => NatSpan.alloc<N,T>();
+                => NatSpan.Alloc<N,T>();
 
         [MethodImpl(Inline)]
         public static Vector<T> Alloc<T>(int minlen)               
@@ -50,7 +50,7 @@ namespace Z0
         public static Vector<N,T> Fill<N,T>(T fill, N len)
             where N : ITypeNat, new()
             where T : struct
-                => Load(NatSpan.alloc(fill, len));
+                => Load(NatSpan.Alloc(fill, len));
 
         /// <summary>
         /// Loads a vector from an existing span of commensuate length (Non-allocating)

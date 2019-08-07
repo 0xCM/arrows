@@ -14,9 +14,29 @@ namespace Z0
     using static As;
     using Z0.Mkl;
 
-
     public static class VectorOps
-    {     
+    {             
+        [MethodImpl(Inline)]
+        public static Vector<N,T> Add<N,T>(Vector<N,T> lhs, in Vector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            if(typeof(T) == typeof(float))
+                mkl.add(float32(lhs.Unsized), float32(rhs.Unsized), float32(lhs.Unsized));
+            else if(typeof(T) == typeof(double))
+                mkl.add(float64(lhs.Unsized), float64(rhs.Unsized), float64(lhs.Unsized));
+            else
+                gmath.add(lhs.Unsized, rhs.Unsized);
+            return lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static Covector<N,T> Add<N,T>(Covector<N,T> lhs, in Covector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+            => lhs.Transpose().Add(rhs.Transpose()).Transpose();
+
+
         [MethodImpl(Inline)]
         public static T Dot<N,T>(Vector<N,T> x, Vector<N,T> y)
             where N : ITypeNat, new()

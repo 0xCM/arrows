@@ -63,7 +63,7 @@ namespace Z0.Test
 
         public void Dot()
         {
-            TracePerf(Dot(Pow2.T08, closed(-1024f, 1024f),  N30, 0f));
+            
             TracePerf(Dot(Pow2.T08, closed(-102489d, 102489d),  N30, 0d));
         }
 

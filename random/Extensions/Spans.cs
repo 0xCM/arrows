@@ -24,21 +24,21 @@ namespace Z0
         public static Span<N,T> Span<N,T>(this IRandomSource random, N length = default, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct  
             where N : ITypeNat, new()
-                => NatSpan.adapt<N,T>(random.Span<T>((int)length.value, domain, filter));                                    
+                => NatSpan.Load<N,T>(random.Span<T>((int)length.value, domain, filter));                                    
 
         [MethodImpl(Inline)]
         public static Span<M,N,T> Span<M,N,T>(this IRandomSource random, M rows = default, N cols = default)
             where T : struct  
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => NatSpan.adapt<M,N,T>(random.Span<T>(nfunc.muli(rows,cols)), rows, cols);
+                => NatSpan.Load<M,N,T>(random.Span<T>(nfunc.muli(rows,cols)), rows, cols);
 
         [MethodImpl(Inline)]
         public static Span<M,N,T> Span<M,N,T>(this IRandomSource random, M rows, N cols, Interval<T> domain)
             where T : struct  
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => NatSpan.adapt<M,N,T>(random.Span<T>(nfunc.muli(rows,cols),domain), rows, cols);
+                => NatSpan.Load<M,N,T>(random.Span<T>(nfunc.muli(rows,cols),domain), rows, cols);
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<T> ReadOnlySpan<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)

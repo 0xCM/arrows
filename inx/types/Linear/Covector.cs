@@ -65,28 +65,28 @@ namespace Z0
         [MethodImpl(Inline)]
         Covector(ref T src)
         {
-            data =  NatSpan.load<N,T>(ref src);  
+            data =  NatSpan.Load<N,T>(ref src);  
             require(data.Length == Length);
         }
 
         [MethodImpl(Inline)]
         Covector(in ReadOnlySpan<N,T> src)
         {
-            data = NatSpan.replicate(src);
+            data = NatSpan.Replicate(src);
         }
 
         [MethodImpl(Inline)]
         Covector(in ReadOnlySpan<T> src)
         {
             require(src.Length == Length);
-            data = NatSpan.replicate<N,T>(src);
+            data = NatSpan.Load<N,T>(src);
         }
 
         [MethodImpl(Inline)]
         Covector(Span<T> src)
         {
             require(src.Length == Length);
-            data = NatSpan.adapt(src, NatRep);
+            data = NatSpan.Load(src, NatRep);
         }
 
         [MethodImpl(Inline)]
@@ -103,6 +103,10 @@ namespace Z0
             [MethodImpl(Inline)]
             get => data;
         }
+
+        [MethodImpl(Inline)]
+        public Vector<N,T> Transpose()
+            => Vector.Load(data);
 
         [MethodImpl(Inline)]
         public Span<T> Unsize()

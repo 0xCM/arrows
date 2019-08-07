@@ -14,7 +14,6 @@ namespace Z0.Mkl
 
     partial class mkl
     {            
-
         /// <summary>
         /// Samples a discrete uniform distribution over specified range
         /// </summary>

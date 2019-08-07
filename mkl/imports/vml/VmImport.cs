@@ -126,8 +126,7 @@ namespace Z0.Mkl
         public static extern void vdSqrt(int n, ref double a, ref double r);		
 
         /// <summary>
-        /// Raises each component of the first vector to the corresponcing component in the 
-        /// second vector: r[i] = a[i]^b[i] 
+        /// Computes r[i] = a[i]^b[i] 
         /// </summary>
         /// <param name="n">The number of vector components</param>
         /// <param name="a">The first input vector</param>
@@ -137,8 +136,7 @@ namespace Z0.Mkl
         public static extern void vsPow(int n, ref float a, ref float b, ref float r);		
 
         /// <summary>
-        /// Raises each component of the first vector to the corresponcing component in the 
-        /// second vector: r[i] = a[i]^b[i] 
+        /// Computes r[i] = a[i]^b[i] 
         /// </summary>
         /// <param name="n">The number of vector components</param>
         /// <param name="a">The first input vector</param>

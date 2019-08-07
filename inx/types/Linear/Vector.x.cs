@@ -24,14 +24,14 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Add<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Vector<N,T> Add<N,T>(this Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
             gmath.add(ref x, y);
-            return ref lhs;
+            return lhs;
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Sub<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Vector<N,T> Sub<N,T>(this Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
             gmath.sub(ref x, y);
-            return ref lhs;
+            return lhs;
         }
 
         /// <summary>
@@ -80,7 +80,6 @@ namespace Z0
         public static ref Vector<N,T> Mul<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
-
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
@@ -118,7 +117,6 @@ namespace Z0
         public static ref Vector<N,T> Mod<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
-
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;

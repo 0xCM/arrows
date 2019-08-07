@@ -69,7 +69,7 @@ namespace Z0
             if(seed.Length == 0)
                 _seed = Entropy.Values<N,ulong>();
             else if(seed.Length == (int)n.value)
-                _seed = NatSpan.load<N,ulong>(ref seed[0]);
+                _seed = NatSpan.Load<N,ulong>(ref seed[0]);
             else
                 throw Errors.LengthMismatch((int)n.value, seed.Length);
             return new WyHash64Suite<N>(_seed);

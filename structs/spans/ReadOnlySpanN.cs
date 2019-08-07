@@ -56,7 +56,6 @@ namespace Z0
             get => ref data[ix];
         }
 
-
         /// <summary>
         /// Provides access to the underlying storage
         /// </summary>
@@ -65,7 +64,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => data;
         }
-
 
         [MethodImpl(Inline)]
         public T[] ToArray()

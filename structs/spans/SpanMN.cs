@@ -90,7 +90,7 @@ namespace Z0
         public Span(ref T src)
         {
             data = MemoryMarshal.CreateSpan(ref src, CellCount);
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.Blocked256 = false;
         }
 
@@ -99,7 +99,7 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src;
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.Blocked256 = false;
         }
 
@@ -108,7 +108,7 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src;
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.Blocked256 = false;
         }
 
@@ -117,7 +117,7 @@ namespace Z0
         {         
             this.data = new Span<T>(new T[CellCount]);
             this.data.Fill(value);
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.Blocked256 = false;
         }
 
@@ -126,7 +126,7 @@ namespace Z0
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
             data = src.ToArray();
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.Blocked256 = false;
         }
 
@@ -134,7 +134,7 @@ namespace Z0
         public Span(Span256<T> src)
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
-            colbuffer = NatSpan.alloc<M,T>();
+            colbuffer = NatSpan.Alloc<M,T>();
             this.data = src.Unblocked;
             this.Blocked256 = true;
         }
@@ -219,7 +219,7 @@ namespace Z0
             where I : ITypeNat, new()
             where J : ITypeNat, new()
         {            
-            var  dst = NatSpan.alloc<I,J,T>();
+            var  dst = NatSpan.Alloc<I,J,T>();
             var curidx = 0;
             for(var i = origin.r; i < (origin.r + dim.I); i++)
             for(var j = origin.c; j < (origin.c + dim.J); j++)
@@ -268,7 +268,7 @@ namespace Z0
 
         public Span<N,M,T> Transpose()
         {
-            var dst = NatSpan.alloc<N,M,T>();                
+            var dst = NatSpan.Alloc<N,M,T>();                
             for(var r = 0; r < RowCount; r++)
             for(var c = 0; c < ColCount; c++)
                 dst[c, r] = this[r, c];

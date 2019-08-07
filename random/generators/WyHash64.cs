@@ -60,7 +60,7 @@ namespace Z0
         
         public Span<N, ulong> Next()
         {
-            var dst = NatSpan.alloc<N,ulong>();
+            var dst = NatSpan.Alloc<N,ulong>();
             var next = Generators.Mapi((index ,g) => (index, value: g.Next()));
             foreach(var item in next)
                 dst[item.index] = item.value;

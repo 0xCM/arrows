@@ -296,6 +296,38 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = min(a[i], b[i]) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<float> min(Span<float> a, Span<float> b, Span<float> dst)
+        {
+            VmlImport.vsFmin(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        /// <summary>
+        /// Computes dst[i] = min(a[i], b[i]) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static Span<double> min(Span<double> a, Span<double> b, Span<double> dst)
+        {
+            VmlImport.vdFmin(dst.Length, ref head(a), ref head(b), ref head(dst));
+            return dst;
+        }
+
+        /// <summary>
+        /// Computes dst[i] = max(a[i], b[i]) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<float> max(Span<float> a, Span<float> b, Span<float> dst)
         {
@@ -303,6 +335,12 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = max(a[i], b[i]) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<double> max(Span<double> a, Span<double> b, Span<double> dst)
         {
@@ -310,6 +348,13 @@ namespace Z0.Mkl
             return dst;
         }
 
+
+        /// <summary>
+        /// Computes dst[i] = max(|a[i]|, |b[i]|) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<float> maxAbs(Span<float> a, Span<float> b, Span<float> dst)
         {
@@ -317,6 +362,12 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = max(|a[i]|, |b[i]|) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<double> maxAbs(Span<double> a, Span<double> b, Span<double> dst)
         {
@@ -324,6 +375,12 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = min(|a[i]|, |b[i]|) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<float> minAbs(Span<float> a, Span<float> b, Span<float> dst)
         {
@@ -331,13 +388,18 @@ namespace Z0.Mkl
             return dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = min(|a[i]|, |b[i]|) for i = 0...n-1
+        /// </summary>
+        /// <param name="a">The first source vector</param>
+        /// <param name="b">The second source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static Span<double> minAbs(Span<double> a, Span<double> b, Span<double> dst)
         {
             VmlImport.vdMinMag(dst.Length, ref head(a), ref head(b), ref head(dst));
             return dst;
         }
-
 
         [MethodImpl(Inline)]
         public static Span<float> copySign(Span<float> a, Span<float> b, Span<float> dst)        
@@ -484,7 +546,7 @@ namespace Z0.Mkl
             VmlImport.vdPowx(length(src,dst), ref head(src), exp, ref head(dst));
             return dst;
         }
- 
+
  		/// <summary>
 		/// Computes dst[i] = e^src[i] for i=0..n-1
 		/// </summary>

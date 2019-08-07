@@ -261,6 +261,12 @@ namespace Z0
             where M : ITypeNat, new()
             where T : struct 
                 => eq(lhs.Unsized, rhs.Unsized, caller, file, line);
- 
+
+        [MethodImpl(Inline)]
+        public static void eq<N,T>(Span<N,T> lhs, Span<N,T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where N : ITypeNat, new()
+            where T : struct 
+                => eq(lhs.Unsized, rhs.Unsized, caller, file, line);
+
     }
 }

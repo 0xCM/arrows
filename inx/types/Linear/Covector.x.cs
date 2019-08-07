@@ -13,19 +13,11 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
+
+
     public static class LinearX
     {
-        [MethodImpl(Inline)]
-        public static ref Covector<N,T> Add<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
-            where N : ITypeNat, new()
-            where T : struct    
 
-        {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            gmath.add(ref x, y);
-            return ref lhs;
-        }
 
         [MethodImpl(Inline)]
         public static ref Covector<N,T> Add<N,T>(this ref Covector<N,T> lhs, in T rhs)
@@ -266,7 +258,7 @@ namespace Z0
         }
 
        [MethodImpl(Inline)]
-        public static Covector<N,bool> Eq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> Eq<N,T>(this in Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -277,7 +269,7 @@ namespace Z0
         }
 
        [MethodImpl(Inline)]
-        public static Covector<N,bool> NEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> NEq<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -288,7 +280,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Covector<N,bool> Gt<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> Gt<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -299,7 +291,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Covector<N,bool> GtEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> GtEq<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -310,7 +302,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Covector<N,bool> Lt<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> Lt<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -321,7 +313,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Covector<N,bool> LtEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static Covector<N,bool> LtEq<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -332,7 +324,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static T Dot<N,T>(in Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static T Dot<N,T>(this Covector<N,T> lhs, Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
                 => gmath.dot<T>(lhs.Unsize(),rhs.Unsize());
@@ -352,10 +344,5 @@ namespace Z0
                     return false;
             return true;
         }
- 
-
     }
-
-
-
 }

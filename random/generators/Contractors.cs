@@ -30,7 +30,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
         {
-            var dst = NatSpan.alloc<N,T>();
+            var dst = NatSpan.Alloc<N,T>();
             for(var i=0; i<dst.Length; i++)
                 dst[i] = Contractors.Contract(src[i],max[i]);
             return dst;
@@ -40,7 +40,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
         {
-            var dst = NatSpan.alloc<N,T>();
+            var dst = NatSpan.Alloc<N,T>();
             for(var i=0; i<dst.Length; i++)
                 dst[i] = Contractors.Contract(src[i],max[i]);
             return dst;

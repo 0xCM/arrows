@@ -18,7 +18,7 @@ namespace Z0.Test
         [MethodImpl(Inline)]
         public static MethodMemory Read(MethodInfo m)
         {                        
-            return MethodMemory.ReadUntil(m, NatSpan.alloc<N32,byte>(), 0xc3, 0xe0);
+            return MethodMemory.ReadUntil(m, NatSpan.Alloc<N32,byte>(), 0xc3, 0xe0);
         }
 
         [MethodImpl(Inline)]

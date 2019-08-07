@@ -232,12 +232,12 @@ namespace Z0.Mkl
             var srcA = span<double>(count);
             for(var i=1; i<= count; i++)
                 srcA[i-1] = i;
-            var a = NatSpan.load<M,N,double>(ref srcA[0]);
+            var a = NatSpan.Load<M,N,double>(ref srcA[0]);
 
             var srcB = span<double>(m*n);
             for(var i=1; i<= count; i++)
                 srcB[i-1] = i;
-            var b = NatSpan.load<N,M,double>(ref srcB[0]);
+            var b = NatSpan.Load<N,M,double>(ref srcB[0]);
 
             (var timer, var startMsg) = input(
                 nameof(a), a.Format(a.EntryPadWidth()), 
