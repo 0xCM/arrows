@@ -9,7 +9,6 @@ namespace Z0
     using System.Reflection;
     using System.Linq;
 
-
     /// <summary>
     /// Represents a data slot in the declaring type and may
     /// correspond to either a field or property

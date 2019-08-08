@@ -8,7 +8,6 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
 
-
     /// <summary>
     /// Defines orientation - a choice between exactly one of two values,
     /// e.g. top/bottom, front/back, left/right, true/false. The labels
@@ -27,9 +26,5 @@ namespace Z0
         /// </summary>
         Right = 1
     }
-
-
- 
-
 
 }

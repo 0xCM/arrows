@@ -192,11 +192,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Transpose(uint i, uint j)
         {
-            var _i = TermIndex(i);
-            var _j = TermIndex(j);
-            var tmp = terms[_i];
-            terms[_i] = terms[_j];
-            terms[_j] = tmp;
+            var ti = TermIndex(i);
+            var tj = TermIndex(j);
+            var tmp = terms[ti];
+            terms[ti] = terms[tj];
+            terms[tj] = tmp;
         }
 
         public Permutation<N,T> Replicate()

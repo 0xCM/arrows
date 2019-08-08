@@ -5,6 +5,7 @@ namespace Z0
     
     using static NatProve;
     using static nfunc;
+    using static zfunc;
 
     public static class NatTry
     {
@@ -15,7 +16,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The result type</typeparam>
         /// <param name="f">The function to evaluate</param>
-        /// <returns></returns>
         public static Option<T> Try<T>(Func<T> f, Action<Exception> error = null)
         {
             try
@@ -29,7 +29,6 @@ namespace Z0
             }
         }
 
-
         /// <summary>
         /// Attempts to prove that k1:K1 & k2:K2 =>  k1 + k2 = expected 
         /// Signals success by returning evidence
@@ -37,7 +36,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<NatSum<K1,K2>> tryAdd<K1,K2>(uint expected)
+        public static Option<NatSum<K1,K2>> TryAdd<K1,K2>(uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => add<K1,K2>(expected));
@@ -51,7 +50,7 @@ namespace Z0
         /// <param name="k2">The second operand value</param>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<NatSum<K1,K2>> tryAdd<K1,K2>(K1 k1, K2 k2, uint expected)
+        public static Option<NatSum<K1,K2>> TryAdd<K1,K2>(K1 k1, K2 k2, uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => sum(k1,k2,expected));
@@ -64,8 +63,8 @@ namespace Z0
         /// <typeparam name="K">The subject</typeparam>
         /// <typeparam name="K1">The lower inclusive bound</typeparam>
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Option<NatBetween<K,K1,K2>> tryBetween<K,K1,K2>()
+        [MethodImpl(Inline)]
+        public static Option<NatBetween<K,K1,K2>> TryBetween<K,K1,K2>()
             where K: ITypeNat, new()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
@@ -79,22 +78,20 @@ namespace Z0
         /// <typeparam name="K">The subject</typeparam>
         /// <typeparam name="K1">The lower inclusive bound</typeparam>
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Option<NatBetween<K,K1,K2>> tryBetween<K,K1,K2>(K k, K1 k1, K2 k2)
+        [MethodImpl(Inline)]
+        public static Option<NatBetween<K,K1,K2>> TryBetween<K,K1,K2>(K k, K1 k1, K2 k2)
             where K: ITypeNat, new()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => between<K,K1,K2>(k, k1, k2));
  
-
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
         /// raises an error
         /// </summary>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
-        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>()
+        public static Option<NatEq<K1,K2>> TryEqual<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatEq<K1,K2>(natrep<K1>(),natrep<K2>()));
@@ -106,7 +103,7 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatEq<K1,K2>> TryEqual<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatEq<K1,K2>(k1,k2));                             
@@ -118,7 +115,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The larger type</typeparam>
         /// <typeparam name="K2">The smaller type</typeparam>
-        public static Option<NatGt<K1,K2>> gtTry<K1,K2>()
+        public static Option<NatGt<K1,K2>> TryGt<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatGt<K1,K2>(natrep<K1>(),natrep<K2>())); 
@@ -132,7 +129,7 @@ namespace Z0
         /// <param name="k2">The smaller value</param>
         /// <typeparam name="K1">The larger type</typeparam>
         /// <typeparam name="K2">The smaller type</typeparam>
-        public static Option<NatGt<K1,K2>> gtTry<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatGt<K1,K2>> TryGt<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try( () => new NatGt<K1,K2>(k1,k2)); 
@@ -144,7 +141,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The smaller type</typeparam>
         /// <typeparam name="K2">The larger type</typeparam>
-        public static Option<NatLt<K1,K2>> tryLt<K1,K2>()
+        public static Option<NatLt<K1,K2>> TryLt<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatLt<K1,K2>(natrep<K1>(),natrep<K2>())); 
@@ -156,7 +153,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The smaller type</typeparam>
         /// <typeparam name="K2">The larger type</typeparam>
-        public static Option<NatLt<K1,K2>> tryLt<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatLt<K1,K2>> TryLt<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatLt<K1,K2>(k1,k2));
@@ -168,7 +165,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<Product<K1,K2>> tryMul<K1,K2>(uint expected)
+        public static Option<Product<K1,K2>> TryMul<K1,K2>(uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => mul<K1,K2>(expected));
@@ -182,7 +179,7 @@ namespace Z0
         /// <param name="k2">The second operand value</param>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<Product<K1,K2>> tryMul<K1,K2>(K1 k1, K2 k2, uint expected)
+        public static Option<Product<K1,K2>> TryMul<K1,K2>(K1 k1, K2 k2, uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => mul(k1,k2,expected));
@@ -195,7 +192,7 @@ namespace Z0
         /// <typeparam name="K1">The first natural type</typeparam>
         /// <typeparam name="K2">The second natural type</typeparam>
         /// <typeparam name="K3">The third natural type</typeparam>
-        public static Option<NatMod<K1,K2,K3>> tryMod<K1,K2,K3>()
+        public static Option<NatMod<K1,K2,K3>> TryMod<K1,K2,K3>()
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
             where K3 : ITypeNat, new()
@@ -209,7 +206,7 @@ namespace Z0
         /// <typeparam name="K1">The first natural type</typeparam>
         /// <typeparam name="K2">The second natural type</typeparam>
         /// <typeparam name="K3">The third natural type</typeparam>
-        public static Option<NatMod<K1,K2,K3>> tryMod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
+        public static Option<NatMod<K1,K2,K3>> TryMod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
             where K3 : ITypeNat, new()
@@ -221,7 +218,7 @@ namespace Z0
         /// Signals failure by returning none
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
-        public static Option<NatEven<K>> tryEven<K>(K k)
+        public static Option<NatEven<K>> TryEven<K>(K k)
             where K: ITypeNat, new()
                 => Try(() => new NatEven<K>(k));
 
@@ -231,7 +228,7 @@ namespace Z0
         /// Signals failure by returning none
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
-        public static Option<NatEven<K>> tryEven<K>()
+        public static Option<NatEven<K>> TryEven<K>()
             where K: ITypeNat, new()
                 => Try(() => new NatEven<K>(natrep<K>()));
 
@@ -252,10 +249,9 @@ namespace Z0
         /// Signals failure by returning none
         /// </summary>
         /// <typeparam name="K">An odd natural type</typeparam>
-        public static Option<NatOdd<K>> tryOdd<K>()
+        public static Option<NatOdd<K>> TryOdd<K>()
             where K: ITypeNat, new()
                 => Try(() => new NatOdd<K>(natrep<K>()));
-
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 + 1 = k2; otherwise
@@ -263,7 +259,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The source type</typeparam>
         /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatNext<K1,K2>> tryNext<K1,K2>()
+        public static Option<NatNext<K1,K2>> TryNext<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatNext<K1,K2>(natrep<K1>(),natrep<K2>()));                             
@@ -274,7 +270,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The source type</typeparam>
         /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatNext<K1,K2>> tryNext<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatNext<K1,K2>> TryNext<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatNext<K1,K2>(k1,k2));                             
@@ -285,7 +281,7 @@ namespace Z0
         /// Signals failure by returning none
         /// </summary>
         /// <typeparam name="K">A nonzero natural type</typeparam>
-        public static Option<Nonzero<K>> tryNonzero<K>()
+        public static Option<Nonzero<K>> TryNonzero<K>()
             where K: ITypeNat, new()
                 => Try(() => new Nonzero<K>(natrep<K>())); 
 
@@ -295,7 +291,7 @@ namespace Z0
         /// Signals failure by returning none
         /// </summary>
         /// <typeparam name="K">A nonzero natural type</typeparam>
-        public static Option<Nonzero<K>> tryNonzero<K>(K k)
+        public static Option<Nonzero<K>> TryNonzero<K>(K k)
             where K: ITypeNat, new()
                 => Try( () => new Nonzero<K>(k)); 
 
@@ -304,7 +300,7 @@ namespace Z0
         /// yields none
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Option<NatPrime<K>> tryPrime<K>()
+        public static Option<NatPrime<K>> TryPrime<K>()
             where K: ITypeNat, new()
                 => Try(() => prime<K>());
 
@@ -313,7 +309,7 @@ namespace Z0
         /// yields none
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Option<NatPrime<K>> tryPrime<K>(K k)
+        public static Option<NatPrime<K>> TryPrime<K>(K k)
             where K: ITypeNat, new()
                 => Try(() => prime<K>(k));
 
@@ -324,7 +320,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The source type</typeparam>
         /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatPrior<K1,K2>> tryPrior<K1,K2>()
+        public static Option<NatPrior<K1,K2>> TryPrior<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatPrior<K1,K2>(natrep<K1>(),natrep<K2>()));                             
@@ -336,16 +332,16 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The source type</typeparam>
         /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatPrior<K1,K2>> tryPrior<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatPrior<K1,K2>> TryPrior<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
                 => Try(() => new NatPrior<K1,K2>(k1,k2));  
 
-        public static Option<NatBetween<T,K1,K2>> contains<T,K1,K2>()
+        public static Option<NatBetween<T,K1,K2>> TryContains<T,K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
             where T : ITypeNat, new() 
-                => tryBetween<T,K1,K2>();
+                => TryBetween<T,K1,K2>();
 
     }
 }

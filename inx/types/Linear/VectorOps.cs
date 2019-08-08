@@ -69,6 +69,7 @@ namespace Z0
                 => lhs.Transpose().Add(rhs.Transpose()).Transpose();
 
 
+        
     }
 
 }

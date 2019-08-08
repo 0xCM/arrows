@@ -12,7 +12,6 @@ namespace Z0
     
     using static zfunc;
 
-
     public class MetricConfig : IMetricConfig
     {
         public static MetricConfig Define(MetricKind metric, int runs, int cycles, int samples)
@@ -42,7 +41,4 @@ namespace Z0
 
         public bool DirectOps {get; set;}
     }
-
-
-
 }

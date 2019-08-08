@@ -7,6 +7,8 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static DeciDigit;
@@ -22,7 +24,7 @@ namespace Z0
             };
 
         /// <summary>
-        /// Parses the Hex digit if possible; otheriwise raises an error
+        /// Parses the decimal digit if possible; oterwise, raises an error
         /// </summary>
         /// <param name="c">The source character</param>
         public static DeciDigit Parse(char c)
@@ -40,5 +42,30 @@ namespace Z0
                 dst[i] = Parse(src[i]);            
             return dst;            
         }
+
+        /// <summary>
+        /// Gets the sequence of decimal digits defined by a source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static DeciDigit[] Get(byte src)
+            => src.ToString().Select(DeciDigits.Parse).ToArray();
+
+        /// <summary>
+        /// Gets the sequence of decimal digits defined by a source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static DeciDigit[] Get(ushort src)
+            => src.ToString().Select(DeciDigits.Parse).ToArray();
+
+        /// <summary>
+        /// Gets the sequence of decimal digits defined by a source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static DeciDigit[] Get(uint src)
+            => src.ToString().Select(DeciDigits.Parse).ToArray();
+
     }
 }

@@ -40,12 +40,10 @@ namespace Z0
             where T : struct
                  => x != null ? ifSome(x.Value) : ifNone();
 
-
         [MethodImpl(Inline)]
         public static S MapValueOrElse<T, S>(this T? x, Func<T, S> f, Func<S> @else)
             where T : struct
                 => x != null ? f(x.Value) : @else();
-
 
         /// <summary>
         /// Transforms a nulluble value into an optional value

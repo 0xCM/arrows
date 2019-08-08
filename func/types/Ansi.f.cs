@@ -35,9 +35,9 @@ namespace Z0
                 2 => Green2,
                 _ => Green0
             };
-            return color(content, code);
-            
+            return color(content, code);            
         }
+
         public static string pink(string content, int level = 1)        
         {
             var code = level switch {
@@ -58,7 +58,6 @@ namespace Z0
                + encoded;
         }
             
-
         public static string magenta(string content, int level = 1)        
         {
             var code = level switch {

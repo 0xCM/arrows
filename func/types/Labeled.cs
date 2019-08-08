@@ -70,7 +70,6 @@ namespace Z0
         public LabelFormatSpec FormatSpec {get;}
 
         Option<Func<T,string>> Formatter {get;}
-
         
         public string Format()
         {

@@ -86,8 +86,6 @@ namespace Z0
         MetricComparisonRecord ToRecord();
     }
 
-
-
     public class OpMetricAttribute : Attribute
     {        
         public OpMetricAttribute(MetricKind Metric, OpKind Op)
@@ -95,12 +93,9 @@ namespace Z0
             this.Metric = Metric;
             this.Op = Op;
         }
+        
         public OpKind Op {get;}
 
         public MetricKind Metric {get;}        
-
-
     }
-
-
 }

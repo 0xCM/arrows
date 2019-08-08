@@ -12,9 +12,7 @@ namespace Z0
     using System.Diagnostics;
     using static As;
 
-    using static zfunc;
-
-    
+    using static zfunc;    
 
     /// <summary>
     /// Implements Leimire's algorithm for sampling a uniformly distribute random number

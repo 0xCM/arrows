@@ -470,7 +470,6 @@ namespace Z0.Mkl
             return dst;
         }
 
-
 		/// <summary>
 		/// Computes dst[i] = 1/src[i] for i=0..n-1
 		/// </summary>

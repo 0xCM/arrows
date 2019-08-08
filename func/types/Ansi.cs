@@ -137,36 +137,54 @@ namespace Z0
     public class Ansi256
     {
         public const string C00 = "38;5;0";
+        
         public const string C01 = "38;5;1";
+        
         public const string C02 = "38;5;2";
+        
         public const string C03 = "38;5;3";
         
 
         public const string C04 = "38;5;4";
+        
         public const string C05 = "38;5;5";
+        
         public const string C06 = "38;5;6";
+        
         public const string C07 = "38;5;7";
 
     
         public const string C08 = "38;5;8";
+        
         public const string C09 = "38;5;9";
+        
         public const string C0A = "38;5;10";
+        
         public const string C0B = "38;5;11";
 
 
         public const string C0C = "38;5;12";
+        
         public const string C0D = "38;5;13";
+        
         public const string C0E = "38;5;14";
+        
         public const string C0F = "38;5;15";
 
         public const string C10 = "38;5;16";
+        
         public const string C11 = "38;5;17";
+        
         public const string C12 = "38;5;18";
+        
         public const string C13 = "38;5;19";
 
         public const string C14 = "38;5;20";
+        
         public const string C15 = "38;5;21";
+        
         public const string C16 = "38;5;22";
+        
         public const string C17 = "38;5;23";
 
         public const string C18 = "38;5;24";
@@ -199,36 +217,57 @@ namespace Z0
 
 
         public const string CC5 = "38;5;197";
+        
         public const string DeepPink0 = CC5;
+        
         public const string DeepPink1 = CC5;
 
         public const string CC6 = "38;5;198";
+        
         public const string DeepPink2 = CC6;
+        
         public const string CC7 = "38;5;199";
+        
         public const string DeepPink3 = CC7;
+        
         public const string CC8 = "38;5;200";
+        
         public const string Magenta0 = CC8;
+        
         public const string Magenta1 = CC8;                
+        
         public const string CC9 = "38;5;201";
+        
         public const string Magenta2 = CC9;
 
-
         public const string CD4 = "38;5;212";
+        
         public const string Orchid0 = CD4;
+        
         public const string Orchid1 = CD4;
+        
         public const string CD5 = "38;5;213";        
+        
         public const string Orchid2 = CD5;
+        
         public const string CD6 = "38;5;214";        
+        
         public const string CD7 = "38;5;215";        
 
         public const string CD8 = "38;5;216";
+        
         public const string CD9 = "38;5;217";        
+        
         public const string CDA = "38;5;218";        
+        
         public const string CDB = "38;5;219";        
 
         public const string CDC = "38;5;220";
+        
         public const string CDD = "38;5;221";        
+        
         public const string CDE = "38;5;222";        
+        
         public const string CDF = "38;5;223";        
     }
 

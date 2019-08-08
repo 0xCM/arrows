@@ -17,7 +17,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The underlying type</typeparam>
         /// <param name="message">A related message, if any</param>
-        /// <returns></returns>
         internal static Option<T> none<T>()
             => Option<T>.None();
 
@@ -72,12 +71,11 @@ namespace Z0
             => x ? f(x.ValueOrDefault()) : none<Y>();        
 
         /// <summary>
-        /// Defines equality between 
+        ///  Determines whether the values of the operands are identical
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The option value type</typeparam>
         public static bool eq<T>(Option<T> x, Option<T> y)
         {
             if (!x.Exists && !y.Exists)
@@ -94,8 +92,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="X">The underlying type</typeparam>
         /// <param name="x">The potential value</param>
-        /// <returns></returns>
-        public static string render<X>(in Option<X> x)
+        public static string format<X>(in Option<X> x)
             => x.MapValueOrElse(value => value?.ToString() ?? string.Empty, () => string.Empty);
 
         /// <summary>

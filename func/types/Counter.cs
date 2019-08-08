@@ -7,15 +7,14 @@ namespace Z0
     using System;
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
-    using static zfunc;
 
+    using static zfunc;
 
     /// <summary>
     /// Provides a performance counter, similar to the Stopwatch type
     /// </summary>
     public ref struct Counter
     {
-
         /// <summary>
         /// Creates a counter
         /// </summary>
@@ -45,7 +44,6 @@ namespace Z0
         /// between the first and last counts
         /// </summary>
         /// <param name="reset">True if the counter should be reset</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public Duration Mark(bool reset = false)
         {
@@ -55,5 +53,9 @@ namespace Z0
                 FirstCount = 0;
             return Duration.Define(delta);
         }
+
+        [MethodImpl(Inline)]
+        public string Format()
+            => $"[{FirstCount.FormatHex(false)} : {LastCount.FormatHex(false)}]";
     }
 }

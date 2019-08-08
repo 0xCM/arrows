@@ -38,6 +38,7 @@ namespace Z0
         public static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
             => Multiply(lhs, rhs);
 
+
         /// <intrinsic>_m256i _mm256_mul_epu32 (__m256i a, __m256i b) VPMULUDQ ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)

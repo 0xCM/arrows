@@ -15,7 +15,6 @@ using static Z0.As;
 
 partial class zfunc
 {
-
     /// <summary>
     /// Stores vector content to a memory location
     /// </summary>

@@ -168,8 +168,7 @@ namespace Z0
     public readonly struct GEnum<E,T>
         where E : Enum
         where T : struct
-    {
-        
+    {        
         public static Option<GEnum<E,T>> Parse(string Label)
         {
             if(ValueIndex.TryGetValue(Label, out E value))
@@ -227,7 +226,6 @@ namespace Z0
         static readonly Dictionary<string,E> ValueIndex
             = Values.Mapi((i,v) => (Labels[i], v)).ToDictionary();
         
-
         public GEnum(E value)
             => this.Value = value;
 

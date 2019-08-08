@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     
     using static BinaryDigit;
@@ -36,5 +37,9 @@ namespace Z0
                 dst[i] = Parse(src[i]);            
             return dst;
         }
+ 
+
+
+
     }
 }

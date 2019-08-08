@@ -125,7 +125,6 @@ namespace Z0
             return value;
         }
 
-
         static Option<Y> guard<X, Y>(X x, Func<X, bool> predicate, Func<X, Option<Y>> f)
             => predicate(x) ? f(x) : none<Y>();
 

@@ -78,6 +78,14 @@ namespace Z0.Test
             Claim.eq(a0,a1);
         }
  
+        public void DotTest()
+        {
+            
+
+
+            
+        }
+
     }
 
 }

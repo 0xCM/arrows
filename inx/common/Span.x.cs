@@ -69,7 +69,6 @@ namespace Z0
             where T : struct            
         {
             var dst = Span256.AllocBlocks<T>(1);
-            Claim.eq(dst.Length, Vec256<T>.Length);
             Vec256.Store(in src, ref dst[0]);
             return dst;
         }                       

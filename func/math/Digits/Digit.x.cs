@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source digit</param>
         [MethodImpl(Inline)]   
-        public static char ToCharDigit(this BinaryDigit src)
+        public static char ToChar(this BinaryDigit src)
         {
             if(src == BinaryDigit.Zed)
                 return AsciDigits.A0;
@@ -33,7 +33,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]   
-        public static char ToCharDigit(this DeciDigit src)
+        public static char ToChar(this DeciDigit src)
         {
             if(src == DeciDigit.D0)
                 return AsciDigits.A0;
@@ -60,7 +60,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]   
-        public static char ToCharDigit(this HexDigit src)
+        public static char ToChar(this HexDigit src)
         {
             if(src == HexDigit.X0)
                 return AsciDigits.A0;
@@ -101,17 +101,6 @@ namespace Z0
         public static Span<DeciDigit> ToDeciDigits(this long src)
             => DeciDigits.Parse(src.ToString());
 
-        [MethodImpl(Inline)]   
-        public static string Format(this BinaryDigit src)
-            => src.ToCharDigit().ToString();
-
-        [MethodImpl(Inline)]   
-        public static string Format(this DeciDigit src)
-            => src.ToCharDigit().ToString();
-
-        [MethodImpl(Inline)]   
-        public static string Format(this HexDigit src)
-            => src.ToCharDigit().ToString();
 
         /// <summary>
         /// Formats a span of binary digits as a contiguous block
@@ -125,7 +114,7 @@ namespace Z0
             dst[0] = '0';
             dst[1] = 'b';
             for(var i = 0; i < src.Length; i++)
-                dst[i + 2] = src[i].ToCharDigit();
+                dst[i + 2] = src[i].ToChar();
             return new string(dst);
         }
 
@@ -145,7 +134,7 @@ namespace Z0
         {
             var dst = new char[src.Length]; 
             for(var i = 0; i< src.Length; i++)
-                dst[i] = (char) src[i].ToCharDigit();
+                dst[i] = (char) src[i].ToChar();
             return new string(dst);
         }
 
@@ -168,7 +157,7 @@ namespace Z0
             dst[0] = '0';
             dst[1] = 'x';
             for(var i = 0; i < src.Length; i++)
-                dst[i + 2] = src[i].ToCharDigit();
+                dst[i + 2] = src[i].ToChar();
             return new string(dst);
         }
 
@@ -179,6 +168,5 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static string Format(this Span<HexDigit> src, bool specifier = true)
             => src.ReadOnly().Format(specifier);
-
     }
 }

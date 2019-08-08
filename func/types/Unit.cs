@@ -18,6 +18,7 @@ namespace Z0
     public readonly struct Unit
     {
         public static readonly Unit Value = new Unit();
+        
         public static readonly Type Type = typeof(Unit);
         
         /// <summary>

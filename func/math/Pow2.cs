@@ -374,13 +374,10 @@ namespace Z0
         public const int T30 = 2*T29;
         
         /// <summary>
-        /// 2^31 = _
+        /// 2^31 = 2*T30
         /// </summary>
         public const uint T31 = 2*(uint)T30;
         
-        /// <summary>
-        /// 2^32 = _
-        /// </summary>
         public const long T32 = 2*(long)T31;
         
         public const long T33 = 2*T32;
@@ -442,11 +439,11 @@ namespace Z0
         public const long T61 = 2*T60;
 
         public const long T62 = 2*T61;        
-        
+
         /// <summary>
-        /// 9223372036854775808
+        /// T63 = 9223372036854775808 
         /// </summary>
-        public const ulong T63 = 2* (ulong)T62;
+        public const ulong T63 = 2*(ulong)T62;
 
     }
 }

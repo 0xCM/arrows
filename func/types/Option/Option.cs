@@ -116,13 +116,10 @@ namespace Z0
             
         }
 
-
-
         /// <summary>
         /// Specifies whether the option has a value
         /// </summary>
         public bool Exists { get; }
-
 
         /// <summary>
         /// Returns true if the value exists
@@ -141,8 +138,8 @@ namespace Z0
         /// <summary>
         /// Applies the a function to evaluate the underlying value if it exists
         /// </summary>
-        /// <typeparam name="X"></typeparam>
-        /// <param name="F"></param>
+        /// <param name="F">The function to apply, if possible</param>
+        /// <typeparam name="X">The mapped value type</typeparam>
         [MethodImpl(Inline)]
         public Option<X> IfSome<X>(Func<T, X> F)
             => Exists ? F(value) : Option.none<X>();
@@ -163,7 +160,6 @@ namespace Z0
         /// Invokes an action if the value doesn't exist
         /// </summary>
         /// <param name="ifNone">The action to invoke</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public Option<T> OnNone(Action ifNone)
         {
@@ -176,11 +172,8 @@ namespace Z0
         /// Yields the encapulated value if present; otherwise, raises an exception
         /// </summary>
         [MethodImpl(Inline)]
-        public T Require(
-            [CallerMemberName] string caller = null, 
-            [CallerFilePath] string file = null, 
-            [CallerLineNumber] int linenumber = 0)
-                =>  Exists ? value : throw new Exception<T>("Value doesn't exist", caller, file, linenumber);
+        public T Require([CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int linenumber = 0)
+            =>  Exists ? value : throw new Exception<T>("Value doesn't exist", caller, file, linenumber);
         
         static readonly T _Default = default;
             
@@ -213,7 +206,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public T ValueOrDefault(T @default = default(T))
             => Exists ? value : @default;
-
 
         /// <summary>
         /// Returns the encapsulated value if it exists; otherwise, invokes the fallback function <paramref name="fallback"/>
@@ -365,12 +357,11 @@ namespace Z0
             => Exists ? value.GetHashCode() : typeof(T).Name.GetHashCode();
 
         public override string ToString()
-            => Option.render(this);
+            => Option.format(this);
 
         public bool Equals(Option<T> other)
             => Option.eq(this, other);
     }
-
 
     /// <summary>
     /// Characterizes an untyped optional value

@@ -18,6 +18,9 @@ namespace Z0.Test
         [MethodImpl(Inline)]
         public static MethodMemory Read(MethodInfo m)
         {                        
+            // Note that this is just POC; to really read the method properly,
+            //one must know where it ends, and I'm not sure if that can be done
+            //without cracking open the method table of the PE file...
             return MethodMemory.ReadUntil(m, NatSpan.Alloc<N32,byte>(), 0xc3, 0xe0);
         }
 
@@ -69,7 +72,6 @@ namespace Z0.Test
             this.StartAddress = StartAddress;
             this.EndAddress = EndAddress;
             this.Body = body.ToArray();
-
         }
 
         /// <summary>

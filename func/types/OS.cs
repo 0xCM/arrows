@@ -9,6 +9,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zfunc;
 
+    /// <summary>
+    /// Defines API for directly accessing OS resources
+    /// </summary>
     public static class OS
     {
         const string kernel = "kernel32.dll";
@@ -73,8 +76,6 @@ namespace Z0
         {
             QueryPerformanceFrequency(ref CounterFrequency);
         }
-
-
         
         [DllImport(kernel)]
         static extern int QueryPerformanceCounter(ref long count);
@@ -98,13 +99,11 @@ namespace Z0
         [DllImport(kernel)]
         static extern IntPtr GetCurrentThread();
 
-
         /// <summary>
         /// Retrieves the cyle time for a specified thread
         /// </summary>
         /// <param name="hThread">The handle to the thread</param>
         /// <param name="cycles">The number of cpu clock cycles used by the thread</param>
-        /// <returns></returns>
         [DllImport(kernel)]
         static extern bool QueryThreadCycleTime(IntPtr hThread, ref ulong cycles);
 

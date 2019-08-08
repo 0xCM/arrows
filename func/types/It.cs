@@ -101,9 +101,5 @@ namespace Z0
         }
     }
 
-    public static class ClaimX
-    {
- 
 
-    }    
 }
