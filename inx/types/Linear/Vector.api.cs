@@ -22,37 +22,30 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Alloc<N,T>(N n = default, T exemplar = default)
+        public static Vector<N,T> Alloc<N,T>(N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => NatSpan.Alloc<N,T>();
+                =>  Vector<N,T>.LoadAligned(Span256.AllocUnaligned<N,T>());
 
+        
         [MethodImpl(Inline)]
-        public static Vector<T> Alloc<T>(int minlen)               
+        public static Vector<T> Alloc<T>(int minlen, T? fill = null)               
             where T : struct
-        {
-            var blocklen = Span256.blocklength<T>();                        
-            var qr = math.quorem(minlen, blocklen); 
-            var blocks = qr.Quotient + (qr.Remainder == 0 ? 0 : 1);
-            var dst = Span256.alloc<T>(blocks);
-            return new Vector<T>(dst);
-        } 
+                => Span256.AllocUnaligned<T>(minlen, fill);
 
         /// <summary>
-        /// Defines a vector of natural length with components intitalized
-        /// to a specified common value
+        /// Allocates a vector of natural length and fills it with a specified value
         /// </summary>
-        /// <param name="len">The natural nength</param>
-        /// <param name="fill">The value used to initialize the components</param>
+        /// <param name="fill">The fill value</param>
+        /// <param name="n">The length</param>
         /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The component type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Fill<N,T>(T fill, N len)
+        public static Vector<N,T> AllocFilled<N,T>(T fill, N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => Load(NatSpan.Alloc(fill, len));
+                =>  Vector<N,T>.LoadAligned(Span256.AllocUnaligned<N,T>(fill));
 
-        /// <summary>
         /// Loads a vector from an existing span of commensuate length (Non-allocating)
         /// </summary>
         /// <param name="src">The source span</param>
@@ -63,7 +56,7 @@ namespace Z0
         public static Vector<N,T> Load<N,T>(Span<T> src, N length = default)
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N,T>.Define(src);
+                => Vector<N,T>.LoadAligned(src);
         
         /// <summary>
         /// Loads a vector from an natural span of commensuate length (Non-allocating)
@@ -76,13 +69,13 @@ namespace Z0
         public static Vector<N,T> Load<N,T>(Span<N,T> src)
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N,T>.Define(src);
+                => Vector<N,T>.LoadAligned(src);
 
         [MethodImpl(Inline)]
         public static Vector<N,T> Load<N,T>(N len, params T[] src)
             where N : ITypeNat, new()
             where T : struct
-                => Load(span(src), len);
+                => Vector<N,T>.LoadAligned(src);
 
         /// <summary>
         /// Loads a natural span from a readonly span that is required to have
@@ -97,7 +90,17 @@ namespace Z0
         public static Vector<N,T> Load<N,T>(ReadOnlySpan<T> src, N length = default)
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N,T>.Define(src);
+                => Vector<N,T>.LoadAligned(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<T> LoadUnaligned<T>(Span<T> src)
+            where T : struct
+                => Span256.LoadUnaligned(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<T> LoadUnaligned<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => Span256.LoadUnaligned(src.Replicate());
 
         [MethodImpl(Inline)]
         public static Vector<T> Zero<T>(int minlen)
@@ -114,34 +117,6 @@ namespace Z0
             where T : struct
                 => new Vector<T>(src); 
 
-        [MethodImpl(Inline)]
-        public static Vector<T> Load<T>(Span<T> src)
-            where T : struct
-        {
-            var blocklen = Span256.blocklength<T>();                        
-            var qr = math.quorem(src.Length, blocklen);                        
-            if(qr.Remainder == 0)
-                return new Vector<T>(Span256.load(src));
-            else
-            {
-                var blocks = qr.Quotient + 1;
-                var dst = Span256.alloc<T>(blocks);
-                src.CopyTo(dst);
-                return new Vector<T>(dst);
-            }                                            
-        }
-
-        [MethodImpl(Inline)]
-        public static Vector<T> Load<T>(ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var blocklen = Span256.blocklength<T>();                        
-            var qr = math.quorem(src.Length, blocklen); 
-            var blocks = qr.Quotient + (qr.Remainder == 0 ? 0 : 1);
-            var dst = Span256.alloc<T>(blocks);
-            src.CopyTo(dst);
-            return new Vector<T>(dst);
-        }
 
     }
 }

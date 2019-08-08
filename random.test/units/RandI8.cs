@@ -13,10 +13,7 @@ namespace Z0.Test
     using static zfunc;
     
     public class RandI8 : UnitTest<RandomTest>
-    {
-
-        
-
+    {    
         public void PointSourceU8()
         {
             var source = Random.PointSource<ulong>().Require().DeriveSource(Interval<byte>.Full);
@@ -34,7 +31,6 @@ namespace Z0.Test
             var delta = bins.Map(kvp =>  (kvp.Key,  Math.Abs((((double)kvp.Value - avg) / avg)))).OrderBy(x => x.Key);
             foreach(var d in delta)
                 Claim.lteq(d.Item2, .2);
-
         }
 
         public void PointSourceI8()

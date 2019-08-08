@@ -23,10 +23,10 @@ namespace Z0.Mkl.Test
             where N : ITypeNat, new()
 
         {
-            var A = Matrix.Load<M,K,float>(Span256.alloc<M,K,float>());
-            var B = Matrix.Load<K,N,float>(Span256.alloc<K,N,float>());
-            var X = Matrix.Load<M,N,float>(Span256.alloc<M,N,float>());
-            var E = Matrix.Load<M,N,float>(Span256.alloc<M,N,float>());
+            var A = Matrix.Load<M,K,float>(Span256.AllocUnaligned<M,K,float>());
+            var B = Matrix.Load<K,N,float>(Span256.AllocUnaligned<K,N,float>());
+            var X = Matrix.Load<M,N,float>(Span256.AllocUnaligned<M,N,float>());
+            var E = Matrix.Load<M,N,float>(Span256.AllocUnaligned<M,N,float>());
         
             var runtime = Duration.Zero;
             for(var i=0; i<cycles; i++)
@@ -37,7 +37,7 @@ namespace Z0.Mkl.Test
                 mkl.gemm<M,K,N>(A.Unsized, B.Unsized, X.Unsized);            
                 runtime += snapshot(sw);
                 
-                MatrixRef.MulSlow(A, B, E);
+                MatrixRefOps.Mul(A, B, E);
 
                 if(trace)       
                 {
@@ -75,7 +75,7 @@ namespace Z0.Mkl.Test
                 mkl.gemm(A,B,X);            
                 runtime += snapshot(sw);
                 
-                MatrixRef.MulSlow(A, B, E);
+                MatrixRefOps.Mul(A, B, E);
                 Claim.eq(E,X);
 
                 if(trace)       
@@ -148,7 +148,7 @@ namespace Z0.Mkl.Test
                 sw.Start();
                 mkl.gemv(A,x,y);                
                 sw.Stop();
-                MatrixRef.MulSlow(A,x,z);
+                MatrixRefOps.Mul(A,x,z);
                 Claim.eq(z,y);
             }
 

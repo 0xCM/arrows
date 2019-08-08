@@ -18,34 +18,38 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct    
     {
-        Span<N,T> data {get;}
+        Span256<T> data;
 
         static readonly N NatRep = new N();
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Load(ref T src)
+        public static Vector<N,T> LoadAligned(ref T src)
             => new Vector<N,T>(ref src);
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Define(Span<N,T> src)
+        public static Vector<N,T> LoadAligned(Span<N,T> src)
             => new Vector<N,T>(src);
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Define(ReadOnlySpan<T> src)
+        public static Vector<N,T> LoadAligned(ReadOnlySpan<T> src)
             => new Vector<N,T>(src);
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Define(Span<T> src)
+        public static Vector<N,T> LoadAligned(Span<T> src)
             => new Vector<N,T>(src);
 
         [MethodImpl(Inline)]
-        public static Vector<N,T> Define(params T[] src)
+        public static Vector<N,T> LoadAligned(Span256<T> src)
+            => new Vector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> LoadAligned(params T[] src)
             => new Vector<N, T>(src);
 
         /// <summary>
         /// Specifies the length of the vector, i.e. its component count
         /// </summary>
-        public static readonly int NatLength = nati<N>();     
+        public static readonly int Length = nati<N>();     
 
         /// <summary>
         /// Vec => Slice
@@ -67,49 +71,60 @@ namespace Z0
         public static implicit operator Vector<N,T>(Span<N,T> src)
             => new Vector<N,T>(src);
 
+        [MethodImpl(Inline)]   
+        public static implicit operator Span256<T>(Vector<N,T> src)
+            => src.data;
+
+        [MethodImpl(Inline)]   
+        public static implicit operator ReadOnlySpan256<T>(Vector<N,T> src)
+            => src.data;
+
         [MethodImpl(Inline)]
         Vector(ref T src)
-        {
-            data =  NatSpan.Load<N,T>(ref src);  
-            require(data.Length == NatLength);
+        {  
+            require(Span256.IsAligned<T>(Length));
+            data =  Span256.LoadAligned<T>(ref src, Length);  
         }
 
         [MethodImpl(Inline)]
         Vector(in ReadOnlySpan<N,T> src)
         {
-            data = NatSpan.Replicate(src);
+            data = Span256.LoadAligned(src.Replicate());
         }
 
         [MethodImpl(Inline)]
         Vector(in ReadOnlySpan<T> src)
         {
-            require(src.Length == NatLength);
-            data = NatSpan.Load<N,T>(src);
+            require(src.Length >= Length);
+            data = Span256.LoadAligned(src.Replicate());
         }
 
         [MethodImpl(Inline)]
         Vector(Span<T> src)
         {
-            require(src.Length == NatLength);
-            data = NatSpan.Load(src, NatRep);
+            data = Span256.LoadAligned(src);
+        }
+
+        [MethodImpl(Inline)]
+        Vector(Span256<T> src)
+        {
+            require(src.Length >= Length);
+            data = src;
         }
 
         [MethodImpl(Inline)]
         Vector(Span<N,T> src)
         {
-            data = src;
+            data = Span256.LoadAligned(src);
         }
-        
-        public int Length
-            => NatLength;
-            
+                    
         public ref T this[int index] 
             => ref data[index];
 
         public Span<T> Unsized
         {
             [MethodImpl(Inline)]
-            get => data.Unsized;
+            get => data.Unblocked;
         }
  
         [MethodImpl(Inline)]

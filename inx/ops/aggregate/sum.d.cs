@@ -24,9 +24,9 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(src, offset);
+                var v1 = Vec128.Load(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(src, offset);
+                var v2 = Vec128.Load(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
@@ -45,7 +45,6 @@ namespace Z0
         public static short Sum(this Span<short> src, NumericSystem system = NumericSystem.Intrinsic)        
             => src.ReadOnly().Sum(system);
             
-
         public static int Sum(this ReadOnlySpan<int> src, NumericSystem system = NumericSystem.Intrinsic)
         {
             var veclen = Vec128<int>.Length;
@@ -57,9 +56,9 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(src, offset);
+                var v1 = Vec128.Load(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(src, offset);
+                var v2 = Vec128.Load(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
@@ -89,9 +88,9 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(src, offset);
+                var v1 = Vec128.Load(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(src, offset);
+                var v2 = Vec128.Load(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
@@ -121,9 +120,9 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(src, offset);
+                var v1 = Vec128.Load(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(src, offset);
+                var v2 = Vec128.Load(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                

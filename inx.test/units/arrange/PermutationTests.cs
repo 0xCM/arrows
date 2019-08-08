@@ -38,7 +38,6 @@ namespace Z0.Test
                 }
                 Claim.eq(expect, actual);
             }
-
         }
 
         public void ReverseF32()
@@ -56,10 +55,6 @@ namespace Z0.Test
                 }
                 Claim.eq(expect, actual);
             }
-
         }
-
     }
-
-
 }

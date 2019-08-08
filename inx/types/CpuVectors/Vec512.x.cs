@@ -37,8 +37,8 @@ namespace Z0
         public static void ToSpan<T>(this in Vec512<T> src, Span<T> dst)
             where T : struct            
         {
-            Vec256.store(in src.Lo(), ref dst[0]);
-            Vec256.store(in src.Hi(), ref dst[Vec256<T>.Length]);
+            Vec256.Store(in src.Lo(), ref dst[0]);
+            Vec256.Store(in src.Hi(), ref dst[Vec256<T>.Length]);
         }       
 
         /// <summary>

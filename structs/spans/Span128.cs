@@ -11,10 +11,8 @@ namespace Z0
     using System.Runtime.InteropServices;    
     using System.Runtime.Intrinsics;    
     using System.Diagnostics;
-    
-    
+        
     using static zfunc;
-
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
@@ -23,6 +21,8 @@ namespace Z0
     public ref struct Span128<T>
         where T : struct
     {
+        Span<T> data;
+
         /// <summary>
         /// The number of cells in the block
         /// </summary>
@@ -97,7 +97,6 @@ namespace Z0
             return new Span128<T>(src,length);
         }
 
-        Span<T> data;
 
         [MethodImpl(Inline)]
         unsafe Span128(void* src, int length)    

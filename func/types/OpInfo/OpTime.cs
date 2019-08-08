@@ -24,6 +24,9 @@ namespace Z0
         public static implicit operator OpTime((long OpCount, Duration WorkTime, string Label) src)
             => Define(src.OpCount, src.WorkTime, src.Label);        
 
+        public static implicit operator OpTime((long OpCount, Stopwatch sw, string Label) src)
+            => Define(src.OpCount, snapshot(src.sw), src.Label);        
+
         public static OpTime Define(long OpCount, Duration WorkTime, string label = null)
             => new OpTime(OpCount, WorkTime, label);
 
@@ -83,8 +86,8 @@ namespace Z0
         public override string ToString()
             => Format();
 
-        public string Format()
-            => concat(Left.Format(), eol(), Right.Format());
+        public string Format(int? labelPad = null)
+            => concat(Left.Format(labelPad), eol(), Right.Format(labelPad));
             
     }
 

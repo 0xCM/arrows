@@ -142,17 +142,6 @@ namespace Z0
             where T : struct
                 => new Span<M,N,T>(default(T));
 
-        /// <summary>
-        /// Creates a copy of the source span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="N">The natural length</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Span<N,T> Replicate<N,T>(ReadOnlySpan<N,T> src)    
-            where N : ITypeNat, new()
-            where T : struct
-                => new Span<N,T>(src);
 
 
 

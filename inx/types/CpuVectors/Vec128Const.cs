@@ -49,7 +49,7 @@ namespace Z0
             => ref src[0];
 
         protected static Vec128<T> Load(ref T src)     
-            => Vec128.load<T>(ref src);
+            => Vec128.Load<T>(ref src);
     }
 
     static class Vec128Const

@@ -21,7 +21,7 @@ namespace Z0.Test
             var dim = N12.Rep;
             var trials = Pow2.T16;
             var maxVal = (ulong)Pow2.T07;
-            var maxVec = Vector.Fill(maxVal, dim);
+            var maxVec = Vector.AllocFilled(maxVal,dim);
             var buckets = new ulong[maxVal];
 
 

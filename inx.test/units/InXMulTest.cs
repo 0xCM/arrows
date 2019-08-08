@@ -41,7 +41,7 @@ namespace Z0.Test
                 {
                     var x = lhs.LoadVec256(block);
                     var y = rhs.LoadVec256(block);
-                    var z = dinx.vumul256(x,y); 
+                    var z = dinx.mul(x,y); 
 
                     var a = x.ToSpan().Replicate();
                     var b = y.ToSpan();
@@ -53,6 +53,7 @@ namespace Z0.Test
 
             VerifyMul256u64(Pow2.T11);
         }
+
 
         public void VerifyUMul64()
         {

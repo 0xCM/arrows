@@ -110,7 +110,6 @@ namespace Z0
         public static Vec128<double> hi(in Vec128<double> lhs, in Vec128<double> rhs)
             => UnpackHigh(lhs,rhs);
 
-
         /// <intrinsic>__m256i _mm256_unpackhi_epi8 (__m256i a, __m256i b) VPUNPCKHBW ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<byte> hi(in Vec256<byte> lhs, in Vec256<byte> rhs)

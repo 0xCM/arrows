@@ -21,7 +21,7 @@ namespace Z0
     public static partial class Vec128
     {
         [MethodImpl(Inline)]
-        public static ref readonly Vec128<T> zero<T>() 
+        public static ref readonly Vec128<T> Zero<T>() 
             where T : struct
                 => ref Vec128<T>.Zero;
 
@@ -62,7 +62,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
-         public static ref readonly Vec128<T> ones<T>()
+         public static ref readonly Vec128<T> Ones<T>()
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -96,7 +96,7 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public unsafe static void store<T>(in Vec128<T> src, ref T dst)
+        public unsafe static void Store<T>(in Vec128<T> src, ref T dst)
             where T : struct
         {            
 
@@ -132,17 +132,17 @@ namespace Z0
         /// <param name="blockIndex">The block position in the target span where storage begins</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span128<T> store<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
+        public static Span128<T> Store<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
             where T : struct        
         {
             var offset = Span128.blocklength<T>(blockIndex);
-            Vec128.store(src, ref dst[offset]);
+            Vec128.Store(src, ref dst[offset]);
             return dst;                        
         }
 
 
         [MethodImpl(Inline)]
-        public static Vec128<T> load<T>(ref T src)
+        public static Vec128<T> Load<T>(ref T src)
             where T : struct  
         {
             
@@ -171,7 +171,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vec128<T> loadi<T>(in T src)
+        public static Vec128<T> Loadi<T>(in T src)
             where T : struct  
         {
             
@@ -200,7 +200,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vec128<T> load<T>(in ReadOnlySpan128<T> src, int block, out Vec128<T> dst)
+        public static ref Vec128<T> Load<T>(in ReadOnlySpan128<T> src, int block, out Vec128<T> dst)
             where T : struct
         {            
             ref var head = ref asRef(in src.Block(block));            
@@ -231,7 +231,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static unsafe ref Vec128<T> load<T>(in Span128<T> src, int block, out Vec128<T> dst)
+        public static ref Vec128<T> Load<T>(in Span128<T> src, int block, out Vec128<T> dst)
             where T : struct
         {            
             ref var head = ref asRef(in src.Block(block));            
@@ -262,17 +262,17 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Vec128<T> load<T>(Span128<T> src, int block = 0)
+        public static Vec128<T> Load<T>(Span128<T> src, int block = 0)
             where T : struct  
-                => load(in src, block, out Vec128<T> dst);
+                => Load(in src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
-        public static Vec128<T> load<T>(ReadOnlySpan128<T> src, int block = 0)
+        public static Vec128<T> Load<T>(ReadOnlySpan128<T> src, int block = 0)
             where T : struct  
-                => load(in src, block, out Vec128<T> dst);
+                => Load(in src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
-        public static ref Vec128<T> load<T>(ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
+        public static ref Vec128<T> Load<T>(ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
             where T : struct  
         {
             ref var head = ref asRef(in src[offset]);            
@@ -302,7 +302,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vec128<T> define<T>(T src)
+        public static Vec128<T> Fill<T>(T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -331,9 +331,9 @@ namespace Z0
  
 
         [MethodImpl(Inline)]
-        public static Vec128<T> load<T>(in ReadOnlySpan<T> src, int offset = 0)
+        public static Vec128<T> Load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
-                =>  load<T>(src, offset, out Vec128<T> dst);    
+                =>  Load<T>(src, offset, out Vec128<T> dst);    
 
         [MethodImpl(Inline)]
         static unsafe Vec128<sbyte> load(ref sbyte src)

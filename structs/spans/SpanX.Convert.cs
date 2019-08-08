@@ -124,7 +124,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this T[] src)
             where T : struct
-            => Z0.Span256.load<T>(src);
+            => Z0.Span256.LoadAligned<T>(src);
 
         /// <summary>
         /// Constructs a 128-bit blocked span from an unblocked span
@@ -144,7 +144,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this Span<T> src)
              where T : struct
-                => Z0.Span256.load(src);
+                => Z0.Span256.LoadAligned(src);
 
          [MethodImpl(Inline)]
         public static byte[] ToByteArray(this ushort src)

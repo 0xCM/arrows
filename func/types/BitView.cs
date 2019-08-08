@@ -21,7 +21,7 @@ namespace Z0
     }
 
     /// <summary>
-    /// Represents a struct array as an ordered sequence of bits/bytes
+    /// Represents a value as an ordered sequence of bits/bytes
     /// </summary>
     public unsafe ref struct BitView<T>
         where T : struct
@@ -97,5 +97,4 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
-
 }

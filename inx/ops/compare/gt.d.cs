@@ -31,14 +31,6 @@ namespace Z0
             => Vec128Cmp.Define<int>(CompareGreaterThan(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128Cmp<float> gt(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareGreaterThan(lhs,rhs));
-        
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> gt(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareGreaterThan(lhs,rhs));
- 
-        [MethodImpl(Inline)]
         public static Vec256Cmp<sbyte> gt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => Vec256Cmp.Define<sbyte>(CompareGreaterThan(lhs,rhs));
 
@@ -54,13 +46,6 @@ namespace Z0
         public static Vec256Cmp<long> gt(in Vec256<long> lhs, in Vec256<long> rhs)
             => Vec256Cmp.Define<long>(CompareGreaterThan(lhs,rhs));
 
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> gt(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
-
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> gt(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
 
     }
 }

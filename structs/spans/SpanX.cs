@@ -273,6 +273,7 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static Span<N,T> ToNatural<N,T>(this Span<T> src, N size = default)
             where N : ITypeNat, new()
+            where T : struct
                 => new Span<N, T>(src);       
 
         /// <summary>
@@ -287,7 +288,7 @@ namespace Z0
             Span<T> dst = new T[src.Length];
             if(!structureOnly)
                 src.CopyTo(dst);
-            return Z0.Span256.load<T>(dst);
+            return Z0.Span256.LoadAligned<T>(dst);
         }
 
         /// <summary>
@@ -302,7 +303,7 @@ namespace Z0
             Span<T> dst = new T[src.Length];
             if(!structureOnly)
                 src.CopyTo(dst);
-            return Z0.Span256.load<T>(dst);
+            return Z0.Span256.LoadAligned<T>(dst);
         }
 
         /// <summary>
@@ -319,6 +320,18 @@ namespace Z0
                 dst[i] = f(src[i]);
             return dst;
         }
+
+        /// <summary>
+        /// Creates a copy of the source span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="N">The natural length</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Span<N,T> Replicate<N,T>(this ReadOnlySpan<N,T> src)    
+            where N : ITypeNat, new()
+            where T : struct
+                => new Span<N,T>(src);
 
         /// <summary>
         /// Projects a source span to target span

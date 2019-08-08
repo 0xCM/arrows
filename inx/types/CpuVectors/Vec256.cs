@@ -23,9 +23,9 @@ namespace Z0
 
         public static readonly ulong BitCount = 256ul;
 
-        public static readonly Vec256<T> Zero = Vec256.zero<T>();
+        public static readonly Vec256<T> Zero = Vec256.Zero<T>();
 
-        public static readonly Vec256<T> Ones = Vec256.ones<T>();
+        public static readonly Vec256<T> Ones = Vec256.Ones<T>();
 
         public readonly Vector256<T> data;        
     

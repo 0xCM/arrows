@@ -24,7 +24,7 @@ namespace Z0.Test
             {
                 var x = lhs.LoadVec256(block);
                 var y = rhs.LoadVec256(block);
-                dinx.vumul256(x,y); 
+                dinx.mul(x,y); 
             }
             return snapshot(sw);
         }
@@ -37,7 +37,7 @@ namespace Z0.Test
         }
         protected override void RunTests(params string[] filters)
         {     
-            base.RunTests(filters);
+            base.RunTests("MatMul");
         }
 
         public static void Main(params string[] args)

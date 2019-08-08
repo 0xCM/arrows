@@ -25,7 +25,7 @@ namespace Z0
                 else
                     control[k] = k;
             }
-            return permute8x32(src,Vec256.load(ref control[0]));
+            return permute8x32(src,Vec256.Load(ref control[0]));
         }
 
         [MethodImpl(Inline)]
@@ -41,7 +41,7 @@ namespace Z0
                 else
                     control[k] = k;
             }
-            return permute8x32(src,Vec256.load(ref control[0]));
+            return permute8x32(src,Vec256.Load(ref control[0]));
         }
     }
 

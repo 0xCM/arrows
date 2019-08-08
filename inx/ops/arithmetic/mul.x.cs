@@ -20,6 +20,10 @@ namespace Z0
     using static Span256;
     using static Span128;
 
+    partial class dinx
+    {
+
+    }
     partial class dinxx
     {
 
@@ -44,7 +48,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -52,7 +56,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -60,7 +64,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -68,7 +72,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -76,7 +80,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -84,7 +88,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -92,7 +96,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
 
@@ -100,7 +104,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                dinx.store(Multiply(lhs.LoadVec256(block), lhs.LoadVec256(block)), ref dst.Block(block));
+                dinx.store(dinx.mul(lhs.LoadVec256(block), lhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
     }

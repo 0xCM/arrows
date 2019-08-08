@@ -32,6 +32,10 @@ void DGEEV( const char* jobvl, const char* jobvr, const MKL_INT* n, double* a,
             const MKL_INT* ldvl, double* vr, const MKL_INT* ldvr, double* work,
             const MKL_INT* lwork, MKL_INT* info );
 
+void SPOTRF( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda, MKL_INT* info );
+
+void DPOTRF( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda, MKL_INT* info );
+
 void CGELQ( const MKL_INT* m, const MKL_INT* n, MKL_Complex8* a,
             const MKL_INT* lda, MKL_Complex8* t, const MKL_INT* tsize,
             MKL_Complex8* work, const MKL_INT* lwork, MKL_INT* info );
@@ -3757,35 +3761,14 @@ void zgsvj1_( const char* jobv, const MKL_INT* m, const MKL_INT* n, const MKL_IN
 
 void CPOTRF2( const char* uplo, const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
               MKL_INT* info );
-void CPOTRF2_( const char* uplo, const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-               MKL_INT* info );
-void cpotrf2( const char* uplo, const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-              MKL_INT* info );
-void cpotrf2_( const char* uplo, const MKL_INT* n, MKL_Complex8* a, const MKL_INT* lda,
-               MKL_INT* info );
 
 void DPOTRF2( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
               MKL_INT* info );
-void DPOTRF2_( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-               MKL_INT* info );
-void dpotrf2( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-              MKL_INT* info );
-void dpotrf2_( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-               MKL_INT* info );
 
 void SPOTRF2( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda, MKL_INT* info );
-void SPOTRF2_( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda, MKL_INT* info );
-void spotrf2( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda, MKL_INT* info );
-void spotrf2_( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda, MKL_INT* info );
 
 void ZPOTRF2( const char* uplo, const MKL_INT* n, MKL_Complex16* a, const MKL_INT* lda,
               MKL_INT* info );
-void ZPOTRF2_( const char* uplo, const MKL_INT* n, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_INT* info );
-void zpotrf2( const char* uplo, const MKL_INT* n, MKL_Complex16* a, const MKL_INT* lda,
-              MKL_INT* info );
-void zpotrf2_( const char* uplo, const MKL_INT* n, MKL_Complex16* a, const MKL_INT* lda,
-               MKL_INT* info );
 
 void DBDSVDX( const char* uplo, const char* jobz, const char* range, const MKL_INT* n,
               const double* d, const double* e, const double* vl, const double* vu,
@@ -16479,105 +16462,34 @@ void dpotf2( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
 void dpotf2_( const char* uplo, const MKL_INT* n, double* a,
               const MKL_INT* lda, MKL_INT* info );
 
-void DPOTRF( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-             MKL_INT* info );
-void DPOTRF_( const char* uplo, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* info );
-void dpotrf( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-             MKL_INT* info );
-void dpotrf_( const char* uplo, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* info );
 
 void DPOTRI( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
              MKL_INT* info );
-void DPOTRI_( const char* uplo, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* info );
-void dpotri( const char* uplo, const MKL_INT* n, double* a, const MKL_INT* lda,
-             MKL_INT* info );
-void dpotri_( const char* uplo, const MKL_INT* n, double* a,
-              const MKL_INT* lda, MKL_INT* info );
 
 void DPOTRS( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
              const double* a, const MKL_INT* lda, double* b,
              const MKL_INT* ldb, MKL_INT* info );
-void DPOTRS_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, MKL_INT* info );
-void dpotrs( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-             const double* a, const MKL_INT* lda, double* b,
-             const MKL_INT* ldb, MKL_INT* info );
-void dpotrs_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* a, const MKL_INT* lda, double* b,
-              const MKL_INT* ldb, MKL_INT* info );
 
 void DPPCON( const char* uplo, const MKL_INT* n, const double* ap,
              const double* anorm, double* rcond, double* work, MKL_INT* iwork,
              MKL_INT* info );
-void DPPCON_( const char* uplo, const MKL_INT* n, const double* ap,
-              const double* anorm, double* rcond, double* work, MKL_INT* iwork,
-              MKL_INT* info );
-void dppcon( const char* uplo, const MKL_INT* n, const double* ap,
-             const double* anorm, double* rcond, double* work, MKL_INT* iwork,
-             MKL_INT* info );
-void dppcon_( const char* uplo, const MKL_INT* n, const double* ap,
-              const double* anorm, double* rcond, double* work, MKL_INT* iwork,
-              MKL_INT* info );
 
 void DPPEQU( const char* uplo, const MKL_INT* n, const double* ap, double* s,
              double* scond, double* amax, MKL_INT* info );
-void DPPEQU_( const char* uplo, const MKL_INT* n, const double* ap, double* s,
-              double* scond, double* amax, MKL_INT* info );
-void dppequ( const char* uplo, const MKL_INT* n, const double* ap, double* s,
-             double* scond, double* amax, MKL_INT* info );
-void dppequ_( const char* uplo, const MKL_INT* n, const double* ap, double* s,
-              double* scond, double* amax, MKL_INT* info );
 
 void DPPRFS( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
              const double* ap, const double* afp, const double* b,
              const MKL_INT* ldb, double* x, const MKL_INT* ldx, double* ferr,
              double* berr, double* work, MKL_INT* iwork, MKL_INT* info );
-void DPPRFS_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* ap, const double* afp, const double* b,
-              const MKL_INT* ldb, double* x, const MKL_INT* ldx, double* ferr,
-              double* berr, double* work, MKL_INT* iwork, MKL_INT* info );
-void dpprfs( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-             const double* ap, const double* afp, const double* b,
-             const MKL_INT* ldb, double* x, const MKL_INT* ldx, double* ferr,
-             double* berr, double* work, MKL_INT* iwork, MKL_INT* info );
-void dpprfs_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-              const double* ap, const double* afp, const double* b,
-              const MKL_INT* ldb, double* x, const MKL_INT* ldx, double* ferr,
-              double* berr, double* work, MKL_INT* iwork, MKL_INT* info );
 
 void DPPSV( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
             double* ap, double* b, const MKL_INT* ldb, MKL_INT* info );
-void DPPSV_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-             double* ap, double* b, const MKL_INT* ldb, MKL_INT* info );
-void dppsv( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-            double* ap, double* b, const MKL_INT* ldb, MKL_INT* info );
-void dppsv_( const char* uplo, const MKL_INT* n, const MKL_INT* nrhs,
-             double* ap, double* b, const MKL_INT* ldb, MKL_INT* info );
 
 void DPPSVX( const char* fact, const char* uplo, const MKL_INT* n,
              const MKL_INT* nrhs, double* ap, double* afp, char* equed,
              double* s, double* b, const MKL_INT* ldb, double* x,
              const MKL_INT* ldx, double* rcond, double* ferr, double* berr,
              double* work, MKL_INT* iwork, MKL_INT* info );
-void DPPSVX_( const char* fact, const char* uplo, const MKL_INT* n,
-              const MKL_INT* nrhs, double* ap, double* afp, char* equed,
-              double* s, double* b, const MKL_INT* ldb, double* x,
-              const MKL_INT* ldx, double* rcond, double* ferr, double* berr,
-              double* work, MKL_INT* iwork, MKL_INT* info );
-void dppsvx( const char* fact, const char* uplo, const MKL_INT* n,
-             const MKL_INT* nrhs, double* ap, double* afp, char* equed,
-             double* s, double* b, const MKL_INT* ldb, double* x,
-             const MKL_INT* ldx, double* rcond, double* ferr, double* berr,
-             double* work, MKL_INT* iwork, MKL_INT* info );
-void dppsvx_( const char* fact, const char* uplo, const MKL_INT* n,
-              const MKL_INT* nrhs, double* ap, double* afp, char* equed,
-              double* s, double* b, const MKL_INT* ldb, double* x,
-              const MKL_INT* ldx, double* rcond, double* ferr, double* berr,
-              double* work, MKL_INT* iwork, MKL_INT* info );
 
 void DPPTRF( const char* uplo, const MKL_INT* n, double* ap, MKL_INT* info );
 void DPPTRF_( const char* uplo, const MKL_INT* n, double* ap, MKL_INT* info );
@@ -22878,14 +22790,6 @@ void spotf2( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
 void spotf2_( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
               MKL_INT* info );
 
-void SPOTRF( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
-             MKL_INT* info );
-void SPOTRF_( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
-              MKL_INT* info );
-void spotrf( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
-             MKL_INT* info );
-void spotrf_( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
-              MKL_INT* info );
 
 void SPOTRI( const char* uplo, const MKL_INT* n, float* a, const MKL_INT* lda,
              MKL_INT* info );

@@ -9,6 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
+    using System.Runtime.InteropServices;    
     using System.Text;
     using Z0.Mkl;        
 
@@ -45,7 +46,7 @@ namespace Z0
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
-                => Matrix.Load<M,N,double>(mkl.gemm<M,K,N>(A.Unsized,B.Unsized));
+                => Matrix.Load<M,N,double>(mkl.gemm<M,K,N>(A.Unsized, B.Unsized));
 
         /// <summary>
         /// Computes the matrix product X = AB
@@ -84,6 +85,66 @@ namespace Z0
             mkl.gemm<M,K,N>(A, B, X);   
             return ref X;
         }
+
+        /// <summary>
+        /// Computes the product of square matrices of natural dimension
+        /// </summary>
+        /// <param name="A">The left matrix</param>
+        /// <param name="B">The right matrix</param>
+        /// <param name="X">Tht target matrix</param>
+        /// <typeparam name="N">The common order of all matrices</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Matrix<N,float> Mul<N>(this Matrix<N,float> A, Matrix<N,float> B, ref Matrix<N, float> X)
+            where N : ITypeNat, new()
+        {
+            mkl.gemm<N,N,N>(A, B, X);
+            return ref X;
+        }
+
+        /// <summary>
+        /// Computes the product of square matrices of natural dimension
+        /// </summary>
+        /// <param name="A">The left matrix</param>
+        /// <param name="B">The right matrix</param>
+        /// <param name="X">Tht target matrix</param>
+        /// <typeparam name="N">The common order of all matrices</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Matrix<N,double> Mul<N>(this Matrix<N,double> A, Matrix<N,double> B, ref Matrix<N, double> X)
+            where N : ITypeNat, new()
+        {
+            mkl.gemm<N,N,N>(A, B, X);
+            return ref X;
+        }
+        
+        public static ref Matrix<N,T> Map<N,T>(this ref Matrix<N,T> A, Func<T,T> f)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            A.Apply(f);
+            return ref A;
+
+        }
+
+        public static Matrix<N,double> Pow<N>(this Matrix<N,double> A, int exp)
+            where N : ITypeNat, new()
+        {
+            if(exp == 1)
+                return A;
+
+            var B = A.Replicate();
+            var X = Matrix.Alloc<N,double>();
+            mkl.gemm<N,N,N>(A,B,X);
+            if(exp == 2)
+                return X;
+
+            var i = exp;
+            while(--i > 2)
+                mkl.gemm<N,N,N>(X,X,X);    
+            
+            return X;                        
+        }
+
     }
+
 
 }

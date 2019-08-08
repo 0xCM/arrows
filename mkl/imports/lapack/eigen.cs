@@ -16,8 +16,6 @@ namespace Z0.Mkl
     using static zfunc;
     using static MklImports;
 
-
-	
     partial class LAPACK
     {
         /// <summary>
@@ -40,7 +38,7 @@ namespace Z0.Mkl
         /// <param name="ldvr">Th leading dimenion of vr</param>
         /// <param name="ws">A reference to the workspace allocation, which for maximum performance should be of length n*n</param>
         /// <param name="wslen">The  size of the workspace allolcation</param>
-        /// <param name="exitcode">If algorithm was successful, populated with 0; if -i, the i-th parameter had an illegal value; if info=i, general alorithm failure</param>
+        /// <param name="exitcode">If successful, populated with 0; if -i, the i-th parameter had an illegal value; if info=i, general alorithm failure</param>
 		[DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
 		public static extern void DGEEV(
             ref char jobvl, ref char jobvr, ref int n, ref double a, 

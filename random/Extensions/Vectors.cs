@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="vector">The vector to populate</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static void NatVector<N,T>(this IRandomSource random, Interval<T> domain, ref Vector<N,T> vector, N n = default)
+        public static void Fill<N,T>(this IRandomSource random, Interval<T> domain, ref Vector<N,T> vector, N n = default)
             where T : struct
             where N : ITypeNat, new()
                 => random.StreamTo<T>(domain, nati<N>(), ref vector.Unsized[0]);
@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="vector">The vector to populate</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static void NatVector<N,T>(this IRandomSource random, ref Vector<N,T> vector, N n = default)
+        public static void Fill<N,T>(this IRandomSource random, ref Vector<N,T> vector, N n = default)
             where T : struct
             where N : ITypeNat, new()
                 => random.StreamTo<T>(nati<N>(), ref vector.Unsized[0]);
@@ -52,7 +52,7 @@ namespace Z0
             where N : ITypeNat, new()
         {
             var dst = Vector.Alloc<N,T>();
-            random.NatVector(domain, ref dst);
+            random.Fill(domain, ref dst);
             return dst;
         }
 
@@ -67,7 +67,7 @@ namespace Z0
             where N : ITypeNat, new()
         {
             var dst = Vector.Alloc<N,T>();
-            random.NatVector(ref dst);
+            random.Fill(ref dst);
             return dst;
         }
 

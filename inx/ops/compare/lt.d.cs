@@ -31,22 +31,6 @@ namespace Z0
         public static Vec128Cmp<int> lt(in Vec128<int> lhs, in Vec128<int> rhs)
             => Vec128Cmp.Define<int>(CompareLessThan(lhs,rhs));
 
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<float> lt(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareLessThan(lhs,rhs));
-        
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> lt(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareLessThan(lhs,rhs));
-    
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> lt(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs,FloatComparisonMode.OrderedLessThanNonSignaling));
-
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> lt(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedLessThanNonSignaling));
-
     
     }
 

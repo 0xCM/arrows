@@ -45,7 +45,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<long> lo(in Vec256<long> src)
-            => ExtractVector128(src,0);
+            =>  ExtractVector128(src,0);
 
         [MethodImpl(Inline)]
         public static Vec128<ulong> lo(in Vec256<ulong> src)

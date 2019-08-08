@@ -23,11 +23,11 @@ namespace Z0.Test
             var  src = Random.Span128<T>(blocks);
             for(var i = 0; i< blocks; i++)
             {
-                var v = Vec128.load(ref src.Block(i));
+                var v = Vec128.Load(ref src.Block(i));
                 Claim.yea(gbits.nonzero(v));
             }
             
-            Claim.nea(gbits.nonzero(Vec128.zero<T>()));
+            Claim.nea(gbits.nonzero(Vec128.Zero<T>()));
             TypeCaseEnd<T>();
         }
 
@@ -38,11 +38,11 @@ namespace Z0.Test
             var  src = Random.Span256<T>(blocks);
             for(var i = 0; i< blocks; i++)
             {
-                var v = Vec256.load(ref src.Block(i));
+                var v = Vec256.Load(ref src.Block(i));
                 Claim.yea(gbits.nonzero(v));
             }
             
-            Claim.nea(gbits.nonzero(Vec256.zero<T>()));
+            Claim.nea(gbits.nonzero(Vec256.Zero<T>()));
             TypeCaseEnd<T>();
         }
 

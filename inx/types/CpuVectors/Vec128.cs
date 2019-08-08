@@ -24,9 +24,9 @@ namespace Z0
 
         public static readonly BitSize  BitSize = 128ul;
 
-        public static readonly Vec128<T> Zero = Vec128.zero<T>();
+        public static readonly Vec128<T> Zero = Vec128.Zero<T>();
 
-        public static readonly Vec128<T> Ones = Vec128.ones<T>();
+        public static readonly Vec128<T> Ones = Vec128.Ones<T>();
 
         readonly Vector128<T> data;        
     

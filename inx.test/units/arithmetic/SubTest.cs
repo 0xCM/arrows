@@ -39,7 +39,7 @@ namespace Z0.Test
             var lhs = Random.Span256<T>(len).ReadOnly();
             var rhs = Random.Span256<T>(len).ReadOnly();
             var dstA = ginx.sub(lhs, rhs, lhs.Replicate());
-            var dstB = Span256.alloc<T>(lhs.BlockCount);
+            var dstB = Span256.AllocBlocks<T>(lhs.BlockCount);
             for(var i = 0; i < dstA.Length; i++)
                 dstB[i] = gmath.sub(lhs[i], rhs[i]);
             Claim.yea(dstA.Identical(dstB));

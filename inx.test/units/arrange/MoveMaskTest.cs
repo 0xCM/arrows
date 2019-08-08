@@ -12,7 +12,6 @@ namespace Z0.Test
     
     using static zfunc;
 
-
     public class MoveMaskTest : UnitTest<MoveMaskTest>
     {
         public void MoveMask256u8()
@@ -93,13 +92,7 @@ namespace Z0.Test
                 
                 var mmActual = dinx.movemask(srcVector).ToBitVector32();
                 Claim.eq(mmExpect, mmActual);
-
             }
-
         }
-
-
-
     }
-
 }

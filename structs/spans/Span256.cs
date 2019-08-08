@@ -21,6 +21,8 @@ namespace Z0
     public ref struct Span256<T>
         where T : struct
     {
+        Span<T> data;
+
         /// <summary>
         /// The number of cells in the block
         /// </summary>
@@ -31,13 +33,13 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
         /// <remarks>Should always be 16 irrespective of the cell type</remarks>
-        public static readonly int BlockSize = Unsafe.SizeOf<T>() * BlockLength; 
+        public static readonly ByteSize BlockSize = Unsafe.SizeOf<T>() * BlockLength; 
 
         /// <summary>
         /// The size, in bytes, of a constituent block cell
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = BlockSize / BlockLength;
+        public static readonly ByteSize CellSize = BlockSize / BlockLength;
 
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Span256<T> src)
@@ -64,8 +66,13 @@ namespace Z0
             => length % BlockLength == 0;
         
         [MethodImpl(Inline)]
-        public static Span256<T> Alloc(int blocks)
-            => new Span256<T>(new T[blocks * BlockLength]);
+        public static Span256<T> AllocBlocs(int blocks, T? fill = null)
+        {
+            var dst = new Span256<T>(new T[blocks * BlockLength]);
+            if(fill.HasValue)
+                dst.data.Fill(fill.Value);
+            return dst;
+        }
     
         [MethodImpl(Inline)]
         public static Span256<T> Load(T[] src)
@@ -75,7 +82,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset = 0)
+        public static ReadOnlySpan256<T> LoadAligned(ReadOnlySpan<T> src, int offset = 0)
         {
             require(Aligned(src.Length - offset));
             return ReadOnlySpan256<T>.Load(src, offset);
@@ -86,33 +93,24 @@ namespace Z0
             => ReadOnlySpan256<T>.Load(src);
 
         [MethodImpl(Inline)]
-        public static Span256<T> Load(Span<T> src, int offset = 0)
+        public static Span256<T> LoadAligned(Span<T> src, int offset = 0)
         {
             require(Aligned(src.Length - offset));
             var slice = src.Slice(offset);
-            return new Span256<T>(ref slice);
+            return new Span256<T>(slice);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe Span256<T> Load(void* src, int length)
-        {
-            require(Aligned(length));
-            return new Span256<T>(src,length);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<T> Load(ref T head, int length)
+        public static Span256<T> LoadAligned(ref T head, int length)
         {
             require(Aligned(length));
             return new Span256<T>(ref head, length);
         }
 
-        Span<T> data;
-
         [MethodImpl(Inline)]
-        unsafe Span256(void* src, int length)    
+        Span256(ref T src, int length)
         {
-            data = new Span<T>(src, length);  
+            data = MemoryMarshal.CreateSpan(ref src, length);
         }
 
         [MethodImpl(Inline)]
@@ -128,15 +126,9 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        Span256(ref Span<T> src)
+        Span256(Span<T> src)
         {
             this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        Span256(ref T head, int len)
-        {
-            this.data = MemoryMarshal.CreateSpan(ref head, len);
         }
 
         public ref T this[int ix] 
@@ -174,12 +166,12 @@ namespace Z0
         public Span256<T> SliceBlock(int blockIndex)
         {
             var slice = data.Slice(blockIndex * BlockLength, BlockLength); 
-            return new Span256<T>(ref slice);
+            return new Span256<T>(slice);
         }
             
         [MethodImpl(Inline)]
         public Span256<T> Blocks(int blockIndex, int blockCount)
-            => Span256.load(Slice(blockIndex * BlockLength, blockCount * BlockLength));
+            => Span256.LoadAligned(Slice(blockIndex * BlockLength, blockCount * BlockLength));
             
         /// <summary>
         /// Presents the allocated data as a blocked read-only span
@@ -215,7 +207,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span256<S> As<S>()                
             where S : struct
-                => Span256.load(MemoryMarshal.Cast<T,S>(data));                    
+                => new Span256<S>(MemoryMarshal.Cast<T,S>(data)); 
  
         /// <summary>
         /// Provides access to the underlying storage

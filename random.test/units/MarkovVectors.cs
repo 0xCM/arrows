@@ -132,7 +132,7 @@ namespace Z0.Test
             }
         }
 
-        void VerifyRightStochastic<N,T>(Matrix<N,N,T> m, N n = default)
+        void VerifyRightStochastic<N,T>(Matrix<N,T> m, N n = default)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -159,7 +159,7 @@ namespace Z0.Test
         {
             var tol = .0001;
             var radius = closed(1 - tol,1 + tol);   
-            var v = Vector.Alloc(n, rep);
+            var v = Vector.Alloc<N,T>();
             for(var i=0; i< count; i++)
             {
                 Random.MarkovVector(ref v);

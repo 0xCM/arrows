@@ -18,9 +18,9 @@ namespace Z0
     /// <summary>
     /// Defines reference operations related to matrix/vector multiplication
     /// </summary>
-    public static class MatrixRef
+    public static class MatrixRefOps
     {
-        public static T DotSlow<N,T>(Span<N,T> X, Span<N,T> Y)
+        public static T Dot<N,T>(Span<N,T> X, Span<N,T> Y)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -30,7 +30,19 @@ namespace Z0
             return result;
         }
 
-        public static void MulSlow<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, Matrix<M,N,T> X)
+        public static ref Matrix<N,T> Mul<N,T>(Matrix<N,T> A, Matrix<N,T> B, ref Matrix<N,T> X)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var n = nati<N>();
+            for(var i = 0; i< n; i++)
+            for(var j = 0; j< n; j++)
+                X[i,j] = Dot<N,T>(A.Row(i), B.Col(j));                    
+            return ref X;
+        }
+
+
+        public static void Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, Matrix<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -40,21 +52,21 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< m; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = DotSlow<K,T>(A.Row(i), B.Col(j));                    
+                X[i,j] = Dot<K,T>(A.Row(i), B.Col(j));                    
         }
 
-        public static Matrix<M,N,T> MulSlow<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B)
+        public static Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
         {
             var X = Matrix.Alloc<M,N,T>();
-            MulSlow(A,B, X);
+            Mul(A,B, X);
             return X;
         }
 
-        public static void MulSlow<M,K,N,T>(Span<M,K,T> A, Span<K,N,T> B, Span<M,N,T> X)
+        public static void Mul<M,K,N,T>(Span<M,K,T> A, Span<K,N,T> B, Span<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -64,17 +76,17 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< m; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = DotSlow(A.Row(i), B.Col(j));                    
+                X[i,j] = Dot(A.Row(i), B.Col(j));                    
         }
 
-        public static void MulSlow<M,N,T>(Span<M,N,T> A, Span<N,T> B, Span<M,T> X)
+        public static void Mul<M,N,T>(Span<M,N,T> A, Span<N,T> B, Span<M,T> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
         {
             var m = nati<M>();
             for(var i = 0; i< m; i++)
-                X[i] = DotSlow(A.Row(i), B);                    
+                X[i] = Dot(A.Row(i), B);                    
         }
 
     }

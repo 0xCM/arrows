@@ -31,12 +31,12 @@ namespace Z0
         {            
             var lhsSrc = src.Unsized;
             var dataLen = nati<M>() * nati<N>();
-            Span256.alignment<T>(dataLen, out int blocklen, out int fullBlocks, out int remainder);            
+            Span256.Alignment<T>(dataLen, out int blocklen, out int fullBlocks, out int remainder);            
             if(remainder == 0)
-                return Span256.load(lhsSrc);
+                return Span256.LoadAligned(lhsSrc);
             else
             {
-                var dst = Span256.alloc<T>(fullBlocks + 1);
+                var dst = Span256.AllocBlocks<T>(fullBlocks + 1);
                 lhsSrc.CopyTo(dst);
                 return dst;
             }            
@@ -63,6 +63,12 @@ namespace Z0
             }
             return sb.ToString();            
         }
+
+        [MethodImpl(Inline)]
+        public static string Format<N,T>(this Matrix<N,T> src, char? cellsep = null)
+            where N : ITypeNat, new()
+            where T : struct    
+                => src.ToRectantular().Format(cellsep);
 
         /// <summary>
         /// Computes the sum of two matrices and stores the result in the left matrix
@@ -176,11 +182,11 @@ namespace Z0
         /// <param name="n">The natural dimension value</param>
         /// <typeparam name="N">The natural dimension type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static bool IsRightStochastic<N,T>(this Matrix<N,N,T> src, N n = default)
+         public static bool IsRightStochastic<N,T>(this Matrix<N,T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
         {
-            var tol = .0001;
+            var tol = .001;
             var radius = closed(1 - tol,1 + tol);   
             for(var r = 0; r < (int)n.value; r ++)
             {

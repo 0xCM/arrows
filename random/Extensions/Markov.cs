@@ -34,7 +34,7 @@ namespace Z0
         [MethodImpl(Inline)]
         static Vector<float> MarkovVector(this IRandomSource random, int length, float min, float max)
         {            
-            var dst = Z0.Span256.alloc<float>(Z0.Span256.minblocks<float>(length));
+            var dst = Z0.Span256.AllocBlocks<float>(Z0.Span256.MinBlocks<float>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);
             return dst.Div(dst.Avg() * length);
         }
@@ -42,7 +42,7 @@ namespace Z0
         [MethodImpl(Inline)]
         static Vector<double> MarkovVector(this IRandomSource random, int length, double min, double max)
         {                        
-            var dst = Z0.Span256.alloc<double>(Z0.Span256.minblocks<double>(length));
+            var dst = Z0.Span256.AllocBlocks<double>(Z0.Span256.MinBlocks<double>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);
             return dst.Div(dst.Avg() * length);
         }
@@ -102,15 +102,15 @@ namespace Z0
         /// <param name="dim"></param>
         /// <typeparam name="N">The row dimension type</typeparam>
         /// <typeparam name="T"></typeparam>
-        public static Matrix<N,N,T> MarkovMatrix<N,T>(this IRandomSource random, T rep = default, N dim = default)
+        public static Matrix<N,T> MarkovMatrix<N,T>(this IRandomSource random, T rep = default, N dim = default)
             where T : struct
             where N : ITypeNat, new()
         {
-            var data = Z0.Span256.alloc<N,N,T>();
+            var data = Z0.Span256.AllocUnaligned<N,N,T>();
             var n = nati<N>();
             for(int row=0; row < n; row++)
                 random.MarkovVector<T>(data.Slice(row*n, n));                            
-            return Z0.Matrix.Load<N,N,T>(data);
+            return Z0.Matrix.Load<N,T>(data);
         }
 
         [MethodImpl(Inline)]
@@ -122,7 +122,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static ref Matrix<N,N,T> MarkovMatrix<N,T>(this IRandomSource random, ref Matrix<N,N,T> dst)
+        public static ref Matrix<N,T> MarkovMatrix<N,T>(this IRandomSource random, ref Matrix<N,T> dst)
             where T : struct
             where N : ITypeNat, new()
         {

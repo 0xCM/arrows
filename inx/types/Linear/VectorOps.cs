@@ -17,24 +17,35 @@ namespace Z0
     public static class VectorOps
     {             
         [MethodImpl(Inline)]
-        public static Vector<N,T> Add<N,T>(Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Vector<N,T> Add<N,T>(ref Vector<N,T> x, in Vector<N,T> y)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            ginx.add<T>(x,y,x);
+            return ref x;
+        }
+
+        /// <summary>
+        /// Add the first vector to the second and populates the third with the result
+        /// </summary>
+        /// <param name="x">The first source vector</param>
+        /// <param name="y">The second source vector</param>
+        /// <param name="z">The target vector</param>
+        /// <typeparam name="N">The vector length type</typeparam>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Vector<N,T> Add<N,T>(in Vector<N,T> x, in Vector<N,T> y, ref Vector<N,T> z)
             where N : ITypeNat, new()
             where T : struct    
         {
             if(typeof(T) == typeof(float))
-                mkl.add(float32(lhs.Unsized), float32(rhs.Unsized), float32(lhs.Unsized));
+                mkl.add(float32(x.Unsized), float32(y.Unsized), float32(z.Unsized));
             else if(typeof(T) == typeof(double))
-                mkl.add(float64(lhs.Unsized), float64(rhs.Unsized), float64(lhs.Unsized));
+                mkl.add(float64(x.Unsized), float64(y.Unsized), float64(z.Unsized));
             else
-                gmath.add(lhs.Unsized, rhs.Unsized);
-            return lhs;
+                ginx.add<T>(x,y,z);
+            return ref z;
         }
-
-        [MethodImpl(Inline)]
-        public static Covector<N,T> Add<N,T>(Covector<N,T> lhs, in Covector<N,T> rhs)
-            where N : ITypeNat, new()
-            where T : struct    
-            => lhs.Transpose().Add(rhs.Transpose()).Transpose();
 
 
         [MethodImpl(Inline)]
@@ -49,6 +60,15 @@ namespace Z0
             else
                 return gmath.dot<T>(x.Unsized, y.Unsized);                
         }
+
+
+        [MethodImpl(Inline)]
+        public static Covector<N,T> Add<N,T>(Covector<N,T> lhs, in Covector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+                => lhs.Transpose().Add(rhs.Transpose()).Transpose();
+
+
     }
 
 }

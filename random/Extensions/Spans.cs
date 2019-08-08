@@ -68,7 +68,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> Span256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct       
-            => random.Stream(domain,filter).TakeSpan(Z0.Span256.blocklength<T>(blocks)).ToSpan256();       
+            => random.Stream(domain,filter).TakeSpan(Z0.Span256.BlockLength<T>(blocks)).ToSpan256();       
 
         [MethodImpl(Inline)]
         public static unsafe ReadOnlySpan256<T> ReadOnlySpan256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)

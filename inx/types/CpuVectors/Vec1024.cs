@@ -19,7 +19,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref Vec1024<uint> Merge(in Vec256<ulong> x, in Vec256<ulong> y, out Vec1024<uint> dst)
         {
-            var loMask = Vec256.fill(Bits.LoMask64);            
+            var loMask = Vec256.Fill(Bits.LoMask64);            
             var xl = Bits.and(x, loMask).As<uint>();
             var xh = Bits.shiftr(x, 32).As<uint>();
             var yl = Bits.and(y, loMask).As<uint>();
@@ -62,8 +62,6 @@ namespace Z0
             var pDst = Unsafe.AsPointer(ref dst);
             return new Span<T>(pDst,len);
         }
-
-
     }
 
     [StructLayout(LayoutKind.Sequential, Size = Pow2.T07)]

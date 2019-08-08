@@ -15,7 +15,6 @@ namespace Z0.Test
     using static Nats;
     public class VectorDotTest : UnitTest<VectorDotTest>
     {
-
         static float relerr(float a, float b)        
             => a == 0 ? 0 : MathF.Abs(b - a)/a;
 
@@ -42,8 +41,8 @@ namespace Z0.Test
             var sw = stopwatch(false);            
             for(var i=0; i<count; i++)
             {
-                Random.NatVector(domain, ref v1);
-                Random.NatVector(domain, ref v2);
+                Random.Fill(domain, ref v1);
+                Random.Fill(domain, ref v2);
                 sw.Start();
                 var x1 = VectorOps.Dot(v1,v2);
                 sw.Stop();                
@@ -67,6 +66,18 @@ namespace Z0.Test
             TracePerf(Dot(Pow2.T08, closed(-102489d, 102489d),  N30, 0d));
         }
 
+        void DotAvx()
+        {
+            var domain = closed(-2500, 2500);
+            var v1Src = Random.Span256<int>(1,domain);
+            var v1 = Vec256.Load(v1Src);
+            var v2Src = Random.Span256<int>(1,domain);
+            var v2 = Vec256.Load(v2Src);
+            var a0 = dinx.dot(v1,v2);
+            var a1 = (long)math.dot(v1Src, v2Src);
+            Claim.eq(a0,a1);
+        }
+ 
     }
 
 }

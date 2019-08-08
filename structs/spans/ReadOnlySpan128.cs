@@ -13,7 +13,6 @@ namespace Z0
         
     using static zfunc;
 
-
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
     /// of 16 bytes = 128 bits

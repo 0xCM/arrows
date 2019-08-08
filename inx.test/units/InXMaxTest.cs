@@ -40,7 +40,7 @@ namespace Z0.Test
                 Span<int> tmp = stackalloc int[blocklen];
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
-                var vExpect = Vec128.load(ref tmp[0]);
+                var vExpect = Vec128.Load(ref tmp[0]);
              
                 var vX = lhs.LoadVec128(block);
                 var vY = rhs.LoadVec128(block);
@@ -63,8 +63,8 @@ namespace Z0.Test
             var blocklen = Span256<int>.BlockLength;                     
             var lhs = Random.ReadOnlySpan256<int>(blocks);
             var rhs = Random.ReadOnlySpan256<int>(blocks);
-            var expect = Span256.alloc<int>(blocks);
-            var actual = Span256.alloc<int>(blocks);
+            var expect = Span256.AllocBlocks<int>(blocks);
+            var actual = Span256.AllocBlocks<int>(blocks);
             
             for(var block = 0; block<blocks; block++)
             {
@@ -73,7 +73,7 @@ namespace Z0.Test
                 Span<int> tmp = stackalloc int[blocklen];
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
-                var vExpect = Vec256.load(ref tmp[0]);
+                var vExpect = Vec256.Load(ref tmp[0]);
              
                 var vX = lhs.LoadVec256(block);
                 var vY = rhs.LoadVec256(block);

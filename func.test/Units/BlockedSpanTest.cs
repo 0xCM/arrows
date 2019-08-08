@@ -29,15 +29,15 @@ namespace Z0.Test
 
 
             Claim.eq(4, Span256<int>.CellSize);
-            Claim.eq(1, Span256.cellsize<sbyte>());
-            Claim.eq(1, Span256.cellsize<byte>());
-            Claim.eq(2, Span256.cellsize<short>());
-            Claim.eq(4, Span256.cellsize<int>());
-            Claim.eq(4, Span256.cellsize<uint>());
-            Claim.eq(4, Span256.cellsize<float>());
-            Claim.eq(8, Span256.cellsize<ulong>());
-            Claim.eq(8, Span256.cellsize<double>());
-            Claim.eq(8, Span256.cellsize<long>());
+            Claim.eq(1, Span256.CellSize<sbyte>());
+            Claim.eq(1, Span256.CellSize<byte>());
+            Claim.eq(2, Span256.CellSize<short>());
+            Claim.eq(4, Span256.CellSize<int>());
+            Claim.eq(4, Span256.CellSize<uint>());
+            Claim.eq(4, Span256.CellSize<float>());
+            Claim.eq(8, Span256.CellSize<ulong>());
+            Claim.eq(8, Span256.CellSize<double>());
+            Claim.eq(8, Span256.CellSize<long>());
 
         }
 
@@ -53,13 +53,13 @@ namespace Z0.Test
             Claim.eq(16, Span128.blocksize<long>());          
 
             Claim.eq(32, Span256<int>.BlockSize);
-            Claim.eq(32, Span256.blocksize<sbyte>());          
-            Claim.eq(32, Span256.blocksize<byte>());          
-            Claim.eq(32, Span256.blocksize<short>());            
-            Claim.eq(32, Span256.blocksize<int>());            
-            Claim.eq(32, Span256.blocksize<float>());          
-            Claim.eq(32, Span256.blocksize<double>());          
-            Claim.eq(32, Span256.blocksize<long>());          
+            Claim.eq(32, Span256.BlockSize<sbyte>());          
+            Claim.eq(32, Span256.BlockSize<byte>());          
+            Claim.eq(32, Span256.BlockSize<short>());            
+            Claim.eq(32, Span256.BlockSize<int>());            
+            Claim.eq(32, Span256.BlockSize<float>());          
+            Claim.eq(32, Span256.BlockSize<double>());          
+            Claim.eq(32, Span256.BlockSize<long>());          
 
         }
 
@@ -82,16 +82,16 @@ namespace Z0.Test
 
 
             Claim.eq(8, Span256<int>.BlockLength);
-            Claim.eq(32, Span256.blocklength<sbyte>());
-            Claim.eq(32, Span256.blocklength<byte>());
-            Claim.eq(16, Span256.blocklength<short>());
-            Claim.eq(16, Span256.blocklength<ushort>());
-            Claim.eq(8, Span256.blocklength<int>());
-            Claim.eq(8, Span256.blocklength<uint>());
-            Claim.eq(4, Span256.blocklength<long>());
-            Claim.eq(4, Span256.blocklength<ulong>());
-            Claim.eq(8, Span256.blocklength<float>());
-            Claim.eq(4, Span256.blocklength<double>());                
+            Claim.eq(32, Span256.BlockLength<sbyte>());
+            Claim.eq(32, Span256.BlockLength<byte>());
+            Claim.eq(16, Span256.BlockLength<short>());
+            Claim.eq(16, Span256.BlockLength<ushort>());
+            Claim.eq(8, Span256.BlockLength<int>());
+            Claim.eq(8, Span256.BlockLength<uint>());
+            Claim.eq(4, Span256.BlockLength<long>());
+            Claim.eq(4, Span256.BlockLength<ulong>());
+            Claim.eq(8, Span256.BlockLength<float>());
+            Claim.eq(4, Span256.BlockLength<double>());                
         }
 
         public void BlockCount()
@@ -110,19 +110,19 @@ namespace Z0.Test
             Claim.eq(1, Span128.blocks<ulong>(2));
             Claim.eq(1, Span128.blocks<double>(2));
 
-            Claim.eq(1, Span256.blocks<sbyte>(32));
-            Claim.eq(1, Span256.blocks<byte>(32));
+            Claim.eq(1, Span256.WholeBlockCount<sbyte>(32));
+            Claim.eq(1, Span256.WholeBlockCount<byte>(32));
 
-            Claim.eq(1, Span256.blocks<short>(16));
-            Claim.eq(1, Span256.blocks<ushort>(16));
+            Claim.eq(1, Span256.WholeBlockCount<short>(16));
+            Claim.eq(1, Span256.WholeBlockCount<ushort>(16));
 
-            Claim.eq(1, Span256.blocks<int>(8));
-            Claim.eq(1, Span256.blocks<uint>(8));
-            Claim.eq(1, Span256.blocks<float>(8));
+            Claim.eq(1, Span256.WholeBlockCount<int>(8));
+            Claim.eq(1, Span256.WholeBlockCount<uint>(8));
+            Claim.eq(1, Span256.WholeBlockCount<float>(8));
 
-            Claim.eq(1, Span256.blocks<long>(4));
-            Claim.eq(1, Span256.blocks<ulong>(4));
-            Claim.eq(1, Span256.blocks<double>(4));
+            Claim.eq(1, Span256.WholeBlockCount<long>(4));
+            Claim.eq(1, Span256.WholeBlockCount<ulong>(4));
+            Claim.eq(1, Span256.WholeBlockCount<double>(4));
         }
 
 

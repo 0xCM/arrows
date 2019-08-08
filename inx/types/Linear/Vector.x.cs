@@ -190,7 +190,6 @@ namespace Z0
         public static ref Vector<N,T> Or<N,T>(this ref Vector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
-
         {
             var x = lhs.Unsized;
             gbits.or(in x, in rhs);
@@ -438,7 +437,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            for(var i=0; i< Vector<N,T>.NatLength; i++)            
+            for(var i=0; i< Vector<N,T>.Length; i++)            
                 if(gmath.neq(src[i],match))
                     return false;
             return true;
@@ -449,7 +448,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => Vector<N, T>.Define(src.Unsized);
+                => Vector<N, T>.LoadAligned(src.Unsized);
 
         [MethodImpl(Inline)]        
         static Span<T> Slice<N,T>(this Span<T> src, N start = default)
@@ -466,7 +465,7 @@ namespace Z0
             var dst = span<T>(new NatSum<M,N>());
             head.Unsized.CopyTo(dst);
             tail.Unsized.CopyTo(dst.Slice(new M()));
-            return Vector<P,T>.Define(dst);
+            return Vector<P,T>.LoadAligned(dst);
         }
     }
 }

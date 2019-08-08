@@ -11,15 +11,15 @@ namespace Z0
         
     using static zfunc;    
 
-    partial class dinxx
+    public static class dfpx
     {
 
         public static Span256<double> sqrt(this Span256<double> src, Span256<double> dst)
         {
             for(var block = 0; block <src.BlockCount; block ++)                
             {
-                var x =  Vec256.load(ref src.Block(block));
-                dinx.store(dinx.sqrt(x), ref dst[block]);                
+                var x =  Vec256.Load(ref src.Block(block));
+                dinx.store(dfp.sqrt(x), ref dst[block]);                
             }
             return dst;
         }
@@ -28,8 +28,8 @@ namespace Z0
         {
             for(var block = 0; block <src.BlockCount; block ++)                
             {
-                var x =  Vec256.load(ref src.Block(block));
-                dinx.store(dinx.sqrt(x), ref dst[block]);                
+                var x =  Vec256.Load(ref src.Block(block));
+                dinx.store(dfp.sqrt(x), ref dst[block]);                
             }
             return dst;
         }

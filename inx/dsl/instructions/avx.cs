@@ -29,15 +29,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static __m256i _mm256_setzero_si256()
-            => Vec256.zero<long>();
+            => Vec256.Zero<long>();
 
         [MethodImpl(Inline)]
         public static __m128d _mm_setzero_pd()
-            => Vec128.zero<double>();
+            => Vec128.Zero<double>();
 
         [MethodImpl(Inline)]
         public static __m256d _mm256_setzero_pd()
-            => Vec256.zero<double>();
+            => Vec256.Zero<double>();
 
         [MethodImpl(Inline)]
         public static __m256 _mm256_set1_ps(float a)
@@ -55,7 +55,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi8(sbyte x)
-            => Vec256.fill(x);
+            => Vec256.Fill(x);
 
         /// <summary>
         /// Creates a vector for which all components have been initialized to a common value
@@ -64,7 +64,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi8(byte x)
-            => Vec256.fill(x);
+            => Vec256.Fill(x);
 
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Z0
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_set1_epi64x(ulong x)
-            => Vec256.fill(x);
+            => Vec256.Fill(x);
 
         [MethodImpl(Inline)]
         public static unsafe __m256i _mm256_setr_epi8(
@@ -131,7 +131,7 @@ namespace Z0
             sbyte x11, sbyte x10, sbyte x9, sbyte x8, 
             sbyte x7, sbyte x6, sbyte x5, sbyte x4,
             sbyte x3, sbyte x2, sbyte x1, sbyte x0) 
-                => Vec256.definer(
+                => Vec256.define(
                     x31, x30, x29, x28, 
                     x27, x26, x25, x24,
                     x23, x22, x21, x20,
@@ -147,7 +147,7 @@ namespace Z0
             short x11, short x10, short x9, short x8, 
             short x7, short x6, short x5, short x4,
             short x3, short x2, short x1, short x0)
-                => Vec256.definer(
+                => Vec256.define(
                     x15, x14, x13, x12, 
                     x11, x10,  x9,  x8, 
                      x7,  x6,  x5,  x4,
@@ -156,11 +156,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe __m256i _mm256_setr_epi32(
             int x7, int x6, int x5, int x4, int x3, int x2, int x1, int x0 )
-                => Vec256.definer(x7, x6, x5, x4, x3, x2, x1, x0);
+                => Vec256.define(x7, x6, x5, x4, x3, x2, x1, x0);
 
         [MethodImpl(Inline)]
         public static __m256i _mm256_setr_epi64x(long x3, long x2, long x1, long x0)
-            => Vec256.definer(x3, x2, x1, x0);
+            => Vec256.define(x3, x2, x1, x0);
 
         ///<intrinsic> __m256d _mm256_add_pd (__m256d a, __m256d b) VADDPD ymm, ymm, ymm/m256 </intrinsic>
         [MethodImpl(Inline)]

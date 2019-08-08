@@ -24,7 +24,7 @@ namespace Z0
         public static Span<T> ToSpan<T>(this in Vec256<T> src, Span<T> dst, int offset = 0)
             where T : struct
         {            
-            Vec256.store(src, ref dst[offset]);
+            Vec256.Store(src, ref dst[offset]);
             return  dst;
         }
 
@@ -39,7 +39,7 @@ namespace Z0
         public static Span<T> ToSpan<T>(this in Vec128<T> src, Span<T> dst, int offset = 0)
             where T : struct
         {            
-            Vec128.store(src, ref dst[offset]);
+            Vec128.Store(src, ref dst[offset]);
             return  dst;
         }
 
@@ -54,7 +54,7 @@ namespace Z0
             where T : struct     
         {
             var dst = Span128.alloc<T>(1);
-            Vec128.store(in src, ref dst[0]);
+            Vec128.Store(in src, ref dst[0]);
             return dst;
         }                       
 
@@ -68,9 +68,9 @@ namespace Z0
         public static Span256<T> ToSpan256<T>(this in Vec256<T> src)
             where T : struct            
         {
-            var dst = Span256.alloc<T>(1);
+            var dst = Span256.AllocBlocks<T>(1);
             Claim.eq(dst.Length, Vec256<T>.Length);
-            Vec256.store(in src, ref dst[0]);
+            Vec256.Store(in src, ref dst[0]);
             return dst;
         }                       
 

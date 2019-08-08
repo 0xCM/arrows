@@ -168,7 +168,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldc = n;
-            var dst = Span256.alloc<float>(Span256.blocks<float>(m*n));
+            var dst = Span256.AllocBlocks<float>(Span256.WholeBlockCount<float>(m*n));
             CBLAS.cblas_sgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0f, ref A[0], lda, ref B[0], ldb, 0, ref dst[0], ldc);
             return dst;
         }
@@ -192,7 +192,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldc = n;
-            var dst = Span256.alloc<double>(Span256.blocks<double>(m*n));
+            var dst = Span256.AllocBlocks<double>(Span256.WholeBlockCount<double>(m*n));
             CBLAS.cblas_dgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0, ref A[0], lda, ref B[0], ldb, 0, ref dst[0], ldc);
             return dst;
         }

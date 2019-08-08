@@ -11,10 +11,10 @@ namespace Z0
     
     using static zfunc;
 
-    public readonly struct Num128<T>
+    public struct Num128<T>
         where T : struct
     {        
-        readonly Vector128<T> data;            
+        Vector128<T> data;            
 
         [MethodImpl(Inline)]
         public static implicit operator Num128<T>(in Vector128<T> src)
@@ -36,17 +36,10 @@ namespace Z0
         public Num128(in Vector128<T> src)
             => this.data = src;
 
-        [MethodImpl(Inline)]
-        static T getValue(Vector128<T> src)
-        {
-            ref T e0 = ref Unsafe.As<Vector128<T>, T>(ref src);                    
-            return Unsafe.Add(ref e0, 0);           
-        }
-
         public T value
         {
             [MethodImpl(Inline)]
-            get => getValue(this.data);
+            get => data.GetElement(0);
         }
 
         [MethodImpl(Inline)]

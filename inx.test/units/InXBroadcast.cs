@@ -22,7 +22,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec128<T> _);
-            var vY = Vec128.define(x);
+            var vY = Vec128.Fill(x);
             Claim.eq(vX,vY);
             TypeCaseEnd<T>();
         }
@@ -33,7 +33,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec256<T> _);
-            var vY = Vec256.define(x);
+            var vY = Vec256.Fill(x);
             Claim.eq(vX,vY);
             TypeCaseEnd<T>();
         }

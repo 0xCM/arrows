@@ -189,6 +189,16 @@ partial class zfunc
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
+    /// <summary>
+    /// Returns a readonly reference to the location of the first span element
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref readonly T head<T>(Span256<T> src)
+        where T : struct
+            =>  ref MemoryMarshal.GetReference<T>(src);
+
     [MethodImpl(Inline)]   
     public static int length<T>(Span<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -231,12 +241,6 @@ partial class zfunc
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
-    [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            where T : struct
-            where S :struct
-        =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
@@ -256,6 +260,53 @@ partial class zfunc
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
+    /// <summary>
+    /// Returns the length of spans of equal length; otherwise raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(Span256<S> lhs, Span256<T> rhs, [CallerMemberName] string caller = null,
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct
+            where S : struct
+                => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct
+            where S :struct
+                =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise, raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<S,T>(Span256<S> lhs, Span256<T> rhs, [CallerMemberName] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
+            where T : struct                
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
+            where T : struct
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
 
 }

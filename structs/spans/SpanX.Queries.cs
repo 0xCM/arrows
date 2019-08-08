@@ -19,7 +19,6 @@ namespace Z0
     /// </summary>
     public static class SpanQueries
     {
-
         /// <summary>
         /// Determines whether any elements of the source match the target
         /// </summary>

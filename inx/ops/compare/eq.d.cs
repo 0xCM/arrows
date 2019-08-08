@@ -53,13 +53,6 @@ namespace Z0
         public static Vec128Cmp<ulong> eq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
             => Vec128Cmp.Define<ulong>(CompareEqual(lhs,rhs));
 
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<float> eq(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareEqual(lhs,rhs));
-
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> eq(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareEqual(lhs,rhs));
 
         [MethodImpl(Inline)]
         public static Vec256Cmp<sbyte> eq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
@@ -92,14 +85,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256Cmp<ulong> eq(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => Vec256Cmp.Define<ulong>(CompareEqual(lhs,rhs));
-
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> eq(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs, FloatComparisonMode.UnorderedEqualNonSignaling));
-
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> eq(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs, FloatComparisonMode.UnorderedEqualNonSignaling));
 
 
     }

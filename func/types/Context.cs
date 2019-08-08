@@ -69,16 +69,16 @@ namespace Z0
                 Messages.Add(msg.WithLevel(SeverityLevel.Benchmark));
         }
 
-        protected void TracePerf(OpTimePair timing)
+        protected void TracePerf(OpTimePair timing, int? labelPad = null)
         {
             if(TraceEnabled)
-                TracePerf(timing.Format());
+                TracePerf(timing.Format(labelPad));
         }
 
-        protected void TracePerf(OpTime time)
+        protected void TracePerf(OpTime time, int? labelPad = null)
         {
             if(TraceEnabled)
-                TracePerf(time.Format());
+                TracePerf(time.Format(labelPad));
         }
 
 

@@ -37,17 +37,15 @@ namespace Z0
             where T : struct            
                 => Vec256<T>.Length;    
 
-
         [MethodImpl(Inline)]
         public static Vec256<T> ToVec256<T>(this Span256<T> src, int block)
             where T : struct
-                => Vec256.load(ref src.Block(block));
+                => Vec256.Load(ref src.Block(block));
 
         [MethodImpl(Inline)]
         public static Vec128<T> ToVec128<T>(this Span128<T> src, int block)
             where T : struct
-                => Vec128.load(ref src.Block(block));
-
+                => Vec128.Load(ref src.Block(block));
     }
 }
 

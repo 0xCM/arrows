@@ -16,32 +16,34 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
-        /// Creates a random matrix of natural dimensions
+        /// Samples a random matrix of natural order
         /// </summary>
         /// <param name="random">The random source</param>
         /// <typeparam name="M">The row type</typeparam>
         /// <typeparam name="N">The column Type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static Matrix<M,N,T> Matrix<M,N,T>(this IRandomSource random)
+         public static Matrix<M,N,T> Matrix<M,N,T>(this IRandomSource random, Interval<T>? domain = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
-          {
-                var fullblocks = Z0.Span256.blocks<T>(nati<M>()*nati<N>(), out int remainder);
-                var blocks = remainder == 0 ? fullblocks : fullblocks + 1;
-                return Z0.Matrix.Load<M,N,T>(random.Span256<T>(blocks));                    
-          }                
+                => Z0.Matrix.Load<M,N,T>(random.Span256<T>(Z0.Span256.MinBlocks<N,N,T>(),domain));                    
 
         /// <summary>
-        /// Creates a square matrix of natural dimension
+        /// Samples a square matrix of natural order
         /// </summary>
         /// <param name="random">The random source</param>
         /// <typeparam name="N">The dimension type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static Matrix<N,N,T> Matrix<N,T>(this IRandomSource random)
+         public static Matrix<N,T> Matrix<N,T>(this IRandomSource random, Interval<T>? domain = null, Func<T,T> transformer = null)
             where N : ITypeNat, new()
-            where T : struct    
-                => Z0.Matrix.Load<N,N,T>(random.Span256<T>(Z0.Span256.minblocks<N,N,T>()));                    
+            where T : struct   
+        {                 
+            var data = random.Span256<T>(Z0.Span256.MinBlocks<N,N,T>(), domain);
+            if(transformer != null)
+                for(var i=0; i<data.Length; i++)
+                    data[i] = transformer(data[i]);
+            return Z0.Matrix.Load<N,T>(data);                    
+        }
 
     }
 

@@ -17,7 +17,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct    
     {
-        Span<N,T> data {get;}
+        Span256<T> data;
 
         static readonly N NatRep = new N();
 
@@ -27,6 +27,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Covector<N,T> Define(Span<N,T> src)
+            => new Covector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Covector<N,T> Define(Span256<T> src)
             => new Covector<N,T>(src);
 
         [MethodImpl(Inline)]
@@ -43,7 +47,7 @@ namespace Z0
         public static readonly int Length = nati<N>();     
 
         /// <summary>
-        /// Vec => Slice
+        /// Implicly converts a covector of natural length to a span of natural length
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="N">The natural length</typeparam>
@@ -53,7 +57,7 @@ namespace Z0
             => src.data;
 
         /// <summary>
-        /// Slice => Vec
+        /// Implicly converts a source span of natural length to a covector of natural length
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="N">The natural length</typeparam>
@@ -62,37 +66,60 @@ namespace Z0
         public static implicit operator Covector<N,T>(Span<N,T> src)
             => new Covector<N,T>(src);
 
-        [MethodImpl(Inline)]
-        Covector(ref T src)
-        {
-            data =  NatSpan.Load<N,T>(ref src);  
-            require(data.Length == Length);
-        }
+        /// <summary>
+        /// Implicly converts a covector of natural length to an unsized 256-bit blocked span
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="N">The natural length</typeparam>
+        /// <typeparam name="T">THe component type</typeparam>
+        [MethodImpl(Inline)]   
+        public static implicit operator Span256<T>(Covector<N,T> src)
+            => src.data;
+
+        /// <summary>
+        /// Implicly converts a covector of natural length to an unsized 256-bit blocked readonly span
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="N">The natural length</typeparam>
+        /// <typeparam name="T">THe component type</typeparam>
+        [MethodImpl(Inline)]   
+        public static implicit operator ReadOnlySpan256<T>(Covector<N,T> src)
+            => src.data;
 
         [MethodImpl(Inline)]
-        Covector(in ReadOnlySpan<N,T> src)
-        {
-            data = NatSpan.Replicate(src);
+        public Covector(in Span256<T> src)
+            => this.data = src;
+
+        [MethodImpl(Inline)]
+        public Covector(in ReadOnlySpan256<T> src)
+            => this.data = src.Replicate();
+
+        [MethodImpl(Inline)]
+        Covector(ref T src)
+        {  
+            require(Span256.IsAligned<T>(Length));
+            data =  Span256.LoadAligned<T>(ref src, Length);  
         }
 
         [MethodImpl(Inline)]
         Covector(in ReadOnlySpan<T> src)
         {
             require(src.Length == Length);
-            data = NatSpan.Load<N,T>(src);
+            data = Span256.LoadAligned(src.Replicate());
         }
 
         [MethodImpl(Inline)]
         Covector(Span<T> src)
         {
             require(src.Length == Length);
-            data = NatSpan.Load(src, NatRep);
+            data = Span256.LoadAligned(src);
         }
 
         [MethodImpl(Inline)]
         Covector(Span<N,T> src)
-        {
-            data = src;
+        {            
+            require(Span256.IsAligned<T>(Length));
+            data = Span256.LoadAligned(ref head(src.Unsized), src.Length);
         }
         
         public ref T this[int index] 
@@ -106,11 +133,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vector<N,T> Transpose()
-            => Vector.Load(data);
+            => Vector.Load<N,T>(data);
 
         [MethodImpl(Inline)]
         public Span<T> Unsize()
-            => data.Unsize();
+            => Unsized;
  
         public override bool Equals(object other)
             => throw new NotSupportedException();

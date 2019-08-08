@@ -16,6 +16,9 @@ namespace Z0
                 => BitField<T>.Define(data);
     }
 
+    /// <summary>
+    /// Describes a bitfield bit
+    /// </summary>
     public readonly struct BitFieldBit
     {
         [MethodImpl(Inline)]
@@ -25,10 +28,20 @@ namespace Z0
             this.Name = Name;
             this.Value = Value;
         }
+        
+        /// <summary>
+        /// The 0-based position of the bit
+        /// </summary>
         public readonly byte Pos;
 
+        /// <summary>
+        /// The name/label identifier
+        /// </summary>
         public readonly string Name;
 
+        /// <summary>
+        /// The value of the bit
+        /// </summary>
         public readonly Bit Value;
 
         public override string ToString()
@@ -67,7 +80,6 @@ namespace Z0
         /// <summary>
         /// Reads or Sets a value-identified field
         /// </summary>
-        /// <value></value>
         public Bit this[T id]
         {
             
@@ -75,6 +87,10 @@ namespace Z0
             set => bits[0,System.Convert.ToByte(id)] = value;
         }
 
+        /// <summary>
+        /// Retrieves all bits in the field
+        /// </summary>
+        /// <value></value>
         public ReadOnlySpan<BitFieldBit> Bits
         {
             get
@@ -94,10 +110,10 @@ namespace Z0
         {
             get
             {
-                var maxix = Math.Min(DataSize, Labels.Length);
+                var len = Math.Min(DataSize, Labels.Length);
                 var count =0;
-                Span<T> dst = new T[maxix];
-                for(var i=0; i< maxix; i++)
+                Span<T> dst = new T[len];
+                for(var i=0; i< len; i++)
                 {
                     var sv = Identifiers[i];
                     if (this[Identifiers[i]])

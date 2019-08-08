@@ -22,7 +22,7 @@ namespace Z0.Test
                 var v128Src = Random.Vec128<T>();
                 var srcSpan = v128Src.ToSpan();
 
-                var dst = Vec256.zero<T>();
+                var dst = Vec256.Zero<T>();
                 
                 var vLo = ginx.insert(v128Src, dst,0);
                 var vLoSpan = vLo.ToSpan().Slice(0, vLo.Length()/2);

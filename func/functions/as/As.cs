@@ -49,7 +49,7 @@ namespace Z0
         internal static Span256<T> cast<S,T>(in Span256<S> src)                
             where S : struct
             where T : struct
-                => Span256.load(MemoryMarshal.Cast<S,T>(src));
+                => Span256.LoadAligned(MemoryMarshal.Cast<S,T>(src));
 
         /// <summary>
         /// Reimagines a readonly span of one element type as a readonly span of another element type

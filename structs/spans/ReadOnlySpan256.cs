@@ -20,6 +20,8 @@ namespace Z0
     public ref struct ReadOnlySpan256<T>
         where T : struct
     {
+        ReadOnlySpan<T> data;
+
         /// <summary>
         /// The number of cells in the block
         /// </summary>
@@ -99,7 +101,6 @@ namespace Z0
             return new ReadOnlySpan256<T>(src,length);
         }
 
-        ReadOnlySpan<T> data;
 
         [MethodImpl(Inline)]
         unsafe ReadOnlySpan256(void* src, int length)    

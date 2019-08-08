@@ -18,6 +18,7 @@ namespace Z0
     /// </summary>
     public ref struct Span<N,T>
         where N : ITypeNat, new()
+        where T : struct
     {
         Span<T> data;
 
@@ -32,6 +33,9 @@ namespace Z0
         public static implicit operator ReadOnlySpan<T> (Span<N,T> src)
             => src.data;
     
+            public static implicit operator Span<N,T>(Span256<T> src)
+            => new Span<N, T>(src);
+
         public static bool operator == (Span<N,T> lhs, Span<N,T> rhs)
             => lhs.data == rhs.data;
 
@@ -40,8 +44,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span(T value)
-        {         
-            
+        {                    
             this.data = new Span<T>(new T[SpanLength]);
             this.data.Fill(value);
         }
@@ -49,12 +52,25 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span(Span<T> src)
         {
-            require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");
+            require(src.Length >= SpanLength, $"length(src) = {src.Length} < {SpanLength} = SpanLength");
             this.data = src;
         }
 
         [MethodImpl(Inline)]
+        public Span(ReadOnlySpan<T> src)
+        {
+            require(src.Length >= SpanLength, $"length(src) = {src.Length} < {SpanLength} = SpanLength");         
+            data = src.ToArray();            
+        }
+
+        [MethodImpl(Inline)]
         public Span(Span<N,T> src)
+        {
+            this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        public Span(Span256<T> src)
         {
             this.data = src;
         }
@@ -71,13 +87,7 @@ namespace Z0
             data = src.ToArray();
         }
 
-        [MethodImpl(Inline)]
-        public Span(ReadOnlySpan<T> src)
-        {
-            require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");         
-            data = src.ToArray();            
-        }
-
+ 
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]

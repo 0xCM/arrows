@@ -38,7 +38,7 @@ namespace Z0.Test
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = primalOp(src[offset + i]);
 
-                var vExpect = Vec128.load<T>(ref tmp[0]);
+                var vExpect = Vec128.Load<T>(ref tmp[0]);
              
                 var vX = src.LoadVec128(block);
                 var vActual = inXOp(vX);
@@ -59,10 +59,10 @@ namespace Z0.Test
             var src = random.ReadOnlySpan256<T>(blocks);
             Claim.eq(blocks*blocklen,src.Length);
                         
-            var expect = Span256.alloc<T>(blocks);
+            var expect = Span256.AllocBlocks<T>(blocks);
             Claim.eq(blocks, expect.BlockCount);
 
-            var actual = Span256.alloc<T>(blocks);
+            var actual = Span256.AllocBlocks<T>(blocks);
             Claim.eq(blocks, actual.BlockCount);
 
             var tmp = new T[blocklen];
@@ -73,7 +73,7 @@ namespace Z0.Test
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = primalOp(src[offset + i]);
 
-                var vExpect = Vec256.load<T>(ref tmp[0]);
+                var vExpect = Vec256.Load<T>(ref tmp[0]);
              
                 var vX = src.LoadVec256(block);
                 var vActual = inXOp(vX);
@@ -111,7 +111,7 @@ namespace Z0.Test
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = primalOp(lhs[offset + i], rhs[offset + i]);
 
-                var vExpect = Vec128.load<T>(ref tmp[0]);
+                var vExpect = Vec128.Load<T>(ref tmp[0]);
              
                 var vX = lhs.LoadVec128(block);
                 var vY = rhs.LoadVec128(block);
@@ -136,10 +136,10 @@ namespace Z0.Test
             var rhs = random.ReadOnlySpan256<T>(blocks);
             Claim.eq(blocks*blocklen,rhs.Length);
             
-            var expect = Span256.alloc<T>(blocks);
+            var expect = Span256.AllocBlocks<T>(blocks);
             Claim.eq(blocks, expect.BlockCount);
 
-            var actual = Span256.alloc<T>(blocks);
+            var actual = Span256.AllocBlocks<T>(blocks);
             Claim.eq(blocks, actual.BlockCount);
 
             var tmp = new T[blocklen];
@@ -150,7 +150,7 @@ namespace Z0.Test
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = primalOp(lhs[offset + i], rhs[offset + i]);
 
-                var vExpect = Vec256.load<T>(ref tmp[0]);
+                var vExpect = Vec256.Load<T>(ref tmp[0]);
              
                 var vX = lhs.LoadVec256(block);
                 var vY = rhs.LoadVec256(block);

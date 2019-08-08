@@ -171,6 +171,7 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static string FormatList<N,T>(this Span<N,T> src, char delimiter = ',', int offset = 0)
             where N : ITypeNat, new()
+            where T : struct 
                 => src.Unsize().FormatList(delimiter,offset);
 
         public static string Concat(this Span<string> src, string sep = null)

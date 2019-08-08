@@ -13,12 +13,8 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-
-
     public static class LinearX
     {
-
-
         [MethodImpl(Inline)]
         public static ref Covector<N,T> Add<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()

@@ -36,21 +36,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref Vec256<ushort> LoadVector(this BitMatrix16 src, out Vec256<ushort> dst)
         {
-            dst = Vec256.load(ref src.bits[0]);
+            dst = Vec256.Load(ref src.bits[0]);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Vec256<uint> LoadVector(this BitMatrix32 src, out Vec256<uint> dst, int rowOffset)
         {
-            dst = Vec256.load(ref src.bits[rowOffset]);
+            dst = Vec256.Load(ref src.bits[rowOffset]);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Vec256<ulong> LoadVector(this BitMatrix64 src, out Vec256<ulong> dst, int rowOffset)
         {
-            dst = Vec256.load(ref src.bits[rowOffset]);
+            dst = Vec256.Load(ref src.bits[rowOffset]);
             return ref dst;
         }
 
