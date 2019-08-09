@@ -52,16 +52,6 @@ namespace System
 
     }
 
-
-    public interface IBoundRandomSource<T> : IRandomSource<T>
-        where T : struct
-    {
-        /// <summary>
-        /// The range of the underlying random variable
-        /// </summary>
-        Interval<T> Range {get;}
-    }
-
     public interface IRandomSource<N,T> : IPointSource<N,T>
         where N : ITypeNat,new()
         where T : struct

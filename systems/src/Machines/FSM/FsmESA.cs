@@ -18,13 +18,13 @@ namespace Z0.Machines
    /// <typeparam name="A">The action type</typeparam>
     public class Fsm<E,S,A> : Fsm<E,S>
     {
-        public Fsm(S GroundState, S EndState, TransFunc<E,S> Transition, EntryFunc<S,A> Entry)
-            : base(GroundState, EndState, Transition)
+        internal Fsm(string Id, IFsmContext context, S GroundState, S EndState, MachineTransition<E,S> Transition, StateAction<S,A> Entry)
+            : base(Id, context, GroundState, EndState, Transition)
         {
             this.EntryFunc = Entry;   
         }
 
-        readonly EntryFunc<S,A> EntryFunc;
+        readonly StateAction<S,A> EntryFunc;
         
         void OnTransition(S s0, S s1)
         {

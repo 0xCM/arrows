@@ -189,23 +189,6 @@ namespace Z0
             Guid.Parse("8cf3136f-6af6-4a4d-9cbf-013602b6103d"),
         };
 
-        public static ulong[] TestSeed = items(guids[0],guids[1]).ToU64Array();
-
-        public static ulong[] AppSeed = items(guids[2],guids[3]).ToU64Array();
-        
-        public static ulong[] BenchSeed = items(guids[4],guids[5]).ToU64Array();
-        
-        public static ulong[] Bernoulli01 = items(guids[6],guids[7]).ToU64Array();
-        
-        public static ulong[] Bernoulli02 = items(guids[8],guids[9]).ToU64Array();
-        
-        public static ulong[] Bernoull03 = items(guids[10],guids[11]).ToU64Array();
-        
-        public static ulong[] Gaussian01 = items(guids[12],guids[13]).ToU64Array();
-        
-        public static ulong[] Gaussian02 = items(guids[14],guids[15]).ToU64Array();
-
-        public static ulong[] Gaussian03 = items(guids[16],guids[17]).ToU64Array();
 
         public static ulong[] Default = items(guids[18],guids[19]).ToU64Array();
 

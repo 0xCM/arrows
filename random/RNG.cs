@@ -33,9 +33,6 @@ namespace Z0
             return leftclosed(min,max);
 
         }
-
-        public static IRandomSource Default
-            => Entropic;
             
         public static IRandomSource XOrShift1024(ulong[] seed = null)
             => new XOrShift1024(seed ?? Seed1024.Default);
@@ -87,10 +84,13 @@ namespace Z0
         /// Creates a polyrand based on a specified source
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <returns></returns>
         public static Polyrand Polyrand(IRandomSource random)
             => new Polyrand((IRandomSource<ulong>)random);
 
+        [MethodImpl(Inline)]
+        public static IPointSource<T> PointSource<T>(IRandomSource random, Interval<T>? domain = null)
+            where T : struct
+                => new PointSource<T>(random as IPointSource<ulong>, domain);
     }
 
 }

@@ -120,7 +120,7 @@ namespace Z0
         /// <param name="random">A uniform random source</param>
         /// <param name="sourceCount">The number of source items</param>
         /// <param name="samples">The number of samples to take</param>
-        public static IEnumerable<int> SampleWithoutReplacement(this IRandomSource random, int sourceCount, int samples)
+        internal static IEnumerable<int> SampleWithoutReplacement(this IRandomSource random, int sourceCount, int samples)
             => Rand.SampleWithoutReplacement(sourceCount, samples, random);
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Z0
         /// <param name="src">The source list</param>
         /// <param name="samples">The number of samples to draw</param>
         /// <typeparam name="T">The list item type</typeparam>
-        public static HashSet<T> SampleWithoutReplacement<T>(this IRandomSource random, IReadOnlyList<T> src, int samples)
+        internal static HashSet<T> SampleWithoutReplacement<T>(this IRandomSource random, IReadOnlyList<T> src, int samples)
             => Rand.SampleWithoutReplacement(src,samples, random);        
         
     }

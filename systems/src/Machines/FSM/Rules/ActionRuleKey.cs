@@ -11,25 +11,25 @@ namespace Z0.Machines
     using static zfunc;
     
     /// <summary>
-    /// Defines a key for efficient/predicatable entry rule indexing/lookup
+    /// Defines a key for efficient action rule lookup
     /// </summary>
     /// <typeparam name="S">The state type</typeparam>
-    public readonly struct EntryRuleKey<S>
+    public readonly struct ActionRuleKey<S> : IRuleKey
     {
-        public static implicit operator EntryRuleKey<S>(S source)
-            => new EntryRuleKey<S>(source);
+        public static implicit operator ActionRuleKey<S>(S source)
+            => new ActionRuleKey<S>(source);
         
-        public EntryRuleKey(S source)
+        public ActionRuleKey(S source)
         {
             this.Source = source;
             this.Hash = source.GetHashCode();
         }
 
-        readonly int Hash;
+        public readonly int Hash {get;}
 
         public readonly S Source;
 
-        public override string ToString() 
+        public readonly override string ToString() 
             => $"({Source})";
     }
 }

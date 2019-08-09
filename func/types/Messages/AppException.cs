@@ -48,8 +48,11 @@ namespace Z0
         public FilePath File {get;}
 
         public int? Line {get;}
-
+        
         public new AppMsg Message {get;}
+
+        public SeverityLevel Severity
+            => Message.Level;
 
         public override string ToString()
             => Message.ToString();

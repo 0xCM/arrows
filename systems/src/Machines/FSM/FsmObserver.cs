@@ -15,28 +15,40 @@ namespace Z0.Machines
     /// </summary>
     /// <typeparam name="E">The input event type</typeparam>
     /// <typeparam name="S">The state type</typeparam>
-    public abstract class FsmObserver<E,S>
+    public class FsmObserver<E,S>
     {
-        protected FsmObserver(Fsm<E,S> machine, bool trace = true)
+        public FsmObserver(Fsm<E,S> machine, ObserverTrace? tracing = null, int? receiptEmitRate = null)
         {
-            machine.Completed += OnComplete;
+            Machine = machine;
             machine.Transitioned += OnTransition;
             machine.Oops += OnError;
             machine.InputReceipt += OnReceipt;
-            this.EmitTrace = trace;
+            machine.Completed += OnComplete;
+            Tracing = tracing  ?? ObserverTrace.All;
+            ReceiptEmitRate = receiptEmitRate ?? Pow2.T20;
         }
 
-        bool EmitTrace;
+        Fsm<E,S> Machine;
+
+        string Id => Machine.Id;
+
+        readonly ObserverTrace Tracing;
+
+        readonly int ReceiptEmitRate;
+
+        int ReceiptCounter;
+
+        ulong TotalReceipts;
         
-        void Trace(string message)
+        void Trace(AppMsg msg)
         {
-            if(EmitTrace)
-                print(appMsg(message, SeverityLevel.Babble));
+            print(msg);
         }
-        
-        protected virtual void OnComplete(S endstate, bool asPlanned)
+
+        protected virtual void OnComplete(FsmStats stats, bool asPlanned)
         {
-            Trace($"Completed with endstate {endstate}" + (asPlanned ? " as planned" : " abnormally"));
+            if(Tracing.TraceCompletions())
+                Trace(FsmMessages.Completed(Id, stats, asPlanned));
         }
 
         /// <summary>
@@ -46,7 +58,8 @@ namespace Z0.Machines
         /// <param name="s1">The target state</param>
         protected virtual void OnTransition(S s0, S s1)
         {
-            Trace($"Transitioned {s0} -> {s1}");
+            if(Tracing.TraceTransitions())
+                Trace(FsmMessages.Transition(Id,s0,s1));
         }
 
         /// <summary>
@@ -55,13 +68,32 @@ namespace Z0.Machines
         /// <param name="input">The input event</param>
         protected virtual void OnReceipt(E input)
         {
-            Trace($"Received {input}");
+            ++TotalReceipts;
+
+            if(ReceiptCounter == ReceiptEmitRate && Tracing.TraceEvents())
+            {
+                Trace(FsmMessages.Receipt(Id, input, TotalReceipts));
+                ReceiptCounter = 0;
+            }
+            
+            ReceiptCounter++;
 
         }
 
         protected virtual void OnError(Exception e)
         {
-            print(errorMsg(e));
+            if(Tracing.TraceErrors())
+            {
+                switch(e)
+                {
+                    case AppException ae:
+                        Trace(ae.Message);
+                        break;
+                    default:
+                        Trace(FsmMessages.Error(Id, e));
+                    break;
+                }
+            }            
         }
     }
 }

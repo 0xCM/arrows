@@ -116,13 +116,18 @@ namespace Z0
             return ref X;
         }
         
-        public static ref Matrix<N,T> Map<N,T>(this ref Matrix<N,T> A, Func<T,T> f)
+        [MethodImpl(Inline)]
+        public static Matrix<N,T> Map<N,S,T>(this Matrix<N,S> A, Func<S,T> f)
             where N : ITypeNat, new()
             where T : struct
+            where S : struct
         {
-            A.Apply(f);
-            return ref A;
-
+            var src = A.Unblocked;
+            var dstM = Matrix.Alloc<N,T>();
+            var dst = dstM.Unblocked;
+            for(var i=0; i<dst.Length; i++)
+                dst[i] = f(src[i]);
+            return dstM;
         }
 
         public static Matrix<N,double> Pow<N>(this Matrix<N,double> A, int exp)

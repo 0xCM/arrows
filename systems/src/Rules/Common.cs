@@ -30,6 +30,7 @@ namespace Z0.Rules
     {
 
     }
+    
     public interface IRule<T> : IRule
     {
         T Subject {get;}

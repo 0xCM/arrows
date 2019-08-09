@@ -76,10 +76,16 @@ partial class zfunc
         => terminal.ReadLine();
 
     /// <summary>
+    /// Reads a character from the terminal
+    /// </summary>
+    public static char readKey(string msg = null)
+        => terminal.ReadKey(msg != null ? appMsg(msg, SeverityLevel.HiliteCL) : null);
+
+    /// <summary>
     /// Reads a line of text from the terminal after printing a supplied message
     /// </summary>
-    public static string read(AppMsg msg)
-        => terminal.ReadLine(msg);
+    public static string read(string msg = null)
+        => terminal.ReadLine(msg != null ? appMsg(msg, SeverityLevel.HiliteCL) : null);
 
     /// <summary>
     /// Emits a warning-level message
@@ -153,7 +159,7 @@ partial class zfunc
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
     public static void error(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller, file, line));
+        => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller, file, line));
 
     /// <summary>
     /// Emits an error-level message
@@ -162,5 +168,5 @@ partial class zfunc
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
     public static void error<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
+        => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
 }

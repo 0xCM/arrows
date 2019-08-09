@@ -99,6 +99,28 @@ partial class zfunc
     }
 
     /// <summary>
+    /// Invokes an action within a try block and, upon error, calls
+    /// the handler if specified. If no handler is specified, the exception
+    /// message is emitted to stderr
+    /// </summary>
+    /// <param name="action">The action to invoke</param>
+    /// <param name="onerror">The error handler to call, if specified</param>
+    public static void Try(Action action, Action<Exception> handler = null)
+    {
+        try
+        {
+            action();
+        }
+        catch(Exception e)
+        {
+            if(handler != null)
+                handler(e);
+            else
+                error(e);
+        }
+    }
+
+    /// <summary>
     /// Evaluates a function within a try block and returns the value of the computation if 
     /// successful; otherwise, returns None together with the reported exception
     /// </summary>

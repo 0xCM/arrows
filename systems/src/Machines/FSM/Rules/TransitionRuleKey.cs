@@ -12,27 +12,28 @@ namespace Z0.Machines
 
 
     /// <summary>
-    /// Defines a key for efficient/predicatable transition rule indexing/lookup
+    /// Defines a key, predicated on input event and current state, identifies a transition rule
     /// </summary>
-    public readonly struct TransRuleKey<E,S>
+    public readonly struct TransitionRuleKey<E,S> : IRuleKey
     {
-        public static implicit operator TransRuleKey<E,S>((E input, S source) x)
-            => new TransRuleKey<E, S>(x.input,x.source);
+        public static implicit operator TransitionRuleKey<E,S>((E trigger, S source) x)
+            => new TransitionRuleKey<E, S>(x.trigger,x.source);
 
-        public TransRuleKey(E input, S source)
+        public TransitionRuleKey(E input, S source)
         {
-            this.Input = input;
+            this.Trigger = input;
             this.Source = source;
             this.Hash = HashCode.Combine(input,source);
         }
 
-        readonly int Hash;
+        public int Hash {get;}
 
         /// <summary>
-        /// The input event
+        /// The triggering event
         /// </summary>
-        public readonly E Input;
-        
+        public E Trigger {get;}
+
+    
         /// <summary>
         /// The source state
         /// </summary>
@@ -42,7 +43,7 @@ namespace Z0.Machines
             => Hash; 
 
         public override string ToString() 
-            => $"({Source}, {Input})";
+            => $"({Source}, {Trigger})";
     }
 
 }

@@ -33,8 +33,8 @@ namespace Z0.Test
                 inform($"There are {control.SummaryStats.AgentCount.ToString()} agents in play");
             });
 
-
-            read();            
+            
+            readKey("Press any key to terminate the application");            
         }
 
         void OnTerminate()

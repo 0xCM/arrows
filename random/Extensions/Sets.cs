@@ -15,10 +15,11 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
-        /// Retrieves a set of distinct random values
+        /// Takes a specified number of distinct points from a source
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <param name="count">The number of distinct elements in the resulting set</param>
+        /// <param name="count">The number of points to take</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static HashSet<T> TakeSet<T>(this IRandomSource random, int count)
             where T : struct
         {
@@ -29,6 +30,12 @@ namespace Z0
             return set;
         }
 
+        /// <summary>
+        /// Takes a specified number of distinct points from a source
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="count">The number of points to take</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static HashSet<T> TakeSet<T>(this IRandomSource<T> random, int count)
             where T : struct
         {
@@ -39,6 +46,56 @@ namespace Z0
             return set;
         }
 
+        /// <summary>
+        /// Samples an indexed set without replacement
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="sourceCount">The total number of items in the set</param>
+        /// <param name="count">The number of items to draw</param>
+        /// <remarks>Derived from MsInfer algorithm</remarks>
+        public static IEnumerable<int> SampleWithoutReplacement(this IRandomSource random, int sourceCount, int count)
+        {
+            var set = new HashSet<int>();
+            if (count > sourceCount / 2)
+            {
+                var src = alloc<int>(sourceCount, i => i);
+                random.Shuffle(src);
+                for (int i = 0; i < count; i++)
+                    set.Add(src[i]);
+            }
+            else
+            {
+                // use rejection
+                for (int i = 0; i < count; i++)
+                {
+                    while (true)
+                    {
+                        int item = random.NextInt32(sourceCount);
+                        if (!set.Contains(item))
+                        {
+                            set.Add(item);
+                            break;
+                        }
+                    }
+                }
+            }
+            return set;
+        }
+
+        public static IEnumerable<T> SampleWithoutReplacement<T>(this IRandomSource random,  T[] source, int count)
+        {
+            var indices = random.SampleWithoutReplacement(source.Length, count);
+            foreach(var i in indices)
+                yield return source[i];
+        }
+
+        public static IEnumerable<T> SampleWithoutReplacement<T>(this IRandomSource random,  T sourceCount, T sampleCount)
+            where T : struct
+        {
+            var indices = random.SampleWithoutReplacement(convert<T,int>(sourceCount), convert<T,int>(sampleCount));
+            foreach(var i in indices)
+                yield return convert<int,T>(i);
+        }
     }
 
 }

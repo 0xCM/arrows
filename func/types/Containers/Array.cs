@@ -40,6 +40,20 @@ partial class zfunc
     public static T[] alloc<T>(int len)
         => new T[len];
 
+    /// <summary>
+    /// Allocates an array and initializes each element with a specified function
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <param name="initializer">The element initializer</param>
+    /// <typeparam name="T">The element type</typeparam>
+    public static T[] alloc<T>(int len, Func<int,T> initializer)
+    {
+        var dst = alloc<T>(len);
+        for(var i=0; i<len; i++)
+            dst[i] = initializer(i);
+        return dst;
+    }
+
     [MethodImpl(Inline)]   
     public static T[] array<T>(params T[] src)
         => src;

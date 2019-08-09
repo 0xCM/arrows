@@ -134,6 +134,12 @@ partial class zfunc
         where T : struct, IEquatable<T>
             => ComplexNumber.Define(re,im);
 
+    /// <summary>
+    /// Defines a scalar sequence {0,1,...,count-1}
+    /// </summary>
+    /// <param name="count">The number of elements in the sequence</param>
+    /// <typeparam name="T">The primal type</typeparam>
+    [MethodImpl(Inline)]
     public static IEnumerable<T> range<T>(T count)
         where T : struct
             => range(default(T), count);

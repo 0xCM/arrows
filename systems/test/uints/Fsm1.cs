@@ -8,6 +8,7 @@ namespace Z0.Machines.Test
     using System.Linq;
     using System.Threading;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Z0.Test;
 
     using static zfunc;
@@ -35,17 +36,18 @@ namespace Z0.Machines.Test
             O0, O1, O2, O3, O4, O5, O6, O7, O8, O9, O10
         }
 
-        public static IEnumerable<OutputRule<States,Outputs>> OutputRules()
+        public static IEnumerable<OutputRule<Events,States,Outputs>> OutputRules()
         {
-            yield return (S0, S1, O0);
-            yield return (S1, S2, O1);
-            yield return (S2, S3, O2);
-            yield return (S3, S4, O3);
-            yield return (S4, S5, O4);
+            yield return (E1, S1, O0);
+            yield return (E2, S2, O1);
+            yield return (E3, S3, O2);
+            yield return (E4, S4, O3);
+            yield return (E4, S5, O4);
 
 
         }
-        public static IEnumerable<TransRule<Events,States>> TransRules()
+
+        public static IEnumerable<TransitionRule<Events,States>> TransRules()
         {
             yield return (E1, S0, S1);
             yield return (E1, S1, S2);
@@ -54,39 +56,25 @@ namespace Z0.Machines.Test
             yield return (E1, S4, S5);
         }
         
-        public static TransFunc<Events,States> Function()
+        public static MachineTransition<Events,States> Function()
             => TransRules().ToFunction();
 
-        public static Fsm<Events,States> Machine()
-            => Fsm.Define(S0, S5, Function());
 
 
-        sealed class Observer : FsmObserver<Events,States>
-        {
-            public Observer(Fsm<Events,States> fsm, bool trace = false)
-                : base(fsm,trace)
-            {
-
-
-            }
-        }
-
-        void Run(int machines)
-        {
-            
-            for(var i=0; i<machines; i++)
-            {
-                var m = Machine();
-                var o = new Observer(m);
-                var events = Random.EnumStream<Events>();
-                while(!m.Finished)
-                    m.Submit(events.First());
-            }
-        }
 
         public void Run()
         {
-            Run(Pow2.T08);
+            var tasks = new Task[Pow2.T08];
+            var indices = range(0xFFFFul, 0xFFFFFFFFul).Where(x => x % 2 != 0).Take(Pow2.T08).ToArray();
+            for(var i=0u; i< tasks.Length; i++)
+            {
+                var random = RNG.Pcg64(0,indices[i]);
+                var context = Fsm.CreateContext(random);
+                var transF = TransRules().ToFunction();
+                var machine = Fsm.Machine($"Fsm1-{i}",context, S0,S5, transF);
+                tasks[i] = Fsm.Run(machine);
+            }
+            Task.WaitAll(tasks);                            
         }
 
 

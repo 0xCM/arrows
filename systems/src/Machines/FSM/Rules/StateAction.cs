@@ -11,22 +11,21 @@ namespace Z0.Machines
     using static zfunc;
 
     /// <summary>
-    /// Encapsulates the set of all rules (input : E, source : S) -> target : S 
-    /// that define state machine transitions
+    /// Defines a set of rules that define actions associated with a state
     /// </summary>
-    public class EntryFunc<S,A>
+    public class StateAction<S,A>
     {
-        public EntryFunc(IEnumerable<EntryRule<S,A>> rules)
+        public StateAction(IEnumerable<IActionRule<A>> rules)
         {
-            this.RuleIndex = rules.Select(rule => (rule.Key(), rule)).ToDictionary();
+            this.RuleIndex = rules.Select(rule => (rule.RuleId, rule)).ToDictionary();
         }
         
-        Dictionary<EntryRuleKey<S>, EntryRule<S,A>> RuleIndex;
+        readonly Dictionary<int, IActionRule<A>> RuleIndex;
 
         public Option<A> Apply(S source)
         {
-            var key = RuleKey.EntryRule(source);
-            if(RuleIndex.TryGetValue(key, out EntryRule<S,A> rule))
+            var key = Fsm.EntryRuleKey(source);
+            if(RuleIndex.TryGetValue(key.Hash, out IActionRule<A> rule))
                 return rule.Action;
             else
                 return default;

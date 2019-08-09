@@ -20,8 +20,8 @@ namespace Z0.Machines
         /// <typeparam name="E">The input event type</typeparam>
         /// <typeparam name="S">The state type</typeparam>
         [MethodImpl(Inline)]
-        public static TransFunc<E,S> ToFunction<E,S>(this IEnumerable<TransRule<E,S>> rules)
-            => new TransFunc<E, S>(rules);
+        public static MachineTransition<E,S> ToFunction<E,S>(this IEnumerable<TransitionRule<E,S>> rules)
+            => new MachineTransition<E, S>(rules);
 
         /// <summary>
         /// Forms an entry function from a sequence of entry rules
@@ -30,28 +30,10 @@ namespace Z0.Machines
         /// <typeparam name="E">The input event type</typeparam>
         /// <typeparam name="S">The state type</typeparam>
         [MethodImpl(Inline)]
-        public static EntryFunc<S,A> ToFunction<S,A>(IEnumerable<EntryRule<S,A>> rules)
-            => new EntryFunc<S,A>(rules);
+        public static StateAction<S,A> ToFunction<S,A>(IEnumerable<IActionRule<S,A>> rules)
+            => new StateAction<S,A>(rules);
 
-        /// <summary>
-        /// Defines an entry rule key
-        /// </summary>
-        /// <param name="rule">The rule for which a key will be defined</param>
-        /// <typeparam name="S">The state type</typeparam>
-        /// <typeparam name="A">The action type</typeparam>
-        [MethodImpl(Inline)]
-        public static EntryRuleKey<S> Key<S,A>(this EntryRule<S,A> rule)
-            => RuleKey.EntryRule(rule.Source);
         
-        /// <summary>
-        /// Defines an entry rule key
-        /// </summary>
-        /// <param name="rule">The rule for which a key will be defined</param>
-        /// <typeparam name="E">The input event type</typeparam>
-        /// <typeparam name="S">The source state type</typeparam>
-        [MethodImpl(Inline)]
-        public static TransRuleKey<E,S> Key<E,S>(this TransRule<E,S> rule)
-            => RuleKey.TransRule(rule.Input, rule.Source);
     }
 
 

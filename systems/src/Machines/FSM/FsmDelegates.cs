@@ -5,9 +5,6 @@
 namespace Z0.Machines
 {
     using System;
-    using System.Threading.Tasks;
-    using System.Runtime.InteropServices;
-    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
@@ -26,9 +23,15 @@ namespace Z0.Machines
     /// <typeparam name="S">The state type</typeparam>
     public delegate void Transitioned<S>(S source, S target);
 
-    public delegate void Completed<S>(S endstate, bool asPlanned);
+    /// <summary>
+    /// Delegate for event that fires when a machine attains endstate
+    /// </summary>
+    /// <param name="endstate"></param>
+    /// <param name="asPlanned"></param>
+    /// <typeparam name="S"></typeparam>
+    public delegate void Completed(FsmStats stats, bool asPlanned);
 
-    public delegate void ErrorRaised(Exception error);
+    public delegate void MachineError(Exception error);
 
     /// <summary>
     /// Delegate that fires upon state entry

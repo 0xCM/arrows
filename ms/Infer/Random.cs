@@ -198,7 +198,7 @@ namespace MsInfer
         /// <param name="count">The number of elements to draw</param>
         /// <returns></returns>
         [Stochastic]
-        public static HashSet<T> SampleWithoutReplacement<T>(IReadOnlyList<T> list, int count, IRandomSource random = null)
+        internal static HashSet<T> SampleWithoutReplacement<T>(IReadOnlyList<T> list, int count, IRandomSource random = null)
         {
             HashSet<T> set = new HashSet<T>();
             foreach (int index in SampleWithoutReplacement(list.Count, count, random))
@@ -215,7 +215,7 @@ namespace MsInfer
         /// <param name="count">The number of elements to draw</param>
         /// <returns></returns>
         [Stochastic]
-        public static HashSet<int> SampleWithoutReplacement(int itemCount, int count, IRandomSource random = null)
+        internal static HashSet<int> SampleWithoutReplacement(int itemCount, int count, IRandomSource random = null)
         {
             if (count > itemCount)
                 throw new ArgumentException("count > itemCount");

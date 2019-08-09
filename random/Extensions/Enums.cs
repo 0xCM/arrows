@@ -27,15 +27,9 @@ namespace Z0
                 var name = names[stream.First()];
                 var value = Enum.Parse<E>(name);
                 yield return value;
-            }
-            
+            }            
         }
-
     }
 
 }
 
-
-/*
-Random.Stream<byte>(closed((byte)E1, (byte)(E7 + 1))).Cast<Events>();
- */

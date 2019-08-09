@@ -88,11 +88,38 @@ namespace Z0
             lock(locker)
             {
                 var fg = Console.ForegroundColor;
-                Console.ForegroundColor = color;
+                Console.ForegroundColor = color;                
                 Console.WriteLine(src);
                 Console.ForegroundColor = fg;
             }
         }
+
+        void WriteError(object src, ConsoleColor color)
+        {
+            lock(locker)
+            {
+                var fg = Console.ForegroundColor;
+                Console.ForegroundColor = color;                
+                Console.Error.Write(src);
+                Console.Error.Write(zfunc.eol());
+                Console.ForegroundColor = fg;
+            }
+
+        }
+
+        public void WriteError(AppMsg msg)
+        {
+            lock(locker)
+            {
+                var fg = Console.ForegroundColor;
+                Console.ForegroundColor = ForeColor(msg.Level);                
+                Console.Error.Write(msg);
+                Console.Error.Write(zfunc.eol());
+                Console.ForegroundColor = fg;
+            }
+
+        }
+
 
         public void Write(object src, ConsoleColor color)
         {
@@ -107,10 +134,15 @@ namespace Z0
 
         public void WriteMessage(AppMsg msg, bool cr = true)
         {   
-            if(cr)
-                WriteLine(msg, ForeColor(msg.Level)); 
+            if(msg.Level == SeverityLevel.Error)
+                WriteError(msg, ForeColor(msg.Level));
             else
-                Write(msg, ForeColor(msg.Level));
+            {
+                if(cr)
+                    WriteLine(msg, ForeColor(msg.Level)); 
+                else
+                    Write(msg, ForeColor(msg.Level));
+            }
         }
                                 
         public void WriteMessages(IEnumerable<AppMsg> messages)
@@ -132,6 +164,14 @@ namespace Z0
              if(msg != null)
                 WriteMessage(msg,false);
              return Console.ReadLine();
+        }
+
+        public char ReadKey(AppMsg msg = null)
+        {
+             if(msg != null)
+                WriteMessage(msg,false);
+              
+            return Console.ReadKey().KeyChar;
         }
 
         static ConsoleColor ForeColor(SeverityLevel level)

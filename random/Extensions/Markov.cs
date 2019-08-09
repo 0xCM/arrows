@@ -64,7 +64,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-
         /// <summary>
         /// Produces a stochastic vector of a specified length
         /// </summary>
@@ -90,7 +89,6 @@ namespace Z0
             var dst = Vector.Alloc<N,T>();
             random.MarkovVector(dst.Unsized);
             return dst;
-
         }
 
         /// <summary>
@@ -132,8 +130,5 @@ namespace Z0
                 random.MarkovVector<T>(data.Slice(row*n, n));                            
             return ref dst;
         }
-
     }
-
-
 }

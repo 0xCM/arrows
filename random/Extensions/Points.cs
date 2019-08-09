@@ -85,6 +85,14 @@ namespace Z0
         static ulong Next(this IRandomSource src, ulong max)
             => src.NextUInt64(max);
 
+        [MethodImpl(Inline)]
+        static ulong Next(this IPointSource<ulong> src)
+            => src.Next();
+
+        [MethodImpl(Inline)]
+        public static ulong Next(this IPointSource<ulong> src, ulong max)
+            => src.Next().Contract(max);
+
                 
         [MethodImpl(Inline)]
         static sbyte Next(this IRandomSource src, Interval<sbyte> domain)
@@ -125,7 +133,6 @@ namespace Z0
                 : domain.Left + (int)src.Next((ulong)delta.Negate());
         }
 
-
         [MethodImpl(Inline)]
         static uint Next(this IRandomSource src, Interval<uint> domain)
             => math.add(domain.Left, (uint)src.Next((ulong)domain.Width()));
@@ -149,9 +156,7 @@ namespace Z0
         {
             var whole = (float)src.Next(domain.Convert<int>());
             return whole + (float)src.NextDouble();            
-
         }
-
         
         [MethodImpl(Inline)]
         static double Next(this IRandomSource src, Interval<double> domain)

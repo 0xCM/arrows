@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static math;
 
-    public class Pcg64 : Pcg<ulong>, IRandomSource<ulong>
+    public class Pcg64 : Pcg<ulong>, IRandomSource<ulong>, IRandomSource
     {
         public static Pcg64 Define(ulong s0, ulong? index = null)
             => new Pcg64(s0,index);
@@ -21,10 +21,17 @@ namespace Z0
             = DefaultMultiplier64;
         
 
+        IRandomSource<ulong> PointSource
+            => this;
+
+        Polyrand PR;
+
         [MethodImpl(Inline)]
         Pcg64(ulong s0, ulong? index = null)
         {
             Init(s0, index ?? DefaultIndex64);
+            this.PR = new Polyrand(PointSource);    
+
         }
 
         void Init(ulong s0, ulong index)
@@ -85,6 +92,17 @@ namespace Z0
             return dst;         
         }
 
+        ulong IRandomSource.NextUInt64()
+            => PR.Next<ulong>();
+ 
+        ulong IRandomSource.NextUInt64(ulong max)
+            => PR.Next(max);   
+
+        int IRandomSource.NextInt32(int max)
+            => PR.NextInt32(max);
+
+        double IRandomSource.NextDouble()
+            => PR.Next<double>();
     }
 
 }

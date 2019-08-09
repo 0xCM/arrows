@@ -14,16 +14,20 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/wyhash.h</remarks>
-    class WyHash64 : IRandomSource<ulong>
+    class WyHash64 : IRandomSource<ulong>, IRandomSource
     {
         readonly ulong Seed;
         
         ulong State;
-        
+
+        Polyrand PR;
+
+        [MethodImpl(Inline)]
         public WyHash64(ulong Seed)
         {
             this.State = Seed;
             this.Seed = Seed;
+            this.PR = new Polyrand(PointSource);    
         }
 
         const ulong X1 = 0x60bee2bee120fc15;
@@ -41,32 +45,22 @@ namespace Z0
             var m2 = b.hi ^ b.lo;
             return m2;
         }
-    }
 
-    class WyHash64Suite<N> : IRandomSource<N, ulong>
-        where N : ITypeNat, new()
+        IRandomSource<ulong> PointSource
+            => this;
 
-    {
-        static readonly int MemberCount = (int)new N().value;
-        
-        readonly WyHash64[] Generators = new WyHash64[MemberCount];
+        ulong IRandomSource.NextUInt64()
+            => PR.Next<ulong>();
+ 
+        ulong IRandomSource.NextUInt64(ulong max)
+            => PR.Next(max);   
 
+        int IRandomSource.NextInt32(int max)
+            => PR.NextInt32(max);
 
-        public WyHash64Suite(Span<N,ulong> Seed)
-        {
-            for(var i=0; i<MemberCount; i++)
-                Generators[i] = new WyHash64(Seed[i]);
-        }
-        
-        public Span<N, ulong> Next()
-        {
-            var dst = NatSpan.Alloc<N,ulong>();
-            var next = Generators.Mapi((index ,g) => (index, value: g.Next()));
-            foreach(var item in next)
-                dst[item.index] = item.value;
-            return dst;
-            
-        }
+        double IRandomSource.NextDouble()
+            => PR.Next<double>();
+
     }
 
 }
