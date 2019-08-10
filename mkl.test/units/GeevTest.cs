@@ -19,7 +19,7 @@ namespace Z0.Mkl.Test
         {
 
             var A = Random.Matrix<N5,double>();
-            var eigen = mkl.dgeev<N5>(A);
+            var eigen = mkl.geev<N5>(A);
             Claim.eq(5,eigen.Values.Length);
             
 

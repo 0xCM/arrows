@@ -20,12 +20,23 @@ namespace Z0
     /// </summary>
     public static class MatrixRefOps
     {
-        public static T Dot<N,T>(Span<N,T> X, Span<N,T> Y)
+        public static T Dot<N,T>(Vector<N,T> X, Vector<N,T> Y)
+            where T : struct
             where N : ITypeNat, new()
+        {
+            var result = default(T);
+            var len = nati<N>();
+            for(var i=0; i< len; i++)
+                result = gmath.add(gmath.mul(X[i],Y[i]), result);
+            return result;
+        }
+
+        public static T Dot<T>(Span<T> X, Span<T> Y)
             where T : struct
         {
             var result = default(T);
-            for(var i=0; i< nati<N>(); i++)
+            var len = length(X,Y);
+            for(var i=0; i< len; i++)
                 result = gmath.add(gmath.mul(X[i],Y[i]), result);
             return result;
         }
@@ -37,12 +48,12 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< n; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Dot<N,T>(A.Row(i), B.Col(j));                    
+                X[i,j] = Dot(A.Row(i), B.Col(j));                    
             return ref X;
         }
 
 
-        public static void Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, Matrix<M,N,T> X)
+        public static ref Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, ref Matrix<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -52,7 +63,8 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< m; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Dot<K,T>(A.Row(i), B.Col(j));                    
+                X[i,j] = Dot(A.Row(i), B.Col(j));         
+            return ref X;           
         }
 
         public static Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B)
@@ -62,24 +74,11 @@ namespace Z0
             where T : struct
         {
             var X = Matrix.Alloc<M,N,T>();
-            Mul(A,B, X);
+            Mul(A,B, ref X);
             return X;
         }
 
-        public static void Mul<M,K,N,T>(Span<M,K,T> A, Span<K,N,T> B, Span<M,N,T> X)
-            where M : ITypeNat, new()
-            where K : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct
-        {
-            var m = nati<M>();
-            var n = nati<N>();
-            for(var i = 0; i< m; i++)
-            for(var j = 0; j< n; j++)
-                X[i,j] = Dot(A.Row(i), B.Col(j));                    
-        }
-
-        public static void Mul<M,N,T>(Span<M,N,T> A, Span<N,T> B, Span<M,T> X)
+        public static void Mul<M,N,T>(Matrix<M,N,T> A, Vector<N,T> B, Vector<M,T> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct

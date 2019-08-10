@@ -56,10 +56,12 @@ namespace Z0
         void Run(params string[] args)
         {
 
-            ReadAsmCsv();            
+            //ReadAsmCsv();            
             // var b256 = new Byte256();
             // print(b256.GenerateSourceInt8().Format());
 
+            var code = InlineData.GenAccessor(Pow2.T15);
+            print(code);
 
         }
             

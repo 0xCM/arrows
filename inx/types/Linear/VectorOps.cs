@@ -39,9 +39,15 @@ namespace Z0
             where T : struct    
         {
             if(typeof(T) == typeof(float))
-                mkl.add(float32(x.Unsized), float32(y.Unsized), float32(z.Unsized));
+            {
+                var dst = z.As<float>();
+                mkl.add(x.As<float>(), y.As<float>(), ref dst);
+            }
             else if(typeof(T) == typeof(double))
-                mkl.add(float64(x.Unsized), float64(y.Unsized), float64(z.Unsized));
+            {
+                var dst = z.As<double>();
+                mkl.add(x.As<double>(), y.As<double>(), ref dst);
+            }
             else
                 ginx.add<T>(x,y,z);
             return ref z;
@@ -54,9 +60,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(mkl.dot(float32(x.Unsized), float32(y.Unsized)));
+                return generic<T>(mkl.dot(x.As<float>(), y.As<float>()));
             else if(typeof(T) == typeof(double))
-                return generic<T>(mkl.dot(float64(x.Unsized), float64(y.Unsized)));
+                return generic<T>(mkl.dot(x.As<double>(), y.As<double>()));
             else
                 return gmath.dot<T>(x.Unsized, y.Unsized);                
         }

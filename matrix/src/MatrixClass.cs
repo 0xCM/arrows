@@ -18,6 +18,11 @@ namespace Z0
         
     }
 
+    public interface ISquareMatrix : IMatrixClass
+    {
+        
+    }
+
 
     public readonly struct MatrixClass : IMatrixClass
     {        
@@ -48,4 +53,18 @@ namespace Z0
 
 
     }
+
+    public enum TriangularKind : byte
+    {
+        
+        /// <summary>
+        /// Classifies a matrix as lower-triangular
+        /// </summary>
+        Lower,
+        
+        /// <summary>
+        /// Classifies a matrix as upper-triangular
+        /// </summary>
+        Upper,
+    }    
 }

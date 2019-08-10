@@ -12,6 +12,7 @@
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
+    <ProjectReference Include="..\matrix\src\z0.matrix.csproj" />    
     <ProjectReference Include="..\stats\z0.stats.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
     <ProjectReference Include="..\mkl\z0.mkl.csproj" />

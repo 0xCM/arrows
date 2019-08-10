@@ -33,7 +33,34 @@ namespace Z0
             return leftclosed(min,max);
 
         }
-            
+
+        /// <summary>
+        /// Retrieves a non-deterministic seed
+        /// </summary>
+        /// <typeparam name="T">The seed type</typeparam>
+        public static T EntropicSeed<T>()            
+            where T : struct
+                => Entropy.Value<T>();
+        
+        /// <summary>
+        /// Retrieves a seeed from embedded application resources that, for a given
+        /// index, remanins fixed
+        /// </summary>
+        /// <typeparam name="T">The seed type</typeparam>
+        public static T FixedSeed<T>(T index)
+            where T : struct
+                => RngSeed.TakeFixed<T>(convert<T,int>(index));
+
+        /// <summary>
+        /// Retrieves descriptive information for fixed seed data
+        /// </summary>
+        /// <param name="ByteCount">The total number of bytes available</param>
+        /// <param name="MaxIndex">The maximum index for one value of the parametric type</param>
+        /// <typeparam name="T">The type relative to which the maximum index is computed</typeparam>
+        public static (ByteSize ByteCount, int MaxIndex) FixedSeedStats<T>()
+            where T : struct
+                => (RngSeed.FixedByteCount, RngSeed.MaxFixedIndex<T>());
+
         public static IRandomSource XOrShift1024(ulong[] seed = null)
             => new XOrShift1024(seed ?? Seed1024.Default);
 

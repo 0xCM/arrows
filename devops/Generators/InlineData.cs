@@ -14,6 +14,15 @@ namespace Z0
 
     public class InlineData : CodeGenerator
     {
+        public static string GenAccessor(ByteSize size)
+        {
+            var random = new Random();
+            var buffer = new byte[size];
+            random.NextBytes(buffer);
+            var codegen = new InlineData(buffer,$"Bytes{size}");
+            return codegen.GenAccessor();
+        }
+
         public static InlineData Generator(byte[] data, string propName)
             => new InlineData(data,propName);
 

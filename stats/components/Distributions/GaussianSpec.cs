@@ -14,7 +14,7 @@ namespace Z0
     /// Characterizes a Gaussian (normal) distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Normal_distribution</remarks>
-    public class GaussianSpec : IDistributionSpec
+    public readonly struct GaussianSpec : IDistributionSpec
     {
         public GaussianSpec(double mean, double stddev)
         {
@@ -27,14 +27,14 @@ namespace Z0
         /// </summary>
 
         [Symbol(Greek.mu)]
-        public double Mean {get;}
+        public readonly double Mean;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
 
         [Symbol(Greek.sigma)]
-        public double StdDev {get;}
+        public readonly double StdDev;
 
         public double Variance 
             => StdDev * StdDev;

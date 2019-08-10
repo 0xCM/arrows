@@ -63,7 +63,7 @@ namespace Z0
             where K : ITypeNat, new()
             where N : ITypeNat, new()
         {
-            mkl.gemm<M,K,N>(A, B, X);
+            mkl.gemm<M,K,N>(A, B, ref X);
             return ref X;
         }
 
@@ -82,7 +82,7 @@ namespace Z0
             where N : ITypeNat, new()
             where K : ITypeNat, new()
         {
-            mkl.gemm<M,K,N>(A, B, X);   
+            mkl.gemm(A, B, ref X);   
             return ref X;
         }
 
@@ -97,7 +97,7 @@ namespace Z0
         public static ref Matrix<N,float> Mul<N>(this Matrix<N,float> A, Matrix<N,float> B, ref Matrix<N, float> X)
             where N : ITypeNat, new()
         {
-            mkl.gemm<N,N,N>(A, B, X);
+            mkl.gemm(A, B, ref X);
             return ref X;
         }
 
@@ -112,7 +112,7 @@ namespace Z0
         public static ref Matrix<N,double> Mul<N>(this Matrix<N,double> A, Matrix<N,double> B, ref Matrix<N, double> X)
             where N : ITypeNat, new()
         {
-            mkl.gemm<N,N,N>(A, B, X);
+            mkl.gemm(A, B, ref X);
             return ref X;
         }
         
@@ -138,13 +138,13 @@ namespace Z0
 
             var B = A.Replicate();
             var X = Matrix.Alloc<N,double>();
-            mkl.gemm<N,N,N>(A,B,X);
+            mkl.gemm(A,B,ref X);
             if(exp == 2)
                 return X;
 
             var i = exp;
             while(--i > 2)
-                mkl.gemm<N,N,N>(X,X,X);    
+                mkl.gemm(X,X,ref X);    
             
             return X;                        
         }

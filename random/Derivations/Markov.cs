@@ -48,7 +48,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Produces a stochastic vector of a specified length
+        /// Produces a stochastic vector of *unspecified* length
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="len">The result vector length</param>

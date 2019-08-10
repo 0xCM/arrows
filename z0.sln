@@ -71,6 +71,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.systems", "systems\src\z
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.systems.test", "systems\test\z0.systems.test.csproj", "{34A02412-38AF-46FE-B62A-0E612B1717C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "matrix", "matrix", "{25ADC602-8D6F-48D9-B91A-41C2C60D22FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.matrix", "matrix\src\z0.matrix.csproj", "{CB19FE16-6196-4823-A6E1-5D37FA7699C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +197,10 @@ Global
 		{34A02412-38AF-46FE-B62A-0E612B1717C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A02412-38AF-46FE-B62A-0E612B1717C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A02412-38AF-46FE-B62A-0E612B1717C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB19FE16-6196-4823-A6E1-5D37FA7699C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB19FE16-6196-4823-A6E1-5D37FA7699C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB19FE16-6196-4823-A6E1-5D37FA7699C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB19FE16-6196-4823-A6E1-5D37FA7699C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -202,6 +210,7 @@ Global
 		{A04B598D-58BB-44D0-8D26-B76FF7AE0546} = {F4427A40-06CC-4E53-822A-66AFE91C6B5A}
 		{7A1589BE-2D0E-43B3-98C2-DFA1E8A5AC31} = {D2E64F86-5435-4878-8C15-441CA9CAAB29}
 		{34A02412-38AF-46FE-B62A-0E612B1717C6} = {D2E64F86-5435-4878-8C15-441CA9CAAB29}
+		{CB19FE16-6196-4823-A6E1-5D37FA7699C0} = {25ADC602-8D6F-48D9-B91A-41C2C60D22FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B25BF6D0-13CC-4F6F-B23A-D4D8878FED3E}

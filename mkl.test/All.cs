@@ -232,22 +232,22 @@ namespace Z0.Mkl
             var srcA = span<double>(count);
             for(var i=1; i<= count; i++)
                 srcA[i-1] = i;
-            var a = NatSpan.Load<M,N,double>(ref srcA[0]);
+            var a = Matrix.Load<M,N,double>(srcA);
 
             var srcB = span<double>(m*n);
             for(var i=1; i<= count; i++)
                 srcB[i-1] = i;
-            var b = NatSpan.Load<N,M,double>(ref srcB[0]);
+            var b = Matrix.Load<N,M,double>(srcB);
 
             (var timer, var startMsg) = input(
-                nameof(a), a.Format(a.EntryPadWidth()), 
-                nameof(b), b.Format(b.EntryPadWidth()),
+                nameof(a), a.Format(), 
+                nameof(b), b.Format(),
                 silent
                 );            
 
             var c = mkl.gemm(a,b);            
             var time = snapshot(timer); 
-            var finaleMsg = finale(nameof(c), c.Format(c.EntryPadWidth()), timer, silent, method);
+            var finaleMsg = finale(nameof(c), c.Format(), timer, silent, method);
                 
             var report = sbuild();
             report.AppendLine(introMsg);

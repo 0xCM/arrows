@@ -76,8 +76,22 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]   
+        public static implicit operator Vector<T>(Vector<N,T> src)
+            => src.Denaturalize();
+
+
+        [MethodImpl(Inline)]   
         public static implicit operator ReadOnlySpan256<T>(Vector<N,T> src)
             => src.data;
+
+        [MethodImpl(Inline)]
+        public static bool operator == (Vector<N,T> lhs, in Vector<N,T> rhs) 
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator != (Vector<N,T> lhs, in Vector<N,T> rhs) 
+            => !lhs.Equals(rhs);
+
 
         [MethodImpl(Inline)]
         Vector(ref T src)
@@ -132,9 +146,32 @@ namespace Z0
             => Covector<N, T>.Define(data);
 
         [MethodImpl(Inline)]
-        public Span<N,U> As<U>()
+        public Vector<N,U> As<U>()
             where U : struct
-                => MemoryMarshal.Cast<T,U>(Unsized);
+                => new Vector<N, U>(MemoryMarshal.Cast<T,U>(Unsized));
+
+        public bool Equals(Vector<N,T> rhs)
+        {
+            var lhsData = Unsized;
+            var rhsData = rhs.Unsized;
+            for(var i = 0; i<lhsData.Length; i++)
+                if(gmath.neq(lhsData[i], rhsData[i]))
+                    return false;
+            return true;
+        }
+
+        [MethodImpl(Inline)]
+        public ref Vector<N,T> CopyTo(ref Vector<N,T> dst)
+        {
+            Unsized.CopyTo(dst.Unsized);
+            return ref dst;
+        }
+
+        public Vector<N,T> Replicate(bool structureOnly = false)
+            => new Vector<N,T>(data.Replicate(structureOnly));
+
+        public Vector<T> Denaturalize()
+            => data;
 
         public override bool Equals(object other)
             => throw new NotSupportedException();

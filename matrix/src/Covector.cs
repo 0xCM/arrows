@@ -13,6 +13,11 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
+    /// <summary>
+    /// Defines the algebraic dual to a vector; in practice, covectors represent
+    /// rows in a matrix while vectors represent columns. This duality captures the
+    /// salient distinction between row and column-major matrix storage
+    /// </summary>
     public ref struct Covector<N,T>
         where N : ITypeNat, new()
         where T : struct    
@@ -87,6 +92,15 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
+        public static bool operator == (Covector<N,T> lhs, in Covector<N,T> rhs) 
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator != (Covector<N,T> lhs, in Covector<N,T> rhs) 
+            => !lhs.Equals(rhs);
+
+
+        [MethodImpl(Inline)]
         public Covector(in Span256<T> src)
             => this.data = src;
 
@@ -133,12 +147,22 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vector<N,T> Transpose()
-            => Vector.Load<N,T>(data);
+            => Vector<N,T>.LoadAligned(ref data[0]);
 
         [MethodImpl(Inline)]
         public Span<T> Unsize()
             => Unsized;
  
+        public bool Equals(Covector<N,T> rhs)
+        {
+            var lhsData = Unsized;
+            var rhsData = rhs.Unsized;
+            for(var i = 0; i<lhsData.Length; i++)
+                if(gmath.neq(lhsData[i], rhsData[i]))
+                    return false;
+            return true;
+        }
+
         public override bool Equals(object other)
             => throw new NotSupportedException();
  

@@ -14,12 +14,6 @@ namespace Z0
 
     public static class SeedGenerators
     {
-        public static void GenSeeds64(int count)
-        {
-            // var entropy = Entropy.Values<ulong>(count).AsBytes();
-            // var code = InlineData.GenAccessor(entropy.ToArray(),"RawBytes");
-            // print(code);               
-        }
     }
 
 }

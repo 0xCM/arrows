@@ -106,6 +106,55 @@ namespace Z0
             return lo;
         }
 
+        /// <summary>
+        /// Add src to the 128 bits contained in dst. Ignores overflow, that is, the addition is done modulo 2^128.
+        /// </summary>
+        /// <remarks>Taken from IntUtils.cs / Microsoft Machine Learning repository</remarks>
+        [MethodImpl(Inline)]
+        public static void add(ref ulong dstHi, ref ulong dstLo, ulong src)
+        {
+            if ((dstLo += src) < src)
+                dstHi++;
+        }
+
+        /// <summary>
+        /// Add src to dst. Ignores overflow, that is, the addition is done modulo 2^128.
+        /// </summary>
+        /// <remarks>Taken from IntUtils.cs / Microsoft Machine Learning repository</remarks>
+        [MethodImpl(Inline)]
+        public static void add(ref ulong dstHi, ref ulong dstLo, ulong srcHi, ulong srcLo)
+        {
+            if ((dstLo += srcLo) < srcLo)
+                dstHi++;
+            dstHi += srcHi;
+        }
+
+        /// <summary>
+        /// Subtract src from the 128 bits contained in dst. Ignores overflow, that is, the subtraction is
+        /// done modulo 2^128.
+        /// </summary>
+        /// <remarks>Taken from IntUtils.cs / Microsoft Machine Learning repository</remarks>
+        [MethodImpl(Inline)]
+        public static void sub(ref ulong dstHi, ref ulong dstLo, ulong src)
+        {
+            if (dstLo < src)
+                dstHi--;
+            dstLo -= src;
+        }
+
+        /// <summary>
+        /// Subtract src from dst. Ignores overflow, that is, the subtraction is done modulo 2^128.
+        /// </summary>
+        /// <remarks>Taken from IntUtils.cs / Microsoft Machine Learning repository</remarks>
+        [MethodImpl(Inline)]
+        public static void sub(ref ulong dstHi, ref ulong dstLo, ulong srcHi, ulong srcLo)
+        {
+            dstHi -= srcHi;
+            if (dstLo < srcLo)
+                dstHi--;
+            dstLo -= srcLo;
+        }
+
     }
 
 }

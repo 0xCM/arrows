@@ -15,7 +15,7 @@ namespace Z0.Mkl
 
     public static partial class mkl
     {
-        public static EigenResult<N,double> dgeev<N>(Span256<double> A)
+        public static EigenResult<N,double> geev<N>(Matrix<N,double> A)
             where N : ITypeNat, new()
         {
             var n = nati<N>();
@@ -31,8 +31,8 @@ namespace Z0.Mkl
             var lVec = A.Replicate(true);
             var rVec = A.Replicate(true);             
                         
-            LAPACK.DGEEV(ref v, ref v, ref n, ref A[0], ref lda, ref wr[0], ref wi[0], 
-                ref lVec[0], ref ldvl, ref rVec[0], ref ldvr, ref ws[0], ref wslen, ref exitcode);
+            LAPACK.DGEEV(ref v, ref v, ref n, ref A.Unblocked[0], ref lda, ref wr[0], ref wi[0], 
+                ref lVec.Unblocked[0], ref ldvl, ref rVec.Unblocked[0], ref ldvr, ref ws[0], ref wslen, ref exitcode);
 
             if(exitcode != 0)
                 MklException.Throw(exitcode);
@@ -42,5 +42,6 @@ namespace Z0.Mkl
         }
 
     }
+
 
 }

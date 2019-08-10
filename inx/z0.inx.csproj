@@ -9,6 +9,7 @@
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\matrix\src\z0.matrix.csproj" />    
     <ProjectReference Include="..\mkl\z0.mkl.csproj" />
   </ItemGroup>
 

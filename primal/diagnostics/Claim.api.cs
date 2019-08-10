@@ -105,6 +105,10 @@ namespace Z0
             => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool neq(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs != rhs ? true : throw failed(ClaimOpKind.NEq, Equal(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
         public static bool eq(long lhs, long rhs, AppMsg msg)
             => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, msg);
 

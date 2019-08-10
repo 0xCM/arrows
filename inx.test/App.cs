@@ -37,7 +37,7 @@ namespace Z0.Test
         }
         protected override void RunTests(params string[] filters)
         {     
-            base.RunTests("VectorDot");
+            base.RunTests(filters);
         }
 
         public static void Main(params string[] args)

@@ -12,6 +12,8 @@
     <ProjectReference Include="..\..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\..\random\z0.random.csproj" />
     <ProjectReference Include="..\..\inx\z0.inx.csproj" />
+    <ProjectReference Include="..\..\matrix\src\z0.matrix.csproj" />    
+
   </ItemGroup>
 
   <ItemGroup>

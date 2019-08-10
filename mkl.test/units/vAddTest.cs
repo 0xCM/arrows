@@ -11,70 +11,94 @@ namespace Z0.Mkl.Test
     using static nfunc;
     
     using Z0.Test;
-    using static Examples;
 
-    public class VAddTest : UnitTest<VAddTest>
+    public abstract class MklTest<T> : UnitTest<T>
+        where T : MklTest<T>
+    {
+
+        const int DefaultVectorLength = Pow2.T08;
+
+        protected Vector<V> GenericVector<V>(int? len = null)
+            where V : struct
+                => Random.GenericVector<V>(len ?? DefaultVectorLength);
+    }
+
+    public class VAddTest : MklTest<VAddTest>
     {
 
         public void vaddF32()
         {
-            var lhs = Random.Span<float>(Pow2.T08);
-            var rhs = Random.Span<float>(Pow2.T08);
-            var dst1 = mkl.add(lhs, rhs, span<float>(Pow2.T08));
-            var dst2 = lhs.Replicate().Add(rhs);
-            Claim.eq(dst1,dst2);
+            var lhs = GenericVector<float>();
+            var rhs = GenericVector<float>();
+            var dst1 = Vector.Alloc<float>(lhs.Length);
+            mkl.add(lhs,rhs, ref dst1);
+            
+            var dst2 = lhs.Replicate(true);
+            gmath.add(lhs,rhs, dst2.Unblocked);
+            Claim.yea(dst1 == dst2);
         }
 
         public void vaddF64()
         {
-            var lhs = Random.Span<double>(Pow2.T08);
-            var rhs = Random.Span<double>(Pow2.T08);
-            var dst1 = mkl.add(lhs, rhs, span<double>(Pow2.T08));
-            var dst2 = lhs.Replicate().Add(rhs);
-            Claim.eq(dst1,dst2);
-        }
-
-        OpTimePair vaddF32Perf(int samples, long iterations)
-        {
-            var lhs1 = Random.Array<float>(samples);
-            var rhs1 = Random.Array<float>(samples);
-            var dst1 = array<float>(samples);
-
-            var lhs2 = lhs1.Replicate();
-            var rhs2 = rhs1.Replicate();
-            var dst2 = array<float>(samples);
+            var lhs = GenericVector<double>();
+            var rhs = GenericVector<double>();
+            var dst1 = Vector.Alloc<double>(lhs.Length);
+            mkl.add(lhs,rhs,ref dst1);
             
-            return measure(iterations, "add/float/primal", "vadd/float/mkl",
-            n => {                
-                for(var i=0; i<n; i++)
-                    gmath.add<float>(lhs1,rhs1,dst1);
-            },
-            n => {
-                for(var i=0; i<n; i++)
-                    mkl.add(lhs2, rhs2, dst2);
-            });   
+            var dst2 = lhs.Replicate(true);
+            gmath.add(lhs, rhs, dst2.Unblocked);
+            Claim.yea(dst1 == dst2);
         }
 
-        OpTimePair vaddF64Perf(int samples, long iterations)
+
+        OpTimePair vaddF32Perf(int samples, long cycles)
         {
-            var lhs1 = Random.Array<double>(samples);
-            var rhs1 = Random.Array<double>(samples);
-            var dst1 = array<double>(samples);
+            var lhs1 = GenericVector<float>(samples);
+            var rhs1 = GenericVector<float>(samples);
+            var dst1 = Vector.Alloc<float>(samples);
+
+            var lhs2 = lhs1.Replicate();
+            var rhs2 = rhs1.Replicate();
+            var dst2 = dst1.Replicate(true);
+
+            var sw1 = stopwatch();
+            for(var i=0; i<cycles; i++)
+                gmath.add(lhs1,rhs1, dst1.Unblocked);
+            var time1 = OpTime.Define(cycles, snapshot(sw1), "gmath");
+
+
+            var sw2 = stopwatch();
+            for(var i=0; i<cycles; i++)
+                mkl.add(lhs2, rhs2, ref dst2);
+            var time2 = OpTime.Define(cycles, snapshot(sw2), "mkl");
+            
+            return (time1,time2);
+            
+        }
+
+        OpTimePair vaddF64Perf(int samples, long cycles)
+        {
+            var lhs1 = GenericVector<double>(samples);
+            var rhs1 = GenericVector<double>(samples);
+            var dst1 = Vector.Alloc<double>(samples);
+
+
+            var sw1 = stopwatch();
+            for(var i=0; i<cycles; i++)
+                gmath.add(lhs1,rhs1,dst1.Unblocked);
+            var time1 = OpTime.Define(cycles, snapshot(sw1), "gmath");
 
 
             var lhs2 = lhs1.Replicate();
             var rhs2 = rhs1.Replicate();
-            var dst2 = array<double>(samples);
+            var dst2 = dst1.Replicate(true);
 
-            return measure(iterations, "add/double/primal", "vadd/double/mkl",
-            n => {                
-                for(var i=0; i<n; i++)
-                    gmath.add<double>(lhs1,rhs1,dst1);
-            },
-            n => {
-                for(var i=0; i<n; i++)
-                    mkl.add(lhs2,rhs2, dst2);
-            });   
+            var sw2 = stopwatch();
+            for(var i=0; i<cycles; i++)
+                mkl.add(lhs2, rhs2,ref dst2);
+            var time2 = OpTime.Define(cycles, snapshot(sw2), "mkl");
+            
+            return (time1,time2);
         }
 
         public void vAddF64Perf()

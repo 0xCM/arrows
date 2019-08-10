@@ -14,6 +14,9 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
+    /// <summary>
+    /// Defines the matrix api surface
+    /// </summary>
     public static class Matrix
     {
         /// <summary>
@@ -88,6 +91,23 @@ namespace Z0
                 src.CopyTo(dst);
                 return new Matrix<M,N,T>(dst);
             }                                            
+        }
+
+        /// <summary>
+        /// Defines a square matrix
+        /// </summary>
+        /// <param name="src">The source data </param>
+        /// <param name="n">The order</param>
+        /// <typeparam name="N">The square dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<N,T> Define<N,T>(T[] src, N n = default)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var dst = Alloc<N,T>();
+            src.CopyTo(dst.Unblocked);
+            return dst;
         }
 
         /// <summary>

@@ -26,6 +26,9 @@ namespace Z0.Machines
             machine.Completed += OnComplete;
             Tracing = tracing  ?? ObserverTrace.All;
             ReceiptEmitRate = receiptEmitRate ?? Pow2.T20;
+            TransitionCount = 0;
+            CompletionCounter = 0;
+            
         }
 
         Fsm<E,S> Machine;
@@ -38,6 +41,12 @@ namespace Z0.Machines
 
         int ReceiptCounter;
 
+        int TransitionCount;
+
+        int CompletionCounter;
+
+        readonly int CompletionEmitRate;
+
         ulong TotalReceipts;
         
         void Trace(AppMsg msg)
@@ -48,7 +57,10 @@ namespace Z0.Machines
         protected virtual void OnComplete(FsmStats stats, bool asPlanned)
         {
             if(Tracing.TraceCompletions())
+            {
                 Trace(FsmMessages.Completed(Id, stats, asPlanned));
+                CompletionCounter = 0;
+            }
         }
 
         /// <summary>

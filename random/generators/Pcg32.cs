@@ -13,7 +13,6 @@ namespace Z0
 
     public class Pcg32 : Pcg<ulong>,  IRandomSource<uint>
     {
-        //ulong State;
 
         /// <summary>
         /// Returns a sequence of generators predicated on supplied seed and index values

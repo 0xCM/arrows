@@ -16,8 +16,6 @@ namespace Z0
 
     partial class math
     {
-
-
         /// <summary>
         /// Computes x * 2^i
         /// </summary>

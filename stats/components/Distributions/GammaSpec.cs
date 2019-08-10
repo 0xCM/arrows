@@ -14,36 +14,37 @@ namespace Z0
     /// Characterizes a Gamma distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Gamma_distribution</remarks>
-    public class GammaSpec : IDistributionSpec
+    public readonly struct GammaSpec : IDistributionSpec
     {
         public static GammaSpec FromShapeAndScale(double Shape, double Scale)
             => new GammaSpec
-            {
-                Shape = Shape,
-                Scale = Scale,
-                Rate = 1.0/Scale,
-            };
-        
+            (
+                Shape : Shape,
+                Scale : Scale,
+                Rate : 1.0/Scale
+            );        
         public static GammaSpec FromShapeAndRate(double Shape, double Rate)
             => new GammaSpec
-            {
-                Shape = Shape,
-                Scale = 1.0/Rate,
-                Rate = Rate,
-            };
+            (
+                Shape : Shape,
+                Scale : 1.0/Rate,
+                Rate : Rate
+            );
 
-        GammaSpec()
+        GammaSpec(double Shape, double Scale, double Rate)
         {
-
+            this.Shape = Shape;
+            this.Scale = Scale;
+            this.Rate = Rate;
         }
 
         [Symbol(Greek.alpha)]
-        public double Shape {get; private set;}
+        public readonly double Shape;
 
         [Symbol(Greek.theta)]
-        public double Scale {get; private set;}
+        public readonly double Scale;
 
         [Symbol(Greek.beta)]
-        public double Rate {get; private set;}
+        public readonly double Rate;
     }
 }

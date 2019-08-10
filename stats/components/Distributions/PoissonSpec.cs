@@ -15,7 +15,7 @@ namespace Z0
     /// Characterizes a Poisson distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Poisson_distribution</remarks>
-    public class PoissonSpec : IDistributionSpec
+    public readonly struct PoissonSpec : IDistributionSpec
     {
         public static PoissonSpec Define(double p)
             => new PoissonSpec(p);
@@ -30,6 +30,6 @@ namespace Z0
         /// the probability of success
         /// </summary>
         [Symbol(Greek.lambda)]
-        public double Lambda {get;}
+        public readonly double Lambda;
     }
 }

@@ -22,9 +22,9 @@ namespace Z0
         /// <param name="offset">The offset into the source span from to begin the load</param>
         /// <typeparam name="T">The sample data type</typeparam>
         [MethodImpl(Inline)]
-        public static Sample<T> Load<T>(Span<T> src, int dim = 1,  int offset = 0)
+        public static Sample<T> Load<T>(T[] src, int dim = 1)
             where T : struct
-                => Sample<T>.Load(src, dim, offset);
+                => Sample<T>.Load(src, dim);
 
         /// <summary>
         /// Loads a sample from a memory source
@@ -34,17 +34,6 @@ namespace Z0
         /// <typeparam name="T">The sample data type</typeparam>
         [MethodImpl(Inline)]
         public static Sample<T> Load<T>(Memory<T> src, int dim = 1)
-            where T : struct
-                => Sample<T>.Load(src, dim);
-
-        /// <summary>
-        /// Loads a sample from an array
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="dim">The sample dimension</param>
-        /// <typeparam name="T">The sample data type</typeparam>
-        [MethodImpl(Inline)]
-        public static Sample<T> Load<T>(T[] src, int dim = 1)
             where T : struct
                 => Sample<T>.Load(src, dim);
 

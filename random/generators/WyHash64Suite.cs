@@ -19,8 +19,6 @@ namespace Z0
         
         readonly WyHash64[] Generators = new WyHash64[MemberCount];
 
-
-
         public WyHash64Suite(Span<N,ulong> Seed)
         {
             for(var i=0; i<MemberCount; i++)
@@ -37,6 +35,5 @@ namespace Z0
             
         }
     }
-
 
 }

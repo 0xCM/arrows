@@ -51,5 +51,162 @@ namespace Z0
             gmath.add(x.Unsized, y.Unsized, z.Unsized);
             return ref z;
         }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Add<T>(ref Vector<T> lhs, Vector<T> rhs)            
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gmath.add(ref x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Sub<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gmath.sub(ref x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Mul<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gmath.mul(ref x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Div<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gmath.div(ref x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Mod<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gmath.mod(ref x, y);
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Negate<T>(ref Vector<T> src)
+            where T : struct
+        {
+            var x = src.Unblocked;
+            gmath.negate(ref x);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Inc<T>(ref Vector<T> src)
+            where T : struct
+        {
+            var x = src.Unblocked;
+            gmath.inc(ref x);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Dec<T>(ref Vector<T> src)
+            where T : struct
+        {
+            var x = src.Unblocked;
+            gmath.dec(ref x);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Abs<T>(ref Vector<T> src)
+            where T : struct
+
+        {
+            var x = src.Unblocked;
+            gmath.abs(x, x);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> And<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gbits.and(in x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Or<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gbits.or(in x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> XOr<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+        {
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gbits.xor(in x, y);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Vector<T> Flip<T>(ref Vector<T> src)
+            where T : struct
+        {
+            gbits.flip(src.Unblocked, src.Unblocked);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T Dot<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+            => gmath.dot<T>(lhs.Unblocked, rhs.Unblocked);
+
+        [MethodImpl(Inline)]
+        public static Span<bool> EqV<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+                => gmath.eq<T>(lhs.Unblocked, rhs.Unblocked);
+
+        [MethodImpl(Inline)]
+        public static Span<bool> Gt<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+            => gmath.gt<T>(lhs.Unblocked, rhs.Unblocked);
+
+        [MethodImpl(Inline)]
+        public static Span<bool> GtEq<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+            => gmath.gteq<T>(lhs.Unblocked, rhs.Unblocked);
+
+        [MethodImpl(Inline)]
+        public static Span<bool> Lt<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+                => gmath.lt<T>(lhs.Unblocked, rhs.Unblocked);            
+
+        [MethodImpl(Inline)]
+        public static Span<bool> LtEq<T>(Vector<T> lhs, Vector<T> rhs)
+            where T : struct
+                => gmath.lteq<T>(lhs.Unblocked, rhs.Unblocked);
+
     }
 }

@@ -14,6 +14,26 @@ namespace Z0
 
     partial class RngX
     {
+
+        /// <summary>
+        /// Allocates and populates a vector of natural length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain of the random variable</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The vector component type</typeparam>
+        public static Vector<T> GenericVector<T>(this IRandomSource random, int len, Interval<T>? domain = null)
+            where T : struct
+        {
+            var dst = Vector.Alloc<T>(len);
+            if(domain != null)
+                random.StreamTo(domain.Value, len, ref dst[0]);
+            else
+                random.StreamTo(len, ref dst[0]);
+            
+            return dst;
+        }
+        
         /// <summary>
         /// Populates a vector of natural length
         /// </summary>

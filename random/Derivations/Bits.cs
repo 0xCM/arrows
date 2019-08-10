@@ -50,20 +50,12 @@ namespace Z0
         /// <param name="random">The random source</param>
         public static IEnumerable<byte> Bytes(this IRandomSource random)
         {
-            var q = (random as Rng).ByteQ;
             while(true)
             {
-                if(q.TryDequeue(out byte b))
-                    yield return b;
-                else
-                {
-                    var bytes = BitConverter.GetBytes(random.NextUInt64());
-                    for(var i = 0; i< bytes.Length; i++)
-                        if(i == 0)
-                            yield return bytes[i];
-                        else
-                            q.Enqueue(bytes[i]);
-                }                
+                var bytes = BitConverter.GetBytes(random.NextUInt64());
+                for(var i = 0; i< bytes.Length; i++)
+                    if(i == 0)
+                        yield return bytes[i];
             }
         }
 

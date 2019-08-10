@@ -15,7 +15,7 @@ namespace Z0
     /// Characterizes a Laplace distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
-    public class LaplaceSpec : IDistributionSpec
+    public readonly struct LaplaceSpec : IDistributionSpec
     {
         public LaplaceSpec(float mean, float scale)
         {
@@ -28,14 +28,14 @@ namespace Z0
         /// </summary>
 
         [Symbol(Greek.mu)]
-        public float Mean {get;}
+        public readonly float Mean;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
 
         [Symbol(Greek.sigma)]
-        public float Scale {get;}
+        public readonly float Scale;
 
 
     }

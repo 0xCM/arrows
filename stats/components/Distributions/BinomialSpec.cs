@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    public class BinomialSpec : IDistributionSpec
+    public readonly struct BinomialSpec : IDistributionSpec
     {
         public static BinomialSpec Define(int trials, double success)
             => new BinomialSpec(trials,success);
@@ -21,8 +21,8 @@ namespace Z0
             this.Success = success;
         }
         
-        public int Trials {get;}
+        public readonly int Trials;
 
-        public double Success {get;}
+        public readonly double Success;
     }
 }

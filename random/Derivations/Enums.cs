@@ -15,6 +15,11 @@ namespace Z0
     partial class RngX
     {
 
+        /// <summary>
+        /// Produces a stream of sampled enum values
+        /// </summary>
+        /// <param name="random">The source</param>
+        /// <typeparam name="E">The enum type</typeparam>
         public static IEnumerable<E> EnumStream<E>(this IRandomSource random)
             where E : struct, Enum
         {

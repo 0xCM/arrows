@@ -20,7 +20,7 @@ namespace Z0.Mkl
         const string VslDll = "z0-vsl-clib.dll";
 
         /// <summary>
-        /// Generates random numbers uniformly distributed over the interval [a, b).
+        /// Generates random 32-bit integers uniformly distributed over the interval [a, b).
         /// </summary>
         /// <param name="method">Always 0</param>
         /// <param name="stream">An intialized brng stream</param>
@@ -31,9 +31,28 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus viRngUniform(int method, IntPtr stream, int count, ref int values, int a, int b);
 
+
+        /// <summary>
+        /// Generates random 32-bit floating point values uniformly distributed over the interval [a, b).
+        /// </summary>
+        /// <param name="method">Always 0</param>
+        /// <param name="stream">An intialized brng stream</param>
+        /// <param name="count">The number of values to sample</param>
+        /// <param name="values">The sample-receiving buffer</param>
+        /// <param name="a">The inclusive lower bound of the generated values</param>
+        /// <param name="b">The exclusive upper bound of the generated values</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vsRngUniform(int method, IntPtr stream, int count, ref float values, float a, float b);
 
+        /// <summary>
+        /// Generates random 64-bit floating point values uniformly distributed over the interval [a, b).
+        /// </summary>
+        /// <param name="method">Always 0</param>
+        /// <param name="stream">An intialized brng stream</param>
+        /// <param name="count">The number of values to sample</param>
+        /// <param name="values">The sample-receiving buffer</param>
+        /// <param name="a">The inclusive lower bound of the generated values</param>
+        /// <param name="b">The exclusive upper bound of the generated values</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vdRngUniform(int method, IntPtr stream, int count, ref double values, double a, double b);
 
@@ -199,23 +218,27 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vdRngLaplace(int method, IntPtr stream, int count, ref double values, double mean, double beta);
 
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vsRngRayleigh(int method, IntPtr stream, int count, ref float values, float a, float b);
+
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vdRngRayleigh(int method, IntPtr stream, int count, ref double values, double a, double b);
+
+        
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vsRngWeibull(int method, IntPtr stream, int count, ref float values, float a, float b, float c);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vdRngWeibull(int method, IntPtr stream, int count, ref double values, double a, double b, double c);
+
+        
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vsRngLognormal(int method, IntPtr stream, int count, ref float values, float a, float b, float c, float d);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus vdRngLognormal(int method, IntPtr stream, int count, ref double values, double a, double b, double c, double d);
 
     }
 }
 
-
-/*
-
-_Mkl_Api(int,vdRngLaplace,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , double [], const double  , const double  ))
-_Mkl_Api(int,vsRngLaplace,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , float [],  const float  ,  const float   ))
-
-_Mkl_Api(int,vdRngWeibull,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , double [], const double  , const double  , const double  ))
-_Mkl_Api(int,vsRngWeibull,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , float [],  const float  ,  const float  ,  const float   ))
-
-_Mkl_Api(int,vdRngRayleigh,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  ,  double [], const double  , const double  ))
-_Mkl_Api(int,vsRngRayleigh,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  ,  float [],  const float  ,  const float   ))
-
-_Mkl_Api(int,vdRngLognormal,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , double [], const double  , const double  , const double  , const double  ))
-_Mkl_Api(int,vsRngLognormal,(const MKL_INT  , VSLStreamStatePtr  , const MKL_INT  , float [],  const float  ,  const float  ,  const float  ,  const float   ))
-
- */

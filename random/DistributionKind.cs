@@ -11,15 +11,42 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;
+    using Z0.Mkl;
 
-    public abstract class Rng
+    public enum DistributionKind
     {
-        internal Queue<Bit> BitQ {get;}
-            = new Queue<Bit>(64);
+        Uniform,
 
-        internal Queue<byte> ByteQ {get;}
-            = new Queue<byte>(8);
+        UniformRange,
 
-    }    
+        UniformBits,
+
+        Gaussian,
+
+        Bernoulli,
+
+        Cauchy,
+
+        Chi2,
+
+        Exponential,
+
+        Gamma,
+        
+        Geometric,
+
+        Laplace,
+
+        Poisson,
+
+        Rayleigh,
+
+        Weibull,
+
+        Lognormal
+
+
+
+    }
 
 }

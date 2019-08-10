@@ -19,8 +19,8 @@ namespace Z0.Machines.Test
 
         public void Run()
         {
-            var machineCount = Pow2.T10;
-            var spec1 = new PrimalFsmSpec<byte>("Fsm2",128,128,10,20,Pow2.T15);
+            var machineCount = Pow2.T04;
+            var spec1 = new PrimalFsmSpec<ushort>("Fsm2",750,750,100,120,Pow2.T15);
             var stats = spec1.Run(machineCount);
             var counts = stats.Select(x => x.ReceiptCount).ToArray();
             var count = math.sum(counts);

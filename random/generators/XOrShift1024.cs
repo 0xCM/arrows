@@ -13,7 +13,7 @@ namespace Z0
     /// <remarks>
     /// Core algorithms taken from the paper: https://arxiv.org/pdf/1402.6246.pdf
     /// </remarks>
-    public class XOrShift1024 : Rng, IRandomSource, IRandomSource<ulong>
+    public class XOrShift1024 : IRandomSource, IRandomSource<ulong>
     {
         /// <summary>
         /// The jump table of predetermined constants to facilitate an efficient way

@@ -109,6 +109,48 @@ namespace Z0
         public static double Avg(this ReadOnlySpan256<double> src)
             => math.avg(src);
 
+
+        [MethodImpl(Inline)]
+        public static sbyte Avg(this sbyte[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static byte Avg(this byte[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static short Avg(this short[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static ushort Avg(this ushort[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static int Avg(this int[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static uint Avg(this uint[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static long Avg(this long[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static ulong Avg(this ulong[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static float Avg(this float[] src)
+            => math.avg(src);
+
+        [MethodImpl(Inline)]
+        public static double Avg(this double[] src)
+            => math.avg(src);
+
+
     }
 
 }

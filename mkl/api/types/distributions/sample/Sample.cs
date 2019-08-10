@@ -12,59 +12,48 @@ namespace Z0
         
     using static zfunc;
 
-    public ref struct Sample<T>
+    public readonly struct Sample<T>
         where T : struct
     {
-        Span<T> data;
+        readonly Memory<T> data;
 
         /// <summary>
         /// The number of observations that comprise the sample
         /// </summary>
         public readonly int Count;
 
+        /// <summary>
+        /// The sample dimensionality
+        /// </summary>
         public readonly int Dim;
 
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Sample<T> src)
-            => src.data;
+            => src.data.Span;
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Sample<T> src)
-            => src.data;
+            => src.data.Span;
 
         [MethodImpl(Inline)]
         public static bool operator == (Sample<T> lhs, Sample<T> rhs)
-            => lhs.data == rhs.data;
+            => lhs.data.Span == rhs.data.Span;
 
         [MethodImpl(Inline)]
         public static bool operator != (Sample<T> lhs, Sample<T> rhs)
-            => lhs.data != rhs.data;        
+            => lhs.data.Span != rhs.data.Span;
         
         [MethodImpl(Inline)]
         public static Sample<T> Alloc(int dim, int count)
             => new Sample<T>(new T[count * dim], dim);
     
         [MethodImpl(Inline)]
-        public static Sample<T> Load(Span<T> src, int dim,  int offset = 0)
-            => offset != 0 ? new Sample<T>(src.Slice(offset), dim) : new Sample<T>(src, dim);
-
-        [MethodImpl(Inline)]
         public static Sample<T> Load(Memory<T> src, int dim)
-            => new Sample<T>(src.Span,dim);
+            => new Sample<T>(src,dim);
 
         [MethodImpl(Inline)]
-        public static unsafe Sample<T> Load(int dim, void* src, int srcLen)        
-            => new Sample<T>(dim, src, srcLen);        
-
-
-        [MethodImpl(Inline)]
-        unsafe Sample(int dim, void* src, int length)    
-        {
-            this.Dim = dim;
-            this.Count = Math.DivRem(length, dim, out int remainder);    
-            require(remainder == 0);
-            data = new Span<T>(src, length);  
-        }
+        public static Sample<T> Load(T[] src, int dim)
+            => new Sample<T>(src,dim);
 
         [MethodImpl(Inline)]
         Sample(T[] src, int dim)
@@ -76,27 +65,18 @@ namespace Z0
         }
                 
         [MethodImpl(Inline)]
-        Sample(ReadOnlySpan<T> src, int dim)
+        Sample(Memory<T> src, int dim)
         {
             this.Dim = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
             require(remainder == 0);
-            data = src.ToSpan();
-        }
-
-        [MethodImpl(Inline)]
-        Sample(Span<T> src, int dim)
-        {
-            this.Dim = dim;
-            this.Count = Math.DivRem(src.Length, dim, out int remainder);    
-            require(remainder == 0);
-            this.data = src;
+            data = src;
         }
 
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
-            get => ref data[ix];
+            get => ref data.Span[ix];
         }
 
         [MethodImpl(Inline)]
@@ -126,11 +106,11 @@ namespace Z0
             
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
-            => data;
+            => data.Span;
 
         [MethodImpl(Inline)]
         public Span<T> ToReadOnlySpan()
-            => data;
+            => data.Span;
 
         [MethodImpl(Inline)]
         public T[] ToArray()
@@ -138,31 +118,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public void Fill(T value)
-            => data.Fill(value);
+            => data.Span.Fill(value);
 
         [MethodImpl(Inline)]
         public Span<T>.Enumerator GetEnumerator()
-            => data.GetEnumerator();
+            => data.Span.GetEnumerator();
 
         [MethodImpl(Inline)]
         public ref T GetPinnableReference()
-            => ref data.GetPinnableReference();
+            => ref data.Span.GetPinnableReference();
 
-        [MethodImpl(Inline)]
-        public void CopyTo (Span<T> dst)
-            => data.CopyTo(dst);
-
-        [MethodImpl(Inline)]
-        public bool TryCopyTo (Span<T> dst)
-            => data.TryCopyTo(dst);
-                
-        [MethodImpl(Inline)]
-        public Sample<S> As<S>()                
-            where S : struct
-                => Sample<S>.Load(MemoryMarshal.Cast<T,S>(data),Dim);                    
-
+            
         /// <summary>
-        /// The (non-blocked) data length
+        /// The data length
         /// </summary>
         public int Length 
         {

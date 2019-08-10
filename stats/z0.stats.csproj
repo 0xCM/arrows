@@ -13,6 +13,8 @@
     <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
     <ProjectReference Include="..\mkl\z0.mkl.csproj" />
+    <ProjectReference Include="..\matrix\src\z0.matrix.csproj" />    
+
   </ItemGroup>
 
 </Project>

@@ -219,6 +219,16 @@ namespace Z0
             return dst;
         }
 
+        static T[] Convert<S,T>(this S[] src)
+            where S : struct
+            where T : struct
+        {
+            var dst = new T[src.Length];
+            for(var i=0; i<src.Length; i++)
+                convert(src[i], out dst[i]);
+            return dst;
+        }
+
         static Span<T> Convert<S,T>(this Span<S> src)
             where S : struct
             where T : struct
@@ -321,6 +331,56 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> Convert<T>(this Span<double> src)
+            where T : struct
+                => src.Convert<double,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this sbyte[] src)
+            where T : struct
+                => src.Convert<sbyte,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this byte[] src)
+            where T : struct
+                => src.Convert<byte,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this short[] src)
+            where T : struct
+                => src.Convert<short,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this ushort[] src)
+            where T : struct
+                => src.Convert<ushort,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this int[] src)
+            where T : struct
+                => src.Convert<int,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this uint[] src)
+            where T : struct
+                => src.Convert<uint,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this long[] src)
+            where T : struct
+                => src.Convert<long,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this ulong[] src)
+            where T : struct
+                => src.Convert<ulong,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this float[] src)
+            where T : struct
+                => src.Convert<float,T>();
+
+        [MethodImpl(Inline)]
+        public static T[] Convert<T>(this double[] src)
             where T : struct
                 => src.Convert<double,T>();
 

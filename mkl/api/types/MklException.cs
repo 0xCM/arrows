@@ -27,6 +27,16 @@ namespace Z0.Mkl
                 => new MklException(msg,caller,file,line);
 
         /// <summary>
+        /// Creates an MKL-specific exception
+        /// </summary>
+        /// <param name="msg">The message text</param>
+        /// <param name="caller">The calling member</param>
+        /// <param name="file">The file in which invocation occurs</param>
+        /// <param name="line">The file line number of invocation</param>
+        public static MklException Define(int retcode, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+                => Define($"Call failed with return code {retcode}", caller, file,line);
+
+        /// <summary>
         /// Creates and throws MKL-specific exception
         /// </summary>
         /// <param name="msg">The message text</param>
@@ -43,8 +53,8 @@ namespace Z0.Mkl
         /// <param name="caller">The calling member</param>
         /// <param name="file">The file in which invocation occurs</param>
         /// <param name="line">The file line number of invocation</param>
-        public static void Throw(object retcode, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
-            => throw Define($"Call failed with return code {retcode}", caller, file,line);
+        public static void Throw(int retcode, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+            => throw Define(retcode, caller, file,line);
 
         MklException(string msg,string caller, string file, int? line)        
             : base(msg,caller,file,line)

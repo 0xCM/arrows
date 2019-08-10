@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static math;
 
-    public abstract class Pcg<S> : Rng
+    public abstract class Pcg<S>
         where S : struct
     {
         protected const ulong DefaultMultiplier64 = 6364136223846793005;
@@ -56,16 +56,5 @@ namespace Z0
             => $"{State}[{Index}]";
     }
 
-    public static class PcgX
-    {
-
-        public static Span<ulong> Next(this Span<Pcg32> generators)
-        {
-            var dst = span<ulong>(generators.Length);
-            for(var i=0; i<generators.Length; i++)
-                dst[i] = generators[i].Next();
-            return dst;
-        }
-    }
 
 }

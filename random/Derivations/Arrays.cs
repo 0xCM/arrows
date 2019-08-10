@@ -13,8 +13,7 @@ namespace Z0
     using static As;
 
     public static partial class RngX
-    {
-            
+    {            
         public static T[] Array<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Stream(domain,filter).TakeArray(length);

@@ -14,22 +14,24 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Defines a square matrix of natural dimension
+    /// Defines a primal matrix of natural dimensions
     /// </summary>
-    public ref struct Matrix<N,T>
+    /// <typeparam name="M">The row count type</typeparam>
+    /// <typeparam name="N">The column count type</typeparam>
+    /// <typeparam name="T">The primal type</typeparam>
+    public ref struct Matrix<M,N,T>
+        where M : ITypeNat, new()
         where N : ITypeNat, new()
         where T : struct    
     {        
         Span256<T> data;
 
-        Vector<N,T> colbuffer;
-
-        public static readonly Dim<N,N> Dim = default;        
+        public static readonly Dim<M,N> Dim = default;        
 
         /// <summary>
         /// The number of rows in the structure
         /// </summary>
-        public static readonly int RowCount = nati<N>();
+        public static readonly int RowCount = nati<M>();
 
         /// <summary>
         /// The number of columns in the structure
@@ -52,48 +54,30 @@ namespace Z0
         public static readonly int CellCount = RowLenth * ColLength;
 
         /// <summary>
-        /// The size, in bytes, of each cell
-        /// </summary>
-        public static readonly ByteSize CellSize = Span256<T>.CellSize;
-
-        static readonly int AlignedRowLength = Span256<T>.BlockLength;
-
-        /// <summary>
         /// The Row dimension representative
         /// </summary>
-        public static N RowRep = default;
+        public static M RowRep = default;
 
         /// <summary>
         /// The Column dimension representative
         /// </summary>
         public static N ColRep = default;
 
-        [MethodImpl(Inline)]
-        public static implicit operator Matrix<N,T>(Span256<T> src)
-            => new Matrix<N,T>(src);
+        public static implicit operator Matrix<M,N,T>(Span256<T> src)
+            => new Matrix<M,N,T>(src);
 
-        [MethodImpl(Inline)]
-        public static implicit operator Matrix<N,T>(Matrix<N,N,T> src)
-            => new Matrix<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator Matrix<N,N,T>(Matrix<N,T> src)
-            => src.ToRectantular();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Span<N,T>(Matrix<N,T> src)
+        public static implicit operator Span<M,N,T>(Matrix<M,N,T> src)
             => src.Natural;
 
-        [MethodImpl(Inline)]
-        public static implicit operator Span256<T>(Matrix<N,T> src)
+        public static implicit operator Span256<T>(Matrix<M,N,T> src)
             => src.Unsized;
 
         [MethodImpl(Inline)]
-        public static bool operator == (Matrix<N,T> lhs, in Matrix<N,T> rhs) 
+        public static bool operator == (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
             => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (Matrix<N,T> lhs, in Matrix<N,T> rhs) 
+        public static bool operator != (Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
@@ -101,16 +85,8 @@ namespace Z0
         {
             require(src.Length >= CellCount);
             data = src;
-            colbuffer = Vector.Alloc<N,T>();
         }
 
-        [MethodImpl(Inline)]
-        Matrix(Span256<T> src, Vector<N,T> colbuffer)
-        {
-            this.data = src;
-            this.colbuffer = colbuffer;
-        }
-        
         [MethodImpl(Inline)]        
         public ref T Cell(int r, int c)
             => ref data[RowLenth*r + c];
@@ -128,15 +104,25 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Span<N,T> Row(int row)
+        public Vector<N,T> Row(int row)
         {
             if(row < 0 || row >= RowCount)
                 throw Errors.OutOfRange(row, 0, RowCount - 1);
-                        
-            return NatSpan.Load(data.Slice(row * RowLenth, RowLenth), ColRep);
+            
+            return Vector.Load<N,T>(data.Slice(row * RowLenth, RowLenth));
         }
 
-        public ref Vector<N,T> Col(int col, ref Vector<N,T> dst)
+        [MethodImpl(Inline)]
+        public ref Vector<N,T> Row(int row, ref Vector<N,T> dst)
+        {
+            if(row < 0 || row >= RowCount)
+                throw Errors.OutOfRange(row, 0, RowCount - 1);
+             var src = data.Slice(row * RowLenth, RowLenth);
+             src.CopyTo(dst.Unsized);
+             return ref dst;
+        }
+
+        public ref Vector<M,T> Col(int col, ref Vector<M,T> dst)
         {
             if(col < 0 || col >= ColCount)
                 throw Errors.OutOfRange(col, 0, ColCount - 1);
@@ -147,8 +133,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,T> Col(int col)
-            => Col(col, ref colbuffer);            
+        public Vector<M,T> Col(int col)
+        {
+            var alloc = Vector.Alloc<M,T>();
+            return Col(col, ref alloc);
+        }
 
         /// <summary>
         /// Provides access to the underlying data as a linear unblocked span
@@ -171,7 +160,7 @@ namespace Z0
         /// <summary>
         /// Provides access to the underlying data as a span of natural dimensions
         /// </summary>
-        public Span<N,T> Natural
+        public Span<M,N,T> Natural
         {
             [MethodImpl(Inline)]
             get => data;
@@ -199,7 +188,7 @@ namespace Z0
             }
         }
 
-        public bool Equals(Matrix<N,T> rhs)
+        public bool Equals(Matrix<M,N,T> rhs)
         {
             for(var r = 0; r < (int)RowCount; r ++)
             for(var c = 0; c < (int)ColCount; c ++)
@@ -207,22 +196,6 @@ namespace Z0
                     return false;
             return true;
         }
-
-        [MethodImpl(Inline)]
-        public Matrix<N,U> As<U>()
-            where U : struct
-                => new Matrix<N,U>(data.As<U>(), colbuffer.As<U>());
-        
-        [MethodImpl(Inline)]
-        public Matrix<N,N,T> ToRectantular()
-            => new Matrix<N,N,T>(this.data);
-
-        /// <summary>
-        /// Creates a copy of the matrix
-        /// </summary>
-        [MethodImpl(Inline)]
-        public Matrix<N,T> Replicate()
-            => new Matrix<N,T>(data.ReadOnly().Replicate());
 
         public override bool Equals(object other)
             => throw new NotSupportedException();
