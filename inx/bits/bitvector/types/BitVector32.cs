@@ -77,7 +77,6 @@ namespace Z0
         public static bool operator !=(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.NEq(rhs);
 
-
         [MethodImpl(Inline)]
         public static BitVector32 operator +(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.data ^ rhs.data;
@@ -86,16 +85,13 @@ namespace Z0
         public static BitVector32 operator *(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.data & rhs.data;
 
-
         [MethodImpl(Inline)]
         public static BitVector32 operator -(in BitVector32 src)
             => ~src.data;
 
-
         [MethodImpl(Inline)]
         public static BitVector32 operator |(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.data | rhs.data;
-
 
         public Bit this[byte pos]
         {

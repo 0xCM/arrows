@@ -9,7 +9,7 @@ namespace Z0.Mkl
     using System.Runtime.CompilerServices;
     
 	using static zfunc;
-    using static MklImports;
+    using static MklCommon;
 
     partial class VSL
     {        

@@ -8,7 +8,7 @@ namespace Z0
 
     using static zfunc;
 
-    public interface IRule 
+    public interface IFunctionRule 
     {
         string RuleName {get;}
 
@@ -22,14 +22,13 @@ namespace Z0
     /// <typeparam name="B">The function codomain</typeparam>
     /// <remarks>The only difference between a rule and a function is 
     /// that a rule is presented as structure</remarks>
-    public interface IRule<in A, out B> : IRule
+    public interface IFunctionRule<in A, out B> : IFunctionRule
     {
         /// <summary>
-        /// Carries an element of the domain to an element of the codomain as
-        /// specified by the function definition
+        /// Carries an element of the domain to an element of the codomain as specified by the function definition
         /// </summary>
         /// <param name="src">An element in the domain</param>
-        B apply(A src); 
+        B Apply(A src); 
 
     }
 
@@ -41,37 +40,34 @@ namespace Z0
     /// <typeparam name="C">The function codomain</typeparam>
     /// <remarks>The only difference between a rule and a function is 
     /// that a rule is presented as structure</remarks>
-    public interface IRule<in A, in B, out C> : IRule
+    public interface IFunctionRule<in A, in B, out C> : IFunctionRule
     {
         /// <summary>
-        /// Carries an element of the domain to an element of the codomain as
-        /// specified by the function definition
+        /// Carries an element of the domain to an element of the codomain as specified by the function definition
         /// </summary>
         /// <param name="src">An element in the domain</param>
-        C apply(A a, B b); 
-
+        C Apply(A a, B b); 
     }
 
-
     /// <summary>
-    /// Characterizes a function realization
+    /// Characterizes a function realization as determined by a set of function rules
     /// </summary>
     /// <typeparam name="A">The function domain</typeparam>
     /// <typeparam name="B">The function codomain</typeparam>
-    public interface IRuled<F,in A, out B> : IRule<A,B>
-        where F : IRuled<F,A,B>, new()
+    public interface IRuledFunction<F,in A, out B> : IFunctionRule<A,B>
+        where F : IRuledFunction<F,A,B>, new()
     {
 
     }   
 
     /// <summary>
-    /// Characterizes a function realization
+    /// Characterizes a function realization as determined by a set of function rules
     /// </summary>
     /// <typeparam name="A">The left function domain</typeparam>
     /// <typeparam name="B">The right function domain</typeparam>
     /// <typeparam name="C">The function codomain</typeparam>
-    public interface IRuled<F, in A, in B, out C> : IRule<A,B,C>
-        where F : IRuled<F,A,B,C>, new()
+    public interface IRuledFunction<F, in A, in B, out C> : IFunctionRule<A,B,C>
+        where F : IRuledFunction<F,A,B,C>, new()
     {
 
     }         

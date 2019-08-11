@@ -10,10 +10,6 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
-    public interface IDistributionSpec
-    {
-        
-    }
 
     public interface IDistribution<T>
         where T : struct

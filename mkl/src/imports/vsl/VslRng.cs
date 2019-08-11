@@ -12,7 +12,7 @@ namespace Z0.Mkl
     using System.Security;
 
 	using static zfunc;
-    using static MklImports;
+    using static MklCommon;
     
     [SuppressUnmanagedCodeSecurity]
     static partial class VSL

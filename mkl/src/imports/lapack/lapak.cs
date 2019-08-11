@@ -14,16 +14,15 @@ namespace Z0.Mkl
     using System.Runtime.InteropServices;
 
     using static zfunc;
-    using static MklImports;
+    using static MklCommon;
 
 
-	[SuppressUnmanagedCodeSecurity]
+    [SuppressUnmanagedCodeSecurity]
     public static partial class LAPACK
     {
         const string MklDll = "z0-lapacke-clib.dll";
 
 
-        #if _Ignore
 
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern float LAPACKE_dlamch(char cmach);
@@ -16847,6 +16846,7 @@ namespace Z0.Mkl
                                                 ref int ipiv2,
                                                 ref ComplexF64 b, 
                                                 int ldb);
+        #if _Ignore
 
          [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern int LAPACKE_dgees(MatrixLayout layout, char jobvs, char sort,
@@ -17206,8 +17206,7 @@ namespace Z0.Mkl
                                         int liwork, ref int bwork);
 
 
-        #endif
-
+#endif
     }
 
 }

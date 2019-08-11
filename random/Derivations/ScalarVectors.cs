@@ -33,6 +33,11 @@ namespace Z0
             
             return dst;
         }
+
+        public static Vector<T> GenericVector<S,T>(this IRandomSource random, int len, Interval<S>? domain = null, T rep = default)        
+            where S: struct
+            where T : struct
+                => random.GenericVector<S>(len,domain).Convert<T>();
         
         /// <summary>
         /// Populates a vector of natural length
@@ -75,6 +80,12 @@ namespace Z0
             random.Fill(domain, ref dst);
             return dst;
         }
+
+        public static Vector<N,T> NatVector<N,S,T>(this IRandomSource random, Interval<S> domain, N n = default, T rep = default)
+            where T : struct
+            where S : struct
+            where N : ITypeNat, new()
+                => random.NatVector<N,S>(domain).Convert<T>();
 
         /// <summary>
         /// Allocates and populates a vector of natural length

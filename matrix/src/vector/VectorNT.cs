@@ -79,7 +79,6 @@ namespace Z0
         public static implicit operator Vector<T>(Vector<N,T> src)
             => src.Denaturalize();
 
-
         [MethodImpl(Inline)]   
         public static implicit operator ReadOnlySpan256<T>(Vector<N,T> src)
             => src.data;
@@ -91,7 +90,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool operator != (Vector<N,T> lhs, in Vector<N,T> rhs) 
             => !lhs.Equals(rhs);
-
 
         [MethodImpl(Inline)]
         Vector(ref T src)
@@ -164,6 +162,11 @@ namespace Z0
             Unsized.CopyTo(dst.Unsized);
             return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public Vector<N,U> Convert<U>()
+            where U : struct
+               => new Vector<N,U>(convert<T,U>(data));
 
         public Vector<N,T> Replicate(bool structureOnly = false)
             => new Vector<N,T>(data.Replicate(structureOnly));

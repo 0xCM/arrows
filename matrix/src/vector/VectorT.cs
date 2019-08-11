@@ -53,18 +53,6 @@ namespace Z0
         public static bool operator != (Vector<T> lhs, in Vector<T> rhs) 
             => !lhs.Equals(rhs);
 
-        [MethodImpl(Inline)]
-        public Span<T> Extract(bool copy = false)
-        {
-            if(copy)
-            {
-                var dst = span<T>(data.Length);
-                data.CopyTo(dst);
-                return dst;
-            }
-            else
-                return data;
-        }
 
         public ref T this[int i]
         {
@@ -104,6 +92,11 @@ namespace Z0
             Unblocked.CopyTo(dst.Unblocked);
             return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public Vector<U> Convert<U>()
+            where U : struct
+               => new Vector<U>(convert<T,U>(data));
 
         public Vector<T> Replicate(bool structureOnly = false)
             => new Vector<T>(data.Replicate(structureOnly));

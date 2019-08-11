@@ -11,7 +11,7 @@ namespace Z0.Mkl
     using System.Runtime.InteropServices;
  
     using static zfunc;
-    using static MklImports;
+    using static MklCommon;
 
     partial class CBLAS
     {

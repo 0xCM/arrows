@@ -39,6 +39,60 @@ partial class zfunc
         where S : struct
            => Converter.convert(src, out T dst);  
 
+    /// <summary>
+    /// Converts a blocked span of one value type to a blocked span of another value type
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Span256<T> convert<S,T>(Span256<S> src)
+        where T : struct
+        where S : struct
+    {
+        var dst = Span256.Alloc<T>(src.Length);
+        for(var i=0; i< src.Length; i++)
+            dst[i] = convert<S,T>(src[i]);
+        return dst;
+    }
+
+    /// <summary>
+    /// Converts a span of one value type to a span of another value type
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<S,T>(Span<S> src)
+        where T : struct
+        where S : struct
+    {
+        Span<T> dst = new T[src.Length];
+        for(var i=0; i< src.Length; i++)
+            dst[i] = convert<S,T>(src[i]);
+        return dst;
+    }
+
+
+    /// <summary>
+    /// Converts a natural span of one value type to a natural span of another value type
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<N,S,T>(Span<N,S> src)
+        where N : ITypeNat, new()
+        where T : struct
+        where S : struct
+    {
+        Span<T> dst = new T[src.Length];
+        for(var i=0; i< src.Length; i++)
+            dst[i] = convert<S,T>(src[i]);
+        return dst;
+    }
+
+
     [MethodImpl(Inline)]   
     public static Span<T> convert<S,T>(ReadOnlySpan<S> src)
         where T : struct

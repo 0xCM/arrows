@@ -205,24 +205,10 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Converts the scalars in the source matrix and allocates a new matrix 
-        /// to contain the result
-        /// </summary>
-        /// <typeparam name="U">The target scalar type</typeparam>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public Matrix<M,N,U> Convert<U>()
             where U : struct
-        {
-            var dstM = Matrix.Alloc<M,N,U>();
-            var dst = dstM.Unblocked;
-            var src = this.Unblocked;
-            for(var i=0; i< dstM.Unblocked.Length; i++)
-            {
-                dst[i] = convert<T,U>(src[i]);
-            }
-            return dstM;
-        }
+               => new Matrix<M,N,U>(convert<T,U>(data));
 
 
         public override bool Equals(object other)

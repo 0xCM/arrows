@@ -1,0 +1,1 @@
+nmake libintel64 export=lapacke.list interface=ilp64 name=z0-lapacke-clib

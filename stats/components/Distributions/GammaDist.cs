@@ -24,7 +24,7 @@ namespace Z0
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SampleBeta(Spec.Shape, Spec.Scale)
+            => from s in Random.SampleGamma(Spec.Shape, Spec.Scale)
                 select convert<double,T>(s);            
     }
 }

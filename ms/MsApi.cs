@@ -114,24 +114,6 @@ namespace Z0
                 yield return dist.Sample(random);
         }
 
-        /// <summary>
-        /// Draws, without replacement, a specified number of samples from a source comprising a specified number of items
-        /// </summary>
-        /// <param name="random">A uniform random source</param>
-        /// <param name="sourceCount">The number of source items</param>
-        /// <param name="samples">The number of samples to take</param>
-        internal static IEnumerable<int> SampleWithoutReplacement(this IRandomSource random, int sourceCount, int samples)
-            => Rand.SampleWithoutReplacement(sourceCount, samples, random);
-
-        /// <summary>
-        /// Draws, without replacement, a specified number of items from a list
-        /// </summary>
-        /// <param name="random">A uniform random source</param>
-        /// <param name="src">The source list</param>
-        /// <param name="samples">The number of samples to draw</param>
-        /// <typeparam name="T">The list item type</typeparam>
-        internal static HashSet<T> SampleWithoutReplacement<T>(this IRandomSource random, IReadOnlyList<T> src, int samples)
-            => Rand.SampleWithoutReplacement(src,samples, random);        
         
     }
 

@@ -789,7 +789,6 @@ namespace Z0
 
         #endregion            
 
-
         # region helpers
  
         [MethodImpl(Inline)]

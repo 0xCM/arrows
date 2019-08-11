@@ -133,44 +133,13 @@ namespace Z0
             return src.StepwisePartitionPoints(step);            
         }
 
-    
         public static Span<Interval<T>> Partition<T>(this Interval<T> src, int count)
             where T : struct
         {
             var step = gmath.div(gmath.sub(src.Right, src.Left), convert<T>(count));
             return src.StepwisePartition(step);
         }
-        // {
-        //     var points = src.PartitionPoints(count);
-        //     var partlen = points.Length;
-        //     var partition = span<Interval<T>>(partlen);
-        //     for(var i = 1; i< partlen; i++)
-        //     {
-        //         var partix = i - 1;
-        //         var left = points[i - 1];
-        //         var right = points[i];
-        //         if(i == 0)
-        //         {
-        //             if(src.Open || src.LeftOpen)
-        //                 partition[partix] = open(left, right);
-        //             else
-        //                 partition[partix] = leftclosed(left, right);
-        //         }                    
-        //         else if(i == partlen - 1)
-        //         {
-        //             if(src.Open || src.RightOpen)
-        //                 partition[partix] = leftclosed(left, right);
-        //             else
-        //                 partition[partix] = closed(left, right);    
 
-        //         }
-        //         else
-        //             partition[partix] = leftclosed(left, right);
-                    
-        //     }
-        //     return partition.Slice(0,count);
-        // } 
-        
         public static Interval<T> Add<T>(this ref Interval<T> lhs, Interval<T> rhs)
             where T : struct
             => lhs.WithEndpoints(
@@ -186,6 +155,4 @@ namespace Z0
                     );
 
     }
-
-
 }

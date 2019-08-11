@@ -11,14 +11,14 @@ namespace Z0.Mkl
     using System.Runtime.InteropServices;
  
     using static zfunc;
-    using static MklImports;
+    using static MklCommon;
 
     partial class CBLAS
     {
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_sgemv(MatrixLayout Layout,
-                        CBLAS_TRANSPOSE TransA, int m, int n,
+                        MatrixTranspose TransA, int m, int n,
                         float alpha, ref float A, int lda,
                         ref float X, int incX, float beta,
                         ref float Y, int incY);
@@ -40,19 +40,19 @@ namespace Z0.Mkl
         /// <param name="y">A vector of dimension m</param>
         /// <param name="incY"></param>
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgemv(MatrixLayout Layout, CBLAS_TRANSPOSE TransA, int m, int n,
+        public static extern void cblas_dgemv(MatrixLayout Layout, MatrixTranspose TransA, int m, int n,
                 double alpha, ref double A, int lda, ref double x, int incX, double beta, ref double y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_cgemv(MatrixLayout Layout,
-                        CBLAS_TRANSPOSE TransA, int m, int n,
+                        MatrixTranspose TransA, int m, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte X, int incX, ref byte beta,
                         ref byte Y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void cblas_zgemv(MatrixLayout Layout,
-                        CBLAS_TRANSPOSE TransA, int m, int n,
+                        MatrixTranspose TransA, int m, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte X, int incX, ref byte beta,
                         ref byte Y, int incY);

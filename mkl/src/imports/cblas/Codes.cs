@@ -13,11 +13,11 @@ namespace Z0.Mkl
 
     }
 
-    public enum CBLAS_TRANSPOSE 
+    public enum MatrixTranspose 
     {
-        CblasNoTrans=111, /* trans='N' */
-        CblasTrans=112, /* trans='T' */
-        CblasConjTrans=113 /* trans='C' */
+        None = 111, /* trans='N' */
+        Transpose = 112, /* trans='T' */
+        Conjugate = 113 /* trans='C' */
     };
 
     public enum CBLAS_UPLO 

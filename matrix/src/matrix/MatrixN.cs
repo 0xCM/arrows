@@ -240,6 +240,11 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public Matrix<N,U> Convert<U>()
+            where U : struct
+               => new Matrix<N,U>(convert<T,U>(data));
+
         /// <summary>
         /// Creates a copy of the matrix
         /// </summary>

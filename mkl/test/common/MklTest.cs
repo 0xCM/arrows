@@ -20,12 +20,12 @@ namespace Z0.Mkl.Test
         const int DefaultVectorLength = Pow2.T08;
 
         [MethodImpl(Inline)]
-        protected Vector<T> RandomVector<T>(int? len = null)
+        protected Vector<T> RVec<T>(int? len = null, T rep = default)
             where T : struct
                 => Random.GenericVector<T>(len ?? DefaultVectorLength);
 
         [MethodImpl(Inline)]
-        protected Vector<N,T> RandomVector<N,T>(N len = default, T rep = default)
+        protected Vector<N,T> RVec<N,T>(N len = default, T rep = default)
             where N : ITypeNat, new()
             where T : struct
                 => Random.NatVector<N,T>();
@@ -40,7 +40,7 @@ namespace Z0.Mkl.Test
         /// <typeparam name="N">The column count type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        protected Matrix<M,N,T> RandomMatrix<M,N,T>(Interval<T>? domain = null, M m = default, N n = default)
+        protected Matrix<M,N,T> RMat<M,N,T>(Interval<T>? domain = null, M m = default, N n = default)
             where T : struct
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -54,10 +54,64 @@ namespace Z0.Mkl.Test
         /// <typeparam name="N">The order type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        protected Matrix<N,T> RandomMatrix<N,T>(Interval<T>? domain = null, N n = default)
+        protected Matrix<N,T> RMat<N,T>(Interval<T>? domain = null, N n = default)
             where T : struct
             where N : ITypeNat, new()
                 => Random.Matrix<N,T>(domain);
+
+        [MethodImpl(Inline)]
+        protected Vector<float> RVecF32(int len, int? min = null, int? max = null)
+            => Random.GenericVector<int,float>(len, closed(min ?? -25, max ?? 25));
+
+
+        [MethodImpl(Inline)]
+        protected Vector<double> RVecF64(int len, long? min = null, long? max = null)
+            => Random.GenericVector<long,double>(len, closed(min ?? -25L, max ?? 25L));
+
+
+        [MethodImpl(Inline)]
+        protected Vector<float> RVecF32<N>(N len = default, int? min = null, int? max = null)
+            where N : ITypeNat, new()
+                => Random.NatVector<N,int,float>(closed(min ?? -25, max ?? 25));
+
+
+        [MethodImpl(Inline)]
+        protected Vector<double> RVecF64<N>(N len = default, long? min = null, long? max = null)
+            where N : ITypeNat, new()
+                => Random.NatVector<N,long,double>(closed(min ?? -25L, max ?? 25L));
+
+
+        [MethodImpl(Inline)]
+        protected Matrix<N,float> RMatF32<N,S,T>(N n = default, int? min = null, int? max = null)
+            where T : struct
+            where S : struct
+            where N : ITypeNat, new()
+                => Random.Matrix<N,int, float>(closed(min ?? -25, max ?? 25));
+
+        [MethodImpl(Inline)]
+        protected Matrix<N,double> RMatF64<N,S,T>(N n = default, long? min = null, long? max = null)
+            where T : struct
+            where S : struct
+            where N : ITypeNat, new()
+                => Random.Matrix<N,long, double>(closed(min ?? -25L, max ?? 25L));
+
+
+        [MethodImpl(Inline)]
+        protected Matrix<M,N,float> RMatF32<M,N,S,T>(N n = default, int? min = null, int? max = null)
+            where T : struct
+            where S : struct
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+                => Random.Matrix<M,N,int, float>(closed(min ?? -25, max ?? 25));
+
+
+        [MethodImpl(Inline)]
+        protected Matrix<M,N,double> RMatF64<M,N,S,T>(N n = default, long? min = null, long? max = null)
+            where T : struct
+            where S : struct
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+                => Random.Matrix<M,N,long, double>(closed(min ?? -25L, max ?? 25L));
 
     }
 
