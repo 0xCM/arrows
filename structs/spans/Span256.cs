@@ -51,7 +51,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan256<T> (Span256<T> src)
-            => Load(src);
+            => ReadOnlySpan256<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static bool operator == (Span256<T> lhs, Span256<T> rhs)
@@ -81,16 +81,6 @@ namespace Z0
             return new Span256<T>(src);
         }
 
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> LoadAligned(ReadOnlySpan<T> src, int offset = 0)
-        {
-            require(Aligned(src.Length - offset));
-            return ReadOnlySpan256<T>.Load(src, offset);
-        }
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> Load(Span256<T> src)
-            => ReadOnlySpan256<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span256<T> LoadAligned(Span<T> src, int offset = 0)
@@ -119,11 +109,6 @@ namespace Z0
             data = src;
         }
                 
-        [MethodImpl(Inline)]
-        Span256(ReadOnlySpan<T> src)
-        {
-            data = src.ToArray();
-        }
 
         [MethodImpl(Inline)]
         Span256(Span<T> src)
@@ -171,7 +156,7 @@ namespace Z0
             
         [MethodImpl(Inline)]
         public Span256<T> Blocks(int blockIndex, int blockCount)
-            => Span256.LoadAligned(Slice(blockIndex * BlockLength, blockCount * BlockLength));
+            => Span256<T>.LoadAligned(Slice(blockIndex * BlockLength, blockCount * BlockLength));
             
         /// <summary>
         /// Presents the allocated data as a blocked read-only span

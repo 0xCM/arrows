@@ -6,10 +6,10 @@ namespace Z0.Mkl
 {
     using System;
 
-    public enum CBLAS_LAYOUT 
+    public enum MatrixLayout 
     {
-        CblasRowMajor=101, /* row-major arrays */
-        CblasColMajor=102 /* column-major arrays */
+        RowMajor=101, /* row-major arrays */
+        ColMajor=102 /* column-major arrays */
 
     }
 

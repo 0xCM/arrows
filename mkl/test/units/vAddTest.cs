@@ -12,24 +12,14 @@ namespace Z0.Mkl.Test
     
     using Z0.Test;
 
-    public abstract class MklTest<T> : UnitTest<T>
-        where T : MklTest<T>
-    {
-
-        const int DefaultVectorLength = Pow2.T08;
-
-        protected Vector<V> GenericVector<V>(int? len = null)
-            where V : struct
-                => Random.GenericVector<V>(len ?? DefaultVectorLength);
-    }
 
     public class VAddTest : MklTest<VAddTest>
     {
 
         public void vaddF32()
         {
-            var lhs = GenericVector<float>();
-            var rhs = GenericVector<float>();
+            var lhs = RandomVector<float>();
+            var rhs = RandomVector<float>();
             var dst1 = Vector.Alloc<float>(lhs.Length);
             mkl.add(lhs,rhs, ref dst1);
             
@@ -40,8 +30,8 @@ namespace Z0.Mkl.Test
 
         public void vaddF64()
         {
-            var lhs = GenericVector<double>();
-            var rhs = GenericVector<double>();
+            var lhs = RandomVector<double>();
+            var rhs = RandomVector<double>();
             var dst1 = Vector.Alloc<double>(lhs.Length);
             mkl.add(lhs,rhs,ref dst1);
             
@@ -53,8 +43,8 @@ namespace Z0.Mkl.Test
 
         OpTimePair vaddF32Perf(int samples, long cycles)
         {
-            var lhs1 = GenericVector<float>(samples);
-            var rhs1 = GenericVector<float>(samples);
+            var lhs1 = RandomVector<float>(samples);
+            var rhs1 = RandomVector<float>(samples);
             var dst1 = Vector.Alloc<float>(samples);
 
             var lhs2 = lhs1.Replicate();
@@ -78,8 +68,8 @@ namespace Z0.Mkl.Test
 
         OpTimePair vaddF64Perf(int samples, long cycles)
         {
-            var lhs1 = GenericVector<double>(samples);
-            var rhs1 = GenericVector<double>(samples);
+            var lhs1 = RandomVector<double>(samples);
+            var rhs1 = RandomVector<double>(samples);
             var dst1 = Vector.Alloc<double>(samples);
 
 

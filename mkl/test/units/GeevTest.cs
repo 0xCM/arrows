@@ -22,13 +22,6 @@ namespace Z0.Mkl.Test
             var eigen = mkl.geev<N5>(A);
             Claim.eq(5,eigen.Values.Length);
             
-
-            // Trace($"Computed {eigen.Values.Length} eigenvalues");
-            // for(var i=0; i< eigen.Values.Length; i++)
-            //     Trace(appMsg(eigen.Values[i], SeverityLevel.Babble));
-
-
-            
             
         }
 

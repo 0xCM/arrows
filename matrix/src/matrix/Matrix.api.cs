@@ -9,7 +9,6 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Text;
 
     using static nfunc;
     using static zfunc;
@@ -30,7 +29,7 @@ namespace Z0
         public static Matrix<N,T> Alloc<N,T>(N n = default, T exemplar = default)
             where N : ITypeNat, new()
             where T : struct
-                => Span256.AllocUnaligned<N,N,T>(); 
+                => Span256.Alloc<N,N,T>(); 
 
         /// <summary>
         /// Allocates a matrix of natual dimensions
@@ -46,7 +45,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => Span256.AllocUnaligned<M,N,T>(); 
+                => Span256.Alloc<M,N,T>(); 
          
         /// <summary>
         /// Loads a matrix of natural dimensions from a blocked span
@@ -75,22 +74,24 @@ namespace Z0
             where T : struct
                 => new Matrix<N, T>(src);
 
+        [MethodImpl(Inline)]
         public static Matrix<M,N,T> Load<M,N,T>(Span<T> src,M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
         {
-            var blocklen = Span256.BlockLength<T>();                        
-            var qr = math.quorem(src.Length, blocklen);                        
-            if(qr.Remainder == 0)
-                return new Matrix<M,N,T>(Span256.LoadAligned(src));
-            else
-            {
-                var blocks = qr.Quotient + 1;
-                var dst = Span256.AllocBlocks<T>(blocks);
-                src.CopyTo(dst);
-                return new Matrix<M,N,T>(dst);
-            }                                            
+            return Span256.Load<M,N,T>(src);
+            // var blocklen = Span256.BlockLength<T>();                        
+            // var qr = math.quorem(src.Length, blocklen);                        
+            // if(qr.Remainder == 0)
+            //     return new Matrix<M,N,T>(Span256.LoadAligned(src));
+            // else
+            // {
+            //     var blocks = qr.Quotient + 1;
+            //     var dst = Span256.AllocBlocks<T>(blocks);
+            //     src.CopyTo(dst);
+            //     return new Matrix<M,N,T>(dst);
+            // }                                            
         }
 
         /// <summary>
@@ -109,6 +110,19 @@ namespace Z0
             src.CopyTo(dst.Unblocked);
             return dst;
         }
+
+        /// <summary>
+        /// Defines a square matrix
+        /// </summary>
+        /// <param name="src">The source data </param>
+        /// <param name="n">The order</param>
+        /// <typeparam name="N">The square dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<N,T> Define<N,T>(N n, params T[] src )
+            where N : ITypeNat, new()
+            where T : struct
+                => Define<N,T>(src,n);
 
         /// <summary>
         /// Defines the canonical filename for a matrix data file
@@ -146,7 +160,7 @@ namespace Z0
             if(n != doc.Rows[0].Cells.Length)
                 return default;
 
-            var dst =  Load<M,N,T>(Span256.AllocUnaligned<M,N,T>());
+            var dst =  Load<M,N,T>(Span256.Alloc<M,N,T>());
             for(var i = 0; i<doc.Rows.Length; i++)
             {
                 ref readonly var row = ref doc[i];

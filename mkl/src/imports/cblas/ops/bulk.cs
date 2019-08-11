@@ -234,144 +234,144 @@ namespace Z0.Mkl
         * Routines with standard 4 prefixes (S, D, C, Z)
         */
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sgbmv(CBLAS_LAYOUT Layout,
+        public static extern void cblas_sgbmv(MatrixLayout Layout,
                         CBLAS_TRANSPOSE TransA, int M, int n,
                         int KL, int KU, float alpha,
                         ref float A, int lda, ref float X,
                         int incX, float beta, ref float Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_strmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_strmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref float A, int lda,
                         ref float X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_stbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_stbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref float A, int lda,
                         ref float X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_stpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_stpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref float Ap, ref float X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_strsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_strsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref float A, int lda, ref float X,
                         int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_stbsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_stbsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref float A, int lda,
                         ref float X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_stpsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_stpsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref float Ap, ref float X, int incX);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgbmv(CBLAS_LAYOUT Layout,
+        public static extern void cblas_dgbmv(MatrixLayout Layout,
                         CBLAS_TRANSPOSE TransA, int M, int n,
                         int KL, int KU, double alpha,
                         ref double A, int lda, ref double X,
                         int incX, double beta, ref double Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtrmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtrmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref double A, int lda,
                         ref double X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref double A, int lda,
                         ref double X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref double Ap, ref double X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtrsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtrsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref double A, int lda, ref double X,
                         int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtbsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtbsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref double A, int lda,
                         ref double X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtpsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dtpsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref double Ap, ref double X, int incX);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgbmv(CBLAS_LAYOUT Layout,
+        public static extern void cblas_cgbmv(MatrixLayout Layout,
                         CBLAS_TRANSPOSE TransA, int M, int n,
                         int KL, int KU, ref byte alpha,
                         ref byte A, int lda, ref byte X,
                         int incX, ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctrmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctrmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte A, int lda,
                         ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref byte A, int lda,
                         ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte Ap, ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctrsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctrsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte A, int lda, ref byte X,
                         int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctbsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctbsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref byte A, int lda,
                         ref byte X, int incX);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctpsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ctpsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte Ap, ref byte X, int incX);
 
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgbmv(CBLAS_LAYOUT Layout,
+        public static extern void cblas_zgbmv(MatrixLayout Layout,
                         CBLAS_TRANSPOSE TransA, int M, int n,
                         int KL, int KU, ref byte alpha,
                         ref byte A, int lda, ref byte X,
                         int incX, ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztrmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztrmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte A, int lda,
                         ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref byte A, int lda,
                         ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte Ap, ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztrsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztrsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte A, int lda, ref byte X,
                         int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztbsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztbsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, int K, ref byte A, int lda,
                         ref byte X, int incX);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztpsv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ztpsv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_DIAG Diag,
                         int n, ref byte Ap, ref byte X, int incX);
 
@@ -380,79 +380,79 @@ namespace Z0.Mkl
         * Routines with S and D prefixes only
         */
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssymv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssymv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float A,
                         int lda, ref float X, int incX,
                         float beta, ref float Y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, int K, float alpha, ref float A,
                         int lda, ref float X, int incX,
                         float beta, ref float Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sspmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_sspmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float Ap,
                         ref float X, int incX,
                         float beta, ref float Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sger(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_sger(MatrixLayout Layout, int M, int n,
                         float alpha, ref float X, int incX,
                         ref float Y, int incY, ref float A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssyr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssyr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float X,
                         int incX, ref float A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sspr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_sspr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float X,
                         int incX, ref float Ap);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssyr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssyr2(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float X,
                         int incX, ref float Y, int incY, ref float A,
                         int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sspr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_sspr2(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref float X,
                         int incX, ref float Y, int incY, ref float A);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsymv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsymv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double A,
                         int lda, ref double X, int incX,
                         double beta, ref double Y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, int K, double alpha, ref double A,
                         int lda, ref double X, int incX,
                         double beta, ref double Y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dspmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dspmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double Ap,
                         ref double X, int incX,
                         double beta, ref double Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dger(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_dger(MatrixLayout Layout, int M, int n,
                         double alpha, ref double X, int incX,
                         ref double Y, int incY, ref double A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsyr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsyr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double X,
                         int incX, ref double A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dspr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dspr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double X,
                         int incX, ref double Ap);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsyr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsyr2(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double X,
                         int incX, ref double Y, int incY, ref double A,
                         int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dspr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dspr2(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref double X,
                         int incX, ref double Y, int incY, ref double A);
 
@@ -460,83 +460,83 @@ namespace Z0.Mkl
         * Routines with C and Z prefixes only
         */
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chemv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_chemv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, ref byte alpha, ref byte A,
                         int lda, ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_chbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, int K, ref byte alpha, ref byte A,
                         int lda, ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_chpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, ref byte alpha, ref byte Ap,
                         ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgeru(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_cgeru(MatrixLayout Layout, int M, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgerc(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_cgerc(MatrixLayout Layout, int M, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cher(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_cher(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref byte X, int incX,
                         ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chpr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_chpr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, float alpha, ref byte X,
                         int incX, ref byte A);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cher2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo, int n,
+        public static extern void cblas_cher2(MatrixLayout Layout, CBLAS_UPLO Uplo, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chpr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo, int n,
+        public static extern void cblas_chpr2(MatrixLayout Layout, CBLAS_UPLO Uplo, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte Ap);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhemv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zhemv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, ref byte alpha, ref byte A,
                         int lda, ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhbmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zhbmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, int K, ref byte alpha, ref byte A,
                         int lda, ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhpmv(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zhpmv(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, ref byte alpha, ref byte Ap,
                         ref byte X, int incX,
                         ref byte beta, ref byte Y, int incY);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgeru(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_zgeru(MatrixLayout Layout, int M, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgerc(CBLAS_LAYOUT Layout, int M, int n,
+        public static extern void cblas_zgerc(MatrixLayout Layout, int M, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zher(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zher(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref byte X, int incX,
                         ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhpr(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zhpr(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         int n, double alpha, ref byte X,
                         int incX, ref byte A);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zher2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo, int n,
+        public static extern void cblas_zher2(MatrixLayout Layout, CBLAS_UPLO Uplo, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte A, int lda);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhpr2(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo, int n,
+        public static extern void cblas_zhpr2(MatrixLayout Layout, CBLAS_UPLO Uplo, int n,
                         ref byte alpha, ref byte X, int incX,
                         ref byte Y, int incY, ref byte Ap);
 
@@ -550,7 +550,7 @@ namespace Z0.Mkl
         * Routines with standard 4 prefixes (S, D, C, Z)
         */
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sgemm_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_sgemm_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                             ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                             ref int K_Array, ref float alpha_Array, ref float A_Array,
                             ref int lda_Array, ref float B_Array, ref int ldb_Array,
@@ -558,7 +558,7 @@ namespace Z0.Mkl
                             int group_count, ref int group_size);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgemm_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_dgemm_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                             ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                             ref int K_Array, ref double alpha_Array, ref double A_Array,
                             ref int lda_Array, ref double B_Array, ref int ldb_Array,
@@ -566,43 +566,43 @@ namespace Z0.Mkl
                             int group_count, ref int group_size);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sgemmt(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB,
+        public static extern void cblas_sgemmt(MatrixLayout Layout, CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB,
                         int n, int K,
                         float alpha, ref float A, int lda,
                         ref float B, int ldb, float beta,
                         ref float C, int ldc);
 
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssymm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_ssymm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         float alpha, ref float A, int lda,
                         ref float B, int ldb, float beta,
                         ref float C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssyrk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssyrk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         float alpha, ref float A, int lda,
                         float beta, ref float C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ssyr2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_ssyr2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         float alpha, ref float A, int lda,
                         ref float B, int ldb, float beta,
                         ref float C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_strmm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_strmm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         float alpha, ref float A, int lda,
                         ref float B, int ldb);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_strsm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_strsm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         float alpha, ref float A, int lda,
                         ref float B, int ldb);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_strsm_batch(CBLAS_LAYOUT Layout, ref CBLAS_SIDE Side_Array,
+        public static extern void cblas_strsm_batch(MatrixLayout Layout, ref CBLAS_SIDE Side_Array,
                             ref CBLAS_UPLO Uplo_Array, ref CBLAS_TRANSPOSE TransA_Array,
                             ref CBLAS_DIAG Diag_Array, ref int M_Array,
                             ref int N_Array, ref float alpha_Array,
@@ -612,43 +612,43 @@ namespace Z0.Mkl
 
         
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgemmt(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dgemmt(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB,
                         int n, int K,
                         double alpha, ref double A, int lda,
                         ref double B, int ldb, double beta,
                         ref double C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsymm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_dsymm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         double alpha, ref double A, int lda,
                         ref double B, int ldb, double beta,
                         ref double C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsyrk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsyrk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         double alpha, ref double A, int lda,
                         double beta, ref double C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dsyr2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_dsyr2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         double alpha, ref double A, int lda,
                         ref double B, int ldb, double beta,
                         ref double C, int ldc);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtrmm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_dtrmm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         double alpha, ref double A, int lda,
                         ref double B, int ldb);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtrsm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_dtrsm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         double alpha, ref double A, int lda,
                         ref double B, int ldb);
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dtrsm_batch(CBLAS_LAYOUT Layout, ref CBLAS_SIDE Side_Array,
+        public static extern void cblas_dtrsm_batch(MatrixLayout Layout, ref CBLAS_SIDE Side_Array,
                             ref CBLAS_UPLO Uplo_Array, ref CBLAS_TRANSPOSE Transa_Array,
                             ref CBLAS_DIAG Diag_Array, ref int M_Array,
                             ref int N_Array, ref double alpha_Array,
@@ -658,14 +658,14 @@ namespace Z0.Mkl
 
         
         [DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgemm3m(CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA,
+        public static extern void cblas_cgemm3m(MatrixLayout Layout, CBLAS_TRANSPOSE TransA,
                         CBLAS_TRANSPOSE TransB, int M, int n,
                         int K, ref byte alpha, ref byte A,
                         int lda, ref byte B, int ldb,
                         ref byte beta, ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgemm_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_cgemm_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                             ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                             ref int K_Array, ref byte alpha_Array, ref byte A_Array,
                             ref int lda_Array, ref byte B_Array, ref int ldb_Array,
@@ -673,7 +673,7 @@ namespace Z0.Mkl
                             int group_count, ref int group_size);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgemm3m_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_cgemm3m_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                                 ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                                 ref int K_Array, ref byte alpha_Array, ref byte A_Array,
                                 ref int lda_Array, ref byte B_Array, ref int ldb_Array,
@@ -681,43 +681,43 @@ namespace Z0.Mkl
                                 int group_count, ref int group_size);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cgemmt(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_cgemmt(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB,
                         int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_csymm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_csymm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_csyrk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_csyrk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte beta, ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_csyr2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_csyr2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctrmm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_ctrmm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctrsm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_ctrsm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ctrsm_batch(CBLAS_LAYOUT Layout, ref CBLAS_SIDE Side_Array,
+        public static extern void cblas_ctrsm_batch(MatrixLayout Layout, ref CBLAS_SIDE Side_Array,
                             ref CBLAS_UPLO Uplo_Array, ref CBLAS_TRANSPOSE Transa_Array,
                             ref CBLAS_DIAG Diag_Array, ref int M_Array,
                             ref int N_Array, ref byte alpha_Array,
@@ -726,21 +726,21 @@ namespace Z0.Mkl
                             int group_count, ref int group_size);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgemm(CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA,
+        public static extern void cblas_zgemm(MatrixLayout Layout, CBLAS_TRANSPOSE TransA,
                         CBLAS_TRANSPOSE TransB, int M, int n,
                         int K, ref byte alpha, ref byte A,
                         int lda, ref byte B, int ldb,
                         ref byte beta, ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgemm3m(CBLAS_LAYOUT Layout, CBLAS_TRANSPOSE TransA,
+        public static extern void cblas_zgemm3m(MatrixLayout Layout, CBLAS_TRANSPOSE TransA,
                         CBLAS_TRANSPOSE TransB, int M, int n,
                         int K, ref byte alpha, ref byte A,
                         int lda, ref byte B, int ldb,
                         ref byte beta, ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgemm_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_zgemm_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                             ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                             ref int K_Array, ref byte alpha_Array, ref byte A_Array,
                             ref int lda_Array, ref byte B_Array, ref int ldb_Array,
@@ -748,7 +748,7 @@ namespace Z0.Mkl
                             int group_count, ref int group_size);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgemm3m_batch(CBLAS_LAYOUT Layout, ref CBLAS_TRANSPOSE TransA_Array,
+        public static extern void cblas_zgemm3m_batch(MatrixLayout Layout, ref CBLAS_TRANSPOSE TransA_Array,
                                 ref CBLAS_TRANSPOSE TransB_Array, ref int M_Array, ref int N_Array,
                                 ref int K_Array, ref byte alpha_Array, ref byte A_Array,
                                 ref int lda_Array, ref byte B_Array, ref int ldb_Array,
@@ -756,7 +756,7 @@ namespace Z0.Mkl
                                 int group_count, ref int group_size);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zgemmt(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zgemmt(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE TransA, CBLAS_TRANSPOSE TransB,
                         int n, int K,
                         ref byte alpha, ref byte A, int lda,
@@ -764,36 +764,36 @@ namespace Z0.Mkl
                         ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zsymm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_zsymm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zsyrk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zsyrk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte beta, ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zsyr2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zsyr2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztrmm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_ztrmm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztrsm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_ztrsm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, CBLAS_TRANSPOSE TransA,
                         CBLAS_DIAG Diag, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_ztrsm_batch(CBLAS_LAYOUT Layout, ref CBLAS_SIDE Side_Array,
+        public static extern void cblas_ztrsm_batch(MatrixLayout Layout, ref CBLAS_SIDE Side_Array,
                             ref CBLAS_UPLO Uplo_Array, ref CBLAS_TRANSPOSE Transa_Array,
                             ref CBLAS_DIAG Diag_Array, ref int M_Array,
                             ref int N_Array, ref byte alpha_Array,
@@ -805,38 +805,38 @@ namespace Z0.Mkl
         * Routines with prefixes C and Z only
         */
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_chemm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_chemm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cherk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_cherk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         float alpha, ref byte A, int lda,
                         float beta, ref byte C, int ldc);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_cher2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_cher2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, float beta,
                         ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zhemm(CBLAS_LAYOUT Layout, CBLAS_SIDE Side,
+        public static extern void cblas_zhemm(MatrixLayout Layout, CBLAS_SIDE Side,
                         CBLAS_UPLO Uplo, int M, int n,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, ref byte beta,
                         ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zherk(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zherk(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         double alpha, ref byte A, int lda,
                         double beta, ref byte C, int ldc);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_zher2k(CBLAS_LAYOUT Layout, CBLAS_UPLO Uplo,
+        public static extern void cblas_zher2k(MatrixLayout Layout, CBLAS_UPLO Uplo,
                         CBLAS_TRANSPOSE Trans, int n, int K,
                         ref byte alpha, ref byte A, int lda,
                         ref byte B, int ldb, double beta,
@@ -849,12 +849,12 @@ namespace Z0.Mkl
         public static extern ref float cblas_sgemm_alloc(CBLAS_IDENTIFIER identifier, int M, int n, int K);
         
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sgemm_pack(CBLAS_LAYOUT Layout, CBLAS_IDENTIFIER identifier,
+        public static extern void cblas_sgemm_pack(MatrixLayout Layout, CBLAS_IDENTIFIER identifier,
                         CBLAS_TRANSPOSE Trans, int M, int n,
                         int K, float alpha, ref float src,
                         int ld, ref float dest);
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_sgemm_compute(CBLAS_LAYOUT Layout, int TransA,
+        public static extern void cblas_sgemm_compute(MatrixLayout Layout, int TransA,
                         int TransB, int M, int n,
                         int K, ref float A,
                         int lda, ref float B, int ldb,
@@ -866,13 +866,13 @@ namespace Z0.Mkl
         public static extern ref double cblas_dgemm_alloc(CBLAS_IDENTIFIER identifier, int M, int n, int K);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgemm_pack(CBLAS_LAYOUT Layout, CBLAS_IDENTIFIER identifier,
+        public static extern void cblas_dgemm_pack(MatrixLayout Layout, CBLAS_IDENTIFIER identifier,
                         CBLAS_TRANSPOSE Trans, int M, int n,
                         int K, double alpha, ref double src,
                         int ld, ref double dest);
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern void cblas_dgemm_compute(CBLAS_LAYOUT Layout, int TransA,
+        public static extern void cblas_dgemm_compute(MatrixLayout Layout, int TransA,
                         int TransB, int M, int n,
                         int K, ref double A,
                         int lda, ref double B, int ldb,

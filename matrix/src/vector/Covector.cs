@@ -112,28 +112,25 @@ namespace Z0
         Covector(ref T src)
         {  
             require(Span256.IsAligned<T>(Length));
-            data =  Span256.LoadAligned<T>(ref src, Length);  
+            data =  Span256.Load<T>(ref src, Length);  
         }
 
         [MethodImpl(Inline)]
         Covector(in ReadOnlySpan<T> src)
         {
-            require(src.Length == Length);
-            data = Span256.LoadAligned(src.Replicate());
+            data = Span256.Load(src);
         }
 
         [MethodImpl(Inline)]
         Covector(Span<T> src)
         {
-            require(src.Length == Length);
-            data = Span256.LoadAligned(src);
+            data = Span256.Load(src);
         }
 
         [MethodImpl(Inline)]
         Covector(Span<N,T> src)
         {            
-            require(Span256.IsAligned<T>(Length));
-            data = Span256.LoadAligned(ref head(src.Unsized), src.Length);
+            data = Span256.Load(ref head(src.Unsized), src.Length);
         }
         
         public ref T this[int index] 

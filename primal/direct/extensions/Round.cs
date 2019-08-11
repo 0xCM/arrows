@@ -24,6 +24,15 @@ namespace Z0
             => math.round(src, scale);
 
         [MethodImpl(Inline)]
+        public static float Truncate(this float src)
+            => (int)src;
+
+        [MethodImpl(Inline)]
+        public static double Truncate(this double src)
+            => (long)src;
+
+
+        [MethodImpl(Inline)]
         public static ReadOnlySpan<float> Round(this ReadOnlySpan<float> src, int scale, Span<float> dst)
             => math.round(src, scale, dst);            
 

@@ -13,7 +13,7 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public static partial class mkl
+    partial class mkl
     {
         public static EigenResult<N,double> geev<N>(Matrix<N,double> A)
             where N : ITypeNat, new()
@@ -25,14 +25,14 @@ namespace Z0.Mkl
             var wslen = n*n;
             var exitcode = 0;        
             var v = 'V';
-            var ws = span<double>(wslen);
+            //var ws = span<double>(wslen);
             var wr = NatSpan.Alloc<N,double>();
             var wi = NatSpan.Alloc<N,double>();
             var lVec = A.Replicate(true);
             var rVec = A.Replicate(true);             
                         
-            LAPACK.DGEEV(ref v, ref v, ref n, ref A.Unblocked[0], ref lda, ref wr[0], ref wi[0], 
-                ref lVec.Unblocked[0], ref ldvl, ref rVec.Unblocked[0], ref ldvr, ref ws[0], ref wslen, ref exitcode);
+            exitcode = LAPACK.LAPACKE_dgeev(RowMajor, v, v, n, ref head(A), lda, ref wr[0], ref wi[0], 
+                ref lVec.Unblocked[0], ldvl, ref rVec.Unblocked[0], ldvr);//, ref ws[0], wslen);
 
             if(exitcode != 0)
                 MklException.Throw(exitcode);

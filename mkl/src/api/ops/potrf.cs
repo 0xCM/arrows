@@ -22,9 +22,8 @@ namespace Z0.Mkl
             var n = nati<N>();
             var lda = n;
             var lu = tk == TriangularKind.Lower ? 'L' : 'U';
-            var exitcode = 0;
 
-            LAPACK.SPOTRF(ref lu, ref n, ref A.Unblocked[0], ref lda, ref exitcode);
+            var exitcode = LAPACK.LAPACKE_spotrf(RowMajor, lu, n, ref head(A), lda);
 
             if (exitcode > 0)
                 return false;
@@ -48,10 +47,9 @@ namespace Z0.Mkl
             var n = nati<N>();
             var lda = n;
             var lu = tk == TriangularKind.Lower ? 'L' : 'U';
-            var exitcode = 0;
-
-            LAPACK.DPOTRF(ref lu, ref n, ref A.Unblocked[0], ref lda, ref exitcode);
-
+            
+            var exitcode = LAPACK.LAPACKE_dpotrf(RowMajor, lu, n, ref head(A), lda);
+            
             if (exitcode > 0)
                 return false;
             else if(exitcode == 0)

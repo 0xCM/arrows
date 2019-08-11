@@ -71,7 +71,7 @@ namespace Z0
             => AppMsg.Define($"The requested number of bytes, {requested} exceeds the maximum available bytes, {available}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg Unanticipated(Exception e, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-                => AppMsg.Define(e.ToString(), SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define(e?.ToString() ??"Heh?", SeverityLevel.Error, caller, file, line);
     
         public static AppMsg FileDoesNotExist(FilePath path, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)    
             => AppMsg.Define($"The file {path} does not exist", SeverityLevel.Error, caller, file, line);

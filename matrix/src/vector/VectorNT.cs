@@ -96,27 +96,25 @@ namespace Z0
         [MethodImpl(Inline)]
         Vector(ref T src)
         {  
-            require(Span256.IsAligned<T>(Length));
-            data =  Span256.LoadAligned<T>(ref src, Length);  
+            data =  Span256.Load<T>(ref src, Length);  
         }
 
         [MethodImpl(Inline)]
         Vector(in ReadOnlySpan<N,T> src)
         {
-            data = Span256.LoadAligned(src.Replicate());
+            data = Span256.Load(src.Unsized);
         }
 
         [MethodImpl(Inline)]
         Vector(in ReadOnlySpan<T> src)
         {
-            require(src.Length >= Length);
-            data = Span256.LoadAligned(src.Replicate());
+            data = Span256.Load(src);
         }
 
         [MethodImpl(Inline)]
         Vector(Span<T> src)
         {
-            data = Span256.LoadAligned(src);
+            data = Span256.Load(src);
         }
 
         [MethodImpl(Inline)]
@@ -129,7 +127,7 @@ namespace Z0
         [MethodImpl(Inline)]
         Vector(Span<N,T> src)
         {
-            data = Span256.LoadAligned(src);
+            data = Span256.Load(src);
         }
                     
         public ref T this[int index] 

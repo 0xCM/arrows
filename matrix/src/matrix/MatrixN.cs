@@ -233,6 +233,13 @@ namespace Z0
         public Matrix<N,N,T> ToRectantular()
             => new Matrix<N,N,T>(this.data);
 
+        [MethodImpl(Inline)]
+        public ref Matrix<N,T> CopyTo(ref Matrix<N,T> dst)
+        {
+            Unblocked.CopyTo(dst.Unblocked);
+            return ref dst;
+        }
+
         /// <summary>
         /// Creates a copy of the matrix
         /// </summary>

@@ -14,11 +14,8 @@ namespace Z0.Mkl
     using static nfunc;
 
 
-    public static partial class mkl
+    partial class mkl
     {
-        const CBLAS_TRANSPOSE NoTranspose = CBLAS_TRANSPOSE.CblasNoTrans;
-        
-        const CBLAS_LAYOUT RowMajor = CBLAS_LAYOUT.CblasRowMajor;
 
         /// <summary>
         /// Allocates a target matrix and populates it with the product of the operands

@@ -31,6 +31,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>z0-lapack-clib.dll</TargetPath>
     </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="lib\dll\z0-lapacke-clib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>z0-lapacke-clib.dll</TargetPath>
+    </ContentWithTargetPath>
+
   </ItemGroup>
 
 </Project>

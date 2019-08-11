@@ -67,10 +67,10 @@ namespace Z0.Mkl.Test
             where N : ITypeNat, new()
 
         {
-            var A = Matrix.Load<M,K,float>(Span256.AllocUnaligned<M,K,float>());
-            var B = Matrix.Load<K,N,float>(Span256.AllocUnaligned<K,N,float>());
-            var X = Matrix.Load<M,N,float>(Span256.AllocUnaligned<M,N,float>());
-            var E = Matrix.Load<M,N,float>(Span256.AllocUnaligned<M,N,float>());
+            var A = Matrix.Alloc<M,K,float>();
+            var B = Matrix.Alloc<K,N,float>();
+            var X = Matrix.Alloc<M,N,float>();
+            var E = Matrix.Alloc<M,N,float>();
         
             var runtime = Duration.Zero;
             for(var i=0; i<cycles; i++)

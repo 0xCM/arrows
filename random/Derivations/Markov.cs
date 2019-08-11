@@ -104,7 +104,7 @@ namespace Z0
             where T : struct
             where N : ITypeNat, new()
         {
-            var data = Z0.Span256.AllocUnaligned<N,N,T>();
+            var data = Z0.Span256.Alloc<N,N,T>();
             var n = nati<N>();
             for(int row=0; row < n; row++)
                 random.MarkovVector<T>(data.Slice(row*n, n));                            

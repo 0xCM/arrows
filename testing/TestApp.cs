@@ -88,7 +88,7 @@ namespace Z0.Test
                 else if(e.InnerException is AppException app)
                     messages.Add(app.Message);
                 else
-                    messages.Add(ErrorMessages.Unanticipated(e.InnerException));
+                    messages.Add(ErrorMessages.Unanticipated(e ?? e.InnerException));
 
                 messages.Add(AppMsg.Define($"{testName} failed", SeverityLevel.Error));                
             }

@@ -34,7 +34,7 @@ namespace Z0
         /// <param name="minlen">The minimum allocation length</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> AllocUnaligned<T>(int minlen, T? fill = null)
+        public static Span256<T> Alloc<T>(int minlen, T? fill = null)
             where T : struct        
         {
             Span256.Alignment<T>(minlen, out int blocklen, out int fullBlocks, out int remainder);            
@@ -51,7 +51,7 @@ namespace Z0
         /// <typeparam name="N">The column type</typeparam>
         /// <typeparam name="T">The scalar type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> AllocUnaligned<N,T>(T? fill = null)
+        public static Span256<T> Alloc<N,T>(T? fill = null)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -70,7 +70,7 @@ namespace Z0
         /// <typeparam name="N">The column type</typeparam>
         /// <typeparam name="T">The scalar type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> AllocUnaligned<M,N,T>(T? fill = null)
+        public static Span256<T> Alloc<M,N,T>(T? fill = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
@@ -83,16 +83,24 @@ namespace Z0
                 return AllocBlocks<T>(fullBlocks + 1,fill);
         }
 
-        /// <summary>
-        /// Loads a blocked span from an unblocked span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="offset">The span index at which to begin the load</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span256<T> LoadAligned<T>(Span<T> src, int offset = 0)
+        public static Span256<T> Load<M,N,T>(Span<T> src)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
             where T : struct
-                => Span256<T>.LoadAligned(src, offset);
+        {
+            var blocklen = Span256.BlockLength<T>();      
+            var q = Math.DivRem(src.Length, blocklen, out int r);                        
+            if(r == 0)
+                return Span256<T>.LoadAligned(src);
+            else
+            {
+                var blocks = q + 1;
+                var dst = Span256.AllocBlocks<T>(blocks);
+                src.CopyTo(dst);
+                return dst;
+            }                                            
+        }
+
                 
         /// <summary>
         /// Loads an unsized 256-bit blocked span from a sized unblocked span
@@ -101,21 +109,26 @@ namespace Z0
         /// <param name="offset">The span index at which to begin the load</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> LoadAligned<N,T>(Span<N,T> src, int offset = 0)
+        public static Span256<T> Load<N,T>(Span<N,T> src)
             where T : struct
             where N : ITypeNat,new()
-                => Span256<T>.LoadAligned(src, offset);
+                => Load(src.Unsized);
 
         /// <summary>
         /// Loads a 256-bit blocked span from a memory reference
         /// </summary>
         /// <param name="src">The memory source</param>
-        /// <param name="length">The (256-bit aligned) length of the span </param>
+        /// <param name="minlen">The (256-bit aligned) length of the span </param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> LoadAligned<T>(ref T src, int length)
+        public static Span256<T> Load<T>(ref T src, int minlen)
             where T : struct
-                => Span256<T>.LoadAligned(ref src, length);
+        {
+            var bz = BlockCount<T>(minlen, out int remainder);
+            var bl = BlockLength<T>();
+            var len = remainder == 0 ? bz * bl : (bz + 1) * bl;            
+            return Span256<T>.LoadAligned(ref src, len);
+        }
 
         /// <summary>
         /// Loads (potentially) unaligned data
@@ -123,12 +136,12 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The data type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> LoadUnaligned<T>(Span<T> src)
+        public static Span256<T> Load<T>(Span<T> src)
             where T : struct
         {
             var bz = BlockCount<T>(src.Length, out int remainder);
             if(remainder == 0)
-                return LoadAligned(src);
+                return Span256<T>.LoadAligned(src);
             else
             {
                 var dst = AllocBlocks<T>(bz + 1);
@@ -138,42 +151,20 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> LoadUnaligned<T>(ReadOnlySpan<T> src)
+        public static Span256<T> Load<T>(ReadOnlySpan<T> src)
             where T : struct
         {
             var bz = BlockCount<T>(src.Length, out int remainder);
             if(remainder == 0)
-                return LoadAligned(src);
+                return Span256<T>.LoadAligned(src.Replicate());
             else
             {
                 var dst = AllocBlocks<T>(bz + 1);
                 src.CopyTo(dst);
                 return dst;
             }
-        }       
-
-        /// <summary>
-        /// Loads a blocked span from an array
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="offset">The span index at which to begin the load</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span256<T> LoadAligned<T>(T[] src, int offset = 0)
-            where T : struct
-                => Span256<T>.LoadAligned(src, offset);
-                
-        /// <summary>
-        /// Loads a blocked readonly span from an unblocked readonly span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="offset">The span index at which to begin the load</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> LoadAligned<T>(ReadOnlySpan<T> src, int offset = 0)
-            where T : struct
-                => Span256<T>.LoadAligned(src ,offset);
-
+        }
+            
         /// <summary>
         /// Computes the minimum number of blocks that can hold data of a specified byte length
         /// </summary>
@@ -267,16 +258,6 @@ namespace Z0
             where T : struct        
             => Span256<T>.Aligned(length);
         
-        /// <summary>
-        /// Determines whether an unblocked span is block-aligned
-        /// </summary>
-        /// <param name="src">The span to examine</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static bool IsAligned<T>(ReadOnlySpan<T> src)
-            where T : struct        
-                => IsAligned<T>(src.Length);
-
         /// <summary>
         /// Calculates alignment attributes predicated on a source length and element type
         /// </summary>

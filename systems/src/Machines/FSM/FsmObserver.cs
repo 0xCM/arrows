@@ -27,7 +27,7 @@ namespace Z0.Machines
             Tracing = tracing  ?? ObserverTrace.All;
             ReceiptEmitRate = receiptEmitRate ?? Pow2.T20;
             TransitionCount = 0;
-            CompletionCounter = 0;
+            CompletionCount = 0;
             
         }
 
@@ -43,11 +43,9 @@ namespace Z0.Machines
 
         int TransitionCount;
 
-        int CompletionCounter;
+        int CompletionCount;
 
-        readonly int CompletionEmitRate;
-
-        ulong TotalReceipts;
+        ulong ReceiptCount;
         
         void Trace(AppMsg msg)
         {
@@ -56,10 +54,11 @@ namespace Z0.Machines
 
         protected virtual void OnComplete(FsmStats stats, bool asPlanned)
         {
+            CompletionCount++;
             if(Tracing.TraceCompletions())
             {
                 Trace(FsmMessages.Completed(Id, stats, asPlanned));
-                CompletionCounter = 0;
+                CompletionCount = 0;
             }
         }
 
@@ -70,6 +69,7 @@ namespace Z0.Machines
         /// <param name="s1">The target state</param>
         protected virtual void OnTransition(S s0, S s1)
         {
+            TransitionCount++;
             if(Tracing.TraceTransitions())
                 Trace(FsmMessages.Transition(Id,s0,s1));
         }
@@ -80,11 +80,11 @@ namespace Z0.Machines
         /// <param name="input">The input event</param>
         protected virtual void OnReceipt(E input)
         {
-            ++TotalReceipts;
+            ++ReceiptCount;
 
             if(ReceiptCounter == ReceiptEmitRate && Tracing.TraceEvents())
             {
-                Trace(FsmMessages.Receipt(Id, input, TotalReceipts));
+                Trace(FsmMessages.Receipt(Id, input, ReceiptCount));
                 ReceiptCounter = 0;
             }
             

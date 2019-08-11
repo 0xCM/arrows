@@ -32,9 +32,7 @@ namespace Z0.Mkl.Test
         {
             var A = Matrix.Define(new float[]{4,12,-16,12,37,-43,-16,-43,98}, N3);
             var B = A.Replicate();
-            Claim.yea(mkl.cholesky(B));
-
-            Trace(B.Format());
+            Claim.yea(mkl.cholesky(B));            
         }
 
     }

@@ -17,37 +17,14 @@ namespace Z0
 
     public static class MatrixX
     {
-        /// <summary>
-        /// Aligns the content of a tablespan with a blocked 256-bit span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="M">The natural row count type</typeparam>
-        /// <typeparam name="N">The natural column count type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        public static Span256<T> Align256<M,N,T>(this Span<M,N,T> src)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {            
-            var lhsSrc = src.Unsized;
-            var dataLen = nati<M>() * nati<N>();
-            Span256.Alignment<T>(dataLen, out int blocklen, out int fullBlocks, out int remainder);            
-            if(remainder == 0)
-                return Span256.LoadAligned(lhsSrc);
-            else
-            {
-                var dst = Span256.AllocBlocks<T>(fullBlocks + 1);
-                lhsSrc.CopyTo(dst);
-                return dst;
-            }            
-        }
 
-        public static string Format<M,N,T>(this Matrix<M,N,T> src, char? cellsep = null)
+        public static string Format<M,N,T>(this Matrix<M,N,T> src, int? cellwidth = null, char? cellsep = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
         {
             var sep = cellsep ?? '|';
+            var width = cellwidth ?? 3;
             var rows = nati<M>();
             var cols = nati<N>();
             var sb = new StringBuilder();                        
@@ -55,7 +32,8 @@ namespace Z0
             {
                 for(var col = 0; col<cols; col++)
                 {
-                    sb.Append(src[row,col]);
+                    var value = $"{src[row,col]}".PadRight(width);
+                    sb.Append(value);
                     if(col != cols - 1)
                         sb.Append(sep);
                 }
@@ -65,10 +43,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static string Format<N,T>(this Matrix<N,T> src, char? cellsep = null)
+        public static string Format<N,T>(this Matrix<N,T> src, int? cellwidth = null, char? cellsep = null)
             where N : ITypeNat, new()
             where T : struct    
-                => src.ToRectantular().Format(cellsep);
+                => src.ToRectantular().Format(cellwidth, cellsep);
 
         /// <summary>
         /// Computes the sum of two matrices and stores the result in the left matrix
@@ -172,7 +150,6 @@ namespace Z0
             else
                 dst.Append(sb.ToString());
         }
-
 
         /// <summary>
         /// Evaluates whether a square matrix is right-stochasitc, i.e. the sum of the entries

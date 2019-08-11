@@ -170,11 +170,12 @@ namespace Z0
         /// Applies a function to each cell and overwites the existing cell value with the result
         /// </summary>
         /// <param name="f">The function to apply</param>
-        public void Apply(Func<T,T> f)
+        public Matrix<M,N,T> Apply(Func<T,T> f)
         {
             for(var r = 0; r < RowCount; r++)
             for(var c = 0; c < ColCount; c++)
                 this[r,c] = f(this[r,c]);
+            return this;
         }
 
         public bool IsZero
@@ -196,6 +197,33 @@ namespace Z0
                     return false;
             return true;
         }
+
+        [MethodImpl(Inline)]
+        public ref Matrix<M,N,T> CopyTo(ref Matrix<M,N,T> dst)
+        {
+            Unblocked.CopyTo(dst.Unblocked);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Converts the scalars in the source matrix and allocates a new matrix 
+        /// to contain the result
+        /// </summary>
+        /// <typeparam name="U">The target scalar type</typeparam>
+        /// <returns></returns>
+        public Matrix<M,N,U> Convert<U>()
+            where U : struct
+        {
+            var dstM = Matrix.Alloc<M,N,U>();
+            var dst = dstM.Unblocked;
+            var src = this.Unblocked;
+            for(var i=0; i< dstM.Unblocked.Length; i++)
+            {
+                dst[i] = convert<T,U>(src[i]);
+            }
+            return dstM;
+        }
+
 
         public override bool Equals(object other)
             => throw new NotSupportedException();

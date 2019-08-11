@@ -13,7 +13,7 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public static partial class mkl
+    partial class mkl
     {
         /// <summary>
         /// Computes the scalar product between two vectors of natural length

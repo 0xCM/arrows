@@ -16,8 +16,8 @@ namespace Z0.Mkl.Test
     {
         public void vMulF32()
         {
-            var lhs = GenericVector<float>();
-            var rhs = GenericVector<float>();
+            var lhs = RandomVector<float>();
+            var rhs = RandomVector<float>();
             var dst1 = Vector.Alloc<float>(lhs.Length);
             mkl.mul(lhs,rhs, ref dst1);
             
@@ -40,8 +40,8 @@ namespace Z0.Mkl.Test
 
         OpTimePair vMulPerf(int samples, long cycles)
         {
-            var lhs1 = GenericVector<double>(samples);
-            var rhs1 = GenericVector<double>(samples);
+            var lhs1 = RandomVector<double>(samples);
+            var rhs1 = RandomVector<double>(samples);
             var dst1 = Vector.Alloc<double>(samples);
 
 

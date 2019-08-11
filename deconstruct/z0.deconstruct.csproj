@@ -12,7 +12,7 @@
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\cpu\src\z0.cpu.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />
-    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
+    <ProjectReference Include="..\mkl\src\z0.mkl.csproj" />
     <ProjectReference Include="..\asm\src\z0.asm.csproj" />
 
   </ItemGroup>

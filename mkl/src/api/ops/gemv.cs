@@ -14,9 +14,8 @@ namespace Z0.Mkl
     using static nfunc;
 
 
-    public static partial class mkl
+    partial class mkl
     {
-
         /// <summary>
         /// Computes the matrix-vector product y = A*x;
         /// </summary>

@@ -33,11 +33,12 @@ namespace Z0.Test
         {
             public RandomPair(IRandomSource random)
             {
-                LeftSrc = random.Span<N,T>();
-                RightSrc = random.Span<N,T>();
-                LeftVec = Vector.Load(LeftSrc.Replicate());
-                RightVec = Vector.Load(RightSrc);
+                LeftVec = random.NatVector<N,T>();
+                RightVec = random.NatVector<N,T>();
+                LeftSrc = LeftVec.Unsized;
+                RightSrc = RightVec.Unsized;
             }
+            
             public Span<N,T> LeftSrc;
 
             public Vector<N,T> LeftVec;

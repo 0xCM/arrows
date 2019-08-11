@@ -15,7 +15,7 @@
     <ProjectReference Include="..\matrix\src\z0.matrix.csproj" />    
     <ProjectReference Include="..\stats\z0.stats.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
-    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
+    <ProjectReference Include="..\mkl\src\z0.mkl.csproj" />
 
   </ItemGroup>
 

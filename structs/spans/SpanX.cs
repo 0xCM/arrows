@@ -288,7 +288,7 @@ namespace Z0
             Span<T> dst = new T[src.Length];
             if(!structureOnly)
                 src.CopyTo(dst);
-            return Z0.Span256.LoadAligned<T>(dst);
+            return Z0.Span256<T>.LoadAligned(dst);
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace Z0
             Span<T> dst = new T[src.Length];
             if(!structureOnly)
                 src.CopyTo(dst);
-            return Z0.Span256.LoadAligned<T>(dst);
+            return Z0.Span256<T>.LoadAligned(dst);
         }
 
         /// <summary>
