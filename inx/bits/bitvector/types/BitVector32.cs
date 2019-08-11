@@ -79,24 +79,23 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector32 lhs, in BitVector32 rhs)
-            => (lhs & rhs) != 0;
+        public static BitVector32 operator +(in BitVector32 lhs, in BitVector32 rhs)
+            => lhs.data ^ rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVector32 operator *(in BitVector32 lhs, in BitVector32 rhs)
+            => lhs.data & rhs.data;
+
+
+        [MethodImpl(Inline)]
+        public static BitVector32 operator -(in BitVector32 src)
+            => ~src.data;
+
 
         [MethodImpl(Inline)]
         public static BitVector32 operator |(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.data | rhs.data;
 
-        [MethodImpl(Inline)]
-        public static BitVector32 operator &(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.data & rhs.data;
-
-        [MethodImpl(Inline)]
-        public static BitVector32 operator ^(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.data ^ rhs.data;
-
-        [MethodImpl(Inline)]
-        public static BitVector32 operator ~(in BitVector32 src)
-            => ~src.data;
 
         public Bit this[byte pos]
         {

@@ -169,6 +169,71 @@ namespace Z0
         }
  
 
+        public static Span<sbyte> xor(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<byte> xor(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<short> xor(Span<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ushort> xor(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<int> xor(Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<uint> xor(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<long> xor(Span<long> lhs, ReadOnlySpan<long> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ulong> xor(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+
 
     }
 }

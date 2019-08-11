@@ -58,26 +58,24 @@ namespace Z0
         public static bool operator !=(BitMatrix32 lhs, BitMatrix32 rhs)
             => !(lhs.Equals(rhs));
 
+
         [MethodImpl(Inline)]
-        public static BitMatrix32 operator & (BitMatrix32 lhs, BitMatrix32 rhs)
-            => And(ref lhs, rhs);
+        public static BitMatrix32 operator + (BitMatrix32 lhs, BitMatrix32 rhs)
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 operator * (BitMatrix32 lhs, BitMatrix32 rhs)
             => And(ref lhs, rhs);
 
+        [MethodImpl(Inline)]
+        public static BitMatrix32 operator - (BitMatrix32 src)
+            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 operator | (BitMatrix32 lhs, BitMatrix32 rhs)
             => Or(ref lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix32 operator ^ (BitMatrix32 lhs, BitMatrix32 rhs)
-            => XOr(ref lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix32 operator ~ (BitMatrix32 src)
-            => Flip(ref src);
 
         [MethodImpl(Inline)]
         BitMatrix32(Span<uint> src)

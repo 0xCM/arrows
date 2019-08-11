@@ -51,24 +51,21 @@ namespace Z0
             => new BitMatrix64(src);
 
         [MethodImpl(Inline)]
-        public static BitMatrix64 operator & (BitMatrix64 lhs, BitMatrix64 rhs)
-            => And(ref lhs, rhs);
+        public static BitMatrix64 operator + (BitMatrix64 lhs, BitMatrix64 rhs)
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator * (BitMatrix64 lhs, BitMatrix64 rhs)
             => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix64 operator - (BitMatrix64 src)
+            => Flip(ref src);
+
+        [MethodImpl(Inline)]
         public static BitMatrix64 operator | (BitMatrix64 lhs, BitMatrix64 rhs)
             => Or(ref lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix64 operator ^ (BitMatrix64 lhs, BitMatrix64 rhs)
-            => XOr(ref lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static BitMatrix64 operator ~ (BitMatrix64 src)
-            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix64 lhs, BitMatrix64 rhs)

@@ -39,8 +39,8 @@ namespace Z0
             this.MaxBitCount = bits.Length * (int)SegCapacity;
             this.Length = (int)(dim ?? (uint)MaxBitCount);
             this.bits = bits;
-            this.SegLength = BitLayout.MinSegmentCount<T>(MaxBitCount);            
-            this.BitMap = BitLayout.BitMap<T>(MaxBitCount);
+            this.SegLength = BitGridLayout.MinSegmentCount<T>(MaxBitCount);            
+            this.BitMap = BitGridLayout.BitMap<T>(MaxBitCount);
         }
 
 
@@ -68,24 +68,21 @@ namespace Z0
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector<T> lhs, in BitVector<T> rhs)
-            => (lhs & rhs).Pop() != 0;
+        public static BitVector<T> operator +(BitVector<T> lhs, in BitVector<T> rhs)
+            => new BitVector<T>(gbits.xor(in lhs.bits, rhs.bits));
+
+        [MethodImpl(Inline)]
+        public static BitVector<T> operator *(BitVector<T> lhs, in BitVector<T> rhs)
+            => new BitVector<T>(gbits.and(in lhs.bits, rhs.bits));
+
+        [MethodImpl(Inline)]
+        public static BitVector<T> operator -(BitVector<T> src)
+            => new BitVector<T>(gbits.flip(in src.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<T> operator |(BitVector<T> lhs, in BitVector<T> rhs)
             => new BitVector<T>(gbits.or(in lhs.bits, rhs.bits));
 
-        [MethodImpl(Inline)]
-        public static BitVector<T> operator &(BitVector<T> lhs, in BitVector<T> rhs)
-            => new BitVector<T>(gbits.and(in lhs.bits, rhs.bits));
-
-        [MethodImpl(Inline)]
-        public static BitVector<T> operator ^(BitVector<T> lhs, in BitVector<T> rhs)
-            => new BitVector<T>(gbits.xor(in lhs.bits, rhs.bits));
-
-        [MethodImpl(Inline)]
-        public static BitVector<T> operator ~(BitVector<T> src)
-            => new BitVector<T>(gbits.flip(in src.bits));
         
         /// <summary>
         /// Retrieves the value of the bit at a specified position

@@ -19,8 +19,8 @@ namespace Z0.Test
         {
             TypeCaseStart<N,T>();
             var dim = default(N);
-            var capacity = BitLayout.SegmentCapacity<T>();
-            var segcount = BitLayout.MinSegmentCount<T>(dim.value);
+            var capacity = BitGridLayout.SegmentCapacity<T>();
+            var segcount = BitGridLayout.MinSegmentCount<T>(dim.value);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i+= segcount)
             {
@@ -38,8 +38,8 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var capacity = BitLayout.SegmentCapacity<T>();
-            var segcount = BitLayout.MinSegmentCount<T>(dim);
+            var capacity = BitGridLayout.SegmentCapacity<T>();
+            var segcount = BitGridLayout.MinSegmentCount<T>(dim);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i += segcount)
             {
@@ -75,10 +75,10 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var src = Random.Span<T>(samples);
-            var segCapacity = BitLayout.SegmentCapacity<T>();
+            var segCapacity = BitGridLayout.SegmentCapacity<T>();
             Claim.eq(segCapacity, SizeOf<T>.BitSize);
 
-            var segcount = BitLayout.MinSegmentCount<T>(dim);
+            var segcount = BitGridLayout.MinSegmentCount<T>(dim);
             for(var i=0; i<samples; i += segcount)
             {
                 var bvSrc = src.Slice(i, segcount);
@@ -165,48 +165,6 @@ namespace Z0.Test
             }
         }
 
-        void ScalarProduct1()
-        {
-            var x = Random.BitMatrix<N5,N5,byte>();
-            var y = x.Transpose();
-            
-            var z = BitMatrix.Zeros<N5,byte>();
-            
-
-            for(var i = 0; i<x.RowCount; i++)
-            {
-                var rowX = x.Row(i);
-                for(var j=0; j<y.RowCount; j++)
-                {
-                    var rowY = y.Row(j);
-                    z[i,j] = rowX * rowY;
-                }
-            }
-            
-        }
-
-        void ScalarProduct2()
-        {
-            byte xr0 = 0b10101;
-            byte xr1 = 0b00101;
-            byte xr2 = 0b11000;
-            byte xr3 = 0b00111;
-            byte xr4 = 0b01011;
-            var x = BitMatrix.Define(N5.Rep, N5.Rep, xr0,xr1,xr2, xr3,xr4);
-            var y = x.Transpose();
-            var z = BitMatrix.Zeros<N5,byte>();            
-            for(var i = 0; i<x.RowCount; i++)
-            {
-                var rowX = x.Row(i);
-                for(var j=0; j<y.RowCount; j++)
-                {
-                    var rowY = y.Row(j);
-                    z[i,j] = rowX * rowY;
-                }
-            }
-            Claim.eq(Bit.On,z[0,0]);
-
-        }
 
         public void ExtractAlignedRanges()
         {
@@ -215,7 +173,7 @@ namespace Z0.Test
             byte x2 = 0b10100011;
             byte x3 = 0b10011101;
             byte x4 = 0b01011000;
-            var bvx = BitVector.Define(x0,x1,x2,x3,x4);
+            var bvx = BitVector.Generic(x0,x1,x2,x3,x4);
             Claim.eq(40, bvx.Length);
 
             byte y0 = 0b0110;
@@ -233,7 +191,7 @@ namespace Z0.Test
             byte y8 = 0b1000;
             byte y9 = 0b0101;
             var y89 = gbits.or(y8, gbits.shiftl(y9, 4));
-            var bvy = BitVector.Define(y01,y23,y45,y67,y89);            
+            var bvy = BitVector.Generic(y01,y23,y45,y67,y89);            
             Claim.eq(40, bvy.Length);
 
             ulong z = 0b0101100010011101101000111001010111010110;           
@@ -276,7 +234,7 @@ namespace Z0.Test
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
             var bvz = BitVector.Counted(40,z);
             Span<byte> xSrc =  BitConverter.GetBytes(z);
-            var bvx = BitVector.Define(xSrc.Slice(0,5).ToArray());
+            var bvx = BitVector.Generic(xSrc.Slice(0,5).ToArray());
             Claim.eq(gbits.pop(z), bvz.Pop());
             Claim.eq(gbits.pop(z), bvx.Pop());
 
@@ -291,7 +249,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.Define(src[i]);
+                var v1 = BitVector.Generic(src[i]);
                 var v2 = BitVector64.Define(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
@@ -308,7 +266,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.Define(src[i]);
+                var v1 = BitVector.Generic(src[i]);
                 var v2 = BitVector32.Define(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
@@ -323,7 +281,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.Define(src[i]);
+                var v1 = BitVector.Generic(src[i]);
                 var v2 = BitVector16.Define(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
@@ -340,8 +298,8 @@ namespace Z0.Test
             Span<ushort> ySrc = xSrc.AsUInt16();
             Claim.eq(ySrc.Length*2, xSrc.Length);
 
-            var bvx = BitVector.Define(xSrc.Slice(0,5).ToArray());
-            var bvy = BitVector.Define(ySrc.Slice(0,2).ToArray());            
+            var bvx = BitVector.Generic(xSrc.Slice(0,5).ToArray());
+            var bvy = BitVector.Generic(ySrc.Slice(0,2).ToArray());            
             var bsx = bvx.ToBitString().Format(true);
             var bsz = bvz.ToBitString().Format(true);
             Claim.eq(bsx, bsz);
@@ -372,7 +330,7 @@ namespace Z0.Test
 
         public void BitVector12Test()
         {
-            var bv = BitVector.Define(new N12(), 0b101110001110);
+            var bv = BitVector.Natural(new N12(), 0b101110001110);
             Claim.eq(bv[0], Bit.Off);
             Claim.eq(bv[1], Bit.On);
             Claim.eq(bv[11], Bit.On);

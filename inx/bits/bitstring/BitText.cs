@@ -22,7 +22,7 @@ namespace Z0
             => ByteIndex.BitText(src);
 
         /// <summary>
-        /// Constructs an 8-character string, referred to as a bitstring, contains the character sequence 
+        /// Constructs a string of 8 characters, referred to as a bitstring, contains the character sequence 
         /// {ci} := [c0,...c7] according to whether the bit in the i'th position of the source is respecively disabled/enabled
         /// !Note the reversal of order
         /// </summary>

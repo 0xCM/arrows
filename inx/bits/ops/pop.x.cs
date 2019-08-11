@@ -12,7 +12,7 @@ namespace Z0
     
     using static zfunc;
 
-    partial class BitX
+    partial class BitsX
     {
         public static ulong PopCount(this ReadOnlySpan<Bit> src)
         {

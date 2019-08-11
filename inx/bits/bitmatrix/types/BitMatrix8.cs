@@ -99,25 +99,24 @@ namespace Z0
         public static bool operator !=(BitMatrix8 lhs, BitMatrix8 rhs)
             => !(lhs.Equals(rhs));
 
+
         [MethodImpl(Inline)]
-        public static BitMatrix8 operator & (BitMatrix8 lhs, BitMatrix8 rhs)
-            => And(ref lhs,rhs);
+        public static BitMatrix8 operator + (BitMatrix8 lhs, BitMatrix8 rhs)
+            => XOr(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator * (BitMatrix8 lhs, BitMatrix8 rhs)
             => And(ref lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix8 operator - (BitMatrix8 src)
+            => Flip(ref src);
+
+        [MethodImpl(Inline)]
         public static BitMatrix8 operator | (BitMatrix8 lhs, BitMatrix8 rhs)
             => Or(ref lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix8 operator ^ (BitMatrix8 lhs, BitMatrix8 rhs)
-            => XOr(ref lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix8 operator ~ (BitMatrix8 src)
-            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(BitMatrix8 src)

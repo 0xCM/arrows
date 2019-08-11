@@ -61,24 +61,21 @@ namespace Z0
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
-            => And(ref lhs, rhs);
+        public static BitMatrix16 operator + (BitMatrix16 lhs, BitMatrix16 rhs)
+            => XOr(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator * (BitMatrix16 lhs, BitMatrix16 rhs)
             => And(ref lhs, rhs);
 
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 operator - (BitMatrix16 src)
+            =>Flip(ref src);
+
         [MethodImpl(Inline)]
         public static BitMatrix16 operator | (BitMatrix16 lhs, BitMatrix16 rhs)
             => Or(ref lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static BitMatrix16 operator ^ (BitMatrix16 lhs, BitMatrix16 rhs)
-            => XOr(ref lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static BitMatrix16 operator ~ (BitMatrix16 src)
-            =>Flip(ref src);
 
         [MethodImpl(Inline)]
         BitMatrix16(Span<ushort> src)

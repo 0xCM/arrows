@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
     using static dinx;
 
-    public static partial class gbitsx
+    partial class BitsX
     {
         [MethodImpl(Inline)]
         public static Vec128<T> Flip<T>(this Vec128<T> src)

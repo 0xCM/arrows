@@ -53,21 +53,18 @@ namespace Z0
         public static bool operator !=(in BitVector16 lhs, in BitVector16 rhs)
             => !lhs.Eq(rhs);
 
+
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector16 lhs, in BitVector16 rhs)
-            => (lhs & rhs) != 0;
+        public static BitVector16 operator +(in BitVector16 lhs, in BitVector16 rhs)
+            => Define((ushort)(lhs.data ^ rhs.data));
+
+        [MethodImpl(Inline)]
+        public static BitVector16 operator *(in BitVector16 lhs, in BitVector16 rhs)
+            => Define((ushort)(lhs.data & rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector16 operator |(in BitVector16 lhs, in BitVector16 rhs)
             => Define((ushort)(lhs.data | rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector16 operator &(in BitVector16 lhs, in BitVector16 rhs)
-            => Define((ushort)(lhs.data & rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector16 operator ^(in BitVector16 lhs, in BitVector16 rhs)
-            => Define((ushort)(lhs.data ^ rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector16 operator ~(in BitVector16 src)

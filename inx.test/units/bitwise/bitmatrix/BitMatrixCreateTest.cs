@@ -31,7 +31,7 @@ namespace Z0.Test
 
         public void Create9x4()
         {
-            var grid = BitLayout.Grid<N9,N4,byte>();    
+            var grid = BitGrid.Specify<N9,N4,byte>();    
             Claim.eq(9, grid.RowCount);
             Claim.eq(4, grid.ColCount);
 
@@ -65,7 +65,7 @@ namespace Z0.Test
 
         public void Create16x16()
         {
-            var spec = BitLayout.Grid<N16,N16,byte>();    
+            var spec = BitGrid.Specify<N16,N16,byte>();    
             Claim.eq(16, spec.RowCount);
             Claim.eq(16, spec.ColCount);
 

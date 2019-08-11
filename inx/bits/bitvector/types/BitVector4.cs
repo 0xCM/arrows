@@ -64,20 +64,21 @@ namespace Z0
             => !lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
-            => Define((byte)(lhs.data | rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector4 operator &(in BitVector4 lhs, in BitVector4 rhs)
-            => Define((byte)(lhs.data & rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector4 operator ^(in BitVector4 lhs, in BitVector4 rhs)
+        public static BitVector4 operator +(in BitVector4 lhs, in BitVector4 rhs)
             => Define((byte)(lhs.data ^ rhs.data));
 
         [MethodImpl(Inline)]
-        public static BitVector4 operator ~(in BitVector4 src)
+        public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
+            => Define((byte)(lhs.data & rhs.data));
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator -(in BitVector4 src)
             => Define((byte) ~ src.data);
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
+            => Define((byte)(lhs.data | rhs.data));
+
 
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)

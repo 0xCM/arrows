@@ -14,7 +14,7 @@ namespace Z0
     using static Span128;
 
     
-    partial class BitX
+    partial class BitsX
     {
 
         [MethodImpl(Inline)]

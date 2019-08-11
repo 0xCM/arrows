@@ -18,7 +18,7 @@ namespace Z0.Test
         {
             var lhs = BitMatrix4.Identity;
             var rhs = BitMatrix4.Identity;
-            var result = lhs & rhs;
+            var result = lhs * rhs;
             for(var row=0; row<result.RowDim; row++)
             for(var col=0; col<result.ColDim; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
@@ -30,10 +30,10 @@ namespace Z0.Test
 
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
-                var zBytes = xBytes.And(yBytes);
+                var zBytes = xBytes.XOr(yBytes);
                 var expect = BitMatrix4.Define(zBytes);
 
-                var actual = x & y;
+                var actual = x + y;
                 Claim.yea(expect == actual);                
             }
 
@@ -43,7 +43,7 @@ namespace Z0.Test
         {
             var lhs = BitMatrix64.Identity;
             var rhs = BitMatrix64.Identity;
-            var result = lhs & rhs;
+            var result = lhs * rhs;
             for(var row=0; row<result.RowDim; row++)
             for(var col=0; col<result.ColDim; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
@@ -58,7 +58,7 @@ namespace Z0.Test
                 var zBytes = xBytes.And(yBytes);
                 var expect = BitMatrix64.Define(zBytes);
 
-                var actual = x & y;
+                var actual = x * y;
                 Claim.yea(expect == actual);                
             }
         }
@@ -67,7 +67,7 @@ namespace Z0.Test
         {
             var lhs = BitMatrix8.Identity;
             var rhs = BitMatrix8.Identity;
-            var result = lhs & rhs;
+            var result = lhs * rhs;
             for(var row=0; row< result.RowDim; row++)
             for(var col=0; col< result.ColDim; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);

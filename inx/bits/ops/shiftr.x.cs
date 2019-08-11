@@ -19,7 +19,7 @@ namespace Z0
     using static Span128;
     using static As;
 
-    partial class BitX
+    partial class BitsX
     {
         public static Span<sbyte> ShiftR(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, Span<sbyte> dst)
         {

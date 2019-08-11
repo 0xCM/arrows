@@ -69,25 +69,22 @@ namespace Z0
         public static bool operator !=(in BitVector8 lhs, in BitVector8 rhs)
             => !lhs.Eq(rhs);
 
+
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector8 lhs, in BitVector8 rhs)
-            => (lhs & rhs) != 0;
+        public static BitVector8 operator +(in BitVector8 lhs, in BitVector8 rhs)
+            => Define((byte)(lhs.data ^ rhs.data));
+
+        [MethodImpl(Inline)]
+        public static BitVector8 operator *(in BitVector8 lhs, in BitVector8 rhs)
+            => Define((byte) (lhs.data & rhs.data));
+
+        [MethodImpl(Inline)]
+        public static BitVector8 operator -(in BitVector8 src)
+            => Define((byte) ~ src.data);
 
         [MethodImpl(Inline)]
         public static BitVector8 operator |(in BitVector8 lhs, in BitVector8 rhs)
             => Define((byte)(lhs.data | rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector8 operator &(in BitVector8 lhs, in BitVector8 rhs)
-            => Define((byte)(lhs.data & rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector8 operator ^(in BitVector8 lhs, in BitVector8 rhs)
-            => Define((byte)(lhs.data ^ rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector8 operator ~(in BitVector8 src)
-            => Define((byte) ~ src.data);
 
         public Bit this[byte pos]
         {

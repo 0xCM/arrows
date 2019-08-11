@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;
 
-    partial class BitX
+    partial class BitsX
     {        
         public static ref Span<byte> Pack(this ReadOnlySpan<Bit> src, out Span<byte> dst)
         {

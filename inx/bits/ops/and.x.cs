@@ -13,7 +13,7 @@ namespace Z0
     using static As;
     using static AsInX;
 
-    partial class gbitsx
+    partial class BitsX
     {
         /// <summary>
         /// Computes the bitwise and of the operands

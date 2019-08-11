@@ -17,7 +17,7 @@ namespace Z0
     using static As;
     using static AsInX;
 
-    partial class dinxx
+    partial class BitsX
     {
 
         [MethodImpl(Inline)]

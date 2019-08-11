@@ -17,13 +17,13 @@ namespace Z0
     {
         Span<T> bits;
 
-        public static readonly BitSize SegmentCapacity = BitLayout.SegmentCapacity<T>();
+        public static readonly BitSize SegmentCapacity = BitGridLayout.SegmentCapacity<T>();
 
         public static readonly BitSize TotalBitCount = new N().value;
 
         static readonly int MaxBitIndex = TotalBitCount - 1;
     
-        static readonly BitPos<T>[] BitMap = BitLayout.BitMap<T>(TotalBitCount);
+        static readonly BitPos<T>[] BitMap = BitGridLayout.BitMap<T>(TotalBitCount);
 
         [MethodImpl(Inline)]
         public BitVector(params T[] bits)
@@ -62,25 +62,22 @@ namespace Z0
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => (lhs & rhs).Pop() != 0;
+        public static BitVector<N,T> operator +(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator -(BitVector<N,T> src)
+            => new BitVector<N,T>(gbits.flip(in src.bits));        
+                
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator |(BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => new BitVector<N,T>(gbits.or(in lhs.bits, rhs.bits));
 
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(in src.bits));        
-                
         [MethodImpl(Inline)]
         static int CheckIndex(int index)
             => index >= 0 && index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<int>(index, 0, MaxBitIndex);

@@ -27,7 +27,7 @@ namespace Z0
 
         static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
         
-        public static readonly BitLayout<T> GridLayout = GridSpec.CalcLayout();
+        public static readonly BitGridLayout<T> GridLayout = GridSpec.CalcLayout();
 
         /// <summary>
         /// Allocates a Zero-filled mxn matrix
@@ -51,12 +51,17 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> operator &(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
-            => lhs.And(rhs);
+        public static BitMatrix<M,N,T> operator +(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
+            => lhs.XOr(rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> operator *(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
             => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> operator -(BitMatrix<M,N,T> src)
+            => src.Flip();
+
 
         [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
@@ -170,7 +175,7 @@ namespace Z0
             => bits.AsBytes().Unpack(out Span<Bit> dst);
 
 
-        public BitLayout<T> Layout
+        public BitGridLayout<T> Layout
             => GridLayout;
 
        [MethodImpl(Inline)]

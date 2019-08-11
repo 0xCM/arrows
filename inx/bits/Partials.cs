@@ -13,10 +13,23 @@ namespace Z0
     using static As;
     using static AsInX;
 
-    public static partial class gbitsx
+    // public static partial class gbitsx
+    // {
+
+
+    // }
+
+    public static partial class Bits
     {
-
-
+        
     }
 
+    public static partial class gbits
+    {
+
+    }
+    public static partial class BitsX
+    {
+
+    }
 }

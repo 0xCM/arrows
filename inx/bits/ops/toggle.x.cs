@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static Bits;
 
-    public static partial class BitX
+    partial class BitsX
     {
 
         [MethodImpl(Inline)]

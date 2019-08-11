@@ -47,7 +47,7 @@ namespace Z0.Test
             
             var x = Random.BitMatrix64();
             var y = x.Replicate();
-            var xff = ~(~x);
+            var xff = -(-x);
             Claim.yea(xff == y);
 
             var c = Random.BitMatrix64();
@@ -55,7 +55,7 @@ namespace Z0.Test
             for(var i = 0; i<64; i++)
                 a[i] = ~ c.Row(i);
             var b = BitMatrix64.Define(a);
-            Claim.yea(b == ~c);        
+            Claim.yea(b == -c);        
         }
 
         void VerifyExtract<M,N,T>(BitMatrix<M,N,T> src)

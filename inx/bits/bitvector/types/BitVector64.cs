@@ -65,25 +65,24 @@ namespace Z0
         public static bool operator !=(in BitVector64 lhs, in BitVector64 rhs)
             => lhs.NEq(rhs);
 
+
         [MethodImpl(Inline)]
-        public static Bit operator *(in BitVector64 lhs, in BitVector64 rhs)
-            => (lhs & rhs) != 0;
+        public static BitVector64 operator +(in BitVector64 lhs, in BitVector64 rhs)
+            => lhs.data ^ rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVector64 operator *(in BitVector64 lhs, in BitVector64 rhs)
+            => lhs.data & rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVector64 operator -(in BitVector64 src)
+            => ~src.data;
 
         [MethodImpl(Inline)]
         public static BitVector64 operator |(in BitVector64 lhs, in BitVector64 rhs)
             => lhs.data | rhs.data;
 
-        [MethodImpl(Inline)]
-        public static BitVector64 operator &(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.data & rhs.data;
 
-        [MethodImpl(Inline)]
-        public static BitVector64 operator ^(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.data ^ rhs.data;
-
-        [MethodImpl(Inline)]
-        public static BitVector64 operator ~(in BitVector64 src)
-            => ~src.data;
 
         public Bit this[byte pos]
         {
