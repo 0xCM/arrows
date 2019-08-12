@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
-  <Import Project="..\package.targets" />
+  <!-- <Import Project="..\package.targets" /> -->
 
   <ItemGroup>
     <ProjectReference Include="..\nats\z0.nats.csproj" />

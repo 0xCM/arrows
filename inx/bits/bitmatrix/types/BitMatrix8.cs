@@ -12,7 +12,9 @@ namespace Z0
 
     using static zfunc;
 
-
+    /// <summary>
+    /// Defines an 8x8 matrix of bits
+    /// </summary>
     public ref struct BitMatrix8
     {        
         internal Span<byte> bits;
@@ -20,9 +22,7 @@ namespace Z0
         public const uint BitCount = 64;
 
         public const uint Dimension = 8;
-        
-        
-        
+                
         public static readonly N8 N = default;
 
         /// <summary>
@@ -99,7 +99,6 @@ namespace Z0
         public static bool operator !=(BitMatrix8 lhs, BitMatrix8 rhs)
             => !(lhs.Equals(rhs));
 
-
         [MethodImpl(Inline)]
         public static BitMatrix8 operator + (BitMatrix8 lhs, BitMatrix8 rhs)
             => XOr(ref lhs,rhs);
@@ -115,8 +114,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix8 operator | (BitMatrix8 lhs, BitMatrix8 rhs)
             => Or(ref lhs, rhs);
-
-
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(BitMatrix8 src)
@@ -183,6 +180,15 @@ namespace Z0
             return dst;                    
         }
 
+        /// <summary>
+        /// Interchanges the i'th and j'th rows where  0 <= i,j < 8
+        /// </summary>
+        /// <param name="i">A row index</param>
+        /// <param name="j">A row index</param>
+        [MethodImpl(Inline)]
+        public void RowSwap(int i, int j)
+            => bits.Swap(i,j);
+
         [MethodImpl(Inline)] 
         public BitMatrix8 Replicate()
             => Define(bits.ReadOnly());
@@ -234,7 +240,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span<Bit> Unpack()
             => bits.Unpack(out Span<Bit> dst);
-
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

@@ -6,8 +6,7 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
@@ -15,11 +14,27 @@ namespace Z0
     /// Characterizes a Laplace distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
-    public readonly struct LaplaceSpec : IDistributionSpec
+    public readonly struct LaplaceSpec<T> : IDistributionSpec<T>
+        where T : struct
     {
-        public LaplaceSpec(float mean, float scale)
+        [MethodImpl(Inline)]
+        public static LaplaceSpec<T> Define(T loc, T scale)
+            => new LaplaceSpec<T>(loc, scale);
+
+        [MethodImpl(Inline)]
+        public static implicit operator (T loc, T scale)(LaplaceSpec<T> spec)
+            => (spec.Location, spec.Scale);
+
+
+        [MethodImpl(Inline)]
+        public static implicit operator LaplaceSpec<T>((T loc, T scale) x)
+            => Define(x.loc,x.scale);
+
+        
+        [MethodImpl(Inline)]
+        public LaplaceSpec(T loc, T scale)
         {
-            this.Mean = mean;
+            this.Location = loc;
             this.Scale = scale;
         }
 
@@ -28,14 +43,14 @@ namespace Z0
         /// </summary>
 
         [Symbol(Greek.mu)]
-        public readonly float Mean;
+        public readonly T Location;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
 
         [Symbol(Greek.sigma)]
-        public readonly float Scale;
+        public readonly T Scale;
 
 
     }

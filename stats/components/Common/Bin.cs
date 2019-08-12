@@ -21,7 +21,7 @@ namespace Z0
     }
 
     /// <summary>
-    /// Represents an occurrence of a value with an interval
+    /// Represents one or more occurrence of a value within an interval
     /// </summary>
     /// <typeparam name="T">The value domain</typeparam>
     public class Bin<T>

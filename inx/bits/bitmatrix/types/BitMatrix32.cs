@@ -12,6 +12,9 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines a 32x32 matrix of bits
+    /// </summary>
     public ref struct BitMatrix32
     {        
         internal Span<uint> bits;
@@ -58,7 +61,6 @@ namespace Z0
         public static bool operator !=(BitMatrix32 lhs, BitMatrix32 rhs)
             => !(lhs.Equals(rhs));
 
-
         [MethodImpl(Inline)]
         public static BitMatrix32 operator + (BitMatrix32 lhs, BitMatrix32 rhs)
             => XOr(ref lhs, rhs);
@@ -74,8 +76,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix32 operator | (BitMatrix32 lhs, BitMatrix32 rhs)
             => Or(ref lhs, rhs);
-
-
 
         [MethodImpl(Inline)]
         BitMatrix32(Span<uint> src)
@@ -98,7 +98,6 @@ namespace Z0
 
             [MethodImpl(Inline)]
             set => BitMask.set(ref bits[row], (byte)col, value);
-
         }            
 
         public BitVector32 Diagonal()
@@ -130,6 +129,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector32 Row(int index)
             => bits[index];
+
+        /// <summary>
+        /// Interchanges the i'th and j'th rows where  0 <= i,j < 32
+        /// </summary>
+        /// <param name="i">A row index</param>
+        /// <param name="j">A row index</param>
+        [MethodImpl(Inline)]
+        public void RowSwap(int i, int j)
+            => bits.Swap(i,j);
 
         /// <summary>
         /// Returns the underlying matrix data as a span of bytes

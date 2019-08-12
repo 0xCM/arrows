@@ -12,6 +12,7 @@ using static System.Runtime.Intrinsics.X86.Avx;
 
 using static zfunc;
 using static Z0.As;
+using Z0;
 
 partial class zfunc
 {
@@ -199,7 +200,192 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static unsafe void vstore(Vector256<double> src, ref double dst)
         => Store(refptr(ref dst),src);            
- 
+
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<sbyte> src, ref sbyte dst)
+        => Store(refptr(ref dst), src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<byte> src, ref byte dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<short> src, ref short dst)
+        => Store(refptr(ref dst), src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<ushort> src, ref ushort dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<int> src, ref int dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<uint> src, ref uint dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<long> src, ref long dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<ulong> src, ref ulong dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<float> src, ref float dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec128<double> src, ref double dst)
+        => Store(refptr(ref dst), src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<sbyte> src, ref sbyte dst)
+        => Store(refptr(ref dst), src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<byte> src, ref byte dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<short> src, ref short dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<ushort> src, ref ushort dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<int> src, ref int dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    ///<intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<uint> src, ref uint dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    ///<intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<long> src, ref long dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    ///<intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<ulong> src, ref ulong dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    ///<intrinsic>void _mm256_storeu_ps (float * mem_addr, __m256 a) MOVUPS m256, ymm</intrinsic>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<float> src, ref float dst)
+        => Store(refptr(ref dst),src);            
+
+    /// <summary>
+    /// Stores vector content to a memory location
+    /// </summary>
+    /// <param name="src">The source vector</param>
+    /// <param name="dst">The target memory</param>
+    ///<intrinsic>void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD m256, ymm</intrinsic>
+    [MethodImpl(Inline)]
+    public static unsafe void vstore(Vec256<double> src, ref double dst)
+        => Store(refptr(ref dst),src);            
 
 
 }

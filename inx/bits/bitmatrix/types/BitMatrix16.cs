@@ -12,6 +12,9 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines a 16x16 matrix of bits
+    /// </summary>
     public ref struct BitMatrix16
     {   
         public const uint Size = 256;
@@ -137,6 +140,15 @@ namespace Z0
                     BitMask.enable(ref col, r);
             return col;
         }
+
+        /// <summary>
+        /// Interchanges the i'th and j'th rows where  0 <= i,j < 16
+        /// </summary>
+        /// <param name="i">A row index</param>
+        /// <param name="j">A row index</param>
+        [MethodImpl(Inline)]
+        public void RowSwap(int i, int j)
+            => bits.Swap(i,j);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order

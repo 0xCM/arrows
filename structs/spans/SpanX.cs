@@ -427,6 +427,25 @@ namespace Z0
         }
 
         /// <summary>
+        /// Interchanges span elements i and j
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="i">An index of a span element</param>
+        /// <param name="j">An index of a span element</param>
+        /// <typeparam name="T"></typeparam>
+        [MethodImpl(Inline)]
+        public static ref Span<T> Swap<T>(this ref Span<T> src, int i, int j)
+        {
+            if(i != j)
+            {
+                var tmp = src[i];
+                src[i] = src[j];
+                src[j] = tmp;
+            }
+            return ref src;
+        }
+
+        /// <summary>
         /// Produces a reversed span from a readonly span
         /// </summary>
         /// <param name="src">The soruce span</param>

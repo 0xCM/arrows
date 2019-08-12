@@ -174,7 +174,6 @@ namespace Z0
         public Span<Bit> Unpack()
             => bits.AsBytes().Unpack(out Span<Bit> dst);
 
-
         public BitGridLayout<T> Layout
             => GridLayout;
 
@@ -188,12 +187,6 @@ namespace Z0
             for(var row = 0; row < RowCount; row++)
                 dst.ReplaceCol(row, Row(row));            
             return dst;
-        }
-
-        public static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
-        {
-            gbits.and(lhs.bits, rhs.bits, lhs.Bits);
-            return ref lhs;
         }
 
     }

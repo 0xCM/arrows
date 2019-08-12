@@ -67,8 +67,5 @@ namespace Z0
                 dst[i] = ParseSymbol(src[i]);
             return dst;
         }
-
     }    
-
-
 }

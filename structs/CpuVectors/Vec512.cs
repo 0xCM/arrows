@@ -15,18 +15,17 @@ namespace Z0
     using static zfunc;    
 
 
-    [StructLayout(LayoutKind.Sequential, Size = Pow2.T06)]
+    [StructLayout(LayoutKind.Sequential, Size = ByteCount)]
     public struct Vec512<T>
         where T : struct
-    {        
-    
+    {            
         public static readonly int Length = 2*Vec256<T>.Length;
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
 
         public const int BitCount = 512;
 
-        public const int ByteCount = Pow2.T06;
+        public const int ByteCount = 64;
 
         public static readonly Vec512<T> Zero = default;
         

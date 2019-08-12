@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<BernoulliSpec, T> Distribution<T>(this BernoulliSpec spec, IRandomSource random)
+        public static BernoulliDist<T> Distribution<T>(this BernoulliSpec<T> spec, IRandomSource random)
             where T : struct
                 => new BernoulliDist<T>(random, spec);
 
@@ -30,7 +30,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<BinomialSpec, T> Distribution<T>(this BinomialSpec spec, IRandomSource random)
+        public static BinomialDist<T> Distribution<T>(this BinomialSpec<T> spec, IRandomSource random)
             where T : struct
                 => new BinomialDist<T>(random, spec);
 
@@ -40,7 +40,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<BetaSpec, T> Distribution<T>(this BetaSpec spec, IRandomSource random)
+        public static BetaDist<T> Distribution<T>(this BetaSpec<T> spec, IRandomSource random)
             where T : struct
                 => new BetaDist<T>(random, spec);
 
@@ -50,7 +50,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<GaussianSpec, T> Distribution<T>(this GaussianSpec spec, IRandomSource random)
+        public static GaussianDist<T> Distribution<T>(this GaussianSpec<T> spec, IRandomSource random)
             where T : struct
                 => new GaussianDist<T>(random, spec);
 
@@ -60,7 +60,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<GammaSpec, T> Distribution<T>(this GammaSpec spec, IRandomSource random)
+        public static GammaDist<T> Distribution<T>(this GammaSpec<T> spec, IRandomSource random)
             where T : struct
                 => new GammaDist<T>(random, spec);
 
@@ -70,7 +70,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<PoissonSpec, T> Distribution<T>(this PoissonSpec spec, IRandomSource random)
+        public static PoissonDist<T> Distribution<T>(this PoissonSpec<T> spec, IRandomSource random)
             where T : struct
                 => new PoissonDist<T>(random, spec);
 
@@ -80,7 +80,7 @@ namespace Z0
         /// <param name="spec">A specification that characterizes the distribution</param>
         /// <param name="random">A (uniform) random source</param>
         /// <typeparam name="T">The sample element type</typeparam>
-        public static IDistribution<LaplaceSpec, T> Distribution<T>(this LaplaceSpec spec, IRandomSource random)
+        public static LaplaceDist<T> Distribution<T>(this LaplaceSpec<T> spec, IRandomSource random)
             where T : struct
                 => new LaplaceDist<T>(random, spec);
 

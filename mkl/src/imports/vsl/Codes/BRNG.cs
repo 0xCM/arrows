@@ -19,7 +19,7 @@ namespace Z0.Mkl
     }
 
     public enum BRNG
-    {
+    {        
         /// <summary>
         /// A 31-bit multiplicative congruential generator.
         /// </summary>

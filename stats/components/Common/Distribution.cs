@@ -11,14 +11,13 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
+    using System.Collections;
 
-    public abstract class Distribution<S,T> : IDistribution<S,T>
-        where S : IDistributionSpec
+    public abstract class Distribution<S,T> : IDistribution<T>
         where T : struct
-    {
-        protected static readonly T Zero = gmath.zero<T>();
+        where S : IDistributionSpec<T>
 
-        protected static readonly T One = gmath.one<T>();
+    {
 
         protected IRandomSource Random {get;}
 
@@ -31,5 +30,11 @@ namespace Z0
         }
         
         public abstract IEnumerable<T> Sample();
+
+        public IEnumerator<T> GetEnumerator()
+            => Sample().GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
     }
 }

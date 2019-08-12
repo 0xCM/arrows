@@ -123,7 +123,7 @@ namespace Z0
             => BitMatrix.ToGraph(src);
 
         /// <summary>
-        /// Constructs a 16-node graph from an 64x64 adjacency matrix
+        /// Constructs a 16-node graph from a 16x16 adjacency matrix
         /// </summary>
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
@@ -145,6 +145,5 @@ namespace Z0
         [MethodImpl(Inline)]    
         public static Graph<byte> ToGraph(this BitMatrix64 src)
             => BitMatrix.ToGraph(src);
-
     }
 }

@@ -61,9 +61,7 @@ namespace Z0
                 return dinx.nonzero(in uint64(in src));
             else 
                 throw unsupported<T>();
-        }
-
-         
+        }         
     }
 
 }

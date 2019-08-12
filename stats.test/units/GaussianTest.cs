@@ -17,7 +17,7 @@ namespace Z0.Test
         {
             var mean = 0;
             var stddev = .04;
-            var spec = new GaussianSpec(mean,stddev);
+            var spec = new GaussianSpec<double>(mean,stddev);
             var dist =  spec.Distribution<double>(Random);
             var samples = Pow2.T16;
 

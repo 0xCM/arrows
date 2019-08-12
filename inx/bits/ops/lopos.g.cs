@@ -14,8 +14,6 @@ namespace Z0
 
     public static partial class gbits
     {
-
-
         /// <summary>
         /// Returns the position of the least on bit in the source
         /// </summary>
@@ -36,6 +34,32 @@ namespace Z0
             else            
                 throw unsupported<T>();
         }           
+
+        [MethodImpl(Inline)]
+        public static ref T loff<T>(ref T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                 Bits.loff(ref int8(ref src));
+            if(typeof(T) == typeof(byte))
+                 Bits.loff(ref uint8(ref src));
+            if(typeof(T) == typeof(short))
+                 Bits.loff(ref int16(ref src));
+            if(typeof(T) == typeof(ushort))
+                 Bits.loff(ref uint16(ref src));
+            if(typeof(T) == typeof(int))
+                 Bits.loff(ref int32(ref src));
+            if(typeof(T) == typeof(uint))
+                 Bits.loff(ref uint32(ref src));
+            if(typeof(T) == typeof(long))
+                 Bits.loff(ref int64(ref src));
+            if(typeof(T) == typeof(ulong))
+                 Bits.loff(ref uint64(ref src));
+            else
+                throw unsupported<T>();
+
+            return ref src;
+        }       
 
     }
 

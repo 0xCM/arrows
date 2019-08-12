@@ -2,50 +2,44 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Mkl
+namespace Z0
 {
     using System;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
 
-    public readonly struct LaplaceSample<T>
+    /// <summary>
+    /// Encapsulates data sampled from a Gaussian distribution joined with
+    /// the BRNG identifier and distribution parameters that were specified
+    /// when the sample was taken
+    /// </summary>
+    public readonly struct GaussianSample<T>
         where T : struct
     {
-        public LaplaceSample(BRNG rng, T mean, T beta, Memory<T> data)
+
+        public GaussianSample(RngKind rng, GaussianSpec<T> spec, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.Mean = mean;
-            this.Beta = beta;
+            this.Distribution = spec;
             this.SampleData = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly BRNG SourceRng;
+        public readonly RngKind SourceRng;
 
         /// <summary>
-        /// The distribution mean
+        /// The distribution spec that was used to draw the sample
         /// </summary>
-        public readonly T Mean;
+        public readonly GaussianSpec<T> Distribution;
 
-        /// <summary>
-        /// The scale factor
-        /// </summary>
-        public readonly T Beta;
-        
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
         public readonly Memory<T> SampleData;        
 
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Span.FormatList();
     }
 }

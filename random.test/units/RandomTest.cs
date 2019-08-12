@@ -209,11 +209,11 @@ namespace Z0.Test
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
 
-        void Bernouli(double alpha, int count)
+        void Bernouli(double p, int count)
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = BernoulliSpec.Define(alpha).Distribution<long>(Random).Sample().Take(count);
+            var samples = BernoulliSpec<long>.Define(p).Distribution<long>(Random).Sample().Take(count);
             var avg = samples.Average();
             sw.Stop();
             //print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");

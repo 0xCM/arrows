@@ -14,17 +14,16 @@ namespace Z0
     /// Realizes a Beta distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BetaDist<T> : Distribution<BetaSpec,T>
+    public class BetaDist<T> : Distribution<BetaSpec<T>,T>
         where T : struct
     {    
-        public BetaDist(IRandomSource random, BetaSpec spec)
+        public BetaDist(IRandomSource random, BetaSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SampleBeta(Spec.Alpha, Spec.Beta)
-                select convert<double,T>(s);            
+            => Random.SampleBeta(Spec.Alpha, Spec.Beta);
     }
 }

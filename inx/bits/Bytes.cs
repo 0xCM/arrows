@@ -63,6 +63,5 @@ namespace Z0
             dst = MemoryMarshal.AsBytes(src.Slice(offset));
             return ref dst;
         }
-
     }
 }

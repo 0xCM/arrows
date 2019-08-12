@@ -14,17 +14,16 @@ namespace Z0
     /// Realizes a Beta distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GammaDist<T> : Distribution<GammaSpec,T>
+    public class GammaDist<T> : Distribution<GammaSpec<T>,T>
         where T : struct
     {    
-        public GammaDist(IRandomSource random, GammaSpec spec)
+        public GammaDist(IRandomSource random, GammaSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SampleGamma(Spec.Shape, Spec.Scale)
-                select convert<double,T>(s);            
+            => Random.SampleGamma(Spec.Shape, Spec.Scale);
     }
 }

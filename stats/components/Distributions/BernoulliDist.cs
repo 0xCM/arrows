@@ -11,16 +11,21 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
+    using static As;
 
 
     /// <summary>
     /// Realizes a Bernoulli distribution
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class BernoulliDist<T> : Distribution<BernoulliSpec,T>
+    /// <typeparam name="T">The sample element type</typeparam>
+    public class BernoulliDist<T> : Distribution<BernoulliSpec<T>,T>
         where T : struct
     {    
-        public BernoulliDist(IRandomSource random, BernoulliSpec spec)
+        static readonly T Zero = gmath.zero<T>();
+
+        static readonly T One = gmath.one<T>();
+
+        public BernoulliDist(IRandomSource random, BernoulliSpec<T> spec)
             : base(random, spec)
         {
         }
@@ -29,7 +34,7 @@ namespace Z0
         {
             while(true)
             {
-                var success = Random.NextDouble() < Spec.p ? One : Zero;
+                var success = math.lt(Random.NextDouble(), Spec.Success) ? One : Zero;
                 yield return success;
             }            
         }

@@ -71,7 +71,6 @@ namespace Z0
         public static Graph<byte> ToGraph(in BitMatrix64 src)
             => ToGraph<byte,N64,byte>(new BitMatrix<N64,N64,byte>(src.Bytes()));            
 
-
         /// <summary>
         /// Defines an 8x8 bitmatrix from the bits in the source value
         /// </summary>

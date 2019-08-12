@@ -14,10 +14,10 @@ namespace Z0
     /// Realizes a Gaussian distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GaussianDist<T> : Distribution<GaussianSpec,T>
+    public class GaussianDist<T> : Distribution<GaussianSpec<T>,T>
         where T : struct
     {    
-        public GaussianDist(IRandomSource random, GaussianSpec spec)
+        public GaussianDist(IRandomSource random, GaussianSpec<T> spec)
             : base(random, spec)
         {
 
@@ -26,13 +26,13 @@ namespace Z0
         public override IEnumerable<T> Sample()
         {
             if(typeof(T) == typeof(double))
-                foreach(var next in Gaussian(Random, Spec.Mean, Spec.StdDev))
+                foreach(var next in Gaussian(Random, Spec.ToFloat32()))
                     yield return As.generic<T>(next);
             else if (typeof(T) == typeof(float))
-                foreach(var next in Gaussian(Random, (float)Spec.Mean, (float)Spec.StdDev))
+                foreach(var next in Gaussian(Random, Spec.ToFloat64()))
                     yield return As.generic<T>(next);
             else
-                foreach(var next in Gaussian(Random, Spec.Mean, Spec.StdDev))
+                foreach(var next in Gaussian(Random, Spec.ToFloat64()))
                     yield return convert<double,T>(next, out T x);
         }            
 
@@ -43,7 +43,7 @@ namespace Z0
         /// <param name="mean"></param>
         /// <param name="stdDev"></param>
         /// <remarks>See https://en.wikipedia.org/wiki/Marsaglia_polar_method</remarks>
-        static IEnumerable<double> Gaussian(IRandomSource rng, double mean, double stdDev) 
+        static IEnumerable<double> Gaussian(IRandomSource rng, GaussianSpec<double> spec) 
         {            
             while(true)
             {
@@ -56,11 +56,11 @@ namespace Z0
                 } while (s >= 1 || s == 0);
                 var x = math.sqrt(-2.0 * math.ln(s) / s);
                 yield return v * x;
-                yield return mean + stdDev * u * x;
+                yield return spec.Mean + spec.StdDev * u * x;
            }
         }
 
-        static IEnumerable<float> Gaussian(IRandomSource rng, float mean, float stdDev) 
+        static IEnumerable<float> Gaussian(IRandomSource rng, GaussianSpec<float> spec) 
         {            
             while(true)
             {
@@ -73,7 +73,7 @@ namespace Z0
                 } while (s >= 1 || s == 0);
                 var x = math.sqrt(-2.0f * math.ln(s) / s);
                 yield return v * x;
-                yield return mean + stdDev * u * x;
+                yield return spec.Mean + spec.StdDev * u * x;
            }
         }
 

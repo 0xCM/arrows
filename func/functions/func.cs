@@ -69,4 +69,6 @@ partial class zfunc
         rhs = temp;
     }
 
+    
+
 }

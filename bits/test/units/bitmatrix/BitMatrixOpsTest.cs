@@ -11,7 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class BitMatrixTransposeTest : UnitTest<BitMatrixTransposeTest>
+    public class BitMatrixOpsTest : UnitTest<BitMatrixOpsTest>
     {
         void Transpose<M,N,T>(int count)
             where M : ITypeNat, new()

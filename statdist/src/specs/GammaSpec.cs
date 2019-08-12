@@ -5,46 +5,52 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
+
+    static class MathUtil
+    {
+        [MethodImpl(Inline)]
+        public static T recip<T>(T value)
+            where T : struct
+        {
+            var x = convert<T,double>(value);
+            var r = 1.0/x;
+            return convert<T>(r);
+        }
+    }
 
     /// <summary>
     /// Characterizes a Gamma distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Gamma_distribution</remarks>
-    public readonly struct GammaSpec : IDistributionSpec
+    public readonly struct GammaSpec<T> : IDistributionSpec<T>
+        where T : struct
     {
-        public static GammaSpec FromShapeAndScale(double Shape, double Scale)
-            => new GammaSpec
-            (
-                Shape : Shape,
-                Scale : Scale,
-                Rate : 1.0/Scale
-            );        
-        public static GammaSpec FromShapeAndRate(double Shape, double Rate)
-            => new GammaSpec
-            (
-                Shape : Shape,
-                Scale : 1.0/Rate,
-                Rate : Rate
-            );
+        [MethodImpl(Inline)]
+        public static GammaSpec<T> FromShapeAndScale(T alpha, T theta)
+            => new GammaSpec<T>(alpha : alpha, theta : theta, beta : MathUtil.recip(theta));        
 
-        GammaSpec(double Shape, double Scale, double Rate)
+        [MethodImpl(Inline)]
+        public static GammaSpec<T> FromShapeAndRate(T alpha, T beta)
+            => new GammaSpec<T>(alpha : alpha, theta : MathUtil.recip(beta), beta : beta);
+
+        [MethodImpl(Inline)]
+        GammaSpec(T alpha, T theta, T beta)
         {
-            this.Shape = Shape;
-            this.Scale = Scale;
-            this.Rate = Rate;
+            this.Shape = alpha;
+            this.Scale = theta;
+            this.Rate = beta;
         }
 
         [Symbol(Greek.alpha)]
-        public readonly double Shape;
+        public readonly T Shape;
 
         [Symbol(Greek.theta)]
-        public readonly double Scale;
+        public readonly T Scale;
 
         [Symbol(Greek.beta)]
-        public readonly double Rate;
+        public readonly T Rate;
     }
 }

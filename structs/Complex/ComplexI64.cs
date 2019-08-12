@@ -11,7 +11,7 @@ namespace Z0
     using static zfunc;
 
 	/// <summary>
-	/// Represents an  unsigned 8-bit floating point integer value
+	/// Represents a complex value with signed 64-bit integer components
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public struct ComplexI64 : IEquatable<ComplexI64>

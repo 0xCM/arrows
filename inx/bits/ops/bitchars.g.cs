@@ -79,5 +79,18 @@ namespace Z0
         public static Span<char> bitchars<T>(Span<T> src, int? bitcount = null)
             where T : struct
                 => bitchars(src.ReadOnly(), bitcount);    
+
+
+       public static ref T parse<T>(ReadOnlySpan<char> src, int offset, out T dst)
+            where T : struct
+        {            
+            var last = Math.Min(Unsafe.SizeOf<T>()*8, src.Length) - 1;                                    
+            dst = gmath.zero<T>();
+            for(int i=offset, pos = 0; i<= last; i++, pos++)
+                if(src[i] == Bit.One)
+                    gbits.enable(ref dst, pos);                        
+            return ref dst;
+        }
+
     }
 }

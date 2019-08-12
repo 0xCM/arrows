@@ -2,46 +2,39 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Mkl
+namespace Z0
 {
     using System;
     using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static nfunc;
 
-    public readonly struct GeometricSample<T>
+    public readonly struct CauchySample<T>
         where T : struct
     {
-        public GeometricSample(BRNG rng, double p, Memory<T> data)
+
+        public CauchySample(RngKind rng, CauchySpec<T> spec, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.P = p;
             this.SampleData = data;
+            this.Distribution = spec;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly BRNG SourceRng;
+        public readonly RngKind SourceRng;
 
         /// <summary>
-        /// The probability of trial success
+        /// The distribution spec that was used to draw the sample
         /// </summary>
-        public readonly double P;
+        public readonly CauchySpec<T> Distribution;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
         public readonly Memory<T> SampleData;        
-
-        /// <summary>
-        /// Rnders the sample data as text
-        /// </summary>
-        public string Format()
-            => SampleData.Span.FormatList();
-
 
     }
 }

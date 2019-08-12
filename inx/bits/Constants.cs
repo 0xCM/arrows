@@ -53,9 +53,6 @@ namespace Z0
         /// </summary>
         public const ulong HiMask64 = 0xffffffff00000000ul;
              
-
-
-
     }
 
 }

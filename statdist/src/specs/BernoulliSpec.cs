@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
@@ -14,19 +15,36 @@ namespace Z0
         
     }
 
+    public interface IDistributionSpec<T> : IDistributionSpec
+        where T : struct
+    {
+
+    }
 
     /// <summary>
     /// Characterizes a bernouli distribution
-    /// </summary>
-    /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
-    public readonly struct BernoulliSpec : IDistributionSpec
+    /// </summary>    
+    /// <typeparam name="T">The sample value type</typeparam>
+    public readonly struct BernoulliSpec<T> : IDistributionSpec<T>
+        where T : struct
     {
-        public static BernoulliSpec Define(double p)
-            => new BernoulliSpec(p);
         
+        [MethodImpl(Inline)]
+        public static implicit operator BernoulliSpec<T>(double p)
+            => Define(p);
+
+        [MethodImpl(Inline)]
+        public static implicit operator double(BernoulliSpec<T> p)
+            => p.Success;
+
+        [MethodImpl(Inline)]
+        public static BernoulliSpec<T> Define(double p)
+            => new BernoulliSpec<T>(p);
+        
+        [MethodImpl(Inline)]
         public BernoulliSpec(double p)
         {
-            this.p = p;
+            this.Success = p;
         }
         
         /// <summary>
@@ -34,7 +52,7 @@ namespace Z0
         /// the probability of success
         /// </summary>
         [Symbol(AsciLower.p)]
-        public readonly double p;
+        public readonly double Success;
     }
 
 }

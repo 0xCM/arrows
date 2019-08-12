@@ -14,17 +14,16 @@ namespace Z0
     /// Realizes a Laplace distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LaplaceDist<T> : Distribution<LaplaceSpec,T>
+    public class LaplaceDist<T> : Distribution<LaplaceSpec<T>,T>
         where T : struct
     {    
-        public LaplaceDist(IRandomSource random, LaplaceSpec spec)
+        public LaplaceDist(IRandomSource random, LaplaceSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SampleLaplace(Spec.Mean, Spec.Scale)
-                select convert<double,T>(s);            
+            => Random.SampleLaplace(Spec.Location, Spec.Scale);
     }
 }

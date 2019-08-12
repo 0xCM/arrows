@@ -11,13 +11,15 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines a 64x64 matrix of bits
+    /// </summary>
     public ref struct BitMatrix64
     {                
         public const uint Size = 4096;
         
         public const uint RowSize = 64;
         
-
         internal Span<ulong> bits;
 
         public static readonly N64 N = default;
@@ -115,6 +117,15 @@ namespace Z0
                 gbits.set(ref dst, (byte)row, this[row,col]);
             return dst;
         }
+
+        /// <summary>
+        /// Interchanges the i'th and j'th rows where  0 <= i,j < 64
+        /// </summary>
+        /// <param name="i">A row index</param>
+        /// <param name="j">A row index</param>
+        [MethodImpl(Inline)]
+        public void RowSwap(int i, int j)
+            => bits.Swap(i,j);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
@@ -230,7 +241,5 @@ namespace Z0
         
         public override int GetHashCode()
             => throw new NotSupportedException();
-
     }
-
 }

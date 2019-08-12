@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
 
 	/// <summary>
-	/// Represents an unsigned 8-bit integer value
+	/// Represents a complex value with unsigned 8-bit integer components
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public struct ComplexU8 : IEquatable<ComplexU8>

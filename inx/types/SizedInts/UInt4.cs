@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;    
     using static ByteOps;
 
-    public readonly ref struct UInt4Info
+    public readonly struct UInt4Info
     {        
         public readonly UInt4 Zero;
 
@@ -32,7 +32,7 @@ namespace Z0
     }
 
     [StructLayout(LayoutKind.Explicit, Size = 1)]
-    public ref struct UInt4
+    public struct UInt4
     {
         [FieldOffset(0)]
         byte data;

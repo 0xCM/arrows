@@ -19,13 +19,11 @@ namespace Z0
     {
         public static readonly int Length = Vector256<T>.Count;
 
-        public static readonly ByteSize CellSize = SizeOf<T>.Size;
+        public static readonly ByteSize CellSize = Unsafe.SizeOf<T>();
 
         public static readonly ulong BitCount = 256ul;
 
-        public static readonly Vec256<T> Zero = Vec256.Zero<T>();
-
-        public static readonly Vec256<T> Ones = Vec256.Ones<T>();
+        public static readonly Vec256<T> Zero = default;
 
         public readonly Vector256<T> data;        
     

@@ -22,11 +22,9 @@ namespace Z0
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
 
-        public static readonly BitSize  BitSize = 128ul;
+        public static readonly ulong  BitSize = 128ul;
 
-        public static readonly Vec128<T> Zero = Vec128.Zero<T>();
-
-        public static readonly Vec128<T> Ones = Vec128.Ones<T>();
+        public static readonly Vec128<T> Zero = default;
 
         readonly Vector128<T> data;        
     
@@ -88,6 +86,5 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is Vec128<T> v ? Equals(v) : false;
-
     }     
 }

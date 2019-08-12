@@ -15,10 +15,10 @@ namespace Z0
 
     public ref struct BitMatrix4
     {        
-        Memory<byte> data;
+        Span<byte> data;
 
         internal Span<byte> bits
-            => data.Span;
+            => data;
 
         public const uint Size = 16;
 
@@ -33,7 +33,7 @@ namespace Z0
         }
 
         public static BitMatrix4 Zero 
-        {
+        {            
             [MethodImpl(Inline)]
             get => Define(0,0);
         }
@@ -69,7 +69,6 @@ namespace Z0
         public static bool operator !=(BitMatrix4 lhs, BitMatrix4 rhs)
             => !(lhs.Equals(rhs));
 
-
         [MethodImpl(Inline)]
         public static BitMatrix4 operator + (BitMatrix4 lhs, BitMatrix4 rhs)
             => XOr(ref lhs,rhs);
@@ -85,14 +84,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix4 operator | (BitMatrix4 lhs, BitMatrix4 rhs)
             => Or(ref lhs, rhs);
-
-
             
         [MethodImpl(Inline)]
         BitMatrix4(params byte[] src)
         {                    
             require(src.Length == Pow2.T01);
             this.data = src;
+            
         }
 
         [MethodImpl(Inline)]

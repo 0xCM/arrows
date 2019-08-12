@@ -35,6 +35,20 @@ namespace Z0
         }
 
         /// <summary>
+        /// Defines a sample stream for a biniomian distribution
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="n">The number of trials</param>
+        /// <param name="p">The probability of success of a given trial</param>
+        public static IEnumerable<T> SampleBinomial<T>(this IRandomSource random, T n, double p)
+            where T : struct
+        {
+            var sysrand = SysRand.FromSource(random);
+            while(true)
+                yield return convert<T>(MlStats.SampleFromBinomial(sysrand, convert<T,int>(n), p));
+        }
+
+        /// <summary>
         /// Defines a sample stream for a poisson distribution which represents the probability of
         /// a given number of independent events occurring over a period of time at a constant rate
         /// </summary>
@@ -47,6 +61,22 @@ namespace Z0
                 yield return MlStats.SampleFromPoisson(sysrand, lambda);
         }
 
+        /// <summary>
+        /// Defines a sample stream for a poisson distribution which represents the probability of
+        /// a given number of independent events occurring over a period of time at a constant rate
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="lambda">The constant rate of occurrence</param>
+        public static IEnumerable<T> SamplePoisson<T>(this IRandomSource random, T lambda)
+            where T : struct
+        {
+            var sysrand = SysRand.FromSource(random);
+            var l = convert<T,double>(lambda);
+            while(true)
+                yield return convert<T>(MlStats.SampleFromPoisson(sysrand, l));
+        }
+
+
         public static IEnumerable<float> SampleLaplace(this IRandomSource random, float mean, float scale)
         {
             var sysrand = SysRand.FromSource(random);
@@ -54,11 +84,29 @@ namespace Z0
                 yield return MlStats.SampleFromLaplacian(sysrand, mean, scale);
         }
 
+        public static IEnumerable<T> SampleLaplace<T>(this IRandomSource random, T mean, T scale)
+            where T : struct
+        {
+            var sysrand = SysRand.FromSource(random);
+            while(true)
+                yield return convert<T>((MlStats.SampleFromLaplacian(sysrand, convert<T,float>(mean), convert<T,float>(scale))));
+        }
+
         public static IEnumerable<double> SampleGaussian(this IRandomSource random, double mean, double σ)
         {
             var dist = Dist.Gaussian.FromMeanAndVariance(mean, σ*σ);
             while(true)
                 yield return dist.Sample(random);
+        }
+
+        public static IEnumerable<T> SampleGaussian<T>(this IRandomSource random, T mean, T σ)
+            where T : struct
+        {
+            var sig = convert<T,double>(σ);
+            var mu = convert<T,double>(mean);
+            var dist = Dist.Gaussian.FromMeanAndVariance(mu, sig*sig);
+            while(true)
+                yield return convert<T>(dist.Sample(random));
         }
 
         public static IEnumerable<double> SampleTruncatedGaussian(this IRandomSource random, double mean, double σ, double lower, double upper)
@@ -82,11 +130,27 @@ namespace Z0
                 yield return dist.Sample(random);
         }
 
+        public static IEnumerable<T> SampleGamma<T>(this IRandomSource random, T shape, T rate)
+            where T : struct
+        {
+            var dist = Dist.Gamma.FromShapeAndRate(convert<T,double>(shape), convert<T,double>(rate));
+            while(true)
+                yield return convert<T>(dist.Sample(random));
+        }
+
         public static IEnumerable<double> SampleBeta(this IRandomSource random, double trueCount, double falseCount)
         {
             var dist = new Dist.Beta(trueCount, falseCount);                
             while(true)
                 yield return dist.Sample(random);
+        }
+
+        public static IEnumerable<T> SampleBeta<T>(this IRandomSource random, T trueCount, T falseCount)
+            where T : struct
+        {
+            var dist = new Dist.Beta( convert<T,double>(trueCount), convert<T,double>(falseCount));                
+            while(true)
+                yield return As.generic<T>(dist.Sample(random));
         }
 
         public static IEnumerable<double[]> SampleDirichlet(IRandomSource random, double[] alphas)
@@ -112,6 +176,14 @@ namespace Z0
             var dist = new Dist.Pareto(shape, lowerBound);
             while(true)
                 yield return dist.Sample(random);
+        }
+
+        public static IEnumerable<T> SamplePareto<T>(this IRandomSource random, T shape, T lowerBound)
+            where T : struct
+        {
+            var dist = new Dist.Pareto(convert<T,double>(shape), convert<T,double>(lowerBound));
+            while(true)
+                yield return convert<T>(dist.Sample(random));
         }
 
         

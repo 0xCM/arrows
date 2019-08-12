@@ -6,22 +6,39 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
-    public readonly struct BinomialSpec : IDistributionSpec
+    /// <summary>
+    /// Characterizes a binomial distribution
+    /// </summary>
+    /// <typeparam name="T">The (integral) sample value type</typeparam>
+    /// <remarks>See https://en.wikipedia.org/wiki/Binomial_distribution</remarks>
+    public readonly struct BinomialSpec<T> : IDistributionSpec<T>
+        where T : struct
     {
-        public static BinomialSpec Define(int trials, double success)
-            => new BinomialSpec(trials,success);
+        [MethodImpl(Inline)]
+        public static BinomialSpec<T> Define(T n, double p)
+            => new BinomialSpec<T>(n,p);
+    
+        [MethodImpl(Inline)]
+        public static implicit operator (T n, double p)(BinomialSpec<T> spec)
+            => (spec.Trials, spec.Success);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BinomialSpec<T>((T n, double p) spec)
+            => (spec.n, spec.p);
+
         
-        public BinomialSpec(int trials, double success)
+        [MethodImpl(Inline)]
+        public BinomialSpec(T n, double p)
         {
-            this.Trials = trials;
-            this.Success = success;
+            this.Trials = n;
+            this.Success = p;
         }
         
-        public readonly int Trials;
+        public readonly T Trials;
 
         public readonly double Success;
     }

@@ -13,7 +13,7 @@ namespace Z0
 
     public static class RVar
     {
-        public static RVar<T> define<T>(Interval<T> domain, IRandomSource random)
+        public static RVar<T> Define<T>(Interval<T> domain, IRandomSource random)
             where T : struct
                 => new RVar<T>(domain,random);
     }

@@ -13,9 +13,10 @@ namespace Z0
 
     public static class SeriesEvolution
     {
-        public static SeriesEvolution<T> Define<T>(in ulong[] Seed, in Interval<T> Domain, in SeriesTerm<T> FirstTerm, in SeriesTerm<T> FinalTerm, in Duration Time)
-            where T : struct
-                => new SeriesEvolution<T>(in Seed, in Domain, in FirstTerm, in FinalTerm, in Time);
+        public static SeriesEvolution<T> Define<T>(in ulong[] Seed, in Interval<T> Domain, 
+            in SeriesTerm<T> FirstTerm, in SeriesTerm<T> FinalTerm, in Duration Time)
+                where T : struct
+                    => new SeriesEvolution<T>(in Seed, in Domain, in FirstTerm, in FinalTerm, in Time);
     }
     
     public readonly struct SeriesEvolution<T>

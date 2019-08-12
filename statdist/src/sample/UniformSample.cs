@@ -2,32 +2,39 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Mkl
+namespace Z0
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
-     using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
 
-    public readonly struct PoissonSample<T>
+    /// <summary>
+    /// Captures a sample from a uniform distribution 
+    /// </summary>
+    /// <remarks>https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)</remarks>
+    public readonly struct UniformSample<T>
         where T : struct
     {
-        public PoissonSample(BRNG rng, double lambda, Memory<T> data)
+        public UniformSample(RngKind rng, Interval<T> range, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.Lambda = lambda;
+            this.Range = range;
             this.SampleData = data;
         }
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly BRNG SourceRng;
-        
-        public readonly double Lambda;
+        public readonly RngKind SourceRng;
+
+        /// <summary>
+        /// The range of values over which the sample was taken
+        /// </summary>
+        public readonly Interval<T> Range;
 
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
@@ -40,5 +47,4 @@ namespace Z0.Mkl
         public string Format()
             => SampleData.Span.FormatList();
     }
-
 }

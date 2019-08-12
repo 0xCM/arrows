@@ -229,7 +229,6 @@ namespace Z0
             return ref dst;
         }
 
-
         [MethodImpl(Inline)]
         public static ref Vec128<T> Load<T>(in Span128<T> src, int block, out Vec128<T> dst)
             where T : struct

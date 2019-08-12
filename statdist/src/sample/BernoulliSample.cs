@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Mkl
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -12,39 +12,44 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    /// <summary>
-    /// Captures a sample from a uniform distribution 
-    /// </summary>
-    /// <remarks>https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)</remarks>
-    public readonly struct UniformRangeSample<T>
+    public readonly struct BernoulliSample<T>
         where T : struct
     {
-        public UniformRangeSample(BRNG rng, Interval<T> range, Memory<T> data)
+        public BernoulliSample(RngKind rng, BernoulliSpec<T> spec, Memory<T> data)
         {
             this.SourceRng = rng;
-            this.Range = range;
+            this.Distribution = spec;
             this.SampleData = data;
-        }
+        }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly BRNG SourceRng;
+        public readonly RngKind SourceRng;
 
         /// <summary>
-        /// The range of values over which the sample was taken
+        /// The distribution spec that was used to draw the sample
         /// </summary>
-        public readonly Interval<T> Range;
-
+        public readonly BernoulliSpec<T> Distribution;
+        
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public readonly Memory<T> SampleData;    
+
+        public Span<Bit> GetBits()
+        {
+            Span<Bit> dst = new Bit[SampleData.Length];
+            for(var i=0; i<dst.Length; i++)
+                dst[i] =As.int32(SampleData.Span[i]);
+            return dst;
+        }
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
             => SampleData.Span.FormatList();
+
     }
 }

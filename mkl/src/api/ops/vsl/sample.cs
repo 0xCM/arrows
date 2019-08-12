@@ -21,7 +21,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static UniformRangeSample<int> uniform(VslStream stream, Interval<int> range, Memory<int> buffer)
+        public static UniformSample<int> uniform(VslStream stream, Interval<int> range, Memory<int> buffer)
         {
             VSL.viRngUniform(0,stream, buffer.Length, ref buffer.Span[0], range.Left, range.Right).ThrowOnError();
             return stream.Brng().UniformRangeSampled(range,buffer);
@@ -34,7 +34,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static UniformRangeSample<float> uniform(VslStream stream, Interval<float> range, Memory<float> buffer)
+        public static UniformSample<float> uniform(VslStream stream, Interval<float> range, Memory<float> buffer)
         {
             VSL.vsRngUniform(0,stream, buffer.Length, ref buffer.Span[0], range.Left, range.Right).ThrowOnError();
             return stream.Brng().UniformRangeSampled(range,buffer);
@@ -47,7 +47,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]    
-        public static UniformRangeSample<double> uniform(VslStream stream, Interval<double> range, Memory<double> buffer)
+        public static UniformSample<double> uniform(VslStream stream, Interval<double> range, Memory<double> buffer)
         {
             VSL.vdRngUniform(0,stream, buffer.Length, ref buffer.Span[0], range.Left, range.Right).ThrowOnError();
             return stream.Brng().UniformRangeSampled(range,buffer);

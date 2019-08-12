@@ -11,9 +11,8 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;
-    using Z0.Mkl;
 
-    public enum DistributionKind
+    public enum DistKind
     {
         Uniform,
 
@@ -21,9 +20,12 @@ namespace Z0
 
         UniformBits,
 
-        Gaussian,
 
         Bernoulli,
+
+        Beta,
+
+        Binomial,
 
         Cauchy,
 
@@ -32,7 +34,9 @@ namespace Z0
         Exponential,
 
         Gamma,
-        
+
+        Gaussian,
+
         Geometric,
 
         Laplace,

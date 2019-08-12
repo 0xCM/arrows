@@ -24,7 +24,6 @@ namespace Z0
         }
 
         public static ReadOnlySpan<byte> Identity4x4 => new byte[] {0b10000100, 0b00100001};
-
         
         public static ReadOnlySpan<byte> Identity8x8 => new byte[]
         {
@@ -155,7 +154,6 @@ namespace Z0
             0, 0, 0, 0, 0, 0, 0, Pow2.T06,
             0, 0, 0, 0, 0, 0, 0, Pow2.T07,
         };
-
 
         static ReadOnlySpan<byte> OneData => new byte[]
         {

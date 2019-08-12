@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
 
 	/// <summary>
-	/// Represents a 64-bit floating point complex value
+	/// Represents a 32-bit floating point complex number
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential,CharSet=CharSet.Ansi)]
 	public struct ComplexF64

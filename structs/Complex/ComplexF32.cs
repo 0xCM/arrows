@@ -11,7 +11,7 @@ namespace Z0
 
 
 	/// <summary>
-	/// Represents a 32-bit floating point complex value
+	/// Represents a 32-bit floating point complex number
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential,CharSet=CharSet.Ansi)]
 	public struct ComplexF32 : IEquatable<ComplexF32>

@@ -5,8 +5,7 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
@@ -15,21 +14,31 @@ namespace Z0
     /// Characterizes a Poisson distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Poisson_distribution</remarks>
-    public readonly struct PoissonSpec : IDistributionSpec
+    public readonly struct PoissonSpec<T> : IDistributionSpec<T>
+        where T : struct
     {
-        public static PoissonSpec Define(double p)
-            => new PoissonSpec(p);
+        [MethodImpl(Inline)]
+        public static PoissonSpec<T> Define(T p)
+            => new PoissonSpec<T>(p);
         
-        public PoissonSpec(double lambda)
+        [MethodImpl(Inline)]
+        public static implicit operator PoissonSpec<T>(T p)
+            => Define(p);
+
+        [MethodImpl(Inline)]
+        public static implicit operator T(PoissonSpec<T> p)
+            => p.Success;
+
+        [MethodImpl(Inline)]
+        public PoissonSpec(T lambda)
         {
-            this.Lambda = lambda;
+            this.Success = lambda;
         }
         
         /// <summary>
-        /// Specifies a value within the unit interval [0,1] that represents
-        /// the probability of success
+        /// Specifies a value within the unit interval [0,1] that represents the probability of success
         /// </summary>
         [Symbol(Greek.lambda)]
-        public readonly double Lambda;
+        public readonly T Success;
     }
 }

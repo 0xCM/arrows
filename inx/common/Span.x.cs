@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this in Vec256<T> src, Span<T> dst, int offset = 0)
+        public static Span<T> ToSpan<T>(this Vec256<T> src, Span<T> dst, int offset = 0)
             where T : struct
         {            
             Vec256.Store(src, ref dst[offset]);
@@ -36,7 +36,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this in Vec128<T> src, Span<T> dst, int offset = 0)
+        public static Span<T> ToSpan<T>(this Vec128<T> src, Span<T> dst, int offset = 0)
             where T : struct
         {            
             Vec128.Store(src, ref dst[offset]);
@@ -50,7 +50,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span128<T> ToSpan128<T>(this in Vec128<T> src)
+        public static Span128<T> ToSpan128<T>(this Vec128<T> src)
             where T : struct     
         {
             var dst = Span128.alloc<T>(1);
@@ -65,7 +65,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> ToSpan256<T>(this in Vec256<T> src)
+        public static Span256<T> ToSpan256<T>(this Vec256<T> src)
             where T : struct            
         {
             var dst = Span256.AllocBlocks<T>(1);
@@ -79,7 +79,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this in Vec128<T> src)
+        public static Span<T> ToSpan<T>(this Vec128<T> src)
             where T : struct            
                 => src.ToSpan128().Unblock();
 
@@ -89,10 +89,8 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this in Vec256<T> src)
+        public static Span<T> ToSpan<T>(this Vec256<T> src)
             where T : struct            
                 => src.ToSpan256().Unblocked;
- 
-
     }
 }

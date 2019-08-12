@@ -13,18 +13,18 @@ namespace Z0
     /// <summary>
     /// Realizes a Binomial distribution
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class BinomialDist<T> : Distribution<BinomialSpec,T>
+    /// <typeparam name="T">The primal integral type</typeparam>
+    public class BinomialDist<T> : Distribution<BinomialSpec<T>,T>
         where T : struct
     {    
-        public BinomialDist(IRandomSource random, BinomialSpec spec)
+        public BinomialDist(IRandomSource random, BinomialSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SampleBinomial(Spec.Trials, Spec.Success)
-                select convert<int,T>(s);            
+            => Random.SampleBinomial(Spec.Trials, Spec.Success);
     }
+     
 }

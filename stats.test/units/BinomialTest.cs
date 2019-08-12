@@ -15,8 +15,8 @@ namespace Z0.Test
     {
         void SampleBinomial(int samples, int trials, double success)
         {
-            var spec = BinomialSpec.Define(trials, success);
-            var dist = spec.Distribution<double>(Random);
+            var spec = BinomialSpec<int>.Define(trials, success);
+            var dist = spec.Distribution(Random);
             var sample = dist.Sample().TakeSpan(samples); 
             var avg = sample.Avg();
             var min = sample.Min();

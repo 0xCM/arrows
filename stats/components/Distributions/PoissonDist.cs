@@ -14,17 +14,16 @@ namespace Z0
     /// Realizes a Poisson distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class PoissonDist<T> : Distribution<PoissonSpec,T>
+    public class PoissonDist<T> : Distribution<PoissonSpec<T>,T>
         where T : struct
     {    
-        public PoissonDist(IRandomSource random, PoissonSpec spec)
+        public PoissonDist(IRandomSource random, PoissonSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => from s in Random.SamplePoisson(Spec.Lambda)
-                select convert<double,T>(s);            
+            => Random.SamplePoisson(Spec.Success);
     }
 }

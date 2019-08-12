@@ -14,7 +14,6 @@ namespace Z0
 
     partial class gbits
     {        
-
         /// <summary>
         /// Counts the number of leading zero bits in the source
         /// </summary>
@@ -34,9 +33,6 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
-
-
-
     }
 
 }
