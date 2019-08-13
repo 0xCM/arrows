@@ -8,7 +8,7 @@ namespace Z0.Test
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-
+    using static Nats;
     using static zfunc;
     #pragma warning disable 1718
 
@@ -22,7 +22,7 @@ namespace Z0.Test
             {
                 var m1 = BitMatrix.Define(src.Current);
                 var n = new N8();
-                var m2 = BitMatrix.Define(n,n, src.Current.ToByteArray());
+                var m2 = BitMatrix.Load(n,n, src.Current.ToByteArray());
                 for(var i=0; i<8; i++)
                 for(var j=0; j<8; j++)
                     Claim.eq(m1[i,j], m2[i,j]);
@@ -36,11 +36,11 @@ namespace Z0.Test
             Claim.eq(4, grid.ColCount);
 
             var layout = grid.CalcLayout();
-            Claim.eq(36, layout.CellCount);
+            Claim.eq(36, layout.BitCount);
             Claim.eq(9, layout.RowCount);
             Claim.eq(4, layout.ColCount);
-            Claim.eq(1, layout.RowSegments);
-            Claim.eq(9, layout.TotalSegments);
+            Claim.eq(1, layout.RowCellCount);
+            Claim.eq(9, layout.TotalCellCount);
             var row0 = layout.Row(0);
             
             Claim.eq(4, row0.Length);            
@@ -63,6 +63,18 @@ namespace Z0.Test
             
         }
 
+        public void CreateSqure()
+        {
+            var m1 = Random.BitMatrix(N7, 0u);
+            var m2 = BitMatrix.Alloc(N7,0u);
+            for(var i=0; i<m1.RowCount; i++)
+            for(var j=0; j<m1.ColCount; j++)
+                m2[i,j] = m1[i,j];
+            
+            Claim.yea(m1 == m2);
+
+
+        }
         public void Create16x16()
         {
             var spec = BitGrid.Specify<N16,N16,byte>();    
@@ -87,14 +99,14 @@ namespace Z0.Test
                 }
             }
             Claim.eq(256, bitpos);
-            Claim.eq(256, layout.CellCount);
+            Claim.eq(256, layout.BitCount);
             
             Claim.eq(16, layout.RowCount);
             Claim.eq(16, rowCount);
             
             Claim.eq(16, layout.ColCount);
-            Claim.eq(2, layout.RowSegments);
-            Claim.eq(32, layout.TotalSegments);
+            Claim.eq(2, layout.RowCellCount);
+            Claim.eq(32, layout.TotalCellCount);
 
             var row0 = layout.Row(0);
             

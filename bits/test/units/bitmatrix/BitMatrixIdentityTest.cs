@@ -61,22 +61,22 @@ namespace Z0.Test
         public void VerifyPrimalIdentities()
         {
             var m8 = BitMatrix8.Identity;
-            for(byte i=0; i < m8.RowDim; i++)
+            for(byte i=0; i < m8.RowCount; i++)
                 Claim.eq(m8[i,i],Bit.On);
             Claim.yea(m8.Diagonal().AllOnes());
         
             var m16 = BitMatrix16.Identity;
-            for(byte i=0; i < m16.RowDim; i++)
+            for(byte i=0; i < m16.RowCount; i++)
                 Claim.eq(m16[i,i],Bit.On);
             Claim.yea(m16.Diagonal().AllOnes());
 
             var m32 = BitMatrix32.Identity;
-            for(byte i=0; i < m32.RowDim; i++)
+            for(byte i=0; i < m32.RowCount; i++)
                 Claim.eq(m32[i,i],Bit.On);
             Claim.yea(m32.Diagonal().AllOnes());
 
             var m64 = BitMatrix64.Identity;
-            for(byte i=0; i < m64.RowDim; i++)
+            for(byte i=0; i < m64.RowCount; i++)
                 Claim.eq(m64[i,i],Bit.On);
             Claim.yea(m64.Diagonal().AllOnes());
 

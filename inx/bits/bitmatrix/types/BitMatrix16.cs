@@ -26,6 +26,7 @@ namespace Z0
         public static readonly N16 N = default;
         
 
+
         public static BitMatrix16 Identity 
         {
             [MethodImpl(Inline)]
@@ -40,7 +41,11 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static BitMatrix16 Define(params ushort[] src)        
-            => src.Length == 0 ? Zero : new BitMatrix16(src);
+            => src.Length == 0 ? Alloc() : new BitMatrix16(src);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 Alloc()        
+            => Define(new ushort[N]);
 
 
         [MethodImpl(Inline)]
@@ -69,8 +74,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator * (BitMatrix16 lhs, BitMatrix16 rhs)
-            => And(ref lhs, rhs);
+            => Mul(ref lhs, rhs);
 
+        [MethodImpl(Inline)]
+        public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator - (BitMatrix16 src)
@@ -101,18 +109,41 @@ namespace Z0
 
             [MethodImpl(Inline)]
             set => BitMask.set(ref bits[row], (byte)col, value);
-
         }            
 
-        public int RowDim
-            => N;
+        public int RowCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
 
-        public int ColDim
-            => N;
+        public int ColCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
 
         [MethodImpl(Inline)]
-        public BitVector16 Row(int index)
+        public BitVector16 RowVector(int index)
             => bits[index];
+
+        /// <summary>
+        /// Returns a mutable reference for an index-identified matrix row
+        /// </summary>
+        /// <param name="row">The row index</param>
+        [MethodImpl(Inline)]
+        public ref ushort RowData(int row)
+            => ref bits[row];
+
+        /// <summary>
+        /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
+        /// </summary>
+        /// <param name="row">The row index</param>
+        public ref ushort this[int row]
+        {
+            [MethodImpl(Inline)]
+            get => ref RowData(row);
+        }
 
         [MethodImpl(Inline)]
         public BitMatrix16 AndNot(in BitMatrix16 rhs)
@@ -123,6 +154,10 @@ namespace Z0
             return this;
         }
 
+        [MethodImpl(Inline)]
+        public BitMatrix16 Compare(in BitMatrix16 rhs)
+            => this.AndNot(in rhs);
+
         public BitVector16 Diagonal()
         {
             var dst = (ushort)0;
@@ -132,14 +167,26 @@ namespace Z0
             return dst;                    
         }
 
-        public BitVector16 Col(int index)
+        public BitMatrix16 Transpose()
+        {
+            var dst = Replicate();
+            for(var i=0; i<N; i++)
+                dst.bits[i] = ColData(i);
+            return dst;
+        }
+
+        public ushort ColData(int index)
         {
             ushort col = 0;
             for(var r = 0; r < N; r++)
-                if(BitMask.test(in bits[r], index))
-                    BitMask.enable(ref col, r);
+                BitMask.setif(in bits[r], index, ref col, r);
             return col;
+
         }
+        
+        [MethodImpl(Inline)]
+        public BitVector16 ColVector(int index)
+            => ColData(index);
 
         /// <summary>
         /// Interchanges the i'th and j'th rows where  0 <= i,j < 16
@@ -196,6 +243,21 @@ namespace Z0
             src.LoadVector(out Vec256<ushort> vSrc);
             vSrc.Flip(ref src.bits[0]);
             return ref src;
+        }
+
+        static ref BitMatrix16 Mul(ref BitMatrix16 lhs, in BitMatrix16 rhs)
+        {
+            var x = lhs.Replicate();
+            var y = rhs.Transpose();
+
+            for(var i=0; i< N; i++)
+            {
+                var r = x.RowVector(i);
+                for(var j = 0; j< N; j++)
+                    lhs[i,j] = y.RowVector(j).Dot(r);
+            }
+            return ref lhs;
+
         }
 
         /// <summary>

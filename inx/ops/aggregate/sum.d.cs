@@ -20,7 +20,7 @@ namespace Z0
             var srclen = src.Length;
             require(0 == srclen % seglen);
 
-            var dst = Vec128.fill((short)0);
+            var dst = Vec128.Fill((short)0);
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
@@ -52,7 +52,7 @@ namespace Z0
             var srclen = src.Length;
             require(0 == srclen % seglen);
 
-            var dst = Vec128.fill((int)0);
+            var dst = Vec128.Fill((int)0);
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
@@ -84,7 +84,7 @@ namespace Z0
             var srclen = src.Length;
             require(0 == srclen % seglen);
 
-            var dst = Vec128.fill((float)0);
+            var dst = Vec128.Fill((float)0);
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
@@ -116,7 +116,7 @@ namespace Z0
             var srclen = src.Length;
             require(0 == srclen % seglen);
 
-            var dst = Vec128.fill((double)0);
+            var dst = Vec128.Fill((double)0);
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {

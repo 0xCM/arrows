@@ -28,12 +28,49 @@ namespace Z0.Test
             }
         }
 
-        public void Transpose()
+        public void TransposeGeneric()
         {
             Transpose<N12,N14,short>(Pow2.T07);
             Transpose<N32,N32,byte>(Pow2.T07);
             Transpose<N8,N8,byte>(Pow2.T07);
         }
+
+        public void Transpose8()
+        {
+            var m1 = Random.BitMatrix8();
+            var m2 = m1.Transpose();
+            var m3 = m2.Transpose();            
+            Claim.yea(m1 == m3);
+        }
+
+        public void Transpose16()
+        {
+            var m1 = Random.BitMatrix16();
+            var m2 = m1.Transpose();
+            var m3 = m2.Transpose();
+            Claim.yea(m3 == m1);
+        }
+
+        public void Transpose64()
+        {
+            var m1 = Random.BitMatrix64();
+            var m2 = m1.Transpose();
+            var m3 = m2.Transpose();
+            Claim.yea(m3 == m1);    
+        }
+
+        public void RowSwap()
+        {
+            var m1 = Random.BitMatrix32();
+            var m2 = m1.Replicate();
+
+            m2.RowSwap(0,1);
+            m2.RowSwap(1,2);
+            m2.RowSwap(2,3);
+
+            Claim.yea(m1.RowVector(0) == m2.RowVector(3));
+        }
+
 
     }
 

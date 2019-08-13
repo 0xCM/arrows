@@ -74,8 +74,32 @@ namespace Z0
             else if(index == 3)
                 return ref src.v3;
             else
-                throw new OutOfMemoryException($"{index}");
+                throw OutOfRange(index, 0, 3);
         }
+
+
+        [MethodImpl(Inline)]
+        public static ref Vec256<T> At<T>(this ref Vec512<T> src, int index)
+            where T : struct
+        {
+            if(index == 0)
+                return ref src.v0;
+            else if(index == 1)
+                return ref src.v1;
+            else
+                throw OutOfRange(index, 0, 1);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref readonly Vec256<T> Lo<T>(this in Vec512<T> src)
+            where T : struct
+                => ref src.v0;
+
+        [MethodImpl(Inline)]
+        public static ref readonly Vec256<T> Hi<T>(this in Vec512<T> src)
+            where T : struct
+                => ref src.v1;
+
 
     }
 }

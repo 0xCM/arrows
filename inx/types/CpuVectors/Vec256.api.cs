@@ -30,25 +30,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Vec256.fill(int8(value)));
+                return generic<T>(fill(int8(value)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(Vec256.fill(uint8(value)));
+                return generic<T>(fill(uint8(value)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Vec256.fill(int16(value)));
+                return generic<T>(fill(int16(value)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Vec256.fill(uint16(value)));
+                return generic<T>(fill(uint16(value)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Vec256.fill(int32(value)));
+                return generic<T>(fill(int32(value)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Vec256.fill(uint32(value)));
+                return generic<T>(fill(uint32(value)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Vec256.fill(int64(value)));
+                return generic<T>(fill(int64(value)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Vec256.fill(uint64(value)));
+                return generic<T>(fill(uint64(value)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(Vec256.fill(float32(value)));
+                return generic<T>(fill(float32(value)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(Vec256.fill(float64(value)));
+                return generic<T>(fill(float64(value)));
             else
                 throw unsupported<T>();
         }

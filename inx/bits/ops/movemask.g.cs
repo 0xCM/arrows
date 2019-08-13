@@ -14,7 +14,7 @@ namespace Z0
     using static As;
     using static AsInX;
 
-    partial class ginx
+    partial class gbits
     {
 
         [MethodImpl(Inline)]
@@ -22,13 +22,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return dinx.movemask(in int8(in src));
+                return Bits.movemask(in int8(in src));
             else if(typeof(T) == typeof(byte))
-                return dinx.movemask(in uint8(in src));
+                return Bits.movemask(in uint8(in src));
             else if(typeof(T) == typeof(float))
-                return dinx.movemask(in float32(in src));
+                return Bits.movemask(in float32(in src));
             else if(typeof(T) == typeof(double))
-                return dinx.movemask(in float64(in src));
+                return Bits.movemask(in float64(in src));
             else 
                 throw unsupported<T>();
         }
@@ -38,13 +38,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return dinx.movemask(in int8(in src));
+                return Bits.movemask(in int8(in src));
             else if(typeof(T) == typeof(byte))
-                return dinx.movemask(in uint8(in src));
+                return Bits.movemask(in uint8(in src));
             else if(typeof(T) == typeof(float))
-                return dinx.movemask(in float32(in src));
+                return Bits.movemask(in float32(in src));
             else if(typeof(T) == typeof(double))
-                return dinx.movemask(in float64(in src));
+                return Bits.movemask(in float64(in src));
             else 
                 throw unsupported<T>();
         }

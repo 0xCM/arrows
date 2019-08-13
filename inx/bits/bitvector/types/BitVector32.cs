@@ -25,6 +25,9 @@ namespace Z0
         public static BitVector32 Zero() 
             => new BitVector32(0u);
 
+        public static BitVector32 Alloc()
+            => new BitVector32(0);
+
         uint data;
 
         [MethodImpl(Inline)]
@@ -85,13 +88,22 @@ namespace Z0
         public static BitVector32 operator *(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.data & rhs.data;
 
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector32 operator -(in BitVector32 src)
             => ~src.data;
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector32 operator |(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.data | rhs.data;
+        public static Bit operator %(in BitVector32 lhs, in BitVector32 rhs)
+            => lhs.Dot(rhs);
 
         public Bit this[byte pos]
         {
@@ -129,6 +141,23 @@ namespace Z0
             set => this[(byte)pos] = value;
         }
 
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
+        }
+
+        public Bit Dot(BitVector32 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+
+        }
 
         [MethodImpl(Inline)]
         public void EnableBit(byte pos)

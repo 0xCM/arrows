@@ -11,12 +11,21 @@ namespace Z0
 
     using static zfunc;    
 
+    /// <summary>
+    /// Defines a natural bitvector parametrized by a primal component type
+    /// </summary>
+    /// <typeparam name="N">The vector length type</typeparam>
+    /// <typeparam name="T">The vector component type</typeparam>
     public ref struct BitVector<N,T>
         where N : ITypeNat, new()
         where T : struct
     {
         Span<T> bits;
 
+        /// <summary>
+        /// The maximum number of bits contained in a vector component
+        /// </summary>
+        /// <typeparam name="T">The vector component type</typeparam>
         public static readonly BitSize SegmentCapacity = BitGridLayout.SegmentCapacity<T>();
 
         public static readonly BitSize TotalBitCount = new N().value;
@@ -69,14 +78,22 @@ namespace Z0
         public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
 
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator -(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(in src.bits));        
-                
+            => new BitVector<N,T>(gbits.flip(in src.bits));                        
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> operator |(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.or(in lhs.bits, rhs.bits));
+        public static Bit operator %(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
         static int CheckIndex(int index)
@@ -117,9 +134,21 @@ namespace Z0
         }
 
         /// <summary>
+        /// Computes the scalar product between this vector and another
+        /// </summary>
+        /// <param name="rhs"></param>
+        public Bit Dot(BitVector<N,T> rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+        }
+
+        /// <summary>
         /// The data over which the bitvector is constructed
         /// </summary>
-        Span<T> Bits
+        public Span<T> Bits
         {
             [MethodImpl(Inline)]
             get => bits;
@@ -129,13 +158,16 @@ namespace Z0
         /// The number of bits represented by the vector
         /// </summary>
         public int Length
-            => TotalBitCount;
+        {
+            [MethodImpl(Inline)]
+            get => TotalBitCount;
+        }
 
         [MethodImpl(Inline)]
         public void Toggle(in int index)
         {         
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
+            BitMaskG.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
         /// <summary>
@@ -180,7 +212,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => BitString.FromScalars(Bits,TotalBitCount); //Bits.ToBitString(TotalBitCount);
+            => BitString.FromScalars(Bits,TotalBitCount); 
 
         /// <summary>
         /// Counts the vector's enabled bits

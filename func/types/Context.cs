@@ -53,6 +53,15 @@ namespace Z0
                 Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
         }
 
+        protected void Trace(string title, string msg, SeverityLevel? severity = null)
+        {
+            if(TraceEnabled)
+            {
+                Messages.Add(AppMsg.Define($"{title}", severity ?? SeverityLevel.Babble));
+                Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
+            }
+        }
+
         protected void Trace(AppMsg msg, SeverityLevel? severity = null)
         {
             if(TraceEnabled)

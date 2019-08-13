@@ -30,7 +30,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The fill value</param>
          [MethodImpl(Inline)]
-         public static Vec128<T> fill<T>(T value)
+         public static Vec128<T> Fill<T>(T value)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -56,6 +56,7 @@ namespace Z0
             else
                 throw unsupported<T>();
         }
+
 
         /// <summary>
         /// Produces a vector with each component assigned unit value
@@ -259,6 +260,42 @@ namespace Z0
             return ref dst;
         }        
 
+        /// <summary>
+        /// Loads source value into the first component of the target
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static ref Vec128<T> LoadScalar<T>(T src, out Vec128<T> dst)
+            where T : struct
+        {            
+            if(typeof(T) == typeof(sbyte))
+                dst = generic<T>(LoadScalar(int8(src)));
+            else if(typeof(T) == typeof(byte))
+                dst = generic<T>(LoadScalar(uint8(src)));
+            else if(typeof(T) == typeof(short))
+                dst = generic<T>(LoadScalar(int16(src)));
+            else if(typeof(T) == typeof(ushort))
+                dst = generic<T>(LoadScalar(uint16(src)));
+            else if(typeof(T) == typeof(int))
+                dst = generic<T>(LoadScalar(int32(src)));
+            else if(typeof(T) == typeof(uint))
+                dst = generic<T>(LoadScalar(uint32(src)));
+            else if(typeof(T) == typeof(long))
+                dst = generic<T>(LoadScalar(int64(src)));
+            else if(typeof(T) == typeof(ulong))
+                dst = generic<T>(LoadScalar(uint64(src)));
+            else if(typeof(T) == typeof(float))
+                dst = generic<T>(LoadScalar(float32(src)));
+            else if(typeof(T) == typeof(double))
+                dst = generic<T>(LoadScalar(float64(src)));
+            else 
+                throw unsupported<T>();
+            return ref dst;
+        }        
+
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(Span128<T> src, int block = 0)
@@ -300,39 +337,53 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static Vec128<T> Fill<T>(T src)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(fill(int8(src)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(fill(uint8(src)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(fill(int16(src)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(fill(uint16(src)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(fill(int32(src)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(fill(uint32(src)));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(fill(int64(src)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(fill(uint64(src)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(fill(float32(src)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(fill(float64(src)));
-            else 
-                throw unsupported<T>();
-        }
  
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
                 =>  Load<T>(src, offset, out Vec128<T> dst);    
+
+        
+        [MethodImpl(Inline)]
+        static Vec128<byte> LoadScalar(byte src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<sbyte> LoadScalar(sbyte src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<short> LoadScalar(short src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<ushort> LoadScalar(ushort src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<int> LoadScalar(int src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<uint> LoadScalar(uint src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<long> LoadScalar(long src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<ulong> LoadScalar(ulong src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<float> LoadScalar(float src)
+            => Vector128.CreateScalarUnsafe(src);
+
+        [MethodImpl(Inline)]
+        static Vec128<double> LoadScalar(double src)
+            => Vector128.CreateScalarUnsafe(src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<sbyte> load(ref sbyte src)

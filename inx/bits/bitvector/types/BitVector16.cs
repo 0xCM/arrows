@@ -58,14 +58,28 @@ namespace Z0
         public static BitVector16 operator +(in BitVector16 lhs, in BitVector16 rhs)
             => Define((ushort)(lhs.data ^ rhs.data));
 
+        /// <summary>
+        /// Computes the componentwise AND of the source vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector16 operator *(in BitVector16 lhs, in BitVector16 rhs)
             => Define((ushort)(lhs.data & rhs.data));
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector16 operator |(in BitVector16 lhs, in BitVector16 rhs)
-            => Define((ushort)(lhs.data | rhs.data));
+        public static Bit operator %(in BitVector16 lhs, in BitVector16 rhs)
+            => lhs.Dot(rhs);
 
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector16 operator ~(in BitVector16 src)
             => Define((ushort) ~ src.data);
@@ -116,6 +130,24 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => Extract(range.Start.Value, range.End.Value);
+        }
+
+        public Bit Dot(BitVector16 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+
+        }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
         }
 
         public BitVector8 Hi

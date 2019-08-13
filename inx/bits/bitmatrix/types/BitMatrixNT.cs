@@ -11,10 +11,9 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Defines bitmatrix of natural dimensions over a primal type
+    /// Defines a square bitmatrix of natural order over a primal type
     /// </summary>
-    public ref struct BitMatrix<M,N,T>
-        where M : ITypeNat, new()        
+    public ref struct BitMatrix<N,T>
         where N : ITypeNat, new()
         where T : struct
     {        
@@ -23,45 +22,60 @@ namespace Z0
         /// <summary>
         /// Specifies the MxN matrix dimension
         /// </summary>
-        static readonly Dim<M,N> Dim = default;
+        static readonly Dim<N,N> Dim = default;
 
         static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
         
         public static readonly BitGridLayout<T> GridLayout = GridSpec.CalcLayout();
 
+        public static BitMatrix<N,T> Identity()
+        {            
+            var dst = Alloc();
+            for(var row = 0; row < dst.RowCount; row++)
+            for(var col = 0; col < dst.ColCount; col++)
+                if(row == col)
+                    dst[row,col] = 1;            
+            return dst;
+        }    
+
         /// <summary>
-        /// Allocates a Zero-filled mxn matrix
+        /// Allocates a Zero-filled NxN matrix
         /// </summary>
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Alloc()
-            => new BitMatrix<M, N, T>(new T[GridLayout.TotalCellCount]);
+        public static BitMatrix<N,T> Alloc()
+            => new BitMatrix<N, T>(new T[GridLayout.TotalCellCount]);
 
         /// <summary>
         /// Allocates a One-filled mxn matrix
         /// </summary>
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Ones()
-        {
+        public static BitMatrix<N,T> Ones()
+        {                    
             Span<T> data = new T[GridLayout.TotalCellCount];
-            var length = BitSize.Size<T>();
-            for(var i=0; i<data.Length; i++)
-                for(var j = 0; j< length; j++)
-                    gbits.enable(ref data[i], j);
-            return new BitMatrix<M, N, T>(data);
+            data.Fill(PrimalInfo.Get<T>().MaxVal);
+            return new BitMatrix<N, T>(data);
         }
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> operator +(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
+        public static BitMatrix<N,T> operator +(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => lhs.XOr(rhs);
 
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> operator &(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
+        public static BitMatrix<N,T> operator &(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => lhs.And(rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> operator -(BitMatrix<M,N,T> src)
+        public static BitMatrix<N,T> operator -(BitMatrix<N,T> src)
             => src.Flip();
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
@@ -181,7 +195,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public void ColVector(int col, BitVector<M,T> src)
+        public void ColVector(int col, BitVector<N,T> src)
         {
             for(var row=0; row < RowCount; row++)
                 this[row,col] = src[row];
@@ -192,9 +206,9 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public BitVector<M,T> ColVector(int col)
+        public BitVector<N,T> ColVector(int col)
         {
-            var cv = default(BitVector<M,T>);
+            var cv = default(BitVector<N,T>);
             for(var row=0; row < RowCount; row++)
                 cv[row] = this[row, col];
             return cv;
@@ -205,23 +219,38 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public Span<Bit> Unpack()
-            => bits.AsBytes().Unpack(out Span<Bit> dst);
+            => bits.AsBytes().Unpack(out Span<Bit> dst).Slice(0, (int)Dim.Volume);
 
         public BitGridLayout<T> Layout
             => GridLayout;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public string Format()
             => Bits.AsBytes().FormatMatrixBits(ColCount);
 
-        public BitMatrix<N,M,T> Transpose()
+        public BitMatrix<N,T> Transpose()
         {
-            var dst = BitMatrix.Alloc<N,M,T>();
+            var dst = Alloc();
             for(var row = 0; row < RowCount; row++)
                 dst.ColVector(row, RowVector(row));            
             return dst;
         }
 
+        public bool Equals(BitMatrix<N,T> rhs)        
+        {
+            var eq = gmath.eq<T>(bits, rhs.bits);
+            for(var i = 0; i< eq.Length; i++)
+                if(!eq[i])
+                    return false;
+            return true;
+        }
+            
+        public override bool Equals(object obj)
+            => throw new NotSupportedException();
+        
+        public override int GetHashCode()
+            => throw new NotSupportedException();
+        
 
     }
 }

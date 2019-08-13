@@ -17,13 +17,13 @@ namespace Z0
         /// <summary>
         /// Specifies the number of bits that can be placed in one segment
         /// </summary>
-        public static readonly BitSize SegCapacity = SizeOf<T>.BitSize;
+        public static readonly BitSize SegmentCapacity = BitGridLayout.SegmentCapacity<T>();
 
         readonly Span<T> bits;
     
-        readonly int MaxBitCount;
+        readonly BitSize MaxBitCount;
 
-        readonly int SegLength;
+        readonly BitSize SegLength;
     
         readonly BitPos<T>[] BitMap;
 
@@ -32,12 +32,11 @@ namespace Z0
         /// </summary>
         public readonly int Length;
             
-
         [MethodImpl(Inline)]
-        public BitVector(Span<T> bits, uint? dim = null)
+        public BitVector(Span<T> bits, BitSize? bitcount = null)
         {
-            this.MaxBitCount = bits.Length * (int)SegCapacity;
-            this.Length = (int)(dim ?? (uint)MaxBitCount);
+            this.MaxBitCount = bits.Length * (int)SegmentCapacity;
+            this.Length = (int)(bitcount ?? (uint)MaxBitCount);
             this.bits = bits;
             this.SegLength = BitGridLayout.MinSegmentCount<T>(MaxBitCount);            
             this.BitMap = BitGridLayout.BitMap<T>(MaxBitCount);
@@ -45,8 +44,8 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public BitVector(ReadOnlySpan<T> bits, uint? dim = null)
-            : this(bits.Replicate(),dim)
+        public BitVector(ReadOnlySpan<T> bits, BitSize? bitcount = null)
+            : this(bits.Replicate(),bitcount)
         {
 
         }
@@ -75,17 +74,25 @@ namespace Z0
         public static BitVector<T> operator *(BitVector<T> lhs, in BitVector<T> rhs)
             => new BitVector<T>(gbits.and(in lhs.bits, rhs.bits));
 
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator -(BitVector<T> src)
             => new BitVector<T>(gbits.flip(in src.bits));
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector<T> operator |(BitVector<T> lhs, in BitVector<T> rhs)
-            => new BitVector<T>(gbits.or(in lhs.bits, rhs.bits));
-
+        public static Bit operator %(in BitVector<T> lhs, in BitVector<T> rhs)
+            => lhs.Dot(rhs);
         
         /// <summary>
-        /// Retrieves the value of the bit at a specified position
+        /// Reads the value of an index-identified bit
         /// </summary>
         /// <param name="bit">The absolute bit position</param>
         [MethodImpl(Inline)]
@@ -94,14 +101,6 @@ namespace Z0
             ref readonly var pos = ref BitMap[bit];
             return gbits.test(in bits[pos.SegIdx], pos.BitOffset);
         }
-
-        /// <summary>
-        /// Returns a reference to the segment in which a specified bit is defined
-        /// </summary>
-        /// <param name="pos">The segmented bit position</param>
-        [MethodImpl(Inline)]
-        public ref T GetSegment(in BitPos<T> pos)
-            => ref bits[pos.SegIdx];
 
         [MethodImpl(Inline)]
         public Bit GetBit(in BitPos<T> pos)
@@ -118,10 +117,22 @@ namespace Z0
             gbits.set(ref bits[pos.SegIdx], pos.BitOffset, in value);
         }
 
+        /// <summary>
+        /// Sets the value of an identified bit
+        /// </summary>
+        /// <param name="pos">Identifies the bit to set</param>
+        /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
         public void SetBit(in BitPos<T> pos, Bit value)
             => gbits.set(ref bits[pos.SegIdx], pos.BitOffset, in value);
 
+        /// <summary>
+        /// Returns a reference to the segment in which a specified bit is defined
+        /// </summary>
+        /// <param name="pos">The segmented bit position</param>
+        [MethodImpl(Inline)]
+        public ref T GetSegment(in BitPos<T> pos)
+            => ref bits[pos.SegIdx];
 
         /// <summary>
         /// A bit-level accessor/manipulator
@@ -135,17 +146,30 @@ namespace Z0
             set => SetBit(bit, value);
         }
         
+        /// <summary>
+        /// Computes the scalar product between this vector and another of identical length
+        /// </summary>
+        /// <param name="rhs"></param>
+        public Bit Dot(BitVector<T> rhs)
+        {
+            require(this.Length == rhs.Length);
+
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+        }
 
         T Extract(in BitPos<T> first, in BitPos<T> last, bool debug = false)
         {
 
             var sameSeg = first.SegIdx == last.SegIdx;
             var wantedCount = last - first;
-            var firstCount = sameSeg ? wantedCount : (int)SegCapacity - first.BitOffset;
+            var firstCount = sameSeg ? wantedCount : (int)SegmentCapacity - first.BitOffset;
             var lastCount = wantedCount - firstCount;
             
-            if(wantedCount > SegCapacity)
-                throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegCapacity}");
+            if(wantedCount > SegmentCapacity)
+                throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegmentCapacity}");
 
             ref var seg1 = ref GetSegment(in first);
             var part1 = gbits.extract(in seg1, first.BitOffset, (byte)firstCount);
@@ -176,7 +200,7 @@ namespace Z0
         public void Toggle(in int bit)
         {         
             ref readonly var pos = ref BitMap[bit];
-            gbits.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
+            BitMaskG.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
         }
 
         /// <summary>

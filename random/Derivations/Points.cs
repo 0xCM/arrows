@@ -23,7 +23,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T Next<T>(this IRandomSource src, Interval<T>? domain = null)
             where T : struct
-                => domain.MapValueOrElse(d => src.NextPoint<T>(d), () => src.NextPoint<T>());
+                => domain.HasValue ? src.NextPoint(domain.Value) : src.NextPoint<T>(); 
 
         [MethodImpl(Inline)]
         static T NextPoint<T>(this IRandomSource src, Interval<T> domain)
@@ -51,7 +51,6 @@ namespace Z0
                 return generic<T>(src.Next(domain.As<double>()));
             else throw unsupported<T>();
         }
-
 
         [MethodImpl(Inline)]
         static T NextPoint<T>(this IRandomSource src)
@@ -81,6 +80,53 @@ namespace Z0
             else throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Yields the next random value from the source that conforms to a specified upper bound
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="max">The exclusive upper bound</param>
+        [MethodImpl(Inline)]
+        public static byte Next(this IRandomSource<byte> src, byte max)
+            => src.Next().Contract(max);
+
+        /// <summary>
+        /// Yields the next random value from the source that conforms to a specified upper bound
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="max">The exclusive upper bound</param>
+        [MethodImpl(Inline)]
+        public static ushort Next(this IRandomSource<ushort> src, ushort max)
+            => src.Next().Contract(max);
+
+        /// <summary>
+        /// Yields the next random value from the source that conforms to a specified upper bound
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="max">The exclusive upper bound</param>
+        [MethodImpl(Inline)]
+        public static uint Next(this IRandomSource<uint> src, uint max)
+            => src.Next().Contract(max);
+
+        /// <summary>
+        /// Yields the next random value from the source that conforms to a specified upper bound
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="max">The exclusive upper bound</param>
+        [MethodImpl(Inline)]
+        public static ulong Next(this IRandomSource<ulong> src, ulong max) 
+            => src.Next().Contract(max);
+
+        /// <summary>
+        /// Generates a psedorandom int in the interval [0, max) if max >= 0
+        /// </summary>
+        /// <param name="random">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        internal static int NextInt32(this IRandomSource<ulong> random, int max)
+            => max >= 0 ? (int)random.Next((ulong)max) 
+                : - (int)random.Next((ulong) (Int32.MaxValue + max));        
+
+
         [MethodImpl(Inline)]
         static ulong Next(this IRandomSource src, ulong max)
             => src.NextUInt64(max);
@@ -93,7 +139,59 @@ namespace Z0
         public static ulong Next(this IPointSource<ulong> src, ulong max)
             => src.Next().Contract(max);
 
-                
+        /// <summary>
+        /// Retrieves the next unsigned 4-bit value from the source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The selection domain</param>
+        [MethodImpl(Inline)]
+        public static UInt4 NextUInt4(this IRandomSource src, Interval<byte>? domain = null)
+            => (UInt4)src.Next(domain);
+
+        /// <summary>
+        /// Retrieves the next signed 8-bit value from the source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The selection domain</param>
+        [MethodImpl(Inline)]
+        public static sbyte NextInt8(this IRandomSource src, Interval<sbyte>? domain = null)
+            => src.Next(domain);
+ 
+        /// <summary>
+        /// Retrieves the next usigned 8-bit value from the source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The selection domain</param>
+         [MethodImpl(Inline)]
+         public static byte NextUInt8(this IRandomSource src, Interval<byte>? domain = null)
+            => src.Next(domain);
+ 
+        /// <summary>
+        /// Retrieves the next unsigned 16-bit value from the source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The selection domain</param>
+         [MethodImpl(Inline)]
+         public static ushort NextUInt16(this IRandomSource src, Interval<ushort>? domain = null)
+            => src.Next(domain);
+ 
+        /// <summary>
+        /// Retrieves the next signed 16-bit value from the source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The selection domain</param>
+         [MethodImpl(Inline)]
+         public static short NextInt16(this IRandomSource src, Interval<short>? domain = null)
+            => src.Next(domain);
+
+         [MethodImpl(Inline)]
+         public static uint NextUInt32(this IRandomSource src, Interval<uint>? domain = null)
+            => src.Next(domain);
+
+         [MethodImpl(Inline)]
+         public static long NextInt64(this IRandomSource src, Interval<long>? domain = null)
+            => src.Next(domain);
+
         [MethodImpl(Inline)]
         static sbyte Next(this IRandomSource src, Interval<sbyte> domain)
         {
@@ -164,5 +262,7 @@ namespace Z0
             var whole = (double)src.Next(domain.Convert<long>());
             return whole + src.NextDouble();            
         }
+
+
     }
 }

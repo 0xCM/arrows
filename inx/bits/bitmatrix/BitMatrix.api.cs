@@ -103,10 +103,10 @@ namespace Z0
         /// <typeparam name="N">The square dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static BitMatrix<N,N,T> Zeros<N,T>()
+        public static BitMatrix<N,T> Alloc<N,T>(N n = default, T rep = default)
             where N : ITypeNat, new()
             where T : struct
-                => BitMatrix<N,N,T>.Zeros();
+                => BitMatrix<N,T>.Alloc();
         
         /// <summary>
         /// Allocates a zero-filled mxn matrix
@@ -115,23 +115,11 @@ namespace Z0
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Zeros<M,N,T>(M m = default, N n = default)
+        public static BitMatrix<M,N,T> Alloc<M,N,T>(M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => BitMatrix<M,N,T>.Zeros();
-
-        /// <summary>
-        /// Allocates a one-filled N-square matrix
-        /// </summary>
-        /// <typeparam name="M">The row dimension</typeparam>
-        /// <typeparam name="N">The column dimension</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitMatrix<N,N,T> Ones<N,T>(N n = default)
-            where N : ITypeNat, new()
-            where T : struct
-                => BitMatrix<N,N,T>.Ones();
+                => BitMatrix<M,N,T>.Alloc();
 
         /// <summary>
         /// Allocates a one-filled mxn matrix
@@ -147,47 +135,55 @@ namespace Z0
                 => BitMatrix<M,N,T>.Ones();
 
         /// <summary>
+        /// Allocates a one-filled N-square matrix
+        /// </summary>
+        /// <typeparam name="M">The row dimension</typeparam>
+        /// <typeparam name="N">The column dimension</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitMatrix<N,T> Ones<N,T>(N n = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => BitMatrix<N,T>.Ones();
+
+        /// <summary>
         /// Allocates an N-square identity matrix
         /// </summary>
         /// <typeparam name="N">The column/row dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public static BitMatrix<N,N,T> Identity<N,T>()
+        public static BitMatrix<N,T> Identity<N,T>()
             where N : ITypeNat, new()
             where T : struct
-        {            
-
-            var dst = Zeros<N,T>();
-            for(var row = 0; row < dst.RowCount; row++)
-            for(var col = 0; col < dst.ColCount; col++)
-                if(row == col)
-                    dst[row,col] = 1;
-            
-            return dst;
-        }    
+                => BitMatrix<N,T>.Identity();
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default)        
-            where M : ITypeNat, new()
+        public static BitMatrix<N,T> Load<N,T>(ReadOnlySpan<T> src, N n = default)        
             where N : ITypeNat, new()
             where T : struct
-                => BitMatrix<M,N,T>.Zeros();
+                => new BitMatrix<N,T>(src); 
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Define<M,N,T>(ReadOnlySpan<T> src, M m = default, N n = default)        
+        public static BitMatrix<N,T> Load<N,T>(Span<T> src, N n = default)        
+            where N : ITypeNat, new()
+            where T : struct
+                => new BitMatrix<N,T>(src); 
+
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> Load<M,N,T>(ReadOnlySpan<T> src, M m = default, N n = default)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
                 => new BitMatrix<M,N,T>(src); 
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Define<M,N,T>(Span<T> src, M m = default, N n = default)        
+        public static BitMatrix<M,N,T> Load<M,N,T>(Span<T> src, M m = default, N n = default)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
                 => new BitMatrix<M,N,T>(src); 
 
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default, params T[] src)        
+        public static BitMatrix<M,N,T> Load<M,N,T>(M m = default, N n = default, params T[] src)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct

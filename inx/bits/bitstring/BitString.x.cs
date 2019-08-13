@@ -27,8 +27,6 @@ namespace Z0
         /// Encodes the source value as a <see cref= 'BitString' />
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
-        /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
-        /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static BitString ToBitString(this byte src)
             => BitString.FromScalar(src);
@@ -185,5 +183,61 @@ namespace Z0
         public static BitString ToBitString<T>(this BitView<T> src)
             where T : struct
                 => src.ToSpan().ToBitString();
+    
+        [MethodImpl(Inline)]   
+        public static ref BitString Reverse(this ref BitString src)
+        {
+            Array.Reverse(src.BitSeq);
+            return ref src;
+        }
+
+        /// <summary>
+        /// Encodes the source value as a reversed <see cref= 'BitString' />
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitString ToReversedBitString(this byte src)
+        {
+            var bs = src.ToBitString();
+            bs.Reverse();
+            return bs;
+        }
+
+        /// <summary>
+        /// Encodes the source value as a reversed <see cref= 'BitString' />
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitString ToReversedBitString(this ushort src)
+        {
+            var bs = src.ToBitString();
+            bs.Reverse();
+            return bs;
+        }
+
+        /// <summary>
+        /// Encodes the source value as a reversed <see cref= 'BitString' />
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitString ToReversedBitString(this uint src)
+        {
+            var bs = src.ToBitString();
+            bs.Reverse();
+            return bs;
+        }
+
+        /// <summary>
+        /// Encodes the source value as a reversed <see cref= 'BitString' />
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitString ToReversedBitString(this ulong src)
+        {
+            var bs = src.ToBitString();
+            bs.Reverse();
+            return bs;
+        }
+
     }
 }

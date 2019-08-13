@@ -8,16 +8,16 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-    
+
     using static System.Runtime.Intrinsics.X86.Sse;
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Sse41;
     using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Avx2;
-    
+
     using static zfunc;
 
-    partial class dinx
+    partial class Bits
     {
         /// <summary>
         /// Constructs an integer from the most significant bit of each source vector component
@@ -74,7 +74,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int movemask(in Vec256<double> src)
             => MoveMask(src);
-        
+
+
     }
 
 }

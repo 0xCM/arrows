@@ -34,7 +34,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public static BitGrid<M,N,T> Zeros()
-            => new BitGrid<M, N, T>(new T[GridLayout.TotalSegments]);
+            => new BitGrid<M, N, T>(new T[GridLayout.TotalCellCount]);
 
         /// <summary>
         /// Allocates a One-filled mxn matrix
@@ -42,7 +42,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitGrid<M,N,T> Ones()
         {
-            Span<T> data = new T[GridLayout.TotalSegments];
+            Span<T> data = new T[GridLayout.TotalCellCount];
             var length = BitSize.Size<T>();
             for(var i=0; i<data.Length; i++)
                 for(var j = 0; j< length; j++)
@@ -54,16 +54,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitGrid(Span<T> src)
         {
-            require(src.Length == GridLayout.TotalSegments, 
-                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalSegments}");
+            require(src.Length == GridLayout.TotalCellCount, 
+                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
             this.bits = src;
         }
 
         [MethodImpl(Inline)]
         public BitGrid(ReadOnlySpan<T> src)
         {
-            require(src.Length == GridLayout.TotalSegments, 
-                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalSegments}");
+            require(src.Length == GridLayout.TotalCellCount, 
+                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
             this.bits = src.Replicate();
         }
 
@@ -105,7 +105,7 @@ namespace Z0
         public int RowSegCount
         {
             [MethodImpl(Inline)]
-            get => GridLayout.RowSegments;
+            get => GridLayout.RowCellCount;
         }
         
         /// <summary>
@@ -133,7 +133,7 @@ namespace Z0
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
         public Span<N,T> Row(int index)                    
-            => bits.Slice(RowOffset(index), GridLayout.RowSegments);
+            => bits.Slice(RowOffset(index), GridLayout.RowCellCount);
 
         public BitGridLayout<T> Layout
             => GridLayout;

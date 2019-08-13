@@ -36,6 +36,9 @@ namespace Z0
         public static implicit operator byte(in BitVector8 src)
             => src.data;
 
+        public static BitVector8 Alloc()
+            => new BitVector8();
+
         [MethodImpl(Inline)]
         public static BitVector8 Define(
             byte? x0 = null, byte? x1 = null, byte? x2 = null, byte? x3 = null, 
@@ -69,22 +72,41 @@ namespace Z0
         public static bool operator !=(in BitVector8 lhs, in BitVector8 rhs)
             => !lhs.Eq(rhs);
 
-
+        /// <summary>
+        /// Computes the componentwise XOR of the source vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator +(in BitVector8 lhs, in BitVector8 rhs)
             => Define((byte)(lhs.data ^ rhs.data));
 
+        /// <summary>
+        /// Computes the componentwise AND of the source vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator *(in BitVector8 lhs, in BitVector8 rhs)
             => Define((byte) (lhs.data & rhs.data));
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Bit operator %(in BitVector8 lhs, in BitVector8 rhs)
+            => lhs.Dot(rhs);
+
+        /// <summary>
+        /// Computes the bitwise complement of the source vector
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator -(in BitVector8 src)
             => Define((byte) ~ src.data);
-
-        [MethodImpl(Inline)]
-        public static BitVector8 operator |(in BitVector8 lhs, in BitVector8 rhs)
-            => Define((byte)(lhs.data | rhs.data));
 
         public Bit this[byte pos]
         {
@@ -121,6 +143,24 @@ namespace Z0
             get => this[(byte)pos];
             [MethodImpl(Inline)]
             set => this[(byte)pos] = value;
+        }
+
+        public Bit Dot(BitVector8 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+
+        }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
         }
 
 

@@ -33,8 +33,8 @@ namespace Z0.Asm
     
     public static class CpuFeatureSet
     {
-        public static BitField<CpuIdEcx> Ecx(ulong data)
-            => BitField.Define<CpuIdEcx>(data);
+        public static EnumBitField<CpuIdEcx> Ecx(ulong data)
+            => EnumBitField.Define<CpuIdEcx>(data);
     }
 
     public ref struct CpuFeatureSet<T>

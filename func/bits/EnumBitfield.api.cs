@@ -5,15 +5,19 @@
 namespace Z0
 {
     using System;
-    using System.Numerics;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
+
     using static zfunc;
-    using static Bits;
 
-    partial class BitsX
+    /// <summary>
+    /// Defines primary api for negotiating bitfields predicated on enumerations
+    /// </summary>
+    public static class EnumBitField
     {
+        public static EnumBitField<T> Define<T>(ulong data)
+            where T : Enum
+                => EnumBitField<T>.Define(data);
+    }
 
-   }
+
 }

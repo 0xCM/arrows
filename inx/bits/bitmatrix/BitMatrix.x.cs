@@ -24,8 +24,24 @@ namespace Z0
             return ref lhs;
         }
 
+        public static ref BitMatrix<N,T> And<N,T>(this ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            gbits.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
         public static ref BitMatrix<M,N,T> XOr<M,N,T>(this ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
             where M : ITypeNat, new()        
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            gbits.xor(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        public static ref BitMatrix<N,T> XOr<N,T>(this ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
             where N : ITypeNat, new()
             where T : struct
         {
@@ -42,8 +58,24 @@ namespace Z0
             return ref src;
         }
 
+        public static ref BitMatrix<N,T> Flip<N,T>(this ref BitMatrix<N,T> src)        
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            gbits.flip(src.Bits);
+            return ref src;
+        }
+
         public static ref BitMatrix<M,N,T> Or<M,N,T>(this ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
             where M : ITypeNat, new()        
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            gbits.or(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        public static ref BitMatrix<N,T> Or<N,T>(this ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
             where N : ITypeNat, new()
             where T : struct
         {
@@ -90,8 +122,9 @@ namespace Z0
             var sb = sbuild();
             for(var i=0; i<dst.Length; i+= rowlen)
             {
-                var rowbits = dst.Slice(i, rowlen);
-                Claim.eq(rowbits.Length, rowlen);                
+                var remaining = dst.Length - i;
+                var segment = math.min(remaining, rowlen);
+                var rowbits = dst.Slice(i, segment);
                 var row = new string(rowbits.Intersperse(AsciSym.Space));                                
                 sb.AppendLine(row);
             }
@@ -145,5 +178,34 @@ namespace Z0
         [MethodImpl(Inline)]    
         public static Graph<byte> ToGraph(this BitMatrix64 src)
             => BitMatrix.ToGraph(src);
+
+        [MethodImpl(Inline)]    
+        public static BitString ToBitString<N,T>(this BitMatrix<N,T> src)
+            where T : struct
+            where N : ITypeNat, new()
+                => src.Bits.ToBitString();
+        public static BitMatrix<M,N,T> Mul<M,N,K,T>(this BitMatrix<M,K,T> lhs, in BitMatrix<K,N,T> rhs)
+            where M : ITypeNat, new()        
+            where N : ITypeNat, new()
+            where T : struct
+            where K : ITypeNat, new()
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            var dst = BitMatrix.Alloc<M,N,T>();
+
+            for(var i=0; i< lhs.RowCount; i++)
+            {
+                var r = x.RowVector(i);
+                for(var j = 0; j< y.ColCount; j++)
+                {
+                    var c = y.RowVector(j);
+                    dst[i,j] = r % c;
+                }
+            }
+            return dst;
+        }
+
+
     }
 }

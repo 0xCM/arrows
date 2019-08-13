@@ -27,6 +27,8 @@ namespace Z0
 
         ulong data;
 
+        public static BitVector64 Alloc()
+            => new BitVector64(0);
 
         [MethodImpl(Inline)]
         public BitVector64(in ulong data)
@@ -74,13 +76,22 @@ namespace Z0
         public static BitVector64 operator *(in BitVector64 lhs, in BitVector64 rhs)
             => lhs.data & rhs.data;
 
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector64 operator -(in BitVector64 src)
             => ~src.data;
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector64 operator |(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.data | rhs.data;
+        public static Bit operator %(in BitVector64 lhs, in BitVector64 rhs)
+            => lhs.Dot(rhs);
 
 
 
@@ -97,6 +108,24 @@ namespace Z0
                 else
                      BitMask.disable(ref data, pos);                    
             }            
+        }
+
+        public Bit Dot(BitVector64 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+
+        }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
         }
 
         [MethodImpl(Inline)]

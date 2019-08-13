@@ -180,8 +180,15 @@ namespace Z0
             return dst;
         }
 
-        public ReadOnlySpan<byte> ToBitSeq()
-            => bitseq;
+
+        /// <summary>
+        /// Returns the underlying sequence of bits represented by the bitstring
+        /// </summary>
+        public byte[] BitSeq
+        {
+            [MethodImpl(Inline)]
+            get => bitseq;
+        }
 
         public override string ToString()
             => Format();

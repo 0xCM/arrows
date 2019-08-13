@@ -25,7 +25,8 @@ namespace Z0
             this.CellSize = CellSize;
             this.RowCount = RowCount;
             this.ColCount = ColCount;
-            this.RowStorageLength = CalcRowStorageLength(CellSize, ColCount);
+
+            this.RowCellCount = CalcRowStorageLength(CellSize, ColCount);
         }
         
         /// <summary>
@@ -44,18 +45,37 @@ namespace Z0
         public readonly BitSize ColCount;
 
         /// <summary>
-        /// The total length of a primal array/span required to store a grid of data
+        /// The number of bits stored in the grid, given by <see cref='RowCount'/> * <see cref='ColCount'/>
         /// </summary>
-        public readonly int RowStorageLength;
-
+        public readonly BitSize BitCount
+        {
+            [MethodImpl(Inline)]
+            get => RowCount * ColCount;
+        }
 
         /// <summary>
-        /// Computes the total length of a primal array/span required to store a grid of data
+        /// The minimum number of a cells in a primal array/span required to store a row of data 
+        /// </summary>
+        public readonly int RowCellCount;
+
+        /// <summary>
+        /// Computes the minimum number of cells required to store a grid of data
         /// </summary>
         /// <param name="spec">The characterizing specification</param>
-        [MethodImpl(Inline)]
-        public int TotalStorageLength()
-            => RowCount * RowStorageLength;
+        public int TotalCellCount
+        {
+            [MethodImpl(Inline)]
+            get => RowCount * RowCellCount;
+        }
+
+        /// <summary>
+        /// The minimum number of bytes required to store the grid data
+        /// </summary>
+        public ByteSize StorageBytes
+        {
+            [MethodImpl(Inline)]
+            get => Unsafe.SizeOf<T>() * TotalCellCount;
+        }
 
         /// <summary>
         /// Computes the length of a primal span/array that is required to store a row of data
@@ -68,7 +88,6 @@ namespace Z0
             else
             {
                 var q = Math.DivRem(ColCount, CellSize, out int r);                
-                //var qr = math.quorem(ColCount, CellSize);
                 return r == 0 ? q : q + 1;
             }
         }

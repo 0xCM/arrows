@@ -51,6 +51,11 @@ namespace Z0
         public static BitMatrix8 Define(ulong src)        
             => new BitMatrix8(BitConverter.GetBytes(src));
 
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 Alloc()        
+            => Define(new byte[N]);
+
         /// <summary>
         /// Creates an 8x8 bitmatrix from 8 bytes
         /// </summary>
@@ -73,7 +78,7 @@ namespace Z0
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
         static BitMatrix8 Define(params byte[] src)        
-            => src.Length == 0 ? Zero : new BitMatrix8(src);
+            => src.Length == 0 ? Alloc() : new BitMatrix8(src);
 
         /// <summary>
         /// Creates an 8x8 bitmatrix from a span that contains exactly 8 entries
@@ -104,8 +109,12 @@ namespace Z0
             => XOr(ref lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix8 operator * (BitMatrix8 lhs, BitMatrix8 rhs)
+        public static BitMatrix8 operator & (BitMatrix8 lhs, BitMatrix8 rhs)
             => And(ref lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 operator * (BitMatrix8 lhs, BitMatrix8 rhs)
+            => Mul(ref lhs,rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix8 operator - (BitMatrix8 src)
@@ -146,19 +155,22 @@ namespace Z0
             set => BitMask.set(ref bits[row], (byte)col, value);
         }            
     
-        public int RowDim
-            => N;
+        public int RowCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
 
-        public int ColDim
-            => N;
+        public int ColCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
  
         [MethodImpl(Inline)]
         public bool IsZero()
             => BitConverter.ToUInt64(bits) == 0;
 
-        [MethodImpl(Inline)]
-        public BitVector8 Row(int index)
-            => bits[index];
 
         [MethodImpl(Inline)]
         public bool Equals(in BitMatrix8 rhs)
@@ -174,10 +186,53 @@ namespace Z0
         public BitVector8 Diagonal()
         {
             var dst = (byte)0;
-            for(byte i=0; i < RowDim; i++)
+            for(byte i=0; i < RowCount; i++)
                 if(this[i,i])
                     BitMask.enable(ref dst, i);
             return dst;                    
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector8 RowVector(int index)
+            => bits[index];
+
+        public BitMatrix8 Transpose()
+        {
+            var dst = Replicate();
+            for(var i=0; i<N; i++)
+                dst.bits[i] = ColData(i);
+            return dst;
+        }
+
+        /// <summary>
+        /// Returns a mutable reference for an index-identified matrix row
+        /// </summary>
+        /// <param name="row">The row index</param>
+        [MethodImpl(Inline)]
+        public ref byte RowData(int row)
+            => ref bits[row];
+
+        public byte ColData(int index)
+        {
+            byte col = 0;
+            for(var r = 0; r < N; r++)
+                if(BitMask.test(in bits[r], index))
+                    BitMask.enable(ref col, r);
+            return col;
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector8 ColVector(int index)
+            => ColData(index);
+
+        /// <summary>
+        /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
+        /// </summary>
+        /// <param name="row">The row index</param>
+        public ref byte this[int row]
+        {
+            [MethodImpl(Inline)]
+            get => ref RowData(row);
         }
 
         /// <summary>
@@ -193,6 +248,26 @@ namespace Z0
         public BitMatrix8 Replicate()
             => Define(bits.ReadOnly());
 
+        static ref BitMatrix8 Mul(ref BitMatrix8 lhs, in BitMatrix8 rhs)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            ref var dst = ref lhs;
+
+            for(var i=0; i< N; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector8.Alloc();
+                for(var j = 0; j< N; j++)
+                {
+                    var c = y.RowVector(j);
+                    z[j] = r % c;
+                }
+                dst[i] = z;
+            }
+            return ref dst;
+
+        }
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)
@@ -246,6 +321,5 @@ namespace Z0
         
         public override int GetHashCode()
             => throw new NotSupportedException();
-
     }
 }

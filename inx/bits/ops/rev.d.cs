@@ -29,6 +29,30 @@ namespace Z0
             return (byte)(((src * 0x80200802ul) & 0x0884422110ul) * 0x0101010101ul >> 32);
         }
 
+        /// <summary>
+        /// Reverses the bits in the source
+        /// </summary>
+        /// <param name="src">The soruce bits</param>
+        [MethodImpl(Inline)]
+        public static ushort rev(ushort src)
+            => pack(rev(hi(in src)),rev(lo(in src)));
+
+        /// <summary>
+        /// Reverses the bits in the source
+        /// </summary>
+        /// <param name="src">The soruce bits</param>
+        [MethodImpl(Inline)]
+        public static uint rev(uint src)
+            => pack(rev(hi(in src)),rev(lo(in src)));
+
+        /// <summary>
+        /// Reverses the bits in the source
+        /// </summary>
+        /// <param name="src">The soruce bits</param>
+        [MethodImpl(Inline)]
+        public static ulong rev(ulong src)
+            => pack(rev(hi(in src)),rev(lo(in src)));
+
     }
 
 }

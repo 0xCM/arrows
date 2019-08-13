@@ -19,10 +19,11 @@ namespace Z0
             this.GridSpec = spec;
             this.RowCount = spec.RowCount;
             this.ColCount = spec.ColCount;
-            this.CellCount = spec.RowCount * spec.ColCount;
-            this.RowSegments = spec.RowStorageLength;
-            this.TotalSegments = RowSegments * spec.RowCount;
+            this.BitCount = spec.BitCount;
+            this.RowCellCount = spec.RowCellCount;
+            this.TotalCellCount = spec.TotalCellCount;
             this.RowLayout = CreateLayoutIndex(Cells);
+            this.CellSize = spec.CellSize;
             require(spec.RowCount == RowLayout.Count);
             require(spec.ColCount == RowLayout.First().Value.Length);                         
         }
@@ -31,7 +32,7 @@ namespace Z0
         /// The specification from which the layout was calculated
         /// </summary>
         public readonly BitGridSpec<T> GridSpec;
-        
+
         /// <summary>
         /// The number of rows in the layout
         /// </summary>
@@ -43,21 +44,24 @@ namespace Z0
         public readonly BitSize ColCount;
 
         /// <summary>
-        /// The Total number of bits accounted for in the layout
-        /// and is equal to <see cref='RowCount'/> * <see cref='ColCount'/>
+        /// The number of bits stored in the grid, given by <see cref='RowCount'/> * <see cref='ColCount'/>
         /// </summary>
-        public readonly BitSize CellCount;
+        public readonly BitSize BitCount;
 
         /// <summary>
-        /// The minimal length of a primal span sufficient to store a row of grid data
+        /// The number of bits in a cell
         /// </summary>
-        public readonly int RowSegments;
+        public readonly BitSize CellSize;
 
         /// <summary>
-        /// The length of a span required to store all cells, padded as determined by the
-        /// <see cref='RowSegments'/>
+        /// The minimum number of cells sufficient to store a row of grid data
         /// </summary>
-        public readonly int TotalSegments;
+        public readonly int RowCellCount;
+
+        /// <summary>
+        /// The length of a span required to store all cells
+        /// </summary>
+        public readonly int TotalCellCount;
 
         readonly IReadOnlyDictionary<int, BitGridCell<T>[]> RowLayout;
        
@@ -86,8 +90,8 @@ namespace Z0
             var format = sbuild();
             format.Append($"RowCount = {RowCount}, ");
             format.Append($"ColCount = {ColCount}, ");
-            format.Append($"CellCount = {CellCount}, ");
-            format.Append($"RowSegLength = {RowSegments}");
+            format.Append($"CellCount = {BitCount}, ");
+            format.Append($"RowSegLength = {RowCellCount}");
             format.AppendLine();
             for(var row = 0; row<RowCount; row++)
             {

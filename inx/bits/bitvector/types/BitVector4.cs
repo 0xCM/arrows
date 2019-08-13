@@ -17,6 +17,8 @@ namespace Z0
     {
         UInt4 data;
 
+        public const int BitSize = 4;
+
         [MethodImpl(Inline)]
         public BitVector4(in byte data)
         {
@@ -71,6 +73,16 @@ namespace Z0
         public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
             => Define((byte)(lhs.data & rhs.data));
 
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Bit operator %(in BitVector4 lhs, in BitVector4 rhs)
+            => lhs.Dot(rhs);
+
+
         [MethodImpl(Inline)]
         public static BitVector4 operator -(in BitVector4 src)
             => Define((byte) ~ src.data);
@@ -100,6 +112,25 @@ namespace Z0
             [MethodImpl(Inline)]
             set => data[pos] = value;
         }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
+        }
+
+        public Bit Dot(BitVector4 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+
+        }
+
 
         [MethodImpl(Inline)]
         public BitString ToBitString()

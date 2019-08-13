@@ -387,7 +387,8 @@ namespace Z0
         public static byte TakeUInt8<T>(this ReadOnlySpan<T> src, int offset = 0)
             where T : struct        
                 => src.Slice(offset).AsBytes()[0];
-        
+
+
         [MethodImpl(Inline)]
         public static short TakeInt16<T>(this ReadOnlySpan<T> src, int offset = 0)
             where T : struct        

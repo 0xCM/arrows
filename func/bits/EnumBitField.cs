@@ -9,51 +9,13 @@ namespace Z0
 
     using static zfunc;
 
-    public static class BitField
-    {
-        public static BitField<T> Define<T>(ulong data)
-            where T : Enum
-                => BitField<T>.Define(data);
-    }
-
     /// <summary>
-    /// Describes a bitfield bit
+    /// Defines a 64-bit bitfield parameterized by an enumeration that confers bit position, 
+    /// labels and identifiers that for accessing/describing the underlying bits.
+    /// The enumeration type itself would/should be tagged with that [Flags] attribute though
+    /// that is not required.
     /// </summary>
-    public readonly struct BitFieldBit
-    {
-        [MethodImpl(Inline)]
-        public BitFieldBit(byte Pos, string Name, Bit Value)
-        {
-            this.Pos = Pos;
-            this.Name = Name;
-            this.Value = Value;
-        }
-        
-        /// <summary>
-        /// The 0-based position of the bit
-        /// </summary>
-        public readonly byte Pos;
-
-        /// <summary>
-        /// The name/label identifier
-        /// </summary>
-        public readonly string Name;
-
-        /// <summary>
-        /// The value of the bit
-        /// </summary>
-        public readonly Bit Value;
-
-        public override string ToString()
-            => $"({Pos.ToString().PadLeft(2, AsciDigits.A0)}, {Name}, {Value})";
-    }
-
-    /// <summary>
-    /// Defines a 64-bit bitfield parameterized by an enumeration
-    /// that provides bit position, labels and identifiers that
-    /// for accessing/describing the underlying bits
-    /// </summary>
-    public ref struct BitField<T>
+    public ref struct EnumBitField<T>
         where T : Enum
     {
         static readonly BitSize DataSize = BitSize.x64;
@@ -68,10 +30,10 @@ namespace Z0
 
         BitView<ulong> bits;
         
-        public static BitField<T> Define(ulong data)
-            => new BitField<T>(data);
+        public static EnumBitField<T> Define(ulong data)
+            => new EnumBitField<T>(data);
 
-        BitField(ulong data)
+        EnumBitField(ulong data)
         {
             this.data = data;    
             this.bits = BitView.ViewBits(ref this.data);
@@ -91,14 +53,14 @@ namespace Z0
         /// Retrieves all bits in the field
         /// </summary>
         /// <value></value>
-        public ReadOnlySpan<BitFieldBit> Bits
+        public ReadOnlySpan<EnumBit> Bits
         {
             get
             {
                 var len = Math.Min(DataSize, Labels.Length);
-                Span<BitFieldBit> dst = new BitFieldBit[len];
+                Span<EnumBit> dst = new EnumBit[len];
                 for(byte pos=0; pos< len; pos++)
-                    dst[pos] = new BitFieldBit(pos, Labels[pos], this[Identifiers[pos]]);
+                    dst[pos] = new EnumBit(pos, Labels[pos], this[Identifiers[pos]]);
                 return dst;
             }
         }        

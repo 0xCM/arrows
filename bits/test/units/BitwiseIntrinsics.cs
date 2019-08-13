@@ -28,8 +28,8 @@ namespace Z0.Test
 
         public void LeftShiftV256U32()
         {
-            var src = Random.Vec256<uint>();
-            var shifts = Random.Vec256<uint>(closed(1u,7u));  
+            var src = Random.CpuVec256<uint>();
+            var shifts = Random.CpuVec256<uint>(closed(1u,7u));  
 
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
@@ -43,8 +43,8 @@ namespace Z0.Test
         
         public void LeftShiftV128U32()
         {
-            var src = Random.Vec128<uint>();
-            var shifts = Random.Vec128<uint>(closed(1u,7u));            
+            var src = Random.CpuVec128<uint>();
+            var shifts = Random.CpuVec128<uint>(closed(1u,7u));            
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
@@ -58,8 +58,8 @@ namespace Z0.Test
 
         public void LeftShiftV128U64()
         {
-            var src = Random.Vec128<ulong>();
-            var shifts = Random.Vec128<ulong>(closed(1ul,7ul));            
+            var src = Random.CpuVec128<ulong>();
+            var shifts = Random.CpuVec128<ulong>(closed(1ul,7ul));            
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
@@ -73,8 +73,8 @@ namespace Z0.Test
 
         public void LeftShiftV256U64()
         {
-            var src = Random.Vec256<ulong>();
-            var shifts = Random.Vec256<ulong>(closed(1ul,7ul));            
+            var src = Random.CpuVec256<ulong>();
+            var shifts = Random.CpuVec256<ulong>(closed(1ul,7ul));            
             
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)

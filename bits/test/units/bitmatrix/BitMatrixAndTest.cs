@@ -43,9 +43,9 @@ namespace Z0.Test
         {
             var lhs = BitMatrix64.Identity;
             var rhs = BitMatrix64.Identity;
-            var result = lhs * rhs;
-            for(var row=0; row<result.RowDim; row++)
-            for(var col=0; col<result.ColDim; col++)    
+            var result = lhs & rhs;
+            for(var row=0; row<result.RowCount; row++)
+            for(var col=0; col<result.ColCount; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
             
             for(var i=0; i<Pow2.T08; i++)
@@ -58,7 +58,7 @@ namespace Z0.Test
                 var zBytes = xBytes.And(yBytes);
                 var expect = BitMatrix64.Define(zBytes);
 
-                var actual = x * y;
+                var actual = x & y;
                 Claim.yea(expect == actual);                
             }
         }
@@ -67,9 +67,9 @@ namespace Z0.Test
         {
             var lhs = BitMatrix8.Identity;
             var rhs = BitMatrix8.Identity;
-            var result = lhs * rhs;
-            for(var row=0; row< result.RowDim; row++)
-            for(var col=0; col< result.ColDim; col++)    
+            var result = lhs & rhs;
+            for(var row=0; row< result.RowCount; row++)
+            for(var col=0; col< result.ColCount; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
         }
 

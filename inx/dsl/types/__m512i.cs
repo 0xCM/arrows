@@ -135,7 +135,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public void ToggleBit<T>(int segment, int bit)
             where T : struct
-                => gbits.toggle(ref this.Part<T>(segment), bit);
+                => BitMaskG.toggle(ref this.Part<T>(segment), bit);
         
         public Bit this[int bitpos]
         {

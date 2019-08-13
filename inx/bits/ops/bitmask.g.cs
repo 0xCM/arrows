@@ -14,6 +14,15 @@ namespace Z0
 
     partial class gbits
     {
+
+        /// <summary>
+        /// Calculates the bitsize of the source type
+        /// </summary>
+        /// <typeparam name="T">The soruce type</typeparam>
+        public static BitSize width<T>()
+            where T : struct
+                => Unsafe.SizeOf<T>()*8;
+
         /// <summary>
         /// Enables an identified source bit
         /// </summary>
@@ -66,6 +75,30 @@ namespace Z0
         public static bool test<T>(in T src, byte pos)
             where T : struct
                 => BitMaskG.test(in src, pos);
+
+        /// <summary>
+        /// Sets an identified bit to a supplied value
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="pos">The bit position</param>
+        /// <param name="value">The value to be applied</param>
+        /// <typeparam name="T">The source element type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref T set<T>(ref T src, byte pos, in Bit value)            
+            where T : struct
+                => ref BitMaskG.set(ref src, pos, value);
+
+        /// <summary>
+        /// Enaables a bit in the target if it is enabled in the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="srcpos">The source bit position</param>
+        /// <param name="dst">The target value</param>
+        /// <param name="dstpos">The target bit position</param>
+        [MethodImpl(Inline)]
+        public static ref T setif<T>(in T src, int srcpos, ref T dst, int dstpos)
+            where T : struct
+                => ref BitMaskG.setif(in src, srcpos, ref dst, dstpos);
 
     }
 }

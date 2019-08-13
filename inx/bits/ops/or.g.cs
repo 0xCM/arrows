@@ -39,7 +39,11 @@ namespace Z0
             else if(typeof(T) == typeof(long))
                 return generic<T>(Bits.or(int64(lhs),int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) | uint64(rhs));
+                return generic<T>(Bits.or(uint64(lhs), uint64(rhs)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(Bits.or(float32(lhs), float32(rhs)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.or(float64(lhs), float64(rhs)));
             else            
                 throw unsupported<T>();
         }           
@@ -71,6 +75,10 @@ namespace Z0
                 Bits.or(ref int64(ref lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
                 Bits.or(ref uint64(ref lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                Bits.or(ref float32(ref lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                Bits.or(ref float64(ref lhs), float64(rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;

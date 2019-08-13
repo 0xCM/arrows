@@ -19,7 +19,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i < Pow2.T06; i++)
             {
-                var v128Src = Random.Vec128<T>();
+                var v128Src = Random.CpuVec128<T>();
                 var srcSpan = v128Src.ToSpan();
 
                 var dst = Vec256.Zero<T>();

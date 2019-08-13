@@ -13,6 +13,7 @@ namespace Z0
     partial class Bits
     {                
 
+
         [MethodImpl(Inline)]
         public static ref sbyte loff(ref sbyte src)
         {

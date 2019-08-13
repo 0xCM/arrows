@@ -40,10 +40,10 @@ namespace Z0.Test
                 for(byte j =0; j< tLen; j++)
                 {
                     var before = gbits.test(in x, j);
-                    gbits.toggle(ref x, j);
+                    BitMaskG.toggle(ref x, j);
                     var after = gbits.test(in x, j);
                     Claim.neq(before, after);
-                    gbits.toggle(ref x, j);
+                    BitMaskG.toggle(ref x, j);
                     Claim.eq(x, src[i]);
                 }
             }

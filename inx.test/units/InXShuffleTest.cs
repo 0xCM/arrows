@@ -46,10 +46,10 @@ namespace Z0.Test
         
         public void Shuffle1()
         {
-            var mask = Vec128.fill(Mask128);
-            var src = Random.Vec128<byte>();
+            var mask = Vec128.Fill(Mask128);
+            var src = Random.CpuVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
-            var zed = Vec128.fill((byte)0);
+            var zed = Vec128.Fill((byte)0);
             
             Claim.eq(dst,zed);
                             
@@ -57,8 +57,8 @@ namespace Z0.Test
 
         public void Shuffle2()
         {
-            var mask = Vec128.fill((byte)0b00001111);
-            var src = Random.Vec128<byte>();
+            var mask = Vec128.Fill((byte)0b00001111);
+            var src = Random.CpuVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
             //mask = 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111
             //src =  11110110 | 10000110 | 01010010 | 11111000 | 00010100 | 01101011 | 10000001 | 01011000 | 01000111 | 10010100 | 11101100 | 10101100 | 01000011 | 00101000 | 11011010 | 00100110

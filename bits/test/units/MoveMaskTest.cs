@@ -36,7 +36,7 @@ namespace Z0.Test
                         BitMask.enable(ref mv, r);
                 
                 var mmExpect = mv.ToBitVector32();
-                var mmActual = dinx.movemask(srcVector).ToBitVector32();
+                var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.eq(mmExpect.ToBitString(), mmActual.ToBitString());
             }
         }
@@ -54,7 +54,7 @@ namespace Z0.Test
                     if(BitMask.test(srcVector[r], 7))
                         mmExpect.EnableBit(r);
                 
-                var mmActual = dinx.movemask(srcVector).ToBitVector32();
+                var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.eq(mmExpect, mmActual);
             }
         }
@@ -72,7 +72,7 @@ namespace Z0.Test
                     if(BitMask.test(srcVector[r], 31))
                         mmExpect.EnableBit(r);
                 
-                var mmActual = dinx.movemask(srcVector).ToBitVector32();
+                var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.eq(mmExpect, mmActual);
             }
         }
@@ -90,7 +90,7 @@ namespace Z0.Test
                     if(BitMask.test(srcVector[r], 63))
                         mmExpect.EnableBit(r);
                 
-                var mmActual = dinx.movemask(srcVector).ToBitVector32();
+                var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.eq(mmExpect, mmActual);
             }
         }

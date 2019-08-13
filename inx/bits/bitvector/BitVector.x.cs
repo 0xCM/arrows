@@ -55,7 +55,7 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this Span<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => BitVector.Natural(src,n);
+                => BitVector.Define(src,n);
 
         /// <summary>
         /// Constructs a bitvector of natural length from a source span
@@ -68,7 +68,7 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => BitVector.Natural(src,n);
+                => BitVector.Define(src,n);
 
         /// <summary>
         /// Constructs a bitvector where the length is determined by the capacity
@@ -79,7 +79,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Span<T> src, uint? dim = null)
             where T : struct
-                => BitVector.Generic(src,dim);
+                => BitVector.Define(src,dim);
 
         /// <summary>
         /// Constructs a bitvector where the length is determined by the capacity
@@ -90,27 +90,27 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, uint? dim = null)
             where T : struct
-                => BitVector.Generic(src,dim);
+                => BitVector.Define(src,dim);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
             where T : struct
-                => BitVector.Scalar8(src);
+                => src.Bytes().First();
 
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
             where T : struct
-                => BitVector.Scalar16(src);
+                => BitConverter.ToUInt16(src.Bytes().Extend(BitVector16.ByteSize));
 
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
             where T : struct
-                => BitVector.Scalar32(src);
+                => BitConverter.ToUInt32(src.Bytes().Extend(BitVector32.ByteSize));
 
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
             where T : struct
-                => BitVector.Scalar64(src);
+                => BitConverter.ToUInt64(src.Bytes().Extend(BitVector64.ByteSize));
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8(this sbyte src)        
@@ -307,6 +307,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64(this ReadOnlySpan<Bit> src)
             => BitVector64.Define(src);
+
+
 
     }
 }

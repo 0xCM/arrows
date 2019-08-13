@@ -8,11 +8,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
-    using System.Text;
 
     using static zfunc;
-    using static As;
 
     partial class RngX
     {        
@@ -26,11 +23,16 @@ namespace Z0
             {
                 var bs = random.NextUInt64().ToBitString();
                 for(var i = 0; i< 64; i++)
-                    yield return bs[i];
-                                    
+                    yield return bs[i];                                    
             }
         }
  
+        /// <summary>
+        /// Produces a random bitstring with randomized length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="minlen">The mininimum length of the bitstring</param>
+        /// <param name="maxlen">The maximum length of the bitstring</param>
         [MethodImpl(Inline)]
         public static BitString BitString(this IRandomSource random, int minlen, int maxlen)
         {
@@ -38,6 +40,12 @@ namespace Z0
             return random.Bits().TakeSpan(len).ToBitString();
         }
 
+        /// <summary>
+        /// Produces a random sequence of bitstrings with randomized length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="minlen">The mininimum length of the bitstring</param>
+        /// <param name="maxlen">The maximum length of the bitstring</param>
         public static IEnumerable<BitString> BitStrings(this IRandomSource random, int minlen, int maxlen)
         {
             while(true)

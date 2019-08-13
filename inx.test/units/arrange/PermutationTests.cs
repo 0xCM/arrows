@@ -25,7 +25,7 @@ namespace Z0.Test
 
         public void ReverseU32()
         {
-            var src = Random.Vec256Stream<uint>().Take(Pow2.T14);
+            var src = Random.CpuVec256Stream<uint>().Take(Pow2.T14);
             foreach(var v in src)
             {
                 var expect = Vec256.define(v[7],v[6],v[5],v[4],v[3],v[2],v[1],v[0]);
@@ -42,7 +42,7 @@ namespace Z0.Test
 
         public void ReverseF32()
         {
-            var src = Random.Vec256Stream<float>().Take(Pow2.T14);
+            var src = Random.CpuVec256Stream<float>().Take(Pow2.T14);
             foreach(var v in src)
             {
                 var expect = Vec256.define(v[7],v[6],v[5],v[4],v[3],v[2],v[1],v[0]);

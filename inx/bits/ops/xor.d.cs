@@ -20,61 +20,6 @@ namespace Z0
 
     partial class Bits
     {
-        [MethodImpl(Inline)]
-        public static ref sbyte or(ref sbyte lhs, sbyte rhs)
-        {
-            lhs = (sbyte)(lhs | rhs);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref byte or(ref byte lhs, byte rhs)
-        {
-            lhs = (byte)(lhs | rhs);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref short or(ref short lhs, short rhs)
-        {
-            lhs = (short)(lhs | rhs);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ushort or(ref ushort lhs, ushort rhs)
-        {
-            lhs = (ushort)(lhs | rhs);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref int or(ref int lhs, int rhs)
-        {
-            lhs = lhs | rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref uint or(ref uint lhs, uint rhs)
-        {
-            lhs = lhs | rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref long or(ref long lhs, long rhs)
-        {
-            lhs = lhs | rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ulong or(ref ulong lhs, ulong rhs)
-        {
-            lhs = lhs | rhs;
-            return ref lhs;
-        }
 
  
         [MethodImpl(Inline)]

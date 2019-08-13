@@ -34,9 +34,9 @@ namespace Z0.Test
         
         public void Vec128Eq1()
         {            
-            var v1 = Vec128.fill((byte)0b01100011);
-            var v2 = Vec128.fill((byte)0b10011100);
-            var v3 = Vec128.fill((byte)0b11111111);
+            var v1 = Vec128.Fill((byte)0b01100011);
+            var v2 = Vec128.Fill((byte)0b10011100);
+            var v3 = Vec128.Fill((byte)0b11111111);
             
             //Should be true since the logical and of V1 and V2 is zero
             Claim.yea(Bits.testz(v1,v2));

@@ -113,6 +113,14 @@ namespace Z0
         public static ulong or(ulong lhs, ulong rhs)
             => lhs | rhs;
 
+        [MethodImpl(Inline)]
+        public static float or(float lhs, float rhs)
+            => BitConverter.Int32BitsToSingle(lhs.ToBits() | rhs.ToBits());
+
+        [MethodImpl(Inline)]
+        public static double or(double lhs, double rhs)
+            => BitConverter.Int64BitsToDouble(lhs.ToBits() | rhs.ToBits());
+
         public static ulong or(ulong x1, ulong x2, params ulong[] more)
         {
             var result = x1 | x2;
@@ -121,6 +129,78 @@ namespace Z0
             return result;
         }
          
+ 
+         [MethodImpl(Inline)]
+        public static ref sbyte or(ref sbyte lhs, sbyte rhs)
+        {
+            lhs = (sbyte)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte or(ref byte lhs, byte rhs)
+        {
+            lhs = (byte)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short or(ref short lhs, short rhs)
+        {
+            lhs = (short)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort or(ref ushort lhs, ushort rhs)
+        {
+            lhs = (ushort)(lhs | rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int or(ref int lhs, int rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint or(ref uint lhs, uint rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long or(ref long lhs, long rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong or(ref ulong lhs, ulong rhs)
+        {
+            lhs = lhs | rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float or(ref float lhs, float rhs)
+        {
+            lhs = or(lhs,rhs);
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static ref double or(ref double lhs, double rhs)
+        {
+            lhs = or(lhs,rhs);
+            return ref lhs;
+        }
+
        [MethodImpl(Inline)]
         public static UInt128 or(in UInt128 lhs, in UInt128 rhs)
             => or(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();

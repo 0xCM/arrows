@@ -37,8 +37,12 @@ namespace Z0
         }
         
         [MethodImpl(Inline)]
+        public static BitMatrix64 Alloc()        
+            => Define(new ulong[N]);
+
+        [MethodImpl(Inline)]
         public static BitMatrix64 Define(params ulong[] src)        
-            => src.Length == 0 ? Zero : new BitMatrix64(src);
+            => src.Length == 0 ? Alloc() : new BitMatrix64(src);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 Define(ReadOnlySpan<byte> src)        
@@ -58,6 +62,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator * (BitMatrix64 lhs, BitMatrix64 rhs)
+            => Mul(ref lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix64 operator & (BitMatrix64 lhs, BitMatrix64 rhs)
             => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -100,22 +108,48 @@ namespace Z0
             set => BitMask.set(ref bits[row], (byte)col, value);
         }            
 
-        public int RowDim
-            => N;
+        /// <summary>
+        /// Specifies the number of rows in the matrix
+        /// </summary>
+        public readonly int RowCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
 
-        public int ColDim
-            => N;
+        /// <summary>
+        /// Specifies the number of columns in the matrix
+        /// </summary>
+        public readonly int ColCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
+        }
 
+        /// <summary>
+        /// Creates a bitvector from the content of an index-identified row
+        /// </summary>
+        /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
-        public BitVector64 Row(int row)
+        public readonly BitVector64 RowVector(int row)
             => bits[row];
 
-        public BitVector64 Col(int col)
+        /// <summary>
+        /// Returns a mutable reference for an index-identified matrix row
+        /// </summary>
+        /// <param name="row">The row index</param>
+        [MethodImpl(Inline)]
+        public ref ulong RowData(int row)
+            => ref bits[row];
+
+        /// <summary>
+        /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
+        /// </summary>
+        /// <param name="row">The row index</param>
+        public ref ulong this[int row]
         {
-            var dst = 0ul;
-            for(var row = 0; row < RowDim; row++)
-                gbits.set(ref dst, (byte)row, this[row,col]);
-            return dst;
+            [MethodImpl(Inline)]
+            get => ref RowData(row);
         }
 
         /// <summary>
@@ -128,10 +162,29 @@ namespace Z0
             => bits.Swap(i,j);
 
         /// <summary>
+        /// Returns the data for an index-identified column
+        /// </summary>
+        public readonly ulong ColData(int index)
+        {
+            ulong col = 0;
+            for(var r = 0; r < N; r++)
+                BitMask.setif(in bits[r], index, ref col, r);
+            return  col;
+        }
+        
+        /// <summary>
+        /// Creates a bitvector from the content of an index-identified column
+        /// </summary>
+        /// <param name="row">The row index</param>
+        [MethodImpl(Inline)]
+        public readonly BitVector64 ColVector(int col)
+            =>  ColData(col);
+
+        /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
+        public readonly Span<Bit> Unpack()
             => bits.Unpack(out Span<Bit> dst);
 
         /// <summary>
@@ -150,10 +203,17 @@ namespace Z0
         public string Format()
             => MemoryMarshal.AsBytes(bits).FormatMatrixBits(64);
 
+        [MethodImpl(Inline)]
+        public BitMatrix64 Compare(BitMatrix64 rhs)
+            => this.AndNot(rhs);
+
+        /// <summary>
+        /// Determines whether this matrix is equivalent to the canonical 0 matrix
+        /// </summary>
         public bool IsZero()
         {
             const int rowstep = 4;
-            for(var i=0; i< RowDim; i += rowstep)
+            for(var i=0; i< RowCount; i += rowstep)
             {
                 this.LoadVector(out Vec256<ulong> vSrc, i);
                 if(!vSrc.TestZ(vSrc))
@@ -174,24 +234,31 @@ namespace Z0
         public BitMatrix64 AndNot(in BitMatrix64 rhs)
         {
             const int rowstep = 4;
-            for(var i=0; i< RowDim; i += rowstep)
+            for(var i=0; i< RowCount; i += rowstep)
             {
                 this.LoadVector(out Vec256<ulong> vLhs, i);
                 rhs.LoadVector(out Vec256<ulong> vRhs, i);
                 vLhs.AndNot(vRhs, ref bits[i]);                
             }
             return this;
+        }
 
+        public readonly BitMatrix64 Transpose()
+        {
+            var dst = Replicate();
+            for(var i=0; i<N; i++)
+                dst.bits[i] = ColData(i);
+            return dst;
         }
 
         [MethodImpl(Inline)] 
-        public BitMatrix64 Replicate()
+        public readonly BitMatrix64 Replicate()
             => Define(bits.ReadOnly()); 
 
         static ref BitMatrix64 And(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {
             const int rowstep = 4;
-            for(var i=0; i< lhs.RowDim; i += rowstep)
+            for(var i=0; i< lhs.RowCount; i += rowstep)
             {
                 lhs.LoadVector(out Vec256<ulong> vLhs, i);
                 rhs.LoadVector(out Vec256<ulong> vRhs, i);
@@ -203,7 +270,7 @@ namespace Z0
         static ref BitMatrix64 XOr(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {
             const int rowstep = 4;
-            for(var i=0; i< lhs.RowDim; i += rowstep)
+            for(var i=0; i< lhs.RowCount; i += rowstep)
             {
                 lhs.LoadVector(out Vec256<ulong> vLhs, i);
                 rhs.LoadVector(out Vec256<ulong> vRhs, i);
@@ -215,7 +282,7 @@ namespace Z0
         static ref BitMatrix64 Flip(ref BitMatrix64 src)
         {
             const int rowstep = 4;
-            for(var i=0; i< src.RowDim; i += rowstep)
+            for(var i=0; i< src.RowCount; i += rowstep)
             {
                 src.LoadVector(out Vec256<ulong> vSrc, i);
                 vSrc.Flip(ref src.bits[i]);
@@ -226,7 +293,7 @@ namespace Z0
         static ref BitMatrix64 Or(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {
             const int rowstep = 4;
-            for(var i=0; i< lhs.RowDim; i += rowstep)
+            for(var i=0; i< lhs.RowCount; i += rowstep)
             {
                 lhs.LoadVector(out Vec256<ulong> vLhs, i);
                 rhs.LoadVector(out Vec256<ulong> vRhs, i);
@@ -235,6 +302,25 @@ namespace Z0
             return ref lhs;
         }
         
+        static ref BitMatrix64 Mul(ref BitMatrix64 lhs, in BitMatrix64 rhs)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            ref var dst = ref lhs;
+
+            for(var i=0; i< N; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector64.Alloc();
+                for(var j = 0; j< N; j++)
+                {
+                    var c = y.RowVector(j);
+                    z[j] = r % c;
+                }
+                dst[i] = z;
+            }
+            return ref dst;
+        }
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

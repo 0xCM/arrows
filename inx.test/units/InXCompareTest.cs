@@ -42,7 +42,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var v1 = Random.Vec128<T>();                
+            var v1 = Random.CpuVec128<T>();                
             var v2 = v1.Inc();
             var cmp =  ginx.gt(v2,v1);// v2.Gt(v1);
             Claim.yea(cmp);                    
@@ -53,7 +53,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var v1 = Random.Vec256<T>();                
+            var v1 = Random.CpuVec256<T>();                
             var v2 = v1.Inc();
             var cmp = ginx.gt(v2,v1);// v2.Gt(v1);
             Claim.yea(cmp);                    

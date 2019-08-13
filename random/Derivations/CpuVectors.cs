@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> Vec128<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+        public static Vec128<T> CpuVec128<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
                 => random.Span128<T>(1, domain, filter).LoadVec128();
 
@@ -31,11 +31,11 @@ namespace Z0
         /// <param name="domain">The domain from which the vector components will be chosen</param>
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static IEnumerable<Vec128<T>> Vec128Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+        public static IEnumerable<Vec128<T>> CpuVec128Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
         {
             while(true)
-                yield return random.Vec128(domain,filter);
+                yield return random.CpuVec128(domain,filter);
         }
 
         /// <summary>
@@ -46,9 +46,44 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> Vec256<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+        public static Vec256<T> CpuVec256<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
                 => random.Span256<T>(1, domain, filter).LoadVec256();
+
+
+        /// <summary>
+        /// Produces a random 512-bit pseudo-intrinsic vector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain from which the vector components will be chosen</param>
+        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec512<T> CpuVec512<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+            where T : struct
+        {
+            var v1 = random.CpuVec256(domain,filter);
+            var v2 = random.CpuVec256(domain,filter);
+            return Vec512.Define(v1,v2);
+        }
+
+        /// <summary>
+        /// Produces a random 1024-bit pseudo-intrinsic vector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain from which the vector components will be chosen</param>
+        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec1024<T> CpuVec1024<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+            where T : struct
+        {
+            var v1 = random.CpuVec256(domain,filter);
+            var v2 = random.CpuVec256(domain,filter);
+            var v3 = random.CpuVec256(domain,filter);
+            var v4 = random.CpuVec256(domain,filter);
+            return Vec1024.Define(v1,v2,v3,v4);
+        }
 
         /// <summary>
         /// Produces a stream of random 256-bit intrinsic vectors
@@ -57,11 +92,11 @@ namespace Z0
         /// <param name="domain">The domain from which the vector components will be chosen</param>
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static IEnumerable<Vec256<T>> Vec256Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+        public static IEnumerable<Vec256<T>> CpuVec256Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
         {
             while(true)            
-                yield return random.Vec256(domain,filter);
+                yield return random.CpuVec256(domain,filter);
         }
 
         /// <summary>

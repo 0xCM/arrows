@@ -29,27 +29,6 @@ namespace Z0
             where T : struct
                 => new Vec512<T>(v0, v1);
 
-        [MethodImpl(Inline)]
-        public static ref Vec256<T> At<T>(this ref Vec512<T> src, int index)
-            where T : struct
-        {
-            if(index == 0)
-                return ref src.v0;
-            else if(index == 1)
-                return ref src.v1;
-            else
-                throw Errors.OutOfRange(index, 0, 1);
-        }
-
-        [MethodImpl(Inline)]
-        public static ref readonly Vec256<T> Lo<T>(this in Vec512<T> src)
-            where T : struct
-                => ref src.v0;
-
-        [MethodImpl(Inline)]
-        public static ref readonly Vec256<T> Hi<T>(this in Vec512<T> src)
-            where T : struct
-                => ref src.v1;
 
         [MethodImpl(Inline)]
         public static unsafe Span<T> Segment<T>(this ref Vec512<T> src, int offset, int len)

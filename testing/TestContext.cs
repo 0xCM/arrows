@@ -107,14 +107,21 @@ namespace Z0.Test
         protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
 
+        static string GetTypeName<A>()
+            => typeof(A).Realizes<ITypeNat>() ? $"N{Activator.CreateInstance(typeof(A)).ToString()}" : typeof(A).Name;
+        
         protected void TypeCaseStart<A,B>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> executing", SeverityLevel.HiliteCL));
+
+        protected void NatCaseStart<N,A>([CallerMemberName] string caller = null)
+            where N : ITypeNat, new()
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<N>()},{typeof(A).Name}> executing", SeverityLevel.HiliteCL));
 
         protected void TypeCaseStart<M,N,S>([CallerMemberName] string caller = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where S : struct
-                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{nati<M>()}x{nati<N>()}:{PrimalKinds.kind<S>()}> executing", SeverityLevel.HiliteCL));
+                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{PrimalKinds.kind<S>()}> executing", SeverityLevel.HiliteCL));
 
         protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded", SeverityLevel.HiliteCL));
@@ -129,7 +136,7 @@ namespace Z0.Test
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where S : struct
-                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{nati<M>()}x{nati<N>()}:{PrimalKinds.kind<S>()}> succeeded", SeverityLevel.HiliteCL));
+                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{PrimalKinds.kind<S>()}> succeeded", SeverityLevel.HiliteCL));
 
     }
 }
