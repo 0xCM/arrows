@@ -32,39 +32,39 @@ namespace Z0.Test
                 return gmath.eq(lhs,rhs);
         }
 
-        OpTime Dot<N,T>(int count, Interval<T> domain,  N n = default, T t0 = default)
-            where N : ITypeNat, new()
-            where T : struct
-        {
-            var v1 = Vector.Alloc<N,T>();
-            var v2 = Vector.Alloc<N,T>();            
-            var sw = stopwatch(false);            
-            for(var i=0; i<count; i++)
-            {
-                Random.Fill(domain, ref v1);
-                Random.Fill(domain, ref v2);
-                sw.Start();
-                var x1 = VectorOps.Dot(v1,v2);
-                sw.Stop();                
+        // OpTime Dot<N,T>(int count, Interval<T> domain,  N n = default, T t0 = default)
+        //     where N : ITypeNat, new()
+        //     where T : struct
+        // {
+        //     var v1 = Vector.Alloc<N,T>();
+        //     var v2 = Vector.Alloc<N,T>();            
+        //     var sw = stopwatch(false);            
+        //     for(var i=0; i<count; i++)
+        //     {
+        //         Random.Fill(domain, ref v1);
+        //         Random.Fill(domain, ref v2);
+        //         sw.Start();
+        //         var x1 = VectorOps.Dot(v1,v2);
+        //         sw.Stop();                
                 
-                var x2 = gmath.dot<T>(v1.Unsized, v2.Unsized);
-                var areClose = close(x1,x2);
-                if(!areClose)
-                {
-                    Trace($"x1 = {x1}, x2 = {x2}");
-                }
-                Claim.yea(areClose);
-            }
+        //         var x2 = gmath.dot<T>(v1.Unsized, v2.Unsized);
+        //         var areClose = close(x1,x2);
+        //         if(!areClose)
+        //         {
+        //             Trace($"x1 = {x1}, x2 = {x2}");
+        //         }
+        //         Claim.yea(areClose);
+        //     }
             
-            return (count, snapshot(sw), $"dot<N{nati<N>()},{PrimalKinds.kind<T>()}>");
-        }
+        //     return (count, snapshot(sw), $"dot<N{nati<N>()},{PrimalKinds.kind<T>()}>");
+        // }
 
 
-        public void Dot()
-        {
+        // public void Dot()
+        // {
             
-            TracePerf(Dot(Pow2.T08, closed(-102489d, 102489d),  N30, 0d));
-        }
+        //     TracePerf(Dot(Pow2.T08, closed(-102489d, 102489d),  N30, 0d));
+        // }
 
         void DotAvx()
         {

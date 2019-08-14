@@ -216,20 +216,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static num<T> operator ^ (num<T> lhs, in num<T> rhs) 
-        {
-            var result = gmath.xor(unwrap(lhs), unwrap(rhs));            
-            return Unsafe.As<T,num<T>>(ref result);
-        }
-
-        [MethodImpl(Inline)]
-        public static num<T> operator ~ (num<T> src) 
-        {
-            var result = gmath.flip(unwrap(src));            
-            return Unsafe.As<T,num<T>>(ref result);
-        }
-
-        [MethodImpl(Inline)]
         public bool Eq(num<T> rhs)
              => gmath.eq(unwrap(this), unwrap(rhs));            
        

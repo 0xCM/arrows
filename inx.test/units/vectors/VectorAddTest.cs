@@ -33,7 +33,7 @@ namespace Z0.Test
                 Random.Fill(domain, ref v2);
 
                 sw1.Start();
-                VectorOps.Add(v1, v2, ref v3);
+                VectorRefOps.Add(v1, v2, ref v3);
                 sw1.Stop();
 
                 sw2.Start();

@@ -159,10 +159,6 @@ namespace Z0
                 => lhs.Mod(rhs);
 
 
-        [MethodImpl(Inline)]
-        public static num<T> xor<T>(num<T> lhs, num<T> rhs)
-            where T : struct
-                => lhs.XOr(rhs);
 
     }
 }

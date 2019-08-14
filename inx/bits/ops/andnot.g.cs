@@ -11,10 +11,27 @@ namespace Z0
     
     using static zfunc;    
     using static As;
+    using static AsIn;
     using static AsInX;
 
     partial class gbits
     {
+        [MethodImpl(Inline)]
+        public static T andnot<T>(in T lhs, in T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.andnot(in uint8(in lhs), in uint8(in rhs)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.andnot(in uint16(in lhs), in uint16(in rhs)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.andnot(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.andnot(in uint64(in lhs), in uint64(in rhs)));
+            else 
+                throw unsupported<T>();
+        }
+
         [MethodImpl(Inline)]
         public static Vec128<T> andnot<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct

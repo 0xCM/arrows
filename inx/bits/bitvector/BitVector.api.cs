@@ -15,94 +15,6 @@ namespace Z0
     public static class BitVector
     {   
         /// <summary>
-        /// Defines an 4-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector4 Define(UInt4 src)
-            => src;
-
-        /// <summary>
-        /// Defines an 8-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 Define(sbyte src)
-            => (byte)src;
-
-        /// <summary>
-        /// Defines an 8-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 Define(byte src)
-            => src;
-
-        /// <summary>
-        /// Defines a 16-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 Define(short src)
-            => (ushort)src;
-
-        /// <summary>
-        /// Defines a 16-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 Define(ushort src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 Define(int src)
-            => (uint)src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 Define(uint src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 Define(long src)
-            => (ulong)src;
-
-        /// <summary>
-        /// Defines a 64-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 Define(ulong src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar float
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 Define(float src)
-            => (uint)BitConverter.SingleToInt32Bits(src);
-
-        /// <summary>
-        /// Defines a 64-bit bitvector from a scalar double
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 Define(double src)
-            => (ulong)BitConverter.DoubleToInt64Bits(src);
-
-        /// <summary>
         /// Computes the number of cells required to hold a specified number of bits
         /// </summary>
         /// <param name="len">The number of bits to store</param>
@@ -136,7 +48,6 @@ namespace Z0
             return new BitVector<N,T>(components);
         }
 
-
         /// <summary>
         /// Allocates a generic bitvector and, optionally, populates all components 
         /// with a specified value
@@ -157,6 +68,93 @@ namespace Z0
             return new BitVector<T>(components);
         }
 
+        /// <summary>
+        /// Defines an 4-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 Load(UInt4 src)
+            => src;
+
+        /// <summary>
+        /// Defines an 8-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 Load(sbyte src)
+            => (byte)src;
+
+        /// <summary>
+        /// Defines an 8-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 Load(byte src)
+            => src;
+
+        /// <summary>
+        /// Defines a 16-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 Load(short src)
+            => (ushort)src;
+
+        /// <summary>
+        /// Defines a 16-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 Define(ushort src)
+            => src;
+
+        /// <summary>
+        /// Defines a 32-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 Load(int src)
+            => (uint)src;
+
+        /// <summary>
+        /// Defines a 32-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 Load(uint src)
+            => src;
+
+        /// <summary>
+        /// Defines a 32-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 Load(long src)
+            => (ulong)src;
+
+        /// <summary>
+        /// Defines a 64-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 Load(ulong src)
+            => src;
+
+        /// <summary>
+        /// Defines a 32-bit bitvector from a scalar float
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 Load(float src)
+            => (uint)BitConverter.SingleToInt32Bits(src);
+
+        /// <summary>
+        /// Defines a 64-bit bitvector from a scalar double
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 Load(double src)
+            => (ulong)BitConverter.DoubleToInt64Bits(src);
 
         /// <summary>
         /// Creates a generic bitvector of natural length
@@ -164,7 +162,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Define<N,T>(in T src, N len = default)        
+        public static BitVector<N,T> Load<N,T>(in T src, N len = default)        
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N,T>(src);
@@ -177,7 +175,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The primal segment type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Define<N,T>(Span<T> src, N n = default)
+        public static BitVector<N,T> Load<N,T>(Span<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
@@ -190,7 +188,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Define<N,T>(ReadOnlySpan<T> src, N n = default)
+        public static BitVector<N,T> Load<N,T>(ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
@@ -202,7 +200,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal segment type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Define<T>(Span<T> src, BitSize? bitcount = null)
+        public static BitVector<T> Load<T>(Span<T> src, BitSize? bitcount = null)
             where T : struct
                 => new BitVector<T>(src, bitcount);
 
@@ -213,7 +211,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal segment type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Define<T>(ReadOnlySpan<T> src, BitSize? bitcount = null)
+        public static BitVector<T> Load<T>(ReadOnlySpan<T> src, BitSize? bitcount = null)
             where T : struct
                 => new BitVector<T>(src,bitcount);
 

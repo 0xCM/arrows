@@ -49,11 +49,11 @@ namespace Z0
             => new BitVector4(src);
 
         [MethodImpl(Inline)]
-        public static BitVector4 Define(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
+        public static BitVector4 FromParts(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
             => UInt4.FromBits(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]
-        public static BitVector4 Define(in byte src)
+        public static BitVector4 Load(in byte src)
             => new BitVector4(src);
             
 
@@ -67,11 +67,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector4 operator +(in BitVector4 lhs, in BitVector4 rhs)
-            => Define((byte)(lhs.data ^ rhs.data));
+            => Load((byte)(lhs.data ^ rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
-            => Define((byte)(lhs.data & rhs.data));
+            => Load((byte)(lhs.data & rhs.data));
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator &(in BitVector4 lhs, in BitVector4 rhs)
+            => Load((byte)(lhs.data & rhs.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -82,15 +86,13 @@ namespace Z0
         public static Bit operator %(in BitVector4 lhs, in BitVector4 rhs)
             => lhs.Dot(rhs);
 
-
         [MethodImpl(Inline)]
         public static BitVector4 operator -(in BitVector4 src)
-            => Define((byte) ~ src.data);
+            => Load((byte) ~ src.data);
 
         [MethodImpl(Inline)]
         public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
-            => Define((byte)(lhs.data | rhs.data));
-
+            => Load((byte)(lhs.data | rhs.data));
 
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)
@@ -128,9 +130,7 @@ namespace Z0
             for(var i=0; i<Length; i++)
                 result ^= this[i] & rhs[i];
             return result;
-
         }
-
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
@@ -140,17 +140,26 @@ namespace Z0
         public Span<byte> Bytes()
             => new byte[]{data};
 
+        /// <summary>
+        /// Counts the number of enabled bits in the vector
+        /// </summary>
         [MethodImpl(Inline)]
-        public ulong PopCount()
-            => pop(data);
+        public BitSize Pop()
+            => Bits.pop(data);
 
+        /// <summary>
+        /// Counts the number of leading zero bits
+        /// </summary>
         [MethodImpl(Inline)]
-        public ulong Nlz()
-            => nlz((byte)(data << 4));
+        public BitSize Nlz()
+            => Bits.nlz((byte)(data << 4));
 
+        /// <summary>
+        /// Counts the number of trailing zero bits
+        /// </summary>
         [MethodImpl(Inline)]
-        public ulong Ntz()
-            => ntz(data);
+        public BitSize Ntz()
+            => Bits.ntz(data);
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVector4 rhs)

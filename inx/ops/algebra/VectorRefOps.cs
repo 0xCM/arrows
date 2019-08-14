@@ -16,6 +16,21 @@ namespace Z0
     public static class VectorRefOps
     {
         [MethodImpl(Inline)]
+        public static ref Vector<N,T> Add<N,T>(ref Vector<N,T> x, in Vector<N,T> y)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            ginx.add<T>(x,y,x);
+            return ref x;
+        }
+
+        [MethodImpl(Inline)]
+        public static Covector<N,T> Add<N,T>(Covector<N,T> lhs, in Covector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+                => lhs.Transpose().Add(rhs.Transpose()).Transpose();
+
+        [MethodImpl(Inline)]
         public static ref Covector<N,T> Add<N,T>(ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
@@ -24,15 +39,6 @@ namespace Z0
             var y = rhs.Unsize();
             gmath.add(ref x, y);
             return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<N,T> Add<N,T>(ref Vector<N,T> x, in Vector<N,T> y)
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            gmath.add(x.Unsized, y.Unsized);
-            return ref x;
         }
 
         /// <summary>

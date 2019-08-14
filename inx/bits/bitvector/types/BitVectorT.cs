@@ -60,7 +60,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector<T> lhs, in BitVector<T> rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(in BitVector<T> lhs, in BitVector<T> rhs)
@@ -245,7 +245,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => bits.ToBitString();
+            => BitString.FromScalars(bits, Length); 
 
         /// <summary>
         /// Counts the vector's enabled bits
@@ -259,14 +259,32 @@ namespace Z0
             return count;
         }
 
+        /// <summary>
+        /// Sets all the bits to align with the source value
+        /// </summary>
+        /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector<T> rhs)
-            => bits.Identical(rhs.bits);
+        public void Fill(Bit value)
+        {
+            var primal = PrimalInfo.Get<T>();
+            if(value)
+                bits.Fill(primal.MaxVal);
+            else
+                bits.Fill(primal.Zero);
+        }
+
+        [MethodImpl(Inline)]
+        public bool Equals(in BitVector<T> rhs)
+            => ToBitString().Equals(rhs.ToBitString());
     
         [MethodImpl(Inline)]
         public bool NEq(in BitVector<T> rhs)
-            => !bits.Identical(rhs.bits);
+            => !Equals(rhs);
             
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
+
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

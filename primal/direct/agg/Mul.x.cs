@@ -10,14 +10,11 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
     
     using static zfunc;
 
     partial class math
-    {
-
-        
+    {        
         public static Span<sbyte> Mul(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
@@ -177,7 +174,5 @@ namespace Z0
                 lhs[i] *= rhs[i];
             return lhs;
         }
-
     }
-
 }

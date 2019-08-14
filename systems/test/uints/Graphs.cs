@@ -14,7 +14,7 @@ namespace Z0.Test
     {
        public void Create8()
         {                    
-            var m = BitMatrix8.Define(
+            var m = BitMatrix8.FromParts(
                 0b00001000, //0 -> 3
                 0b01000000, //1 -> 6
                 0b01000000, //2 -> 6

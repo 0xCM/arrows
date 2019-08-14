@@ -69,7 +69,6 @@ namespace Z0.Test
             var xBytesPC = xBytes.PopCount();
 
             Claim.eq(xBitsPC, xBytesPC);
-
         }
 
         public void PopCount6()

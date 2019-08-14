@@ -80,8 +80,7 @@ namespace Z0.Test
                     bytes[i] = blocks[i].TakePrimalValue<byte>();
                 
                 var j = 0;
-                var y = Bits.pack(
-                    bytes[j++], bytes[j++], bytes[j++], bytes[j++], 
+                var y = Bits.pack(bytes[j++], bytes[j++], bytes[j++], bytes[j++], 
                     bytes[j++], bytes[j++], bytes[j++], bytes[j++]);
                 Claim.eq(x,y);                
             }

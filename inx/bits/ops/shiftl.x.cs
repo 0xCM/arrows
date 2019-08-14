@@ -66,5 +66,7 @@ namespace Z0
         public static UInt128 ShiftLW(this UInt128 src, byte offset)
             => Bits.shiftlw(src.ToVec128(), offset).ToUInt128();
 
+
+
     }
 }

@@ -187,7 +187,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static ref BitString Reverse(this ref BitString src)
         {
-            Array.Reverse(src.BitSeq);
+            src.BitSeq.Reverse();
             return ref src;
         }
 

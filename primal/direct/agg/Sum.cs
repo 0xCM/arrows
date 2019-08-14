@@ -13,7 +13,6 @@ namespace Z0
 
     partial class math
     {
-
         public static sbyte sum(ReadOnlySpan<sbyte> src)
         {
             checked

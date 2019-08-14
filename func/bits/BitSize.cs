@@ -88,6 +88,15 @@ namespace Z0
         public static BitSize Define(ulong bits)
             => new BitSize(bits);
 
+        /// <summary>
+        /// Returns the minimum number of bytes required to apprehend 
+        /// the size of the source bits.
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static explicit operator ByteSize(BitSize src)
+            => src.AlignedBytes;
+
         [MethodImpl(Inline)]
         public static explicit operator byte(BitSize src)
             => (byte)src.Bits;
@@ -155,7 +164,17 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is BitSize ? Equals((BitSize)obj) : false;
- 
+
+        public ByteSize AlignedBytes
+        {
+            [MethodImpl(Inline)]
+            get
+            {
+                var q = Math.DivRem((long)Bits, 8L, out long r);
+                return r == 0 ? (ulong)q : (ulong)(q + 1);
+            }
+        }
+
         public bool IsNonZero
         {
             [MethodImpl(Inline)]

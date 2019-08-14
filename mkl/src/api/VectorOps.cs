@@ -16,14 +16,6 @@ namespace Z0
 
     public static class VectorOps
     {             
-        [MethodImpl(Inline)]
-        public static ref Vector<N,T> Add<N,T>(ref Vector<N,T> x, in Vector<N,T> y)
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            ginx.add<T>(x,y,x);
-            return ref x;
-        }
 
         /// <summary>
         /// Add the first vector to the second and populates the third with the result
@@ -49,7 +41,8 @@ namespace Z0
                 mkl.add(x.As<double>(), y.As<double>(), ref dst);
             }
             else
-                ginx.add<T>(x,y,z);
+                throw unsupported<T>();
+
             return ref z;
         }
 
@@ -66,13 +59,6 @@ namespace Z0
             else
                 return gmath.dot<T>(x.Unsized, y.Unsized);                
         }
-
-
-        [MethodImpl(Inline)]
-        public static Covector<N,T> Add<N,T>(Covector<N,T> lhs, in Covector<N,T> rhs)
-            where N : ITypeNat, new()
-            where T : struct    
-                => lhs.Transpose().Add(rhs.Transpose()).Transpose();
 
 
         

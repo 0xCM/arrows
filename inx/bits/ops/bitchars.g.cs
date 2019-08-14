@@ -52,36 +52,36 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [PrimalKinds(PrimalKind.All)]
-        public static Span<char> bitchars<T>(ReadOnlySpan<T> src, int? bitcount = null)
+        public static Span<char> bitchars<T>(ReadOnlySpan<T> src, int? maxlen = null)
             where T : struct
         {
             var seglen = Unsafe.SizeOf<T>()*8;
-            Span<char> dst = new char[bitcount ?? src.Length * seglen];
+            Span<char> dst = new char[src.Length * seglen];
             for(var i=0; i<src.Length; i++)
                 bitchars(src[i]).CopyTo(dst, i*seglen);
-            return dst;
+            return maxlen != null && dst.Length >= maxlen ?  dst.Slice(0,maxlen.Value) :  dst;
         }
 
         [PrimalKinds(PrimalKind.All)]
-        public static Span<byte> bitseq<T>(ReadOnlySpan<T> src, int? bitcount = null)
+        public static Span<byte> bitseq<T>(ReadOnlySpan<T> src, int? maxlen = null)
             where T : struct
         {
             require(typeof(T) != typeof(char));
             
             var seglen = Unsafe.SizeOf<T>()*8;
-            Span<byte> dst = new byte[bitcount ?? src.Length * seglen];
+            Span<byte> dst = new byte[src.Length * seglen];
             for(var i=0; i<src.Length; i++)
                 bitseq(src[i]).CopyTo(dst, i*seglen);
-            return dst;
+            return maxlen != null && dst.Length >= maxlen ?  dst.Slice(0,maxlen.Value) :  dst;
 
         }
+        
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static Span<char> bitchars<T>(Span<T> src, int? bitcount = null)
+        public static Span<char> bitchars<T>(Span<T> src, int? maxlen = null)
             where T : struct
-                => bitchars(src.ReadOnly(), bitcount);    
-
-
-       public static ref T parse<T>(ReadOnlySpan<char> src, int offset, out T dst)
+                => bitchars(src.ReadOnly(), maxlen);    
+        
+        public static ref T parse<T>(ReadOnlySpan<char> src, int offset, out T dst)
             where T : struct
         {            
             var last = Math.Min(Unsafe.SizeOf<T>()*8, src.Length) - 1;                                    

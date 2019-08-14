@@ -67,7 +67,6 @@ namespace Z0
             return true;
         }
 
-
         /// <summary>
         /// Returns true if all supplied values are equal to a target value; false otherwise
         /// </summary>
@@ -81,7 +80,6 @@ namespace Z0
             return true;
         }
 
-
         /// <summary>
         /// Returns true if all supplied values are equal to a target value; false otherwise
         /// </summary>
@@ -94,7 +92,6 @@ namespace Z0
                     return false;
             return true;
         }
-
 
         /// <summary>
         /// Returns true if all supplied values are equal to a target value; false otherwise
@@ -135,13 +132,12 @@ namespace Z0
             return true;
         }
 
-
         /// <summary>
         /// Returns true if all supplied values are equal to a target value; false otherwise
         /// </summary>
         /// <param name="src">The values to examine</param>
         /// <param name="target">The value to match</param>
-       public static bool AllEqual(this ReadOnlySpan<double> src, double target)
+        public static bool AllEqual(this ReadOnlySpan<double> src, double target)
         {
             for(var i=0; i<src.Length; i++)
                 if(src[i] != target)
@@ -184,7 +180,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool AllEqual(this Span<ushort> src, ushort target)
             => src.ReadOnly().AllEqual(target);
-
 
         /// <summary>
         /// Returns true if all supplied values are equal to a target value; false otherwise

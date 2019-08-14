@@ -58,16 +58,16 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator +(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs, rhs);
 
 
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator &(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
-            => lhs.And(rhs);
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator -(BitMatrix<N,T> src)
-            => src.Flip();
+            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
@@ -94,7 +94,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        Bit GetBit(int row, int col)
+        readonly Bit GetBit(int row, int col)
         {
             var cell = GridLayout.Row(row)[col];
             return gbits.test(in bits[cell.BitPos.SegIdx], cell.BitPos.BitOffset);                    
@@ -119,7 +119,7 @@ namespace Z0
         /// <summary>
         /// The number of rows in the matrix
         /// </summary>
-        public int RowCount
+        public readonly int RowCount
         {
             [MethodImpl(Inline)]
             get => GridLayout.RowCount;
@@ -128,7 +128,7 @@ namespace Z0
         /// <summary>
         /// The (padded) length of a primal span/array required to store a row of grid data.
         /// </summary>
-        public int RowSegCount
+        public readonly int RowSegCount
         {
             [MethodImpl(Inline)]
             get => GridLayout.RowCellCount;
@@ -137,7 +137,7 @@ namespace Z0
         /// <summary>
         /// The number of columns in the matrix
         /// </summary>
-        public int ColCount
+        public readonly int ColCount
         {
             [MethodImpl(Inline)]
             get => GridLayout.ColCount;
@@ -150,11 +150,11 @@ namespace Z0
             => bits;
         
         [MethodImpl(Inline)]
-        int RowOffset(int row)        
+        readonly int RowOffset(int row)        
             => GridLayout.Row(row)[0].BitPos.SegIdx;
                 
         [MethodImpl(Inline)]
-        Span<T> RowData(int row)
+        readonly Span<T> RowData(int row)
             => bits.Slice(RowOffset(row), GridLayout.RowCellCount);
 
         [MethodImpl(Inline)]
@@ -166,7 +166,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public void RowVector(int row, BitVector<N,T> src)
+        public readonly void RowVector(int row, BitVector<N,T> src)
             => src.Bits.CopyTo(bits.Slice(RowOffset(row), GridLayout.RowCellCount));     
 
         /// <summary>
@@ -174,8 +174,16 @@ namespace Z0
         /// </summary>
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
-        public BitVector<N,T> RowVector(int index)                    
+        public readonly BitVector<N,T> RowVector(int index)                    
             => new BitVector<N,T>(RowData(index));                
+
+        public readonly BitVector<N,T> Diagonal()
+        {
+            var dst = BitVector.Alloc<N,T>();
+            for(var i=0; i<RowCount; i++)
+                dst[i] = GetBit(i,i);
+            return dst;
+        }
 
         /// <summary>
         /// Retrieves/Replaces a row
@@ -221,13 +229,33 @@ namespace Z0
         public Span<Bit> Unpack()
             => bits.AsBytes().Unpack(out Span<Bit> dst).Slice(0, (int)Dim.Volume);
 
-        public BitGridLayout<T> Layout
-            => GridLayout;
+        /// <summary>
+        /// Sets all the bits to align with the source value
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        public void Fill(Bit value)
+        {
+            var primal = PrimalInfo.Get<T>();
+            if(value)
+                bits.Fill(primal.MaxVal);
+            else
+                bits.Fill(primal.Zero);
+        }
 
+        [MethodImpl(Inline)]    
+        public BitString ToBitString()
+            => Bits.ToBitString();
+ 
         [MethodImpl(Inline)]
         public string Format()
-            => Bits.AsBytes().FormatMatrixBits(ColCount);
-
+        {
+            var sb = sbuild();
+            for(var i=0; i< RowCount; i++)
+                 sb.AppendLine(RowVector(i).Format());
+            return sb.ToString();
+        }
+ 
         public BitMatrix<N,T> Transpose()
         {
             var dst = Alloc();
@@ -244,7 +272,43 @@ namespace Z0
                     return false;
             return true;
         }
-            
+
+        static ref BitMatrix<N,T> And(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
+        {
+            gbits.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        static BitMatrix<N,T> Mul(in BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            var dst = BitMatrix.Alloc<N,T>();
+
+            for(var i=0; i< x.RowCount; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector.Alloc<N,T>();
+                for(var j = 0; j< x.RowCount; j++)
+                    z[j] = r % y.RowVector(j);
+                
+                dst[i] = z;
+            }
+            return dst;
+        }
+
+        static ref BitMatrix<N,T> XOr(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
+        {
+            gbits.xor(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        static ref BitMatrix<N,T> Flip(ref BitMatrix<N,T> src)        
+        {
+            gbits.flip(src.Bits);
+            return ref src;
+        }
+
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

@@ -111,33 +111,33 @@ namespace Z0.Test
 
         public void PackBytesIntoU32Span()
         {
-            var x0 = BitVector32.Define(0b00001010110000101001001111011001u);
-            var x1 = BitVector32.Define(0b00001010110110101001001111000001u);
+            var x0 = BitVector32.Load(0b00001010110000101001001111011001u);
+            var x1 = BitVector32.Load(0b00001010110110101001001111000001u);
             var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<uint>(src.Length / 4);
             gbits.pack(src, packed);
 
             for(var i = 0; i<packed.Length; i++)
             {
-                 var x = BitVector32.Define(BitConverter.ToUInt32(src.Slice(4*i)));
-                 var y = BitVector32.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
+                 var x = BitVector32.Load(BitConverter.ToUInt32(src.Slice(4*i)));
+                 var y = BitVector32.Load(packed[i]);
+                Claim.eq((uint)x, (uint)y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }        
         }
 
         public void PackBytesIntoU64Span()
         {
-            var x0 = BitVector32.Define(0b00001010110000101001001111011001u);
-            var x1 = BitVector32.Define(0b00001010110110101001001111000001u);
+            var x0 = BitVector32.Load(0b00001010110000101001001111011001u);
+            var x1 = BitVector32.Load(0b00001010110110101001001111000001u);
             var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<ulong>(src.Length / 8);
             gbits.pack(src, packed);
 
             for(var i = 0; i<packed.Length; i++)
             {
-                 var x = BitVector64.Define(BitConverter.ToUInt64(src.Slice(8*i)));
-                 var y = BitVector64.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
+                 var x = BitVector64.Load(BitConverter.ToUInt64(src.Slice(8*i)));
+                 var y = BitVector64.Load(packed[i]);
+                Claim.eq((ulong)x, (ulong)y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }
         
         }

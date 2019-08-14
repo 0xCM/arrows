@@ -72,13 +72,13 @@ namespace Z0
         readonly struct XOr<T>
             where T : struct
         {
-            public static readonly BinaryOp<T> Op = gmath.xor<T>;
+            public static readonly BinaryOp<T> Op = gbits.xor<T>;
         }
 
        readonly struct Flip<T>
             where T : struct
         {
-            public static readonly UnaryOp<T> Op = gmath.flip<T>;
+            public static readonly UnaryOp<T> Op = gbits.flip<T>;
         }
 
     }

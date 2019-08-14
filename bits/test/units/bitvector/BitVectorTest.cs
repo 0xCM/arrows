@@ -86,17 +86,15 @@ namespace Z0.Test
 
                 byte segOffset = 0;
                 var segIndex = 0;
+                var bs = BitString.FromScalars(bvSrc);
+
                 for(int n = 0; n < dim; n++, segOffset++)
                 {                    
                     if(segOffset == segCapacity - 1)
                     {
                         segOffset = 0;
                         segIndex++;
-                    }
-
-                    var bs = BitString.FromScalars(bvSrc);
-            
-                    Claim.eq(bs, bv.ToBitString());
+                    }            
 
                     if(bv[n] !=  bs[n])
                     {
@@ -110,9 +108,10 @@ namespace Z0.Test
                         Trace($"Bv (alt) = {bsAlt}");
 
                     }
-                    Claim.eq(bv[n], bs[n]);
-                                  
+                    Claim.eq(bv[n], bs[n]);                                  
                 }
+                //Claim.eq(bs, bv.ToBitString());
+
             }
 
             TypeCaseEnd<T>();
@@ -153,7 +152,7 @@ namespace Z0.Test
         public void TestSpanBits()
         {
             var src = Random.Span<byte>(Pow2.T03);
-            var bvSrc = BitVector64.Define(BitConverter.ToUInt64(src));
+            var bvSrc = BitVector64.Load(BitConverter.ToUInt64(src));
 
             for(var i=0; i<src.Length; i++)
             {
@@ -248,7 +247,7 @@ namespace Z0.Test
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromSegments(src[i]);
-                var v2 = BitVector64.Define(src[i]);
+                var v2 = BitVector64.Load(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
                 Claim.eq(r1,r2);                
@@ -264,7 +263,7 @@ namespace Z0.Test
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromSegments(src[i]);
-                var v2 = BitVector32.Define(src[i]);
+                var v2 = BitVector32.Load(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
                 Claim.eq(r1,r2);                
@@ -279,7 +278,7 @@ namespace Z0.Test
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromSegments(src[i]);
-                var v2 = BitVector16.Define(src[i]);
+                var v2 = BitVector16.Load(src[i]);
                 var r1 = v1.Extract(lower[i], upper[i]);
                 var r2 = v2.Extract(lower[i], upper[i]);
                 Claim.eq(r1,r2);                
@@ -327,7 +326,7 @@ namespace Z0.Test
 
         public void BitVector12Test()
         {
-            var bv = BitVector.Define(0b101110001110,new N12());
+            var bv = BitVector.Load(0b101110001110,new N12());
             Claim.eq(bv[0], Bit.Off);
             Claim.eq(bv[1], Bit.On);
             Claim.eq(bv[11], Bit.On);

@@ -35,6 +35,43 @@ namespace Z0
         static readonly BitPos<T>[] BitMap = BitGridLayout.BitMap<T>(TotalBitCount);
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector<T>(BitVector<N,T> src)
+            => new BitVector<T>(src.bits);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator +(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator -(BitVector<N,T> src)
+            => new BitVector<N,T>(gbits.flip(in src.bits));                        
+
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Bit operator %(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => lhs.Dot(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => lhs.NEq(rhs);
+
+        [MethodImpl(Inline)]
         public BitVector(params T[] bits)
             : this()
         {
@@ -61,39 +98,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> Define(params T[] src)
             => new BitVector<N,T>(src);    
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => lhs.Eq(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => lhs.NEq(rhs);
-
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator +(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
-
-        /// <summary>
-        /// Computes the bitwise complement of the operand
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator -(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(in src.bits));                        
-
-        /// <summary>
-        /// Computes the scalar product of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
         static int CheckIndex(int index)
@@ -138,7 +142,12 @@ namespace Z0
         /// </summary>
         /// <param name="rhs"></param>
         public Bit Dot(BitVector<N,T> rhs)
-        {
+        {             
+            //  var and = gbits.and(bits, rhs.bits);
+            //  var pop = 0u;
+            //  for(var i =0; i< and.Length; i++)
+            //     pop += (uint)gbits.pop(and[i]);
+            //  return Mod<N2>.mod(pop);               
             var result = Bit.Off;
             for(var i=0; i<Length; i++)
                 result ^= this[i] & rhs[i];
@@ -157,7 +166,7 @@ namespace Z0
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public int Length
+        public BitSize Length
         {
             [MethodImpl(Inline)]
             get => TotalBitCount;
@@ -208,13 +217,6 @@ namespace Z0
             => MemoryMarshal.AsBytes(Bits);
 
         /// <summary>
-        /// Extracts the represented data as a bitstring
-        /// </summary>
-        [MethodImpl(Inline)]
-        public BitString ToBitString()
-            => BitString.FromScalars(Bits,TotalBitCount); 
-
-        /// <summary>
         /// Counts the vector's enabled bits
         /// </summary>
         [MethodImpl(Inline)]
@@ -226,14 +228,39 @@ namespace Z0
             return count;
         }
 
+        /// <summary>
+        /// Sets all the bits to align with the source value
+        /// </summary>
+        /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector<N,T> rhs)
-            => bits.Identical(rhs.bits);
+        public void Fill(Bit value)
+        {
+            var primal = PrimalInfo.Get<T>();
+            if(value)
+                bits.Fill(primal.MaxVal);
+            else
+                bits.Fill(primal.Zero);
+        }
+
+        /// <summary>
+        /// Extracts the represented data as a bitstring
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitString ToBitString()
+            => BitString.FromScalars(Bits, Length); 
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false)
+            => ToBitString().Format(tlz, specifier);
+
+        [MethodImpl(Inline)]
+        public bool Equals(in BitVector<N,T> rhs)
+            => ToBitString().Equals(rhs.ToBitString());
 
         [MethodImpl(Inline)]
         public bool NEq(in BitVector<N,T> rhs)
-            => !bits.Identical(rhs.bits);
-            
+            => !Equals(rhs);
+           
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

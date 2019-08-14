@@ -17,76 +17,6 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static ref sbyte Div(this ref sbyte lhs, sbyte rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref byte Div(this ref byte lhs, byte rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref short Div(this ref short lhs, short rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ushort Div(this ref ushort lhs, ushort rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref int Div(this ref int lhs, int rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref uint Div(this ref uint lhs, uint rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref long Div(this ref long lhs, long rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ulong Div(this ref ulong lhs, ulong rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref float Div(this ref float lhs, float rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref double Div(this ref double lhs, float rhs)
-        {
-            lhs /= rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
         public static Span<byte> Div(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
             => math.div(lhs, rhs, span<byte>(length(lhs,rhs)));
 
@@ -172,6 +102,5 @@ namespace Z0
             src.Unblocked.Div(rhs);
             return src;
         }
-
     }
 }

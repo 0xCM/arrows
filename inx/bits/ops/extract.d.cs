@@ -135,7 +135,6 @@ namespace Z0
         public static ulong extract(in ulong src, in byte start, in byte length)
             => Bmi1.X64.BitFieldExtract(src, start, length);            
 
-
         /// <intrinsic>unsigned __int64 _bextr_u64(unsigned __int64 a, unsigned int start, unsigned int len) BEXTR r64a, reg/m64, r64b </intrinsic>
         [MethodImpl(Inline)]
         public static ulong bitrange(in byte src, uint i0, uint i1)
@@ -150,7 +149,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong bitrange(in uint src, uint i0, uint i1)
             => Bmi1.X64.BitFieldExtract(src, (byte)i0, (byte)(i1 - i0 + 1));            
-
 
         /// <intrinsic>unsigned __int64 _bextr_u64(unsigned __int64 a, unsigned int start, unsigned int len) BEXTR r64a, reg/m64, r64b </intrinsic>
         [MethodImpl(Inline)]
@@ -237,9 +235,7 @@ namespace Z0
         public static byte lo(in ushort src)
             => (byte)src;
 
-
-
-         /// <summary>
+        /// <summary>
         /// Extracts the upper 8 bits from the source
         /// </summary>
         /// <param name="src">The source value</param>
@@ -286,6 +282,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int lo(in long src)
             => (int)src;
-
      }
 }

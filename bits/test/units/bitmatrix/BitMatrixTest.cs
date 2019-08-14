@@ -52,7 +52,7 @@ namespace Z0.Test
                 var src = Random.BitMatrix32();
                 for(var c = 0; c < src.ColCount; c ++)
                 {
-                    var col = src.ColVector(c);
+                    var col = src.ColVec(c);
                     for(var r=0; r<src.RowCount; r++)
                         Claim.eq(col[r], src[r,c]);
                 }
@@ -126,8 +126,8 @@ namespace Z0.Test
             var c = Random.BitMatrix64();
             var a = span<ulong>(64);
             for(var i = 0; i<64; i++)
-                a[i] = ~ c.RowVector(i);
-            var b = BitMatrix64.Define(a);
+                a[i] = ~ c.RowData(i);
+            var b = BitMatrix64.Load(a);
             Claim.yea(b == -c);        
         }
 

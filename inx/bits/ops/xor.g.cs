@@ -14,26 +14,75 @@ namespace Z0
 
     partial class gbits
     {
+        [MethodImpl(Inline)]
+        public static T xor<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>((sbyte)(int8(lhs) ^ int8(rhs)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>((byte)(uint8(lhs) ^ uint8(rhs)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>((short)(int16(lhs) ^ int16(rhs)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>((ushort)(uint16(lhs) ^ uint16(rhs)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(int32(lhs) ^ int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(uint32(lhs) ^ uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(int64(lhs) ^ int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(uint64(lhs) ^ uint64(rhs));
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T xor<T>(ref T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.xor(ref int8(ref lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                Bits.xor(ref uint8(ref lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                Bits.xor(ref int16(ref lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                Bits.xor(ref uint16(ref lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                Bits.xor(ref int32(ref lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                Bits.xor(ref uint32(ref lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                Bits.xor(ref int64(ref lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                Bits.xor(ref uint64(ref lhs), uint64(rhs));
+            else            
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> xor<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.xor(int8(lhs), int8(rhs), int8(dst));
+                Bits.xor(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.xor(uint8(lhs), uint8(rhs), uint8(dst));
+                Bits.xor(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.xor(int16(lhs), int16(rhs), int16(dst));
+                Bits.xor(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                Bits.xor(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.xor(int32(lhs), int32(rhs), int32(dst));
+                Bits.xor(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                Bits.xor(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.xor(int64(lhs), int64(rhs), int64(dst));
+                Bits.xor(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                Bits.xor(uint64(lhs), uint64(rhs), uint64(dst));
             else
                 throw unsupported<T>();
             return ref dst;

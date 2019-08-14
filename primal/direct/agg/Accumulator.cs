@@ -11,8 +11,19 @@ namespace Z0
     
     using static zfunc;
 
+    /// <summary>
+    /// A basic statistical accumulator that accrues information over an 
+    /// arbitrary number of input sequences
+    /// </summary>
     public class Accumulator
     {
+        public static Accumulator Create(params double[] initial)
+        {
+            var a = new Accumulator();
+            a.Accumulate(initial);
+            return a;
+        }
+
         public static Accumulator operator +(Accumulator a, double value)
         {
             a.Accumulate(value);
@@ -66,7 +77,6 @@ namespace Z0
             m0 = value;
             s0 = 0;
         }
-
 
         [MethodImpl(Inline)]
         void AccumulateTail(double value)

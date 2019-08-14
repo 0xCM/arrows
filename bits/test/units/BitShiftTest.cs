@@ -13,7 +13,6 @@ namespace Z0.Test
 
     public class BitShiftTest : UnitTest<BitShiftTest>
     {
-
         void ShiftRight<T>()
             where T : struct
         {

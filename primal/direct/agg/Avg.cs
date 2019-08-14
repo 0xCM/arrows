@@ -56,8 +56,10 @@ namespace Z0
             checked
             {
                 var sum = default(ulong);
+
                 for(var i=0; i<src.Length; i++)
-                    sum += src[i];
+                     sum += src[i];
+
                 return (ushort)(sum/(ulong)src.Length);
             }
         }
@@ -75,11 +77,13 @@ namespace Z0
    
         public static uint avg(ReadOnlySpan<uint> src)
         {
-            checked
+            checked 
             {
                 var sum = default(ulong);
+                
                 for(var i=0; i<src.Length; i++)
-                    sum += src[i];
+                    checked{ sum += src[i];}
+                
                 return (uint)(sum/(ulong)src.Length);
             }
         }
@@ -89,8 +93,10 @@ namespace Z0
             checked
             {
                 var sum = default(long);
+
                 for(var i=0; i<src.Length; i++)
-                    sum += src[i];
+                    sum += src[i]; 
+
                 return sum/src.Length;
             }
         }
@@ -100,8 +106,10 @@ namespace Z0
             checked
             {
                 var sum = default(ulong);
+
                 for(var i=0; i<src.Length; i++)
                     sum += src[i];
+
                 return sum/(ulong)src.Length;
             }
         }

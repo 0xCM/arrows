@@ -72,7 +72,7 @@ namespace Z0.Test
             var bs2 = BitString.FromScalar(x);
             var y = bs1.TakePrimalValue<uint>();
             Claim.eq(x,y);
-            Claim.yea(bs1.Eq(bs2));
+            Claim.yea(bs1.Equals(bs2));
 
         }
 
@@ -106,8 +106,8 @@ namespace Z0.Test
             {
                 var bvX = bs.TakePrimalValue<ulong>().ToBitString();
                 var nlzX = bvX.PopCount();
-                var bv = BitVector64.Define(bs.ToBits());
-                var nlzY = bv.PopCount();
+                var bv = BitVector64.Load(bs.ToBits());
+                var nlzY = bv.Pop();
                 Claim.eq(nlzX, nlzY);
             }
 
@@ -137,7 +137,7 @@ namespace Z0.Test
 
             var bs1 = BitString.Parse(bs1Source);
             var bs2 = BitString.Parse(bs2Source);
-            Claim.yea(bs1.Eq(bs2));
+            Claim.yea(bs1.Equals(bs2));
         }
 
         public void BitViewBitString()

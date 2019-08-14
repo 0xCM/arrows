@@ -37,6 +37,12 @@ namespace Z0.Test
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
             }
         }
 
@@ -48,7 +54,13 @@ namespace Z0.Test
                 var y = Random.BitVector16();
                 var a = x % y;
                 var b = ModProd(x,y);
-                Claim.yea(a == b);            
+                Claim.yea(a == b);   
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
             }
         }
 
@@ -62,6 +74,11 @@ namespace Z0.Test
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
             
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
             }
         }
 
@@ -74,6 +91,11 @@ namespace Z0.Test
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
             
             }
         }
@@ -150,7 +172,6 @@ namespace Z0.Test
             VerifyDot(25,(ushort)0);
             VerifyDot(256,0ul);
             VerifyDot(2048,0u);
-
         }
 
         public void DotNT()
@@ -164,6 +185,25 @@ namespace Z0.Test
             VerifyDot(N25,(ushort)0);
             VerifyDot(N256,0ul);
             VerifyDot(N2048,0u);
+        }
+
+
+        void Dot4Table()
+        {
+            var result = sbuild();
+            for(byte i=0; i< 0xF; i++)
+            {
+                var x = BitVector4.Load(i);
+                for(byte j = 0; j<0xF; j++)
+                {
+                    var y = BitVector4.Load(j);
+                    var a = x & y;
+                    var and = $"AND = {a.Format()}";
+                    var popMod2 = $"AND > POP % 2 = {a.Pop() % 2}";
+                    result.AppendLine($"{x.Format()} * {y.Format()} = {x % y} | {and} | {popMod2}");
+                }
+            }
+            Trace(result.ToString());
         }
     }
 

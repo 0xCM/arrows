@@ -33,11 +33,11 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        static BitString FromScalars<T>(ReadOnlySpan<T> src)
+        static BitString FromScalars<T>(ReadOnlySpan<T> src, int? maxlen = null)
             where T : struct
                  =>  typeof(T) == typeof(char) 
-                  ? FromBitChars(MemoryMarshal.Cast<T,char>(src)) 
-                  : new BitString(gbits.bitseq(src));
+                  ? FromBitChars(MemoryMarshal.Cast<T,char>(src), maxlen) 
+                  : new BitString(gbits.bitseq(src ,maxlen));
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values
@@ -45,21 +45,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(Span<T> src)
+        public static BitString FromScalars<T>(Span<T> src, int? maxlen = null)
             where T : struct
-                => FromScalars(src.ReadOnly());
-
-        /// <summary>
-        /// Constructs a bitstring from span of scalar values
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="bitcount">The length of the bitstring</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        /// <returns></returns>
-        [MethodImpl(Inline)]        
-        public static BitString FromScalars<T>(Span<T> src, int bitcount)
-            where T : struct
-                => BitString.FromScalars(gbits.bitchars(src.AsBytes(), bitcount));
+                => FromScalars(src.ReadOnly(), maxlen);
 
         /// <summary>
         /// Assembles a bitstring from primal parts ordered from lo to hi
@@ -88,8 +76,10 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source characters, ordered from lo to hi</param>
         [MethodImpl(Inline)]
-        public static BitString FromBitChars(ReadOnlySpan<char> src)
-            => new BitString(src);         
+        public static BitString FromBitChars(ReadOnlySpan<char> src, int? maxlen = null)
+            => maxlen != null && src.Length >= maxlen 
+                ? new BitString(src.Slice(0,maxlen.Value)) 
+                : new BitString(src);         
 
         /// <summary>
         /// Constructs a bitstring from a clr string of 0's and 1's 

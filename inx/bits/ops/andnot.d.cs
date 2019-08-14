@@ -19,20 +19,20 @@ namespace Z0
     public static partial class Bits
     {                
         [MethodImpl(Inline)]
-        public static ulong andnot(in ulong lhs, in ulong rhs)
-            => Bmi1.X64.AndNot(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static uint andnot(in uint lhs, in uint rhs)
-            => Bmi1.AndNot(lhs,rhs);
+        public static byte andnot(in byte lhs, in byte rhs) 
+            => (byte)Bmi1.AndNot(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static ushort andnot(in ushort lhs, in ushort rhs)
             => (ushort)Bmi1.AndNot(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static byte andnot(in byte lhs, in byte rhs) 
-            => (byte)Bmi1.AndNot(lhs,rhs);
+        public static uint andnot(in uint lhs, in uint rhs)
+            => Bmi1.AndNot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static ulong andnot(in ulong lhs, in ulong rhs)
+            => Bmi1.X64.AndNot(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<sbyte> andnot(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)

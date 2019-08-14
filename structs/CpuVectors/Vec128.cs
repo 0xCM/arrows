@@ -11,6 +11,8 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using System.Runtime.InteropServices;
+    using static System.Runtime.Intrinsics.X86.Sse41;
+    using static System.Runtime.Intrinsics.X86.Avx;
     
     using static zfunc;    
 
@@ -86,5 +88,6 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is Vec128<T> v ? Equals(v) : false;
+        
     }     
 }

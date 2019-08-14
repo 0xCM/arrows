@@ -53,10 +53,10 @@ namespace Z0
             rhs = rhs.Transpose();
             for(var i=0; i< lhs.RowCount; i++)
             {
-                var row = lhs.RowVector(i);
+                var row = lhs.RowVec(i);
                 for(var j =0; j< rhs.ColCount; j++)
                 {
-                    var col = rhs.RowVector(j);
+                    var col = rhs.RowVec(j);
                     dst[i,j] = ModProd(row,col);
                 }
             }

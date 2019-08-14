@@ -96,8 +96,6 @@ namespace Z0
         {
             io = Bmi2.X64.ParallelBitDeposit(io,mask);
             return ref io;
-        }
-            
+        }            
     }
-
 }

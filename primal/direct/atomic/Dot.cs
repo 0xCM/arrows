@@ -16,7 +16,7 @@ namespace Z0
 
     partial class math
     {
-        public static sbyte dot(in ReadOnlySpan<sbyte> lhs, in ReadOnlySpan<sbyte> rhs)
+        public static sbyte dot(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(sbyte);
@@ -25,7 +25,7 @@ namespace Z0
             return dst;                
         }
 
-        public static byte dot(in ReadOnlySpan<byte> lhs,in ReadOnlySpan<byte> rhs)
+        public static byte dot(ReadOnlySpan<byte> lhs,ReadOnlySpan<byte> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(byte);
@@ -34,7 +34,7 @@ namespace Z0
             return dst;                
         }
 
-        public static short dot(in ReadOnlySpan<short> lhs,in ReadOnlySpan<short> rhs)
+        public static short dot(ReadOnlySpan<short> lhs,ReadOnlySpan<short> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(short);
@@ -43,7 +43,7 @@ namespace Z0
             return dst;                
         }
 
-        public static ushort dot(in ReadOnlySpan<ushort> lhs, in ReadOnlySpan<ushort> rhs)
+        public static ushort dot(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(ushort);
@@ -52,7 +52,7 @@ namespace Z0
             return dst;                
         }
 
-        public static int dot(in ReadOnlySpan<int> lhs, in ReadOnlySpan<int> rhs)
+        public static int dot(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(int);
@@ -61,7 +61,7 @@ namespace Z0
             return dst;                
         }
 
-        public static uint dot(in ReadOnlySpan<uint> lhs, in ReadOnlySpan<uint> rhs)
+        public static uint dot(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(uint);
@@ -70,7 +70,7 @@ namespace Z0
             return dst;                
         }
 
-        public static long dot(in ReadOnlySpan<long> lhs, in ReadOnlySpan<long> rhs)
+        public static long dot(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(long);
@@ -79,7 +79,7 @@ namespace Z0
             return dst;                
         }
 
-        public static ulong dot(in ReadOnlySpan<ulong> lhs, in ReadOnlySpan<ulong> rhs)
+        public static ulong dot(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(ulong);
@@ -88,7 +88,7 @@ namespace Z0
             return dst;                
         }
 
-        public static float dot(in ReadOnlySpan<float> lhs, in ReadOnlySpan<float> rhs)
+        public static float dot(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(float);
@@ -97,7 +97,7 @@ namespace Z0
             return dst;                
         }
 
-        public static double dot(in ReadOnlySpan<double> lhs, in ReadOnlySpan<double> rhs)
+        public static double dot(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
         {
             var len = length(lhs,rhs);
             var dst = default(double);

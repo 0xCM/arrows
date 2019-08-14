@@ -21,11 +21,46 @@ namespace Z0
         Span<T> bits;
 
         /// <summary>
-        /// Specifies the MxN matrix dimension
+        /// The row count representative
         /// </summary>
-        static readonly Dim<M,N> Dim = default;
+        public static readonly M I = default;
 
-        static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
+        /// <summary>
+        /// The col count representative
+        /// </summary>
+        public static readonly N J = default;
+
+        /// <summary>
+        /// The number of bits per row
+        /// </summary>
+        public static readonly BitSize RowBitCount = I.value;        
+
+        /// <summary>
+        /// The number of bits per column
+        /// </summary>
+        public static readonly BitSize ColBitCount = J.value;
+
+        /// <summary>
+        /// The number of bits apprehended by the matrix
+        /// </summary>
+        public static readonly BitSize TotalBitCount = RowBitCount * ColBitCount;
+                        
+        /// <summary>
+        /// The (aligned) number of bytes needed for a row
+        /// </summary>
+        public static readonly ByteSize RowByteCount = (ByteSize)RowBitCount;                        
+
+        /// <summary>
+        /// The (aligned) number of bytes needed for a column
+        /// </summary>
+        public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
+
+        /// <summary>
+        /// The number of bits a cell is capable of storing
+        /// </summary>
+        static readonly BitSize CellBitSize = Unsafe.SizeOf<T>()*8;
+
+        static readonly BitGridSpec<T> GridSpec = (CellBitSize, RowBitCount, ColBitCount);
         
         public static readonly BitGridLayout<T> GridLayout = GridSpec.CalcLayout();
 
@@ -52,16 +87,16 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> operator +(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
-            => lhs.XOr(rhs);
+            => XOr(ref lhs, rhs);
 
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> operator &(BitMatrix<M,N,T> lhs, BitMatrix<M,N,T> rhs)
-            => lhs.And(rhs);
+            => And(ref lhs, rhs);
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> operator -(BitMatrix<M,N,T> src)
-            => src.Flip();
+            => Flip(ref src);
 
         [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
@@ -201,18 +236,18 @@ namespace Z0
         }
 
         /// <summary>
-        /// Extracts the bits that comprise the matrix in row-major order
+        /// Sets all the bits to align with the source value
         /// </summary>
+        /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
-            => bits.AsBytes().Unpack(out Span<Bit> dst);
-
-        public BitGridLayout<T> Layout
-            => GridLayout;
-
-       [MethodImpl(Inline)]
-        public string Format()
-            => Bits.AsBytes().FormatMatrixBits(ColCount);
+        public void Fill(Bit value)
+        {
+            var primal = PrimalInfo.Get<T>();
+            if(value)
+                bits.Fill(primal.MaxVal);
+            else
+                bits.Fill(primal.Zero);
+        }
 
         public BitMatrix<N,M,T> Transpose()
         {
@@ -222,6 +257,48 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<Bit> Unpack()
+            => bits.AsBytes().Unpack(out Span<Bit> dst);
+
+        public BitGridLayout<T> Layout
+            => GridLayout;
+
+        [MethodImpl(Inline)]
+        public string Format()
+        {
+            var sb = sbuild();
+            for(var i=0; i< RowCount; i++)
+                 sb.AppendLine(RowVector(i).Format());
+            return sb.ToString();
+        }
+
+        static ref BitMatrix<M,N,T> XOr(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
+        {
+            gbits.xor(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
+        {
+            gbits.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
+
+        static ref BitMatrix<M,N,T> Flip(ref BitMatrix<M,N,T> src)        
+        {
+            gbits.flip(src.Bits);
+            return ref src;
+        }
+
+        static ref BitMatrix<M,N,T> Or(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
+        {
+            gbits.or(lhs.Bits, rhs.Bits, lhs.Bits);
+            return ref lhs;
+        }
 
     }
 }

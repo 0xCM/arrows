@@ -14,7 +14,6 @@ namespace Z0.Test
 
     public class BitPosTest : UnitTest<BitPosTest>
     {
-
         public void VerifyIncrement()
         {
             var pos = BitPos<byte>.Zero;

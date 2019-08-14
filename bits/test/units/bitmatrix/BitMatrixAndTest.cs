@@ -14,7 +14,7 @@ namespace Z0.Test
 
     public class BitMatrixAndTest : UnitTest<BitMatrixAndTest>
     {
-        public void And4()
+        public void BitLookup4()
         {
             var lhs = BitMatrix4.Identity;
             var rhs = BitMatrix4.Identity;
@@ -22,6 +22,11 @@ namespace Z0.Test
             for(var row=0; row<result.RowDim; row++)
             for(var col=0; col<result.ColDim; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
+
+        }
+        
+        public void And4()
+        {
             
             for(var i=0; i<Pow2.T08; i++)
             {
@@ -39,7 +44,7 @@ namespace Z0.Test
 
         }
 
-        public void And64()
+        public void BitLookup64()
         {
             var lhs = BitMatrix64.Identity;
             var rhs = BitMatrix64.Identity;
@@ -47,6 +52,11 @@ namespace Z0.Test
             for(var row=0; row<result.RowCount; row++)
             for(var col=0; col<result.ColCount; col++)    
                 Claim.eq(result[row,col], rhs[row,col]);
+
+        }
+
+        public void And64()
+        {
             
             for(var i=0; i<Pow2.T08; i++)
             {
@@ -56,7 +66,7 @@ namespace Z0.Test
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
                 var zBytes = xBytes.And(yBytes);
-                var expect = BitMatrix64.Define(zBytes);
+                var expect = BitMatrix64.Load(zBytes);
 
                 var actual = x & y;
                 Claim.yea(expect == actual);                

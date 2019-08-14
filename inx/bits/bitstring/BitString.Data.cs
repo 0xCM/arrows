@@ -28,10 +28,10 @@ namespace Z0
             => src.Format();
 
         public static bool operator ==(BitString lhs, BitString rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         public static bool operator !=(BitString lhs, BitString rhs)
-            => !lhs.Eq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static BitString operator +(BitString lhs, BitString rhs)
@@ -130,19 +130,19 @@ namespace Z0
         /// Determines whether the value that another <see cref='BitString'/> represents is 
         /// equivalent to the value that this bitstring represents
         /// </summary>
-        /// <param name="other">The bitstring with which the comparison will be made</param>
+        /// <param name="rhs">The bitstring with which the comparison will be made</param>
         [MethodImpl(Inline)]
-        public bool Eq(BitString other)
+        public bool Equals(BitString rhs)
         {                                                            
             var xNlz = this.Nlz();
-            var yNlz = other.Nlz();
+            var yNlz = rhs.Nlz();
             var xLastIx = bitseq.Length - 1 - xNlz;
-            var yLastIx = other.bitseq.Length - 1 - yNlz;
+            var yLastIx = rhs.bitseq.Length - 1 - yNlz;
             if(xLastIx != yLastIx)
                 return false;
             
             for(var i=xLastIx; i >=0; i--)
-                if(bitseq[i] != other.bitseq[i])
+                if(bitseq[i] != rhs.bitseq[i])
                     return false;
            
             return true;
@@ -160,7 +160,6 @@ namespace Z0
             return count;
         }
         
-
         public ReadOnlySpan<BinaryDigit> ToDigits()
         {
             Span<BinaryDigit> dst = new BinaryDigit[bitseq.Length];
@@ -180,11 +179,10 @@ namespace Z0
             return dst;
         }
 
-
         /// <summary>
         /// Returns the underlying sequence of bits represented by the bitstring
         /// </summary>
-        public byte[] BitSeq
+        public Span<byte> BitSeq
         {
             [MethodImpl(Inline)]
             get => bitseq;
@@ -197,7 +195,7 @@ namespace Z0
             => bitseq.GetHashCode();
 
         public override bool Equals(object rhs)
-            => (rhs is BitString x)  ? Eq(x) : false;
+            => (rhs is BitString x)  ? Equals(x) : false;
 
         public BitString Concat(BitString rhs)
             => new BitString(concat(bitseq, rhs.bitseq));

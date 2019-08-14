@@ -24,7 +24,6 @@ namespace Z0.Test
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
 
-
         void Run(Type host, params string[] filters)
         {        
             var hostpath = host.DisplayName();
@@ -45,7 +44,7 @@ namespace Z0.Test
                 instance.Configure(Config);
                 if(instance.Enabled)
                     iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));
-                print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Benchmark));
+                print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Info));
 
             }
             catch(Exception e)

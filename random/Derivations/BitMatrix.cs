@@ -19,19 +19,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix8 BitMatrix8(this IRandomSource random)
-            => Z0.BitMatrix8.Define(random.NextUInt64());
+            => Z0.BitMatrix8.Load(random.NextUInt64());
 
         [MethodImpl(Inline)]
         public static BitMatrix16 BitMatrix16(this IRandomSource random)
-            => Z0.BitMatrix16.Define(random.Span<ushort>(16));
+            => Z0.BitMatrix16.Load(random.Span<ushort>(16));
 
         [MethodImpl(Inline)]
         public static BitMatrix32 BitMatrix32(this IRandomSource random)
-            => Z0.BitMatrix32.Define(random.Span<uint>(32));
+            => Z0.BitMatrix32.Load(random.Span<uint>(32));
 
         [MethodImpl(Inline)]
         public static BitMatrix64 BitMatrix64(this IRandomSource random)
-            => Z0.BitMatrix64.Define(random.Span<ulong>(64));        
+            => Z0.BitMatrix64.Load(random.Span<ulong>(64));        
     
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> BitMatrix<M,N,T>(this IRandomSource random, M m = default, N n = default, T x = default)

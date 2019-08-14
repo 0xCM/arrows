@@ -55,7 +55,7 @@ namespace Z0.Test
                         mmExpect.EnableBit(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
-                Claim.eq(mmExpect, mmActual);
+                Claim.yea(mmExpect == mmActual);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Z0.Test
                         mmExpect.EnableBit(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
-                Claim.eq(mmExpect, mmActual);
+                Claim.yea(mmExpect == mmActual);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Z0.Test
                         mmExpect.EnableBit(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
-                Claim.eq(mmExpect, mmActual);
+                Claim.yea(mmExpect == mmActual);
             }
         }
     }

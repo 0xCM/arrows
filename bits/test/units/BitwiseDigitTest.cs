@@ -7,8 +7,6 @@ namespace Z0.Test
     using System;
     using System.Linq;
     using System.Reflection;
-    using System.ComponentModel;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
@@ -38,7 +36,6 @@ namespace Z0.Test
             BinaryMatch<byte>("0b01000101",0b01000101);
         }
 
-
         public void ByteToDecimalDigits()
         {
             DecimalMatch<byte>("0", 0);
@@ -46,6 +43,5 @@ namespace Z0.Test
             DecimalMatch<byte>("101", 101);
             DecimalMatch<byte>("255", 255);
         }
-
     }
 }

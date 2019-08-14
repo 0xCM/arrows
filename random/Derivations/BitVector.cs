@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector4 BitVector4(this IRandomSource random)
-            => BV.Define(random.NextUInt4());
+            => BV.Load(random.NextUInt4());
 
         /// <summary>
         /// Produces a random 8-bit bitvector
@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector8 BitVector8(this IRandomSource random)
-            => BV.Define(random.NextUInt8());
+            => BV.Load(random.NextUInt8());
 
         /// <summary>
         /// Produces a random 16-bit bitvector
@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector32 BitVector32(this IRandomSource random)
-            => BV.Define(random.NextUInt32());
+            => BV.Load(random.NextUInt32());
 
         /// <summary>
         /// Produces a random 64-bit bitvector
@@ -53,7 +53,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector64 BitVector64(this IRandomSource random)
-            => BV.Define(random.NextUInt64());
+            => BV.Load(random.NextUInt64());
 
         /// <summary>
         /// Produces a random generic bitvector of specified length
@@ -64,7 +64,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> BitVector<T>(this IRandomSource random, BitSize len)
             where T : struct
-                => BV.Define<T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(len)));
+                => BV.Load<T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(len)));
 
         /// <summary>
         /// Produces a random bitvector of natural length and generic type
@@ -77,7 +77,7 @@ namespace Z0
         public static BitVector<N,T> BitVector<N,T>(this IRandomSource random, N len = default)
             where T : struct
             where N : ITypeNat, new()
-                => BV.Define<N,T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(nati<N>())));
+                => BV.Load<N,T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(nati<N>())));
 
     }
 

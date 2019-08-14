@@ -788,5 +788,8 @@ namespace Z0
         public static bool Eq(this Span<char> lhs, Span<char> rhs)        
              =>  lhs.ReadOnly().Eq(rhs);
 
+        [MethodImpl(Inline)]
+        public static string RemoveWhitespace(this string src)
+            => src.RemoveAny(items(AsciSym.Space, AsciEscape.LineFeed, AsciEscape.NewLine, AsciEscape.Tab));
     }
 }

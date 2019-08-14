@@ -68,7 +68,7 @@ namespace Z0.Test
             m2.RowSwap(1,2);
             m2.RowSwap(2,3);
 
-            Claim.yea(m1.RowVector(0) == m2.RowVector(3));
+            Claim.yea(m1.RowVec(0) == m2.RowVec(3));
         }
 
 

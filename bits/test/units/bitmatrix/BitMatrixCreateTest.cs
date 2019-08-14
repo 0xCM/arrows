@@ -14,13 +14,12 @@ namespace Z0.Test
 
     public class BitMatrixCreateTest : UnitTest<BitMatrixCreateTest>
     {
-
         public void Create8x8()
         {
             var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())
             {
-                var m1 = BitMatrix.Define(src.Current);
+                var m1 = BitMatrix8.Load(src.Current);
                 var n = new N8();
                 var m2 = BitMatrix.Load(n,n, src.Current.ToByteArray());
                 for(var i=0; i<8; i++)
@@ -63,17 +62,25 @@ namespace Z0.Test
             
         }
 
-        public void CreateSqure()
+        public void Create7x9()
         {
-            var m1 = Random.BitMatrix(N7, 0u);
-            var m2 = BitMatrix.Alloc(N7,0u);
-            for(var i=0; i<m1.RowCount; i++)
-            for(var j=0; j<m1.ColCount; j++)
-                m2[i,j] = m1[i,j];
-            
-            Claim.yea(m1 == m2);
+            var m1 = BitMatrix.Alloc<N7,N9,byte>();
+            m1.Fill(Bit.On);
+            var fmt = m1.Format().RemoveWhitespace();
+            Claim.eq(BitMatrix<N7,N9,byte>.TotalBitCount, fmt.Length);    
 
+        }
+        public void Create7x7()
+        {
+            var m1 = BitMatrix.Alloc<N7,byte>();
+            m1.Fill(Bit.On);
+            var fmt = m1.Format().RemoveWhitespace();
+            Claim.eq(7*7, fmt.Length);
+            var d = m1.Diagonal();
+            var x = BitVector.Alloc<N7,byte>();
+            x.Fill(Bit.On);
 
+            Claim.yea(d == x);                        
         }
         public void Create16x16()
         {
