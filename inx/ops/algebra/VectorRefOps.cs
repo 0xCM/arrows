@@ -74,7 +74,7 @@ namespace Z0
         {
             var x = lhs.Unblocked;
             var y = rhs.Unblocked;
-            gmath.sub(ref x, y);
+            gmath.sub(x, y);
             return ref lhs;
         }
 

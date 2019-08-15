@@ -25,7 +25,7 @@ namespace Z0.Test
             var dst = src.StepwisePartitionPoints(1);
             var fmt = dst.Map(x => x.ToString()).Concat(", ");
             Claim.eq(src.Width() + 1, dst.Length);            
-            Claim.eq(items(5,6,7,8,9,10,11,12).TakeSpan(), dst);
+            items(5,6,7,8,9,10,11,12).TakeSpan().ClaimEqual(dst);
         }
 
         public void Part1()

@@ -168,6 +168,7 @@ namespace Z0
     partial class dinx
     {
 
+        
         ///<intrinsic>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<float> permute(in Vec128<float> value, byte control)

@@ -19,7 +19,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x =  Vec128.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }
@@ -29,7 +29,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x =  Vec128.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }
@@ -39,7 +39,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x = Vec128.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }
@@ -49,7 +49,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x =  Vec256.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }
@@ -59,7 +59,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x =  Vec256.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }
@@ -69,7 +69,7 @@ namespace Z0
             for(var block = 0; block <src.BlockCount; block ++)                
             {
                 var x =  Vec256.Loadi(in src.Block(block));
-                dinx.store(dinx.abs(x), ref dst[block]);                
+                vstore(dinx.abs(x), ref dst[block]);                
             }
             return dst;
         }

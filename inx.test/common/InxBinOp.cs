@@ -24,10 +24,10 @@ namespace Z0.Test
             var src = random.ReadOnlySpan128<T>(blocks);
             Claim.eq(blocks*blocklen,src.Length);
                         
-            var expect = Span128.alloc<T>(blocks);
+            var expect = Span128.AllocBlocks<T>(blocks);
             Claim.eq(blocks, expect.BlockCount);
 
-            var actual = Span128.alloc<T>(blocks);
+            var actual = Span128.AllocBlocks<T>(blocks);
             Claim.eq(blocks, actual.BlockCount);
 
             var tmp = new T[blocklen];
@@ -97,10 +97,10 @@ namespace Z0.Test
             var rhs = random.ReadOnlySpan128<T>(blocks);
             Claim.eq(blocks*blocklen,rhs.Length);
             
-            var expect = Span128.alloc<T>(blocks);
+            var expect = Span128.AllocBlocks<T>(blocks);
             Claim.eq(blocks, expect.BlockCount);
 
-            var actual = Span128.alloc<T>(blocks);
+            var actual = Span128.AllocBlocks<T>(blocks);
             Claim.eq(blocks, actual.BlockCount);
 
             var tmp = new T[blocklen];

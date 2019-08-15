@@ -14,11 +14,11 @@ namespace Z0
 
     partial class ginxs
     {
-        public static Vec128<T> Dec<T>(in this Vec128<T> src)
+        public static Vec128<T> Dec<T>(this Vec128<T> src)
             where T : struct
                 => ginx.dec(in src);
 
-        public static Vec256<T> Dec<T>(in this Vec256<T> src)
+        public static Vec256<T> Dec<T>(this Vec256<T> src)
             where T : struct
                 => ginx.dec(in src);
 

@@ -91,7 +91,7 @@ namespace Z0.Test
             var timing = stopwatch();
             
             for(var i = 0; i<len; i++)
-                Require.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
+                Claim.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
         }
 
         protected void BlockSamplesStart(int blocks, [CallerMemberName] string caller = null)

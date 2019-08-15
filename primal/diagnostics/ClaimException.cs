@@ -46,4 +46,29 @@ namespace Z0
         public ClaimOpKind OpKind {get;}         
     }
 
+    public enum ClaimOpKind
+    {
+        Eq,
+        
+        EqItem,
+
+        NEq,
+
+        Lt,
+
+        LtEq,
+        
+        Gt,
+        
+        GtEq,
+        
+        False,
+
+        True,
+
+        Fail,
+
+        Nonzero
+    }
+
 }

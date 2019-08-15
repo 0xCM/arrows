@@ -52,7 +52,7 @@ namespace Z0
         public static BitMatrix<N,T> BitMatrix<N,T>(this IRandomSource random, N n = default, T rep = default)
             where N : ITypeNat, new()
             where T : struct
-                => BM.Load(random.Span<T>(BitGrid.Specify(n,n,rep).TotalCellCount),n);
+                => BM.Load(random.Span<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);
                 
     }
 

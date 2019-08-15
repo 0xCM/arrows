@@ -21,9 +21,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(dinx.div(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.div(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.div(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.div(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
         }
@@ -33,9 +33,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(dinx.div(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.div(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.div(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.div(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
         }

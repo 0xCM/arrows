@@ -65,40 +65,6 @@ namespace Z0.Test
         }        
 
 
-        void Add<N,T>()
-            where T : struct
-            where N : ITypeNat, new()
-        {
-            var rep = new N();
-            var len = (int)rep.value;
-            var data = Random.DataSet<N,T>();            
-            var vResult = data.LeftVec.Add(data.RightVec);
-            
-            var calcs = span<T>(len);
-            for(var i = 0; i< calcs.Length; i++)
-                calcs[i] = gmath.add(data.LeftSrc[i], data.RightSrc[i]);
-            var vExpect = Vector.Load(calcs, rep);            
-            
-            VerifyEquality(vExpect, vResult);
-
-        }
-
-        void Sub<N,T>()
-            where T : struct
-            where N : ITypeNat, new()
-        {
-            var rep = new N();
-            var len = (int)rep.value;
-            var data = Random.DataSet<N,T>();            
-            var vResult = data.LeftVec.Sub(data.RightVec);
-            
-            var calcs = span<T>(len);
-            for(var i = 0; i< calcs.Length; i++)
-                calcs[i] = gmath.sub(data.LeftSrc[i], data.RightSrc[i]);
-            var vExpect = Vector.Load(calcs, rep);            
-            
-            VerifyEquality(vExpect, vResult);
-        }
 
         void And<N,T>()
             where T : struct
@@ -117,6 +83,36 @@ namespace Z0.Test
             VerifyEquality(vExpect, vResult);
         }
 
+
+        void Add<N,T>(int cycles = DefaltCycleCount)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var n = new N();
+            for(var i=0; i< cycles; i++)            
+            {
+                var v1 = Random.NatVector<N,T>();
+                var v2 = Random.NatVector<N,T>();
+                var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
+                var v4 = v1.Add(v2);
+                Claim.yea(v3 == v4);
+            }
+        }
+
+        void Sub<N,T>(int cycles = DefaltCycleCount)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var n = new N();
+            for(var i=0; i< cycles; i++)            
+            {
+                var v1 = Random.NatVector<N,T>();
+                var v2 = Random.NatVector<N,T>();
+                var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
+                var v4 = v1.Sub(v2);
+                Claim.yea(v3 == v4);
+            }
+        }
 
         public void VectorAdd()
         {
@@ -145,7 +141,7 @@ namespace Z0.Test
             Sub<VecLen,ulong>();
             Sub<VecLen,float>();
             Sub<VecLen,double>();
-            
+
         }
 
         public void VectorAnd()
@@ -161,17 +157,6 @@ namespace Z0.Test
             
         }
 
-        public void VectorConcat()
-        {
-            var n = NatSum<N4,N3>.Rep.Reduce<N7>();
-            var v1 = Vector.Load(N4, 1,2,3,4);
-            var v2 = Vector.Load(N3, 5,6,7);
-            var v3 = v1.Concat(v2, NatSum<N4,N3>.Rep).ReDim(N7);
-            var v4 = Vector.Load(N7, 1, 2, 3, 4, 5, 6, 7);
-            var v5 = v3.Eq(v4);
-            Claim.yea(v5.Unsize().All(x => true));
-
-        }
 
     }
 

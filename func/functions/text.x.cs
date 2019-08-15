@@ -767,7 +767,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool Eq(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)        
+        public static bool ContentEqual(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)        
              =>  lhs.CompareTo(rhs, StringComparison.InvariantCulture) == 0;
 
         /// <summary>
@@ -776,8 +776,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool Eq(this Span<char> lhs, ReadOnlySpan<char> rhs)        
-             =>  lhs.ReadOnly().Eq(rhs);
+        public static bool ContentEqual(this Span<char> lhs, ReadOnlySpan<char> rhs)        
+             =>  lhs.ReadOnly().ContentEqual(rhs);
 
         /// <summary>
         /// Returns true if the character spans are equal as strings, false otherwise
@@ -785,8 +785,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool Eq(this Span<char> lhs, Span<char> rhs)        
-             =>  lhs.ReadOnly().Eq(rhs);
+        public static bool ContentEqual(this Span<char> lhs, Span<char> rhs)        
+             =>  lhs.ReadOnly().ContentEqual(rhs);
 
         [MethodImpl(Inline)]
         public static string RemoveWhitespace(this string src)

@@ -203,7 +203,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public void ColVector(int col, BitVector<N,T> src)
+        public void SetCol(int col, BitVector<N,T> src)
         {
             for(var row=0; row < RowCount; row++)
                 this[row,col] = src[row];
@@ -214,7 +214,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public BitVector<N,T> ColVector(int col)
+        public BitVector<N,T> GetCol(int col)
         {
             var cv = default(BitVector<N,T>);
             for(var row=0; row < RowCount; row++)
@@ -260,7 +260,7 @@ namespace Z0
         {
             var dst = Alloc();
             for(var row = 0; row < RowCount; row++)
-                dst.ColVector(row, RowVector(row));            
+                dst.SetCol(row, RowVector(row));            
             return dst;
         }
 

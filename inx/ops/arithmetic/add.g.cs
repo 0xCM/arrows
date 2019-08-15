@@ -188,6 +188,23 @@ namespace Z0
             return dst;        
         } 
 
+        /// <summary>
+        /// Add the first vector to the second and populates the third with the result
+        /// </summary>
+        /// <param name="x">The first source vector</param>
+        /// <param name="y">The second source vector</param>
+        /// <param name="z">The target vector</param>
+        /// <typeparam name="N">The vector length type</typeparam>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Vector<N,T> add<N,T>(in Vector<N,T> x, in Vector<N,T> y, ref Vector<N,T> z)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            add(x, y, z.ToSpan256());
+            return ref z;
+        }
+
         static Span128<sbyte> AddSpans(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
         {
             var blocks = dst.BlockCount;

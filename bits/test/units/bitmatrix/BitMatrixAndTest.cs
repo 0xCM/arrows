@@ -65,7 +65,7 @@ namespace Z0.Test
 
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
-                var zBytes = xBytes.And(yBytes);
+                var zBytes = gbits.and(xBytes,yBytes);
                 var expect = BitMatrix64.Load(zBytes);
 
                 var actual = x & y;

@@ -179,7 +179,7 @@ namespace Z0
             => bits.Slice(RowOffset(row), GridLayout.RowCellCount);
 
         [MethodImpl(Inline)]
-        void ReplaceRow(int row, Span<T> data)
+        void SetRow(int row, Span<T> data)
             => data.CopyTo(bits.Slice(RowOffset(row), GridLayout.RowCellCount));     
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public void ColVector(int col, BitVector<M,T> src)
+        public void SetCol(int col, BitVector<M,T> src)
         {
             for(var row=0; row < RowCount; row++)
                 this[row,col] = src[row];
@@ -227,7 +227,7 @@ namespace Z0
         /// </summary>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
-        public BitVector<M,T> ColVector(int col)
+        public BitVector<M,T> GetCol(int col)
         {
             var cv = default(BitVector<M,T>);
             for(var row=0; row < RowCount; row++)
@@ -253,7 +253,7 @@ namespace Z0
         {
             var dst = BitMatrix.Alloc<N,M,T>();
             for(var row = 0; row < RowCount; row++)
-                dst.ColVector(row, RowVector(row));            
+                dst.SetCol(row, RowVector(row));            
             return dst;
         }
 

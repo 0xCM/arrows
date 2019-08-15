@@ -72,6 +72,35 @@ namespace Z0
             return ref src;
         }           
 
+        public static ref Span<T> sqrt<T>(ref Span<T> io)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                int8(io).Sqrt();
+            else if(typeof(T) == typeof(byte))
+                uint8(io).Sqrt();
+            else if(typeof(T) == typeof(short))
+                int16(io).Sqrt();
+            else if(typeof(T) == typeof(ushort))
+                uint16(io).Sqrt();
+            else if(typeof(T) == typeof(int))
+                int32(io).Sqrt();
+            else if(typeof(T) == typeof(uint))
+                uint32(io).Sqrt();
+            else if(typeof(T) == typeof(long))
+                int64(io).Sqrt();
+            else if(typeof(T) == typeof(ulong))
+                uint64(io).Sqrt();
+            else if(typeof(T) == typeof(float))
+                float32(io).Sqrt();
+            else if(typeof(T) == typeof(double))
+                float64(io).Sqrt();
+            else
+                 throw unsupported<T>();                
+           
+            return ref io;
+        }
+
 
         [MethodImpl(Inline)]
         static T sqrtI8<T>(T src)

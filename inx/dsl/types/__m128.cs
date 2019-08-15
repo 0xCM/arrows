@@ -36,7 +36,7 @@ namespace Z0
         public static __m128 FromVec128(in Vec128<float> src)
         {
             var dst = default(__m128);
-            dinx.store(in src, ref dst.x00f);
+            vstore(in src, ref dst.x00f);
             return dst;
         }
             

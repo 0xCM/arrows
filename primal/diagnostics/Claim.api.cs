@@ -46,6 +46,11 @@ namespace Z0
             => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool numeq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => gmath.eq(lhs,rhs) ? true : throw Errors.Equal(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static bool neq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.NEq, NotEqual(lhs,rhs, caller, file, line));
 
@@ -210,67 +215,33 @@ namespace Z0
             => (p != null) ? true : throw new ArgumentNullException(AppMsg.Define($"Pointer was null", SeverityLevel.Error, caller,file,line).ToString());
 
         [MethodImpl(Inline)]
+        public static bool nonzero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
+            where T : struct 
+                => gmath.nonzero(x) ? true : throw Errors.NotNonzero(caller,file,line);
+
+        [MethodImpl(Inline)]
         public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
 
         public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-        {
-            for(var i = 0; i< length(lhs,rhs); i++)
-                if(gmath.neq(lhs[i],rhs[i]))
-                    throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
-        }
-
-        [MethodImpl(Inline)]
-        public static void eq(ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => yea(lhs.Eq(rhs), null, caller, file, line);
-
-        [MethodImpl(Inline)]
-        public static void eq(Span<char> lhs, ReadOnlySpan<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => yea(lhs.Eq(rhs), null, caller, file, line);
-
-        [MethodImpl(Inline)]
-        public static void eq(Span<char> lhs, Span<char> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => yea(lhs.Eq(rhs), null, caller, file, line);
+                => lhs.ClaimEqual(rhs, caller,file,line);
 
         [MethodImpl(Inline)]
         public static void eq<T>(Span<T> lhs, Span<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => eq(lhs.ReadOnly(), rhs.ReadOnly(), caller, file, line);
+                => lhs.ClaimEqual(rhs, caller,file,line);
  
         [MethodImpl(Inline)]
         public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);
+                => lhs.ClaimEqual(rhs, caller,file,line);
 
         [MethodImpl(Inline)]
         public static void eq<T>(Span256<T> lhs, Span256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => eq(lhs.Unblocked, rhs.Unblocked, caller, file, line);
+                => lhs.ClaimEqual(rhs, caller,file,line);
  
-        /// <summary>
-        /// Asserts equality for two spans of natural dimension MxN 
-        /// </summary>
-        /// <param name="lhs">The left span</param>
-        /// <param name="rhs">The right span</param>
-        /// <param name="caller">The invoking function</param>
-        /// <param name="file">The file in which the invoking function is defined </param>
-        /// <param name="line">The file line number of invocation</param>
-        /// <typeparam name="M">The row dimension type</typeparam>
-        /// <typeparam name="N">The column dimension type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static void eq<M,N,T>(Span<M,N,T> lhs, Span<M,N,T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where N : ITypeNat, new()
-            where M : ITypeNat, new()
-            where T : struct 
-                => eq(lhs.Unsized, rhs.Unsized, caller, file, line);
-
-        [MethodImpl(Inline)]
-        public static void eq<N,T>(Span<N,T> lhs, Span<N,T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where N : ITypeNat, new()
-            where T : struct 
-                => eq(lhs.Unsized, rhs.Unsized, caller, file, line);
 
     }
 }

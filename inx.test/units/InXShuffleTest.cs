@@ -114,7 +114,7 @@ namespace Z0.Test
             var s2 = dinx.shuffle(v1,m2);
             var s3 = dinx.shuffle(v1,m3);
 
-            Trace(s3.FormatHex());
+            
 
         }
 

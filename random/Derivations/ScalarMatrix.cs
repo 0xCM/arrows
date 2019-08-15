@@ -28,6 +28,11 @@ namespace Z0
             where T : struct    
                 => Z0.Matrix.Load<M,N,T>(random.Span256<T>(Z0.Span256.MinBlocks<M,N,T>(), domain));                    
 
+         public static Matrix<M,N,T> Matrix<M,N,T>(this IRandomSource random, Interval<T> domain,M m = default, N n = default)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+                => Z0.Matrix.Load<M,N,T>(random.Span256<T>(Z0.Span256.MinBlocks<M,N,T>(), domain));                    
                
         /// <summary>
         /// Samples a square matrix of natural order

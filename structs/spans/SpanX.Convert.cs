@@ -134,7 +134,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)
              where T : struct
-                => Z0.Span128.load(src);
+                => Z0.Span128.Load(src);
 
         /// <summary>
         /// Constructs a 128-bit blocked span from an unblocked span

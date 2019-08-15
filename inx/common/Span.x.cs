@@ -14,7 +14,7 @@ namespace Z0
     partial class ginxs
     {
         /// <summary>
-        /// Stores source vector conent in a target span
+        /// Stores source vector conent in a caller-supplied target span
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target span</param>
@@ -29,7 +29,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Stores source vector conent in a target span
+        /// Stores source vector conent in a caller-supplied target span
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target span</param>
@@ -44,8 +44,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sends the components of the vector to a blocked span that is 
-        /// returned to the caller
+        /// Allocates a blocked span into which vector content is stored
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
@@ -53,14 +52,33 @@ namespace Z0
         public static Span128<T> ToSpan128<T>(this Vec128<T> src)
             where T : struct     
         {
-            var dst = Span128.alloc<T>(1);
+            var dst = Span128.AllocBlocks<T>(1);
             Vec128.Store(in src, ref dst[0]);
             return dst;
         }                       
 
         /// <summary>
-        /// Sends the components of the vector to a blocked span that is 
-        /// returned to the caller
+        /// Clones the source vector and returns the resul
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec128<T> Replicate<T>(this Vec128<T> src)
+            where T : struct
+                => Vec128.Load(src.ToSpan128());
+
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> ToReadOnlySpan128<T>(this Vec128<T> src)
+            where T : struct     
+                => src.ToSpan128();
+        
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
@@ -74,23 +92,64 @@ namespace Z0
         }                       
 
         /// <summary>
-        /// Extracts the components of an intrinsic vector to a span
+        /// Clones the source vector and returns the resul
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> Replicate<T>(this Vec256<T> src)
+            where T : struct
+                => Vec256.Load(src.ToSpan256());
+        
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> ToReadOnlySpan256<T>(this Vec256<T> src)
+            where T : struct            
+                => src.ToSpan256();        
+
+        /// <summary>
+        /// Allocates a span into which vector content is stored
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this Vec128<T> src)
             where T : struct            
-                => src.ToSpan128().Unblock();
+                => src.ToSpan128();
 
         /// <summary>
-        /// Extracts the components of an intrinsic vector to a span
+        /// Allocates a span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vec128<T> src)
+            where T : struct            
+                => src.ToSpan128();
+
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this Vec256<T> src)
             where T : struct            
-                => src.ToSpan256().Unblocked;
+                => src.ToSpan256();
+
+        /// <summary>
+        /// Allocates a span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vec256<T> src)
+            where T : struct            
+                => src.ToSpan256();
+
     }
 }

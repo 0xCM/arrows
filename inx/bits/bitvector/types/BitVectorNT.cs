@@ -44,7 +44,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(in lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.and(lhs.bits, rhs.bits));
 
         /// <summary>
         /// Computes the bitwise complement of the operand

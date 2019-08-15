@@ -229,19 +229,9 @@ namespace Z0
         /// <param name="length">The length of the cell sequence</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static int WholeBlockCount<T>(int length)
+        public static int WholeBlocks<T>(int length)
             where T : struct  
                 => length / BlockLength<T>();
-
-        /// <summary>
-        /// Calculates the number of blocks represented by the span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The span constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int WholeBlockCount<T>(ReadOnlySpan<T> src)
-            where T : struct  
-                =>  WholeBlockCount<T>(src.Length);
 
         [MethodImpl(Inline)]
         public static int BlockCount<T>(int length, out int remainder)
@@ -284,6 +274,16 @@ namespace Z0
         public static Span256<T> Single<T>(params T[] src)
             where T : struct
                 => Span256<T>.Load(src);
+
+        /// <summary>
+        /// Calculates the number of bytes consumed by a specified number of cells
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ByteSize CellBytes<T>(int count)
+            where T : struct        
+            => count * CellSize<T>();
 
    }
 }

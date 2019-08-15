@@ -29,16 +29,16 @@ namespace Z0
                 => AppMsg.Define($"Operation {src} => {dst} not supported", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg NotEqual(object lhs, object rhs, string caller, string file, int? line)
-            => AppMsg.Define($"{lhs} != {rhs}", SeverityLevel.Error, caller, file, line) ;
+            => AppMsg.Define($"Equality failure: {lhs} != {rhs}", SeverityLevel.Error, caller, file, line) ;
 
         public static AppMsg Equal(object lhs, object rhs, string caller, string file, int? line)
             => AppMsg.Define($"{lhs} == {rhs}", SeverityLevel.Error, caller, file, line) ;
 
         public static AppMsg NotLessThan(object lhs, object rhs, string caller, string file, int? line)
-            => AppMsg.Define($"!({lhs} < {rhs})", SeverityLevel.Error, caller, file, line) ;
+            => AppMsg.Define($"Not less than failure: !({lhs} < {rhs})", SeverityLevel.Error, caller, file, line) ;
 
         public static AppMsg NotGreaterThan(object lhs, object rhs, string caller, string file, int? line)
-            => AppMsg.Define($"!({lhs} > {rhs})", SeverityLevel.Error, caller, file, line) ;
+            => AppMsg.Define($"Not greater than failure: !({lhs} > {rhs})", SeverityLevel.Error, caller, file, line) ;
 
         public static AppMsg NotGreaterThanOrEqual(object lhs, object rhs, string caller, string file, int? line)
             => AppMsg.Define($"!({lhs} >= {rhs})", SeverityLevel.Error, caller, file, line) ;
@@ -47,28 +47,28 @@ namespace Z0
             => AppMsg.Define($"!({lhs} <= {rhs})", SeverityLevel.Error, caller, file, line) ;
 
         public static AppMsg ItemsNotEqual(int index, object lhs, object rhs, string caller, string file, int? line)
-            => AppMsg.Define($"lhs[{index}] = {lhs} != rhs[{index}] = {rhs}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"Equality failure: lhs[{index}] = {lhs} != rhs[{index}] = {rhs}", SeverityLevel.Error, caller, file, line);
         public static AppMsg NotNonzero(string caller, string file, int? line)
-            => AppMsg.Define($"The input value is required to be nonzero, and yet, it is",  SeverityLevel.Error, caller, file, line);        
+            => AppMsg.Define($"Value is not nonzero",  SeverityLevel.Error, caller, file, line);        
         
         public static AppMsg NotTrue(string msg, string caller, string file, int? line)
-            => AppMsg.Define($"{msg ?? "The source value is required to be true and yet it is false"}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"{msg ?? "The source value is not true"}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg NotFalse(string msg, string caller, string file, int? line)
-            => AppMsg.Define($"{msg ?? "The source value is required to be false and yet it is true"}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"{msg ?? "The source value is is not false"}", SeverityLevel.Error, caller, file, line);
         public static AppMsg CountMismatch(int lhs, int rhs, string caller, string file, int? line)
-            => AppMsg.Define($"Count mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"Count mismatch: {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
         public static AppMsg EmptySourceSpan(string caller, string file, int? line)
             => AppMsg.Define($"The source span was empty", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg LengthMismatch(int lhs, int rhs, string caller, string file, int? line)
-            => AppMsg.Define($"Length mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"Length mismatch: {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg IndexOutOfRange(int index, int min, int max, string caller, string file, int? line)
             => AppMsg.Define($"The index {index} is not between {min} and {max}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg TooManyBytes(ByteSize requested, ByteSize available, string caller, string file, int? line)
-            => AppMsg.Define($"The requested number of bytes, {requested} exceeds the maximum available bytes, {available}", SeverityLevel.Error, caller, file, line);
+            => AppMsg.Define($"The number of bytes, {requested} exceeds the maximum available, {available}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg Unanticipated(Exception e, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => AppMsg.Define(e?.ToString() ??"Heh?", SeverityLevel.Error, caller, file, line);

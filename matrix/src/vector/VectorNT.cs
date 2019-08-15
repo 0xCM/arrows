@@ -92,6 +92,11 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
+        public static T operator *(Vector<N,T> lhs, in Vector<N,T> rhs)
+            => gmath.dot<T>(lhs.Unsized, rhs.Unsized);
+         
+
+        [MethodImpl(Inline)]
         Vector(ref T src)
         {  
             data =  Span256.Load<T>(ref src, Length);  
@@ -182,6 +187,12 @@ namespace Z0
  
         public override string ToString()
             => throw new NotSupportedException();
+    
+        public Span256<T> ToSpan256()
+            => data;
+
+        public ReadOnlySpan256<T> ToReadOnlySpan256()
+            => data;
     }
 }
 

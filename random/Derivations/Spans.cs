@@ -21,6 +21,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<T> Span<T>(this IRandomSource random, int length, Interval<T> domain)
+            where T : struct
+            => random.Stream<T>(domain).TakeSpan(length);
+
+        [MethodImpl(Inline)]
         public static Span<N,T> Span<N,T>(this IRandomSource random, N length = default, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct  
             where N : ITypeNat, new()
@@ -53,7 +58,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span128<T> Span128<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Stream(domain,filter).TakeSpan(Z0.Span128.blocklength<T>(blocks)).ToSpan128(); 
+                => random.Stream(domain,filter).TakeSpan(Z0.Span128.BlockLength<T>(blocks)).ToSpan128(); 
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan128<T> ReadOnlySpan128<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)

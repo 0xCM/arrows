@@ -65,7 +65,7 @@ namespace Z0
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
-            gmath.sub(ref x, y);
+            gmath.sub(x, y);
             return lhs;
         }
 
@@ -139,7 +139,7 @@ namespace Z0
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
-            gbits.and(in x, y);
+            gbits.and(x, y);
             return ref lhs;
         }
 
@@ -157,7 +157,7 @@ namespace Z0
 
         {
             var x = lhs.Unsized;
-            gbits.and(in x, in rhs);
+            BitRef.and(x, in rhs);
             return ref lhs;
         }
 

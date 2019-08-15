@@ -64,15 +64,15 @@ namespace Z0
         /// <intrinsic>__m128 _mm_dp_ps (__m128 a, __m128 b, const int imm8) DPPS xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static void dot(Vec128<float> lhs, Vec128<float> rhs, ref float dst)
-            => store(DotProduct(lhs, rhs,0), ref dst);
+            => vstore(DotProduct(lhs, rhs,0), ref dst);
         
         [MethodImpl(Inline)]
         public static void dot(Vec128<double> lhs, Vec128<double> rhs, ref double dst)
-            => store(DotProduct(lhs, rhs, 0), ref dst);
+            => vstore(DotProduct(lhs, rhs, 0), ref dst);
 
         [MethodImpl(Inline)]
         public static void dot(Vec256<float> lhs, Vec256<float> rhs, ref float dst)
-            => store(DotProduct(lhs, rhs,0), ref dst);
+            => vstore(DotProduct(lhs, rhs,0), ref dst);
 
 
     }

@@ -46,10 +46,33 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> CpuVec256<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+        public static Vec256<T> CpuVec256<T>(this IRandomSource random, Interval<T> domain)        
+            where T : struct
+                => random.Span256<T>(1, domain).LoadVec256();
+
+        /// <summary>
+        /// Produces a random 256-bit intrinsic vector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain from which the vector components will be chosen</param>
+        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> CpuVec256<T>(this IRandomSource random)        
+            where T : struct
+                => random.Span256<T>(1).LoadVec256();
+
+        /// <summary>
+        /// Produces a random 256-bit intrinsic vector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain from which the vector components will be chosen</param>
+        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> CpuVec256<T>(this IRandomSource random, Interval<T>? domain, Func<T,bool> filter = null)        
             where T : struct
                 => random.Span256<T>(1, domain, filter).LoadVec256();
-
 
         /// <summary>
         /// Produces a random 512-bit pseudo-intrinsic vector

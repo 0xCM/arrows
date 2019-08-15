@@ -30,8 +30,8 @@ namespace Z0.Test
             var blocklen = Span128<int>.BlockLength;                     
             var lhs = Random.ReadOnlySpan128<int>(blocks);
             var rhs = Random.ReadOnlySpan128<int>(blocks);
-            var expect = Span128.alloc<int>(blocks);
-            var actual = Span128.alloc<int>(blocks);
+            var expect = Span128.AllocBlocks<int>(blocks);
+            var actual = Span128.AllocBlocks<int>(blocks);
             
             for(var block = 0; block<blocks; block++)
             {
@@ -48,8 +48,8 @@ namespace Z0.Test
 
                 Claim.eq(vExpect, vActual);
 
-                dinx.store(vExpect, ref expect.Block(block));
-                dinx.store(vActual, ref actual.Block(block));
+                vstore(vExpect, ref expect.Block(block));
+                vstore(vActual, ref actual.Block(block));
 
             }
             Claim.eq(expect, actual);
@@ -81,8 +81,8 @@ namespace Z0.Test
 
                 Claim.eq(vExpect, vActual);
 
-                dinx.store(vExpect, ref expect.Block(block));
-                dinx.store(vActual, ref actual.Block(block));
+                vstore(vExpect, ref expect.Block(block));
+                vstore(vActual, ref actual.Block(block));
 
             }
             Claim.eq(expect, actual);

@@ -91,7 +91,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Stores an intrinsic vector to a memory location
+        /// Stores vector content to a memory location
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target location</param>
@@ -102,25 +102,25 @@ namespace Z0
         {            
 
             if(typeof(T) == typeof(sbyte))
-                dinx.store(in int8(src), ref int8(ref dst));
+                vstore(in int8(src), ref int8(ref dst));
             else if(typeof(T) == typeof(byte))
-                dinx.store(in uint8(src), ref uint8(ref dst));
+                vstore(in uint8(src), ref uint8(ref dst));
             else if(typeof(T) == typeof(short))
-                dinx.store(in int16(src), ref int16(ref dst));
+                vstore(in int16(src), ref int16(ref dst));
             else if(typeof(T) == typeof(ushort))
-                dinx.store(in uint16(src), ref uint16(ref dst));
+                vstore(in uint16(src), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                dinx.store(in int32(src), ref int32(ref dst));
+                vstore(in int32(src), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                dinx.store(in uint32(src), ref uint32(ref dst));
+                vstore(in uint32(src), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                dinx.store(in int64(src), ref int64(ref dst));
+                vstore(in int64(src), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.store(in uint64(src), ref uint64(ref dst));
+                vstore(in uint64(src), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                dinx.store(in float32(src), ref float32(ref dst));
+                vstore(in float32(src), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                dinx.store(in float64(src), ref float64(ref dst));
+                vstore(in float64(src), ref float64(ref dst));
             else
                 throw unsupported<T>();
         }       
@@ -136,7 +136,7 @@ namespace Z0
         public static Span128<T> Store<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
             where T : struct        
         {
-            var offset = Span128.blocklength<T>(blockIndex);
+            var offset = Span128.BlockLength<T>(blockIndex);
             Vec128.Store(src, ref dst[offset]);
             return dst;                        
         }
@@ -145,8 +145,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(ref T src)
             where T : struct  
-        {
-            
+        {            
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(load(ref int8(ref src)));
             else if(typeof(T) == typeof(byte))

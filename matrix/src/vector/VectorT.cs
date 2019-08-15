@@ -54,6 +54,10 @@ namespace Z0
             => !lhs.Equals(rhs);
 
 
+        [MethodImpl(Inline)]
+        public static T operator *(Vector<T> lhs, in Vector<T> rhs)
+            => gmath.dot<T>(lhs.data, rhs.data);
+
         public ref T this[int i]
         {
             [MethodImpl(Inline)]
@@ -118,5 +122,11 @@ namespace Z0
 
         public override int GetHashCode()
             => throw new NotSupportedException(); 
+
+        public Span256<T> ToSpan256()
+            => data;
+
+        public ReadOnlySpan256<T> ToReadOnlySpan256()
+            => data;
     }
 }

@@ -18,7 +18,7 @@ namespace Z0
     {
         static IRandomSource Entropic = new XOrShift1024(Seed1024.Entropic);
 
-        internal static Interval<T> TypeDomain<T>()
+        public static Interval<T> TypeDomain<T>()
             where T : struct
         {
             var min = gmath.signed<T>() && !gmath.floating<T>()

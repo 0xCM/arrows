@@ -29,6 +29,50 @@ namespace Z0.Test
 
         }
         
+        OpTime BenchmarkMul256u64(int cycles)
+        {
+            var sw = stopwatch(false);
+            var domain = closed(0ul, UInt32.MaxValue);            
+            var counter = 0;
+            for(var i=0; i< cycles; i++)
+            {
+                var x = Random.CpuVec256(domain);
+                var y = Random.CpuVec256(domain);
+                sw.Start();
+                var z = dinx.mul(x,y);
+                sw.Stop();
+                counter += 4;
+            }
+
+            return (counter, snapshot(sw),"mul256u64:benchmark");
+        }
+
+        OpTime BaselineMul256u64(int cycles)
+        {
+            var sw = stopwatch(false);
+            var domain = closed(0ul, UInt32.MaxValue);            
+            var counter = 0;
+            for(var i=0; i< cycles; i++)
+            {
+                var x = Random.Span(4, domain);
+                var y = Random.Span(4, domain);
+                sw.Start();
+                var z = x.Mul(y);
+                sw.Stop();
+                counter += 4;
+            }
+
+            return (counter, snapshot(sw),"mul256u64:baseline");
+        
+        }
+
+        public void RunBenchmarkMul256u64()
+        {
+            var cycles = Pow2.T16;
+            TracePerf(BaselineMul256u64(cycles));
+            TracePerf(BenchmarkMul256u64(cycles));
+        }
+        
         public void VerifyMul256u64()
         {
             void VerifyMul256u64(int blocks)
@@ -51,7 +95,7 @@ namespace Z0.Test
                 BlockSamplesEnd(blocks);
             }
 
-            VerifyMul256u64(Pow2.T11);
+            VerifyMul256u64(DefaltCycleCount);
         }
 
 

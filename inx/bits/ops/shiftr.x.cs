@@ -267,7 +267,7 @@ namespace Z0
         public static Span128<int> ShiftR(this ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
+            var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
@@ -276,7 +276,7 @@ namespace Z0
         public static Span128<uint> ShiftR(this ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> rhs, in  Span128<uint> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
+            var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
@@ -285,7 +285,7 @@ namespace Z0
         public static Span128<long> ShiftR(this ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<long> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
+            var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
@@ -294,7 +294,7 @@ namespace Z0
         public static Span128<ulong> ShiftR(this ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
+            var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            

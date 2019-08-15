@@ -19,8 +19,8 @@ namespace Z0.Test
         {            
             var lhs = Random.Span128<float>(Blocks);
             var rhs = Random.Span128<float>(Blocks);
-            var dDst = Span128.alloc<float>(Blocks);
-            var gDst = Span128.alloc<float>(Blocks);
+            var dDst = Span128.AllocBlocks<float>(Blocks);
+            var gDst = Span128.AllocBlocks<float>(Blocks);
             Claim.eq(dinxx.Sub(lhs,rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));
         }
 
@@ -28,8 +28,8 @@ namespace Z0.Test
         {            
             var lhs = Random.Span128<double>(Blocks);
             var rhs = Random.Span128<double>(Blocks);
-            var dDst = Span128.alloc<double>(Blocks);
-            var gDst = Span128.alloc<double>(Blocks);                
+            var dDst = Span128.AllocBlocks<double>(Blocks);
+            var gDst = Span128.AllocBlocks<double>(Blocks);                
             Claim.eq(dinxx.Sub(lhs, rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));
         }
 

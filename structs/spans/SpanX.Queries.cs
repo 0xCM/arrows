@@ -364,9 +364,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The source value type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> AsBytes<T>(this Span256<T> src)
+        public static Span256<byte> AsBytes<T>(this Span256<T> src)
             where T : struct
-                => MemoryMarshal.AsBytes(src.Unblocked);
+                => Span256.Load(MemoryMarshal.AsBytes(src.Unblocked));
 
         /// <summary>
         /// Reimagines a 256-bit bloocked span of generic values as a span of bytes
@@ -374,9 +374,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The source value type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> AsBytes<T>(this Span128<T> src)
+        public static Span128<byte> AsBytes<T>(this Span128<T> src)
             where T : struct
-                => MemoryMarshal.AsBytes(src.Unblock());
+                => Span128.Load(MemoryMarshal.AsBytes(src.Unblock()));
 
        [MethodImpl(Inline)]
         public static sbyte TakeInt8<T>(this ReadOnlySpan<T> src, int offset = 0)

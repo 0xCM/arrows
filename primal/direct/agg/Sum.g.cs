@@ -12,6 +12,7 @@ namespace Z0
 
     partial class gmath
     {
+        
         [MethodImpl(Inline)]
         public static T sum<T>(ReadOnlySpan<T> src)
             where T :  struct
@@ -44,7 +45,6 @@ namespace Z0
         public static T sum<T>(Span<T> src)
             where T :  struct
                 => sum(src.ReadOnly());
-        
 
     }
 }

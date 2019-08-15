@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Concurrent;
     using System.Linq;
+    using System.Linq.Expressions;
     
     using static zfunc;
 
@@ -60,6 +61,14 @@ namespace Z0
                 Messages.Add(AppMsg.Define($"{title}", severity ?? SeverityLevel.Babble));
                 Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
             }
+        }
+
+        protected void Trace<T>(NamedValue<T> nv, SeverityLevel? severity = null)
+            => Trace(nv.Name, $"{nv.Value}", severity);
+
+        protected void Trace<T>(Expression<Func<T>> fx, SeverityLevel? severity = null)
+        {
+            Trace(fx.Evaluate(), severity);
         }
 
         protected void Trace(AppMsg msg, SeverityLevel? severity = null)

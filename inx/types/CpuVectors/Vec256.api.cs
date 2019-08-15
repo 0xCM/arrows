@@ -81,34 +81,44 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Stores vector content to a memory location
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target memory</param>
         [MethodImpl(Inline)]
         public static void Store<T>(in Vec256<T> src, ref T dst)
             where T : struct
         {            
             if(typeof(T) == typeof(sbyte))
-                dinx.store(in int8(src), ref int8(ref dst));
+                vstore(in int8(src), ref int8(ref dst));
             else if(typeof(T) == typeof(byte))
-                dinx.store(in uint8(src), ref uint8(ref dst));
+                vstore(in uint8(src), ref uint8(ref dst));
             else if(typeof(T) == typeof(short))
-                dinx.store(in int16(src), ref int16(ref dst));
+                vstore(in int16(src), ref int16(ref dst));
             else if(typeof(T) == typeof(ushort))
-                dinx.store(in uint16(src), ref uint16(ref dst));
+                vstore(in uint16(src), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                dinx.store(in int32(src), ref int32(ref dst));
+                vstore(in int32(src), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                dinx.store(in uint32(src), ref uint32(ref dst));
+                vstore(in uint32(src), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                dinx.store(in int64(src), ref int64(ref dst));
+                vstore(in int64(src), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.store(in uint64(src), ref uint64(ref dst));
+                vstore(in uint64(src), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                dinx.store(in float32(src), ref float32(ref dst));
+                vstore(in float32(src), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                dinx.store(in float64(src), ref float64(ref dst));
+                vstore(in float64(src), ref float64(ref dst));
             else
                 throw unsupported<T>();
         }        
  
+        /// <summary>
+        /// Loads vector content from a memory location
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target memory</param>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(ref T src)
             where T : struct  
@@ -136,6 +146,26 @@ namespace Z0
             else 
                 throw unsupported<T>();            
         }
+
+        /// <summary>
+        /// Loads a vector from the head of the span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> Load<T>(Span<T> src)
+            where T : struct  
+                => Load(ref src[0]);
+
+        /// <summary>
+        /// Loads a vector from the head of the span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> Load<T>(ReadOnlySpan<T> src)
+            where T : struct  
+                => Load(ref asRef( in src[0]));
 
         [MethodImpl(Inline)]
         public static Vec256<T> Loadi<T>(in T src)

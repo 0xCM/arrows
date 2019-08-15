@@ -51,19 +51,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void abs(in Vec128<int> src, ref uint dst)
-            => store(Abs(src), ref dst);
+            => vstore(abs(src), ref dst);
 
         [MethodImpl(Inline)]
         public static void abs(in Vec256<sbyte> src, ref byte dst)
-            => store(Abs(src), ref dst);
+            => vstore(abs(src), ref dst);
 
         [MethodImpl(Inline)]
         public static void abs(in Vec256<short> src, ref ushort dst)
-            => store(Abs(src), ref dst);
+            => vstore(abs(src), ref dst);
 
         [MethodImpl(Inline)]
         public static void abs(in Vec256<int> src, ref uint dst)
-            => store(Abs(src), ref dst);
+            => vstore(abs(src), ref dst);
  
 
     }

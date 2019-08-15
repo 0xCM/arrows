@@ -66,7 +66,7 @@ namespace Z0
             => length % BlockLength == 0;
 
         [MethodImpl(Inline)]
-        public static Span128<T> Alloc(int count)
+        public static Span128<T> AllocBlocks(int count)
             => new Span128<T>(new T[count * BlockLength]);
 
         [MethodImpl(Inline)]
@@ -184,7 +184,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span128<S> As<S>()                
             where S : struct
-                => Span128.load(MemoryMarshal.Cast<T,S>(data));                    
+                => Span128.Load(MemoryMarshal.Cast<T,S>(data));                    
 
         /// <summary>
         /// Provides access to the underlying storage

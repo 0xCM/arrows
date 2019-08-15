@@ -19,7 +19,6 @@ partial class zfunc
     /// <param name="fx">The expression to evaluate</param>
     /// <typeparam name="T">The evaluation value type</typeparam>
     public static void show<T>(Expression<Func<T>> fx)
-        where T : struct
     {
         var nv = fx.Evaluate();
         print(AppMsg.Define($"{nv}", SeverityLevel.HiliteCL));

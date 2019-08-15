@@ -10,29 +10,9 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;    
-    using static ByteOps;
-
-    public readonly struct UInt4Info
-    {        
-        public readonly UInt4 Zero;
-
-        public readonly UInt4 One;
-
-        public readonly UInt4 MinValue;
-
-        public readonly UInt4 MaxValue;
-
-        public UInt4Info(UInt4 Zero, UInt4 One, UInt4 MinValue, UInt4 MaxValue)
-        {
-            this.Zero = Zero;
-            this.One = One;
-            this.MinValue = MinValue;
-            this.MaxValue = MaxValue;
-        }
-    }
 
     [StructLayout(LayoutKind.Explicit, Size = 1)]
-    public struct UInt4
+    public struct UInt4 : IEquatable<UInt4>
     {
         [FieldOffset(0)]
         byte data;
@@ -192,11 +172,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(UInt4 lhs, UInt4 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(in UInt4 lhs, in UInt4 rhs)
-            => !lhs.Eq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static UInt4 operator |(UInt4 lhs, UInt4 rhs)
@@ -339,14 +319,6 @@ namespace Z0
             => new UInt4((byte)((src >> 60) & MaxValue));
 
         [MethodImpl(Inline)]
-        public bool Eq(in UInt4 rhs)
-            => data == rhs.data;
-
-        [MethodImpl(Inline)]
-        public bool NEq(in UInt4 rhs)
-            => data != rhs.data;
-
-        [MethodImpl(Inline)]
         public bool AllOnes()
             => data == MaxValue;
  
@@ -434,6 +406,7 @@ namespace Z0
         {
             [MethodImpl]
             get => FromByte(Bits.extract(in data,0, 2));
+            [MethodImpl(Inline)]
             set 
             {
                 var src = value.Lo;
@@ -468,19 +441,21 @@ namespace Z0
         public string Format()
             => HexMap[data].ToString();
 
+        [MethodImpl(Inline)]
         public BitString ToBitString()
             => BitString.FromBitSeq(Bits.bitseq(data).Slice(0,BitCount));
 
-        public override bool Equals(object obj)
-            => throw new NotSupportedException();
+        [MethodImpl(Inline)]
+        public bool Equals(UInt4 rhs)
+            => data == rhs.data;
+
+
+        public override bool Equals(object rhs)
+            => rhs is UInt4 x ? Equals(x) : false;
        
         public override int GetHashCode()
-            => throw new NotSupportedException();
-  
-    }
+            => data;
 
-    public static class ByteOps
-    {
         /// <summary>
         /// Multiplies two bytes modulo 4
         /// </summary>
@@ -488,8 +463,9 @@ namespace Z0
         /// <param name="rhs">The second byte</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static byte MulMod16(byte lhs, byte rhs)
+        static byte MulMod16(byte lhs, byte rhs)
             => (byte)Mod<N16>.mod((uint)(lhs * rhs));
 
     }
+
 }

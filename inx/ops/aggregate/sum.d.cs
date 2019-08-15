@@ -33,7 +33,7 @@ namespace Z0
             }
             
             Span<short> final = stackalloc short[veclen];
-            store(dst, ref final[0]);
+            vstore(dst, ref final[0]);
 
             var total = (short)0;
             for(var i=0; i< veclen; i++)
@@ -65,7 +65,7 @@ namespace Z0
             }
             
             Span<int> final = stackalloc int[veclen];
-            store(dst, ref final[0]);
+            vstore(dst, ref final[0]);
 
             var total = (int)0;
             for(var i=0; i< veclen; i++)
@@ -97,7 +97,7 @@ namespace Z0
             }
             
             Span<float> final = stackalloc float[veclen];
-            store(dst, ref final[0]);
+            vstore(dst, ref final[0]);
 
             var total = (float)0;
             for(var i=0; i< veclen; i++)
@@ -129,7 +129,7 @@ namespace Z0
             }
             
             Span<double> final = stackalloc double[veclen];
-            store(dst, ref final[0]);
+            vstore(dst, ref final[0]);
 
             var total = (double)0;
             for(var i=0; i< veclen; i++)

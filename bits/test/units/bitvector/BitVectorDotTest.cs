@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
 
     using static Nats;
-    using static BitRefOps;
+    using static BitRef;
 
 
     public class BitVectorDotTest : UnitTest<BitVectorDotTest>

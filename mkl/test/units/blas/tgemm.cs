@@ -26,9 +26,83 @@ namespace Z0.Mkl.Test
             Claim.eq(x,y);
         }
 
-        public void Gemm32()
+        
+        OpTime GemmI<M,N,K,T>(Interval<T> domain, int cycles, M m = default, N n = default, K k = default)
+            where M : ITypeNat, new()
+            where K : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
         {
-            var cycles = Pow2.T03;
+            var sw = stopwatch(false);
+            var m3 = Matrix.Alloc<M,N,T>();
+            for(var cycle = 0; cycle < cycles; cycle++)
+            {
+                var m1 = Random.Matrix(domain, m,k);            
+                var m2 = Random.Matrix(domain, k, n);            
+                sw.Start();
+                MatMulRef.Mul(m1, m2, ref m3);
+                sw.Stop();
+            }
+
+            var kind = PrimalKinds.kind<T>();
+            var label = $"gemmI<N{nati<M>()},N{nati<K>()},N{nati<N>()},{kind}>";
+            return (cycles, snapshot(sw), label);
+        }
+
+        OpTime GemmIF<M,N,K,T>(Interval<T> domain, int cycles, M m = default, N n = default, K k = default)
+            where M : ITypeNat, new()
+            where K : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var sw = stopwatch(false);
+            var m3 = Matrix.Alloc<M,N,float>();
+            for(var cycle = 0; cycle < cycles; cycle++)
+            {
+                var m1 = Random.Matrix(domain, m,k).Convert<float>();            
+                var m2 = Random.Matrix(domain, k, n).Convert<float>();            
+                sw.Start();
+                mkl.gemm(m1, m2, ref m3);
+                sw.Stop();
+            }
+
+            var kind = PrimalKinds.kind<T>();
+            var label = $"gemmIF<N{nati<M>()},N{nati<K>()},N{nati<N>()},{kind}>";
+            return (cycles, snapshot(sw), label);
+        }
+
+        public void GemmI()
+        {
+            var cycles = Pow2.T08;
+            TracePerf(GemmI(closed(-250,250) ,cycles, N8, N9, N10));
+            TracePerf(GemmI(closed((short)-250,(short)250) ,cycles, N10, N15, N20));
+            // var domain = closed(-250,250);
+            // var m1 = Random.Matrix(domain, N8, N9);            
+            // var m2 = Random.Matrix(domain, N9, N10);            
+            // var m3 = Matrix.Alloc<N8,N10,int>();
+            // var m4 = MatMulRef.Mul(m1, m2, ref m3);
+            // var m1d = m1.Convert<double>();
+            // var m2d = m2.Convert<double>();
+            // var m3d = Matrix.Alloc<N8,N10,double>();
+            // var m4d = Mul(m1d, m2d, ref m3d);
+            // Trace(m4.Format(9));
+            // Trace(m4d.Format(9));
+            // Claim.yea(m4 == m4d.Convert<int>());            
+        }
+
+        public void GemmIF()
+        {
+            var cycles = Pow2.T08;
+            TracePerf(GemmIF(closed(-250,250) ,cycles, N3, N3, N3));
+            TracePerf(GemmIF(closed(-250,250) ,cycles, N3, N5, N7));
+            TracePerf(GemmIF(closed(-250,250) ,cycles, N5, N5, N7));
+            TracePerf(GemmIF(closed(-250,250) ,cycles, N10, N10, N10));
+
+        }
+
+        public void GemmFloat32()
+        {
+            var cycles = Pow2.T08;
             var src = Random.Stream(closed(-Pow2.T10, Pow2.T10)).Select(x => (float)x);                                        
 
             TracePerf(GemmDrive<N3, N3, N3>(src,cycles));
@@ -90,11 +164,11 @@ namespace Z0.Mkl.Test
                     Trace($"E = {E.Format()}");
                 }
 
-                Claim.eq(E.Unblocked,X.Unblocked);
+                E.Unblocked.ClaimEqual(X.Unblocked);
 
             }
 
-            var label = $"gemm<{nati<M>()},{nati<K>()},{nati<N>()}>";
+            var label = $"gemm<N{nati<M>()},N{nati<K>()},N{nati<N>()}>";
             return optime(cycles, runtime, label);
 
         }
@@ -228,10 +302,10 @@ namespace Z0.Mkl.Test
             var n = nati<N>();
             for(var i=0; i< m; i++)
             {
-                var row = A.Row(i);                
+                var row = A.GetRow(i);                
                 for(var j=0; j< n; j++)
                 {
-                    var col = B.Col(j);
+                    var col = B.GetCol(j);
                     X[i,j] = Dot(row,col);
                 }
             }
@@ -248,10 +322,10 @@ namespace Z0.Mkl.Test
             var n = nati<N>();
             for(var i=0; i< m; i++)
             {
-                var row = A.Row(i);                
+                var row = A.GetRow(i);                
                 for(var j=0; j< n; j++)
                 {
-                    var col = B.Col(j);
+                    var col = B.GetCol(j);
                     X[i,j] = Dot(row,col);
                 }
             }

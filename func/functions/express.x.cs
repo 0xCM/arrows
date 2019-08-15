@@ -54,7 +54,6 @@ namespace Z0
             => x.Operand;
 
         public static NamedValue<T> Evaluate<T>(this Expression<Func<T>> fx)
-            where T : struct
         {
             var name = fx.TryGetAccessedMember().MapValueOrElse(x => x.Name, () => "?");
             var value = fx.Compile().Invoke();

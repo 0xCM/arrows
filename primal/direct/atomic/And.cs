@@ -48,6 +48,14 @@ namespace Z0
             => lhs & rhs;
 
         [MethodImpl(Inline)]
+        public static float and(float lhs, float rhs)
+            => BitConverter.Int32BitsToSingle(lhs.ToBits() & rhs.ToBits());
+
+        [MethodImpl(Inline)]
+        public static double and(double lhs, double rhs)
+            => BitConverter.Int64BitsToDouble(lhs.ToBits() & rhs.ToBits());
+
+        [MethodImpl(Inline)]
         public static ref sbyte and(ref sbyte lhs, sbyte rhs)
         {
             lhs = (sbyte)(lhs & rhs);
@@ -102,6 +110,21 @@ namespace Z0
             lhs = lhs & rhs;
             return ref lhs;
         }
+ 
+        [MethodImpl(Inline)]
+        public static ref float and(ref float lhs, float rhs)
+        {
+            lhs = math.and(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double and(ref double lhs, double rhs)
+        {
+            lhs = math.and(lhs,rhs);
+            return ref lhs;
+        }
+
    }
 
 }

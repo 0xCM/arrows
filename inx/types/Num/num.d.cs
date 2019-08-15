@@ -39,11 +39,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void add(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
-            => store(AddScalar(lhs, rhs), ref dst);
+            => vstore(AddScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void add(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
-            => store(AddScalar(lhs, rhs), ref dst);
+            => vstore(AddScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static Num128<float> add(in Num128<float> lhs, in Num128<float> rhs)
@@ -55,11 +55,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void sub(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
-            => store(SubtractScalar(lhs, rhs), ref dst);
+            => vstore(SubtractScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void sub(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
-            => store(SubtractScalar(lhs, rhs), ref dst);
+            => vstore(SubtractScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static Num128<float> sub(in Num128<float> lhs, in Num128<float> rhs)
@@ -79,11 +79,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void div(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
-            => store(DivideScalar(lhs, rhs), ref dst);
+            => vstore(DivideScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void div(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
-            => store(DivideScalar(lhs, rhs), ref dst);
+            => vstore(DivideScalar(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)

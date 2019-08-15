@@ -73,7 +73,7 @@ namespace Z0
         internal static Span128<T> cast<S,T>(in Span128<S> src)                
             where S : struct
             where T : struct
-                =>  Span128.load(MemoryMarshal.Cast<S,T>(src));
+                =>  Span128.Load(MemoryMarshal.Cast<S,T>(src));
 
         /// <summary>
         /// Reimagines a readonly span of one element type as a readonly span of another element type

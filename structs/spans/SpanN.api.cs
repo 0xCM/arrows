@@ -15,24 +15,7 @@ namespace Z0
     using static nfunc;
     
     public static class NatSpan
-    {
-        public static Span<M,P,double> MulSlow<M,N,P>(Span<M,N,double> lhs, Span<N,P,double> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where P : ITypeNat, new()
-        {
-            var m = nati<M>();
-            var n = nati<N>();
-            var p = nati<P>();
-            var dst = Alloc<M,P,double>();
-            for(var r = 0; r< m; r++)
-                for(var c = 0; c < p; c++)
-                    for(var i=0; i<nati<N>(); i++)
-                        dst[r,c] += lhs[r,i] * rhs[i,c];
-                                    
-            return dst;
-        }
-        
+    {        
         /// <summary>
         /// Loads a natural span from a reference
         /// </summary>
@@ -141,9 +124,6 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => new Span<M,N,T>(default(T));
-
-
-
 
     }
 }

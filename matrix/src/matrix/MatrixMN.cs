@@ -104,7 +104,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,T> Row(int row)
+        public Vector<N,T> GetRow(int row)
         {
             if(row < 0 || row >= RowCount)
                 throw Errors.OutOfRange(row, 0, RowCount - 1);
@@ -113,7 +113,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public ref Vector<N,T> Row(int row, ref Vector<N,T> dst)
+        public ref Vector<N,T> GetRow(int row, ref Vector<N,T> dst)
         {
             if(row < 0 || row >= RowCount)
                 throw Errors.OutOfRange(row, 0, RowCount - 1);
@@ -122,7 +122,7 @@ namespace Z0
              return ref dst;
         }
 
-        public ref Vector<M,T> Col(int col, ref Vector<M,T> dst)
+        public ref Vector<M,T> GetCol(int col, ref Vector<M,T> dst)
         {
             if(col < 0 || col >= ColCount)
                 throw Errors.OutOfRange(col, 0, ColCount - 1);
@@ -133,10 +133,32 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<M,T> Col(int col)
+        public Vector<M,T> GetCol(int col)
         {
             var alloc = Vector.Alloc<M,T>();
-            return Col(col, ref alloc);
+            return GetCol(col, ref alloc);
+        }
+
+        /// <summary>
+        /// Replaces an index-identied column of data with the content of a column vector
+        /// </summary>
+        /// <param name="col">The column index</param>
+        [MethodImpl(Inline)]
+        public void SetCol(int col, Vector<M,T> src)
+        {
+            for(var row=0; row < RowCount; row++)
+                this[row,col] = src[row];
+        }
+
+        /// <summary>
+        /// Interchages rows and columns
+        /// </summary>
+        public Matrix<N,M,T> Transpose()
+        {
+            var dst = Matrix.Alloc<N,M,T>();
+            for(var row = 0; row < RowCount; row++)
+                dst.SetCol(row, GetRow(row));            
+            return dst;
         }
 
         /// <summary>

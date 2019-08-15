@@ -33,7 +33,7 @@ namespace Z0.Test
                 Random.Fill(domain, ref v2);
 
                 sw1.Start();
-                VectorRefOps.Add(v1, v2, ref v3);
+                ginx.add(v1, v2, ref v3);
                 sw1.Stop();
 
                 sw2.Start();
@@ -44,7 +44,7 @@ namespace Z0.Test
             
             var label = $"add<{n},{PrimalKinds.kind<T>()}>";            
             return (
-                (cycles, sw1,$"{label}/subject"), 
+                (cycles, sw1,$"{label}/inx"), 
                 (cycles, sw2, $"{label}/ref")
             );
         }

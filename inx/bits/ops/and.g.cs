@@ -34,6 +34,10 @@ namespace Z0
                 return generic<T>(int64(lhs) & int64(rhs));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(uint64(lhs) & uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(math.and(float32(lhs), float32(rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.and(float64(lhs), float64(rhs)));
             else            
                 throw unsupported<T>();
         }           
@@ -58,12 +62,14 @@ namespace Z0
                  math.and(ref int64(ref lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
                  math.and(ref uint64(ref lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                 math.and(ref float32(ref lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                 math.and(ref float64(ref lhs), float64(rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;
         }
-
-
 
         /// <summary>
         /// Computes the bitwise and between two input vectors
@@ -204,84 +210,64 @@ namespace Z0
         }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref readonly Span<T> and<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
+        public static ref readonly Span<T> and<T>(ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.and(int8(lhs), int8(rhs), int8(dst));
+                BitRef.and(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                Bits.and(uint8(lhs), uint8(rhs), uint8(dst));
+                BitRef.and(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                Bits.and(int16(lhs), int16(rhs), int16(dst));
+                BitRef.and(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                Bits.and(uint16(lhs), uint16(rhs), uint16(dst));
+                BitRef.and(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                Bits.and(int32(lhs), int32(rhs), int32(dst));
+                BitRef.and(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                Bits.and(uint32(lhs), uint32(rhs), uint32(dst));
+                BitRef.and(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                Bits.and(int64(lhs), int64(rhs), int64(dst));
+                BitRef.and(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                Bits.and(uint64(lhs), uint64(rhs), uint64(dst));
+                BitRef.and(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                BitRef.and(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                BitRef.and(float64(lhs), float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return ref dst;
         }
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static Span<T> and<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
-            where T : struct
-                => and(in lhs,in rhs, span<T>(length(lhs,rhs)));
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> and<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.and(int8(lhs), int8(rhs));
+                BitRef.and(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                Bits.and(uint8(lhs), uint8(rhs));
+                BitRef.and(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                Bits.and(int16(lhs), int16(rhs));
+                BitRef.and(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                Bits.and(uint16(lhs), uint16(rhs));
+                BitRef.and(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                Bits.and(int32(lhs), int32(rhs));
+                BitRef.and(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                Bits.and(uint32(lhs), uint32(rhs));
+                BitRef.and(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                Bits.and(int64(lhs), int64(rhs));
+                BitRef.and(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                Bits.and(uint64(lhs), uint64(rhs));
+                BitRef.and(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                BitRef.and(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                BitRef.and(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
         }
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
-        public static ref readonly Span<T> and<T>(in Span<T> lhs, in T rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                Bits.and(int8(lhs), int8(rhs));
-            else if(typeof(T) == typeof(byte))
-                Bits.and(uint8(lhs), uint8(rhs));
-            else if(typeof(T) == typeof(short))
-                Bits.and(int16(lhs), int16(rhs));
-            else if(typeof(T) == typeof(ushort))
-                Bits.and(uint16(lhs), uint16(rhs));
-            else if(typeof(T) == typeof(int))
-                Bits.and(int32(lhs), int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                Bits.and(uint32(lhs), uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                Bits.and(int64(lhs), int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                Bits.and(uint64(lhs), uint64(rhs));
-            else
-                throw unsupported<T>();
-            return ref lhs;
-        }
             
         [MethodImpl(Inline)]
         public static Span128<T> and<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
@@ -341,7 +327,6 @@ namespace Z0
             return dst;        
         } 
 
- 
    }
 
     

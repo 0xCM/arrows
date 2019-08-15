@@ -52,35 +52,35 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void subh(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static void subh(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => store(HorizontalSubtract(lhs, rhs), ref dst);
+            => vstore(subh(lhs, rhs), ref dst);
 
 
     }

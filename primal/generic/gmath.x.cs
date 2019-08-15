@@ -179,7 +179,7 @@ namespace Z0
         public static bool Identical<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)        
                 where T : struct        
         {
-            for(var i = 0; i< Span128.length(lhs,rhs); i++)
+            for(var i = 0; i< Span128.Length(lhs,rhs); i++)
                 if(gmath.neq(lhs[i],rhs[i]))
                     return false;
             return true;

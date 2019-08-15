@@ -33,7 +33,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gmath.sub(ref x, y);
+            gmath.sub(x, y);
             return ref lhs;
         }
 
@@ -81,7 +81,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.and(in x, y);
+            gbits.and(x, y);
             return ref lhs;
         }
 
@@ -93,7 +93,7 @@ namespace Z0
 
         {
             var x = lhs.Unsize();
-            gbits.and(in x, in rhs);
+            BitRef.and(x, in rhs);
             return ref lhs;
         }
 
@@ -150,9 +150,10 @@ namespace Z0
             where T : struct    
         {
             var x = lhs.Unsize();
-            gbits.shiftl(ref x, rhs);
+            BitRef.ShiftL(x, rhs);
             return lhs;
         }
+
 
         [MethodImpl(Inline)]
         public static Covector<N,T> ShiftR<N,T>(this ref Covector<N,T> lhs, in int rhs)
