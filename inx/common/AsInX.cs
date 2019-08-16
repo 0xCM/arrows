@@ -138,12 +138,12 @@ namespace Z0
                 => ref Unsafe.As<Num128<T>,Num128<ulong>>(ref src);
                         
         [MethodImpl(Inline)]
-        internal static ref Num128<float> float32<T>(in Num128<T> src)
+        public static ref Num128<float> float32<T>(in Num128<T> src)
             where T : struct        
                 => ref Unsafe.As<Num128<T>,Num128<float>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Num128<double> float64<T>(in Num128<T> src)
+        public static ref Num128<double> float64<T>(in Num128<T> src)
             where T : struct        
                 => ref Unsafe.As<Num128<T>,Num128<double>>(ref asRef(in src));
 
@@ -198,202 +198,202 @@ namespace Z0
             => ref Unsafe.As<Num128<double>,Num128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<sbyte> int8<T>(in Vec128<T> src)
+        public static ref Vec128<sbyte> int8<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<sbyte>>(ref asRef(in src));
                 
         [MethodImpl(Inline)]
-        internal static ref Vec128<byte> uint8<T>(in Vec128<T> src)
+        public static ref Vec128<byte> uint8<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<byte>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<short> int16<T>(in Vec128<T> src)
+        public static ref Vec128<short> int16<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<short>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<ushort> uint16<T>(in Vec128<T> src)
+        public static ref Vec128<ushort> uint16<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<ushort>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref  Vec128<int> int32<T>(in Vec128<T> src)
+        public static ref  Vec128<int> int32<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<int>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<uint> uint32<T>(in Vec128<T> src)
+        public static ref Vec128<uint> uint32<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<uint>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<long> int64<T>(in Vec128<T> src)
+        public static ref Vec128<long> int64<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<long>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<ulong> uint64<T>(in Vec128<T> src)
+        public static ref Vec128<ulong> uint64<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<ulong>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<float> float32<T>(in Vec128<T> src)
+        public static ref Vec128<float> float32<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<float>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<double> float64<T>(in Vec128<T> src)
+        public static ref Vec128<double> float64<T>(in Vec128<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<double>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<sbyte> src)
+        public static ref Vec128<T> generic<T>(in Vec128<sbyte> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<sbyte>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<byte> src)
+        public static ref Vec128<T> generic<T>(in Vec128<byte> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<byte>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<short> src)
+        public static ref Vec128<T> generic<T>(in Vec128<short> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<short>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<ushort> src)
+        public static ref Vec128<T> generic<T>(in Vec128<ushort> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<ushort>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<int> src)
+        public static ref Vec128<T> generic<T>(in Vec128<int> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<int>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<uint> src)
+        public static ref Vec128<T> generic<T>(in Vec128<uint> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<uint>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<long> src)
+        public static ref Vec128<T> generic<T>(in Vec128<long> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<long>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<ulong> src)
+        public static ref Vec128<T> generic<T>(in Vec128<ulong> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<ulong>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<float> src)
+        public static ref Vec128<T> generic<T>(in Vec128<float> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<float>,Vec128<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec128<T> generic<T>(in Vec128<double> src)
+        public static ref Vec128<T> generic<T>(in Vec128<double> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<double>,Vec128<T>>(ref asRef(in src));
  
         [MethodImpl(Inline)]
-        internal static ref Vec256<sbyte> int8<T>(in Vec256<T> src)
+        public static ref Vec256<sbyte> int8<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<sbyte>>(ref asRef(in src));
                 
         [MethodImpl(Inline)]
-        internal static ref Vec256<byte> uint8<T>(in Vec256<T> src)
+        public static ref Vec256<byte> uint8<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<byte>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<short> int16<T>(in Vec256<T> src)
+        public static ref Vec256<short> int16<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<short>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<ushort> uint16<T>(in Vec256<T> src)
+        public static ref Vec256<ushort> uint16<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<ushort>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref  Vec256<int> int32<T>(in Vec256<T> src)
+        public static ref  Vec256<int> int32<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<int>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<uint> uint32<T>(in Vec256<T> src)
+        public static ref Vec256<uint> uint32<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<uint>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<long> int64<T>(in Vec256<T> src)
+        public static ref Vec256<long> int64<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<long>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<ulong> uint64<T>(in Vec256<T> src)
+        public static ref Vec256<ulong> uint64<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<ulong>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<float> float32<T>(in Vec256<T> src)
+        public static ref Vec256<float> float32<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<float>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<double> float64<T>(in Vec256<T> src)
+        public static ref Vec256<double> float64<T>(in Vec256<T> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<T>,Vec256<double>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<sbyte> src)
+        public static ref Vec256<T> generic<T>(in Vec256<sbyte> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<sbyte>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<byte> src)
+        public static ref Vec256<T> generic<T>(in Vec256<byte> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<byte>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<short> src)
+        public static ref Vec256<T> generic<T>(in Vec256<short> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<short>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<ushort> src)
+        public static ref Vec256<T> generic<T>(in Vec256<ushort> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<ushort>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<int> src)
+        public static ref Vec256<T> generic<T>(in Vec256<int> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<int>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<uint> src)
+        public static ref Vec256<T> generic<T>(in Vec256<uint> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<uint>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<long> src)
+        public static ref Vec256<T> generic<T>(in Vec256<long> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<long>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<ulong> src)
+        public static ref Vec256<T> generic<T>(in Vec256<ulong> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<ulong>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<float> src)
+        public static ref Vec256<T> generic<T>(in Vec256<float> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<float>,Vec256<T>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        internal static ref Vec256<T> generic<T>(in Vec256<double> src)
+        public static ref Vec256<T> generic<T>(in Vec256<double> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<double>,Vec256<T>>(ref asRef(in src));
  

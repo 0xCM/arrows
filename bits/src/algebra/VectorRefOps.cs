@@ -146,43 +146,6 @@ namespace Z0
             return ref src;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vector<T> And<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.and(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> Or<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.or(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> XOr<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.xor(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> Flip<T>(ref Vector<T> src)
-            where T : struct
-        {
-            gbits.flip(src.Unblocked, src.Unblocked);
-            return ref src;
-        }
 
         [MethodImpl(Inline)]
         public static T Dot<T>(Vector<T> lhs, Vector<T> rhs)

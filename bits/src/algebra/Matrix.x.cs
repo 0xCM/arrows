@@ -10,7 +10,6 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Text;
-    using Z0.Mkl;        
 
     using static zfunc;
     using static nfunc;
@@ -84,35 +83,6 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> Or<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().Or(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> And<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().And(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> XOr<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().XOr(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
 
         /// <summary>
         /// Writes the matrix to a delimited file

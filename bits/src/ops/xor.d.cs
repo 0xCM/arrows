@@ -472,8 +472,5 @@ namespace Z0
 
     }
 
-    partial class dinx
-    {
 
-   }
 }

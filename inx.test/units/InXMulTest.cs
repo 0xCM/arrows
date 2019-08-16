@@ -39,7 +39,7 @@ namespace Z0.Test
                 var x = Random.CpuVec256(domain);
                 var y = Random.CpuVec256(domain);
                 sw.Start();
-                var z = dinx.mul(x,y);
+                var z = InxOps.mul(x,y);
                 sw.Stop();
                 counter += 4;
             }
@@ -85,7 +85,7 @@ namespace Z0.Test
                 {
                     var x = lhs.LoadVec256(block);
                     var y = rhs.LoadVec256(block);
-                    var z = dinx.mul(x,y); 
+                    var z = InxOps.mul(x,y); 
 
                     var a = x.ToSpan().Replicate();
                     var b = y.ToSpan();

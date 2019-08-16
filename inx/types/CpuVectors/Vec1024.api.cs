@@ -16,17 +16,17 @@ namespace Z0
 
     public static class Vec1024
     {
-        [MethodImpl(Inline)]
-        public static ref Vec1024<uint> Merge(in Vec256<ulong> x, in Vec256<ulong> y, out Vec1024<uint> dst)
-        {
-            var loMask = Vec256.Fill(Bits.LoMask64);            
-            var xl = Bits.and(x, loMask).As<uint>();
-            var xh = Bits.shiftr(x, 32).As<uint>();
-            var yl = Bits.and(y, loMask).As<uint>();
-            var yh = Bits.shiftr(y, 32).As<uint>();
-            dst = Vec1024.Define(xl, xh, yl, yh);
-            return ref dst;
-        }
+        // [MethodImpl(Inline)]
+        // public static ref Vec1024<uint> Merge(in Vec256<ulong> x, in Vec256<ulong> y, out Vec1024<uint> dst)
+        // {
+        //     var loMask = Vec256.Fill(Bits.LoMask64);            
+        //     var xl = Bits.and(x, loMask).As<uint>();
+        //     var xh = Bits.shiftr(x, 32).As<uint>();
+        //     var yl = Bits.and(y, loMask).As<uint>();
+        //     var yh = Bits.shiftr(y, 32).As<uint>();
+        //     dst = Vec1024.Define(xl, xh, yl, yh);
+        //     return ref dst;
+        // }
 
         [MethodImpl(Inline)]
         public static Vec1024<T> Define<T>(in Vec256<T> v0, in Vec256<T> v1, in Vec256<T> v2, in Vec256<T> v3)        

@@ -164,15 +164,15 @@ namespace Z0
             where T : struct        
             => BitString.FromScalars(src.ToSpan());        
 
-        /// <summary>
-        /// Converts an 256-bit intrinsic integer representation to a bistring
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="T">The underlying primal type</typeparam>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString<T>(this __m256i src)
-            where T : struct
-                => src.ToVec256<T>().ToBitString();
+        // /// <summary>
+        // /// Converts an 256-bit intrinsic integer representation to a bistring
+        // /// </summary>
+        // /// <param name="src">The source vector</param>
+        // /// <typeparam name="T">The underlying primal type</typeparam>
+        // [MethodImpl(Inline)]   
+        // public static BitString ToBitString<T>(this __m256i src)
+        //     where T : struct
+        //         => src.ToVec256<T>().ToBitString();
 
         /// <summary>
         /// Converts a bitview to a bitstring

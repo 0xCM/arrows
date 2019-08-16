@@ -14,9 +14,6 @@ namespace Z0
 
     public static class UInt128X
     {
-        [MethodImpl(Inline)]
-        public static BitString ToBitString(this in UInt128 src)
-            => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo);
 
         [MethodImpl(Inline)]
         public static bool TestBit(this in UInt128 src, int pos)
@@ -78,33 +75,33 @@ namespace Z0
         public static HexString ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
             => src.hi.FormatHex(false, true) + src.lo.FormatHex(true,false);
 
-        [MethodImpl(Inline)]
-        public static ref UInt128 And(this ref UInt128 lhs, in UInt128 rhs)
-        {
-            Bits.and(lhs, rhs, out lhs);
-            return ref lhs;
-        }
+        // [MethodImpl(Inline)]
+        // public static ref UInt128 And(this ref UInt128 lhs, in UInt128 rhs)
+        // {
+        //     Bits.and(lhs, rhs, out lhs);
+        //     return ref lhs;
+        // }
 
-        [MethodImpl(Inline)]
-        public static ref UInt128 Or(this ref UInt128 lhs, in UInt128 rhs)
-        {
-            Bits.or(lhs, rhs, out lhs);
-            return ref lhs;
-        }
+        // [MethodImpl(Inline)]
+        // public static ref UInt128 Or(this ref UInt128 lhs, in UInt128 rhs)
+        // {
+        //     Bits.or(lhs, rhs, out lhs);
+        //     return ref lhs;
+        // }
 
-        [MethodImpl(Inline)]
-        public static ref UInt128 XOr(this ref UInt128 lhs, in UInt128 rhs)
-        {
-            Bits.xor(lhs, rhs, out lhs);
-            return ref lhs;
-        }
+        // [MethodImpl(Inline)]
+        // public static ref UInt128 XOr(this ref UInt128 lhs, in UInt128 rhs)
+        // {
+        //     Bits.xor(lhs, rhs, out lhs);
+        //     return ref lhs;
+        // }
 
-        [MethodImpl(Inline)]
-        public static ref UInt128 ShiftLW(this ref UInt128 lhs, byte count)
-        {
-            Bits.shiftlw(lhs, count);
-            return ref lhs;
-        }
+        // [MethodImpl(Inline)]
+        // public static ref UInt128 ShiftLW(this ref UInt128 lhs, byte count)
+        // {
+        //     Bits.shiftlw(lhs, count);
+        //     return ref lhs;
+        // }
 
     }
 

@@ -19,7 +19,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<byte> negate(in Vec128<byte> src)
-            =>  add(Bits.flip(src), Vec128.Ones<byte>());
+            =>  add(BitUtil.flip(src), Vec128.Ones<byte>());
 
         [MethodImpl(Inline)]
         public static Vec128<short> negate(in Vec128<short> src)
@@ -27,7 +27,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<ushort> negate(in Vec128<ushort> src)
-            =>  add(Bits.flip(src), Vec128.Ones<ushort>());
+            =>  add(BitUtil.flip(src), Vec128.Ones<ushort>());
 
         [MethodImpl(Inline)]
         public static Vec128<int> negate(in Vec128<int> src)
@@ -35,7 +35,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<uint> negate(in Vec128<uint> src)
-            =>  add(Bits.flip(src), Vec128.Ones<uint>());
+            =>  add(BitUtil.flip(src), Vec128.Ones<uint>());
 
         [MethodImpl(Inline)]
         public static Vec128<long> negate(in Vec128<long> src)
@@ -43,7 +43,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<ulong> negate(in Vec128<ulong> src)
-            =>  add(Bits.flip(src), Vec128.Ones<ulong>());
+            =>  add(BitUtil.flip(src), Vec128.Ones<ulong>());
 
         [MethodImpl(Inline)]
         public static Vec128<float> negate(in Vec128<float> src)
@@ -59,7 +59,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<byte> negate(in Vec256<byte> src)
-            =>  add(Bits.flip(src), Vec256.Ones<byte>());
+            =>  add(BitUtil.flip(src), Vec256.Ones<byte>());
 
         [MethodImpl(Inline)]
         public static Vec256<short> negate(in Vec256<short> src)
@@ -67,7 +67,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<ushort> negate(in Vec256<ushort> src)
-            =>  add(Bits.flip(src), Vec256.Ones<ushort>());
+            =>  add(BitUtil.flip(src), Vec256.Ones<ushort>());
 
         [MethodImpl(Inline)]
         public static Vec256<int> negate(in Vec256<int> src)
@@ -75,7 +75,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<uint> negate(in Vec256<uint> src)
-            =>  add(Bits.flip(src), Vec256.Ones<uint>());
+            =>  add(BitUtil.flip(src), Vec256.Ones<uint>());
 
         [MethodImpl(Inline)]
         public static Vec256<long> negate(in Vec256<long> src)
@@ -83,7 +83,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<ulong> negate(in Vec256<ulong> src)
-            =>  add(Bits.flip(src), Vec256.Ones<ulong>());
+            =>  add(BitUtil.flip(src), Vec256.Ones<ulong>());
 
         [MethodImpl(Inline)]
         public static Vec256<float> negate(in Vec256<float> src)

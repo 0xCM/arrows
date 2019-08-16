@@ -122,27 +122,27 @@ namespace Z0
                 yield return random.CpuVec256(domain,filter);
         }
 
-        /// <summary>
-        /// Produces a random <see cref='Z0.__m512'/> value
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="domain">The domain from which the vector components will be chosen</param>
-        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static __m512i m512i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
-            where T : struct
-                => __m512i.Define(random.Stream(domain, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
+        // /// <summary>
+        // /// Produces a random <see cref='Z0.__m512'/> value
+        // /// </summary>
+        // /// <param name="random">The random source</param>
+        // /// <param name="domain">The domain from which the vector components will be chosen</param>
+        // /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        // /// <typeparam name="T">The vector component type</typeparam>
+        // [MethodImpl(Inline)]
+        // public static __m512i m512i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
+        //     where T : struct
+        //         => __m512i.Define(random.Stream(domain, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
         
-        /// <summary>
-        /// Produces a random <see cref='Z0.__m512'/> value
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static __m512i m512i<T>(this IRandomSource random, Func<T,bool> filter = null)
-            where T : struct
-                => __m512i.Define(random.Stream<T>(null, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
+        // /// <summary>
+        // /// Produces a random <see cref='Z0.__m512'/> value
+        // /// </summary>
+        // /// <param name="random">The random source</param>
+        // /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        // /// <typeparam name="T">The vector component type</typeparam>
+        // [MethodImpl(Inline)]
+        // public static __m512i m512i<T>(this IRandomSource random, Func<T,bool> filter = null)
+        //     where T : struct
+        //         => __m512i.Define(random.Stream<T>(null, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
     }
 }

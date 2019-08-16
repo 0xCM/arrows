@@ -251,32 +251,32 @@ namespace Z0.Test
 
         }
 
-        void Sample512<T>(Interval<T> domain, int count)
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            for(var i=0; i<count; i++)
-            {
-                var xSample = Random.m512i(domain);
-                for(var partIx=0; partIx < __m512i.PartCount<T>(); partIx++)
-                {
-                    var xPart = xSample.Part<T>(partIx);
-                    Claim.yea(domain.Contains(xPart));
-                }
+        // void Sample512<T>(Interval<T> domain, int count)
+        //     where T : struct
+        // {
+        //     TypeCaseStart<T>();
+        //     for(var i=0; i<count; i++)
+        //     {
+        //         var xSample = Random.m512i(domain);
+        //         for(var partIx=0; partIx < __m512i.PartCount<T>(); partIx++)
+        //         {
+        //             var xPart = xSample.Part<T>(partIx);
+        //             Claim.yea(domain.Contains(xPart));
+        //         }
 
-            }
-            TypeCaseEnd<T>();
+        //     }
+        //     TypeCaseEnd<T>();
              
-        }
+        // }
 
-        public void SampleM512()
-        {
-            var count = Pow2.T10;
-            Sample512(closed((byte)10, (byte)50), count);
-            Sample512(closed((sbyte)-50, (sbyte)50), count);
-            Sample512(closed(-250000, 250000), count);
-            Sample512(closed(-250000d, 250000d), count);
+        // public void SampleM512()
+        // {
+        //     var count = Pow2.T10;
+        //     Sample512(closed((byte)10, (byte)50), count);
+        //     Sample512(closed((sbyte)-50, (sbyte)50), count);
+        //     Sample512(closed(-250000, 250000), count);
+        //     Sample512(closed(-250000d, 250000d), count);
 
-        }
+        // }
     }
 }

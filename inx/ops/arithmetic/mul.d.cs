@@ -114,32 +114,6 @@ namespace Z0
             return Vec128.FromParts(low,hi);
         }
 
-        /// <summary>
-        /// Multiplies two two 256-bit/u64 vectors to yield a 256-bit/u64 vector
-        /// </summary>
-        /// <param name="x">The left vector</param>
-        /// <param name="y">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)    
-        {
-            var loMask = Vec256.Fill(Bits.LoMask64);    
-            var xl = Bits.and(x, loMask).As<uint>();
-            var xh = Bits.shiftr(x, 32).As<uint>();
-            var yl = Bits.and(y, loMask).As<uint>();
-            var yh = Bits.shiftr(y, 32).As<uint>();
-
-            var xh_yl = mul(xh, yl);
-            var hl = Bits.shiftl(xh_yl, 32);
-
-            var xh_mh = mul(xh, yh);
-            var lh = Bits.shiftl(xh_mh, 32);
-
-            var xl_yl = mul(xl, yl);
-
-            var hl_lh = add(hl, lh);
-            var z = add(xl_yl, hl_lh);
-            return z;
-        }
 
         /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]

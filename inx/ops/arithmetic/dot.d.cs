@@ -27,27 +27,27 @@ namespace Z0
         }
 
 
-        [MethodImpl(Inline)]
-        public static ulong dot(Vec256<uint> lhs, Vec256<uint> rhs)
-        {
-            var product = mul(lhs,rhs);
-            var v1 = lo(product);
-            var v2 = hi(product);
-            var sum = add(v1,v2);
-            var span = sum.ToSpan128();
-            return span[0] + span[1];
-        }
+        // [MethodImpl(Inline)]
+        // public static ulong dot(Vec256<uint> lhs, Vec256<uint> rhs)
+        // {
+        //     var product = mul(lhs,rhs);
+        //     var v1 = lo(product);
+        //     var v2 = hi(product);
+        //     var sum = add(v1,v2);
+        //     var span = sum.ToSpan128();
+        //     return span[0] + span[1];
+        // }
 
-        [MethodImpl(Inline)]
-        public static ulong dot(Vec256<ulong> lhs, Vec256<ulong> rhs)
-        {
-            var product = mul(lhs,rhs);
-            var v1 = lo(product);
-            var v2 = hi(product);
-            var sum = add(v1,v2);
-            var span = sum.ToSpan128();
-            return span[0] + span[1];
-        }
+        // [MethodImpl(Inline)]
+        // public static ulong dot(Vec256<ulong> lhs, Vec256<ulong> rhs)
+        // {
+        //     var product = mul(lhs,rhs);
+        //     var v1 = lo(product);
+        //     var v2 = hi(product);
+        //     var sum = add(v1,v2);
+        //     var span = sum.ToSpan128();
+        //     return span[0] + span[1];
+        // }
 
         [MethodImpl(Inline)]
         public static Vec128<float> dot(Vec128<float> lhs, Vec128<float> rhs)

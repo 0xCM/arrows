@@ -118,17 +118,17 @@ namespace Z0
         public static bool operator !=(in UInt128 lhs, in UInt128 rhs)
             => lhs.lo != rhs.lo || lhs.hi != rhs.hi;
 
-        [MethodImpl(Inline)]
-        public static UInt128 operator |(in UInt128 lhs, in UInt128 rhs)
-            => As.asRef(in lhs).Or(rhs);
+        // [MethodImpl(Inline)]
+        // public static UInt128 operator |(in UInt128 lhs, in UInt128 rhs)
+        //     => As.asRef(in lhs).Or(rhs);
 
-        [MethodImpl(Inline)]
-        public static UInt128 operator &(in UInt128 lhs, in UInt128 rhs)
-            => As.asRef(in lhs).And(rhs);
+        // [MethodImpl(Inline)]
+        // public static UInt128 operator &(in UInt128 lhs, in UInt128 rhs)
+        //     => As.asRef(in lhs).And(rhs);
 
-        [MethodImpl(Inline)]
-        public static UInt128 operator ^(in UInt128 lhs, in UInt128 rhs)        
-            => As.asRef(in lhs).XOr(rhs);
+        // [MethodImpl(Inline)]
+        // public static UInt128 operator ^(in UInt128 lhs, in UInt128 rhs)        
+        //     => As.asRef(in lhs).XOr(rhs);
         
         [MethodImpl(Inline)]
         public static UInt128 operator ~(UInt128 src)
