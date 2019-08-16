@@ -137,6 +137,18 @@ namespace Z0
             => (uint) UMul.mulHi(M, a);
 
         /// <summary>
+        /// Computes the quotient and remainder
+        /// </summary>
+        /// <param name="a">The dividend</param>
+        /// <param name="rem">The remainder</param>
+        [MethodImpl(Inline)]
+        public uint divrem(uint a, out uint rem)
+        {
+            rem = mod(a);
+            return div(a);
+        }
+
+        /// <summary>
         /// Computes whether a % n == 0
         /// </summary>
         /// <param name="a">The dividend</param>
@@ -277,6 +289,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static uint div(uint a)        
             => _Mod.div(a);
+
+        [MethodImpl(Inline)]
+        public static uint divrem(uint a, out uint r)        
+            => _Mod.divrem(a, out r);
 
         /// <summary>
         /// Computes whether a % n == 0

@@ -51,6 +51,26 @@ namespace Z0.Test
             SetBits<ulong>();
         }
 
+        public void DefineMask64()
+        {
+            var m = 0ul;
+            Bits.mask(ref m, 3, 9, 11);
+            var bs = m.ToBitString();
+            var seq = bs.BitSeq;
+            Claim.yea(seq[3] == 1);
+            Claim.yea(seq[9] == 1);
+            Claim.yea(seq[11] == 1);
+
+            
+            seq[3] = 0;
+            seq[9] = 0;
+            seq[11] = 0;
+            Claim.yea(bs.Format(true) == string.Empty);
+
+
+
+        }
+
     }
 
 }

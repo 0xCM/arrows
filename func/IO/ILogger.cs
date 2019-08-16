@@ -6,9 +6,6 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Collections;
-    using System.IO;
 
     using static zfunc;
 
@@ -24,10 +21,13 @@ namespace Z0
         void Log<R,T>(IEnumerable<R> records, LogTarget<T> target, char delimiter, bool writeHeader, bool newFile, FileExtension ext = null)
             where T : Enum
             where R : IRecord;
-            
+
+        void Log<R>(IEnumerable<R> records, string topic, char delimiter, bool writeHeader = true, bool newFile = true, FileExtension ext = null)
+            where R : IRecord;            
+        
+        void LogRecords<R>(IReadOnlyList<R> records, FilePath dstFile, char? delimiter = null, bool? writeHeader = null, bool append = true)
+            where R : IRecord;            
 
         void Log(string text);
     }
-
-
 }

@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
  
     using static zfunc;
-    using static Constants;
 
     partial class Bits
     {                
@@ -20,7 +19,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static byte lopos(byte src)
-            => Pow2.inv((byte)Bmi1.ExtractLowestSetBit(src));
+            => Pow2.ops<byte>().inv((byte)Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit
@@ -28,7 +27,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ushort lopos(ushort src)
-            => Pow2.inv((ushort)Bmi1.ExtractLowestSetBit(src));
+            => Pow2.ops<ushort>().inv((ushort)Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit
@@ -36,7 +35,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static uint lopos(uint src)
-            => Pow2.inv(Bmi1.ExtractLowestSetBit(src));
+            => Pow2.ops<uint>().inv(Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit

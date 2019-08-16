@@ -39,6 +39,16 @@ namespace Z0
             => File.Exists(src.FullPath);
 
         /// <summary>
+        /// Deletes the file if it exists
+        /// </summary>
+        /// <param name="src"></param>
+        public static void DeleteIfExists(this FilePath src)
+        {
+            if(File.Exists(src.FullPath))
+                File.Delete(src.FullPath);
+        }
+
+        /// <summary>
         /// Creates a folder if it doesn't exist
         /// </summary>
         /// <param name="dst">The target folder</param>
@@ -47,8 +57,7 @@ namespace Z0
                 Directory.CreateDirectory(dst.Name);
             return dst;
         }
-        
-        
+                
         public static int Overwrite(this FilePath dst, params string[] lines)
         {
             dst.FolderPath.CreateIfMissing();

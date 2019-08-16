@@ -54,7 +54,7 @@ namespace Z0
         public static BitMatrix64 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitMatrixStore.Identity64x64);
+            get => Load(BitStore.Identity64x64);
         }
 
         public static BitMatrix64 Zero 

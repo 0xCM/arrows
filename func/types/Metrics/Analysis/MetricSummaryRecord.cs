@@ -19,17 +19,6 @@ namespace Z0
         
         const int MetricLen = 14;
 
-        public string HeaderText(char delimiter = ',')
-        {
-            var i = 0;
-            var delimited = string.Join(string.Empty, 
-                $"{This.Headers[i++]}{delimiter}".PadRight(OpNameLen), 
-                $"{This.Headers[i++]}{delimiter}".PadRight(MetricLen), 
-                    This.Headers[i]);
-            return delimited;
-            
-        }
-
         public MetricSummaryRecord()
         {
 
@@ -57,10 +46,10 @@ namespace Z0
         protected string DelimitScalar(long value, char delimiter = ',', bool digitcommas = false)
             => $"{FormatScalar(value, digitcommas)}{delimiter}".PadRight(MetricLen);
 
-        public override string Delimited(char delimiter = ',', bool digitcommas = false)
+        public override string DelimitedText(char delimiter)
             => concat( 
                 $"{OpName}{delimiter}".PadRight(OpNameLen), 
-                DelimitScalar(OpCount, delimiter, digitcommas),
+                DelimitScalar(OpCount, delimiter, false),
                 $"{WorkTime}{delimiter}");
     }
 }

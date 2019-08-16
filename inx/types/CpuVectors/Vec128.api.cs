@@ -343,7 +343,158 @@ namespace Z0
             where T : struct  
                 =>  Load<T>(src, offset, out Vec128<T> dst);    
 
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        /// <param name="x8">The component at index 8</param>
+        /// <param name="x9">The component at index 9</param>
+        /// <param name="x10">The component at index 10</param>
+        /// <param name="x11">The component at index 11</param>
+        /// <param name="x12">The component at index 12</param>
+        /// <param name="x13">The component at index 13</param>
+        /// <param name="x14">The component at index 14</param>
+        /// <param name="x15">The component at index 15</param>
+        [MethodImpl(Inline)]
+        public static Vec128<byte> FromBytes(
+            byte x0, byte x1, byte x2, byte x3,  
+            byte x4, byte x5, byte x6, byte x7, 
+            byte x8, byte x9, byte x10, byte x11,
+            byte x12, byte x13, byte x14, byte x15) 
+                =>  Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
+                    x8, x9, x10, x11,x12, x13, x14, x15);
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        /// <param name="x8">The component at index 8</param>
+        /// <param name="x9">The component at index 9</param>
+        /// <param name="x10">The component at index 10</param>
+        /// <param name="x11">The component at index 11</param>
+        /// <param name="x12">The component at index 12</param>
+        /// <param name="x13">The component at index 13</param>
+        /// <param name="x14">The component at index 14</param>
+        /// <param name="x15">The component at index 15</param>
+        [MethodImpl(Inline)]
+        public static Vec128<sbyte> FromParts(
+                sbyte x00, sbyte x01, sbyte x02, sbyte x03, 
+                sbyte x04, sbyte x05, sbyte x06, sbyte x07,
+                sbyte x08, sbyte x09, sbyte x10, sbyte x11,
+                sbyte x12, sbyte x13, sbyte x14, sbyte x15)
+                    => Vector128.Create(
+                        x00, x01, x02, x03, x04, x05, x06, x07, 
+                        x08, x09, x10, x11,x12, x13, x14, x15);
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        [MethodImpl(Inline)]
+        public static Vec128<short> FromParts(
+            short x0, short x1, short x2, short x3, 
+            short x4, short x5, short x6, short x7) 
+                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        /// <param name="x4">The component at index 4</param>
+        /// <param name="x5">The component at index 5</param>
+        /// <param name="x6">The component at index 6</param>
+        /// <param name="x7">The component at index 7</param>
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> FromParts(
+            ushort x0, ushort x1, ushort x2, ushort x3, 
+            ushort x4, ushort x5, ushort x6, ushort x7)
+                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        [MethodImpl(Inline)]
+        public static Vec128<int> FromParts(int x0, int x1, int x2, int x3)
+            => Vector128.Create(x0,x1,x2,x3);
+                            
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        [MethodImpl(Inline)]
+        public static Vec128<uint> FromParts(uint x0, uint x1, uint x2, uint x3)
+            => Vector128.Create(x0,x1,x2,x3);        
         
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        [MethodImpl(Inline)]
+        public static Vec128<long> FromParts(long x0, long x1)
+            => Vector128.Create(x0,x1);
+
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> FromParts(ulong x0, ulong x1)
+            => Vector128.Create(x0,x1);
+        
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        /// <param name="x2">The component at index 2</param>
+        /// <param name="x3">The component at index 3</param>
+        [MethodImpl(Inline)]
+        public static Vec128<float> FromParts(float x0, float x1, float x2, float x3)
+            => Vector128.Create(x0,x1,x2,x3);
+    
+        /// <summary>
+        /// Creates a new vector via component-wise specification
+        /// </summary>
+        /// <param name="x0">The component at index 0</param>
+        /// <param name="x1">The component at index 1</param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> FromParts(double x0, double x1)
+            => Vector128.Create(x0,x1);
+
         [MethodImpl(Inline)]
         static Vec128<byte> LoadScalar(byte src)
             => Vector128.CreateScalarUnsafe(src);
@@ -504,156 +655,6 @@ namespace Z0
         static Vec128<double> fill(double src)
             => Vector128.Create(src);
 
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        /// <param name="x4">The component at index 4</param>
-        /// <param name="x5">The component at index 5</param>
-        /// <param name="x6">The component at index 6</param>
-        /// <param name="x7">The component at index 7</param>
-        /// <param name="x8">The component at index 8</param>
-        /// <param name="x9">The component at index 9</param>
-        /// <param name="x10">The component at index 10</param>
-        /// <param name="x11">The component at index 11</param>
-        /// <param name="x12">The component at index 12</param>
-        /// <param name="x13">The component at index 13</param>
-        /// <param name="x14">The component at index 14</param>
-        /// <param name="x15">The component at index 15</param>
-        [MethodImpl(Inline)]
-        public static Vec128<byte> parts(
-            byte x0, byte x1, byte x2, byte x3,  
-            byte x4, byte x5, byte x6, byte x7, 
-            byte x8, byte x9, byte x10, byte x11,
-            byte x12, byte x13, byte x14, byte x15) 
-                =>  Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
-                    x8, x9, x10, x11,x12, x13, x14, x15);
-
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        /// <param name="x4">The component at index 4</param>
-        /// <param name="x5">The component at index 5</param>
-        /// <param name="x6">The component at index 6</param>
-        /// <param name="x7">The component at index 7</param>
-        /// <param name="x8">The component at index 8</param>
-        /// <param name="x9">The component at index 9</param>
-        /// <param name="x10">The component at index 10</param>
-        /// <param name="x11">The component at index 11</param>
-        /// <param name="x12">The component at index 12</param>
-        /// <param name="x13">The component at index 13</param>
-        /// <param name="x14">The component at index 14</param>
-        /// <param name="x15">The component at index 15</param>
-        [MethodImpl(Inline)]
-        public static Vec128<sbyte> parts(
-                sbyte x00, sbyte x01, sbyte x02, sbyte x03, 
-                sbyte x04, sbyte x05, sbyte x06, sbyte x07,
-                sbyte x08, sbyte x09, sbyte x10, sbyte x11,
-                sbyte x12, sbyte x13, sbyte x14, sbyte x15)
-                    => Vector128.Create(
-                        x00, x01, x02, x03, x04, x05, x06, x07, 
-                        x08, x09, x10, x11,x12, x13, x14, x15);
-
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        /// <param name="x4">The component at index 4</param>
-        /// <param name="x5">The component at index 5</param>
-        /// <param name="x6">The component at index 6</param>
-        /// <param name="x7">The component at index 7</param>
-        [MethodImpl(Inline)]
-        public static Vec128<short> define(
-            short x0, short x1, short x2, short x3, 
-            short x4, short x5, short x6, short x7) 
-                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
-
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        /// <param name="x4">The component at index 4</param>
-        /// <param name="x5">The component at index 5</param>
-        /// <param name="x6">The component at index 6</param>
-        /// <param name="x7">The component at index 7</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ushort> define(
-            ushort x0, ushort x1, ushort x2, ushort x3, 
-            ushort x4, ushort x5, ushort x6, ushort x7)
-                => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
-
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        [MethodImpl(Inline)]
-        public static Vec128<int> define(int x0, int x1, int x2, int x3)
-            => Vector128.Create(x0,x1,x2,x3);
-                
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        [MethodImpl(Inline)]
-        public static Vec128<uint> define(uint x0, uint x1, uint x2, uint x3)
-            => Vector128.Create(x0,x1,x2,x3);        
-        
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        [MethodImpl(Inline)]
-        public static Vec128<long> define(long x0, long x1)
-            => Vector128.Create(x0,x1);
-
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> define(ulong x0, ulong x1)
-            => Vector128.Create(x0,x1);
-        
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        /// <param name="x2">The component at index 2</param>
-        /// <param name="x3">The component at index 3</param>
-        [MethodImpl(Inline)]
-        public static Vec128<float> define(float x0, float x1, float x2, float x3)
-            => Vector128.Create(x0,x1,x2,x3);
-    
-        /// <summary>
-        /// Creates a new vector via component-wise specification
-        /// </summary>
-        /// <param name="x0">The component at index 0</param>
-        /// <param name="x1">The component at index 1</param>
-        [MethodImpl(Inline)]
-        public static Vec128<double> define(double x0, double x1)
-            => Vector128.Create(x0,x1);
  
         static readonly Vec128<byte> OneU8 = Vec128.fill((byte)1);
 

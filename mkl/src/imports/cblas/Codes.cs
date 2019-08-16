@@ -6,57 +6,61 @@ namespace Z0.Mkl
 {
     using System;
 
-    public enum MatrixLayout 
+    public enum BlasLayout 
     {
         RowMajor=101, /* row-major arrays */
+        
         ColMajor=102 /* column-major arrays */
 
     }
 
-    public enum MatrixTranspose 
+    public enum BlasTrans 
     {
         None = 111, /* trans='N' */
+        
         Transpose = 112, /* trans='T' */
+        
         Conjugate = 113 /* trans='C' */
     };
 
-    public enum CBLAS_UPLO 
+    public enum BlasUpLo 
     {
         CblasUpper=121, /* uplo ='U' */
+        
         CblasLower=122 /* uplo ='L' */
 
     };
     
-    public enum CBLAS_DIAG 
+    public enum BlasDiagonal 
     {
         CblasNonUnit=131, /* diag ='N' */
+        
         CblasUnit=132 /* diag ='U' */
 
     };
 
-    public enum CBLAS_SIDE 
+    public enum BlasSide 
     {
-        CblasLeft=141, /* side ='L' */
+        Left=141, /* side ='L' */
 
-        CblasRight=142 /* side ='R' */
+        Right=142 /* side ='R' */
 
     };
 
-    public enum CBLAS_STORAGE 
+
+    public enum BlasIdentifier 
     {
-        CblasPacked=151
+        AMatrix=161, 
+        
+        BMatrix=162
     };
 
-    public enum CBLAS_IDENTIFIER 
+    public enum MatrixOffset
     {
-        CblasAMatrix=161, 
-        CblasBMatrix=162
-    };
+        RowOffset=171, 
 
-    public enum CBLAS_OFFSET 
-    {
-        CblasRowOffset=171, 
-        CblasColOffset=172, 
-        CblasFixOffset=173
+        ColOffset=172, 
+
+        FixOffset=173
     };
 }

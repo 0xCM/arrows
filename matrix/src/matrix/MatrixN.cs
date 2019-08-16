@@ -9,6 +9,7 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     
     using static nfunc;
     using static zfunc;
@@ -224,10 +225,6 @@ namespace Z0
             return true;
         }
 
-        [MethodImpl(Inline)]
-        public Matrix<N,U> As<U>()
-            where U : struct
-                => new Matrix<N,U>(data.As<U>());
         
         [MethodImpl(Inline)]
         public Matrix<N,N,T> ToRectantular()
@@ -244,6 +241,11 @@ namespace Z0
         public Matrix<N,U> Convert<U>()
             where U : struct
                => new Matrix<N,U>(convert<T,U>(data));
+
+        [MethodImpl(Inline)]
+        public Matrix<N,U> As<U>()
+            where U : struct
+                => new Matrix<N,U>(data.As<U>());
 
         /// <summary>
         /// Creates a copy of the matrix

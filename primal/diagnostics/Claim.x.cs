@@ -124,7 +124,27 @@ namespace Z0
                 if(!gmath.eq(lhs[i],rhs[i]))
                     throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
         }
-        
+
+        public static void ClaimEqual<T>(this Span<T> lhs, Span<T> rhs, T tolerance, Action<int,T,T> handler,  [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+                if(!gmath.within(lhs[i],rhs[i],tolerance))
+                {
+                    handler(i, lhs[i], rhs[i]);
+                    break;                    
+                }  
+        }
+
+        public static void ClaimEqual<T>(this Span<T> lhs, Span<T> rhs, T tolerance, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+                if(!gmath.within(lhs[i],rhs[i],tolerance))
+                    throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
+        }
+
+
         /// <summary>
         /// Asserts content equality for two spans of primal type
         /// </summary>

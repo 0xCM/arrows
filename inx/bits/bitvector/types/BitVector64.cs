@@ -13,7 +13,6 @@ namespace Z0
     using static Bytes;
 
     using static zfunc;    
-    using source = System.UInt64;
 
     public ref struct BitVector64
     {

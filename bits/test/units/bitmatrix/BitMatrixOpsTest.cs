@@ -51,6 +51,17 @@ namespace Z0.Test
             Claim.yea(m3 == m1);
         }
 
+        public void Transpose32()
+        {
+            var m1 = Random.BitMatrix32();
+            var m2 = m1.Transpose();
+            var m3 = m2.Transpose();
+            Claim.yea(m3 == m1);
+
+
+
+        }
+
         public void Transpose64()
         {
             var m1 = Random.BitMatrix64();

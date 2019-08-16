@@ -47,7 +47,7 @@ namespace Z0
         public static BitMatrix4 Identity 
         {
             [MethodImpl(Inline)]
-            get => Define(BitMatrixStore.Identity4x4);
+            get => Define(BitStore.Identity4x4);
         }
 
         public static BitMatrix4 Zero 

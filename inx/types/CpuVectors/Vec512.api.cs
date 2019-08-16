@@ -14,10 +14,6 @@ namespace Z0
 
     public static class Vec512
     {
-        [MethodImpl(Inline)]
-        public static Vec512<T> FromSpan<T>(Span<T> src)
-            where T : struct
-                => Unsafe.As<FixedBuffers.F512,Vec512<T>>(ref FixedBuffers.F512.FromSpan(src));
 
         [MethodImpl(Inline)]
         public static Vec512<T> Define<T>(in Vec256<T> v0, in Vec256<T> v1)        
@@ -28,7 +24,6 @@ namespace Z0
         public static Vec512<T> Define<T>(in Vector256<T> v0, in Vector256<T> v1)        
             where T : struct
                 => new Vec512<T>(v0, v1);
-
 
         [MethodImpl(Inline)]
         public static unsafe Span<T> Segment<T>(this ref Vec512<T> src, int offset, int len)

@@ -130,8 +130,11 @@ namespace Z0
         public double Ms
             => ((double)Ticks)/TicksPerMs;
 
+        public string Format()
+            => $"{Ms} ms";
+        
         public override string ToString()
-            => $"{Ns} ns ~ ".PadLeft(16) + $"{Ms} ms";
+            => Format();
 
         public bool Equals(Duration rhs)
             => this.Ticks == rhs.Ticks;

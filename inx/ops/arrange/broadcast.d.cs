@@ -175,7 +175,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<double> broadcast(in double src, out Vec128<double> dst)
         {
-            dst = Vec128.define(src,src);
+            dst = Vec128.FromParts(src,src);
             return ref dst;
         }
     }

@@ -7,6 +7,7 @@ namespace Z0.Test
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.IO;
@@ -23,8 +24,8 @@ namespace Z0.Test
         
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
-
-        void Run(Type host, params string[] filters)
+        
+        void Run(Type host, string[] filters)
         {        
             var hostpath = host.DisplayName();
             var execTime = Duration.Zero;
@@ -44,6 +45,7 @@ namespace Z0.Test
                 instance.Configure(Config);
                 if(instance.Enabled)
                     iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));
+                OpTimes.AddRange(instance.Benchmarks);
                 print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Info));
 
             }
@@ -111,11 +113,15 @@ namespace Z0.Test
 
         }
 
+        protected virtual string AppName
+            => GetType().Assembly.GetSimpleName();
         protected virtual void RunTests(params string[] filters)
         {
             try
             {            
                 Run(false,filters);
+                if(OpTimes.Any())
+                    Log.LogBenchmarks(AppName,true,true,'|',OpTimes.ToArray());
             }
             catch (Exception e)
             {

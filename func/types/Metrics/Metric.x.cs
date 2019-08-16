@@ -52,10 +52,10 @@ namespace Z0
         public static MetricComparison Compare(this IMetrics lhs, IMetrics rhs)        
             => MetricComparison.Define(lhs.Summarize(), rhs.Summarize());
 
-        public static AppMsg FormatMessage(this MetricComparisonRecord src, char delimiter = ',', bool digitcommas = false)        
-            => AppMsg.Define(src.Delimited(delimiter,digitcommas), SeverityLevel.Benchmark);
+        public static AppMsg FormatMessage(this MetricComparisonRecord src, char delimiter = '|', bool digitcommas = false)        
+            => AppMsg.Define(src.DelimitedText(delimiter), SeverityLevel.Benchmark);
         
-        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<MetricComparisonRecord> src, char delimiter = ',', bool digitcommas = false)
+        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<MetricComparisonRecord> src, char delimiter = '|', bool digitcommas = false)
         {
             var records = src.ToList();
             if(records.Count == 0)

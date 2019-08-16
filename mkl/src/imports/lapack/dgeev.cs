@@ -15,7 +15,7 @@ namespace Z0.Mkl
 
 
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern int LAPACKE_sgeev(MatrixLayout layout, char jobvl, char jobvr,
+        public static extern int LAPACKE_sgeev(BlasLayout layout, char jobvl, char jobvr,
                                 int n, ref float a, int lda, ref float wr,
                                 ref float wi, ref float vl, int ldvl, ref float vr,
                                 int ldvr);
@@ -42,7 +42,7 @@ namespace Z0.Mkl
         /// <param name="wslen">The  size of the workspace allolcation</param>
         /// <param name="exitcode">If successful, populated with 0; if -i, the i-th parameter had an illegal value; if info=i, general alorithm failure</param>
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern int LAPACKE_dgeev(MatrixLayout layout, char jobvl, char jobvr,
+        public static extern int LAPACKE_dgeev(BlasLayout layout, char jobvl, char jobvr,
                                 int n, ref double a, int lda, ref double wr,
                                 ref double wi, ref double vl, int ldvl, ref double vr,
                                 int ldvr);

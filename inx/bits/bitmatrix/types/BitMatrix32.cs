@@ -19,7 +19,7 @@ namespace Z0
     /// Defines a 32x32 matrix of bits
     /// </summary>
     public ref struct BitMatrix32
-    {        
+    {                
         Span<uint> bits;
 
         /// <summary>
@@ -28,17 +28,17 @@ namespace Z0
         public static readonly N32 N = default;
 
         /// <summary>
-        /// The number of bits per row
+        /// The number of bits per row = 32
         /// </summary>
         public static readonly BitSize RowBitCount = N.value;        
 
         /// <summary>
-        /// The number of bits per column
+        /// The number of bits per column = 32
         /// </summary>
         public static readonly BitSize ColBitCount = N.value;
 
         /// <summary>
-        /// The number of bits apprehended by the matrix
+        /// The number of bits apprehended by the matrix = 1024 bits =  128 bytes
         /// </summary>
         public static readonly BitSize TotalBitCount = RowBitCount * ColBitCount;
                         
@@ -58,7 +58,7 @@ namespace Z0
         public static BitMatrix32 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitMatrixStore.Identity32x32);
+            get => Load(BitStore.Identity32x32);
         }
 
         /// <summary>
@@ -315,6 +315,7 @@ namespace Z0
             return this;
         }
 
+        
         public readonly BitMatrix32 Transpose()
         {
             var dst = Replicate();

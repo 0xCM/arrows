@@ -93,7 +93,7 @@ namespace Z0.Test
                 for(var i=0; i<8; i++)
                 {
                     var dst = (byte)0;
-                    var pos = (byte)(Pow2.pow(i) - 1);
+                    var pos = (byte)(Pow2.ops<int>().pow(i) - 1);
                     Bits.pack(in x0, in x1, in x2, in x3, in x4, in x5, in x6, in x7, pos, ref dst);
                     
                     var j = 0;

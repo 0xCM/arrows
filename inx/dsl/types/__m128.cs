@@ -30,7 +30,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec128<float> ToVec128()
-            => Vec128.define(x00f,x01f,x02f,x03f);
+            => Vec128.FromParts(x00f,x01f,x02f,x03f);
 
         [MethodImpl(Inline)]
         public static __m128 FromVec128(in Vec128<float> src)

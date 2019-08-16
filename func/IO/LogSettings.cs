@@ -37,7 +37,17 @@ namespace Z0
 
         FileExtension DefaultExtension
             => FileExtension.Define("log");
-        
+
+
+        public FilePath UniqueLogPath(LogArea area, string topic,  FileExtension ext = null)
+        {
+            var first = new DateTime(2019,1,1);
+            var current = now();
+            var elapsed = (long) (current - first).TotalMilliseconds;
+            return LogPath(area, topic, ext, elapsed);
+        }
+
+
         public FilePath UniqueLogPath(LogArea area, FileExtension ext = null)
         {
             var first = new DateTime(2019,1,1);
@@ -65,9 +75,12 @@ namespace Z0
         public FilePath LogPath(LogArea area, FileExtension ext = null, long? timestamp = null)
             => LogDir(area) + FileName.Define($"{area}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
 
+        public FilePath LogPath(LogArea area, string topic, FileExtension ext = null, long? timestamp = null)
+                => LogDir(area) + FileName.Define($"{area}.{topic}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
+
         public FilePath LogPath<T>(LogTarget<T> target, FileExtension ext = null, long? timestamp = null)
             where T : Enum
-            => LogDir(target.Area) + FileName.Define($"{target.Area}.{target.KindName}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
+                => LogDir(target.Area) + FileName.Define($"{target.Area}.{target.KindName}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
     }
 
 }

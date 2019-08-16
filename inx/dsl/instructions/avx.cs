@@ -17,11 +17,11 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static __m128i _mm256_castsi256_si128(in __m256i a)
-            => Vec128.define(a.x0, a.x1);
+            => Vec128.FromParts(a.x0, a.x1);
 
         [MethodImpl(Inline)]
         public static __m128d _mm256_castpd256_pd128(in __m256d a)
-            => Vec128.define(a.x0d, a.x1d);
+            => Vec128.FromParts(a.x0d, a.x1d);
 
         [MethodImpl(Inline)]
         public static __m256d _mm256_castpd128_pd256(in __m128d a)

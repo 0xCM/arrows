@@ -81,6 +81,15 @@ namespace Z0
             return new Span256<T>(src);
         }
 
+        /// <summary>
+        /// Takes, on faith, the source span is properly blocked and creates a new matrix using
+        /// the content as the underlying data
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static Span256<T> LoadDirect(Span<T> src)
+            => new Span256<T>(src);
 
         [MethodImpl(Inline)]
         public static Span256<T> LoadAligned(Span<T> src, int offset = 0)

@@ -9,6 +9,7 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     
     using static nfunc;
     using static zfunc;
@@ -86,6 +87,10 @@ namespace Z0
             require(src.Length >= CellCount);
             data = src;
         }
+
+        [MethodImpl(Inline)]
+        internal Matrix(Span256<T> src, bool skipChecks)
+            => data = src;
 
         [MethodImpl(Inline)]        
         public ref T Cell(int r, int c)
@@ -227,10 +232,50 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Converts the entries of the matrix to a specified type and
+        /// populates a new matrix with the converted values
+        /// </summary>
+        /// <typeparam name="U">The conversion target type</typeparam>
         [MethodImpl(Inline)]
         public Matrix<M,N,U> Convert<U>()
             where U : struct
                => new Matrix<M,N,U>(convert<T,U>(data));
+
+
+        /// <summary>
+        /// Converts the entries of the matrix to a specified type and
+        /// populates a new matrix with the converted values
+        /// </summary>
+        /// <typeparam name="U">The conversion target type</typeparam>
+        [MethodImpl(Inline)]
+        public ref Matrix<M,N,U> Convert<U>(out Matrix<M,N,U> dst)
+            where U : struct
+        {
+            dst = new Matrix<M,N,U>(convert<T,U>(data));
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Reinterprets the primal type of the matrix
+        /// </summary>
+        /// <typeparam name="U">The target type</typeparam>
+        [MethodImpl(Inline)]
+        public Matrix<M,N,U> As<U>()
+            where U : struct
+               => new Matrix<M,N,U>(data.As<U>());
+
+        /// <summary>
+        /// Reinterprets the primal type of the matrix
+        /// </summary>
+        /// <typeparam name="U">The target type</typeparam>
+        [MethodImpl(Inline)]
+        public ref Matrix<M,N,U> As<U>(out Matrix<M,N,U> dst)
+            where U : struct        
+        {
+            dst = this.As<U>();
+            return ref dst;
+        }
 
 
         public override bool Equals(object other)
@@ -239,4 +284,6 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
+
+
 }

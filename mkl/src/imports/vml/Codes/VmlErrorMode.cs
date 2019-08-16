@@ -8,7 +8,7 @@ namespace Z0.Mkl
     enum VmlErrorMode
     {
         ///<summary>Indicates errors are ignored</summary>
-        Ignore =  0x00000100,
+        IgnoreErrors =  0x00000100,
 
         ///<summary>Indicates errno variable is set whenever there is an error</summary>
         ErrorNumber = 0x00000200,
@@ -20,12 +20,12 @@ namespace Z0.Mkl
         RaiseException = 0x00000800,
 
         ///<summary>Indicates a user-speccified error handler is invoked</summary>
-        Callback = 0x00001000,
+        ErrorCallback = 0x00001000,
 
         ///<summary>Ignore errors and do not update error status</summary>
-        PretendNone = 0x00002000,
+        PretendNoError = 0x00002000,
 
-        Default  = ErrorNumber | Callback | RaiseException        
+        DefaultErrorMode  = ErrorNumber | ErrorCallback | RaiseException        
     }
 
 

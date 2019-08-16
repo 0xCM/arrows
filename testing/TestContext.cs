@@ -19,6 +19,8 @@ namespace Z0.Test
         ITestConfig Config {get;}
 
         void Configure(ITestConfig config);
+
+        IEnumerable<OpTime> Benchmarks {get;}
         
     }
 

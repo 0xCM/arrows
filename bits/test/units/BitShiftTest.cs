@@ -155,7 +155,7 @@ namespace Z0.Test
         }
 
         //This doesn't work : - (
-        Vec256<byte> ShiftL(Vec256<byte> src, byte offset)
+        Vec256<byte> ShiftL(Vec256<byte> src, byte offset, bool trace = false)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors
             ref var srcX = ref dinx.convert(dinx.lo(src), out Vec256<ushort> _);
@@ -176,17 +176,18 @@ namespace Z0.Test
             var shB = Bits.shiftlw(trB.As<ushort>(), 1).As<byte>();
             var result = dinx.blend(trA, shB, BlendAltMask<byte>());
 
-            
-            Trace(() => src);
-            Trace(nameof(srcX), srcX.ToString());
-            Trace(nameof(srcY), srcY.ToString());
-            Trace(() => dstA);
-            Trace(() => dstB);
-            Trace(() => trA);
-            Trace(() => trB);
-            Trace(() => shB);
-            Trace(() => result);
-
+            if(trace)
+            {
+                Trace(() => src);
+                Trace(nameof(srcX), srcX.ToString());
+                Trace(nameof(srcY), srcY.ToString());
+                Trace(() => dstA);
+                Trace(() => dstB);
+                Trace(() => trA);
+                Trace(() => trB);
+                Trace(() => shB);
+                Trace(() => result);
+            }
             return result;
             
         }

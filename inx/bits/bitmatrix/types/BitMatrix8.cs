@@ -59,7 +59,7 @@ namespace Z0
         public static BitMatrix8 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitMatrixStore.Identity8x8);
+            get => Load(BitStore.Identity8x8);
         }
 
         /// <summary>

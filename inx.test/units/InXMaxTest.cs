@@ -17,10 +17,10 @@ namespace Z0.Test
     {
         public void InXMax0()
         {
-            var v1 = Vec128.define(1, 2, -3, 4);
-            var v2 = Vec128.define(-1, 2, 3, -4);
+            var v1 = Vec128.FromParts(1, 2, -3, 4);
+            var v2 = Vec128.FromParts(-1, 2, 3, -4);
             var result = dinx.max(v1,v2);
-            var expect = Vec128.define(1,2,3,4);
+            var expect = Vec128.FromParts(1,2,3,4);
             Claim.eq(expect,result);
         }
         

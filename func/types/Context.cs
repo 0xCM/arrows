@@ -14,13 +14,16 @@ namespace Z0
     
     using static zfunc;
 
-
     public abstract class Context : IContext
     {
         public IRandomSource Random {get;}
 
-        protected List<AppMsg> Messages {get;} = new List<AppMsg>();
+        protected List<AppMsg> Messages {get;} 
+            = new List<AppMsg>();
 
+
+        protected ConcurrentBag<OpTime> OpTimes {get;}
+            = new ConcurrentBag<OpTime>();
 
         public IReadOnlyList<AppMsg> DequeueMessages(params AppMsg[] addenda)
         {
@@ -29,6 +32,9 @@ namespace Z0
             Messages.Clear();
             return messages;
         }
+
+        public IEnumerable<OpTime> Benchmarks
+            => OpTimes;
 
         protected Context(IRandomSource Randomizer)
         {
@@ -95,6 +101,21 @@ namespace Z0
 
         protected void TracePerf(OpTime time, int? labelPad = null)
         {
+            if(TraceEnabled)
+                TracePerf(time.Format(labelPad));
+        }
+
+        protected void Collect(OpTimePair timing, int? labelPad = null)
+        {
+            OpTimes.Add(timing.Left);
+            OpTimes.Add(timing.Right);
+            if(TraceEnabled)
+                TracePerf(timing.Format(labelPad));
+        }
+
+        protected void Collect(OpTime time, int? labelPad = null)
+        {
+            OpTimes.Add(time);
             if(TraceEnabled)
                 TracePerf(time.Format(labelPad));
         }

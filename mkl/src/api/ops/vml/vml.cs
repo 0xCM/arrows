@@ -228,6 +228,38 @@ namespace Z0.Mkl
             return ref dst;
         }
 
+		/// <summary>
+		/// Computes X[i,j] = A[i,j] % B[i,j] for each row/col index i/j
+		/// </summary>
+		/// <param name="A">The left vector</param>
+  		/// <param name="B">The right vector</param>
+		/// <param name="X">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,float> mod<M,N>(Matrix<M,N,float> A, Matrix<M,N,float> B, ref Matrix<M,N,float> X)
+            where N : ITypeNat, new()
+            where M : ITypeNat, new()
+
+        {
+            VmlImport.vsFmod(Matrix<M,N,float>.CellCount, ref head(A), ref head(B), ref head(X));
+            return ref X;
+        }
+
+		/// <summary>
+		/// Computes X[i,j] = A[i,j] % B[i,j] for each row/col index i/j
+		/// </summary>
+		/// <param name="A">The left vector</param>
+  		/// <param name="B">The right vector</param>
+		/// <param name="X">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,double> mod<M,N>(Matrix<M,N,double> lhs, Matrix<M,N,double> rhs, ref Matrix<M,N,double> dst)
+            where N : ITypeNat, new()
+            where M : ITypeNat, new()
+
+        {
+            VmlImport.vdFmod(Matrix<M,N,float>.CellCount, ref head(lhs), ref head(rhs), ref head(dst));
+            return ref dst;
+        }
+
         /// <summary>
         /// Truncates the source vector and deposits the result in trunc and the fractional part 
         /// that was removed when producing the truncation
@@ -238,7 +270,7 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static ref Vector<float> truncRem(Vector<float> src, Vector<float> trunc, ref Vector<float> rem)
         {
-            VmlImport.vsModf(length(src,trunc), ref head(src), ref head(trunc), ref head(rem));
+            VmlImport.vsModf(length(src, trunc), ref head(src), ref head(trunc), ref head(rem));
             return ref rem;
         }
 
@@ -498,11 +530,129 @@ namespace Z0.Mkl
             return ref dst;
         }
 
+        /// <summary>
+        /// Computes dst[i] = src[i] + epsilon
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
-        public static ref Vector<double> inc(Vector<double> src, ref Vector<double> dst)        
+        public static ref Vector<float> next(Vector<float> src, ref Vector<float> dst)        
+        {
+            VmlImport.vsNextAfter(dst.Length, ref head(src), ref head(src), ref head(dst));
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Computes dst[i] = src[i] + epsilon
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vector<double> next(Vector<double> src, ref Vector<double> dst)        
         {
             VmlImport.vdNextAfter(dst.Length, ref head(src), ref head(src), ref head(dst));
             return ref dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =round(src[i]) for i=0..n-1 where "round" maps the input to the nearest integral value
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vector<float> round(Vector<float> src, ref Vector<float> dst)        
+        {
+            VmlImport.vsRound(src.Length, ref head(src), ref head(dst));
+            return ref dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =round(src[i]) for i=0..n-1 where "round" maps the input to the nearest integral value
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vector<double> round(Vector<double> src, ref Vector<double> dst)        
+        {
+            VmlImport.vdRound(src.Length, ref head(src), ref head(dst));
+            return ref dst;
+        }
+
+		/// <summary>
+		/// Rounds each element towards the nearest integral value
+		/// </summary>
+		/// <param name="src">The source/target matrix</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,float> round<M,N>(ref Matrix<M,N,float> A)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+            VmlImport.vsRound(Matrix<M,N,float>.CellCount, ref head(A), ref head(A));
+            return ref A;
+        }
+
+		/// <summary>
+		/// Rounds each element towards the nearest integral value
+		/// </summary>
+		/// <param name="src">The source/target matrix</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,double> round<M,N>(ref Matrix<M,N,double> A)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+
+            VmlImport.vdRound(Matrix<M,N,double>.CellCount, ref head(A), ref head(A));
+            return ref A;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =truncate(src[i]) for i=0..n-1 where "truncate" rounds the input value towards 0
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vector<float> trunc(Vector<float> src, ref Vector<float> dst)        
+        {
+            VmlImport.vsTrunc(src.Length, ref head(src), ref head(dst));
+            return ref dst;
+        }
+
+		/// <summary>
+		/// Computes dst[i] =truncate(src[i]) for i=0..n-1 where "truncate" rounds the input value towards 0
+		/// </summary>
+		/// <param name="src">The source vector</param>
+		/// <param name="dst">The caller-allocated target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vector<double> trunc(Vector<double> src, ref Vector<double> dst)        
+        {
+            VmlImport.vdTrunc(src.Length, ref head(src), ref head(dst));
+            return ref dst;
+        }
+
+		/// <summary>
+		/// Rounds each element towards zero
+		/// </summary>
+		/// <param name="src">The source/target matrix</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,double> trunc<M,N>(ref Matrix<M,N,double> A)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+            VmlImport.vdTrunc(Matrix<M,N,double>.CellCount, ref head(A), ref head(A));
+            return ref A;
+        }
+
+		/// <summary>
+		/// Rounds each element towards zero
+		/// </summary>
+		/// <param name="src">The source/target matrix</param>
+        [MethodImpl(Inline)]
+        public static ref Matrix<M,N,float> trunc<M,N>(ref Matrix<M,N,float> A)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+        {
+            VmlImport.vsTrunc(Matrix<M,N,float>.CellCount, ref head(A), ref head(A));
+            return ref A;
         }
 
 		/// <summary>

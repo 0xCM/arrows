@@ -102,7 +102,7 @@ namespace Z0
         {
             var low = CarrylessMultiply(lhs, rhs, 0).GetElement(0);
             var hi = CarrylessMultiply(lhs,rhs,4).GetElement(0);
-            return Vec128.define(low,hi);
+            return Vec128.FromParts(low,hi);
         }
 
 
@@ -111,7 +111,7 @@ namespace Z0
         {
             var low = CarrylessMultiply(lhs, rhs, 0).GetElement(0);
             var hi = CarrylessMultiply(lhs,rhs,4).GetElement(0);
-            return Vec128.define(low,hi);
+            return Vec128.FromParts(low,hi);
         }
 
         /// <summary>

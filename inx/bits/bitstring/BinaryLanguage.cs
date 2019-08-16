@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="length">The length of the words to generate</param>
         public override IEnumerable<BitString> Words(int length)
         {
-            var count = Pow2.pow(length) - 1;
+            var count = Pow2.ops<uint>().pow(length) - 1;
             for(var i=0ul; i <= count; i++)
             {
                 var bs = BitString.FromScalar(i);

@@ -24,9 +24,9 @@ namespace Z0.Test
         // Test case taken from https://docs.microsoft.com/en-us/previous-versions/bb514073(v=vs.120)
         public void Vec128Eq2()
         {
-            var a = Vec128.define(0x55550000BBBB9999ul, 0x0123456789ABCDEFul);
-            var b = Vec128.define(0xAAAAFFFF44446666ul, 0xFEDCBA9876543210ul);
-            var c = Vec128.define(0x55550000BBCB9999ul, 0x0123456789ABCDEFul);
+            var a = Vec128.FromParts(0x55550000BBBB9999ul, 0x0123456789ABCDEFul);
+            var b = Vec128.FromParts(0xAAAAFFFF44446666ul, 0xFEDCBA9876543210ul);
+            var c = Vec128.FromParts(0x55550000BBCB9999ul, 0x0123456789ABCDEFul);
             Claim.yea(Bits.testz(a,b));
             Claim.nea(Bits.testz(c,b));
             

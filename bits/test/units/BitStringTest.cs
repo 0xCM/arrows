@@ -12,10 +12,8 @@ namespace Z0.Test
     
     using static zfunc;
 
-
     public class BitStringTest : UnitTest<BitStringTest>
     {
-
         void BitStringToValue<T>()
             where T : struct
         {
@@ -49,7 +47,7 @@ namespace Z0.Test
                 
                 if(i <= 63)
                 {
-                    var val1 = Pow2.pow((ulong)i);
+                    var val1 = Pow2.pow((byte)i);
                     var val2 = bs.TakePrimalValue<ulong>();
                     Claim.eq(val1,val2);
                 }    
@@ -152,7 +150,7 @@ namespace Z0.Test
         public void VerifyWordGen()
         {            
             var wordLen = 8;
-            var wordCount = (int)Pow2.pow(wordLen);
+            var wordCount = Pow2.ops<int>().pow(wordLen);
             var words = BinaryLanguage.Get().Words(wordLen).ToArray();
             Claim.eq(wordCount, words.Length);
             

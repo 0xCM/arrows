@@ -41,7 +41,7 @@ namespace Z0.Asm
 
         [MethodImpl(Inline)]
         public static XmmRegId xmm(int i)
-            =>  (XmmRegId) (((ulong)XmmRegId.xmm0) | ( i == 0 ? 0 : Pow2.pow(i)));
+            =>  (XmmRegId) (((ulong)XmmRegId.xmm0) | ( i == 0 ? 0 : Pow2.ops<uint>().pow(i)));
 
         
         [MethodImpl(Inline)]

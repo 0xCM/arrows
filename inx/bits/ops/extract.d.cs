@@ -11,6 +11,7 @@ namespace Z0
  
     using static zfunc;
     
+
     partial class Bits
     {                
         /// <summary>
@@ -51,6 +52,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
+        /// <intrinsic>__int64 _pext_u64 (unsigned __int64 a, unsigned __int64 mask) PEXT r64a, r64b, reg/m64 </intrinsic>
         [MethodImpl(Inline)]
         public static ulong extract(in ulong src, in ulong mask)        
             => Bmi2.X64.ParallelBitExtract(src,mask);

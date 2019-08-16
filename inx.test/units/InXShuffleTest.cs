@@ -99,7 +99,7 @@ namespace Z0.Test
 
         public void Shufle128i32()
         {
-            var v1 = Vec128.define(0, 1, 2, 3);
+            var v1 = Vec128.FromParts(0, 1, 2, 3);
             
             //Produces the identity permutation
             var m1 = (byte)0b11_10_01_00;

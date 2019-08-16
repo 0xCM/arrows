@@ -21,9 +21,9 @@ namespace Z0.Test
             Claim.yea(gbits.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
             Claim.nea(gbits.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
 
-            Claim.yea(gbits.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
-            Claim.yea(gbits.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
-            Claim.nea(gbits.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
+            Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 2u, 3u, 4u)));
+            Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 0u, 0u, 0u)));
+            Claim.nea(gbits.nonzero(Vec128.FromParts(0u, 0u, 0u, 0u)));
         }
 
         public void LeftShiftV256U32()

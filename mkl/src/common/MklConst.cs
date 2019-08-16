@@ -18,9 +18,9 @@ namespace Z0.Mkl
     {
         internal const CallingConvention Cdecl = CallingConvention.Cdecl;
 
-        const MatrixTranspose NoTranspose = MatrixTranspose.None;
+        const BlasTrans NoTranspose = BlasTrans.None;
         
-        const MatrixLayout RowMajor = MatrixLayout.RowMajor;
+        const BlasLayout RowMajor = BlasLayout.RowMajor;
 
 
     }

@@ -28,37 +28,44 @@ namespace Z0
         public static readonly N16 N = default;
 
         /// <summary>
-        /// The number of bits per row
+        /// The number of bits per row = 16
         /// </summary>
         public static readonly BitSize RowBitCount = N.value;        
 
         /// <summary>
-        /// The number of bits per column
+        /// The number of bits per column = 16
         /// </summary>
         public static readonly BitSize ColBitCount = N.value;
 
         /// <summary>
-        /// The number of bits apprehended by the matrix
-        /// </summary>
-        public static readonly BitSize TotalBitCount = RowBitCount * ColBitCount;
-                        
-        /// <summary>
-        /// The (aligned) number of bytes needed for a row
+        /// The (aligned) number of bytes needed for a row = 2
         /// </summary>
         public static readonly ByteSize RowByteCount = (ByteSize)RowBitCount;                        
 
         /// <summary>
-        /// The (aligned) number of bytes needed for a column
+        /// The (aligned) number of bytes needed for a column = 2
         /// </summary>
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
+
+        /// <summary>
+        /// The number of bits apprehended by the matrix = 256 bits
+        /// </summary>
+        public static readonly BitSize TotalBitCount = RowBitCount * ColBitCount;
+
+        /// <summary>
+        /// The number of bytes required to store the matrix bits = 32
+        /// </summary>
+        public static readonly BitSize StorageBytes = (ByteSize)TotalBitCount;
+                        
         
+
         /// <summary>
         /// Allocates an identity matrix
         /// </summary>
         public static BitMatrix16 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitMatrixStore.Identity16x16);
+            get => Load(BitStore.Identity16x16);
         }
 
         /// <summary>

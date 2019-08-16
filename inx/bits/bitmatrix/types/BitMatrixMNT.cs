@@ -257,12 +257,19 @@ namespace Z0
             return dst;
         }
 
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => bits.AsBytes();
+        }
+
+
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
         public Span<Bit> Unpack()
-            => bits.AsBytes().Unpack(out Span<Bit> dst);
+            => Bytes.Unpack(out Span<Bit> dst);
 
         public BitGridLayout<T> Layout
             => GridLayout;

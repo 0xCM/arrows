@@ -31,7 +31,7 @@ namespace Z0.Test
 
         void Shuffle()
         {
-            var v1 = Vec128.define(1,2,3,4);
+            var v1 = Vec128.FromParts(1,2,3,4);
             var v2 = dinx.shuffle(v1, 0b01010101);
             print(v2.ToString());
         }

@@ -33,17 +33,17 @@ namespace Z0.Mkl
 		/// <param name="C">An mxn matrix</param>
 		/// <param name="ldc">The leading dimension of C</param>
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-		public static extern void cblas_dgemm(MatrixLayout Layout, MatrixTranspose TransA, MatrixTranspose TransB, 
+		public static extern void cblas_dgemm(BlasLayout Layout, BlasTrans TransA, BlasTrans TransB, 
 			int M, int N, int K, double alpha, ref double A, int lda, ref double B, int ldb, double beta, ref double C, int ldc);
 
 
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-		public static extern void cblas_cgemm(MatrixLayout Layout, MatrixTranspose TransA, MatrixTranspose TransB, int M, int N, int K,
+		public static extern void cblas_cgemm(BlasLayout Layout, BlasTrans TransA, BlasTrans TransB, int M, int N, int K,
 			ref ComplexF32 alpha, ref ComplexF32 A, int lda, ref ComplexF32 B, int ldb,ref ComplexF32 beta, ref ComplexF32 C, int ldc);
 
 	
 		[DllImport(CBlasDll, CallingConvention=Cdecl, ExactSpelling=true)]
-		public static extern void cblas_sgemm(MatrixLayout Layout, MatrixTranspose TransA, MatrixTranspose TransB, int M, int n,
+		public static extern void cblas_sgemm(BlasLayout Layout, BlasTrans TransA, BlasTrans TransB, int M, int n,
 			int K, float alpha, ref float A, int lda, ref float B, int ldb, float beta, ref float C, int ldc);
 
 	}

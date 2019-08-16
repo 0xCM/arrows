@@ -11,84 +11,76 @@ namespace Z0
     using System.Linq;
     using static zfunc;
 
-    public readonly struct OpTime
+    /// <summary>
+    /// Defines a benchmark measure for an operator
+    /// </summary>
+    public readonly struct OpTime : IRecord<OpTime>
     {
         public static readonly OpTime Zero = new OpTime(0, Duration.Zero);
         
+        [MethodImpl(Inline)]
         public static implicit operator (long OpCount, Duration WorkTime, string Label)(OpTime src)
-            => (src.OpCount, src.WorkTime,src.Label);
+            => (src.OpCount, src.WorkTime,src.OpName);
 
+        [MethodImpl(Inline)]
         public static implicit operator OpTime((long OpCount, Duration WorkTime) src)
             => Define(src.OpCount, src.WorkTime);        
 
+        [MethodImpl(Inline)]
         public static implicit operator OpTime((long OpCount, Duration WorkTime, string Label) src)
             => Define(src.OpCount, src.WorkTime, src.Label);        
 
+        [MethodImpl(Inline)]
         public static implicit operator OpTime((long OpCount, Stopwatch sw, string Label) src)
             => Define(src.OpCount, snapshot(src.sw), src.Label);        
 
+        [MethodImpl(Inline)]
         public static OpTime Define(long OpCount, Duration WorkTime, string label = null)
             => new OpTime(OpCount, WorkTime, label);
 
+        [MethodImpl(Inline)]
         public static OpTime operator +(OpTime lhs, OpTime rhs)
-            => new OpTime(lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, $"{lhs.Label}/{rhs.Label}");
+            => new OpTime(lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, $"{lhs.OpName}/{rhs.OpName}");
 
+        [MethodImpl(Inline)]
         public OpTime(long OpCount, Duration WorkTime, string Label = null)
         {
-            this.Label = Label ?? "?";
+            this.OpName = Label ?? "?";
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;
         }            
 
-        public readonly long OpCount {get;}
+        /// <summary>
+        /// The name of the measured operation
+        /// </summary>
+        public readonly string OpName;
 
-        public readonly Duration WorkTime {get;}
+        /// <summary>
+        /// Either the invocation count or the number of discrete operations performed
+        /// </summary>
+        public readonly long OpCount;
 
-        public readonly string Label {get;}
+        /// <summary>
+        /// The measured time
+        /// </summary>
+        public readonly Duration WorkTime;
 
         public string Format(int? labelPad = null)
-            => $"{Label}".PadRight(labelPad ?? 20) + $"| Ops = {OpCount} " + $"| Time = {WorkTime}";
+            => $"{OpName}".PadRight(labelPad ?? 20) + $"| Ops = {OpCount} " + $"| Time = {WorkTime}";
         
-        public override string ToString()
-            => Format();
-    }
-
-    public readonly struct OpTimePair
-    {
-        public static readonly OpTimePair Zero = Define(OpTime.Zero, OpTime.Zero);
-        
-        public static implicit operator OpTimePair((OpTime left, OpTime right) src)
-            => Define(src.left, src.right);
-
-        public static OpTimePair Define(OpTime Left, OpTime Right)
-            => new OpTimePair(Left,Right);
-
-        public OpTimePair(OpTime Left, OpTime Right)
+        string IRecord.DelimitedText(char delimiter)
         {
-            if(Left.OpCount != Right.OpCount)
-                throw new ArgumentException($"Operation counts not equal");
-            this.Left = Left;
-            this.LeftLabel = Left.Label;
-            this.Right = Right;
-            this.RightLabel = Right.Label;
+            var sep = $" {delimiter} ";
+            return $"{OpName}".PadRight(30) + sep + OpCount.ToString() + sep + WorkTime.Ms.ToString();
         }
-        
-        public readonly OpTime Left;
 
-        public readonly string LeftLabel;
-         
-        public readonly OpTime Right;
-
-        public readonly string RightLabel;
-        public long OpCount
-            => Left.OpCount;
+        IReadOnlyList<string> IRecord.GetHeaders()
+            => (this as IRecord<OpTime>).Headers;
 
         public override string ToString()
             => Format();
 
-        public string Format(int? labelPad = null)
-            => concat(Left.Format(labelPad), eol(), Right.Format(labelPad));
-            
     }
+
 
 }

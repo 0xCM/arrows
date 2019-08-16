@@ -10,8 +10,14 @@ namespace Z0
 
     using static zfunc;
 
-    static class BitMatrixStore
+    static class BitStore
     {
+        public static Vec128<byte> Tr8x16Mask
+        {
+            [MethodImpl(Inline)]
+            get => Vec128.Load(ref As.asRef(in Tr8x16MaskBytes[0]));
+        }
+
         public static ReadOnlySpan<byte> Ones<M,N>(M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -23,7 +29,10 @@ namespace Z0
             return OneData.Slice(0, total);
         }
 
-        public static ReadOnlySpan<byte> Identity4x4 => new byte[] {0b10000100, 0b00100001};
+        public static ReadOnlySpan<byte> Identity4x4 => new byte[] 
+        {
+            0b10000100, 0b00100001
+        };
         
         public static ReadOnlySpan<byte> Identity8x8 => new byte[]
         {
@@ -153,6 +162,39 @@ namespace Z0
             0, 0, 0, 0, 0, 0, 0, Pow2.T05,
             0, 0, 0, 0, 0, 0, 0, Pow2.T06,
             0, 0, 0, 0, 0, 0, 0, Pow2.T07,
+        };
+
+
+        /// <summary>
+        ///  When used as a mask for _mm_shuffle_epi8, transposes a 8x16 bitmatrix
+        /// </summary>
+        static ReadOnlySpan<byte> Tr8x16MaskBytes => new byte[]
+        {
+            0, 4, 8, 12,
+            1, 5, 9, 13,
+            2, 6, 10, 14,
+            3, 7, 11, 15
+
+        };
+
+        /// <summary>
+        /// Part of a pattern to do cross-lane 256-bit shuffles
+        /// </summary>
+        /// <remarks> See https://stackoverflow.com/questions/30669556/shuffle-elements-of-m256i-vector</remarks>
+        static ReadOnlySpan<byte> Tr16x16A => new byte[]
+        {
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70,
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0        
+        };
+
+        static ReadOnlySpan<byte> Tr16x16B => new byte[]
+        {
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0,
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70        
         };
 
         static ReadOnlySpan<byte> OneData => new byte[]

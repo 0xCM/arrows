@@ -24,7 +24,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public Vec128<double> ToVec128()
-            => Vec128.define(x0d, x1d);
+            => Vec128.FromParts(x0d, x1d);
 
         [MethodImpl(Inline)]
         public static __m128d FromVec128(in Vec128<double> src)

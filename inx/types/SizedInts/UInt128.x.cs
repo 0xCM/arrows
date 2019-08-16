@@ -53,7 +53,7 @@ namespace Z0
          
         [MethodImpl(Inline)]
         public static Vec128<ulong> ToVec128(this in UInt128 src)
-            => Vec128.define(src.lo, src.hi);
+            => Vec128.FromParts(src.lo, src.hi);
 
         [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vec128<ulong> src)

@@ -34,6 +34,7 @@ namespace Z0
             log(messages, LogArea.Test);            
         }
 
+
         /// <summary>
         /// Specifies the context-specific randomizer 
         /// </summary>

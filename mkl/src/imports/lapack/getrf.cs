@@ -24,7 +24,7 @@ namespace Z0.Mkl
         /// <param name="ipiv">An integer array of dimension MxN that records the pivot indices that were used</param>
         /// <param name="info">The algorithm exit code</param>
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern int LAPACKE_sgetrf(MatrixLayout layout, int m, int n, ref float a, int lda, ref int ipiv);
+        public static extern int LAPACKE_sgetrf(BlasLayout layout, int m, int n, ref float a, int lda, ref int ipiv);
 
         /// <summary>
         /// Computes an LU factorization of a general M-by-N matrix A using partial pivoting with row interchanges.
@@ -37,7 +37,7 @@ namespace Z0.Mkl
         /// <param name="ipiv">An integer array of dimension MxN that records the pivot indices that were used</param>
         /// <param name="info">The algorithm exit code</param>
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern int LAPACKE_dgetrf(MatrixLayout layout, int m, int n, ref double a, int lda, ref int ipiv);
+        public static extern int LAPACKE_dgetrf(BlasLayout layout, int m, int n, ref double a, int lda, ref int ipiv);
 
 
 

@@ -69,20 +69,20 @@ namespace Z0
         
         const int MetricLen = 14;
 
-        string FormatOpCount(char delimiter = ',', bool digitcommas = false)
-            => $"{OpCount.ToString(digitcommas ? "#,#" : string.Empty)}{delimiter}".PadRight(MetricLen);
         
-        public override string Delimited(char delimiter = ',', bool digitcommas = false)
+        const char DefaultDelimiter = '|';
+
+        public override string DelimitedText(char delimiter)
             => string.Join(string.Empty, 
                 $"{LeftOp.Trim()}{delimiter}".PadRight(OpNameLen), 
                 $"{RightOp.Trim()}{delimiter}".PadRight(OpNameLen), 
-                FormatOpCount(delimiter, digitcommas),
+                $"{OpCount.ToString()}{delimiter}".PadRight(MetricLen),
                 $"{LeftTime}{delimiter}".PadRight(MetricLen), 
                 $"{RightTime}{delimiter}".PadRight(MetricLen), 
                     Ratio);
 
         public override string ToString()
-            => Delimited();
+            => DelimitedText(DefaultDelimiter);
  
         public (AppMsg Header, AppMsg Content) Describe()
             => (DescribeHeader(), DescribeContent());
@@ -91,6 +91,6 @@ namespace Z0
             => AppMsg.Define(GetHeaderText(), SeverityLevel.HiliteCL);
         
         public AppMsg DescribeContent()
-            => AppMsg.Define(Delimited(), SeverityLevel.Benchmark);
+            => AppMsg.Define(DelimitedText(DefaultDelimiter), SeverityLevel.Benchmark);
     }
 }

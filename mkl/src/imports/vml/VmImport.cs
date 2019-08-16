@@ -19,6 +19,14 @@ namespace Z0.Mkl
     {
         const string VmlDll = "z0-vml-clib.dll";
 
+
+        [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern uint vmlGetMode();		
+
+
+        [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern uint vmlSetMode(uint mode);		
+
 		// Addition: r[i] = a[i] + b[i] */
         [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vsAdd(int n, ref float a, ref float b, ref float r);		
@@ -481,7 +489,6 @@ namespace Z0.Mkl
 		[DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vdPackM(int n, ref double a, ref int ma, ref double y);		
 
-
 		[DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vsCos(int n, ref float a, ref float r);		
 
@@ -506,7 +513,6 @@ namespace Z0.Mkl
 
 		[DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vdCospi(int n, ref double a, ref double r);		
-
 
         // Sine PI: r[i] = sin(a[i]*PI)
 		[DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]

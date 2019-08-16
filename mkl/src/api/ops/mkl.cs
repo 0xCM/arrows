@@ -23,9 +23,9 @@ namespace Z0.Mkl
 
     public static partial class mkl
     {
-        const MatrixTranspose NoTranspose = MatrixTranspose.None;
+        const BlasTrans NoTranspose = BlasTrans.None;
         
-        const MatrixLayout RowMajor = MatrixLayout.RowMajor;
+        const BlasLayout RowMajor = BlasLayout.RowMajor;
 
         [MethodImpl(Inline)]
         static int checkx(int exit)

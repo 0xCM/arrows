@@ -201,11 +201,6 @@ namespace Z0.Test
             }
         }
 
-        public void RunMul4Bench()
-        {
-            TracePerf(Mul4Bench(Pow2.T12));
-
-        }
 
         public void Mul8()
         {
@@ -223,25 +218,6 @@ namespace Z0.Test
             VerifyMul64();
         }
 
-        public void RunMul8Bench()
-        {
-            TracePerf(Mul8Bench(Pow2.T12));
-        }
-
-        public void RunMul16Bench()
-        {
-            TracePerf(Mul16Bench(Pow2.T12));
-        }
-
-        public void RunMul32Bench()
-        {
-            TracePerf(Mul32Bench(Pow2.T12));
-        }
-
-        public void RunMul64Bench()
-        {
-            TracePerf(Mul64Bench(Pow2.T12));
-        }
 
         public void MulRVec8()
         {
@@ -261,6 +237,31 @@ namespace Z0.Test
         public void MulRVec64()
         {
             VerifyMulRVec64();            
+        }
+
+        public void RunMul4Bench()
+        {
+            Collect(Mul4Bench(Pow2.T12));
+        }
+
+        public void RunMul8Bench()
+        {
+            Collect(Mul8Bench(Pow2.T12));
+        }
+
+        public void RunMul16Bench()
+        {
+            Collect(Mul16Bench(Pow2.T12));
+        }
+
+        public void RunMul32Bench()
+        {
+            Collect(Mul32Bench(Pow2.T12));
+        }
+
+        public void RunMul64Bench()
+        {
+            Collect(Mul64Bench(Pow2.T12));
         }
 
     }

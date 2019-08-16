@@ -15,6 +15,22 @@ namespace Z0
 
     public static class Log
     {
+        static ILogger BenchmarkLogger        
+            => Log.Get(LogTarget.AreaRoot(LogArea.Bench));
+        
+        static LogTarget<LogArea> BenchmarkTarget
+            => LogTarget.AreaRoot(LogArea.Bench);
+
+        public static void LogBenchmarks<R>(string name, bool newFile, bool writeHeader, char delimiter, params R[] records)
+            where R : IRecord
+        {
+            if(records.Length == 0)
+                return;
+            
+            BenchmarkLogger.Log(records, name, delimiter, writeHeader, newFile,FileExtension.Define("csv"));
+
+        }
+
         public static ILogger Get(ILogTarget dst)
             => dst.Area switch{
                 LogArea.App => AppLog.TheOnly,
@@ -42,8 +58,12 @@ namespace Z0
                 where T : Enum
                     => LogSettings.Get().LogPath(target);
 
-            FilePath UniqueLogPath(FileExtension ext = null)
-                    => LogSettings.Get().UniqueLogPath(Area, ext);
+
+            FilePath LogPath(string topic, FileExtension ext = null)
+                => LogSettings.Get().LogPath(Area, topic, ext);
+
+            FilePath UniqueLogPath(string topic, FileExtension ext = null)
+                    => LogSettings.Get().UniqueLogPath(Area, topic, ext);
 
             FilePath UniqueLogPath<T>(LogTarget<T> target, FileExtension ext = null)
                 where T : Enum
@@ -61,13 +81,51 @@ namespace Z0
                     LogPath().Append(src.Select(x => x.ToString()));
             }
 
+            public void LogRecords<R>(IReadOnlyList<R> records, FilePath dstFile, char? delimiter = null, bool? writeHeader = null, bool append = true)
+                where R : IRecord
+            {
+                
+                if(records.Count == 0)
+                    return;
+                
+                if(!append)
+                    dstFile.DeleteIfExists();
+                
+                var emitHeader =  writeHeader ?? (append && !dstFile.Exists());
+                var sep = delimiter ?? '|';
+
+                if(emitHeader)
+                    dstFile.Append(string.Join(sep, records[0].GetHeaders()));
+                
+                iter(records, r => dstFile.Append(r.DelimitedText(sep)));
+            }
+
             void LogRecords<R>(IReadOnlyList<R> records, char delimiter, bool writeHeader, FilePath dstFile)
                 where R : IRecord
             {
+                
+                if(records.Count == 0)
+                    return;
+
                 if(writeHeader)
                     dstFile.Append(string.Join(delimiter, records[0].GetHeaders()));
                 
-                iter(records, r => dstFile.Append(r.Delimited(delimiter)));
+                iter(records, r => dstFile.Append(r.DelimitedText(delimiter)));
+            }
+
+            public void Log<R>(IEnumerable<R> records, string topic, char delimiter, bool writeHeader = true, 
+                bool newFile = true, FileExtension ext = null)
+                    where R : IRecord
+            {
+                var frozen = records.Freeze();
+                if(frozen.Length == 0)
+                    return;                
+
+                if(newFile)
+                     LogRecords(frozen, delimiter, writeHeader, UniqueLogPath(topic,ext));
+                else
+                    lock(locker)
+                        LogRecords(frozen, delimiter, writeHeader, LogPath(topic, ext));
             }
 
             public void Log<R,T>(IEnumerable<R> records, LogTarget<T> target, char delimiter, bool writeHeader = true, 
@@ -77,7 +135,7 @@ namespace Z0
             {
                 var frozen = records.Freeze();
                 if(frozen.Length == 0)
-                    return;
+                    return;                
 
                 if(newFile)
                      LogRecords(frozen, delimiter, writeHeader, UniqueLogPath(target,ext));
