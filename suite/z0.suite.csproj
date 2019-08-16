@@ -12,7 +12,8 @@
     <ProjectReference Include="..\cpu\src\z0.cpu.csproj" />
     <ProjectReference Include="..\deconstruct\z0.deconstruct.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
-    <ProjectReference Include="..\inx\z0.inx.csproj" />
+    <ProjectReference Include="..\inx\src\core\z0.inx.core.csproj" />
+    <ProjectReference Include="..\bits\src\z0.bits.csproj" />
     <ProjectReference Include="..\mkl\src\z0.mkl.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />

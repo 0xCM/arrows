@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../func/z0.zfunc.csproj" />
+    <ProjectReference Include="../../../nats/z0.nats.csproj" />
+    <ProjectReference Include="../../../primal/z0.primal.csproj" />
+    <ProjectReference Include="../../../matrix/src/z0.matrix.csproj" />  
+
+    <ProjectReference Include="../core/z0.inx.core.csproj" />  
+
+    <!-- <ProjectReference Include="../../../bits/src/z0.bits.csproj" />   -->
+
+  </ItemGroup>
+
+</Project>

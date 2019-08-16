@@ -8,13 +8,13 @@
   <Import Project="..\..\package.targets" />
 
   <ItemGroup>
-    <ProjectReference Include="..\..\structs\z0.structs.csproj" />
-    <ProjectReference Include="..\..\func\z0.zfunc.csproj" />
-    <ProjectReference Include="..\..\nats\z0.nats.csproj" />
-    <ProjectReference Include="..\..\primal\z0.primal.csproj" />
-    <ProjectReference Include="..\..\inx\z0.inx.csproj" />
-    <ProjectReference Include="..\..\bits\src\z0.bits.csproj" />
-    <ProjectReference Include="..\..\asm\src\z0.asm.csproj" />
+    <ProjectReference Include="../../structs/z0.structs.csproj" />
+    <ProjectReference Include="../../func/z0.zfunc.csproj" />
+    <ProjectReference Include="../../nats/z0.nats.csproj" />
+    <ProjectReference Include="../../primal/z0.primal.csproj" />
+    <ProjectReference Include="../../inx/src/core/z0.inx.core.csproj" />
+    <ProjectReference Include="../../bits/src/z0.bits.csproj" />
+    <ProjectReference Include="../../asm/src/z0.asm.csproj" />
 
   </ItemGroup>
 

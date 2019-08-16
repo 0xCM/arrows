@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
 
 
-    public static class BitUtil
+    static class BitUtil
     {
         [MethodImpl(Inline)]
         public static Vec128<sbyte> flip(in Vec128<sbyte> src)
