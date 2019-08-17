@@ -15,6 +15,9 @@ namespace Z0
     
     using static zfunc;
 
+
+
+
     public abstract class Literal<T,L>
         where T : Literal<T,L>
     {

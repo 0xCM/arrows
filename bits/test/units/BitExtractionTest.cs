@@ -23,22 +23,22 @@ namespace Z0.Test
 
             var x0 = gbits.extract(in src, (byte)(i += 3), 3);
             var bsx0 = x0.ToBitString();
-            var y0 = bsx0.TakePrimalValue<uint>();
+            var y0 = bsx0.TakeValue<uint>();
             Claim.eq(x0,y0);
 
             var x1 = gbits.extract(in src, (byte)(i += 3), 3);
             var bsx1 = x1.ToBitString();
-            var y1 = bsx1.TakePrimalValue<uint>();
+            var y1 = bsx1.TakeValue<uint>();
             Claim.eq(x1,y1);
 
             var x2 = gbits.extract(in src, (byte)(i += 3), 3);
             var bsx2 = x2.ToBitString();
-            var y2 = bsx2.TakePrimalValue<uint>();
+            var y2 = bsx2.TakeValue<uint>();
             Claim.eq(x2,y2);
             
             var x3 = gbits.extract(in src, (byte)(i += 3), 3);
             var bsx3 = x3.ToBitString();
-            var y3 = bsx3.TakePrimalValue<uint>();
+            var y3 = bsx3.TakeValue<uint>();
             Claim.eq(x3,y3);            
         }
     }

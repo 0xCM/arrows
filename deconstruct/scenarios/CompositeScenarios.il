@@ -1,21 +1,21 @@
-// 2019-07-31 06:08:35:569
+// 2019-08-16 18:37:57:820
 byte rotr8u(byte src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
     IL_0002: ldc.i4.s 31
     IL_0004: and
-    IL_0005: shr
+    IL_0005: shr.un
     IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shl
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
+    IL_0007: ldc.i4.s 32
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shl
+    IL_000F: or
+    IL_0010: conv.u1
+    IL_0011: ret
 
 }
 ushort rotr16u(ushort src, ushort offset)
@@ -24,16 +24,16 @@ ushort rotr16u(ushort src, ushort offset)
     IL_0001: ldarg.1
     IL_0002: ldc.i4.s 31
     IL_0004: and
-    IL_0005: shr
+    IL_0005: shr.un
     IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
+    IL_0007: ldc.i4.s 32
     IL_0009: ldarg.1
     IL_000A: sub
     IL_000B: ldc.i4.s 31
     IL_000D: and
     IL_000E: shl
     IL_000F: or
-    IL_0010: conv.u2
+    IL_0010: conv.u1
     IL_0011: ret
 
 }
@@ -83,15 +83,15 @@ byte rotl8u(byte x, byte offset)
     IL_0004: and
     IL_0005: shl
     IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shr
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
+    IL_0007: ldc.i4.s 32
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shr.un
+    IL_000F: or
+    IL_0010: conv.u1
+    IL_0011: ret
 
 }
 ushort rotl16u(ushort x, ushort offset)
@@ -102,7 +102,7 @@ ushort rotl16u(ushort x, ushort offset)
     IL_0004: and
     IL_0005: shl
     IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
+    IL_0007: ldc.i4.s 32
     IL_0009: ldarg.1
     IL_000A: sub
     IL_000B: ldc.i4.s 31

@@ -71,21 +71,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                math.shiftl(ref int8(ref lhs), rhs);
+                Bits.shiftl(ref int8(ref lhs), rhs);
             else if (typeof(T) == typeof(byte))
-                math.shiftl(ref uint8(ref lhs), rhs);
+                Bits.shiftl(ref uint8(ref lhs), rhs);
             else if (typeof(T) == typeof(short))
-                math.shiftl(ref int16(ref lhs), rhs);
+                Bits.shiftl(ref int16(ref lhs), rhs);
             else if (typeof(T) == typeof(ushort))
-                math.shiftl(ref uint16(ref lhs), rhs);
+                Bits.shiftl(ref uint16(ref lhs), rhs);
             else if (typeof(T) == typeof(int))
-                math.shiftl(ref int32(ref lhs), rhs);
+                Bits.shiftl(ref int32(ref lhs), rhs);
             else if (typeof(T) == typeof(uint))
-                math.shiftl(ref uint32(ref lhs), rhs);
+                Bits.shiftl(ref uint32(ref lhs), rhs);
             else if (typeof(T) == typeof(long))
-                math.shiftl(ref int64(ref lhs), rhs);
+                Bits.shiftl(ref int64(ref lhs), rhs);
             else if (typeof(T) == typeof(ulong))
-                math.shiftl(ref uint64(ref lhs), rhs);
+                Bits.shiftl(ref uint64(ref lhs), rhs);
             else
                 throw unsupported<T>();
             return ref lhs;

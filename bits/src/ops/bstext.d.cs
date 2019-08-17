@@ -19,7 +19,7 @@ namespace Z0
         /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
         public static string bstext(byte src)
-            => ByteIndex.BitText(src);
+            => BitStore.BitText(src);
 
         /// <summary>
         /// Constructs a string of 8 characters, referred to as a bitstring, contains the character sequence 
@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
         public static string bstext(sbyte src)
-            => ByteIndex.BitText(src);
+            => BitStore.BitText(src);
 
         [MethodImpl(Inline)]
         public static string bstext(ushort src)

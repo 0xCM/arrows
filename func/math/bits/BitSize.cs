@@ -9,8 +9,11 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    
+    using static AsIn;
+    using static As;
+
     using static zfunc;
+
 
     /// <summary>
     /// Specifies a memory size UOM in bits
@@ -163,7 +166,7 @@ namespace Z0
             => Bits.GetHashCode();
 
         public override bool Equals(object obj)
-            => obj is BitSize ? Equals((BitSize)obj) : false;
+            => obj is BitSize x ? Equals(x) : false;
 
         public ByteSize AlignedBytes
         {

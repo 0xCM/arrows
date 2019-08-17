@@ -44,10 +44,11 @@ namespace Z0
         /// </summary>
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
 
+        
         public static BitMatrix4 Identity 
         {
             [MethodImpl(Inline)]
-            get => Define(BitStore.Identity4x4);
+            get => Define(Identity4x4);
         }
 
         public static BitMatrix4 Zero 
@@ -352,5 +353,11 @@ namespace Z0
         
         public override int GetHashCode()
             => throw new NotSupportedException();
+
+        static ReadOnlySpan<byte> Identity4x4 => new byte[] 
+        {
+            0b10000100, 0b00100001
+        };
+
     }
 }

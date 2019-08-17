@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="x1">Taken from bits 16-31 of the source value</param>
         [MethodImpl(Inline)]
         public static (byte x0, byte x1) split(ushort src, N2 parts = default)
-          => (lo(src), hi(src));
+          => ((byte)src, (byte)(src >> 8));
 
         /// <summary>
         /// Partitions a 32-bit signed integer into a pair of signed 16-bit signed integers
@@ -58,8 +58,7 @@ namespace Z0
         /// <param name="x1">Taken from bits 16-31 of the source value</param>
         [MethodImpl(Inline)]
         public static (ushort x0, ushort x1) split(uint src, N2 parts = default)
-          => ((ushort)(src >> 0 * 16), 
-              (ushort)(src >> 1 * 16));
+          => ((ushort)(src), (ushort)(src >> 16));
 
         /// <summary>
         /// Partitions a 64-bit signed integer into a pair of signed 32-bit integers

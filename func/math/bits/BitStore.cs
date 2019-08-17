@@ -5,19 +5,51 @@
 namespace Z0
 {
     using System;
+    using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using static zfunc;
 
-    static class ByteIndex
+    using static zfunc;
+    using static As;
+
+    public static class BitStore
     {
+        /// <summary>
+        /// Constructs a bytespan where each entry, ordered from lo to hi, represents a single bit in the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> BitSeq<T>(in T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return ReadSeq(uint8(src));
+            else if(typeof(T) == typeof(sbyte))
+                return ReadSeq(int8(src));
+            else if(typeof(T) == typeof(ushort))
+                return ReadSeq(uint16(src));
+            else if(typeof(T) == typeof(short))
+                return ReadSeq(int16(src));
+            else if(typeof(T) == typeof(int))
+                return ReadSeq(int32(src));
+            else if(typeof(T) == typeof(long))
+                return ReadSeq(int64(src));
+            else if(typeof(T) == typeof(uint))
+                return ReadSeq(uint32(src));
+            else if(typeof(T) == typeof(ulong))
+                return ReadSeq(uint64(src));
+            else if(typeof(T) == typeof(float))
+                return ReadSeq(float32(src));
+            else if(typeof(T) == typeof(double))
+                return ReadSeq(float64(src));
+            else            
+                throw unsupported<T>();            
+        }        
+
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> BitChars(byte index)
             => U8Index[index].bitchars;
 
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<byte> BitSeq(byte index)
-            => U8Index[index].bitseq;
 
         [MethodImpl(Inline)]
         public static string BitText(byte index)
@@ -35,12 +67,121 @@ namespace Z0
         public static string BitText(sbyte index)
             => I8Index[index + SByte.MaxValue + 1].text;
 
+
+        /// <summary>
+        /// Constructs a sequence of 8 bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(byte value)
+            => U8Index[value].bitseq;
+
+        /// <summary>
+        /// Constructs a sequence of 8 bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled. The uppermost bit b7 determines
+        /// the sign
+        /// </summary>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(sbyte src)
+            => ReadSeq((byte)src);
+
+        /// <summary>
+        /// Constructs a sequence of 16 bytes {bi} := [b15,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(ushort src)
+        {
+            (var lo, var hi) = ((byte)src, (byte)(src >> 8));
+            Span<byte> dst = new byte[16];
+            ReadSeq(lo).CopyTo(dst,0);
+            ReadSeq(hi).CopyTo(dst,8);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Constructs a sequence of 16 bytes {bi} := [b15,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(short src)
+            => ReadSeq((ushort)src);
+
+        /// <summary>
+        /// Constructs a sequence of 32 bytes {bi} := [b31,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(uint src)
+        {
+            (var lo, var hi) = ((ushort)(src), (ushort)(src >> 16));
+            Span<byte> dst = new byte[32];
+            ReadSeq(lo).CopyTo(dst,0);
+            ReadSeq(hi).CopyTo(dst,16);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Constructs a sequence of 32 bytes {bi} := [b31,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(int src)
+            => ReadSeq((uint)src);
+
+        /// <summary>
+        /// Constructs a sequence of 32 bytes {bi} := [b31,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="value">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(float value)
+            => ReadSeq(BitConverter.SingleToInt32Bits(value));
+
+        /// <summary>
+        /// Constructs a sequence of 64 bytes {bi} := [b63,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(ulong src)
+        {
+            (var lo, var hi) =  ((uint)src, (uint)(src >> 32));
+            Span<byte> dst = new byte[64];
+            ReadSeq(lo).CopyTo(dst,0);
+            ReadSeq(hi).CopyTo(dst,32);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Constructs a sequence of 64 bytes {bi} := [b63,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(long src)
+            => ReadSeq((ulong)src);
+
+        /// <summary>
+        /// Constructs a sequence of 64 bytes {bi} := [b63,...b0] over the domain {0,1} according to whether the
+        /// bit in the i'th position of the source is respecively disabled/enabled
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<byte> ReadSeq(double src)
+            => ReadSeq(BitConverter.DoubleToInt64Bits(src));
+ 
         static (byte index, byte[] bitseq, char[] bitchars, string text)[] U8Index
             = DefineU8Index();        
 
         static (sbyte index, sbyte[] bitseq, char[] bitchars, string text)[] I8Index
             = DefineI8Index();        
-
+    
         static (byte index, byte[] bitseq, char[] bitchars, string text)[] DefineU8Index()
         {
             var dst = new (byte index, byte[] bitseq, char[] bitchars, string text)[256];
@@ -565,7 +706,6 @@ namespace Z0
             dst[255] = (0b01111111, new sbyte[]{1,1,1,1,1,1,1,0}, new char[]{'1','1','1','1','1','1','1','0'}, "01111111");
             return dst;
         }
-
     }
 
 }

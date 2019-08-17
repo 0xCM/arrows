@@ -37,19 +37,20 @@ namespace Z0.Test
         public void Test00()
         {
             Span<byte> dst = stackalloc byte[8];
-            U64_00.ReadBits(0u, 7u, dst, 0);
+            //U64_00.ReadBits(0, 7, dst, 0);
+            gbits.range(U64_00, 0, 7, dst, 0);
             Claim.eq((byte)0b11110000, dst[0]);
 
-            U64_00.ReadBits(8u, 15u, dst, 0);
+            gbits.range(U64_00, 8, 15, dst, 0);
             Claim.eq((byte)0b00111000, dst[0]);
 
-            U64_00.ReadBits(4u, 7u, dst, 0);
+            gbits.range(U64_00, 4, 7, dst, 0);
             Claim.eq((byte)0b1111, dst[0]);
 
-            U64_00.ReadBits(4u, 6u, dst, 1);
+            gbits.range(U64_00, 4, 6, dst, 1);
             Claim.eq((byte)0b111, dst[1]);
 
-            U32_01.ReadBits(7u, 8u, dst, 2);
+            gbits.range(U32_01, 7, 8, dst, 2);
             Claim.eq((byte)0b11, dst[2]);                    
         }
 
@@ -60,8 +61,9 @@ namespace Z0.Test
             {
                 var x = src[i];
                 (var x0, var x1) = Bits.split(x);
-                var y0 = x.ReadBits(0, 31).TakeUInt32();
-                var y1 = x.ReadBits(32, 63).TakeUInt32();
+                var y0 = gbits.range(x, 0, 31);
+                var y1 = gbits.range(x, 32, 63);
+
                 Claim.eq(y0,x0);
                 Claim.eq(y1,x1);
             }
@@ -74,8 +76,10 @@ namespace Z0.Test
             {
                 var x = src[i];
                 (var x0, var x1) = Bits.split(x);
-                var y0 = x.ReadBits(0, 15).TakeUInt16();
-                var y1 = x.ReadBits(16, 31).TakeUInt16();
+
+                var y0 = gbits.range(x, 0, 15);
+                var y1 = gbits.range(x, 16, 31);
+
                 Claim.eq(y0,x0);
                 Claim.eq(y1,x1);
             }
@@ -93,6 +97,7 @@ namespace Z0.Test
                 var x3 = (ushort)(((ushort)x.ReadBits(9, 11)[0]) << 9);
                 var x4 = (ushort)(((ushort)x.ReadBits(12, 14)[0]) << 12);
                 var x5 = (ushort)(((ushort)x.ReadBits(15, 15)[0]) << 15);
+
                 var y = x0;
                 y |= x1;
                 y |= x2;

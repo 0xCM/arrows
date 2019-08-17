@@ -92,7 +92,7 @@ namespace Z0
             => (this as IRandomSource<ulong>).Next(max);
 
         int IRandomSource.NextInt32(int max)
-            => (this as IRandomSource<ulong>).NextInt32(max);
+            => (this as IRandomSource<ulong>).Next(max);
 
     }
 

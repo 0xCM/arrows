@@ -48,7 +48,7 @@ namespace Z0.Test
             var z4 = (byte)0;
             Claim.eq(y4,z4);
 
-            var x5 = UInt4.FromBitSeq(Bits.bitseq((byte)5));
+            var x5 = UInt4.FromBitSeq(gbits.bitseq((byte)5));
             var y5 = (UInt4)5;
             Claim.eq(x5,y5);
         }

@@ -80,9 +80,49 @@ namespace Z0
         public static ref BitMatrix<N8,N16,uint> Transpose(this ref BitMatrix<N8,N16,uint> A)
         {
             var vec = Vec128.Load(ref head(A.Bytes));
-            vstore(dinx.shuffle(in vec, BitStore.Tr8x16Mask), ref head(A.Bytes));
+            vstore(dinx.shuffle(in vec, Tr8x16Mask), ref head(A.Bytes));
             return ref A;
         }
+
+
+        static Vec128<byte> Tr8x16Mask
+        {
+            [MethodImpl(Inline)]
+            get => Vec128.Load(ref As.asRef(in Tr8x16MaskBytes[0]));
+        }
+
+        /// <summary>
+        ///  When used as a mask for _mm_shuffle_epi8, transposes a 8x16 bitmatrix
+        /// </summary>
+        static ReadOnlySpan<byte> Tr8x16MaskBytes => new byte[]
+        {
+            0, 4, 8, 12,
+            1, 5, 9, 13,
+            2, 6, 10, 14,
+            3, 7, 11, 15
+
+        };
+
+
+        /// <summary>
+        /// Part of a pattern to do cross-lane 256-bit shuffles
+        /// </summary>
+        /// <remarks> See https://stackoverflow.com/questions/30669556/shuffle-elements-of-m256i-vector</remarks>
+        static ReadOnlySpan<byte> Tr16x16A => new byte[]
+        {
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70,
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0        
+        };
+
+        static ReadOnlySpan<byte> Tr16x16B => new byte[]
+        {
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 
+            0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0,
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 
+            0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70        
+        };
 
     }
 }

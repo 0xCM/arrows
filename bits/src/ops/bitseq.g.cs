@@ -23,26 +23,7 @@ namespace Z0
         [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
         public static ReadOnlySpan<byte> bitseq<T>(T src)
             where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return Bits.bitseq(uint8(src));
-            else if(typeof(T) == typeof(sbyte))
-                return Bits.bitseq(int8(src));
-            else if(typeof(T) == typeof(ushort))
-                return Bits.bitseq(uint16(src));
-            else if(typeof(T) == typeof(short))
-                return Bits.bitseq(int16(src));
-            else if(typeof(T) == typeof(int))
-                return Bits.bitseq(int32(src));
-            else if(typeof(T) == typeof(long))
-                return Bits.bitseq(int64(src));
-            else if(typeof(T) == typeof(uint))
-                return Bits.bitseq(uint32(src));
-            else if(typeof(T) == typeof(ulong))
-                return Bits.bitseq(uint64(src));
-            else            
-                throw unsupported<T>();            
-        }        
+                => BitStore.BitSeq(src);
 
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]

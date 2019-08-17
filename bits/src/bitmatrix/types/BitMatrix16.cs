@@ -58,14 +58,13 @@ namespace Z0
         public static readonly BitSize StorageBytes = (ByteSize)TotalBitCount;
                         
         
-
         /// <summary>
         /// Allocates an identity matrix
         /// </summary>
         public static BitMatrix16 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitStore.Identity16x16);
+            get => Load(Identity16x16);
         }
 
         /// <summary>
@@ -443,5 +442,27 @@ namespace Z0
         
         public override int GetHashCode()
             => throw new NotSupportedException();
+ 
+        static ReadOnlySpan<byte> Identity16x16 => new byte[]
+        {
+            Pow2.T00, 0,
+            Pow2.T01, 0,
+            Pow2.T02, 0,
+            Pow2.T03, 0,
+            Pow2.T04, 0,
+            Pow2.T05, 0,
+            Pow2.T06, 0,
+            Pow2.T07, 0,
+            0, Pow2.T00,
+            0, Pow2.T01,
+            0, Pow2.T02,
+            0, Pow2.T03,
+            0, Pow2.T04,
+            0, Pow2.T05,
+            0, Pow2.T06,
+            0, Pow2.T07,
+        };
+
+
    }
 }

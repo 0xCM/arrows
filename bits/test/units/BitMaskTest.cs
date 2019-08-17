@@ -14,8 +14,6 @@ namespace Z0.Test
 
     public class BitMaskTest : UnitTest<BitMaskTest>
     {
-
-
         void SetBits<T>(int cycles = DefaltCycleCount)
             where T : struct
         {

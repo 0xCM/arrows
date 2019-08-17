@@ -56,7 +56,7 @@ namespace Z0
             => PR.Next(max);   
 
         int IRandomSource.NextInt32(int max)
-            => PR.NextInt32(max);
+            => PR.Next(max);
 
         double IRandomSource.NextDouble()
             => PR.Next<double>();

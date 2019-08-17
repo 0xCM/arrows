@@ -15,31 +15,31 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static byte Extract(this in Vec128<byte> src, int index)
+        public static byte Extract(this Vec128<byte> src, int index)
             => Sse41.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static uint Extract(this in Vec128<ushort> src, int index)
+        public static uint Extract(this Vec128<ushort> src, int index)
             => Sse2.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static int Extract(this in Vec128<int> src, int index)
+        public static int Extract(this Vec128<int> src, int index)
             => Sse41.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static uint Extract(this in Vec128<uint> src, int index)
+        public static uint Extract(this Vec128<uint> src, int index)
             => Sse41.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static long Extract(this in Vec128<long> src, int index)
+        public static long Extract(this Vec128<long> src, int index)
             => Sse42.X64.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static ulong Extract(this in Vec128<ulong> src, int index)
+        public static ulong Extract(this Vec128<ulong> src, int index)
             => Sse42.X64.Extract(src,(byte)index);
 
         [MethodImpl(Inline)]
-        public static float Extract(this in Vec128<float> src, int index)
+        public static float Extract(this Vec128<float> src, int index)
             => Sse41.Extract(src,(byte)index);
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static ulong Lo(this in Vec128<ulong> src)
+        public static ulong Lo(this Vec128<ulong> src)
             => Sse42.X64.Extract(src, 0);
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static ulong Hi(this in Vec128<ulong> src)
+        public static ulong Hi(this Vec128<ulong> src)
             => Sse42.X64.Extract(src,  1);
 
     }

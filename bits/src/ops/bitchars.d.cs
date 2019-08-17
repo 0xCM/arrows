@@ -17,7 +17,7 @@ namespace Z0
         /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> bitchars(byte src)
-            => ByteIndex.BitChars(src);
+            => BitStore.BitChars(src);
 
         /// <summary>
         /// Constructs a sequence of 8 characters {ci} := [c7,...c0] over the domain {'0','1'} according to whether the
@@ -26,7 +26,7 @@ namespace Z0
         /// <param name="value">The source value</param>
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> bitchars(sbyte src)
-            => ByteIndex.BitChars(src);
+            => BitStore.BitChars(src);
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<char> bitchars(ushort src)

@@ -23,7 +23,7 @@ namespace Z0.Test
             {
                 var x = src[i];
                 var bs = BitString.FromScalar(src[i]);
-                var y = bs.TakePrimalValue<T>();
+                var y = bs.TakeValue<T>();
                 Claim.eq(x,y);
                 Claim.eq(bs.Format(), BitString.FromScalar(y).Format());
             }
@@ -48,7 +48,7 @@ namespace Z0.Test
                 if(i <= 63)
                 {
                     var val1 = Pow2.pow((byte)i);
-                    var val2 = bs.TakePrimalValue<ulong>();
+                    var val2 = bs.TakeValue<ulong>();
                     Claim.eq(val1,val2);
                 }    
             }
@@ -59,7 +59,7 @@ namespace Z0.Test
         {
             var x0 = 0b_01011000_00001000_11111010_01100101u;
             var x1 = x0.ToBitString();
-            var x2 = x1.TakePrimalValue<uint>();
+            var x2 = x1.TakeValue<uint>();
             Claim.eq(x0,x2);            
 
             var x = 0b10100001100101010001u;
@@ -68,7 +68,7 @@ namespace Z0.Test
             Claim.eq((int)bs1.Length, bsSrc.Length);
 
             var bs2 = BitString.FromScalar(x);
-            var y = bs1.TakePrimalValue<uint>();
+            var y = bs1.TakeValue<uint>();
             Claim.eq(x,y);
             Claim.yea(bs1.Equals(bs2));
 
@@ -102,7 +102,7 @@ namespace Z0.Test
             var src = Random.BitStrings(5, 60).Take(Pow2.T14);
             foreach(var bs in src)
             {
-                var bvX = bs.TakePrimalValue<ulong>().ToBitString();
+                var bvX = bs.TakeValue<ulong>().ToBitString();
                 var nlzX = bvX.PopCount();
                 var bv = BitVector64.Load(bs.ToBits());
                 var nlzY = bv.Pop();
@@ -159,7 +159,7 @@ namespace Z0.Test
             for(var i=0u; i<wordCount; i++)
             {
                 var w = words[i];
-                var value = w.TakePrimalValue<byte>();
+                var value = w.TakeValue<byte>();
                 Claim.eq(i, value);
             }
         }    

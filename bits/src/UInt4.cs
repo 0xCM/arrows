@@ -443,7 +443,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => BitString.FromBitSeq(Bits.bitseq(data).Slice(0,BitCount));
+            => BitString.FromBitSeq(gbits.bitseq(data).Slice(0,BitCount));
 
         [MethodImpl(Inline)]
         public bool Equals(UInt4 rhs)

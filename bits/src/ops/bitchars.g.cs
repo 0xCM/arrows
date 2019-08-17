@@ -13,10 +13,6 @@ namespace Z0
 
     partial class gbits
     {
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static char bitchar<T>(in T src, byte pos)
-            where T : struct
-                => gbits.test(in src, pos)  ? AsciDigits.A1 : AsciDigits.A0;                
 
         /// <summary>
         /// Constructs bitstring characters for integral values
@@ -62,19 +58,6 @@ namespace Z0
             return maxlen != null && dst.Length >= maxlen ?  dst.Slice(0,maxlen.Value) :  dst;
         }
 
-        [PrimalKinds(PrimalKind.All)]
-        public static Span<byte> bitseq<T>(ReadOnlySpan<T> src, int? maxlen = null)
-            where T : struct
-        {
-            require(typeof(T) != typeof(char));
-            
-            var seglen = Unsafe.SizeOf<T>()*8;
-            Span<byte> dst = new byte[src.Length * seglen];
-            for(var i=0; i<src.Length; i++)
-                bitseq(src[i]).CopyTo(dst, i*seglen);
-            return maxlen != null && dst.Length >= maxlen ?  dst.Slice(0,maxlen.Value) :  dst;
-
-        }
         
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static Span<char> bitchars<T>(Span<T> src, int? maxlen = null)

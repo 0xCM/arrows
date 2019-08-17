@@ -16,6 +16,38 @@ namespace Z0
 
     partial class Bits
     {                
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> rotl(Vec128<ushort> src, byte offset)
+        {
+            var x = Bits.shiftl(in src, offset);
+            var y = Bits.shiftr(in src, (byte)(16-offset));   
+            return Bits.or(x,y);             
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> rotl(Vec256<ushort> src, byte offset)
+        {
+            var x = Bits.shiftl(in src, offset);
+            var y = Bits.shiftr(in src, (byte)(16-offset));   
+            return Bits.or(x,y);             
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> rotl(Vec256<uint> src, byte offset)
+        {
+            var x = Bits.shiftl(in src, offset);
+            var y = Bits.shiftr(in src, (byte)(32-offset));   
+            return Bits.or(x,y);             
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> rotl(Vec256<ulong> src, byte offset)
+        {
+            var x = Bits.shiftl(in src, offset);
+            var y = Bits.shiftr(in src, (byte)(64-offset));   
+            return Bits.or(x,y);             
+        }
+
         /// <summary>
         /// Rotates bits in the source leftwards by a specified offset
         /// </summary>
@@ -52,7 +84,6 @@ namespace Z0
         public static ulong rotl(ulong src, ulong offset)
             => (src << (int)offset) | (src >> (64 - (int)offset));
     
-
         /// <summary>
         /// Rotates source bits leftwards by a specified offset
         /// </summary>

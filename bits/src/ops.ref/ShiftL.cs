@@ -138,7 +138,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -146,7 +146,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -154,7 +154,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -162,7 +162,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -170,7 +170,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -178,7 +178,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -186,7 +186,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -194,7 +194,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs[i]);
+                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
             return dst;                
         }
  
@@ -202,7 +202,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -210,7 +210,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -218,7 +218,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -226,7 +226,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -234,7 +234,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -242,7 +242,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -250,7 +250,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -258,7 +258,7 @@ namespace Z0
         {            
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = math.shiftl(lhs[i], rhs);
+                dst[i] = Bits.shiftl(lhs[i], rhs);
             return dst;                
         }
 

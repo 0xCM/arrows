@@ -52,14 +52,13 @@ namespace Z0
         /// </summary>
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
 
-
         /// <summary>
         /// Allocates an copy of the identity matrix
         /// </summary>
         public static BitMatrix8 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitStore.Identity8x8);
+            get => Load(Identity8x8);
         }
 
         /// <summary>
@@ -438,5 +437,11 @@ namespace Z0
         
         public override int GetHashCode() 
             => throw new NotSupportedException();
+ 
+        static ReadOnlySpan<byte> Identity8x8 => new byte[]
+        {
+            1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7
+        };
+
     }
 }

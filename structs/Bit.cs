@@ -70,7 +70,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator byte(Bit src)
-            => src.value ? U8One : U8Zero;
+            => src.value ? (byte)1 : (byte)0;
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(Bit src)

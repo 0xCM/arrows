@@ -1,4 +1,4 @@
-// 2019-07-31 06:08:35:411
+// 2019-08-16 18:37:57:669
 Vector128<sbyte> addv8u128(in Vector128<sbyte> lhs, in Vector128<sbyte> rhs)
 {
     IL_0000: ldarg.0
@@ -291,56 +291,6 @@ bool testz(in Vector128<byte> lhs, in Vector128<byte> rhs)
     IL_0011: ret
 
 }
-bool testz(in Vector128<sbyte> lhs, in Vector128<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector128`1<System.SByte>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.SByte>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0011: ret
-
-}
-bool testz(in Vector128<short> lhs, in Vector128<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector128`1<System.Int16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.Int16>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0011: ret
-
-}
-bool testz(in Vector128<ushort> lhs, in Vector128<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector128`1<System.UInt16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.UInt16>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: ret
-
-}
-bool testz(in Vector128<int> lhs, in Vector128<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector128`1<System.Int32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.Int32>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0011: ret
-
-}
-bool testz(in Vector128<uint> lhs, in Vector128<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector128`1<System.UInt32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.UInt32>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0011: ret
-
-}
 bool testz(in Vector128<long> lhs, in Vector128<long> rhs)
 {
     IL_0000: ldarg.0
@@ -378,66 +328,6 @@ bool testz(in Vector128<double> lhs, in Vector128<double> rhs)
     IL_0006: ldarg.1
     IL_0007: ldobj System.Runtime.Intrinsics.Vector128`1<System.Double>
     IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<sbyte> lhs, in Vector256<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.SByte>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.SByte>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<byte> lhs, in Vector256<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Byte>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.Byte>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<short> lhs, in Vector256<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int16>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<ushort> lhs, in Vector256<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt16>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<int> lhs, in Vector256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int32>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: ret
-
-}
-bool testz(in Vector256<uint> lhs, in Vector256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Runtime.Intrinsics.Vector256`1<System.UInt32>
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
     IL_0011: ret
 
 }

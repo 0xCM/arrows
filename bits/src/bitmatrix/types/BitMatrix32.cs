@@ -58,7 +58,7 @@ namespace Z0
         public static BitMatrix32 Identity 
         {
             [MethodImpl(Inline)]
-            get => Load(BitStore.Identity32x32);
+            get => Load(Identity32x32);
         }
 
         /// <summary>
@@ -456,6 +456,43 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
 
+
+        static ReadOnlySpan<byte> Identity32x32 => new byte[]
+        {
+            Pow2.T00, 0, 0, 0,
+            Pow2.T01, 0, 0, 0,
+            Pow2.T02, 0, 0, 0,
+            Pow2.T03, 0, 0, 0,
+            Pow2.T04, 0, 0, 0,
+            Pow2.T05, 0, 0, 0,
+            Pow2.T06, 0, 0, 0,
+            Pow2.T07, 0, 0, 0,
+            0, Pow2.T00, 0, 0,
+            0, Pow2.T01, 0, 0,
+            0, Pow2.T02, 0, 0,
+            0, Pow2.T03, 0, 0,
+            0, Pow2.T04, 0, 0,
+            0, Pow2.T05, 0, 0,
+            0, Pow2.T06, 0, 0,
+            0, Pow2.T07, 0, 0,
+            0, 0, Pow2.T00, 0,
+            0, 0, Pow2.T01, 0,
+            0, 0, Pow2.T02, 0,
+            0, 0, Pow2.T03, 0,
+            0, 0, Pow2.T04, 0,
+            0, 0, Pow2.T05, 0,
+            0, 0, Pow2.T06, 0,
+            0, 0, Pow2.T07, 0,
+            0, 0, 0, Pow2.T00,
+            0, 0, 0, Pow2.T01,
+            0, 0, 0, Pow2.T02,
+            0, 0, 0, Pow2.T03,
+            0, 0, 0, Pow2.T04,
+            0, 0, 0, Pow2.T05,
+            0, 0, 0, Pow2.T06,
+            0, 0, 0, Pow2.T07,
+
+        };
 
     }
 }

@@ -21,7 +21,7 @@ namespace Z0.Test
             foreach(var x in src)
             {
                 var y = BitString.FromScalar(x);
-                var z = y.TakePrimalValue<T>();
+                var z = y.TakeValue<T>();
                 Claim.eq(x,z);
 
             }
@@ -31,7 +31,7 @@ namespace Z0.Test
         public void ParseBits0()
         {
             var x = BitString.Parse("01010111");
-            var y = x.TakePrimalValue<byte>();
+            var y = x.TakeValue<byte>();
             Claim.eq((byte)0b01010111, y);
 
         }
@@ -42,10 +42,10 @@ namespace Z0.Test
             var ybs = x.ToBitString();
             Claim.eq(xbs, ybs);                
 
-            var y = xbs.TakePrimalValue<ulong>();
+            var y = xbs.TakeValue<ulong>();
             Claim.eq(x, y);
 
-            var z = ybs.TakePrimalValue<ulong>();
+            var z = ybs.TakeValue<ulong>();
             Claim.eq(x, z);
 
             var byx = BitConverter.GetBytes(x).ToSpan();
@@ -77,7 +77,7 @@ namespace Z0.Test
                 
                 var bytes = span<byte>(8);
                 for(var i=0; i<8; i++)         
-                    bytes[i] = blocks[i].TakePrimalValue<byte>();
+                    bytes[i] = blocks[i].TakeValue<byte>();
                 
                 var j = 0;
                 var y = Bits.pack(bytes[j++], bytes[j++], bytes[j++], bytes[j++], 

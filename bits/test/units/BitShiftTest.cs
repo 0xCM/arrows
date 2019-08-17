@@ -21,11 +21,11 @@ namespace Z0.Test
             var signed = gmath.signed<T>();
             var bitsize = BitSize.Size<T>();
             var bs10 = BitString.Parse("1" + repeat('0', bitsize - 1).Concat());
-            var x10 = bs10.TakePrimalValue<T>();
+            var x10 = bs10.TakeValue<T>();
             var bs11 = BitString.Parse("11" + repeat('0', bitsize - 2).Concat());
-            var x11 = bs11.TakePrimalValue<T>();
+            var x11 = bs11.TakeValue<T>();
             var bs01 = BitString.Parse("01" + repeat('0', bitsize - 2).Concat());
-            var x01 = bs01.TakePrimalValue<T>();
+            var x01 = bs01.TakeValue<T>();
             var y = gbits.shiftr(x10, 1);
             if(signed)
                 Claim.eq(x11, y);
@@ -171,6 +171,7 @@ namespace Z0.Test
             var trA = dinx.shuffle(dstA.As<byte>(), trm);
             var trB = dinx.shuffle(dstB.As<byte>(), trm);
             
+
             //Create a stagger between the two truncated vectors so that
             //they can be interleaved with blend
             var shB = Bits.shiftlw(trB.As<ushort>(), 1).As<byte>();
@@ -178,6 +179,7 @@ namespace Z0.Test
 
             if(trace)
             {
+                var expect = Vec256.Load(BitRef.ShiftL(src.ToSpan(), offset));
                 Trace(() => src);
                 Trace(nameof(srcX), srcX.ToString());
                 Trace(nameof(srcY), srcY.ToString());
@@ -187,6 +189,7 @@ namespace Z0.Test
                 Trace(() => trB);
                 Trace(() => shB);
                 Trace(() => result);
+                Trace(() => expect);
             }
             return result;
             
@@ -194,12 +197,113 @@ namespace Z0.Test
         
         public void ShiftLeftv256x8u()
         {
-            var src = Random.CpuVec256<byte>();
+            //var src = Random.CpuVec256<byte>();
+            var src = Vec256.FromBytes(
+                0, 1, 2, 3, 4, 5, 6, 7, 
+                8, 9, 10, 11, 12, 13, 14, 15, 
+                16, 17, 18, 19, 20, 21, 22, 23, 
+                24, 25, 26, 27, 28, 29, 30, 31 
+                );
             byte j = 1;
-            var b = ShiftL(src,j);
+            var b = ShiftL(src,j,true);
             var c =  Vec256.Load(BitRef.ShiftL(src.ToSpan(), j));
                 
 
+        }
+
+        void Shift<T>(Orientation dir, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+            where T : struct
+        {            
+            var x = lhs.Replicate();
+
+            if(dir == Orientation.Left)
+            {
+                for(var i=0; i< Samples; i++)
+                {
+                    gbits.shiftl(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.shiftl(lhs[i],rhs[i]));
+                }
+            }
+            else
+            {
+                for(var i=0; i< Samples; i++)
+                {
+                    gbits.shiftr(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.shiftr(lhs[i],rhs[i]));
+                }
+            }
+        }
+
+        public void ShiftI8()
+        {
+            var lhs = Random.Array<sbyte>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<sbyte>.BitSize));            
+
+            Shift<sbyte>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<sbyte>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), Bits.shiftr(lhs[i], rhs[i])));    
+        }
+
+        public void ShiftU8()
+        {
+            var lhs = Random.Array<byte>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<byte>.BitSize));            
+
+            Shift<byte>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq((byte)(lhs[i] << rhs[i]), Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<byte>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq((byte)(lhs[i] >> rhs[i]), Bits.shiftr(lhs[i], rhs[i])));    
+        }
+
+        public void ShiftI32()
+        {
+            var lhs = Random.Array<int>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<int>.BitSize));            
+
+            Shift<int>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] << rhs[i], Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<int>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], Bits.shiftr(lhs[i], rhs[i])));
+        }
+
+        public void ShiftU32()
+        {
+            var lhs = Random.Array<uint>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<uint>.BitSize));            
+
+            Shift<uint>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] << rhs[i], Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<uint>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], Bits.shiftr(lhs[i], rhs[i])));
+
+        }
+        public void ShiftI64()
+        {
+            var lhs = Random.Array<long>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<long>.BitSize));            
+
+            Shift<long>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] << rhs[i], Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<long>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], Bits.shiftr(lhs[i], rhs[i])));
+        }
+
+        public void ShiftU64()
+        {
+            var lhs = Random.Array<ulong>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, (int)SizeOf<ulong>.BitSize));            
+
+            Shift<ulong>(Orientation.Left, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] << rhs[i], Bits.shiftl(lhs[i], rhs[i])));
+    
+            Shift<ulong>(Orientation.Right, lhs, rhs);        
+            iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], Bits.shiftr(lhs[i], rhs[i])));
         }
 
     }

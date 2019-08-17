@@ -272,9 +272,18 @@ namespace Z0
             where T : struct  
                 => Load(src, block, out Vec256<T> dst);
 
+        [MethodImpl(Inline)]
+        public static Vec256<byte> FromBytes(byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, 
+            byte x8, byte x9, byte x10, byte x11, byte x12, byte x13, byte x14, byte x15,
+            byte x16, byte x17, byte x18, byte x19, byte x20, byte x21, byte x22, byte x23, 
+            byte x24, byte x25, byte x26, byte x27, byte x28, byte x29, byte x30, byte x31)
+                => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,
+                    x8,x9,x10,x11,x12,x13,x14,x15,
+                    x16,x17,x18,x19,x20,x21,x22,x23, 
+                    x24,x25,x26,x27,x28,x29,x30,x31);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<sbyte> define(
+        public static unsafe Vec256<sbyte> FromParts(
             sbyte x0, sbyte x1, sbyte x2, sbyte x3,  
             sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
             sbyte x8, sbyte x9, sbyte x10, sbyte x11,
@@ -290,56 +299,40 @@ namespace Z0
                     x24,x25,x26,x27,x28,x29,x30,x31);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> define(
-            byte x0, byte x1, byte x2, byte x3,  
-            byte x4, byte x5, byte x6, byte x7, 
-            byte x8, byte x9, byte x10, byte x11,
-            byte x12, byte x13, byte x14, byte x15,
-            byte x16, byte x17, byte x18, byte x19,  
-            byte x20, byte x21, byte x22, byte x23, 
-            byte x24, byte x25, byte x26, byte x27,
-            byte x28, byte x29, byte x30, byte x31)
-                => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,
-                    x16,x17,x18,x19,x20,x21,x22,x23, x24,x25,x26,x27,x28,x29,x30,x31);
-
-        [MethodImpl(Inline)]
-        public static Vec256<short> define(short x0, short x1, short x2, short x3,  
+        public static Vec256<short> FromParts(short x0, short x1, short x2, short x3,  
             short x4, short x5, short x6, short x7, short x8, short x9, short x10, short x11,
             short x12, short x13, short x14, short x15)
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15);
                     
         [MethodImpl(Inline)]
-        public static Vec256<ushort> define(ushort x0, ushort x1, ushort x2, ushort x3,  
+        public static Vec256<ushort> FromParts(ushort x0, ushort x1, ushort x2, ushort x3,  
             ushort x4, ushort x5, ushort x6, ushort x7, ushort x8, ushort x9, ushort x10, ushort x11,
             ushort x12, ushort x13, ushort x14, ushort x15)
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> define(
-            int x0, int x1, int x2, int x3,  
-            int x4, int x5, int x6, int x7 )
+        public static Vec256<int> FromParts(int x0, int x1, int x2, int x3,  int x4, int x5, int x6, int x7 )
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> define(uint x0, uint x1, uint x2, uint x3,  
-            uint x4, uint x5, uint x6, uint x7)
+        public static Vec256<uint> FromParts(uint x0, uint x1, uint x2, uint x3,  uint x4, uint x5, uint x6, uint x7)
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
         [MethodImpl(Inline)]
-        public static Vec256<long> define(long x0, long x1, long x2, long x3)
+        public static Vec256<long> FromParts(long x0, long x1, long x2, long x3)
             => Vector256.Create(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> define(ulong x0, ulong x1, ulong x2, ulong x3)
+        public static Vec256<ulong> FromParts(ulong x0, ulong x1, ulong x2, ulong x3)
                 => Vector256.Create(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<float> define(float x0, float x1, float x2, float x3,  
+        public static unsafe Vec256<float> FromParts(float x0, float x1, float x2, float x3,  
             float x4, float x5, float x6, float x7 )
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<double> define(double x0, double x1, double x2, double x3)
+        public static unsafe Vec256<double> FromParts(double x0, double x1, double x2, double x3)
                 => Vector256.Create(x0,x1,x2,x3);
 
         [MethodImpl(Inline)]

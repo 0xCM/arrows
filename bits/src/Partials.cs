@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
     using System.Runtime.CompilerServices;
     using static zfunc;
 
@@ -106,6 +107,56 @@ namespace Z0
             gbits.flip(src.Unblocked, src.Unblocked);
             return ref src;
         }
+
+        /// <summary>
+        /// Converts a generic number to a bitstring
+        /// </summary>
+        /// <param name="src">The source number</param>
+        /// <typeparam name="T">The underlying primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitString ToBitString<T>(this num<T> src)
+            where T : struct
+                => BitString.FromScalar<T>(src.Scalar());
+
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+        [MethodImpl(Inline)]   
+        public static ReadOnlySpan<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
+            where T : struct    
+                =>  BitString.FromScalar(src.Scalar()).ToDigits();
+
+        /// <summary>
+        /// Converts an 128-bit intrinsic vector representation to a bistring
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The underlying primal type</typeparam>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString<T>(this Vec128<T> src)
+            where T : struct        
+                => BitString.FromScalars(src.ToSpan());
+        
+        /// <summary>
+        /// Converts an 256-bit intrinsic vector representation to a bistring
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The underlying primal type</typeparam>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString<T>(this Vec256<T> src)
+            where T : struct        
+            => BitString.FromScalars(src.ToSpan());        
+
+        // /// <summary>
+        // /// Converts an 256-bit intrinsic integer representation to a bistring
+        // /// </summary>
+        // /// <param name="src">The source vector</param>
+        // /// <typeparam name="T">The underlying primal type</typeparam>
+        // [MethodImpl(Inline)]   
+        // public static BitString ToBitString<T>(this __m256i src)
+        //     where T : struct
+        //         => src.ToVec256<T>().ToBitString();
 
     }
 

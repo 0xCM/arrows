@@ -37,7 +37,6 @@ namespace Z0
             {
                 var bs = BitString.FromScalar(i);
                 var bsfmt = bs.Format(true).PadLeft(length, '0');
-                Claim.eq(bsfmt.Length, length);
                 yield return BitString.Parse(bsfmt);
             }
                 

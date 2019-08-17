@@ -17,9 +17,9 @@ namespace Z0.Test
 
         public void Nonzero()
         {
-            Claim.yea(gbits.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
-            Claim.yea(gbits.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
-            Claim.nea(gbits.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
+            Claim.yea(gbits.nonzero(Vec256.FromParts(1ul, 2ul, 3ul, 4ul)));
+            Claim.yea(gbits.nonzero(Vec256.FromParts(1ul, 0ul, 0ul, 0ul)));
+            Claim.nea(gbits.nonzero(Vec256.FromParts(0ul, 0ul, 0ul, 0ul)));
 
             Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 2u, 3u, 4u)));
             Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 0u, 0u, 0u)));

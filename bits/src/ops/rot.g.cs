@@ -104,25 +104,5 @@ namespace Z0
             return ref src;
         }           
 
- 
-        public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var len = io.Length;
-            for(var i=0; i<len; i++)
-                io[i] = rotr(io[i],rhs[i]);
-            return ref io;
-        }
-
-        public static ref Span<T> rotl<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var len = io.Length;
-            for(var i=0; i<len; i++)
-                io[i] = rotl(io[i],rhs[i]);
-            return ref io;
-        }
-
-
     }
 }

@@ -51,7 +51,7 @@ partial class zfunc
     /// </summary>
     /// <typeparam name="T">The value type</typeparam>
     [MethodImpl(Inline)]
-    public static int bitsize<T>()
+    public static BitSize bitsize<T>()
         where T :struct
             => Unsafe.SizeOf<T>()*8;
 

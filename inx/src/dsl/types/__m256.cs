@@ -42,7 +42,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec256<float> ToVec256()
-            => Vec256.define(x00s,x01s,x02s,x03s,x04s,x05s,x06s,x07s);
+            => Vec256.FromParts(x00s,x01s,x02s,x03s,x04s,x05s,x06s,x07s);
 
         [MethodImpl(Inline)]
         public Vector256<float> ToVector256()

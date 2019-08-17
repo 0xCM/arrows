@@ -25,19 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString FromScalar<T>(in T src)
             where T : struct
-                => new BitString(gbits.bitseq(src));
-
-        /// <summary>
-        /// Constructs a bitstring from a span of primal values
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        static BitString FromScalars<T>(ReadOnlySpan<T> src, int? maxlen = null)
-            where T : struct
-                 =>  typeof(T) == typeof(char) 
-                  ? FromBitChars(MemoryMarshal.Cast<T,char>(src), maxlen) 
-                  : new BitString(gbits.bitseq(src ,maxlen));
+                => new BitString(BitStore.BitSeq(in src));
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values
@@ -72,16 +60,6 @@ namespace Z0
         }
 
         /// <summary>
-        /// Constructs a bitstring from a span of bit characters
-        /// </summary>
-        /// <param name="src">The source characters, ordered from lo to hi</param>
-        [MethodImpl(Inline)]
-        public static BitString FromBitChars(ReadOnlySpan<char> src, int? maxlen = null)
-            => maxlen != null && src.Length >= maxlen 
-                ? new BitString(src.Slice(0,maxlen.Value)) 
-                : new BitString(src);         
-
-        /// <summary>
         /// Constructs a bitstring from a clr string of 0's and 1's 
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -94,14 +72,6 @@ namespace Z0
             for(var i=0; i<= lastix; i++)
                 dst[lastix - i] = src[i] == '0' ? (byte)0 : (byte)1;
             return new BitString(dst);            
-        }
-
-        [MethodImpl(Inline)]
-        static bool HasBitSpecifier(in string bs)
-        {
-            if(bs.Length < 2)
-                return false;            
-            return bs[0] == '0' && bs[1] == 'b';        
         }
 
         /// <summary>
@@ -135,6 +105,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString Assemble(params string[] parts)
             => Parse(string.Join(string.Empty, parts.Reverse()));
-
     }
 }

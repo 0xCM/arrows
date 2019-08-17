@@ -12,11 +12,11 @@ namespace Z0
 
     partial class dinx
     {
-        static readonly Vec256<int> Reverse256i32Control = Vec256.define(7, 5, 6, 4, 3, 2, 1, 0);
+        static readonly Vec256<int> Reverse256i32Control = Vec256.FromParts(7, 5, 6, 4, 3, 2, 1, 0);
         
-        static readonly Vec256<uint> Reverse256u32Control = Vec256.define(7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u);
+        static readonly Vec256<uint> Reverse256u32Control = Vec256.FromParts(7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u);
         
-        static readonly Vec256<int> Reverse256f32Control = Vec256.define(7, 6, 5, 4, 3, 2, 1, 0);
+        static readonly Vec256<int> Reverse256f32Control = Vec256.FromParts(7, 6, 5, 4, 3, 2, 1, 0);
         
 
         
