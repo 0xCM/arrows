@@ -18,6 +18,21 @@ namespace Z0
     partial struct BitString
     {
         /// <summary>
+        /// Constructs a bitstring from a clr string of 0's and 1's 
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString Parse(string src)                
+        {
+            var len = src.Length;
+            var lastix = len - 1;
+            Span<byte> dst = new byte[len];
+            for(var i=0; i<= lastix; i++)
+                dst[lastix - i] = src[i] == '0' ? (byte)0 : (byte)1;
+            return new BitString(dst);            
+        }
+
+        /// <summary>
         /// Constructs a bitstring from primal value
         /// </summary>
         /// <param name="src">The source value</param>
@@ -26,6 +41,26 @@ namespace Z0
         public static BitString FromScalar<T>(in T src)
             where T : struct
                 => new BitString(BitStore.BitSeq(in src));
+
+        /// <summary>
+        /// Constructs a bitstring from a readonly segment of scalar values
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitString FromScalars<T>(ReadOnlyMemory<T> src, int? maxlen = null)
+            where T : struct
+                => FromScalars(src.Span, maxlen);
+
+        /// <summary>
+        /// Constructs a bitstring from a segment of scalar values
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitString FromScalars<T>(Memory<T> src, int? maxlen = null)
+            where T : struct
+                => FromScalars(src.Span, maxlen);
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values
@@ -57,21 +92,6 @@ namespace Z0
             Span<byte> dst = stackalloc byte[exp + 1];
             dst[exp] = 1;
             return FromBitSeq(dst);
-        }
-
-        /// <summary>
-        /// Constructs a bitstring from a clr string of 0's and 1's 
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static BitString Parse(string src)                
-        {
-            var len = src.Length;
-            var lastix = len - 1;
-            Span<byte> dst = new byte[len];
-            for(var i=0; i<= lastix; i++)
-                dst[lastix - i] = src[i] == '0' ? (byte)0 : (byte)1;
-            return new BitString(dst);            
         }
 
         /// <summary>

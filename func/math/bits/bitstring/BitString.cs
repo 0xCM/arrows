@@ -15,6 +15,9 @@ namespace Z0
     using static As;
     using static Constants;
 
+    /// <summary>
+    /// Represents a sequence of bits
+    /// </summary>
     public partial struct BitString : IWord<BitString, BinaryAlphabet>
     {
         byte[] bitseq;
@@ -28,9 +31,11 @@ namespace Z0
         public static implicit operator string(BitString src)                
             => src.Format();
 
+        [MethodImpl(Inline)]
         public static bool operator ==(BitString lhs, BitString rhs)
             => lhs.Equals(rhs);
 
+        [MethodImpl(Inline)]
         public static bool operator !=(BitString lhs, BitString rhs)
             => !lhs.Equals(rhs);
 
@@ -72,20 +77,38 @@ namespace Z0
                 this.bitseq[i] = (byte)src[i];
         }
 
-        public readonly bool IsEmpty
-            => this.bitseq.Length == 0;
-
         public readonly Bit this[int index]
         {
             [MethodImpl(Inline)]
             get => bitseq[index];
         }
-            
+
+        public BitString this[BitPos i0, BitPos i1]
+        {
+            [MethodImpl(Inline)]
+            get => new BitString(BitSeq.Slice(i0, i1 - i0));
+        }
+
         public readonly int Length
         {
             [MethodImpl(Inline)]
             get => bitseq.Length;
         }            
+
+        public readonly bool IsEmpty
+            => this.bitseq.Length == 0;
+
+        public BitString Zero 
+            => Empty;
+
+        /// <summary>
+        /// The (unpacked) sequence of bits represented by the bitstring
+        /// </summary>
+        public Span<byte> BitSeq
+        {
+            [MethodImpl(Inline)]
+            get => bitseq;
+        }
 
         uint ILengthwise.Length 
             => (uint)Length;
@@ -100,17 +123,8 @@ namespace Z0
             where T : struct
                 => Pack<T>(offset, Unsafe.SizeOf<T>());
 
-        [MethodImpl(Inline)]
-        readonly T Pack<T>(int offset = 0, int? minlen = null)
-            where T : struct
-        {            
-            var src = bitseq.ToReadOnlySpan();
-            var packed = PackedBits(src,offset,minlen);
-            return SpanConvert.TakeSingle<byte,T>(packed);
-        }
-
         /// <summary>
-        /// Renders a bitstring segment as a packed primal value
+        /// Renders a bitstring segment as a packed byte value
         /// </summary>
         /// <param name="offset">The index of the first bit </param>
         [MethodImpl(Inline)]
@@ -118,7 +132,7 @@ namespace Z0
             => TakeValue<byte>(offset);
 
         /// <summary>
-        /// Renders a bitstring segment as a packed primal value
+        /// Renders a bitstring segment as a packed ushort value
         /// </summary>
         /// <param name="offset">The index of the first bit </param>
         [MethodImpl(Inline)]
@@ -126,7 +140,7 @@ namespace Z0
             => TakeValue<ushort>(offset);
 
         /// <summary>
-        /// Renders a bitstring segment as a packed primal value
+        /// Renders a bitstring segment as a packed uint value
         /// </summary>
         /// <param name="offset">The index of the first bit </param>
         [MethodImpl(Inline)]
@@ -134,7 +148,7 @@ namespace Z0
             => TakeValue<uint>(offset);
 
         /// <summary>
-        /// Renders a bitstring segment as a packed primal value
+        /// Renders a bitstring segment as a packed ulong value
         /// </summary>
         /// <param name="offset">The index of the first bit </param>
         [MethodImpl(Inline)]
@@ -145,11 +159,114 @@ namespace Z0
         public Span<byte> PackedBits(int offset = 0, int? minlen = null)
             => PackedBits(bitseq, offset, minlen);
 
+
         /// <summary>
-        ///  Partitions the bitstring into blocks of a specified maximum width
+        /// Counts the number of leading zero bits
+        /// </summary>
+        public int Nlz()
+        {
+            var lastix = bitseq.Length - 1;
+            var count = 0;
+            for(var i=lastix; i>= 0; i--)
+            {
+                if(bitseq[i] != 0)
+                    break;
+                else
+                    count++;                
+            }
+            return count;
+        }
+                  
+        /// <summary>
+        /// Counts the number of enabled bits
+        /// </summary>
+        public int PopCount()
+        {
+            var count = 0;
+            for(var i=0; i<bitseq.Length; i++)
+                if(bitseq[i] == 1)
+                    count++;
+            return count;
+        }
+
+        [MethodImpl(Inline)]        
+        public BitString Replicate()
+        {
+            Span<byte> dst = new byte[Length];
+            bitseq.CopyTo(dst);
+            return new BitString(dst);
+        }
+
+        /// <summary>
+        /// Rotates the bits leftwards by a specified offset
+        /// </summary>
+        /// <param name="offset">The magnitude of the rotation</param>
+        public void RotL(uint offset)
+        {
+            Span<byte> dst = bitseq;
+            Span<byte> src = stackalloc byte[Length];
+            dst.CopyTo(src);
+            var cut = Length - (int)offset;
+            var seg1 = src.Slice(0, cut);
+            var seg2 = src.Slice(cut);
+            seg2.CopyTo(dst, 0);
+            seg1.CopyTo(dst, (int)offset);
+        }
+
+        /// <summary>
+        /// Forms a new bitstring by concatenation
+        /// </summary>
+        /// <param name="tail">The trailing bits</param>
+        public BitString Concat(BitString tail)
+            => new BitString(concat(bitseq, tail.bitseq));
+
+        /// <summary>
+        /// Converts the bistring to a binary digit representation
+        /// </summary>
+        public ReadOnlySpan<BinaryDigit> ToDigits()
+        {
+            Span<BinaryDigit> dst = new BinaryDigit[bitseq.Length];
+            for(var i=0; i< bitseq.Length; i++)
+                dst[i] = (BinaryDigit)bitseq[i];
+            return dst;
+        }
+
+        /// <summary>
+        /// Renders the content as a span of bits
+        /// </summary>
+        public ReadOnlySpan<Bit> ToBits()
+        {
+            Span<Bit> dst = new Bit[bitseq.Length];
+            for(var i=0; i< bitseq.Length; i++)
+                dst[i] = bitseq[i] == 1;
+            return dst;
+        }
+
+        /// <summary>
+        /// Determines whether this bitstring represents the same value as another, ignoring
+        /// leading zeroes
+        /// </summary>
+        /// <param name="rhs">The bitstring with which the comparison will be made</param>
+        [MethodImpl(Inline)]
+        public bool Equals(BitString rhs)
+        {                                                            
+            var xNlz = this.Nlz();
+            var yNlz = rhs.Nlz();
+            var xLastIx = bitseq.Length - 1 - xNlz;
+            var yLastIx = rhs.bitseq.Length - 1 - yNlz;
+            if(xLastIx != yLastIx)
+                return false;
+            
+            for(var i=xLastIx; i >=0; i--)
+                if(bitseq[i] != rhs.bitseq[i])
+                    return false;           
+            return true;
+        }
+
+        /// <summary>
+        /// Partitions the bitstring into blocks of a specified maximum width
         /// </summary>
         /// <param name="width">The maximum block width</param>
-        /// <param name="tlz">Specifies whether leading source zeros should be exlcuded </param>
         public BitString[] Blocks(int width)
         {
             var minCount = Math.DivRem(bitseq.Length, width, out int remainder);
@@ -169,78 +286,6 @@ namespace Z0
                     dst[i] = new BitString(src.Slice(offset, width));
             }
             return dst;
-        }
-
-        /// <summary>
-        /// Counts the number of leading zero bits
-        /// </summary>
-        public int Nlz()
-        {
-            var lastix = bitseq.Length - 1;
-            var count = 0;
-            for(var i=lastix; i>= 0; i--)
-            {
-                if(bitseq[i] != 0)
-                    break;
-                else
-                    count++;                
-            }
-            return count;
-        }
-
-        /// <summary>
-        /// Determines whether the value that another <see cref='BitString'/> represents is 
-        /// equivalent to the value that this bitstring represents
-        /// </summary>
-        /// <param name="rhs">The bitstring with which the comparison will be made</param>
-        [MethodImpl(Inline)]
-        public bool Equals(BitString rhs)
-        {                                                            
-            var xNlz = this.Nlz();
-            var yNlz = rhs.Nlz();
-            var xLastIx = bitseq.Length - 1 - xNlz;
-            var yLastIx = rhs.bitseq.Length - 1 - yNlz;
-            if(xLastIx != yLastIx)
-                return false;
-            
-            for(var i=xLastIx; i >=0; i--)
-                if(bitseq[i] != rhs.bitseq[i])
-                    return false;
-           
-            return true;
-        }
-                  
-        public BitString Zero 
-            => Empty;
-
-        public int PopCount()
-        {
-            var count = 0;
-            for(var i=0; i<bitseq.Length; i++)
-                if(bitseq[i] == 1)
-                    count++;
-            return count;
-        }
-
-        [MethodImpl(Inline)]        
-        public BitString Replicate()
-        {
-            Span<byte> dst = new byte[Length];
-            bitseq.CopyTo(dst);
-            return new BitString(dst);
-        }
-
-        public void RotL(uint offset)
-        {
-            Span<byte> dst = bitseq;
-            Span<byte> src = stackalloc byte[Length];
-            dst.CopyTo(src);
-            // dst.Fill(0);
-            var cut = Length - (int)offset;
-            var seg1 = src.Slice(0, cut);
-            var seg2 = src.Slice(cut);
-            seg2.CopyTo(dst, 0);
-            seg1.CopyTo(dst, (int)offset);
         }
 
         /// <summary>
@@ -274,37 +319,21 @@ namespace Z0
             }            
         }
 
+        /// <summary>
+        /// Formats bitstring using default parameter values
+        /// </summary>
         [MethodImpl(Inline)]
         public string Format()
             => Format(false, false, null, null);
 
-        public ReadOnlySpan<BinaryDigit> ToDigits()
-        {
-            Span<BinaryDigit> dst = new BinaryDigit[bitseq.Length];
-            for(var i=0; i< bitseq.Length; i++)
-                dst[i] = (BinaryDigit)bitseq[i];
-            return dst;
-        }
+        public override string ToString()
+            => Format();
+        
+        public override int GetHashCode()
+            => bitseq.GetHashCode();
 
-        /// <summary>
-        /// Renders the content as a span of bits
-        /// </summary>
-        public ReadOnlySpan<Bit> ToBits()
-        {
-            Span<Bit> dst = new Bit[bitseq.Length];
-            for(var i=0; i< bitseq.Length; i++)
-                dst[i] = bitseq[i] == 1;
-            return dst;
-        }
-
-        /// <summary>
-        /// Returns the underlying sequence of bits represented by the bitstring
-        /// </summary>
-        public Span<byte> BitSeq
-        {
-            [MethodImpl(Inline)]
-            get => bitseq;
-        }
+        public override bool Equals(object rhs)
+            => (rhs is BitString x)  ? Equals(x) : false;
 
         readonly string FormatUnblocked(bool tlz, bool specifier)
         {
@@ -319,17 +348,14 @@ namespace Z0
               + (tlz ? x.TrimStart('0') : x);
         }
 
-        public override string ToString()
-            => Format();
-        
-        public override int GetHashCode()
-            => bitseq.GetHashCode();
-
-        public override bool Equals(object rhs)
-            => (rhs is BitString x)  ? Equals(x) : false;
-
-        public BitString Concat(BitString rhs)
-            => new BitString(concat(bitseq, rhs.bitseq));
+        [MethodImpl(Inline)]
+        readonly T Pack<T>(int offset = 0, int? minlen = null)
+            where T : struct
+        {                        
+            var src = bitseq.ToReadOnlySpan();
+            var packed = PackedBits(src,offset,minlen);
+            return packed.Length != 0 ? SpanConvert.TakeSingle<byte,T>(packed) : default;
+        }
 
         [MethodImpl(Inline)]
         static bool HasBitSpecifier(in string bs)
@@ -384,6 +410,5 @@ namespace Z0
             }
             return dst;
         }
-
     }
 }

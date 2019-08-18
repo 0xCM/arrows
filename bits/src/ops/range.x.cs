@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        static Span<byte> range<T>(in T src, BitIndex i0, BitIndex i1)
+        static Span<byte> range<T>(in T src, BitPos i0, BitPos i1)
             where T : struct
         {
             var dst = Alloc(i0,i1);
@@ -38,7 +38,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this byte src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this byte src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this sbyte src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this sbyte src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this ushort src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this ushort src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this short src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this short src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this int src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this int src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this uint src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this uint src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this long src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this long src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<byte> ReadBits(this ulong src, BitIndex i0, BitIndex i1)
+        public static Span<byte> ReadBits(this ulong src, BitPos i0, BitPos i1)
             => range(in src, i0, i1);
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this byte src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this byte src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this sbyte src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this sbyte src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this ushort src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this ushort src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this short src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this short src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this int src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this int src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this uint src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this uint src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this long src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this long src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         /// <summary>
@@ -219,15 +219,15 @@ namespace Z0
         /// <param name="offset">The target span offset</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void ReadBits(this ulong src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset = 0)
+        public static void ReadBits(this ulong src, BitPos i0, BitPos i1, Span<byte> dst, int offset = 0)
             => gbits.range(in src, i0, i1, dst, offset);
 
         [MethodImpl(Inline)]
-        static ByteSize ByteCount(BitIndex i0, BitIndex i1)
-            => ((uint)((i1 - i0) + 1)).ByteCount();
+        static ByteSize ByteCount(BitPos i0, BitPos i1)
+            => ((uint)(i1 - i0)).ByteCount();
 
         [MethodImpl(Inline)]
-        static Span<byte> Alloc(BitIndex i0, BitIndex i1)        
+        static Span<byte> Alloc(BitPos i0, BitPos i1)        
             => new byte[ByteCount(i0,i1)];        
 
         [MethodImpl(Inline)]

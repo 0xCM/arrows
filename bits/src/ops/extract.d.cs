@@ -77,6 +77,7 @@ namespace Z0
         public static byte extract(in byte src, in byte start, in byte length)        
             => (byte)Bmi1.BitFieldExtract(src, start, length);
 
+
         /// <summary>
         /// Extracts a contiguous range of bits from the source
         /// </summary>
@@ -137,6 +138,45 @@ namespace Z0
         public static ulong extract(in ulong src, in byte start, in byte length)
             => Bmi1.X64.BitFieldExtract(src, start, length);            
 
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static byte between(in byte src, BitPos i0, BitPos i1)        
+            => (byte)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static ushort between(in ushort src, BitPos i0, BitPos i1)        
+            => (ushort)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static uint between(in uint src, BitPos i0, BitPos i1)        
+            => Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static ulong between(in ulong src, BitPos i0, BitPos i1)
+            => Bmi1.X64.BitFieldExtract(src, i0, (byte)(i1 - i0));            
 
         /// <summary>
         /// Extracts the upper 16 bits from the source

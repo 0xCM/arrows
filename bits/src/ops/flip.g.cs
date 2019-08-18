@@ -210,6 +210,30 @@ namespace Z0
             return ref io;
         }
  
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        public static ref readonly Memory<T> flip<T>(in Memory<T> io)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.flip(int8(io), int8(io));
+            else if(typeof(T) == typeof(byte))
+                Bits.flip(uint8(io), uint8(io));
+            else if(typeof(T) == typeof(short))
+                Bits.flip(int16(io), int16(io));
+            else if(typeof(T) == typeof(ushort))
+                Bits.flip(uint16(io), uint16(io));
+            else if(typeof(T) == typeof(int))
+                Bits.flip(int32(io), int32(io));
+            else if(typeof(T) == typeof(uint))
+                Bits.flip(uint32(io), uint32(io));
+            else if(typeof(T) == typeof(long))
+                Bits.flip(int64(io), int64(io));
+            else if(typeof(T) == typeof(ulong))
+                Bits.flip(uint64(io), uint64(io));
+            else
+                throw unsupported<T>();
+            return ref io;
+        }
 
     }
 }

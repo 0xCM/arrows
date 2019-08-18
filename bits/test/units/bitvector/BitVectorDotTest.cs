@@ -193,10 +193,10 @@ namespace Z0.Test
             var result = sbuild();
             for(byte i=0; i< 0xF; i++)
             {
-                var x = BitVector4.Load(i);
+                var x = BitVector4.FromScalar(i);
                 for(byte j = 0; j<0xF; j++)
                 {
-                    var y = BitVector4.Load(j);
+                    var y = BitVector4.FromScalar(j);
                     var a = x & y;
                     var and = $"AND = {a.Format()}";
                     var popMod2 = $"AND > POP % 2 = {a.Pop() % 2}";

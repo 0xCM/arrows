@@ -39,25 +39,6 @@ namespace Z0
         public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
             => Shuffle(src, control);
 
-        ///<summary>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</summary>
-        [MethodImpl(Inline)]
-        public static Vec128<short> shuffleHi(in Vec128<short> src, byte control)
-            => ShuffleHigh(src, control);
-
-        ///<summary>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</summary>
-        [MethodImpl(Inline)]
-        public static Vec128<ushort> shuffleHi(in Vec128<ushort> src, byte control)
-            => ShuffleHigh(src, control);
-
-        ///<summary>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</summary>
-        [MethodImpl(Inline)]
-        public static Vec128<short> shuffleLow(in Vec128<short> src, byte control)
-            => ShuffleLow(src, control);
-
-        ///<summary>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</summary>
-        [MethodImpl(Inline)]
-        public static Vec128<ushort> shuffleLow(in Vec128<ushort> src, byte control)
-            => ShuffleLow(src, control);
 
         ///<summary>__m128i _mm_shuffle_epi8 (__m128i a, __m128i b) PSHUFB xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
@@ -88,6 +69,27 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
             =>  Shuffle(lhs,rhs, control);
+
+
+        ///<summary>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<short> shuffleHi(in Vec128<short> src, byte control)
+            => ShuffleHigh(src, control);
+
+        ///<summary>__m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> shuffleHi(in Vec128<ushort> src, byte control)
+            => ShuffleHigh(src, control);
+
+        ///<summary>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<short> shuffleLo(in Vec128<short> src, byte control)
+            => ShuffleLow(src, control);
+
+        ///<summary>__m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> shuffleLo(in Vec128<ushort> src, byte control)
+            => ShuffleLow(src, control);
 
     }
 

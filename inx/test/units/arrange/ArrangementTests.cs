@@ -59,28 +59,41 @@ namespace Z0.Test
             Claim.eq(expect, actual);
         }
 
-        static string FormatVec<T>(Vec256<T> src)
-            where T : struct
-                => src.FormatHex(false, AsciSym.Space);
-
-        public static string Describe2x128Perm<T>(Vec256<T> x, Vec256<T> y, byte spec, Vec256<T> z)
+        static string DescribeShuffle<T>(Vec256<T> src, byte spec, Vec256<T> dst)
             where T : struct
         {
-            var xFmt = FormatVec(x);
-            var yFmt = FormatVec(y);
-            var zFmt = FormatVec(z);
+            var xFmt = src.FormatHexBlocks();
+            var specFmt = spec.ToBitString();
+            var dstFmt = dst.FormatHexBlocks();
+
+            var fmt = sbuild();
+            var dataType = typeof(T).DisplayName();
+            fmt.AppendLine(new string(AsciSym.Minus, 80));
+            fmt.AppendLine($"shuffle256:Vec256<{dataType}> -> spec:byte -> {specFmt}");
+            fmt.AppendLine(xFmt);
+            fmt.AppendLine(dstFmt);
+            return fmt.ToString();
+
+        }
+
+        static string Describe2x128Perm<T>(Vec256<T> x, Vec256<T> y, byte spec, Vec256<T> dst)
+            where T : struct
+        {
+            var xFmt = x.FormatHexBlocks();
+            var yFmt = y.FormatHexBlocks();
+            var dstFmt = dst.FormatHexBlocks();
             var specFmt = spec.ToBitString();
             var fmt = sbuild();
-            var dataType = typeof(T).Name;
+            var dataType = typeof(T).DisplayName();
             fmt.AppendLine(new string(AsciSym.Minus, 80));
-            fmt.AppendLine($"permute2x28 | (a:{dataType}, b:{dataType}) > {specFmt}");
+            fmt.AppendLine($"permute2x128:Vec256<{dataType}> -> Vec256<{dataType}> -> {specFmt}");
             fmt.AppendLine(xFmt);
             fmt.AppendLine($"{yFmt}");
-            fmt.AppendLine(zFmt);
+            fmt.AppendLine(dstFmt);
             return fmt.ToString();
         }
 
-        void VerifyPerm2x128u64()
+        void DescribePerm2x128u64()
         {
             var x = Vec256.FromParts(1ul,2ul,3ul,4ul);
             var y = Vec256.FromParts(5ul,6ul,7ul,8ul);
@@ -93,7 +106,7 @@ namespace Z0.Test
 
         }
 
-        void VerifyPerm2x128u32()
+        void DescribePerm2x128u32()
         {
             var x = Vec256.FromParts(0u,1u,2u,3u,4u,5u,6u,7u);
             var y = Vec256.FromParts(8u,9u,10u,11u,12u,13u,14u,15u);
@@ -103,10 +116,9 @@ namespace Z0.Test
                 var z = ginx.permute2x128(x,y,spec);
                 Trace(Describe2x128Perm(x,y,spec,z));
             }
-
         }
 
-        public void VerifyPerm2x128u16()
+        void DescribePerm2x128u16()
         {
             var x = Vec256.FromParts((ushort)0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
             var y = Vec256.FromParts((ushort)16,17,18,19,20,21,22,23,24,25,26,27,29,29,30,31);
@@ -119,7 +131,7 @@ namespace Z0.Test
 
         }
 
-        void VerifyPerm2x128u8()
+        void DescribePerm2x128u8()
         {
             var x = Vec256.FromBytes((byte)0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,29,30,31);
             var y = Vec256.FromBytes((byte)32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63);
@@ -129,8 +141,16 @@ namespace Z0.Test
                 var z = ginx.permute2x128(x,y,spec);
                 Trace(Describe2x128Perm(x,y,spec,z));
             }
+        }
+
+        void DescribeShuffle256u32()
+        {
+            var x = Vec256.FromParts(0u,1u,2u,3u,4u,5u,6u,7u);
+            for(var i=0; i<255; i++)
+                Trace(DescribeShuffle(x, (byte)i, dinx.shuffle(x,(byte)i)));
 
         }
+
 
     }
 

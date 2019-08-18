@@ -13,20 +13,18 @@ namespace Z0
     using static Bits;
     using static Bytes;
 
-    public ref struct BitVector32
+    /// <summary>
+    /// Defines a 32-bit bitvector
+    /// </summary>
+    public struct BitVector32 : IBitVector<uint>
     {
         uint data;
 
-        public const int ByteSize = 4;
+        public static readonly BitSize BitSize = 32;
 
-        public const int BitSize = ByteSize * 8;
+        public static readonly BitPos FirstPos = 0;
 
-        /// <summary>
-        /// Creates the canonical zero bitvector
-        /// </summary>
-        [MethodImpl(Inline)]
-        public static BitVector32 Zero() 
-            => new BitVector32(0u);
+        public static readonly BitPos LastPos = BitSize - 1;
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -35,14 +33,33 @@ namespace Z0
         public static BitVector32 Alloc()
             => new BitVector32(0);
 
+        /// <summary>
+        /// Loads a vector from the primal source value it represents
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromScalar(in uint src)
+            => new BitVector32(src);    
+
+        /// <summary>
+        /// Creates a vector from a bitstring
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromBitString(in BitString src)
+            => new BitVector32(src.TakeUInt32());    
+
         [MethodImpl(Inline)]
         public static BitVector32 Load(in ReadOnlySpan<byte> src, int offset = 0)
             => FromParts(src[offset + 0], src[offset + 1], src[offset + 2], src[offset + 3]);
     
         [MethodImpl(Inline)]
         public static BitVector32 Load(in ReadOnlySpan<Bit> src)
-            => Load(in pack(src, out uint data));
+            => FromScalar(in pack(src, out uint data));
 
+        [MethodImpl(Inline)]
+        public static BitVector32 FromBits(params Bit[] src)
+            => new BitVector32(src);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N32,uint>(in BitVector32 src)
@@ -52,25 +69,21 @@ namespace Z0
         public static implicit operator BitVector32(uint src)
             => new BitVector32(src);
 
-        /// <summary>
-        /// Loads a vector from the primal source value it represents
-        /// </summary>
-        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 Load(in uint src)
-            => new BitVector32(src);    
-
-        [MethodImpl(Inline)]
-        public static explicit operator uint(in BitVector32 src)
+        public static implicit operator uint(in BitVector32 src)
             => src.data;        
 
         [MethodImpl(Inline)]
+        public static implicit operator int(in BitVector32 src)
+            => (int)src.data;        
+
+        [MethodImpl(Inline)]
         public static bool operator ==(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.NEq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static BitVector32 operator +(in BitVector32 lhs, in BitVector32 rhs)
@@ -145,7 +158,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public BitVector32(in uint src)
+        public BitVector32(uint src)
             => this.data = src;
 
         /// <summary>
@@ -164,72 +177,20 @@ namespace Z0
         /// <summary>
         /// Reads/Manipulates a source bit at a specified position
         /// </summary>
-        public Bit this[byte pos]
+        public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => BitMask.test(in data, pos);
+            get => TestBit(pos);
             
             [MethodImpl(Inline)]
-            set => BitMask.set(ref data, pos, value);
+            set => SetBit(pos, value);
        }
-
-        [MethodImpl(Inline)]
-        public uint Extract(int first, int last)
-        {
-            var len = (byte)(last - first + 1);
-            return Bits.extract(in data, (byte)first, len);
-        }
 
         public uint this[Range range]
         {
             [MethodImpl(Inline)]
-            get => Extract(range.Start.Value, range.End.Value);
+            get => Between(range.Start.Value, range.End.Value);
         }
-
-        public Bit this[int pos]
-        {
-            [MethodImpl(Inline)]
-            get => this[(byte)pos];
-            [MethodImpl(Inline)]
-            set => this[(byte)pos] = value;
-        }
-
-        /// <summary>
-        /// The number of bits represented by the vector
-        /// </summary>
-        public int Length
-        {
-            [MethodImpl(Inline)]
-            get => BitSize;
-        }
-
-        /// <summary>
-        /// Computes the scalar product of the source vector and another
-        /// </summary>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public Bit Dot(BitVector32 rhs)
-        {
-             return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));               
-            // var result = Bit.Off;
-            // for(var i=0; i<Length; i++)
-            //     result ^= this[i] & rhs[i];
-            // return result;
-
-        }
-
-        [MethodImpl(Inline)]
-        public void EnableBit(byte pos)
-            => BitMask.enable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public void DisableBit(byte pos)
-            => BitMask.disable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public bool TestBit(byte pos)
-            => BitMask.test(in data, pos);
-
 
         public BitVector16 Hi
         {
@@ -243,16 +204,92 @@ namespace Z0
             get => lo(data);    
         }
 
+        /// <summary>
+        /// Presents bitvector content as a bytespan
+        /// </summary>
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => bytes(data);
+        }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public BitSize Length
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
+        }
+
+
+        /// <summary>
+        /// Sets a bit to a specified value
+        /// </summary>
+        /// <param name="pos">The position of the bit to set</param>
+        /// <param name="value">The bit value</param>
         [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            => bytes(data);
+        public void SetBit(BitPos pos, Bit value)
+            => BitMask.set(ref data, pos, value);
+
+        /// <summary>
+        /// Computes the scalar product of the source vector and another
+        /// </summary>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public Bit Dot(BitVector32 rhs)
+        {
+             return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));               
+        }
+
+        [MethodImpl(Inline)]
+        public uint Between(BitPos first, BitPos last)
+            => Bits.between(in data, first,last);
+
+        [MethodImpl(Inline)]
+        public void EnableBit(BitPos pos)
+            => BitMask.enable(ref data, pos);
+
+        [MethodImpl(Inline)]
+        public void DisableBit(BitPos pos)
+            => BitMask.disable(ref data, pos);
+
+        [MethodImpl(Inline)]
+        public bool TestBit(BitPos pos)
+            => BitMask.test(in data, pos);
+
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public void Reverse()
+        {
+            data = Bits.rev(data);
+        }
+
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Lsb(int n)                
+            => Between(0, n - 1);                
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Msb(int n)                
+            => Between(LastPos - n, LastPos);                
 
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector32 RotR(uint offset)
+        public BitVector32 RotR(BitSize offset)
             => Bits.rotr(ref data, offset);
 
         /// <summary>
@@ -260,7 +297,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector32 RotL(uint offset)
+        public BitVector32 RotL(BitSize offset)
             => Bits.rotl(ref data, offset);
 
         /// <summary>
@@ -290,7 +327,6 @@ namespace Z0
         public bool AllZeros()
             => data == 0;
 
-
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => data.ToBitString();
@@ -300,22 +336,31 @@ namespace Z0
             => ToBitString().Format(tlz, specifier);
 
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector32 rhs)
+        public bool Equals(BitVector32 rhs)
             => data == rhs.data;
 
-        [MethodImpl(Inline)]
-        public bool NEq(in BitVector32 rhs)
-            => data != rhs.data;
-
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
+            => obj is BitVector32 x ? Equals(x) : false;
         
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
  
+        public override string ToString()
+            => Format();
+ 
+
         [MethodImpl(Inline)]
         static BitVector32 FromParts(in byte x0, in byte x1, in byte x2, in byte x3)
             => BitConverter.ToUInt32(array(x0, x1, x2, x3), 0);
+
+        [MethodImpl(Inline)]
+        Bit DotRef(BitVector32 rhs)
+        {
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
+        }
 
     }
 }

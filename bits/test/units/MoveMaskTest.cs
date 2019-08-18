@@ -49,7 +49,7 @@ namespace Z0.Test
             {
                 var srcVector = src.ToVec128(i);
 
-                var mmExpect = BitVector32.Zero();
+                var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 7))
                         mmExpect.EnableBit(r);
@@ -67,7 +67,7 @@ namespace Z0.Test
             {
                 var srcVector = src.ToVec256(i);
 
-                var mmExpect = BitVector32.Zero();
+                var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 31))
                         mmExpect.EnableBit(r);
@@ -77,6 +77,7 @@ namespace Z0.Test
             }
         }
 
+
         public void MoveMask256f64()
         {
             var n = Pow2.T12;
@@ -85,13 +86,35 @@ namespace Z0.Test
             {
                 var srcVector = src.ToVec256(i);
 
-                var mmExpect = BitVector32.Zero();
+                var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 63))
                         mmExpect.EnableBit(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.yea(mmExpect == mmActual);
+            }
+        }
+
+
+        public void MoveMask64u()
+        {
+            for(var i=0; i< DefaltCycleCount; i++)            
+            {
+                var src = Random.NextUInt64().ToBitVector64();
+                var mmExpect = BitVector32.Alloc();
+                int j =0;
+                mmExpect[j++] = src[7];
+                mmExpect[j++] = src[15];
+                mmExpect[j++] = src[23];
+                mmExpect[j++] = src[31];
+                mmExpect[j++] = src[39];
+                mmExpect[j++] = src[47];
+                mmExpect[j++] = src[55];
+                mmExpect[j++] = src[63];
+                var actual = Bits.movemask(src);
+                Claim.eq(mmExpect.ToBitString(), actual.ToBitString());
+
             }
         }
     }

@@ -269,6 +269,34 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref readonly Memory<T> and<T>(in Memory<T> lhs, in ReadOnlyMemory<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                BitRef.and(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                BitRef.and(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                BitRef.and(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                BitRef.and(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                BitRef.and(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                BitRef.and(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                BitRef.and(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                BitRef.and(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                BitRef.and(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                BitRef.and(float64(lhs), float64(rhs));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
             
         [MethodImpl(Inline)]
         public static Span128<T> and<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)

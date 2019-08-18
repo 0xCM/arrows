@@ -13,13 +13,18 @@ namespace Z0
     using static Bits;
     using static Bytes;
 
-    public ref struct BitVector16
+    /// <summary>
+    /// Defines a 16-bit bitvector
+    /// </summary>
+    public struct BitVector16 : IBitVector<short>
     {
-        public const int ByteSize = 2;
-
-        public const int BitSize = ByteSize * 8;
-
         ushort data;
+
+        public static readonly BitSize BitSize = 16;
+
+        public static readonly BitPos FirstPos = 0;
+
+        public static readonly BitPos LastPos = BitSize - 1;
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -33,19 +38,27 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector16 Load(in ushort src)
+        public static BitVector16 FromScalar(in ushort src)
             => new BitVector16(src);    
+
+        /// <summary>
+        /// Creates a vector from a bitstring
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 FromBitString(in BitString src)
+            => new BitVector16(src.TakeUInt16());    
 
         [MethodImpl(Inline)]
         public static BitVector16 Load(in ReadOnlySpan<Bit> src)
-            => Load(in pack(src, out ushort dst));
+            => FromScalar(in pack(src, out ushort dst));
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<N16,ushort>(in BitVector16 src)
+        public static implicit operator BitVector<N16,ushort>(BitVector16 src)
             => new BitVector<N16,ushort>(src.data);
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector16(in ushort src)
+        public static implicit operator BitVector16(ushort src)
             => new BitVector16(src);
 
         /// <summary>
@@ -53,12 +66,12 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static explicit operator ushort(in BitVector16 src)
+        public static explicit operator ushort(BitVector16 src)
             => src.data;        
 
         [MethodImpl(Inline)]
-        public static BitVector16 operator +(in BitVector16 lhs, in BitVector16 rhs)
-            => Load((ushort)(lhs.data ^ rhs.data));
+        public static BitVector16 operator +(BitVector16 lhs, BitVector16 rhs)
+            => FromScalar((ushort)(lhs.data ^ rhs.data));
 
         /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the 
@@ -67,7 +80,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector16 operator -(in BitVector16 src)
-            => Load((ushort)~src.data);
+            => FromScalar((ushort)~src.data);
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -87,8 +100,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector16 operator *(in BitVector16 lhs, in BitVector16 rhs)
-            => Load((ushort)(lhs.data & rhs.data));
+        public static BitVector16 operator *(BitVector16 lhs, BitVector16 rhs)
+            => FromScalar((ushort)(lhs.data & rhs.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -96,7 +109,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector16 lhs, in BitVector16 rhs)
+        public static Bit operator %( BitVector16 lhs, BitVector16 rhs)
             => lhs.Dot(rhs);
 
         /// <summary>
@@ -105,8 +118,8 @@ namespace Z0
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
-        public static BitVector16 operator ~(in BitVector16 src)
-            => Load((ushort) ~ src.data);
+        public static BitVector16 operator ~(BitVector16 src)
+            => FromScalar((ushort) ~ src.data);
 
         /// <summary>
         /// Left-shifts the bits in the source
@@ -130,8 +143,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector16 lhs, in BitVector16 rhs)
-            => lhs.Eq(rhs);
+        public static bool operator ==(BitVector16 lhs, BitVector16 rhs)
+            => lhs.Equals(rhs);
 
         /// <summary>
         /// Determines whether the operands represent identical values
@@ -139,34 +152,18 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector16 lhs, in BitVector16 rhs)
-            => !lhs.Eq(rhs);
+        public static bool operator !=(BitVector16 lhs, BitVector16 rhs)
+            => !lhs.Equals(rhs);
 
         /// <summary>
         /// Initializes the vector with the source value it represents
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public BitVector16(in ushort data)
-            => this.data = data;
+        public BitVector16(in ushort src)
+            => this.data = src;
 
-        [MethodImpl(Inline)]
-        public void EnableBit(byte pos)
-            => BitMask.enable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public void DisableBit(byte pos)
-            => BitMask.disable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public void SetBit(byte pos, Bit value)
-            => BitMask.set(ref data, pos, value);
-
-        [MethodImpl(Inline)]
-        public bool TestBit(byte pos)
-            => BitMask.test(in data, pos);
-
-        public Bit this[byte pos]
+        public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
             get => TestBit(pos);
@@ -174,27 +171,68 @@ namespace Z0
             [MethodImpl(Inline)]
             set => BitMask.set(ref data, pos, value);
         }
-
-        public Bit this[int pos]
-        {
-            [MethodImpl(Inline)]
-            get => this[(byte)pos];
-            [MethodImpl(Inline)]
-            set => this[(byte)pos] = value;
-        }
         
-        [MethodImpl(Inline)]
-        public ushort Extract(int first, int last)
-        {
-            var len = (byte)(last - first+ 1);
-            return Bits.extract(in data, (byte)first, len);
-        }
-
         public ushort this[Range range]
         {
             [MethodImpl(Inline)]
-            get => Extract(range.Start.Value, range.End.Value);
+            get => Between(range.Start.Value, range.End.Value);
         }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public BitSize Length
+        {
+            [MethodImpl(Inline)]
+            get => 16;
+        }
+
+        /// <summary>
+        /// The vector's 8 most significant bits
+        /// </summary>
+        public BitVector8 Hi
+        {
+            [MethodImpl(Inline)]
+            get => hi(in data);        
+        }
+        
+        /// <summary>
+        /// The vector's 8 least significant bits
+        /// </summary>
+        public BitVector8 Lo
+        {
+            [MethodImpl(Inline)]
+            get => lo(in data);        
+        }
+
+        /// <summary>
+        /// Presents bitvector content as a bytespan
+        /// </summary>
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => bytes(data);
+        }
+
+        /// <summary>
+        /// Rotates vector bits rightwards by a specified offset
+        /// </summary>
+        /// <param name="offset">The magnitude of the rotation</param>
+        [MethodImpl(Inline)]
+        public BitVector16 RotR(BitSize offset)
+            => Bits.rotr(ref data, (ushort)offset);
+
+        /// <summary>
+        /// Rotates vector bits leftwards by a specified offset
+        /// </summary>
+        /// <param name="offset">The magnitude of the rotation</param>
+        [MethodImpl(Inline)]
+        public BitVector16 RotL(BitSize offset)
+            => Bits.rotl(ref data, (ushort)offset);
+
+        [MethodImpl(Inline)]
+        public BitVector16 AndNot(BitVector16 rhs)
+            => Bits.andnot((ushort)this, (ushort)rhs);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -202,78 +240,81 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public Bit Dot(BitVector16 rhs)
-        {
-              return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
-
-            // var result = Bit.Off;
-            // for(var i=0; i<Length; i++)
-            //     result ^= this[i] & rhs[i];
-            // return result;
-        }
-
-        /// <summary>
-        /// The number of bits represented by the vector
-        /// </summary>
-        public int Length
-        {
-            [MethodImpl(Inline)]
-            get => BitSize;
-        }
-
-        public BitVector8 Hi
-        {
-            [MethodImpl(Inline)]
-            get => hi(in data);        
-        }
-        
-        public BitVector8 Lo
-        {
-            [MethodImpl(Inline)]
-            get => lo(in data);        
-        }
-
-         [MethodImpl(Inline)]
-        public BitString ToBitString()
-            => data.ToBitString();
+            => mod<N2>(Bits.pop(data & rhs.data));              
 
         [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            => bytes(data);
+        public ushort Between(BitPos first, BitPos last)
+            => Bits.between(in data, first, last);
 
-        /// <summary>
-        /// Rotates bits in the source rightwards by a specified offset
-        /// </summary>
-        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector16 RotR(uint offset)
-            => Bits.rotr(ref data, (ushort)offset);
+        public void EnableBit(BitPos pos)
+            => BitMask.enable(ref data, pos);
 
-        /// <summary>
-        /// Rotates bits in the source leftwards by a specified offset
-        /// </summary>
-        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector16 RotL(uint offset)
-            => Bits.rotl(ref data, (ushort)offset);
+        public void DisableBit(BitPos pos)
+            => BitMask.disable(ref data, pos);
 
         /// <summary>
-        /// Counts the number of enabled bits in the source
+        /// Sets a bit to a specified value
+        /// </summary>
+        /// <param name="pos">The position of the bit to set</param>
+        /// <param name="value">The bit value</param>
+        [MethodImpl(Inline)]
+        public void SetBit(BitPos pos, Bit value)
+            => BitMask.set(ref data, pos, value);
+
+        [MethodImpl(Inline)]
+        public bool TestBit(BitPos pos)
+            => BitMask.test(in data, pos);
+
+        /// <summary>
+        /// Counts vector's enabled bits
         /// </summary>
         [MethodImpl(Inline)]
         public BitSize Pop()
             => Bits.pop(data);
 
+        /// <summary>
+        /// Counts the vector's leading zero bits
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public BitSize Nlz()
             => Bits.nlz(data);
 
+        /// <summary>
+        /// Counts the vector's trailing zero bits
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public BitSize Ntz()
             => Bits.ntz(data);
 
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
         [MethodImpl(Inline)]
-        public BitVector16 AndNot(in BitVector16 rhs)
-            => Bits.andnot((ushort)this, (ushort)rhs);
+        public BitVector16 Lsb(int n)                
+            => Between(0, n - 1);                
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector16 Msb(int n)                
+            => Between(LastPos - n, LastPos);                
+
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public void Reverse()
+        {
+            data = Bits.rev(data);
+        }
+
 
         [MethodImpl(Inline)]
         public bool AllOnes()
@@ -283,23 +324,29 @@ namespace Z0
         public bool AllZeros()
             => data == 0;
 
+        /// <summary>
+        /// Returns the vector's bitstring representation
+        /// </summary>
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector16 rhs)
-            => data == rhs.data;
+        public BitString ToBitString()
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitVector16 rhs)
-            => data != rhs.data;
+        public bool Equals(BitVector16 rhs)
+            => data == rhs.data;
 
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);
 
-        public override bool Equals(object obj)
-            => throw new NotSupportedException();
+         public override bool Equals(object obj)
+            => obj is BitVector16 x ? Equals(x) : false;
         
         public override int GetHashCode()
-            => throw new NotSupportedException();
-    }
+            => data.GetHashCode();
+        
+        public override string ToString()
+            => Format();
+   }
 
 }

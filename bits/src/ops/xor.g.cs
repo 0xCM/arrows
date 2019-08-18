@@ -95,6 +95,32 @@ namespace Z0
         
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref readonly Memory<T> xor<T>(in Memory<T> lhs, in ReadOnlyMemory<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.xor(int8(lhs.Span), int8(rhs.Span));
+            else if(typeof(T) == typeof(byte))
+                Bits.xor(uint8(lhs.Span), uint8(rhs.Span));
+            else if(typeof(T) == typeof(short))
+                Bits.xor(int16(lhs.Span), int16(rhs.Span));
+            else if(typeof(T) == typeof(ushort))
+                Bits.xor(uint16(lhs.Span), uint16(rhs.Span));
+            else if(typeof(T) == typeof(int))
+                Bits.xor(int32(lhs.Span), int32(rhs.Span));
+            else if(typeof(T) == typeof(uint))
+                Bits.xor(uint32(lhs.Span), uint32(rhs.Span));
+            else if(typeof(T) == typeof(long))
+                Bits.xor(int64(lhs.Span), int64(rhs.Span));
+            else if(typeof(T) == typeof(ulong))
+                Bits.xor(uint64(lhs.Span), uint64(rhs.Span));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> xor<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
         {

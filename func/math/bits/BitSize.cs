@@ -43,55 +43,6 @@ namespace Z0
         public static readonly BitSize x256 = 256;
 
         /// <summary>
-        /// Returns the bit size of a type
-        /// </summary>
-        /// <typeparam name="T">The type to evaluate</typeparam>
-        [MethodImpl(Inline)]
-        public static BitSize Size<T>()
-            where T : struct
-                => Unsafe.SizeOf<T>()*8;
-        
-        [MethodImpl(Inline)]
-        public static bool operator ==(BitSize lhs, BitSize rhs)
-            => lhs.Bits == rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(BitSize lhs, BitSize rhs)
-            => lhs.Bits != rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize operator +(BitSize lhs, BitSize rhs)
-            => lhs.Bits + rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize operator -(BitSize lhs, BitSize rhs)
-            => lhs.Bits - rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize operator *(BitSize lhs, BitSize rhs)
-            => lhs.Bits * rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize operator /(BitSize lhs, BitSize rhs)
-            => lhs.Bits / rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize operator %(BitSize lhs, BitSize rhs)
-            => lhs.Bits % rhs.Bits;
-
-        [MethodImpl(Inline)]
-        public static BitSize Define(int bits)
-            => new BitSize((ulong)bits);
-
-        [MethodImpl(Inline)]
-        public static BitSize Define(long bits)
-            => new BitSize((ulong)bits);
-
-        [MethodImpl(Inline)]
-        public static BitSize Define(ulong bits)
-            => new BitSize(bits);
-
-        /// <summary>
         /// Returns the minimum number of bytes required to apprehend 
         /// the size of the source bits.
         /// </summary>
@@ -147,6 +98,56 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator BitSize(ByteSize src)
             => src.Bytes * 8;
+
+        /// <summary>
+        /// Returns the bit size of a type
+        /// </summary>
+        /// <typeparam name="T">The type to evaluate</typeparam>
+        [MethodImpl(Inline)]
+        public static BitSize Size<T>()
+            where T : struct
+                => Unsafe.SizeOf<T>()*8;
+        
+        [MethodImpl(Inline)]
+        public static bool operator ==(BitSize lhs, BitSize rhs)
+            => lhs.Bits == rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(BitSize lhs, BitSize rhs)
+            => lhs.Bits != rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize operator +(BitSize lhs, BitSize rhs)
+            => lhs.Bits + rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize operator -(BitSize lhs, BitSize rhs)
+            => lhs.Bits - rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize operator *(BitSize lhs, BitSize rhs)
+            => lhs.Bits * rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize operator /(BitSize lhs, BitSize rhs)
+            => lhs.Bits / rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize operator %(BitSize lhs, BitSize rhs)
+            => lhs.Bits % rhs.Bits;
+
+        [MethodImpl(Inline)]
+        public static BitSize Define(int bits)
+            => new BitSize((ulong)bits);
+
+        [MethodImpl(Inline)]
+        public static BitSize Define(long bits)
+            => new BitSize((ulong)bits);
+
+        [MethodImpl(Inline)]
+        public static BitSize Define(ulong bits)
+            => new BitSize(bits);
+
 
         [MethodImpl(Inline)]
         public BitSize(ulong Bits)

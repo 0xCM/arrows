@@ -30,7 +30,15 @@ namespace Z0
         /// </summary>
         static readonly char[] HexMap 
             = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-                    
+
+        static readonly byte[] ReverseMap
+            = new byte[]{
+                0b0000, 0b1000, 0b0100, 0b1100, 
+                0b0010, 0b1010, 0b0110, 0b1110, 
+                0b0001, 0b1001, 0b0101, 0b1101, 
+                0b0011, 0b1011, 0b0111, 0b1111, 
+                };
+
         /// <summary>
         /// Constructs a <see cref='UInt4'/> from a byte value in the range [0, 15]
         /// </summary>
@@ -405,7 +413,8 @@ namespace Z0
         public UInt4 Lo
         {
             [MethodImpl]
-            get => FromByte(Bits.extract(in data,0, 2));
+            get => FromByte(Bits.between(in data,0, 1));
+            
             [MethodImpl(Inline)]
             set 
             {
@@ -422,7 +431,7 @@ namespace Z0
         public UInt4 Hi
         {
             [MethodImpl]
-            get => FromByte(Bits.extract(in data,2, 2));
+            get => FromByte(Bits.between(in data,2, 3));
 
             [MethodImpl]
             set

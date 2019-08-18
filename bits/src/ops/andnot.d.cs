@@ -22,6 +22,7 @@ namespace Z0
         public static byte andnot(in byte lhs, in byte rhs) 
             => (byte)Bmi1.AndNot(lhs,rhs);
 
+
         [MethodImpl(Inline)]
         public static ushort andnot(in ushort lhs, in ushort rhs)
             => (ushort)Bmi1.AndNot(lhs,rhs);

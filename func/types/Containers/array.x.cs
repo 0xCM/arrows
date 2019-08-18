@@ -25,41 +25,12 @@ namespace Z0
             => src.Take(length).ToArray();
 
         /// <summary>
-        /// Constructs a readonly list from from the entirety of a stream
+        /// Constructs an array from a specified number of elmements from a source stream after a skip
         /// </summary>
         /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The item type</typeparam>
+        /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static T[] Freeze<T>(this IEnumerable<T> src)
-                => src.ToArray();
-
-        /// <summary>
-        /// Constructs an array from from the a specified number of
-        /// elmements from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] Freeze<T>(this IEnumerable<T> src, int length)
-                => src.TakeArray(length);
-
-        /// <summary>
-        /// Constructs an index of specified length from a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] Freeze<T>(this IEnumerable<T> src, uint count)
-            => src.TakeArray((int)count);
-
-        /// <summary>
-        /// Constructs a readonly list from from the a specified number of
-        /// elmements from stream after a skip
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] Freeze<T>(this IEnumerable<T> src, int skip, int count)
+        public static T[] TakeArray<T>(this IEnumerable<T> src, int skip, int count)
             => src.Skip(skip).TakeArray(count);
 
         /// <summary>

@@ -19,6 +19,13 @@ namespace Z0
 
     partial class Bits
     {
+        [MethodImpl(Inline)]
+        public static int movemask(ulong src)
+        {
+            Vec128.LoadScalar(src, out Vec128<ulong> dst);
+            return movemask(dst.As<byte>());
+        }
+        
         /// <summary>
         /// Constructs an integer from the most significant bit of each source vector component
         /// </summary>

@@ -112,18 +112,27 @@ namespace Z0
             => BitString.FromScalar(src);
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Span<T> src)
+        public static BitString ToBitString<T>(this Span<T> src, int? maxlen = null)
             where T : struct
-                => BitString.FromScalars(src); 
+                => BitString.FromScalars(src, maxlen); 
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString<T>(this Memory<T> src, int? maxlen = null)
+            where T : struct
+                => BitString.FromScalars(src, maxlen); 
+
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString<T>(this ReadOnlyMemory<T> src, int? maxlen = null)
+            where T : struct
+                => BitString.FromScalars(src, maxlen); 
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this Span<Bit> src)
-                => BitString.FromBits(src);
+            => BitString.FromBits(src);
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this ReadOnlySpan<Bit> src)
-                => BitString.FromBits(src);
-
+            => BitString.FromBits(src);
 
         /// <summary>
         /// Converts a bitview to a bitstring
@@ -140,6 +149,13 @@ namespace Z0
         {
             src.BitSeq.Reverse();
             return ref src;
+        }
+
+        [MethodImpl(Inline)]   
+        public static BitString Reversed(this BitString src)
+        {
+            src.BitSeq.Reverse();
+            return src;
         }
 
         /// <summary>

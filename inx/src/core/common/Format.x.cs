@@ -89,5 +89,10 @@ namespace Z0
             where T : struct
                 => src.ToSpan().FormatHex(vectorize,sep);
  
+       [MethodImpl(Inline)]
+       public static string FormatHexBlocks<T>(this Vec256<T> src)
+            where T : struct
+                => src.FormatHex(false, AsciSym.Space);
+
     }
 }

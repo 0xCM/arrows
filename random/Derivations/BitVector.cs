@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector4 BitVector4(this IRandomSource random)
-            => BV.Load(random.NextUInt4());
+            => BV.FromScalar(random.NextUInt4());
 
         /// <summary>
         /// Produces a random 8-bit bitvector
@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector8 BitVector8(this IRandomSource random)
-            => BV.Load(random.NextUInt8());
+            => random.NextUInt8();
 
         /// <summary>
         /// Produces a random 16-bit bitvector
@@ -37,7 +37,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector16 BitVector16(this IRandomSource random)
-            => BV.Define(random.NextUInt16());
+            => random.NextUInt16();
 
         /// <summary>
         /// Produces a random 32-bit bitvector
@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector32 BitVector32(this IRandomSource random)
-            => BV.Load(random.NextUInt32());
+            => random.NextUInt32();
 
         /// <summary>
         /// Produces a random 64-bit bitvector
@@ -53,7 +53,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector64 BitVector64(this IRandomSource random)
-            => BV.Load(random.NextUInt64());
+            => random.NextUInt64();
 
         /// <summary>
         /// Produces a random generic bitvector of specified length

@@ -119,8 +119,8 @@ namespace Z0
         public void Deposit(IEnumerable<T> src, bool pll = true)
         {
             var indices = pll 
-                ? src.AsParallel().Select(FindBucketIndex).GroupBy(x => x).Freeze() 
-                : src.Select(FindBucketIndex).GroupBy(x => x).Freeze(); 
+                ? src.AsParallel().Select(FindBucketIndex).GroupBy(x => x).ToArray() 
+                : src.Select(FindBucketIndex).GroupBy(x => x).ToArray(); 
 
             foreach(var i in indices)
                 Counts[i.Key - 1] = Counts[i.Key - 1] + i.Count();

@@ -41,9 +41,11 @@ namespace Z0
         /// Determines the position of the least on bit
         /// </summary>
         /// <param name="src">The bit source</param>
+        /// <intrinsic>unsigned __int64 _blsi_u64 (unsigned __int64 a) BLSI reg, reg/m64</intrinsic>
         [MethodImpl(Inline)]
         public static ulong lopos(ulong src)
             => Pow2.inv(Bmi1.X64.ExtractLowestSetBit(src));
+    
     }
 
 }

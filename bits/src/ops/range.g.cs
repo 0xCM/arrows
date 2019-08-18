@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="i0">The position of the first bit</param>
         /// <param name="i1">The position of the last bit</param>
         [MethodImpl(Inline)]
-        public static T range<T>(in T src, BitIndex i0, BitIndex i1)
+        public static T range<T>(in T src, BitPos i0, BitPos i1)
         {
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(Bits.range(int8(src),i0,i1));
@@ -54,14 +54,14 @@ namespace Z0
         /// <param name="i1">The end bit position</param>
         /// <typeparam name="T">The primal bit source type</typeparam>
         [MethodImpl(Inline)]
-        public static void range<T>(in T src, BitIndex i0, BitIndex i1, Span<byte> dst, int offset)
+        public static void range<T>(in T src, BitPos i0, BitPos i1, Span<byte> dst, int offset)
             where T : struct
-                => bytes(gbits.range(src,i0,i1)).Slice(0, ByteCount(i0,i1)).CopyTo(dst,offset); 
-                
+                => bytes(gbits.range(src,i0,i1)).Slice(0, ByteCount(i0,i1)).CopyTo(dst,offset);                 
 
+        
         [MethodImpl(Inline)]
-        static ByteSize ByteCount(BitIndex i0, BitIndex i1)
-            => ByteCount((uint)((i1 - i0) + 1));
+        static ByteSize ByteCount(BitPos i0, BitPos i1)
+            => ByteCount(i1 - i0);
 
 
         [MethodImpl(Inline)]

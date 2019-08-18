@@ -372,7 +372,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector64 ToBitVector()
-            => BitVector64.Load((ulong)this);
+            => BitVector64.FromScalar((ulong)this);
 
         [MethodImpl(Inline)]
         public readonly bool Equals(in BitMatrix8 rhs)

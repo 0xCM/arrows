@@ -233,10 +233,4 @@ namespace Z0
 
 	}
 
-	public static class BitPos
-	{
-		public static BitPos<T> Define<T>(uint index)
-			where T : struct
-				=> BitPos<T>.FromIndex(index);
-	}
 }

@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(sbyte src)
+        public static uint pop(sbyte src)
             => Popcnt.PopCount((uint)src);
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(byte src)
+        public static uint pop(byte src)
             => Popcnt.PopCount(src);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(short src)
+        public static uint pop(short src)
             => Popcnt.PopCount((uint)src);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(ushort src)
+        public static uint pop(ushort src)
             => Popcnt.PopCount(src);
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(int src)
+        public static uint pop(int src)
             => Popcnt.PopCount((uint)src);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(uint src)
+        public static uint pop(uint src)
             => Popcnt.PopCount(src);
 
         /// <summary>
@@ -69,16 +69,16 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(long src)
-            => Popcnt.X64.PopCount((ulong)src);
+        public static uint pop(long src)
+            => (uint)Popcnt.X64.PopCount((ulong)src);
 
         /// <summary>
         /// Counts the enabled bits in the source
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
-        public static ulong pop(ulong src)
-            => Popcnt.X64.PopCount(src);
+        public static uint pop(ulong src)
+            => (uint)Popcnt.X64.PopCount(src);
  
         public static ulong pop(Span<byte> src)
         {

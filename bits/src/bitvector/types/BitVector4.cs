@@ -13,24 +13,47 @@ namespace Z0
     using static Bits;
     using static Bytes;
 
-    public ref struct BitVector4
+    /// <summary>
+    /// Defines a 4-bit bitvector
+    /// </summary>
+    public struct BitVector4 : IBitVector<UInt4>
     {
         UInt4 data;
 
-        public const int BitSize = 4;
+        public static readonly BitSize BitSize = 4;
+
+        public static readonly BitPos FirstPos = 0;
+
+        public static readonly BitPos LastPos = BitSize - 1;
 
         [MethodImpl(Inline)]
-        public BitVector4(in byte data)
-        {
-            require(data <= 0xF);
-            this.data = (UInt4)data;
-        }
+        public static BitVector4 FromParts(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
+            => UInt4.FromBits(x0,x1,x2,x3);
 
+        /// <summary>
+        /// Creates a vector from the lower 4 bits of a byte
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public BitVector4(UInt4 data)
-        {
-            this.data = data;
-        }
+        public static BitVector4 FromScalar(byte src)
+            => new BitVector4(src);            
+
+
+        /// <summary>
+        /// Creates a vector from the primal source value with which it aligns
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 FromScalar(UInt4 src)
+            => new BitVector4(src);            
+
+        /// <summary>
+        /// Creates a vector from the primal source value with which it aligns
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 FromBitString(BitString src)
+            => new BitVector4(src.IsEmpty ? (byte)0 : src.PackedBits()[0]);            
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N4,byte>(in BitVector4 src)
@@ -49,33 +72,24 @@ namespace Z0
             => new BitVector4(src);
 
         [MethodImpl(Inline)]
-        public static BitVector4 FromParts(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
-            => UInt4.FromBits(x0,x1,x2,x3);
-
-        [MethodImpl(Inline)]
-        public static BitVector4 Load(in byte src)
-            => new BitVector4(src);
-            
-
-        [MethodImpl(Inline)]
         public static bool operator ==(in BitVector4 lhs, in BitVector4 rhs)
-            => lhs.Eq(rhs);
+            => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(in BitVector4 lhs, in BitVector4 rhs)
-            => !lhs.Eq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static BitVector4 operator +(in BitVector4 lhs, in BitVector4 rhs)
-            => Load((byte)(lhs.data ^ rhs.data));
+            => FromScalar((byte)(lhs.data ^ rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
-            => Load((byte)(lhs.data & rhs.data));
+            => FromScalar((byte)(lhs.data & rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector4 operator &(in BitVector4 lhs, in BitVector4 rhs)
-            => Load((byte)(lhs.data & rhs.data));
+            => FromScalar((byte)(lhs.data & rhs.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -88,25 +102,49 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector4 operator -(in BitVector4 src)
-            => Load((byte) ~ src.data);
+            => FromScalar((byte) ~ src.data);
 
         [MethodImpl(Inline)]
         public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
-            => Load((byte)(lhs.data | rhs.data));
+            => FromScalar((byte)(lhs.data | rhs.data));
 
         [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
+        public static BitVector4 operator >>(BitVector4 lhs, int rhs)
+            => new BitVector4(lhs.data >> rhs);
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator <<(BitVector4 lhs, int rhs)
+            => new BitVector4(lhs.data << rhs);
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator ~(BitVector4 src)
+            => new BitVector4(~src.data);
+
+        [MethodImpl(Inline)]
+        public BitVector4(byte data)
+        {
+            this.data = (UInt4)data;
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector4(UInt4 data)
+        {
+            this.data = data;
+        }
+
+        [MethodImpl(Inline)]
+        public void EnableBit(BitPos pos)
             => data[pos] = Bit.On;
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
+        public void DisableBit(BitPos pos)
             => data[pos] = Bit.Off;
 
         [MethodImpl(Inline)]
-        public bool TestBit(byte pos)
+        public bool TestBit(BitPos pos)
             => data[pos];
 
-        public Bit this[in int pos]
+        public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
             get => data[pos];
@@ -118,10 +156,10 @@ namespace Z0
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public int Length
+        public BitSize Length
         {
             [MethodImpl(Inline)]
-            get => BitSize;
+            get => 4;
         }
 
         public Bit Dot(BitVector4 rhs)
@@ -136,9 +174,11 @@ namespace Z0
         public BitString ToBitString()
             => data.ToBitString();
 
-        [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            => new byte[]{data};
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => new byte[]{data};
+        }
 
         /// <summary>
         /// Counts the number of enabled bits in the vector
@@ -162,12 +202,8 @@ namespace Z0
             => Bits.ntz(data);
 
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector4 rhs)
+        public bool Equals(in BitVector4 rhs)
             => data == rhs.data;
-
-        [MethodImpl(Inline)]
-        public bool NEq(in BitVector4 rhs)
-            => data != rhs.data;
 
         [MethodImpl(Inline)]
         public bool AllOnes()
@@ -178,13 +214,36 @@ namespace Z0
             => data == 0;
 
         [MethodImpl(Inline)]
+        public BitVector4 Between(BitPos first, BitPos last)
+            => Bits.between(data, first, last);
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector4 Lsb(int n)                
+            => Between(0, n - 1);                
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector4 Msb(int n)                
+            => Between(LastPos - n, LastPos);                
+
+        [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);
 
-        public override bool Equals(object obj)
-            => throw new NotSupportedException();
-       
+         public override bool Equals(object obj)
+            => obj is BitVector4 x ? Equals(x) : false;
+        
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
+        
+        public override string ToString()
+            => Format();
     }
 }

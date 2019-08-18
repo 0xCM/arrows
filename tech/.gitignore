@@ -1,0 +1,11 @@
+.stack-work/
+alpha.cabal
+*~
+libs/
+dist/
+bin/
+.vs/
+.work/
+obj/
+.exe
+mkl.redist/

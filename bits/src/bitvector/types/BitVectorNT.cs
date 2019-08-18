@@ -16,12 +16,13 @@ namespace Z0
     /// </summary>
     /// <typeparam name="N">The vector length type</typeparam>
     /// <typeparam name="T">The vector component type</typeparam>
-    public ref struct BitVector<N,T>
+    public struct BitVector<N,T> : IBitVector<N,T>
         where N : ITypeNat, new()
         where T : struct
     {
-        Span<T> bits;
-
+        
+        Memory<T> data;
+        
         /// <summary>
         /// The maximum number of bits contained in a vector component
         /// </summary>
@@ -30,21 +31,21 @@ namespace Z0
 
         public static readonly BitSize TotalBitCount = new N().value;
 
-        static readonly int MaxBitIndex = TotalBitCount - 1;
+        static readonly BitPos MaxBitIndex = TotalBitCount - 1;
     
         static readonly BitPos<T>[] BitMap = BitGridLayout.BitMap<T>(TotalBitCount);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<T>(BitVector<N,T> src)
-            => new BitVector<T>(src.bits);
+            => new BitVector<T>(src.data);
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator +(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.xor(in lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.and(lhs.data, rhs.data));
 
         /// <summary>
         /// Computes the bitwise complement of the operand
@@ -52,7 +53,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator -(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(in src.bits));                        
+            => new BitVector<N,T>(gbits.flip(src.data));                        
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -69,21 +70,29 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator !=(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => lhs.NEq(rhs);
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public BitVector(params T[] bits)
             : this()
         {
-            this.bits =bits;
+            this.data =bits;
             require(bits.Length * SegmentCapacity >= TotalBitCount);
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector(Memory<T> memory)
+            : this()
+        {
+            this.data = memory;
+            require(Bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
         [MethodImpl(Inline)]
         public BitVector(Span<T> bits)
             : this()
         {
-            this.bits = bits;
+            this.data = bits.ToArray();
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
@@ -91,7 +100,7 @@ namespace Z0
         public BitVector(ReadOnlySpan<T> bits)
             : this()
         {
-            this.bits = bits.Replicate();
+            this.data = bits.ToArray();
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
@@ -100,18 +109,18 @@ namespace Z0
             => new BitVector<N,T>(src);    
 
         [MethodImpl(Inline)]
-        static int CheckIndex(int index)
-            => index >= 0 && index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<int>(index, 0, MaxBitIndex);
+        static int CheckIndex(BitPos index)
+            =>  index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<BitPos>(index, 0, MaxBitIndex);
 
         /// <summary>
         /// Retrieves the value of the bit at a specified position
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
         [MethodImpl(Inline)]
-        public Bit GetBit(in int index)
+        public Bit GetBit(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            return gbits.test(in bits[pos.SegIdx], pos.BitOffset);
+            return gbits.test(in Bits[pos.SegIdx], pos.BitOffset);
         }
             
         /// <summary>
@@ -119,16 +128,16 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
         [MethodImpl(Inline)]
-        public void SetBit(in int index, Bit value)
+        public void SetBit(BitPos index, Bit value)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.set(ref bits[pos.SegIdx], pos.BitOffset, in value);
+            gbits.set(ref Bits[pos.SegIdx], pos.BitOffset, in value);
         }
 
         /// <summary>
         /// A bit-level accessor/manipulator
         /// </summary>
-        public Bit this[in int index]
+        public Bit this[BitPos index]
         {
             [MethodImpl(Inline)]
             get => GetBit(index);
@@ -140,14 +149,9 @@ namespace Z0
         /// <summary>
         /// Computes the scalar product between this vector and another
         /// </summary>
-        /// <param name="rhs"></param>
+        /// <param name="rhs">The other vector</param>
         public Bit Dot(BitVector<N,T> rhs)
         {             
-            //  var and = gbits.and(bits, rhs.bits);
-            //  var pop = 0u;
-            //  for(var i =0; i< and.Length; i++)
-            //     pop += (uint)gbits.pop(and[i]);
-            //  return Mod<N2>.mod(pop);               
             var result = Bit.Off;
             for(var i=0; i<Length; i++)
                 result ^= this[i] & rhs[i];
@@ -160,7 +164,7 @@ namespace Z0
         public Span<T> Bits
         {
             [MethodImpl(Inline)]
-            get => bits;
+            get => data.Span;
         }
 
         /// <summary>
@@ -172,22 +176,26 @@ namespace Z0
             get => TotalBitCount;
         }
 
-        [MethodImpl(Inline)]
-        public void Toggle(in int index)
-        {         
-            ref readonly var pos = ref BitMap[CheckIndex(index)];
-            BitMaskG.toggle(ref bits[pos.SegIdx],  pos.BitOffset);
-        }
-
         /// <summary>
-        /// Enables an identified bit
+        /// Toggles an index-identified bit
         /// </summary>
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
-        public void Enable(in int index)
+        public void Toggle(BitPos index)
+        {         
+            ref readonly var pos = ref BitMap[CheckIndex(index)];
+            BitMaskG.toggle(ref Bits[pos.SegIdx],  pos.BitOffset);
+        }
+
+        /// <summary>
+        /// Enables an index-identified bit
+        /// </summary>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public void Enable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.enable(ref bits[pos.SegIdx],  pos.BitOffset);
+            gbits.enable(ref Bits[pos.SegIdx],  pos.BitOffset);
         }
 
         /// <summary>
@@ -195,10 +203,10 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The position of the bit to disable</param>
         [MethodImpl(Inline)]
-        public void Disable(in int index)
+        public void Disable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.disable(ref bits[pos.SegIdx], pos.BitOffset);
+            gbits.disable(ref Bits[pos.SegIdx], pos.BitOffset);
         }
 
         /// <summary>
@@ -206,7 +214,7 @@ namespace Z0
         /// </summary>
         /// <param name="index">The position of the bit to test</param>
         [MethodImpl(Inline)]
-        public bool Test(in int index)
+        public bool Test(BitPos index)
             => GetBit(index);
 
         /// <summary>
@@ -224,7 +232,7 @@ namespace Z0
         {
             var count = 0ul;
             for(var i=0; i < TotalBitCount; i++)
-                count += gbits.pop(bits[i]);
+                count += gbits.pop(Bits[i]);
             return count;
         }
 
@@ -237,9 +245,9 @@ namespace Z0
         {
             var primal = PrimalInfo.Get<T>();
             if(value)
-                bits.Fill(primal.MaxVal);
+                Bits.Fill(primal.MaxVal);
             else
-                bits.Fill(primal.Zero);
+                Bits.Fill(primal.Zero);
         }
 
         /// <summary>
@@ -256,15 +264,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool Equals(in BitVector<N,T> rhs)
             => ToBitString().Equals(rhs.ToBitString());
-
-        [MethodImpl(Inline)]
-        public bool NEq(in BitVector<N,T> rhs)
-            => !Equals(rhs);
            
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
+            => obj is BitVector<N,T> x ? Equals(x) : false;
         
         public override int GetHashCode()
-            => throw new NotSupportedException(); 
+            => ToBitString().GetHashCode();
+ 
+        public override string ToString()
+            => Format();
+ 
     }
 }

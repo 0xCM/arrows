@@ -117,7 +117,7 @@ namespace Z0
                 bool newFile = true, FileExtension ext = null)
                     where R : IRecord
             {
-                var frozen = records.Freeze();
+                var frozen = records.ToArray();
                 if(frozen.Length == 0)
                     return;                
 
@@ -133,7 +133,7 @@ namespace Z0
                     where R : IRecord
                     where T : Enum
             {
-                var frozen = records.Freeze();
+                var frozen = records.ToArray();
                 if(frozen.Length == 0)
                     return;                
 

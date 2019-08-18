@@ -40,27 +40,82 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                 Bits.loff(ref int8(ref src));
+                 loff(ref int8(ref src));
             if(typeof(T) == typeof(byte))
-                 Bits.loff(ref uint8(ref src));
+                 loff(ref uint8(ref src));
             if(typeof(T) == typeof(short))
-                 Bits.loff(ref int16(ref src));
+                 loff(ref int16(ref src));
             if(typeof(T) == typeof(ushort))
-                 Bits.loff(ref uint16(ref src));
+                 loff(ref uint16(ref src));
             if(typeof(T) == typeof(int))
-                 Bits.loff(ref int32(ref src));
+                 loff(ref int32(ref src));
             if(typeof(T) == typeof(uint))
-                 Bits.loff(ref uint32(ref src));
+                 loff(ref uint32(ref src));
             if(typeof(T) == typeof(long))
-                 Bits.loff(ref int64(ref src));
+                 loff(ref int64(ref src));
             if(typeof(T) == typeof(ulong))
-                 Bits.loff(ref uint64(ref src));
+                 loff(ref uint64(ref src));
             else
                 throw unsupported<T>();
 
             return ref src;
         }       
 
+        [MethodImpl(Inline)]
+        static ref sbyte loff(ref sbyte src)
+        {
+            src &= (sbyte)(src - 1);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref byte loff(ref byte src)
+        {
+            src &= (byte)(src - 1);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref short loff(ref short src)
+        {
+            src &= (short)(src - 1);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref ushort loff(ref ushort src)
+        {
+            src &= (ushort)(src - 1);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref int loff(ref int src)
+        {
+            src &= src - 1;
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref uint loff(ref uint src)
+        {
+            src &= src - 1;
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref long loff(ref long src)
+        {
+            src &= src - 1;
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref ulong loff(ref ulong src)
+        {
+            src &= src - 1;
+            return ref src;
+        } 
     }
 
 }

@@ -111,32 +111,32 @@ namespace Z0.Test
 
         public void PackBytesIntoU32Span()
         {
-            var x0 = BitVector32.Load(0b00001010110000101001001111011001u);
-            var x1 = BitVector32.Load(0b00001010110110101001001111000001u);
+            var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
+            var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
             var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<uint>(src.Length / 4);
             gbits.pack(src, packed);
 
             for(var i = 0; i<packed.Length; i++)
             {
-                 var x = BitVector32.Load(BitConverter.ToUInt32(src.Slice(4*i)));
-                 var y = BitVector32.Load(packed[i]);
+                 var x = BitVector32.FromScalar(BitConverter.ToUInt32(src.Slice(4*i)));
+                 var y = BitVector32.FromScalar(packed[i]);
                 Claim.eq((uint)x, (uint)y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }        
         }
 
         public void PackBytesIntoU64Span()
         {
-            var x0 = BitVector32.Load(0b00001010110000101001001111011001u);
-            var x1 = BitVector32.Load(0b00001010110110101001001111000001u);
+            var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
+            var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
             var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<ulong>(src.Length / 8);
             gbits.pack(src, packed);
 
             for(var i = 0; i<packed.Length; i++)
             {
-                 var x = BitVector64.Load(BitConverter.ToUInt64(src.Slice(8*i)));
-                 var y = BitVector64.Load(packed[i]);
+                 var x = BitVector64.FromScalar(BitConverter.ToUInt64(src.Slice(8*i)));
+                 var y = BitVector64.FromScalar(packed[i]);
                 Claim.eq((ulong)x, (ulong)y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
             }
         
@@ -145,8 +145,8 @@ namespace Z0.Test
         void PackSplitPackU16()
         {
             var len = Pow2.T08;
-            var lhs = Random.Bytes().Take(len).Freeze();
-            var rhs = Random.Bytes().Take(len).Freeze();
+            var lhs = Random.Bytes().Take(len).ToArray();
+            var rhs = Random.Bytes().Take(len).ToArray();
             for(var i=0; i<len; i++)
             {
                 var dst = Bits.pack(lhs[i],rhs[i]);

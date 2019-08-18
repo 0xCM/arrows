@@ -31,7 +31,7 @@ namespace Z0.Test
         
         protected override void RunTests(params string[] filter)
         {
-            var samples = Random.Bernoulli<int>(.2).Take(Pow2.T20).Freeze();
+            var samples = Random.Bernoulli<int>(.2).Take(Pow2.T20).ToArray();
             var success = (double)samples.Where(x => x == 1).Count();
             var result = success / (double) Pow2.T20;
             print(result.ToString());

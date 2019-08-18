@@ -85,7 +85,6 @@ namespace Z0.Test
             }
         }
 
-
         static Vec256<T> ShuffleTruncateMask<T>()
             where T : struct
 
@@ -172,6 +171,9 @@ namespace Z0.Test
             var trB = dinx.shuffle(dstB.As<byte>(), trm);
             
 
+            //! Need to do a permutation of the form: for odd i <-> i + 15
+
+
             //Create a stagger between the two truncated vectors so that
             //they can be interleaved with blend
             var shB = Bits.shiftlw(trB.As<ushort>(), 1).As<byte>();
@@ -205,7 +207,7 @@ namespace Z0.Test
                 24, 25, 26, 27, 28, 29, 30, 31 
                 );
             byte j = 1;
-            var b = ShiftL(src,j,true);
+            var b = ShiftL(src,j);
             var c =  Vec256.Load(BitRef.ShiftL(src.ToSpan(), j));
                 
 

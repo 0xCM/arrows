@@ -71,26 +71,36 @@ namespace Z0
                 => BitVector.Load(src,n);
 
         /// <summary>
-        /// Constructs a bitvector where the length is determined by the capacity
-        /// of the source span if unspecified
+        /// Constructs a bitvector from a primal span
         /// </summary>
         /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal segment type</typeparam>
+        /// <param name="len">The bitvector length, if specified</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this Span<T> src, uint? dim = null)
+        public static BitVector<T> ToBitVector<T>(this Span<T> src, BitSize? len = null)
             where T : struct
-                => BitVector.Load(src,dim);
+                => BitVector.Load(src,len);
 
         /// <summary>
-        /// Constructs a bitvector where the length is determined by the capacity
-        /// of the source span if unspecified
+        /// Loads a bitvector from a primal segment
         /// </summary>
         /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal segment type</typeparam>
+        /// <param name="len">The bitvector length, if specified</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, uint? dim = null)
+        public static BitVector<T> ToBitVector<T>(this Memory<T> src, BitSize? len = null)
             where T : struct
-                => BitVector.Load(src,dim);
+                => BitVector.Load(src,len);
+
+        /// <summary>
+        /// Loads a bitvector from a primal span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, BitSize? len = null)
+            where T : struct
+                => BitVector.Load(src,len);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
@@ -98,19 +108,39 @@ namespace Z0
                 => src.Bytes().First();
 
         [MethodImpl(Inline)]
+        public static BitVector8 TakeBitVector8<T>(this BitVector<T> src, int offset = 0)        
+            where T : struct
+                => src.Bytes()[offset];
+
+        [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
             where T : struct
-                => BitConverter.ToUInt16(src.Bytes().Extend(BitVector16.ByteSize));
+                => BitConverter.ToUInt16(src.Bytes().Extend(2));
+
+        [MethodImpl(Inline)]
+        public static BitVector16 TakeBitVector16<T>(this BitVector<T> src, int offset = 0)        
+            where T : struct
+                => BitConverter.ToUInt16(src.Bytes().Slice(offset, 2));
 
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
             where T : struct
-                => BitConverter.ToUInt32(src.Bytes().Extend(BitVector32.ByteSize));
+                => BitConverter.ToUInt32(src.Bytes().Extend(4));
+
+        [MethodImpl(Inline)]
+        public static BitVector32 TakeBitVector32<T>(this BitVector<T> src, int offset = 0)        
+            where T : struct
+                => BitConverter.ToUInt32(src.Bytes().Slice(offset, 4));
 
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
             where T : struct
-                => BitConverter.ToUInt64(src.Bytes().Extend(BitVector64.ByteSize));
+                => BitConverter.ToUInt64(src.Bytes().Extend(8));
+
+        [MethodImpl(Inline)]
+        public static BitVector64 TakeBitVector64<T>(this BitVector<T> src, int offset = 0)        
+            where T : struct
+                => BitConverter.ToUInt64(src.Bytes().Slice(offset, 8));
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8(this sbyte src)        
@@ -165,7 +195,7 @@ namespace Z0
             => (ushort)src;
 
         /// <summary>
-        /// Constructs a 32-bit bitvector an integer source
+        /// Defines a 32-bit bitvector with content determined by its corresponding integral type 
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -173,7 +203,7 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a 32-bit bitvector an integer source
+        /// Defines a 32-bit bitvector with content determined by a 32-bit usigned integer
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -181,7 +211,8 @@ namespace Z0
             => (uint)src;
 
         /// <summary>
-        /// Constructs a 64-bit bitvector an integer source
+        /// Defines a 64-bit bitvector where the lower 16 bits are determined by 
+        /// an 8-bit usigned integer
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -189,7 +220,8 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a 64-bit bitvector an integer source
+        /// Constructs a 64-bit bitvector where the lower 8 bits are 
+        /// determined by an 8-bit signed integer
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -197,7 +229,7 @@ namespace Z0
             => (byte)src;
 
         /// <summary>
-        /// Constructs a 64-bit bitvector an integer source
+        /// Defines a 64-bit bitvector where the lower 16 bits are determined by a 16-bit usigned integer 
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -205,7 +237,7 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a 64-bit bitvector an integer source
+        /// Defines a 64-bit bitvector where the lower 16 bits are determined by a 16-bit signed integer 
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -213,7 +245,7 @@ namespace Z0
             => (ushort)src;
 
         /// <summary>
-        /// Constructs a 64-bit bitvector an integer source
+        /// Defines a 64-bit bitvector where the lower 32 bits are determined by a 32-bit unsigned integer 
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]

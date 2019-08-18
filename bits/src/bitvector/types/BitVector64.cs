@@ -14,29 +14,42 @@ namespace Z0
 
     using static zfunc;    
 
-    public ref struct BitVector64
+    /// <summary>
+    /// Defines a 64-bit bitvector
+    /// </summary>
+    public struct BitVector64
     {
         ulong data;
 
-        public const int ByteSize = 8;
+        public static readonly BitSize BitSize = 64;
 
-        public const int BitSize = 8*ByteSize;
+        public static readonly BitPos FirstPos = 0;
+
+        public static readonly BitPos LastPos = BitSize - 1;
 
         [MethodImpl(Inline)]
         public static BitVector64 Alloc()
             => new BitVector64(0);
 
         /// <summary>
-        /// Loads a vector from the primal source value it represents
+        /// Creates a vector from the primal source value it represents
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 Load(ulong src)
+        public static BitVector64 FromScalar(ulong src)
             => new BitVector64(src);    
+
+        /// <summary>
+        /// Creates a vector from a bitstring
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromBitString(in BitString src)
+            => new BitVector64(src.TakeUInt64());    
 
         [MethodImpl(Inline)]
         public static BitVector64 Load(in ReadOnlySpan<Bit> src)
-            => Load(pack(src, out ulong data));
+            => FromScalar(pack(src, out ulong data));
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
@@ -47,7 +60,7 @@ namespace Z0
             => new BitVector64(src);
 
         [MethodImpl(Inline)]
-        public static explicit operator ulong(in BitVector64 src)
+        public static implicit operator ulong(BitVector64 src)
             => src.data;        
 
         [MethodImpl(Inline)]
@@ -157,7 +170,7 @@ namespace Z0
         /// <summary>
         /// Reads/Manipulates a source bit at a specified position
         /// </summary>
-        public Bit this[byte pos]
+        public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
             get => TestBit(pos);
@@ -166,6 +179,47 @@ namespace Z0
             set => SetBit(pos,value);
        }
 
+        public ulong this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get => Between(range.Start.Value, range.End.Value);
+        }
+
+        /// <summary>
+        /// The vector's 32 most significant bits
+        /// </summary>
+        public BitVector32 Hi
+        {
+            [MethodImpl(Inline)]
+            get => (uint)hi(data);        
+        }
+        
+        /// <summary>
+        /// The vector's 32 least significant bits
+        /// </summary>
+        public BitVector32 Lo
+        {
+            [MethodImpl(Inline)]
+            get => (uint)lo(data);    
+        }
+
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public BitSize Length
+        {
+            [MethodImpl(Inline)]
+            get => 64;
+        }
+
+        /// <summary>
+        /// Presents bitvector content as a bytespan
+        /// </summary>
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => bytes(data);
+        }
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -173,65 +227,76 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public Bit Dot(BitVector64 rhs)
+              => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
+
+        /// <summary>
+        /// Computes the scalar product of the source vector and another
+        /// </summary>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        Bit DotRef(BitVector64 rhs)
         {
-              return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
-            // var result = Bit.Off;
-            // for(var i=0; i<Length; i++)
-            //     result ^= this[i] & rhs[i];
-            // return result;
+            var result = Bit.Off;
+            for(var i=0; i<Length; i++)
+                result ^= this[i] & rhs[i];
+            return result;
         }
 
         /// <summary>
-        /// The number of bits represented by the vector
+        /// Enables a bit
         /// </summary>
-        public int Length
-        {
-            [MethodImpl(Inline)]
-            get => BitSize;
-        }
-
+        /// <param name="pos">The position of the bit to manipulate</param>
         [MethodImpl(Inline)]
-        public void EnableBit(byte pos)
+        public void EnableBit(BitPos pos)
             => BitMask.enable(ref data, pos);
 
+        /// <summary>
+        /// Disables a bit
+        /// </summary>
+        /// <param name="pos">The position of the bit to manipulate</param>
         [MethodImpl(Inline)]
-        public void DisableBit(byte pos)
+        public void DisableBit(BitPos pos)
             => BitMask.disable(ref data, pos);
 
+        /// <summary>
+        /// Sets a bit to a specified value
+        /// </summary>
+        /// <param name="pos">The position of the bit to manipulate</param>
+        /// <param name="value">The bit value</param>
         [MethodImpl(Inline)]
-        public void SetBit(byte pos, Bit value)
+        public void SetBit(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
 
+        /// <summary>
+        /// Determines whether a bit is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public bool TestBit(byte pos)
+        public bool TestBit(BitPos pos)
             => BitMask.test(in data, pos);
 
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
         [MethodImpl(Inline)]
-        public bool TestBit(int pos)
-            => BitMask.test(in data, pos);
+        public BitVector64 Lsb(int n)                
+            => Between(0, n - 1);                
 
-        public BitVector32 Hi
-        {
-            [MethodImpl(Inline)]
-            get => (uint)hi(data);        
-        }
-        
-        public BitVector32 Lo
-        {
-            [MethodImpl(Inline)]
-            get => (uint)lo(data);    
-        }
-
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
         [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            => bytes(data);
-        
+        public BitVector64 Msb(int n)                
+            => Between(LastPos - n, LastPos);                
+
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotR(uint offset)
+        public BitVector64 RotR(BitSize offset)
             => Bits.rotr(ref data, offset);
 
         /// <summary>
@@ -239,7 +304,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotL(uint offset)
+        public BitVector64 RotL(BitSize offset)
             => Bits.rotl(ref data, offset);
         
         /// <summary>
@@ -261,6 +326,15 @@ namespace Z0
         public BitVector64 AndNot(in BitVector64 rhs)
             => Bits.andnot((ulong)this, (ulong)rhs);
 
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public void Reverse()
+        {
+            data = Bits.rev(data);
+        }
+
         [MethodImpl(Inline)]
         public bool AllOnes()
             => (UInt64.MaxValue & data) == UInt64.MaxValue;
@@ -274,25 +348,8 @@ namespace Z0
             => data == rhs.data;
 
         [MethodImpl(Inline)]
-        public ulong Extract(int first, int last)
-        {
-            var len = (byte)(last - first + 1);
-            return Bits.extract(in data, (byte)first, len);
-        }
-
-        public ulong this[Range range]
-        {
-            [MethodImpl(Inline)]
-            get => Extract(range.Start.Value, range.End.Value);
-        }
-
-        public Bit this[int pos]
-        {
-            [MethodImpl(Inline)]
-            get => this[(byte)pos];
-            [MethodImpl(Inline)]
-            set => this[(byte)pos] = value;
-        }
+        public ulong Between(BitPos first, BitPos last)
+            => Bits.between(in data, first, last);
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
@@ -303,9 +360,13 @@ namespace Z0
             => ToBitString().Format(tlz, specifier);
 
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
+            => obj is BitVector64 x ? Equals(x) : false;
         
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
+ 
+        public override string ToString()
+            => Format();
+ 
     }
 }

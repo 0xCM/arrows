@@ -294,7 +294,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitVector16 ToBitVector()
-            => BitVector16.Load((ushort)this);
+            => BitVector16.FromScalar((ushort)this);
 
         [MethodImpl(Inline)]
         static ref BitMatrix4 And(ref BitMatrix4 lhs, in BitMatrix4 rhs)

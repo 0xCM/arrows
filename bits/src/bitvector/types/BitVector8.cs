@@ -12,13 +12,15 @@ namespace Z0
     using static zfunc;    
     using static Bits;
 
-    public ref struct BitVector8
+    public struct BitVector8 : IBitVector<byte>
     {
+        public static readonly BitSize BitSize = 8;
+
+        public static readonly BitPos FirstPos = 0;
+
+        public static readonly BitPos LastPos = BitSize - 1;
+
         byte data;
-
-        public const int ByteSize = 1;
-
-        public const int BitSize = ByteSize * 8;
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -27,12 +29,20 @@ namespace Z0
             => new BitVector8();
 
         /// <summary>
-        /// Loads a vector from the primal source value it represents
+        /// Creates a vector from the primal source value it represents
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector8 Load(byte src)
+        public static BitVector8 FromScalar(byte src)
             => new BitVector8(src);
+
+        /// <summary>
+        /// Creates a vector from a bitstring
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 FromBitString(in BitString src)
+            => new BitVector8(src.TakeUInt8());    
 
         /// <summary>
         /// Loads a vector from a bitspan
@@ -40,7 +50,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         [MethodImpl(Inline)]
         public static BitVector8 Load(in ReadOnlySpan<Bit> src)
-            => Load(pack(src, out byte dst));
+            => FromScalar(pack(src, out byte dst));
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N8,byte>(in BitVector8 src)
@@ -66,7 +76,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator +(in BitVector8 lhs, in BitVector8 rhs)
-            => Load((byte)(lhs.data ^ rhs.data));
+            => FromScalar((byte)(lhs.data ^ rhs.data));
 
         /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the 
@@ -75,7 +85,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator -(in BitVector8 src)
-            => Load((byte)~src.data);
+            => FromScalar((byte)~src.data);
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -149,8 +159,8 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source operand</param>
         [MethodImpl(Inline)]
-        public static BitVector8 operator ~(in BitVector8 src)
-            => Load((byte) ~ src.data);
+        public static BitVector8 operator ~(BitVector8 src)
+            => FromScalar((byte) ~ src.data);
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -158,22 +168,22 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector8 lhs, in BitVector8 rhs)
+        public static Bit operator %(BitVector8 lhs, BitVector8 rhs)
             => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector8 lhs, in BitVector8 rhs)
+        public static bool operator ==(BitVector8 lhs, BitVector8 rhs)
             => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector8 lhs, in BitVector8 rhs)
+        public static bool operator !=(BitVector8 lhs, BitVector8 rhs)
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public BitVector8(in byte data)
-            => this.data = data;
+        public BitVector8(byte src)
+            => this.data = src;
 
-        public Bit this[byte pos]
+        public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
             get => BitMask.test(in data, pos);
@@ -182,64 +192,88 @@ namespace Z0
             set => BitMask.set(ref data, pos, value);
         }
 
+        /// <summary>
+        /// The vector's 4 most significant bits
+        /// </summary>
+        public BitVector4 Hi
+        {
+            [MethodImpl(Inline)]
+            get => hi(in data);        
+        }
+        
+        /// <summary>
+        /// The vector's 4 least significant bits
+        /// </summary>
+        public BitVector4 Lo
+        {
+            [MethodImpl(Inline)]
+            get => lo(in data);        
+        }
+
+        /// <summary>
+        /// Presents bitvector content as a bytespan
+        /// </summary>
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => bytes(data);
+        }
+
+        public BitVector8 this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get => Between(range.Start.Value, range.End.Value);
+        }
+
         [MethodImpl(Inline)]
-        public byte Extract(int first, int last)
-        {
-            var len = (byte)(last - first+ 1);
-            return Bits.extract(in data, (byte)first, len);
-        }
-
-        public byte this[Range range]
-        {
-            [MethodImpl(Inline)]
-            get => Extract(range.Start.Value, range.End.Value);
-        }
-
-        public Bit this[int pos]
-        {
-            [MethodImpl(Inline)]
-            get => this[(byte)pos];
-            [MethodImpl(Inline)]
-            set => this[(byte)pos] = value;
-        }
+        public BitVector8 Between(BitPos first, BitPos last)
+            => Bits.between(in data, first, last);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
         /// </summary>
         /// <param name="rhs">The right operand</param>
         public readonly Bit Dot(BitVector8 rhs)
-        {
-              return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
-
-            // var result = Bit.Off;
-            // for(var i=0; i<Length; i++)
-            //     result ^= this[i] & rhs[i];
-            // return result;
-        }
+              => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
 
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public readonly int Length
+        public readonly BitSize Length
         {
             [MethodImpl(Inline)]
-            get => BitSize;
+            get => 8;
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(byte pos)
+        public void EnableBit(BitPos pos)
             => BitMask.enable(ref data, pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(byte pos)
+        public void DisableBit(BitPos pos)
             => BitMask.disable(ref data, pos);
 
         [MethodImpl(Inline)]
-        public readonly bool TestBit(byte pos)
+        public readonly bool TestBit(BitPos pos)
             => BitMask.test(in data, pos);
 
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
         [MethodImpl(Inline)]
-        public void SetBit(byte pos, Bit value)
+        public void Reverse()
+        {
+            data = Bits.rev(data);
+        }
+
+
+        /// <summary>
+        /// Sets a bit to a specified value
+        /// </summary>
+        /// <param name="pos">The position of the bit to set</param>
+        /// <param name="value">The bit value</param>
+        [MethodImpl(Inline)]
+        public void SetBit(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
 
         /// <summary>
@@ -247,7 +281,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotR(uint offset)
+        public BitVector8 RotR(BitSize offset)
             => Bits.rotr(ref data, (byte)offset);
 
         /// <summary>
@@ -255,7 +289,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotL(uint offset)
+        public BitVector8 RotL(BitSize offset)
             => Bits.rotl(ref data, (byte)offset);
 
         /// <summary>
@@ -278,10 +312,6 @@ namespace Z0
             => Bits.andnot((byte)this, (byte)rhs);
 
         [MethodImpl(Inline)]
-        public readonly bool Equals(in BitVector8 rhs)
-            => data == rhs.data;
-
-        [MethodImpl(Inline)]
         public readonly bool AllOnes()
             => (0xFF & data) == 0xFF;
  
@@ -293,18 +323,38 @@ namespace Z0
         public readonly BitString ToBitString()
             => data.ToBitString();
 
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
         [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            =>  bytes(in data);
+        public BitVector8 Lsb(int n)                
+            => Between(0, n - 1);                
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Msb(int n)                
+            => Between(LastPos - n, LastPos);                
 
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);
-        
+
+        [MethodImpl(Inline)]
+        public readonly bool Equals(in BitVector8 rhs)
+            => data == rhs.data;
+
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
-       
+            => obj is BitVector8 x ? Equals(x) : false;
+        
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
+        
+        public override string ToString()
+            => Format();
+   
     }
 }

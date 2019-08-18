@@ -37,7 +37,15 @@ namespace Z0.Test
         public void Test00()
         {
             Span<byte> dst = stackalloc byte[8];
-            //U64_00.ReadBits(0, 7, dst, 0);
+            
+            BitPos pos1 = 0;
+            BitPos pos7 = 7;
+            var width = pos7 - pos1;
+            Claim.eq(8,width);
+            
+            var r1 = Bits.range(U64_00, 0, 7);
+            Claim.eq((byte)0b11110000, r1);
+
             gbits.range(U64_00, 0, 7, dst, 0);
             Claim.eq((byte)0b11110000, dst[0]);
 
