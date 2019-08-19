@@ -19,21 +19,20 @@ namespace Z0
     public struct BitVector<N,T> : IBitVector<N,T>
         where N : ITypeNat, new()
         where T : struct
-    {
-        
+    {        
         Memory<T> data;
         
         /// <summary>
         /// The maximum number of bits contained in a vector component
         /// </summary>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static readonly BitSize SegmentCapacity = BitGridLayout.SegmentCapacity<T>();
+        public static readonly BitSize SegmentCapacity = BitGrid.SegmentCapacity<T>();
 
         public static readonly BitSize TotalBitCount = new N().value;
 
         static readonly BitPos MaxBitIndex = TotalBitCount - 1;
     
-        static readonly BitPos<T>[] BitMap = BitGridLayout.BitMap<T>(TotalBitCount);
+        static readonly CellIndex<T>[] BitMap = BitGrid.BitMap<T>(TotalBitCount);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<T>(BitVector<N,T> src)
@@ -120,7 +119,7 @@ namespace Z0
         public Bit GetBit(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            return gbits.test(in Bits[pos.SegIdx], pos.BitOffset);
+            return gbits.test(in Bits[pos.Segment], pos.Offset);
         }
             
         /// <summary>
@@ -131,7 +130,7 @@ namespace Z0
         public void SetBit(BitPos index, Bit value)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.set(ref Bits[pos.SegIdx], pos.BitOffset, in value);
+            gbits.set(ref Bits[pos.Segment], pos.Offset, in value);
         }
 
         /// <summary>
@@ -184,7 +183,7 @@ namespace Z0
         public void Toggle(BitPos index)
         {         
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            BitMaskG.toggle(ref Bits[pos.SegIdx],  pos.BitOffset);
+            BitMaskG.toggle(ref Bits[pos.Segment],  pos.Offset);
         }
 
         /// <summary>
@@ -195,7 +194,7 @@ namespace Z0
         public void Enable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.enable(ref Bits[pos.SegIdx],  pos.BitOffset);
+            gbits.enable(ref Bits[pos.Segment],  pos.Offset);
         }
 
         /// <summary>
@@ -206,7 +205,7 @@ namespace Z0
         public void Disable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.disable(ref Bits[pos.SegIdx], pos.BitOffset);
+            gbits.disable(ref Bits[pos.Segment], pos.Offset);
         }
 
         /// <summary>

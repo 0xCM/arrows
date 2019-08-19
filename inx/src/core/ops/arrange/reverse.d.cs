@@ -22,15 +22,15 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static Vec256<int> reverse(in Vec256<int> src)
-            => permute8x32(src,Reverse256i32Control);
+            => perm8x32(src,Reverse256i32Control);
 
         [MethodImpl(Inline)]
         public static Vec256<uint> reverse(in Vec256<uint> src)
-            => permute8x32(src,Reverse256u32Control);
+            => perm8x32(src,Reverse256u32Control);
 
         [MethodImpl(Inline)]
         public static Vec256<float> reverse(in Vec256<float> src)
-            => permute8x32(src,Reverse256f32Control);
+            => perm8x32(src,Reverse256f32Control);
         
  
     }

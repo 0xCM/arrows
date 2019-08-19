@@ -53,26 +53,6 @@ public static class Constants
     
     public const double F64One = 1.0;
 
-    public const int I8BitCount = 8;
-
-    public const int U8BitCount = 8;
-    
-    public const int I16BitCount = 16;
-
-    public const int U16BitCount = 16;
-
-    public const int I32BitCount = 32;
-
-    public const int U32BitCount = 32;
-
-    public const int I64BitCount = 64;
-
-    public const int U64BitCount = 64;
-
-    public const int F32BitCount = 32;
-
-    public const int F64BitCount = 64;
-
     public const sbyte I8Min = sbyte.MinValue;
 
     public const byte U8Min = byte.MinValue;

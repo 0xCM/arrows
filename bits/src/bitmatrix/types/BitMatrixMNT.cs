@@ -60,9 +60,9 @@ namespace Z0
         /// </summary>
         static readonly BitSize CellBitSize = Unsafe.SizeOf<T>()*8;
 
-        static readonly BitGridSpec<T> GridSpec = (CellBitSize, RowBitCount, ColBitCount);
+        static readonly GridSpec<T> GridSpec = (CellBitSize, RowBitCount, ColBitCount);
         
-        public static readonly BitGridLayout<T> GridLayout = GridSpec.CalcLayout();
+        public static readonly GridLayout<T> GridLayout = GridSpec.CalcLayout();
 
         /// <summary>
         /// Allocates a Zero-filled mxn matrix
@@ -118,14 +118,14 @@ namespace Z0
         Bit GetBit(int row, int col)
         {
             var cell = GridLayout.Row(row)[col];
-            return gbits.test(in bits[cell.BitPos.SegIdx], cell.BitPos.BitOffset);                    
+            return gbits.test(in bits[cell.Segment], cell.Offset);                    
         }
 
         [MethodImpl(Inline)]
         void SetBit(int row, int col, Bit value)
         {
             var cell = GridLayout.Row(row)[col];
-            gbits.set(ref bits[cell.BitPos.SegIdx], cell.BitPos.BitOffset, value);
+            gbits.set(ref bits[cell.Segment], cell.Offset, value);
         }
 
         public Bit this[int row, int col]
@@ -172,7 +172,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         int RowOffset(int row)        
-            => GridLayout.Row(row)[0].BitPos.SegIdx;
+            => GridLayout.Row(row)[0].Segment;
                 
         [MethodImpl(Inline)]
         Span<T> RowData(int row)
@@ -271,7 +271,7 @@ namespace Z0
         public Span<Bit> Unpack()
             => Bytes.Unpack(out Span<Bit> dst);
 
-        public BitGridLayout<T> Layout
+        public GridLayout<T> Layout
             => GridLayout;
 
         [MethodImpl(Inline)]

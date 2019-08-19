@@ -11,6 +11,9 @@ namespace Z0
 
     public interface ISampleDefaults
     {
+        /// <summary>
+        /// The default sample size
+        /// </summary>
         int SampleSize {get;}
 
     }
@@ -18,6 +21,9 @@ namespace Z0
     public interface ISampleDefaults<T> : ISampleDefaults
         where T : struct
     {
+        /// <summary>
+        /// The domain of potential values
+        /// </summary>
         Interval<T> SampleDomain {get;}
     }
 

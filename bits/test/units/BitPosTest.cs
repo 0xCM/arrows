@@ -16,8 +16,8 @@ namespace Z0.Test
     {
         public void VerifyIncrement()
         {
-            var pos = BitPos<byte>.Zero;
-            BitPos<byte> max = (1024, 35);
+            var pos = CellIndex<byte>.Zero;
+            CellIndex<byte> max = (1024, 35);
             while(pos < max)
                 pos++;
 
@@ -27,8 +27,8 @@ namespace Z0.Test
 
         public void VerifyDecrement()
         {
-            var min = BitPos<byte>.Zero;
-            BitPos<byte> pos = (1024, 35);
+            var min = CellIndex<byte>.Zero;
+            CellIndex<byte> pos = (1024, 35);
             while(pos > min)
                 pos--;
 
@@ -41,14 +41,14 @@ namespace Z0.Test
         /// <param name="segMin">The minimum segment length</param>
         /// <param name="segMax">The maximum segment length</param>
         /// <typeparam name="T">The position's type</typeparam>
-        IEnumerable<BitPos<T>> BitPositions<T>(ushort segMin, ushort segMax)
+        IEnumerable<CellIndex<T>> BitPositions<T>(ushort segMin, ushort segMax)
             where T : struct
         {
             var tBits = Unsafe.SizeOf<T>()*8;
             var s2 = Random.Stream(closed(segMin,segMax)).GetEnumerator();            
             var s3 = Random.Stream<byte>(closed((byte)0, (byte)tBits)).GetEnumerator();
             while(true && s2.MoveNext() && s3.MoveNext())
-                yield return BitPos<T>.Define(s2.Current, s3.Current);
+                yield return CellIndex<T>.Define(s2.Current, s3.Current);
         }
 
         public void VerifyAdd()

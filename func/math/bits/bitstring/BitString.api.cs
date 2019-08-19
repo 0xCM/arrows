@@ -13,7 +13,6 @@ namespace Z0
     
     using static zfunc;
     using static As;
-    using static Constants;
 
     partial struct BitString
     {
@@ -28,9 +27,17 @@ namespace Z0
             var lastix = len - 1;
             Span<byte> dst = new byte[len];
             for(var i=0; i<= lastix; i++)
-                dst[lastix - i] = src[i] == '0' ? (byte)0 : (byte)1;
-            return new BitString(dst);            
+                dst[lastix - i] = src[i] == Bit.Zero ? (byte)0 : (byte)1;
+            return new BitString(dst);                        
         }
+
+        /// <summary>
+        /// Allocates a bitstring with a specified length
+        /// </summary>
+        /// <param name="len">The length of the bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitString Alloc(int len)
+            => new BitString(new byte[len]);
 
         /// <summary>
         /// Constructs a bitstring from primal value

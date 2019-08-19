@@ -24,9 +24,9 @@ namespace Z0
         /// </summary>
         static readonly Dim<N,N> Dim = default;
 
-        static readonly BitGridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
+        static readonly GridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
         
-        public static readonly BitGridLayout<T> GridLayout = GridSpec.CalcLayout();
+        public static readonly GridLayout<T> GridLayout = GridSpec.CalcLayout();
 
         public static BitMatrix<N,T> Identity()
         {            
@@ -97,14 +97,14 @@ namespace Z0
         readonly Bit GetBit(int row, int col)
         {
             var cell = GridLayout.Row(row)[col];
-            return gbits.test(in bits[cell.BitPos.SegIdx], cell.BitPos.BitOffset);                    
+            return gbits.test(in bits[cell.Segment], cell.Offset);                    
         }
 
         [MethodImpl(Inline)]
         void SetBit(int row, int col, Bit value)
         {
             var cell = GridLayout.Row(row)[col];
-            gbits.set(ref bits[cell.BitPos.SegIdx], cell.BitPos.BitOffset, value);
+            gbits.set(ref bits[cell.Segment], cell.Offset, value);
         }
 
         public Bit this[int row, int col]
@@ -151,7 +151,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         readonly int RowOffset(int row)        
-            => GridLayout.Row(row)[0].BitPos.SegIdx;
+            => GridLayout.Row(row)[0].Segment;
                 
         [MethodImpl(Inline)]
         readonly Span<T> RowData(int row)

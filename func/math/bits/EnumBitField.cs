@@ -52,7 +52,6 @@ namespace Z0
         /// <summary>
         /// Retrieves all bits in the field
         /// </summary>
-        /// <value></value>
         public ReadOnlySpan<EnumBit> Bits
         {
             get

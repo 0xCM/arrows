@@ -463,6 +463,16 @@ namespace Z0
         public static ReadOnlySpanPair<T> PairWith<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)        
             => new ReadOnlySpanPair<T>(lhs,rhs);
 
+        /// <summary>
+        /// Creates a set from a source span, thus removing any duplicates and rendering index order asunder
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="N">The source span length type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ISet<T> ToSet<N,T>(this ReadOnlySpan<N,T> src)        
+            where N : ITypeNat, new()
+            => new HashSet<T>(src.ToArray());   
 
     }
 

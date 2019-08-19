@@ -136,7 +136,7 @@ namespace Z0
 
 
         /// <summary>
-        /// Enaables a bit in the target if it is enabled in the source
+        /// Enables a bit in the target if it is enabled in the source
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="srcpos">The source bit position</param>
@@ -170,10 +170,14 @@ namespace Z0
                 throw unsupported<T>();
                 
             return ref dst;                            
-
         }
 
-
+        /// <summary>
+        /// Inverts a bit at a specified position in the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static ref T toggle<T>(ref T src, in int pos)
             where T : struct
@@ -204,6 +208,12 @@ namespace Z0
             return ref src;                            
         }
 
+        /// <summary>
+        /// Inverts a bit at a specified position in the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static ref T toggle<T>(ref T src, byte pos)
             where T : struct
@@ -235,6 +245,12 @@ namespace Z0
         }
 
 
+        /// <summary>
+        /// Inverts a bit at a specified position in the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static T toggle<T>(T src, int pos)
             where T : struct
@@ -262,9 +278,5 @@ namespace Z0
             else
                 throw unsupported<T>();
         }
-
     }
-
-
-
 }

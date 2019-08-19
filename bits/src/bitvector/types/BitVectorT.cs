@@ -26,13 +26,13 @@ namespace Z0
 
         readonly BitSize SegLength;
     
-        readonly BitPos<T>[] BitMap;
+        readonly CellIndex<T>[] BitMap;
 
 
         /// <summary>
         /// Specifies the number of bits that can be placed in one segment
         /// </summary>
-        public static readonly BitSize SegmentCapacity = BitGridLayout.SegmentCapacity<T>();
+        public static readonly BitSize SegmentCapacity = BitGrid.SegmentCapacity<T>();
 
         [MethodImpl(Inline)]
         public static BitVector<T> Load(Memory<T> data)
@@ -97,8 +97,8 @@ namespace Z0
             this.data = data;
             this.MaxBitCount = data.Span.Length * (int)SegmentCapacity;
             this.Length = (int)(bitcount ?? (uint)MaxBitCount);
-            this.SegLength = BitGridLayout.MinSegmentCount<T>(MaxBitCount);            
-            this.BitMap = BitGridLayout.BitMap<T>(MaxBitCount);
+            this.SegLength = BitGrid.MinSegmentCount<T>(MaxBitCount);            
+            this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
 
         [MethodImpl(Inline)]
@@ -108,7 +108,7 @@ namespace Z0
             this.MaxBitCount = SegmentCapacity;
             this.Length = MaxBitCount;
             this.SegLength = MaxBitCount;
-            this.BitMap = BitGridLayout.BitMap<T>(MaxBitCount);
+            this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
 
         [MethodImpl(Inline)]
@@ -150,7 +150,7 @@ namespace Z0
         public Bit GetBit(BitPos index)
         {
             ref readonly var pos = ref BitMap[index];
-            return gbits.test(in Bits[pos.SegIdx], pos.BitOffset);
+            return gbits.test(in Bits[pos.Segment], pos.Offset);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Z0
         public void SetBit(BitPos index, Bit value)
         {
             ref readonly var pos = ref BitMap[index];
-            gbits.set(ref Bits[pos.SegIdx], pos.BitOffset, in value);
+            gbits.set(ref Bits[pos.Segment], pos.Offset, in value);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Z0
         public void Disable(BitPos bit)
         {
             ref readonly var pos = ref BitMap[bit];
-            gbits.disable(ref Bits[pos.SegIdx], pos.BitOffset);
+            gbits.disable(ref Bits[pos.Segment], pos.Offset);
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace Z0
         public void Toggle(BitPos bit)
         {         
             ref readonly var pos = ref BitMap[bit];
-            BitMaskG.toggle(ref Bits[pos.SegIdx],  pos.BitOffset);
+            BitMaskG.toggle(ref Bits[pos.Segment],  pos.Offset);
         }
 
         [MethodImpl(Inline)]
@@ -270,22 +270,22 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The segmented bit position</param>
         [MethodImpl(Inline)]
-        ref T GetSegment(in BitPos<T> pos)
-            => ref Bits[pos.SegIdx];
+        ref T GetSegment(in CellIndex<T> pos)
+            => ref Bits[pos.Segment];
 
-        T Extract(in BitPos<T> first, in BitPos<T> last, bool debug = false)
+        T Extract(in CellIndex<T> first, in CellIndex<T> last, bool debug = false)
         {
 
-            var sameSeg = first.SegIdx == last.SegIdx;
+            var sameSeg = first.Segment == last.Segment;
             var wantedCount = last - first;
-            var firstCount = sameSeg ? wantedCount : (int)SegmentCapacity - first.BitOffset;
+            var firstCount = sameSeg ? wantedCount : (int)SegmentCapacity - first.Offset;
             var lastCount = wantedCount - firstCount;
             
             if(wantedCount > SegmentCapacity)
                 throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegmentCapacity}");
 
             ref var seg1 = ref GetSegment(in first);
-            var part1 = gbits.extract(in seg1, first.BitOffset, (byte)firstCount);
+            var part1 = gbits.extract(in seg1, first.Offset, (byte)firstCount);
             
             if(sameSeg)
                 return part1;

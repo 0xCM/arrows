@@ -130,7 +130,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span<N,T> Replicate()        
-            => new Span<N,T>(data.ToArray());
+            => new Span<N,T>(data.Replicate());
         
         public int Length 
             => SpanLength;

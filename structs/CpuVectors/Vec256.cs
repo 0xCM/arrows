@@ -52,13 +52,22 @@ namespace Z0
             return Unsafe.Add(ref e0, index);
         }
 
+        [MethodImpl(Inline)]
+        static void component(Vec256<T> src, int index, T value)
+        {
+            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
+            Unsafe.Add(ref e0, index) = value;
+        }
+
         /// <summary>
-        /// Extracts a component via its 0-based index
+        /// Manipulates a component via its 0-based index
         /// </summary>
         public T this[int idx]
         {
             [MethodImpl(Inline)]
             get => component(this,idx);
+            [MethodImpl(Inline)]
+            set => component(this,idx, value);
         }
 
         [MethodImpl(Inline)]

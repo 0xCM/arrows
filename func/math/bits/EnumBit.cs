@@ -10,12 +10,12 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Defines a bit in an enum bitfield
+    /// Specifies a bit value in an enum bitfield
     /// </summary>
     public readonly struct EnumBit
     {
         [MethodImpl(Inline)]
-        public EnumBit(byte Pos, string Name, Bit Value)
+        public EnumBit(BitPos Pos, string Name, Bit Value)
         {
             this.Pos = Pos;
             this.Name = Name;
@@ -25,7 +25,7 @@ namespace Z0
         /// <summary>
         /// The 0-based position of the bit
         /// </summary>
-        public readonly byte Pos;
+        public readonly BitPos Pos;
 
         /// <summary>
         /// The name/label identifier

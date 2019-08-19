@@ -10,7 +10,6 @@ namespace Z0.Test
 
     using static zfunc;
 
-
     public class BitVectorTest : UnitTest<BitVectorTest>
     {
         void GenericNaturalCreate<N,T>(int samples)
@@ -19,7 +18,7 @@ namespace Z0.Test
         {
             TypeCaseStart<N,T>();
             var dim = default(N);
-            var segcount = BitGridLayout.MinSegmentCount<T>(dim.value);
+            var segcount = BitGrid.MinSegmentCount<T>(dim.value);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i+= segcount)
             {
@@ -37,7 +36,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var segcount = BitGridLayout.MinSegmentCount<T>(dim);
+            var segcount = BitGrid.MinSegmentCount<T>(dim);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i += segcount)
             {
@@ -73,10 +72,10 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var src = Random.Memory<T>(samples);
-            var segCapacity = BitGridLayout.SegmentCapacity<T>();
+            var segCapacity = BitGrid.SegmentCapacity<T>();
             Claim.eq(segCapacity, gbits.width<T>());
 
-            var segcount = BitGridLayout.MinSegmentCount<T>(dim);
+            var segcount = BitGrid.MinSegmentCount<T>(dim);
             for(var i=0; i<samples; i += segcount)
             {
                 var bvSrc = src.Slice(i, segcount);
@@ -102,7 +101,7 @@ namespace Z0.Test
                         for(var m = 0; m < bv.Length; m++)
                             bsAlt += bv[m];
 
-                        Trace($"BitPos   = {BitPos<T>.FromIndex(n)}, Segment = {segIndex}, Component = {n}, Offset = {segOffset}");
+                        Trace($"BitPos   = {CellIndex<T>.FromIndex(n)}, Segment = {segIndex}, Component = {n}, Offset = {segOffset}");
                         Trace($"BvSource = {bvSrc.ToBitString()}");
                         Trace($"Bv       = {bv.ToBitString()}");                        
                         Trace($"Bv (alt) = {bsAlt}");

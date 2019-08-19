@@ -148,7 +148,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Loads a vector from the head of the span
+        /// Loads vector content from the head of a span
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
@@ -167,6 +167,11 @@ namespace Z0
             where T : struct  
                 => Load(ref asRef( in src[0]));
 
+        /// <summary>
+        /// Loads vector content from read-only memory
+        /// </summary>
+        /// <param name="src">The memory source</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Loadi<T>(in T src)
             where T : struct  
@@ -197,6 +202,13 @@ namespace Z0
         }
 
 
+        /// <summary>
+        /// Loads a target vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <param name="dst">The target vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static ref Vec256<T> Load<T>(in ReadOnlySpan256<T> src, int block, out Vec256<T> dst)
             where T : struct
@@ -227,6 +239,13 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Loads a target vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <param name="dst">The target vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static ref Vec256<T> Load<T>(in Span256<T> src, int block, out Vec256<T> dst)
             where T : struct
@@ -257,20 +276,78 @@ namespace Z0
             return ref dst;
         }        
 
+        /// <summary>
+        /// Loads a vector from an array
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index into the source span</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(T[] src, int block = 0)
             where T : struct  
                 => Load(src, block, out Vec256<T> dst);
 
+        /// <summary>
+        /// Loads a vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index into the source span</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in ReadOnlySpan256<T> src, int block = 0)
             where T : struct  
                 => Load(in src, block, out Vec256<T> dst);
 
+        /// <summary>
+        /// Loads a vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index into the source span</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in Span256<T> src, int block = 0)
             where T : struct  
                 => Load(src, block, out Vec256<T> dst);
+
+        /// <summary>
+        /// Creates a vector with incrementing components
+        /// v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
+        /// </summary>
+        /// <param name="first">The value of the first component</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        public static Vec256<T> Increments<T>(T first = default)
+            where T : struct  
+        {
+            var n = Vec256<T>.Length;
+            var dst = Span256.Alloc<T>(n);
+            var val = first;
+            for(var i=0; i < n; i++)
+            {
+                dst[i] = val;
+                gmath.inc(ref val);
+            }
+            return Load(dst);
+        }
+
+        /// <summary>
+        /// Creates a vector with decrementing components
+        /// v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
+        /// </summary>
+        /// <param name="last">The value of the first component</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        public static Vec256<T> Decrements<T>(T last = default)
+            where T : struct  
+        {
+            var n = Vec256<T>.Length;
+            var dst = Span256.Alloc<T>(n);
+            var val = last;
+            for(var i=0; i<n; i++)
+            {
+                dst[i] = val;
+                gmath.dec(ref val);
+            }
+            return Load(dst);
+        }
 
         [MethodImpl(Inline)]
         public static Vec256<byte> FromBytes(byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, 
@@ -283,17 +360,11 @@ namespace Z0
                     x24,x25,x26,x27,x28,x29,x30,x31);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<sbyte> FromParts(
-            sbyte x0, sbyte x1, sbyte x2, sbyte x3,  
-            sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
-            sbyte x8, sbyte x9, sbyte x10, sbyte x11,
-            sbyte x12, sbyte x13, sbyte x14, sbyte x15,
-            sbyte x16, sbyte x17, sbyte x18, sbyte x19,  
-            sbyte x20, sbyte x21, sbyte x22, sbyte x23, 
-            sbyte x24, sbyte x25, sbyte x26, sbyte x27,
-            sbyte x28, sbyte x29, sbyte x30, sbyte x31)
-                => Vector256.Create(
-                    x0,x1,x2,x3,x4,x5,x6,x7,
+        public static unsafe Vec256<sbyte> FromParts(sbyte x0, sbyte x1, sbyte x2, sbyte x3, sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
+            sbyte x8, sbyte x9, sbyte x10, sbyte x11, sbyte x12, sbyte x13, sbyte x14, sbyte x15, 
+            sbyte x16, sbyte x17, sbyte x18, sbyte x19, sbyte x20, sbyte x21, sbyte x22, sbyte x23, 
+            sbyte x24, sbyte x25, sbyte x26, sbyte x27,sbyte x28, sbyte x29, sbyte x30, sbyte x31)
+                => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,
                     x8,x9,x10,x11,x12,x13,x14,x15,
                     x16,x17,x18,x19,x20,x21,x22,x23,
                     x24,x25,x26,x27,x28,x29,x30,x31);

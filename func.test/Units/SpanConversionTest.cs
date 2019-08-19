@@ -119,7 +119,7 @@ namespace Z0.Test
             var bits = span<Bit>(sizeof(ulong)*8);
             for(byte i=0; i< bits.Length; i++)
                 bits[i] = bv[i];
-            var bitBytes = bits.CompressToBytes();
+            var bitBytes = bits.Pack();
             var xBytes = x.ToBytes();
             Claim.eq(xBytes, bitBytes);
             

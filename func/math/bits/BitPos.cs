@@ -14,7 +14,6 @@ namespace Z0
 
     using static zfunc;
 
-
     /// <summary>
     /// Defines a linear/absolute 0-based bit position/index within some structure
     /// </summary>
@@ -75,7 +74,7 @@ namespace Z0
             => BitPos.Define((uint)src.Bits);
 
         /// <summary>
-        /// Computes the inclusive number of bits between min/max positions
+        /// Counts the inclusive number of bits between min/max positions
         /// </summary>
         /// <param name="lhs">The minimum bit position</param>
         /// <param name="rhs">The maximum bit position</param>
@@ -134,11 +133,6 @@ namespace Z0
             ++src.index;
             return ref src;
         }
-
-        [MethodImpl(Inline)]
-        static BitSize BitCount(BitPos i0, BitPos i1)
-            => (ulong)Math.Abs((long)i1.index - (long)i0.index + 1L);
-
 
     }
 }

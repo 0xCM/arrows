@@ -26,14 +26,13 @@ namespace Z0
         /// and finally, pushes the joined messages through the context output channel(s) as a a transactional
         /// block
         /// </summary>
-        /// <param name="addenda"></param>
+        /// <param name="addenda">Additional mesages to enqueue prior to emission</param>
         void EmitMessages(params AppMsg[] addenda)
         {
             var messages = DequeueMessages(addenda);
             Terminal.Get().WriteMessages(messages);
             log(messages, LogArea.Test);            
         }
-
 
         /// <summary>
         /// Specifies the context-specific randomizer 

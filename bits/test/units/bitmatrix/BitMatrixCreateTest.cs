@@ -45,11 +45,11 @@ namespace Z0.Test
             Claim.eq(4, row0.Length);            
             Claim.eq(0, row0[0].Col);
             Claim.eq(3, row0[3].Col);
-            Claim.eq(0, (int)row0[3].BitPos.SegIdx);
+            Claim.eq(0, (int)row0[3].Segment);
 
             var row8 = layout.Row(8);
             Claim.eq(4, row8.Length);
-            Claim.eq(8, (int)row8[3].BitPos.SegIdx);
+            Claim.eq(8, (int)row8[3].Segment);
 
             var m = BitMatrix.Ones<N9,N4,byte>();
             Claim.eq(9,m.RowCount);
@@ -100,7 +100,7 @@ namespace Z0.Test
 
                     var cell = cells[col];
 
-                    Claim.eq(bitpos, cell.BitPos.LinearIndex);
+                    Claim.eq(bitpos, cell.LinearIndex);
                     Claim.eq(row, cell.Row);
                     Claim.eq(col, cell.Col);
                 }
@@ -120,7 +120,7 @@ namespace Z0.Test
             Claim.eq(16, row0.Length);            
             Claim.eq(0, row0[0].Col);
             Claim.eq(3, row0[3].Col);
-            Claim.eq(1, (int)row0[9].BitPos.SegIdx);
+            Claim.eq(1, (int)row0[9].Segment);
 
             var m = BitMatrix.Ones<N16,byte>();
             Claim.eq(16,m.RowCount);

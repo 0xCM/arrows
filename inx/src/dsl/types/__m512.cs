@@ -93,8 +93,8 @@ namespace Z0
             [MethodImpl(Inline)]
             get
             {
-                var pos = BitPos<ulong>.FromIndex((uint)r.Value);
-                return part<ulong>(pos.SegIdx).TestBit(pos.BitOffset);                
+                var pos = CellIndex<ulong>.FromIndex((uint)r.Value);
+                return part<ulong>(pos.Segment).TestBit(pos.Offset);                
             }
         }        
     }

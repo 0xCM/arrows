@@ -36,7 +36,6 @@ namespace Z0
 
         Span<byte> Bytes;
 
-
         [MethodImpl(Inline)]
         public BitView(ref T src)
         {

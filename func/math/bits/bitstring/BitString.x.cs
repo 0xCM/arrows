@@ -206,5 +206,14 @@ namespace Z0
             return bs;
         }
 
+        /// <summary>
+        /// Computes the width of the range, including the endpoints
+        /// </summary>
+        /// <param name="src">The source range</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static int Width(this Range src)
+            => src.End.Value - src.Start.Value + 1;
+
     }
 }

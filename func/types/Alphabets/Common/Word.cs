@@ -101,8 +101,8 @@ namespace Z0
         /// <summary>
         /// Specifies the number of symbols that comprise the word
         /// </summary>
-        public uint Length
-            => (uint)Symbols.Length;
+        public int Length
+            => Symbols.Length;
 
         [MethodImpl(Inline)]
         public Word(params Word<A>[] Words)

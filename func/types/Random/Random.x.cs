@@ -52,9 +52,9 @@ namespace  Z0
         /// <param name="random">The random source</param>
         /// <param name="src">The permutation</param>
         [MethodImpl(Inline)]
-        public static Permutation Shuffle(this IRandomSource random, Permutation src)
+        public static Perm Shuffle(this IRandomSource random, Perm src)
         {
-            random.Shuffle(src.Data);
+            src.Shuffle(random);
             return src;
         }
 
@@ -64,16 +64,20 @@ namespace  Z0
         /// <param name="random">The random source</param>
         /// <param name="src">The permutation</param>
         [MethodImpl(Inline)]
-        public static Permutation Shuffle(this IRandomSource random, in Permutation src)  
-            => Permutation.Define(random.Shuffle(src.Replicate().Data));
+        public static Perm Shuffle(this IRandomSource random, in Perm src) 
+        { 
+            var copy = src.Replicate();
+            copy.Shuffle(random);
+            return copy;
+        }
 
     
         [MethodImpl(Inline)]
-        public static Permutation<N,T> Shuffle<N,T>(this IRandomSource random, Permutation<N,T> src)
+        public static Perm<N,T> Shuffle<N,T>(this IRandomSource random, Perm<N,T> src)
             where N : ITypeNat, new()
             where T : struct
         {
-            random.Shuffle(src.Terms);
+            src.Shuffle(random);
             return src;
         }
         

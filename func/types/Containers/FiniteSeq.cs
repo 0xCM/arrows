@@ -12,14 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-    public interface IFiniteSeq<S,T> : ISeq<S,T>, IFiniteContainer<S,T>
-        where S : IFiniteSeq<S,T>, new()
-    {
-        /// <summary>
-        /// Retrieves the 0-based i'th element of the sequence
-        /// </summary>
-        T this[int i] {get;}
-    }
 
     public readonly struct FiniteSeq<T> : IFiniteSeq<FiniteSeq<T>,T>
     {
@@ -52,8 +44,8 @@ namespace Z0
         public IEnumerable<T> Content
             => data;
 
-        public uint Count 
-            => (uint)data.Length;
+        public int Count 
+            => data.Length;
 
         public bool empty()
             => not(nonempty);
@@ -61,25 +53,10 @@ namespace Z0
         public T this[int i] 
             => data[i];
 
-        [MethodImpl(Inline)]
-        public FiniteSeq<T> redefine(IEnumerable<T> src)
-            => new FiniteSeq<T>(src);                
-
-        [MethodImpl(Inline)]
-        public bool eq(FiniteSeq<T> rhs)
-            => data.Equals(rhs.data);
 
         [MethodImpl(Inline)]
         public bool Equals(FiniteSeq<T> rhs)
-            =>eq(rhs);
-
-        [MethodImpl(Inline)]
-        public int hash()
-            => data.GetHashCode();
-
-        [MethodImpl(Inline)]
-        public bool neq(FiniteSeq<T> rhs)
-            => not(eq(rhs));
+            => data.Equals(rhs.data);
 
         public FiniteSeq<T> Concat(FiniteSeq<T> rhs)
             => new FiniteSeq<T>(data.Concat(rhs.data));

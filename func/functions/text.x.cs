@@ -17,14 +17,6 @@ namespace Z0
     partial class xfunc
     {
         /// <summary>
-        /// Invokes the implic conversion string -> ReadOnlySpan[char]
-        /// </summary>
-        /// <param name="src">the souce string</param>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<char> ToReadOnlySpan(this string src)
-            => src;
-
-        /// <summary>
         /// Encloses a string within a boundary
         /// </summary>
         /// <param name="s">The string to enclose</param>

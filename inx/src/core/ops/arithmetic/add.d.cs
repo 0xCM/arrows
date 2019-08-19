@@ -15,9 +15,6 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx;
 
     using static zfunc;
-    using static Span256;
-    using static Span128;
-    using static As;
 
     public static partial class dinx
     {
@@ -27,7 +24,7 @@ namespace Z0
             => Add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vec128<sbyte> add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs) 
             => Add(lhs, rhs);
 
         [MethodImpl(Inline)]

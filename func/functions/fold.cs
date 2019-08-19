@@ -26,7 +26,7 @@ partial class zfunc
         
         var cumulant = default(T).Zero;
         foreach(var item in src)
-            cumulant = cumulant.add(item);            
+            cumulant = cumulant.Add(item);            
         return cumulant;
     }
                 
@@ -39,9 +39,9 @@ partial class zfunc
     public static T foldM<T>(IEnumerable<T> src)
         where T : struct, IMonoidM<T>
     {        
-        var cumulant = default(T).one;
+        var cumulant = default(T).One;
         foreach(var item in src)
-            cumulant = cumulant.mul(item);            
+            cumulant = cumulant.Mul(item);            
         return cumulant;
     }
                 
@@ -55,9 +55,9 @@ partial class zfunc
         where T : struct
     {
         
-        var cumulant = monoid.identity;
+        var cumulant = monoid.Identity;
         foreach(var item in src)
-            cumulant = monoid.compose(cumulant, item);            
+            cumulant = monoid.Compose(cumulant, item);            
         return cumulant;
     }
 

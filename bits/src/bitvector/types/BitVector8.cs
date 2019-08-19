@@ -65,7 +65,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static explicit operator byte(in BitVector8 src)
+        public static implicit operator byte(in BitVector8 src)
             => src.data;
 
         /// <summary>
@@ -339,6 +339,14 @@ namespace Z0
         public BitVector8 Msb(int n)                
             => Between(LastPos - n, LastPos);                
 
+        public void Permute(Perm spec)
+        {
+            var mask = BitVector8.Alloc();
+            for(var i=0; i<math.min(spec.Length, 8); i++)
+                mask[spec[i]] = i; // i <-> spec[i]
+            data = Bits.deposit(data,mask);
+        }
+        
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);

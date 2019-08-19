@@ -20,7 +20,7 @@ namespace Z0.Test
             duplicates = 0;
 
             var sw = stopwatch();
-            var p0 = Permutation.Identity(n);
+            var p0 = Perm.Identity(n);
             var p1 = Random.Shuffle(in p0);
             var p2 = Random.Shuffle(in p0);
             for(var i=0; i<count; i++)
@@ -36,20 +36,18 @@ namespace Z0.Test
 
         public void Shuffle1()
         {
-            var p1 = Permutation.Define(N4, 'A', 'B', 'C', 'D');            
-            var p2x = Permutation.Define(N4, 'A', 'D', 'C', 'B');
+            var p1 = Perm.Define(N4, 'A', 'B', 'C', 'D');            
+            var p2x = Perm.Define(N4, 'A', 'D', 'C', 'B');
             var p2y = p1.Replicate(2,4);
-            Claim.yea(p2x == p2y);
-                        
+            Claim.yea(p2x == p2y);                        
             var p3 = Random.Shuffle(p1.Replicate());
             var p3Set = p3.Terms.ToSet();            
-            Claim.eq(p3.Length, p3Set.Count);
-            
+            Claim.eq(p3.Length, p3Set.Count);            
         }
 
         public void Shuffle2()
         {
-            var p1 = Permutation.Define(N26, AsciUpper.All);            
+            var p1 = Perm.Define(N26, AsciUpper.All);            
             
             for(var i=0; i< Pow2.T08; i++)
             {

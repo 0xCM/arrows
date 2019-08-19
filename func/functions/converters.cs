@@ -47,6 +47,22 @@ namespace Z0
            return dst;            
         }
 
+        /// <summary>
+        /// Converts an array of primal values of one type to another
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <typeparam name="S">The soruce type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
+        public static T[] convert<S,T>(S[] src)
+            where T : struct
+            where S : struct
+        {
+            var dst = new T[src.Length];
+            for(var i=0; i<src.Length; i++)
+                dst[i] = convert(src[i], out dst[i]);
+            return dst;
+        }
+
         [MethodImpl(Inline)]
         public static T convert<T>(sbyte src, out T dst)
             where T : struct

@@ -10,8 +10,6 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;    
-    using static Bits;
-    using static Bytes;
 
     /// <summary>
     /// Defines a 32-bit bitvector
@@ -55,7 +53,7 @@ namespace Z0
     
         [MethodImpl(Inline)]
         public static BitVector32 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(in pack(src, out uint data));
+            => FromScalar(in Bits.pack(src, out uint data));
 
         [MethodImpl(Inline)]
         public static BitVector32 FromBits(params Bit[] src)
@@ -195,13 +193,13 @@ namespace Z0
         public BitVector16 Hi
         {
             [MethodImpl(Inline)]
-            get => hi(data);        
+            get => Bits.hi(data);        
         }
         
         public BitVector16 Lo
         {
             [MethodImpl(Inline)]
-            get => lo(data);    
+            get => Bits.lo(data);    
         }
 
         /// <summary>
@@ -305,15 +303,15 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitSize Pop()
-            => pop(data);
+            => Bits.pop(data);
         
         [MethodImpl(Inline)]
         public BitSize Nlz()
-            => nlz(data);
+            => Bits.nlz(data);
 
         [MethodImpl(Inline)]
         public BitSize Ntz()
-            => ntz(data);
+            => Bits.ntz(data);
 
         [MethodImpl(Inline)]
         public BitVector32 AndNot(in BitVector32 rhs)

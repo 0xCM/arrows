@@ -77,16 +77,34 @@ namespace Z0
                 this.bitseq[i] = (byte)src[i];
         }
 
-        public readonly Bit this[int index]
+        /// <summary>
+        /// Queries/manipulates bit at specified index
+        /// </summary>
+        public Bit this[int index]
         {
             [MethodImpl(Inline)]
             get => bitseq[index];
+
+            [MethodImpl(Inline)]
+            set => bitseq[index] = (byte)value;
         }
 
+        /// <summary>
+        /// Extracts a substring determined by start/end indices
+        /// </summary>
         public BitString this[BitPos i0, BitPos i1]
         {
             [MethodImpl(Inline)]
             get => new BitString(BitSeq.Slice(i0, i1 - i0));
+        }
+
+        /// <summary>
+        /// Extracts a substring determined by a range
+        /// </summary>
+        public BitString this[Range range]
+        {
+            [MethodImpl(Inline)]
+            get => this[range.Start.Value, range.End.Value];
         }
 
         public readonly int Length
@@ -107,11 +125,8 @@ namespace Z0
         public Span<byte> BitSeq
         {
             [MethodImpl(Inline)]
-            get => bitseq;
+            get => bitseq ?? Span<byte>.Empty;
         }
-
-        uint ILengthwise.Length 
-            => (uint)Length;
 
         /// <summary>
         /// Renders a segment as a packed primal value
@@ -158,7 +173,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span<byte> PackedBits(int offset = 0, int? minlen = null)
             => PackedBits(bitseq, offset, minlen);
-
 
         /// <summary>
         /// Counts the number of leading zero bits
@@ -223,7 +237,7 @@ namespace Z0
         /// <summary>
         /// Converts the bistring to a binary digit representation
         /// </summary>
-        public ReadOnlySpan<BinaryDigit> ToDigits()
+        public Span<BinaryDigit> ToDigits()
         {
             Span<BinaryDigit> dst = new BinaryDigit[bitseq.Length];
             for(var i=0; i< bitseq.Length; i++)
@@ -231,10 +245,11 @@ namespace Z0
             return dst;
         }
 
+
         /// <summary>
         /// Renders the content as a span of bits
         /// </summary>
-        public ReadOnlySpan<Bit> ToBits()
+        public Span<Bit> ToBits()
         {
             Span<Bit> dst = new Bit[bitseq.Length];
             for(var i=0; i< bitseq.Length; i++)
@@ -337,6 +352,9 @@ namespace Z0
 
         readonly string FormatUnblocked(bool tlz, bool specifier)
         {
+            if(bitseq == null || bitseq.Length == 0)
+                return string.Empty;
+
             Span<char> dst = stackalloc char[bitseq.Length];
             var lastix = dst.Length - 1;
             for(var i=0; i< dst.Length; i++)
