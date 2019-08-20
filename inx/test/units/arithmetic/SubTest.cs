@@ -15,7 +15,6 @@ namespace Z0.Test
 
     public class SubTest : UnitTest<SubTest>
     {
-
         void Sub128<T>(int blocks)
             where T : struct
         {

@@ -25,7 +25,7 @@ namespace Z0
         /// 02 -> 00 | 2 -> 0
         /// 03 -> 01 | 3 -> 1
         /// </summary>
-        const byte SwapHiLoMask = 0b_01_00_11_10;
+        const byte MSwapHiLo = 0b_01_00_11_10;
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -33,7 +33,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<byte> swaphl(in Vec256<byte> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<sbyte> swaphl(in Vec256<sbyte> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -49,7 +49,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<short> swaphl(in Vec256<short> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -57,7 +57,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<ushort> swaphl(in Vec256<ushort> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -65,7 +65,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<int> swaphl(in Vec256<int> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -73,7 +73,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<uint> swaphl(in Vec256<uint> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -81,7 +81,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<long> swaphl(in Vec256<long> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -89,7 +89,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<ulong> swaphl(in Vec256<ulong> src)
-            => perm4x64(src, SwapHiLoMask);
+            => perm4x64(src, MSwapHiLo);
 
         /// <summary>
         /// Swaps hi/lo 128-bit lanes
@@ -97,9 +97,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<double> swaphl(in Vec256<double> src)
-            => perm4x64(src, SwapHiLoMask);
-
-
+            => perm4x64(src, MSwapHiLo);
     }
 
 }

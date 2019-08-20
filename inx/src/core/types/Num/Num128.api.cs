@@ -16,7 +16,7 @@ namespace Z0
  
     using static zfunc;
     using static As;
-    using static AsInX;
+    
     
     public static class Num128
     {

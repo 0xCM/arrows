@@ -84,37 +84,6 @@ namespace Z0.Test
             Sub128<double>(blocks);
         }
 
-        public void Sum1()
-        {
-            var src = Random.Span<short>(Pow2.T05, closed<short>(-250,250));
-            var x = src.Sum();
-            var y = src.Sum(NumericSystem.Intrinsic);
-            Claim.eq(x,y);            
-        }
-
-        public void Sum2()
-        {
-            var src = Random.Span<int>(Pow2.T08, closed<int>(-250,250));
-            var x = src.Sum();
-            var y = src.Sum(NumericSystem.Intrinsic);
-            Claim.eq(x,y);            
-        }
-
-        public void Sum3()
-        {
-            var src = Random.Span<float>(Pow2.T09, closed<float>(-250,250));
-            var x = (int)src.Sum();
-            var y = (int)src.Sum(NumericSystem.Intrinsic);
-            Claim.eq(x,y);            
-        }
-
-        public void Sum4()
-        {
-            var src = Random.Span<double>(Pow2.T09, closed<double>(-250,250));
-            var x = src.Sum().Round(2);
-            var y = src.Sum(NumericSystem.Intrinsic).Round(2);
-            Claim.eq(x,y);            
-        }
 
 
     }

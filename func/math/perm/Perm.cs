@@ -24,7 +24,56 @@ namespace Z0
         int[] terms;
 
         /// <summary>
+        /// Defines an untyped identity permutation
+        /// </summary>
+        /// <param name="n">The permutation length</param>
+        [MethodImpl(Inline)]
+        public static Perm Identity(int n)
+            => new Perm(range(0, n-1));
+
+        /// <summary>
+        /// Creates a new identity permutation of natural length
+        /// </summary>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The term type</typeparam>
+        [MethodImpl(Inline)]
+        public static Perm<N> Identity<N>(N n = default)
+            where N : ITypeNat, new()
+                => Perm<N>.Identity.Replicate();
+
+        /// <summary>
+        /// Defines an untyped permutation determined by values in a source span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        [MethodImpl(Inline)]
+        public static Perm Define(ReadOnlySpan<int> src)
+            => new Perm(src.ToArray());
+
+        /// <summary>
         /// Defines a permutation of natural length
+        /// </summary>
+        /// <param name="length">The length of the permutation</param>
+        /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The symbol type</typeparam>
+        [MethodImpl(Inline)]
+        public static Perm<N> Define<N>(N length, params int[] terms)
+            where N : ITypeNat, new()
+                => new Perm<N>(terms);
+
+        /// <summary>
+        /// Defines an identity permutation of natural length and applies a specified sequence of transpostions
+        /// </summary>
+        /// <param name="length">The length of the permutation</param>
+        /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
+        /// <typeparam name="N">The length type</typeparam>
+        [MethodImpl(Inline)]
+        public static Perm<N> Define<N>(params Swap<N>[] transpositions)
+            where N : ITypeNat, new()
+                => new Perm<N>(transpositions);
+
+        /// <summary>
+        /// Defines a generic permutation of natural length
         /// </summary>
         /// <param name="length">The length of the permutation</param>
         /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
@@ -37,33 +86,39 @@ namespace Z0
                 => new Perm<N,T>(terms);
 
         /// <summary>
-        /// Defines an identity permutation of natural length and applies a specified sequence of transpostions
+        /// Defines a generic identity permutation of natural length and applies a specified sequence of transpostions
         /// </summary>
         /// <param name="length">The length of the permutation</param>
         /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The term type</typeparam>
         [MethodImpl(Inline)]
-        public static Perm<N,T> Define<N,T>(params (int i, int j)[] transpositions)
+        public static Perm<N,T> Define<N,T>(params Swap<N>[] transpositions)
             where N : ITypeNat, new()
             where T : struct
                 => new Perm<N,T>(transpositions);
 
         /// <summary>
-        /// Defines the length-specific identity permutation
+        /// Defines a transposition for a permutation of natural length
         /// </summary>
-        /// <param name="n">The permutation length</param>
+        /// <param name="i">The first index</param>
+        /// <param name="j">The second index</param>
+        /// <typeparam name="N">The length type</typeparam>
         [MethodImpl(Inline)]
-        public static Perm Identity(int n)
-            => new Perm(range(0, n-1));
+        public static Swap<N> Swap<N>(int i, int j)
+            where N : ITypeNat, new()
+                => (i,j);
 
         /// <summary>
-        /// Defines a permutation determined by values in a source span
+        /// Defines an identity permutation over symbols of a specified type
         /// </summary>
-        /// <param name="src">The source span</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The symbol type</typeparam>
         [MethodImpl(Inline)]
-        public static Perm Define(ReadOnlySpan<int> src)
-            => new Perm(src.ToArray());
+        public static Perm<N,T> Identity<N,T>(N n = default, T rep = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => Perm<N,T>.Identity.Replicate();
 
         [MethodImpl(Inline)]
         public static implicit operator Perm(Span<int> src)
@@ -139,9 +194,6 @@ namespace Z0
         public Perm Transpose(int i, int j)
         {
             swap(ref terms[i], ref terms[j]);
-            // var tmp = terms[i];
-            // terms[i] = terms[j];
-            // terms[j] = tmp;
             return this;
         }
 
@@ -182,6 +234,15 @@ namespace Z0
             random.Shuffle(terms);
             return this;
         }
+
+        /// <summary>
+        /// Formats a permutation as a 2-column matrix
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        /// <param name="colwidth">The width of the matrix columns, if specified</param>
+        [MethodImpl(Inline)]
+        public string Format(int? colwidth = null)        
+            => Terms.FormatPerm(colwidth);
 
         public override int GetHashCode()
             => terms.GetHashCode();

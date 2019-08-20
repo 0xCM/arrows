@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;
     using static As;
-    using static AsInX;
+    
 
     partial class BitsX
     {
@@ -47,99 +47,23 @@ namespace Z0
             where T : struct  
                 => gbits.and(lhs,rhs,dst);
 
-        /// <summary>
-        /// Computes a correctly-typed bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static ref sbyte And(this ref sbyte lhs, sbyte rhs)
+        public static ref Vector<T> And<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
         {
-            lhs &= rhs;
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gbits.and(in x, y);
             return ref lhs;
         }
 
-        /// <summary>
-        /// Computes a correctly-typed bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static ref byte And(this ref byte lhs, byte rhs)
+        public static ref Matrix<M,N,T> And<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
         {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a correctly-typed bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref ushort And(this ref ushort lhs, ushort rhs)
-        {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a correctly-typed bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref short And(this ref short lhs, short rhs)
-        {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref int And(this ref int lhs, int rhs)
-        {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref uint And(this ref uint lhs, uint rhs)
-        {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref long And(this ref long lhs, long rhs)
-        {
-            lhs &= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise and of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ref ulong And(this ref ulong lhs, ulong rhs)
-        {
-            lhs &= rhs;
+            lhs.Unsized.ReadOnly().And(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 

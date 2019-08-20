@@ -12,6 +12,7 @@ using static System.Runtime.Intrinsics.X86.Avx;
 
 using static zfunc;
 using static Z0.As;
+using static Z0.AsIn;
 using Z0;
 
 partial class zfunc
@@ -385,8 +386,7 @@ partial class zfunc
     ///<intrinsic>void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD m256, ymm</intrinsic>
     [MethodImpl(Inline)]
     public static unsafe void vstore(in Vec256<double> src, ref double dst)
-        => Store(refptr(ref dst),src);            
-
+        => Store(refptr(ref dst),src);                
 
 }
 

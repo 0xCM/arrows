@@ -29,24 +29,6 @@ namespace Z0
         public static Vec128<uint> shuffle(in Vec128<uint> src, byte control)
             => Shuffle(src, control);
 
-        ///<summary>
-        /// _mm256_shuffle_epi32: shuffles 32-bit integers within 128-bit lanes
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The shuffle spec</param>
-        [MethodImpl(Inline)]
-        public static Vec256<int> shuffle(in Vec256<int> src, byte control)
-            => Shuffle(src, control);
-        
-        ///<summary>
-        /// _mm256_shuffle_epi32: shuffles 32-bit integers within 128-bit lanes
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The shuffle spec</param>
-        [MethodImpl(Inline)]
-        public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
-            => Shuffle(src, control);
-
         ///<summary>__m128i _mm_shuffle_epi8 (__m128i a, __m128i b) PSHUFB xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
@@ -55,16 +37,6 @@ namespace Z0
         ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
         [MethodImpl(Inline)]
         public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
-            => Shuffle(src, mask);
-
-        ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
-        [MethodImpl(Inline)]
-        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
-            => Shuffle(src, mask);
-
-        ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
             => Shuffle(src, mask);
 
         ///<summary>__m128 _mm_shuffle_ps (__m128 a, __m128 b, unsigned int control) SHUFPS xmm, xmm/m128, imm8</summary>
@@ -96,6 +68,35 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ushort> shuffleLo(in Vec128<ushort> src, byte control)
             => ShuffleLow(src, control);
+
+        ///<summary>
+        /// _mm256_shuffle_epi32: shuffles 32-bit integers within 128-bit lanes
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="control">The shuffle spec</param>
+        [MethodImpl(Inline)]
+        public static Vec256<int> shuffle(in Vec256<int> src, byte control)
+            => Shuffle(src, control);
+        
+        ///<summary>
+        /// _mm256_shuffle_epi32: shuffles 32-bit integers within 128-bit lanes
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="control">The shuffle spec</param>
+        [MethodImpl(Inline)]
+        public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
+            => Shuffle(src, control);
+
+        ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
+        [MethodImpl(Inline)]
+        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
+            => Shuffle(src, mask);
+
+        ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+            => Shuffle(src, mask);
+
 
     }
 

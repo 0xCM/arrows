@@ -11,7 +11,7 @@ namespace Z0
     
     using static zfunc;    
     using static As;
-    using static AsInX;
+    
 
     partial class ginx
     {

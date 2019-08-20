@@ -13,7 +13,6 @@ namespace Z0
     
     partial class dinxx
     {
-
         [MethodImpl(Inline)]
         public static byte Extract(this Vec128<byte> src, int index)
             => Sse41.Extract(src,(byte)index);

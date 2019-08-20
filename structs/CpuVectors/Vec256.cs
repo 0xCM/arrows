@@ -13,23 +13,38 @@ namespace Z0
 
     using static zfunc;    
     
-    [StructLayout(LayoutKind.Sequential, Size = 32)]
-    public readonly struct Vec256<T>
+    /// <summary>
+    /// Represents a 256-bit cpu vector for use with intrinsic operations
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Size = ByteCount)]
+    public readonly struct Vec256<T> : IEquatable<Vec256<T>>
         where T : struct
     {
+        /// <summary>
+        /// The backing data
+        /// </summary>
+        readonly Vector256<T> data;        
+
+        /// <summary>
+        /// The number of components in the vector
+        /// </summary>
         public static readonly int Length = Vector256<T>.Count;
 
-        public static readonly ByteSize CellSize = Unsafe.SizeOf<T>();
+        /// <summary>
+        /// The number of bytes occupied by a vector - which is invariant with respect to the primal component type
+        /// </summary>
+        public const int ByteCount = 32;
 
-        public static readonly ulong BitCount = 256ul;
-
+        /// <summary>
+        /// The canonical zero vector
+        /// </summary>
         public static readonly Vec256<T> Zero = default;
 
-        public readonly Vector256<T> data;        
-    
+        [MethodImpl(Inline)]
         public static bool operator ==(in Vec256<T> lhs, in Vec256<T> rhs)
             => lhs.Equals(rhs);
 
+        [MethodImpl(Inline)]
         public static bool operator !=(in Vec256<T> lhs, in Vec256<T> rhs)
             => !lhs.Equals(rhs);
 
@@ -45,23 +60,12 @@ namespace Z0
         public Vec256(in Vector256<T> src)
             => this.data = src;
 
-        [MethodImpl(Inline)]
-        static T component(Vec256<T> src, int index)
-        {
-            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
-            return Unsafe.Add(ref e0, index);
-        }
-
-        [MethodImpl(Inline)]
-        static void component(Vec256<T> src, int index, T value)
-        {
-            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
-            Unsafe.Add(ref e0, index) = value;
-        }
-
         /// <summary>
         /// Manipulates a component via its 0-based index
         /// </summary>
+        /// <remarks>The operator manipulates the CLR memory in which the vector is stored
+        /// and has no direct impact on the CPU registers.
+        /// </remarks>
         public T this[int idx]
         {
             [MethodImpl(Inline)]
@@ -70,6 +74,11 @@ namespace Z0
             set => component(this,idx, value);
         }
 
+        /// <summary>
+        /// Presents the currect current vector[T] as vector[U] where U is a primal type.
+        /// Non-allocating
+        /// </summary>
+        /// <typeparam name="U">The target primal type</typeparam>
         [MethodImpl(Inline)]
         public Vec256<U> As<U>() 
             where U : struct        
@@ -87,6 +96,20 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is Vec256<T> v ? Equals(v) : false;
+
+        [MethodImpl(Inline)]
+        static T component(Vec256<T> src, int index)
+        {
+            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
+            return Unsafe.Add(ref e0, index);
+        }
+
+        [MethodImpl(Inline)]
+        static void component(Vec256<T> src, int index, T value)
+        {
+            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
+            Unsafe.Add(ref e0, index) = value;
+        }
 
     }     
 }

@@ -82,7 +82,7 @@ namespace Z0
        [MethodImpl(Inline)]
        public static string FormatHex<T>(this Vec128<T> src, bool vectorize = true, char? sep = null)
             where T : struct
-                => src.ToSpan().FormatHex(vectorize,sep);
+                => src.ToSpan().FormatHex(vectorize, sep);
 
        [MethodImpl(Inline)]
        public static string FormatHex<T>(this Vec256<T> src, bool vectorize = true, char? sep = null)

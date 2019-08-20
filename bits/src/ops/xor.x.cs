@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
     using static dinx;
     using static As;
-    using static AsInX;
+    
 
     partial class BitsX
     {
@@ -54,111 +54,26 @@ namespace Z0
             where T : struct
                 => gbits.xor(lhs,rhs,dst);
         
-        
-        /// <summary>
-        /// Computes a correctly-typed bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
         [MethodImpl(Inline)]
-        public static ref sbyte XOr(this ref sbyte lhs, sbyte rhs)
+        public static ref Vector<T> XOr<T>(ref Vector<T> lhs, Vector<T> rhs)
+            where T : struct
         {
-            lhs ^= rhs;
+            var x = lhs.Unblocked;
+            var y = rhs.Unblocked;
+            gbits.xor(in x, y);
             return ref lhs;
         }
 
-        /// <summary>
-        /// Computes a correctly-typed bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
         [MethodImpl(Inline)]
-        public static ref byte XOr(this ref byte lhs, byte rhs)
+        public static ref Matrix<M,N,T> XOr<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
         {
-            lhs ^= rhs;
+            lhs.Unsized.ReadOnly().XOr(rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
-
-        /// <summary>
-        /// Computes a correctly-typed bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref ushort XOr(this ref ushort lhs, ushort rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a correctly-typed bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref short XOr(this ref short lhs, short rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref int XOr(this ref int lhs, int rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref uint XOr(this ref uint lhs, uint rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref long XOr(this ref long lhs, long rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
-
-        /// <summary>
-        /// Computes a bitwise or of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-
-        [MethodImpl(Inline)]
-        public static ref ulong XOr(this ref ulong lhs, ulong rhs)
-        {
-            lhs ^= rhs;
-            return ref lhs;
-        }
- 
+         
         [MethodImpl(Inline)]
         public static Span<byte> XOr(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
             => Bits.xor(lhs, rhs, span<byte>(length(lhs,rhs)));
@@ -222,6 +137,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<ulong> XOr(this ref Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
             => Bits.xor(lhs, rhs);
-
    }
 }

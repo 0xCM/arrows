@@ -13,7 +13,6 @@ namespace Z0
 
     public static class dfpx
     {
-
         public static Span256<double> sqrt(this Span256<double> src, Span256<double> dst)
         {
             for(var block = 0; block <src.BlockCount; block ++)                
@@ -96,9 +95,6 @@ namespace Z0
             for(var block = 0; block < blocks; block++)
                 vstore(dfp.div(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
-        }    
-
- 
+        }     
     }
-
 }

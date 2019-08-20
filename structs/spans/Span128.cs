@@ -66,8 +66,13 @@ namespace Z0
             => length % BlockLength == 0;
 
         [MethodImpl(Inline)]
-        public static Span128<T> AllocBlocks(int count)
-            => new Span128<T>(new T[count * BlockLength]);
+        public static Span128<T> AllocBlocks(int count, T? fill = null)
+        {
+            var dst = new Span128<T>(new T[count * BlockLength]);
+            if(fill != null)
+                dst.data.Fill(fill.Value);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static Span128<T> Load(T[] src, int offset = 0)

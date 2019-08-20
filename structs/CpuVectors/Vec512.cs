@@ -15,6 +15,13 @@ namespace Z0
     using static zfunc;    
 
 
+    /// <summary>
+    /// Represents a 512-bit cpu vector for use with intrinsic operations
+    /// </summary>
+    /// <remarks>
+    /// This type and any assciated method is wholly synthetic; .Net intrinsics
+    /// does not (at the time of this writing) support AVX512
+    /// </remarks>
     [StructLayout(LayoutKind.Sequential, Size = ByteCount)]
     public struct Vec512<T>
         where T : struct
@@ -23,8 +30,9 @@ namespace Z0
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
 
-        public const int BitCount = 512;
-
+        /// <summary>
+        /// The number of bytes occupied by a vector - which is invariant with respect to the primal component type
+        /// </summary>
         public const int ByteCount = 64;
 
         public static readonly Vec512<T> Zero = default;

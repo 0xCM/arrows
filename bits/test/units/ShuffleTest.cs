@@ -63,48 +63,9 @@ namespace Z0.Test
         ulong shuffle_64_0_6(ulong src, ulong mask = 0x5555555555555555ul)
             => Bits.deposit(src, mask) | Bits.deposit(src >> 32, ~mask) ;  
 
-
         public void ShuffleBytes()
         {
-            var control = Vec256.Decrements((byte)31);
-            var src = Vec256.Increments((byte)0);
-            var dst = dinx.arrange(src,control);
 
-            //Mask to reverse both 128-bit lanes
-            var lrMask1 = Span256.AllocBlocks<byte>(1);
-            byte counter = 0;
-            for(var i=0; i< lrMask1.Length; i++, counter++)
-            {
-                if(counter == 16)
-                    counter = 0;
-                lrMask1[i] = (byte)(15 - counter);
-            }
-
-            var rMask = Span256.AllocBlocks<byte>(1);
-            for(var i=0; i< rMask.Length; i++)
-                rMask[i] = (byte)(31 - i);
-            var m2 = Vec256.Load(rMask);
-
-            var v1 = Vec256.Increments((byte)0);
-            var m1 = Vec256.Load(lrMask1);
-            var v2 = dinx.shuffle(v1, m1);
-            // Trace($"{v1.FormatHex()}");
-            // Trace($"{m1.FormatHex()}");
-            // Trace($"{v2.FormatHex()}");
-
-            var v4 = Vec256.Increments((byte)0);
-            var v6 = dinx.swaphl(v4);
-            var v5 = dinx.arrange(v4, m2);
-            Trace($"input:  {v4.FormatHex()}");
-            Trace($"mask:   {m2.FormatHex()}");
-            Trace($"v6  :   {v6.FormatHex()}");
-            Trace($"result: {v5.FormatHex()}");
-
-            
-            
-            // Trace($"control: {control.FormatHex()}");
-            // Trace($" source: {src.FormatHex()}");
-            // Trace($" result: {dst.FormatHex()}");
 
         }
 

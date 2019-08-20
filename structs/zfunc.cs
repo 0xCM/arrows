@@ -3,6 +3,19 @@ using System.Runtime.CompilerServices;
 
 class zfunc
 {
+    /// <summary>
+    /// The canonical swap function
+    /// </summary>
+    /// <param name="lhs">The left value</param>
+    /// <param name="rhs">The right value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static void swap<T>(ref T lhs, ref T rhs)
+    {
+        var temp = lhs;
+        lhs = rhs;
+        rhs = temp;
+    }
 
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
     

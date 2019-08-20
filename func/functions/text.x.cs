@@ -410,9 +410,8 @@ namespace Z0
         /// <summary>
         /// Erases a specified set of character occurrences in a string
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="removals"></param>
-        /// <returns></returns>
+        /// <param name="s">The string to manipulate</param>
+        /// <param name="removals">The characters to remove</param>
         public static string RemoveAny(this string s, IEnumerable<char> removals)
         {
             if (s.ContainsAny(removals))
@@ -429,11 +428,17 @@ namespace Z0
                 return dst;
             }
             else
-            {
                 return s;
-            }
         }
 
+        /// <summary>
+        /// Erases a specified set of character occurrences in a string
+        /// </summary>
+        /// <param name="s">The string to manipulate</param>
+        /// <param name="removals">The characters to remove</param>
+        public static string RemoveAny(this string s, params char[] removals)
+            => s.RemoveAny(removals as IEnumerable<char>);
+        
 
         /// <summary>
         /// Transforms a generic-valued dictionary into a string-valued dictionary via the generic type's 

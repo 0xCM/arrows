@@ -40,73 +40,6 @@ namespace Z0
             => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo);
 
 
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> Or<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().Or(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> And<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().And(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> XOr<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            lhs.Unsized.ReadOnly().XOr(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> And<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.and(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> Or<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.or(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> XOr<T>(ref Vector<T> lhs, Vector<T> rhs)
-            where T : struct
-        {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.xor(in x, y);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vector<T> Flip<T>(ref Vector<T> src)
-            where T : struct
-        {
-            gbits.flip(src.Unblocked, src.Unblocked);
-            return ref src;
-        }
 
         /// <summary>
         /// Converts a generic number to a bitstring
@@ -147,16 +80,6 @@ namespace Z0
         public static BitString ToBitString<T>(this Vec256<T> src)
             where T : struct        
             => BitString.FromScalars(src.ToSpan());        
-
-        // /// <summary>
-        // /// Converts an 256-bit intrinsic integer representation to a bistring
-        // /// </summary>
-        // /// <param name="src">The source vector</param>
-        // /// <typeparam name="T">The underlying primal type</typeparam>
-        // [MethodImpl(Inline)]   
-        // public static BitString ToBitString<T>(this __m256i src)
-        //     where T : struct
-        //         => src.ToVec256<T>().ToBitString();
 
     }
 

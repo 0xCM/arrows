@@ -213,11 +213,9 @@ namespace Z0
         public static Num128<double> mulAdd(in Num128<double> x, in Num128<double> y, in Num128<double> z)
             => MultiplyAddScalar(x,y,z);
 
-
         [MethodImpl(Inline)]
         public static Vec128<float> recipsqrt(Vec128<float> src)
-            => Avx2.ReciprocalSqrt(src);
-    
+            => Avx2.ReciprocalSqrt(src);    
      
         [MethodImpl(Inline)]
         public static ref Num128<float> recipsqrt(ref Num128<float> src)
@@ -230,11 +228,9 @@ namespace Z0
         public static Vec128<float> recip(Vec128<float> src)
             => Reciprocal(src);
 
-
         [MethodImpl(Inline)]
         public static Vec256<float> recip(Vec256<float> src)
             => Reciprocal(src);
-
 
         [MethodImpl(Inline)]
         public static ref Num128<float> recip(ref Num128<float> src)
@@ -251,5 +247,20 @@ namespace Z0
         public static Num128<double> sqrt(in Num128<double> src)
             => SqrtScalar(src);
 
+        /// <summary>
+        /// Determines whether the first component is NaN
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool IsNaN(this Vector128<float> src, int index)
+                => src.GetElement(index).IsNaN();
+
+        /// <summary>
+        /// Determines whether the first component is NaN
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool IsNaN(this Vector128<double> src, int index)
+            => src.GetElement(index).IsNaN();   
     }
 }

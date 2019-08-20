@@ -10,7 +10,7 @@ namespace Z0
     using Avx = System.Runtime.Intrinsics.X86.Avx;   
     using static zfunc;
     using static As;
-    using static AsInX;    
+        
 
     partial class BitsX
     {

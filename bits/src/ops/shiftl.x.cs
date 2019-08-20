@@ -15,7 +15,7 @@ namespace Z0
     using static Span256;
     using static Span128;
     using static As;
-    using static AsInX;
+    
 
     partial class BitsX
     {

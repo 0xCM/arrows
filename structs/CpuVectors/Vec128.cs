@@ -9,35 +9,36 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
     using System.Runtime.InteropServices;
-    using static System.Runtime.Intrinsics.X86.Sse41;
-    using static System.Runtime.Intrinsics.X86.Avx;
-    
+
     using static zfunc;    
 
-    [StructLayout(LayoutKind.Sequential, Size = 16)]
-    public readonly struct Vec128<T>
+    /// <summary>
+    /// Represents a 128-bit cpu vector for use with intrinsic operations
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Size = ByteCount)]
+    public readonly struct Vec128<T> : IEquatable<Vec128<T>>
         where T : struct
     {            
-        public static readonly int Length = Vector128<T>.Count;
-
-        public static readonly int CellSize = Unsafe.SizeOf<T>();
-
-        public static readonly ulong  BitSize = 128ul;
-
-        public static readonly Vec128<T> Zero = default;
-
+        /// <summary>
+        /// The backing data
+        /// </summary>
         readonly Vector128<T> data;        
-    
-        public Vec128(in Vector128<T> src)
-            => this.data = src;
 
-        public static bool operator ==(in Vec128<T> lhs, in Vec128<T> rhs)
-            => lhs.Equals(rhs);
+        /// <summary>
+        /// The number of components in the vector
+        /// </summary>
+        public static readonly int Length = Vector128<T>.Count;
+        
+        /// <summary>
+        /// The number of bytes occupied by a vector - which is invariant with respect to the primal component type
+        /// </summary>
+        public const int ByteCount = 16;
 
-        public static bool operator !=(in Vec128<T> lhs, in Vec128<T> rhs)
-            => !lhs.Equals(rhs);
+        /// <summary>
+        /// The canonical zero vector
+        /// </summary>
+        public static readonly Vec128<T> Zero = default;
 
         [MethodImpl(Inline)]
         public static implicit operator Vec128<T>(Vector128<T> src)
@@ -48,29 +49,37 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        static T Component(Vec128<T> src, int index)
-        {
-            ref T e0 = ref Unsafe.As<Vec128<T>, T>(ref src);
-            return Unsafe.Add(ref e0, index);
-        }
+        public static bool operator ==(in Vec128<T> lhs, in Vec128<T> rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in Vec128<T> lhs, in Vec128<T> rhs)
+            => !lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public Vec128(in Vector128<T> src)
+            => this.data = src;
 
         /// <summary>
-        /// Extracts a component via its 0-based index
+        /// Manipulates a component via its 0-based index
         /// </summary>
+        /// <remarks>The operator manipulates the CLR memory in which the vector is stored
+        /// and has no direct impact on the CPU registers.
+        /// </remarks>
         public T this[int idx]
         {
             [MethodImpl(Inline)]
             get => Component(this, idx);
+
+            [MethodImpl(Inline)]
+            set => Component(this, idx, value);
         }
 
-        [MethodImpl(Inline)]
-        public static Vector128<T> Vector128(Vec128<T> src)
-                => src;
-
-        [MethodImpl(Inline)]
-        public Num128<T> ToNum128()
-            => Vector128(this);
-
+        /// <summary>
+        /// Presents the currect current vector[T] as vector[U] where U is a primal type. 
+        /// Non-allocating
+        /// </summary>
+        /// <typeparam name="U">The target primal type</typeparam>
         [MethodImpl(Inline)]
         public Vec128<U> As<U>() 
             where U : struct
@@ -88,6 +97,19 @@ namespace Z0
 
         public override bool Equals(object obj)
             => obj is Vec128<T> v ? Equals(v) : false;
-        
+
+        [MethodImpl(Inline)]
+        static T Component(Vec128<T> src, int index)
+        {
+            ref T e0 = ref Unsafe.As<Vec128<T>, T>(ref src);
+            return Unsafe.Add(ref e0, index);
+        }
+
+        [MethodImpl(Inline)]
+        static void Component(Vec128<T> src, int index, T value)
+        {
+            ref T e0 = ref Unsafe.As<Vec128<T>, T>(ref src);
+            Unsafe.Add(ref e0, index) = value;
+        }       
     }     
 }

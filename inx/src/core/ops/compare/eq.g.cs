@@ -12,7 +12,7 @@ namespace Z0
     
     using static zfunc;    
     using static As;
-    using static AsInX;
+    
 
     partial class ginx
     {
@@ -38,9 +38,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return dinx.eq(in uint64(in lhs), in uint64(in rhs)).As<T>();
             else if(typeof(T) == typeof(float))
-                return dinx.eq(in float32(in lhs), in float32(in rhs)).As<T>();
+                return dfp.eq(in float32(in lhs), in float32(in rhs)).As<T>();
             else if(typeof(T) == typeof(double))
-                return dinx.eq(in float64(in lhs), in float64(in rhs)).As<T>();
+                return dfp.eq(in float64(in lhs), in float64(in rhs)).As<T>();
             else 
                 throw unsupported<T>();
         }
@@ -66,9 +66,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return dinx.eq(in uint64(in lhs), in uint64(in rhs)).As<T>();
             else if(typeof(T) == typeof(float))
-                return dinx.eq(in float32(in lhs), in float32(in rhs)).As<T>();
+                return dfp.eq(in float32(in lhs), in float32(in rhs)).As<T>();
             else if(typeof(T) == typeof(double))
-                return dinx.eq(in float64(in lhs), in float64(in rhs)).As<T>();
+                return dfp.eq(in float64(in lhs), in float64(in rhs)).As<T>();
             else 
                 throw unsupported<T>();
         }

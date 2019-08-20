@@ -14,7 +14,8 @@ namespace Z0
     public static class BitStore
     {
         /// <summary>
-        /// Constructs a bytespan where each entry, ordered from lo to hi, represents a single bit in the source value
+        /// Constructs a span of bytes where each byte, ordered from lo to hi, 
+        /// represents a single bit in the source value
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The primal source type</typeparam>
@@ -50,7 +51,6 @@ namespace Z0
         public static ReadOnlySpan<char> BitChars(byte index)
             => U8Index[index].bitchars;
 
-
         [MethodImpl(Inline)]
         public static string BitText(byte index)
             => U8Index[index].text;
@@ -66,7 +66,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string BitText(sbyte index)
             => I8Index[index + SByte.MaxValue + 1].text;
-
 
         /// <summary>
         /// Constructs a sequence of 8 bytes {bi} := [b7,...b0] over the domain {0,1} according to whether the

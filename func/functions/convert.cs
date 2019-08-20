@@ -207,5 +207,65 @@ partial class zfunc
         where T : struct
             => As.generic<T>(ref dst[0]) = src;
 
+   /// <summary>
+    /// Converts a parameter array to a span of 32-bit signed integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<int> ints<T>(params T[] src)
+        where T : struct
+            =>  convert<T,int>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 32-bit unsigned integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<uint> uints<T>(params T[] src)
+        where T : struct
+            =>  convert<T,uint>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 64-bit unsigned integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<ulong> ulongs<T>(params T[] src)
+        where T : struct
+            =>  convert<T,ulong>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 64-bit signed integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<long> longs<T>(params T[] src)
+        where T : struct
+            =>  convert<T,long>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 32-bit floats
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<float> floats<T>(params T[] src)
+        where T : struct
+            =>  convert<T,float>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 64-bit floats
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<double> doubles<T>(params T[] src)
+        where T : struct
+            =>  convert<T,double>(src.ToReadOnlySpan());
+ 
 
 }

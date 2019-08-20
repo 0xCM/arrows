@@ -23,6 +23,15 @@ namespace Z0.Test
             Claim.eq(expect, swapped);
         }
 
+        public void Reverse256u8()
+        {
+            var v1 = Vec256.Increments((byte)0);
+            var v2 = dinx.reverse(v1);
+            var v3 = Vec256.Decrements((byte)31);
+            Claim.eq(v2,v3);
+
+        }
+
         public void ReverseU32()
         {
             var src = Random.CpuVec256Stream<uint>().Take(Pow2.T14);

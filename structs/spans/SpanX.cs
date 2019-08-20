@@ -458,7 +458,6 @@ namespace Z0
             return dst;
         }
 
-
         [MethodImpl(Inline)]
         public static ReadOnlySpanPair<T> PairWith<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)        
             => new ReadOnlySpanPair<T>(lhs,rhs);
@@ -472,7 +471,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ISet<T> ToSet<N,T>(this ReadOnlySpan<N,T> src)        
             where N : ITypeNat, new()
-            => new HashSet<T>(src.ToArray());   
+                => new HashSet<T>(src.ToArray());   
+
+
 
     }
 

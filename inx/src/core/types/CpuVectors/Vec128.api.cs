@@ -16,7 +16,7 @@ namespace Z0
     
     using static zfunc;
     using static As;
-    using static AsInX;
+    
     
     public static partial class Vec128
     {
@@ -295,6 +295,45 @@ namespace Z0
             return ref dst;
         }        
 
+        /// <summary>
+        /// Creates a vector with incrementing components
+        /// v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
+        /// </summary>
+        /// <param name="first">The value of the first component</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        public static Vec128<T> Increments<T>(T first = default, params Swap[] swaps)
+            where T : struct  
+        {
+            var dst = Alloc<T>();
+            var n = dst.Length;
+            var val = first;
+            for(var i=0; i < n; i++)
+            {
+                dst[i] = val;
+                gmath.inc(ref val);
+            }
+            return Load(dst.Swap(swaps));
+        }
+
+        /// <summary>
+        /// Creates a vector with decrementing components
+        /// v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
+        /// </summary>
+        /// <param name="last">The value of the first component</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        public static Vec128<T> Decrements<T>(T last = default, params Swap[] swaps)
+            where T : struct  
+        {
+            var dst = Alloc<T>();
+            var n = dst.Length;
+            var val = last;
+            for(var i=0; i<n; i++)
+            {
+                dst[i] = val;
+                gmath.dec(ref val);
+            }
+            return Load(dst.Swap(swaps));
+        }
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(Span128<T> src, int block = 0)
@@ -334,15 +373,12 @@ namespace Z0
             else 
                 throw unsupported<T>();
             return ref dst;
-        }
-
- 
+        } 
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
                 =>  Load<T>(src, offset, out Vec128<T> dst);    
-
 
         /// <summary>
         /// Creates a new vector via component-wise specification
@@ -655,7 +691,22 @@ namespace Z0
         static Vec128<double> fill(double src)
             => Vector128.Create(src);
 
- 
+        /// <summary>
+        /// Determines the number of components of a 128-bit vector with the indicated component type
+        /// </summary>
+        /// <typeparam name="T">The component type</typeparam>
+        static int Length<T>()
+            where T : struct
+                => Vec128<T>.Length;
+
+        /// <summary>
+        /// Allocates a 1-block 128-bit blocked span
+        /// </summary>
+        /// <typeparam name="T">The component type</typeparam>
+        static Span128<T> Alloc<T>()
+            where T : struct
+            => Span128.Alloc<T>(Length<T>());
+
         static readonly Vec128<byte> OneU8 = Vec128.fill((byte)1);
 
         static readonly Vec128<sbyte> OneI8 = Vec128.fill((sbyte)1);

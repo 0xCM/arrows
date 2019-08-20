@@ -111,20 +111,25 @@ namespace Z0
         public static BitString ToBitString(this double src)
             => BitString.FromScalar(src);
 
+        /// <summary>
+        /// Encodes span content as a bitstring
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Span<T> src, int? maxlen = null)
+        public static BitString ToBitString<T>(this Span<T> src)
             where T : struct
-                => BitString.FromScalars(src, maxlen); 
+                => BitString.FromScalars(src); 
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Memory<T> src, int? maxlen = null)
+        public static BitString ToBitString<T>(this Memory<T> src)
             where T : struct
-                => BitString.FromScalars(src, maxlen); 
+                => BitString.FromScalars(src); 
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this ReadOnlyMemory<T> src, int? maxlen = null)
+        public static BitString ToBitString<T>(this ReadOnlyMemory<T> src)
             where T : struct
-                => BitString.FromScalars(src, maxlen); 
+                => BitString.FromScalars(src); 
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this Span<Bit> src)
@@ -144,6 +149,10 @@ namespace Z0
             where T : struct
                 => src.ToSpan().ToBitString();
     
+        /// <summary>
+        /// Reverses the order of bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]   
         public static ref BitString Reverse(this ref BitString src)
         {
@@ -151,6 +160,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Reverses the order of bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]   
         public static BitString Reversed(this BitString src)
         {
@@ -210,10 +223,8 @@ namespace Z0
         /// Computes the width of the range, including the endpoints
         /// </summary>
         /// <param name="src">The source range</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static int Width(this Range src)
             => src.End.Value - src.Start.Value + 1;
-
     }
 }

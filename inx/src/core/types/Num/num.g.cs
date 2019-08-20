@@ -16,7 +16,7 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx2;    
     
     using static zfunc;
-    using static AsInX;
+    
 
     /// <summary>
     /// Characterizes a function that produces a 128-bit scalar vector given a scalar value

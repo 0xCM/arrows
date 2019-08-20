@@ -151,6 +151,41 @@ namespace Z0.Test
 
         }
 
+        public void Reverse128i32()
+        {
+            var v = Vec128.FromParts(0,1,2,3);
+            var rvX = dinx.shuffle(v, 0b00_01_10_11);
+            var rvY = Vec128.FromParts(3,2,1,0);
+            Claim.eq(rvX,rvY);
+
+        }
+
+        //Not an efficient approach, used for comparison
+        public static Vec128<ushort> reverse(in Vec128<ushort> src)
+        {
+            var v = dinx.shuffleLo(dinx.shuffleHi(src, 0b00_01_10_11), 0b00_01_10_11).As<ulong>();        
+            return Vec128.FromParts(v.Extract(1), v.Extract(0)).As<ushort>();
+        }
+
+
+        public void Reverse128i16()
+        {
+            var v1 = Vec128.Increments((ushort)0);
+            var v2 = Vec128.Decrements((ushort)7);
+            var v3 = reverse(v1);
+            Claim.eq(v2,v3);
+        }
+
+
+        public void Revers128u8()
+        {
+            var v1 = Vec128.Decrements((byte)15);
+            var v2 = Vec128.Increments((byte)0);
+            Claim.eq(dinx.reverse(v1), v2);
+            Claim.eq(dinx.reverse(v2), v1);
+
+
+        }
 
     }
 

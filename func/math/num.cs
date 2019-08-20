@@ -15,19 +15,6 @@ using static Constants;
 
 partial class zfunc
 {
-    [MethodImpl(Inline)]
-    public static bool testbit(in ulong src, in int pos)
-        => (src & (U64One << pos)) != 0ul;
-
-    [MethodImpl(Inline)]
-    public static Span<float> floats<T>(params T[] src)
-        where T : struct
-            =>  convert<T,float>(src.ToReadOnlySpan());
-
-    [MethodImpl(Inline)]
-    public static Span<double> doubles<T>(params T[] src)
-        where T : struct
-            =>  convert<T,double>(src.ToReadOnlySpan());
     
     /// <summary>
     /// Creates an enumerable sequence that ranges between inclusive upper and lower bounds
@@ -44,7 +31,7 @@ partial class zfunc
             var min = int8(x0);
             var max = int8(x1);
             var _step = int8(step) ??(sbyte)1;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(byte))
@@ -52,7 +39,7 @@ partial class zfunc
             var min = uint8(x0);
             var max = uint8(x1);
             var _step = uint8(step) ??(byte)1;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(short))
@@ -60,7 +47,7 @@ partial class zfunc
             var min = int16(x0);
             var max = int16(x1);
             var _step = int16(step) ?? (short)1;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(ushort))
@@ -68,7 +55,7 @@ partial class zfunc
             var min = uint16(x0);
             var max = uint16(x1);
             var _step = uint16(step) ?? (ushort)1;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(int))
@@ -76,7 +63,7 @@ partial class zfunc
             var min = int32(x0);
             var max = int32(x1);
             var _step = int32(step) ?? 1;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(uint))
@@ -84,7 +71,7 @@ partial class zfunc
             var min = uint32(x0);
             var max = uint32(x1);
             var _step = uint32(step) ?? 1u;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(long))
@@ -92,7 +79,7 @@ partial class zfunc
             var min = int64(x0);
             var max = int64(x1);
             var _step = int64(step) ?? 1L;
-            for(var i =min; i <max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(ulong))
@@ -100,7 +87,7 @@ partial class zfunc
             var min = uint64(x0);
             var max = uint64(x1);
             var _step = uint64(step) ?? 1ul;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(float))
@@ -108,7 +95,7 @@ partial class zfunc
             var min = float32(x0);
             var max = float32(x1);
             var _step = float32(step) ?? 1f;
-            for(var i =min; i <max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else if(typeof(T) == typeof(double))
@@ -116,7 +103,7 @@ partial class zfunc
             var min = float64(x0);
             var max = float64(x1);
             var _step = float64(step) ?? 1d;
-            for(var i =min; i <=max; i += _step)            
+            for(var i = min; i <= max; i += _step)            
                 yield return generic<T>(i);
         }
         else

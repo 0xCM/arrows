@@ -18,7 +18,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="control">The control vector</param>
         /// <remarks>Approach follows https://stackoverflow.com/questions/30669556/shuffle-elements-of-m256i-vector/30669632#30669632</remarks>
-        public static Vec256<byte> arrange(Vec256<byte> src, Vec256<byte> control)
+        public static Vec256<byte> perm256(Vec256<byte> src, Vec256<byte> control)
         {
             var a = src;
             var b = dinx.swaphl(src);
@@ -28,6 +28,7 @@ namespace Z0
         }
 
         const byte M70 = 0b01110000;
+
         const byte MF0 = 0b11110000;
 
         static readonly Vec256<byte> K0 = Vec256.FromBytes(

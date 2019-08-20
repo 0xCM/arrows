@@ -16,7 +16,7 @@ namespace Z0
     using static zfunc;
     using static As;
     using static AsIn;
-    using static AsInX;
+    
 
     public static partial class Vec256
     {
@@ -315,7 +315,7 @@ namespace Z0
         /// </summary>
         /// <param name="first">The value of the first component</param>
         /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec256<T> Increments<T>(T first = default)
+        public static Vec256<T> Increments<T>(T first = default, params Swap[] swaps)
             where T : struct  
         {
             var n = Vec256<T>.Length;
@@ -326,7 +326,7 @@ namespace Z0
                 dst[i] = val;
                 gmath.inc(ref val);
             }
-            return Load(dst);
+            return Load(dst.Swap(swaps));
         }
 
         /// <summary>
@@ -334,8 +334,9 @@ namespace Z0
         /// v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
         /// </summary>
         /// <param name="last">The value of the first component</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec256<T> Decrements<T>(T last = default)
+        /// <param name="swaps">Transpositions applied to decrements prior to vector creation</param>
+        /// <typeparam name="T">The primal component type</typeparam>        
+        public static Vec256<T> Decrements<T>(T last = default, params Swap[] swaps)
             where T : struct  
         {
             var n = Vec256<T>.Length;
@@ -346,11 +347,13 @@ namespace Z0
                 dst[i] = val;
                 gmath.dec(ref val);
             }
-            return Load(dst);
+
+            return Load(dst.Swap(swaps));
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> FromBytes(byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, 
+        public static Vec256<byte> FromBytes(
+            byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, 
             byte x8, byte x9, byte x10, byte x11, byte x12, byte x13, byte x14, byte x15,
             byte x16, byte x17, byte x18, byte x19, byte x20, byte x21, byte x22, byte x23, 
             byte x24, byte x25, byte x26, byte x27, byte x28, byte x29, byte x30, byte x31)
@@ -360,7 +363,8 @@ namespace Z0
                     x24,x25,x26,x27,x28,x29,x30,x31);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec256<sbyte> FromParts(sbyte x0, sbyte x1, sbyte x2, sbyte x3, sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
+        public static unsafe Vec256<sbyte> FromParts(
+            sbyte x0, sbyte x1, sbyte x2, sbyte x3, sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
             sbyte x8, sbyte x9, sbyte x10, sbyte x11, sbyte x12, sbyte x13, sbyte x14, sbyte x15, 
             sbyte x16, sbyte x17, sbyte x18, sbyte x19, sbyte x20, sbyte x21, sbyte x22, sbyte x23, 
             sbyte x24, sbyte x25, sbyte x26, sbyte x27,sbyte x28, sbyte x29, sbyte x30, sbyte x31)

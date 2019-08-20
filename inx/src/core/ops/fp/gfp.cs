@@ -11,11 +11,9 @@ namespace Z0
     
     using static As;
     using static zfunc;    
-    using static AsInX;
-
+    
     public static class gfp
     {
-
         [MethodImpl(Inline)]
         public static Vec128<T> div<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct

@@ -315,5 +315,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T[] generic<T>(ref double[] src)
             => ref Unsafe.As<double[],T[]>(ref src);        
+ 
+ 
     }
 }

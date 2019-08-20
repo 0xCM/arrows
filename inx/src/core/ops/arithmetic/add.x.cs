@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static As;
-    using static AsInX;
+    
     using static dinx;
     using static zfunc;
 

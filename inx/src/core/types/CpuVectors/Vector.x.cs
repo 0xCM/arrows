@@ -46,6 +46,8 @@ namespace Z0
         public static Vec128<T> ToVec128<T>(this Span128<T> src, int block = 0)
             where T : struct
                 => Vec128.Load(ref src.Block(block));
+
+
     }
 }
 

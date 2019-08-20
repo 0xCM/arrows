@@ -17,6 +17,33 @@ namespace Z0
     public static class Span128
     {
         /// <summary>
+        /// Allocates a span to hold a specified number of blocks
+        /// </summary>
+        /// <param name="blocks">The number of blocks for which memory should be alocated</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> AllocBlocks<T>(int blocks, T? fill = null)
+            where T : struct        
+                => Span128<T>.AllocBlocks(blocks, fill);
+
+        /// <summary>
+        /// Allocates a 256-bit blocked span of a specified minimum length which may not
+        /// partition evently into 256-bit blocks
+        /// </summary>
+        /// <param name="minlen">The minimum allocation length</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> Alloc<T>(int minlen, T? fill = null)
+            where T : struct        
+        {
+            Span128.Alignment<T>(minlen, out int blocklen, out int fullBlocks, out int remainder);            
+            if(remainder == 0)
+                return AllocBlocks<T>(fullBlocks, fill);
+            else
+                return Span128.AllocBlocks<T>(fullBlocks + 1, fill);
+        }
+
+        /// <summary>
         /// Loads a single blocked span from a parameter array
         /// </summary>
         /// <param name="src">The source parameters</param>
@@ -25,17 +52,6 @@ namespace Z0
         public static Span128<T> FromParts<T>(params T[] src)
             where T : struct
                 => Span128<T>.Load(src);
-
-        /// <summary>
-        /// Allocates a span to hold a specified number of blocks
-        /// </summary>
-        /// <param name="blocks">The number of blocks for which memory should be alocated</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span128<T> AllocBlocks<T>(int blocks)
-            where T : struct        
-                => Span128<T>.AllocBlocks(blocks);
-
 
         /// <summary>
         /// Loads a blocked span from an unblocked span
@@ -155,7 +171,6 @@ namespace Z0
             where T : struct        
                 => Span128<T>.Aligned(length);
 
-
         [MethodImpl(Inline)]
         public static int Align<T>(int length)
             where T : struct        
@@ -167,6 +182,22 @@ namespace Z0
                 return (length - remainder) + BlockLength<T>();
         }                    
 
+        /// <summary>
+        /// Calculates alignment attributes predicated on a source length and element type
+        /// </summary>
+        /// <param name="srcLen">The source length</param>
+        /// <param name="blocklen">The number of cells in a block</param>
+        /// <param name="fullBlocks">The number of whole blocks into which the source length can be partitioned</param>
+        /// <param name="remainder">The number of cells that cannot fit into a sequence of full blocks</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static void Alignment<T>(int srcLen, out int blocklen, out int fullBlocks, out int remainder)
+            where T : struct        
+        {
+            blocklen = BlockLength<T>();
+            fullBlocks = srcLen / blocklen;
+            remainder = srcLen % BlockLength<T>();
+        } 
 
         /// <summary>
         /// Returns the block count of spans of equal length; otherwise raises an error

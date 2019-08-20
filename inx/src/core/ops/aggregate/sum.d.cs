@@ -8,6 +8,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    
     using static zfunc;
     using static dinx;
 
@@ -41,9 +42,6 @@ namespace Z0
             return total;
         }
 
-        [MethodImpl(Inline)]
-        public static short Sum(this Span<short> src, NumericSystem system = NumericSystem.Intrinsic)        
-            => src.ReadOnly().Sum(system);
             
         public static int Sum(this ReadOnlySpan<int> src, NumericSystem system = NumericSystem.Intrinsic)
         {
@@ -74,8 +72,8 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static int Sum(this Span<int> src, NumericSystem system = NumericSystem.Intrinsic)
-            => src.ReadOnly().Sum(system);
+        public static int Sum(this Span<int> src)
+            => src.ReadOnly().Sum();
 
         public static float Sum(this ReadOnlySpan<float> src, NumericSystem system = NumericSystem.Intrinsic)
         {
@@ -106,8 +104,8 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static float Sum(this Span<float> src, NumericSystem system = NumericSystem.Intrinsic)
-            => src.ReadOnly().Sum(system);
+        public static float Sum(this Span<float> src)
+            => src.ReadOnly().Sum();
 
         public static double Sum(this ReadOnlySpan<double> src, NumericSystem system = NumericSystem.Intrinsic)
         {

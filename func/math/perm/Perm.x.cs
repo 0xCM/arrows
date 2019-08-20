@@ -14,24 +14,6 @@ namespace Z0
 
     public static class PermX
     {
-        /// <summary>
-        /// Formats a permutation as a 2-column matrix
-        /// </summary>
-        /// <param name="src">The source permutation</param>
-        /// <param name="colwidth">The width of the matrix columns, if specified</param>
-        public static string Format<N,T>(this Perm<N,T> src,  int? colwidth = null)        
-            where T : struct
-            where N : ITypeNat,new()
-                => Format<T>(src.Terms,colwidth);
-
-        /// <summary>
-        /// Formats a permutation as a 2-column matrix
-        /// </summary>
-        /// <param name="src">The source permutation</param>
-        /// <param name="colwidth">The width of the matrix columns, if specified</param>
-        [MethodImpl(Inline)]
-        public static string Format(this Perm src,  int? colwidth = null)        
-                => Format(src.Terms,colwidth);
 
         /// <summary>
         /// Shuffles bitstring content as determined by a permutation
@@ -68,7 +50,7 @@ namespace Z0
         public static Span<T> Permute<T>(this Span<T> src, Perm p)
             => src.ReadOnly().Permute(p);
 
-        static string Format<T>(ReadOnlySpan<T> Terms,  int? colwidth = null)
+        internal static string FormatPerm<T>(this ReadOnlySpan<T> terms,  int? colwidth = null)
         {
             var line1 = sbuild();
             var line2 = sbuild();
@@ -78,10 +60,10 @@ namespace Z0
             
             line1.Append(leftBoundary);
             line2.Append(leftBoundary);
-            for(var i=0; i < Terms.Length; i++)
+            for(var i=0; i < terms.Length; i++)
             {
                 line1.Append($"{i}".PadRight(pad));
-                line2.Append($"{Terms[i]}".PadRight(pad));
+                line2.Append($"{terms[i]}".PadRight(pad));
             }
             line1.Append(rightBoundary);
             line2.Append(rightBoundary);
@@ -89,6 +71,94 @@ namespace Z0
             return line1.ToString() + eol() + line2.ToString();
         }
 
+        /// <summary>
+        /// Applies a sequence of transpositions to source span elements
+        /// </summary>
+        /// <param name="io">The source and target span</param>
+        /// <param name="i">The first index</param>
+        /// <param name="j">The second index</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static ref Span<T> Swap<T>(this ref Span<T> io, params Swap[] swaps)           
+            where T : struct
+        {
+            for(var k = 0; k< swaps.Length; k++)
+            {
+                (var i, var j) = swaps[k];
+                swap(ref io[i], ref io[j]);
+            }
+            return ref io;
+        }
+
+        /// <summary>
+        /// Applies a sequence of transpositions to source span elements
+        /// </summary>
+        /// <param name="io">The source and target span</param>
+        /// <param name="i">The first index</param>
+        /// <param name="j">The second index</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Span256<T> Swap<T>(this ref Span256<T> io, params Swap[] swaps)           
+            where T : struct
+        {
+             if(swaps.Length == 0)
+                return ref io;
+
+             var src = io.Unblocked;
+             src.Swap(swaps);
+             return ref io;
+        }
+                
+        /// <summary>
+        /// Applies a sequence of transpositions to source span elements
+        /// </summary>
+        /// <param name="io">The source and target span</param>
+        /// <param name="i">The first index</param>
+        /// <param name="j">The second index</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Span128<T> Swap<T>(this ref Span128<T> io, params Swap[] swaps)           
+            where T : struct
+        {
+             if(swaps.Length == 0)
+                return ref io;
+
+             var src = io.Unblocked;
+             src.Swap(swaps);
+             return ref io;
+        }        
+
+        /// <summary>
+        /// Effects (i j) -> ((i + 1) (j+ 1))
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static ref Swap Inc(this ref Swap src)
+        {
+            ++src;
+            return ref src;
+        }
+
+        /// <summary>
+        /// Effects (i j) -> ((i - 1) (j - 1)) where decremented 
+        /// indices are clamped to 0
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static ref Swap Dec(this ref Swap src)
+        {
+            --src;
+            return ref src;
+        }
+
+        /// <summary>
+        /// Formats a sequence of successive transpositions (a chain)
+        /// </summary>
+        /// <param name="src">The transpositions</param>
+        [MethodImpl(Inline)]
+        public static string Format(this Swap[] src)
+            => string.Join(" -> ", src.Map(x => x.Format()));
+ 
+
+
+ 
     }
 
 

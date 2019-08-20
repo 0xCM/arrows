@@ -55,9 +55,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(ReadOnlyMemory<T> src, int? maxlen = null)
+        public static BitString FromScalars<T>(ReadOnlyMemory<T> src)
             where T : struct
-                => FromScalars(src.Span, maxlen);
+                => FromScalars(src.Span);
 
         /// <summary>
         /// Constructs a bitstring from a segment of scalar values
@@ -65,9 +65,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(Memory<T> src, int? maxlen = null)
+        public static BitString FromScalars<T>(Memory<T> src)
             where T : struct
-                => FromScalars(src.Span, maxlen);
+                => FromScalars(src.Span);
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values

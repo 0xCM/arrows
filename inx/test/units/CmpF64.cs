@@ -36,7 +36,7 @@ namespace Z0.Test
             rhs.ToSpan(rDst);
 
             var expect = math.fcmp(lDst, rDst, mode);
-            var actual = dinx.cmpf(lhs, rhs, mode);
+            var actual = dfp.cmpf(lhs, rhs, mode);
             Claim.eq(expect,actual);
 
         }

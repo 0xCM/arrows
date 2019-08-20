@@ -29,12 +29,6 @@ namespace Z0.Test
             return snapshot(sw);
         }
 
-        void Shuffle()
-        {
-            var v1 = Vec128.FromParts(1,2,3,4);
-            var v2 = dinx.shuffle(v1, 0b01010101);
-            print(v2.ToString());
-        }
         protected override void RunTests(params string[] filters)
         {     
             base.RunTests(filters);
