@@ -19,32 +19,32 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ushort> rotl(Vec128<ushort> src, byte offset)
         {
-            var x = Bits.shiftl(in src, offset);
-            var y = Bits.shiftr(in src, (byte)(16-offset));   
+            var x = Bits.slli(in src, offset);
+            var y = Bits.srli(in src, (byte)(16-offset));   
             return Bits.or(x,y);             
         }
 
         [MethodImpl(Inline)]
         public static Vec256<ushort> rotl(Vec256<ushort> src, byte offset)
         {
-            var x = Bits.shiftl(in src, offset);
-            var y = Bits.shiftr(in src, (byte)(16-offset));   
+            var x = Bits.slli(in src, offset);
+            var y = Bits.srli(in src, (byte)(16-offset));   
             return Bits.or(x,y);             
         }
 
         [MethodImpl(Inline)]
         public static Vec256<uint> rotl(Vec256<uint> src, byte offset)
         {
-            var x = Bits.shiftl(in src, offset);
-            var y = Bits.shiftr(in src, (byte)(32-offset));   
+            var x = Bits.slli(in src, offset);
+            var y = Bits.srli(in src, (byte)(32-offset));   
             return Bits.or(x,y);             
         }
 
         [MethodImpl(Inline)]
         public static Vec256<ulong> rotl(Vec256<ulong> src, byte offset)
         {
-            var x = Bits.shiftl(in src, offset);
-            var y = Bits.shiftr(in src, (byte)(64-offset));   
+            var x = Bits.slli(in src, offset);
+            var y = Bits.srli(in src, (byte)(64-offset));   
             return Bits.or(x,y);             
         }
 

@@ -20,69 +20,29 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return math.lteq(int8(lhs),int8(rhs));
+                return int8(lhs) <= int8(rhs);
             else if(typeof(T) == typeof(byte))
-                return math.lteq(uint8(lhs),uint8(rhs));
+                return uint8(lhs) <= uint8(rhs);
             else if(typeof(T) == typeof(short))
-                return math.lteq(int16(lhs),int16(rhs));
+                return int16(lhs) <= int16(rhs);
             else if(typeof(T) == typeof(ushort))
-                return math.lteq(uint16(lhs),uint16(rhs));
+                return uint16(lhs) <= uint16(rhs);
             else if(typeof(T) == typeof(int))
-                return lteqI32(lhs, rhs);
+                return int32(lhs) <= int32(rhs);
             else if(typeof(T) == typeof(uint))
-                return lteqU32(lhs, rhs);
+                return uint32(lhs) <= uint32(rhs);
             else if(typeof(T) == typeof(long))
-                return lteqI64(lhs,rhs);
+                return int64(lhs) <= int64(rhs);
             else if(typeof(T) == typeof(ulong))
-                return lteqU64(lhs,rhs);
+                return uint64(lhs) <= uint64(rhs);
             else if(typeof(T) == typeof(float))
-                return lteqF32(lhs, rhs);
+                return float32(lhs) <= float32(rhs);
             else if(typeof(T) == typeof(double))
-                return lteqF64(lhs,rhs);
+                return float64(lhs) <= float64(rhs);
             else            
                 throw unsupported<T>();
         }
 
-
-        [MethodImpl(Inline)]
-        static bool lteqI8<T>(T lhs, T rhs)
-            => int8(lhs) <= int8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqU8<T>(T lhs, T rhs)
-            => uint8(lhs) <= uint8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqI16<T>(T lhs, T rhs)
-            => int16(lhs) <= int16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqU16<T>(T lhs, T rhs)
-            => uint16(lhs) <= uint16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqI32<T>(T lhs, T rhs)
-            => int32(lhs) <= int32(rhs);
-        
-        [MethodImpl(Inline)]
-        static bool lteqU32<T>(T lhs, T rhs)
-            => uint32(lhs) <= uint32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqI64<T>(T lhs, T rhs)
-            => int64(lhs) <= int64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqU64<T>(T lhs, T rhs)
-            => uint64(lhs) <= uint64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqF32<T>(T lhs, T rhs)
-            => float32(lhs) <= float32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool lteqF64<T>(T lhs, T rhs)
-            => float64(lhs) <= float64(rhs);
 
 
     }

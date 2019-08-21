@@ -10,6 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics.X86;
+
 
     using static zfunc;    
     
@@ -60,6 +62,7 @@ namespace Z0
         public Vec256(in Vector256<T> src)
             => this.data = src;
 
+
         /// <summary>
         /// Manipulates a component via its 0-based index
         /// </summary>
@@ -81,8 +84,19 @@ namespace Z0
         /// <typeparam name="U">The target primal type</typeparam>
         [MethodImpl(Inline)]
         public Vec256<U> As<U>() 
-            where U : struct        
-                => Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));        
+            where U : struct                
+        {
+            return Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));
+        }
+             
+        [MethodImpl(Inline)]
+        public ref Vec256<U> As<U>(out Vec256<U> dst) 
+            where U : struct                
+        {
+            dst = Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));
+            return ref dst;
+        }
+        
 
         [MethodImpl(Inline)]
         public bool Equals(Vec256<T> rhs)
@@ -110,6 +124,18 @@ namespace Z0
             ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
             Unsafe.Add(ref e0, index) = value;
         }
+
+    }    
+
+
+    public static class VecX
+    {
+        [MethodImpl(Inline)]
+        public static ref Vec256<U> AsRef<T,U>(this in Vec256<T> src) 
+            where T : struct
+            where U : struct                
+                => ref Unsafe.As<Vec256<T>, Vec256<U>>(ref Unsafe.AsRef(in src));
+
 
     }     
 }

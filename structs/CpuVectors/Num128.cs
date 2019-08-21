@@ -20,10 +20,6 @@ namespace Z0
         public static implicit operator Num128<T>(in Vector128<T> src)
             => new Num128<T>(src);
 
-        // [MethodImpl(Inline)]
-        // public static implicit operator Num128<T>(T src)
-        //     => new Num128<T>(Vector128.Create(src));
-
         [MethodImpl(Inline)]
         public static implicit operator T(Num128<T> src)
             => src.value;

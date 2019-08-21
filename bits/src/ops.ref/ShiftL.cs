@@ -133,12 +133,11 @@ namespace Z0
             where T : struct
                 => ShiftL(src, offset, span<T>(src.Length));
 
-
         static Span<sbyte> ShiftL(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -146,7 +145,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -154,7 +153,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -162,7 +161,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -170,7 +169,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -178,7 +177,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -186,7 +185,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -194,7 +193,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs[i]);
+                dst[i] = shiftl(lhs[i], rhs[i]);
             return dst;                
         }
  
@@ -202,7 +201,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -210,7 +209,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -218,7 +217,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -226,7 +225,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -234,7 +233,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -242,7 +241,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -250,7 +249,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
 
@@ -258,9 +257,42 @@ namespace Z0
         {            
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftl(lhs[i], rhs);
+                dst[i] = shiftl(lhs[i], rhs);
             return dst;                
         }
+
+
+        [MethodImpl(Inline)]
+        static sbyte shiftl(sbyte lhs, int rhs)
+            => (sbyte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        static byte shiftl(byte lhs, int rhs)
+            => (byte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        static short shiftl(short lhs, int rhs)
+            => (short)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        static ushort shiftl(ushort lhs, int rhs)
+            => (ushort)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        static int shiftl(int lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        static uint shiftl(uint lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        static long shiftl(long lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        static ulong shiftl(ulong lhs, int rhs)
+            => lhs << rhs;
 
 
     }

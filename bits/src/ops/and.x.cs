@@ -102,41 +102,41 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static void And(this Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => Bits.and(in lhs, in rhs, ref dst);
+            => and(in lhs, in rhs, ref dst);
 
         public static Span128<sbyte> And(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -144,7 +144,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -152,7 +152,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -160,7 +160,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -168,7 +168,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -176,7 +176,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -184,7 +184,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -192,7 +192,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -200,7 +200,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -208,7 +208,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                and(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -216,7 +216,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -224,7 +224,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -232,7 +232,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -240,7 +240,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -248,7 +248,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -256,7 +256,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -264,7 +264,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -272,7 +272,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -280,7 +280,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -288,8 +288,90 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                and(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         } 
+ 
+         [MethodImpl(Inline)]
+        static void and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void and(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
+            => vstore(Bits.and(lhs, rhs), ref dst);
+
+ 
     }
 }

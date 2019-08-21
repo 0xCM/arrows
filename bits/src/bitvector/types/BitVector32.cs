@@ -18,6 +18,8 @@ namespace Z0
     {
         uint data;
 
+        public static readonly BitVector32 Zero = default;
+        
         public static readonly BitSize BitSize = 32;
 
         public static readonly BitPos FirstPos = 0;
@@ -68,24 +70,87 @@ namespace Z0
             => new BitVector32(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector64(BitVector32 src)
+            => BitVector64.FromScalar(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator BitVector8(BitVector32 src)
+            => BitVector8.FromScalar((byte)src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator BitVector16(BitVector32 src)
+            => BitVector16.FromScalar((ushort)src.data);
+
+        [MethodImpl(Inline)]
         public static implicit operator uint(in BitVector32 src)
             => src.data;        
 
+        /// <summary>
+        /// Computes the bitwise XOR of the source operands
+        /// Note that the XOR operator is equivalent to the (+) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static implicit operator int(in BitVector32 src)
-            => (int)src.data;        
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector32 lhs, in BitVector32 rhs)
-            => !lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static BitVector32 operator +(in BitVector32 lhs, in BitVector32 rhs)
+        public static BitVector32 operator ^(BitVector32 lhs, BitVector32 rhs)
             => lhs.data ^ rhs.data;
+
+        /// <summary>
+        /// Computes the bitwise AND of the source operands
+        /// Note that the AND operator is equivalent to the (*) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 operator &(BitVector32 lhs, BitVector32 rhs)
+            => lhs.data & rhs.data;
+
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Bit operator %(BitVector32 lhs, BitVector32 rhs)
+            => Mod<N2>.mod(Bits.pop(lhs.data & rhs.data));
+
+        /// <summary>
+        /// Computes the bitwise AND of the source operands
+        /// Note that the AND operator is equivalent to the (*) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 operator |(BitVector32 lhs, BitVector32 rhs)
+            => lhs.data | rhs.data;
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand. 
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 operator ~(BitVector32 src)
+            => ~src.data;
+
+        /// <summary>
+        /// Computes the sum of the source operands
+        /// Note that the addition operator is equivalent to the (^) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 operator +(BitVector32 lhs, BitVector32 rhs)
+            => lhs ^ rhs;
+
+        /// <summary>
+        /// Computes the product of the operands. 
+        /// Note that this operator is equivalent to the AND operator (&)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 operator *(BitVector32 lhs, BitVector32 rhs)
+            => lhs & rhs;
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -99,32 +164,13 @@ namespace Z0
             => lhs + -rhs;
 
         /// <summary>
-        /// Computes the product of the operands. Note that this operator is equivalent 
-        /// to the AND operator (&)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 operator *(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.data & rhs.data;
-
-        /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the 
         /// complement operator (~)
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
-        public static BitVector32 operator -(in BitVector32 src)
-            => ~src.data;
-
-        /// <summary>
-        /// Computes the scalar product of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector32 lhs, in BitVector32 rhs)
-            => lhs.Dot(rhs);
+        public static BitVector32 operator -(BitVector32 src)
+            => ~src.data + 1u;
 
         /// <summary>
         /// Left-shifts the bits in the source
@@ -142,14 +188,13 @@ namespace Z0
         public static BitVector32 operator >>(BitVector32 lhs, int offset)
             => lhs.data >> offset;
 
-        /// <summary>
-        /// Computes the bitwise complement of the operand. Note that this operator
-        /// is equivalent to the negation operator (-)
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
-        public static BitVector32 operator ~(in BitVector32 src)
-            => ~src.data;
+        public static bool operator ==(in BitVector32 lhs, in BitVector32 rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in BitVector32 lhs, in BitVector32 rhs)
+            => !lhs.Equals(rhs);
 
         /// <summary>
         /// Initializes the vector with the source value it represents
@@ -220,7 +265,6 @@ namespace Z0
             get => BitSize;
         }
 
-
         /// <summary>
         /// Sets a bit to a specified value
         /// </summary>
@@ -229,16 +273,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public void SetBit(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
-
-        /// <summary>
-        /// Computes the scalar product of the source vector and another
-        /// </summary>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public Bit Dot(BitVector32 rhs)
-        {
-             return Mod<N2>.mod((uint)Bits.pop(data & rhs.data));               
-        }
 
         [MethodImpl(Inline)]
         public uint Between(BitPos first, BitPos last)

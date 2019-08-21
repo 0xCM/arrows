@@ -21,6 +21,8 @@ namespace Z0
     {
         ulong data;
 
+        public static readonly BitVector64 Zero = default;
+
         public static readonly BitSize BitSize = 64;
 
         public static readonly BitPos FirstPos = 0;
@@ -63,17 +65,80 @@ namespace Z0
         public static implicit operator ulong(BitVector64 src)
             => src.data;        
 
+
+        /// <summary>
+        /// Computes the bitwise XOR of the source operands
+        /// Note that the XOR operator is equivalent to the (+) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static BitVector64 operator +(in BitVector64 lhs, in BitVector64 rhs)
+        public static BitVector64 operator ^(BitVector64 lhs, BitVector64 rhs)
             => lhs.data ^ rhs.data;
+
+        /// <summary>
+        /// Computes the bitwise AND of the source operands
+        /// Note that the AND operator is equivalent to the (*) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator &(BitVector64 lhs, BitVector64 rhs)
+            => lhs.data & rhs.data;
+
+        /// <summary>
+        /// Computes the bitwise OR of the source operands
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator |(BitVector64 lhs, BitVector64 rhs)
+            => lhs.data | rhs.data;
+
+        /// <summary>
+        /// Computes the scalar product of the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Bit operator %(in BitVector64 lhs, in BitVector64 rhs)
+            => Mod<N2>.mod(Bits.pop(lhs.data & rhs.data));              
+
+        /// <summary>
+        /// Computes the sum of the source operands
+        /// Note that the AND operator is equivalent to the (^) operator
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator +(BitVector64 lhs, BitVector64 rhs)
+            => lhs ^ rhs;
+
+        /// <summary>
+        /// Computes the product of the operands. 
+        /// Note that this operator is equivalent to the AND operator (&)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator *(BitVector64 lhs, BitVector64 rhs)
+            => lhs & rhs;
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator ~(BitVector64 src)
+            => ~src.data;
 
         /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the complement operator (~)
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
-        public static BitVector64 operator -(in BitVector64 src)
-            => ~src.data;
+        public static BitVector64 operator -(BitVector64 src)
+            => ~src.data + 1ul;
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -84,26 +149,7 @@ namespace Z0
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector64 operator - (BitVector64 lhs, BitVector64 rhs)
-            => lhs + -rhs;
-        
-        /// <summary>
-        /// Computes the product of the operands. Note that this operator is equivalent 
-        /// to the AND operator (&)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 operator *(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.data & rhs.data;
-
-        /// <summary>
-        /// Computes the XOR of the source operands. Note that this operator is equivalent 
-        /// to the addition operator (+)
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 operator ^(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.data ^ rhs.data;
+            => lhs + -rhs;    
 
         /// <summary>
         /// Left-shifts the bits in the source
@@ -121,22 +167,6 @@ namespace Z0
         public static BitVector64 operator >>(BitVector64 lhs, int offset)
             => lhs.data >> offset;
 
-        /// <summary>
-        /// Computes the bitwise complement of the operand
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 operator ~(in BitVector64 src)
-            => ~src.data;
-
-        /// <summary>
-        /// Computes the scalar product of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector64 lhs, in BitVector64 rhs)
-            => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector64 lhs, in BitVector64 rhs)
@@ -220,14 +250,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => bytes(data);
         }
-
-        /// <summary>
-        /// Computes the scalar product of the source vector and another
-        /// </summary>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public Bit Dot(BitVector64 rhs)
-              => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
 
         /// <summary>
         /// Computes the scalar product of the source vector and another

@@ -13,86 +13,14 @@ namespace Z0
     using static zfunc;
 
     [StructLayout(LayoutKind.Explicit, Size = 16)]
-    public ref struct Int128
+    public struct UInt128
     {
         [FieldOffset(0)]
-        public long lo;
+        public ulong lo;
 
         [FieldOffset(8)]
-        public long hi;
+        public ulong hi;
 
-        [MethodImpl(Inline)]
-        public static Int128 Define(long x0, long x1)        
-            => new Int128(x0, x1);
-        
-        [MethodImpl(Inline)]
-        public static bool operator ==(Int128 lhs, Int128 rhs)
-            => lhs.lo == rhs.lo && lhs.hi == rhs.hi;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(Int128 lhs, Int128 rhs)
-            => lhs.lo != rhs.lo || lhs.hi != rhs.hi;
-
-        [MethodImpl(Inline)]
-        public static Int128 operator |(Int128 lhs, Int128 rhs)
-            => Define(lhs.lo | rhs.lo, lhs.hi | rhs.hi);
-
-        [MethodImpl(Inline)]
-        public static Int128 operator &(Int128 lhs, Int128 rhs)
-            => Define(lhs.lo & rhs.lo, lhs.hi & rhs.hi);
-
-        [MethodImpl(Inline)]
-        public static Int128 operator ^(Int128 lhs, Int128 rhs)
-            => Define(lhs.lo ^ rhs.lo, lhs.hi ^ rhs.hi);
-
-        [MethodImpl(Inline)]
-        public static Int128 operator ~(Int128 src)
-            => Define(~ src.lo, ~ src.hi);
-
-        [MethodImpl(Inline)]
-        public Int128(long x0, long x1)
-        {
-            this.lo = 0;
-            this.hi = 0;
-
-            this.x00 = 0;
-            this.x01 = 0;
-            this.x10 = 0;
-            this.x11 = 0;
-
-            this.x000 = 0;
-            this.x001 = 0;
-            this.x010 = 0;
-            this.x011 = 0;
-
-            this.x100 = 0;
-            this.x101 = 0;
-            this.x110 = 0;
-            this.x111 = 0;            
-
-            this.x0000 = 0;
-            this.x0001 = 0;
-            this.x0010 = 0;
-            this.x0011 = 0;
-
-            this.x0100 = 0;
-            this.x0101 = 0;
-            this.x0110 = 0;
-            this.x0111 = 0;            
-
-            this.x1100 = 0;
-            this.x1101 = 0;
-            this.x1110 = 0;
-            this.x1111 = 0;            
-
-            this.x1000 = 0;
-            this.x1001 = 0;
-            this.x1010 = 0;
-            this.x1011 = 0;
-                                         
-        }
-            
- 
         [FieldOffset(0)]
         public uint x00;
 
@@ -177,13 +105,64 @@ namespace Z0
         [FieldOffset(15)]
         public byte x1111;
 
+        [MethodImpl(Inline)]
+        public static UInt128 Define(ulong x0, ulong x1)
+            => new UInt128(x0, x1);
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(UInt128 lhs, UInt128 rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in UInt128 lhs, in UInt128 rhs)
+            => !lhs.Equals(rhs);
+        
+        [MethodImpl(Inline)]
+        public static UInt128 operator ~(UInt128 src)
+            => Define(~ src.lo, ~ src.hi);
+
+        [MethodImpl(Inline)]
+        public static implicit operator UInt128(ulong src)
+            => new UInt128(src, 0ul);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<ulong>(in UInt128 src)
+            => Vector128.Create(src.lo, src.hi);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vec128<ulong>(in UInt128 src)
+            => Vector128.Create(src.lo, src.hi);
+
+        [MethodImpl(Inline)]
+        public static implicit operator UInt128(in Vector128<ulong> src)
+            => Unsafe.As<Vector128<ulong>,UInt128>(ref Unsafe.AsRef(in src));
+
+        [MethodImpl(Inline)]
+        public static implicit operator UInt128(in Vec128<ulong> src)
+            => Unsafe.As<Vec128<ulong>, UInt128>(ref Unsafe.AsRef(in src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(in UInt128 src)
+            => src.lo;
+
+        [MethodImpl(Inline)]
+        public UInt128(ulong lo, ulong hi)
+            : this()
+        {
+            this.lo = lo;
+            this.hi = hi;                                        
+        }
+            
+        [MethodImpl(Inline)]
+        public bool Equals(UInt128 lhs)
+            => lo == lhs.lo && hi == lhs.hi;
+
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
+            => obj is UInt128 x ? Equals(x) : false;
 
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => HashCode.Combine(lo,hi);
         
-    }
-
+    }    
 
 }

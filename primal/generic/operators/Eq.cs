@@ -75,7 +75,5 @@ namespace Z0
         public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
                 => eq(lhs,rhs,span<bool>(length(lhs,rhs)));
-
-
     }
 }

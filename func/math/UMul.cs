@@ -87,7 +87,7 @@ namespace Z0
         /// <param name="dst">The receiver</param>
         [MethodImpl(Inline)]
         public static void mulHi(ulong lhs, ulong rhs, out ulong dst)
-            => mul(lhs,rhs, out ulong lo, out dst);
+            => mul(lhs, rhs, out ulong lo, out dst);
 
         /// <summary>
         /// Computes the lo part of the 64-bit product of two unsigned 64-bit integers
@@ -154,6 +154,21 @@ namespace Z0
                 dstHi--;
             dstLo -= srcLo;
         }
+
+        /// <summary>
+        /// Calculates the 128-bit product of two 64-bit integers
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="dst">The 128 bit result</param>
+        [MethodImpl(Inline)]
+        public static unsafe ref UInt128 mul(ulong lhs, ulong rhs, out UInt128 dst)
+        {
+            dst = 0;
+            UMul.mul(lhs,rhs, out dst.lo, out dst.hi);
+            return ref dst;
+        }
+
 
     }
 

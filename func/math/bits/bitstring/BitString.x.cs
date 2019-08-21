@@ -226,5 +226,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int Width(this Range src)
             => src.End.Value - src.Start.Value + 1;
+
+        [MethodImpl(Inline)]
+        public static BitString ToBitString(this in UInt128 src)
+            => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo);
+
     }
 }

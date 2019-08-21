@@ -76,63 +76,7 @@ namespace Z0
                 throw unsupported<T>();
        }
 
-        [MethodImpl(Inline)]
-        public static unsafe void sub<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                dinx.sub(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                dinx.sub(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                dinx.sub(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                dinx.sub(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                dinx.sub(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                dinx.sub(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                dinx.sub(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                dinx.sub(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                dinx.sub(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                dinx.sub(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-        }
             
-        [MethodImpl(Inline)]
-        public static unsafe void sub<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                dinx.sub(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                dinx.sub(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                dinx.sub(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                dinx.sub(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                dinx.sub(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                dinx.sub(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                dinx.sub(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                dinx.sub(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                dinx.sub(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                dinx.sub(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-        }
-
-
         public static Span128<T> sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {

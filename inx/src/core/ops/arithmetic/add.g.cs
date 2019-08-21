@@ -69,65 +69,7 @@ namespace Z0
                 return generic<T>(dinx.add(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-        }
-        
-        [MethodImpl(Inline)]
-        public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                dinx.add(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                dinx.add(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                dinx.add(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                dinx.add(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                dinx.add(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                dinx.add(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                dinx.add(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                dinx.add(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                dinx.add(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                dinx.add(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static ref T add<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                dinx.add(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                dinx.add(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                dinx.add(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                dinx.add(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                dinx.add(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                dinx.add(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                dinx.add(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                dinx.add(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                dinx.add(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                dinx.add(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-            return ref dst;
-        }
-
+        }    
 
         [MethodImpl(Inline)]
         public static Span128<T> add<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)

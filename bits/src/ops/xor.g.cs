@@ -17,72 +17,33 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T xor<T>(T lhs, T rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(lhs) ^ int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(lhs) ^ uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(lhs) ^ int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(lhs) ^ uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(int32(lhs) ^ int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(lhs) ^ uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(int64(lhs) ^ int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) ^ uint64(rhs));
-            else            
-                throw unsupported<T>();
-        }           
+                => gmath.xor(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static ref T xor<T>(ref T lhs, T rhs)
+        public static ref T xor<T>(ref T lhs, in T rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                Bits.xor(ref int8(ref lhs), int8(rhs));
-            else if(typeof(T) == typeof(byte))
-                Bits.xor(ref uint8(ref lhs), uint8(rhs));
-            else if(typeof(T) == typeof(short))
-                Bits.xor(ref int16(ref lhs), int16(rhs));
-            else if(typeof(T) == typeof(ushort))
-                Bits.xor(ref uint16(ref lhs), uint16(rhs));
-            else if(typeof(T) == typeof(int))
-                Bits.xor(ref int32(ref lhs), int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                Bits.xor(ref uint32(ref lhs), uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                Bits.xor(ref int64(ref lhs), int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                Bits.xor(ref uint64(ref lhs), uint64(rhs));
-            else            
-                throw unsupported<T>();
-            return ref lhs;
-        }
+                => ref gmath.xor(ref lhs,in rhs);
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> xor<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs), int8(rhs), int8(dst));
+                xor(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs), uint8(rhs), uint8(dst));
+                xor(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                Bits.xor(int16(lhs), int16(rhs), int16(dst));
+                xor(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                xor(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs), int32(rhs), int32(dst));
+                xor(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                xor(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs), int64(rhs), int64(dst));
+                xor(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                xor(uint64(lhs), uint64(rhs), uint64(dst));
             else
                 throw unsupported<T>();
             return ref dst;
@@ -99,21 +60,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs.Span), int8(rhs.Span));
+                xor(int8(lhs.Span), int8(rhs.Span));
             else if(typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs.Span), uint8(rhs.Span));
+                xor(uint8(lhs.Span), uint8(rhs.Span));
             else if(typeof(T) == typeof(short))
-                Bits.xor(int16(lhs.Span), int16(rhs.Span));
+                xor(int16(lhs.Span), int16(rhs.Span));
             else if(typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs.Span), uint16(rhs.Span));
+                xor(uint16(lhs.Span), uint16(rhs.Span));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs.Span), int32(rhs.Span));
+                xor(int32(lhs.Span), int32(rhs.Span));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs.Span), uint32(rhs.Span));
+                xor(uint32(lhs.Span), uint32(rhs.Span));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs.Span), int64(rhs.Span));
+                xor(int64(lhs.Span), int64(rhs.Span));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs.Span), uint64(rhs.Span));
+                xor(uint64(lhs.Span), uint64(rhs.Span));
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -125,21 +86,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs), int8(rhs));
+                xor(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs), uint8(rhs));
+                xor(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                Bits.xor(int16(lhs), int16(rhs));
+                xor(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs), uint16(rhs));
+                xor(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs), int32(rhs));
+                xor(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs), uint32(rhs));
+                xor(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs), int64(rhs));
+                xor(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs), uint64(rhs));
+                xor(uint64(lhs), uint64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -150,21 +111,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs), int8(rhs));
+                xor(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs), uint8(rhs));
+                xor(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                Bits.xor(int16(lhs), int16(rhs));
+                xor(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs), uint16(rhs));
+                xor(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs), int32(rhs));
+                xor(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs), uint32(rhs));
+                xor(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs), int64(rhs));
+                xor(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs), uint64(rhs));
+                xor(uint64(lhs), uint64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -231,25 +192,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs), int8(rhs), ref int8(ref dst));
+                vstore(Bits.xor(int8(lhs), int8(rhs)), ref int8(ref dst));
             else if (typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
+                vstore(Bits.xor(uint8(lhs), uint8(rhs)), ref uint8(ref dst));                    
             else if (typeof(T) == typeof(short))
-                Bits.xor(int16(lhs), int16(rhs), ref int16(ref dst));
+                vstore(Bits.xor(int16(lhs), int16(rhs)), ref int16(ref dst));
             else if (typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs), uint16(rhs), ref uint16(ref dst));
+                vstore(Bits.xor(uint16(lhs), uint16(rhs)), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs), int32(rhs), ref int32(ref dst));
+                vstore(Bits.xor(int32(lhs), int32(rhs)), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs), uint32(rhs), ref uint32(ref dst));
+                vstore(Bits.xor(uint32(lhs), uint32(rhs)), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs), int64(rhs), ref int64(ref dst));
+                vstore(Bits.xor(int64(lhs), int64(rhs)), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs), uint64(rhs), ref uint64(ref dst));
+                vstore(Bits.xor(uint64(lhs), uint64(rhs)), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                Bits.xor(float32(lhs), float32(rhs), ref float32(ref dst));
+                vstore(Bits.xor(float32(lhs), float32(rhs)), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                Bits.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
+                vstore(Bits.xor(float64(lhs), float64(rhs)), ref float64(ref dst));                
             else    
                 throw unsupported<T>();
         }
@@ -259,25 +220,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                Bits.xor(int8(lhs), int8(rhs), ref int8(ref dst));
+                vstore(Bits.xor(int8(lhs), int8(rhs)), ref int8(ref dst));
             else if (typeof(T) == typeof(byte))
-                Bits.xor(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
+                vstore(Bits.xor(uint8(lhs), uint8(rhs)), ref uint8(ref dst));                    
             else if (typeof(T) == typeof(short))
-                Bits.xor(int16(lhs), int16(rhs), ref int16(ref dst));
+                vstore(Bits.xor(int16(lhs), int16(rhs)), ref int16(ref dst));
             else if (typeof(T) == typeof(ushort))
-                Bits.xor(uint16(lhs), uint16(rhs), ref uint16(ref dst));
+                vstore(Bits.xor(uint16(lhs), uint16(rhs)), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                Bits.xor(int32(lhs), int32(rhs), ref int32(ref dst));
+                vstore(Bits.xor(int32(lhs), int32(rhs)), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                Bits.xor(uint32(lhs), uint32(rhs), ref uint32(ref dst));
+                vstore(Bits.xor(uint32(lhs), uint32(rhs)), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                Bits.xor(int64(lhs), int64(rhs), ref int64(ref dst));
+                vstore(Bits.xor(int64(lhs), int64(rhs)), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                Bits.xor(uint64(lhs), uint64(rhs), ref uint64(ref dst));
+                vstore(Bits.xor(uint64(lhs), uint64(rhs)), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                Bits.xor(float32(lhs), float32(rhs), ref float32(ref dst));
+                vstore(Bits.xor(float32(lhs), float32(rhs)), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                Bits.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
+                vstore(Bits.xor(float64(lhs), float64(rhs)), ref float64(ref dst));                
             else    
                 throw unsupported<T>();
         }
@@ -344,7 +305,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -352,7 +313,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -360,7 +321,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -368,7 +329,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -376,7 +337,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -384,7 +345,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -392,7 +353,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -400,7 +361,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -408,7 +369,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -416,7 +377,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
+                xor(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -424,7 +385,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -432,7 +393,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -440,7 +401,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -448,7 +409,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -456,7 +417,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -464,7 +425,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -472,7 +433,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -480,7 +441,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -488,7 +449,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
@@ -496,9 +457,274 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                Bits.xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
+                xor(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         } 
  
+         [MethodImpl(Inline)]
+        static void xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static void xor(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
+            => vstore(xor(lhs,rhs), ref dst);
+
+        public static Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<byte> xor(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<short> xor(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<ushort> xor(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<int> xor(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<uint> xor(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<long> xor(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<ulong> xor(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        static Span<sbyte> xor(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<byte> xor(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<short> xor(Span<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<ushort> xor(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<int> xor(Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<uint> xor(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<long> xor(Span<long> lhs, ReadOnlySpan<long> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+        static Span<ulong> xor(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] ^= rhs[i];
+            return lhs;
+        }
+
+
+        static Span<sbyte> xor(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<byte> xor(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<short> xor(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<ushort> xor(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+        
+        static Span<int> xor(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<uint> xor(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<long> xor(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<ulong> xor(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.xor(lhs[i], rhs[i]);
+            return dst;
+        }
+
     }
 }

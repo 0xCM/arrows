@@ -58,17 +58,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static UInt128 ShiftRW(this UInt128 src, byte offset)
-            => Bits.shiftrw(src.ToVec128(), offset).ToUInt128();
+            => Bits.bsrli(src.ToVec128(), offset).ToUInt128();
 
         [MethodImpl(Inline)]
         public static UInt128 ShiftLW(this UInt128 src, byte offset)
-            => Bits.shiftlw(src.ToVec128(), offset).ToUInt128();
+            => Bits.bslli(src.ToVec128(), offset).ToUInt128();
 
         public static Span128<short> ShiftL(this ReadOnlySpan128<short> lhs, byte count, Span128<short> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -80,7 +80,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -92,7 +92,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -104,7 +104,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -116,7 +116,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -128,7 +128,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -140,7 +140,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -152,7 +152,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -164,7 +164,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -176,7 +176,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -188,7 +188,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -200,7 +200,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                Bits.shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -213,7 +213,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec128(i), shifts.LoadVec128(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec128(i), shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -222,7 +222,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -231,7 +231,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -240,7 +240,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -249,7 +249,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -258,7 +258,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -267,7 +267,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -276,11 +276,56 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                vstore(Bits.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
+                vstore(Bits.sllv(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
        }
 
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<short> lhs, byte count, ref short dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
 
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<ushort> lhs, byte count, ref ushort dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
 
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<int> lhs, byte count, ref int dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<uint> lhs, byte count, ref uint dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<long> lhs, byte count, ref long dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec128<ulong> lhs, byte count, ref ulong dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec256<short> lhs, byte count, ref short dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void  shiftl(in Vec256<ushort> lhs, byte count, ref ushort dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec256<int> lhs, byte count, ref int dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec256<uint> lhs, byte count, ref uint dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec256<long> lhs, byte count, ref long dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftl(in Vec256<ulong> lhs, byte count, ref ulong dst)
+            => vstore(Bits.slli(lhs,count), ref dst);
     }
 }

@@ -13,96 +13,27 @@ namespace Z0
     using static zfunc;
 
     public static class UInt128X
-    {
-
+    {         
         [MethodImpl(Inline)]
-        public static bool TestBit(this in UInt128 src, int pos)
-            => pos < 64 ? BitMask.test(src.lo, pos) : BitMask.test(src.hi, pos) ;
-
-        [MethodImpl(Inline)]
-        public static ref UInt128 EnableBit(this ref UInt128 src, int pos)
-        {
-            if(pos < 64)
-                BitMask.enable(ref src.lo, pos);
-            else
-                BitMask.enable(ref src.hi, pos);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref UInt128 DisableBit(this ref UInt128 src, int pos)
-        {
-            if(pos < 64)
-                BitMask.disable(ref src.lo, pos);
-            else
-                BitMask.disable(ref src.hi, pos);
-            return ref src;               
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this in UInt128 src)
-            => span(
-                src.x0000, src.x0001, src.x0010, src.x0011,
-                src.x0100, src.x0101, src.x0110, src.x0111,                        
-                src.x1100, src.x1101, src.x1110, src.x1111,            
-                src.x1000, src.x1001, src.x1010, src.x1011
-            );
-         
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> ToVec128(this in UInt128 src)
-            => Vec128.FromParts(src.lo, src.hi);
+        public static Vec128<ulong> ToVec128(this UInt128 src)
+            => src;
 
         [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vec128<ulong> src)
-            => Unsafe.As<Vec128<ulong>, UInt128>(ref As.asRef(in src));
-
-        [MethodImpl(Inline)]
-        public static int PopCount(this in UInt128 src)
-            => (int)(Popcnt.X64.PopCount(src.lo) + Popcnt.X64.PopCount(src.hi));
+            => src;
 
         [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vector128<ulong> src)
-            => Unsafe.As<Vector128<ulong>,UInt128>(ref As.asRef(in src));
+            => src;
  
-        /// <summary>
-        /// Renders a number as a hexadecimal string
-        /// </summary>
-        /// <param name="src">The source number</param>
-        /// <param name="zpad">Specifies whether the numeric content should be left-padded 
-        /// with zeros commensurate with size of the source number's data type</param>
-        /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        [MethodImpl(Inline)]
-        public static HexString ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
-            => src.hi.FormatHex(false, true) + src.lo.FormatHex(true,false);
+        public static string Format(this UInt128 src)
+        {
+            if(src.hi != 0)
+                return $"{src.hi.FormatHex(false,true)}{src.lo.FormatHex(true,false)}";
+            else
+                return src.lo.FormatHex(false,true);
+        }
 
-        // [MethodImpl(Inline)]
-        // public static ref UInt128 And(this ref UInt128 lhs, in UInt128 rhs)
-        // {
-        //     Bits.and(lhs, rhs, out lhs);
-        //     return ref lhs;
-        // }
-
-        // [MethodImpl(Inline)]
-        // public static ref UInt128 Or(this ref UInt128 lhs, in UInt128 rhs)
-        // {
-        //     Bits.or(lhs, rhs, out lhs);
-        //     return ref lhs;
-        // }
-
-        // [MethodImpl(Inline)]
-        // public static ref UInt128 XOr(this ref UInt128 lhs, in UInt128 rhs)
-        // {
-        //     Bits.xor(lhs, rhs, out lhs);
-        //     return ref lhs;
-        // }
-
-        // [MethodImpl(Inline)]
-        // public static ref UInt128 ShiftLW(this ref UInt128 lhs, byte count)
-        // {
-        //     Bits.shiftlw(lhs, count);
-        //     return ref lhs;
-        // }
-
-    }
+   }
 
 }

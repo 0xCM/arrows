@@ -41,13 +41,6 @@ namespace Z0
         public static Vec128<double> Div(this Vec128<double> lhs, in Vec128<double> rhs)
             => dfp.div(in lhs, in rhs);
 
-        [MethodImpl(Inline)]
-        public static void Div(this Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => dfp.div(in lhs, in rhs, ref dst);        
-
-        [MethodImpl(Inline)]
-        public static void Div(this Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => dfp.div(in lhs, in rhs, ref dst);        
 
         [MethodImpl(Inline)]
         public static Vec256<float> Div(this Vec256<float> lhs, in Vec256<float> rhs)
@@ -56,14 +49,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> Div(this Vec256<double> lhs, in Vec256<double> rhs)
             => dfp.div(in lhs, in rhs);
-
-        [MethodImpl(Inline)]
-        public static void Div(this Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => dfp.div(in lhs, in rhs, ref dst);        
-
-        [MethodImpl(Inline)]
-        public static void Div(this Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => dfp.div(in lhs, in rhs, ref dst);        
 
         public static Span128<float> Div(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
@@ -96,5 +81,50 @@ namespace Z0
                 vstore(dfp.div(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }     
+
+        public static Span128<float> Mul(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+            return dst;            
+        }
+
+        public static Span128<double> Mul(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+            return dst;            
+        }
+
+        public static Span256<float> Mul(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+            return dst;            
+        }
+
+        public static Span256<double> Mul(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.mul(lhs.LoadVec256(block), lhs.LoadVec256(block)), ref dst.Block(block));
+            return dst;            
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<double> mul(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
+            => lhs.Mul(rhs, dst);
+        
+        [MethodImpl(Inline)]
+        public static Span256<float> mul(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
+            => lhs.Mul(rhs, dst);
+
+        [MethodImpl(Inline)]
+        public static Span256<double> mul(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
+            => lhs.Mul(rhs, dst);
+
     }
 }

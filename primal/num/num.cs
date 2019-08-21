@@ -15,30 +15,22 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public struct num<T>
+    public struct num<T> : IEquatable<num<T>>
         where T : struct
     {
-        readonly T x;
+        T x;
 
         public static readonly IPrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
 
         public static readonly bool Signed = NumInfo.Signed;
 
-        public static readonly int ByteSize = NumInfo.ByteSize;
+        public static readonly ByteSize ByteSize = NumInfo.ByteSize;
 
-        public static readonly ulong BitSize = NumInfo.BitSize;
+        public static readonly BitSize BitSize = NumInfo.BitSize;
 
         public static readonly num<T> Zero = Num.zero<T>();
 
         public static readonly num<T> One = Num.one<T>();
-
-        [MethodImpl(Inline)]
-        static ref T scalar(ref num<T> src)
-            => ref Unsafe.As<num<T>,T>(ref src);
-
-        [MethodImpl(Inline)]
-        static T unwrap(in num<T> src)
-            => Unsafe.As<num<T>,T>(ref As.asRef(in src));
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(num<T> src)
@@ -130,61 +122,82 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T> operator + (in num<T> lhs, in num<T> rhs) 
         {
-            var result = gmath.add(unwrap(lhs), unwrap(rhs));            
+            ref var result = ref gmath.add(ref unwrap(in lhs), unwrap(rhs));            
             return Unsafe.As<T,num<T>>(ref result);
         }
         
         [MethodImpl(Inline)]
         public static num<T> operator - (in num<T> lhs, in num<T> rhs) 
         {
-            var result = gmath.sub(unwrap(lhs), unwrap(rhs));            
+            ref var result = ref gmath.sub(ref unwrap(in lhs), unwrap(rhs));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
         public static num<T> operator * (in num<T> lhs, in num<T> rhs) 
         {
-            var result = gmath.mul(unwrap(lhs), unwrap(rhs));            
+            ref var result = ref gmath.mul(ref unwrap(in lhs), unwrap(rhs));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
         public static num<T> operator / (in num<T> lhs, in num<T> rhs) 
         {
-            var result = gmath.div(unwrap(lhs), unwrap(rhs));            
+            ref var result = ref gmath.div(ref unwrap(in lhs), unwrap(rhs));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
         public static num<T> operator % (in num<T> lhs, in num<T> rhs)
         {
-            var result = gmath.mod(unwrap(lhs), unwrap(rhs));            
+            ref var result = ref gmath.mod(ref unwrap(in lhs), unwrap(rhs));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
         public static num<T> operator - (in num<T> src) 
         {
-            var result = gmath.negate(unwrap(src));            
+            ref var result = ref gmath.negate(ref unwrap(in src));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
-        public static num<T> operator ++ (num<T> src) 
+        public static num<T> operator ++ (in num<T> src) 
         {
-            var result = gmath.inc(unwrap(src));            
+            ref var result = ref gmath.inc(ref unwrap(in src));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
-        public static num<T> operator -- (num<T> src) 
+        public static num<T> operator -- (in num<T> src) 
         {
-            var result = gmath.dec(unwrap(src));            
+            ref var result = ref gmath.dec(ref unwrap(in src));            
             return Unsafe.As<T,num<T>>(ref result);
         }
 
         [MethodImpl(Inline)]
-        public static bool operator == (num<T> lhs, in num<T> rhs) 
+        public static num<T> operator & (in num<T> lhs, in num<T> rhs) 
+        {
+            ref var result = ref gmath.and(ref unwrap(in lhs), in unwrap(in rhs));
+            return Unsafe.As<T,num<T>>(ref result);
+        }
+
+        [MethodImpl(Inline)]
+        public static num<T> operator | (num<T> lhs, in num<T> rhs) 
+        {
+            ref var result = ref gmath.or(ref unwrap(in lhs), in unwrap(in rhs));
+            return Unsafe.As<T,num<T>>(ref result);
+        }
+
+        [MethodImpl(Inline)]
+        public static num<T> operator ^ (num<T> lhs, in num<T> rhs) 
+        {
+            ref var result = ref gmath.xor(ref unwrap(in lhs), in unwrap(in rhs));
+            return Unsafe.As<T,num<T>>(ref result);
+        }
+
+        [MethodImpl(Inline)]
+        public static bool operator == (in num<T> lhs, in num<T> rhs) 
             => gmath.eq(unwrap(lhs), unwrap(rhs));            
             
         [MethodImpl(Inline)]
@@ -192,32 +205,24 @@ namespace Z0
             => gmath.neq(unwrap(lhs), unwrap(rhs));            
 
         [MethodImpl(Inline)]
-        public static bool operator < (num<T> lhs, in num<T> rhs) 
+        public static bool operator < (in num<T> lhs, in num<T> rhs) 
             => gmath.lt(unwrap(lhs), unwrap(rhs));            
 
         [MethodImpl(Inline)]
-        public static bool operator <= (num<T> lhs, in num<T> rhs) 
+        public static bool operator <= (in num<T> lhs, in num<T> rhs) 
             => gmath.lteq(unwrap(lhs), unwrap(rhs));            
 
         [MethodImpl(Inline)]
-        public static bool operator > (num<T> lhs, in num<T> rhs) 
+        public static bool operator > (in num<T> lhs, in num<T> rhs) 
             => gmath.gt(unwrap(lhs), unwrap(rhs));            
 
         [MethodImpl(Inline)]
-        public static bool operator >= (num<T> lhs, in num<T> rhs) 
-            => gmath.gteq(unwrap(lhs), unwrap(rhs));            
-
-
-        [MethodImpl(Inline)]
-        public static num<T> operator | (num<T> lhs, in num<T> rhs) 
-        {
-            var result = lhs.Or(unwrap(rhs));            
-            return Unsafe.As<T,num<T>>(ref result);
-        }
+        public static bool operator >= (in num<T> lhs, in num<T> rhs) 
+            => gmath.gteq(unwrap(in lhs), unwrap(in rhs));            
 
         [MethodImpl(Inline)]
-        public bool Eq(num<T> rhs)
-             => gmath.eq(unwrap(this), unwrap(rhs));            
+        public bool Equals(num<T> rhs)
+            => gmath.eq(unwrap(this), unwrap(rhs));            
        
         [MethodImpl(Inline)]
         public override int GetHashCode()
@@ -232,31 +237,22 @@ namespace Z0
             return x.ToString();
         }
 
+        /// <summary>
+        /// Converts a generic number to a bitstring
+        /// </summary>
+        /// <param name="src">The source number</param>
+        /// <typeparam name="T">The underlying primal type</typeparam>
         [MethodImpl(Inline)]
-        public T Or(T rhs)
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(x) | int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(x) | uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(x) | int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(x) | uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(int32(x) | int32(x));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(x) | uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(int64(x) | int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(x) | uint64(rhs));
-            else            
-                throw unsupported<T>();
-        }       
+        public BitString ToBitString()
+            => BitString.FromScalar<T>(in scalar(ref this));
+ 
+         [MethodImpl(Inline)]
+        static ref T scalar(ref num<T> src)
+            => ref Unsafe.As<num<T>,T>(ref src);
 
-
-
+        [MethodImpl(Inline)]
+        static ref T unwrap(in num<T> src)
+            => ref Unsafe.As<num<T>,T>(ref As.asRef(in src));
 
     }
 }

@@ -20,6 +20,8 @@ namespace Z0
     {
         ushort data;
 
+        public static readonly BitVector16 Zero = default;
+
         public static readonly BitSize BitSize = 16;
 
         public static readonly BitPos FirstPos = 0;
@@ -66,21 +68,86 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static explicit operator ushort(BitVector16 src)
+        public static implicit operator ushort(BitVector16 src)
             => src.data;        
 
         [MethodImpl(Inline)]
-        public static BitVector16 operator +(BitVector16 lhs, BitVector16 rhs)
-            => FromScalar((ushort)(lhs.data ^ rhs.data));
+        public static implicit operator BitVector32(BitVector16 src)
+            => BitVector32.FromScalar(src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector64(BitVector16 src)
+            => BitVector64.FromScalar(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator BitVector8(BitVector16 src)
+            => BitVector8.FromScalar((byte)src.data);
 
         /// <summary>
-        /// Negates the operand. Note that this operator is equivalent to the 
-        /// complement operator (~)
+        /// Computes the bitwise XOR of the source operands
+        /// Note that the XOR operator is equivalent to the (+) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator ^(BitVector16 lhs, BitVector16 rhs)
+            => (ushort)(lhs.data ^ rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise AND of the source operands
+        /// Note that the AND operator is equivalent to the (*) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator &(BitVector16 lhs, BitVector16 rhs)
+            => (ushort)(lhs.data & rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise OR of the source operands
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator |(BitVector16 lhs, BitVector16 rhs)
+            => (ushort)(lhs.data | rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand. 
+        /// Note that this operator is closely related to the negation operator (-)
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator ~(BitVector16 src)
+            => (ushort) ~ src.data;
+
+        /// <summary>
+        /// Computes the sum of the source operands
+        /// Note that the addition operator is equivalent to the (^) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator +(BitVector16 lhs, BitVector16 rhs)
+            => lhs ^ rhs;
+
+        /// <summary>
+        /// Computes the product of the operands. Note that this operator is equivalent 
+        /// to the AND operator (&)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 operator *(BitVector16 lhs, BitVector16 rhs)
+            => lhs & rhs;
+
+        /// <summary>
+        /// Negates the operand. 
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector16 operator -(in BitVector16 src)
-            => FromScalar((ushort)~src.data);
+            => (ushort)(~src.data + 1);
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -94,32 +161,13 @@ namespace Z0
             => lhs + -rhs;
 
         /// <summary>
-        /// Computes the product of the operands. Note that this operator is equivalent 
-        /// to the AND operator (&)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 operator *(BitVector16 lhs, BitVector16 rhs)
-            => FromScalar((ushort)(lhs.data & rhs.data));
-
-        /// <summary>
         /// Computes the scalar product of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static Bit operator %( BitVector16 lhs, BitVector16 rhs)
-            => lhs.Dot(rhs);
-
-        /// <summary>
-        /// Computes the bitwise complement of the operand. Note that this operator
-        /// is equivalent to the negation operator (-)
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 operator ~(BitVector16 src)
-            => FromScalar((ushort) ~ src.data);
+            => mod<N2>(Bits.pop(lhs.data & rhs.data));              
 
         /// <summary>
         /// Left-shifts the bits in the source

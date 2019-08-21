@@ -14,13 +14,15 @@ namespace Z0
 
     public struct BitVector8 : IBitVector<byte>
     {
+        byte data;
+        
+        public static readonly BitVector8 Zero = default;
+        
         public static readonly BitSize BitSize = 8;
 
         public static readonly BitPos FirstPos = 0;
 
         public static readonly BitPos LastPos = BitSize - 1;
-
-        byte data;
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -60,6 +62,19 @@ namespace Z0
         public static implicit operator BitVector8(byte src)
             => new BitVector8(src);
 
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector16(BitVector8 src)
+            => BitVector16.FromScalar(src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector32(BitVector8 src)
+            => BitVector32.FromScalar(src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector64(BitVector8 src)
+            => BitVector64.FromScalar(src.data);
+
+
         /// <summary>
         /// Explicitly converts the source vector to the underlying value it represents
         /// </summary>
@@ -69,14 +84,62 @@ namespace Z0
             => src.data;
 
         /// <summary>
-        /// Computes the component-wise sum of the source operands. Note that this operator
-        /// is equivalent to the XOR operator (^)
+        /// Computes the XOR of the source operands. 
+        /// Note that this operator is equivalent to the addition operator (+)
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static BitVector8 operator +(in BitVector8 lhs, in BitVector8 rhs)
-            => FromScalar((byte)(lhs.data ^ rhs.data));
+        public static BitVector8 operator ^(BitVector8 lhs, BitVector8 rhs)
+            => (byte)(lhs.data ^ rhs.data);
+
+        /// <summary>
+        /// Computes the component-wise AND of the operands. Note that his operator is
+        /// equivalent to the multiplication operator (*)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator &(BitVector8 lhs, BitVector8 rhs)
+            => (byte)(lhs.data & rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise OR of the source operands
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator |(BitVector8 lhs, BitVector8 rhs)
+            => (byte)(lhs.data | rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand. 
+        /// Note that this operator is closely related to the negation operator (-)
+        /// </summary>
+        /// <param name="src">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator ~(BitVector8 src)
+            => (byte) ~ src.data;
+
+        /// <summary>
+        /// Computes the component-wise sum of the source operands. 
+        /// Note that this operator is equivalent to the XOR operator (^)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator +(BitVector8 lhs, BitVector8 rhs)
+            => lhs ^ rhs;
+
+        /// <summary>
+        /// Computes the product of the operands. 
+        /// Note that this operator is equivalent to the AND operator (&)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator *(BitVector8 lhs, BitVector8 rhs)
+            => lhs & rhs;
 
         /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the 
@@ -85,7 +148,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator -(in BitVector8 src)
-            => FromScalar((byte)~src.data);
+            => (byte)(~src.data + 1);
 
         /// <summary>
         /// Subtracts the second operand from the first. Note that this operator is equivalent to
@@ -97,45 +160,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector8 operator - (BitVector8 lhs, BitVector8 rhs)
             => lhs + -rhs;
-
-        /// <summary>
-        /// Computes the product of the operands. Note that this operator is equivalent 
-        /// to the AND operator (&)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator *(in BitVector8 lhs, in BitVector8 rhs)
-            => (byte) (lhs.data & rhs.data);
-
-        /// <summary>
-        /// Computes the component-wise AND of the operands. Note that his operator is
-        /// equivalent to the multiplication operator (*)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator &(in BitVector8 lhs, in BitVector8 rhs)
-            => (byte)(lhs.data & rhs.data);
-
-        /// <summary>
-        /// Computes the component-wise OR of the operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator |(in BitVector8 lhs, in BitVector8 rhs)
-            => (byte)(lhs.data | rhs.data);
-
-        /// <summary>
-        /// Computes the XOR of the source operands. Note that this operator is equivalent to 
-        /// the addition operator (+)
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator ^(in BitVector8 lhs, in BitVector8 rhs)
-            => (byte)(lhs.data ^ rhs.data);
 
         /// <summary>
         /// Left-shifts the bits in the source
@@ -152,15 +176,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector8 operator >>(BitVector8 lhs, int offset)
             => (byte)(lhs.data >> offset);
-
-        /// <summary>
-        /// Computes the bitwise complement of the operand. Note that this operator is
-        /// equivalent to the negation operator (-)
-        /// </summary>
-        /// <param name="src">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator ~(BitVector8 src)
-            => FromScalar((byte) ~ src.data);
 
         /// <summary>
         /// Computes the scalar product of the operands

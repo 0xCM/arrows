@@ -40,9 +40,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 digits = As.uint64(src).ToString("x");
             else if(typeof(T) == typeof(float))
-                digits = As.float32(src).ToBits().ToString("x");
+                digits = convert<float,int>(As.float32(src)).ToString("x");
             else if(typeof(T) == typeof(double))
-                digits = As.float64(src).ToBits().ToString("x");
+                digits = convert<double,long>(As.float64(src)).ToString("x");
             else
                 throw unsupported<T>();
 

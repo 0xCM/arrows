@@ -20,7 +20,7 @@ namespace Z0.Test
             for(var i=0; i<=63; i++)
             for(var j=0; j<=63; j++)
             {
-                var product = dinx.umul128(1ul << i, 1ul << j, out UInt128 _);
+                var product = UMul.mul(1ul << i, 1ul << j, out UInt128 _);
                 var bsExpect = BitString.FromPow2(i + j); 
                 var bsActual = product.ToBitString();
                 Trace($"{product.Format()}");
@@ -39,7 +39,7 @@ namespace Z0.Test
                 var x = Random.CpuVec256(domain);
                 var y = Random.CpuVec256(domain);
                 sw.Start();
-                var z = InxOps.mul(x,y);
+                var z = dinx.mul(x,y);
                 sw.Stop();
                 counter += 4;
             }
@@ -62,8 +62,7 @@ namespace Z0.Test
                 counter += 4;
             }
 
-            return (counter, snapshot(sw),"mul256u64:baseline");
-        
+            return (counter, snapshot(sw),"mul256u64:baseline");        
         }
 
         public void RunBenchmarkMul256u64()
@@ -85,7 +84,7 @@ namespace Z0.Test
                 {
                     var x = lhs.LoadVec256(block);
                     var y = rhs.LoadVec256(block);
-                    var z = InxOps.mul(x,y); 
+                    var z = dinx.mul(x,y); 
 
                     var a = x.ToSpan().Replicate();
                     var b = y.ToSpan();
@@ -118,6 +117,31 @@ namespace Z0.Test
 
             VerifyUMul64(Pow2.T12);
         }
+
+        void MulF64(int cycles = DefaltCycleCount)
+        {
+            for(var cycle = 0; cycle < cycles; cycle++)
+            {
+                var domain = closed((long)Int32.MinValue, (long)Int32.MaxValue);
+                var src = Random.Stream(domain).Select(x => (double)x);
+                var u = Vec256.Load(src.TakeSpan(4));
+                var v = Vec256.Load(src.TakeSpan(4));
+                var x = dfp.mul(u,v);
+                var y = Vec256.Load(gmath.mul(u.ToSpan(), v.ToSpan(), v.ToSpan().Replicate(true)));
+                Claim.eq(x,y);
+
+                var xi = x.ToSpan().Convert<long>();
+                var yi = y.ToSpan().Convert<long>();
+                Claim.eq(xi,yi);
+            }
+
+        }
+
+        public void VerifyMulF64()
+        {
+            MulF64(Pow2.T08);
+        }
+
     }
 
 }

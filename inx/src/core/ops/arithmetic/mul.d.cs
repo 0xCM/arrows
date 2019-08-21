@@ -23,172 +23,134 @@ namespace Z0
 
     partial class dinx
     {
-        /// <intrinsic>__m128i _mm_mul_epi32 (__m128i a, __m128i b) PMULDQ xmm, xmm/m128</intrinsic>
+        /// <summary>
+        /// _mm_mul_epi32
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static Vec128<long> mul(in Vec128<int> lhs, in Vec128<int> rhs)
             => Multiply(lhs, rhs);
             
-        /// <intrinsic>__m128i _mm_mul_epu32 (__m128i a, __m128i b) PMULUDQ xmm, xmm/m128</intrinsic>
+        /// <summary>
+        /// _mm_mul_epu32
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static Vec128<ulong> mul(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => Multiply(lhs, rhs);
 
-        /// <intrinsic>__m256i _mm256_mul_epi32 (__m256i a, __m256i b) VPMULDQ ymm, ymm, ymm/m256</intrinsic>
+        /// <summary>
+        /// _mm256_mul_epi32
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
             => Multiply(lhs, rhs);
-
-
-        /// <intrinsic>_m256i _mm256_mul_epu32 (__m256i a, __m256i b) VPMULUDQ ymm, ymm, ymm/m256</intrinsic>
+        
+        /// <summary>
+        /// _mm256_mul_epu32
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)
             => Multiply(lhs, rhs);
 
-        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
-        public static void mul(in Vec256<int> lhs, in Vec256<int> rhs, ref long dst)
-            => vstore(mul(lhs, rhs), ref dst);
+        public static uint clmul(uint lhs, uint rhs)
+            => (uint)extract(CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0), 0);
 
-        /// <intrinsic>__m256i _mm256_mul_epu32 (__m256i a, __m256i b) VPMULUDQ ymm, ymm, ymm/m256</intrinsic>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec256<uint> lhs, in Vec256<uint> rhs, ref ulong dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-        /// <intrinsic>__m128i _mm_mul_epi32 (__m128i a, __m128i b) PMULDQ xmm, xmm/m128</intrinsic>
-        /// <intrinsic step='2'></instrinsc>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec128<int> lhs, in Vec128<int> rhs, ref long dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-        /// <intrinsic></intrinsic>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec128<uint> lhs, in Vec128<uint> rhs, ref ulong dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static long mul(long lhs, long rhs)
-            => CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0).GetElement(0);
-
-        [MethodImpl(Inline)]
-        public static ulong mul(ulong lhs, ulong rhs)
-            => CarrylessMultiply(Vector128.Create(lhs, 0ul), Vector128.Create(rhs, 0ul), 0).GetElement(0);
-
-        /// <intrinsic>__m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs,control);
-
-        /// <intrinsic>__m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs,control);
-        
         /// <summary>
-        /// Calculates the 128-bit product of two 64-bit integers
+        /// _mm_clmulepi64_si128
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
-        /// <param name="dst">The 128 bit result</param>
         [MethodImpl(Inline)]
-        public static unsafe ref UInt128 umul128(ulong lhs, ulong rhs, out UInt128 dst)
-        {
-            dst = 0;
-            UMul.mul(lhs,rhs, out dst.lo, out dst.hi);
-            return ref dst;
-        }
+        public static long clmul(long lhs, long rhs)
+            => extract(CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0), 0);
 
+        /// <summary>
+        /// _mm_clmulepi64_si128
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> mul(in Vec128<long> lhs, in Vec128<long> rhs)
-        {
-            var low = CarrylessMultiply(lhs, rhs, 0).GetElement(0);
-            var hi = CarrylessMultiply(lhs,rhs,4).GetElement(0);
-            return Vec128.FromParts(low,hi);
-        }
+        public static ulong clmul(ulong lhs, ulong rhs)
+            => extract(CarrylessMultiply(Vector128.Create(lhs, 0ul), Vector128.Create(rhs, 0ul), 0), 0);
 
-
+        /// <summary>
+        /// _mm_clmulepi64_si128
+        /// Effects carryless multiplication on selected components
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="control">?</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> mul(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-        {
-            var low = CarrylessMultiply(lhs, rhs, 0).GetElement(0);
-            var hi = CarrylessMultiply(lhs,rhs,4).GetElement(0);
-            return Vec128.FromParts(low,hi);
-        }
-
-
-        /// <intrinsic></intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec128<float> mul(in Vec128<float> lhs,in Vec128<float> rhs)
-            => Multiply(lhs, rhs);
-
-        /// <intrinsic></intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec128<double> mul(in Vec128<double> lhs,in Vec128<double> rhs)
-            => Multiply(lhs, rhs);
-
-        /// <intrinsic>__m256 _mm256_mul_ps (__m256 a, __m256 b) VMULPS ymm, ymm, ymm/m256</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<float> mul(in Vec256<float> lhs,in Vec256<float> rhs)
-            => Multiply(lhs, rhs);
-
-        /// <intrinsic>__m256d _mm256_mul_pd (__m256d a, __m256d b) VMULPD ymm, ymm, ymm/m256</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<double> mul(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Multiply(lhs, rhs);
+        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
+            =>  CarrylessMultiply(lhs, rhs, control);
         
-
-        /// <intrinsic>__m128 _mm_mul_ps (__m128 a, __m128 b) MULPS xmm, xmm/m128</intrinsic>
+        /// <summary>
+        /// _mm_clmulepi64_si128
+        /// Effects carryless multiplication on selected components
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="control">?</param>
         [MethodImpl(Inline)]
-        public static void mul(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-        /// <intrinsic>__m128d _mm_mul_pd (__m128d a, __m128d b) MULPD xmm, xmm/m128</intrinsic>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => vstore(mul(lhs, rhs), ref dst);
+        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte control)
+            =>  CarrylessMultiply(lhs, rhs,control);
 
 
-        /// <intrinsic>__m256 _mm256_mul_ps (__m256 a, __m256 b) VMULPS ymm, ymm, ymm/m256</intrinsic>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-         /// <intrinsic>__m256d _mm256_mul_pd (__m256d a, __m256d b) VMULPD ymm, ymm, ymm/m256</intrinsic>
-        [MethodImpl(Inline)]
-        public static void mul(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => vstore(mul(lhs, rhs), ref dst);
-
-
-        [MethodImpl(Inline)]
-        public static Span128<long> mul(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<long> dst)
-            => lhs.Mul(rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span128<ulong> mul(this ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<ulong> dst)
-            => lhs.Mul(rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span128<float> mul(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
-            => lhs.Mul(rhs, dst);
-
-        [MethodImpl(Inline)]
-        public static Span128<double> mul(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
-            => lhs.Mul(rhs, dst);
+        const ulong LoMask64 = 0x00000000fffffffful;
         
+        /// <summary>
+        /// Multiplies two two 256-bit/u64 vectors to yield a 256-bit/u64 vector
+        /// </summary>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
-        public static Span256<long> mul(this ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<long> dst)
-            => lhs.Mul(rhs,dst);
+        public static Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)    
+        {
+            var loMask = Vec256.Fill(LoMask64);    
+            ref var xl = ref dinx.and(x, loMask).As(out Vec256<uint> _);
+            ref var xh = ref dinx.srli(x, 32).As(out Vec256<uint> _);
+            ref var yl = ref dinx.and(y, loMask).As(out Vec256<uint> _);
+            ref var yh = ref dinx.srli(y, 32).As(out Vec256<uint> _);
+
+            var xh_yl = dinx.mul(in xh, in yl);
+            var hl = dinx.slli(in xh_yl, 32);
+
+            var xh_mh = dinx.mul(in xh, yh);
+            var lh = dinx.slli(in xh_mh, 32);
+
+            var xl_yl = dinx.mul(in xl, in yl);
+
+            var hl_lh = dinx.add(in hl, in lh);
+            var z = dinx.add(in xl_yl, in hl_lh);
+            return z;
+        }
 
         [MethodImpl(Inline)]
-        public static Span256<ulong> mul(this ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<ulong> dst)
-            => lhs.Mul(rhs,dst);
+        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs)
+        {
+            var l = extract(clmul(lhs, rhs, 0),0);
+            var h = extract(clmul(lhs, rhs, 0xFF),0);
+            return Vec128.FromParts(l,h);            
+        }
 
         [MethodImpl(Inline)]
-        public static Span256<float> mul(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
-            => lhs.Mul(rhs, dst);
-
-        [MethodImpl(Inline)]
-        public static Span256<double> mul(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
-            => lhs.Mul(rhs, dst);
+        public static Vec256<long> clmul(in Vec256<long> lhs, in Vec256<long> rhs)
+        {
+            var mul0 = clmul(extract128(lhs,0), extract128(rhs,0));
+            var mul1 = clmul(extract128(lhs,1), extract128(rhs,1));
+            var dst = Vec256.Zero<long>();
+            insert(mul0, dst, 0);
+            insert(mul1, dst, 1);                    
+            return dst;
+        }
 
     }
 }

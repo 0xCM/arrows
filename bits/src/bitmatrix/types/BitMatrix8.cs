@@ -71,7 +71,7 @@ namespace Z0
         }        
 
         /// <summary>
-        /// Loads a matrix from the source vaue
+        /// Loads a matrix from the source value
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
@@ -100,6 +100,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix8 FromParts(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)        
             => new BitMatrix8(new byte[]{row0,row1,row2,row3,row4,row5,row6,row7});
+
+        /// <summary>
+        /// Defifines a matrix from two 32-bit unsigned integers; the upper value contains
+        /// the data for rows 0...3 and the lower value contains the dat for rows [4 ... 7]
+        /// </summary>
+        /// <param name="upper">The upper row data</param>
+        /// <param name="lower">The lower row data</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 FromParts(uint upper, uint lower)
+            => Load(Bits.pack(upper,lower));
 
         /// <summary>
         /// Creates an 8x8 bitmatrix from a span that contains exactly 8 entries

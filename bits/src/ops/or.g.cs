@@ -10,7 +10,6 @@ namespace Z0
     using static zfunc;
     using static As;
     using static AsIn;
-    
 
     partial class gbits
     {
@@ -23,30 +22,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.or(int8(lhs),int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.or(uint8(lhs),uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.or(int16(lhs),int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.or(uint16(lhs),uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.or(int32(lhs),int32(rhs)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.or(uint32(lhs),uint32(rhs)));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.or(int64(lhs),int64(rhs)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.or(uint64(lhs), uint64(rhs)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(Bits.or(float32(lhs), float32(rhs)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.or(float64(lhs), float64(rhs)));
-            else            
-                throw unsupported<T>();
-        }           
+                => gmath.or(lhs,rhs);
 
         /// <summary>
         /// Computes the bitwise or of two primal operands and stores the
@@ -56,33 +32,9 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T or<T>(ref T lhs, T rhs)
+        public static ref T or<T>(ref T lhs, in T rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                Bits.or(ref int8(ref lhs), int8(rhs));
-            else if(typeof(T) == typeof(byte))
-                Bits.or(ref uint8(ref lhs), uint8(rhs));
-            else if(typeof(T) == typeof(short))
-                Bits.or(ref int16(ref lhs), int16(rhs));
-            else if(typeof(T) == typeof(ushort))
-                Bits.or(ref uint16(ref lhs), uint16(rhs));
-            else if(typeof(T) == typeof(int))
-                Bits.or(ref int32(ref lhs), int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                Bits.or(ref uint32(ref lhs), uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                Bits.or(ref int64(ref lhs), int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                Bits.or(ref uint64(ref lhs), uint64(rhs));
-            else if(typeof(T) == typeof(float))
-                Bits.or(ref float32(ref lhs), float32(rhs));
-            else if(typeof(T) == typeof(double))
-                Bits.or(ref float64(ref lhs), float64(rhs));
-            else            
-                throw unsupported<T>();
-            return ref lhs;
-        }
+                => ref gmath.or(ref lhs, in rhs);
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> or<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)

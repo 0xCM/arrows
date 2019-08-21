@@ -21,8 +21,7 @@ namespace Z0
         {
             UMul.mulLo(lhs, rhs, out ulong dst);
             return dst;
-        }
-            
+        }            
 
         /// <summary>
         /// Computes the hi part of the 64-bit product of two unsigned 64-bit integers
@@ -46,9 +45,12 @@ namespace Z0
         {
             return UMul.mul(lhs,rhs);
         }
-            
+
+        [MethodImpl(Inline)]
+        public static ref UInt128 UMul128(this ulong lhs, ulong rhs, out UInt128 dst)
+        {
+            UMul.mul(lhs,rhs, out dst);
+            return ref dst;
+        }
     }
-
-
-
 }

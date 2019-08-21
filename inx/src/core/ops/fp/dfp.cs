@@ -16,27 +16,92 @@ namespace Z0
     
     using static As;
     using static zfunc;    
-    
+
+    public enum FloatCompareKind
+    {
+        /// <summary>
+        /// equal, ordered, non-signaling
+        /// </summary>
+        EQ_OQ = FloatComparisonMode.OrderedEqualNonSignaling,
+        
+        /// <summary>
+        /// equal, ordered, signaling
+        /// </summary>
+        EQ_OS = FloatComparisonMode.OrderedEqualSignaling,
+
+
+        /// <summary>
+        /// equal, unordered, signaling
+        /// </summary>
+        EQ_UQ = FloatComparisonMode.UnorderedEqualNonSignaling,
+
+        /// <summary>
+        /// greater than, ordered, non-signaling
+        /// </summary>
+        GT_OQ = FloatComparisonMode.OrderedGreaterThanNonSignaling
+
+    }    
+
     /// <summary>
     /// Defines direct floating-point operations
     /// </summary>
     public static partial class dfp
     {
         /// <summary>
+        /// _mm_mul_ps:
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<float> mul(in Vec128<float> lhs,in Vec128<float> rhs)
+            => Multiply(lhs, rhs);        
+
+        /// <summary>
+        /// _mm_mul_pd:
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> mul(in Vec128<double> lhs,in Vec128<double> rhs)
+            => Multiply(lhs, rhs);
+        
+        /// <summary>
+        /// _mm256_mul_ps
+        /// Multiplies corresponding components and returns the result
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<float> mul(in Vec256<float> lhs,in Vec256<float> rhs)
+            => Multiply(lhs, rhs);
+
+        /// <summary>
+        /// _mm256_mul_pd
+        /// Multiplies corresponding components and returns the result
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<double> mul(in Vec256<double> lhs, in Vec256<double> rhs)
+            => Multiply(lhs, rhs);
+
+        /// <summary>
+        /// _mm_move_ss:
         /// Moves the lower single-precision (32-bit) floating-point element from b to the lower element of dst, and copy 
         /// the upper 3 elements from a to the upper elements of dst.
         /// </summary>
-        ///<intrinsic>__m128 _mm_move_ss (__m128 a, __m128 b) MOVSS xmm, xmm</intrinsic>
-        public static Vec128<float> movescalar(in Vec128<float> a, in Vec128<float> b)
-            => Avx2.MoveScalar(b,a);
+        public static Vec128<float> movescalar(in Vec128<float> lhs, in Vec128<float> rhs)
+            => Avx2.MoveScalar(rhs,lhs);
 
         /// <summary>
+        /// _mm_move_sd:
         /// Moves the lower double-precision (64-bit) floating-point element from "b" to the lower element of "dst", and copy 
         /// the upper element from "a" to the upper element of "dst"
         /// </summary>
-        ///<intrinsic>__m128d _mm_move_sd (__m128d a, __m128d b) MOVSD xmm, xmm</intrinsic>
-        public static Vec128<double> movescalar(in Vec128<double> a, in Vec128<double> b)
-            => Avx2.MoveScalar(a,b);
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        public static Vec128<double> movescalar(in Vec128<double> lhs, in Vec128<double> rhs)
+            => Avx2.MoveScalar(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<float> ceil(in Vec128<float> src)
@@ -55,22 +120,6 @@ namespace Z0
             => Ceiling(src);
 
         [MethodImpl(Inline)]
-        public static void ceil(in Vec128<float> src, ref float dst)
-            => vstore(ceil(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void ceil(in Vec128<double> src, ref double dst)
-            => vstore(ceil(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void ceil(in Vec256<float> src, ref float dst)
-            => vstore(ceil(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void ceil(in Vec256<double> src, ref double dst)
-            => vstore(ceil(src), ref dst);
-
-        [MethodImpl(Inline)]
         public static Vec128<float> floor(Vec128<float> src)
             => Floor(src);
 
@@ -85,23 +134,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> floor(Vec256<double> src)
             => Floor(src);
-
-        [MethodImpl(Inline)]
-        public static void floor(Vec128<float> src, ref float dst)
-            => vstore(floor(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void floor(Vec128<double> src, ref double dst)
-            => vstore(floor(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void floor(Vec256<float> src, ref float dst)
-            => vstore(floor(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void floor(Vec256<double> src, ref double dst)
-            => vstore(floor(src), ref dst);
-
 
         [MethodImpl(Inline)]
         public static Vec128<float> sqrt(in Vec128<float> src)
@@ -128,53 +160,58 @@ namespace Z0
             => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static void div(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => vstore(Divide(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void div(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => vstore(Divide(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
         public static Vec256<float> div(in Vec256<float> lhs, in Vec256<float> rhs)
             => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<double> div(in Vec256<double> lhs, in Vec256<double> rhs)
             => Divide(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static void div(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => vstore(Divide(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void div(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => vstore(Divide(lhs, rhs), ref dst);
  
          // dst = x*y + z
+        /// <summary>
+        /// _mm_fmadd_ps
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<float> mulAdd(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
+        public static Vec128<float> fmadd(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
             => MultiplyAdd(x,y,z);
                     
         // dst = x*y + z
         [MethodImpl(Inline)]
-        public static Vec128<double> mulAdd(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
+        public static Vec128<double> fmadd(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
             => MultiplyAdd(x,y,z);
 
+        /// <summary>
+        /// _mm_fnmadd_ps
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<float> mulAddNegated(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
+        public static Vec128<float> fnmadd(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
             => MultiplyAddNegated(x,y,z);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> mulAddNegated(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
+        public static Vec128<double> fnmadd(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
             => MultiplyAddNegated(x,y,z);
 
+        /// <summary>
+        /// _mm_fmaddsub_ps
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<float> mulAddSub(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
+        public static Vec128<float> fmaddsub(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
             => MultiplyAddSubtract(x,y,z);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> mulAddSub(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
+        public static Vec128<double> fmaddsub(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
             => MultiplyAddSubtract(x,y,z);
 
         [MethodImpl(Inline)]
@@ -193,12 +230,26 @@ namespace Z0
         public static Vec256<double> mulAddNegated(in Vec256<double> x, in Vec256<double> y, in Vec256<double> z)
             => MultiplyAddNegated(x,y,z);
 
+        /// <summary>
+        /// _mm256_fmaddsub_ps
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec256<float> mulAddSub(in Vec256<float> x, in Vec256<float> y, in Vec256<float> z)
+        public static Vec256<float> fmaddsub(in Vec256<float> x, in Vec256<float> y, in Vec256<float> z)
             => MultiplyAddSubtract(x,y,z);
 
+        /// <summary>
+        /// _mm256_fmaddsub_pd
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec256<double> mulAddSub(in Vec256<double> x, in Vec256<double> y, in Vec256<double> z)
+        public static Vec256<double> fmaddsub(in Vec256<double> x, in Vec256<double> y, in Vec256<double> z)
             => MultiplyAddSubtract(x,y,z);
 
         [MethodImpl(Inline)]
@@ -310,10 +361,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         static bool[] TestNaN(this Vector128<double> src)
-            => array(
-                src.GetElement(0).IsNaN(), 
-                src.GetElement(1).IsNaN()
-                );
+            => array(src.GetElement(0).IsNaN(), src.GetElement(1).IsNaN());
 
         /// <summary>
         /// Determines whether the first component is NaN
@@ -331,5 +379,4 @@ namespace Z0
         static bool IsNaN(this Vector128<double> src, int index)
                 => src.GetElement(index).IsNaN();    
     }
-
 }

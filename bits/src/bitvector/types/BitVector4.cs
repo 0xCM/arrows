@@ -20,6 +20,8 @@ namespace Z0
     {
         UInt4 data;
 
+        public static readonly BitVector4 Zero = default;
+
         public static readonly BitSize BitSize = 4;
 
         public static readonly BitPos FirstPos = 0;
@@ -37,7 +39,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector4 FromScalar(byte src)
             => new BitVector4(src);            
-
 
         /// <summary>
         /// Creates a vector from the primal source value with which it aligns
@@ -71,25 +72,58 @@ namespace Z0
         public static implicit operator BitVector4(UInt4 src)
             => new BitVector4(src);
 
+        /// <summary>
+        /// Computes the XOR of the source operands. 
+        /// Note that this operator is equivalent to the addition operator (+)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector4 lhs, in BitVector4 rhs)
-            => lhs.Equals(rhs);
+        public static BitVector4 operator ^(in BitVector4 lhs, in BitVector4 rhs)
+            => (byte)(lhs.data ^ rhs.data);
 
-        [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector4 lhs, in BitVector4 rhs)
-            => !lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static BitVector4 operator +(in BitVector4 lhs, in BitVector4 rhs)
-            => FromScalar((byte)(lhs.data ^ rhs.data));
-
-        [MethodImpl(Inline)]
-        public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
-            => FromScalar((byte)(lhs.data & rhs.data));
-
+        /// <summary>
+        /// Computes the bitwise AND of the source operands
+        /// Note that the AND operator is equivalent to the (*) operator
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector4 operator &(in BitVector4 lhs, in BitVector4 rhs)
-            => FromScalar((byte)(lhs.data & rhs.data));
+            => (byte)(lhs.data & rhs.data);
+
+        /// <summary>
+        /// Computes the bitwise OR of the source operands
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
+            => (byte)(lhs.data | rhs.data);
+
+        [MethodImpl(Inline)]
+        public static BitVector4 operator ~(BitVector4 src)
+            => new BitVector4(~src.data);
+
+        /// <summary>
+        /// Computes the component-wise sum of the source operands. 
+        /// Note that this operator is equivalent to the XOR operator (^)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 operator +(in BitVector4 lhs, in BitVector4 rhs)
+            => lhs ^ rhs;
+
+        /// <summary>
+        /// Computes the product of the operands. 
+        /// Note that this operator is equivalent to the AND operator (&)
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 operator *(in BitVector4 lhs, in BitVector4 rhs)
+            => lhs & rhs;
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -102,11 +136,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector4 operator -(in BitVector4 src)
-            => FromScalar((byte) ~ src.data);
-
-        [MethodImpl(Inline)]
-        public static BitVector4 operator |(in BitVector4 lhs, in BitVector4 rhs)
-            => FromScalar((byte)(lhs.data | rhs.data));
+            => (byte)(~src.data + 1);
 
         [MethodImpl(Inline)]
         public static BitVector4 operator >>(BitVector4 lhs, int rhs)
@@ -116,9 +146,14 @@ namespace Z0
         public static BitVector4 operator <<(BitVector4 lhs, int rhs)
             => new BitVector4(lhs.data << rhs);
 
+
         [MethodImpl(Inline)]
-        public static BitVector4 operator ~(BitVector4 src)
-            => new BitVector4(~src.data);
+        public static bool operator ==(in BitVector4 lhs, in BitVector4 rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in BitVector4 lhs, in BitVector4 rhs)
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public BitVector4(byte data)

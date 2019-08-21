@@ -17,6 +17,12 @@ namespace Z0
     partial class ginx
     {
 
+        /// <summary>
+        /// Overwrites an identified component in the target vector with a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="dst">The target vector</param>
+        /// <param name="index">The 0-based index of the component to overwrite</param>
         [MethodImpl(Inline)]
         public static Vec128<T> insert<T>(in T src, in Vec128<T> dst, byte index)
             where T : struct
@@ -41,6 +47,13 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Overwrites a 128-bit lane in the target with the content of the source vector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
+        /// <param name="index">Identifies the lane in the target to overwrite, either 0 or 1 respectively 
+        /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<T> insert<T>(Vec128<T> src, in Vec256<T> dst, byte index)        
             where T : struct

@@ -9,14 +9,9 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    using static System.Runtime.Intrinsics.X86.Sse;
-    using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx2;
-    using static System.Runtime.Intrinsics.X86.Avx;
 
     using static zfunc;
-    using static Span256;
-    using static Span128;
     using static As;
 
     partial class BitsX
@@ -25,7 +20,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -33,7 +28,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -41,7 +36,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -49,7 +44,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -57,7 +52,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -65,7 +60,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -73,7 +68,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
 
@@ -81,15 +76,15 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs[i]);
+                dst[i] = shiftr(lhs[i], rhs[i]);
             return dst;                
         }
  
-         public static Span<sbyte> ShiftR(this ReadOnlySpan<sbyte> lhs, int rhs, Span<sbyte> dst)
+        public static Span<sbyte> ShiftR(this ReadOnlySpan<sbyte> lhs, int rhs, Span<sbyte> dst)
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -97,7 +92,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -105,7 +100,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -113,7 +108,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -121,7 +116,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -129,7 +124,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -137,7 +132,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -145,7 +140,7 @@ namespace Z0
         {
             var len = length(lhs,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = Bits.shiftr(lhs[i], rhs);
+                dst[i] = shiftr(lhs[i], rhs);
             return dst;                
         }
 
@@ -264,12 +259,13 @@ namespace Z0
         }
 
 
+
         public static Span128<int> ShiftR(this ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -278,7 +274,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -287,7 +283,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -296,7 +292,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = Span128.Length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -305,7 +301,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -314,7 +310,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -323,7 +319,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -332,7 +328,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                Bits.shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
        }
 
@@ -340,7 +336,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -348,7 +344,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -356,7 +352,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -364,7 +360,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -372,7 +368,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -380,7 +376,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec128(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -388,7 +384,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -396,7 +392,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -404,7 +400,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -412,7 +408,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -420,7 +416,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -428,9 +424,73 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                vstore(Bits.shiftr(lhs.LoadVec256(i), count), ref dst[i]);
+                vstore(Bits.srli(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
        }
+
+        [MethodImpl(Inline)]
+        static sbyte shiftr(sbyte lhs, int rhs)
+            => (sbyte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        static byte shiftr(byte lhs, int rhs)
+            => (byte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        static short shiftr(short lhs, int rhs)
+            => (short)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        static ushort shiftr(ushort lhs, int rhs)
+            => (ushort)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        static int shiftr(int lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        static uint shiftr(uint lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        static long shiftr(long lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        static ulong shiftr(ulong lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec128<int> lhs, in Vec128<uint> rhs, ref int dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec128<long> lhs, in Vec128<ulong> rhs, ref long dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec256<int> lhs, in Vec256<uint> rhs, ref int dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec256<long> lhs, in Vec256<ulong> rhs, ref long dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        static unsafe void shiftr(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => vstore(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
     }
 

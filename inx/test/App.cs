@@ -24,7 +24,7 @@ namespace Z0.Test
             {
                 var x = lhs.LoadVec256(block);
                 var y = rhs.LoadVec256(block);
-                InxOps.mul(x,y); 
+                dinx.mul(x,y); 
             }
             return snapshot(sw);
         }

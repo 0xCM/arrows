@@ -18,20 +18,26 @@ namespace Z0
     public partial class dinx
     {
         
+        /// <summary>
+        /// _mm_hsub_epi16
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<short> subh(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static Vec128<short> hsub(in Vec128<short> lhs, in Vec128<short> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> subh(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static Vec128<int> hsub(in Vec128<int> lhs, in Vec128<int> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> subh(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vec128<float> hsub(in Vec128<float> lhs, in Vec128<float> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> subh(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vec128<double> hsub(in Vec128<double> lhs, in Vec128<double> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -39,48 +45,17 @@ namespace Z0
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> subh(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static Vec256<int> hsub(in Vec256<int> lhs, in Vec256<int> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> subh(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vec256<float> hsub(in Vec256<float> lhs, in Vec256<float> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> subh(in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vec256<double> hsub(in Vec256<double> lhs, in Vec256<double> rhs)
             => HorizontalSubtract(lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static void subh(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => vstore(subh(lhs, rhs), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void subh(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => vstore(subh(lhs, rhs), ref dst);
 
 
     }

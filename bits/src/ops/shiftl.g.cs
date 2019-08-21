@@ -71,21 +71,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                Bits.shiftl(ref int8(ref lhs), rhs);
+                shiftl(ref int8(ref lhs), rhs);
             else if (typeof(T) == typeof(byte))
-                Bits.shiftl(ref uint8(ref lhs), rhs);
+                shiftl(ref uint8(ref lhs), rhs);
             else if (typeof(T) == typeof(short))
-                Bits.shiftl(ref int16(ref lhs), rhs);
+                shiftl(ref int16(ref lhs), rhs);
             else if (typeof(T) == typeof(ushort))
-                Bits.shiftl(ref uint16(ref lhs), rhs);
+                shiftl(ref uint16(ref lhs), rhs);
             else if (typeof(T) == typeof(int))
-                Bits.shiftl(ref int32(ref lhs), rhs);
+                shiftl(ref int32(ref lhs), rhs);
             else if (typeof(T) == typeof(uint))
-                Bits.shiftl(ref uint32(ref lhs), rhs);
+                shiftl(ref uint32(ref lhs), rhs);
             else if (typeof(T) == typeof(long))
-                Bits.shiftl(ref int64(ref lhs), rhs);
+                shiftl(ref int64(ref lhs), rhs);
             else if (typeof(T) == typeof(ulong))
-                Bits.shiftl(ref uint64(ref lhs), rhs);
+                shiftl(ref uint64(ref lhs), rhs);
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -101,22 +101,19 @@ namespace Z0
             where T : struct
                 => shiftl(lhs, (int)rhs);
 
-
-
- 
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec128<S> shiftl<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
             where S : struct
             where T : struct
         {
             if(typeof(S) == typeof(int))
-                return generic<S>(Bits.shiftl(in int32(in lhs), in uint32(in shifts)));
+                return generic<S>(Bits.sllv(in int32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(uint)) 
-                return generic<S>(Bits.shiftl(in uint32(in lhs), in uint32(in shifts)));
+                return generic<S>(Bits.sllv(in uint32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(long))
-                return generic<S>(Bits.shiftl(in int64(lhs), in uint64(in shifts)));
+                return generic<S>(Bits.sllv(in int64(lhs), in uint64(in shifts)));
             else if(typeof(S) == typeof(ulong))
-                return generic<S>(Bits.shiftl(in uint64(lhs), in uint64(in shifts)));
+                return generic<S>(Bits.sllv(in uint64(lhs), in uint64(in shifts)));
             else
                 throw unsupported<S>();
         }
@@ -127,13 +124,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(S) == typeof(int))
-                return generic<S>(Bits.shiftl(in int32(in lhs), in uint32(in shifts)));
+                return generic<S>(Bits.sllv(in int32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(uint)) 
-                return generic<S>(Bits.shiftl(in uint32(in lhs), in uint32(in shifts)));
+                return generic<S>(Bits.sllv(in uint32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(long))
-                return generic<S>(Bits.shiftl(in int64(lhs), in uint64(in shifts)));
+                return generic<S>(Bits.sllv(in int64(lhs), in uint64(in shifts)));
             else if(typeof(S) == typeof(ulong))
-                return generic<S>(Bits.shiftl(in uint64(lhs), in uint64(in shifts)));
+                return generic<S>(Bits.sllv(in uint64(lhs), in uint64(in shifts)));
             else
                 throw unsupported<S>();
         }
@@ -143,17 +140,17 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                return generic<T>(Bits.shiftlw(in int16(in lhs), count));
+                return generic<T>(Bits.bslli(in int16(in lhs), count));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.shiftlw(in uint16(in lhs), count));
+                return generic<T>(Bits.bslli(in uint16(in lhs), count));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.shiftlw(in int32(in lhs), count));
+                return generic<T>(Bits.bslli(in int32(in lhs), count));
             else if(typeof(T) == typeof(uint)) 
-                return generic<T>(Bits.shiftlw(in uint32(in lhs), count));
+                return generic<T>(Bits.bslli(in uint32(in lhs), count));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.shiftlw(in int64(in lhs), count));
+                return generic<T>(Bits.bslli(in int64(in lhs), count));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.shiftlw(in uint64(in lhs), count));
+                return generic<T>(Bits.bslli(in uint64(in lhs), count));
             else
                 throw unsupported<T>();
         }
@@ -163,17 +160,17 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                return generic<T>(Bits.shiftlw(in int16(in lhs), count));
+                return generic<T>(Bits.bslli(in int16(in lhs), count));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.shiftlw(in uint16(in lhs), count));
+                return generic<T>(Bits.bslli(in uint16(in lhs), count));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.shiftlw(in int32(in lhs), count));
+                return generic<T>(Bits.bslli(in int32(in lhs), count));
             else if(typeof(T) == typeof(uint)) 
-                return generic<T>(Bits.shiftlw(in uint32(in lhs), count));
+                return generic<T>(Bits.bslli(in uint32(in lhs), count));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.shiftlw(in int64(in lhs), count));
+                return generic<T>(Bits.bslli(in int64(in lhs), count));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.shiftlw(in uint64(in lhs), count));
+                return generic<T>(Bits.bslli(in uint64(in lhs), count));
             else
                 throw unsupported<T>();
         }
@@ -272,6 +269,62 @@ namespace Z0
 
         }
 
+
+        [MethodImpl(Inline)]
+        static ref sbyte shiftl(ref sbyte lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref byte shiftl(ref byte lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref short shiftl(ref short lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref ushort shiftl(ref ushort lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref int shiftl(ref int lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref uint shiftl(ref uint lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref long shiftl(ref long lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        static ref ulong shiftl(ref ulong lhs, int rhs)
+        {
+            lhs <<= rhs;
+            return ref lhs;
+        }
 
    }
 }

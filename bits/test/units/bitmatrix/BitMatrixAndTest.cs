@@ -35,7 +35,7 @@ namespace Z0.Test
 
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
-                var zBytes = xBytes.XOr(yBytes);
+                var zBytes = gbits.xor(xBytes, yBytes);
                 var expect = BitMatrix4.Define(zBytes);
 
                 var actual = x + y;

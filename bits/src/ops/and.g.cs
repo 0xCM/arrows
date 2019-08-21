@@ -12,36 +12,12 @@ namespace Z0
     using static As;
     using static AsIn;
     
-
     partial class gbits
     {
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
         public static T and<T>(T lhs, T rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(lhs) & int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(lhs) & uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(lhs) & int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(lhs) & uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(int32(lhs) & int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(lhs) & uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(int64(lhs) & int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) & uint64(rhs));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(math.and(float32(lhs), float32(rhs)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(math.and(float64(lhs), float64(rhs)));
-            else            
-                throw unsupported<T>();
-        }           
+                => gmath.and(lhs,rhs);
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref T and<T>(ref T lhs, in T rhs)
@@ -140,75 +116,7 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        /// <summary>
-        /// Computes the bitwise and between two input vectors and stores the result
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="dst">The storage target</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static void and<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                Bits.and(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                Bits.and(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                Bits.and(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                Bits.and(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                Bits.and(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                Bits.and(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                Bits.and(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                Bits.and(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                Bits.and(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                Bits.and(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-        }
         
-        /// <summary>
-        /// Computes the bitwise and btween two input vectors and stores the result
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="dst">The storage target</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static void and<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
-            where T : struct
-        {
-            if (typeof(T) == typeof(sbyte))
-                Bits.and(int8(lhs), int8(rhs), ref int8(ref dst));
-            else if (typeof(T) == typeof(byte))
-                Bits.and(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
-            else if (typeof(T) == typeof(short))
-                Bits.and(int16(lhs), int16(rhs), ref int16(ref dst));
-            else if (typeof(T) == typeof(ushort))
-                Bits.and(uint16(lhs), uint16(rhs), ref uint16(ref dst));
-            else if(typeof(T) == typeof(int))
-                Bits.and(int32(lhs), int32(rhs), ref int32(ref dst));
-            else if(typeof(T) == typeof(uint))
-                Bits.and(uint32(lhs), uint32(rhs), ref uint32(ref dst));
-            else if(typeof(T) == typeof(long))
-                Bits.and(int64(lhs), int64(rhs), ref int64(ref dst));
-            else if(typeof(T) == typeof(ulong))
-                Bits.and(uint64(lhs), uint64(rhs), ref uint64(ref dst));
-            else if(typeof(T) == typeof(float))
-                Bits.and(float32(lhs), float32(rhs), ref float32(ref dst));
-            else if(typeof(T) == typeof(double))
-                Bits.and(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported<T>();
-        }
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> and<T>(ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)

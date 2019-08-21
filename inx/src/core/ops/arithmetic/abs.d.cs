@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static System.Runtime.Intrinsics.X86.Avx2;
-    using static System.Runtime.Intrinsics.X86.Sse3;
     using static System.Runtime.Intrinsics.X86.Ssse3;
 
     using static zfunc;    
@@ -30,6 +29,13 @@ namespace Z0
             => Abs(src);
 
         [MethodImpl(Inline)]
+        public static Vec128<long> abs(Vec128<long> src)
+        {
+            var mask = negate(srli(src, 31));                        
+            return sub(xor(mask, src), mask);
+        }
+
+        [MethodImpl(Inline)]
         public static Vec256<byte> abs(in Vec256<sbyte> src)
             => Abs(src);
 
@@ -39,33 +45,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<uint> abs(in Vec256<int> src)
-            => Abs(src);
+            => Abs(src);        
  
         [MethodImpl(Inline)]
-        public static void abs(in Vec128<sbyte> src, ref sbyte dst)
-            => Abs(src);
-
-        [MethodImpl(Inline)]
-        public static void abs(in Vec128<short> src, ref short dst)
-            => Abs(src);
-
-        [MethodImpl(Inline)]
-        public static void abs(in Vec128<int> src, ref uint dst)
-            => vstore(abs(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void abs(in Vec256<sbyte> src, ref byte dst)
-            => vstore(abs(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void abs(in Vec256<short> src, ref ushort dst)
-            => vstore(abs(src), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void abs(in Vec256<int> src, ref uint dst)
-            => vstore(abs(src), ref dst);
- 
-
+        public static Vec256<long> abs(Vec256<long> src)
+        {
+            var mask = negate(srli(src, 63));                        
+            return sub(xor(mask, src), mask);
+        }
     }
 
 }

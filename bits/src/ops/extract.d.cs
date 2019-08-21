@@ -33,6 +33,17 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
+        public static byte extract(in sbyte src, in byte mask)        
+            => (byte)Bmi2.ParallelBitExtract((uint)src,mask);
+
+        /// <summary>
+        /// Extracts bits from a source at the corresponding bit 
+        /// locations specified by mask to contiguous low bits in dst; the remaining 
+        /// upper bits in dst are set to zero.
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="mask">The extraction mask</param>
+        [MethodImpl(Inline)]
         public static ushort extract(in ushort src, in ushort mask)        
             => (ushort)Bmi2.ParallelBitExtract(src,mask);
 
@@ -44,8 +55,28 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
+        public static uint extract(in int src, in uint mask)        
+            => Bmi2.ParallelBitExtract((uint)src,mask);
+
+        /// <summary>
+        /// Extracts bits from a source at the corresponding bit 
+        /// locations specified by mask to contiguous low bits in dst; the remaining 
+        /// upper bits in dst are set to zero.
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="mask">The extraction mask</param>
+        [MethodImpl(Inline)]
         public static uint extract(in uint src, in uint mask)        
             => Bmi2.ParallelBitExtract(src,mask);
+
+        /// <summary>
+        /// Extracts mask-identified bits from the source 
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="mask">The extraction mask</param>
+        [MethodImpl(Inline)]
+        public static ulong extract(in long src, in ulong mask)        
+            => Bmi2.X64.ParallelBitExtract((ulong)src,mask);
 
         /// <summary>
         /// Extracts mask-identified bits from the source 
@@ -76,7 +107,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static byte extract(in byte src, in byte start, in byte length)        
             => (byte)Bmi1.BitFieldExtract(src, start, length);
-
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source

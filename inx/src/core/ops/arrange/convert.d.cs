@@ -18,12 +18,12 @@ namespace Z0
     partial class dinx
     {
         
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>__m128i _mm_cvtepi8_epi16 (__m128i a) PMOVSXBW xmm, xmm/m64</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<short> convert(in Vec128<sbyte> src, out Vec128<short> dst)
             => dst = ConvertToVector128Int16(src);
         
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>__m128i _mm_cvtepi8_epi32 (__m128i a) PMOVSXBD xmm, xmm/m32</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<int> convert(in Vec128<sbyte> src, out Vec128<int> dst)
             => dst = ConvertToVector128Int32(src);
@@ -39,7 +39,7 @@ namespace Z0
         public static Vec128<long> convert(in Vec128<sbyte> src, out Vec128<long> dst)
             => dst = ConvertToVector128Int64(src);
 
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>__m128i _mm_cvtepu8_epi16 (__m128i a) PMOVZXBW xmm, xmm/m64</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<short> convert(in Vec128<byte> src, out Vec128<short> dst)
             =>  dst =ConvertToVector128Int16(src);
@@ -83,7 +83,7 @@ namespace Z0
            return ref dst;
         }
 
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>__m128i _mm_cvtepi32_epi64 (__m128i a) PMOVSXDQ xmm, xmm/m64</intrinsic>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<int> src, out Vec128<long> dst)
         {
@@ -91,7 +91,7 @@ namespace Z0
            return ref dst;
         }
 
-        /// <intrinsic></intrinsic>
+        /// <intrinsic> __m128i _mm_cvtepu32_epi64 (__m128i a) PMOVZXDQ xmm, xmm/m64</intrinsic>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<uint> src, out Vec128<long> dst)
         {
@@ -100,8 +100,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sign-extends packed 8-bit integers in the source vector to packed 
-        /// 16-bit integers in the target vector 
+        /// Sign-extends packed 8-bit integers in the source vector to packed 16-bit integers in the target vector  
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -114,8 +113,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sign-extends packed 8-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Sign-extends packed 8-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -126,6 +124,7 @@ namespace Z0
             return ref dst;
         }
 
+        /// <intrinsic>__m256i _mm256_cvtepi8_epi64 (__m128i a) VPMOVSXBQ ymm, xmm/m128</intrinsic>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<sbyte> src, out Vec256<long> dst)
         {
@@ -134,8 +133,7 @@ namespace Z0
         }
         
         /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 16-bit integers in the target vector 
+        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 16-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -148,8 +146,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 16-bit integers in the target vector 
+        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 16-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -162,8 +159,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -176,8 +172,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -189,10 +184,8 @@ namespace Z0
             return ref dst;
         }
 
-
         /// <summary>
-        /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 64-bit integers in the target vector 
+        /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -205,8 +198,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 
-        /// 64-bit integers in the target vector 
+        /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -218,8 +210,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sign-extends packed 16-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Sign-extends packed 16-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -231,8 +222,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sign-extends packed 32-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Sign-extends packed 32-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -285,8 +275,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 
-        /// 64-bit integers in the target vector 
+        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -298,8 +287,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 
-        /// 64-bit integers in the target vector 
+        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -310,6 +298,11 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Zero-extends packed unsigned 32-bit integers in the source vector to packed 64-bit integers in the target vector 
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<uint> src, out Vec256<long> dst)
         {
@@ -323,6 +316,5 @@ namespace Z0
             dst = ConvertToVector256Int64(src).AsUInt64();
             return ref dst;
         }
-
     }
 }
