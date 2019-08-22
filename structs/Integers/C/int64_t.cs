@@ -11,31 +11,21 @@ namespace Z0
     using prim = System.Int64;
     using analog = int64_t;
 
-    public ref struct int64_t 
+    public struct int64_t 
     {
+
         prim data;
+
+        public static readonly analog zero = 0;
+
+        public static readonly analog one = 1;
+
+        public const int bitsize = 64;
+        
 
         [MethodImpl(Inline)]    
         public int64_t(prim x)
             => data =x;
-
-        public static analog zero 
-        {
-            [MethodImpl(Inline)]
-            get{return 0;}
-        }
-
-        public static analog one 
-        {
-            [MethodImpl(Inline)]
-            get{return 1;}
-        }
-
-        public int bitsize
-        {
-            [MethodImpl(Inline)]
-            get{return 64;}
-        }
 
         [MethodImpl(Inline)]    
         public static analog @bool(bool x)

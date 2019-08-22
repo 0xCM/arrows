@@ -13,6 +13,7 @@
     <ProjectReference Include="../../matrix/src/z0.matrix.csproj" />    
     <ProjectReference Include="../../random/z0.random.csproj" />
     <ProjectReference Include="../../inx/src/core/z0.inx.core.csproj" />
+    <ProjectReference Include="../../inx/src/dsl/z0.inx.dsl.csproj" />
     <ProjectReference Include="../src/z0.bits.csproj" />
 
   </ItemGroup>

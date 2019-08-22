@@ -126,6 +126,14 @@ namespace Z0
             => new BitString(src);
 
         /// <summary>
+        /// Constructs a bitstring bitstream
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString FromBits(IEnumerable<Bit> src)                
+            => new BitString(src.ToArray());
+
+        /// <summary>
         /// Assembles a bistring given parts ordered from lo to hi
         /// </summary>
         /// <param name="parts">The source parts</param>

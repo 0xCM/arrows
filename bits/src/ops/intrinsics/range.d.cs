@@ -9,8 +9,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     using Z0;
  
-    using static zfunc;
-    
+    using static zfunc;    
 
     partial class Bits
     {                        

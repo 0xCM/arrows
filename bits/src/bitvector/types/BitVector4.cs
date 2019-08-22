@@ -268,6 +268,13 @@ namespace Z0
         public BitVector4 Msb(int n)                
             => Between(LastPos - n, LastPos);                
 
+        /// <summary>
+        /// Extracts the scalar value enclosed by the vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public UInt4 ToScalar()
+            => data;
+
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);

@@ -34,6 +34,14 @@ namespace Z0.Test
             this.Config = config ?? TestConfigDefaults.Default();
         }
 
+        protected const int DefaltCycleCount = Pow2.T03;
+
+        protected const int DefaultSampleSize = Pow2.T08;
+
+        protected static readonly N256 DefaultSampleNat = default;
+
+        protected const int DefaultScale = 4;
+
         public ITestConfig Config {get; private set;}
 
         protected override bool TraceEnabled
@@ -52,6 +60,22 @@ namespace Z0.Test
                 ? Random.NonZeroArray<K>(config.SampleSize, config.SampleDomain) 
                 : Random.Array<K>(config.SampleSize, config.SampleDomain);
         }
+
+        protected void Verify(Action a, int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i< cycles; i++)
+                a();
+
+        }
+
+        protected virtual int Samples
+            => DefaultSampleSize;
+        
+        public virtual int Cycles
+            => DefaltCycleCount;
+
+        public virtual int Scale
+            => DefaultScale;
 
         protected void VerifyOp<K>(OpKind opKind, UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)

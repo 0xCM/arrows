@@ -259,7 +259,7 @@ namespace Z0
         {
             this.LoadVector(out Vec256<ushort> vLhs);
             rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.AndNot(vRhs, ref bits[0]);
+            vLhs.AndNot(vRhs).StoreTo(ref bits[0]);
             return this;
         }
 
@@ -328,7 +328,7 @@ namespace Z0
         {
             lhs.LoadVector(out Vec256<ushort> vLhs);
             rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.And(vRhs, ref lhs.bits[0]);
+            vLhs.And(vRhs).StoreTo(ref lhs.bits[0]);
             return ref lhs;
         }
 
@@ -337,7 +337,7 @@ namespace Z0
         {
             lhs.LoadVector(out Vec256<ushort> vLhs);
             rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.Or(vRhs, ref lhs.bits[0]);
+            vLhs.Or(vRhs).StoreTo(ref lhs.bits[0]);
             return ref lhs;
         }
 
@@ -346,7 +346,7 @@ namespace Z0
         {
             lhs.LoadVector(out Vec256<ushort> vLhs);
             rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.XOr(vRhs, ref lhs.bits[0]);
+            vLhs.XOr(vRhs).StoreTo(ref lhs.bits[0]);
             return ref lhs;
         }
 
@@ -354,7 +354,7 @@ namespace Z0
         static ref BitMatrix16 Flip(ref BitMatrix16 src)
         {
             src.LoadVector(out Vec256<ushort> vSrc);
-            vSrc.Flip(ref src.bits[0]);
+            vSrc.Flip().StoreTo(ref src.bits[0]);
             return ref src;
         }
 

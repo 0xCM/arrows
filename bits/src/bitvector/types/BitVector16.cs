@@ -40,8 +40,24 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector16 FromScalar(in ushort src)
+        public static BitVector16 FromScalar(ushort src)
             => new BitVector16(src);    
+
+        /// <summary>
+        /// Loads a vector from a primal source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 FromScalar(uint src)
+            => new BitVector16((ushort)src);    
+
+        /// <summary>
+        /// Loads a vector from a primal source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 FromScalar(int src)
+            => new BitVector16((ushort)src);    
 
         /// <summary>
         /// Creates a vector from a bitstring
@@ -52,8 +68,8 @@ namespace Z0
             => new BitVector16(src.TakeUInt16());    
 
         [MethodImpl(Inline)]
-        public static BitVector16 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(in pack(src, out ushort dst));
+        public static BitVector16 Load(ReadOnlySpan<Bit> src)
+            => FromScalar(pack(src, out ushort dst));
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N16,ushort>(BitVector16 src)
@@ -363,6 +379,18 @@ namespace Z0
             data = Bits.rev(data);
         }
 
+        /// <summary>
+        /// Rearranges the vector in-place as specified by a permutation
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public void Permute(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            data = Bits.deposit(data,mask);
+        }
 
         [MethodImpl(Inline)]
         public bool AllOnes()
@@ -378,6 +406,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => data.ToBitString();
+
+        /// <summary>
+        /// Extracts the scalar value enclosed by the vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public ushort ToScalar()
+            => data;
 
         [MethodImpl(Inline)]
         public bool Equals(BitVector16 rhs)

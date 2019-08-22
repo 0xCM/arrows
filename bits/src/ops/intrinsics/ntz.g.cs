@@ -13,7 +13,7 @@ namespace Z0
  
     using static zfunc;
     using static As;
-
+    using static AsIn;
 
     partial class gbits
     {
@@ -22,21 +22,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                 return Bits.ntz(AsIn.int8(in asRef(in src)));
+                 return Bits.ntz(int8(in asRef(in src)));
             else if(typeof(T) == typeof(byte))
-                 return Bits.ntz(AsIn.uint8(in asRef(in src)));
+                 return Bits.ntz(uint8(in asRef(in src)));
             else if(typeof(T) == typeof(short))
-                 return Bits.ntz(AsIn.int16(in asRef(in src)));
+                 return Bits.ntz(int16(in asRef(in src)));
             else if(typeof(T) == typeof(ushort))
-                 return Bits.ntz(AsIn.uint16(in asRef(in src)));
+                 return Bits.ntz(uint16(in asRef(in src)));
             else if(typeof(T) == typeof(int))
-                 return Bits.ntz(AsIn.int32(in asRef(in src)));
+                 return Bits.ntz(int32(in asRef(in src)));
             else if(typeof(T) == typeof(uint))
-                 return Bits.ntz(AsIn.uint32(in asRef(in src)));
+                 return Bits.ntz(uint32(in asRef(in src)));
             else if(typeof(T) == typeof(long))
-                 return Bits.ntz(AsIn.int64(in asRef(in src)));
+                 return Bits.ntz(int64(in asRef(in src)));
             else if(typeof(T) == typeof(ulong))
-                 return Bits.ntz(AsIn.uint64(in asRef(in src)));
+                 return Bits.ntz(uint64(in asRef(in src)));
             else 
                 throw unsupported<T>();
         }

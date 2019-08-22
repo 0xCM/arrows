@@ -258,8 +258,6 @@ namespace Z0
             return lhs;                
         }
 
-
-
         public static Span128<int> ShiftR(this ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
         {
             var width = dst.BlockWidth;

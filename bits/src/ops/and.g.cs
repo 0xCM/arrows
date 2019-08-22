@@ -115,9 +115,7 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
-
-        
-
+    
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref readonly Span<T> and<T>(ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct

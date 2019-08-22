@@ -10,6 +10,7 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
 
     using static zfunc;
+    using static Nats;
 
     public class BitShiftTest : UnitTest<BitShiftTest>
     {
@@ -174,7 +175,7 @@ namespace Z0.Test
             //Create a stagger between the two truncated vectors so that
             //they can be interleaved with blend
             var shB = Bits.bslli(trB.As<ushort>(), 1).As<byte>();
-            var result = dinx.blend(trA, shB, BlendAltMask<byte>());
+            var result = dinx.blendv(trA, shB, BlendAltMask<byte>());
 
 
 
@@ -369,38 +370,7 @@ namespace Z0.Test
             return result;
         }
 
-        void gfmul (Vec128<ulong> a, Vec128<ulong> b, ref Vec128<ulong> dst)
-        {
-        
-         var tmp3 = dinx.clmul(a, b, 0x00);
-         var tmp4 = dinx.clmul(a, b, 0x10);
-         var tmp5 = dinx.clmul(a, b, 0x01);
-         var tmp6 = dinx.clmul(a, b, 0x11);
-         tmp4 = dinx.xor(tmp4, tmp5);
-         tmp5 = dinx.slli(tmp4, 8);
-         tmp4 = dinx.srli(tmp4, 8);
-        //  tmp3 = dinx.xor(tmp3, tmp5);
-        //  tmp6 = dinx.xor(tmp6, tmp4);
-        //  var tmp7 = dinx.srli(tmp3.As<uint>(), 31);
-        //  var tmp8 = dinx.srli(tmp6.As<uint>(), 31);
-        //  tmp3 = _mm_slli_epi32(tmp3, 1);
-        //  tmp6 = _mm_slli_epi32(tmp6, 1);
-        //  tmp9 = _mm_srli_si128(tmp7, 12);
-        //  tmp8 = _mm_slli_si128(tmp8, 4);
-        //  tmp7 = _mm_slli_si128(tmp7, 4);
-        //  tmp3 = dinx.or(tmp3, tmp7);
-        //  tmp6 = dinx.or(tmp6, tmp8);
-        //  tmp6 = dinx.or(tmp6, tmp9);
-        //  tmp7 = _mm_slli_epi32(tmp3, 31);
-        //  tmp8 = _mm_slli_epi32(tmp3, 30);
-        //  tmp9 = _mm_slli_epi32(tmp3, 25);
-        //  tmp7 = _mm_xor_si128(tmp7, tmp8);
-        //  tmp7 = _mm_xor_si128(tmp7, tmp9);
-        //  tmp8 = _mm_srli_si128(tmp7, 4);
-        //  tmp7 = _mm_slli_si128(tmp7, 12);
-        //  tmp3 = _mm_xor_si128(tmp3, tmp7);        
-        }
-        public void TestGf()
+        void TestGf()
         {
             var w = 8;
             BitVector8 bv0 = Pow2.T00;
@@ -427,9 +397,56 @@ namespace Z0.Test
 
             Trace($" {bv5} * {bv6} (gf) = {gfmul(bv5,bv6,w)}");
             Trace($" {bv5} * {bv6} (cl) = {dinx.clmul(bv5,bv6).ToBitVector()}");            
-
         }
 
+
+
+        public void TestSmdGf()
+        {
+            /*
+            0000000200000000 0000000400000000
+            0000000800000000 0000000600000000
+            0000000000000004 6000000000000058
+             */
+
+            var v1 = Vec128.FromParts(2ul,4ul);
+            var v2 = Vec128.FromParts(8ul,6ul);
+            var v3 = gf.gfmul(v1,v2).ToVector128<ulong>();
+            Trace(() => v1);
+            Trace(() => v2);
+            Trace(() => v3);
+        }
+
+        BitVector16 PolyMul(BitVector8 x, BitVector8 y)
+        {
+            var dst = BitVector16.Zero;
+            for(var k=0; k<dst.Length; k++)
+            {
+                Bit prod = 0;
+                for(var i=k; i< y.Length; i++)
+                    prod ^= x[i] & y[i];
+                dst[k] = prod;
+            }
+            return dst;
+            
+        }
+
+        public void Irreducible()
+        {
+
+            var x = BitVector8.FromScalar(0b11001100);
+            var y = BitVector8.Zero;
+            BitVector16 r = Gf256.Irreducible[0];
+            
+            while(++y != 0)
+            {
+                var p1 = x * y;
+                var p3 = PolyMul(x,y);// ^ r;
+                Trace($"{p1} =?= {p3}");
+                
+            }
+
+        }
     }
 
 }

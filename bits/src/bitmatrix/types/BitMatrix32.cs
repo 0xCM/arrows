@@ -310,7 +310,7 @@ namespace Z0
             {
                 this.LoadVector(out Vec256<uint> vLhs, i);
                 rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.AndNot(vRhs, ref bits[i]);                
+                vLhs.AndNot(vRhs).StoreTo(ref bits[i]);
             }
             return this;
         }
@@ -382,7 +382,7 @@ namespace Z0
             {
                 lhs.LoadVector(out Vec256<uint> vLhs, i);
                 rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.And(vRhs, ref lhs.bits[i]);                
+                vLhs.And(vRhs).StoreTo(ref lhs.bits[i]);                
             }
             return ref lhs;
         }
@@ -394,7 +394,7 @@ namespace Z0
             {
                 lhs.LoadVector(out Vec256<uint> vLhs, i);
                 rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.Or(vRhs, ref lhs.bits[i]);                
+                vLhs.Or(vRhs).StoreTo(ref lhs.bits[i]);                
             }
             return ref lhs;
         }
@@ -406,7 +406,7 @@ namespace Z0
             {
                 lhs.LoadVector(out Vec256<uint> vLhs, i);
                 rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.XOr(vRhs, ref lhs.bits[i]);                
+                vLhs.XOr(vRhs).StoreTo(ref lhs.bits[i]);                
             }
             return ref lhs;
         }
@@ -417,7 +417,7 @@ namespace Z0
             for(var i=0; i< src.RowCount; i += rowstep)
             {
                 src.LoadVector(out Vec256<uint> vSrc, i);
-                vSrc.Flip(ref src.bits[i]);
+                vSrc.Flip().StoreTo(ref src.bits[i]);
             }
             return ref src;
         }

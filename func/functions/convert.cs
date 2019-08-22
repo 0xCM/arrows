@@ -180,6 +180,11 @@ partial class zfunc
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
+    public static T convert<T>(char src)
+        where T : struct
+            => Converter.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
     public static Span<T> convert<T>(ReadOnlySpan<double> src)
         where T : struct
             => convert<double,T>(src);

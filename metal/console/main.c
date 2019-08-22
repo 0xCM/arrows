@@ -39,8 +39,19 @@ int TestOps()
     return 0;
 }
 
+int TestGf()
+{
+    __m128i a = _mm_set_epi32(2,0,4,0);
+    __m128i b = _mm_set_epi32(8,0,6,0);
+    __m128i c = gfmul(a,b);
+    print128(a);
+    print128(b);
+    print128(c);
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
 
-
+    TestGf();
 }

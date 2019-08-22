@@ -21,31 +21,33 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static ulong nlz(in byte src)
-            => nlz((ushort)src) - 8;
+        public static byte nlz(in byte src)
+            => (byte)(Lzcnt.LeadingZeroCount(src) - 24);
 
         /// <summary>
         /// Counts the number of leading zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static uint nlz(in ushort src)
-            => (Lzcnt.LeadingZeroCount(src) - 16);
+        public static byte nlz(in ushort src)
+            => (byte)(Lzcnt.LeadingZeroCount(src) - 16);
 
         /// <summary>
+        /// _lzcnt_u32
         /// Counts the number of 0 bits prior to the first most significant 1 bit
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ulong nlz(in uint src)
-            => Lzcnt.LeadingZeroCount(src);
+        public static byte nlz(in uint src)
+            => (byte)Lzcnt.LeadingZeroCount(src);
 
         /// <summary>
+        /// _lzcnt_u64:
         /// Counts the number of 0 bits prior to the first most significant 1 bit
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ulong nlz(in ulong src)
-            => Lzcnt.X64.LeadingZeroCount(src);
+        public static byte nlz(in ulong src)
+            => (byte)Lzcnt.X64.LeadingZeroCount(src);
     }
 }

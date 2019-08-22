@@ -57,7 +57,6 @@ namespace Z0
         public static void range<T>(in T src, BitPos i0, BitPos i1, Span<byte> dst, int offset)
             where T : struct
                 => bytes(gbits.range(src,i0,i1)).Slice(0, ByteCount(i0,i1)).CopyTo(dst,offset);                 
-
         
         [MethodImpl(Inline)]
         static ByteSize ByteCount(BitPos i0, BitPos i1)

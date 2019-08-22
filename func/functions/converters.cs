@@ -41,6 +41,8 @@ namespace Z0
                     convert(float32(src), out dst);
             else if(typeof(S) == typeof(double))
                     convert(float64(src), out dst);
+            else if(typeof(S) == typeof(char))
+                    convert(char16(src), out dst);
             else            
                 throw unsupported<T>();
                             
@@ -87,6 +89,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -117,6 +121,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -147,6 +153,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -177,6 +185,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -207,6 +217,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -237,6 +249,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -268,6 +282,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -299,6 +315,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -329,6 +347,8 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -359,6 +379,40 @@ namespace Z0
                   dst = generic<T>(convert(src, out float x));
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
+            else            
+                throw unsupported<T>();
+
+           return dst;            
+        }
+
+        [MethodImpl(Inline)]
+        public static T convert<T>(char src, out T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else if(typeof(T) == typeof(char))
+                  dst = generic<T>(convert(src, out char x));
             else            
                 throw unsupported<T>();
 
@@ -407,6 +461,10 @@ namespace Z0
         static double convert(sbyte src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(sbyte src, out char dst)
+            => dst = (char)src;
+
         #endregion            
 
         #region uint8 => X
@@ -450,6 +508,10 @@ namespace Z0
         [MethodImpl(Inline)]
         static double convert(byte src, out double dst)
             => dst = (double)src;
+
+        [MethodImpl(Inline)]
+        static char convert(byte src, out char dst)
+            => dst = (char)src;
 
         #endregion            
 
@@ -495,6 +557,10 @@ namespace Z0
         static double convert(short src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(short src, out char dst)
+            => dst = (char)src;
+
         #endregion            
 
         #region uint16 => X
@@ -538,6 +604,10 @@ namespace Z0
         [MethodImpl(Inline)]
         static double convert(ushort src, out double dst)
             => dst = (double)src;
+
+        [MethodImpl(Inline)]
+        static char convert(ushort src, out char dst)
+            => dst = (char)src;
 
         #endregion            
 
@@ -583,6 +653,10 @@ namespace Z0
         static double convert(int src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(int src, out char dst)
+            => dst = (char)src;
+
         #endregion            
  
         #region uint32 => X
@@ -626,6 +700,10 @@ namespace Z0
         [MethodImpl(Inline)]
         static double convert(uint src, out double dst)
             => dst = (double)src;
+
+        [MethodImpl(Inline)]
+        static char convert(uint src, out char dst)
+            => dst = (char)src;
 
         #endregion            
  
@@ -671,6 +749,10 @@ namespace Z0
         static double convert(long src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(long src, out char dst)
+            => dst = (char)src;
+
         #endregion            
 
         #region uint64 => X
@@ -714,6 +796,10 @@ namespace Z0
         [MethodImpl(Inline)]
         static double convert(ulong src, out double dst)
             => dst = (double)src;
+
+        [MethodImpl(Inline)]
+        static char convert(ulong src, out char dst)
+            => dst = (char)src;
 
         #endregion            
 
@@ -759,6 +845,10 @@ namespace Z0
         static double convert(float src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(float src, out char dst)
+            => dst = (char)src;
+
         #endregion            
 
         #region float64 => X
@@ -803,7 +893,57 @@ namespace Z0
         static double convert(double src, out double dst)
             => dst = (double)src;
 
+        [MethodImpl(Inline)]
+        static char convert(double src, out char dst)
+            => dst = (char)src;
+        
         #endregion            
+
+        #region char => X
+
+        [MethodImpl(Inline)]
+        static sbyte convert(char src, out sbyte dst)
+            => dst = (sbyte)src;
+
+        [MethodImpl(Inline)]
+        static byte convert(char src, out byte dst)
+            => dst = (byte)src;
+
+        [MethodImpl(Inline)]
+        static short convert(char src, out short dst)
+            => dst = (short)src;
+
+        [MethodImpl(Inline)]
+        static ushort convert(char src, out ushort dst)
+            => dst = (ushort)src;
+
+        [MethodImpl(Inline)]
+        static int convert(char src, out int dst)
+            => dst = (int)src;
+
+        [MethodImpl(Inline)]
+        static uint convert(char src, out uint dst)
+            => dst = (uint)src;
+
+        [MethodImpl(Inline)]
+        static long convert(char src, out long dst)
+            => dst = (long)src;
+
+        [MethodImpl(Inline)]
+        static ulong convert(char src, out ulong dst)
+            => dst = (ulong)src;
+
+        [MethodImpl(Inline)]
+        static float convert(char src, out float dst)
+            => dst = (float)src;
+
+        [MethodImpl(Inline)]
+        static double convert(char src, out double dst)
+            => dst = (double)src;
+
+
+        #endregion
+
 
         # region helpers
  
@@ -888,6 +1028,15 @@ namespace Z0
             => ref Unsafe.As<T,double>(ref src);
 
         [MethodImpl(Inline)]
+        static char char16<T>(T src)        
+            => Unsafe.As<T,char>(ref src);
+
+        [MethodImpl(Inline)]
+        static ref char char16<T>(ref T src)        
+            => ref Unsafe.As<T,char>(ref src);
+
+
+        [MethodImpl(Inline)]
         static T generic<T>(sbyte src)
             => Unsafe.As<sbyte,T>(ref src);
 
@@ -968,6 +1117,13 @@ namespace Z0
         public static ref T generic<T>(ref double src)
             => ref Unsafe.As<double,T>(ref src);
 
+        [MethodImpl(Inline)]
+        public static T generic<T>(char src)
+            => Unsafe.As<char,T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(ref char src)
+            => ref Unsafe.As<char,T>(ref src);
 
         #endregion
  

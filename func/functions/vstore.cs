@@ -202,7 +202,6 @@ partial class zfunc
     public static unsafe void vstore(in Vector256<double> src, ref double dst)
         => Store(refptr(ref dst),src);            
 
-
     /// <summary>
     /// Stores vector content to a memory location
     /// </summary>

@@ -48,40 +48,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> AndNot(this Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => Bits.andnot(in lhs, in rhs);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec128<sbyte> AndNot(this Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => Bits.andnot(in lhs, in rhs);
 
@@ -113,37 +81,6 @@ namespace Z0
         public static Vec128<ulong> AndNot(this Vec128<ulong> lhs, in Vec128<ulong> rhs)
             => Bits.andnot(in lhs, in rhs);
 
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
-
-        [MethodImpl(Inline)]
-        public static void AndNot(this Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
-            => Bits.andnot(in lhs, in rhs, ref dst);
  
     }
 }

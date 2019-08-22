@@ -36,6 +36,10 @@ namespace Z0
                 return Bits.testc(in int64(in lhs), int64(in rhs));
             else if(typeof(T) == typeof(ulong))
                 return Bits.testc(in uint64(in lhs), uint64(in rhs));
+            else if(typeof(T) == typeof(float))
+                return Bits.testc(in float32(in lhs), float32(in rhs));
+            else if(typeof(T) == typeof(double))
+                return Bits.testc(in float64(in lhs), float64(in rhs));
             else 
                 throw unsupported<T>();
         }
@@ -60,6 +64,10 @@ namespace Z0
                 return Bits.testc(in int64(in lhs), int64(in rhs));
             else if(typeof(T) == typeof(ulong))
                 return Bits.testc(in uint64(in lhs), uint64(in rhs));
+            else if(typeof(T) == typeof(float))
+                return Bits.testc(in float32(in lhs), float32(in rhs));
+            else if(typeof(T) == typeof(double))
+                return Bits.testc(in float64(in lhs), float64(in rhs));
             else 
                 throw unsupported<T>();
         }

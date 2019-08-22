@@ -375,6 +375,19 @@ namespace Z0
             return packed.Length != 0 ? SpanConvert.TakeSingle<byte,T>(packed) : default;
         }
 
+        /// <summary>
+        /// Projects the bitstring onto a span via a supplied transformation
+        /// </summary>
+        /// <param name="f">The transformation</param>
+        /// <typeparam name="T">The span element type</typeparam>
+        public Span<T> Map<T>(Func<Bit,T> f)
+        {
+            Span<T> dst = new T[Length];
+            for(var i=0; i<dst.Length; i++)
+                dst[i] = f(bitseq[i]);
+            return dst;
+        }
+
         [MethodImpl(Inline)]
         static bool HasBitSpecifier(in string bs)
         {

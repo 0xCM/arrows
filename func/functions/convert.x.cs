@@ -115,6 +115,16 @@ namespace Z0
                 => convert<T>(src);
 
         /// <summary>
+        /// Unconditionally converts the source value to the target type
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The target type</typeparam>
+        [MethodImpl(Inline)]
+        public static T Convert<T>(this char src)
+            where T : struct
+                => convert<T>(src);
+
+        /// <summary>
         /// Unconditionally converts the sources value to the target type
         /// </summary>
         /// <param name="src">The source value</param>
@@ -203,7 +213,16 @@ namespace Z0
         public static IEnumerable<T> Convert<T>(this IEnumerable<double> src)
             where T : struct            
                 => from item in src select convert<T>(item);
- 
+
+        /// <summary>
+        /// Unconditionally converts the sources value to the target type
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The target type</typeparam>
+        public static IEnumerable<T> Convert<T>(this IEnumerable<char> src)
+            where T : struct            
+                => from item in src select convert<T>(item);
+
         /// <summary>
         /// Converts values in the source to values of the target type
         /// </summary>

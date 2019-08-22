@@ -11,31 +11,18 @@ namespace Z0
     using prim = System.SByte;
     using analog = int8_t;
 
-    public ref struct int8_t
+    public struct int8_t
     {
         prim data;
+
+        public static readonly analog zero = 0;
+
+        public static readonly analog one = 1;
+
 
         [MethodImpl(Inline)]    
         public int8_t(prim x)
             => data =x;
-
-        public static analog zero 
-        {
-            [MethodImpl(Inline)]
-            get{return 0;}
-        }
-
-        public static analog one 
-        {
-            [MethodImpl(Inline)]
-            get{return 1;}
-        }
-
-        public int bitsize
-        {
-            [MethodImpl(Inline)]
-            get{return 8;}
-        }
 
         [MethodImpl(Inline)]    
         public static analog @bool(bool x)

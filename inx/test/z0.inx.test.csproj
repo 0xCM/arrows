@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../src/core/z0.inx.core.csproj" />
+    <ProjectReference Include="../src/dsl/z0.inx.dsl.csproj" />
 
     <ProjectReference Include="../../func/z0.zfunc.csproj" />
     <ProjectReference Include="../../nats/z0.nats.csproj" />

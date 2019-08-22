@@ -5,34 +5,32 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using static zfunc;
+    using System.Runtime.CompilerServices;    
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+    
+    using static zfunc;    
     using static As;
     using static AsIn;
+    
 
     partial class gbits
-    {        
-        /// <summary>
-        /// Counts the number of leading zero bits in the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
+    {
         [MethodImpl(Inline)]
-        public static ulong nlz<T>(in T src)
+        public static T andnot<T>(in T lhs, in T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                 return Bits.nlz(AsIn.uint8(in asRef(in src)));
+                return generic<T>(Bits.andnot(in uint8(in lhs), in uint8(in rhs)));
             else if(typeof(T) == typeof(ushort))
-                 return Bits.nlz(AsIn.uint16(in asRef(in src)));
+                return generic<T>(Bits.andnot(in uint16(in lhs), in uint16(in rhs)));
             else if(typeof(T) == typeof(uint))
-                 return Bits.nlz(AsIn.uint32(in asRef(in src)));
+                return generic<T>(Bits.andnot(in uint32(in lhs), in uint32(in rhs)));
             else if(typeof(T) == typeof(ulong))
-                 return Bits.nlz(AsIn.uint64(in asRef(in src)));
+                return generic<T>(Bits.andnot(in uint64(in lhs), in uint64(in rhs)));
             else 
                 throw unsupported<T>();
         }
-    }
 
+    }
 }

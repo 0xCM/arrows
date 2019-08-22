@@ -41,6 +41,25 @@ namespace Z0
         }
 
         /// <summary>
+        /// Produces a random bitstring with a specified length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The bitstring length</param>
+        [MethodImpl(Inline)]
+        public static BitString BitString(this IRandomSource random, int len)
+            => Z0.BitString.FromBits(random.Bits().Take(len));
+
+        /// <summary>
+        /// Produces a random bitstring with a specified natural length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The bitstring length</param>
+        [MethodImpl(Inline)]
+        public static BitString BitString<N>(this IRandomSource random, N n = default)
+            where N : ITypeNat, new()
+                => Z0.BitString.FromBits(random.Bits().Take((int)n.value));
+
+        /// <summary>
         /// Produces a random sequence of bitstrings with randomized length
         /// </summary>
         /// <param name="random">The random source</param>

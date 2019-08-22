@@ -299,6 +299,18 @@ namespace Z0
             data = Bits.rev(data);
         }
 
+        /// <summary>
+        /// Rearranges the vector in-place as specified by a permutation
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public void Permute(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            data = Bits.deposit(data,mask);
+        }
 
         /// <summary>
         /// Constructs a bitvector formed from the n lest significant bits of the current vector
@@ -362,6 +374,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => data.ToBitString();
+
+        /// <summary>
+        /// Extracts the scalar value enclosed by the vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public uint ToScalar()
+            => data;
 
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)

@@ -11,31 +11,18 @@ namespace Z0
     using prim = System.UInt16;
     using analog = uint16_t;
 
-    public ref struct uint16_t
+    public struct uint16_t
     {
         prim data;
+
+        public static readonly analog zero = 0;
+
+        public static readonly analog one = 1;
+
 
         [MethodImpl(Inline)]    
         public uint16_t(prim x)
             => data =x;
-
-        public static analog zero 
-        {
-            [MethodImpl(Inline)]
-            get{return 0;}
-        }
-
-        public static analog one 
-        {
-            [MethodImpl(Inline)]
-            get{return 1;}
-        }
-
-        public int bitsize
-        {
-            [MethodImpl(Inline)]
-            get{return 16;}
-        }
 
         [MethodImpl(Inline)]    
         public static analog @bool(bool x)

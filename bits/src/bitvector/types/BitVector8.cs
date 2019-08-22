@@ -17,6 +17,8 @@ namespace Z0
         byte data;
         
         public static readonly BitVector8 Zero = default;
+
+        public static readonly BitVector8 One = 1;
         
         public static readonly BitSize BitSize = 8;
 
@@ -113,6 +115,22 @@ namespace Z0
             => (byte)(lhs.data | rhs.data);
 
         /// <summary>
+        /// Left-shifts the bits in the source
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator <<(BitVector8 lhs, int offset)
+            => (byte)(lhs.data << offset);
+
+        /// <summary>
+        /// Right-shifts the bits in the source
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 operator >>(BitVector8 lhs, int offset)
+            => (byte)(lhs.data >> offset);
+
+        /// <summary>
         /// Computes the bitwise complement of the operand. 
         /// Note that this operator is closely related to the negation operator (-)
         /// </summary>
@@ -162,22 +180,6 @@ namespace Z0
             => lhs + -rhs;
 
         /// <summary>
-        /// Left-shifts the bits in the source
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator <<(BitVector8 lhs, int offset)
-            => (byte)(lhs.data << offset);
-
-        /// <summary>
-        /// Right-shifts the bits in the source
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 operator >>(BitVector8 lhs, int offset)
-            => (byte)(lhs.data >> offset);
-
-        /// <summary>
         /// Computes the scalar product of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -187,12 +189,29 @@ namespace Z0
             => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
+        public static BitVector8 operator ++(in BitVector8 src)
+        {
+             ref var dst = ref As.asRef(in src);
+             dst.data = (byte)(dst.data + (byte)1);
+             return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitVector8 operator --(in BitVector8 src)
+        {
+             ref var dst = ref As.asRef(in src);
+             dst.data = (byte)(dst.data - (byte)1);
+             return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static bool operator ==(BitVector8 lhs, BitVector8 rhs)
             => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitVector8 lhs, BitVector8 rhs)
             => !lhs.Equals(rhs);
+
 
         [MethodImpl(Inline)]
         public BitVector8(byte src)
@@ -240,6 +259,11 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
+        /// <summary>
+        /// Constructs a new bitvector from a specified segment
+        /// </summary>
+        /// <param name="first">The position of the first bit</param>
+        /// <param name="last">The position of the last bit</param>
         [MethodImpl(Inline)]
         public BitVector8 Between(BitPos first, BitPos last)
             => Bits.between(in data, first, last);
@@ -248,6 +272,7 @@ namespace Z0
         /// Computes the scalar product of the source vector and another
         /// </summary>
         /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
         public readonly Bit Dot(BitVector8 rhs)
               => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
 
@@ -260,27 +285,29 @@ namespace Z0
             get => 8;
         }
 
+        /// <summary>
+        /// Enables a bit
+        /// </summary>
+        /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
         public void EnableBit(BitPos pos)
             => BitMask.enable(ref data, pos);
 
+        /// <summary>
+        /// Disables a bit
+        /// </summary>
+        /// <param name="pos">The position of the bit to disable</param>
         [MethodImpl(Inline)]
         public void DisableBit(BitPos pos)
             => BitMask.disable(ref data, pos);
 
+        /// <summary>
+        /// Determines whether a bit is enabled
+        /// </summary>
+        /// <param name="pos">The position of the bit to check</param>
         [MethodImpl(Inline)]
         public readonly bool TestBit(BitPos pos)
             => BitMask.test(in data, pos);
-
-        /// <summary>
-        /// Reverses the vector's bits
-        /// </summary>
-        [MethodImpl(Inline)]
-        public void Reverse()
-        {
-            data = Bits.rev(data);
-        }
-
 
         /// <summary>
         /// Sets a bit to a specified value
@@ -354,14 +381,35 @@ namespace Z0
         public BitVector8 Msb(int n)                
             => Between(LastPos - n, LastPos);                
 
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public void Reverse()
+        {
+            data = Bits.rev(data);
+        }
+
+        /// <summary>
+        /// Rearranges the vector in-place as specified by a permutation
+        /// </summary>
+        /// <param name="spec">The permutation</param>
         public void Permute(Perm spec)
         {
-            var mask = BitVector8.Alloc();
-            for(var i=0; i<math.min(spec.Length, 8); i++)
-                mask[spec[i]] = i; // i <-> spec[i]
+            var mask = Alloc();
+            var n = math.min(spec.Length, Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
             data = Bits.deposit(data,mask);
         }
-        
+
+        /// <summary>
+        /// Extracts the scalar value enclosed by the vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public byte ToScalar()
+            => data;
+
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);
@@ -377,7 +425,6 @@ namespace Z0
             => data.GetHashCode();
         
         public override string ToString()
-            => Format();
-   
+            => Format();   
     }
 }

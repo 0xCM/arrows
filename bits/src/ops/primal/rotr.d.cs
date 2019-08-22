@@ -18,7 +18,7 @@ namespace Z0
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
         public static byte rotr(byte src, byte offset)
-            => (byte)((src << offset) | (src >> (8 - offset)));
+            => (byte)((src >> offset) | (src << (8 - offset)));
 
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
@@ -27,7 +27,7 @@ namespace Z0
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
         public static ushort rotr(ushort src, ushort offset)
-            => (ushort)((src << offset) | (src >> (16 - offset)));
+            => (ushort)((src  >> offset) | (src << (16 - offset)));
 
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset

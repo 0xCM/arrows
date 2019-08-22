@@ -11,31 +11,18 @@ namespace Z0
     using prim = System.Int16;
     using analog = int16_t;
 
-    public ref struct int16_t
+    public struct int16_t
     {
         prim data;
+
+        public static readonly analog zero = 0;
+
+        public static readonly analog one = 1;
+
 
         [MethodImpl(Inline)]    
         public int16_t(prim x)
             => data =x;
-
-        public static analog zero 
-        {
-            [MethodImpl(Inline)]
-            get{return 0;}
-        }
-
-        public static analog one 
-        {
-            [MethodImpl(Inline)]
-            get{return 1;}
-        }
-
-        public int bitsize
-        {
-            [MethodImpl(Inline)]
-            get{return 16;}
-        }
 
         [MethodImpl(Inline)]    
         public static analog @bool(bool x)
@@ -57,6 +44,28 @@ namespace Z0
         public static implicit operator prim(analog src)
             => src.data;
 
+
+        [MethodImpl(Inline)]
+        public static implicit operator int(analog src)
+            => src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator float(analog src)
+            => src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator double(analog src)
+            => src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator int32_t(analog src)
+            => src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator int64_t(analog src)
+            => src.data;
+
+
         [MethodImpl(Inline)]
         public static explicit operator byte(analog src)
             => (byte)src.data;
@@ -70,10 +79,6 @@ namespace Z0
             => (ushort)src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator int(analog src)
-            => src.data;
-
-        [MethodImpl(Inline)]
         public static explicit operator uint(analog src)
             => (uint)src.data;
 
@@ -82,12 +87,13 @@ namespace Z0
             => (ulong)src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator float(analog src)
-            => src.data;
+        public static explicit operator uint32_t(analog src)
+            => (uint)src.data;
+
 
         [MethodImpl(Inline)]
-        public static implicit operator double(analog src)
-            => src.data;
+        public static explicit operator uint64_t(analog src)
+            => (ulong)src.data;
 
         [MethodImpl(Inline)]
         public static analog operator == (analog lhs, analog rhs) 
