@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Numerics;
@@ -59,6 +60,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 Load(in ReadOnlySpan<Bit> src)
             => FromScalar(pack(src, out ulong data));
+
+        /// <summary>
+        /// Enumerates each and every 64-bit bitvector exactly once, 
+        /// presuming you have the time to wait
+        /// </summary>
+        public static IEnumerable<BitVector64> All
+        {
+           get
+           {
+                var bv = BitVector64.Zero;
+                do 
+                    yield return bv;            
+                while(++bv);
+           }
+        }
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
@@ -173,6 +189,22 @@ namespace Z0
         public static BitVector64 operator >>(BitVector64 lhs, int offset)
             => lhs.data >> offset;
 
+        /// <summary>
+        /// Returns true if the source vector is nonzero, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator true(BitVector64 src)
+            => src.Nonempty;
+
+        /// <summary>
+        /// Returns false if the source vector is the zero vector, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator false(BitVector64 src)
+            => !src.Nonempty;
+
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector64 lhs, in BitVector64 rhs)
@@ -224,7 +256,6 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
-
         /// <summary>
         /// The vector's 32 most significant bits
         /// </summary>
@@ -260,6 +291,22 @@ namespace Z0
             [MethodImpl(Inline)]
             get => bytes(data);
         }
+
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="offset">The magnitude of the rotation</param>
+        [MethodImpl(Inline)]
+        public BitVector64 RotR(BitSize offset)
+            => Bits.rotr(ref data, offset);
+
+        /// <summary>
+        /// Rotates bits in the source leftwards by a specified offset
+        /// </summary>
+        /// <param name="offset">The magnitude of the rotation</param>
+        [MethodImpl(Inline)]
+        public BitVector64 RotL(BitSize offset)
+            => Bits.rotl(ref data, offset);
 
         /// <summary>
         /// Selects a contiguous range of bits 
@@ -332,21 +379,6 @@ namespace Z0
         public BitVector64 Msb(int n)                
             => Between(LastPos - n, LastPos);                
 
-        /// <summary>
-        /// Rotates bits in the source rightwards by a specified offset
-        /// </summary>
-        /// <param name="offset">The magnitude of the rotation</param>
-        [MethodImpl(Inline)]
-        public BitVector64 RotR(BitSize offset)
-            => Bits.rotr(ref data, offset);
-
-        /// <summary>
-        /// Rotates bits in the source leftwards by a specified offset
-        /// </summary>
-        /// <param name="offset">The magnitude of the rotation</param>
-        [MethodImpl(Inline)]
-        public BitVector64 RotL(BitSize offset)
-            => Bits.rotl(ref data, offset);
         
         /// <summary>
         /// Counts the number of enabled bits in the source
@@ -368,6 +400,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitSize Ntz()
             => ntz(data);
+
+        /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => Bits.rank(data,pos);
 
         /// <summary>
         /// Computes the vector v = lhs & ~ rhs
@@ -405,12 +446,23 @@ namespace Z0
             => (UInt64.MaxValue & data) == UInt64.MaxValue;
 
         /// <summary>
-        /// Tests whether all bits are off
+        /// Returns true if no bits are enabled, false otherwise
         /// </summary>
-        [MethodImpl(Inline)]
-        public bool AllZeros()
-            => data == 0;
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => data == 0;
+        }
 
+        /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => !Empty;
+        }
+        
         /// <summary>
         /// Converts the vector to a bitstring
         /// </summary>
@@ -424,6 +476,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong ToScalar()
             => data;
+
+        /// <summary>
+        /// Returns a copy of the vector
+        /// </summary>
+        public BitVector64 Replicate()
+            => new BitVector64(data);
 
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)

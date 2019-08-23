@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Numerics;
@@ -34,12 +35,44 @@ namespace Z0
             => new BitVector32(0);
 
         /// <summary>
-        /// Loads a vector from the primal source value it represents
+        /// Creates a vector from an usigned 32-bit integer
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 FromScalar(in uint src)
+        public static BitVector32 FromScalar(uint src)
             => new BitVector32(src);    
+
+        /// <summary>
+        /// Creates a vector from a signed 32-bit integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromScalar(int src)
+            => new BitVector32((uint)src);    
+
+        /// <summary>
+        /// Creates a vector from four unsigned 8-bit integers
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromScalars(byte x0, byte x1, byte x2, byte x3)
+            => BitConverter.ToUInt32(new byte[]{x0, x1, x2, x3},0);
+
+        /// <summary>
+        /// Creates a vector from two unsigned 16-bit integers
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromScalars(ushort lo, ushort hi)
+            => FromScalar(hi << 16 | lo);
+
+        /// <summary>
+        /// Creates a vector from a bit parameter array
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromBits(params Bit[] src)
+            => new BitVector32(src);
 
         /// <summary>
         /// Creates a vector from a bitstring
@@ -55,11 +88,22 @@ namespace Z0
     
         [MethodImpl(Inline)]
         public static BitVector32 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(in Bits.pack(src, out uint data));
+            => FromScalar(Bits.pack(src, out uint data));
 
-        [MethodImpl(Inline)]
-        public static BitVector32 FromBits(params Bit[] src)
-            => new BitVector32(src);
+
+        /// <summary>
+        /// Enumerates each and every 32-bit bitvector exactly once
+        /// </summary>
+        public static IEnumerable<BitVector32> All
+        {
+           get
+           {
+                var bv = BitVector32.Zero;
+                do 
+                    yield return bv;            
+                while(++bv);
+           }
+        }
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N32,uint>(in BitVector32 src)
@@ -71,7 +115,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(BitVector32 src)
-            => BitVector64.FromScalar(src.data);
+            => src.Expand();
 
         [MethodImpl(Inline)]
         public static explicit operator BitVector8(BitVector32 src)
@@ -188,6 +232,22 @@ namespace Z0
         public static BitVector32 operator >>(BitVector32 lhs, int offset)
             => lhs.data >> offset;
 
+        /// <summary>
+        /// Returns true if the source vector is nonzero, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator true(BitVector32 src)
+            => src.Nonempty;
+
+        /// <summary>
+        /// Returns false if the source vector is the zero vector, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator false(BitVector32 src)
+            => !src.Nonempty;
+
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector32 lhs, in BitVector32 rhs)
             => lhs.Equals(rhs);
@@ -246,6 +306,14 @@ namespace Z0
             [MethodImpl(Inline)]
             get => Bits.lo(data);    
         }
+
+        /// <summary>
+        /// Zero-extends the vector to a vector that accomondates
+        /// the next power of 2
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector64 Expand()
+            => BitVector64.FromScalar(data);
 
         /// <summary>
         /// Presents bitvector content as a bytespan
@@ -359,6 +427,15 @@ namespace Z0
         public BitSize Ntz()
             => Bits.ntz(data);
 
+        /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => Bits.rank(data,pos);
+
         [MethodImpl(Inline)]
         public BitVector32 AndNot(in BitVector32 rhs)
             => Bits.andnot((uint)this, (uint)rhs);
@@ -367,9 +444,26 @@ namespace Z0
         public bool AllOnes()
             => (UInt32.MaxValue & data) == UInt32.MaxValue;
 
-        [MethodImpl(Inline)]
-        public bool AllZeros()
-            => data == 0;
+
+        /// <summary>
+        /// Returns true if no bits are enabled, false otherwise
+        /// </summary>
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => data == 0;
+        }
+
+        /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => !Empty;
+        }
+
+
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
@@ -381,6 +475,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public uint ToScalar()
             => data;
+
+        /// <summary>
+        /// Returns a copy of the vector
+        /// </summary>
+        public BitVector32 Replicate()
+            => new BitVector32(data);
 
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)

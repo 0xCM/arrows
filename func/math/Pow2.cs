@@ -11,13 +11,21 @@ namespace Z0
     
     using static zfunc;
     
-    public static class Pow2
+    public static class Pow2    
     {                
-
         [MethodImpl(Inline)]
         public static Pow2<T> ops<T>()
             where T: struct
                 => Pow2<T>.TheOnly;
+
+        /// <summary>
+        /// Computes the remainder of division by a power of 2, a % 2^i
+        /// </summary>
+        /// <param name="a">The value being divided by a power of 2</param>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ulong mod(ulong a, int i)        
+            => a & ((1ul << i) - 1);  
 
         /// <summary>
         /// Computes 2^i where i is an integer value in the interval [0,63]
@@ -30,7 +38,7 @@ namespace Z0
         /// <summary>
         /// Given n, computes i  n = 2^63
         /// </summary>
-        /// <param name="n">The exponentiated value n such that 2^n <= 2^15</param>
+        /// <param name="n">The exponentiated value n such that 2^n <= 2^63</param>
         [MethodImpl(Inline)]
         public static ulong inv(ulong pow2)
             => ops<ulong>().inv(pow2);

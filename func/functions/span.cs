@@ -195,7 +195,7 @@ partial class zfunc
     /// <param name="src">The source span</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref readonly T head<T>(Span256<T> src)
+    public static ref T head<T>(Span256<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 

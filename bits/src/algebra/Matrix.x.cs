@@ -17,7 +17,7 @@ namespace Z0
     public static class MatrixX
     {
 
-        public static string Format<M,N,T>(this Matrix<M,N,T> src, int? cellwidth = null, char? cellsep = null)
+        public static string Format<M,N,T>(this Matrix<M,N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -31,8 +31,9 @@ namespace Z0
             {
                 for(var col = 0; col<cols; col++)
                 {
-                    var value = $"{src[row,col]}".PadRight(width);
-                    sb.Append(value);
+                    var cellval = src[row,col];
+                    var cellfmt = $"{render?.Invoke(cellval) ?? cellval.ToString()}".PadRight(width);
+                    sb.Append(cellfmt);
                     if(col != cols - 1)
                         sb.Append(sep);
                 }
@@ -42,10 +43,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static string Format<N,T>(this Matrix<N,T> src, int? cellwidth = null, char? cellsep = null)
+        public static string Format<N,T>(this Matrix<N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
             where N : ITypeNat, new()
             where T : struct    
-                => src.ToRectantular().Format(cellwidth, cellsep);
+                => src.ToRectantular().Format(cellwidth, cellsep,render);
 
         /// <summary>
         /// Computes the sum of two matrices and stores the result in the left matrix

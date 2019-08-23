@@ -113,6 +113,16 @@ namespace Z0
                 TracePerf(timing.Format(labelPad));
         }
 
+        public void Measure(Func<int> f, [CallerMemberName] string label = null, int? labelPad = null)
+        {
+            var sw = stopwatch();
+            var ops = f();
+            var time = OpTime.Define(ops, snapshot(sw), label);
+            OpTimes.Add(time);
+            if(TraceEnabled)
+                TracePerf(time.Format(labelPad));
+        }
+
         protected void Collect(OpTime time, int? labelPad = null)
         {
             OpTimes.Add(time);

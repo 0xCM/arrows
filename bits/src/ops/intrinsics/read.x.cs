@@ -15,22 +15,6 @@ namespace Z0
     partial class BitsX
     {        
         /// <summary>
-        /// Allocates a target span that receives a contiguous range of bits from source 
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        /// <param name="i0">The start bit position</param>
-        /// <param name="i1">The end bit position</param>
-        /// <typeparam name="T">The primal bit source type</typeparam>
-        [MethodImpl(Inline)]
-        static Span<byte> range<T>(in T src, BitPos i0, BitPos i1)
-            where T : struct
-        {
-            var dst = Alloc(i0,i1);
-            gbits.range(in src, i0, i1, dst, 0);
-            return dst;
-        }
-
-        /// <summary>
         /// Allocates and returns a target span populated with a contiguous range of bits from source 
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -233,6 +217,21 @@ namespace Z0
         [MethodImpl(Inline)]
         static ByteSize ByteCount(this uint bitcount)
             => (uint)(Mod<N8>.div(bitcount) + (Mod<N8>.mod(bitcount) == 0 ? 0 : 1));
-    }
-
+ 
+        /// <summary>
+        /// Allocates a target span that receives a contiguous range of bits from source 
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="i0">The start bit position</param>
+        /// <param name="i1">The end bit position</param>
+        /// <typeparam name="T">The primal bit source type</typeparam>
+        [MethodImpl(Inline)]
+        static Span<byte> range<T>(in T src, BitPos i0, BitPos i1)
+            where T : struct
+        {
+            var dst = Alloc(i0,i1);
+            gbits.range(in src, i0, i1, dst, 0);
+            return dst;
+        }
+   }
 }

@@ -14,7 +14,7 @@ namespace Z0
     partial class Bits
     {                        
         /// <summary>
-        /// Extracts an index-identified contiguous range of bits from the source,
+        /// Extracts a contiguous range of bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         /// <param name="i0">The position of the first bit</param>
@@ -25,7 +25,7 @@ namespace Z0
             => (sbyte)range((byte)src, i0, i1);
 
         /// <summary>
-        /// Extracts an index-identified contiguous range of bits from the source,
+        /// Extracts a contiguous range of bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         /// <param name="i0">The position of the first bit</param>
@@ -47,7 +47,7 @@ namespace Z0
             => (ushort)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
 
         /// <summary>
-        /// Extracts an index-identified contiguous range of bits from the source,
+        /// Extracts a contiguous range of bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         /// <param name="i0">The position of the first bit</param>
@@ -69,7 +69,7 @@ namespace Z0
             => Bmi1.BitFieldExtract(src, (byte)i0, (byte)(i1 - i0));
 
         /// <summary>
-        /// Extracts an index-identified contiguous range of bits from the source,
+        /// Extracts a contiguous range of bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         /// <param name="i0">The position of the first bit</param>
@@ -91,7 +91,7 @@ namespace Z0
             => Bmi1.X64.BitFieldExtract(src, (byte)i0, (byte)(i1 - i0));
  
         /// <summary>
-        /// Extracts an index-identified contiguous range of bits from the source,
+        /// Extracts a contiguous range of bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         /// <param name="i0">The position of the first bit</param>
@@ -100,6 +100,26 @@ namespace Z0
         [MethodImpl(Inline)]
         public static long range(long src, BitPos i0, BitPos i1)
             => (long)range((ulong)src, i0, i1);
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="i0">The position of the first bit</param>
+        /// <param name="i1">The position of the last bit</param>
+        [MethodImpl(Inline)]
+        public static float range(float src, BitPos i0, BitPos i1)
+            => BitConverter.Int32BitsToSingle(range(src.ToBits(), i0, i1));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="i0">The position of the first bit</param>
+        /// <param name="i1">The position of the last bit</param>
+        [MethodImpl(Inline)]
+        public static double range(double src, BitPos i0, BitPos i1)
+            => BitConverter.Int64BitsToDouble(range(src.ToBits(), i0, i1));
 
     }
 

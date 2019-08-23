@@ -8,10 +8,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     
     using static zfunc;
-    using static dinx;
     using static As;
     
-
     partial class BitsX
     {
         /// <summary>

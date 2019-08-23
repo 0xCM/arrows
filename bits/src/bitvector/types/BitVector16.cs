@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Numerics;
@@ -20,7 +21,9 @@ namespace Z0
     {
         ushort data;
 
-        public static readonly BitVector16 Zero = default;
+        public static readonly BitVector16 Zero = 0;
+
+        public static readonly BitVector8 One = 1;
 
         public static readonly BitSize BitSize = 16;
 
@@ -59,6 +62,10 @@ namespace Z0
         public static BitVector16 FromScalar(int src)
             => new BitVector16((ushort)src);    
 
+        [MethodImpl(Inline)]
+        public static BitVector16 FromScalars(byte lo, byte hi)
+            => FromScalar(hi << 8 | lo);
+
         /// <summary>
         /// Creates a vector from a bitstring
         /// </summary>
@@ -71,6 +78,20 @@ namespace Z0
         public static BitVector16 Load(ReadOnlySpan<Bit> src)
             => FromScalar(pack(src, out ushort dst));
 
+        /// <summary>
+        /// Enumerates each and every 16-bit bitvector exactly once
+        /// </summary>
+        public static IEnumerable<BitVector16> All
+        {
+           get
+           {
+                var bv = BitVector16.Zero;
+                do 
+                    yield return bv;            
+                while(++bv);
+           }
+        }
+
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N16,ushort>(BitVector16 src)
             => new BitVector<N16,ushort>(src.data);
@@ -80,7 +101,7 @@ namespace Z0
             => new BitVector16(src);
 
         /// <summary>
-        /// Explicitly converts the source vector to the underlying value it represents
+        /// Converts the source vector to the underlying value it represents
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -202,6 +223,22 @@ namespace Z0
             => (ushort)(lhs.data >> offset);
 
         /// <summary>
+        /// Returns true if the source vector is nonzero, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator true(BitVector16 src)
+            => src.Nonempty;
+
+        /// <summary>
+        /// Returns false if the source vector is the zero vector, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator false(BitVector16 src)
+            => !src.Nonempty;
+
+        /// <summary>
         /// Determines whether the operands represent identical values
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -268,6 +305,14 @@ namespace Z0
             [MethodImpl(Inline)]
             get => lo(in data);        
         }
+
+        /// <summary>
+        /// Zero-extends the vector to a vector that accomondates
+        /// the next power of 2
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector32 Expand()
+            => BitVector32.FromScalar(data);
 
         /// <summary>
         /// Presents bitvector content as a bytespan
@@ -371,6 +416,15 @@ namespace Z0
             => Between(LastPos - n, LastPos);                
 
         /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => Bits.rank(data,pos);
+
+        /// <summary>
         /// Reverses the vector's bits
         /// </summary>
         [MethodImpl(Inline)]
@@ -396,9 +450,30 @@ namespace Z0
         public bool AllOnes()
             => (UInt16.MaxValue & data) == UInt16.MaxValue;
 
+        /// <summary>
+        /// Returns true if no bits are enabled, false otherwise
+        /// </summary>
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => data == 0;
+        }
+
+        /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => data != 0;
+        }
+
+        /// <summary>
+        /// Returns a copy of the vector
+        /// </summary>
         [MethodImpl(Inline)]
-        public bool AllZeros()
-            => data == 0;
+        public BitVector16 Replicate()
+            => new BitVector16(data);
 
         /// <summary>
         /// Returns the vector's bitstring representation

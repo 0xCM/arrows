@@ -61,6 +61,18 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
+        public static implicit operator uint16_t(analog src)
+            => (ushort)src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator uint32_t(analog src)
+            => (uint)src.data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator uint64_t(analog src)
+            => (ulong)src.data;
+
+        [MethodImpl(Inline)]
         public static explicit operator int(analog src)
             => (int)src.data;
 

@@ -30,14 +30,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitString ToBitString(this in Int128 src)
-            => BitString.FromScalar(src.x11) 
-               + BitString.FromScalar(src.x10) 
-               + BitString.FromScalar(src.x01) 
-               + BitString.FromScalar(src.x00);
+            => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo); 
 
         [MethodImpl(Inline)]
         public static Span<byte> ToBytes(this in Int128 src)
-       => span(
+            => span(
                     src.x0000, src.x0001, src.x0010, src.x0011,
                     src.x0100, src.x0101, src.x0110, src.x0111,                        
                     src.x1100, src.x1101, src.x1110, src.x1111,            

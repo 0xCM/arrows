@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
     using System.Runtime.InteropServices;
     using System.Numerics;
 
@@ -16,9 +17,11 @@ namespace Z0
     {
         byte data;
         
-        public static readonly BitVector8 Zero = default;
+        public static readonly BitVector8 Zero = 0;
 
         public static readonly BitVector8 One = 1;
+
+        public static readonly BitVector8 Max = 0xFF;
         
         public static readonly BitSize BitSize = 8;
 
@@ -32,6 +35,10 @@ namespace Z0
         public static BitVector8 Alloc()
             => new BitVector8();
 
+        [MethodImpl(Inline)]
+        public static BitVector8 Parse(string src)
+            =>  FromBitString(BitString.Parse(src));
+
         /// <summary>
         /// Creates a vector from the primal source value it represents
         /// </summary>
@@ -39,6 +46,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector8 FromScalar(byte src)
             => new BitVector8(src);
+
+        /// <summary>
+        /// Creates a vector from the least 8 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 FromScalar(int src)
+            => new BitVector8((byte)src);
+
+        /// <summary>
+        /// Creates a vector from the least 8 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 FromScalar(uint src)
+            => new BitVector8((byte)src);
 
         /// <summary>
         /// Creates a vector from a bitstring
@@ -56,6 +79,22 @@ namespace Z0
         public static BitVector8 Load(in ReadOnlySpan<Bit> src)
             => FromScalar(pack(src, out byte dst));
 
+
+        /// <summary>
+        /// Enumerates each and every 8-bit bitvector exactly once
+        /// </summary>
+        /// <value></value>
+        public static IEnumerable<BitVector8> All
+        {
+           get
+           {
+                var bv = BitVector8.Zero;
+                do            
+                    yield return bv;            
+                while(++bv);
+           }
+        }
+         
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N8,byte>(in BitVector8 src)
             => new BitVector<N8,byte>(src.data);
@@ -64,9 +103,18 @@ namespace Z0
         public static implicit operator BitVector8(byte src)
             => new BitVector8(src);
 
+        /// <summary>
+        /// Converts the source vector to the underlying value it represents
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static implicit operator byte(BitVector8 src)
+            => src.data;
+
+
         [MethodImpl(Inline)]
         public static implicit operator BitVector16(BitVector8 src)
-            => BitVector16.FromScalar(src.data);
+            => src.Expand();
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector32(BitVector8 src)
@@ -75,15 +123,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(BitVector8 src)
             => BitVector64.FromScalar(src.data);
-
-
-        /// <summary>
-        /// Explicitly converts the source vector to the underlying value it represents
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static implicit operator byte(in BitVector8 src)
-            => src.data;
 
         /// <summary>
         /// Computes the XOR of the source operands. 
@@ -96,8 +135,16 @@ namespace Z0
             => (byte)(lhs.data ^ rhs.data);
 
         /// <summary>
-        /// Computes the component-wise AND of the operands. Note that his operator is
-        /// equivalent to the multiplication operator (*)
+        /// Raises a vector b to a power n where n >= 0
+        /// </summary>
+        /// <param name="b">The base vector</param>
+        /// <param name="n">The power</param>
+        [MethodImpl(Inline)]        
+        public static BitVector8 operator ^(BitVector8 b, int n)
+            => b.Pow(n);
+            
+        /// <summary>
+        /// Computes the component-wise AND of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -157,7 +204,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector8 operator *(BitVector8 lhs, BitVector8 rhs)
-            => lhs & rhs;
+            => Gf256.mul(lhs,rhs);
 
         /// <summary>
         /// Negates the operand. Note that this operator is equivalent to the 
@@ -189,7 +236,7 @@ namespace Z0
             => lhs.Dot(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector8 operator ++(in BitVector8 src)
+        public static BitVector8 operator ++(BitVector8 src)
         {
              ref var dst = ref As.asRef(in src);
              dst.data = (byte)(dst.data + (byte)1);
@@ -204,6 +251,22 @@ namespace Z0
              return dst;
         }
 
+        /// <summary>
+        /// Returns true if the source vector is nonzero, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator true(BitVector8 src)
+            => src.Nonempty;
+
+        /// <summary>
+        /// Returns false if the source vector is the zero vector, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator false(BitVector8 src)
+            => !src.Nonempty;
+
         [MethodImpl(Inline)]
         public static bool operator ==(BitVector8 lhs, BitVector8 rhs)
             => lhs.Equals(rhs);
@@ -212,10 +275,25 @@ namespace Z0
         public static bool operator !=(BitVector8 lhs, BitVector8 rhs)
             => !lhs.Equals(rhs);
 
+        [MethodImpl(Inline)]
+        public static Bit operator <(BitVector8 lhs, BitVector8 rhs)
+            => lhs.data < rhs.data ? Bit.On : Bit.Off;
+
+        [MethodImpl(Inline)]
+        public static Bit operator >(BitVector8 lhs, BitVector8 rhs)
+            => lhs.data > rhs.data ? Bit.On : Bit.Off;
+
+        [MethodImpl(Inline)]
+        public static Bit operator <=(BitVector8 lhs, BitVector8 rhs)
+            => lhs.data <= rhs.data ? Bit.On : Bit.Off;
+
+        [MethodImpl(Inline)]
+        public static Bit operator >=(BitVector8 lhs, BitVector8 rhs)
+            => lhs.data >= rhs.data ? Bit.On : Bit.Off;
 
         [MethodImpl(Inline)]
         public BitVector8(byte src)
-            => this.data = src;
+            => this.data = src;        
 
         public Bit this[BitPos pos]
         {
@@ -260,6 +338,16 @@ namespace Z0
         }
 
         /// <summary>
+        /// Specifies the parity of the vector: 1 if the population count is odd, otherwise 0
+        /// </summary>
+        /// <remarks>See https://en.wikipedia.org/wiki/Parity_function</remarks>
+        public Bit Parity
+        {
+            [MethodImpl(Inline)]
+            get => odd(Pop());
+        }
+
+        /// <summary>
         /// Constructs a new bitvector from a specified segment
         /// </summary>
         /// <param name="first">The position of the first bit</param>
@@ -283,7 +371,7 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => 8;
-        }
+        }        
 
         /// <summary>
         /// Enables a bit
@@ -341,6 +429,9 @@ namespace Z0
         public readonly BitSize Pop()
             => Bits.pop(data);
 
+        /// <summary>
+        /// Counts the number of leading zero bits
+        /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Nlz()
             => Bits.nlz(data);
@@ -349,6 +440,57 @@ namespace Z0
         public readonly BitSize Ntz()
             => Bits.ntz(data);
 
+        /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => Bits.rank(data,pos);
+
+        /// <summary>
+        /// Raises the vector to a power
+        /// </summary>
+        /// <param name="n">The power</param>
+        public BitVector8 Pow(int n)
+        {
+            if(n == 0)                
+                return Zero;
+            else if(n==1)
+                return this;
+            else
+            {                
+                var dst = Replicate();
+                for(var i=2; i<=n; i++)
+                    dst *= this;
+                return dst;
+            }
+        }
+
+        /// <summary>
+        /// Computes the smallest integer n > 1 such that v^n = identity
+        /// </summary>
+        public int Order()
+        {
+            var dst = Replicate();
+            for(var i=2; i<256; i++)
+            {
+                dst *= this;
+                if(dst == One)
+                    return i;
+
+            }
+            return 0;
+        }
+
+        [MethodImpl(Inline)]
+        BitVector8 Mul(in BitVector8 rhs)
+        {
+            Gf256.mul(data, rhs.data);
+            return this;
+        }
+
         [MethodImpl(Inline)]
         public BitVector8 AndNot(in BitVector8 rhs)
             => Bits.andnot((byte)this, (byte)rhs);
@@ -356,10 +498,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public readonly bool AllOnes()
             => (0xFF & data) == 0xFF;
- 
+
+        /// <summary>
+        /// Zero-extends the vector to a vector that accomondates
+        /// the next power of 2
+        /// </summary>
         [MethodImpl(Inline)]
-        public readonly bool AllZeros()
-            => data == 0;
+        public BitVector16 Expand()
+            => BitVector16.FromScalar(data);
 
         [MethodImpl(Inline)]
         public readonly BitString ToBitString()
@@ -402,6 +548,35 @@ namespace Z0
                 mask[spec[i]] = i; 
             data = Bits.deposit(data,mask);
         }
+
+        /// <summary>
+        /// Returns true if no bits are enabled, false otherwise
+        /// </summary>
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => data == 0;
+        }
+
+        /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => !Empty;
+        }
+
+        /// <summary>
+        /// Returns a copy of the vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector8 Replicate()
+            => new BitVector8(data);
+
+        [MethodImpl(Inline)]
+        public BitVector16 Concat(BitVector8 tail)
+            => BitVector16.FromScalars(tail.data, data);
 
         /// <summary>
         /// Extracts the scalar value enclosed by the vector

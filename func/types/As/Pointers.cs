@@ -100,6 +100,7 @@ namespace Z0
         public static unsafe double* refptr(ref double src)
             => (double*)pvoid(ref src);
 
+
         [MethodImpl(Inline)]
         public static unsafe sbyte* constptr(in sbyte src)
             => refptr(ref asRef(in src));
@@ -139,6 +140,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe double* constptr(in double src)
             => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe P* refptr<P,T>(ref T src)
+            where T : struct
+            where P : unmanaged
+                => (P*)Unsafe.AsPointer(ref src);
 
     }
 

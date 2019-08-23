@@ -39,14 +39,31 @@ namespace Z0
             where T : struct
                 => Unsafe.As<Vector256<T>, __m256i>(ref Z0.As.asRef(in src));
 
-        static Exception TooShort<T>(int given)
+        /// <summary>
+        /// The number of components when reified relative to a specific primal type
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static int Length<T>()
             where T : struct
-            => new Exception($"The source span length = {given} is less than the length required = {Vec256<T>.Length}");
+                => Vec256<T>.Length;
+
+        static int TooShort<T>(int given)
+            where T : struct
+                => throw new Exception($"The source span length = {given} is less than the length required = {Length<T>()}");
+
+        static S TooShort<S,T>(int given)
+            where T : struct
+        {
+            TooShort<T>(given);
+            return default(S);
+        }
+
 
         [MethodImpl(Inline)]
         static int CheckLength<T>(int given)
             where T : struct
-                => given >= Vec256<T>.Length ? Vec256<T>.Length : throw TooShort<T>(given) ;
+                => given >= Length<T>() ? Length<T>() : TooShort<T>(given) ;
 
         [MethodImpl(Inline)]
         unsafe ref T Head<T>()
@@ -69,9 +86,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe __m256i FromParts<T>(Span<T> src)
             where T : struct
-            =>  src.Length >= Vec256<T>.Length 
+            =>  src.Length >= Length<T>()
             ?  * (__m256i*)Unsafe.AsPointer(ref src[0]) 
-            : throw TooShort<T>(src.Length);
+            : TooShort<__m256i,T>(src.Length);
 
         [MethodImpl(Inline)]
         public ref T Part<T>(int pos)
@@ -81,7 +98,7 @@ namespace Z0
         public Span<T> Parts<T>()
             where T : struct
         {
-            var len = Vec256<T>.Length;
+            var len =Length<T>();
             var dst = span<T>(len);
             for(var i=0; i<len; i++)
                 dst[i] = Part<T>(i);

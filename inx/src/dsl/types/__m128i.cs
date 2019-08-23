@@ -10,159 +10,11 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using static zfunc;
+    using static As;
 
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     public struct __m128i
     {
-        [MethodImpl(Inline)]
-        public Vec128<T> ToVec128<T>()
-            where T : struct
-                => Unsafe.As<__m128i,Vec128<T>>(ref this);
-
-        [MethodImpl(Inline)]
-        public static __m128i FromVec128<T>(in Vec128<T> src)
-            where T : struct
-                => Unsafe.As<Vec128<T>, __m128i>(ref As.asRef(in src));
-
-        [MethodImpl(Inline)]
-        public Vector128<T> ToVector128<T>()
-            where T : struct
-                => Unsafe.As<__m128i,Vector128<T>>(ref this);
-
-        [MethodImpl(Inline)]
-        public static __m128i FromVector128<T>(in Vector128<T> src)
-            where T : struct
-                => Unsafe.As<Vector128<T>, __m128i>(ref As.asRef(in src));
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<sbyte> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<byte> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<short> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<ushort> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<int> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<uint> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<long> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vec128<ulong> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<sbyte>(in __m128i src)
-            => src.ToVec128<sbyte>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<byte>(in __m128i src)
-            => src.ToVec128<byte>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<short>(in __m128i src)
-            => src.ToVec128<short>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<ushort>(in __m128i src)
-            => src.ToVec128<ushort>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<int>(in __m128i src)
-            => src.ToVec128<int>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<uint>(in __m128i src)
-            => src.ToVec128<uint>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<long>(in __m128i src)
-            => src.ToVec128<long>();
-
-        [MethodImpl(Inline)]
-        public static explicit operator Vec128<ulong>(in __m128i src)
-            => src.ToVec128<ulong>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<sbyte> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<byte> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<short> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<ushort> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<int> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<uint> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<long> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128i(in Vector128<ulong> src)
-            => FromVector128(in src);
-
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<sbyte>(in __m128i src)
-            => src.ToVector128<sbyte>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<byte>(in __m128i src)
-            => src.ToVector128<byte>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<short>(in __m128i src)
-            => src.ToVector128<short>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<ushort>(in __m128i src)
-            => src.ToVector128<ushort>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<int>(in __m128i src)
-            => src.ToVector128<int>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<uint>(in __m128i src)
-            => src.ToVector128<uint>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<long>(in __m128i src)
-            => src.ToVector128<long>();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<ulong>(in __m128i src)
-            => src.ToVector128<ulong>();
-        
         #region I8
         
         [FieldOffset(0)]        
@@ -373,16 +225,236 @@ namespace Z0
         #endregion 
 
         #region U64
-
+        
         [FieldOffset(0)]
         public ulong x0;
 
         [FieldOffset(8)]
         public ulong x1;
+        
+        #endregion
+ 
+        [MethodImpl(Inline)]
+        public static __m128i FromVec128<T>(in Vec128<T> src)
+            where T : struct
+                => Unsafe.As<Vec128<T>, __m128i>(ref As.asRef(in src));
 
+        [MethodImpl(Inline)]
+        public static __m128i FromVector128<T>(in Vector128<T> src)
+            where T : struct
+                => Unsafe.As<Vector128<T>, __m128i>(ref As.asRef(in src));
 
-        #endregion 
+        /// <summary>
+        /// The number of components when reified relative to a specific primal type
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static int Length<T>()
+            where T : struct
+                => Vec128<T>.Length;
 
+            
+        [MethodImpl(Inline)]
+        public static unsafe __m128i FromParts<T>(in ReadOnlySpan<T> src)
+            where T : struct
+        {
+            CheckLength<T>(src.Length);
+            ref var refSrc = ref asRef(in src[0]);
+            var pSrc = refptr<__m128i,T>(ref refSrc);
+            return *pSrc;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe __m128i FromParts<T>(Span<T> src)
+            where T : struct
+                =>  src.Length >= Length<T>() ?  * refptr<__m128i,T>(ref head(src)) : TooShort<__m128i,T>(src.Length);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<sbyte> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<byte> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<short> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<ushort> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<int> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<uint> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<long> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vec128<ulong> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<sbyte>(in __m128i src)
+            => src.ToVec128<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<byte>(in __m128i src)
+            => src.ToVec128<byte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<short>(in __m128i src)
+            => src.ToVec128<short>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<ushort>(in __m128i src)
+            => src.ToVec128<ushort>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<int>(in __m128i src)
+            => src.ToVec128<int>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<uint>(in __m128i src)
+            => src.ToVec128<uint>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<long>(in __m128i src)
+            => src.ToVec128<long>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec128<ulong>(in __m128i src)
+            => src.ToVec128<ulong>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<sbyte> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<byte> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<short> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<ushort> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<int> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<uint> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<long> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128i(in Vector128<ulong> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<sbyte>(in __m128i src)
+            => src.ToVector128<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<byte>(in __m128i src)
+            => src.ToVector128<byte>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<short>(in __m128i src)
+            => src.ToVector128<short>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<ushort>(in __m128i src)
+            => src.ToVector128<ushort>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<int>(in __m128i src)
+            => src.ToVector128<int>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<uint>(in __m128i src)
+            => src.ToVector128<uint>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<long>(in __m128i src)
+            => src.ToVector128<long>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<ulong>(in __m128i src)
+            => src.ToVector128<ulong>();
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(__m128i lhs, __m128i rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(__m128i lhs, __m128i rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public Vec128<T> ToVec128<T>()
+            where T : struct
+                => Unsafe.As<__m128i,Vec128<T>>(ref this);
+
+        [MethodImpl(Inline)]
+        public Vector128<T> ToVector128<T>()
+            where T : struct
+                => Unsafe.As<__m128i,Vector128<T>>(ref this);
+              
+        [MethodImpl(Inline)]
+        public bool Equals(__m128i rhs)
+            => this.x0 == rhs.x0;
+
+        [MethodImpl(Inline)]
+        public string Format<T>(bool hex = false)
+            where T : struct
+                => hex ? ToVec128<T>().FormatHex(false) : ToVec128<T>().ToString();
+
+        public override int GetHashCode()
+            => HashCode.Combine(x0,x1);
+
+        public override bool Equals(object obj)
+            => obj is __m128i x ? Equals(x) : false;            
+
+        public override string ToString()
+            => Format<byte>(true);
+
+        /// <summary>
+        /// A reference to the first element of the data structure specialized for a specific type
+        /// </summary>
+        /// <typeparam name="T">The specialization type</typeparam>
+        [MethodImpl(Inline)]
+        unsafe ref T Head<T>()
+            where T : struct
+        {
+            fixed(void* pSrc = &this)
+                return ref Unsafe.AsRef<T>(pSrc);
+        }
+
+ 
+        [MethodImpl(Inline)]
+        static S TooShort<S,T>(int given)
+            where T : struct
+            => throw new Exception($"The source span length = {given} is less than the length required = {Length<T>()}");
+
+        [MethodImpl(Inline)]
+        static int CheckLength<T>(int given)
+            where T : struct
+                => given >= Length<T>() ? Length<T>() : TooShort<int,T>(given) ;
 
     }
 }

@@ -13,8 +13,6 @@ namespace Z0
     using static As;
     using static AsIn;
     
-    
-
     partial class gbits
     {                        
         /// <summary>
@@ -42,6 +40,10 @@ namespace Z0
                 return generic<T>(Bits.range(int64(src),i0,i1));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(Bits.range(uint64(src),i0,i1));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(Bits.range(float32(src),i0,i1));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(Bits.range(float64(src),i0,i1));
             else            
                 throw unsupported<T>();
         }

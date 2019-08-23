@@ -29,8 +29,6 @@ namespace Z0.Test
             for(var i=0; i< len*8; i++)
                 Claim.yea(bs[i] == (i%2 == 0));
 
-            Trace(bs.Format());
-
         }
 
     }

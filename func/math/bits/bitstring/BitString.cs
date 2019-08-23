@@ -42,17 +42,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString operator +(BitString lhs, BitString rhs)
             => lhs.Concat(rhs);
-    
-        [MethodImpl(Inline)]
-        BitString(ReadOnlySpan<char> src)
-        {
-            var len = src.Length;            
-            var lastix = len - 1;
-            this.bitseq = new byte[len];
-
-            for(var i=0; i <= lastix; i++)
-                this.bitseq[i] = src[i] == '0' ? (byte)0 : (byte)1;
-        }
+        
 
         [MethodImpl(Inline)]
         BitString(byte[] src)
@@ -232,7 +222,23 @@ namespace Z0
         /// </summary>
         /// <param name="tail">The trailing bits</param>
         public BitString Concat(BitString tail)
-            => new BitString(concat(bitseq, tail.bitseq));
+        {
+            Span<byte> dst = new byte[Length + tail.Length];
+            tail.BitSeq.CopyTo(dst);
+            BitSeq.CopyTo(dst, tail.Length);
+            return new BitString(dst);
+        }
+
+        public BitString Truncate(int maxlen)
+        {
+            if(bitseq.Length > maxlen)
+            {
+                Span<byte> src = bitseq;
+                var dst = src.Slice(0,maxlen);
+                bitseq = dst.ToArray();
+            }
+            return this;
+        }
 
         /// <summary>
         /// Converts the bistring to a binary digit representation

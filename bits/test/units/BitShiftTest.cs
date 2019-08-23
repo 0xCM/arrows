@@ -11,6 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
     using static Nats;
+    using static x86;
 
     public class BitShiftTest : UnitTest<BitShiftTest>
     {
@@ -199,7 +200,7 @@ namespace Z0.Test
                 24, 25, 26, 27, 28, 29, 30, 31 
                 );
             byte j = 1;
-            var b = ShiftL(src,j,true);
+            var b = ShiftL(src,j);
             var c =  Vec256.Load(BitRef.ShiftL(src.ToSpan(), j));
                 
 
@@ -411,40 +412,91 @@ namespace Z0.Test
 
             var v1 = Vec128.FromParts(2ul,4ul);
             var v2 = Vec128.FromParts(8ul,6ul);
-            var v3 = gf.gfmul(v1,v2).ToVector128<ulong>();
-            Trace(() => v1);
-            Trace(() => v2);
-            Trace(() => v3);
+            var v3 = gfmul(v1,v2).ToVector128<ulong>();
         }
 
-        BitVector16 PolyMul(BitVector8 x, BitVector8 y)
+
+        static BitVector8 gfmulIntel(BitVector8 x, BitVector8 y)
         {
-            var dst = BitVector16.Zero;
-            for(var k=0; k<dst.Length; k++)
-            {
-                Bit prod = 0;
-                for(var i=k; i< y.Length; i++)
-                    prod ^= x[i] & y[i];
-                dst[k] = prod;
-            }
-            return dst;
+            var tword = BitVector16.Zero;
             
+            for(var i=0; i<8; i++)
+                if(y[i])
+                    tword ^= (x << i);
+
+            for(var i=14; i >= 8; i--)
+                if(tword[i])
+                    tword ^= BitVector16.FromScalar(0x11B << i - 8);
+
+            return (BitVector8)tword;
         }
 
-        public void Irreducible()
+        //Intel code sample from Carryless multiplication document
+        public static __m128i gfmul (__m128i a, __m128i b)
         {
 
-            var x = BitVector8.FromScalar(0b11001100);
-            var y = BitVector8.Zero;
-            BitVector16 r = Gf256.Irreducible[0];
+            var ab00 = _mm_clmulepi64_si128(a, b, 0x00);            
+            var ab10 = _mm_clmulepi64_si128(a, b, 0x10);
+            var ab01 = _mm_clmulepi64_si128(a, b, 0x01);
+            var ab11 = _mm_clmulepi64_si128(a, b, 0x11);
+
+            ab10 = _mm_xor_si128(ab10, ab01);
             
-            while(++y != 0)
-            {
-                var p1 = x * y;
-                var p3 = PolyMul(x,y);// ^ r;
-                Trace($"{p1} =?= {p3}");
-                
-            }
+            ab01 = _mm_bslli_si128(ab10, 8);
+            ab10 = _mm_bsrli_si128(ab10, 8);
+            
+            ab00 = _mm_xor_si128(ab00, ab01);            
+            ab11 = _mm_xor_si128(ab11, ab10);
+            
+            var ab00r31 = _mm_srli_epi32(ab00, 31);
+            var ab11r31 = _mm_srli_epi32(ab11, 31);
+            
+            ab00 = _mm_slli_epi32(ab00, 1);
+            ab11 = _mm_slli_epi32(ab11, 1);
+            
+            var tmp9 = _mm_bsrli_si128(ab00r31, 12);            
+            ab11r31 = _mm_bslli_si128(ab11r31, 4);
+            ab00r31 = _mm_bslli_si128(ab00r31, 4);
+
+            ab00 = _mm_or_si128(ab00, ab00r31);
+            ab11 = _mm_or_si128(ab11, ab11r31);
+            ab11 = _mm_or_si128(ab11, tmp9);
+            
+            ab00r31 = _mm_slli_epi32(ab00, 31);
+            ab11r31 = _mm_slli_epi32(ab00, 30);
+            tmp9 = _mm_slli_epi32(ab00, 25);
+            
+            ab00r31 = _mm_xor_si128(ab00r31, ab11r31);
+            ab00r31 = _mm_xor_si128(ab00r31, tmp9);
+            
+            ab11r31 = _mm_bsrli_si128(ab00r31, 4);
+            ab00r31 = _mm_bslli_si128(ab00r31, 12);
+            
+            ab00 = _mm_xor_si128(ab00, ab00r31);
+            var tmp2 = _mm_srli_epi32(ab00, 1);
+            ab10 = _mm_srli_epi32(ab00, 2);
+            ab01 = _mm_srli_epi32(ab00, 7);
+            
+            tmp2 = _mm_xor_si128(tmp2, ab10);
+            tmp2 = _mm_xor_si128(tmp2, ab01);
+            tmp2 = _mm_xor_si128(tmp2, ab11r31);
+            ab00 = _mm_xor_si128(ab00, tmp2);
+            ab11 = _mm_xor_si128(ab11, ab00);
+            return ab11;
+        }
+
+
+
+
+        
+        public void VerifyIncrement()
+        {            
+            var bv = BitVector8.Zero;
+            var counter = 0;
+            do
+                Claim.eq(counter++, (byte)bv);            
+            while(++bv);
+            Claim.eq(counter, Pow2.T08);
 
         }
     }

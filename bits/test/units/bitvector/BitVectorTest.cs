@@ -6,6 +6,7 @@ namespace Z0.Test
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
@@ -202,6 +203,71 @@ namespace Z0.Test
                 var expect = bv.ToBitString().Reversed()[0, n - 1].Reversed();
                 Claim.eq(expect, result);
             }
+        }
+
+        void Rotate8()
+        {
+            var x = BitVector8.Zero;
+            var offset = 3;
+            while(++x)
+            {
+                var y = x.Replicate();
+                Trace($"rotl({y}:{offset}) = {y.RotL(offset)}"); 
+            }
+        }
+
+        public void Powers()
+        {
+            var x = Random.BitVector8();
+            var expect2 = x & x;
+            var actual2 = x^2;
+            Claim.eq(expect2, actual2);
+
+            var expect4 = expect2 & expect2;
+            var actual4 = x^4;
+            Claim.eq(expect4, actual4);
+
+            var expect8 = expect4 & expect4;
+            var actual8 = x^8;
+            Claim.eq(expect8, actual8);
+
+            var expect16 = expect8 & expect8;
+            var actual16 = x^16;
+            Claim.eq(expect16, actual16);
+
+        }
+
+        public void Powers2()
+        {
+
+            var max = 0;
+            var vectors = BitVector8.All.ToArray();
+            const int MaxCount = 256;
+            Claim.yea(vectors.Length == MaxCount);
+            Claim.eq(vectors.ToSet().Count, MaxCount);
+
+            for(var i=0; i< MaxCount; i++)
+            {
+                var v = vectors[i];
+                if(v.Empty)
+                    continue;
+
+                for(var j=2; j<MaxCount; j++)                
+                {
+                    
+                    var p = v^j;
+                    if(p == BitVector8.One)
+                    {
+                        if(j > max)
+                            max = j;
+                        break;
+                    }
+                }
+
+            }
+
+
+            Trace($"MaxOrder = {max}");
         }
 
     }

@@ -12,6 +12,7 @@ namespace Z0
     
     partial class math
     {
+        
         [MethodImpl(Inline)]
         public static sbyte mod(sbyte lhs, sbyte rhs)
             => (sbyte)(lhs % rhs);

@@ -74,6 +74,7 @@ namespace Z0
         public static BitVector<T> operator *(BitVector<T> lhs, in BitVector<T> rhs)
             => new BitVector<T>(gbits.and(lhs.data, rhs.data));
 
+
         /// <summary>
         /// Computes the bitwise complement of the operand
         /// </summary>
@@ -90,6 +91,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Bit operator %(in BitVector<T> lhs, in BitVector<T> rhs)
             => lhs.Dot(rhs);
+
+        /// <summary>
+        /// Returns true if the source vector is nonzero, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator true(BitVector<T> src)
+            => src.Nonempty;
+
+        /// <summary>
+        /// Returns false if the source vector is the zero vector, false otherwise
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static bool operator false(BitVector<T> src)
+            => !src.Nonempty;
 
         [MethodImpl(Inline)]
         public BitVector(Memory<T> data, BitSize? bitcount = null)
@@ -245,6 +262,25 @@ namespace Z0
                 count += gbits.pop(Bits[i]);
             return count;
         }
+
+        /// <summary>
+        /// Returns true if no bits are enabled, false otherwise
+        /// </summary>
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => Pop() == 0;
+        }
+
+        /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => Pop() != 0;
+        }
+
 
         /// <summary>
         /// Sets all the bits to align with the source value

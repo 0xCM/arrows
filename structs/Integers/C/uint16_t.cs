@@ -49,8 +49,17 @@ namespace Z0
             => (sbyte)src.data;
 
         [MethodImpl(Inline)]
+        public static explicit operator int8_t(analog src)
+            => (sbyte)src.data;
+
+        [MethodImpl(Inline)]
         public static explicit operator byte(analog src)
             => (byte)src.data;
+
+        [MethodImpl(Inline)]
+        public static explicit operator uint8_t(analog src)
+            => (byte)src.data;
+
 
         [MethodImpl(Inline)]
         public static explicit operator short(analog src)
@@ -131,6 +140,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static analog operator ^ (analog lhs, analog rhs) 
             => (analog)(lhs.data ^ rhs.data);
+
+        [MethodImpl(Inline)]
+        public static analog operator ^ (analog lhs, uint8_t rhs) 
+            => (analog)(lhs.data ^ (uint16_t)rhs);
 
         [MethodImpl(Inline)]
         public static analog operator ~ (analog x) 
