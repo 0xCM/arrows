@@ -13,7 +13,7 @@ namespace Z0
 
     public static partial class gbits
     {
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static T deposit<T>(in T src, in T mask)
             where T : struct
         {
@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="src">The source/target value</param>
         /// <param name="mask"></param>
         /// <typeparam name="T">The identifiying mask</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static ref T deposit<T>(ref T src, T mask)
             where T : struct
         {

@@ -99,7 +99,6 @@ namespace Z0
           return ref dst;
         }
 
-
         /// <summary>
         /// Packs bools into bytes
         /// </summary>
@@ -120,87 +119,6 @@ namespace Z0
             
             return dst;
         }
-
-
-       public static ref sbyte pack(in ReadOnlySpan<Bit> src, out sbyte dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T03, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (sbyte)(I32One << i);
-            return ref dst;
-        }
-
-        public static ref byte pack(in ReadOnlySpan<Bit> src, out byte dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T03, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (byte)(I32One << i);
-            return ref dst;
-        }
-
-        public static ref ushort pack(in ReadOnlySpan<Bit> src, out ushort dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T04, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (ushort)(I32One << i);
-            return ref dst;
-        }
-
-        public static ref short pack(in ReadOnlySpan<Bit> src, out short dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T04, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (short)(I32One << i);
-            return ref dst;
-        }
-
-        public static ref int pack(in ReadOnlySpan<Bit> src, out int dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T05, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (1 << i);
-            return ref dst;
-        }
-
-        public static ref uint pack(in ReadOnlySpan<Bit> src, out uint dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T05, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (1u << i);
-            return ref dst;
-        }
-        
-        public static ref long pack(in ReadOnlySpan<Bit> src, out long dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T06, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (1L << i);
-            return ref dst;
-        }
-
-        public static ref ulong pack(in ReadOnlySpan<Bit> src, out ulong dst)
-        {
-            dst = 0;
-            var last = math.min(Pow2.T06, src.Length) - 1;
-            for(var i = 0; i <= last; i++)
-                if(src[last - i])
-                    dst |= (1ul << i);
-            return ref dst;
-        } 
  
     }
 }

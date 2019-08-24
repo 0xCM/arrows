@@ -41,7 +41,7 @@ namespace Z0
         /// </summary>
         /// <param name="i">The exponent</param>
         [MethodImpl(Inline)]
-        public T pow(byte i)
+        public static T pow(byte i)
             => Unsafe.As<ulong,T>(ref Powers[i]);
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Z0
         /// </summary>
         /// <param name="i">The exponent</param>
         [MethodImpl(Inline)]
-        public T pow(int i)
+        public static T pow(int i)
             => Unsafe.As<ulong,T>(ref Powers[i]);
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Z0
         /// <param name="i">The minimum power</param>
         /// <param name="j">The maximum power</param>
         /// <typeparam name="T">The computation result type</typeparam>
-        public T[] powers(in byte i, in byte j)
+        public static T[] powers(in byte i, in byte j)
         {   
             var dst = new T[j - i + 1];
             var current = i;
@@ -69,12 +69,13 @@ namespace Z0
             return dst;
         }
 
+
         /// <summary>
         /// Solves for i in the equation n = 2^i
         /// </summary>
         /// <param name="n">The exponentiated value n such that 2^n <= 2^15</param>
         [MethodImpl(Inline)]
-        public byte inv(T n)
+        public static byte inv(T n)
             => Inverted.TryGetValue(convert<T,ulong>(n), out byte e) ? e : Pow2Error(n);
 
         static byte Pow2Error(T pow2)

@@ -50,43 +50,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec512<byte> xor(in Vec512<byte> lhs, in Vec512<byte> rhs)        
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
                 
         [MethodImpl(Inline)]
         public static Vec512<short> xor(in Vec512<short> lhs, in Vec512<short> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<sbyte> xor(in Vec512<sbyte> lhs, in Vec512<sbyte> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<ushort> xor(in Vec512<ushort> lhs, in Vec512<ushort> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<int> xor(in Vec512<int> lhs, in Vec512<int> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<uint> xor(in Vec512<uint> lhs, in Vec512<uint> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<long> xor(in Vec512<long> lhs, in Vec512<long> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<ulong> xor(in Vec512<ulong> lhs, in Vec512<ulong> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<float> xor(in Vec512<float> lhs, in Vec512<float> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
         [MethodImpl(Inline)]
         public static Vec512<double> xor(in Vec512<double> lhs, in Vec512<double> rhs)
-            => Vec512.Define(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(Or(lhs.Lo(), rhs.Lo()), Or(lhs.Hi(), rhs.Hi()));
 
     }
 }

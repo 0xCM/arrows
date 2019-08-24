@@ -81,7 +81,7 @@ namespace Z0.Test
             Claim.eq("10110110", y);
             Claim.eq(5, y.PopCount());
             
-            var z = y.PackedBits();
+            var z = y.Pack();
             Claim.eq(1,z.Length);
             
 
@@ -104,7 +104,7 @@ namespace Z0.Test
             {
                 var bvX = bs.TakeValue<ulong>().ToBitString();
                 var nlzX = bvX.PopCount();
-                var bv = BitVector64.Load(bs.ToBits());
+                var bv = bs.ToBitVector64();
                 var nlzY = bv.Pop();
                 Claim.eq(nlzX, nlzY);
             }
@@ -150,7 +150,7 @@ namespace Z0.Test
         public void VerifyWordGen()
         {            
             var wordLen = 8;
-            var wordCount = Pow2.ops<int>().pow(wordLen);
+            var wordCount = Pow2<int>.pow(wordLen);
             var words = BinaryLanguage.Get().Words(wordLen).ToArray();
             Claim.eq(wordCount, words.Length);
             

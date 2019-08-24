@@ -93,7 +93,7 @@ namespace Z0.Test
                 for(var i=0; i<8; i++)
                 {
                     var dst = (byte)0;
-                    var pos = (byte)(Pow2.ops<int>().pow(i) - 1);
+                    var pos = (byte)(Pow2<int>.pow(i) - 1);
                     Bits.pack(in x0, in x1, in x2, in x3, in x4, in x5, in x6, in x7, pos, ref dst);
                     
                     var j = 0;
@@ -166,22 +166,22 @@ namespace Z0.Test
         public void ReverseBits()
         {
             var x0 = Random.Next<byte>();
-            var y0 = x0.ToReversedBitString().PackedBits().First();
+            var y0 = x0.ToReversedBitString().Pack().First();
             var z0 = Bits.rev(x0);
             Claim.eq(y0,z0);
 
             var x1 = Random.Next<ushort>();
-            var y1 = x1.ToReversedBitString().PackedBits().TakeUInt16();
+            var y1 = x1.ToReversedBitString().Pack().TakeUInt16();
             var z1 = Bits.rev(x1);
             Claim.eq(y1,z1);
 
             var x2 = Random.Next<uint>();
-            var y2 = x2.ToReversedBitString().PackedBits().TakeUInt32();
+            var y2 = x2.ToReversedBitString().Pack().TakeUInt32();
             var z2 = Bits.rev(x2);
             Claim.eq(y2,z2);
 
             var x3 = Random.Next<ulong>();
-            var y3 = x3.ToReversedBitString().PackedBits().TakeUInt64();
+            var y3 = x3.ToReversedBitString().Pack().TakeUInt64();
             var z3 = Bits.rev(x3);
             Claim.eq(y3,z3);
 

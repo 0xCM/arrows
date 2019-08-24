@@ -219,19 +219,19 @@ namespace Z0.Test
         public void Powers()
         {
             var x = Random.BitVector8();
-            var expect2 = x & x;
+            var expect2 = x * x;
             var actual2 = x^2;
             Claim.eq(expect2, actual2);
 
-            var expect4 = expect2 & expect2;
+            var expect4 = expect2 * expect2;
             var actual4 = x^4;
             Claim.eq(expect4, actual4);
 
-            var expect8 = expect4 & expect4;
+            var expect8 = expect4 * expect4;
             var actual8 = x^8;
             Claim.eq(expect8, actual8);
 
-            var expect16 = expect8 & expect8;
+            var expect16 = expect8 * expect8;
             var actual16 = x^16;
             Claim.eq(expect16, actual16);
 

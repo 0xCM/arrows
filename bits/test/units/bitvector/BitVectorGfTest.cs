@@ -11,7 +11,6 @@ namespace Z0.Test
     using static zfunc;
 
     using static Nats;
-    using static BitRef;
 
 
     public class BitVectorGfTest : UnitTest<BitVectorGfTest>
@@ -70,15 +69,15 @@ namespace Z0.Test
 
         public void VerifyGf8()
         {
-            var expect = new byte[,]
+            var expect =  new byte[,]
             {
-                {001, 010, 011, 100, 101, 110, 111},
-                {010, 100, 110, 011, 001, 111, 101},
-                {011, 110, 101, 111, 100, 001, 010},
-                {100, 011, 111, 110, 010, 101, 001},
-                {101, 001, 100, 010, 111, 011, 110},
-                {110, 111, 001, 101, 011, 010, 100},
-                {111, 101, 010, 001, 110, 100, 011}
+                {0b001, 0b010, 0b011, 0b100, 0b101, 0b110, 0b111},
+                {0b010, 0b100, 0b110, 0b011, 0b001, 0b111, 0b101},
+                {0b011, 0b110, 0b101, 0b111, 0b100, 0b001, 0b010},
+                {0b100, 0b011, 0b111, 0b110, 0b010, 0b101, 0b001},
+                {0b101, 0b001, 0b100, 0b010, 0b111, 0b011, 0b110},
+                {0b110, 0b111, 0b001, 0b101, 0b011, 0b010, 0b100},
+                {0b111, 0b101, 0b010, 0b001, 0b110, 0b100, 0b011}
             };
 
             var actual = Gf8.products();
@@ -95,8 +94,9 @@ namespace Z0.Test
                 text.AppendLine();
             }
 
-            Trace(text.ToString());
-            Trace(actual.Format(render:x => x.ToBitString().Format()));
+
+            // Trace(text.ToString());
+            // Trace(actual.Format(render:x => x.ToBitString().Format()));
 
             for(var i=0; i<7; i++)
             for(var j=0; j<7; j++)
@@ -166,14 +166,13 @@ namespace Z0.Test
 
         public void VerifyOrders()
         {                        
-            var v = BitVector8.Parse("11010111");
-            Claim.eq(v, BitVector8.FromScalar(0b11010111));
-            Claim.eq(v^3, BitVector8.One);
             foreach(var u in BitVector8.All)
             {
                 if(u.Nonempty)
                 {
                     var order = u.Order();
+                    // Trace($"order({u}) = {order}");
+                    // Trace($"pow({u},{order}) = {u^order}");
                     Claim.eq(BitVector8.One, u^order);
                 }
             }

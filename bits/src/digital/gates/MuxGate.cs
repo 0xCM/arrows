@@ -27,7 +27,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public T Send(T x, T y, T control)
         {
-            return gbits.or(gbits.andnot(x, control), gbits.and(y, control));
+            return gbits.or(gbits.andn(x, control), gbits.and(y, control));
             //return gbits.xor(gbits.and(gbits.xor(x,y), control), x);
         }
             

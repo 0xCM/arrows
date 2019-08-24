@@ -48,7 +48,7 @@ namespace Z0.Test
         {
             var x =  0b111010010110011010111001110000100001101ul;
             var xbs = BitString.Parse("111010010110011010111001110000100001101");
-            var packed = xbs.PackedBits(0, 8);
+            var packed = xbs.Pack(0, 8);
             var joined = packed.TakeUInt64();
             Claim.Equals(x,joined);
 

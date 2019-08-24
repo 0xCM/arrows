@@ -15,7 +15,7 @@ namespace Z0
     /// <summary>
     /// Defines a 32-bit bitvector
     /// </summary>
-    public struct BitVector32 : IBitVector<uint>
+    public struct BitVector32 : IPrimalBitVector<uint>
     {
         uint data;
 
@@ -64,7 +64,7 @@ namespace Z0
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
         public static BitVector32 FromScalars(ushort lo, ushort hi)
-            => FromScalar(hi << 16 | lo);
+            => FromScalar((uint)hi << 16 | (uint)lo);
 
         /// <summary>
         /// Creates a vector from a bit parameter array
@@ -79,18 +79,13 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
-        public static BitVector32 FromBitString(in BitString src)
-            => new BitVector32(src.TakeUInt32());    
+        public static BitVector32 FromBitString(in BitString src)        
+            => src.TakeUInt32();
 
         [MethodImpl(Inline)]
         public static BitVector32 Load(in ReadOnlySpan<byte> src, int offset = 0)
             => FromParts(src[offset + 0], src[offset + 1], src[offset + 2], src[offset + 3]);
     
-        [MethodImpl(Inline)]
-        public static BitVector32 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(Bits.pack(src, out uint data));
-
-
         /// <summary>
         /// Enumerates each and every 32-bit bitvector exactly once
         /// </summary>
@@ -325,6 +320,14 @@ namespace Z0
         }
 
         /// <summary>
+        /// Selects an index-identified byte where index = 0 | 1 | 2 | 3
+        /// </summary>
+        /// <param name="index">The 0-based byte-relative position</param>
+        [MethodImpl(Inline)]
+        public ref byte Byte(int index)        
+            => ref Bytes[index];
+
+        /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
         public BitSize Length
@@ -438,12 +441,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitVector32 AndNot(in BitVector32 rhs)
-            => Bits.andnot((uint)this, (uint)rhs);
+            => Bits.andn((uint)this, (uint)rhs);
 
         [MethodImpl(Inline)]
         public bool AllOnes()
             => (UInt32.MaxValue & data) == UInt32.MaxValue;
-
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
@@ -463,8 +465,6 @@ namespace Z0
             get => !Empty;
         }
 
-
-
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => data.ToBitString();
@@ -483,6 +483,10 @@ namespace Z0
             => new BitVector32(data);
 
         [MethodImpl(Inline)]
+        public BitVector64 Concat(BitVector32 tail)
+            => BitVector64.FromScalars(tail.data, data);
+
+        [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
             => ToBitString().Format(tlz, specifier);
 
@@ -498,7 +502,6 @@ namespace Z0
  
         public override string ToString()
             => Format();
- 
 
         [MethodImpl(Inline)]
         static BitVector32 FromParts(in byte x0, in byte x1, in byte x2, in byte x3)

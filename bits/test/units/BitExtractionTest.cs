@@ -41,6 +41,43 @@ namespace Z0.Test
             var y3 = bsx3.TakeValue<uint>();
             Claim.eq(x3,y3);            
         }
+
+        public void ExtractBits64()
+        {
+            var bv8 = BitVector8.FromScalar(0b10000000);
+            var bv16 =bv8.Concat(bv8);
+            var bv32 = bv16.Concat(bv16);
+            var bv64 = bv32.Concat(bv32);
+
+            var bs8 = bv8.ToBitString();
+            var bs16 = bs8.Concat(bs8);
+            var bs32 = bs16.Concat(bs16);
+            var bs64 = bs32.Concat(bs32);
+
+            Claim.eq(bv8.ToBitString(), bs8);
+            Claim.eq(bv8, bs8.ToBitVector8());
+
+            Claim.eq(bv16.ToBitString(), bs16);
+            Claim.eq(bv16, bs16.ToBitVector16());
+
+            Claim.eq(bv32.ToBitString(), bs32);
+            Claim.eq(bv32, bs32.ToBitVector32());
+
+            Claim.eq(bv64.ToBitString(), bs64);
+            Claim.eq(bv64, bs64.ToBitVector64());
+
+            var bv64x = Bits.extract(bv64, BitMask64.Msb8).ToBitVector();
+            Claim.eq((byte)0xFF, bv64x.Byte(0));
+
+            var x = BitConverter.ToUInt64(new byte[]{1,0,0,1,1,0,1,1},0);
+            var y = Bits.extract(x, BitMask64.Lsb8).ToBitVector();
+            var z = y.Byte(0);
+            Claim.eq(x.ToBitVector().Byte(0),z);
+        
+
+            //11011001
+
+        }
     }
 
 }

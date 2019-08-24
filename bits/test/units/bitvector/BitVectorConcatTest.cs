@@ -27,9 +27,6 @@ namespace Z0.Test
             var bsWhole = whole.ToBitString();
             var bsHead = head.ToBitString();
             var bsTail = tail.ToBitString();
-            Trace(() => bsWhole);
-            Trace(() => bsHead);
-            Trace(() => bsTail);
             Claim.eq(bsWhole, bsHead + bsTail);
 
             

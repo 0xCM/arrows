@@ -440,47 +440,45 @@ namespace Z0.Test
             var ab01 = _mm_clmulepi64_si128(a, b, 0x01);
             var ab11 = _mm_clmulepi64_si128(a, b, 0x11);
 
-            ab10 = _mm_xor_si128(ab10, ab01);
-            
+            ab10 = _mm_xor_si128(ab10, ab01);            
             ab01 = _mm_bslli_si128(ab10, 8);
-            ab10 = _mm_bsrli_si128(ab10, 8);
-            
+            ab10 = _mm_bsrli_si128(ab10, 8);            
             ab00 = _mm_xor_si128(ab00, ab01);            
             ab11 = _mm_xor_si128(ab11, ab10);
             
-            var ab00r31 = _mm_srli_epi32(ab00, 31);
-            var ab11r31 = _mm_srli_epi32(ab11, 31);
+            var ab00x = _mm_srli_epi32(ab00, 31);
+            var ab11y = _mm_srli_epi32(ab11, 31);
             
             ab00 = _mm_slli_epi32(ab00, 1);
             ab11 = _mm_slli_epi32(ab11, 1);
             
-            var tmp9 = _mm_bsrli_si128(ab00r31, 12);            
-            ab11r31 = _mm_bslli_si128(ab11r31, 4);
-            ab00r31 = _mm_bslli_si128(ab00r31, 4);
+            var ab00xx = _mm_bsrli_si128(ab00x, 12);            
+            ab11y = _mm_bslli_si128(ab11y, 4);
+            ab00x = _mm_bslli_si128(ab00x, 4);
 
-            ab00 = _mm_or_si128(ab00, ab00r31);
-            ab11 = _mm_or_si128(ab11, ab11r31);
-            ab11 = _mm_or_si128(ab11, tmp9);
+            ab00 = _mm_or_si128(ab00, ab00x);
+            ab11 = _mm_or_si128(ab11, ab11y);
+            ab11 = _mm_or_si128(ab11, ab00xx);
             
-            ab00r31 = _mm_slli_epi32(ab00, 31);
-            ab11r31 = _mm_slli_epi32(ab00, 30);
-            tmp9 = _mm_slli_epi32(ab00, 25);
+            ab00x = _mm_slli_epi32(ab00, 31);
+            ab11y = _mm_slli_epi32(ab00, 30);
+            ab00xx = _mm_slli_epi32(ab00, 25);
             
-            ab00r31 = _mm_xor_si128(ab00r31, ab11r31);
-            ab00r31 = _mm_xor_si128(ab00r31, tmp9);
+            ab00x = _mm_xor_si128(ab00x, ab11y);
+            ab00x = _mm_xor_si128(ab00x, ab00xx);
             
-            ab11r31 = _mm_bsrli_si128(ab00r31, 4);
-            ab00r31 = _mm_bslli_si128(ab00r31, 12);
+            ab11y = _mm_bsrli_si128(ab00x, 4);
+            ab00x = _mm_bslli_si128(ab00x, 12);
             
-            ab00 = _mm_xor_si128(ab00, ab00r31);
-            var tmp2 = _mm_srli_epi32(ab00, 1);
+            ab00 = _mm_xor_si128(ab00, ab00x);
             ab10 = _mm_srli_epi32(ab00, 2);
             ab01 = _mm_srli_epi32(ab00, 7);
-            
-            tmp2 = _mm_xor_si128(tmp2, ab10);
-            tmp2 = _mm_xor_si128(tmp2, ab01);
-            tmp2 = _mm_xor_si128(tmp2, ab11r31);
-            ab00 = _mm_xor_si128(ab00, tmp2);
+
+            var collect = _mm_srli_epi32(ab00, 1);
+            collect = _mm_xor_si128(collect, ab10);
+            collect = _mm_xor_si128(collect, ab01);
+            collect = _mm_xor_si128(collect, ab11y);
+            ab00 = _mm_xor_si128(ab00, collect);
             ab11 = _mm_xor_si128(ab11, ab00);
             return ab11;
         }

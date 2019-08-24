@@ -60,7 +60,6 @@ namespace Z0
         public static BitMatrix<N,T> operator +(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => XOr(ref lhs, rhs);
 
-
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator &(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => And(ref lhs, rhs);
@@ -186,9 +185,8 @@ namespace Z0
         }
 
         /// <summary>
-        /// Retrieves/Replaces a row
+        /// Queries/Specifies a row
         /// </summary>
-        /// <value></value>
         public BitVector<N,T> this[int row]
         {
             [MethodImpl(Inline)]
@@ -275,7 +273,7 @@ namespace Z0
 
         static ref BitMatrix<N,T> And(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            BitRef.and(lhs.Bits, rhs.Bits, lhs.Bits);
             return ref lhs;
         }
 

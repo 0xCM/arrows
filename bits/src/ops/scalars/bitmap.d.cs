@@ -15,31 +15,31 @@ namespace Z0
     {                
         [MethodImpl(Inline)]
         public static void bitmap(sbyte src, byte srcOffset, byte len, byte dstOffset, ref sbyte dst)
-             => dst |= (sbyte)((extract(src, srcOffset, len) << dstOffset));
+             => dst |= (sbyte)((Bits.extract(src, srcOffset, len) << dstOffset));
 
         [MethodImpl(Inline)]
         public static void bitmap(byte src, byte srcOffset, byte len, byte dstOffset, ref byte dst)
-             => dst |= (byte)((extract(src, srcOffset, len) << dstOffset));
+             => dst |= (byte)((Bits.extract(src, srcOffset, len) << dstOffset));
 
         [MethodImpl(Inline)]
         public static void bitmap(short src, byte srcOffset, byte len, byte dstOffset, ref short dst)
-             => dst |= (short)((extract(src, srcOffset, len) << dstOffset));
+             => dst |= (short)((Bits.extract(src, srcOffset, len) << dstOffset));
 
         [MethodImpl(Inline)]
         public static void bitmap(ushort src, byte srcOffset, byte len, byte dstOffset, ref ushort dst)
-             => dst |= (ushort)((extract(src, srcOffset, len) << dstOffset));
+             => dst |= (ushort)((Bits.extract(src, srcOffset, len) << dstOffset));
 
         [MethodImpl(Inline)]
         public static void bitmap(int src, byte srcOffset, byte len,  byte dstOffset, ref int dst)
-             => dst |= (extract(src, srcOffset, len) << dstOffset);
+             => dst |= (Bits.extract(src, srcOffset, len) << dstOffset);
 
         [MethodImpl(Inline)]
         public static void bitmap(uint src, byte srcOffset, byte len,  byte dstOffset, ref uint dst)
-             => dst |= (extract(src, srcOffset, len) << dstOffset);
+             => dst |= (Bits.extract(src, srcOffset, len) << dstOffset);
 
         [MethodImpl(Inline)]
         public static void bitmap(long src, byte srcOffset, byte len,  byte dstOffset, ref long dst)
-             => dst |= (extract(src, srcOffset, len) << dstOffset);
+             => dst |= (Bits.extract(src, srcOffset, len) << dstOffset);
 
         /// <summary>
         /// Projects a contiguous sequence of bits from a source to a target
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="dst">The target</param>
         [MethodImpl(Inline)]
         public static void bitmap(ulong src, byte srcOffset, byte len,  byte dstOffset, ref ulong dst)
-             => dst |= (extract(src, srcOffset, len) << dstOffset);
+             => dst |= (Bits.extract(src, srcOffset, len) << dstOffset);
 
         [MethodImpl(Inline)]
         public static byte shufflespec(byte x3, byte x2, byte x1, byte x0)

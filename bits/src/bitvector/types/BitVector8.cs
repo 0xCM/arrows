@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;    
     using static Bits;
 
-    public struct BitVector8 : IBitVector<byte>
+    public struct BitVector8 : IPrimalBitVector<byte>
     {
         byte data;
         
@@ -69,16 +69,7 @@ namespace Z0
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
         public static BitVector8 FromBitString(in BitString src)
-            => new BitVector8(src.TakeUInt8());    
-
-        /// <summary>
-        /// Loads a vector from a bitspan
-        /// </summary>
-        /// <param name="src">The source span</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(pack(src, out byte dst));
-
+            => src.TakeUInt8();    
 
         /// <summary>
         /// Enumerates each and every 8-bit bitvector exactly once
@@ -436,6 +427,9 @@ namespace Z0
         public readonly BitSize Nlz()
             => Bits.nlz(data);
 
+        /// <summary>
+        /// Counts the number of trailing zero bits
+        /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Ntz()
             => Bits.ntz(data);
@@ -493,7 +487,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitVector8 AndNot(in BitVector8 rhs)
-            => Bits.andnot((byte)this, (byte)rhs);
+            => Bits.andn((byte)this, (byte)rhs);
 
         [MethodImpl(Inline)]
         public readonly bool AllOnes()
@@ -508,8 +502,8 @@ namespace Z0
             => BitVector16.FromScalar(data);
 
         [MethodImpl(Inline)]
-        public readonly BitString ToBitString()
-            => data.ToBitString();
+        public readonly BitString ToBitString(int? maxlen = null)
+            => maxlen == null ? data.ToBitString() : data.ToBitString().Truncate(maxlen.Value);
 
         /// <summary>
         /// Constructs a bitvector formed from the n lest significant bits of the current vector
@@ -574,6 +568,10 @@ namespace Z0
         public BitVector8 Replicate()
             => new BitVector8(data);
 
+        /// <summary>
+        /// Creates a new vector via concatenation
+        /// </summary>
+        /// <param name="tail">The lower bits of the new vector</param>
         [MethodImpl(Inline)]
         public BitVector16 Concat(BitVector8 tail)
             => BitVector16.FromScalars(tail.data, data);

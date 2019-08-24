@@ -49,5 +49,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static byte nlz(in ulong src)
             => (byte)Lzcnt.X64.LeadingZeroCount(src);
+    
     }
 }

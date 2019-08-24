@@ -291,7 +291,7 @@ namespace Z0
 
         static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            BitRef.and(lhs.Bits, rhs.Bits, lhs.Bits);
             return ref lhs;
         }
 

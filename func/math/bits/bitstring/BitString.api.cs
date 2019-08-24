@@ -110,6 +110,14 @@ namespace Z0
             => new BitString(src);
 
         /// <summary>
+        /// Constructs a bitstring from bitseq parameter array
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString FromBitSeq(params byte[] src)                
+            => new BitString(src);
+
+        /// <summary>
         /// Constructs a bitstring from bitseq
         /// </summary>
         /// <param name="src">The bit source</param>

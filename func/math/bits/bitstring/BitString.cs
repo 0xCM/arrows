@@ -126,7 +126,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public T TakeValue<T>(int offset = 0)
             where T : struct
-                => Pack<T>(offset, Unsafe.SizeOf<T>());
+                => PackSingle<T>(offset, Unsafe.SizeOf<T>());
 
         /// <summary>
         /// Renders a bitstring segment as a packed byte value
@@ -160,9 +160,49 @@ namespace Z0
         public ulong TakeUInt64(int offset = 0)
             => TakeValue<ulong>(offset);
 
+        /// <summary>
+        /// Packs a section of the represented bits into a bytespan
+        /// </summary>
+        /// <param name="offset">The position of the first bit</param>
+        /// <param name="minlen">The the minimum length of the produced span</param>
         [MethodImpl(Inline)]
-        public Span<byte> PackedBits(int offset = 0, int? minlen = null)
+        public readonly Span<byte> Pack(int offset = 0, int? minlen = null)
             => PackedBits(bitseq, offset, minlen);
+
+        /// <summary>
+        /// Packs represented bits span of specified scalar type
+        /// </summary>
+        /// <typeparam name="T">The target scalar type</typeparam>
+        public Span<T> Pack<T>()
+            where T : struct
+        {            
+            if(Length == 0)
+                return new T[1];
+            else            
+            {
+                var src = BitSeq;
+                var seglen = 8;
+                var segcount = divrem<N8>(Length, out int r);
+                var dstLen = (segcount == 0 ? 1 : (r == 0 ? segcount : segcount + 1));
+                var dst = new byte[dstLen];
+                
+                for(int i = 0, j=0; i< segcount - seglen;  j++, i+= seglen)
+                    pack(src.Slice(i,seglen), ref dst[j]);
+                
+                if(r != 0)    
+                    pack(src.Slice(segcount), ref dst[dstLen - 1]);
+                
+                return MemoryMarshal.Cast<byte,T>(dst);
+            }                                
+        }            
+
+        static ref byte pack(in Span<byte> src, ref byte dst)
+        {
+            var last = Math.Min(Pow2.T03, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                dst |= (byte)(src[i] << i);
+            return ref dst;
+        }
 
         /// <summary>
         /// Counts the number of leading zero bits
@@ -229,15 +269,33 @@ namespace Z0
             return new BitString(dst);
         }
 
+        /// <summary>
+        /// Returns a new bitstring of length no greater than a specified maximum
+        /// </summary>
+        /// <param name="maxlen">The maximum length</param>
         public BitString Truncate(int maxlen)
         {
-            if(bitseq.Length > maxlen)
-            {
-                Span<byte> src = bitseq;
-                var dst = src.Slice(0,maxlen);
-                bitseq = dst.ToArray();
-            }
-            return this;
+            if(Length <= maxlen)
+                return new BitString(bitseq);
+            
+            Span<byte> src = bitseq;
+            var dst = src.Slice(0,maxlen);
+            return new BitString(dst.ToArray());
+        }
+
+        /// <summary>
+        /// Returns a new bitstring of length no less than a specified minimum
+        /// </summary>
+        /// <param name="minlen">The minimum length</param>
+        public BitString Pad(int minlen)
+        {
+            if(Length >= minlen)
+                return new BitString(bitseq);
+            
+            Span<byte> src = bitseq;
+            var dst = new byte[minlen];
+            src.CopyTo(dst);
+            return new BitString(dst);            
         }
 
         /// <summary>
@@ -373,13 +431,14 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        readonly T Pack<T>(int offset = 0, int? minlen = null)
+        readonly T PackSingle<T>(int offset = 0, int? minlen = null)
             where T : struct
         {                        
             var src = bitseq.ToReadOnlySpan();
             var packed = PackedBits(src,offset,minlen);
             return packed.Length != 0 ? SpanConvert.TakeSingle<byte,T>(packed) : default;
         }
+
 
         /// <summary>
         /// Projects the bitstring onto a span via a supplied transformation

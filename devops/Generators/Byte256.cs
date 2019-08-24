@@ -130,7 +130,7 @@ namespace Z0
         public IEnumerable<(string decidx, string index, string bitseq, string bitchars, string text)> MakeBitStringsUInt8()
         {
             var length = 8;
-            var count = (int)Pow2.ops<int>().pow(length) - 1;
+            var count = (int)Pow2<uint>.pow(length) - 1;
             for(var i=0; i <= count; i++)
                 yield return (i.ToString(), MakeBsIndex((byte)i), MakeBsSeq((byte)i), MakeBsArray((byte)i), MakeBsText((byte)i));                
         }

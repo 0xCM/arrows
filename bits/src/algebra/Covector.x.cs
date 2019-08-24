@@ -81,7 +81,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.and(x, y);
+            BitRef.and(x, y);
             return ref lhs;
         }
 

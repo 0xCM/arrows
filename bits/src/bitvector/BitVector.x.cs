@@ -37,7 +37,7 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a canonical 64-bit bitvector from a 64-bit primal value
+        /// Constructs a 64-bit bitvector from a 64-bit primal value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -275,70 +275,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64(this ulong src)        
             => src;
-
-        /// <summary>
-        /// Constructs an 8-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this Span<Bit> src)
-            => BitVector8.Load(src);
-
-        /// <summary>
-        /// Constructs an 8-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this ReadOnlySpan<Bit> src)
-            => BitVector8.Load(src);
-
-        /// <summary>
-        /// Constructs a 16-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this Span<Bit> src)
-            => BitVector16.Load(src);
-
-        /// <summary>
-        /// Constructs a 16-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this ReadOnlySpan<Bit> src)
-            => BitVector16.Load(src);
-
-        /// <summary>
-        /// Constructs a 32-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this Span<Bit> src)
-            => BitVector32.Load(src);
-
-        /// <summary>
-        /// Constructs a 32-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this ReadOnlySpan<Bit> src)
-            => BitVector32.Load(src);
-
-        /// <summary>
-        /// Constructs a 64-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this Span<Bit> src)
-            => BitVector64.Load(src);
-
-        /// <summary>
-        /// Constructs a 64-bit bitvector from a bitspan
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this ReadOnlySpan<Bit> src)
-            => BitVector64.Load(src);
     
         /// <summary>
         /// Converts the source bitvector it the equivalent natural/generic bitvector
@@ -371,6 +307,46 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N64,ulong> ToGeneric(this BitVector64 src)
             => src;
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64(this BitString src)
+            => BitVector64.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector32(this BitString src)
+            => BitVector32.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 16-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16(this BitString src)
+            => BitVector16.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 8-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this BitString src)
+            => BitVector8.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 4-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 ToBitVector4(this BitString src)
+            => BitVector4.FromBitString(src);
 
     }
 }

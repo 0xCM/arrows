@@ -31,6 +31,15 @@ namespace Z0
 
     }
 
+    public interface IPrimalBitVector<T> : IBitVector<T>
+        where T : struct
+    {
+        /// <summary>
+        /// Returns the canonical scalar representation of the vector
+        /// </summary>
+        T ToScalar();
+    }
+
     /// <summary>
     /// Characterizes a bitvector parametrized by its natural length and
     /// the underlying storage type 

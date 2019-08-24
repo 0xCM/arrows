@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Defines a 16-bit bitvector
     /// </summary>
-    public struct BitVector16 : IBitVector<short>
+    public struct BitVector16 : IPrimalBitVector<ushort>
     {
         ushort data;
 
@@ -64,7 +64,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector16 FromScalars(byte lo, byte hi)
-            => FromScalar(hi << 8 | lo);
+            => FromScalar((ushort)hi << 8 | (ushort)lo);
 
         /// <summary>
         /// Creates a vector from a bitstring
@@ -72,11 +72,7 @@ namespace Z0
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
         public static BitVector16 FromBitString(in BitString src)
-            => new BitVector16(src.TakeUInt16());    
-
-        [MethodImpl(Inline)]
-        public static BitVector16 Load(ReadOnlySpan<Bit> src)
-            => FromScalar(pack(src, out ushort dst));
+            => src.TakeUInt16();    
 
         /// <summary>
         /// Enumerates each and every 16-bit bitvector exactly once
@@ -324,6 +320,14 @@ namespace Z0
         }
 
         /// <summary>
+        /// Selects an index-identified byte where index = 0 | 1
+        /// </summary>
+        /// <param name="index">The 0-based byte-relative position</param>
+        [MethodImpl(Inline)]
+        public ref byte Byte(int index)        
+            => ref Bytes[index];
+
+        /// <summary>
         /// Rotates vector bits rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
@@ -341,7 +345,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitVector16 AndNot(BitVector16 rhs)
-            => Bits.andnot((ushort)this, (ushort)rhs);
+            => Bits.andn((ushort)this, (ushort)rhs);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -474,6 +478,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector16 Replicate()
             => new BitVector16(data);
+
+        [MethodImpl(Inline)]
+        public BitVector32 Concat(BitVector16 tail)
+            => BitVector32.FromScalars(tail.data, data);
 
         /// <summary>
         /// Returns the vector's bitstring representation

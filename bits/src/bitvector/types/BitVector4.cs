@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Defines a 4-bit bitvector
     /// </summary>
-    public struct BitVector4 : IBitVector<UInt4>
+    public struct BitVector4 : IPrimalBitVector<byte>
     {
         UInt4 data;
 
@@ -54,7 +54,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector4 FromBitString(BitString src)
-            => new BitVector4(src.IsEmpty ? (byte)0 : src.PackedBits()[0]);            
+            => new BitVector4(src.IsEmpty ? (byte)0 : src.Pack()[0]);            
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N4,byte>(in BitVector4 src)
@@ -287,5 +287,8 @@ namespace Z0
         
         public override string ToString()
             => Format();
+
+        byte IPrimalBitVector<byte>.ToScalar()
+            => data;
     }
 }

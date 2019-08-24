@@ -17,8 +17,6 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Sse;
 
     using static zfunc;
-    using static Span256;
-    using static Span128;
     using static As;
 
     partial class dinx
@@ -59,49 +57,6 @@ namespace Z0
         public static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)
             => Multiply(lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static uint clmul(uint lhs, uint rhs)
-            => (uint)extract(CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0), 0);
-
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static long clmul(long lhs, long rhs)
-            => extract(CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0), 0);
-
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ulong clmul(ulong lhs, ulong rhs)
-            => extract(CarrylessMultiply(Vector128.Create(lhs, 0ul), Vector128.Create(rhs, 0ul), 0), 0);
-
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// Effects carryless multiplication on selected components
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="control">?</param>
-        [MethodImpl(Inline)]
-        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs, control);
-        
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// Effects carryless multiplication on selected components
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="control">?</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs,control);
 
 
         const ulong LoMask64 = 0x00000000fffffffful;
@@ -133,24 +88,6 @@ namespace Z0
             return z;
         }
 
-        [MethodImpl(Inline)]
-        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs)
-        {
-            var l = extract(clmul(lhs, rhs, 0),0);
-            var h = extract(clmul(lhs, rhs, 0xFF),0);
-            return Vec128.FromParts(l,h);            
-        }
-
-        [MethodImpl(Inline)]
-        public static Vec256<long> clmul(in Vec256<long> lhs, in Vec256<long> rhs)
-        {
-            var mul0 = clmul(extract128(lhs,0), extract128(rhs,0));
-            var mul1 = clmul(extract128(lhs,1), extract128(rhs,1));
-            var dst = Vec256.Zero<long>();
-            insert(mul0, dst, 0);
-            insert(mul1, dst, 1);                    
-            return dst;
-        }
 
     }
 }

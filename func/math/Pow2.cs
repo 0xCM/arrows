@@ -13,11 +13,6 @@ namespace Z0
     
     public static class Pow2    
     {                
-        [MethodImpl(Inline)]
-        public static Pow2<T> ops<T>()
-            where T: struct
-                => Pow2<T>.TheOnly;
-
         /// <summary>
         /// Computes the remainder of division by a power of 2, a % 2^i
         /// </summary>
@@ -33,7 +28,7 @@ namespace Z0
         /// <param name="i">The exponent</param>
         [MethodImpl(Inline)]
         public static ulong pow(byte i)
-            => ops<ulong>().pow(i);
+            => Pow2<ulong>.pow(i);
 
         /// <summary>
         /// Given n, computes i  n = 2^63
@@ -41,7 +36,7 @@ namespace Z0
         /// <param name="n">The exponentiated value n such that 2^n <= 2^63</param>
         [MethodImpl(Inline)]
         public static ulong inv(ulong pow2)
-            => ops<ulong>().inv(pow2);
+            => Pow2<ulong>.inv(pow2);
 
         /// <summary>
         /// 2^0 = 1
@@ -84,7 +79,7 @@ namespace Z0
         public const int T07 = 2*T06;
 
         /// <summary>
-        /// 2^8 = 256
+        /// 2^8 = 256 = UInt8.MaxValue + 1
         /// </summary>
         public const int T08 = 2*T07;
 
@@ -124,7 +119,7 @@ namespace Z0
         public const int T15 = 2*T14;
 
         /// <summary>
-        /// 2^16 = 65,536
+        /// 2^16 = 65,536 = UInt16.MaxValue + 1
         /// </summary>
         public const int T16 = 2*T15;
         

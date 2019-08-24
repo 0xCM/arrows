@@ -22,10 +22,29 @@ namespace Z0
     /// This type and any assciated method is wholly synthetic; .Net intrinsics
     /// does not (at the time of this writing) support AVX512
     /// </remarks>
-    [StructLayout(LayoutKind.Sequential, Size = ByteCount)]
+    [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
     public struct Vec512<T>
         where T : struct
     {            
+        
+        [FieldOffset(0)]
+        public Vec256<T> lo;
+
+        [FieldOffset(32)]
+        public Vec256<T> hi;
+
+        [FieldOffset(0)]
+        public Vec128<T> v00;
+
+        [FieldOffset(16)]
+        public Vec128<T> v01;
+
+        [FieldOffset(16*2)]
+        public Vec128<T> v10;
+
+        [FieldOffset(16*3)]
+        public Vec128<T> v11;
+
         public static readonly int Length = 2*Vec256<T>.Length;
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
@@ -37,22 +56,32 @@ namespace Z0
 
         public static readonly Vec512<T> Zero = default;
         
-        internal Vec256<T> v0;
-
-        internal Vec256<T> v1;
 
         [MethodImpl(Inline)]
-        public Vec512(Vec256<T> v0, Vec256<T> v1)     
+        public Vec512(in Vec128<T> v00, in Vec128<T> v01, in Vec128<T> v10, in Vec128<T> v11) 
+            : this()    
         {
-            this.v0 = v0;
-            this.v1 = v1;
+            this.v00 = v00;
+            this.v01 = v01;
+            this.v10 = v10;
+            this.v11 = v11;
+        }
+
+
+        [MethodImpl(Inline)]
+        public Vec512(in Vec256<T> lo, in Vec256<T> hi) 
+            : this()    
+        {
+            this.lo = lo;
+            this.hi = hi;
         }
 
         [MethodImpl(Inline)]
-        public Vec512(Vector256<T> v0, Vector256<T> v1)     
+        public Vec512(in Vector256<T> lo, in Vector256<T> hi)     
+            : this()    
         {
-            this.v0 = v0;
-            this.v1 = v1;
+            this.lo = lo;
+            this.hi = hi;
         }
 
         [MethodImpl(Inline)]
@@ -63,7 +92,7 @@ namespace Z0
         public override string ToString()
         {
             //Hi -> Lo
-            return v1.ToString() + " | " + v0.ToString();
+            return hi.ToString() + " | " + lo.ToString();
         }
     }     
 }

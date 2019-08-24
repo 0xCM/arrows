@@ -18,6 +18,14 @@ namespace Z0
     public struct Vec1024<T>
         where T : struct
     {            
+        public Vec256<T> v00;
+
+        public Vec256<T> v01;
+
+        public Vec256<T> v10;
+
+        public Vec256<T> v11;
+
         public static readonly int Length = 4*Vec256<T>.Length;
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
@@ -26,24 +34,15 @@ namespace Z0
 
         public const int ByteCount = 128;
 
-        public static readonly Vec1024<T> Zero = default;
-        
-        internal Vec256<T> v0;
-
-        internal Vec256<T> v1;
-
-        internal Vec256<T> v2;
-
-        internal Vec256<T> v3;
-
+        public static readonly Vec1024<T> Zero = default;        
 
         [MethodImpl(Inline)]
         public Vec1024(Vec256<T> v0, Vec256<T> v1, Vec256<T> v2, Vec256<T> v3)     
         {
-            this.v0 = v0;
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
+            this.v00 = v0;
+            this.v01 = v1;
+            this.v10 = v2;
+            this.v11 = v3;
         }
 
 
@@ -55,7 +54,7 @@ namespace Z0
         public override string ToString()
         {
             //Hi -> Lo
-            return v3.ToString() + " | " + v2.ToString() + " | " + v1.ToString() + " | " + v0.ToString();
+            return v11.ToString() + " | " + v10.ToString() + " | " + v01.ToString() + " | " + v00.ToString();
         }
     }     
 
@@ -66,13 +65,13 @@ namespace Z0
             where T : struct
         {
             if(index == 0)
-                return ref src.v0;
+                return ref src.v00;
             else if(index == 1)
-                return ref src.v1;
+                return ref src.v01;
             else if(index == 2)
-                return ref src.v2;
+                return ref src.v10;
             else if(index == 3)
-                return ref src.v3;
+                return ref src.v11;
             else
                 throw OutOfRange(index, 0, 3);
         }
@@ -83,9 +82,9 @@ namespace Z0
             where T : struct
         {
             if(index == 0)
-                return ref src.v0;
+                return ref src.lo;
             else if(index == 1)
-                return ref src.v1;
+                return ref src.hi;
             else
                 throw OutOfRange(index, 0, 1);
         }
@@ -93,12 +92,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref readonly Vec256<T> Lo<T>(this in Vec512<T> src)
             where T : struct
-                => ref src.v0;
+                => ref src.lo;
 
         [MethodImpl(Inline)]
         public static ref readonly Vec256<T> Hi<T>(this in Vec512<T> src)
             where T : struct
-                => ref src.v1;
+                => ref src.hi;
 
 
     }

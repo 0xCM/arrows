@@ -11,14 +11,12 @@ namespace Z0
     using System.Numerics;
 
     using static Bits;
-    using static Bytes;
-
     using static zfunc;    
 
     /// <summary>
     /// Defines a 64-bit bitvector
     /// </summary>
-    public struct BitVector64
+    public struct BitVector64 : IPrimalBitVector<ulong>
     {
         ulong data;
 
@@ -46,20 +44,20 @@ namespace Z0
             => new BitVector64(src);    
 
         /// <summary>
+        /// Creates a vector from two unsigned 32-bit integers
+        /// </summary>
+        /// <param name="src">The source bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromScalars(uint lo, uint hi)
+            => FromScalar((ulong)hi << 32 | (ulong)lo);
+
+        /// <summary>
         /// Creates a vector from a bitstring
         /// </summary>
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
         public static BitVector64 FromBitString(in BitString src)
-            => new BitVector64(src.TakeUInt64());    
-
-        /// <summary>
-        /// Loads a vector from a span of bits
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 Load(in ReadOnlySpan<Bit> src)
-            => FromScalar(pack(src, out ulong data));
+            => src.TakeUInt64();
 
         /// <summary>
         /// Enumerates each and every 64-bit bitvector exactly once, 
@@ -205,7 +203,6 @@ namespace Z0
         public static bool operator false(BitVector64 src)
             => !src.Nonempty;
 
-
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector64 lhs, in BitVector64 rhs)
             => lhs.Equals(rhs);
@@ -293,6 +290,14 @@ namespace Z0
         }
 
         /// <summary>
+        /// Selects an index-identified byte where index = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+        /// </summary>
+        /// <param name="index">The 0-based byte-relative position</param>
+        [MethodImpl(Inline)]
+        public ref byte Byte(int index)        
+            => ref Bytes[index];
+        
+        /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
@@ -378,7 +383,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector64 Msb(int n)                
             => Between(LastPos - n, LastPos);                
-
         
         /// <summary>
         /// Counts the number of enabled bits in the source
@@ -416,7 +420,7 @@ namespace Z0
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public BitVector64 AndNot(in BitVector64 rhs)
-            => Bits.andnot((ulong)this, (ulong)rhs);
+            => Bits.andn((ulong)this, (ulong)rhs);
 
         /// <summary>
         /// Reverses the vector's bits
@@ -484,8 +488,8 @@ namespace Z0
             => new BitVector64(data);
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false)
-            => ToBitString().Format(tlz, specifier);
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
         public bool Equals(in BitVector64 rhs)

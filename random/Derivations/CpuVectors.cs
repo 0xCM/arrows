@@ -87,7 +87,7 @@ namespace Z0
         {
             var v1 = random.CpuVec256(domain,filter);
             var v2 = random.CpuVec256(domain,filter);
-            return Vec512.Define(v1,v2);
+            return Vec512.FromParts(v1,v2);
         }
 
         /// <summary>

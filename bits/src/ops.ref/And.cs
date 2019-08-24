@@ -16,7 +16,7 @@ namespace Z0
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static Span<T> and<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
-                => gbits.and(lhs,in rhs, span<T>(length(lhs,rhs)));
+                => and(lhs,in rhs, span<T>(length(lhs,rhs)));
 
         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
         public static Span<T> and<T>(Span<T> lhs, in T rhs)
@@ -43,7 +43,94 @@ namespace Z0
             return  lhs;
         }
 
-        public static Span<sbyte> and(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref readonly Span<T> and<T>(ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                and(int8(lhs), int8(rhs), int8(dst));
+            else if(typeof(T) == typeof(byte))
+                and(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(typeof(T) == typeof(short))
+                and(int16(lhs), int16(rhs), int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                and(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                and(int32(lhs), int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                and(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                and(int64(lhs), int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                and(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                and(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                and(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported<T>();
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref readonly Span<T> and<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                and(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                and(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                and(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                and(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                and(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                and(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                and(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                and(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                and(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                and(float64(lhs), float64(rhs));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref readonly Memory<T> and<T>(in Memory<T> lhs, in ReadOnlyMemory<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                and(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                and(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                and(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                and(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                and(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                and(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                and(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                and(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                and(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                and(float64(lhs), float64(rhs));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+        static Span<sbyte> and(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -51,7 +138,7 @@ namespace Z0
             return dst;                
         }
 
-        public static Span<byte> and(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+        static Span<byte> and(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -59,7 +146,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<short> and(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+        static Span<short> and(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -67,7 +154,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<ushort> and(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+        static Span<ushort> and(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -75,7 +162,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<int> and(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        static Span<int> and(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -83,7 +170,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<uint> and(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+        static Span<uint> and(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -91,7 +178,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<long> and(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+        static Span<long> and(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -99,7 +186,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<ulong> and(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+        static Span<ulong> and(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -107,7 +194,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<float> and(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+        static Span<float> and(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -115,7 +202,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<double> and(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+        static Span<double> and(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -123,7 +210,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<sbyte> and(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        static Span<sbyte> and(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -131,7 +218,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<byte> and(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        static Span<byte> and(Span<byte> lhs, ReadOnlySpan<byte> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -139,7 +226,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<short> and(Span<short> lhs, ReadOnlySpan<short> rhs)
+        static Span<short> and(Span<short> lhs, ReadOnlySpan<short> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -147,7 +234,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<ushort> and(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        static Span<ushort> and(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -155,7 +242,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<int> and(Span<int> lhs, ReadOnlySpan<int> rhs)
+        static Span<int> and(Span<int> lhs, ReadOnlySpan<int> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -163,7 +250,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<uint> and(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        static Span<uint> and(Span<uint> lhs, ReadOnlySpan<uint> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -171,7 +258,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<long> and(Span<long> lhs, ReadOnlySpan<long> rhs)
+        static Span<long> and(Span<long> lhs, ReadOnlySpan<long> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -179,7 +266,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<ulong> and(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        static Span<ulong> and(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -187,56 +274,56 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<sbyte> and(Span<sbyte> lhs, sbyte rhs)
+        static Span<sbyte> and(Span<sbyte> lhs, sbyte rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<byte> and(Span<byte> lhs, byte rhs)
+        static Span<byte> and(Span<byte> lhs, byte rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<short> and(Span<short> lhs, short rhs)
+        static Span<short> and(Span<short> lhs, short rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<ushort> and(Span<ushort> lhs, ushort rhs)
+        static Span<ushort> and(Span<ushort> lhs, ushort rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<int> and(Span<int> lhs, int rhs)
+        static Span<int> and(Span<int> lhs, int rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<uint> and(Span<uint> lhs, uint rhs)
+        static Span<uint> and(Span<uint> lhs, uint rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<long> and(Span<long> lhs, long rhs)
+        static Span<long> and(Span<long> lhs, long rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;
             return lhs;
         }
 
-        public static Span<ulong> and(Span<ulong> lhs, ulong rhs)
+        static Span<ulong> and(Span<ulong> lhs, ulong rhs)
         {
             for(var i = 0; i< lhs.Length; i++)
                 lhs[i] &= rhs;

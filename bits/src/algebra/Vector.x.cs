@@ -139,7 +139,7 @@ namespace Z0
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
-            gbits.and(x, y);
+            BitRef.and(x, y);
             return ref lhs;
         }
 
