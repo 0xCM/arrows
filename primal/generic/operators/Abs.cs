@@ -112,5 +112,170 @@ namespace Z0
                 throw unsupported<T>();
             return ref io;
         }
+ 
+         /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<sbyte> Abs(this Span<sbyte> io)
+            => abs(io);
+
+        /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<short> Abs(this Span<short> io)
+            => abs(io);
+
+        /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<int> Abs(this Span<int> io)
+            => abs(io);
+
+        /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<long> Abs(this Span<long> io)
+            => abs(io);
+
+        /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<float> Abs(this Span<float> io)
+            => abs(io);
+
+        /// <summary>
+        /// Computes the absolute value of the source elements in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<double> Abs(this Span<double> io)
+            => abs(io);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<sbyte> Abs(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+            => abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<short> Abs(this ReadOnlySpan<short> src, Span<short> dst)
+            => abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<int> Abs(this ReadOnlySpan<int> src, Span<int> dst)
+            => abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<long> Abs(this ReadOnlySpan<long> src, Span<long> dst)
+            => abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<float> Abs(this ReadOnlySpan<float> src, Span<float> dst )
+            => abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
+            => abs(src,dst);            
+
+        static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<short> abs(ReadOnlySpan<short> src, Span<short> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<int> abs(ReadOnlySpan<int> src, Span<int> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<long> abs(ReadOnlySpan<long> src, Span<long> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<float> abs(ReadOnlySpan<float> src, Span<float> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<double> abs(ReadOnlySpan<double> src, Span<double> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        static Span<sbyte> abs(Span<sbyte> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        }
+
+        static Span<short> abs(Span<short> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        }
+
+        static Span<int> abs(Span<int> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        }
+
+        static Span<long> abs(Span<long> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        }
+
+        static Span<float> abs(Span<float> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        }
+
+        static Span<double> abs(Span<double> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                math.abs(ref io[i]);
+            return io;
+        } 
+ 
+ 
     }
 }

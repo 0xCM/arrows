@@ -21,7 +21,7 @@ namespace Z0.Test
 
             for(var i=0; i<n; i++)
             {
-                var srcVector = src.ToVec256(i);
+                var srcVector = src.ToCpuVec256(i);
                 var extract = srcVector.ToSpan();
                 var srcBv = extract.ToBitVector();
                 Claim.eq(256, srcBv.Length);
@@ -47,12 +47,12 @@ namespace Z0.Test
             var src = Random.Span128<byte>(n);
             for(var i=0; i<n; i++)
             {
-                var srcVector = src.ToVec128(i);
+                var srcVector = src.ToCpuVec128(i);
 
                 var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 7))
-                        mmExpect.EnableBit(r);
+                        mmExpect.Enable(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.yea(mmExpect == mmActual);
@@ -65,12 +65,12 @@ namespace Z0.Test
             var src = Random.Span256<float>(n);
             for(var i=0; i<n; i++)
             {
-                var srcVector = src.ToVec256(i);
+                var srcVector = src.ToCpuVec256(i);
 
                 var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 31))
-                        mmExpect.EnableBit(r);
+                        mmExpect.Enable(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.yea(mmExpect == mmActual);
@@ -84,12 +84,12 @@ namespace Z0.Test
             var src = Random.Span256<double>(n);
             for(var i=0; i<n; i++)
             {
-                var srcVector = src.ToVec256(i);
+                var srcVector = src.ToCpuVec256(i);
 
                 var mmExpect = BitVector32.Alloc();
                 for(byte r=0; r<srcVector.Length(); r++)
                     if(BitMask.test(srcVector[r], 63))
-                        mmExpect.EnableBit(r);
+                        mmExpect.Enable(r);
                 
                 var mmActual = gbits.movemask(srcVector).ToBitVector32();
                 Claim.yea(mmExpect == mmActual);

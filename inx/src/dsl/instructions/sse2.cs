@@ -9,12 +9,44 @@ namespace Z0
     using System.Runtime.Intrinsics;    
     using System.Runtime.Intrinsics.X86;    
     using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Sse2.X64;
     
     using static zfunc;    
     using static As;
 
     partial class x86
     {
+        /// <summary>
+        /// Constructs a 128-bit vector from 16 bytes
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_set_epi8(
+            byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, 
+            byte x8, byte x9, byte x10, byte x11, byte x12, byte x13, byte x14, byte x15)
+                => Vec128.FromBytes(x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10, x11,x12,x13,x14,x15);
+
+        /// <summary>
+        /// Constructs a 128-bit vector from 16 signed bytes
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_set_epi8(
+            sbyte x0, sbyte x1, sbyte x2, sbyte x3, sbyte x4, sbyte x5, sbyte x6, sbyte x7, 
+            sbyte x8, sbyte x9, sbyte x10, sbyte x11, sbyte x12, sbyte x13, sbyte x14, sbyte x15)
+                => Vec128.FromParts(x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10, x11,x12,x13,x14,x15);
+
+        [MethodImpl(Inline)]
+        public static __m128i _mm_set_epi32(uint x0, uint x1, uint x2, uint x3)
+            => Vec128.FromParts(x0,x1,x2,x3);
+
+        [MethodImpl(Inline)]
+        public static __m128i _mm_set_epi32(int x0, int x1, int x2, int x3)
+            => Vec128.FromParts(x0,x1,x2,x3);
+
+        ///<summary> m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8<summary>
+        [MethodImpl(Inline)]
+        public static Vector128<uint> _mm_shuffle_epi32(Vector128<uint> value, byte control)
+            => Shuffle(value, control);
+
         /// <summary>__m128i _mm_add_epi8 (in __m128i a, in __m128i b) PADDB xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static __m128i _mm_add_epi8(in __m128i a, in __m128i b)
@@ -187,8 +219,7 @@ namespace Z0
             => UnpackLow(v64u(a),v64u(b));
 
         /// <summary>
-        /// _mm_slli_epi16:
-        /// Shifts components in the source leftwards by a specified number of bits
+        /// _mm_slli_epi16: Shifts components in the source leftwards by a specified number of bits
         /// </summary>
         [MethodImpl(Inline)]
         public static __m128i _mm_slli_epi16(__m128i a, byte imm8)
@@ -213,16 +244,14 @@ namespace Z0
             => ShiftRightLogical(v16u(a), imm8);
 
         ///<summary>
-        /// _mm_srli_epi32
-        /// Shifts components in the source rightwards by a specified number of bits
+        /// _mm_srli_epi32: Shifts components in the source rightwards by a specified number of bits
         ///</summary>        
         [MethodImpl(Inline)]
         public static __m128i _mm_srli_epi32(in __m128i a, byte imm8)
             => ShiftRightLogical(v32u(a), imm8);
 
         /// <summary>
-        /// _mm_srli_epi64:
-        /// Shifts components in the source rightwards by a specified number of bits
+        /// _mm_srli_epi64: Shifts components in the source rightwards by a specified number of bits
         /// </summary>
         [MethodImpl(Inline)]
         public static __m128i _mm_srli_epi64(in __m128i a, byte imm8)
@@ -284,7 +313,6 @@ namespace Z0
         public static __m128i _mm_srl_epi64(in __m128i a, in __m128i count)
             => ShiftRightLogical(v64u(a), v64u(count));
 
-
         ///<summary>m128i _mm_sra_epi32 (__m128i a, __m128i count) PSRAD xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static __m128i _mm_sra_epi32(in __m128i a, in __m128i count)
@@ -345,12 +373,36 @@ namespace Z0
         public static __m128i _mm_cmpeq_epi32(in __m128i a, in __m128i b)
             => CompareEqual(v32u(a),v32u(b));
 
-        ///<summary>m128d _mm_cmpeq_pd (in __m128d a, in __m128d b) CMPPD xmm, xmm/m128</summary>, imm8(0)
+        ///<summary>m128d _mm_cmpeq_pd (in __m128d a, in __m128d b) CMPPD xmm, xmm/m128, imm8(0)</summary>
         [MethodImpl(Inline)]
         public static __m128d _mm_cmpeq_pd(in __m128d a, in __m128d b)
             => CompareEqual(a,b);
 
-   }
+        ///<summary>m128d _mm_cvtsi64_sd (__m128d a, __int64 b) CVTSI2SD xmm, reg/m64</summary>
+        [MethodImpl(Inline)]
+        public static __m128d _mm_cvtsi64_sd(__m128d a, long b)
+            => ConvertScalarToVector128Double(a,b);
+
+        ///<summary>m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64</summary>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_cvtsi64_si128(long a)
+            => ConvertScalarToVector128Int64(a);
+
+        ///<summary>__m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64</summary>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_cvtsi64_si128(ulong a)
+            => ConvertScalarToVector128UInt64(a);
+
+        ///<summary>int64 _mm_cvtsd_si64 (__m128d a) CVTSD2SI r64, xmm/m64</summary>
+        [MethodImpl(Inline)]
+        public static long _mm_cvtsd_si64(__m128d a)
+            => ConvertToInt64(a);
+
+        /// <summary>void _mm_mfence(void) MFENCE</summary>
+        [MethodImpl(Inline)]
+        public static void _mm_mfence()
+            => MemoryFence();
+        }
 
 /*                
                     
@@ -622,8 +674,6 @@ namespace Z0
         ///<summary>m128i _mm_max_epu8 (in __m128i a, in __m128i b) PMAXUB xmm, xmm/m128
         public static Vector128<byte> Max(Vector128<byte> a, Vector128<byte> b)
         
-        public static void _mm_mfence()
-            => MemoryFence();
         
         
         
@@ -719,11 +769,7 @@ namespace Z0
         ///<summary>m128d _mm_shuffle_pd (in __m128d a, in __m128d b, int immediate) SHUFPD xmm, xmm/m128, imm8
         public static __m128d Shuffle(in __m128d a, in __m128d b, byte control)
         
-        ///<summary>m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8
-        public static Vector128<int> Shuffle(Vector128<int> value, byte control)
         
-        ///<summary>m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8
-        public static Vector128<uint> Shuffle(Vector128<uint> value, byte control)
         
         ///<summary>m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128, imm8
         public static Vector128<short> ShuffleHigh(Vector128<short> value, byte control)
@@ -908,21 +954,6 @@ namespace Z0
 
         //64-bit
 
-        ///<summary>m128d _mm_cvtsi64_sd (__m128d a, __int64 b) CVTSI2SD xmm, reg/m64
-        [MethodImpl(Inline)]
-        public static __m128d ConvertScalarToVector128Double(__m128d a, long b)
-
-        ///<summary>m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64
-        [MethodImpl(Inline)]
-        public static Vector128<long> ConvertScalarToVector128Int64(long a)
-
-        ///<summary>m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64
-        [MethodImpl(Inline)]
-        public static Vector128<ulong> ConvertScalarToVector128UInt64(ulong a)
-
-        ///<summary>int64 _mm_cvtsd_si64 (__m128d a) CVTSD2SI r64, xmm/m64
-        [MethodImpl(Inline)]
-        public static long ConvertToInt64(__m128d value)
 
         ///<summary>int64 _mm_cvtsi128_si64 (__m128i a) MOVQ reg/m64, xmm
         [MethodImpl(Inline)]

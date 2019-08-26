@@ -155,7 +155,7 @@ namespace Z0.Test
             {
                 ref var x = ref src[i];
                 for(var j = 0; j < 8; j++)
-                    Claim.eq(gbits.test(x,j), bvSrc.TestBit(i*8 + j));
+                    Claim.eq(gbits.test(x,j), bvSrc.Test(i*8 + j));
             }
         }
 

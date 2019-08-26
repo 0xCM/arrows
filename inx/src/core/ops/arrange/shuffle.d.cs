@@ -97,6 +97,26 @@ namespace Z0
         public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
             => Shuffle(src, mask);
 
+        /// <summary>
+        /// Transposes a 4x4 matrix of floats, adapted from MSVC intrinsic headers
+        /// </summary>
+        /// <param name="row0">The first row</param>
+        /// <param name="row1">The second row</param>
+        /// <param name="row2">The third row</param>
+        /// <param name="row3">The fourth row</param>
+        [MethodImpl(Inline)]
+        public static void transpose(ref Vec128<float> row0,ref Vec128<float> row1,ref Vec128<float> row2,ref Vec128<float> row3)
+        {
+            var tmp0 = shuffle(row0,row1, 0x44);
+            var tmp2 = shuffle(row0, row1, 0xEE);
+            var tmp1 = shuffle(row2, row3, 0x44);
+            var tmp3 = shuffle(row2,row3, 0xEE);
+            row0 = shuffle(tmp0,tmp1, 0x88);
+            row1 = shuffle(tmp0,tmp1, 0xDD);
+            row2 = shuffle(tmp2,tmp3, 0x88);
+            row3 = shuffle(tmp2, tmp3, 0xDD);
+        }    
+
 
     }
 

@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Defines a 4-bit bitvector
     /// </summary>
-    public struct BitVector4 : IPrimalBitVector<byte>
+    public struct BitVector4 : IBitVector<byte>
     {
         UInt4 data;
 
@@ -27,6 +27,26 @@ namespace Z0
         public static readonly BitPos FirstPos = 0;
 
         public static readonly BitPos LastPos = BitSize - 1;
+
+
+        /// <summary>
+        /// Allocates a zero-filled vector
+        /// </summary>
+        public static BitVector4 Alloc()
+            => new BitVector4();
+
+        /// <summary>
+        /// Creates a permutation-defined mask
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public static BitVector4 Mask(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, mask.Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            return mask;
+        }
 
         [MethodImpl(Inline)]
         public static BitVector4 FromParts(Bit? x0 = null, Bit? x1 = null, Bit? x2 = null, Bit? x3 = null)
@@ -167,17 +187,6 @@ namespace Z0
             this.data = data;
         }
 
-        [MethodImpl(Inline)]
-        public void EnableBit(BitPos pos)
-            => data[pos] = Bit.On;
-
-        [MethodImpl(Inline)]
-        public void DisableBit(BitPos pos)
-            => data[pos] = Bit.Off;
-
-        [MethodImpl(Inline)]
-        public bool TestBit(BitPos pos)
-            => data[pos];
 
         public Bit this[BitPos pos]
         {
@@ -191,10 +200,19 @@ namespace Z0
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public BitSize Length
+        public readonly BitSize Length
         {
             [MethodImpl(Inline)]
             get => 4;
+        }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl]
+            get => Length;
         }
 
         public Bit Dot(BitVector4 rhs)
@@ -204,6 +222,44 @@ namespace Z0
                 result ^= this[i] & rhs[i];
             return result;
         }
+
+        /// <summary>
+        /// Enables a bit if it is disabled
+        /// </summary>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public void Enable(BitPos pos)
+            => data |= (UInt4)(1 << pos);
+
+        /// <summary>
+        /// Disables a bit if it is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void Disable(BitPos pos)
+            => data &= (UInt4)~((UInt4)(1 << pos));
+
+        /// <summary>
+        /// Sets a bit to a specified value
+        /// </summary>
+        /// <param name="pos">The position of the bit to set</param>
+        /// <param name="value">The bit value</param>
+        [MethodImpl(Inline)]
+        public void Set(BitPos pos, Bit value)
+        {
+            if(value) 
+                data |= (UInt4)(1 << pos);
+            else
+                data &= (UInt4)~((UInt4)(1 << pos));
+        }
+
+        /// <summary>
+        /// Determines whether a bit is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public bool Test(BitPos pos)
+            => (data & (1 << pos)) != 0;
 
         [MethodImpl(Inline)]
         public BitString ToBitString()
@@ -248,6 +304,21 @@ namespace Z0
         public bool AllZeros()
             => data == 0;
 
+        /// <summary>
+        /// Rearranges the vector in-place as specified by a permutation
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        [MethodImpl(Inline)]
+        public void Permute(Perm spec)
+            => data = (UInt4)Bits.deposit(data,Mask(spec));
+
+        /// <summary>
+        /// Reverses the vector's bits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public void Reverse()
+            => data = (UInt4)Bits.rev(data);
+
         [MethodImpl(Inline)]
         public BitVector4 Between(BitPos first, BitPos last)
             => Bits.between(data, first, last);
@@ -288,7 +359,5 @@ namespace Z0
         public override string ToString()
             => Format();
 
-        byte IPrimalBitVector<byte>.ToScalar()
-            => data;
     }
 }

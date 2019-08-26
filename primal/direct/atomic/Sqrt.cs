@@ -94,7 +94,6 @@ namespace Z0
             return ref src;
         }
 
-
         [MethodImpl(Inline)]
         public static ref uint sqrt(ref uint src)
         {

@@ -19,7 +19,7 @@ namespace Z0
         {
             u = 1ul;
             v = 0ul;
-
+            
             // Note that alpha is even and beta is odd.
             var alpha = a; 
             var beta = b; 

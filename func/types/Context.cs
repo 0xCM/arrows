@@ -60,21 +60,19 @@ namespace Z0
                 Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
         }
 
-        protected void Trace(string title, string msg, SeverityLevel? severity = null)
+        protected void Trace(string title, string msg, int? tpad = null, SeverityLevel? severity = null)
         {
+            var titleFmt = tpad.Map(pad => title.PadRight(pad), () => title.PadRight(20));        
             if(TraceEnabled)
-            {
-                Messages.Add(AppMsg.Define($"{title}", severity ?? SeverityLevel.Babble));
-                Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
-            }
+                Messages.Add(AppMsg.Define($"{titleFmt}: {msg}", severity ?? SeverityLevel.Babble));
         }
 
-        protected void Trace<T>(NamedValue<T> nv, SeverityLevel? severity = null)
-            => Trace(nv.Name, $"{nv.Value}", severity);
+        protected void Trace<T>(NamedValue<T> nv, int? npad = null, SeverityLevel? severity = null)
+            => Trace(nv.Name, $"{nv.Value}", npad, severity);
 
         protected void Trace<T>(Expression<Func<T>> fx, SeverityLevel? severity = null)
         {
-            Trace(fx.Evaluate(), severity);
+            Trace(fx.Evaluate(), null, severity);
         }
 
         protected void Trace(AppMsg msg, SeverityLevel? severity = null)

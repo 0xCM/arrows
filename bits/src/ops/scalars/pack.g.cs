@@ -13,6 +13,23 @@ namespace Z0
 
     partial class gbits
     {
+        
+         public static ref T pack<T>(ReadOnlySpan<Bit> src, ref T dst)         
+            where T : struct
+        {
+            var tSize = Unsafe.SizeOf<T>();
+            Span<byte> bs = stackalloc byte[tSize];
+            dst = MemoryMarshal.Cast<byte,T>(Bits.pack(src.Slice(0, tSize*8), bs)).First();
+            return ref dst;
+        }
+
+         public static Span<T> pack<T>(ReadOnlySpan<Bit> src, Span<T> dst)         
+            where T : struct
+        {
+            Bits.pack(src, dst.AsBytes());
+            return dst;
+
+        }
          public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
             where S : struct
             where T : struct
@@ -20,8 +37,8 @@ namespace Z0
             var srcIx = 0;
             var dstOffset = 0;
             var dstIx = 0;
-            var srcSize = (int)SizeOf<S>.BitSize;
-            var dstSize = (int)SizeOf<T>.BitSize;
+            var srcSize = Unsafe.SizeOf<S>()*8;
+            var dstSize = Unsafe.SizeOf<T>()*8;
             
             while(srcIx < src.Length && dstIx < dst.Length)
             {

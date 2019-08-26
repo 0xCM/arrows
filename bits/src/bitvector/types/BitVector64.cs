@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Defines a 64-bit bitvector
     /// </summary>
-    public struct BitVector64 : IPrimalBitVector<ulong>
+    public struct BitVector64 : IPrimalBits<BitVector64,ulong>
     {
         ulong data;
 
@@ -34,6 +34,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 Alloc()
             => new BitVector64(0);
+
+        /// <summary>
+        /// Creates a permutation-defined mask
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public static BitVector64 Mask(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, mask.Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            return mask;
+        }
 
         /// <summary>
         /// Creates a vector from the primal source value it represents
@@ -67,10 +80,9 @@ namespace Z0
         {
            get
            {
-                var bv = BitVector64.Zero;
-                do 
-                    yield return bv;            
-                while(++bv);
+                var bv = BitVector64.Zero;                
+                do yield return bv;            
+                    while(++bv);
            }
         }
 
@@ -238,10 +250,10 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => TestBit(pos);
+            get => Test(pos);
             
             [MethodImpl(Inline)]
-            set => SetBit(pos,value);
+            set => Set(pos,value);
        }
 
         /// <summary>
@@ -272,13 +284,23 @@ namespace Z0
         }
 
         /// <summary>
-        /// The number of bits represented by the vector
+        /// The actual number of bits represented by the vector
         /// </summary>
-        public BitSize Length
+        public readonly BitSize Length
         {
             [MethodImpl(Inline)]
             get => 64;
         }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl(Inline)]
+            get => Length;
+        }
+
 
         /// <summary>
         /// Presents bitvector content as a bytespan
@@ -327,6 +349,14 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
+        public Bit Dot(BitVector64 rhs)
+            => mod<N2>(Bits.pop(data & rhs.data));              
+
+        /// <summary>
+        /// Computes the scalar product of the source vector and another
+        /// </summary>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
         Bit DotRef(BitVector64 rhs)
         {
             var result = Bit.Off;
@@ -340,7 +370,7 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
-        public void EnableBit(BitPos pos)
+        public void Enable(BitPos pos)
             => BitMask.enable(ref data, pos);
 
         /// <summary>
@@ -348,24 +378,24 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The position of the bit to disable</param>
         [MethodImpl(Inline)]
-        public void DisableBit(BitPos pos)
+        public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
 
         /// <summary>
         /// Sets a bit to a specified value
         /// </summary>
-        /// <param name="pos">The position of the bit to manipulate</param>
+        /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
         [MethodImpl(Inline)]
-        public void SetBit(BitPos pos, Bit value)
+        public void Set(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
 
         /// <summary>
         /// Determines whether a bit is enabled
         /// </summary>
-        /// <param name="pos">The position of the bit to check</param>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public bool TestBit(BitPos pos)
+        public bool Test(BitPos pos)
             => BitMask.test(in data, pos);
 
         /// <summary>
@@ -420,7 +450,7 @@ namespace Z0
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public BitVector64 AndNot(in BitVector64 rhs)
-            => Bits.andn((ulong)this, (ulong)rhs);
+            => Bits.andn((ulong)this, (ulong)rhs);            
 
         /// <summary>
         /// Reverses the vector's bits
@@ -430,17 +460,57 @@ namespace Z0
             => data = Bits.rev(data);
 
         /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector64 Extract(BitMask64 spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector64 Extract(ulong spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Extract(BitMask32 spec)
+            => (uint)Bits.extract(in data, (uint)spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector16 Extract(BitMask16 spec)        
+            => (ushort)Bits.extract(in data, (ushort)spec);
+        
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Extract(BitMask8 spec)
+            => (byte)Bits.extract(in data, (byte)spec);
+
+        /// <summary>
         /// Rearranges the vector in-place as specified by a permutation
         /// </summary>
         /// <param name="spec">The permutation</param>
+        [MethodImpl(Inline)]
         public void Permute(Perm spec)
-        {
-            var mask = Alloc();
-            var n = math.min(spec.Length, Length);
-            for(var i = 0; i < n; i++)
-                mask[spec[i]] = i; 
-            data = Bits.deposit(data,mask);
-        }
+            => data = Bits.deposit(data,Mask(spec));
 
         /// <summary>
         /// Tests whether all bits are on
@@ -484,15 +554,28 @@ namespace Z0
         /// <summary>
         /// Returns a copy of the vector
         /// </summary>
+        [MethodImpl(Inline)]
         public BitVector64 Replicate()
             => new BitVector64(data);
 
+        /// <summary>
+        /// Applies a permutation to a replicated vector
+        /// </summary>
+        /// <param name="p">The permutation</param>
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
-            => ToBitString().Format(tlz, specifier, blockWidth);
+        public BitVector64 Replicate(Perm p)
+        {
+            var dst = Replicate();
+            Permute(p);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
-        public bool Equals(in BitVector64 rhs)
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth ?? 8);
+
+        [MethodImpl(Inline)]
+        public bool Equals(BitVector64 rhs)
             => data == rhs.data;
 
         public override bool Equals(object obj)

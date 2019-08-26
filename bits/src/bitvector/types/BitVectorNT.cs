@@ -185,11 +185,21 @@ namespace Z0
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public BitSize Length
+        public readonly BitSize Length
         {
             [MethodImpl(Inline)]
             get => TotalBitCount;
         }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented by the vector
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl(Inline)]
+            get => data.Span.Length * SegmentCapacity;
+        }
+
 
         /// <summary>
         /// Toggles an index-identified bit
@@ -251,7 +261,6 @@ namespace Z0
             return count;
         }
 
-
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
         /// </summary>
@@ -308,6 +317,35 @@ namespace Z0
  
         public override string ToString()
             => Format();
- 
+
+        public void Permute(Perm p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Set(BitPos pos, Bit value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reverse()
+        {
+            throw new NotImplementedException();
+        }
+
+        BitSize IBitVector.Pop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitSize Nlz()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitSize Ntz()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

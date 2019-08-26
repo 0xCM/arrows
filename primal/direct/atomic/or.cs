@@ -32,7 +32,6 @@ namespace Z0
         public static ushort or(ushort lhs, ushort rhs)
             => (ushort)(lhs | rhs);
 
-
         [MethodImpl(Inline)]
         public static int or(int lhs, int rhs)
             => lhs | rhs;

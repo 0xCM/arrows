@@ -22,27 +22,27 @@ namespace Z0
             where T : struct
         {
             var digits = string.Empty;
-
+            var fmt = "X";
             if(typeof(T) == typeof(sbyte))
-                digits = As.int8(src).ToString("x");
+                digits = As.int8(src).ToString(fmt);
             else if(typeof(T) == typeof(byte))
-                digits = As.uint8(src).ToString("x");
+                digits = As.uint8(src).ToString(fmt);
             else if(typeof(T) == typeof(short))
-                digits = As.int16(src).ToString("x");
+                digits = As.int16(src).ToString(fmt);
             else if(typeof(T) == typeof(ushort))
-                digits = As.uint16(src).ToString("x");
+                digits = As.uint16(src).ToString(fmt);
             else if(typeof(T) == typeof(int))
-                digits = As.int32(src).ToString("x");
+                digits = As.int32(src).ToString(fmt);
             else if(typeof(T) == typeof(uint))
-                digits = As.uint32(src).ToString("x");
+                digits = As.uint32(src).ToString(fmt);
             else if(typeof(T) == typeof(long))
-                digits = As.int64(src).ToString("x");
+                digits = As.int64(src).ToString(fmt);
             else if(typeof(T) == typeof(ulong))
-                digits = As.uint64(src).ToString("x");
+                digits = As.uint64(src).ToString(fmt);
             else if(typeof(T) == typeof(float))
-                digits = convert<float,int>(As.float32(src)).ToString("x");
+                digits = convert<float,int>(As.float32(src)).ToString(fmt);
             else if(typeof(T) == typeof(double))
-                digits = convert<double,long>(As.float64(src)).ToString("x");
+                digits = convert<double,long>(As.float64(src)).ToString(fmt);
             else
                 throw unsupported<T>();
 

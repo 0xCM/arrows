@@ -13,6 +13,7 @@ namespace Z0.Test
     using static zfunc;
     using static nfunc;
     using static Nats;
+    
     public class VectorAddTest : UnitTest<VectorAddTest>
     {
         OpTimePair Add<N,T>(int cycles, T min, T max, N n = default)

@@ -22,8 +22,8 @@ namespace Z0.Test
             var rhsSrc = Random.Span256<T>(n);
             for(var i=0; i<n; i++)
             {
-                var lhs = lhsSrc.ToVec256(i);
-                var rhs = rhsSrc.ToVec256(i);
+                var lhs = lhsSrc.ToCpuVec256(i);
+                var rhs = rhsSrc.ToCpuVec256(i);
                 var x = ginx.hi(lhs, rhs);
                 
                 var k = lhs.Length();

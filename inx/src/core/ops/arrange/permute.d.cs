@@ -9,15 +9,23 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using System.Collections.Generic;
+    using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Avx2;
     
     
     using static zfunc;
 
-
-    partial class dinx
+    partial class dinx    
     {        
+        [MethodImpl(Inline)]
+        public static Vec128<int> permute(in Vec128<int> src, Perm4 spec)
+            => Shuffle(src, (byte)spec);
+
+        [MethodImpl(Inline)]
+        public static Vec128<uint> permute(in Vec128<uint> src, Perm4 spec)
+            => Shuffle(src, (byte)spec);
+
         ///<intrinsic>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<float> permute(in Vec128<float> value, byte control)

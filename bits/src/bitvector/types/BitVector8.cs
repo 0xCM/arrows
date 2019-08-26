@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;    
     using static Bits;
 
-    public struct BitVector8 : IPrimalBitVector<byte>
+    public struct BitVector8 : IPrimalBits<BitVector8,byte>
     {
         byte data;
         
@@ -34,6 +34,19 @@ namespace Z0
         /// </summary>
         public static BitVector8 Alloc()
             => new BitVector8();
+
+        /// <summary>
+        /// Creates a permutation-defined mask
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public static BitVector8 Mask(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, mask.Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            return mask;
+        }
 
         [MethodImpl(Inline)]
         public static BitVector8 Parse(string src)
@@ -348,6 +361,24 @@ namespace Z0
             => Bits.between(in data, first, last);
 
         /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Extract(BitMask8 spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Extract(byte spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
         /// Computes the scalar product of the source vector and another
         /// </summary>
         /// <param name="rhs">The right operand</param>
@@ -365,28 +396,29 @@ namespace Z0
         }        
 
         /// <summary>
-        /// Enables a bit
+        /// The maximum number of bits that can be represented
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl]
+            get => Length;
+        }
+
+        /// <summary>
+        /// Enables a bit if it is disabled
         /// </summary>
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
-        public void EnableBit(BitPos pos)
+        public void Enable(BitPos pos)
             => BitMask.enable(ref data, pos);
 
         /// <summary>
-        /// Disables a bit
+        /// Disables a bit if it is enabled
         /// </summary>
-        /// <param name="pos">The position of the bit to disable</param>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public void DisableBit(BitPos pos)
+        public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
-
-        /// <summary>
-        /// Determines whether a bit is enabled
-        /// </summary>
-        /// <param name="pos">The position of the bit to check</param>
-        [MethodImpl(Inline)]
-        public readonly bool TestBit(BitPos pos)
-            => BitMask.test(in data, pos);
 
         /// <summary>
         /// Sets a bit to a specified value
@@ -394,8 +426,16 @@ namespace Z0
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
         [MethodImpl(Inline)]
-        public void SetBit(BitPos pos, Bit value)
+        public void Set(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
+
+        /// <summary>
+        /// Determines whether a bit is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public bool Test(BitPos pos)
+            => BitMask.test(in data, pos);
 
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
@@ -526,22 +566,15 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public void Reverse()
-        {
-            data = Bits.rev(data);
-        }
+            => data = Bits.rev(data);
 
         /// <summary>
         /// Rearranges the vector in-place as specified by a permutation
         /// </summary>
         /// <param name="spec">The permutation</param>
+        [MethodImpl(Inline)]
         public void Permute(Perm spec)
-        {
-            var mask = Alloc();
-            var n = math.min(spec.Length, Length);
-            for(var i = 0; i < n; i++)
-                mask[spec[i]] = i; 
-            data = Bits.deposit(data,mask);
-        }
+            => data = Bits.deposit(data,Mask(spec));
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
@@ -569,6 +602,18 @@ namespace Z0
             => new BitVector8(data);
 
         /// <summary>
+        /// Applies a permutation to a replicated vector
+        /// </summary>
+        /// <param name="p">The permutation</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Replicate(Perm p)
+        {
+            var dst = Replicate();
+            Permute(p);
+            return dst;
+        }
+
+        /// <summary>
         /// Creates a new vector via concatenation
         /// </summary>
         /// <param name="tail">The lower bits of the new vector</param>
@@ -583,12 +628,19 @@ namespace Z0
         public byte ToScalar()
             => data;
 
+        /// <summary>
+        /// Returns the vector's bitstring representation
+        /// </summary>
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false)
-            => ToBitString().Format(tlz, specifier);
+        public BitString ToBitString()
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public readonly bool Equals(in BitVector8 rhs)
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
+
+        [MethodImpl(Inline)]
+        public readonly bool Equals(BitVector8 rhs)
             => data == rhs.data;
 
         public override bool Equals(object obj)

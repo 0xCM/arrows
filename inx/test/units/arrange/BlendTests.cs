@@ -29,7 +29,7 @@ namespace Z0.Test
                 var selection = Span256.AllocBlocks<byte>(1);
                 for(var i=0; i< selection.Length; i++)
                     selection[i] = bits[i] ? v1[i] : v0[i];
-                var v4 =  selection.ToVec256();            
+                var v4 =  selection.ToCpuVec256();            
                 
                 Claim.eq(v3, v4);
             }

@@ -66,6 +66,15 @@ namespace Z0.Test
         //     TracePerf(Dot(Pow2.T08, closed(-102489d, 102489d),  N30, 0d));
         // }
 
+        static int dot(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            var dst = default(int);
+            for(var i = 0; i< len; i++)
+                dst += lhs[i] * rhs[i];
+            return dst;                
+        }
+
         void DotAvx()
         {
             var domain = closed(-2500, 2500);
@@ -74,7 +83,7 @@ namespace Z0.Test
             var v2Src = Random.Span256<int>(1,domain);
             var v2 = Vec256.Load(v2Src);
             var a0 = dinx.dot(v1,v2);
-            var a1 = (long)math.dot(v1Src, v2Src);
+            var a1 = (long)dot(v1Src, v2Src);
             Claim.eq(a0,a1);
         }
  

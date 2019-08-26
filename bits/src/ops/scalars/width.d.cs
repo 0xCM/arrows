@@ -13,9 +13,8 @@ namespace Z0
     
     partial class Bits
     {
-
         /// <summary>
-        /// Computes the (minimal) bit width of the source value
+        /// Computes the minimal number of bits required to represent the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -23,7 +22,7 @@ namespace Z0
             => 8 - nlz(in src);
 
         /// <summary>
-        /// Computes the (minimal) bit width of the source value
+        /// Computes the minimal number of bits required to represent the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -31,7 +30,7 @@ namespace Z0
             => 16 - nlz(in src);
 
         /// <summary>
-        /// Computes the (minimal) bit width of the source value
+        /// Computes the minimal number of bits required to represent the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -39,7 +38,7 @@ namespace Z0
             => 32 - nlz(in src);
 
         /// <summary>
-        /// Computes the (minimal) bit width of the source value
+        /// Computes the minimal number of bits required to represent the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]

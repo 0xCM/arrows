@@ -37,37 +37,25 @@ namespace Z0.Test
 
 
     public class InXShuffleTest : UnitTest<InXShuffleTest>
-    {
-        const byte Mask255 = 0b00000011;
-        
-        const byte Mask128 = 0b10000000;
-
-        const byte Mask64 = 0b01000000;
-        
+    {        
         public void Shuffle1()
         {
-            var mask = Vec128.Fill(Mask128);
+            var mask = Vec128.Fill((byte)0b10000000);
             var src = Random.CpuVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
-            var zed = Vec128.Fill((byte)0);
-            
+            var zed = Vec128.Fill((byte)0);            
             Claim.eq(dst,zed);
                             
         }
 
-        public void Shuffle2()
+        public void Permute4()
         {
-            var mask = Vec128.Fill((byte)0b00001111);
-            var src = Random.CpuVec128<byte>();
-            var dst = dinx.shuffle(in src, in mask);
-            //mask = 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111
-            //src =  11110110 | 10000110 | 01010010 | 11111000 | 00010100 | 01101011 | 10000001 | 01011000 | 01000111 | 10010100 | 11101100 | 10101100 | 01000011 | 00101000 | 11011010 | 00100110
-            //dst =  11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110 | 11110110
-            var bsMask = mask.ToBitString().Format(false, false, 8,' ');
-
+            var id = Vec128.FromParts(0,1,2,3);
+            Claim.eq(dinx.permute(id, Perm4.ADCB), Vec128.FromParts(0,3,2,1));
+            Claim.eq(dinx.permute(id, Perm4.DBCA), Vec128.FromParts(3,1,2,0));
+            Permute4i32();
+        
         }
-
-
 
 
         public void Shufle128i32()
@@ -88,7 +76,53 @@ namespace Z0.Test
             var s3 = dinx.shuffle(v1,m3);
 
             
+        }
 
+        public void TestPermIncrement()
+        {
+            var p = Perm.Identity(9);
+            p.Inc();
+            Trace(p.Format());
+        }
+
+        void Permute4i32(int cycles = DefaltCycleCount, bool trace = false)
+        {
+            var pSrc = Random.EnumStream<Perm4>(x => (byte)x > 5);
+            
+            for(var i=0; i<cycles; i++)
+            {
+                var v1 = Random.CpuVec128<int>(); 
+                var p = pSrc.First();
+                
+                // Disassemble the spec
+                var p0 = Bits.extract((byte)p, 0b11);                
+                var p1 = Bits.extract((byte)p, 0b1100);
+                var p2 = Bits.extract((byte)p, 0b110000);
+                var p3 = Bits.extract((byte)p, 0b11000000);
+                
+                // Reassemble the spec
+                Perm4 q = (Perm4)(p0 | p1 << 2 | p2 << 4 | p3 << 6);
+                
+                // Same?
+                Claim.eq(p,q);
+
+                // Permute vector via api
+                var v2 = dinx.permute(v1,p);
+
+                // Permute vector manually
+                var v3 = Vec128.FromParts(v1[p0],v1[p1],v1[p2],v1[p3]);
+
+                // Same?
+                Claim.eq(v3,v2);
+
+                if(trace)
+                {
+                    Trace("v1",v1.FormatHex());                
+                    Trace("p", p.Format());
+                    Trace("perm(v1,p)", v2.FormatHex());
+                }
+                                
+            }
         }
 
     }

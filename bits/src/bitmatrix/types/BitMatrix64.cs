@@ -248,7 +248,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> dst);
+            => bits.Unpack(out Span<Bit> _);
 
         /// <summary>
         /// Returns the underlying matrix data as a span of bytes

@@ -54,117 +54,135 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool eq(double lhs, double rhs)
             => lhs == rhs;
- 
-        public static Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+  
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<sbyte> src, sbyte target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied items are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The </param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<byte> src, byte target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<short> src, short target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<ushort> src, ushort target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<int> src, int target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<uint> src, uint target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<long> src, long target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<ulong> src, ulong target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<float> src, float target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
 
-        public static Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+        /// <summary>
+        /// Returns true if all supplied values are equal to a target value; false otherwise
+        /// </summary>
+        /// <param name="src">The values to examine</param>
+        /// <param name="target">The value to match</param>
+        public static bool eq(ReadOnlySpan<double> src, double target)
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return dst;
+            for(var i=0; i<src.Length; i++)
+                if(src[i] != target)
+                    return false;
+            return true;
         }
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-            => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
- 
     }
-
 }

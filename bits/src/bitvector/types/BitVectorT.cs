@@ -156,7 +156,7 @@ namespace Z0
             get => GetBit(index);
             
             [MethodImpl(Inline)]
-            set => SetBit(index, value);
+            set => Set(index, value);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
         [MethodImpl(Inline)]
-        public void SetBit(BitPos index, Bit value)
+        public void Set(BitPos index, Bit value)
         {
             ref readonly var pos = ref BitMap[index];
             gbits.set(ref Bits[pos.Segment], pos.Offset, in value);
@@ -195,7 +195,7 @@ namespace Z0
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
         public void Enable(BitPos bit)
-            => SetBit(bit, Bit.On);
+            => Set(bit, Bit.On);
 
         /// <summary>
         /// Disables an identified bit
@@ -248,19 +248,28 @@ namespace Z0
         /// Extracts the represented data as a bitstring
         /// </summary>
         [MethodImpl(Inline)]
-        public BitString ToBitString()
+        public readonly BitString ToBitString()
             => BitString.FromScalars(Bits, Length); 
 
         /// <summary>
         /// Counts the vector's enabled bits
         /// </summary>
         [MethodImpl(Inline)]
-        public ulong Pop()
+        public readonly ulong Pop()
         {
             var count = 0ul;
             for(var i=0; i< Bits.Length; i++)
                 count += gbits.pop(Bits[i]);
             return count;
+        }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented by the vector
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl(Inline)]
+            get => data.Span.Length * SegmentCapacity;
         }
 
         /// <summary>
@@ -275,12 +284,17 @@ namespace Z0
         /// <summary>
         /// Returns true if the vector has at least one enabled bit; false otherwise
         /// </summary>
-        public bool Nonempty
+        public readonly bool Nonempty
         {
             [MethodImpl(Inline)]
             get => Pop() != 0;
         }
 
+        readonly BitSize IBitVector.Length 
+        {
+            [MethodImpl(Inline)]
+            get => Length;
+        }
 
         /// <summary>
         /// Sets all the bits to align with the source value
@@ -295,7 +309,6 @@ namespace Z0
             else
                 Bits.Fill(primal.Zero);
         }
-
             
         [MethodImpl(Inline)]
         public string Format(bool tlz = false, bool specifier = false)
@@ -353,7 +366,31 @@ namespace Z0
     
         public override string ToString()
             => Format();
- 
+
+        public void Permute(Perm p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reverse()
+        {
+            throw new NotImplementedException();
+        }
+
+        BitSize IBitVector.Pop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitSize Nlz()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitSize Ntz()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

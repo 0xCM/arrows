@@ -30,18 +30,6 @@ namespace Z0.Test
             src.Unpack(out Span<byte> bytes);
             var bytesPC = bytes.PopCount();
             Claim.eq(bitsPC, bytesPC);
-
-        }
-
-        public void PopCount3()
-        {
-            var src = 39238923;
-            src.Unpack(out Span<Bit> bits);
-            var bitsPC = bits.PopCount();
-            src.Unpack(out Span<byte> bytes);
-            var bytesPC = bytes.PopCount();
-            Claim.eq(bitsPC, bytesPC);
-
         }
 
         public void PopCount4()
@@ -51,14 +39,6 @@ namespace Z0.Test
             var packed = xbs.Pack(0, 8);
             var joined = packed.TakeUInt64();
             Claim.Equals(x,joined);
-
-            // var y = xbs.TakePrimalValue<ulong>();
-            // Claim.eq(x, y);
-
-            // var pcx = Bits.pop(x);
-            // Claim.eq(pcx, 20);
-
-            // Claim.eq(Bits.pop(x), Bits.pop(y));
         }
 
         public void PopCount5()
@@ -110,7 +90,5 @@ namespace Z0.Test
                 var bs = BitString.FromScalar(in src[i]);
             }
         }
-
     }
-
 }

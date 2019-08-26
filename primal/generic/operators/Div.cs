@@ -76,25 +76,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.div(int8(lhs), int8(rhs), int8(dst));
+                div(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.div(uint8(lhs), uint8(rhs), uint8(dst));
+                div(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.div(int16(lhs), int16(rhs), int16(dst));
+                div(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.div(uint16(lhs), uint16(rhs), uint16(dst));
+                div(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.div(int32(lhs), int32(rhs), int32(dst));
+                div(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.div(uint32(lhs), uint32(rhs), uint32(dst));
+                div(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.div(int64(lhs), int64(rhs), int64(dst));
+                div(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.div(uint64(lhs), uint64(rhs), uint64(dst));
+                div(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.div(float32(lhs), float32(rhs), float32(dst));
+                div(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.div(float64(lhs), float64(rhs), float64(dst));
+                div(float64(lhs), float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -105,34 +105,196 @@ namespace Z0
             where T : struct
                 => div(lhs,rhs, span<T>(length(lhs,rhs)));
 
+        
         [MethodImpl(Inline)]
         public static ref Span<T> div<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.div(int8(lhs), int8(rhs));
+                div(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.div(uint8(lhs), uint8(rhs));
+                div(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.div(int16(lhs), int16(rhs));
+                div(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.div(uint16(lhs), uint16(rhs));
+                div(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.div(int32(lhs), int32(rhs));
+                div(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.div(uint32(lhs), uint32(rhs));
+                div(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                math.div(int64(lhs), int64(rhs));
+                div(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.div(uint64(lhs), uint64(rhs));
+                div(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                math.div(float32(lhs), float32(rhs));
+                div(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(float))
-                math.div(float64(lhs), float64(rhs));
+                div(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;
         }
- 
+
+        static Span<sbyte> div(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;                
+        }
+
+
+        static Span<byte> div(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<short> div(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<ushort> div(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<int> div(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<uint> div(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<long> div(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<ulong> div(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<float> div(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<double> div(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = div(lhs[i], rhs[i]);
+            return dst;
+        }
+
+        static Span<sbyte> div(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<byte> div(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<short> div(Span<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<ushort> div(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<int> div(Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<uint> div(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<long> div(Span<long> lhs, ReadOnlySpan<long> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<ulong> div(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<float> div(Span<float> lhs, ReadOnlySpan<float> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
+        static Span<double> div(Span<double> lhs, ReadOnlySpan<double> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] /= rhs[i];
+            return lhs;
+        }
+
     }
 }

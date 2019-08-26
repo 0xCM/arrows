@@ -14,6 +14,19 @@ namespace Z0
 
     partial class RngX
     {
+        [MethodImpl(Inline)]
+        static Span256<float> Div(this Span256<float> src, float rhs)
+        {
+            src.Unblocked.Div(rhs);
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        static Span256<double> Div(this Span256<double> src, double rhs)
+        {
+            src.Unblocked.Div(rhs);
+            return src;
+        }
 
         [MethodImpl(Inline)]
         static void MarkovVector(this IRandomSource random, Span<float> dst)

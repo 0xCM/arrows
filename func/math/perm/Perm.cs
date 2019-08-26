@@ -235,6 +235,17 @@ namespace Z0
             return this;
         }
 
+        public Perm Inc()
+        {
+            Span<int> src = Replicate().terms;
+            for(var i=0; i< terms.Length - 1; i++)
+            {
+                terms[i] = src[i + 1];
+            }
+            terms[terms.Length - 1] = src[0];
+            return this;
+        }
+
         /// <summary>
         /// Formats a permutation as a 2-column matrix
         /// </summary>

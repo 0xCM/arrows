@@ -255,6 +255,9 @@ namespace Z0
          public static uint NextUInt32(this IRandomSource src, Interval<uint>? domain = null)
             => src.Next(domain);
 
+         [MethodImpl(Inline)]
+         public static long NextInt32(this IRandomSource src, Interval<int>? domain = null)
+            => src.Next(domain);
 
          [MethodImpl(Inline)]
          public static long NextInt64(this IRandomSource src, Interval<long>? domain = null)
@@ -325,6 +328,22 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        static byte Next(this IRandomSource src, Interval<byte> domain)
+            => math.add(domain.Left, (byte)src.Next((ulong)domain.Width()));
+
+        [MethodImpl(Inline)]
+        static ushort Next(this IRandomSource src, Interval<ushort> domain)
+            => math.add(domain.Left, (ushort)src.Next((ulong)domain.Width()));
+
+        [MethodImpl(Inline)]
+        static uint Next(this IRandomSource src, Interval<uint> domain)
+            => math.add(domain.Left, (uint)src.Next((ulong)domain.Width()));
+
+        [MethodImpl(Inline)]
+        static ulong Next(this IRandomSource src, Interval<ulong> domain)
+            => domain.Left + src.Next(domain.Width());
+
+        [MethodImpl(Inline)]
         static sbyte Next(this IRandomSource src, Interval<sbyte> domain)
         {
             var delta = math.sub(domain.Right,domain.Left);
@@ -336,10 +355,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static byte Next(this IRandomSource src, Interval<byte> domain)
-            => math.add(domain.Left, (byte)src.Next((ulong)domain.Width()));
-
-        [MethodImpl(Inline)]
         static short Next(this IRandomSource src, Interval<short> domain)
         {
             var delta = math.sub(domain.Right,domain.Left);
@@ -349,11 +364,6 @@ namespace Z0
                 : math.add(domain.Left, (short)src.Next((ulong)delta.Negate()));
             return next;
         }
-
-        [MethodImpl(Inline)]
-        static ushort Next(this IRandomSource src, Interval<ushort> domain)
-            => math.add(domain.Left, (ushort)src.Next((ulong)domain.Width()));
-
         [MethodImpl(Inline)]
         static int Next(this IRandomSource src, Interval<int> domain)
         {
@@ -364,22 +374,13 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static uint Next(this IRandomSource src, Interval<uint> domain)
-            => math.add(domain.Left, (uint)src.Next((ulong)domain.Width()));
-
-        [MethodImpl(Inline)]
-        static long Next(this IRandomSource src, Interval<long> domain)
+        static long Next(this IRandomSource src, Interval<long> domain)            
         {
-            var delta = math.sub(domain.Right,domain.Left);
-            var next = delta > 0 
+            var delta = math.sub(domain.Right, domain.Left);
+            return delta >= 0 
                 ? domain.Left + (long)src.Next((ulong)delta) 
                 : domain.Left + (long)src.Next((ulong)delta.Negate());
-            return next;
         }
-
-        [MethodImpl(Inline)]
-        static ulong Next(this IRandomSource src, Interval<ulong> domain)
-            => domain.Left + src.Next(domain.Width());
 
         [MethodImpl(Inline)]
         static float Next(this IRandomSource src, Interval<float> domain)

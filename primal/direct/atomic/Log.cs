@@ -13,49 +13,48 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
 
         [MethodImpl(Inline)]
         public static sbyte log2(sbyte src)
-            => (sbyte)Math.ILogB(src);
+            => (sbyte)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static byte log2(byte src)
-            => (byte)Math.ILogB(src);
+            => (byte)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static short log2(short src)
-            => (short)Math.ILogB(src);
+            => (short)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static ushort log2(ushort src)
-            => (ushort)Math.ILogB(src);
+            => (ushort)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static int log2(int src)
-            => Math.ILogB(src);
+            => (int)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static uint log2(uint src)
-            => (uint)Math.ILogB(src);
+            => (uint)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static long log2(long src)
-            => Math.ILogB(src);
+            => (long)Math.Log2(src);
 
         [MethodImpl(Inline)]
         public static ulong log2(ulong src)
-            => (ulong)Math.ILogB(src);
+            => (ulong)Math.Log2(src);
 
         [MethodImpl(Inline)]
         public static float log2(float src)
-            => Math.ILogB(src);
+            => MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static double log2(double src)
-            => Math.ILogB(src);
+            => Math.Log2(src);
 
         [MethodImpl(Inline)]
         public static sbyte ln(sbyte src)
@@ -99,27 +98,27 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static sbyte log(sbyte src, sbyte? @base = null)
-            => (sbyte)Math.Log(src, @base ?? 10);
+            => (sbyte)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static byte log(byte src, byte? @base = null)
-            => (byte)Math.Log(src, @base ?? 10);
+            => (byte)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static short log(short src, short? @base = null)
-            => (short)Math.Log(src, @base ?? 10);
+            => (short)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static ushort log(ushort src, ushort? @base = null)
-            => (ushort)Math.Log(src, @base ?? 10);
+            => (ushort)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static int log(int src, int? @base = null)
-            => (int)Math.Log(src, @base ?? 10);
+            => (int)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static uint log(uint src, uint? @base = null)
-            => (uint)Math.Log(src, @base ?? 10);
+            => (uint)MathF.Log(src, @base ?? 10);
 
         [MethodImpl(Inline)]
         public static long log(long src, long? @base = null)

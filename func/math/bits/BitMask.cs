@@ -17,6 +17,7 @@ namespace Z0
     /// </summary>
      public static class BitMask
      {
+
          /// <summary>
          /// Enables a specified source bit
          /// </summary>
@@ -24,7 +25,7 @@ namespace Z0
          /// <param name="pos">The position of the bit to enable</param>
           [MethodImpl(Inline)]
           public static ref sbyte enable(ref sbyte src, in int pos)
-          {
+          {              
                src |= (sbyte)(1 << pos);
                return ref src;
           }
@@ -221,8 +222,7 @@ namespace Z0
           [MethodImpl(Inline)]
           public static ref byte disable(ref byte src, in int pos)
           {
-               var m = (byte)(1 << pos);
-               src &= (byte)~m;
+               src &= (byte)~((byte)(1 << pos));
                return ref src;
           }
 
@@ -534,8 +534,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref byte set(ref byte src, byte index, in Bit value)            
         {
-            if(value) enable(ref src, index);
-            else disable(ref src, index);
+            if(value) 
+                enable(ref src, index);
+            else 
+                disable(ref src, index);
             return ref src;
         }
 

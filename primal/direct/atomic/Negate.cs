@@ -13,49 +13,97 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static sbyte negate(sbyte src)
             => (sbyte)(- src);
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value
+        /// For example, -3 = -0b00000010 = 0b11111101
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static byte negate(byte src)
             => (byte)(~src + 1);
      
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static short negate(short src)
             => (short)(- src);
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static ushort negate(ushort src)
             => (ushort)(~src + 1);
 
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static int negate(int src)
             => -src;
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static uint negate(uint src)
             => ~src + 1;
 
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static long negate(long src)
             => -src;
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static ulong negate(ulong src)
             => ~src + 1;
 
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static float negate(float src)
             => -src;
 
+        /// <summary>
+        /// Negates the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static double negate(double src)
             => -src;
  
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref sbyte negate(ref sbyte src)
         {
@@ -63,6 +111,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref byte negate(ref byte src)
         {
@@ -70,6 +122,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref short negate(ref short src)
         {
@@ -77,6 +133,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref ushort negate(ref ushort src)
         {
@@ -84,6 +144,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref int negate(ref int src)
         {
@@ -91,6 +155,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref uint negate(ref uint src)
         {
@@ -98,6 +166,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref long negate(ref long src)
         {
@@ -105,6 +177,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref ulong negate(ref ulong src)
         {
@@ -112,7 +188,10 @@ namespace Z0
             return ref src;
         }
 
-
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref float negate(ref float src)
         {
@@ -120,152 +199,16 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref double negate(ref double src)
         {
             src = - src;
             return ref src;
-        }
- 
-         public static void negate(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
+        } 
 
-        public static void negate(ReadOnlySpan<byte> src, Span<byte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<short> src, Span<short> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<ushort> src, Span<ushort> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<int> src, Span<int> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<uint> src, Span<uint> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<long> src, Span<long> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<ulong> src, Span<ulong> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static void negate(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = negate(src[i]);
-        }
-
-        public static Span<sbyte> negate(Span<sbyte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<byte> negate(Span<byte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<short> negate(Span<short> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<ushort> negate(Span<ushort> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<int> negate(Span<int> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<uint> negate(Span<uint> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<long> negate(Span<long> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<ulong> negate(Span<ulong> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }
-
-        public static Span<float> negate(Span<float> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io; 
-        }
-
-        public static Span<double> negate(Span<double> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                negate(ref io[i]);
-            return io;
-        }        
- 
    }
 }

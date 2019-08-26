@@ -395,6 +395,7 @@ namespace Z0
         public static unsafe void _mm256_storeu_si256(ref sbyte dst, in __m256i src)
             => Store(refptr(ref dst), v8i(src));
 
+
         /// <summary>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</summary>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref byte dst, in __m256i src)

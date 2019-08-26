@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zfunc;
+    using Z0.Rng;
 
     /// <summary>
     /// Fatory for RNG's
@@ -68,10 +69,10 @@ namespace Z0
             => new XOrShift256(seed ?? Seed256.Default);
  
         public static Pcg32 Pcg32(ulong s0, ulong? index = null)
-            => Z0.Pcg32.Define(s0, index);        
+            => Z0.Rng.Pcg32.Define(s0, index);        
 
         public static Pcg64 Pcg64(ulong s0, ulong? index = null)
-            => Z0.Pcg64.Define(s0, index);     
+            => Z0.Rng.Pcg64.Define(s0, index);     
 
         /// <summary>
         /// Creates a new WyHash16 generator

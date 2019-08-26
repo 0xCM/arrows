@@ -1,1 +1,1 @@
-dotnet run > results.txt
+dotnet run > run.txt

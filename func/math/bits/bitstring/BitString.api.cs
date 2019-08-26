@@ -20,15 +20,32 @@ namespace Z0
         /// Constructs a bitstring from a clr string of 0's and 1's 
         /// </summary>
         /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
         public static BitString Parse(string src)                
         {
+            src = src.RemoveWhitespace();
             var len = src.Length;
             var lastix = len - 1;
             Span<byte> dst = new byte[len];
             for(var i=0; i<= lastix; i++)
                 dst[lastix - i] = src[i] == Bit.Zero ? (byte)0 : (byte)1;
             return new BitString(dst);                        
+        }
+
+        /// <summary>
+        /// Constructs a bitstring from a pattern replicated a specified number of times
+        /// </summary>
+        /// <param name="src">The source pattern</param>
+        /// <param name="reps">The number of times to repeat the pattern</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        public static BitString FromPattern<T>(T src, int reps)                
+            where T : struct
+        {
+            BitSize capacity = Unsafe.SizeOf<T>() * 8;
+            Span<byte> bitseq = new byte[capacity*reps];            
+            var pattern = FromScalar(src);
+            for(var i=0; i<reps; i++)
+                pattern.BitSeq.CopyTo(bitseq, i*capacity);
+            return FromBitSeq(bitseq);            
         }
 
         /// <summary>
@@ -43,7 +60,7 @@ namespace Z0
         /// Constructs a bitstring from primal value
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <typeparam name="T">The source type</typeparam>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
         public static BitString FromScalar<T>(in T src)
             where T : struct

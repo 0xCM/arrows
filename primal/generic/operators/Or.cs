@@ -15,27 +15,32 @@ namespace Z0
 
     partial class gmath
     {
-        
+        /// <summary>
+        /// Computes the bitwise or of two primal operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(lhs) | int8(rhs)));
+                return generic<T>(math.or(int8(lhs), int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(lhs) | uint8(rhs)));
+                return generic<T>(math.or(uint8(lhs), uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(lhs) | int16(rhs)));
+                return generic<T>(math.or(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(lhs) | uint16(rhs)));
+                return generic<T>(math.or(uint16(lhs),  uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(int32(lhs) | int32(rhs));
+                return generic<T>(math.or(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(lhs) | uint32(rhs));
+                return generic<T>(math.or(uint32(lhs),  uint32(rhs)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(int64(lhs) | int64(rhs));
+                return generic<T>(math.or(int64(lhs), int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) | uint64(rhs));
+                return generic<T>(math.or(uint64(lhs),  uint64(rhs)));
             else if(typeof(T) == typeof(float))
                 return generic<T>(math.or(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
@@ -44,6 +49,13 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        /// <summary>
+        /// Computes the bitwise or of two primal operands, overwriting the first 
+        /// operand with the result
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, in T rhs)
             where T : struct
@@ -71,72 +83,6 @@ namespace Z0
             else            
                 throw unsupported<T>();
             return ref lhs;
-        }
-
-
-        static sbyte or(sbyte x1, sbyte x2, params sbyte[] more)
-        {
-            var result = (sbyte)(x1 | x2);
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-        static byte or(byte x1, byte x2, params byte[] more)
-        {
-            var result = (byte)(x1 | x2);
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-
-        static short or(short x1, short x2, params short[] more)
-        {
-            short result = (short)(x1 | x2);
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-        static ushort or(ushort x1, ushort x2, params ushort[] more)
-        {
-            var result = (ushort)(x1 | x2);
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-        
-        static int or(int x1, int x2, params int[] more)
-        {
-            var result = x1 | x2;
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-        static uint or(uint x1, uint x2, params uint[] more)
-        {
-            var result = x1 | x2;
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-        static long or(long x1, long x2, params long[] more)
-        {
-            var result = x1| x2;
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
-        }
-
-        public static ulong or(ulong x1, ulong x2, params ulong[] more)
-        {
-            var result = x1 | x2;
-            for(var i = 0; i< more.Length; i++)
-                result |= more[i];
-            return result;
         }
 
    }

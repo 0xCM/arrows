@@ -305,12 +305,6 @@ namespace Z0
             return dst;
         }
 
-        /// <summary>
-        /// Extracts the bits that comprise the matrix in row-major order
-        /// </summary>
-        [MethodImpl(Inline)]
-        public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> dst);
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix16 Replicate()
@@ -388,6 +382,13 @@ namespace Z0
         [MethodImpl(Inline)] 
         public Span<byte> Bytes()
             => bits.AsBytes();
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public readonly Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> _);
 
         [MethodImpl(Inline)]
         public bool IsZero()

@@ -50,6 +50,12 @@ namespace Z0
         public static Span<T> Permute<T>(this Span<T> src, Perm p)
             => src.ReadOnly().Permute(p);
 
+        /// <summary>
+        /// Formats ther terms of a permutation
+        /// </summary>
+        /// <param name="terms">The permutation terms</param>
+        /// <param name="colwidth">The width of each column</param>
+        /// <typeparam name="T">The term type</typeparam>
         internal static string FormatPerm<T>(this ReadOnlySpan<T> terms,  int? colwidth = null)
         {
             var line1 = sbuild();
@@ -138,8 +144,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Effects (i j) -> ((i - 1) (j - 1)) where decremented 
-        /// indices are clamped to 0
+        /// Effects (i j) -> ((i - 1) (j - 1)) where decremented indices are clamped to 0 
         /// </summary>
         [MethodImpl(Inline)]
         public static ref Swap Dec(this ref Swap src)
@@ -155,11 +160,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format(this Swap[] src)
             => string.Join(" -> ", src.Map(x => x.Format()));
- 
 
-
- 
+        /// <summary>
+        /// Usefully formats the permutation spec
+        /// </summary>
+        /// <param name="src">The permutation spec</param>
+        [MethodImpl(Inline)]
+        public static string Format(this Perm4 src)
+            => $"{src} = {((byte)src).ToBitString()} = {((byte)src).FormatHex()}"; 
     }
-
-
 }

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -20,8 +20,7 @@ namespace Z0.Test
 
         void Configure(ITestConfig config);
 
-        IEnumerable<OpTime> Benchmarks {get;}
-        
+        IEnumerable<OpTime> Benchmarks {get;}        
     }
 
 

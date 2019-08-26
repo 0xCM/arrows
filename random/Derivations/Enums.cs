@@ -20,7 +20,7 @@ namespace Z0
         /// </summary>
         /// <param name="random">The source</param>
         /// <typeparam name="E">The enum type</typeparam>
-        public static IEnumerable<E> EnumStream<E>(this IRandomSource random)
+        public static IEnumerable<E> EnumStream<E>(this IRandomSource random, Func<E,bool> filter = null)
             where E : struct, Enum
         {
             var names = Enum.GetNames(typeof(E)).Mapi((index, name) => (index, name)).ToDictionary();
@@ -31,7 +31,13 @@ namespace Z0
             {   
                 var name = names[stream.First()];
                 var value = Enum.Parse<E>(name);
-                yield return value;
+                if(filter != null)
+                {
+                    if(filter(value))
+                        yield return value;
+                }
+                else
+                    yield return value;
             }            
         }
     }

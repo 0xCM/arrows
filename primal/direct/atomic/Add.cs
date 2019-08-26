@@ -15,7 +15,7 @@ namespace Z0
 
     partial class math
     {
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static sbyte add(sbyte lhs, sbyte rhs)
             => (sbyte)(lhs + rhs);
 

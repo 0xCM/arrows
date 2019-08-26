@@ -36,7 +36,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> mul(in Vec128<uint> lhs, in Vec128<uint> rhs)
+        static Vec128<ulong> mul(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => Multiply(lhs, rhs);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
+        static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
             => Multiply(lhs, rhs);
         
         /// <summary>
@@ -54,11 +54,9 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)
+        static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)
             => Multiply(lhs, rhs);
-
-
-
+            
         const ulong LoMask64 = 0x00000000fffffffful;
         
         /// <summary>

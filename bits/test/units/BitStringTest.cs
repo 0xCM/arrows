@@ -178,6 +178,19 @@ namespace Z0.Test
 
             var b3 = bs.Blocks(3);
             Claim.eq(9,b3.Length);
+        }
+
+        public void VerifyPatternCreate()
+        {
+            var p1 = (byte)0b11001110;
+            var s1 = BitString.FromPattern(p1, 4);
+            Claim.eq(s1.Length,32);
+            Claim.eq(p1.ToBitString(), s1[8..15]);
+
+            var p2 = (ushort)0b1111111100010001;
+            var s2 = BitString.FromPattern(p2, 2);
+            Claim.eq(s2.Length,32);
+            Claim.eq(p2.ToBitString(), s2[0..15]);
 
         }
     }

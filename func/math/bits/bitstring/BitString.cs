@@ -169,32 +169,6 @@ namespace Z0
         public readonly Span<byte> Pack(int offset = 0, int? minlen = null)
             => PackedBits(bitseq, offset, minlen);
 
-        /// <summary>
-        /// Packs represented bits span of specified scalar type
-        /// </summary>
-        /// <typeparam name="T">The target scalar type</typeparam>
-        public Span<T> Pack<T>()
-            where T : struct
-        {            
-            if(Length == 0)
-                return new T[1];
-            else            
-            {
-                var src = BitSeq;
-                var seglen = 8;
-                var segcount = divrem<N8>(Length, out int r);
-                var dstLen = (segcount == 0 ? 1 : (r == 0 ? segcount : segcount + 1));
-                var dst = new byte[dstLen];
-                
-                for(int i = 0, j=0; i< segcount - seglen;  j++, i+= seglen)
-                    pack(src.Slice(i,seglen), ref dst[j]);
-                
-                if(r != 0)    
-                    pack(src.Slice(segcount), ref dst[dstLen - 1]);
-                
-                return MemoryMarshal.Cast<byte,T>(dst);
-            }                                
-        }            
 
         static ref byte pack(in Span<byte> src, ref byte dst)
         {
@@ -438,7 +412,6 @@ namespace Z0
             var packed = PackedBits(src,offset,minlen);
             return packed.Length != 0 ? SpanConvert.TakeSingle<byte,T>(packed) : default;
         }
-
 
         /// <summary>
         /// Projects the bitstring onto a span via a supplied transformation

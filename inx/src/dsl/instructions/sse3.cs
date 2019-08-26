@@ -104,7 +104,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static __m128 _mm_moveldup_ps(__m128 a)
             => MoveLowAndDuplicate(a);
-
     }
 
 }

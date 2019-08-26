@@ -94,5 +94,12 @@ namespace Z0
             where T : struct
                 => src.FormatHex(false, AsciSym.Space);
 
+       [MethodImpl(Inline)]
+       public static string FormatBits<T>(this Vec256<T> src, int? blockWidth = null)
+            where T : struct
+        {
+            return src.ToSpan().ToBitString().Format(false, false, blockWidth ?? Unsafe.SizeOf<T>()*8);
+        }
+
     }
 }

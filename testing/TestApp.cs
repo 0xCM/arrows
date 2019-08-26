@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -16,6 +16,10 @@ namespace Z0.Test
     using static math;
     using static ansi;
 
+    /// <summary>
+    /// Base type for test applications
+    /// </summary>
+    /// <typeparam name="A">The concrete subtype</typeparam>
     public abstract class TestApp<A> : TestContext<A>
         where A : TestApp<A>, new()
     {
@@ -24,28 +28,44 @@ namespace Z0.Test
         
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
-        
-        void Run(Type host, string[] filters)
-        {        
-            var hostpath = host.DisplayName();
-            var execTime = Duration.Zero;
-            var runtimer = stopwatch();
 
+        bool HasAny(Type host, string[] filters)        
+        {
             if(filters.Length != 0)
             {
+                var hostpath = host.DisplayName();
                 if(!(filters.Length == 1 && String.IsNullOrEmpty(filters[0])))                        
                     if(!hostpath.ContainsAny(filters))
-                        return;
+                        return false;
             }
+            return true;
+
+        }
+        /// <summary>
+        /// Executes the tests defined by a host type
+        /// </summary>
+        /// <param name="host">The host type</param>
+        /// <param name="filters">Filters the host's test if nonempty</param>
+        void Run(Type host, string[] filters)
+        {        
+
+            if(!HasAny(host,filters))
+                return;
 
             try
             {
-                Trace(AppMsg.Define($"Creating unint {host.Name}", SeverityLevel.Babble));
+                var execTime = Duration.Zero;
+                var runtimer = stopwatch();
+
+                Trace(AppMsg.Define($"Creating unit {host.Name}", SeverityLevel.Babble));
                 var instance = host.CreateInstance<IUnitTest>();
-                instance.Configure(Config);
+                instance.Configure(Config);                
+
+                var hostpath = host.DisplayName();
                 if(instance.Enabled)
-                    iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));
+                    iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));                
                 OpTimes.AddRange(instance.Benchmarks);
+                
                 print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Info));
 
             }
@@ -53,16 +73,14 @@ namespace Z0.Test
             {
                 error($"Host execution failed: {e}", this);
             }  
-            finally
-            {
-            }      
         }
 
         void Run(bool concurrent, params string[] filters)
             => iter(Hosts(), h =>  Run(h,filters), concurrent);
 
         protected virtual bool PersistResults
-            =>false;
+            => false;
+        
         IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods().Public().NonGeneric().WithParameterCount(0);
 
@@ -115,6 +133,7 @@ namespace Z0.Test
 
         protected virtual string AppName
             => GetType().Assembly.GetSimpleName();
+
         protected virtual void RunTests(params string[] filters)
         {
             try
@@ -132,4 +151,9 @@ namespace Z0.Test
         protected static void Run(params string[] args)
             => new A().RunTests();
     }
+}
+
+namespace Z0.Test
+{
+    public static class X {}
 }

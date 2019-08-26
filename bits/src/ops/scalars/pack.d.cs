@@ -20,10 +20,7 @@ namespace Z0
         /// <param name="x1">The value to be mapped to the hi 8 bits of the output</param>
         [MethodImpl(Inline)]
         public static ushort pack(byte x0, byte x1)
-            => (ushort)(
-              (ushort)x0 << 0 * 8
-            | (ushort)x1 << 1 * 8
-            );
+            => (ushort)((ushort)x0 << 0 * 8 | (ushort)x1 << 1 * 8);
 
         /// <summary>
         /// Condenses two uint16 values into a single uint32 value
@@ -32,8 +29,7 @@ namespace Z0
         /// <param name="x1">The value to be mapped to the hi 8 bits of the output</param>
         [MethodImpl(Inline)]
         public static uint pack(ushort x0, ushort x1)
-              => (uint)x0 << 0 * 16
-               | (uint)x1 << 1 * 16;
+              => (uint)x0 << 0 * 16 | (uint)x1 << 1 * 16;
 
         /// <summary>
         /// Condenses two uint32 values into a single uint64 value
@@ -47,10 +43,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static uint pack(byte x0, byte x1, byte x2, byte x3)
-              =>  (uint)x0 << 0 * 8
-                | (uint)x1 << 1 * 8
-                | (uint)x2 << 2 * 8
-                | (uint)x3 << 3 * 8;
+              =>  (uint)x0 << 0 * 8 | (uint)x1 << 1 * 8 | (uint)x2 << 2 * 8 | (uint)x3 << 3 * 8;
 
         [MethodImpl(Inline)]
         public static ulong pack(ushort x0, ushort x1, ushort x2, ushort x3)        
@@ -100,11 +93,12 @@ namespace Z0
         }
 
         /// <summary>
-        /// Packs bools into bytes
+        /// Packs bits into bytes
         /// </summary>
         /// <param name="src">The source values</param>
         /// <remarks>Adapted from https://stackoverflow.com/questions/713057/convert-bool-to-byte</remarks>
-        public static byte[] pack(params bool[] src)
+        [MethodImpl(Inline)]
+        public static Span<byte> pack(ReadOnlySpan<Bit> src)
         {
             int srcLen = src.Length;
             int dstLen = srcLen >> 3;
@@ -112,7 +106,37 @@ namespace Z0
             if ((srcLen & 0x07) != 0) 
                 ++dstLen;
 
-            var dst = new byte[dstLen];
+            return pack(src, new byte[dstLen]);            
+        }
+
+        /// <summary>
+        /// Packs bits into bytes
+        /// </summary>
+        /// <param name="src">The source values</param>
+        /// <remarks>Adapted from https://stackoverflow.com/questions/713057/convert-bool-to-byte</remarks>
+        public static Span<byte> pack(ReadOnlySpan<Bit> src, Span<byte> dst)
+        {
+            int srcLen = src.Length;
+            for (int i = 0; i < srcLen; i++)
+                if (src[i])
+                    dst[i >> 3] |= (byte)((byte)1 << (i & 0x07));
+            return dst;
+        }
+
+        /// <summary>
+        /// Packs bools into bytes
+        /// </summary>
+        /// <param name="src">The source values</param>
+        /// <remarks>Adapted from https://stackoverflow.com/questions/713057/convert-bool-to-byte</remarks>
+        public static Span<byte> pack(params bool[] src)
+        {
+            int srcLen = src.Length;
+            int dstLen = srcLen >> 3;
+            
+            if ((srcLen & 0x07) != 0) 
+                ++dstLen;
+
+            Span<byte> dst = new byte[dstLen];
             for (int i = 0; i < srcLen; i++)
                 if (src[i])
                     dst[i >> 3] |= (byte)((byte)1 << (i & 0x07));

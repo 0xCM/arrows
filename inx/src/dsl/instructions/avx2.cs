@@ -800,12 +800,29 @@ namespace Z0
         public static __m256i _mm256_min_epu32(in __m256i a, in __m256i b)
             => Min(v32u(a), v32u(b));
 
+        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
+        [MethodImpl(Inline)]
+        public static __m128i _mm256_extracti128_si256(in __m256i a, byte index)
+            => ExtractVector128(v8u(a),index);
+
+        //The scale parameter should be 1, 2, 4 or 8
+        ///<summary> __m128i _mm_i64gather_epi32 (int const* base_addr, __m128i vindex, const int scale) VPGATHERQD xmm, vm64x, xmm 
+        [MethodImpl(Inline)]
+        public static unsafe __m128i _mm_i64gather_epi32(ref int base_addr, in __m128i index, byte scale)
+            => GatherVector128(refptr(ref base_addr), v32i(index), scale);
+
+        //The scale parameter should be 1, 2, 4 or 8
+        ///<summary> __m128i _mm_i32gather_epi32 (int const* base_addr, __m128i vindex, const int scale) VPGATHERDD xmm, vm32x, xmm 
+        [MethodImpl(Inline)]
+        public static unsafe __m128i _mm_i32gather_epi32(ref int base_addr, in __m128i index, byte scale)
+            => GatherVector128(refptr(ref base_addr), v64i(index), scale);
+
+        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
+        [MethodImpl(Inline)]
+        public static __m256i _mm256_permute2x128_si256(in __m256i a, in __m256i b, byte imm8)
+            => Permute2x128(v8u(a),v8u(b),imm8);
+
         #if false
-
-    
-
-        //
-
 
 
         [MethodImpl(Inline)]
@@ -854,54 +871,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static __m256i _mm256_cvtepi16_epi64(__m128i value);
 
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
-
-        ///<summary> __m128i _mm256_extracti128_si256 (__m256i a, const int imm8) VEXTRACTI128 xmm,
-        //     ymm, imm8
-        [MethodImpl(Inline)]
-        public static __m128i ExtractVector128(in __m256i a, byte index);
-        //
 
         //The scale parameter should be 1, 2, 4 or 8
         ///<summary> __m128i _mm_mask_i64gather_epi64 (__m128i src, __int64 const* base_addr, __m128i
@@ -1077,19 +1046,7 @@ namespace Z0
         ///<summary> __m128i _mm256_i64gather_epi32 (int const* base_addr, __m256i vindex, const int
         //     scale) VPGATHERQD xmm, vm64y, xmm 
         public static __m128i GatherVector128(ref int base_addr, in __m256i index, byte scale);
-        //
 
-        //The scale parameter should be 1, 2, 4 or 8
-        ///<summary> __m128i _mm_i64gather_epi32 (int const* base_addr, __m128i vindex, const int
-        //     scale) VPGATHERQD xmm, vm64x, xmm 
-        public static __m128i GatherVector128(ref int base_addr, in __m128i index, byte scale);
-        //
-
-        //The scale parameter should be 1, 2, 4 or 8
-        ///<summary> __m128i _mm_i32gather_epi32 (int const* base_addr, __m128i vindex, const int
-        //     scale) VPGATHERDD xmm, vm32x, xmm 
-        public static __m128i GatherVector128(ref int base_addr, in __m128i index, byte scale);
-        //
 
         //The scale parameter should be 1, 2, 4 or 8
         ///<summary> __m128d _mm_i64gather_pd (double const* base_addr, __m128i vindex, const int
@@ -1239,39 +1196,8 @@ namespace Z0
         ///<summary> __m256i _mm256_packus_epi32 (__m256i a, __m256i b) VPACKUSDW ymm, ymm, ymm/m256
         public static __m256i PackUnsignedSaturate(in __m256i a, in __m256i b);
 
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
 
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
 
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128 ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
-
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
-
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
-
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
-
-        ///<summary> __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, const int imm8) VPERM2I128
-        //     ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i a, in __m256i b, byte imm8);
-        //
 
         ///<summary> __m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256,
         //     imm8

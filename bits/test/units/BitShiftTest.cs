@@ -148,7 +148,7 @@ namespace Z0.Test
                         xs[j] = 0;
                 }
 
-                var xt = xs.ToVec256();                
+                var xt = xs.ToCpuVec256();                
 
                 Claim.eq(xt,y);
             }
@@ -401,86 +401,83 @@ namespace Z0.Test
         }
 
 
-
-        public void TestSmdGf()
+        static __m128i reflect_xmm(__m128i X)
         {
-            /*
-            0000000200000000 0000000400000000
-            0000000800000000 0000000600000000
-            0000000000000004 6000000000000058
-             */
-
-            var v1 = Vec128.FromParts(2ul,4ul);
-            var v2 = Vec128.FromParts(8ul,6ul);
-            var v3 = gfmul(v1,v2).ToVector128<ulong>();
+            __m128i tmp1,tmp2;
+            __m128i AND_MASK = _mm_set_epi32(0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f);
+            __m128i LOWER_MASK = _mm_set_epi32(0x0f070b03, 0x0d050901, 0x0e060a02, 0x0c040800);
+            __m128i HIGHER_MASK = _mm_set_epi32(0xf070b030, 0xd0509010, 0xe060a020, 0xc0408000);
+            __m128i BSWAP_MASK = _mm_set_epi8(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+            tmp2 = _mm_srli_epi16(X, 4);
+            tmp1 = _mm_and_si128(X, AND_MASK);
+            tmp2 = _mm_and_si128(tmp2, AND_MASK);
+            tmp1 = _mm_shuffle_epi8(HIGHER_MASK ,tmp1);
+            tmp2 = _mm_shuffle_epi8(LOWER_MASK ,tmp2);
+            tmp1 = _mm_xor_si128(tmp1, tmp2);
+            return _mm_shuffle_epi8(tmp1, BSWAP_MASK);
         }
 
 
-        static BitVector8 gfmulIntel(BitVector8 x, BitVector8 y)
+        public void TestReflect()
         {
-            var tword = BitVector16.Zero;
+            var bs = BitString.FromPattern((ushort)0b1001_0101_1010_0110, 8);
+            var v1 = bs.ToCpuVec128<byte>();
+            var v2 = (Vec128<byte>)reflect_xmm(v1);
+            Trace("v - input", v1.ToBitString().Format(blockWidth:4));
+            Trace("v - reflect", v2.ToBitString().Format(blockWidth:4));
             
-            for(var i=0; i<8; i++)
-                if(y[i])
-                    tword ^= (x << i);
-
-            for(var i=14; i >= 8; i--)
-                if(tword[i])
-                    tword ^= BitVector16.FromScalar(0x11B << i - 8);
-
-            return (BitVector8)tword;
+        
         }
+
+
 
         //Intel code sample from Carryless multiplication document
-        public static __m128i gfmul (__m128i a, __m128i b)
+        public static Vec128<ulong> gfmul(Vec128<ulong> a, Vec128<ulong> b)
         {
 
-            var ab00 = _mm_clmulepi64_si128(a, b, 0x00);            
-            var ab10 = _mm_clmulepi64_si128(a, b, 0x10);
-            var ab01 = _mm_clmulepi64_si128(a, b, 0x01);
-            var ab11 = _mm_clmulepi64_si128(a, b, 0x11);
+            var tmp3 = dinx.clmul(a, b, 0x00);            
+            var tmp4 = dinx.clmul(a, b, 0x10);            
+            var tmp5 = dinx.clmul(a, b, 0x01);
+            var tmp6 = dinx.clmul(a, b, 0x11);
+            
+            tmp4 = dinx.xor(tmp4, tmp5);            
+            tmp5 = dinx.slli(tmp4, 8);
+            tmp4 = dinx.srli(tmp4, 8);            
+            tmp3 = dinx.xor(tmp3, tmp5);            
+            tmp6 = dinx.xor(tmp6, tmp4);
+            
+            var tmp7 = dinx.srli(tmp3, 31);
+            var tmp8 = dinx.srli(tmp6, 31);            
+            tmp3 = dinx.slli(tmp3, 1);
+            tmp6 = dinx.slli(tmp6, 1);
 
-            ab10 = _mm_xor_si128(ab10, ab01);            
-            ab01 = _mm_bslli_si128(ab10, 8);
-            ab10 = _mm_bsrli_si128(ab10, 8);            
-            ab00 = _mm_xor_si128(ab00, ab01);            
-            ab11 = _mm_xor_si128(ab11, ab10);
-            
-            var ab00x = _mm_srli_epi32(ab00, 31);
-            var ab11y = _mm_srli_epi32(ab11, 31);
-            
-            ab00 = _mm_slli_epi32(ab00, 1);
-            ab11 = _mm_slli_epi32(ab11, 1);
-            
-            var ab00xx = _mm_bsrli_si128(ab00x, 12);            
-            ab11y = _mm_bslli_si128(ab11y, 4);
-            ab00x = _mm_bslli_si128(ab00x, 4);
+            var tmp9 = dinx.srli(tmp7, 12);            
+            tmp8 = dinx.slli(tmp8, 4);
+            tmp7 = dinx.slli(tmp7, 4);
+            tmp3 = dinx.or(tmp3, tmp7);
+            tmp6 = dinx.or(tmp6, tmp8);
+            tmp6 = dinx.or(tmp6, tmp9);
 
-            ab00 = _mm_or_si128(ab00, ab00x);
-            ab11 = _mm_or_si128(ab11, ab11y);
-            ab11 = _mm_or_si128(ab11, ab00xx);
-            
-            ab00x = _mm_slli_epi32(ab00, 31);
-            ab11y = _mm_slli_epi32(ab00, 30);
-            ab00xx = _mm_slli_epi32(ab00, 25);
-            
-            ab00x = _mm_xor_si128(ab00x, ab11y);
-            ab00x = _mm_xor_si128(ab00x, ab00xx);
-            
-            ab11y = _mm_bsrli_si128(ab00x, 4);
-            ab00x = _mm_bslli_si128(ab00x, 12);
-            
-            ab00 = _mm_xor_si128(ab00, ab00x);
-            ab10 = _mm_srli_epi32(ab00, 2);
-            ab01 = _mm_srli_epi32(ab00, 7);
+            tmp7 = dinx.slli(tmp3, 31);
+            tmp8 = dinx.slli(tmp3, 30);
+            tmp9 = dinx.slli(tmp3, 25);
 
-            var collect = _mm_srli_epi32(ab00, 1);
-            collect = _mm_xor_si128(collect, ab10);
-            collect = _mm_xor_si128(collect, ab01);
-            collect = _mm_xor_si128(collect, ab11y);
-            ab00 = _mm_xor_si128(ab00, collect);
-            ab11 = _mm_xor_si128(ab11, ab00);
-            return ab11;
+            tmp7 = dinx.xor(tmp7, tmp8);
+            tmp7 = dinx.xor(tmp7, tmp9);            
+            tmp8 = dinx.srli(tmp7, 4);
+            tmp7 = dinx.slli(tmp7, 12);            
+            tmp3 = dinx.xor(tmp3, tmp7);
+
+            var tmp2 = dinx.srli(tmp3, 1);
+            tmp4 = dinx.srli(tmp3, 2);
+            tmp5 = dinx.slli(tmp3, 7);
+            tmp2 = dinx.xor(tmp2, tmp4);
+            tmp2 = dinx.xor(tmp2, tmp5);
+            tmp2 = dinx.xor(tmp2, tmp8);
+            tmp3 = dinx.xor(tmp3, tmp2);
+            tmp6 = dinx.xor(tmp6, tmp3);
+
+            return tmp6;            
         }
 
 

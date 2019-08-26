@@ -22,7 +22,7 @@ namespace Z0.Test
             {
                 var x = Random.CpuVec256<long>();            
                 var actual = dinx.abs(x);
-                var expect = x.Map(math.abs);
+                var expect = x.Map256(math.abs);
                 Claim.eq(actual,expect);
             }
         }

@@ -13,6 +13,48 @@ namespace Z0.Test
     public class BitPackTest : UnitTest<BitPackTest>
     {
 
+        /// <summary>
+        /// Verifies the correct operation of the generic pack function
+        /// that compresses sizeof(T)*8 bits into a single T value
+        /// </summary>
+        /// <param name="cycles">The number of times the test is repeated</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        void VerifyPack1xN<T>(int cycles = DefaltCycleCount)
+            where T : struct
+        {
+            for(var cycle=0; cycle<cycles; cycle++)
+            {
+                var src = Random.Next<T>();
+                var unpacked = gbits.unpack(in src, out Span<Bit> _);
+                for(var j = 0; j<unpacked.Length; j++)
+                    Claim.eq(gbits.read(in src, in j), unpacked[j]);
+                
+                var dst = default(T);
+                gbits.pack(unpacked, ref dst);
+                Claim.eq(src, dst);
+            }
+        }
+
+        public void Pack1x8()
+        {
+            VerifyPack1xN<byte>();
+        }
+
+        public void Pack1x16()
+        {
+            VerifyPack1xN<ushort>();
+        }
+
+        public void Pack1x32()
+        {
+            VerifyPack1xN<uint>();
+        }
+
+        public void Pack1x64()
+        {
+            VerifyPack1xN<ulong>();
+        }
+
         public void Pack2x16()
         {
             var src = Random.Span<ushort>(Pow2.T11);

@@ -13,10 +13,8 @@ namespace Z0
     using static zfunc;    
 
     /// <summary>
-    /// Defines an integer permutation of natural length N over the intergers
+    /// Defines a permutation of natural length N over the intergers
     /// </summary>
-    /// <remarks>The symbol type must be convertible to an integer, wouldn't it be
-    /// nice if I could encode that in the type system?</remarks>
     public struct Perm<N>
         where N : ITypeNat, new()
     {
@@ -227,7 +225,7 @@ namespace Z0
         }
  
         /// <summary>
-        /// Computes the cycle rooted specified point in the domain
+        /// Computes the cycle rooted at a specified point in the domain
         /// </summary>
         /// <param name="start">The domain point at which be begin evaluation</param>
         public PermCycle Cycle(int start)
@@ -268,7 +266,7 @@ namespace Z0
          public override int GetHashCode()
             => terms.GetHashCode();
 
-        public override bool Equals(object o)
+         public override bool Equals(object o)
             => (o is Perm<N> p)  ? p.terms.ReallyEqual(terms)  : false;
 
     }

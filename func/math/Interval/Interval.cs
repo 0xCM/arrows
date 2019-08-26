@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zfunc;
+    using static As;
 
     /// <summary>
     /// Defines a contiguous segment of homogenous values that lie within
@@ -65,6 +66,21 @@ namespace Z0
 
         public bool RightClosed {get;}
 
+        // public ulong Width
+        // {
+        //     [MethodImpl(Inline)]
+        //     get
+        //     {
+        //         if(typeof(T) == typeof(ulong))
+        //             return uint64(Right) - uint64(Left);
+        //         else
+        //         {
+        //             var l = Math.Abs(convert<T,long>(Left));
+        //             var r = Math.Abs(convert<T,long>(Right));
+        //             return (ulong)(r - l);
+        //         }
+        //     }
+        // }
         public bool Open
         {
             [MethodImpl(Inline)]

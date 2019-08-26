@@ -15,124 +15,138 @@ namespace Z0
     /// <summary>
     /// Defines literals that identity each 4-element permutation
     /// </summary>
+    [Flags]
     public enum Perm4 : byte
-    {        
+    {                
         /// <summary>
-        /// [00 01 11 10]: ABCD -> ABDC
+        /// Identifies the first of four permutation symbols
         /// </summary>
-        ABDC = 0x1E, 
+        A = 0b00,
 
+        /// <summary>
+        /// Identifies the second of four permutation symbols
+        /// </summary>
+        B = 0b01,
+
+        /// <summary>
+        /// Identifies the third of four permutation symbols
+        /// </summary>
+        C = 0b10,
+
+        /// <summary>
+        /// Identifies the fourth of four permutation symbols
+        /// </summary>
+        D = 0b11,
+
+        /// <summary>
+        /// [00 01 10 11]: ABCD -> ABDC
+        /// </summary>
+        ABCD = A | (B << 2) | (C << 4) | (D << 6),
+        
         /// <summary>
         /// [00 10 01 11]: ABCD -> ACBD
         /// </summary>
-        ACBD = 0x27, 
+        ACBD = A | (C << 2) | (B << 4) | (D << 6), 
 
         /// <summary>
         /// [00 10 11 01]: ABCD -> ACDB
         /// </summary>
-        ACDB = 0x2D,  
+        ACDB = A | (C << 2) | (D << 4) | (B << 6), 
 
         /// <summary>
         /// ABCD -> ADBC
         /// </summary>
-        ADBC = 0x36, 
-
-        /// <summary>
-        /// ABCD -> ADCA
-        /// </summary>
-        ADCA = 0x38, 
+        ADBC = A | (D << 2) | (B << 4) | (C << 6), 
 
         /// <summary>
         /// ABCD -> ADCB
         /// </summary>
-        ADCB = 0x39, 
+        ADCB = A | (D << 2) | (C << 4) | (B << 6), 
 
         /// <summary>
         /// ABCD -> BADC
         /// </summary>
-        BADC = 0x4E,                 
+        BADC = B | (A << 2) | (D << 4) | (C << 6), 
 
         /// <summary>
         /// ABCD -> BCAD
         /// </summary>
-        BCAD = 0x63, 
+        BCAD = B | (C << 2) | (A << 4) | (D << 6), 
 
         /// <summary>
         /// ABCD -> BCDA
         /// </summary>
-        BCDA = 0x6C, 
+        BCDA = B | (C << 2) | (D << 4) | (A << 6), 
 
         /// <summary>
         /// ABCD -> BDAC
         /// </summary>
-        BDAC = 0x72, 
+        BDAC = B | (D << 2) | (A << 4) | (C << 6), 
 
         /// <summary>
         /// ABCD -> BDCA
         /// </summary>
-        BDCA = 0x78, 
+        BDCA = B | (D << 2) | (C << 4) | (A << 6), 
 
         /// <summary>
         /// ABCD -> CABD
         /// </summary>
-        CABD = 0x87, 
+        CABD = C | (A << 2) | (B << 4) | (D << 6), 
 
         /// <summary>
         /// ABCD -> CADB
         /// </summary>
-        CADB = 0x8D, 
+        CADB = C | (A << 2) | (D << 4) | (B << 6), 
 
         /// <summary>
         /// ABCD -> CBAD
         /// </summary>
-        CBAD = 0x93, 
+        CBAD = C | (B << 2) | (A << 4) | (D << 6), 
 
         /// <summary>
         /// ABCD -> CBDA
         /// </summary>
-        CBDA = 0x9C, 
+        CBDA = C | (B << 2) | (D << 4) | (A << 6), 
 
         /// <summary>
         /// ABCD -> CDAB
         /// </summary>
-        CDAB = 0xB1, 
+        CDAB = C | (D << 2) | (A << 4) | (B << 6), 
 
         /// <summary>
         /// ABCD -> CDBA
         /// </summary>
-        CDBA = 0xB4,         
+        CDBA = C | (D << 2) | (B << 4) | (A << 6), 
 
         /// <summary>
         /// ABCD -> DABC
         /// </summary>
-        DABC = 0xC6,
+        DABC = D | (A << 2) | (B << 4) | (C << 6), 
 
         /// <summary>
         /// ABCD -> DACB
         /// </summary>
-        DACB = 0xC9,  
+        DACB = D | (A << 2) | (C << 4) | (B << 6), 
 
         /// <summary>
         /// [11 01 00 10]: ABCD -> DBAC
         /// </summary>
-        DBAC = 0xD2, 
+        DBAC = D | (B << 2) | (A << 4) | (C << 6), 
 
         /// <summary>
         /// [11 01 10 00]: ABCD -> DBCA
         /// </summary>
-        DBCA = 0xD8, 
+        DBCA = D | (B << 2) | (C << 4) | (A << 6), 
 
         /// <summary>
         /// ABCD -> DCAB
         /// </summary>
-        DCAB = 0xE1, 
+        DCAB = D | (C << 2) | (A << 4) | (B << 6), 
 
         /// <summary>
         /// ABCD -> DCBA
         /// </summary>
-        DCBA = 0xE4,     
+        DCBA = D | (C << 2) | (B << 4) | (A << 6), 
     }
-
-
 
 }

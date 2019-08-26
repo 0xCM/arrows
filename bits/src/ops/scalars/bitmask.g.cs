@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="src">The source segment</param>
         /// <param name="pos">The 0-based index of the bit to change</param>
         /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        [MethodImpl(Inline)]
         public static ref T enable<T>(ref T src, in int pos)
             where T : struct
                 => ref BitMaskG.enable(ref src, in pos);
@@ -40,7 +40,7 @@ namespace Z0
         /// <param name="src">The source segment</param>
         /// <param name="pos">The 0-based index of the bit to change</param>
         /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        [MethodImpl(Inline)]
         public static T enable<T>(T src, in int pos)
             where T : struct
                 => BitMaskG.enable(ref src, in pos);
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="src">The source segment</param>
         /// <param name="pos">The 0-based index of the bit to change</param>
         /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static ref T disable<T>(ref T src, byte pos)
             where T : struct
                 => ref BitMaskG.disable(ref src, (byte)pos);
@@ -62,8 +62,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The primal value type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
-        public static bool test<T>(in T src,in int pos)
+        [MethodImpl(Inline)]
+        public static bool test<T>(in T src, in int pos)
             where T : struct
                 => BitMaskG.test(in src, (byte)pos);
 
@@ -72,7 +72,8 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value to interrogate</param>
         /// <param name="pos">The position to check</param>
-        public static bool test<T>(in T src, byte pos)
+        [MethodImpl(Inline)]
+        public static bool test<T>(in T src, in byte pos)
             where T : struct
                 => BitMaskG.test(in src, pos);
 
@@ -83,7 +84,7 @@ namespace Z0
         /// <param name="pos">The bit position</param>
         /// <param name="value">The value to be applied</param>
         /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref T set<T>(ref T src, byte pos, in Bit value)            
             where T : struct
                 => ref BitMaskG.set(ref src, pos, value);

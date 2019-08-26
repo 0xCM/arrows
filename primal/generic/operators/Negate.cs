@@ -15,6 +15,13 @@ namespace Z0
 
     partial class gmath
     {
+        /// <summary>
+        /// If the source value is signed, negates it; otherwise, computes
+        /// the two's complement negation
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static T negate<T>(T src)
             where T : struct
@@ -43,6 +50,13 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        /// <summary>
+        /// If the source value is signed, negates it in-place; otherwise, computes
+        /// the two's complement negation in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        /// <remarks>See https://en.wikipedia.org/wiki/Two%27s_complement</remarks>
         [MethodImpl(Inline)]
         public static ref T negate<T>(ref T src)
             where T : struct
@@ -72,64 +86,216 @@ namespace Z0
             return ref src;
         }           
 
+        /// <summary>
+        /// Applies the negate operator to each source element and stores the result in the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.negate(int8(src), int8(dst));
+                negate(int8(src), int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.negate(uint8(src), uint8(dst));
+                negate(uint8(src), uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.negate(int16(src), int16(dst));
+                negate(int16(src), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.negate(uint16(src), uint16(dst));
+                negate(uint16(src), uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.negate(int32(src), int32(dst));
+                negate(int32(src), int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.negate(uint32(src), uint32(dst));
+                negate(uint32(src), uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.negate(int64(src), int64(dst));
+                negate(int64(src), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.negate(uint64(src), uint64(dst));
+                negate(uint64(src), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.negate(float32(src), float32(dst));
+                negate(float32(src), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.negate(float64(src), float64(dst));
+                negate(float64(src), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
         }
 
+        /// <summary>
+        /// Applies the negate operator to each source element in-place
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref Span<T> negate<T>(ref Span<T> io)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.negate(int8(io));
+                negate(int8(io));
             else if(typeof(T) == typeof(byte))
-                math.negate(uint8(io));
+                negate(uint8(io));
             else if(typeof(T) == typeof(short))
-                math.negate(int16(io));
+                negate(int16(io));
             else if(typeof(T) == typeof(ushort))
-                math.negate(uint16(io));
+                negate(uint16(io));
             else if(typeof(T) == typeof(int))
-                math.negate(int32(io));
+                negate(int32(io));
             else if(typeof(T) == typeof(uint))
-                math.negate(uint32(io));
+                negate(uint32(io));
             else if(typeof(T) == typeof(long))
-                math.negate(int64(io));
+                negate(int64(io));
             else if(typeof(T) == typeof(ulong))
-                math.negate(uint64(io));
+                negate(uint64(io));
             else if(typeof(T) == typeof(float))
-                math.negate(float32(io));
+                negate(float32(io));
             else if(typeof(T) == typeof(double))
-                math.negate(float64(io));
+                negate(float64(io));
             else
                 throw unsupported<T>();
             return ref io;
 
         }
+
+        static void negate(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<byte> src, Span<byte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<short> src, Span<short> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<ushort> src, Span<ushort> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<int> src, Span<int> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<uint> src, Span<uint> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<long> src, Span<long> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<ulong> src, Span<ulong> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<float> src, Span<float> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static void negate(ReadOnlySpan<double> src, Span<double> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        static Span<sbyte> negate(Span<sbyte> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<byte> negate(Span<byte> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<short> negate(Span<short> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<ushort> negate(Span<ushort> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<int> negate(Span<int> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<uint> negate(Span<uint> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<long> negate(Span<long> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<ulong> negate(Span<ulong> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        static Span<float> negate(Span<float> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io; 
+        }
+
+        static Span<double> negate(Span<double> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }        
     
     }
 }

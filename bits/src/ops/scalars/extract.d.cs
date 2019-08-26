@@ -89,9 +89,7 @@ namespace Z0
             => Bmi2.X64.ParallelBitExtract(src,mask);
 
         /// <summary>
-        /// Extracts bits from a source at the corresponding bit 
-        /// locations specified by mask to contiguous low bits in dst; the remaining 
-        /// upper bits in dst are set to zero.
+        /// Returns a value populated with identified source bits
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
@@ -100,9 +98,7 @@ namespace Z0
             => extract(src,(byte)mask);
 
         /// <summary>
-        /// Extracts bits from a source at the corresponding bit 
-        /// locations specified by mask to contiguous low bits in dst; the remaining 
-        /// upper bits in dst are set to zero.
+        /// Returns a value populated with identified source bits
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
@@ -111,9 +107,7 @@ namespace Z0
             => extract(src,(ushort)mask);
 
         /// <summary>
-        /// Extracts bits from a source at the corresponding bit 
-        /// locations specified by mask to contiguous low bits in dst; the remaining 
-        /// upper bits in dst are set to zero.
+        /// Returns a value populated with identified source bits
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
@@ -122,15 +116,14 @@ namespace Z0
             => extract(src,(uint)mask);
 
         /// <summary>
-        /// Extracts bits from a source at the corresponding bit 
-        /// locations specified by mask to contiguous low bits in dst; the remaining 
-        /// upper bits in dst are set to zero.
+        /// Returns a value populated with identified source bits
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
         public static ulong extract(in ulong src, BitMask64 mask)
             => extract(src,(ulong)mask);
+
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -212,6 +205,25 @@ namespace Z0
         public static ulong extract(in ulong src, in byte start, in byte length)
             => Bmi1.X64.BitFieldExtract(src, start, length);            
 
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="start">The bit posiion within the source where extraction should benin</param>
+        /// <param name="length">The number of bits that should be extracted</param>
+        [MethodImpl(Inline)]
+        public static float extract(in float src, in byte start, in byte length)        
+            => BitConverter.Int32BitsToSingle(extract(src.ToBits(), start, length));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="start">The bit posiion within the source where extraction should benin</param>
+        /// <param name="length">The number of bits that should be extracted</param>
+        [MethodImpl(Inline)]
+        public static double extract(in double src, in byte start, in byte length)        
+            => BitConverter.Int64BitsToDouble(extract(src.ToBits(), start, length));
 
         /// <summary>
         /// Extracts the upper 16 bits from the source

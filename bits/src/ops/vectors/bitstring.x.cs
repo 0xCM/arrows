@@ -29,7 +29,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this Vec256<T> src)
             where T : struct        
-            => BitString.FromScalars(src.ToSpan());        
+                => BitString.FromScalars(src.ToSpan());        
 
     }
 }

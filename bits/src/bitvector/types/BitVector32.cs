@@ -15,7 +15,7 @@ namespace Z0
     /// <summary>
     /// Defines a 32-bit bitvector
     /// </summary>
-    public struct BitVector32 : IPrimalBitVector<uint>
+    public struct BitVector32 : IPrimalBits<BitVector32,uint>
     {
         uint data;
 
@@ -33,6 +33,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector32 Alloc()
             => new BitVector32(0);
+
+        /// <summary>
+        /// Creates a permutation-defined mask
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public static BitVector32 Mask(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, mask.Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            return mask;
+        }
 
         /// <summary>
         /// Creates a vector from an usigned 32-bit integer
@@ -278,10 +291,10 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => TestBit(pos);
+            get => Test(pos);
             
             [MethodImpl(Inline)]
-            set => SetBit(pos, value);
+            set => Set(pos, value);
        }
 
         public uint this[Range range]
@@ -330,11 +343,37 @@ namespace Z0
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>
-        public BitSize Length
+        public readonly BitSize Length
         {
             [MethodImpl(Inline)]
             get => BitSize;
         }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl(Inline)]
+            get => Length;
+        }
+
+
+        /// <summary>
+        /// Enables a bit if it is disabled
+        /// </summary>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public void Enable(BitPos pos)
+            => BitMask.enable(ref data, pos);
+
+        /// <summary>
+        /// Disables a bit if it is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void Disable(BitPos pos)
+            => BitMask.disable(ref data, pos);
 
         /// <summary>
         /// Sets a bit to a specified value
@@ -342,46 +381,36 @@ namespace Z0
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
         [MethodImpl(Inline)]
-        public void SetBit(BitPos pos, Bit value)
+        public void Set(BitPos pos, Bit value)
             => BitMask.set(ref data, pos, value);
 
+        /// <summary>
+        /// Determines whether a bit is enabled
+        /// </summary>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public uint Between(BitPos first, BitPos last)
+        public bool Test(BitPos pos)
+            => BitMask.test(in data, pos);
+
+        [MethodImpl(Inline)]
+        public BitVector32 Between(BitPos first, BitPos last)
             => Bits.between(in data, first,last);
 
-        [MethodImpl(Inline)]
-        public void EnableBit(BitPos pos)
-            => BitMask.enable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public void DisableBit(BitPos pos)
-            => BitMask.disable(ref data, pos);
-
-        [MethodImpl(Inline)]
-        public bool TestBit(BitPos pos)
-            => BitMask.test(in data, pos);
 
         /// <summary>
         /// Reverses the vector's bits
         /// </summary>
         [MethodImpl(Inline)]
         public void Reverse()
-        {
-            data = Bits.rev(data);
-        }
+            => data = Bits.rev(data);
 
         /// <summary>
         /// Rearranges the vector in-place as specified by a permutation
         /// </summary>
         /// <param name="spec">The permutation</param>
-        public void Permute(Perm spec)
-        {
-            var mask = Alloc();
-            var n = math.min(spec.Length, Length);
-            for(var i = 0; i < n; i++)
-                mask[spec[i]] = i; 
-            data = Bits.deposit(data,mask);
-        }
+        [MethodImpl(Inline)]
+        public void Permute(Perm spec)        
+            => data = Bits.deposit(data,Mask(spec));
 
         /// <summary>
         /// Constructs a bitvector formed from the n lest significant bits of the current vector
@@ -457,6 +486,50 @@ namespace Z0
         }
 
         /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Extract(BitMask32 spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Extract(uint spec)
+            => Bits.extract(in data, spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector16 Extract(BitMask16 spec)        
+            => (ushort)Bits.extract(in data, (ushort)spec);
+        
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector8 Extract(BitMask8 spec)
+            => (byte)Bits.extract(in data, (byte)spec);
+
+        /// <summary>
+        /// Computes the scalar product of the source vector and another
+        /// </summary>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public Bit Dot(BitVector32 rhs)
+            => mod<N2>(Bits.pop(data & rhs.data));              
+
+        /// <summary>
         /// Returns true if the vector has at least one enabled bit; false otherwise
         /// </summary>
         public bool Nonempty
@@ -482,13 +555,25 @@ namespace Z0
         public BitVector32 Replicate()
             => new BitVector32(data);
 
+        /// <summary>
+        /// Applies a permutation to a replicated vector
+        /// </summary>
+        /// <param name="p">The permutation</param>
+        [MethodImpl(Inline)]
+        public BitVector32 Replicate(Perm p)
+        {
+            var dst = Replicate();
+            Permute(p);
+            return dst;
+        }
+
         [MethodImpl(Inline)]
         public BitVector64 Concat(BitVector32 tail)
             => BitVector64.FromScalars(tail.data, data);
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false)
-            => ToBitString().Format(tlz, specifier);
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth ?? 8);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVector32 rhs)

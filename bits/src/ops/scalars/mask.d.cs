@@ -50,8 +50,5 @@ namespace Z0
             mask(ref dst, i2, i3);
             return ref dst;
         }
-
-
-
     }
 }

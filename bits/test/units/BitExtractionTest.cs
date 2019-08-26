@@ -8,6 +8,7 @@ namespace Z0.Test
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
 
     using static zfunc;
 
@@ -42,6 +43,13 @@ namespace Z0.Test
             Claim.eq(x3,y3);            
         }
 
+
+
+        public void PackBits64()
+        {
+
+        }
+
         public void ExtractBits64()
         {
             var bv8 = BitVector8.FromScalar(0b10000000);
@@ -69,13 +77,14 @@ namespace Z0.Test
             var bv64x = Bits.extract(bv64, BitMask64.Msb8).ToBitVector();
             Claim.eq((byte)0xFF, bv64x.Byte(0));
 
-            var x = BitConverter.ToUInt64(new byte[]{1,0,0,1,1,0,1,1},0);
+            var unpacked = new byte[]{1,0,0,1,1,0,1,1};
+            var x = BitConverter.ToUInt64(unpacked,0);
             var y = Bits.extract(x, BitMask64.Lsb8).ToBitVector();
-            var z = y.Byte(0);
-            Claim.eq(x.ToBitVector().Byte(0),z);
+            var z1 = y.Byte(0).ToBitString();
+            var z2 = BitString.FromBitSeq(unpacked);
+            Claim.eq(z1,z2);
         
 
-            //11011001
 
         }
     }

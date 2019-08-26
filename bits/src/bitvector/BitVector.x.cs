@@ -348,5 +348,25 @@ namespace Z0
         public static BitVector4 ToBitVector4(this BitString src)
             => BitVector4.FromBitString(src);
 
+        /// <summary>
+        /// Extracts a 128-bit cpu vector from a bitsring of length 128 or greater
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <typeparam name="T">The primal component type of the target vector</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec128<T> ToCpuVec128<T>(this BitString src)
+            where T : struct        
+                => src.Pack().As<byte,T>().ToSpan128().ToCpuVec128();
+
+        /// <summary>
+        /// Extracts a 256-bit cpu vector from a bitsring of length 128 or greater
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <typeparam name="T">The primal component type of the target vector</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> ToCpuVec256<T>(this BitString src)
+            where T : struct        
+                => src.Pack().As<byte,T>().ToSpan256().ToCpuVec256();                
+
     }
 }

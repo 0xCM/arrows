@@ -18,7 +18,8 @@ namespace Z0
             dst = span<byte>(src.Length/8);
             for(var i=0; i<src.Length; i++)
             for(var j=0; j < 8; j++)
-               if(src[i]) BitMask.enable(ref dst[i], j);
+               if(src[i]) 
+                    BitMask.enable(ref dst[i], j);
             return ref dst;
         }
 
@@ -79,9 +80,13 @@ namespace Z0
         /// Converts the source value to an array of bits
         /// </summary>
         /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
         public static Span<Bit> Unpack(this byte src, out Span<Bit> dst)
-            => Bits.unpack(in src, out dst);
+        {
+            dst = new Bit[Pow2.T03];            
+            for(var i=0; i < dst.Length; i++)
+                dst[i] = gbits.read(in src, in i);
+            return dst;         
+        }
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -89,14 +94,6 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> Unpack(this ushort src, out Span<Bit> dst)
-            => Bits.unpack(in src, out dst);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> Unpack(this int src, out Span<Bit> dst)
             => Bits.unpack(in src, out dst);
 
         /// <summary>
