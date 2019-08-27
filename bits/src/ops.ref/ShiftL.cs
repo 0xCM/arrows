@@ -261,7 +261,6 @@ namespace Z0
             return dst;                
         }
 
-
         [MethodImpl(Inline)]
         static sbyte shiftl(sbyte lhs, int rhs)
             => (sbyte)(lhs << rhs);

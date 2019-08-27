@@ -27,6 +27,16 @@ namespace Z0
                 => Span128<T>.AllocBlocks(blocks, fill);
 
         /// <summary>
+        /// Allocates a 1-block span 
+        /// </summary>
+        /// <param name="fill">An optional value that, if specified, is used to initialize the cell values</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> AllocBlock<T>(T? fill = null)
+            where T : struct        
+                => Span128<T>.AllocBlocks(1, fill);
+
+        /// <summary>
         /// Allocates a 256-bit blocked span of a specified minimum length which may not
         /// partition evently into 256-bit blocks
         /// </summary>

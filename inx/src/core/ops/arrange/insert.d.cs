@@ -11,6 +11,8 @@ namespace Z0
         
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Sse41;
+    using static System.Runtime.Intrinsics.X86.Avx;
+    using static System.Runtime.Intrinsics.X86.Avx2;
 
     using static zfunc;
     
@@ -113,7 +115,21 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<sbyte> insert(in Vec128<sbyte> src, in Vec256<sbyte> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
+
+        /// <summary>
+        /// Overwrites the target vector with two 128-bit source vectors
+        /// </summary>
+        /// <param name="lo">The vector that will be inserted into the lo 128-bit lane of the target</param>
+        /// <param name="hi">The vector that will be inserted into the hi 128-bit lane of the target</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vec256<sbyte> insert(in Vec128<sbyte> lo, in Vec128<sbyte> hi,  ref Vec256<sbyte> dst)        
+        {
+            var tmp = InsertVector128(dst,lo, 0);
+            dst = InsertVector128(tmp,hi, 1);
+            return ref dst;
+        }
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -124,7 +140,21 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<byte> insert(in Vec128<byte> src, in Vec256<byte> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
+
+        /// <summary>
+        /// Overwrites the target vector with two 128-bit source vectors
+        /// </summary>
+        /// <param name="lo">The vector that will be inserted into the lo 128-bit lane of the target</param>
+        /// <param name="hi">The vector that will be inserted into the hi 128-bit lane of the target</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vec256<byte> insert(in Vec128<byte> lo, in Vec128<byte> hi,  ref Vec256<byte> dst)        
+        {
+            var tmp = InsertVector128(dst,lo, 0);
+            dst = InsertVector128(tmp,hi, 1);
+            return ref dst;
+        }
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -135,7 +165,21 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<short> insert(in Vec128<short> src, in Vec256<short> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
+
+        /// <summary>
+        /// Overwrites the target vector with two 128-bit source vectors
+        /// </summary>
+        /// <param name="lo">The vector that will be inserted into the lo 128-bit lane of the target</param>
+        /// <param name="hi">The vector that will be inserted into the hi 128-bit lane of the target</param>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public static ref Vec256<short> insert(in Vec128<short> lo, in Vec128<short> hi,  ref Vec256<short> dst)        
+        {
+            var tmp = InsertVector128(dst,lo, 0);
+            dst = InsertVector128(tmp,hi, 1);
+            return ref dst;
+        }
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -146,7 +190,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<ushort> insert(in Vec128<ushort> src, in Vec256<ushort> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -157,7 +201,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<int> insert(in Vec128<int> src, in Vec256<int> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -168,7 +212,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<uint> insert(in Vec128<uint> src, in Vec256<uint> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -179,7 +223,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<long> insert(in Vec128<long> src, in Vec256<long> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -190,7 +234,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<ulong> insert(in Vec128<ulong> src, in Vec256<ulong> dst, byte index)        
-            =>  Avx.InsertVector128(dst,src,index);
+            =>  InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_ps: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -201,7 +245,7 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<float> insert(in Vec128<float> src, in Vec256<float> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
 
         /// <summary>
         /// _mm256_insertf128_pd: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -212,6 +256,6 @@ namespace Z0
         /// identifing low or hi</param>
         [MethodImpl(Inline)]
         public static Vec256<double> insert(in Vec128<double> src, in Vec256<double> dst, byte index)        
-            => Avx.InsertVector128(dst,src,index);
+            => InsertVector128(dst,src,index);
     }
 }

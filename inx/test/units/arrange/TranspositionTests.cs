@@ -17,30 +17,12 @@ namespace Z0.Test
     public class TranspositionTests : UnitTest<TranspositionTests>
     {
 
-        void VerifyComposition<N,T>(N n = default, T rep = default)
-            where T : struct
+        void VerifyComposition<N>(N n = default)
             where N : ITypeNat, new()
         {
-            var p1 = Random.Perm<N,T>();
-            var p2 = p1 * Perm<N,T>.Identity;
+            var p1 = Random.Perm<N>();
+            var p2 = p1 * Perm<N>.Identity;
             Claim.yea(p1 == p2);
-
-        }
-
-        void VerifyIdentity<N,T>(N rep = default, T scalar = default)
-            where T : struct
-            where N : ITypeNat, new()
-        {
-            var permA = Perm<N,T>.Identity;
-            var n = nati<N>();
-            Claim.eq(n, permA.Length);
-            Claim.eq(n, permA.Terms.Length);
-
-            var terms = range(gmath.zero<T>(), convert<int,T>(n - 1)).ToArray();
-            Claim.eq(n, terms.Length);
-
-            var permB = Perm.Define(new N(), terms);
-            Claim.yea(permA == permB);
 
         }
 
@@ -76,41 +58,41 @@ namespace Z0.Test
             VerifyInversion(N12);
             VerifyInversion(N17);
             VerifyInversion(N64);
+            VerifyInversion(N31);
+            VerifyInversion(N128);
+            VerifyInversion(N257);
         }
 
         public void VerifyIdentities()
         {
-            VerifyIdentity<N32,byte>();   
             VerifyIdentity(N32);         
-            VerifyIdentity<N20,int>();            
             VerifyIdentity(N20);
-            VerifyIdentity(N17, 0ul);
             VerifyIdentity(N17);
-            VerifyIdentity(N64, (sbyte)0);
             VerifyIdentity(N64);
-            VerifyIdentity(N128, 0u);
             VerifyIdentity(N128);
-            VerifyIdentity(N17, 0L);
             VerifyIdentity(N21);
+            VerifyIdentity(N257);
         }
         
 
         public void VerifyDecomposition()
         {
             var p = Random.Perm(N12);
-
             var cycle = p.Cycle(3);
-            Trace(p.Format());
-            Trace(cycle.Format());
         }
 
         public void VerifyComposition()
         {
-            VerifyComposition(N22, 0);
-            VerifyComposition(N25, 0L);
+            VerifyComposition(N32);         
+            VerifyComposition(N20);
+            VerifyComposition(N17);
+            VerifyComposition(N64);
+            VerifyComposition(N128);
+            VerifyComposition(N21);
+            VerifyComposition(N257);
         }
         
-        public void Transpose128u8()
+        public void VerifySwaps()
         {            
             
             var src = Vec128.Increments((byte)0);
@@ -126,8 +108,6 @@ namespace Z0.Test
             //Trace($"{chain.Format()} |> {src.FormatHex()} = {x3.FormatHex()}");
             Claim.eq(x3[15],(byte)0);
             
-
-
         }
 
     }

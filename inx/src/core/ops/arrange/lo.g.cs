@@ -9,13 +9,16 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    
     using static zfunc;    
     using static As;
     
-
     partial class ginx
     {
+        /// <summary>
+        /// Extracts the hi 128-bit lane from the source
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> lo<T>(in Vec256<T> src)
             where T : struct

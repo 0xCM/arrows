@@ -15,33 +15,38 @@ namespace  Z0
     
     partial class xfunc
     {
-
         /// <summary>
-        /// Shuffles span content in-place via the provided source
+        /// Shuffles span content in-place
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <param name="io">The input/output span</param>
+        /// <param name="src">The input/output span</param>
         /// <typeparam name="T">The element type</typeparam>
-        public static Span<T> Shuffle<T>(this IRandomSource random, Span<T> io)
+        public static Span<T> Shuffle<T>(this IRandomSource random, Span<T> src)
         {
-            for (int i = 0; i < io.Length; i++)
-                swap(ref io[i], ref io[i + random.NextInt32(io.Length - i)]);
-            return io;
+            for (int i = 0; i < src.Length; i++)
+                swap(ref src[i], ref src[i + random.NextInt32(src.Length - i)]);
+            return src;
         }
 
         /// <summary>
         /// Shuffles array content in-place
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <param name="io">The input/output span</param>
+        /// <param name="src">The input/output array</param>
         /// <typeparam name="T">The element type</typeparam>
-        public static T[] Shuffle<T>(this IRandomSource random, T[] io)
+        public static T[] Shuffle<T>(this IRandomSource random, T[] src)
         {
-            for (int i = 0; i < io.Length; i++)
-                swap(ref io[i], ref io[i + random.NextInt32(io.Length - i)]);
-            return io;
+            for (int i = 0; i < src.Length; i++)
+                swap(ref src[i], ref src[i + random.NextInt32(src.Length - i)]);
+            return src;
         }
 
+        /// <summary>
+        /// Replicates and shuffles a source span
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The span element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> Shuffle<T>(this IRandomSource random, ReadOnlySpan<T> src)
             => random.Shuffle(src.Replicate());    
@@ -71,16 +76,33 @@ namespace  Z0
             return copy;
         }
 
-    
+        /// <summary>
+        /// Shuffles a permutation in-place
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="src">The permutation</param>
+        /// <typeparam name="N">The permutation length</typeparam>
         [MethodImpl(Inline)]
-        public static Perm<N,T> Shuffle<N,T>(this IRandomSource random, Perm<N,T> src)
+        public static Perm<N> Shuffle<N>(this IRandomSource random, Perm<N> src)
             where N : ITypeNat, new()
-            where T : struct
         {
             src.Shuffle(random);
             return src;
         }
-        
-    }
 
+        /// <summary>
+        /// Shuffles a copy of the source permutatiion, leaving the original intact.
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="src">The permutation</param>
+        /// <typeparam name="N">The permutation length</typeparam>
+        [MethodImpl(Inline)]
+        public static Perm<N> Shuffle<N>(this IRandomSource random, in Perm<N> src)
+            where N : ITypeNat, new()
+        {
+            var copy = src.Replicate();
+            copy.Shuffle(random);
+            return copy;
+        }
+    }
 }

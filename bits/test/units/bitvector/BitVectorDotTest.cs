@@ -198,9 +198,9 @@ namespace Z0.Test
                 {
                     var y = BitVector4.FromScalar(j);
                     var a = x & y;
-                    var and = $"AND = {a.Format()}";
+                    var and = $"AND = {a.FormatBits()}";
                     var popMod2 = $"AND > POP % 2 = {a.Pop() % 2}";
-                    result.AppendLine($"{x.Format()} * {y.Format()} = {x % y} | {and} | {popMod2}");
+                    result.AppendLine($"{x.FormatBits()} * {y.FormatBits()} = {x % y} | {and} | {popMod2}");
                 }
             }
             Trace(result.ToString());

@@ -28,7 +28,10 @@ namespace Z0
     
         public static implicit operator ReadOnlySpan<N,T> (T[] src)
             => new ReadOnlySpan<N, T>(src);
-    
+
+        public static implicit operator ReadOnlySpan<N,T> (ReadOnlySpan<T> src)
+            => new ReadOnlySpan<N, T>(src);
+
         public static bool operator == (ReadOnlySpan<N,T> lhs, ReadOnlySpan<N,T> rhs)
             => lhs.data == rhs.data;
 

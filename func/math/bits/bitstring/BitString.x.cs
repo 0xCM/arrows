@@ -228,7 +228,7 @@ namespace Z0
             => src.End.Value - src.Start.Value + 1;
 
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this in UInt128 src)
+        public static BitString ToBitString(this UInt128 src)
             => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo);
 
     }

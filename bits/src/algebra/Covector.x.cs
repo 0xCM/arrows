@@ -154,14 +154,13 @@ namespace Z0
             return lhs;
         }
 
-
         [MethodImpl(Inline)]
         public static Covector<N,T> ShiftR<N,T>(this ref Covector<N,T> lhs, in int rhs)
             where N : ITypeNat, new()
             where T : struct    
         {
             var x = lhs.Unsize();
-            gbits.shiftr(ref x, rhs);
+            BitRef.ShiftR(x, rhs);
             return lhs;
         }
 

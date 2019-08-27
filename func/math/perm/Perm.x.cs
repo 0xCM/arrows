@@ -153,6 +153,15 @@ namespace Z0
             return ref src;
         }
 
+        public static Swap[] Unsized<N>(this Swap<N>[] src)
+            where N : ITypeNat, new()
+        {
+            var dst = new Swap[src.Length];
+            for(var i=0; i<src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+        }
+
         /// <summary>
         /// Formats a sequence of successive transpositions (a chain)
         /// </summary>

@@ -20,13 +20,25 @@ namespace Z0
     
     public static partial class Vec128
     {
+        /// <summary>
+        /// Returns a readonly reference to the zero vector
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref readonly Vec128<T> Zero<T>() 
             where T : struct
                 => ref Vec128<T>.Zero;
 
         /// <summary>
-        /// Creates a new vector where all components have been assigned the same value
+        /// Returns the length of a vector with a specified primal component type
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static int Length<T>()
+            where T : struct
+                => Vec128<T>.Length;
+
+        /// <summary>
+        /// Creates a new vector, initialing each component to a common value
         /// </summary>
         /// <param name="src">The fill value</param>
          [MethodImpl(Inline)]
@@ -59,7 +71,7 @@ namespace Z0
 
 
         /// <summary>
-        /// Produces a vector with each component assigned unit value
+        /// Creates a new vector with each component assigned unit value
         /// </summary>
         /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
@@ -140,7 +152,6 @@ namespace Z0
             Vec128.Store(src, ref dst[offset]);
             return dst;                        
         }
-
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(ref T src)
@@ -230,7 +241,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vec128<T> Load<T>(in Span128<T> src, int block, out Vec128<T> dst)
+        public static ref Vec128<T> Load<T>(Span128<T> src, int block, out Vec128<T> dst)
             where T : struct
         {            
             ref var head = ref asRef(in src.Block(block));            
@@ -260,39 +271,36 @@ namespace Z0
         }        
 
         /// <summary>
-        /// Loads source value into the first component of the target
+        /// Loads the source value into the first component of a new vector
         /// </summary>
-        /// <param name="src"></param>
-        /// <param name="dst"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="src">The source scalar</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Vec128<T> LoadScalar<T>(T src, out Vec128<T> dst)
+        public static Vec128<T> LoadScalar<T>(in T src)
             where T : struct
         {            
             if(typeof(T) == typeof(sbyte))
-                dst = generic<T>(LoadScalar(int8(src)));
+                return generic<T>(LoadScalar(int8(src)));
             else if(typeof(T) == typeof(byte))
-                dst = generic<T>(LoadScalar(uint8(src)));
+                return generic<T>(LoadScalar(uint8(src)));
             else if(typeof(T) == typeof(short))
-                dst = generic<T>(LoadScalar(int16(src)));
+                return generic<T>(LoadScalar(int16(src)));
             else if(typeof(T) == typeof(ushort))
-                dst = generic<T>(LoadScalar(uint16(src)));
+                return generic<T>(LoadScalar(uint16(src)));
             else if(typeof(T) == typeof(int))
-                dst = generic<T>(LoadScalar(int32(src)));
+                return generic<T>(LoadScalar(int32(src)));
             else if(typeof(T) == typeof(uint))
-                dst = generic<T>(LoadScalar(uint32(src)));
+                return generic<T>(LoadScalar(uint32(src)));
             else if(typeof(T) == typeof(long))
-                dst = generic<T>(LoadScalar(int64(src)));
+                return generic<T>(LoadScalar(int64(src)));
             else if(typeof(T) == typeof(ulong))
-                dst = generic<T>(LoadScalar(uint64(src)));
+                return generic<T>(LoadScalar(uint64(src)));
             else if(typeof(T) == typeof(float))
-                dst = generic<T>(LoadScalar(float32(src)));
+                return generic<T>(LoadScalar(float32(src)));
             else if(typeof(T) == typeof(double))
-                dst = generic<T>(LoadScalar(float64(src)));
+                return generic<T>(LoadScalar(float64(src)));
             else 
                 throw unsupported<T>();
-            return ref dst;
         }        
 
         /// <summary>
@@ -338,7 +346,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(Span128<T> src, int block = 0)
             where T : struct  
-                => Load(in src, block, out Vec128<T> dst);
+                => Load(src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(ReadOnlySpan128<T> src, int block = 0)
@@ -379,6 +387,24 @@ namespace Z0
         public static Vec128<T> Load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
                 =>  Load<T>(src, offset, out Vec128<T> dst);    
+
+        /// <summary>
+        /// Creates a vector populated with component values that alternate
+        /// between the first operand and the second
+        /// </summary>
+        /// <param name="a">The first operand</param>
+        /// <param name="b">The second operand</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        public static Vec128<T> Alternate<T>(T a, T b)
+            where T : struct
+        {            
+            var dst = Span128.AllocBlock<T>();
+            var len = Vec128<T>.Length;
+            for(var i=0; i<len; i++)
+                dst[i] = even(i) ? a : b;
+            return Vec128.Load(ref dst[0]);
+        }
+
 
         /// <summary>
         /// Creates a new vector via component-wise specification
@@ -691,13 +717,6 @@ namespace Z0
         static Vec128<double> fill(double src)
             => Vector128.Create(src);
 
-        /// <summary>
-        /// Determines the number of components of a 128-bit vector with the indicated component type
-        /// </summary>
-        /// <typeparam name="T">The component type</typeparam>
-        static int Length<T>()
-            where T : struct
-                => Vec128<T>.Length;
 
         /// <summary>
         /// Allocates a 1-block 128-bit blocked span

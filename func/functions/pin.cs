@@ -3,6 +3,21 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
+
+partial class zfunc
+{
+    /// <summary>
+    /// Pins referenced memory while work is occurring
+    /// </summary>
+    /// <param name="src">The memory reference</param>
+    /// <param name="worker">The worker invoked during the pin</param>
+    /// <typeparam name="T">The memory cell type</typeparam>
+    public static void pin<T>(ref T src, Action<IntPtr> worker)
+    {
+        Z0.PinnedPointers.Pin(src, ptr => worker(ptr));
+    }
+}
+
 namespace  Z0
 {
     using System.Collections.Generic;
@@ -55,10 +70,3 @@ namespace  Z0
 }
 
 
-partial class zfunc
-{
-    public static void pin<T>(ref T x, Action<IntPtr> worker)
-    {
-        Z0.PinnedPointers.Pin(x, ptr => worker(ptr));
-    }
-}

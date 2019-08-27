@@ -32,6 +32,13 @@ namespace Z0
             => new Perm(range(0, n-1));
 
         /// <summary>
+        /// Allocates an empty permutation
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static Perm Alloc(int n)
+            => new Perm(new int[n]);
+
+        /// <summary>
         /// Creates a new identity permutation of natural length
         /// </summary>
         /// <typeparam name="N">The length type</typeparam>
@@ -68,35 +75,9 @@ namespace Z0
         /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
         /// <typeparam name="N">The length type</typeparam>
         [MethodImpl(Inline)]
-        public static Perm<N> Define<N>(params Swap<N>[] transpositions)
+        public static Perm<N> Define<N>(params Swap<N>[] swaps)
             where N : ITypeNat, new()
-                => new Perm<N>(transpositions);
-
-        /// <summary>
-        /// Defines a generic permutation of natural length
-        /// </summary>
-        /// <param name="length">The length of the permutation</param>
-        /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The term type</typeparam>
-        [MethodImpl(Inline)]
-        public static Perm<N,T> Define<N,T>(N length, params T[] terms)
-            where N : ITypeNat, new()
-            where T : struct
-                => new Perm<N,T>(terms);
-
-        /// <summary>
-        /// Defines a generic identity permutation of natural length and applies a specified sequence of transpostions
-        /// </summary>
-        /// <param name="length">The length of the permutation</param>
-        /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The term type</typeparam>
-        [MethodImpl(Inline)]
-        public static Perm<N,T> Define<N,T>(params Swap<N>[] transpositions)
-            where N : ITypeNat, new()
-            where T : struct
-                => new Perm<N,T>(transpositions);
+                => new Perm<N>(swaps);
 
         /// <summary>
         /// Defines a transposition for a permutation of natural length
@@ -109,16 +90,6 @@ namespace Z0
             where N : ITypeNat, new()
                 => (i,j);
 
-        /// <summary>
-        /// Defines an identity permutation over symbols of a specified type
-        /// </summary>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The symbol type</typeparam>
-        [MethodImpl(Inline)]
-        public static Perm<N,T> Identity<N,T>(N n = default, T rep = default)
-            where N : ITypeNat, new()
-            where T : struct
-                => Perm<N,T>.Identity.Replicate();
 
         [MethodImpl(Inline)]
         public static implicit operator Perm(Span<int> src)
@@ -127,6 +98,24 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator Perm(ReadOnlySpan<int> src)
             => Define(src);
+
+        /// <summary>
+        /// Computes the composition h of f and g where f and g have common length n and
+        /// h(i) = g(f(i)) for i = 0, ... n-1
+        /// </summary>
+        /// <param name="f">The left permutation</param>
+        /// <param name="g">The right permutation</param>
+        [MethodImpl(Inline)]
+        public static Perm operator *(Perm f, Perm g)
+            => f.Compose(g);
+
+        [MethodImpl(Inline)]
+        public static Perm operator ++(in Perm lhs)
+            => lhs.Inc();
+
+        [MethodImpl(Inline)]
+        public static Perm operator --(in Perm lhs)
+            => lhs.Dec();
 
         [MethodImpl(Inline)]
         public static bool operator ==(Perm lhs, Perm rhs)
@@ -146,9 +135,22 @@ namespace Z0
         public Perm(int n, (int i, int j)[] src)
         {
             terms = Identity(n).terms;
-            Transpose(src);
+            Swap(src);
         }
-        
+
+        [MethodImpl(Inline)]
+        public Perm(int n, Swap[] src)
+        {
+            terms = Identity(n).terms;
+            Apply(src);            
+        }
+
+        [MethodImpl(Inline)]
+        public Perm(int[] src)
+        {
+            terms = src;
+        }
+
         [MethodImpl(Inline)]
         public Perm(int n, int[] src)
         {
@@ -191,7 +193,7 @@ namespace Z0
         /// the transposition t is the function t(l) = g(f(l)) == l. 
         /// </remarks>
         [MethodImpl(Inline)]
-        public Perm Transpose(int i, int j)
+        public Perm Swap(int i, int j)
         {
             swap(ref terms[i], ref terms[j]);
             return this;
@@ -200,7 +202,17 @@ namespace Z0
         /// <summary>
         /// Effects a sequence of in-place transpositions
         /// </summary>
-        public Perm Transpose(params (int i, int j)[] specs)
+        public Perm Swap(params (int i, int j)[] specs)
+        {
+            for(var k=0; k<specs.Length; k++)
+                swap(ref terms[specs[k].i], ref terms[specs[k].j]);
+            return this;
+        }
+
+        /// <summary>
+        /// Effects a sequence of in-place transpositions
+        /// </summary>
+        public Perm Apply(params Swap[] specs)
         {
             for(var k=0; k<specs.Length; k++)
                 swap(ref terms[specs[k].i], ref terms[specs[k].j]);
@@ -235,15 +247,85 @@ namespace Z0
             return this;
         }
 
+        /// <summary>
+        /// Creates a new permutation p via composition, p[i] = g(f(i)) for i = 0, ... n
+        /// where f denotes the current permutation
+        /// </summary>
+        /// <param name="f">The left permutation</param>
+        /// <param name="g">The right permutation</param>
+        public Perm Compose(Perm g)
+        {
+            var n = length(terms, g.terms);
+            var dst = Alloc(n);
+            var f = this;
+            for(var i=0; i< n; i++)
+                dst[i] = g[f[i]];
+            return dst;
+        }
+
+        /// <summary>
+        /// Computes the inverse permutation t of the current permutation p 
+        /// such that p*t = t*p = I where I denotes the identity permutation
+        /// </summary>
+        public Perm Invert()
+        {
+            var dst = Alloc(Length);
+            for(var i=0; i< Length; i++)
+                dst[terms[i]] = i;
+            return dst;
+        }
+
+        /// <summary>
+        /// Applies a modular increment to the permutation in-place
+        /// </summary>
         public Perm Inc()
         {
             Span<int> src = Replicate().terms;
-            for(var i=0; i< terms.Length - 1; i++)
-            {
+            var lastix = Length - 1;
+            for(var i=0; i< lastix; i++)
                 terms[i] = src[i + 1];
-            }
-            terms[terms.Length - 1] = src[0];
+            terms[lastix] = src[0];
             return this;
+        }
+
+        /// <summary>
+        /// Applies a modular decrement to the permutation in-place
+        /// </summary>
+        public Perm Dec()
+        {
+            Span<int> src = Replicate().terms;
+            terms[0] = src[Length - 1];
+            for(var i=1; i< Length; i++)
+                terms[i] = src[i - 1];
+            return this;
+        }
+
+        /// <summary>
+        /// Computes a permutation cycle originating at a specified point
+        /// </summary>
+        /// <param name="start">The domain point at which evaluation will begin</param>
+        public PermCycle Cycle(int start)
+        {
+            require(start >= 0 && start < Length);
+            Span<PermTerm> cterms = stackalloc PermTerm[Length];
+            var traversed = new HashSet<int>(Length);
+            var index = start;
+            var ctix = 0;
+            
+            while(true)
+            {
+                var image = terms[index];
+                if(traversed.Contains(image))
+                    break;
+                else
+                {
+                    traversed.Add(image);                    
+                    cterms[ctix++] = new PermTerm(index, image);
+                    index = image;
+                }                
+            }
+
+            return new PermCycle(cterms.Slice(0, ctix).ToArray());
         }
 
         /// <summary>
@@ -270,6 +352,7 @@ namespace Z0
             
             return true;
         }
+
 
         public override bool Equals(object o)
             => (o is Perm p) ? p == this : false;

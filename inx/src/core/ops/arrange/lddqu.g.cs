@@ -15,8 +15,7 @@ namespace Z0
     using static zfunc;
     
     partial class ginx
-    {
-        
+    {        
         [MethodImpl(Inline)]
         public static ref Vec128<T> lddqu<T>(in T src, ref Vec128<T> dst)
             where T : struct

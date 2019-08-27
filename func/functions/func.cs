@@ -46,28 +46,7 @@ partial class zfunc
     public static T ifNull<T>(T x, Func<T> replace)
         where T : class => x ?? replace();
 
-    /// <summary>
-    /// Computes the number of bits required to store a value type
-    /// </summary>
-    /// <typeparam name="T">The value type</typeparam>
-    [MethodImpl(Inline)]
-    public static BitSize bitsize<T>()
-        where T :struct
-            => Unsafe.SizeOf<T>()*8;
 
-    /// <summary>
-    /// The canonical swap function
-    /// </summary>
-    /// <param name="lhs">The left value</param>
-    /// <param name="rhs">The right value</param>
-    /// <typeparam name="T">The value type</typeparam>
-    [MethodImpl(Inline)]
-    public static void swap<T>(ref T lhs, ref T rhs)
-    {
-        var temp = lhs;
-        lhs = rhs;
-        rhs = temp;
-    }
 
     
 

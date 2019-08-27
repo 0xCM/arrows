@@ -25,9 +25,9 @@ namespace Z0.Test
 
         public void Reverse256u8()
         {
-            var v1 = Vec256.Increments((byte)0);
+            var v1 = Vec256Pattern.Increments((byte)0);
             var v2 = dinx.reverse(v1);
-            var v3 = Vec256.Decrements((byte)31);
+            var v3 = Vec256Pattern.Decrements((byte)31);
             Claim.eq(v2,v3);
 
         }

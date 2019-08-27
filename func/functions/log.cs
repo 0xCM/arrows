@@ -8,14 +8,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.IO;
-
 using Z0;
 
-using static Z0.ReflectionFlags;
 
 partial class zfunc
 {
-
     /// <summary>
     /// Writes a sequence of messages to a log as a contiguous block
     /// </summary>
@@ -40,5 +37,8 @@ partial class zfunc
 
     public static void log(string text, LogArea dst)
         => Log.Get(LogTarget.AreaRoot(dst)).Log(text);
+
+
+
 }
 

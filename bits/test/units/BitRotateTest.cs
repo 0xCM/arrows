@@ -55,11 +55,7 @@ namespace Z0
         public void RotLeftU8()
         {
             Collect(RotL<byte>(Pow2.T12));
-
-            //Trace($"{bsRef} |> rotl {offset} |> {bs}");            
-
         }
-
         
         public void RotLeft256u16()
         {
@@ -86,7 +82,6 @@ namespace Z0
         public void RotLeftU32()
         {
             Collect(RotL<uint>(Pow2.T12));
-
         }
 
         public void RotLeftU64()
@@ -94,7 +89,46 @@ namespace Z0
             Collect(RotL<ulong>(Pow2.T12));
         }
 
-        void Rot256u32(int cycles = DefaltCycleCount)
+        public void Rot256u32()
+        {
+            Rot256u32(DefaltCycleCount);
+
+        }
+        
+        public void Rot256u8()
+        {
+            Rot256u8(DefaltCycleCount);
+
+        }
+
+        void Rot256u8(int cycles)
+        {
+            for(var cycle=0; cycle< cycles; cycle++)
+            {
+                var src = Random.CpuVec256<byte>();
+                var offset = Random.Next(closed<byte>(2, 6));
+                
+                var vL = Bits.rotl(src,offset);
+                var vRL = Bits.rotr(vL,offset);
+                Claim.eq(src,vRL);
+                
+                var vR = Bits.rotr(src,offset);
+                var vLR = Bits.rotl(vR,offset);
+                Claim.eq(src,vLR);
+
+                for(var i=0; i<src.Length(); i++)
+                {
+                    Claim.eq(Bits.rotl(src[i], offset), vL[i]);
+                    Claim.eq(Bits.rotr(vL[i], offset), vRL[i]);
+                    
+                    Claim.eq(Bits.rotr(src[i], offset), vR[i]);
+                    Claim.eq(Bits.rotl(vR[i], offset), vLR[i]);
+                }
+        
+            }
+        }
+
+        void Rot256u32(int cycles)
         {
             for(var cycle=0; cycle< cycles; cycle++)
             {
@@ -132,11 +166,7 @@ namespace Z0
             Trace("rotr(rotl(src))", vX.FormatHex(), 20);
 
         }
-        public void Rot256()
-        {
-            Rot256u32();
 
-        }
 
     }
 

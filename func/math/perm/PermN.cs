@@ -18,10 +18,7 @@ namespace Z0
     public struct Perm<N>
         where N : ITypeNat, new()
     {
-        /// <summary>
-        /// Defines the permutation (0 -> terms[0], 1 -> terms[1], ..., n - 1 -> terms[N-1])
-        /// </summary>
-        int[] terms;
+        Perm perm;
 
         static int n = (int)(new N().value);
 
@@ -54,7 +51,7 @@ namespace Z0
         /// <param name="f">The permutation to convert</param>
         [MethodImpl(Inline)]
         public static implicit operator Perm(Perm<N> f)
-            => new Perm(f.terms);
+            => f.perm;
 
         /// <summary>
         /// Computes the composition h of f and g where h(i) = g(f(i)) for i = 0, ... n
@@ -74,12 +71,20 @@ namespace Z0
             => f.Invert();
 
         [MethodImpl(Inline)]
+        public static Perm<N> operator ++(in Perm<N> lhs)
+            => lhs.Inc();
+
+        [MethodImpl(Inline)]
+        public static Perm<N> operator --(in Perm<N> lhs)
+            => lhs.Dec();
+
+        [MethodImpl(Inline)]
         public static bool operator ==(Perm<N> f, Perm<N> g)
-            => f.terms.ReallyEqual(g.terms);
+            => f.Equals(g);
 
         [MethodImpl(Inline)]
         public static bool operator !=(Perm<N> f, Perm<N> g)
-            => !(f == g);
+            => !f.Equals(g);
 
         /// <summary>
         /// Initializes a permutation with the identity followed by a sequence of transpostions
@@ -88,9 +93,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public Perm(Swap<N>[] swaps)
         {
-            terms = new int[n];
-            Identity.terms.CopyTo(terms);
-            Apply(swaps);
+            this.perm = new Perm(n, swaps.Unsized());
+        }
+
+        [MethodImpl(Inline)]
+        Perm(Perm src)
+        {
+            this.perm = src;
         }
 
         /// <summary>
@@ -100,18 +109,18 @@ namespace Z0
         public Perm(int[] src)
         {
             if(src.Length == n)
-                terms = src;
+                perm = new Perm(src);
             else
             {
-                terms = new int[n];
-
-                var m = src.Length;
+                var tmp = new int[n];
                 
+                var m = src.Length;                                
                 for(var i=0; i< m; i++)
-                    terms[i] = src[i];
+                    tmp[i] = src[i];
 
                 for(var i=m; i< n; i++)
-                    terms[i] = Identity[i - m];
+                    tmp[i] = Identity[i - m];
+                perm = new Perm(tmp);
             }
         }
 
@@ -119,7 +128,7 @@ namespace Z0
         /// Provides read-only access to the permutation terms
         /// </summary>
         public ReadOnlySpan<N,int> Terms
-            => terms;
+            => perm.Terms;
 
         /// <summary>
         /// Term evaluator/manipulator where i is in the discrete domain [0, N-1]
@@ -127,7 +136,7 @@ namespace Z0
         public ref int this[int i]
         {
             [MethodImpl(Inline)]
-            get => ref terms[i];
+            get => ref perm[i];
         }
 
         /// <summary>
@@ -142,30 +151,22 @@ namespace Z0
         /// <summary>
         /// Effects a transposition (i,j) -> (j, i)
         /// </summary>
-        /// <remarks>
         /// <param name="swap">The transposition to apply</param>
-        /// A transposition (l,r) is interpreted as a function composition 
-        /// that carries the l-value (from the domain) to the r-value
-        /// (in the l-relative codomain) and then the r-value to the l-value
-        /// (in the r-relative codomain & l-relative domain). So, if
-        /// a function f sends l to r and a function g sends r to l then
-        /// the transposition t is the function t(l) = g(f(l)) == l. 
-        /// </remarks>
         [MethodImpl(Inline)]
-        public Perm<N> Apply(in Swap<N> src)
-        {
+        public Perm<N> Swap(in Swap<N> src)
+        {            
             (var i, var j) = src;
-            swap(ref terms[i], ref terms[j]);
+            perm.Swap(src);
             return this;
         }
 
         /// <summary>
         /// Effects a sequence of transpositions
         /// </summary>
-        public Perm<N> Apply(params Swap<N>[] specs)
-        {
-            for(var k=0; k<specs.Length; k++)
-                Apply(specs[k]);
+        public Perm<N> Swap(params Swap<N>[] specs)
+        {            
+            for(var k=0; k<specs.Length; k++)            
+                perm.Swap(specs[k]);
             return this;
         }
 
@@ -173,7 +174,7 @@ namespace Z0
         /// Clones the permutation
         /// </summary>
         public Perm<N> Replicate()
-            => new Perm<N>(terms.Replicate());
+            => new Perm<N>(perm.Replicate());
 
         /// <summary>
         /// Clones the permutation and applies the transposition (i,j)
@@ -183,7 +184,7 @@ namespace Z0
         public Perm<N> Replicate(in Swap<N> s)
         {
             var p = Replicate();
-            p.Apply(s);
+            p.Swap(s);
             return p;
         }
 
@@ -193,7 +194,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         public Perm<N> Shuffle(IRandomSource random)
         {
-            random.Shuffle(terms);
+            perm.Shuffle(random);
             return this;
         }
 
@@ -202,12 +203,7 @@ namespace Z0
         /// such that p*t = t*p = I where I denotes the identity permutation
         /// </summary>
         public Perm<N> Invert()
-        {
-            var dst = Alloc();
-            for(var i=0; i< n; i++)
-                dst[terms[i]] = i;
-            return dst;
-        }
+            => new Perm<N>(perm.Invert());
 
         /// <summary>
         /// Creates a new permutation p via composition, p[i] = g(f(i)) for i = 0, ... n
@@ -216,58 +212,56 @@ namespace Z0
         /// <param name="f">The left permutation</param>
         /// <param name="g">The right permutation</param>
         public Perm<N> Compose(Perm<N> g)
-        {
-            var dst = Alloc();
-            var f = this;
-            for(var i=0; i< n; i++)
-                dst[i] = g[f[i]];
-            return dst;
-        }
+            => new Perm<N>(perm.Compose(g.perm));
  
         /// <summary>
-        /// Computes the cycle rooted at a specified point in the domain
+        /// Applies a modular increment to the permutation in-place
         /// </summary>
-        /// <param name="start">The domain point at which be begin evaluation</param>
-        public PermCycle Cycle(int start)
+        [MethodImpl(Inline)]
+        public Perm<N> Inc()
         {
-            require(start >= 0 && start < n);
-            Span<PermTerm> cterms = stackalloc PermTerm[n];
-            var traversed = new HashSet<int>(n);
-            var index = start;
-            var ctix = 0;
-            
-            while(true)
-            {
-                var image = terms[index];
-                if(traversed.Contains(image))
-                    break;
-                else
-                {
-                    traversed.Add(image);                    
-                    cterms[ctix++] = new PermTerm(index, image);
-                    index = image;
-                }                
-            }
-
-            return new PermCycle(cterms.Slice(0, ctix).ToArray());
+            perm.Inc();
+            return this;
         }
+
+        /// <summary>
+        /// Applies a modular decrement to the permutation in-place
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Perm<N> Dec()
+        {
+            perm.Dec();
+            return this;
+        }
+
+        /// <summary>
+        /// Computes a permutation cycle originating at a specified point
+        /// </summary>
+        /// <param name="start">The domain point at which evaluation will begin</param>
+        public PermCycle Cycle(int start)
+            => perm.Cycle(start);
+
+        [MethodImpl(Inline)]
+        public bool Equals(Perm<N> g)
+            => perm.Equals(g.perm);
 
         /// <summary>
         /// Formats a permutation as a 2-column matrix
         /// </summary>
         /// <param name="src">The source permutation</param>
         /// <param name="colwidth">The width of the matrix columns, if specified</param>
+        [MethodImpl(Inline)]
          public string Format(int? colwidth = null)
-            => Terms.Unsized.FormatPerm(colwidth);
+            => perm.Format(colwidth);
 
          public override string ToString() 
             => this.Format();
 
          public override int GetHashCode()
-            => terms.GetHashCode();
+            => perm.GetHashCode();
 
          public override bool Equals(object o)
-            => (o is Perm<N> p)  ? p.terms.ReallyEqual(terms)  : false;
+            => (o is Perm<N> p)  ? p.perm.Equals(perm)  : false;
 
     }
 }

@@ -42,9 +42,9 @@ namespace Z0
         static uint clmul(uint a, uint b)
         {
             var p = dinx.clmul(a,b);
-            p ^= dinx.clmul(p >> 8, Reducer);
-            p ^= dinx.clmul(p >> 8, Reducer);
-            return p;
+            p ^= dinx.clmul((uint)(p >> 8), Reducer);
+            p ^= dinx.clmul((uint)(p >> 8), Reducer);
+            return (uint)p;
         }
 
         [MethodImpl(Inline)]

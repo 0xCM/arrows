@@ -66,7 +66,7 @@ namespace Z0
             => length % BlockLength == 0;
         
         [MethodImpl(Inline)]
-        public static Span256<T> AllocBlocs(int blocks, T? fill = null)
+        public static Span256<T> AllocBlocks(int blocks, T? fill = null)
         {
             var dst = new Span256<T>(new T[blocks * BlockLength]);
             if(fill.HasValue)

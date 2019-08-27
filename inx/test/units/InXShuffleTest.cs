@@ -80,9 +80,19 @@ namespace Z0.Test
 
         public void TestPermIncrement()
         {
-            var p = Perm.Identity(9);
-            p.Inc();
-            Trace(p.Format());
+            var p = Perm.Identity(16);
+            for(var i=0; i<16; i++)
+                p.Inc();
+            Claim.eq(p, Perm.Identity(16));
+        }
+
+        public void TestDecrement()
+        {
+            var p = Perm.Identity(16);
+            for(var i=0; i<16; i++)
+                p.Dec();
+
+            Claim.eq(p, Perm.Identity(16));
         }
 
         void Permute4i32(int cycles = DefaltCycleCount, bool trace = false)

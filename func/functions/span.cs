@@ -12,19 +12,7 @@ using System.Runtime.Intrinsics;
 using System.Diagnostics;
 
 using Z0;
-// MemoryMarshall
-// public static ReadOnlySpan<T> CreateReadOnlySpan<T>(ref T reference, int length);
-// public static Span<T> CreateSpan<T>(ref T reference, int length);
-// public static Span<TTo> Cast<TFrom, TTo>(Span<TFrom> span)
-// public static ReadOnlySpan<TTo> Cast<TFrom, TTo>(ReadOnlySpan<TFrom> span)
-// public static Span<byte> AsBytes<T>(Span<T> span) where T : struct;           
-// public static Memory<T> AsMemory<T>(ReadOnlyMemory<T> memory);
-// public static ref readonly T AsRef<T>(ReadOnlySpan<byte> span) where T : struct;
-// public static ref T AsRef<T>(Span<byte> span) where T : struct;
-// public static IEnumerable<T> ToEnumerable<T>(ReadOnlyMemory<T> memory);
-// public static bool TryGetString(ReadOnlyMemory<char> memory, out string text, out int start, out int length);
-// public static void Write<T>(Span<byte> destination, ref T value) where T : struct;
-// public static bool TryRead<T>(ReadOnlySpan<byte> source, out T value) where T : struct;
+
 partial class zfunc
 {
     /// <summary>
@@ -39,6 +27,7 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Span<T> span<T>(uint length)
         => new Span<T>(new T[length]);
+
 
     /// <summary>
     /// Constructs a span from an array selection
@@ -59,16 +48,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Span<T> span<T>(IEnumerable<T> src)
         => src.TakeSpan();
-
-    [MethodImpl(Inline)]
-    public static ref readonly T first<T>(ReadOnlySpan<byte> src)
-        where T : struct
-            => ref MemoryMarshal.AsRef<T>(src);
-
-    [MethodImpl(Inline)]
-    public static ref T first<T>(Span<byte> src)
-        where T : struct
-            =>  ref MemoryMarshal.AsRef<T>(src);
 
     [MethodImpl(Inline)]
     public static ReadOnlySpan<T> cast<S,T>(ReadOnlySpan<S> src)                
@@ -94,7 +73,6 @@ partial class zfunc
         where T : struct
             => dst = MemoryMarshal.Cast<S,T>(src);
 
-
     /// <summary>
     /// Constructs a span from an array
     /// </summary>
@@ -104,10 +82,91 @@ partial class zfunc
     public static Span<T> span<T>(params T[] src)
         => src;
 
+    /// <summary>
+    /// Loads a span from a memory reference
+    /// </summary>
+    /// <param name="src">The memory source</param>
+    /// <param name="length">The memory length relative to the cell type</param>
+    /// <typeparam name="T">The cell type</typeparam>
     [MethodImpl(Inline)]   
-    public static Span<T> span<T>(ref T first, int length)
-        => MemoryMarshal.CreateSpan(ref first, length);
+    public static Span<T> span<T>(ref T src, int length)
+        => MemoryMarshal.CreateSpan(ref src, length);
 
+    /// <summary>
+    /// Creates a span of one type over a single element of another type
+    /// </summary>
+    /// <param name="src">The source element</param>
+    /// <typeparam name="S">The source element type</typeparam>
+    /// <typeparam name="T">The target element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Span<T> span<S,T>(ref S src)
+        where T :struct
+        where S : struct
+            => cast(span(ref src, 1), out Span<T> _);
+
+    /// <summary>
+    /// Presents a source reference as a span of bytes
+    /// </summary>
+    /// <param name="src">The source reference</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Span<byte> bytespan<T>(ref T src)
+        where T : struct
+            => MemoryMarshal.CreateSpan(ref byteref(ref src), size<T>()); 
+
+    /// <summary>
+    /// Converts the source span to a readonly bytespan
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static ReadOnlySpan<byte> bytespan<T>(ReadOnlySpan<T> src)
+        where T : struct
+            => MemoryMarshal.AsBytes(src);
+
+    /// <summary>
+    /// Converts the source span to a bytespan
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<byte> bytespan<T>(Span<T> src)
+        where T : struct
+            => MemoryMarshal.AsBytes(src);
+
+    /// <summary>
+    /// Converts a source value of any value type to its bytespan representation
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static ReadOnlySpan<byte> bytes<T>(in T src)
+        where T : struct
+    {
+        return bytespan(MemoryMarshal.CreateReadOnlySpan(ref As.asRef(in src), 1));         
+        // Span<T> s = new T[1]{src};
+        // return MemoryMarshal.AsBytes(s);
+    }       
+
+    /// <summary>
+    /// Converts a source value of any value type to its bytespan representation
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static void bytes<T>(in T src, Span<byte> dst)
+        where T : struct
+            => As.generic<T>(ref dst[0]) = src;
+
+    /// <summary>
+    /// Converts the source value to a bytespan
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<byte> bytes<T>(T src)
+        where T : struct
+            => MemoryMarshal.AsBytes(span(src));
 
     /// <summary>
     /// Constructs a span from a sequence selection
@@ -119,21 +178,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Span<T> span<T>(IEnumerable<T> src, int? offset = null, int? length = null)
         => span(length == null ? src.Skip(offset ?? 0) : src.Skip(offset ?? 0).Take(length.Value));
-
-    [MethodImpl(Inline)]
-    public static ReadOnlySpan<byte> bytes<T>(ReadOnlySpan<T> src)
-        where T : struct
-            => MemoryMarshal.AsBytes(src);
-
-    [MethodImpl(Inline)]
-    public static Span<byte> bytes<T>(Span<T> src)
-        where T : struct
-            => MemoryMarshal.AsBytes(src);
-
-    [MethodImpl(Inline)]
-    public static Span<byte> bytes<T>(T src)
-        where T : struct
-            => MemoryMarshal.AsBytes(span(src));
 
     /// <summary>
     /// Reconstitutes a value from a bytespan
@@ -180,10 +224,10 @@ partial class zfunc
         =>  ref MemoryMarshal.GetReference<T>(src);
 
     /// <summary>
-    /// Returns a readonly reference to the location of the first span element
+    /// Returns a readonly reference to the head of the source span presented as a specified type 
     /// </summary>
     /// <param name="src">The source span</param>
-    /// <typeparam name="T">The element type</typeparam>
+    /// <typeparam name="T">The cell type</typeparam>
     [MethodImpl(Inline)]
     public static ref readonly T head<T>(ReadOnlySpan<T> src)
         where T : struct
@@ -199,61 +243,112 @@ partial class zfunc
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(Span<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(Span<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Count ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(IReadOnlyList<T> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Count == rhs.Length ? lhs.Count
                 : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(ReadOnlySpan<T> lhs, IReadOnlyList<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Count ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Count, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(IReadOnlyList<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Count == rhs.Length ? lhs.Count
                 : throw Errors.LengthMismatch(lhs.Count, rhs.Length, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
     [MethodImpl(Inline)]   
     public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
     [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
-
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
     [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
-    [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs,  [CallerMemberName] string caller = null, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
     [MethodImpl(Inline)]   
     public static int length<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -273,6 +368,13 @@ partial class zfunc
                 => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
 
+    /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
     [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -281,7 +383,7 @@ partial class zfunc
                 =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     /// <summary>
-    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise, raises an exception
+    /// Returns the common number of blocks in the operands if they are the same; otherwise, raises an error
     /// </summary>
     /// <param name="lhs">The left source</param>
     /// <param name="rhs">The right source</param>
@@ -295,8 +397,7 @@ partial class zfunc
                     : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
 
     /// <summary>
-    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
-    /// raises an exception
+    /// Returns the common number of blocks in the operands if they are the same; otherwise, raises an error
     /// </summary>
     /// <param name="lhs">The left source</param>
     /// <param name="rhs">The right source</param>

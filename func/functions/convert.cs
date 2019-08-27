@@ -190,29 +190,46 @@ partial class zfunc
             => convert<double,T>(src);
 
     /// <summary>
-    /// Converts a source value of any value type to its bytespan representation
+    /// Converts a parameter array to a span of 8-bit unsigned integers
     /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="T">The value type</typeparam>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
     [MethodImpl(Inline)]
-    public static Span<byte> bytes<T>(in T src)
+    public static Span<byte> bytes<T>(params T[] src)
         where T : struct
-    {
-        Span<T> s = new T[1]{src};
-        return MemoryMarshal.AsBytes(s);
-    }       
+            =>  convert<T,byte>(src.ToReadOnlySpan());
 
     /// <summary>
-    /// Converts a source value of any value type to its bytespan representation
+    /// Converts a parameter array to a span of 8-bit signed integers
     /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="T">The value type</typeparam>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
     [MethodImpl(Inline)]
-    public static void bytes<T>(in T src, Span<byte> dst)
+    public static Span<sbyte> sbytes<T>(params T[] src)
         where T : struct
-            => As.generic<T>(ref dst[0]) = src;
+            =>  convert<T,sbyte>(src.ToReadOnlySpan());
 
-   /// <summary>
+    /// <summary>
+    /// Converts a parameter array to a span of 16-bit signed integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<ushort> ushorts<T>(params T[] src)
+        where T : struct
+            =>  convert<T,ushort>(src.ToReadOnlySpan());
+
+    /// <summary>
+    /// Converts a parameter array to a span of 16-bit signed integers
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<short> shorts<T>(params T[] src)
+        where T : struct
+            =>  convert<T,short>(src.ToReadOnlySpan());
+
+    /// <summary>
     /// Converts a parameter array to a span of 32-bit signed integers
     /// </summary>
     /// <param name="src">The source array</param>
@@ -271,6 +288,4 @@ partial class zfunc
     public static Span<double> doubles<T>(params T[] src)
         where T : struct
             =>  convert<T,double>(src.ToReadOnlySpan());
- 
-
 }

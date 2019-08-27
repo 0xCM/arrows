@@ -79,6 +79,10 @@ namespace Z0
             => (src.i, src.j);
 
         [MethodImpl(Inline)]
+        public static implicit operator Swap(Swap<N> src)
+            => (src.i, src.j);
+
+        [MethodImpl(Inline)]
         public static Swap<N> operator ++(in Swap<N> src)
         {
             ref var dst = ref As.asRef(in src);

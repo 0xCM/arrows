@@ -140,7 +140,6 @@ namespace Z0
         public static Span<T> add<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct        
                 => add(ref lhs, rhs);
-
         
         [MethodImpl(Inline)]
         public static ref Span<T> add<T>(ref Span<T> lhs, T rhs)
@@ -170,6 +169,5 @@ namespace Z0
                 throw unsupported<T>();
             return ref lhs;
         }
-
     }
 }

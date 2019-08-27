@@ -15,6 +15,11 @@ namespace Z0
 
     partial class gmath
     {
+        /// <summary>
+        /// Computes the absolute value of a primal operand
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static T abs<T>(T src)
             where T : struct
@@ -43,6 +48,11 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        /// <summary>
+        /// Computes the absolute value of a primal operand in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref T abs<T>(ref T src)
             where T : struct
@@ -118,7 +128,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<sbyte> Abs(this Span<sbyte> io)
+        static Span<sbyte> Abs(this Span<sbyte> io)
             => abs(io);
 
         /// <summary>
@@ -126,7 +136,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<short> Abs(this Span<short> io)
+        static Span<short> Abs(this Span<short> io)
             => abs(io);
 
         /// <summary>
@@ -134,7 +144,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<int> Abs(this Span<int> io)
+        static Span<int> Abs(this Span<int> io)
             => abs(io);
 
         /// <summary>
@@ -142,7 +152,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<long> Abs(this Span<long> io)
+        static Span<long> Abs(this Span<long> io)
             => abs(io);
 
         /// <summary>
@@ -150,7 +160,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<float> Abs(this Span<float> io)
+        static Span<float> Abs(this Span<float> io)
             => abs(io);
 
         /// <summary>
@@ -158,32 +168,31 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<double> Abs(this Span<double> io)
+        static Span<double> Abs(this Span<double> io)
             => abs(io);
 
-
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<sbyte> Abs(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        static ReadOnlySpan<sbyte> Abs(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
             => abs(src,dst);            
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<short> Abs(this ReadOnlySpan<short> src, Span<short> dst)
+        static ReadOnlySpan<short> Abs(this ReadOnlySpan<short> src, Span<short> dst)
             => abs(src,dst);            
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<int> Abs(this ReadOnlySpan<int> src, Span<int> dst)
+        static ReadOnlySpan<int> Abs(this ReadOnlySpan<int> src, Span<int> dst)
             => abs(src,dst);            
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<long> Abs(this ReadOnlySpan<long> src, Span<long> dst)
+        static ReadOnlySpan<long> Abs(this ReadOnlySpan<long> src, Span<long> dst)
             => abs(src,dst);            
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<float> Abs(this ReadOnlySpan<float> src, Span<float> dst )
+        static ReadOnlySpan<float> Abs(this ReadOnlySpan<float> src, Span<float> dst )
             => abs(src,dst);            
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
+        static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
             => abs(src,dst);            
 
         static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
@@ -274,8 +283,6 @@ namespace Z0
             for(var i = 0; i< io.Length; i++)
                 math.abs(ref io[i]);
             return io;
-        } 
- 
- 
+        }  
     }
 }

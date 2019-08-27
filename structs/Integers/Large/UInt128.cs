@@ -163,6 +163,15 @@ namespace Z0
         public override int GetHashCode()
             => HashCode.Combine(lo,hi);
         
+        public override string ToString() 
+        {
+            var str = string.Empty;
+            if(hi != 0)
+                str = "0x" + hi.ToString("X") + " "; 
+            str += ("0x" +  lo.ToString("X"));            
+            return str;
+        }
+        
     }    
 
 }

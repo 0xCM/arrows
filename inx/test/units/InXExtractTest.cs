@@ -22,7 +22,7 @@ namespace Z0.Test
             var expect = span<T>(len);
             src.ToSpan(expect);
             for(byte i = 0; i< len; i++)
-                Claim.eq(expect[i], ginx.component(in src, i));
+                Claim.eq(expect[i], ginx.extract(in src, i));
 
             TypeCaseEnd<T>();                
         }

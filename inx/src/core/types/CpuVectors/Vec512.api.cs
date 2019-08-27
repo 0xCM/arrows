@@ -27,7 +27,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec512<T> FromParts<T>(in Vec128<T> v00, in Vec128<T> v01, in Vec128<T> v10, in Vec128<T> v11)        
             where T : struct
-                => new Vec512<T>(in v00, in v01, in v10, in v11);
+        {
+            Vec256<T> lo = default;
+            lo = ginx.insert(v00,lo,0);
+            lo = ginx.insert(v01,lo,1);
+            
+            Vec256<T> hi = default;
+            hi = ginx.insert(v10,hi,0);
+            hi = ginx.insert(v11,hi,1);
+
+            return new Vec512<T>(in lo, in hi);
+        }
 
         /// <summary>
         /// Constructs a 512-bit vector from two 256-bit vectors
@@ -89,7 +99,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static unsafe Span<T> ToSpan<T>(this ref Vec512<T> src)
+        public static unsafe Span<T> ToSpan<T>(this Vec512<T> src)
             where T : struct        
                 => new Span<T>(pvoid(ref Unsafe.Add(ref src, 0)), Vec512<T>.Length);        
     }

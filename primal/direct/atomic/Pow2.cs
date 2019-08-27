@@ -47,8 +47,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool isPow2(ulong src)
             => (src & (src - 1)) == 0;
-
-
     }
-
 }

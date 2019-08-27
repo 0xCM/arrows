@@ -50,43 +50,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec512<byte> and(in Vec512<byte> lhs, in Vec512<byte> rhs)        
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
                 
         [MethodImpl(Inline)]
         public static Vec512<short> and(in Vec512<short> lhs, in Vec512<short> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<sbyte> and(in Vec512<sbyte> lhs, in Vec512<sbyte> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<ushort> and(in Vec512<ushort> lhs, in Vec512<ushort> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<int> and(in Vec512<int> lhs, in Vec512<int> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<uint> and(in Vec512<uint> lhs, in Vec512<uint> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<long> and(in Vec512<long> lhs, in Vec512<long> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<ulong> and(in Vec512<ulong> lhs, in Vec512<ulong> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<float> and(in Vec512<float> lhs, in Vec512<float> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
         [MethodImpl(Inline)]
         public static Vec512<double> and(in Vec512<double> lhs, in Vec512<double> rhs)
-            => Vec512.FromParts(And(lhs.Lo(), rhs.Lo()), And(lhs.Hi(), rhs.Hi()));
+            => Vec512.FromParts(And(lhs.lo, rhs.lo), And(lhs.hi, rhs.hi));
 
     }
 }

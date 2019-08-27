@@ -22,7 +22,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int movemask(ulong src)
         {
-            Vec128.LoadScalar(src, out Vec128<ulong> dst);
+            var dst = Vec128.LoadScalar(src);
             return movemask(dst.As<byte>());
         }
         

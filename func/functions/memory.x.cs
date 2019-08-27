@@ -22,7 +22,7 @@ namespace  Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static Memory<T> ToMemory<T>(this IEnumerable<T> src)
-            => src.ToArray();
+            => memory(src);
 
         /// <summary>
         /// Encloses the source memory in readonly container (non-allocating)
@@ -67,7 +67,7 @@ namespace  Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static Memory<T> TakeMemory<T>(this IEnumerable<T> src, int length)
-            => src.Take(length).ToMemory();
+            => memory(src,length);
 
         /// <summary>
         /// Constructs a memory segment of specified length from a stream (allocating)

@@ -20,8 +20,8 @@ namespace Z0
         public static byte clmul(byte a, byte b)
         {
             var p = dinx.clmul(a,b);
-            p ^= dinx.clmul((ushort)(p >> 3), Reducer);
-            p ^= dinx.clmul((ushort)(p >> 3), Reducer);
+            p ^= dinx.clmul((byte)(p >> 3), Reducer);
+            p ^= dinx.clmul((byte)(p >> 3), Reducer);
             return (byte)p;
         }
 

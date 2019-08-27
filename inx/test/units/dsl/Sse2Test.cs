@@ -22,7 +22,7 @@ namespace Z0.Test
                 var x1 = Random.CpuVec128<ushort>();
                 var x1ctrl = Random.CpuVec128<ushort>();            
                 var y1 = x86._mm_sll_epi16(x1,x1ctrl);
-                var z1 = Bits.sll(x1,x1ctrl);
+                var z1 = Bits.sll(x1,(byte)x1ctrl[0]);
                 Claim.eq(y1,z1);
             }
 
@@ -37,7 +37,7 @@ namespace Z0.Test
                 var x1 = Random.CpuVec128<uint>();
                 var x1ctrl = Random.CpuVec128<uint>();            
                 var y1 = x86._mm_sll_epi16(x1,x1ctrl);
-                var z1 = Bits.sll(x1,x1ctrl);
+                var z1 = Bits.sll(x1,(byte)x1ctrl[0]);
                 Claim.eq(y1,z1);
             }
 
@@ -52,7 +52,7 @@ namespace Z0.Test
                 var x1 = Random.CpuVec128<ulong>();
                 var x1ctrl = Random.CpuVec128<ulong>();            
                 var y1 = x86._mm_sll_epi16(x1,x1ctrl);
-                var z1 = Bits.sll(x1,x1ctrl);
+                var z1 = Bits.sll(x1,(byte)x1ctrl[0]);
                 Claim.eq(y1,z1);
             }
 

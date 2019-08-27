@@ -18,7 +18,8 @@ namespace Z0
         {
             var count = 0ul;
             for(var i=0; i<src.Length; i++)
-                if(src[i]) count++;
+                if(src[i]) 
+                    count++;
             return count;
         }
 

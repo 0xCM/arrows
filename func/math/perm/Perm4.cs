@@ -12,6 +12,7 @@ namespace Z0
 
     using static zfunc;    
 
+
     /// <summary>
     /// Defines literals that identity each 4-element permutation
     /// </summary>
@@ -147,6 +148,49 @@ namespace Z0
         /// ABCD -> DCBA
         /// </summary>
         DCBA = D | (C << 2) | (B << 4) | (A << 6), 
+    }
+
+    /// <summary>
+    /// Defines literals that identify the 16 elements in a permutation of length 16
+    /// </summary>
+    [Flags]
+    public enum Perm16 : ulong
+    {
+        X0 = 0x0,
+        
+        X1 =  1,
+        
+        X2 =  2,
+
+        X3 =  3,
+
+        X4 = 4,
+
+        X5 = 5,
+
+        X6 = 6,
+
+        X7 = 7,
+
+        X8 = X7 + 1,
+
+        X9 = X8 + 1,
+
+        XA = X9 + 1,
+
+        XB = XA + 1,
+
+        XC = XB + 1,
+
+        XD = XC + 1,
+
+        XE = XD + 1,
+
+        XF = XE + 1,
+
+        Identity = X0 | X1 << 4 | X2 << 8 | X3 << 12 | X4 << 16 | X5 << 20 | X6 << 24 | X7 <<28 | X8 << 32 | X9 << 36 | XA << 40 | XB << 44 | XC << 48 | XD << 52 | XE << 56 | XF << 60,
+
+        Reverse = XF | XE << 4 | XD << 8 | XC << 12 | XB << 16 | XA << 20 | X9 << 24 | X8 <<28 | X7 << 32 | X6 << 36 | X5 << 40 | X4 << 44 | X3 << 48 | X2 << 52 | X1 << 56 | X0 << 60
     }
 
 }

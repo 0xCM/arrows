@@ -22,7 +22,7 @@ namespace Z0
 
         static readonly Vec128<sbyte> MRev128i8 = Vec128.Decrements((sbyte)15);
 
-        static readonly Vec256<byte> MRev256u8 = Vec256.Decrements((byte)31);
+        static readonly Vec256<byte> MRev256u8 = Vec256Pattern.Decrements((byte)31);
 
         /// <summary>
         /// Creates a mask that, when applied to a source vector, effects a sequence of transpositions
@@ -75,7 +75,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<byte> reverse(in Vec256<byte> src)
-            => perm256(src,MRev256u8);
+            => permute(src,MRev256u8);
 
         [MethodImpl(Inline)]
         public static Vec256<int> reverse(in Vec256<int> src)

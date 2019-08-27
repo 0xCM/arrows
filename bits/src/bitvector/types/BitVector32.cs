@@ -291,13 +291,13 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => Test(pos);
+            get => Get(pos);
             
             [MethodImpl(Inline)]
             set => Set(pos, value);
        }
 
-        public uint this[Range range]
+        public BitVector32 this[Range range]
         {
             [MethodImpl(Inline)]
             get => Between(range.Start.Value, range.End.Value);
@@ -376,7 +376,7 @@ namespace Z0
             => BitMask.disable(ref data, pos);
 
         /// <summary>
-        /// Sets a bit to a specified value
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
@@ -389,13 +389,25 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public bool Test(BitPos pos)
+        public readonly bool Test(BitPos pos)
             => BitMask.test(in data, pos);
 
+        /// <summary>
+        /// Reads a bit value
+        /// </summary>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public BitVector32 Between(BitPos first, BitPos last)
-            => Bits.between(in data, first,last);
+        public readonly Bit Get(BitPos pos)
+            => Test(pos);
 
+        /// <summary>
+        /// Extracts a contiguous sequence of bits defined by an inclusive range
+        /// </summary>
+        /// <param name="first">The first bit position</param>
+        /// <param name="last">The last bit position</param>
+        [MethodImpl(Inline)]
+        public readonly BitVector32 Between(BitPos first, BitPos last)
+            => Bits.between(in data, first,last);
 
         /// <summary>
         /// Reverses the vector's bits
@@ -448,15 +460,15 @@ namespace Z0
         /// Counts the number of enabled bits in the source
         /// </summary>
         [MethodImpl(Inline)]
-        public BitSize Pop()
+        public readonly BitSize Pop()
             => Bits.pop(data);
         
         [MethodImpl(Inline)]
-        public BitSize Nlz()
+        public readonly BitSize Nlz()
             => Bits.nlz(data);
 
         [MethodImpl(Inline)]
-        public BitSize Ntz()
+        public readonly BitSize Ntz()
             => Bits.ntz(data);
 
         /// <summary>
@@ -465,7 +477,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="pos">The position of the bit for which rank will be calculated</param>
         [MethodImpl(Inline)]
-        public uint Rank(BitPos pos)
+        public readonly uint Rank(BitPos pos)
             => Bits.rank(data,pos);
 
         [MethodImpl(Inline)]
@@ -473,13 +485,13 @@ namespace Z0
             => Bits.andn((uint)this, (uint)rhs);
 
         [MethodImpl(Inline)]
-        public bool AllOnes()
+        public readonly bool AllOnes()
             => (UInt32.MaxValue & data) == UInt32.MaxValue;
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
         /// </summary>
-        public bool Empty
+        public readonly bool Empty
         {
             [MethodImpl(Inline)]
             get => data == 0;
@@ -491,34 +503,34 @@ namespace Z0
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector32 Extract(BitMask32 spec)
+        public readonly BitVector32 Extract(BitMask32 spec)
             => Bits.extract(in data, spec);
 
         /// <summary>
-        /// Populates a target vector with specified source bits
+        /// Extracts mask-identified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector32 Extract(uint spec)
+        public readonly BitVector32 Extract(uint spec)
             => Bits.extract(in data, spec);
 
         /// <summary>
-        /// Populates a target vector with specified source bits
+        /// Extracts mask-identified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector16 Extract(BitMask16 spec)        
+        public readonly BitVector16 Extract(BitMask16 spec)        
             => (ushort)Bits.extract(in data, (ushort)spec);
         
         /// <summary>
-        /// Populates a target vector with specified source bits
+        /// Extracts mask-identified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector8 Extract(BitMask8 spec)
+        public readonly BitVector8 Extract(BitMask8 spec)
             => (byte)Bits.extract(in data, (byte)spec);
 
         /// <summary>
@@ -526,33 +538,34 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public Bit Dot(BitVector32 rhs)
+        public readonly Bit Dot(BitVector32 rhs)
             => mod<N2>(Bits.pop(data & rhs.data));              
 
         /// <summary>
         /// Returns true if the vector has at least one enabled bit; false otherwise
         /// </summary>
-        public bool Nonempty
+        public readonly bool Nonempty
         {
             [MethodImpl(Inline)]
             get => !Empty;
         }
 
         [MethodImpl(Inline)]
-        public BitString ToBitString()
+        public readonly BitString ToBitString()
             => data.ToBitString();
 
         /// <summary>
         /// Extracts the scalar value enclosed by the vector
         /// </summary>
         [MethodImpl(Inline)]
-        public uint ToScalar()
+        public readonly uint ToScalar()
             => data;
 
         /// <summary>
         /// Returns a copy of the vector
         /// </summary>
-        public BitVector32 Replicate()
+        [MethodImpl(Inline)]
+        public readonly BitVector32 Replicate()
             => new BitVector32(data);
 
         /// <summary>
@@ -560,10 +573,10 @@ namespace Z0
         /// </summary>
         /// <param name="p">The permutation</param>
         [MethodImpl(Inline)]
-        public BitVector32 Replicate(Perm p)
+        public readonly BitVector32 Replicate(Perm p)
         {
             var dst = Replicate();
-            Permute(p);
+            dst.Permute(p);
             return dst;
         }
 
@@ -572,8 +585,8 @@ namespace Z0
             => BitVector64.FromScalars(tail.data, data);
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
-            => ToBitString().Format(tlz, specifier, blockWidth ?? 8);
+        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVector32 rhs)
@@ -586,7 +599,7 @@ namespace Z0
             => data.GetHashCode();
  
         public override string ToString()
-            => Format();
+            => FormatBits();
 
         [MethodImpl(Inline)]
         static BitVector32 FromParts(in byte x0, in byte x1, in byte x2, in byte x3)

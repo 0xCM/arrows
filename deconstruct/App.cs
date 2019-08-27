@@ -45,17 +45,12 @@ namespace Z0
         void Disassemble(bool asm, bool cil)
         {
 
-            // Disassemble(asm, cil, 
-            //     typeof(InlineScenarios) 
-            //     );
-
+            Disassemble(true,true, typeof(Bits));
+            Disassemble(true,true, typeof(BitRef));
             Disassemble(new IntrinsicScenarios());
             Disassemble(new PrimalScenarios());
             Disassemble(new SysMathCases());
             Disassemble(new CompositeScenarios());
-
-            // Dump(asm,cil, "ginx", GenericScenarios.GInX());
-            // Dump(asm,cil, "gmath", GenericScenarios.GMath());
 
         }
 

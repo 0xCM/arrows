@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> sll(in Vec128<short> src, Vec128<short> offset)
+        public static Vec128<short> sll(in Vec128<short> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> sll(in Vec128<ushort> src, Vec128<ushort> offset)
+        public static Vec128<ushort> sll(in Vec128<ushort> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> sll(in Vec128<int> src, Vec128<int> offset)
+        public static Vec128<int> sll(in Vec128<int> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> sll(in Vec128<uint> src, Vec128<uint> offset)
+        public static Vec128<uint> sll(in Vec128<uint> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> sll(in Vec128<long> src, Vec128<long> offset)
+        public static Vec128<long> sll(in Vec128<long> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> sll(in Vec128<ulong> src, Vec128<ulong> offset)
+        public static Vec128<ulong> sll(in Vec128<ulong> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
     }

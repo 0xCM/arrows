@@ -156,7 +156,7 @@ namespace Z0
         public static double pow(double src, double exp)
             => Math.Pow(src,exp);
  
-         public static Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
+        public static Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
         {
             var len =  length(b,exp);
             for(var i = 0; i<len; i++) 

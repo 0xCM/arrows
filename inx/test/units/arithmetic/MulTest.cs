@@ -142,6 +142,46 @@ namespace Z0
             MulF64(Pow2.T08);
         }
 
+        static BitVector64 clmul(BitVector64 lhs, BitVector64 rhs)
+        {
+            var temp1 = lhs;
+            var temp2 = rhs;
+
+            var dst = BitVector64.Zero;            
+            var tempB = BitVector64.Zero;
+
+            for(var i=0; i<lhs.Length; i++)
+            {
+                tempB[i] = temp1[0] & temp2[i];
+                for(var j = 1; j <i; j++)
+                    tempB[i] = tempB[i] ^ (temp1[j] & temp2[i - j]);
+                dst[i] = tempB[i];
+            }
+            return dst;
+        }
+
+        public void VerifyClMul()
+        {
+            var v1 = Vec128.FromParts(1ul, 3ul);
+            var v2 = Vec128.FromParts(2ul, 5ul);
+
+            UInt128 x00 = dinx.clmul(in v1, in v2, ClMulMask.X00);
+            UInt128 x01 = dinx.clmul(in v1, in v2, ClMulMask.X01);
+            UInt128 x10 = dinx.clmul(in v1, in v2, ClMulMask.X10);
+            UInt128 x11 = dinx.clmul(in v1, in v2, ClMulMask.X11);
+
+            var y00 = dinx.clmul(v1[0], v2[0]);
+            var y10 = dinx.clmul(v1[0], v2[1]);
+            var y01 = dinx.clmul(v1[1], v2[0]);
+            var y11 = dinx.clmul(v1[1], v2[1]);
+
+            Claim.eq(x00, y00);
+            Claim.eq(x01, y01);
+            Claim.eq(x10, y10);
+            Claim.eq(x11, y11);
+        
+        }
+
     }
 
 }

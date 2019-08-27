@@ -13,8 +13,8 @@ namespace Z0
     using static zfunc;    
 
     /// <summary>
-    /// Describes a term of a permutaiton p, i.e. the point of evaluation i and
-    /// its image p(i)
+    /// Describes an indivual term of a permutaiton p, i.e. the point 
+    /// of evaluation i and its image p(i)
     /// </summary>
     public readonly struct PermTerm
     {
@@ -39,7 +39,6 @@ namespace Z0
         /// The result of evaluating the permuation over the source
         /// </summary>                
         public readonly int Target;
-
 
         public bool IsDegenerate
             => Source == Target;

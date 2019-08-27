@@ -16,60 +16,65 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
-        public static bool nonzero<T>(T src)
+        public static bool gteq<T>(T lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return math.nonzero(int8(ref src));
+                return int8(lhs) >= int8(rhs);
             else if(typeof(T) == typeof(byte))
-                return math.nonzero(uint8(ref src));
+                return uint8(lhs) >= uint8(rhs);
             else if(typeof(T) == typeof(short))
-                return math.nonzero(int16(ref src));
+                return int16(lhs) >= int16(rhs);
             else if(typeof(T) == typeof(ushort))
-                return math.nonzero(uint16(ref src));
+                return uint16(lhs) >= uint16(rhs);
             else if(typeof(T) == typeof(int))
-                return math.nonzero(int32(ref src));
+                return int32(lhs) >= int32(rhs);
             else if(typeof(T) == typeof(uint))
-                return math.nonzero(uint32(ref src));
+                return uint32(lhs) >= uint32(rhs);
             else if(typeof(T) == typeof(long))
-                return math.nonzero(int64(ref src));
+                return int64(lhs) >= int64(rhs);
             else if(typeof(T) == typeof(ulong))
-                return math.nonzero(uint64(ref src));
+                return uint64(lhs) >= uint64(rhs);
             else if(typeof(T) == typeof(float))
-                return math.nonzero(float32(ref src));
+                return float32(lhs) >= float32(rhs);
             else if(typeof(T) == typeof(double))
-                return math.nonzero(float64(ref src));
+                return float64(lhs) >= float64(rhs);
             else            
                 throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
-        public static bool nonneg<T>(T src)
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return math.nonneg(int8(ref src));
+                return math.gteq(int8(lhs), int8(rhs), dst);
             else if(typeof(T) == typeof(byte))
-                return true;
+                return math.gteq(uint8(lhs), uint8(rhs), dst);
             else if(typeof(T) == typeof(short))
-                return math.nonneg(int16(ref src));
+                return math.gteq(int16(lhs), int16(rhs), dst);
             else if(typeof(T) == typeof(ushort))
-                return true;
+                return math.gteq(uint16(lhs), uint16(rhs), dst);
             else if(typeof(T) == typeof(int))
-                return math.nonneg(int32(ref src));
+                return math.gteq(int32(lhs), int32(rhs), dst);
             else if(typeof(T) == typeof(uint))
-                return true;
+                return math.gteq(uint32(lhs), uint32(rhs), dst);
             else if(typeof(T) == typeof(long))
-                return math.nonneg(int64(ref src));
+                return math.gteq(int64(lhs), int64(rhs), dst);
             else if(typeof(T) == typeof(ulong))
-                return true;
+                return math.gteq(uint64(lhs), uint64(rhs), dst);
             else if(typeof(T) == typeof(float))
-                return math.nonneg(float32(ref src));
+                return math.gteq(float32(lhs), float32(rhs), dst);
             else if(typeof(T) == typeof(double))
-                return math.nonneg(float64(ref src));
-            else            
+                return math.gteq(float64(lhs), float64(rhs), dst);
+            else
                 throw unsupported<T>();
         }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+                => gteq(lhs,rhs,span<bool>(length(lhs,rhs)));
 
 
     }

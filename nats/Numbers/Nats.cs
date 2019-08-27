@@ -78,17 +78,45 @@ namespace Z0
 
         public static readonly NatSeq<N3,N3> N33 = default;
 
+        public static readonly NatSeq<N3,N4> N34 = default;
+
+        public static readonly NatSeq<N3,N5> N35 = default;
+
+        public static readonly NatSeq<N3,N6> N36 = default;
+
+        public static readonly NatSeq<N3,N7> N37 = default;
+
+        public static readonly NatSeq<N3,N8> N38 = default;
+
         public static readonly NatSeq<N3,N9> N39 = default;
 
         public static readonly NatSeq<N4,N0> N40 = default;
 
         public static readonly NatSeq<N4,N1> N41 = default;
 
+        public static readonly NatSeq<N4,N2> N42 = default;
+
+        public static readonly NatSeq<N4,N3> N43 = default;
+
+        public static readonly NatSeq<N4,N4> N44 = default;
+
+        public static readonly NatSeq<N4,N5> N45 = default;
+
+        public static readonly NatSeq<N4,N5> N47 = default;
+
+        public static readonly NatSeq<N4,N8> N48 = default;
+
         public static readonly N63 N63 = default;
 
         public static readonly N64 N64 = default;
     
         public static readonly NatSeq<N6,N5> N65 = default;
+
+        public static readonly NatSeq<N6,N6> N66 = default;
+
+        public static readonly NatSeq<N6,N7> N67 = default;
+
+        public static readonly NatSeq<N6,N8> N68 = default;
 
         public static readonly NatSeq<N8,N7> N87 = default;
 

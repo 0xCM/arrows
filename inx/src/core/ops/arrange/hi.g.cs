@@ -16,6 +16,11 @@ namespace Z0
 
     partial class ginx
     {
+        /// <summary>
+        /// Extracts the hi 128-bit lane from the source
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> hi<T>(in Vec256<T> src)
             where T : struct
@@ -44,6 +49,13 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Extracts the hi 64 bits from each operand and forms a new 128-bit vector
+        /// from the extracted data
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> hi<T>(in Vec128<T> lhs, in Vec128<T> rhs)        
             where T : struct

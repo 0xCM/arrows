@@ -182,9 +182,9 @@ namespace Z0
                 => SizeOf<T>.Size;
 
         [MethodImpl(Inline)]
-        public static ulong bitsize<T>()
+        public static BitSize bitsize<T>()
             where T : struct
-                => SizeOf<T>.BitSize;
+                => Unsafe.SizeOf<T>()* 8;
 
     }
 }

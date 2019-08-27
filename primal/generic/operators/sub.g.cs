@@ -15,7 +15,6 @@ namespace Z0
 
     partial class gmath
     {
-
         [MethodImpl(Inline)]
         public static T sub<T>(T lhs, T rhs)
             where T : struct

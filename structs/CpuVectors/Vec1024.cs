@@ -58,47 +58,4 @@ namespace Z0
         }
     }     
 
-    public static class Vec1024X
-    {
-        [MethodImpl(Inline)]
-        public static ref Vec256<T> At<T>(this ref Vec1024<T> src, int index)
-            where T : struct
-        {
-            if(index == 0)
-                return ref src.v00;
-            else if(index == 1)
-                return ref src.v01;
-            else if(index == 2)
-                return ref src.v10;
-            else if(index == 3)
-                return ref src.v11;
-            else
-                throw OutOfRange(index, 0, 3);
-        }
-
-
-        [MethodImpl(Inline)]
-        public static ref Vec256<T> At<T>(this ref Vec512<T> src, int index)
-            where T : struct
-        {
-            if(index == 0)
-                return ref src.lo;
-            else if(index == 1)
-                return ref src.hi;
-            else
-                throw OutOfRange(index, 0, 1);
-        }
-
-        [MethodImpl(Inline)]
-        public static ref readonly Vec256<T> Lo<T>(this in Vec512<T> src)
-            where T : struct
-                => ref src.lo;
-
-        [MethodImpl(Inline)]
-        public static ref readonly Vec256<T> Hi<T>(this in Vec512<T> src)
-            where T : struct
-                => ref src.hi;
-
-
-    }
 }

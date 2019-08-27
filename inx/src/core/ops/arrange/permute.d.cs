@@ -18,6 +18,27 @@ namespace Z0
 
     partial class dinx    
     {        
+        /// <summary>
+        /// Rearranges the source vector according to the indices specified in the control vector
+        /// dst[i] = src[spec[i]]
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="spec">The control vector that defines the permutation</param>
+        /// <remarks>Approach follows https://stackoverflow.com/questions/30669556/shuffle-elements-of-m256i-vector/30669632#30669632</remarks>
+        public static Vec256<byte> permute(in Vec256<byte> src, in Vec256<byte> spec)
+        {
+            var a = src;
+            var b = swaphl(in src);
+            var s1 = shuffle(in a, add(in spec, in K0));
+            var s2 = shuffle(in b, add(in spec, in K1));
+            return or(in s1,in s2);
+        }
+
+        /// <summary>
+        /// Rearranges the components of the source vector according to an identified permutation
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="spec">The permutation identifier</param>
         [MethodImpl(Inline)]
         public static Vec128<int> permute(in Vec128<int> src, Perm4 spec)
             => Shuffle(src, (byte)spec);
@@ -28,13 +49,13 @@ namespace Z0
 
         ///<intrinsic>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec128<float> permute(in Vec128<float> value, byte control)
-            => Permute(value, control);
+        public static Vec128<float> permute(in Vec128<float> value, byte spec)
+            => Permute(value, spec);
 
         ///<intrinsic>__m128d _mm_permute_pd (__m128d a, int imm8) VPERMILPD xmm, xmm, imm8</intrinsic>
         [MethodImpl(Inline)]
-        public static Vec128<double> permute(in Vec128<double> value, byte control)
-            => Permute(value, control);
+        public static Vec128<double> permute(in Vec128<double> value, byte spec)
+            => Permute(value, spec);
 
         ///<intrinsic>__m256 _mm256_permute_ps (__m256 a, int imm8) VPERMILPS ymm, ymm, imm8</intrinsic>
         [MethodImpl(Inline)]
@@ -244,5 +265,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> perm4x64(in Vec256<double> value, byte control)
             => Permute4x64(value,control); 
+ 
+        const byte M70 = 0b01110000;
+
+        const byte MF0 = 0b11110000;
+
+        static readonly Vec256<byte> K0 = Vec256.FromBytes(
+            M70, M70, M70, M70, M70, M70, M70, M70, 
+            M70, M70, M70, M70, M70, M70, M70, M70,            
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0);
+
+        static readonly Vec256<byte> K1 = Vec256.FromBytes(
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0,            
+            M70, M70, M70, M70, M70, M70, M70, M70, 
+            M70, M70, M70, M70, M70, M70, M70, M70);            
+
     }
 }

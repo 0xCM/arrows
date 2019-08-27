@@ -28,6 +28,29 @@ namespace Z0
         }                       
 
         /// <summary>
+        /// Extracts the index-identified 128-bit component from the source
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="index">The component index; either 0, 1, 2 or 3</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec128<T> Extract128<T>(this Vec512<T> src, byte index)
+            where T : struct            
+        {
+            if(index == 0)
+                return ginx.extract128(src.lo,0);
+            else if(index == 1)
+                return ginx.extract128(src.lo,1);
+            if(index == 2)
+                return ginx.extract128(src.hi,0);
+            else if(index == 3)
+                return ginx.extract128(src.hi,1);
+            else
+                throw unsupported<T>();
+        }
+
+
+        /// <summary>
         /// Copies the source data to a specified span
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -37,8 +60,8 @@ namespace Z0
         public static void ToSpan<T>(this in Vec512<T> src, Span<T> dst)
             where T : struct            
         {
-            Vec256.Store(in src.Lo(), ref dst[0]);
-            Vec256.Store(in src.Hi(), ref dst[Vec256<T>.Length]);
+            Vec256.Store(in src.lo, ref dst[0]);
+            Vec256.Store(in src.hi, ref dst[Vec256<T>.Length]);
         }       
 
         /// <summary>
@@ -55,8 +78,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string FormatHex<T>(this Vec512<T> src, int? bwidth = null, char? bsep = null)
             where T : struct
-                => src.Hi().ToSpan().FormatHexBlocks(bwidth, bsep) 
-                    + src.Lo().ToSpan().FormatHexBlocks(bwidth, bsep);
+                => src.hi.ToSpan().FormatHexBlocks(bwidth, bsep) 
+                    + src.lo.ToSpan().FormatHexBlocks(bwidth, bsep);
     }
 
 }

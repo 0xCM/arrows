@@ -12,9 +12,9 @@ namespace Z0.Test
 
     public class App : TestApp<App>
     {                    
+
         protected override void  RunTests(params string[] filters)
         {
-            //base.RunTests("CreateTest");
             base.RunTests(filters);
         }
         public static void Main(params string[] args)

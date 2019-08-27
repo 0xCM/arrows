@@ -28,6 +28,16 @@ namespace Z0
         BitSize Length {get;}
 
         /// <summary>
+        /// Returns true if all bits are disabled, false otherwise
+        /// </summary>
+        bool Empty {get;}
+
+        /// <summary>
+        /// Returns true if at least one bit is enabled, false otherwise
+        /// </summary>
+        bool Nonempty {get;}
+
+        /// <summary>
         /// Counts vector's enabled bits
         /// </summary>
         BitSize Pop();
@@ -73,7 +83,13 @@ namespace Z0
         void Disable(BitPos pos);
 
         /// <summary>
-        /// Sets a bit to a specified value
+        /// Reads a bit value
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        Bit Get(BitPos pos);
+
+        /// <summary>
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
@@ -83,8 +99,14 @@ namespace Z0
         /// Determines whether a bit is enabled
         /// </summary>
         /// <param name="pos">The bit position</param>
-        bool Test(BitPos pos);
-        
+        bool Test(BitPos pos);        
+
+        /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        uint Rank(BitPos pos);
 
     }
 
@@ -145,6 +167,21 @@ namespace Z0
         /// <param name="offset">The magnitude of the rotation</param>
         V RotL(BitSize offset);
 
+        /// <summary>
+        /// Extracts a contiguous sequence of bits defined by an inclusive range
+        /// </summary>
+        /// <param name="first">The first bit position</param>
+        /// <param name="last">The last bit position</param>
+        V Between(BitPos first, BitPos last);
+
+        /// <summary>
+        /// Formats the bitvector as a bitstring
+        /// </summary>
+        /// <param name="tlz"></param>
+        /// <param name="specifier"></param>
+        /// <param name="blockWidth"></param>
+        /// <returns></returns>
+        string FormatBits(bool tlz, bool specifier, int? blockWidth);
     }
 
     /// <summary>

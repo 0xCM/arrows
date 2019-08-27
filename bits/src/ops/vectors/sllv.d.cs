@@ -14,7 +14,8 @@ namespace Z0
 
     partial class Bits
     {
-       /// <summary>
+
+        /// <summary>
         /// _mm_sllv_epi32, avx2, shift left logical variable:
         /// Applies a leftward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
@@ -56,8 +57,8 @@ namespace Z0
         /// <param name="control">The control vector</param>
         [MethodImpl(Inline)]
         public static Vec128<ulong> sllv(in Vec128<ulong> src, in Vec128<ulong> control)
-            => ShiftLeftLogicalVariable(src, control);       
- 
+            => ShiftLeftLogicalVariable(src, control);           
+
         /// <summary>
         /// mm256_sllv_epi32, avx2, shift left logical variable:
         /// Applies a leftward logical shift to each source vector component as 

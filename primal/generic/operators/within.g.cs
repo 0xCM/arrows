@@ -16,6 +16,13 @@ namespace Z0
 
     partial class gmath
     {
+        /// <summary>
+        /// Returns true if the difference between two operands is within a specified tolerance
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="epsilon">The tolerance</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static bool within<T>(T lhs, T rhs, T epsilon)
             where T : struct

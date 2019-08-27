@@ -14,6 +14,22 @@ namespace Z0.Test
     public class BitMapTest : UnitTest<BitMapTest>
     {
 
+        public void VerifyBitLogic()
+        {
+            Claim.eq(Bit.Off ^ Bit.On,  Bit.On);
+            Claim.eq(Bit.Off ^ Bit.Off, Bit.Off);
+            Claim.eq(Bit.On ^  Bit.On,  Bit.Off);
+
+            Claim.eq(Bit.Off & Bit.On,  Bit.Off);
+            Claim.eq(Bit.Off & Bit.Off, Bit.Off);
+            Claim.eq(Bit.On &  Bit.On,  Bit.On);
+
+            Claim.eq(Bit.Off | Bit.On,  Bit.On);
+            Claim.eq(Bit.Off | Bit.Off, Bit.Off);
+            Claim.eq(Bit.On  | Bit.On,  Bit.On);
+
+        }
+
         public void Verify32u()
         {
             var src = 0b1110101_10111_0011111u;

@@ -69,35 +69,6 @@ namespace Z0
                 yield return random.Perm(n);
         }
                 
-        /// <summary>
-        /// Produces a generic random permutation over N symbols
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="n">The length representative</param>
-        /// <param name="rep">A primal type representative</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The primal symbol type</typeparam>
-        [MethodImpl(Inline)]
-        public static Perm<N,T> Perm<N,T>(this IRandomSource random, N n = default, T rep = default)
-            where T : struct
-            where N : ITypeNat, new()
-                => Z0.Perm.Identity(n,rep).Shuffle(random);
-
-        /// <summary>
-        /// Produces a stream of generic random permutations of length N
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="n">The length representative</param>
-        /// <param name="rep">A primal type representative</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The primal symbol type</typeparam>
-        public static IEnumerable<Perm<N,T>> Perms<N,T>(this IRandomSource random, N n = default, T rep = default)
-            where T : struct
-            where N : ITypeNat, new()
-        {
-            while(true)
-                yield return random.Perm(n,rep);
-        }
     }
 
 }

@@ -398,10 +398,16 @@ namespace Z0
             for(var i=0; i< dst.Length; i++)
                 dst[lastix - i] = bitseq[i] == 0 ? '0' : '1';
             
-            var x = new string(dst);
-            return  
-                (specifier ? "0b" : string.Empty) 
-              + (tlz ? x.TrimStart('0') : x);
+            var result = new string(dst);
+            if(tlz)
+                result = result.TrimStart('0');
+            if(specifier)
+                result = $"0b{result}";
+            return result;
+
+            // return  
+            //     (specifier ? "0b" : string.Empty) 
+            //   + (tlz ? x.TrimStart('0') : x);
         }
 
         [MethodImpl(Inline)]

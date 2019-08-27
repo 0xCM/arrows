@@ -72,7 +72,6 @@ namespace Z0
             return ref lhs;
         }
 
-
         public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
         {

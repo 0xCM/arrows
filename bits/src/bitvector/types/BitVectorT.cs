@@ -153,32 +153,33 @@ namespace Z0
         public Bit this[BitPos index]
         {
             [MethodImpl(Inline)]
-            get => GetBit(index);
+            get => Get(index);
             
             [MethodImpl(Inline)]
             set => Set(index, value);
         }
 
         /// <summary>
-        /// Reads the value of an index-identified bit
+        /// Reads a bit value
         /// </summary>
-        /// <param name="index">The absolute bit position</param>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public Bit GetBit(BitPos index)
+        public readonly Bit Get(BitPos pos)
         {
-            ref readonly var pos = ref BitMap[index];
-            return gbits.test(in Bits[pos.Segment], pos.Offset);
+            ref readonly var cell = ref BitMap[pos];
+            return gbits.test(in Bits[cell.Segment], cell.Offset);
         }
 
         /// <summary>
-        /// Sets the value of an identified bit
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
+        /// <param name="value">The value the bit will receive</param>
         [MethodImpl(Inline)]
-        public void Set(BitPos index, Bit value)
+        public void Set(BitPos pos, Bit value)
         {
-            ref readonly var pos = ref BitMap[index];
-            gbits.set(ref Bits[pos.Segment], pos.Offset, in value);
+            ref readonly var cell = ref BitMap[pos];
+            gbits.set(ref Bits[cell.Segment], cell.Offset, in value);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Z0
         /// <param name="bit">The position of the bit to test</param>
         [MethodImpl(Inline)]
         public bool Test(BitPos bit)
-            => GetBit(bit);
+            => Get(bit);
 
         /// <summary>
         /// Enables an identified bit
@@ -311,8 +312,8 @@ namespace Z0
         }
             
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false)
-            => ToBitString().Format(tlz, specifier);
+        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
 
         /// <summary>
         /// Returns a reference to the segment in which a specified bit is defined
@@ -322,7 +323,7 @@ namespace Z0
         ref T GetSegment(in CellIndex<T> pos)
             => ref Bits[pos.Segment];
 
-        T Extract(in CellIndex<T> first, in CellIndex<T> last, bool debug = false)
+        T Extract(in CellIndex<T> first, in CellIndex<T> last, bool describe = false)
         {
 
             var sameSeg = first.Segment == last.Segment;
@@ -342,7 +343,7 @@ namespace Z0
             ref var seg2 = ref GetSegment(in last);
             var part2 = gbits.extract(in seg2, 0, (byte)lastCount);            
 
-            if(debug)
+            if(describe)
             {
                 print($"first = {first}");
                 print($"last = {last}");
@@ -365,7 +366,16 @@ namespace Z0
             => ToBitString().GetHashCode();
     
         public override string ToString()
-            => Format();
+            => FormatBits();
+
+        /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => throw new NotImplementedException();
 
         public void Permute(Perm p)
         {

@@ -302,16 +302,16 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => BitMask.test(in data, pos);
+            get => Get(pos);
             
             [MethodImpl(Inline)]
-            set => BitMask.set(ref data, pos, value);
+            set => Set(pos,value);
         }
 
         /// <summary>
         /// The vector's 4 most significant bits
         /// </summary>
-        public BitVector4 Hi
+        public readonly BitVector4 Hi
         {
             [MethodImpl(Inline)]
             get => hi(in data);        
@@ -320,7 +320,7 @@ namespace Z0
         /// <summary>
         /// The vector's 4 least significant bits
         /// </summary>
-        public BitVector4 Lo
+        public readonly BitVector4 Lo
         {
             [MethodImpl(Inline)]
             get => lo(in data);        
@@ -334,6 +334,9 @@ namespace Z0
             [MethodImpl(Inline)]
             get => bytes(data);
         }
+
+        public static ref byte AsBytes(ref BitVector8 src)
+            => ref src.data;
 
         public BitVector8 this[Range range]
         {
@@ -352,10 +355,10 @@ namespace Z0
         }
 
         /// <summary>
-        /// Constructs a new bitvector from a specified segment
+        /// Extracts a contiguous sequence of bits defined by an inclusive range
         /// </summary>
-        /// <param name="first">The position of the first bit</param>
-        /// <param name="last">The position of the last bit</param>
+        /// <param name="first">The first bit position</param>
+        /// <param name="last">The last bit position</param>
         [MethodImpl(Inline)]
         public BitVector8 Between(BitPos first, BitPos last)
             => Bits.between(in data, first, last);
@@ -384,7 +387,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public readonly Bit Dot(BitVector8 rhs)
-              => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
+            => Mod<N2>.mod((uint)Bits.pop(data & rhs.data));              
 
         /// <summary>
         /// The number of bits represented by the vector
@@ -421,7 +424,7 @@ namespace Z0
             => BitMask.disable(ref data, pos);
 
         /// <summary>
-        /// Sets a bit to a specified value
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
@@ -434,8 +437,16 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public bool Test(BitPos pos)
+        public readonly bool Test(BitPos pos)
             => BitMask.test(in data, pos);
+
+        /// <summary>
+        /// Reads a bit value
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public readonly Bit Get(BitPos pos)
+            => Test(pos);
 
         /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
@@ -579,7 +590,7 @@ namespace Z0
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
         /// </summary>
-        public bool Empty
+        public readonly bool Empty
         {
             [MethodImpl(Inline)]
             get => data == 0;
@@ -588,7 +599,7 @@ namespace Z0
         /// <summary>
         /// Returns true if the vector has at least one enabled bit; false otherwise
         /// </summary>
-        public bool Nonempty
+        public readonly bool Nonempty
         {
             [MethodImpl(Inline)]
             get => !Empty;
@@ -609,7 +620,7 @@ namespace Z0
         public BitVector8 Replicate(Perm p)
         {
             var dst = Replicate();
-            Permute(p);
+            dst.Permute(p);
             return dst;
         }
 
@@ -636,7 +647,7 @@ namespace Z0
             => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
@@ -650,6 +661,6 @@ namespace Z0
             => data.GetHashCode();
         
         public override string ToString()
-            => Format();   
+            => FormatBits();   
     }
 }

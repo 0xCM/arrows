@@ -276,13 +276,13 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => Test(pos);
+            get => Get(pos);
             
             [MethodImpl(Inline)]
-            set => BitMask.set(ref data, pos, value);
+            set => Set(pos,value);
         }
         
-        public ushort this[Range range]
+        public BitVector16 this[Range range]
         {
             [MethodImpl(Inline)]
             get => Between(range.Start.Value, range.End.Value);
@@ -341,6 +341,10 @@ namespace Z0
             get => bytes(data);
         }
 
+        [MethodImpl(Inline)]
+        public Span<byte> AsBytes()
+            => bytespan(ref data);
+
         /// <summary>
         /// Selects an index-identified byte where index = 0 | 1
         /// </summary>
@@ -377,8 +381,13 @@ namespace Z0
         public Bit Dot(BitVector16 rhs)
             => mod<N2>(Bits.pop(data & rhs.data));              
 
+        /// <summary>
+        /// Extracts a contiguous sequence of bits defined by an inclusive range
+        /// </summary>
+        /// <param name="first">The first bit position</param>
+        /// <param name="last">The last bit position</param>
         [MethodImpl(Inline)]
-        public ushort Between(BitPos first, BitPos last)
+        public BitVector16 Between(BitPos first, BitPos last)
             => Bits.between(in data, first, last);
 
         /// <summary>
@@ -425,7 +434,7 @@ namespace Z0
             => BitMask.disable(ref data, pos);
 
         /// <summary>
-        /// Sets a bit to a specified value
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The position of the bit to set</param>
         /// <param name="value">The bit value</param>
@@ -438,8 +447,16 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public bool Test(BitPos pos)
+        public readonly bool Test(BitPos pos)
             => BitMask.test(in data, pos);
+
+        /// <summary>
+        /// Reads a bit value
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public readonly Bit Get(BitPos pos)
+            => Test(pos);
 
         /// <summary>
         /// Counts vector's enabled bits
@@ -543,7 +560,7 @@ namespace Z0
         public BitVector16 Replicate(Perm p)
         {
             var dst = Replicate();
-            Permute(p);
+            dst.Permute(p);
             return dst;
         }
 
@@ -570,8 +587,8 @@ namespace Z0
             => data == rhs.data;
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
-            => ToBitString().Format(tlz, specifier, blockWidth ?? 8);
+        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
 
          public override bool Equals(object obj)
             => obj is BitVector16 x ? Equals(x) : false;
@@ -580,7 +597,7 @@ namespace Z0
             => data.GetHashCode();
         
         public override string ToString()
-            => Format();
+            => FormatBits();
    }
 
 }

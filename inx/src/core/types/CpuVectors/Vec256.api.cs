@@ -20,11 +20,28 @@ namespace Z0
 
     public static partial class Vec256
     {
+        /// <summary>
+        /// Returns a readonly reference to the zero vector
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref readonly Vec256<T> Zero<T>() 
             where T : struct
                 => ref Vec256<T>.Zero;        
 
+        /// <summary>
+        /// Returns the length of a vector with a specified primal component type
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static int Length<T>()
+            where T : struct
+                => Vec256<T>.Length;
+
+        /// <summary>
+        /// Creates a new vector, initialing each component to a common value
+        /// </summary>
+        /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
          public static Vec256<T> Fill<T>(T value)
             where T : struct
@@ -53,6 +70,10 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Creates a new vector with each component assigned unit value
+        /// </summary>
+        /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
          public static ref readonly Vec256<T> Ones<T>()
             where T : struct
@@ -309,47 +330,6 @@ namespace Z0
             where T : struct  
                 => Load(src, block, out Vec256<T> dst);
 
-        /// <summary>
-        /// Creates a vector with incrementing components
-        /// v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
-        /// </summary>
-        /// <param name="first">The value of the first component</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec256<T> Increments<T>(T first = default, params Swap[] swaps)
-            where T : struct  
-        {
-            var n = Vec256<T>.Length;
-            var dst = Span256.Alloc<T>(n);
-            var val = first;
-            for(var i=0; i < n; i++)
-            {
-                dst[i] = val;
-                gmath.inc(ref val);
-            }
-            return Load(dst.Swap(swaps));
-        }
-
-        /// <summary>
-        /// Creates a vector with decrementing components
-        /// v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
-        /// </summary>
-        /// <param name="last">The value of the first component</param>
-        /// <param name="swaps">Transpositions applied to decrements prior to vector creation</param>
-        /// <typeparam name="T">The primal component type</typeparam>        
-        public static Vec256<T> Decrements<T>(T last = default, params Swap[] swaps)
-            where T : struct  
-        {
-            var n = Vec256<T>.Length;
-            var dst = Span256.Alloc<T>(n);
-            var val = last;
-            for(var i=0; i<n; i++)
-            {
-                dst[i] = val;
-                gmath.dec(ref val);
-            }
-
-            return Load(dst.Swap(swaps));
-        }
 
         [MethodImpl(Inline)]
         public static Vec256<byte> FromBytes(
@@ -489,7 +469,7 @@ namespace Z0
         [MethodImpl(Inline)]
         static Vec256<double> fill(double x0)
             => Vector256.Create(x0);
-
+             
         static readonly Vec256<byte> OneU8 = Vec256.fill((byte)1);
 
         static readonly Vec256<sbyte> OneI8 = Vec256.fill((sbyte)1);

@@ -13,6 +13,17 @@ namespace Z0
  
     using static zfunc;
     
+    public enum ClMulMask : byte
+    {
+        X00 = 0x00,
+
+        X01 = 0x01,
+
+        X10 = 0x10,
+
+        X11 = 0x11,
+    }
+    
     partial class dinx
     {                
 
@@ -22,8 +33,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static ushort clmul(ushort lhs, ushort rhs)
-            => (ushort)clmul((ulong)lhs, (ulong)rhs);
+        public static ushort clmul(byte lhs, byte rhs)
+            => (ushort)clmul((uint)lhs, (uint)rhs);
 
         /// <summary>
         /// _mm_clmulepi64_si128
@@ -31,8 +42,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static uint clmul(uint lhs, uint rhs)
-            => (uint)clmul((ulong)lhs, (ulong)rhs);
+        public static uint clmul(ushort lhs, ushort rhs)
+            => (uint)clmul((uint)lhs, (uint)rhs);
 
         /// <summary>
         /// _mm_clmulepi64_si128
@@ -40,28 +51,16 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static long clmul(long lhs, long rhs)
-            => extract(CarrylessMultiply(Vector128.Create(lhs, 0L), Vector128.Create(rhs, 0L), 0x00), 0);
+        public static ulong clmul(uint lhs, uint rhs)
+            => extract(CarrylessMultiply(Vec128.LoadScalar((ulong)lhs), Vec128.LoadScalar((ulong)rhs), 0x00), 0);
 
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static ulong clmul(ulong lhs, ulong rhs)
-            => extract(CarrylessMultiply(Vector128.Create(lhs, 0ul), Vector128.Create(rhs, 0ul), 0x00), 0);
-
-        /// <summary>
-        /// _mm_clmulepi64_si128
-        /// Effects carryless multiplication on selected components
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="control">?</param>
-        [MethodImpl(Inline)]
-        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs, control);
+        public static UInt128 clmul(ulong lhs, ulong rhs)
+        {
+            var a = Vec128.LoadScalar(lhs);
+            var b = Vec128.LoadScalar(rhs);
+            return CarrylessMultiply(a,b,0x00);
+        }
 
         /// <summary>
         /// _mm_clmulepi64_si128
@@ -71,8 +70,8 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         /// <param name="control">?</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte control)
-            =>  CarrylessMultiply(lhs, rhs,control);
+        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ClMulMask mask)
+            =>  CarrylessMultiply(lhs, rhs, (byte)mask);
     
         /// <summary>
         /// Computes carry-less product variations for two source vectors
@@ -84,10 +83,10 @@ namespace Z0
         public static ref Vec512<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, out Vec512<ulong> dst)
         {
             dst = Vec512.FromParts(
-                clmul(lhs, rhs, 0x00), 
-                clmul(lhs, rhs, 0x01), 
-                clmul(lhs, rhs, 0x10), 
-                clmul(lhs, rhs, 0x11)
+                clmul(lhs, rhs, ClMulMask.X00), 
+                clmul(lhs, rhs, ClMulMask.X01), 
+                clmul(lhs, rhs, ClMulMask.X10), 
+                clmul(lhs, rhs, ClMulMask.X11)
                 );
             return ref dst;
         }

@@ -250,7 +250,7 @@ namespace Z0
         {
             var sb = sbuild();
             for(var i=0; i< RowCount; i++)
-                 sb.AppendLine(RowVector(i).Format());
+                 sb.AppendLine(RowVector(i).FormatBits());
             return sb.ToString();
         }
  

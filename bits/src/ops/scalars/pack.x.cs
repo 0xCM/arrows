@@ -72,9 +72,9 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
-        public static Span<byte> Unpack<T>(this T src, out Span<byte> dst)
+        public static Span<byte> Unpack<T>(this ref T src, out Span<byte> dst)
             where T : struct
-                => dst = bytes(in src);
+                => dst = bytespan(ref src);
 
         /// <summary>
         /// Converts the source value to an array of bits

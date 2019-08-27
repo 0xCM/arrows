@@ -33,9 +33,14 @@ namespace Z0
             }
 
             [MethodImpl(Inline)]
-            public static Span<T> ToSpan<T>(ref F512 src)
+            public static Span<T> AsSpan<T>(ref F512 src)
                 where T : struct
-                    => MemoryMarshal.Cast<byte,T>(src.Bytes);            
+                    => span<F512,T>(ref src);
+
+            [MethodImpl(Inline)]
+            public static ReadOnlySpan<T> ToReadOnlySpan<T>(ref F512 src)
+                where T : struct
+                    => MemoryMarshal.Cast<byte,T>(src.ReadOnlyBytes);            
 
             [FieldOffset(0)]
             public ulong x0;
@@ -59,13 +64,21 @@ namespace Z0
             public ulong x6;
 
             [FieldOffset(56)]
+
             public ulong x7;
+
+            public ReadOnlySpan<byte> ReadOnlyBytes
+            {
+                [MethodImpl(Inline)]
+                get => bytes(in this);
+            }
 
             public Span<byte> Bytes
             {
                 [MethodImpl(Inline)]
-                get =>bytes(in this);
+                get => bytespan(ref this);
             }
+
         }     
 
     }

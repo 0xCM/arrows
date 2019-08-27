@@ -21,12 +21,12 @@ namespace Z0
         /// <summary>
         /// The first index
         /// </summary>
-        int i;
+        public int i;
         
         /// <summary>
         /// The second index
         /// </summary>
-        int j;
+        public int j;
 
         /// <summary>
         /// The empty element

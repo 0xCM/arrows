@@ -52,9 +52,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong between(in ulong src, BitPos i0, BitPos i1)
             => Bmi1.X64.BitFieldExtract(src, i0, (byte)(i1 - i0));            
-
-
-
     }
 
 }

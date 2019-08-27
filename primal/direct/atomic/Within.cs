@@ -16,27 +16,27 @@ namespace Z0
 
     partial class math
     {
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(byte lhs, byte rhs, byte epsilon)
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(sbyte lhs, sbyte rhs, sbyte epsilon)
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(short lhs, short rhs, short epsilon)
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(ushort lhs, ushort rhs, ushort epsilon)
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(int lhs, int rhs, int epsilon)
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
@@ -46,12 +46,12 @@ namespace Z0
                 => lhs > rhs ? lhs - rhs <= epsilon 
                 : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(long lhs, long rhs, long epsilon)
             => lhs > rhs ? lhs - rhs <= epsilon 
               : rhs - lhs <= epsilon;
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static bool within(ulong lhs, ulong rhs, ulong epsilon)
             => lhs > rhs ? lhs - rhs <= epsilon 
               : rhs - lhs <= epsilon;
@@ -65,7 +65,6 @@ namespace Z0
         public static bool within(double lhs, double rhs, double epsilon)
             => lhs > rhs ? lhs - rhs <= epsilon 
               : rhs - lhs <= epsilon;
-
 
         [MethodImpl(Inline)]
         public static byte width(byte lhs, byte rhs)
@@ -105,8 +104,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static double width(double lhs, double rhs)
-            => math.abs(rhs - lhs);
-
+            => abs(rhs - lhs);
 
     }
 }

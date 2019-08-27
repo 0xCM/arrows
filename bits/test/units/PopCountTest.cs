@@ -14,10 +14,14 @@ namespace Z0.Test
     {
         public void PopCount1()
         {
-            var src = (ushort)3209;
-            src.Unpack(out Span<Bit> bits);
+            var src = (ushort)0b11001111;
+            src.Unpack(out Span<Bit> bits);            
             var bitsPC = bits.PopCount();
+            Claim.eq(6,bitsPC);
+
             src.Unpack(out Span<byte> bytes);
+            Claim.eq(2, bytes.Length);
+            
             var bytesPC = bytes.PopCount();
             Claim.eq(bitsPC, bytesPC);
         }

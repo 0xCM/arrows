@@ -151,5 +151,67 @@ namespace Z0
             where T : struct            
                 => src.ToSpan256();
 
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> ToSpan256<T>(this Vec512<T> src)
+            where T : struct            
+         {
+            var dst = Span256.AllocBlocks<T>(2);
+            Vec256.Store(in src.lo, ref dst[0]);
+            Vec256.Store(in src.hi, ref dst[32]);
+            return dst;
+        }                       
+
+        /// <summary>
+        /// Allocates a span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vec512<T> src)
+            where T : struct            
+                => src.ToSpan();
+         
+        /// <summary>
+        /// Allocates a blocked span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> ToSpan256<T>(this Vec1024<T> src)
+            where T : struct            
+         {
+            var dst = Span256.AllocBlocks<T>(4);
+            Vec256.Store(in src.v00, ref dst[0]);
+            Vec256.Store(in src.v01, ref dst[32]);
+            Vec256.Store(in src.v10, ref dst[64]);
+            Vec256.Store(in src.v10, ref dst[96]);
+            return dst;
+        }                       
+
+        /// <summary>
+        /// Allocates a span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> ToSpan<T>(this Vec1024<T> src)
+            where T : struct           
+                => src.ToSpan256(); 
+
+        /// <summary>
+        /// Allocates a span into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vec1024<T> src)
+            where T : struct            
+                => src.ToSpan();
+
     }
 }

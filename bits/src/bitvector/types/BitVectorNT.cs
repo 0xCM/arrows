@@ -123,30 +123,28 @@ namespace Z0
         public static BitVector<N,T> Define(params T[] src)
             => new BitVector<N,T>(src);    
 
-        [MethodImpl(Inline)]
-        static int CheckIndex(BitPos index)
-            =>  index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<BitPos>(index, 0, MaxBitIndex);
 
         /// <summary>
-        /// Retrieves the value of the bit at a specified position
+        /// Reads a bit value
         /// </summary>
-        /// <param name="pos">The absolute bit position</param>
+        /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
-        public Bit GetBit(BitPos index)
+        public Bit Get(BitPos pos)
         {
-            ref readonly var pos = ref BitMap[CheckIndex(index)];
-            return gbits.test(in Bits[pos.Segment], pos.Offset);
+            ref readonly var cell = ref BitMap[CheckIndex(pos)];
+            return gbits.test(in Bits[cell.Segment], cell.Offset);
         }
             
         /// <summary>
-        /// Sets the value of the bit at a specified position
+        /// Sets a bit value
         /// </summary>
         /// <param name="pos">The absolute bit position</param>
+        /// <param name="value">The value the bit will receive</param>
         [MethodImpl(Inline)]
-        public void SetBit(BitPos index, Bit value)
+        public void Set(BitPos pos, Bit value)
         {
-            ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.set(ref Bits[pos.Segment], pos.Offset, in value);
+            ref readonly var cell = ref BitMap[CheckIndex(pos)];
+            gbits.set(ref Bits[cell.Segment], cell.Offset, in value);
         }
 
         /// <summary>
@@ -155,10 +153,10 @@ namespace Z0
         public Bit this[BitPos index]
         {
             [MethodImpl(Inline)]
-            get => GetBit(index);
+            get => Get(index);
             
             [MethodImpl(Inline)]
-            set => SetBit(index, value);
+            set => Set(index, value);
         }
 
         /// <summary>
@@ -240,7 +238,7 @@ namespace Z0
         /// <param name="index">The position of the bit to test</param>
         [MethodImpl(Inline)]
         public bool Test(BitPos index)
-            => GetBit(index);
+            => Get(index);
 
         /// <summary>
         /// Extracts the represented data as a span of bytes
@@ -280,6 +278,7 @@ namespace Z0
         }
 
 
+
         /// <summary>
         /// Sets all the bits to align with the source value
         /// </summary>
@@ -302,8 +301,8 @@ namespace Z0
             => BitString.FromScalars(Bits, Length); 
 
         [MethodImpl(Inline)]
-        public string Format(bool tlz = false, bool specifier = false)
-            => ToBitString().Format(tlz, specifier);
+        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
         public bool Equals(in BitVector<N,T> rhs)
@@ -316,17 +315,26 @@ namespace Z0
             => ToBitString().GetHashCode();
  
         public override string ToString()
-            => Format();
+            => FormatBits();
+
+        [MethodImpl(Inline)]
+        static int CheckIndex(BitPos index)
+            =>  index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<BitPos>(index, 0, MaxBitIndex);
+
+         /// <summary>
+        /// Counts the number of bits set up to and including the specified position
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        [MethodImpl(Inline)]
+        public uint Rank(BitPos pos)
+            => throw new NotImplementedException();
 
         public void Permute(Perm p)
         {
             throw new NotImplementedException();
         }
 
-        public void Set(BitPos pos, Bit value)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Reverse()
         {

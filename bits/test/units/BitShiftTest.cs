@@ -87,6 +87,7 @@ namespace Z0.Test
             }
         }
 
+        // Truncates alternating source vector components
         static Vec256<T> ShuffleTruncateMask<T>()
             where T : struct
 
@@ -136,7 +137,7 @@ namespace Z0.Test
 
         public void VerifyTruncateMask()
         {
-            var tr = ShuffleTruncateMask<byte>();
+            var tr = Vec256Pattern.ClearAlt<byte>();
             for(var i=0; i<DefaltCycleCount; i++)
             {
                 var x = Random.CpuVec256<byte>();
@@ -155,55 +156,158 @@ namespace Z0.Test
 
         }
 
-        //This doesn't work : - (
-        Vec256<byte> ShiftL(Vec256<byte> src, byte offset, bool trace = false)
-        {
-            //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors
-            ref var srcX = ref dinx.convert(dinx.lo(src), out Vec256<ushort> _);
-            ref var srcY = ref dinx.convert(dinx.hi(src), out Vec256<ushort> _);
-            
-            //Shift each part with a concrete intrinsic
-            var dstA = Bits.slli(srcX, offset);
-            var dstB = Bits.slli(srcY, offset);
-
-            // Convert the result vectors back to uint8 and clear every other component
-            // to produce a 'bb 00 bb 00...bb 00' pattern for each vector
-            var trm = ShuffleTruncateMask<byte>();
-            var trA = dinx.shuffle(dstA.As<byte>(), trm);
-            var trB = dinx.shuffle(dstB.As<byte>(), trm);
-            
-
-            //Create a stagger between the two truncated vectors so that
-            //they can be interleaved with blend
-            var shB = Bits.bslli(trB.As<ushort>(), 1).As<byte>();
-            var result = dinx.blendv(trA, shB, BlendAltMask<byte>());
-
-
-
-            if(trace)
-            {
-                var expect = Vec256.Load(BitRef.ShiftL(src.ToSpan(), offset));
-                Trace(() => trA);
-                Trace(() => trB);
-            }
-            return result;
-            
-        }
-        
         public void ShiftLeftv256x8u()
         {
-            //var src = Random.CpuVec256<byte>();
-            var src = Vec256.FromBytes(
-                0, 1, 2, 3, 4, 5, 6, 7, 
-                8, 9, 10, 11, 12, 13, 14, 15, 
-                16, 17, 18, 19, 20, 21, 22, 23, 
-                24, 25, 26, 27, 28, 29, 30, 31 
-                );
-            byte j = 1;
-            var b = ShiftL(src,j);
-            var c =  Vec256.Load(BitRef.ShiftL(src.ToSpan(), j));
-                
+            var src = Random.Stream<byte>();
+            var offsets = Random.Stream(closed<byte>(2,6));
 
+            for(var i=0; i< DefaltCycleCount; i++)
+            {
+                var x = Vec256.Load(src.TakeSpan(Vec256<byte>.Length));
+                var offset = offsets.First();
+                var actual = Bits.slli(x,offset);
+                var expect = Vec256.Load(BitRef.ShiftL(x.ToSpan(), offset));                
+                Claim.eq(expect,actual);             
+            }
+
+        }
+
+        public void ShiftRightv256x8u()
+        {
+            var src = Random.Stream<byte>();
+            var offsets = Random.Stream(closed<byte>(2,6));
+
+            for(var i=0; i< DefaltCycleCount; i++)
+            {
+                var x = Vec256.Load(src.TakeSpan(Vec256<byte>.Length));
+                var offset = offsets.First();
+                var actual = Bits.srli(x,offset);
+                var expect = Vec256.Load(BitRef.ShiftR(x.ToSpan(), offset));                
+                Claim.eq(expect,actual);             
+            }
+        }
+
+        OpTime ShiftLeft256x16uBench(int blocks, int cycles)
+        {
+            var blocklen = Vec256<ushort>.Length;
+            var opcount = blocks*cycles*blocklen;
+            var shiftRange = closed<byte>(2,14);
+            
+            var sw = stopwatch(false);
+            var src = Random.Stream<ushort>();
+            var offsets = Random.Stream(shiftRange);
+            for(var cycle=0; cycle<cycles; cycle++)
+            for(var block = 0; block<blocks; block++)
+            {
+                var x = Vec256.Load(src.TakeSpan(blocklen));
+                var offset = offsets.First();
+                sw.Start();
+                Bits.slli(x,offset);
+                sw.Stop();
+            
+            }
+            return OpTime.Define(opcount, snapshot(sw),"slli16u");
+        }
+
+        OpTime ShiftLeft256x16uRef(int blocks, int cycles)
+        {
+            var blocklen = Vec256<ushort>.Length;
+            var opcount = blocks*cycles*blocklen;
+            var shiftRange = closed<byte>(2,14);
+            
+            var sw = stopwatch(false);
+            var src = Random.Stream<ushort>();
+            var offsets = Random.Stream(shiftRange);
+
+            for(var cycle=0; cycle<cycles; cycle++)
+            for(var block = 0; block<blocks; block++)
+            {
+                var x = src.TakeSpan(blocklen);
+                var offset = offsets.First();
+                
+                sw.Start();                
+                BitRef.ShiftL(x,offset);
+                sw.Stop();
+            }
+            return OpTime.Define(opcount, snapshot(sw),"slli16uRef");            
+        }
+
+        OpTime ShiftLeft256x8uBench(int blocks, int cycles)
+        {
+            var blocklen = Vec256<byte>.Length;
+            var opcount = blocks*cycles*blocklen;
+            var shiftRange = closed<byte>(2,6);
+
+            var sw = stopwatch(false);
+            var src = Random.Stream<byte>();
+            var offsets = Random.Stream(shiftRange);
+            for(var cycle=0; cycle<cycles; cycle++)
+            for(var block = 0; block<blocks; block++)
+            {
+                var x = Vec256.Load(src.TakeSpan(blocklen));
+                var offset = offsets.First();
+                sw.Start();
+                Bits.slli(x,offset);
+                sw.Stop();
+            
+            }
+            return OpTime.Define(opcount, snapshot(sw),"slli8u");
+        }
+
+        OpTime ShiftLeft256x8uRef(int blocks, int cycles)
+        {
+            var blocklen = Vec256<byte>.Length;
+            var opcount = blocks*cycles*blocklen;
+            var shiftRange = closed<byte>(2,6);
+
+            var sw = stopwatch(false);
+            var src = Random.Stream<byte>();
+            var offsets = Random.Stream(shiftRange);
+
+            for(var cycle=0; cycle<cycles; cycle++)
+            for(var block = 0; block<blocks; block++)
+            {
+                var x = src.TakeSpan(blocklen);
+                var offset = offsets.First();
+                
+                sw.Start();                
+                BitRef.ShiftL(x,offset);
+                sw.Stop();
+            }
+            return OpTime.Define(opcount, snapshot(sw),"slli8uRef");            
+        }
+
+        OpTime ShiftLeft8uDirect(int opcount)
+        {
+            var shiftRange = closed<int>(2,6);
+            var sw = stopwatch(false);
+            var src = Random.Stream<byte>();
+            var offsets = Random.Stream(shiftRange);
+            byte y = 0;
+            for(var i=0; i<opcount; i++)
+            {
+                var x = src.First();
+                var offset = offsets.First();
+                sw.Start();
+                y = (byte)(x << offset);
+                sw.Stop();
+            }
+
+            return OpTime.Define(opcount, snapshot(sw),"x << i");            
+        }
+        
+        public void ShiftLeftBench()
+        {
+            GC.Collect();
+            TracePerf(ShiftLeft256x8uBench(Pow2.T10, Pow2.T05));   
+            GC.Collect();
+            TracePerf(ShiftLeft256x8uRef(Pow2.T10, Pow2.T05));   
+            GC.Collect();
+            TracePerf(ShiftLeft256x16uBench(Pow2.T10, Pow2.T05));   
+            GC.Collect();
+            TracePerf(ShiftLeft256x16uRef(Pow2.T10, Pow2.T05));   
+            GC.Collect();
+            TracePerf(ShiftLeft8uDirect(1048576));
         }
 
         void Shift<T>(Orientation dir, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
@@ -371,34 +475,6 @@ namespace Z0.Test
             return result;
         }
 
-        void TestGf()
-        {
-            var w = 8;
-            BitVector8 bv0 = Pow2.T00;
-            BitVector8 bv1 = Pow2.T01 - 1;
-            BitVector8 bv2 = Pow2.T02 - 1;
-            BitVector8 bv3 = Pow2.T03 - 1;
-            BitVector8 bv4 = Pow2.T04 - 1;
-            BitVector8 bv5 = Random.BitVector8();
-            BitVector8 bv6 = Random.BitVector8();
-            BitVector8 bv7 = Random.BitVector8();
-
-
-            Trace($" {bv1} * {bv2} (gf) = {gfmul(bv1,bv2,w)}");
-            Trace($" {bv1} * {bv2} (cl) = {dinx.clmul(bv1,bv2).ToBitVector()}");            
-
-            Trace($" {bv2} * {bv3} (gf) = {gfmul(bv2,bv3,w)}");
-            Trace($" {bv2} * {bv3} (cl) = {dinx.clmul(bv2,bv3).ToBitVector()}");            
-
-            Trace($" {bv3} * {bv4} (gf) = {gfmul(bv3,bv4,w)}");
-            Trace($" {bv3} * {bv4} (cl) = {dinx.clmul(bv3,bv4).ToBitVector()}");            
-
-            Trace($" {bv4} * {bv4} (gf) = {gfmul(bv4,bv4,w)}");
-            Trace($" {bv4} * {bv4} (cl) = {dinx.clmul(bv4,bv4).ToBitVector()}");            
-
-            Trace($" {bv5} * {bv6} (gf) = {gfmul(bv5,bv6,w)}");
-            Trace($" {bv5} * {bv6} (cl) = {dinx.clmul(bv5,bv6).ToBitVector()}");            
-        }
 
 
         static __m128i reflect_xmm(__m128i X)
@@ -435,10 +511,10 @@ namespace Z0.Test
         public static Vec128<ulong> gfmul(Vec128<ulong> a, Vec128<ulong> b)
         {
 
-            var tmp3 = dinx.clmul(a, b, 0x00);            
-            var tmp4 = dinx.clmul(a, b, 0x10);            
-            var tmp5 = dinx.clmul(a, b, 0x01);
-            var tmp6 = dinx.clmul(a, b, 0x11);
+            var tmp3 = dinx.clmul(a, b, ClMulMask.X00);            
+            var tmp4 = dinx.clmul(a, b, ClMulMask.X10);            
+            var tmp5 = dinx.clmul(a, b, ClMulMask.X01);
+            var tmp6 = dinx.clmul(a, b, ClMulMask.X11);
             
             tmp4 = dinx.xor(tmp4, tmp5);            
             tmp5 = dinx.slli(tmp4, 8);
@@ -479,9 +555,6 @@ namespace Z0.Test
 
             return tmp6;            
         }
-
-
-
 
         
         public void VerifyIncrement()

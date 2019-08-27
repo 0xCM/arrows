@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
+using System.Linq.Expressions;
 
 using Z0;
 
@@ -169,4 +169,33 @@ partial class zfunc
     /// <param name="caller">The calling member</param>
     public static void error<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
+
+    public static AppMsg trace(string title, string msg, int? tpad = null, SeverityLevel? severity = null)
+    {
+        var titleFmt = tpad.Map(pad => title.PadRight(pad), () => title.PadRight(20));        
+        var appMsg = AppMsg.Define($"{titleFmt}: {msg}", severity ?? SeverityLevel.Babble);        
+        print(appMsg);
+        return appMsg;
+    }
+
+    public static AppMsg trace<T>(NamedValue<T> nv, int? npad = null, SeverityLevel? severity = null)
+        => trace(nv.Name, $"{nv.Value}", npad, severity);
+
+    public static AppMsg trace<T>(Expression<Func<T>> fx, int? npad = null, SeverityLevel? severity = null)
+        => trace(fx.Evaluate(), npad, severity);
+
+    public static AppMsg trace(OpTimePair timing, int? labelPad = null)
+    {
+        var msg = appMsg(timing.Format(labelPad), SeverityLevel.Benchmark);
+        print(msg);
+        return msg;            
+    }
+
+    public static AppMsg TracePerf(OpTime timing, int? labelPad = null)
+    {
+        var msg = appMsg(timing.Format(labelPad), SeverityLevel.Benchmark);
+        print(msg);
+        return msg;
+    }
+
 }
