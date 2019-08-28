@@ -54,7 +54,7 @@ namespace Z0
                     v = rng.NextDouble() * 2 - 1;
                     s = u * u + v * v;                
                 } while (s >= 1 || s == 0);
-                var x = math.sqrt(-2.0 * math.ln(s) / s);
+                var x = fmath.sqrt(-2.0 * math.ln(s) / s);
                 yield return v * x;
                 yield return spec.Mean + spec.StdDev * u * x;
            }
@@ -71,7 +71,7 @@ namespace Z0
                     v = (float)(rng.NextDouble()) * 2 - 1;
                     s = u * u + v * v;                
                 } while (s >= 1 || s == 0);
-                var x = math.sqrt(-2.0f * math.ln(s) / s);
+                var x = fmath.sqrt(-2.0f * math.ln(s) / s);
                 yield return v * x;
                 yield return spec.Mean + spec.StdDev * u * x;
            }

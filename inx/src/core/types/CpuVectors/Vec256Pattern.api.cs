@@ -12,9 +12,11 @@ namespace Z0
     
     using static zfunc;
 
+    /// <summary>
+    /// Defines an api for accessing/specifying 256-bit pattern vectors
+    /// </summary>
     public static class Vec256Pattern
-    {
-        
+    {        
         /// <summary>
         /// Retruns a reference to a vector that decribes a lo/hi lane merge permutation
         /// For example, if X = [A E B F | C G D H] then the lane merge pattern M will
@@ -39,7 +41,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec256<T> Decreasing<T>()
             where T : struct
-                => ref Vec256Pattern<T>.Decrements;
+                => ref Vec256Pattern<T>.Decreasing;
 
         /// <summary>
         /// Describes a shuffle mask that clears ever-other vector component
@@ -50,6 +52,15 @@ namespace Z0
                 => ref Vec256Pattern<T>.ClearAlt;
 
         /// <summary>
+        /// Defines a vector of 32 or 64-bit floating point values where each component 
+        /// has been intialized to the value -0.0
+        /// </summary>
+        /// <typeparam name="T">The floating point type</typeparam>
+        public static ref readonly Vec256<T> FpSignMask<T>()
+            where T : struct
+                => ref Vec256Pattern<T>.FpSignMask;
+
+        /// <summary>
         /// Creates a vector with incrementing components
         /// v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
         /// </summary>
@@ -57,17 +68,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         public static Vec256<T> Increments<T>(T first = default, params Swap[] swaps)
             where T : struct  
-        {
-            var n = Vec256<T>.Length;
-            var dst = Span256.Alloc<T>(n);
-            var val = first;
-            for(var i=0; i < n; i++)
-            {
-                dst[i] = val;
-                gmath.inc(ref val);
-            }
-            return Vec256.Load(dst.Swap(swaps));
-        }
+                => Vec256Pattern<T>.Increments(first,swaps);
 
         /// <summary>
         /// Creates a vector with decrementing components
@@ -78,19 +79,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>        
         public static Vec256<T> Decrements<T>(T last = default, params Swap[] swaps)
             where T : struct  
-        {
-            var n = Vec256<T>.Length;
-            var dst = Span256.Alloc<T>(n);
-            var val = last;
-            for(var i=0; i<n; i++)
-            {
-                dst[i] = val;
-                gmath.dec(ref val);
-            }
-
-            return Vec256.Load(dst.Swap(swaps));
-        }
-
+                => Vec256Pattern<T>.Decrements(last, swaps);
 
         /// <summary>
         /// Creates a vector populated with component values that alternate between the first operand and the second

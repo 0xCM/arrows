@@ -31,7 +31,7 @@ namespace Z0
         public static Vec128Cmp<int> lt(in Vec128<int> lhs, in Vec128<int> rhs)
             => Vec128Cmp.Define<int>(CompareLessThan(lhs,rhs));
 
-    
+   
     }
 
 }

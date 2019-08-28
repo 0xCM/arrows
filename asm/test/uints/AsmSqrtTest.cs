@@ -13,7 +13,7 @@ namespace Z0.Asm.Test
     {        
         public void Verify()
         {
-            VerifyOp(AsmOps.Sqrt<float>(), math.sqrt, Samples);
+            VerifyOp(AsmOps.Sqrt<float>(), fmath.sqrt, Samples);
             VerifyOp(AsmOps.Add<double>(), math.add, Samples);
         }
 

@@ -92,9 +92,10 @@ namespace Z0
         public static ref Vector<T> Div<T>(ref Vector<T> lhs, Vector<T> rhs)
             where T : struct
         {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gmath.div(ref x, y);
+            if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
+                gfp.div(lhs.Unblocked, rhs.Unblocked);
+            else
+                gmath.idiv(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 

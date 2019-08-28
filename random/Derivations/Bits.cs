@@ -60,6 +60,17 @@ namespace Z0
                 => Z0.BitString.FromBits(random.Bits().Take((int)n.value));
 
         /// <summary>
+        /// Produces sequences of random bitstrings with specified length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The length of the produced bitstrings</param>
+        public static IEnumerable<BitString> BitStrings(this IRandomSource random, int len)
+        {
+            while(true)
+                yield return random.BitString(len);
+        }
+
+        /// <summary>
         /// Produces a random sequence of bitstrings with randomized length
         /// </summary>
         /// <param name="random">The random source</param>

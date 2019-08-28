@@ -148,7 +148,7 @@ namespace Z0.Rng
             var m = Matrix.Alloc(n, rep);
             for(var i=0; i< count; i++)
             {
-                Random.MarkovMatrix(ref m);
+                Random.MarkovMat(ref m);
                 VerifyRightStochastic(m);
             }
         }
@@ -162,7 +162,7 @@ namespace Z0.Rng
             var v = Vector.Alloc<N,T>();
             for(var i=0; i< count; i++)
             {
-                Random.MarkovVector(ref v);
+                Random.MarkovVec(ref v);
                 var sum =  convert<T,double>(gmath.sum(v.Unsized));
                 Claim.yea(radius.Contains(sum));
             }
@@ -194,8 +194,8 @@ namespace Z0.Rng
             var m3 = Matrix.Alloc(n, 0f);
             for(var i=0; i< count; i++)
             {
-                Random.MarkovMatrix(ref m1);
-                Random.MarkovMatrix(ref m2);
+                Random.MarkovMat(ref m1);
+                Random.MarkovMat(ref m2);
                 m1.Mul(m2, ref m3);
                 VerifyRightStochastic(m3);
             }
@@ -211,8 +211,8 @@ namespace Z0.Rng
             var m3 = Matrix.Alloc(n, 0d);
             for(var i=0; i< count; i++)
             {
-                Random.MarkovMatrix(ref m1);
-                Random.MarkovMatrix(ref m2);
+                Random.MarkovMat(ref m1);
+                Random.MarkovMat(ref m2);
                 m1.Mul(m2, ref m3);
                 VerifyRightStochastic(m3);
             }

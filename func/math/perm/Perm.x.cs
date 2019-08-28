@@ -177,5 +177,26 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format(this Perm4 src)
             => $"{src} = {((byte)src).ToBitString()} = {((byte)src).FormatHex()}"; 
+ 
+        [MethodImpl(Inline)]
+        public static bool Includes(this Perm16 src, int index)
+            => (((int)src & (1 << index)) != 0);
+
+
+        [MethodImpl(Inline)]
+        public static PermCycle Cycle(this Perm16 src)
+        {            
+            Span<PermTerm> terms = stackalloc PermTerm[16];
+            var counter = 0;
+            for(var i=0; i<16; i++)   
+            {
+                if(src.Includes(i))
+                    terms[counter] = new PermTerm(counter,i);
+                counter++;
+            }
+            return new PermCycle(terms.Slice(0, counter));
+
+        }
+
     }
 }

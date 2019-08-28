@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="domain">The domain of the random variable</param>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static Vector<T> GenericVector<T>(this IRandomSource random, int len, Interval<T>? domain = null)
+        public static Vector<T> GenericVec<T>(this IRandomSource random, int len, Interval<T>? domain = null)
             where T : struct
         {
             var dst = Vector.Alloc<T>(len);
@@ -40,12 +40,11 @@ namespace Z0
         /// <param name="rep">A target domain representative</param>
         /// <typeparam name="S">The source domain type</typeparam>
         /// <typeparam name="T">The target domain type</typeparam>
-        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vector<T> GenericVector<S,T>(this IRandomSource random, int len, Interval<S>? domain = null, T rep = default)        
+        public static Vector<T> GenericVec<S,T>(this IRandomSource random, int len, Interval<S>? domain = null, T rep = default)        
             where S: struct
             where T : struct
-                => random.GenericVector<S>(len,domain).Convert<T>();
+                => random.GenericVec<S>(len,domain).Convert<T>();
         
         /// <summary>
         /// Populates a vector of natural length with random values from the source
@@ -82,7 +81,7 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> NatVector<N,T>(this IRandomSource random, Interval<T> domain, N n = default)
+        public static Vector<N,T> NatVec<N,T>(this IRandomSource random, Interval<T> domain, N n = default)
             where T : struct
             where N : ITypeNat, new()
         {
@@ -91,12 +90,25 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Allocates and populates a pair of natural length vectors
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="length">The vector length</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T"></typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> NatVector<N,S,T>(this IRandomSource random, Interval<S> domain, N n = default, T rep = default)
+        public static VectorPair<N,T> NatVecPair<N,T>(this IRandomSource random, N length = default)
+            where T : struct
+            where N : ITypeNat, new()
+                => new VectorPair<N, T>(random.NatVec<N,T>(),random.NatVec<N,T>());
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> NatVec<N,S,T>(this IRandomSource random, Interval<S> domain, N n = default, T rep = default)
             where T : struct
             where S : struct
             where N : ITypeNat, new()
-                => random.NatVector<N,S>(domain).Convert<T>();
+                => random.NatVec<N,S>(domain).Convert<T>();
 
         /// <summary>
         /// Allocates and populates a vector of natural length
@@ -105,7 +117,7 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> NatVector<N,T>(this IRandomSource random,  N n = default)
+        public static Vector<N,T> NatVec<N,T>(this IRandomSource random,  N n = default)
             where T : struct
             where N : ITypeNat, new()
         {

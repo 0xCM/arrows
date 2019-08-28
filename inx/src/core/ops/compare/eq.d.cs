@@ -53,7 +53,6 @@ namespace Z0
         public static Vec128Cmp<ulong> eq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
             => Vec128Cmp.Define<ulong>(CompareEqual(lhs,rhs));
 
-
         [MethodImpl(Inline)]
         public static Vec256Cmp<sbyte> eq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => Vec256Cmp.Define<sbyte>(CompareEqual(lhs,rhs));

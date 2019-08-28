@@ -1,4 +1,524 @@
-// 2019-08-26 19:39:48:526
+// 2019-08-27 16:42:25:301
+Span<byte> ShiftR(Span<byte> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0019
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u1
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: conv.u1
+    IL_0014: stind.i1
+    IL_0015: ldloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: add
+    IL_0018: stloc.0
+    IL_0019: ldloc.0
+    IL_001A: ldarga.s lhs
+    IL_001C: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_0021: blt.s IL_0004
+    IL_0023: ldarg.0
+    IL_0024: ret
+
+}
+Span<short> ShiftR(Span<short> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0019
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i2
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: conv.i2
+    IL_0014: stind.i2
+    IL_0015: ldloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: add
+    IL_0018: stloc.0
+    IL_0019: ldloc.0
+    IL_001A: ldarga.s lhs
+    IL_001C: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_0021: blt.s IL_0004
+    IL_0023: ldarg.0
+    IL_0024: ret
+
+}
+Span<ushort> ShiftR(Span<ushort> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0019
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u2
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: conv.u2
+    IL_0014: stind.i2
+    IL_0015: ldloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: add
+    IL_0018: stloc.0
+    IL_0019: ldloc.0
+    IL_001A: ldarga.s lhs
+    IL_001C: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_0021: blt.s IL_0004
+    IL_0023: ldarg.0
+    IL_0024: ret
+
+}
+Span<int> ShiftR(Span<int> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0018
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i4
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: stind.i4
+    IL_0014: ldloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: add
+    IL_0017: stloc.0
+    IL_0018: ldloc.0
+    IL_0019: ldarga.s lhs
+    IL_001B: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_0020: blt.s IL_0004
+    IL_0022: ldarg.0
+    IL_0023: ret
+
+}
+Span<uint> ShiftR(Span<uint> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0018
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u4
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr.un
+    IL_0013: stind.i4
+    IL_0014: ldloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: add
+    IL_0017: stloc.0
+    IL_0018: ldloc.0
+    IL_0019: ldarga.s lhs
+    IL_001B: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_0020: blt.s IL_0004
+    IL_0022: ldarg.0
+    IL_0023: ret
+
+}
+Span<long> ShiftR(Span<long> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0018
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 63
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: stind.i8
+    IL_0014: ldloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: add
+    IL_0017: stloc.0
+    IL_0018: ldloc.0
+    IL_0019: ldarga.s lhs
+    IL_001B: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_0020: blt.s IL_0004
+    IL_0022: ldarg.0
+    IL_0023: ret
+
+}
+Span<ulong> ShiftR(Span<ulong> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0018
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 63
+    IL_0011: and
+    IL_0012: shr.un
+    IL_0013: stind.i8
+    IL_0014: ldloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: add
+    IL_0017: stloc.0
+    IL_0018: ldloc.0
+    IL_0019: ldarga.s lhs
+    IL_001B: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_0020: blt.s IL_0004
+    IL_0022: ldarg.0
+    IL_0023: ret
+
+}
+Span<sbyte> ShiftR(Span<sbyte> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0021
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i1
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: conv.i1
+    IL_001C: stind.i1
+    IL_001D: ldloc.0
+    IL_001E: ldc.i4.1
+    IL_001F: add
+    IL_0020: stloc.0
+    IL_0021: ldloc.0
+    IL_0022: ldarga.s lhs
+    IL_0024: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_0029: blt.s IL_0004
+    IL_002B: ldarg.0
+    IL_002C: ret
+
+}
+Span<byte> ShiftR(Span<byte> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0021
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u1
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: conv.u1
+    IL_001C: stind.i1
+    IL_001D: ldloc.0
+    IL_001E: ldc.i4.1
+    IL_001F: add
+    IL_0020: stloc.0
+    IL_0021: ldloc.0
+    IL_0022: ldarga.s lhs
+    IL_0024: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_0029: blt.s IL_0004
+    IL_002B: ldarg.0
+    IL_002C: ret
+
+}
+Span<short> ShiftR(Span<short> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0021
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i2
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: conv.i2
+    IL_001C: stind.i2
+    IL_001D: ldloc.0
+    IL_001E: ldc.i4.1
+    IL_001F: add
+    IL_0020: stloc.0
+    IL_0021: ldloc.0
+    IL_0022: ldarga.s lhs
+    IL_0024: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_0029: blt.s IL_0004
+    IL_002B: ldarg.0
+    IL_002C: ret
+
+}
+Span<ushort> ShiftR(Span<ushort> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0021
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u2
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: conv.u2
+    IL_001C: stind.i2
+    IL_001D: ldloc.0
+    IL_001E: ldc.i4.1
+    IL_001F: add
+    IL_0020: stloc.0
+    IL_0021: ldloc.0
+    IL_0022: ldarga.s lhs
+    IL_0024: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_0029: blt.s IL_0004
+    IL_002B: ldarg.0
+    IL_002C: ret
+
+}
+Span<int> ShiftR(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i4
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s lhs
+    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
+
+}
+Span<uint> ShiftR(Span<uint> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u4
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 31
+    IL_0019: and
+    IL_001A: shr.un
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s lhs
+    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
+
+}
+Span<long> ShiftR(Span<long> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 63
+    IL_0019: and
+    IL_001A: shr
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s lhs
+    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
+
+}
+Span<ulong> ShiftR(Span<ulong> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarga.s rhs
+    IL_0010: ldloc.0
+    IL_0011: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0016: ldind.i4
+    IL_0017: ldc.i4.s 63
+    IL_0019: and
+    IL_001A: shr.un
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s lhs
+    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
+
+}
+sbyte shiftr(sbyte lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: conv.i1
+    IL_0007: ret
+
+}
+byte shiftr(byte lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: conv.u1
+    IL_0007: ret
+
+}
+short shiftr(short lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: conv.i2
+    IL_0007: ret
+
+}
+ushort shiftr(ushort lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: conv.u2
+    IL_0007: ret
+
+}
+int shiftr(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: ret
+
+}
+uint shiftr(uint lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr.un
+    IL_0006: ret
+
+}
+long shiftr(long lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 63
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: ret
+
+}
+ulong shiftr(ulong lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 63
+    IL_0004: and
+    IL_0005: shr.un
+    IL_0006: ret
+
+}
 Span<sbyte> and(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
@@ -2138,5 +2658,601 @@ ulong shiftl(ulong lhs, int rhs)
     IL_0004: and
     IL_0005: shl
     IL_0006: ret
+
+}
+Span<sbyte> ShiftR(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, Span<sbyte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4.s 121
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte,System.Int32>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002D: ldind.i1
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0036: ldind.i4
+    IL_0037: call System.SByte Z0.BitRef::shiftr(System.SByte,System.Int32)
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<byte> ShiftR(ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 129
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte,System.Int32>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Byte Z0.BitRef::shiftr(System.Byte,System.Int32)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<short> ShiftR(ReadOnlySpan<short> lhs, ReadOnlySpan<int> rhs, Span<short> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 137
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16,System.Int32>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int16 Z0.BitRef::shiftr(System.Int16,System.Int32)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<ushort> ShiftR(ReadOnlySpan<ushort> lhs, ReadOnlySpan<int> rhs, Span<ushort> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 145
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16,System.Int32>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.UInt16 Z0.BitRef::shiftr(System.UInt16,System.Int32)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<int> ShiftR(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 153
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int32 Z0.BitRef::shiftr(System.Int32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<uint> ShiftR(ReadOnlySpan<uint> lhs, ReadOnlySpan<int> rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 161
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32,System.Int32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.UInt32 Z0.BitRef::shiftr(System.UInt32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<long> ShiftR(ReadOnlySpan<long> lhs, ReadOnlySpan<int> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 169
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int32>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int64 Z0.BitRef::shiftr(System.Int64,System.Int32)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<ulong> ShiftR(ReadOnlySpan<ulong> lhs, ReadOnlySpan<int> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 177
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.Int32>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.UInt64 Z0.BitRef::shiftr(System.UInt64,System.Int32)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<sbyte> ShiftR(ReadOnlySpan<sbyte> lhs, int rhs, Span<sbyte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 185
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0030: ldind.i1
+    IL_0031: ldarg.1
+    IL_0032: call System.SByte Z0.BitRef::shiftr(System.SByte,System.Int32)
+    IL_0037: stind.i1
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<byte> ShiftR(ReadOnlySpan<byte> lhs, int rhs, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 193
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarg.1
+    IL_0032: call System.Byte Z0.BitRef::shiftr(System.Byte,System.Int32)
+    IL_0037: stind.i1
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<short> ShiftR(ReadOnlySpan<short> lhs, int rhs, Span<short> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 201
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarg.1
+    IL_0032: call System.Int16 Z0.BitRef::shiftr(System.Int16,System.Int32)
+    IL_0037: stind.i2
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<ushort> ShiftR(ReadOnlySpan<ushort> lhs, int rhs, Span<ushort> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 209
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarg.1
+    IL_0032: call System.UInt16 Z0.BitRef::shiftr(System.UInt16,System.Int32)
+    IL_0037: stind.i2
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<int> ShiftR(ReadOnlySpan<int> lhs, int rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 217
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarg.1
+    IL_0032: call System.Int32 Z0.BitRef::shiftr(System.Int32,System.Int32)
+    IL_0037: stind.i4
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<uint> ShiftR(ReadOnlySpan<uint> lhs, int rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 225
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarg.1
+    IL_0032: call System.UInt32 Z0.BitRef::shiftr(System.UInt32,System.Int32)
+    IL_0037: stind.i4
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<long> ShiftR(ReadOnlySpan<long> lhs, int rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 233
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarg.1
+    IL_0032: call System.Int64 Z0.BitRef::shiftr(System.Int64,System.Int32)
+    IL_0037: stind.i8
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<ulong> ShiftR(ReadOnlySpan<ulong> lhs, int rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.2
+    IL_0002: ldstr "ShiftR"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops.ref\\ShiftR.cs"
+    IL_000C: ldc.i4 241
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003C
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarg.1
+    IL_0032: call System.UInt64 Z0.BitRef::shiftr(System.UInt64,System.Int32)
+    IL_0037: stind.i8
+    IL_0038: ldloc.1
+    IL_0039: ldc.i4.1
+    IL_003A: add
+    IL_003B: stloc.1
+    IL_003C: ldloc.1
+    IL_003D: ldloc.0
+    IL_003E: blt.s IL_0020
+    IL_0040: ldarg.2
+    IL_0041: ret
+
+}
+Span<sbyte> ShiftR(Span<sbyte> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0019
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i1
+    IL_000E: ldarg.1
+    IL_000F: ldc.i4.s 31
+    IL_0011: and
+    IL_0012: shr
+    IL_0013: conv.i1
+    IL_0014: stind.i1
+    IL_0015: ldloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: add
+    IL_0018: stloc.0
+    IL_0019: ldloc.0
+    IL_001A: ldarga.s lhs
+    IL_001C: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_0021: blt.s IL_0004
+    IL_0023: ldarg.0
+    IL_0024: ret
 
 }

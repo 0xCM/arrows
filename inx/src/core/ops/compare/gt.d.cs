@@ -45,7 +45,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256Cmp<long> gt(in Vec256<long> lhs, in Vec256<long> rhs)
             => Vec256Cmp.Define<long>(CompareGreaterThan(lhs,rhs));
-
-
+     
     }
+
 }

@@ -18,6 +18,22 @@ namespace Z0
 
     partial class dinx    
     {        
+        const byte M70 = 0b01110000;
+
+        const byte MF0 = 0b11110000;
+
+        static readonly Vec256<byte> K0 = Vec256.FromBytes(
+            M70, M70, M70, M70, M70, M70, M70, M70, 
+            M70, M70, M70, M70, M70, M70, M70, M70,            
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0);
+
+        static readonly Vec256<byte> K1 = Vec256.FromBytes(
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
+            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0,            
+            M70, M70, M70, M70, M70, M70, M70, M70, 
+            M70, M70, M70, M70, M70, M70, M70, M70);            
+
         /// <summary>
         /// Rearranges the source vector according to the indices specified in the control vector
         /// dst[i] = src[spec[i]]
@@ -33,6 +49,7 @@ namespace Z0
             var s2 = shuffle(in b, add(in spec, in K1));
             return or(in s1,in s2);
         }
+
 
         /// <summary>
         /// Rearranges the components of the source vector according to an identified permutation
@@ -172,68 +189,19 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<byte> perm4x64(in Vec256<byte> value, byte control)
-            => perm4x64(value.As<ulong>(),control).As<byte>();
-
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> perm4x64(in Vec256<sbyte> value, byte control)
-            => perm4x64(value.As<long>(),control).As<sbyte>();
-
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<short> perm4x64(in Vec256<short> value, byte control)
-            => perm4x64(value.As<long>(),control).As<short>();
-
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> perm4x64(in Vec256<ushort> value, byte control)
-            => perm4x64(value.As<ulong>(),control).As<ushort>();
-
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256,</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<uint> perm4x64(in Vec256<uint> value, byte control)
-            => perm4x64(value.As<ulong>(),control).As<uint>();
-
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<int> perm4x64(in Vec256<int> value, byte control)
-            => perm4x64(value.As<long>(),control).As<int>();
-
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
         ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<long> perm4x64(in Vec256<long> value, byte control)
+            => Permute4x64(value,control);
+
+        /// <summary>
+        /// Permutes components in the source vector across lanes as specified by the control byte
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="control">The control byte</param>
+        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static Vec256<long> perm4x64test(in Vector256<long> value, byte control)
             => Permute4x64(value,control);
 
         /// <summary>
@@ -246,15 +214,6 @@ namespace Z0
         public static Vec256<ulong> perm4x64(in Vec256<ulong> value, byte control)
             => Permute4x64(value,control);
 
-        /// <summary>
-        /// Permutes components in the source vector across lanes as specified by the control byte
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control byte</param>
-        ///<intrinsic>__m256i _mm256_permute4x64_epi64 (__m256i a, const int imm8) VPERMQ ymm, ymm/m256, imm8</intrinsic>
-        [MethodImpl(Inline)]
-        public static Vec256<float> perm4x64(in Vec256<float> value, byte control)
-            => perm4x64(value.As<long>(),control).As<float>();
 
         /// <summary>
         /// Permutes components in the source vector across lanes as specified by the control byte
@@ -266,21 +225,6 @@ namespace Z0
         public static Vec256<double> perm4x64(in Vec256<double> value, byte control)
             => Permute4x64(value,control); 
  
-        const byte M70 = 0b01110000;
-
-        const byte MF0 = 0b11110000;
-
-        static readonly Vec256<byte> K0 = Vec256.FromBytes(
-            M70, M70, M70, M70, M70, M70, M70, M70, 
-            M70, M70, M70, M70, M70, M70, M70, M70,            
-            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
-            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0);
-
-        static readonly Vec256<byte> K1 = Vec256.FromBytes(
-            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0, 
-            MF0, MF0, MF0, MF0, MF0, MF0, MF0, MF0,            
-            M70, M70, M70, M70, M70, M70, M70, M70, 
-            M70, M70, M70, M70, M70, M70, M70, M70);            
 
     }
 }

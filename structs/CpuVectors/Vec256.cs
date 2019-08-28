@@ -25,7 +25,7 @@ namespace Z0
         /// <summary>
         /// The backing data
         /// </summary>
-        readonly Vector256<T> data;        
+        public readonly Vector256<T> data;        
 
         /// <summary>
         /// The number of components in the vector
@@ -51,7 +51,7 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public static implicit operator Vec256<T>(in Vector256<T> src)
+        public static implicit operator Vec256<T>(Vector256<T> src)
             => new Vec256<T>(src);
 
         [MethodImpl(Inline)]
@@ -59,7 +59,7 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        public Vec256(in Vector256<T> src)
+        public Vec256(Vector256<T> src)
             => this.data = src;
 
 

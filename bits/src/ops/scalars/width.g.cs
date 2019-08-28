@@ -15,6 +15,15 @@ namespace Z0
     partial class gbits
     {
         /// <summary>
+        /// Creates a bitview over a source value
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <typeparam name="T">The source type</typeparam>
+        public static BitView<T> view<T>(ref T src)
+            where T: struct
+                => new BitView<T>(ref src);
+
+        /// <summary>
         /// Computes the minimal number of bits required to represent the source value
         /// </summary>
         /// <param name="src">The source value</param>

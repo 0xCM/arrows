@@ -119,7 +119,7 @@ namespace Z0
             => count > 1 ? s0/(count - 1) : 0;
 
         public double StandardDeviation
-            => math.sqrt(Variance);
+            => fmath.sqrt(Variance);
 
     }
 }

@@ -26,6 +26,12 @@ namespace Z0
             this.Terms = src;
         }
 
+        [MethodImpl(Inline)]
+        public PermCycle(Span<PermTerm> src)
+        {
+            Terms = src.ToArray();
+        }
+        
         /// <summary>
         /// The terms that define the cycle
         /// </summary>
@@ -48,9 +54,5 @@ namespace Z0
 
         public override string ToString()
             => Format();
-
-
-
     }
-
 }

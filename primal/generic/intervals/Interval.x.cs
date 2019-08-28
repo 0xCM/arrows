@@ -44,11 +44,11 @@ namespace Z0
             if(src.LeftClosed)
                 yield return src.Left;
             
-            var next = gmath.round(gmath.add(src.Left, width), scale);
+            var next = gfp.round(gmath.add(src.Left, width), scale);
             while(gmath.lt(next,src.Right))
             {
                 yield return next;
-                next = gmath.round(gmath.add(next, width), scale);
+                next = gfp.round(gmath.add(next, width), scale);
             }
 
             if(src.RightClosed)

@@ -87,15 +87,19 @@ namespace Z0
         public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
             => Shuffle(src, control);
 
-        ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
+        ///<summary>
+        /// Shuffles 8-bit integers in the source vector within 128-bit lanes 
+        /// as specified by the corresponding element in the shuffle control mask
+        ///__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256
+        ///</summary>
         [MethodImpl(Inline)]
-        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
-            => Shuffle(src, mask);
+        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> control)
+            => Shuffle(src, control);
 
         ///<summary>__m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256</summary>
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
-            => Shuffle(src, mask);
+        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> control)
+            => Shuffle(src, control);
 
         /// <summary>
         /// Transposes a 4x4 matrix of floats, adapted from MSVC intrinsic headers
@@ -116,8 +120,5 @@ namespace Z0
             row2 = shuffle(tmp2,tmp3, 0x88);
             row3 = shuffle(tmp2, tmp3, 0xDD);
         }    
-
-
     }
-
 }

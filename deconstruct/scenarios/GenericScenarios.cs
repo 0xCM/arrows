@@ -41,7 +41,7 @@ namespace Z0
                 nameof(gmath.add), 
                 nameof(gmath.sub), 
                 nameof(gmath.mul), 
-                nameof(gmath.div), 
+                nameof(gmath.idiv), 
                 nameof(gmath.mod)
                 );
 

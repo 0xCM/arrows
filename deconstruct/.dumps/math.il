@@ -1,11824 +1,15 @@
-// 2019-07-29 18:32:31:264
-Span<sbyte> xor(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+// 2019-08-27 16:42:26:131
+ref ushort sub(ref ushort lhs, ushort rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::xor(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> xor(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::xor(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<short> xor(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::xor(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> xor(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::xor(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> xor(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::xor(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> xor(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::xor(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> xor(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::xor(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> xor(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::xor(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> xor(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: xor
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> xor(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: xor
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> xor(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: xor
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> xor(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: xor
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> xor(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002F: ldind.i4
-    IL_0030: xor
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<uint> xor(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002F: ldind.u4
-    IL_0030: xor
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<long> xor(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: xor
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> xor(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "xor"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\XOr.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: xor
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> xor(Span<byte> lhs, byte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> xor(Span<short> lhs, short rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> xor(Span<ushort> lhs, ushort rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> xor(Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<uint> xor(Span<uint> lhs, uint rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<long> xor(Span<long> lhs, long rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<ulong> xor(Span<ulong> lhs, ulong rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: xor
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<sbyte> mod(Span<sbyte> lhs, sbyte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> mod(Span<byte> lhs, byte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> mod(Span<short> lhs, short rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> mod(Span<ushort> lhs, ushort rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> mod(Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<uint> mod(Span<uint> lhs, uint rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: rem.un
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<long> mod(Span<long> lhs, long rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<ulong> mod(Span<ulong> lhs, ulong rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: rem.un
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<float> mod(Span<float> lhs, float rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r4
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: stind.r4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<double> mod(Span<double> lhs, double rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r8
-    IL_000E: ldarg.1
-    IL_000F: rem
-    IL_0010: stind.r8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-void negate(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 20
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: call System.SByte Z0.math::negate(System.SByte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<byte> src, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 27
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: call System.Byte Z0.math::negate(System.Byte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<short> src, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 34
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: call System.Int16 Z0.math::negate(System.Int16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<ushort> src, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 41
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: call System.UInt16 Z0.math::negate(System.UInt16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<int> src, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 48
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: call System.Int32 Z0.math::negate(System.Int32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<uint> src, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 55
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: call System.UInt32 Z0.math::negate(System.UInt32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<long> src, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 62
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.Int64 Z0.math::negate(System.Int64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<ulong> src, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.UInt64 Z0.math::negate(System.UInt64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<float> src, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 76
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: call System.Single Z0.math::negate(System.Single)
-    IL_0033: stind.r4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-void negate(ReadOnlySpan<double> src, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "negate"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Negate.cs"
-    IL_000C: ldc.i4.s 83
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: call System.Double Z0.math::negate(System.Double)
-    IL_0033: stind.r8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ret
-
-}
-Span<sbyte> negate(Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::negate(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> negate(Span<byte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: call System.Byte& Z0.math::negate(System.Byte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> negate(Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::negate(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> negate(Span<ushort> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: call System.UInt16& Z0.math::negate(System.UInt16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> negate(Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::negate(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<uint> negate(Span<uint> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: call System.UInt32& Z0.math::negate(System.UInt32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<long> negate(Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::negate(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ulong> negate(Span<ulong> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: call System.UInt64& Z0.math::negate(System.UInt64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<float> negate(Span<float> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: call System.Single& Z0.math::negate(System.Single&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<double> negate(Span<double> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: call System.Double& Z0.math::negate(System.Double&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::neq(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::neq(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::neq(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::neq(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::neq(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::neq(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::neq(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::neq(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::neq(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::neq(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
     IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 100
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 104
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 108
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 112
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 116
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 120
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4.s 124
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4 128
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4 132
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "neq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\NEq.cs"
-    IL_000E: ldc.i4 136
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<sbyte> or(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 22
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::or(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> or(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 30
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::or(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<short> or(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 38
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::or(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> or(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 46
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::or(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> or(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 54
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::or(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> or(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 62
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::or(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> or(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 70
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::or(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> or(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 78
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::or(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> or(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 86
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: or
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> or(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 94
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: or
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> or(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 102
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: or
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> or(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 110
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: or
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> or(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 118
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002F: ldind.i4
-    IL_0030: or
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<uint> or(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4.s 126
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002F: ldind.u4
-    IL_0030: or
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<long> or(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4 134
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: or
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> or(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "or"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Or.cs"
-    IL_000C: ldc.i4 142
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: or
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<sbyte> or(Span<sbyte> lhs, sbyte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> or(Span<byte> lhs, byte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> or(Span<short> lhs, short rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> or(Span<ushort> lhs, ushort rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> or(Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<uint> or(Span<uint> lhs, uint rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<long> or(Span<long> lhs, long rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<ulong> or(Span<ulong> lhs, ulong rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: or
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::pow(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<byte> pow(Span<byte> b, ReadOnlySpan<byte> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::pow(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<short> pow(Span<short> b, ReadOnlySpan<short> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::pow(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<ushort> pow(Span<ushort> b, ReadOnlySpan<ushort> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::pow(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<int> pow(Span<int> b, ReadOnlySpan<int> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::pow(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<uint> pow(Span<uint> b, ReadOnlySpan<uint> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::pow(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<long> pow(Span<long> b, ReadOnlySpan<long> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::pow(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<ulong> pow(Span<ulong> b, ReadOnlySpan<ulong> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::pow(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<float> pow(Span<float> b, ReadOnlySpan<float> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::pow(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<double> pow(Span<double> b, ReadOnlySpan<double> exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "pow"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Pow.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s b
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s b
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s exp
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::pow(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.0
-    IL_0046: ret
-
-}
-Span<sbyte> pow(Span<sbyte> b, sbyte exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarg.1
-    IL_0016: call System.SByte Z0.math::pow(System.SByte,System.SByte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<byte> pow(Span<byte> b, byte exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarg.1
-    IL_0016: call System.Byte Z0.math::pow(System.Byte,System.Byte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<short> pow(Span<short> b, short exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarg.1
-    IL_0016: call System.Int16 Z0.math::pow(System.Int16,System.Int16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<ushort> pow(Span<ushort> b, ushort exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt16 Z0.math::pow(System.UInt16,System.UInt16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<int> pow(Span<int> b, int exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarg.1
-    IL_0016: call System.Int32 Z0.math::pow(System.Int32,System.Int32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<uint> pow(Span<uint> b, uint exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt32 Z0.math::pow(System.UInt32,System.UInt32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<long> pow(Span<long> b, long exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.Int64 Z0.math::pow(System.Int64,System.Int64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<ulong> pow(Span<ulong> b, ulong exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt64 Z0.math::pow(System.UInt64,System.UInt64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<float> pow(Span<float> b, float exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarg.1
-    IL_0016: call System.Single Z0.math::pow(System.Single,System.Single)
-    IL_001B: stind.r4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<double> pow(Span<double> b, double exp)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s b
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: ldarga.s b
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarg.1
-    IL_0016: call System.Double Z0.math::pow(System.Double,System.Double)
-    IL_001B: stind.r8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s b
-    IL_0023: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.0
-    IL_002B: ret
-
-}
-Span<float> round(ReadOnlySpan<float> src, int scale, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "round"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Round.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarg.1
-    IL_002F: call System.Single Z0.math::round(System.Single,System.Int32)
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-Span<double> round(ReadOnlySpan<double> src, int scale, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.2
-    IL_0002: ldstr "round"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Round.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0039
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarg.1
-    IL_002F: call System.Double Z0.math::round(System.Double,System.Int32)
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_001D
-    IL_003D: ldarg.2
-    IL_003E: ret
-
-}
-Span<float> round(Span<float> io, int scale)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0017
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: ldarg.1
-    IL_000D: call System.Single& Z0.math::round(System.Single&,System.Int32)
-    IL_0012: pop
-    IL_0013: ldloc.0
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.0
-    IL_0017: ldloc.0
-    IL_0018: ldarga.s io
-    IL_001A: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001F: blt.s IL_0004
-    IL_0021: ldarg.0
-    IL_0022: ret
-
-}
-Span<double> round(Span<double> io, int scale)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0017
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: ldarg.1
-    IL_000D: call System.Double& Z0.math::round(System.Double&,System.Int32)
-    IL_0012: pop
-    IL_0013: ldloc.0
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.0
-    IL_0017: ldloc.0
-    IL_0018: ldarga.s io
-    IL_001A: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001F: blt.s IL_0004
-    IL_0021: ldarg.0
-    IL_0022: ret
-
-}
-Span<sbyte> scale(ReadOnlySpan<sbyte> src, sbyte factor, Span<sbyte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarg.1
-    IL_0016: call System.SByte Z0.math::mul(System.SByte,System.SByte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<byte> scale(ReadOnlySpan<byte> src, byte factor, Span<byte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarg.1
-    IL_0016: call System.Byte Z0.math::mul(System.Byte,System.Byte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<short> scale(ReadOnlySpan<short> src, short factor, Span<short> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarg.1
-    IL_0016: call System.Int16 Z0.math::mul(System.Int16,System.Int16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ushort> scale(ReadOnlySpan<ushort> src, ushort factor, Span<ushort> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt16 Z0.math::mul(System.UInt16,System.UInt16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<int> scale(ReadOnlySpan<int> src, int factor, Span<int> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarg.1
-    IL_0016: call System.Int32 Z0.math::mul(System.Int32,System.Int32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<uint> scale(ReadOnlySpan<uint> src, uint factor, Span<uint> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt32 Z0.math::mul(System.UInt32,System.UInt32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<long> scale(ReadOnlySpan<long> src, long factor, Span<long> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.Int64 Z0.math::mul(System.Int64,System.Int64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ulong> scale(ReadOnlySpan<ulong> src, ulong factor, Span<ulong> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt64 Z0.math::mul(System.UInt64,System.UInt64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<float> scale(ReadOnlySpan<float> src, float factor, Span<float> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarg.1
-    IL_0016: call System.Single Z0.math::mul(System.Single,System.Single)
-    IL_001B: stind.r4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<double> scale(ReadOnlySpan<double> src, double factor, Span<double> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarg.1
-    IL_0016: call System.Double Z0.math::mul(System.Double,System.Double)
-    IL_001B: stind.r8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s dst
-    IL_0023: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<sbyte> sub(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::sub(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::sub(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<short> sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::sub(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::sub(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::sub(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::sub(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::sub(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::sub(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<float> sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::sub(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<double> sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::sub(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> sub(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: sub
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> sub(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: sub
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> sub(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: sub
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> sub(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: sub
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> sub(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: sub
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<uint> sub(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: sub
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<long> sub(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 149
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: sub
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> sub(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 157
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: sub
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<float> sub(Span<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 165
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: sub
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<double> sub(Span<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "sub"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Sub.cs"
-    IL_000C: ldc.i4 173
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: sub
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 112
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 116
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 120
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 124
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 128
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 132
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 136
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 140
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::gteq(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::gteq(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::gteq(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::gteq(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::gteq(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::gteq(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gteq(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gteq(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::gteq(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::gteq(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 224
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 228
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 232
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 236
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 240
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 244
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 248
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 252
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 256
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4 260
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<sbyte> inc(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 23
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: call System.SByte Z0.math::inc(System.SByte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<byte> inc(ReadOnlySpan<byte> src, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 32
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: call System.Byte Z0.math::inc(System.Byte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<short> inc(ReadOnlySpan<short> src, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 41
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: call System.Int16 Z0.math::inc(System.Int16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ushort> inc(ReadOnlySpan<ushort> src, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 50
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: call System.UInt16 Z0.math::inc(System.UInt16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<int> inc(ReadOnlySpan<int> src, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 59
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: call System.Int32 Z0.math::inc(System.Int32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<uint> inc(ReadOnlySpan<uint> src, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 68
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: call System.UInt32 Z0.math::inc(System.UInt32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<long> inc(ReadOnlySpan<long> src, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 78
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.Int64 Z0.math::inc(System.Int64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ulong> inc(ReadOnlySpan<ulong> src, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 87
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.UInt64 Z0.math::inc(System.UInt64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<float> inc(ReadOnlySpan<float> src, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 96
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: call System.Single Z0.math::inc(System.Single)
-    IL_0033: stind.r4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<double> inc(ReadOnlySpan<double> src, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "inc"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Inc.cs"
-    IL_000C: ldc.i4.s 105
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: call System.Double Z0.math::inc(System.Double)
-    IL_0033: stind.r8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<sbyte> inc(Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::inc(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> inc(Span<byte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: call System.Byte& Z0.math::inc(System.Byte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> inc(Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::inc(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> inc(Span<ushort> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: call System.UInt16& Z0.math::inc(System.UInt16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> inc(Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::inc(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<uint> inc(Span<uint> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: call System.UInt32& Z0.math::inc(System.UInt32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<long> inc(Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::inc(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ulong> inc(Span<ulong> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: call System.UInt64& Z0.math::inc(System.UInt64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<float> inc(Span<float> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: call System.Single& Z0.math::inc(System.Single&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<double> inc(Span<double> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: call System.Double& Z0.math::inc(System.Double&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::lt(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::lt(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::lt(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::lt(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::lt(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::lt(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::lt(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::lt(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::lt(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::lt(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 91
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 95
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 99
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 103
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 107
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 111
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 115
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 119
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 123
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4.s 127
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::lteq(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::lteq(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::lteq(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::lteq(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::lteq(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::lteq(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::lteq(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::lteq(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::lteq(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::lteq(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 201
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 205
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 209
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 213
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 217
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 221
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 225
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 229
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 233
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "lteq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Lt.cs"
-    IL_000E: ldc.i4 237
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-sbyte max(ReadOnlySpan<sbyte> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0013: ldind.i1
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0021: ldind.i1
-    IL_0022: ldloc.0
-    IL_0023: ble.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-byte max(ReadOnlySpan<byte> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0013: ldind.u1
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0021: ldind.u1
-    IL_0022: ldloc.0
-    IL_0023: ble.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-short max(ReadOnlySpan<short> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0013: ldind.i2
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0021: ldind.i2
-    IL_0022: ldloc.0
-    IL_0023: ble.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-ushort max(ReadOnlySpan<ushort> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0013: ldind.u2
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0021: ldind.u2
-    IL_0022: ldloc.0
-    IL_0023: ble.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-int max(ReadOnlySpan<int> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0013: ldind.i4
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0021: ldind.i4
-    IL_0022: ldloc.0
-    IL_0023: ble.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-uint max(ReadOnlySpan<uint> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0013: ldind.u4
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0021: ldind.u4
-    IL_0022: ldloc.0
-    IL_0023: ble.un.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-long max(ReadOnlySpan<long> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000C
-    IL_0009: ldc.i4.0
-    IL_000A: conv.i8
-    IL_000B: ret
-    IL_000C: ldarga.s src
-    IL_000E: ldc.i4.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: stloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: stloc.1
-    IL_0018: br.s IL_0034
-    IL_001A: ldarga.s src
-    IL_001C: ldloc.1
-    IL_001D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0022: ldind.i8
-    IL_0023: ldloc.0
-    IL_0024: ble.s IL_0030
-    IL_0026: ldarga.s src
-    IL_0028: ldloc.1
-    IL_0029: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002E: ldind.i8
-    IL_002F: stloc.0
-    IL_0030: ldloc.1
-    IL_0031: ldc.i4.1
-    IL_0032: add
-    IL_0033: stloc.1
-    IL_0034: ldloc.1
-    IL_0035: ldarga.s src
-    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_003C: blt.s IL_001A
-    IL_003E: ldloc.0
-    IL_003F: ret
-
-}
-ulong max(ReadOnlySpan<ulong> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000C
-    IL_0009: ldc.i4.0
-    IL_000A: conv.i8
-    IL_000B: ret
-    IL_000C: ldarga.s src
-    IL_000E: ldc.i4.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: stloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: stloc.1
-    IL_0018: br.s IL_0034
-    IL_001A: ldarga.s src
-    IL_001C: ldloc.1
-    IL_001D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0022: ldind.i8
-    IL_0023: ldloc.0
-    IL_0024: ble.un.s IL_0030
-    IL_0026: ldarga.s src
-    IL_0028: ldloc.1
-    IL_0029: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002E: ldind.i8
-    IL_002F: stloc.0
-    IL_0030: ldloc.1
-    IL_0031: ldc.i4.1
-    IL_0032: add
-    IL_0033: stloc.1
-    IL_0034: ldloc.1
-    IL_0035: ldarga.s src
-    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_003C: blt.s IL_001A
-    IL_003E: ldloc.0
-    IL_003F: ret
-
-}
-float max(ReadOnlySpan<float> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000F
-    IL_0009: ldc.r4 0
-    IL_000E: ret
-    IL_000F: ldarga.s src
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0017: ldind.r4
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.1
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldind.r4
-    IL_0026: ldloc.0
-    IL_0027: ble.un.s IL_0033
-    IL_0029: ldarga.s src
-    IL_002B: ldloc.1
-    IL_002C: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0031: ldind.r4
-    IL_0032: stloc.0
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldarga.s src
-    IL_003A: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_003F: blt.s IL_001D
-    IL_0041: ldloc.0
-    IL_0042: ret
-
-}
-double max(ReadOnlySpan<double> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
-    IL_0007: brfalse.s IL_0013
-    IL_0009: ldc.r8 0
-    IL_0012: ret
-    IL_0013: ldarga.s src
-    IL_0015: ldc.i4.0
-    IL_0016: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001B: ldind.r8
-    IL_001C: stloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: stloc.1
-    IL_001F: br.s IL_003B
-    IL_0021: ldarga.s src
-    IL_0023: ldloc.1
-    IL_0024: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0029: ldind.r8
-    IL_002A: ldloc.0
-    IL_002B: ble.un.s IL_0037
-    IL_002D: ldarga.s src
-    IL_002F: ldloc.1
-    IL_0030: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0035: ldind.r8
-    IL_0036: stloc.0
-    IL_0037: ldloc.1
-    IL_0038: ldc.i4.1
-    IL_0039: add
-    IL_003A: stloc.1
-    IL_003B: ldloc.1
-    IL_003C: ldarga.s src
-    IL_003E: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0043: blt.s IL_0021
-    IL_0045: ldloc.0
-    IL_0046: ret
-
-}
-sbyte min(ReadOnlySpan<sbyte> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0013: ldind.i1
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0021: ldind.i1
-    IL_0022: ldloc.0
-    IL_0023: bge.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-byte min(ReadOnlySpan<byte> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0013: ldind.u1
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0021: ldind.u1
-    IL_0022: ldloc.0
-    IL_0023: bge.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-short min(ReadOnlySpan<short> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0013: ldind.i2
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0021: ldind.i2
-    IL_0022: ldloc.0
-    IL_0023: bge.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-ushort min(ReadOnlySpan<ushort> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0013: ldind.u2
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0021: ldind.u2
-    IL_0022: ldloc.0
-    IL_0023: bge.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-int min(ReadOnlySpan<int> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0013: ldind.i4
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0021: ldind.i4
-    IL_0022: ldloc.0
-    IL_0023: bge.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-uint min(ReadOnlySpan<uint> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000B
-    IL_0009: ldc.i4.0
-    IL_000A: ret
-    IL_000B: ldarga.s src
-    IL_000D: ldc.i4.0
-    IL_000E: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0013: ldind.u4
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.1
-    IL_0016: stloc.1
-    IL_0017: br.s IL_0033
-    IL_0019: ldarga.s src
-    IL_001B: ldloc.1
-    IL_001C: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0021: ldind.u4
-    IL_0022: ldloc.0
-    IL_0023: bge.un.s IL_002F
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: stloc.0
-    IL_002F: ldloc.1
-    IL_0030: ldc.i4.1
-    IL_0031: add
-    IL_0032: stloc.1
-    IL_0033: ldloc.1
-    IL_0034: ldarga.s src
-    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_003B: blt.s IL_0019
-    IL_003D: ldloc.0
-    IL_003E: ret
-
-}
-long min(ReadOnlySpan<long> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000C
-    IL_0009: ldc.i4.0
-    IL_000A: conv.i8
-    IL_000B: ret
-    IL_000C: ldarga.s src
-    IL_000E: ldc.i4.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: stloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: stloc.1
-    IL_0018: br.s IL_0034
-    IL_001A: ldarga.s src
-    IL_001C: ldloc.1
-    IL_001D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0022: ldind.i8
-    IL_0023: ldloc.0
-    IL_0024: bge.s IL_0030
-    IL_0026: ldarga.s src
-    IL_0028: ldloc.1
-    IL_0029: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002E: ldind.i8
-    IL_002F: stloc.0
-    IL_0030: ldloc.1
-    IL_0031: ldc.i4.1
-    IL_0032: add
-    IL_0033: stloc.1
-    IL_0034: ldloc.1
-    IL_0035: ldarga.s src
-    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_003C: blt.s IL_001A
-    IL_003E: ldloc.0
-    IL_003F: ret
-
-}
-ulong min(ReadOnlySpan<ulong> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000C
-    IL_0009: ldc.i4.0
-    IL_000A: conv.i8
-    IL_000B: ret
-    IL_000C: ldarga.s src
-    IL_000E: ldc.i4.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: stloc.0
-    IL_0016: ldc.i4.1
-    IL_0017: stloc.1
-    IL_0018: br.s IL_0034
-    IL_001A: ldarga.s src
-    IL_001C: ldloc.1
-    IL_001D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0022: ldind.i8
-    IL_0023: ldloc.0
-    IL_0024: bge.un.s IL_0030
-    IL_0026: ldarga.s src
-    IL_0028: ldloc.1
-    IL_0029: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002E: ldind.i8
-    IL_002F: stloc.0
-    IL_0030: ldloc.1
-    IL_0031: ldc.i4.1
-    IL_0032: add
-    IL_0033: stloc.1
-    IL_0034: ldloc.1
-    IL_0035: ldarga.s src
-    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_003C: blt.s IL_001A
-    IL_003E: ldloc.0
-    IL_003F: ret
-
-}
-float min(ReadOnlySpan<float> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
-    IL_0007: brfalse.s IL_000F
-    IL_0009: ldc.r4 0
-    IL_000E: ret
-    IL_000F: ldarga.s src
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0017: ldind.r4
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.1
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s src
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldind.r4
-    IL_0026: ldloc.0
-    IL_0027: bge.un.s IL_0033
-    IL_0029: ldarga.s src
-    IL_002B: ldloc.1
-    IL_002C: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0031: ldind.r4
-    IL_0032: stloc.0
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldarga.s src
-    IL_003A: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_003F: blt.s IL_001D
-    IL_0041: ldloc.0
-    IL_0042: ret
-
-}
-double min(ReadOnlySpan<double> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
-    IL_0007: brfalse.s IL_0013
-    IL_0009: ldc.r8 0
-    IL_0012: ret
-    IL_0013: ldarga.s src
-    IL_0015: ldc.i4.0
-    IL_0016: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001B: ldind.r8
-    IL_001C: stloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: stloc.1
-    IL_001F: br.s IL_003B
-    IL_0021: ldarga.s src
-    IL_0023: ldloc.1
-    IL_0024: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0029: ldind.r8
-    IL_002A: ldloc.0
-    IL_002B: bge.un.s IL_0037
-    IL_002D: ldarga.s src
-    IL_002F: ldloc.1
-    IL_0030: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0035: ldind.r8
-    IL_0036: stloc.0
-    IL_0037: ldloc.1
-    IL_0038: ldc.i4.1
-    IL_0039: add
-    IL_003A: stloc.1
-    IL_003B: ldloc.1
-    IL_003C: ldarga.s src
-    IL_003E: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0043: blt.s IL_0021
-    IL_0045: ldloc.0
-    IL_0046: ret
-
-}
-Span<sbyte> mod(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::mod(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> mod(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::mod(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-void mod(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::mod(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 44
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::mod(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 51
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::mod(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 58
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::mod(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 65
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::mod(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 72
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::mod(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 79
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::mod(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-void mod(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 86
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::mod(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ret
-
-}
-Span<sbyte> mod(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: rem
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> mod(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: rem
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> mod(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: rem
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> mod(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: rem
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> mod(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002F: ldind.i4
-    IL_0030: rem
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<uint> mod(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: rem.un
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<long> mod(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: rem
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> mod(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 149
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: rem.un
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<float> mod(Span<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 157
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: rem
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<double> mod(Span<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "mod"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Mod.cs"
-    IL_000C: ldc.i4 165
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: rem
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<short> and(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::and(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> and(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::and(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> and(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::and(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> and(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::and(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> and(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::and(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> and(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::and(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> and(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: and
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> and(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: and
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> and(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: and
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> and(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: and
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> and(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002F: ldind.i4
-    IL_0030: and
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<uint> and(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0036
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u4
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002F: ldind.u4
-    IL_0030: and
-    IL_0031: stind.i4
-    IL_0032: ldloc.1
-    IL_0033: ldc.i4.1
-    IL_0034: add
-    IL_0035: stloc.1
-    IL_0036: ldloc.1
-    IL_0037: ldloc.0
-    IL_0038: blt.s IL_001D
-    IL_003A: ldarg.0
-    IL_003B: ret
-
-}
-Span<long> and(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: and
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> and(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: and
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<sbyte> and(Span<sbyte> lhs, sbyte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> and(Span<byte> lhs, byte rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> and(Span<short> lhs, short rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> and(Span<ushort> lhs, ushort rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> and(Span<int> lhs, int rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<uint> and(Span<uint> lhs, uint rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<long> and(Span<long> lhs, long rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<ulong> and(Span<ulong> lhs, ulong rhs)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: and
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
-
-}
-Span<sbyte> dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 23
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: call System.SByte Z0.math::dec(System.SByte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<byte> dec(ReadOnlySpan<byte> src, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 32
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: call System.Byte Z0.math::dec(System.Byte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<short> dec(ReadOnlySpan<short> src, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 41
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: call System.Int16 Z0.math::dec(System.Int16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ushort> dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 50
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: call System.UInt16 Z0.math::dec(System.UInt16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<int> dec(ReadOnlySpan<int> src, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 59
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: call System.Int32 Z0.math::dec(System.Int32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<uint> dec(ReadOnlySpan<uint> src, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 68
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: call System.UInt32 Z0.math::dec(System.UInt32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<long> dec(ReadOnlySpan<long> src, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 78
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.Int64 Z0.math::dec(System.Int64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ulong> dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 87
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.UInt64 Z0.math::dec(System.UInt64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<float> dec(ReadOnlySpan<float> src, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 96
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: call System.Single Z0.math::dec(System.Single)
-    IL_0033: stind.r4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<double> dec(ReadOnlySpan<double> src, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "dec"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dec.cs"
-    IL_000C: ldc.i4.s 105
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: call System.Double Z0.math::dec(System.Double)
-    IL_0033: stind.r8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<sbyte> dec(Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::dec(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> dec(Span<byte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: call System.Byte& Z0.math::dec(System.Byte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> dec(Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::dec(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> dec(Span<ushort> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: call System.UInt16& Z0.math::dec(System.UInt16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> dec(Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::dec(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<uint> dec(Span<uint> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: call System.UInt32& Z0.math::dec(System.UInt32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<long> dec(Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::dec(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ulong> dec(Span<ulong> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: call System.UInt64& Z0.math::dec(System.UInt64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<float> dec(Span<float> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: call System.Single& Z0.math::dec(System.Single&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<double> dec(Span<double> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s io
-    IL_0006: ldloc.0
-    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: call System.Double& Z0.math::dec(System.Double&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s io
-    IL_0019: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<sbyte> div(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::div(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> div(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::div(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<short> div(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 37
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::div(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> div(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 45
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::div(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> div(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 53
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::div(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> div(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 61
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::div(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> div(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 69
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::div(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> div(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 77
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::div(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<float> div(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 85
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::div(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<double> div(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 93
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::div(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> div(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 101
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: div
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> div(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 109
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: div
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> div(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 117
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: div
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> div(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4.s 125
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: div
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> div(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 133
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: div
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<uint> div(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 141
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: div.un
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<long> div(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 149
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: div
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> div(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 157
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: div.un
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<float> div(Span<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 165
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: div
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<double> div(Span<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "div"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Div.cs"
-    IL_000C: ldc.i4 173
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: div
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-sbyte dot(in ReadOnlySpan<sbyte> lhs, in ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.SByte>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.SByte>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 21
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0043
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0031: ldind.i1
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0039: ldind.i1
-    IL_003A: mul
-    IL_003B: conv.i1
-    IL_003C: add
-    IL_003D: conv.i1
-    IL_003E: stloc.1
-    IL_003F: ldloc.2
-    IL_0040: ldc.i4.1
-    IL_0041: add
-    IL_0042: stloc.2
-    IL_0043: ldloc.2
-    IL_0044: ldloc.0
-    IL_0045: blt.s IL_0029
-    IL_0047: ldloc.1
-    IL_0048: ret
-
-}
-byte dot(in ReadOnlySpan<byte> lhs, in ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Byte>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Byte>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 30
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0043
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0031: ldind.u1
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0039: ldind.u1
-    IL_003A: mul
-    IL_003B: conv.u1
-    IL_003C: add
-    IL_003D: conv.u1
-    IL_003E: stloc.1
-    IL_003F: ldloc.2
-    IL_0040: ldc.i4.1
-    IL_0041: add
-    IL_0042: stloc.2
-    IL_0043: ldloc.2
-    IL_0044: ldloc.0
-    IL_0045: blt.s IL_0029
-    IL_0047: ldloc.1
-    IL_0048: ret
-
-}
-short dot(in ReadOnlySpan<short> lhs, in ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Int16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Int16>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 39
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0043
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0031: ldind.i2
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0039: ldind.i2
-    IL_003A: mul
-    IL_003B: conv.i2
-    IL_003C: add
-    IL_003D: conv.i2
-    IL_003E: stloc.1
-    IL_003F: ldloc.2
-    IL_0040: ldc.i4.1
-    IL_0041: add
-    IL_0042: stloc.2
-    IL_0043: ldloc.2
-    IL_0044: ldloc.0
-    IL_0045: blt.s IL_0029
-    IL_0047: ldloc.1
-    IL_0048: ret
-
-}
-ushort dot(in ReadOnlySpan<ushort> lhs, in ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.UInt16>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.UInt16>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 48
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0043
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0031: ldind.u2
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0039: ldind.u2
-    IL_003A: mul
-    IL_003B: conv.u2
-    IL_003C: add
-    IL_003D: conv.u2
-    IL_003E: stloc.1
-    IL_003F: ldloc.2
-    IL_0040: ldc.i4.1
-    IL_0041: add
-    IL_0042: stloc.2
-    IL_0043: ldloc.2
-    IL_0044: ldloc.0
-    IL_0045: blt.s IL_0029
-    IL_0047: ldloc.1
-    IL_0048: ret
-
-}
-int dot(in ReadOnlySpan<int> lhs, in ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Int32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Int32>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 57
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0041
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0031: ldind.i4
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0039: ldind.i4
-    IL_003A: mul
-    IL_003B: add
-    IL_003C: stloc.1
-    IL_003D: ldloc.2
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.2
-    IL_0041: ldloc.2
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_0029
-    IL_0045: ldloc.1
-    IL_0046: ret
-
-}
-uint dot(in ReadOnlySpan<uint> lhs, in ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.UInt32>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.UInt32>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 66
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: stloc.1
-    IL_0025: ldc.i4.0
-    IL_0026: stloc.2
-    IL_0027: br.s IL_0041
-    IL_0029: ldloc.1
-    IL_002A: ldarg.0
-    IL_002B: ldloc.2
-    IL_002C: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0031: ldind.u4
-    IL_0032: ldarg.1
-    IL_0033: ldloc.2
-    IL_0034: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0039: ldind.u4
-    IL_003A: mul
-    IL_003B: add
-    IL_003C: stloc.1
-    IL_003D: ldloc.2
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.2
-    IL_0041: ldloc.2
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_0029
-    IL_0045: ldloc.1
-    IL_0046: ret
-
-}
-long dot(in ReadOnlySpan<long> lhs, in ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Int64>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Int64>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 75
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: conv.i8
-    IL_0025: stloc.1
-    IL_0026: ldc.i4.0
-    IL_0027: stloc.2
-    IL_0028: br.s IL_0042
-    IL_002A: ldloc.1
-    IL_002B: ldarg.0
-    IL_002C: ldloc.2
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: ldarg.1
-    IL_0034: ldloc.2
-    IL_0035: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_003A: ldind.i8
-    IL_003B: mul
-    IL_003C: add
-    IL_003D: stloc.1
-    IL_003E: ldloc.2
-    IL_003F: ldc.i4.1
-    IL_0040: add
-    IL_0041: stloc.2
-    IL_0042: ldloc.2
-    IL_0043: ldloc.0
-    IL_0044: blt.s IL_002A
-    IL_0046: ldloc.1
-    IL_0047: ret
-
-}
-ulong dot(in ReadOnlySpan<ulong> lhs, in ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.UInt64>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.UInt64>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 84
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.i4.0
-    IL_0024: conv.i8
-    IL_0025: stloc.1
-    IL_0026: ldc.i4.0
-    IL_0027: stloc.2
-    IL_0028: br.s IL_0042
-    IL_002A: ldloc.1
-    IL_002B: ldarg.0
-    IL_002C: ldloc.2
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: ldarg.1
-    IL_0034: ldloc.2
-    IL_0035: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_003A: ldind.i8
-    IL_003B: mul
-    IL_003C: add
-    IL_003D: stloc.1
-    IL_003E: ldloc.2
-    IL_003F: ldc.i4.1
-    IL_0040: add
-    IL_0041: stloc.2
-    IL_0042: ldloc.2
-    IL_0043: ldloc.0
-    IL_0044: blt.s IL_002A
-    IL_0046: ldloc.1
-    IL_0047: ret
-
-}
-float dot(in ReadOnlySpan<float> lhs, in ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Single>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Single>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 93
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.r4 0
-    IL_0028: stloc.1
-    IL_0029: ldc.i4.0
-    IL_002A: stloc.2
-    IL_002B: br.s IL_0045
-    IL_002D: ldloc.1
-    IL_002E: ldarg.0
-    IL_002F: ldloc.2
-    IL_0030: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0035: ldind.r4
-    IL_0036: ldarg.1
-    IL_0037: ldloc.2
-    IL_0038: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_003D: ldind.r4
-    IL_003E: mul
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.2
-    IL_0042: ldc.i4.1
-    IL_0043: add
-    IL_0044: stloc.2
-    IL_0045: ldloc.2
-    IL_0046: ldloc.0
-    IL_0047: blt.s IL_002D
-    IL_0049: ldloc.1
-    IL_004A: ret
-
-}
-double dot(in ReadOnlySpan<double> lhs, in ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.ReadOnlySpan`1<System.Double>
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.ReadOnlySpan`1<System.Double>
-    IL_000C: ldstr "dot"
-    IL_0011: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Dot.cs"
-    IL_0016: ldc.i4.s 102
-    IL_0018: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_001D: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0022: stloc.0
-    IL_0023: ldc.r8 0
-    IL_002C: stloc.1
-    IL_002D: ldc.i4.0
-    IL_002E: stloc.2
-    IL_002F: br.s IL_0049
-    IL_0031: ldloc.1
-    IL_0032: ldarg.0
-    IL_0033: ldloc.2
-    IL_0034: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0039: ldind.r8
-    IL_003A: ldarg.1
-    IL_003B: ldloc.2
-    IL_003C: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0041: ldind.r8
-    IL_0042: mul
-    IL_0043: add
-    IL_0044: stloc.1
-    IL_0045: ldloc.2
-    IL_0046: ldc.i4.1
-    IL_0047: add
-    IL_0048: stloc.2
-    IL_0049: ldloc.2
-    IL_004A: ldloc.0
-    IL_004B: blt.s IL_0031
-    IL_004D: ldloc.1
-    IL_004E: ret
-
-}
-Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::eq(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::eq(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::eq(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::eq(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::eq(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::eq(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::eq(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::eq(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::eq(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::eq(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 101
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 105
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 109
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 113
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 117
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 121
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4.s 125
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4 129
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4 133
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "eq"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Eq.cs"
-    IL_000E: ldc.i4 137
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_0022: call System.Span`1<System.Boolean> Z0.math::eq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
-    IL_0027: ret
-
-}
-Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 20
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: call System.SByte Z0.math::flip(System.SByte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 28
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: call System.Byte Z0.math::flip(System.Byte)
-    IL_0033: stind.i1
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 36
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: call System.Int16 Z0.math::flip(System.Int16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 44
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: call System.UInt16 Z0.math::flip(System.UInt16)
-    IL_0033: stind.i2
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 52
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: call System.Int32 Z0.math::flip(System.Int32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 60
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: call System.UInt32 Z0.math::flip(System.UInt32)
-    IL_0033: stind.i4
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 68
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.Int64 Z0.math::flip(System.Int64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "flip"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Flip.cs"
-    IL_000C: ldc.i4.s 76
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0038
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s src
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: call System.UInt64 Z0.math::flip(System.UInt64)
-    IL_0033: stind.i8
-    IL_0034: ldloc.1
-    IL_0035: ldc.i4.1
-    IL_0036: add
-    IL_0037: stloc.1
-    IL_0038: ldloc.1
-    IL_0039: ldloc.0
-    IL_003A: blt.s IL_001D
-    IL_003C: ldarg.1
-    IL_003D: ret
-
-}
-ref Span<sbyte> flip(ref Span<sbyte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000B: call System.SByte& Z0.math::flip(System.SByte&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<byte> flip(ref Span<byte> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000B: call System.Byte& Z0.math::flip(System.Byte&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<short> flip(ref Span<short> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000B: call System.Int16& Z0.math::flip(System.Int16&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<ushort> flip(ref Span<ushort> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000B: call System.UInt16& Z0.math::flip(System.UInt16&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<int> flip(ref Span<int> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000B: call System.Int32& Z0.math::flip(System.Int32&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<uint> flip(ref Span<uint> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000B: call System.UInt32& Z0.math::flip(System.UInt32&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<long> flip(ref Span<long> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000B: call System.Int64& Z0.math::flip(System.Int64&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-ref Span<ulong> flip(ref Span<ulong> io)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarg.0
-    IL_0005: ldloc.0
-    IL_0006: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000B: call System.UInt64& Z0.math::flip(System.UInt64&)
-    IL_0010: pop
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarg.0
-    IL_0017: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001C: blt.s IL_0004
-    IL_001E: ldarg.0
-    IL_001F: ret
-
-}
-Span<sbyte> flip(ReadOnlySpan<sbyte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.SByte> Z0.xfunc::Replicate<System.SByte>(System.ReadOnlySpan`1<System.SByte>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.SByte>& Z0.math::flip(System.Span`1<System.SByte>&)
-    IL_000E: ldobj System.Span`1<System.SByte>
-    IL_0013: ret
-
-}
-Span<byte> flip(ReadOnlySpan<byte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Byte> Z0.xfunc::Replicate<System.Byte>(System.ReadOnlySpan`1<System.Byte>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Byte>& Z0.math::flip(System.Span`1<System.Byte>&)
-    IL_000E: ldobj System.Span`1<System.Byte>
-    IL_0013: ret
-
-}
-Span<short> flip(ReadOnlySpan<short> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int16> Z0.xfunc::Replicate<System.Int16>(System.ReadOnlySpan`1<System.Int16>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int16>& Z0.math::flip(System.Span`1<System.Int16>&)
-    IL_000E: ldobj System.Span`1<System.Int16>
-    IL_0013: ret
-
-}
-Span<ushort> flip(ReadOnlySpan<ushort> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt16> Z0.xfunc::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt16>& Z0.math::flip(System.Span`1<System.UInt16>&)
-    IL_000E: ldobj System.Span`1<System.UInt16>
-    IL_0013: ret
-
-}
-Span<int> flip(ReadOnlySpan<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int32> Z0.xfunc::Replicate<System.Int32>(System.ReadOnlySpan`1<System.Int32>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int32>& Z0.math::flip(System.Span`1<System.Int32>&)
-    IL_000E: ldobj System.Span`1<System.Int32>
-    IL_0013: ret
-
-}
-Span<uint> flip(ReadOnlySpan<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt32> Z0.xfunc::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt32>& Z0.math::flip(System.Span`1<System.UInt32>&)
-    IL_000E: ldobj System.Span`1<System.UInt32>
-    IL_0013: ret
-
-}
-Span<long> flip(ReadOnlySpan<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.Int64> Z0.xfunc::Replicate<System.Int64>(System.ReadOnlySpan`1<System.Int64>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.Int64>& Z0.math::flip(System.Span`1<System.Int64>&)
-    IL_000E: ldobj System.Span`1<System.Int64>
-    IL_0013: ret
-
-}
-Span<ulong> flip(ReadOnlySpan<ulong> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Span`1<System.UInt64> Z0.xfunc::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>)
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: call System.Span`1<System.UInt64>& Z0.math::flip(System.Span`1<System.UInt64>&)
-    IL_000E: ldobj System.Span`1<System.UInt64>
-    IL_0013: ret
-
-}
-Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: ldind.i1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_001D: ldind.i1
-    IL_001E: call System.Boolean Z0.math::gt(System.SByte,System.SByte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_001D: ldind.u1
-    IL_001E: call System.Boolean Z0.math::gt(System.Byte,System.Byte)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: ldind.i2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_001D: ldind.i2
-    IL_001E: call System.Boolean Z0.math::gt(System.Int16,System.Int16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_001D: ldind.u2
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt16,System.UInt16)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: ldind.i4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_001D: ldind.i4
-    IL_001E: call System.Boolean Z0.math::gt(System.Int32,System.Int32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_001D: ldind.u4
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt32,System.UInt32)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gt(System.Int64,System.Int64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_001D: ldind.i8
-    IL_001E: call System.Boolean Z0.math::gt(System.UInt64,System.UInt64)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0014: ldind.r4
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_001D: ldind.r4
-    IL_001E: call System.Boolean Z0.math::gt(System.Single,System.Single)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0028
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
-    IL_000C: ldarga.s lhs
-    IL_000E: ldloc.0
-    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0014: ldind.r8
-    IL_0015: ldarga.s rhs
-    IL_0017: ldloc.0
-    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_001D: ldind.r8
-    IL_001E: call System.Boolean Z0.math::gt(System.Double,System.Double)
-    IL_0023: stind.i1
-    IL_0024: ldloc.0
-    IL_0025: ldc.i4.1
-    IL_0026: add
-    IL_0027: stloc.0
-    IL_0028: ldloc.0
-    IL_0029: ldarga.s lhs
-    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
-    IL_0030: blt.s IL_0004
-    IL_0032: ldarg.2
-    IL_0033: ret
-
-}
-Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 104
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
-
-}
-Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "gt"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Gt.cs"
-    IL_000E: ldc.i4.s 108
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
-    IL_001F: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
-    IL_0024: ret
+    IL_0004: sub
+    IL_0005: conv.u2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
 
 }
 ref int sub(ref int lhs, int rhs)
@@ -11891,6 +82,730 @@ ref double sub(ref double lhs, double rhs)
     IL_0005: stind.r8
     IL_0006: ldarg.0
     IL_0007: ret
+
+}
+Span<sbyte> sub(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 132
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0030: ldind.i1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0039: ldind.i1
+    IL_003A: call System.SByte Z0.math::sub(System.SByte,System.SByte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<byte> sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 140
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0039: ldind.u1
+    IL_003A: call System.Byte Z0.math::sub(System.Byte,System.Byte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<short> sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 148
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0039: ldind.i2
+    IL_003A: call System.Int16 Z0.math::sub(System.Int16,System.Int16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<ushort> sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 156
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0039: ldind.u2
+    IL_003A: call System.UInt16 Z0.math::sub(System.UInt16,System.UInt16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<int> sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 164
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int32 Z0.math::sub(System.Int32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<uint> sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 172
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0039: ldind.u4
+    IL_003A: call System.UInt32 Z0.math::sub(System.UInt32,System.UInt32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<long> sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 180
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.Int64 Z0.math::sub(System.Int64,System.Int64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<ulong> sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 188
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.UInt64 Z0.math::sub(System.UInt64,System.UInt64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<float> sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 196
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0030: ldind.r4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0039: ldind.r4
+    IL_003A: call System.Single Z0.math::sub(System.Single,System.Single)
+    IL_003F: stind.r4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<double> sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 204
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0030: ldind.r8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0039: ldind.r8
+    IL_003A: call System.Double Z0.math::sub(System.Double,System.Double)
+    IL_003F: stind.r8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<sbyte> sub(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 212
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0032: ldind.i1
+    IL_0033: sub
+    IL_0034: conv.i1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<byte> sub(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 220
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0032: ldind.u1
+    IL_0033: sub
+    IL_0034: conv.u1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<short> sub(Span<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 228
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0032: ldind.i2
+    IL_0033: sub
+    IL_0034: conv.i2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<ushort> sub(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 236
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0032: ldind.u2
+    IL_0033: sub
+    IL_0034: conv.u2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<int> sub(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 244
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: sub
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> sub(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 252
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: sub
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> sub(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 260
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: sub
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> sub(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 268
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: sub
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> sub(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 276
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: sub
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> sub(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "sub"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Sub.cs"
+    IL_000C: ldc.i4 284
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: sub
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
 
 }
 float acos(float x)
@@ -12486,6 +1401,28 @@ ulong xor(ulong lhs, ulong rhs)
     IL_0003: ret
 
 }
+float xor(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_000C: xor
+    IL_000D: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
+    IL_0012: ret
+
+}
+double xor(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_000C: xor
+    IL_000D: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
+    IL_0012: ret
+
+}
 ref sbyte xor(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
@@ -12586,2286 +1523,878 @@ ref ulong xor(ref ulong lhs, ulong rhs)
     IL_0007: ret
 
 }
-Span<sbyte> Mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+ref float xor(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 23
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::mul(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> Mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 31
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::mul(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<short> Mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 39
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::mul(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> Mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 47
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::mul(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> Mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 54
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::mul(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> Mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 63
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::mul(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> Mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 71
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::mul(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> Mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 79
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::mul(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<float> Mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 87
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::mul(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<double> Mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 95
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::mul(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> Mul(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 103
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002F: ldind.i1
-    IL_0030: mul
-    IL_0031: conv.i1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<byte> Mul(Span<byte> lhs, ReadOnlySpan<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 111
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u1
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002F: ldind.u1
-    IL_0030: mul
-    IL_0031: conv.u1
-    IL_0032: stind.i1
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<short> Mul(Span<short> lhs, ReadOnlySpan<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 119
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.i2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002F: ldind.i2
-    IL_0030: mul
-    IL_0031: conv.i2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<ushort> Mul(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4.s 127
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0037
-    IL_001D: ldarga.s lhs
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: dup
-    IL_0026: ldind.u2
-    IL_0027: ldarga.s rhs
-    IL_0029: ldloc.1
-    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002F: ldind.u2
-    IL_0030: mul
-    IL_0031: conv.u2
-    IL_0032: stind.i2
-    IL_0033: ldloc.1
-    IL_0034: ldc.i4.1
-    IL_0035: add
-    IL_0036: stloc.1
-    IL_0037: ldloc.1
-    IL_0038: ldloc.0
-    IL_0039: blt.s IL_001D
-    IL_003B: ldarg.0
-    IL_003C: ret
-
-}
-Span<int> Mul(Span<int> lhs, ReadOnlySpan<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 135
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: mul
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<uint> Mul(Span<uint> lhs, ReadOnlySpan<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 143
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: mul
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<long> Mul(Span<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 151
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: mul
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<ulong> Mul(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 159
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: mul
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<float> Mul(Span<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 167
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: mul
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<double> Mul(Span<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "Mul"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\extensions\\Mul.cs"
-    IL_000C: ldc.i4 175
-    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001B: stloc.0
-    IL_001C: ldc.i4.0
-    IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
-    IL_0022: ldloc.1
-    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: mul
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
-
-}
-Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 23
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::add(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 31
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_003E
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: add
-    IL_0038: conv.u1
-    IL_0039: stind.i1
-    IL_003A: ldloc.1
-    IL_003B: ldc.i4.1
-    IL_003C: add
-    IL_003D: stloc.1
-    IL_003E: ldloc.1
-    IL_003F: ldloc.0
-    IL_0040: blt.s IL_001D
-    IL_0042: ldarg.2
-    IL_0043: ret
-
-}
-Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 39
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_002D: ldind.i2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0036: ldind.i2
-    IL_0037: call System.Int16 Z0.math::add(System.Int16,System.Int16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 47
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_002D: ldind.u2
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0036: ldind.u2
-    IL_0037: call System.UInt16 Z0.math::add(System.UInt16,System.UInt16)
-    IL_003C: stind.i2
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 55
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_002D: ldind.i4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0036: ldind.i4
-    IL_0037: call System.Int32 Z0.math::add(System.Int32,System.Int32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 63
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_002D: ldind.u4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0036: ldind.u4
-    IL_0037: call System.UInt32 Z0.math::add(System.UInt32,System.UInt32)
-    IL_003C: stind.i4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 71
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.Int64 Z0.math::add(System.Int64,System.Int64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 79
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_002D: ldind.i8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0036: ldind.i8
-    IL_0037: call System.UInt64 Z0.math::add(System.UInt64,System.UInt64)
-    IL_003C: stind.i8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 87
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_002D: ldind.r4
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0036: ldind.r4
-    IL_0037: call System.Single Z0.math::add(System.Single,System.Single)
-    IL_003C: stind.r4
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4.s 95
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_002D: ldind.r8
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0036: ldind.r8
-    IL_0037: call System.Double Z0.math::add(System.Double,System.Double)
-    IL_003C: stind.r8
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
-
-}
-Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
     IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 103
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.SByte> zfunc::span<System.SByte>(System.Int32)
-    IL_001F: call System.Span`1<System.SByte> Z0.math::add(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>)
-    IL_0024: ret
+    IL_0004: call System.Single Z0.math::xor(System.Single,System.Single)
+    IL_0009: stind.r4
+    IL_000A: ldarg.0
+    IL_000B: ret
 
 }
-Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+ref double xor(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
     IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 107
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Byte> zfunc::span<System.Byte>(System.Int32)
-    IL_001F: call System.Span`1<System.Byte> Z0.math::add(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>)
-    IL_0024: ret
+    IL_0004: call System.Double Z0.math::xor(System.Double,System.Double)
+    IL_0009: stind.r8
+    IL_000A: ldarg.0
+    IL_000B: ret
 
 }
-Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+long pow(long b, long exp)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
+    IL_0000: ldarg.1
+    IL_0001: ldc.i4.0
+    IL_0002: conv.i8
+    IL_0003: bge.s IL_0008
+    IL_0005: ldc.i4.0
+    IL_0006: conv.i8
+    IL_0007: ret
+    IL_0008: ldc.i4.1
+    IL_0009: conv.i8
+    IL_000A: stloc.0
+    IL_000B: ldarg.1
+    IL_000C: ldc.i4.1
+    IL_000D: conv.i8
+    IL_000E: and
+    IL_000F: brfalse.s IL_0015
+    IL_0011: ldloc.0
+    IL_0012: ldarg.0
+    IL_0013: mul
+    IL_0014: stloc.0
+    IL_0015: ldarg.1
+    IL_0016: ldc.i4.1
+    IL_0017: shr
+    IL_0018: starg.s exp
+    IL_001A: ldarg.1
+    IL_001B: brfalse.s IL_0024
+    IL_001D: ldarg.0
+    IL_001E: ldarg.0
+    IL_001F: mul
+    IL_0020: starg.s b
+    IL_0022: br.s IL_000B
+    IL_0024: ldloc.0
+    IL_0025: ret
+
+}
+ulong pow(ulong b, ulong exp)
+{
+    IL_0000: ldc.i4.1
+    IL_0001: conv.i8
+    IL_0002: stloc.0
     IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 111
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Int16> zfunc::span<System.Int16>(System.Int32)
-    IL_001F: call System.Span`1<System.Int16> Z0.math::add(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>)
-    IL_0024: ret
+    IL_0004: ldc.i4.1
+    IL_0005: conv.i8
+    IL_0006: and
+    IL_0007: brfalse.s IL_000D
+    IL_0009: ldloc.0
+    IL_000A: ldarg.0
+    IL_000B: mul
+    IL_000C: stloc.0
+    IL_000D: ldarg.1
+    IL_000E: ldc.i4.1
+    IL_000F: shr.un
+    IL_0010: starg.s exp
+    IL_0012: ldarg.1
+    IL_0013: brfalse.s IL_001C
+    IL_0015: ldarg.0
+    IL_0016: ldarg.0
+    IL_0017: mul
+    IL_0018: starg.s b
+    IL_001A: br.s IL_0003
+    IL_001C: ldloc.0
+    IL_001D: ret
 
 }
-Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+float pow(float src, float exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 115
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.UInt16> zfunc::span<System.UInt16>(System.Int32)
-    IL_001F: call System.Span`1<System.UInt16> Z0.math::add(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>)
-    IL_0024: ret
+    IL_0002: call System.Single System.MathF::Pow(System.Single,System.Single)
+    IL_0007: ret
 
 }
-Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+double pow(double src, double exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 119
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Int32> zfunc::span<System.Int32>(System.Int32)
-    IL_001F: call System.Span`1<System.Int32> Z0.math::add(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>)
-    IL_0024: ret
+    IL_0002: call System.Double System.Math::Pow(System.Double,System.Double)
+    IL_0007: ret
 
 }
-Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 123
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.UInt32> zfunc::span<System.UInt32>(System.Int32)
-    IL_001F: call System.Span`1<System.UInt32> Z0.math::add(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>)
-    IL_0024: ret
-
-}
-Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4.s 127
-    IL_0010: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0015: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001A: call System.Span`1<System.Int64> zfunc::span<System.Int64>(System.Int32)
-    IL_001F: call System.Span`1<System.Int64> Z0.math::add(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>)
-    IL_0024: ret
-
-}
-Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4 131
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.UInt64> zfunc::span<System.UInt64>(System.Int32)
-    IL_0022: call System.Span`1<System.UInt64> Z0.math::add(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>)
-    IL_0027: ret
-
-}
-Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4 135
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Single> zfunc::span<System.Single>(System.Int32)
-    IL_0022: call System.Span`1<System.Single> Z0.math::add(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>)
-    IL_0027: ret
-
-}
-Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: ldstr "add"
-    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000E: ldc.i4 139
-    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_001D: call System.Span`1<System.Double> zfunc::span<System.Double>(System.Int32)
-    IL_0022: call System.Span`1<System.Double> Z0.math::add(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>)
-    IL_0027: ret
-
-}
-Span<sbyte> add(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 143
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 161
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_003A
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i1
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0032: ldind.i1
-    IL_0033: add
-    IL_0034: conv.i1
-    IL_0035: stind.i1
-    IL_0036: ldloc.1
-    IL_0037: ldc.i4.1
-    IL_0038: add
-    IL_0039: stloc.1
-    IL_003A: ldloc.1
-    IL_003B: ldloc.0
-    IL_003C: blt.s IL_0020
-    IL_003E: ldarg.0
-    IL_003F: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0030: ldind.i1
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0039: ldind.i1
+    IL_003A: call System.SByte Z0.math::pow(System.SByte,System.SByte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<byte> add(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+Span<byte> pow(Span<byte> b, ReadOnlySpan<byte> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 151
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 169
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_003A
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u1
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0032: ldind.u1
-    IL_0033: add
-    IL_0034: conv.u1
-    IL_0035: stind.i1
-    IL_0036: ldloc.1
-    IL_0037: ldc.i4.1
-    IL_0038: add
-    IL_0039: stloc.1
-    IL_003A: ldloc.1
-    IL_003B: ldloc.0
-    IL_003C: blt.s IL_0020
-    IL_003E: ldarg.0
-    IL_003F: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0039: ldind.u1
+    IL_003A: call System.Byte Z0.math::pow(System.Byte,System.Byte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<short> add(Span<short> lhs, ReadOnlySpan<short> rhs)
+Span<short> pow(Span<short> b, ReadOnlySpan<short> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 159
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 177
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_003A
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i2
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_0032: ldind.i2
-    IL_0033: add
-    IL_0034: conv.i2
-    IL_0035: stind.i2
-    IL_0036: ldloc.1
-    IL_0037: ldc.i4.1
-    IL_0038: add
-    IL_0039: stloc.1
-    IL_003A: ldloc.1
-    IL_003B: ldloc.0
-    IL_003C: blt.s IL_0020
-    IL_003E: ldarg.0
-    IL_003F: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0039: ldind.i2
+    IL_003A: call System.Int16 Z0.math::pow(System.Int16,System.Int16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<ushort> add(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+Span<ushort> pow(Span<ushort> b, ReadOnlySpan<ushort> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 167
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 185
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_003A
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u2
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0032: ldind.u2
-    IL_0033: add
-    IL_0034: conv.u2
-    IL_0035: stind.i2
-    IL_0036: ldloc.1
-    IL_0037: ldc.i4.1
-    IL_0038: add
-    IL_0039: stloc.1
-    IL_003A: ldloc.1
-    IL_003B: ldloc.0
-    IL_003C: blt.s IL_0020
-    IL_003E: ldarg.0
-    IL_003F: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0039: ldind.u2
+    IL_003A: call System.UInt16 Z0.math::pow(System.UInt16,System.UInt16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<int> add(Span<int> lhs, ReadOnlySpan<int> rhs)
+Span<int> pow(Span<int> b, ReadOnlySpan<int> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 175
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 193
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_0032: ldind.i4
-    IL_0033: add
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int32 Z0.math::pow(System.Int32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<uint> add(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+Span<uint> pow(Span<uint> b, ReadOnlySpan<uint> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 183
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 201
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.u4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0032: ldind.u4
-    IL_0033: add
-    IL_0034: stind.i4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0039: ldind.u4
+    IL_003A: call System.UInt32 Z0.math::pow(System.UInt32,System.UInt32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<long> add(Span<long> lhs, ReadOnlySpan<long> rhs)
+Span<long> pow(Span<long> b, ReadOnlySpan<long> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 191
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 209
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: add
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.Int64 Z0.math::pow(System.Int64,System.Int64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<ulong> add(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+Span<ulong> pow(Span<ulong> b, ReadOnlySpan<ulong> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 199
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 217
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.i8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0032: ldind.i8
-    IL_0033: add
-    IL_0034: stind.i8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.UInt64 Z0.math::pow(System.UInt64,System.UInt64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<float> add(Span<float> lhs, ReadOnlySpan<float> rhs)
+Span<float> pow(Span<float> b, ReadOnlySpan<float> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 207
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 225
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r4
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
-    IL_0032: ldind.r4
-    IL_0033: add
-    IL_0034: stind.r4
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0030: ldind.r4
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0039: ldind.r4
+    IL_003A: call System.Single Z0.math::pow(System.Single,System.Single)
+    IL_003F: stind.r4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<double> add(Span<double> lhs, ReadOnlySpan<double> rhs)
+Span<double> pow(Span<double> b, ReadOnlySpan<double> exp)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ldstr "add"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\Add.cs"
-    IL_000C: ldc.i4 215
+    IL_0002: ldstr "pow"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Pow.cs"
+    IL_000C: ldc.i4 233
     IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
     IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
     IL_001B: stloc.0
     IL_001C: ldc.i4.0
     IL_001D: stloc.1
-    IL_001E: br.s IL_0039
-    IL_0020: ldarga.s lhs
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s b
     IL_0022: ldloc.1
     IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_0028: dup
-    IL_0029: ldind.r8
-    IL_002A: ldarga.s rhs
-    IL_002C: ldloc.1
-    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
-    IL_0032: ldind.r8
-    IL_0033: add
-    IL_0034: stind.r8
-    IL_0035: ldloc.1
-    IL_0036: ldc.i4.1
-    IL_0037: add
-    IL_0038: stloc.1
-    IL_0039: ldloc.1
-    IL_003A: ldloc.0
-    IL_003B: blt.s IL_0020
-    IL_003D: ldarg.0
-    IL_003E: ret
+    IL_0028: ldarga.s b
+    IL_002A: ldloc.1
+    IL_002B: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0030: ldind.r8
+    IL_0031: ldarga.s exp
+    IL_0033: ldloc.1
+    IL_0034: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0039: ldind.r8
+    IL_003A: call System.Double Z0.math::pow(System.Double,System.Double)
+    IL_003F: stind.r8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.0
+    IL_0049: ret
 
 }
-Span<sbyte> add(Span<sbyte> lhs, sbyte rhs)
+Span<sbyte> pow(Span<sbyte> b, sbyte exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i1
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.i1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarg.1
+    IL_0016: call System.SByte Z0.math::pow(System.SByte,System.SByte)
+    IL_001B: stind.i1
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<byte> add(Span<byte> lhs, byte rhs)
+Span<byte> pow(Span<byte> b, byte exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u1
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.u1
-    IL_0011: stind.i1
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarg.1
+    IL_0016: call System.Byte Z0.math::pow(System.Byte,System.Byte)
+    IL_001B: stind.i1
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<short> add(Span<short> lhs, short rhs)
+Span<short> pow(Span<short> b, short exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i2
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.i2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarg.1
+    IL_0016: call System.Int16 Z0.math::pow(System.Int16,System.Int16)
+    IL_001B: stind.i2
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<ushort> add(Span<ushort> lhs, ushort rhs)
+Span<ushort> pow(Span<ushort> b, ushort exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u2
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: conv.u2
-    IL_0011: stind.i2
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s lhs
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt16 Z0.math::pow(System.UInt16,System.UInt16)
+    IL_001B: stind.i2
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<int> add(Span<int> lhs, int rhs)
+Span<int> pow(Span<int> b, int exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarg.1
+    IL_0016: call System.Int32 Z0.math::pow(System.Int32,System.Int32)
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<uint> add(Span<uint> lhs, uint rhs)
+Span<uint> pow(Span<uint> b, uint exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.u4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt32 Z0.math::pow(System.UInt32,System.UInt32)
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<long> add(Span<long> lhs, long rhs)
+Span<long> pow(Span<long> b, long exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarg.1
+    IL_0016: call System.Int64 Z0.math::pow(System.Int64,System.Int64)
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<ulong> add(Span<ulong> lhs, ulong rhs)
+Span<ulong> pow(Span<ulong> b, ulong exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.i8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.i8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt64 Z0.math::pow(System.UInt64,System.UInt64)
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<float> add(Span<float> lhs, float rhs)
+Span<float> pow(Span<float> b, float exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r4
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.r4
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarg.1
+    IL_0016: call System.Single Z0.math::pow(System.Single,System.Single)
+    IL_001B: stind.r4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<double> add(Span<double> lhs, double rhs)
+Span<double> pow(Span<double> b, double exp)
 {
     IL_0000: ldc.i4.0
     IL_0001: stloc.0
-    IL_0002: br.s IL_0015
-    IL_0004: ldarga.s lhs
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s b
     IL_0006: ldloc.0
     IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
-    IL_000C: dup
-    IL_000D: ldind.r8
-    IL_000E: ldarg.1
-    IL_000F: add
-    IL_0010: stind.r8
-    IL_0011: ldloc.0
-    IL_0012: ldc.i4.1
-    IL_0013: add
-    IL_0014: stloc.0
-    IL_0015: ldloc.0
-    IL_0016: ldarga.s lhs
-    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
-    IL_001D: blt.s IL_0004
-    IL_001F: ldarg.0
-    IL_0020: ret
+    IL_000C: ldarga.s b
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarg.1
+    IL_0016: call System.Double Z0.math::pow(System.Double,System.Double)
+    IL_001B: stind.r8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s b
+    IL_0023: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.0
+    IL_002B: ret
 
 }
-Span<sbyte> and(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+bool isPow2(sbyte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 21
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_002D: ldind.i1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_0036: ldind.i1
-    IL_0037: call System.SByte Z0.math::and(System.SByte,System.SByte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Span<byte> and(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+bool isPow2(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldstr "and"
-    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\fused\\And.cs"
-    IL_000C: ldc.i4.s 29
-    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_0018: stloc.0
-    IL_0019: ldc.i4.0
-    IL_001A: stloc.1
-    IL_001B: br.s IL_0041
-    IL_001D: ldarga.s dst
-    IL_001F: ldloc.1
-    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0025: ldarga.s lhs
-    IL_0027: ldloc.1
-    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_002D: ldind.u1
-    IL_002E: ldarga.s rhs
-    IL_0030: ldloc.1
-    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0036: ldind.u1
-    IL_0037: call System.Byte Z0.math::and(System.Byte,System.Byte)
-    IL_003C: stind.i1
-    IL_003D: ldloc.1
-    IL_003E: ldc.i4.1
-    IL_003F: add
-    IL_0040: stloc.1
-    IL_0041: ldloc.1
-    IL_0042: ldloc.0
-    IL_0043: blt.s IL_001D
-    IL_0045: ldarg.2
-    IL_0046: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Quorem<long> quorem(in long lhs, in long rhs)
+bool isPow2(short src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Int64 System.Math::DivRem(System.Int64,System.Int64,System.Int64&)
-    IL_000B: ldloc.0
-    IL_000C: newobj System.Void System.ValueTuple`2<System.Int64,System.Int64>::.ctor(System.Int64,System.Int64)
-    IL_0011: call Z0.Quorem`1<System.Int64> Z0.Quorem`1<System.Int64>::op_Implicit(System.ValueTuple`2<System.Int64,System.Int64>)
-    IL_0016: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Quorem<ulong> quorem(in ulong lhs, in ulong rhs)
+bool isPow2(ushort src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: call System.UInt64 Z0.math::div(System.UInt64,System.UInt64)
-    IL_0009: stloc.0
-    IL_000A: ldarg.0
-    IL_000B: ldind.i8
-    IL_000C: ldloc.0
-    IL_000D: ldarg.1
-    IL_000E: ldind.i8
-    IL_000F: mul
-    IL_0010: sub
-    IL_0011: stloc.1
-    IL_0012: ldloca.s V_0
-    IL_0014: ldloca.s V_1
-    IL_0016: call Z0.Quorem`1<System.UInt64> Z0.Quorem::define<System.UInt64>(System.UInt64&,System.UInt64&)
-    IL_001B: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Quorem<float> quorem(in float lhs, in float rhs)
+bool isPow2(int src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldind.r4
-    IL_0002: ldarg.1
-    IL_0003: ldind.r4
-    IL_0004: call System.Single Z0.math::div(System.Single,System.Single)
-    IL_0009: call System.Single Z0.math::floor(System.Single)
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldind.r4
-    IL_0011: ldloc.0
-    IL_0012: ldarg.1
-    IL_0013: ldind.r4
-    IL_0014: mul
-    IL_0015: sub
-    IL_0016: stloc.1
-    IL_0017: ldloca.s V_0
-    IL_0019: ldloca.s V_1
-    IL_001B: call Z0.Quorem`1<System.Single> Z0.Quorem::define<System.Single>(System.Single&,System.Single&)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Quorem<double> quorem(in double lhs, in double rhs)
+bool isPow2(uint src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldind.r8
-    IL_0002: ldarg.1
-    IL_0003: ldind.r8
-    IL_0004: call System.Double Z0.math::div(System.Double,System.Double)
-    IL_0009: call System.Double Z0.math::floor(System.Double)
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldind.r8
-    IL_0011: ldloc.0
-    IL_0012: ldarg.1
-    IL_0013: ldind.r8
-    IL_0014: mul
-    IL_0015: sub
-    IL_0016: stloc.1
-    IL_0017: ldloca.s V_0
-    IL_0019: ldloca.s V_1
-    IL_001B: call Z0.Quorem`1<System.Double> Z0.Quorem::define<System.Double>(System.Double&,System.Double&)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: sub
+    IL_0004: and
+    IL_0005: ldc.i4.0
+    IL_0006: ceq
+    IL_0008: ret
 
 }
-Quorem<Decimal> quorem(in Decimal lhs, in Decimal rhs)
+bool isPow2(long src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj System.Decimal
-    IL_0006: ldarg.1
-    IL_0007: ldobj System.Decimal
-    IL_000C: call System.Decimal Z0.math::div(System.Decimal,System.Decimal)
-    IL_0011: stloc.0
-    IL_0012: ldarg.0
-    IL_0013: ldobj System.Decimal
-    IL_0018: ldloc.0
-    IL_0019: ldarg.1
-    IL_001A: ldobj System.Decimal
-    IL_001F: call System.Decimal System.Decimal::op_Multiply(System.Decimal,System.Decimal)
-    IL_0024: call System.Decimal System.Decimal::op_Subtraction(System.Decimal,System.Decimal)
-    IL_0029: stloc.1
-    IL_002A: ldloca.s V_0
-    IL_002C: ldloca.s V_1
-    IL_002E: call Z0.Quorem`1<System.Decimal> Z0.Quorem::define<System.Decimal>(System.Decimal&,System.Decimal&)
-    IL_0033: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: conv.i8
+    IL_0004: sub
+    IL_0005: and
+    IL_0006: ldc.i4.0
+    IL_0007: conv.i8
+    IL_0008: ceq
+    IL_000A: ret
 
 }
-Quorem<BigInteger> quorem(in BigInteger lhs, in BigInteger rhs)
-{
-    IL_0000: call System.Numerics.BigInteger System.Numerics.BigInteger::get_Zero()
-    IL_0005: stloc.0
-    IL_0006: ldarg.0
-    IL_0007: ldobj System.Numerics.BigInteger
-    IL_000C: ldarg.1
-    IL_000D: ldobj System.Numerics.BigInteger
-    IL_0012: ldloca.s V_0
-    IL_0014: call System.Numerics.BigInteger System.Numerics.BigInteger::DivRem(System.Numerics.BigInteger,System.Numerics.BigInteger,System.Numerics.BigInteger&)
-    IL_0019: stloc.1
-    IL_001A: ldloca.s V_1
-    IL_001C: ldloca.s V_0
-    IL_001E: call Z0.Quorem`1<System.Numerics.BigInteger> Z0.Quorem::define<System.Numerics.BigInteger>(System.Numerics.BigInteger&,System.Numerics.BigInteger&)
-    IL_0023: ret
-
-}
-ref Quorem<sbyte> quorem(in sbyte lhs, in sbyte rhs, out Quorem<sbyte> dst)
+bool isPow2(ulong src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldloca.s V_0
-    IL_0003: call System.SByte& Z0.math::abs(System.SByte&,System.SByte&)
-    IL_0008: pop
-    IL_0009: ldarg.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.SByte& Z0.math::abs(System.SByte&,System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldloc.1
-    IL_0014: div
-    IL_0015: conv.i1
-    IL_0016: stloc.2
-    IL_0017: ldloc.0
-    IL_0018: ldloc.2
-    IL_0019: ldloc.1
-    IL_001A: mul
-    IL_001B: sub
-    IL_001C: conv.i1
-    IL_001D: stloc.3
-    IL_001E: ldarg.2
-    IL_001F: ldloca.s V_2
-    IL_0021: ldloca.s V_3
-    IL_0023: call Z0.Quorem`1<System.SByte> Z0.Quorem::define<System.SByte>(System.SByte&,System.SByte&)
-    IL_0028: stobj Z0.Quorem`1<System.SByte>
-    IL_002D: ldarg.2
-    IL_002E: ret
-
-}
-ref Quorem<byte> quorem(in byte lhs, in byte rhs, out Quorem<byte> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: div
-    IL_0005: conv.u1
-    IL_0006: stloc.0
-    IL_0007: ldarg.0
-    IL_0008: ldind.u1
-    IL_0009: ldloc.0
-    IL_000A: ldarg.1
-    IL_000B: ldind.u1
-    IL_000C: mul
-    IL_000D: sub
-    IL_000E: conv.u1
-    IL_000F: stloc.1
-    IL_0010: ldarg.2
-    IL_0011: ldloca.s V_0
-    IL_0013: ldloca.s V_1
-    IL_0015: call Z0.Quorem`1<System.Byte> Z0.Quorem::define<System.Byte>(System.Byte&,System.Byte&)
-    IL_001A: stobj Z0.Quorem`1<System.Byte>
-    IL_001F: ldarg.2
-    IL_0020: ret
-
-}
-ref Quorem<short> quorem(in short lhs, in short rhs, out Quorem<short> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldloca.s V_0
-    IL_0003: call System.Int16& Z0.math::abs(System.Int16&,System.Int16&)
-    IL_0008: pop
-    IL_0009: ldarg.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.Int16& Z0.math::abs(System.Int16&,System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldloc.1
-    IL_0014: div
-    IL_0015: conv.i2
-    IL_0016: stloc.2
-    IL_0017: ldloc.0
-    IL_0018: ldloc.2
-    IL_0019: ldloc.1
-    IL_001A: mul
-    IL_001B: sub
-    IL_001C: conv.i2
-    IL_001D: stloc.3
-    IL_001E: ldarg.2
-    IL_001F: ldloca.s V_2
-    IL_0021: ldloca.s V_3
-    IL_0023: call Z0.Quorem`1<System.Int16> Z0.Quorem::define<System.Int16>(System.Int16&,System.Int16&)
-    IL_0028: stobj Z0.Quorem`1<System.Int16>
-    IL_002D: ldarg.2
-    IL_002E: ret
-
-}
-ref Quorem<ushort> quorem(in ushort lhs, in ushort rhs, out Quorem<ushort> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u2
-    IL_0004: div
-    IL_0005: conv.u2
-    IL_0006: stloc.0
-    IL_0007: ldarg.0
-    IL_0008: ldind.u2
-    IL_0009: ldloc.0
-    IL_000A: ldarg.1
-    IL_000B: ldind.u2
-    IL_000C: mul
-    IL_000D: sub
-    IL_000E: conv.u2
-    IL_000F: stloc.1
-    IL_0010: ldarg.2
-    IL_0011: ldloca.s V_0
-    IL_0013: ldloca.s V_1
-    IL_0015: call Z0.Quorem`1<System.UInt16> Z0.Quorem::define<System.UInt16>(System.UInt16&,System.UInt16&)
-    IL_001A: stobj Z0.Quorem`1<System.UInt16>
-    IL_001F: ldarg.2
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.1
+    IL_0003: conv.i8
+    IL_0004: sub
+    IL_0005: and
+    IL_0006: ldc.i4.0
+    IL_0007: conv.i8
+    IL_0008: ceq
+    IL_000A: ret
 
 }
 ref Quorem<int> quorem(in int lhs, in int rhs, out Quorem<int> dst)
 {
     IL_0000: ldarg.0
-    IL_0001: ldloca.s V_0
-    IL_0003: call System.Int32& Z0.math::abs(System.Int32&,System.Int32&)
-    IL_0008: pop
-    IL_0009: ldarg.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.Int32& Z0.math::abs(System.Int32&,System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldloc.1
-    IL_0014: div
-    IL_0015: stloc.2
-    IL_0016: ldloc.0
-    IL_0017: ldloc.2
-    IL_0018: ldloc.1
-    IL_0019: mul
-    IL_001A: sub
-    IL_001B: stloc.3
-    IL_001C: ldarg.2
-    IL_001D: ldloca.s V_2
-    IL_001F: ldloca.s V_3
-    IL_0021: call Z0.Quorem`1<System.Int32> Z0.Quorem::define<System.Int32>(System.Int32&,System.Int32&)
-    IL_0026: stobj Z0.Quorem`1<System.Int32>
-    IL_002B: ldarg.2
-    IL_002C: ret
-
-}
-ref Quorem<uint> quorem(in uint lhs, in uint rhs, out Quorem<uint> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u4
-    IL_0004: div.un
-    IL_0005: stloc.0
-    IL_0006: ldarg.0
-    IL_0007: ldind.u4
-    IL_0008: ldloc.0
-    IL_0009: ldarg.1
-    IL_000A: ldind.u4
-    IL_000B: mul
-    IL_000C: sub
-    IL_000D: stloc.1
-    IL_000E: ldarg.2
-    IL_000F: ldloca.s V_0
-    IL_0011: ldloca.s V_1
-    IL_0013: call Z0.Quorem`1<System.UInt32> Z0.Quorem::define<System.UInt32>(System.UInt32&,System.UInt32&)
-    IL_0018: stobj Z0.Quorem`1<System.UInt32>
-    IL_001D: ldarg.2
-    IL_001E: ret
-
-}
-ref Quorem<long> quorem(in long lhs, in long rhs, out Quorem<long> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldloca.s V_0
-    IL_0003: call System.Int64& Z0.math::abs(System.Int64&,System.Int64&)
-    IL_0008: pop
-    IL_0009: ldarg.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.Int64& Z0.math::abs(System.Int64&,System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldloc.1
-    IL_0014: div
-    IL_0015: stloc.2
-    IL_0016: ldloc.0
-    IL_0017: ldloc.2
-    IL_0018: ldloc.1
-    IL_0019: mul
-    IL_001A: sub
-    IL_001B: stloc.3
-    IL_001C: ldarg.2
-    IL_001D: ldloca.s V_2
-    IL_001F: ldloca.s V_3
-    IL_0021: call Z0.Quorem`1<System.Int64> Z0.Quorem::define<System.Int64>(System.Int64&,System.Int64&)
-    IL_0026: stobj Z0.Quorem`1<System.Int64>
-    IL_002B: ldarg.2
-    IL_002C: ret
-
-}
-ref Quorem<ulong> quorem(in ulong lhs, in ulong rhs, out Quorem<ulong> dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: div.un
-    IL_0005: stloc.0
-    IL_0006: ldarg.0
-    IL_0007: ldind.i8
-    IL_0008: ldloc.0
-    IL_0009: ldarg.1
-    IL_000A: ldind.i8
-    IL_000B: mul
-    IL_000C: sub
-    IL_000D: stloc.1
-    IL_000E: ldarg.2
-    IL_000F: ldloca.s V_0
-    IL_0011: ldloca.s V_1
-    IL_0013: call Z0.Quorem`1<System.UInt64> Z0.Quorem::define<System.UInt64>(System.UInt64&,System.UInt64&)
-    IL_0018: stobj Z0.Quorem`1<System.UInt64>
-    IL_001D: ldarg.2
-    IL_001E: ret
+    IL_0001: ldind.i4
+    IL_0002: call System.Int32 Z0.math::abs(System.Int32)
+    IL_0007: stloc.0
+    IL_0008: ldarg.1
+    IL_0009: ldind.i4
+    IL_000A: call System.Int32 Z0.math::abs(System.Int32)
+    IL_000F: stloc.1
+    IL_0010: ldloc.0
+    IL_0011: ldloc.1
+    IL_0012: div
+    IL_0013: stloc.2
+    IL_0014: ldloc.0
+    IL_0015: ldloc.2
+    IL_0016: ldloc.1
+    IL_0017: mul
+    IL_0018: sub
+    IL_0019: stloc.3
+    IL_001A: ldarg.2
+    IL_001B: ldloca.s V_2
+    IL_001D: ldloca.s V_3
+    IL_001F: call Z0.Quorem`1<System.Int32> Z0.Quorem::define<System.Int32>(System.Int32&,System.Int32&)
+    IL_0024: stobj Z0.Quorem`1<System.Int32>
+    IL_0029: ldarg.2
+    IL_002A: ret
 
 }
 float relerr(float lhs, float rhs)
@@ -14976,404 +2505,388 @@ ref double round(ref double src, int scale)
     IL_000B: ret
 
 }
-sbyte shiftl(sbyte lhs, int rhs)
+Span<float> round(ReadOnlySpan<float> src, int scale, Span<float> dst)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.i1
-    IL_0007: ret
+    IL_0001: ldarg.2
+    IL_0002: ldstr "round"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Round.cs"
+    IL_000C: ldc.i4.s 42
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0039
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_002D: ldind.r4
+    IL_002E: ldarg.1
+    IL_002F: call System.Single Z0.math::round(System.Single,System.Int32)
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_001D
+    IL_003D: ldarg.2
+    IL_003E: ret
 
 }
-byte shiftl(byte lhs, int rhs)
+Span<double> round(ReadOnlySpan<double> src, int scale, Span<double> dst)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.u1
-    IL_0007: ret
+    IL_0001: ldarg.2
+    IL_0002: ldstr "round"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\Round.cs"
+    IL_000C: ldc.i4.s 50
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0039
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_002D: ldind.r8
+    IL_002E: ldarg.1
+    IL_002F: call System.Double Z0.math::round(System.Double,System.Int32)
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_001D
+    IL_003D: ldarg.2
+    IL_003E: ret
 
 }
-short shiftl(short lhs, int rhs)
+Span<float> round(Span<float> io, int scale)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.i2
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0017
+    IL_0004: ldarga.s io
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_000C: ldarg.1
+    IL_000D: call System.Single& Z0.math::round(System.Single&,System.Int32)
+    IL_0012: pop
+    IL_0013: ldloc.0
+    IL_0014: ldc.i4.1
+    IL_0015: add
+    IL_0016: stloc.0
+    IL_0017: ldloc.0
+    IL_0018: ldarga.s io
+    IL_001A: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_001F: blt.s IL_0004
+    IL_0021: ldarg.0
+    IL_0022: ret
 
 }
-ushort shiftl(ushort lhs, int rhs)
+Span<double> round(Span<double> io, int scale)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.u2
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0017
+    IL_0004: ldarga.s io
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_000C: ldarg.1
+    IL_000D: call System.Double& Z0.math::round(System.Double&,System.Int32)
+    IL_0012: pop
+    IL_0013: ldloc.0
+    IL_0014: ldc.i4.1
+    IL_0015: add
+    IL_0016: stloc.0
+    IL_0017: ldloc.0
+    IL_0018: ldarga.s io
+    IL_001A: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_001F: blt.s IL_0004
+    IL_0021: ldarg.0
+    IL_0022: ret
 
 }
-int shiftl(int lhs, int rhs)
+Span<sbyte> scale(ReadOnlySpan<sbyte> src, sbyte factor, Span<sbyte> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarg.1
+    IL_0016: call System.SByte Z0.math::mul(System.SByte,System.SByte)
+    IL_001B: stind.i1
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-uint shiftl(uint lhs, int rhs)
+Span<byte> scale(ReadOnlySpan<byte> src, byte factor, Span<byte> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarg.1
+    IL_0016: call System.Byte Z0.math::mul(System.Byte,System.Byte)
+    IL_001B: stind.i1
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-long shiftl(long lhs, int rhs)
+Span<short> scale(ReadOnlySpan<short> src, short factor, Span<short> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarg.1
+    IL_0016: call System.Int16 Z0.math::mul(System.Int16,System.Int16)
+    IL_001B: stind.i2
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ulong shiftl(ulong lhs, int rhs)
+Span<ushort> scale(ReadOnlySpan<ushort> src, ushort factor, Span<ushort> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt16 Z0.math::mul(System.UInt16,System.UInt16)
+    IL_001B: stind.i2
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref sbyte shiftl(ref sbyte lhs, int rhs)
+Span<int> scale(ReadOnlySpan<int> src, int factor, Span<int> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.i1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarg.1
+    IL_0016: call System.Int32 Z0.math::mul(System.Int32,System.Int32)
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref byte shiftl(ref byte lhs, int rhs)
+Span<uint> scale(ReadOnlySpan<uint> src, uint factor, Span<uint> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.u1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt32 Z0.math::mul(System.UInt32,System.UInt32)
+    IL_001B: stind.i4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref short shiftl(ref short lhs, int rhs)
+Span<long> scale(ReadOnlySpan<long> src, long factor, Span<long> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.i2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarg.1
+    IL_0016: call System.Int64 Z0.math::mul(System.Int64,System.Int64)
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref ushort shiftl(ref ushort lhs, int rhs)
+Span<ulong> scale(ReadOnlySpan<ulong> src, ulong factor, Span<ulong> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.u2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarg.1
+    IL_0016: call System.UInt64 Z0.math::mul(System.UInt64,System.UInt64)
+    IL_001B: stind.i8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref int shiftl(ref int lhs, int rhs)
+Span<float> scale(ReadOnlySpan<float> src, float factor, Span<float> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarg.1
+    IL_0016: call System.Single Z0.math::mul(System.Single,System.Single)
+    IL_001B: stind.r4
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
-ref uint shiftl(ref uint lhs, int rhs)
+Span<double> scale(ReadOnlySpan<double> src, double factor, Span<double> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref long shiftl(ref long lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref ulong shiftl(ref ulong lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-sbyte shiftr(sbyte lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.i1
-    IL_0007: ret
-
-}
-byte shiftr(byte lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-short shiftr(short lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.i2
-    IL_0007: ret
-
-}
-ushort shiftr(ushort lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-int shiftr(int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ret
-
-}
-uint shiftr(uint lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ret
-
-}
-long shiftr(long lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ret
-
-}
-ulong shiftr(ulong lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ret
-
-}
-ref sbyte shiftr(ref sbyte lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.i1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref byte shiftr(ref byte lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.u1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref short shiftr(ref short lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.i2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref ushort shiftr(ref ushort lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.u2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref int shiftr(ref int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref uint shiftr(ref uint lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr.un
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref long shiftr(ref long lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref ulong shiftr(ref ulong lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shr.un
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0020
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_000C: ldarga.s src
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarg.1
+    IL_0016: call System.Double Z0.math::mul(System.Double,System.Double)
+    IL_001B: stind.r8
+    IL_001C: ldloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: add
+    IL_001F: stloc.0
+    IL_0020: ldloc.0
+    IL_0021: ldarga.s dst
+    IL_0023: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_0028: blt.s IL_0004
+    IL_002A: ldarg.2
+    IL_002B: ret
 
 }
 sbyte sqrt(sbyte src)
@@ -16150,41 +3663,104 @@ ref short sub(ref short lhs, short rhs)
     IL_0008: ret
 
 }
-ref ushort sub(ref ushort lhs, ushort rhs)
+Span<long> mod(Span<long> lhs, long rhs)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: sub
-    IL_0005: conv.u2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
 
 }
-ref float mod(ref float lhs, float rhs)
+Span<ulong> mod(Span<ulong> lhs, ulong rhs)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: ldarg.1
-    IL_0004: rem
-    IL_0005: stind.r4
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: rem.un
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
 
 }
-ref double mod(ref double lhs, double rhs)
+Span<float> mod(Span<float> lhs, float rhs)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: ldarg.1
-    IL_0004: rem
-    IL_0005: stind.r8
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r4
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: stind.r4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<double> mod(Span<double> lhs, double rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r8
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: stind.r8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
 
 }
 sbyte mul(sbyte lhs, sbyte rhs)
@@ -16690,6 +4266,466 @@ bool neq(double lhs, double rhs)
     IL_0007: ret
 
 }
+Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::neq(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::neq(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::neq(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::neq(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::neq(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::neq(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::neq(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::neq(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::neq(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::neq(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 131
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 135
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 139
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 143
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 147
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 151
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 155
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 159
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 163
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "neq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\neq.cs"
+    IL_000E: ldc.i4 167
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::neq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
 bool nonneg(sbyte src)
 {
     IL_0000: ldarg.0
@@ -16837,6 +4873,96 @@ bool nonzero(double src)
     IL_000F: ret
 
 }
+sbyte or(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: conv.i1
+    IL_0004: ret
+
+}
+byte or(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: conv.u1
+    IL_0004: ret
+
+}
+short or(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: conv.i2
+    IL_0004: ret
+
+}
+ushort or(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: conv.u2
+    IL_0004: ret
+
+}
+int or(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: ret
+
+}
+uint or(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: ret
+
+}
+long or(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: ret
+
+}
+ulong or(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: or
+    IL_0003: ret
+
+}
+float or(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_000C: or
+    IL_000D: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
+    IL_0012: ret
+
+}
+double or(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_000C: or
+    IL_000D: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
+    IL_0012: ret
+
+}
 ref sbyte or(ref sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
@@ -16937,300 +5063,28 @@ ref ulong or(ref ulong lhs, ulong rhs)
     IL_0007: ret
 
 }
-sbyte or(sbyte lhs, sbyte rhs)
+ref float or(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: conv.i1
-    IL_0004: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldarg.1
+    IL_0004: call System.Single Z0.math::or(System.Single,System.Single)
+    IL_0009: stind.r4
+    IL_000A: ldarg.0
+    IL_000B: ret
 
 }
-sbyte or(sbyte x1, sbyte x2, SByte[] more)
+ref double or(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.SByte Z0.math::or(System.SByte,System.SByte)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0017
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.i1
-    IL_0010: or
-    IL_0011: conv.i1
-    IL_0012: stloc.0
-    IL_0013: ldloc.1
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.1
-    IL_0017: ldloc.1
-    IL_0018: ldarg.2
-    IL_0019: ldlen
-    IL_001A: conv.i4
-    IL_001B: blt.s IL_000C
-    IL_001D: ldloc.0
-    IL_001E: ret
-
-}
-byte or(byte lhs, byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: conv.u1
-    IL_0004: ret
-
-}
-byte or(byte x1, byte x2, Byte[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Byte Z0.math::or(System.Byte,System.Byte)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0017
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.u1
-    IL_0010: or
-    IL_0011: conv.u1
-    IL_0012: stloc.0
-    IL_0013: ldloc.1
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.1
-    IL_0017: ldloc.1
-    IL_0018: ldarg.2
-    IL_0019: ldlen
-    IL_001A: conv.i4
-    IL_001B: blt.s IL_000C
-    IL_001D: ldloc.0
-    IL_001E: ret
-
-}
-short or(short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: conv.i2
-    IL_0004: ret
-
-}
-short or(short x1, short x2, Int16[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Int16 Z0.math::or(System.Int16,System.Int16)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0017
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.i2
-    IL_0010: or
-    IL_0011: conv.i2
-    IL_0012: stloc.0
-    IL_0013: ldloc.1
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.1
-    IL_0017: ldloc.1
-    IL_0018: ldarg.2
-    IL_0019: ldlen
-    IL_001A: conv.i4
-    IL_001B: blt.s IL_000C
-    IL_001D: ldloc.0
-    IL_001E: ret
-
-}
-ushort or(ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: conv.u2
-    IL_0004: ret
-
-}
-ushort or(ushort x1, ushort x2, UInt16[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt16 Z0.math::or(System.UInt16,System.UInt16)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0017
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.u2
-    IL_0010: or
-    IL_0011: conv.u2
-    IL_0012: stloc.0
-    IL_0013: ldloc.1
-    IL_0014: ldc.i4.1
-    IL_0015: add
-    IL_0016: stloc.1
-    IL_0017: ldloc.1
-    IL_0018: ldarg.2
-    IL_0019: ldlen
-    IL_001A: conv.i4
-    IL_001B: blt.s IL_000C
-    IL_001D: ldloc.0
-    IL_001E: ret
-
-}
-int or(int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: ret
-
-}
-int or(int x1, int x2, Int32[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Int32 Z0.math::or(System.Int32,System.Int32)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0016
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.i4
-    IL_0010: or
-    IL_0011: stloc.0
-    IL_0012: ldloc.1
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.1
-    IL_0016: ldloc.1
-    IL_0017: ldarg.2
-    IL_0018: ldlen
-    IL_0019: conv.i4
-    IL_001A: blt.s IL_000C
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-uint or(uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: ret
-
-}
-uint or(uint x1, uint x2, UInt32[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 Z0.math::or(System.UInt32,System.UInt32)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0016
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.u4
-    IL_0010: or
-    IL_0011: stloc.0
-    IL_0012: ldloc.1
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.1
-    IL_0016: ldloc.1
-    IL_0017: ldarg.2
-    IL_0018: ldlen
-    IL_0019: conv.i4
-    IL_001A: blt.s IL_000C
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-long or(long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: ret
-
-}
-long or(long x1, long x2, Int64[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Int64 Z0.math::or(System.Int64,System.Int64)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0016
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.i8
-    IL_0010: or
-    IL_0011: stloc.0
-    IL_0012: ldloc.1
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.1
-    IL_0016: ldloc.1
-    IL_0017: ldarg.2
-    IL_0018: ldlen
-    IL_0019: conv.i4
-    IL_001A: blt.s IL_000C
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-ulong or(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: or
-    IL_0003: ret
-
-}
-ulong or(ulong x1, ulong x2, UInt64[] more)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt64 Z0.math::or(System.UInt64,System.UInt64)
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0016
-    IL_000C: ldloc.0
-    IL_000D: ldarg.2
-    IL_000E: ldloc.1
-    IL_000F: ldelem.i8
-    IL_0010: or
-    IL_0011: stloc.0
-    IL_0012: ldloc.1
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.1
-    IL_0016: ldloc.1
-    IL_0017: ldarg.2
-    IL_0018: ldlen
-    IL_0019: conv.i4
-    IL_001A: blt.s IL_000C
-    IL_001C: ldloc.0
-    IL_001D: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldarg.1
+    IL_0004: call System.Double Z0.math::or(System.Double,System.Double)
+    IL_0009: stind.r8
+    IL_000A: ldarg.0
+    IL_000B: ret
 
 }
 sbyte parse(string src, out sbyte dst)
@@ -17566,880 +5420,18 @@ uint pow(uint b, uint exp)
     IL_001B: ret
 
 }
-long pow(long b, long exp)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldc.i4.0
-    IL_0002: conv.i8
-    IL_0003: bge.s IL_0008
-    IL_0005: ldc.i4.0
-    IL_0006: conv.i8
-    IL_0007: ret
-    IL_0008: ldc.i4.1
-    IL_0009: conv.i8
-    IL_000A: stloc.0
-    IL_000B: ldarg.1
-    IL_000C: ldc.i4.1
-    IL_000D: conv.i8
-    IL_000E: and
-    IL_000F: brfalse.s IL_0015
-    IL_0011: ldloc.0
-    IL_0012: ldarg.0
-    IL_0013: mul
-    IL_0014: stloc.0
-    IL_0015: ldarg.1
-    IL_0016: ldc.i4.1
-    IL_0017: shr
-    IL_0018: starg.s exp
-    IL_001A: ldarg.1
-    IL_001B: brfalse.s IL_0024
-    IL_001D: ldarg.0
-    IL_001E: ldarg.0
-    IL_001F: mul
-    IL_0020: starg.s b
-    IL_0022: br.s IL_000B
-    IL_0024: ldloc.0
-    IL_0025: ret
-
-}
-ulong pow(ulong b, ulong exp)
-{
-    IL_0000: ldc.i4.1
-    IL_0001: conv.i8
-    IL_0002: stloc.0
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.1
-    IL_0005: conv.i8
-    IL_0006: and
-    IL_0007: brfalse.s IL_000D
-    IL_0009: ldloc.0
-    IL_000A: ldarg.0
-    IL_000B: mul
-    IL_000C: stloc.0
-    IL_000D: ldarg.1
-    IL_000E: ldc.i4.1
-    IL_000F: shr.un
-    IL_0010: starg.s exp
-    IL_0012: ldarg.1
-    IL_0013: brfalse.s IL_001C
-    IL_0015: ldarg.0
-    IL_0016: ldarg.0
-    IL_0017: mul
-    IL_0018: starg.s b
-    IL_001A: br.s IL_0003
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-float pow(float src, float exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Single System.MathF::Pow(System.Single,System.Single)
-    IL_0007: ret
-
-}
-double pow(double src, double exp)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Double System.Math::Pow(System.Double,System.Double)
-    IL_0007: ret
-
-}
-bool isPow2(sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: and
-    IL_0005: ldc.i4.0
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool isPow2(long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: sub
-    IL_0005: and
-    IL_0006: ldc.i4.0
-    IL_0007: conv.i8
-    IL_0008: ceq
-    IL_000A: ret
-
-}
-bool isPow2(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: sub
-    IL_0005: and
-    IL_0006: ldc.i4.0
-    IL_0007: conv.i8
-    IL_0008: ceq
-    IL_000A: ret
-
-}
-Quorem<sbyte> quorem(in sbyte lhs, in sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: call System.SByte Z0.math::abs(System.SByte)
-    IL_0007: stloc.0
-    IL_0008: ldarg.1
-    IL_0009: ldind.i1
-    IL_000A: call System.SByte Z0.math::abs(System.SByte)
-    IL_000F: stloc.1
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: call System.SByte Z0.math::div(System.SByte,System.SByte)
-    IL_0017: stloc.2
-    IL_0018: ldloc.0
-    IL_0019: ldloc.2
-    IL_001A: ldloc.1
-    IL_001B: mul
-    IL_001C: sub
-    IL_001D: conv.i1
-    IL_001E: stloc.3
-    IL_001F: ldloca.s V_2
-    IL_0021: ldloca.s V_3
-    IL_0023: call Z0.Quorem`1<System.SByte> Z0.Quorem::define<System.SByte>(System.SByte&,System.SByte&)
-    IL_0028: ret
-
-}
-Quorem<byte> quorem(in byte lhs, in byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: call System.Byte Z0.math::div(System.Byte,System.Byte)
-    IL_0009: stloc.0
-    IL_000A: ldarg.0
-    IL_000B: ldind.u1
-    IL_000C: ldloc.0
-    IL_000D: ldarg.1
-    IL_000E: ldind.u1
-    IL_000F: mul
-    IL_0010: sub
-    IL_0011: conv.u1
-    IL_0012: stloc.1
-    IL_0013: ldloca.s V_0
-    IL_0015: ldloca.s V_1
-    IL_0017: call Z0.Quorem`1<System.Byte> Z0.Quorem::define<System.Byte>(System.Byte&,System.Byte&)
-    IL_001C: ret
-
-}
-Quorem<short> quorem(in short lhs, in short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i2
-    IL_0002: call System.Int16 Z0.math::abs(System.Int16)
-    IL_0007: stloc.0
-    IL_0008: ldarg.1
-    IL_0009: ldind.i2
-    IL_000A: call System.Int16 Z0.math::abs(System.Int16)
-    IL_000F: stloc.1
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: call System.Int16 Z0.math::div(System.Int16,System.Int16)
-    IL_0017: stloc.2
-    IL_0018: ldloc.0
-    IL_0019: ldloc.2
-    IL_001A: ldloc.1
-    IL_001B: mul
-    IL_001C: sub
-    IL_001D: conv.i2
-    IL_001E: stloc.3
-    IL_001F: ldloca.s V_2
-    IL_0021: ldloca.s V_3
-    IL_0023: call Z0.Quorem`1<System.Int16> Z0.Quorem::define<System.Int16>(System.Int16&,System.Int16&)
-    IL_0028: ret
-
-}
-Quorem<ushort> quorem(in ushort lhs, in ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u2
-    IL_0004: call System.UInt16 Z0.math::div(System.UInt16,System.UInt16)
-    IL_0009: stloc.0
-    IL_000A: ldarg.0
-    IL_000B: ldind.u2
-    IL_000C: ldloc.0
-    IL_000D: ldarg.1
-    IL_000E: ldind.u2
-    IL_000F: mul
-    IL_0010: sub
-    IL_0011: conv.u2
-    IL_0012: stloc.1
-    IL_0013: ldloca.s V_0
-    IL_0015: ldloca.s V_1
-    IL_0017: call Z0.Quorem`1<System.UInt16> Z0.Quorem::define<System.UInt16>(System.UInt16&,System.UInt16&)
-    IL_001C: ret
-
-}
-Quorem<int> quorem(in int lhs, in int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i4
-    IL_0002: ldarg.1
-    IL_0003: ldind.i4
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Int32 System.Math::DivRem(System.Int32,System.Int32,System.Int32&)
-    IL_000B: ldloc.0
-    IL_000C: newobj System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(System.Int32,System.Int32)
-    IL_0011: call Z0.Quorem`1<System.Int32> Z0.Quorem`1<System.Int32>::op_Implicit(System.ValueTuple`2<System.Int32,System.Int32>)
-    IL_0016: ret
-
-}
-Quorem<uint> quorem(in uint lhs, in uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u4
-    IL_0004: call System.UInt32 Z0.math::div(System.UInt32,System.UInt32)
-    IL_0009: stloc.0
-    IL_000A: ldarg.0
-    IL_000B: ldind.u4
-    IL_000C: ldloc.0
-    IL_000D: ldarg.1
-    IL_000E: ldind.u4
-    IL_000F: mul
-    IL_0010: sub
-    IL_0011: stloc.1
-    IL_0012: ldloca.s V_0
-    IL_0014: ldloca.s V_1
-    IL_0016: call Z0.Quorem`1<System.UInt32> Z0.Quorem::define<System.UInt32>(System.UInt32&,System.UInt32&)
-    IL_001B: ret
-
-}
-bool gteq(short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt.un
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt.un
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(float lhs, float rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt.un
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool gteq(double lhs, double rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: clt.un
-    IL_0004: ldc.i4.0
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-sbyte inc(sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: conv.i1
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-byte inc(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: conv.u1
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-short inc(short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: conv.i2
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-ushort inc(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: conv.u2
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-int inc(int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: dup
-    IL_0004: starg.s src
-    IL_0006: ret
-
-}
-uint inc(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: add
-    IL_0003: dup
-    IL_0004: starg.s src
-    IL_0006: ret
-
-}
-long inc(long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: conv.i8
-    IL_0003: add
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-ulong inc(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: conv.i8
-    IL_0003: add
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-float inc(float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r4 1
-    IL_0006: add
-    IL_0007: dup
-    IL_0008: starg.s src
-    IL_000A: ret
-
-}
-double inc(double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r8 1
-    IL_000A: add
-    IL_000B: dup
-    IL_000C: starg.s src
-    IL_000E: ret
-
-}
-ref sbyte inc(sbyte src, out sbyte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: conv.i1
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i1
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref byte inc(byte src, out byte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: conv.u1
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i1
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref short inc(short src, out short dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: conv.i2
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i2
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref ushort inc(ushort src, out ushort dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: conv.u2
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i2
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref int inc(int src, out int dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: stind.i4
-    IL_0008: ldarg.1
-    IL_0009: ret
-
-}
-ref uint inc(uint src, out uint dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: add
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: stind.i4
-    IL_0008: ldarg.1
-    IL_0009: ret
-
-}
-ref long inc(long src, out long dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: add
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i8
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref ulong inc(ulong src, out ulong dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: add
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i8
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref float inc(float src, out float dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.r4 1
-    IL_0007: add
-    IL_0008: dup
-    IL_0009: starg.s src
-    IL_000B: stind.r4
-    IL_000C: ldarg.1
-    IL_000D: ret
-
-}
-ref double inc(double src, out double dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.r8 1
-    IL_000B: add
-    IL_000C: dup
-    IL_000D: starg.s src
-    IL_000F: stind.r8
-    IL_0010: ldarg.1
-    IL_0011: ret
-
-}
-ref sbyte inc(ref sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: conv.i1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref byte inc(ref byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: conv.u1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref short inc(ref short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: conv.i2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ushort inc(ref ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: conv.u2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref int inc(ref int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref uint inc(ref uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldc.i4.1
-    IL_0004: add
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref long inc(ref long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldc.i4.1
-    IL_0004: conv.i8
-    IL_0005: add
-    IL_0006: stind.i8
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ulong inc(ref ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldc.i4.1
-    IL_0004: conv.i8
-    IL_0005: add
-    IL_0006: stind.i8
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref float inc(ref float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: ldc.r4 1
-    IL_0008: add
-    IL_0009: stind.r4
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref double inc(ref double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: ldc.r8 1
-    IL_000C: add
-    IL_000D: stind.r8
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-float ldexp(float x, int i)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r4 2
-    IL_0006: ldarg.1
-    IL_0007: conv.r4
-    IL_0008: call System.Single System.MathF::Pow(System.Single,System.Single)
-    IL_000D: mul
-    IL_000E: ret
-
-}
-double ldexp(double x, int i)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r8 2
-    IL_000A: ldarg.1
-    IL_000B: conv.r8
-    IL_000C: call System.Double System.Math::Pow(System.Double,System.Double)
-    IL_0011: mul
-    IL_0012: ret
-
-}
-sbyte log2(sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.i1
-    IL_0008: ret
-
-}
-byte log2(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.u1
-    IL_0008: ret
-
-}
-short log2(short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.i2
-    IL_0008: ret
-
-}
-ushort log2(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.u2
-    IL_0008: ret
-
-}
-int log2(int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: ret
-
-}
-uint log2(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r.un
-    IL_0002: conv.r8
-    IL_0003: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0008: ret
-
-}
-long log2(long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.i8
-    IL_0008: ret
-
-}
-ulong log2(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.r.un
-    IL_0002: conv.r8
-    IL_0003: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0008: conv.i8
-    IL_0009: ret
-
-}
 float log2(float src)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
-    IL_0002: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0007: conv.r4
-    IL_0008: ret
+    IL_0001: call System.Single System.MathF::Log2(System.Single)
+    IL_0006: ret
 
 }
 double log2(double src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Int32 System.Math::ILogB(System.Double)
-    IL_0006: conv.r8
-    IL_0007: ret
+    IL_0001: call System.Double System.Math::Log2(System.Double)
+    IL_0006: ret
 
 }
 sbyte ln(sbyte src)
@@ -18533,7 +5525,7 @@ double ln(double src)
 sbyte log(sbyte src, sbyte base)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
+    IL_0001: conv.r4
     IL_0002: ldarg.1
     IL_0003: stloc.0
     IL_0004: ldloca.s V_0
@@ -18543,8 +5535,8 @@ sbyte log(sbyte src, sbyte base)
     IL_000F: br.s IL_0018
     IL_0011: ldloca.s V_0
     IL_0013: call System.SByte System.Nullable`1<System.SByte>::GetValueOrDefault()
-    IL_0018: conv.r8
-    IL_0019: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_0018: conv.r4
+    IL_0019: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_001E: conv.i1
     IL_001F: ret
 
@@ -18552,7 +5544,7 @@ sbyte log(sbyte src, sbyte base)
 byte log(byte src, byte base)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
+    IL_0001: conv.r4
     IL_0002: ldarg.1
     IL_0003: stloc.0
     IL_0004: ldloca.s V_0
@@ -18562,8 +5554,8 @@ byte log(byte src, byte base)
     IL_000F: br.s IL_0018
     IL_0011: ldloca.s V_0
     IL_0013: call System.Byte System.Nullable`1<System.Byte>::GetValueOrDefault()
-    IL_0018: conv.r8
-    IL_0019: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_0018: conv.r4
+    IL_0019: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_001E: conv.u1
     IL_001F: ret
 
@@ -18571,7 +5563,7 @@ byte log(byte src, byte base)
 short log(short src, short base)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
+    IL_0001: conv.r4
     IL_0002: ldarg.1
     IL_0003: stloc.0
     IL_0004: ldloca.s V_0
@@ -18581,8 +5573,8 @@ short log(short src, short base)
     IL_000F: br.s IL_0018
     IL_0011: ldloca.s V_0
     IL_0013: call System.Int16 System.Nullable`1<System.Int16>::GetValueOrDefault()
-    IL_0018: conv.r8
-    IL_0019: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_0018: conv.r4
+    IL_0019: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_001E: conv.i2
     IL_001F: ret
 
@@ -18590,7 +5582,7 @@ short log(short src, short base)
 ushort log(ushort src, ushort base)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
+    IL_0001: conv.r4
     IL_0002: ldarg.1
     IL_0003: stloc.0
     IL_0004: ldloca.s V_0
@@ -18600,8 +5592,8 @@ ushort log(ushort src, ushort base)
     IL_000F: br.s IL_0018
     IL_0011: ldloca.s V_0
     IL_0013: call System.UInt16 System.Nullable`1<System.UInt16>::GetValueOrDefault()
-    IL_0018: conv.r8
-    IL_0019: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_0018: conv.r4
+    IL_0019: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_001E: conv.u2
     IL_001F: ret
 
@@ -18609,7 +5601,7 @@ ushort log(ushort src, ushort base)
 int log(int src, int base)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r8
+    IL_0001: conv.r4
     IL_0002: ldarg.1
     IL_0003: stloc.0
     IL_0004: ldloca.s V_0
@@ -18619,8 +5611,8 @@ int log(int src, int base)
     IL_000F: br.s IL_0018
     IL_0011: ldloca.s V_0
     IL_0013: call System.Int32 System.Nullable`1<System.Int32>::GetValueOrDefault()
-    IL_0018: conv.r8
-    IL_0019: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_0018: conv.r4
+    IL_0019: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_001E: conv.i4
     IL_001F: ret
 
@@ -18629,7 +5621,7 @@ uint log(uint src, uint base)
 {
     IL_0000: ldarg.0
     IL_0001: conv.r.un
-    IL_0002: conv.r8
+    IL_0002: conv.r4
     IL_0003: ldarg.1
     IL_0004: stloc.0
     IL_0005: ldloca.s V_0
@@ -18640,8 +5632,8 @@ uint log(uint src, uint base)
     IL_0012: ldloca.s V_0
     IL_0014: call System.UInt32 System.Nullable`1<System.UInt32>::GetValueOrDefault()
     IL_0019: conv.r.un
-    IL_001A: conv.r8
-    IL_001B: call System.Double System.Math::Log(System.Double,System.Double)
+    IL_001A: conv.r4
+    IL_001B: call System.Single System.MathF::Log(System.Single,System.Single)
     IL_0020: conv.u4
     IL_0021: ret
 
@@ -18800,6 +5792,466 @@ bool lt(double lhs, double rhs)
     IL_0004: ret
 
 }
+Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::lt(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::lt(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::lt(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::lt(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::lt(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::lt(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::lt(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::lt(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::lt(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::lt(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 132
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 136
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 140
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 144
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 148
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 152
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 156
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 160
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 164
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lt.cs"
+    IL_000E: ldc.i4 168
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lt(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
 bool lteq(sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
@@ -18900,224 +6352,464 @@ bool lteq(double lhs, double rhs)
     IL_0007: ret
 
 }
-sbyte max(sbyte lhs, sbyte rhs)
+Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::lteq(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-byte max(byte lhs, byte rhs)
+Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::lteq(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-short max(short lhs, short rhs)
+Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::lteq(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-ushort max(ushort lhs, ushort rhs)
+Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::lteq(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-int max(int lhs, int rhs)
+Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::lteq(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-uint max(uint lhs, uint rhs)
+Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.un.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::lteq(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-long max(long lhs, long rhs)
+Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::lteq(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-ulong max(ulong lhs, ulong rhs)
+Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.un.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::lteq(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-float max(float lhs, float rhs)
+Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::lteq(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-double max(double lhs, double rhs)
+Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: bgt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::lteq(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
 
 }
-sbyte min(sbyte lhs, sbyte rhs)
+Span<bool> lteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 130
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-byte min(byte lhs, byte rhs)
+Span<bool> lteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 134
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-short min(short lhs, short rhs)
+Span<bool> lteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 138
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-ushort min(ushort lhs, ushort rhs)
+Span<bool> lteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 142
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-int min(int lhs, int rhs)
+Span<bool> lteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 146
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-uint min(uint lhs, uint rhs)
+Span<bool> lteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 150
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-long min(long lhs, long rhs)
+Span<bool> lteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 154
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-ulong min(ulong lhs, ulong rhs)
+Span<bool> lteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 158
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-float min(float lhs, float rhs)
+Span<bool> lteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 162
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
-double min(double lhs, double rhs)
+Span<bool> lteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: blt.s IL_0006
-    IL_0004: ldarg.1
-    IL_0005: ret
-    IL_0006: ldarg.0
-    IL_0007: ret
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "lteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\lteq.cs"
+    IL_000E: ldc.i4 166
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::lteq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
+    IL_0027: ret
 
 }
 sbyte mod(sbyte lhs, sbyte rhs)
@@ -19304,472 +6996,898 @@ ref ulong mod(ref ulong lhs, ulong rhs)
     IL_0007: ret
 
 }
-ref float dec(float src, out float dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.r4 1
-    IL_0007: sub
-    IL_0008: dup
-    IL_0009: starg.s src
-    IL_000B: stind.r4
-    IL_000C: ldarg.1
-    IL_000D: ret
-
-}
-ref double dec(double src, out double dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.r8 1
-    IL_000B: sub
-    IL_000C: dup
-    IL_000D: starg.s src
-    IL_000F: stind.r8
-    IL_0010: ldarg.1
-    IL_0011: ret
-
-}
-sbyte div(sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: conv.i1
-    IL_0004: ret
-
-}
-byte div(byte lhs, byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: conv.u1
-    IL_0004: ret
-
-}
-short div(short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: conv.i2
-    IL_0004: ret
-
-}
-ushort div(ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: conv.u2
-    IL_0004: ret
-
-}
-int div(int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: ret
-
-}
-uint div(uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div.un
-    IL_0003: ret
-
-}
-long div(long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: ret
-
-}
-ulong div(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div.un
-    IL_0003: ret
-
-}
-float div(float lhs, float rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: ret
-
-}
-double div(double lhs, double rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: div
-    IL_0003: ret
-
-}
-Decimal div(Decimal lhs, Decimal rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Decimal System.Decimal::op_Division(System.Decimal,System.Decimal)
-    IL_0007: ret
-
-}
-BigInteger div(BigInteger lhs, BigInteger rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Numerics.BigInteger System.Numerics.BigInteger::op_Division(System.Numerics.BigInteger,System.Numerics.BigInteger)
-    IL_0007: ret
-
-}
-ref sbyte div(ref sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: conv.i1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref byte div(ref byte lhs, byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: conv.u1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref short div(ref short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: conv.i2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ushort div(ref ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: conv.u2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref int div(ref int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref uint div(ref uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: div.un
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref long div(ref long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: div
-    IL_0005: stind.i8
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref ulong div(ref ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: div.un
-    IL_0005: stind.i8
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref float div(ref float lhs, float rhs)
+ref float mod(ref float lhs, float rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
     IL_0002: ldind.r4
     IL_0003: ldarg.1
-    IL_0004: div
+    IL_0004: rem
     IL_0005: stind.r4
     IL_0006: ldarg.0
     IL_0007: ret
 
 }
-ref double div(ref double lhs, double rhs)
+ref double mod(ref double lhs, double rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.0
     IL_0002: ldind.r8
     IL_0003: ldarg.1
-    IL_0004: div
+    IL_0004: rem
     IL_0005: stind.r8
     IL_0006: ldarg.0
     IL_0007: ret
 
 }
-bool divides(sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(byte lhs, byte rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(short lhs, short rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(int lhs, int rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(uint lhs, uint rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem.un
-    IL_0003: ldc.i4.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool divides(long lhs, long rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.i4.0
-    IL_0004: conv.i8
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool divides(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem.un
-    IL_0003: ldc.i4.0
-    IL_0004: conv.i8
-    IL_0005: ceq
-    IL_0007: ret
-
-}
-bool divides(float lhs, float rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.r4 0
-    IL_0008: ceq
-    IL_000A: ret
-
-}
-bool divides(double lhs, double rhs)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: rem
-    IL_0003: ldc.r8 0
-    IL_000C: ceq
-    IL_000E: ret
-
-}
-bool eq(sbyte lhs, sbyte rhs)
+Span<sbyte> mod(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 128
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0030: ldind.i1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0039: ldind.i1
+    IL_003A: call System.SByte Z0.math::mod(System.SByte,System.SByte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-bool eq(byte lhs, byte rhs)
+Span<byte> mod(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 136
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0039: ldind.u1
+    IL_003A: call System.Byte Z0.math::mod(System.Byte,System.Byte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-bool eq(short lhs, short rhs)
+void mod(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 144
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0039: ldind.i2
+    IL_003A: call System.Int16 Z0.math::mod(System.Int16,System.Int16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(ushort lhs, ushort rhs)
+void mod(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 151
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0039: ldind.u2
+    IL_003A: call System.UInt16 Z0.math::mod(System.UInt16,System.UInt16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(int lhs, int rhs)
+void mod(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 158
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int32 Z0.math::mod(System.Int32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(uint lhs, uint rhs)
+void mod(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 165
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0039: ldind.u4
+    IL_003A: call System.UInt32 Z0.math::mod(System.UInt32,System.UInt32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(long lhs, long rhs)
+void mod(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 172
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.Int64 Z0.math::mod(System.Int64,System.Int64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(ulong lhs, ulong rhs)
+void mod(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 179
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.UInt64 Z0.math::mod(System.UInt64,System.UInt64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(float lhs, float rhs)
+void mod(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 186
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0030: ldind.r4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0039: ldind.r4
+    IL_003A: call System.Single Z0.math::mod(System.Single,System.Single)
+    IL_003F: stind.r4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-bool eq(double lhs, double rhs)
+void mod(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: ceq
-    IL_0004: ret
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 193
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0030: ldind.r8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0039: ldind.r8
+    IL_003A: call System.Double Z0.math::mod(System.Double,System.Double)
+    IL_003F: stind.r8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ret
 
 }
-sbyte exp(sbyte pow)
+Span<sbyte> mod(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r4
-    IL_0002: call System.Single System.MathF::Exp(System.Single)
-    IL_0007: conv.i1
-    IL_0008: ret
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 200
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0032: ldind.i1
+    IL_0033: rem
+    IL_0034: conv.i1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
 
 }
-byte exp(byte pow)
+Span<byte> mod(Span<byte> lhs, ReadOnlySpan<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r4
-    IL_0002: call System.Single System.MathF::Exp(System.Single)
-    IL_0007: conv.u1
-    IL_0008: ret
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 208
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0032: ldind.u1
+    IL_0033: rem
+    IL_0034: conv.u1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
 
 }
-short exp(short pow)
+Span<short> mod(Span<short> lhs, ReadOnlySpan<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r4
-    IL_0002: call System.Single System.MathF::Exp(System.Single)
-    IL_0007: conv.i2
-    IL_0008: ret
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 216
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0032: ldind.i2
+    IL_0033: rem
+    IL_0034: conv.i2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
 
 }
-ushort exp(ushort pow)
+Span<ushort> mod(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.r4
-    IL_0002: call System.Single System.MathF::Exp(System.Single)
-    IL_0007: conv.u2
-    IL_0008: ret
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 224
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0032: ldind.u2
+    IL_0033: rem
+    IL_0034: conv.u2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<int> mod(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 232
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: rem
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> mod(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 240
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: rem.un
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> mod(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 248
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: rem
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> mod(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 256
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: rem.un
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> mod(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 264
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: rem
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> mod(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "mod"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\mod.cs"
+    IL_000C: ldc.i4 272
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: rem
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<sbyte> mod(Span<sbyte> lhs, sbyte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i1
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: conv.i1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<byte> mod(Span<byte> lhs, byte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u1
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: conv.u1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<short> mod(Span<short> lhs, short rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i2
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: conv.i2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<ushort> mod(Span<ushort> lhs, ushort rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u2
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: conv.u2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<int> mod(Span<int> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i4
+    IL_000E: ldarg.1
+    IL_000F: rem
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<uint> mod(Span<uint> lhs, uint rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u4
+    IL_000E: ldarg.1
+    IL_000F: rem.un
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
 
 }
 int exp(int pow)
@@ -20083,90 +8201,6 @@ ulong flip(ulong src)
     IL_0002: ret
 
 }
-ref sbyte flip(sbyte src, out sbyte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: conv.i1
-    IL_0004: stind.i1
-    IL_0005: ldarg.1
-    IL_0006: ret
-
-}
-ref byte flip(byte src, out byte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: conv.u1
-    IL_0004: stind.i1
-    IL_0005: ldarg.1
-    IL_0006: ret
-
-}
-ref short flip(short src, out short dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: conv.i2
-    IL_0004: stind.i2
-    IL_0005: ldarg.1
-    IL_0006: ret
-
-}
-ref ushort flip(ushort src, out ushort dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: conv.u2
-    IL_0004: stind.i2
-    IL_0005: ldarg.1
-    IL_0006: ret
-
-}
-ref int flip(int src, out int dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: stind.i4
-    IL_0004: ldarg.1
-    IL_0005: ret
-
-}
-ref uint flip(uint src, out uint dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: stind.i4
-    IL_0004: ldarg.1
-    IL_0005: ret
-
-}
-ref long flip(long src, out long dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: stind.i8
-    IL_0004: ldarg.1
-    IL_0005: ret
-
-}
-ref ulong flip(ulong src, out ulong dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: not
-    IL_0003: stind.i8
-    IL_0004: ldarg.1
-    IL_0005: ret
-
-}
 ref sbyte flip(ref sbyte src)
 {
     IL_0000: ldarg.0
@@ -20389,369 +8423,6 @@ double fma(double x, double y, double z)
     IL_0008: ret
 
 }
-sbyte gcd(sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.SByte Z0.math::abs(System.SByte)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.SByte Z0.math::abs(System.SByte)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0019
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: conv.i1
-    IL_0014: stloc.2
-    IL_0015: ldloc.1
-    IL_0016: stloc.0
-    IL_0017: ldloc.2
-    IL_0018: stloc.1
-    IL_0019: ldloc.1
-    IL_001A: brtrue.s IL_0010
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-byte gcd(byte lhs, byte rhs)
-{
-    IL_0000: br.s IL_0010
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: call System.Byte Z0.math::mod(System.Byte,System.Byte)
-    IL_0009: stloc.0
-    IL_000A: ldarg.1
-    IL_000B: starg.s lhs
-    IL_000D: ldloc.0
-    IL_000E: starg.s rhs
-    IL_0010: ldarg.1
-    IL_0011: brtrue.s IL_0002
-    IL_0013: ldarg.0
-    IL_0014: ret
-
-}
-short gcd(short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int16 Z0.math::abs(System.Int16)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Int16 Z0.math::abs(System.Int16)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0019
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: conv.i2
-    IL_0014: stloc.2
-    IL_0015: ldloc.1
-    IL_0016: stloc.0
-    IL_0017: ldloc.2
-    IL_0018: stloc.1
-    IL_0019: ldloc.1
-    IL_001A: brtrue.s IL_0010
-    IL_001C: ldloc.0
-    IL_001D: ret
-
-}
-ushort gcd(ushort lhs, ushort rhs)
-{
-    IL_0000: br.s IL_0010
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt16 Z0.math::mod(System.UInt16,System.UInt16)
-    IL_0009: stloc.0
-    IL_000A: ldarg.1
-    IL_000B: starg.s lhs
-    IL_000D: ldloc.0
-    IL_000E: starg.s rhs
-    IL_0010: ldarg.1
-    IL_0011: brtrue.s IL_0002
-    IL_0013: ldarg.0
-    IL_0014: ret
-
-}
-int gcd(int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int32 Z0.math::abs(System.Int32)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Int32 Z0.math::abs(System.Int32)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0018
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: stloc.2
-    IL_0014: ldloc.1
-    IL_0015: stloc.0
-    IL_0016: ldloc.2
-    IL_0017: stloc.1
-    IL_0018: ldloc.1
-    IL_0019: brtrue.s IL_0010
-    IL_001B: ldloc.0
-    IL_001C: ret
-
-}
-uint gcd(uint lhs, uint rhs)
-{
-    IL_0000: br.s IL_0010
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt32 Z0.math::mod(System.UInt32,System.UInt32)
-    IL_0009: stloc.0
-    IL_000A: ldarg.1
-    IL_000B: starg.s lhs
-    IL_000D: ldloc.0
-    IL_000E: starg.s rhs
-    IL_0010: ldarg.1
-    IL_0011: brtrue.s IL_0002
-    IL_0013: ldarg.0
-    IL_0014: ret
-
-}
-long gcd(long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int64 Z0.math::abs(System.Int64)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Int64 Z0.math::abs(System.Int64)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0018
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: stloc.2
-    IL_0014: ldloc.1
-    IL_0015: stloc.0
-    IL_0016: ldloc.2
-    IL_0017: stloc.1
-    IL_0018: ldloc.1
-    IL_0019: brtrue.s IL_0010
-    IL_001B: ldloc.0
-    IL_001C: ret
-
-}
-ulong gcd(ulong lhs, ulong rhs)
-{
-    IL_0000: br.s IL_0010
-    IL_0002: ldarg.0
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt64 Z0.math::mod(System.UInt64,System.UInt64)
-    IL_0009: stloc.0
-    IL_000A: ldarg.1
-    IL_000B: starg.s lhs
-    IL_000D: ldloc.0
-    IL_000E: starg.s rhs
-    IL_0010: ldarg.1
-    IL_0011: brtrue.s IL_0002
-    IL_0013: ldarg.0
-    IL_0014: ret
-
-}
-float gcd(float lhs, float rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Single Z0.math::abs(System.Single)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Single Z0.math::abs(System.Single)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0018
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: stloc.2
-    IL_0014: ldloc.1
-    IL_0015: stloc.0
-    IL_0016: ldloc.2
-    IL_0017: stloc.1
-    IL_0018: ldloc.1
-    IL_0019: ldc.r4 0
-    IL_001E: bne.un.s IL_0010
-    IL_0020: ldloc.0
-    IL_0021: ret
-
-}
-double gcd(double lhs, double rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Double Z0.math::abs(System.Double)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Double Z0.math::abs(System.Double)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_0018
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: rem
-    IL_0013: stloc.2
-    IL_0014: ldloc.1
-    IL_0015: stloc.0
-    IL_0016: ldloc.2
-    IL_0017: stloc.1
-    IL_0018: ldloc.1
-    IL_0019: ldc.r8 0
-    IL_0022: bne.un.s IL_0010
-    IL_0024: ldloc.0
-    IL_0025: ret
-
-}
-Decimal gcd(Decimal lhs, Decimal rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Decimal Z0.math::abs(System.Decimal)
-    IL_0006: stloc.0
-    IL_0007: ldarg.1
-    IL_0008: call System.Decimal Z0.math::abs(System.Decimal)
-    IL_000D: stloc.1
-    IL_000E: br.s IL_001C
-    IL_0010: ldloc.0
-    IL_0011: ldloc.1
-    IL_0012: call System.Decimal System.Decimal::op_Modulus(System.Decimal,System.Decimal)
-    IL_0017: stloc.2
-    IL_0018: ldloc.1
-    IL_0019: stloc.0
-    IL_001A: ldloc.2
-    IL_001B: stloc.1
-    IL_001C: ldloc.1
-    IL_001D: ldsfld System.Decimal System.Decimal::Zero
-    IL_0022: call System.Boolean System.Decimal::op_Inequality(System.Decimal,System.Decimal)
-    IL_0027: brtrue.s IL_0010
-    IL_0029: ldloc.0
-    IL_002A: ret
-
-}
-BigInteger gcd(BigInteger lhs, BigInteger rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Numerics.BigInteger System.Numerics.BigInteger::GreatestCommonDivisor(System.Numerics.BigInteger,System.Numerics.BigInteger)
-    IL_0007: ret
-
-}
-ref sbyte gcd(ref sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.1
-    IL_0004: call System.SByte Z0.math::gcd(System.SByte,System.SByte)
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref byte gcd(ref byte lhs, byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: call System.Byte Z0.math::gcd(System.Byte,System.Byte)
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref short gcd(ref short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.1
-    IL_0004: call System.Int16 Z0.math::gcd(System.Int16,System.Int16)
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref ushort gcd(ref ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt16 Z0.math::gcd(System.UInt16,System.UInt16)
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref int gcd(ref int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.1
-    IL_0004: call System.Int32 Z0.math::gcd(System.Int32,System.Int32)
-    IL_0009: stind.i4
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref uint gcd(ref uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt32 Z0.math::gcd(System.UInt32,System.UInt32)
-    IL_0009: stind.i4
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref long gcd(ref long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: call System.Int64 Z0.math::gcd(System.Int64,System.Int64)
-    IL_0009: stind.i8
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref ulong gcd(ref ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: call System.UInt64 Z0.math::gcd(System.UInt64,System.UInt64)
-    IL_0009: stind.i8
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref float gcd(ref float lhs, float rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: ldarg.1
-    IL_0004: call System.Single Z0.math::gcd(System.Single,System.Single)
-    IL_0009: stind.r4
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref double gcd(ref double lhs, double rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: ldarg.1
-    IL_0004: call System.Double Z0.math::gcd(System.Double,System.Double)
-    IL_0009: stind.r8
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
 bool gt(sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
@@ -20832,6 +8503,466 @@ bool gt(double lhs, double rhs)
     IL_0004: ret
 
 }
+Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::gt(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::gt(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::gt(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::gt(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gt(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gt(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::gt(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::gt(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 131
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 135
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 139
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 143
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 147
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 151
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 155
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 159
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 163
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gt"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gt.cs"
+    IL_000E: ldc.i4 167
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gt(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
 bool gteq(sbyte lhs, sbyte rhs)
 {
     IL_0000: ldarg.0
@@ -20850,6 +8981,2960 @@ bool gteq(byte lhs, byte rhs)
     IL_0004: ldc.i4.0
     IL_0005: ceq
     IL_0007: ret
+
+}
+bool gteq(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt.un
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt.un
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt.un
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+bool gteq(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: clt.un
+    IL_0004: ldc.i4.0
+    IL_0005: ceq
+    IL_0007: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0014: ldind.i1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_001D: ldind.i1
+    IL_001E: call System.Boolean Z0.math::gteq(System.SByte,System.SByte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0014: ldind.u1
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_001D: ldind.u1
+    IL_001E: call System.Boolean Z0.math::gteq(System.Byte,System.Byte)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0014: ldind.i2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_001D: ldind.i2
+    IL_001E: call System.Boolean Z0.math::gteq(System.Int16,System.Int16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0014: ldind.u2
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_001D: ldind.u2
+    IL_001E: call System.Boolean Z0.math::gteq(System.UInt16,System.UInt16)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0014: ldind.i4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_001D: ldind.i4
+    IL_001E: call System.Boolean Z0.math::gteq(System.Int32,System.Int32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0014: ldind.u4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_001D: ldind.u4
+    IL_001E: call System.Boolean Z0.math::gteq(System.UInt32,System.UInt32)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gteq(System.Int64,System.Int64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_001D: ldind.i8
+    IL_001E: call System.Boolean Z0.math::gteq(System.UInt64,System.UInt64)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0014: ldind.r4
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_001D: ldind.r4
+    IL_001E: call System.Boolean Z0.math::gteq(System.Single,System.Single)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0028
+    IL_0004: ldarga.s dst
+    IL_0006: ldloc.0
+    IL_0007: call System.Boolean& System.Span`1<System.Boolean>::get_Item(System.Int32)
+    IL_000C: ldarga.s lhs
+    IL_000E: ldloc.0
+    IL_000F: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0014: ldind.r8
+    IL_0015: ldarga.s rhs
+    IL_0017: ldloc.0
+    IL_0018: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001D: ldind.r8
+    IL_001E: call System.Boolean Z0.math::gteq(System.Double,System.Double)
+    IL_0023: stind.i1
+    IL_0024: ldloc.0
+    IL_0025: ldc.i4.1
+    IL_0026: add
+    IL_0027: stloc.0
+    IL_0028: ldloc.0
+    IL_0029: ldarga.s lhs
+    IL_002B: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0030: blt.s IL_0004
+    IL_0032: ldarg.2
+    IL_0033: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 131
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 135
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 139
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 143
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 147
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 151
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 155
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 159
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 163
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "gteq"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\gteq.cs"
+    IL_000E: ldc.i4 167
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Boolean> zfunc::span<System.Boolean>(System.Int32)
+    IL_0022: call System.Span`1<System.Boolean> Z0.math::gteq(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Boolean>)
+    IL_0027: ret
+
+}
+sbyte inc(sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: conv.i1
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+byte inc(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: conv.u1
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+short inc(short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: conv.i2
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+ushort inc(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: conv.u2
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+int inc(int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: dup
+    IL_0004: starg.s src
+    IL_0006: ret
+
+}
+uint inc(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: add
+    IL_0003: dup
+    IL_0004: starg.s src
+    IL_0006: ret
+
+}
+long inc(long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: conv.i8
+    IL_0003: add
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+ulong inc(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: conv.i8
+    IL_0003: add
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+float inc(float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r4 1
+    IL_0006: add
+    IL_0007: dup
+    IL_0008: starg.s src
+    IL_000A: ret
+
+}
+double inc(double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r8 1
+    IL_000A: add
+    IL_000B: dup
+    IL_000C: starg.s src
+    IL_000E: ret
+
+}
+ref sbyte inc(ref sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: conv.i1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref byte inc(ref byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: conv.u1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref short inc(ref short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: conv.i2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ushort inc(ref ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: conv.u2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref int inc(ref int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref uint inc(ref uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldc.i4.1
+    IL_0004: add
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref long inc(ref long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldc.i4.1
+    IL_0004: conv.i8
+    IL_0005: add
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ulong inc(ref ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldc.i4.1
+    IL_0004: conv.i8
+    IL_0005: add
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref float inc(ref float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldc.r4 1
+    IL_0008: add
+    IL_0009: stind.r4
+    IL_000A: ldarg.0
+    IL_000B: ret
+
+}
+ref double inc(ref double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldc.r8 1
+    IL_000C: add
+    IL_000D: stind.r8
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+float ldexp(float x, int i)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r4 2
+    IL_0006: ldarg.1
+    IL_0007: conv.r4
+    IL_0008: call System.Single System.MathF::Pow(System.Single,System.Single)
+    IL_000D: mul
+    IL_000E: ret
+
+}
+double ldexp(double x, int i)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r8 2
+    IL_000A: ldarg.1
+    IL_000B: conv.r8
+    IL_000C: call System.Double System.Math::Pow(System.Double,System.Double)
+    IL_0011: mul
+    IL_0012: ret
+
+}
+sbyte log2(sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Log2(System.Single)
+    IL_0007: conv.i1
+    IL_0008: ret
+
+}
+byte log2(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Log2(System.Single)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+short log2(short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Log2(System.Single)
+    IL_0007: conv.i2
+    IL_0008: ret
+
+}
+ushort log2(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Log2(System.Single)
+    IL_0007: conv.u2
+    IL_0008: ret
+
+}
+int log2(int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Log2(System.Single)
+    IL_0007: conv.i4
+    IL_0008: ret
+
+}
+uint log2(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r.un
+    IL_0002: conv.r4
+    IL_0003: call System.Single System.MathF::Log2(System.Single)
+    IL_0008: conv.u4
+    IL_0009: ret
+
+}
+long log2(long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r8
+    IL_0002: call System.Double System.Math::Log2(System.Double)
+    IL_0007: conv.i8
+    IL_0008: ret
+
+}
+ulong log2(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r.un
+    IL_0002: conv.r8
+    IL_0003: call System.Double System.Math::Log2(System.Double)
+    IL_0008: conv.u8
+    IL_0009: ret
+
+}
+Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 219
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.Int64 Z0.math::add(System.Int64,System.Int64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 227
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0030: ldind.i8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0039: ldind.i8
+    IL_003A: call System.UInt64 Z0.math::add(System.UInt64,System.UInt64)
+    IL_003F: stind.i8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 235
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0030: ldind.r4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0039: ldind.r4
+    IL_003A: call System.Single Z0.math::add(System.Single,System.Single)
+    IL_003F: stind.r4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 243
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0030: ldind.r8
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0039: ldind.r8
+    IL_003A: call System.Double Z0.math::add(System.Double,System.Double)
+    IL_003F: stind.r8
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
+
+}
+Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 251
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.SByte> zfunc::span<System.SByte>(System.Int32)
+    IL_0022: call System.Span`1<System.SByte> Z0.math::add(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.Span`1<System.SByte>)
+    IL_0027: ret
+
+}
+Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 255
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Byte> zfunc::span<System.Byte>(System.Int32)
+    IL_0022: call System.Span`1<System.Byte> Z0.math::add(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.Span`1<System.Byte>)
+    IL_0027: ret
+
+}
+Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 259
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Int16> zfunc::span<System.Int16>(System.Int32)
+    IL_0022: call System.Span`1<System.Int16> Z0.math::add(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.Span`1<System.Int16>)
+    IL_0027: ret
+
+}
+Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 263
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.UInt16> zfunc::span<System.UInt16>(System.Int32)
+    IL_0022: call System.Span`1<System.UInt16> Z0.math::add(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.Span`1<System.UInt16>)
+    IL_0027: ret
+
+}
+Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 267
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Int32> zfunc::span<System.Int32>(System.Int32)
+    IL_0022: call System.Span`1<System.Int32> Z0.math::add(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.Span`1<System.Int32>)
+    IL_0027: ret
+
+}
+Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 271
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.UInt32> zfunc::span<System.UInt32>(System.Int32)
+    IL_0022: call System.Span`1<System.UInt32> Z0.math::add(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.Span`1<System.UInt32>)
+    IL_0027: ret
+
+}
+Span<long> add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 275
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Int64> zfunc::span<System.Int64>(System.Int32)
+    IL_0022: call System.Span`1<System.Int64> Z0.math::add(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.Span`1<System.Int64>)
+    IL_0027: ret
+
+}
+Span<ulong> add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 279
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.UInt64> zfunc::span<System.UInt64>(System.Int32)
+    IL_0022: call System.Span`1<System.UInt64> Z0.math::add(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.Span`1<System.UInt64>)
+    IL_0027: ret
+
+}
+Span<float> add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 283
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Single> zfunc::span<System.Single>(System.Int32)
+    IL_0022: call System.Span`1<System.Single> Z0.math::add(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.Span`1<System.Single>)
+    IL_0027: ret
+
+}
+Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldarg.0
+    IL_0003: ldarg.1
+    IL_0004: ldstr "add"
+    IL_0009: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000E: ldc.i4 287
+    IL_0013: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0018: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001D: call System.Span`1<System.Double> zfunc::span<System.Double>(System.Int32)
+    IL_0022: call System.Span`1<System.Double> Z0.math::add(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.Span`1<System.Double>)
+    IL_0027: ret
+
+}
+Span<sbyte> add(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 291
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0032: ldind.i1
+    IL_0033: add
+    IL_0034: conv.i1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<byte> add(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 299
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u1
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0032: ldind.u1
+    IL_0033: add
+    IL_0034: conv.u1
+    IL_0035: stind.i1
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<short> add(Span<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 307
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0032: ldind.i2
+    IL_0033: add
+    IL_0034: conv.i2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<ushort> add(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 315
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_003A
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u2
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0032: ldind.u2
+    IL_0033: add
+    IL_0034: conv.u2
+    IL_0035: stind.i2
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_0020
+    IL_003E: ldarg.0
+    IL_003F: ret
+
+}
+Span<int> add(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 323
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: add
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> add(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 331
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: add
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> add(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 339
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: add
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> add(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 347
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: add
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> add(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 355
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: add
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> add(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 363
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: add
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<sbyte> add(Span<sbyte> lhs, sbyte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i1
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.i1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<byte> add(Span<byte> lhs, byte rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u1
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.u1
+    IL_0011: stind.i1
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<short> add(Span<short> lhs, short rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i2
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.i2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<ushort> add(Span<ushort> lhs, ushort rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u2
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: conv.u2
+    IL_0011: stind.i2
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s lhs
+    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldarg.0
+    IL_0021: ret
+
+}
+Span<int> add(Span<int> lhs, int rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<uint> add(Span<uint> lhs, uint rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.u4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt32>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<long> add(Span<long> lhs, long rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Int64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<ulong> add(Span<ulong> lhs, ulong rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.i8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.i8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.UInt64>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<float> add(Span<float> lhs, float rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r4
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.r4
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Single>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+Span<double> add(Span<double> lhs, double rhs)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0015
+    IL_0004: ldarga.s lhs
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_000C: dup
+    IL_000D: ldind.r8
+    IL_000E: ldarg.1
+    IL_000F: add
+    IL_0010: stind.r8
+    IL_0011: ldloc.0
+    IL_0012: ldc.i4.1
+    IL_0013: add
+    IL_0014: stloc.0
+    IL_0015: ldloc.0
+    IL_0016: ldarga.s lhs
+    IL_0018: call System.Int32 System.Span`1<System.Double>::get_Length()
+    IL_001D: blt.s IL_0004
+    IL_001F: ldarg.0
+    IL_0020: ret
+
+}
+sbyte and(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.i1
+    IL_0004: ret
+
+}
+byte and(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.u1
+    IL_0004: ret
+
+}
+short and(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.i2
+    IL_0004: ret
+
+}
+ushort and(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: conv.u2
+    IL_0004: ret
+
+}
+int and(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+uint and(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+long and(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+ulong and(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: and
+    IL_0003: ret
+
+}
+float and(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_000C: and
+    IL_000D: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
+    IL_0012: ret
+
+}
+double and(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.1
+    IL_0007: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_000C: and
+    IL_000D: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
+    IL_0012: ret
+
+}
+ref sbyte and(ref sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: conv.i1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref byte and(ref byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: conv.u1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref short and(ref short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: conv.i2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ushort and(ref ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: conv.u2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref int and(ref int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref uint and(ref uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref long and(ref long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: stind.i8
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref ulong and(ref ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: and
+    IL_0005: stind.i8
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref float and(ref float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldarg.1
+    IL_0004: call System.Single Z0.math::and(System.Single,System.Single)
+    IL_0009: stind.r4
+    IL_000A: ldarg.0
+    IL_000B: ret
+
+}
+ref double and(ref double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldarg.1
+    IL_0004: call System.Double Z0.math::and(System.Double,System.Double)
+    IL_0009: stind.r8
+    IL_000A: ldarg.0
+    IL_000B: ret
+
+}
+bool between(byte x, byte a, byte b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(sbyte x, sbyte a, sbyte b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(short x, short a, short b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(ushort x, ushort a, ushort b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(int x, int a, int b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(uint x, uint a, uint b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt.un
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(long x, long a, long b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(ulong x, ulong a, ulong b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt.un
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(float x, float a, float b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt.un
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+bool between(double x, double a, double b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_000C
+    IL_0004: ldarg.0
+    IL_0005: ldarg.2
+    IL_0006: cgt.un
+    IL_0008: ldc.i4.0
+    IL_0009: ceq
+    IL_000B: ret
+    IL_000C: ldc.i4.0
+    IL_000D: ret
+
+}
+sbyte dec(sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: conv.i1
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+byte dec(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: conv.u1
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+short dec(short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: conv.i2
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+ushort dec(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: conv.u2
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+int dec(int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: dup
+    IL_0004: starg.s src
+    IL_0006: ret
+
+}
+uint dec(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: sub
+    IL_0003: dup
+    IL_0004: starg.s src
+    IL_0006: ret
+
+}
+long dec(long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: conv.i8
+    IL_0003: sub
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+ulong dec(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: conv.i8
+    IL_0003: sub
+    IL_0004: dup
+    IL_0005: starg.s src
+    IL_0007: ret
+
+}
+float dec(float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r4 1
+    IL_0006: sub
+    IL_0007: dup
+    IL_0008: starg.s src
+    IL_000A: ret
+
+}
+double dec(double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.r8 1
+    IL_000A: sub
+    IL_000B: dup
+    IL_000C: starg.s src
+    IL_000E: ret
+
+}
+ref sbyte dec(ref sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: conv.i1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref byte dec(ref byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: conv.u1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref short dec(ref short src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: conv.i2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ushort dec(ref ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: conv.u2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref int dec(ref int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref uint dec(ref uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref long dec(ref long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldc.i4.1
+    IL_0004: conv.i8
+    IL_0005: sub
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ulong dec(ref ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldc.i4.1
+    IL_0004: conv.i8
+    IL_0005: sub
+    IL_0006: stind.i8
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref float dec(ref float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldc.r4 1
+    IL_0008: sub
+    IL_0009: stind.r4
+    IL_000A: ldarg.0
+    IL_000B: ret
+
+}
+ref double dec(ref double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldc.r8 1
+    IL_000C: sub
+    IL_000D: stind.r8
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+sbyte div(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: conv.i1
+    IL_0004: ret
+
+}
+byte div(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: conv.u1
+    IL_0004: ret
+
+}
+short div(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: conv.i2
+    IL_0004: ret
+
+}
+ushort div(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: conv.u2
+    IL_0004: ret
+
+}
+int div(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: ret
+
+}
+uint div(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div.un
+    IL_0003: ret
+
+}
+long div(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: ret
+
+}
+ulong div(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div.un
+    IL_0003: ret
+
+}
+float div(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: ret
+
+}
+double div(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: div
+    IL_0003: ret
+
+}
+ref sbyte div(ref sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: conv.i1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref byte div(ref byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: conv.u1
+    IL_0006: stind.i1
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref short div(ref short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: conv.i2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref ushort div(ref ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: conv.u2
+    IL_0006: stind.i2
+    IL_0007: ldarg.0
+    IL_0008: ret
+
+}
+ref int div(ref int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref uint div(ref uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: div.un
+    IL_0005: stind.i4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref long div(ref long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: stind.i8
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref ulong div(ref ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: div.un
+    IL_0005: stind.i8
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref float div(ref float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: stind.r4
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ref double div(ref double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: ldarg.1
+    IL_0004: div
+    IL_0005: stind.r8
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+bool eq(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ceq
+    IL_0004: ret
+
+}
+bool eq(ReadOnlySpan<sbyte> src, sbyte target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_000C: ldind.i1
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<byte> src, byte target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_000C: ldind.u1
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<short> src, short target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_000C: ldind.i2
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<ushort> src, ushort target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_000C: ldind.u2
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<int> src, int target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_000C: ldind.i4
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<uint> src, uint target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_000C: ldind.u4
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<long> src, long target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_000C: ldind.i8
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<ulong> src, ulong target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_000C: ldind.i8
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<float> src, float target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_000C: ldind.r4
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+bool eq(ReadOnlySpan<double> src, double target)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0016
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_000C: ldind.r8
+    IL_000D: ldarg.1
+    IL_000E: beq.s IL_0012
+    IL_0010: ldc.i4.0
+    IL_0011: ret
+    IL_0012: ldloc.0
+    IL_0013: ldc.i4.1
+    IL_0014: add
+    IL_0015: stloc.0
+    IL_0016: ldloc.0
+    IL_0017: ldarga.s src
+    IL_0019: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_001E: blt.s IL_0004
+    IL_0020: ldc.i4.1
+    IL_0021: ret
+
+}
+sbyte exp(sbyte pow)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Exp(System.Single)
+    IL_0007: conv.i1
+    IL_0008: ret
+
+}
+byte exp(byte pow)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Exp(System.Single)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+short exp(short pow)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Exp(System.Single)
+    IL_0007: conv.i2
+    IL_0008: ret
+
+}
+ushort exp(ushort pow)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.r4
+    IL_0002: call System.Single System.MathF::Exp(System.Single)
+    IL_0007: conv.u2
+    IL_0008: ret
 
 }
 sbyte avg(ReadOnlySpan<sbyte> src)
@@ -21175,6 +12260,1714 @@ double avg(ReadOnlySpan<double> src)
     IL_0032: ret
 
 }
+sbyte max(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+byte max(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+short max(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ushort max(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+int max(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+uint max(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.un.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+long max(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ulong max(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.un.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+float max(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+double max(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: bgt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+sbyte max(ReadOnlySpan<sbyte> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0013: ldind.i1
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0021: ldind.i1
+    IL_0022: ldloc.0
+    IL_0023: ble.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002D: ldind.i1
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+byte max(ReadOnlySpan<byte> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0013: ldind.u1
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0021: ldind.u1
+    IL_0022: ldloc.0
+    IL_0023: ble.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002D: ldind.u1
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+short max(ReadOnlySpan<short> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0013: ldind.i2
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0021: ldind.i2
+    IL_0022: ldloc.0
+    IL_0023: ble.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002D: ldind.i2
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+ushort max(ReadOnlySpan<ushort> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0013: ldind.u2
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0021: ldind.u2
+    IL_0022: ldloc.0
+    IL_0023: ble.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002D: ldind.u2
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+int max(ReadOnlySpan<int> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0013: ldind.i4
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0021: ldind.i4
+    IL_0022: ldloc.0
+    IL_0023: ble.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002D: ldind.i4
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+uint max(ReadOnlySpan<uint> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0013: ldind.u4
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0021: ldind.u4
+    IL_0022: ldloc.0
+    IL_0023: ble.un.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_002D: ldind.u4
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+long max(ReadOnlySpan<long> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000C
+    IL_0009: ldc.i4.0
+    IL_000A: conv.i8
+    IL_000B: ret
+    IL_000C: ldarga.s src
+    IL_000E: ldc.i4.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: stloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: stloc.1
+    IL_0018: br.s IL_0034
+    IL_001A: ldarga.s src
+    IL_001C: ldloc.1
+    IL_001D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0022: ldind.i8
+    IL_0023: ldloc.0
+    IL_0024: ble.s IL_0030
+    IL_0026: ldarga.s src
+    IL_0028: ldloc.1
+    IL_0029: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_002E: ldind.i8
+    IL_002F: stloc.0
+    IL_0030: ldloc.1
+    IL_0031: ldc.i4.1
+    IL_0032: add
+    IL_0033: stloc.1
+    IL_0034: ldloc.1
+    IL_0035: ldarga.s src
+    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_003C: blt.s IL_001A
+    IL_003E: ldloc.0
+    IL_003F: ret
+
+}
+ulong max(ReadOnlySpan<ulong> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000C
+    IL_0009: ldc.i4.0
+    IL_000A: conv.i8
+    IL_000B: ret
+    IL_000C: ldarga.s src
+    IL_000E: ldc.i4.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: stloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: stloc.1
+    IL_0018: br.s IL_0034
+    IL_001A: ldarga.s src
+    IL_001C: ldloc.1
+    IL_001D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0022: ldind.i8
+    IL_0023: ldloc.0
+    IL_0024: ble.un.s IL_0030
+    IL_0026: ldarga.s src
+    IL_0028: ldloc.1
+    IL_0029: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_002E: ldind.i8
+    IL_002F: stloc.0
+    IL_0030: ldloc.1
+    IL_0031: ldc.i4.1
+    IL_0032: add
+    IL_0033: stloc.1
+    IL_0034: ldloc.1
+    IL_0035: ldarga.s src
+    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_003C: blt.s IL_001A
+    IL_003E: ldloc.0
+    IL_003F: ret
+
+}
+float max(ReadOnlySpan<float> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000F
+    IL_0009: ldc.r4 0
+    IL_000E: ret
+    IL_000F: ldarga.s src
+    IL_0011: ldc.i4.0
+    IL_0012: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0017: ldind.r4
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.1
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s src
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldind.r4
+    IL_0026: ldloc.0
+    IL_0027: ble.un.s IL_0033
+    IL_0029: ldarga.s src
+    IL_002B: ldloc.1
+    IL_002C: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0031: ldind.r4
+    IL_0032: stloc.0
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldarga.s src
+    IL_003A: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_003F: blt.s IL_001D
+    IL_0041: ldloc.0
+    IL_0042: ret
+
+}
+double max(ReadOnlySpan<double> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
+    IL_0007: brfalse.s IL_0013
+    IL_0009: ldc.r8 0
+    IL_0012: ret
+    IL_0013: ldarga.s src
+    IL_0015: ldc.i4.0
+    IL_0016: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001B: ldind.r8
+    IL_001C: stloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: stloc.1
+    IL_001F: br.s IL_003B
+    IL_0021: ldarga.s src
+    IL_0023: ldloc.1
+    IL_0024: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0029: ldind.r8
+    IL_002A: ldloc.0
+    IL_002B: ble.un.s IL_0037
+    IL_002D: ldarga.s src
+    IL_002F: ldloc.1
+    IL_0030: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0035: ldind.r8
+    IL_0036: stloc.0
+    IL_0037: ldloc.1
+    IL_0038: ldc.i4.1
+    IL_0039: add
+    IL_003A: stloc.1
+    IL_003B: ldloc.1
+    IL_003C: ldarga.s src
+    IL_003E: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0043: blt.s IL_0021
+    IL_0045: ldloc.0
+    IL_0046: ret
+
+}
+sbyte min(sbyte lhs, sbyte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+byte min(byte lhs, byte rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+short min(short lhs, short rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ushort min(ushort lhs, ushort rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+int min(int lhs, int rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+uint min(uint lhs, uint rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+long min(long lhs, long rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+ulong min(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.un.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+float min(float lhs, float rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+double min(double lhs, double rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: blt.s IL_0006
+    IL_0004: ldarg.1
+    IL_0005: ret
+    IL_0006: ldarg.0
+    IL_0007: ret
+
+}
+sbyte min(ReadOnlySpan<sbyte> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.SByte>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0013: ldind.i1
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0021: ldind.i1
+    IL_0022: ldloc.0
+    IL_0023: bge.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002D: ldind.i1
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+byte min(ReadOnlySpan<byte> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Byte>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0013: ldind.u1
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0021: ldind.u1
+    IL_0022: ldloc.0
+    IL_0023: bge.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002D: ldind.u1
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+short min(ReadOnlySpan<short> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int16>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0013: ldind.i2
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0021: ldind.i2
+    IL_0022: ldloc.0
+    IL_0023: bge.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002D: ldind.i2
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+ushort min(ReadOnlySpan<ushort> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt16>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0013: ldind.u2
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0021: ldind.u2
+    IL_0022: ldloc.0
+    IL_0023: bge.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002D: ldind.u2
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+int min(ReadOnlySpan<int> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int32>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0013: ldind.i4
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0021: ldind.i4
+    IL_0022: ldloc.0
+    IL_0023: bge.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002D: ldind.i4
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+uint min(ReadOnlySpan<uint> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt32>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000B
+    IL_0009: ldc.i4.0
+    IL_000A: ret
+    IL_000B: ldarga.s src
+    IL_000D: ldc.i4.0
+    IL_000E: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0013: ldind.u4
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.1
+    IL_0016: stloc.1
+    IL_0017: br.s IL_0033
+    IL_0019: ldarga.s src
+    IL_001B: ldloc.1
+    IL_001C: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0021: ldind.u4
+    IL_0022: ldloc.0
+    IL_0023: bge.un.s IL_002F
+    IL_0025: ldarga.s src
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_002D: ldind.u4
+    IL_002E: stloc.0
+    IL_002F: ldloc.1
+    IL_0030: ldc.i4.1
+    IL_0031: add
+    IL_0032: stloc.1
+    IL_0033: ldloc.1
+    IL_0034: ldarga.s src
+    IL_0036: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
+    IL_003B: blt.s IL_0019
+    IL_003D: ldloc.0
+    IL_003E: ret
+
+}
+long min(ReadOnlySpan<long> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Int64>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000C
+    IL_0009: ldc.i4.0
+    IL_000A: conv.i8
+    IL_000B: ret
+    IL_000C: ldarga.s src
+    IL_000E: ldc.i4.0
+    IL_000F: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: stloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: stloc.1
+    IL_0018: br.s IL_0034
+    IL_001A: ldarga.s src
+    IL_001C: ldloc.1
+    IL_001D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0022: ldind.i8
+    IL_0023: ldloc.0
+    IL_0024: bge.s IL_0030
+    IL_0026: ldarga.s src
+    IL_0028: ldloc.1
+    IL_0029: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_002E: ldind.i8
+    IL_002F: stloc.0
+    IL_0030: ldloc.1
+    IL_0031: ldc.i4.1
+    IL_0032: add
+    IL_0033: stloc.1
+    IL_0034: ldloc.1
+    IL_0035: ldarga.s src
+    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
+    IL_003C: blt.s IL_001A
+    IL_003E: ldloc.0
+    IL_003F: ret
+
+}
+ulong min(ReadOnlySpan<ulong> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.UInt64>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000C
+    IL_0009: ldc.i4.0
+    IL_000A: conv.i8
+    IL_000B: ret
+    IL_000C: ldarga.s src
+    IL_000E: ldc.i4.0
+    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0014: ldind.i8
+    IL_0015: stloc.0
+    IL_0016: ldc.i4.1
+    IL_0017: stloc.1
+    IL_0018: br.s IL_0034
+    IL_001A: ldarga.s src
+    IL_001C: ldloc.1
+    IL_001D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0022: ldind.i8
+    IL_0023: ldloc.0
+    IL_0024: bge.un.s IL_0030
+    IL_0026: ldarga.s src
+    IL_0028: ldloc.1
+    IL_0029: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_002E: ldind.i8
+    IL_002F: stloc.0
+    IL_0030: ldloc.1
+    IL_0031: ldc.i4.1
+    IL_0032: add
+    IL_0033: stloc.1
+    IL_0034: ldloc.1
+    IL_0035: ldarga.s src
+    IL_0037: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
+    IL_003C: blt.s IL_001A
+    IL_003E: ldloc.0
+    IL_003F: ret
+
+}
+float min(ReadOnlySpan<float> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Single>::get_IsEmpty()
+    IL_0007: brfalse.s IL_000F
+    IL_0009: ldc.r4 0
+    IL_000E: ret
+    IL_000F: ldarga.s src
+    IL_0011: ldc.i4.0
+    IL_0012: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0017: ldind.r4
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.1
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s src
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldind.r4
+    IL_0026: ldloc.0
+    IL_0027: bge.un.s IL_0033
+    IL_0029: ldarga.s src
+    IL_002B: ldloc.1
+    IL_002C: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0031: ldind.r4
+    IL_0032: stloc.0
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldarga.s src
+    IL_003A: call System.Int32 System.ReadOnlySpan`1<System.Single>::get_Length()
+    IL_003F: blt.s IL_001D
+    IL_0041: ldloc.0
+    IL_0042: ret
+
+}
+double min(ReadOnlySpan<double> src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Boolean System.ReadOnlySpan`1<System.Double>::get_IsEmpty()
+    IL_0007: brfalse.s IL_0013
+    IL_0009: ldc.r8 0
+    IL_0012: ret
+    IL_0013: ldarga.s src
+    IL_0015: ldc.i4.0
+    IL_0016: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_001B: ldind.r8
+    IL_001C: stloc.0
+    IL_001D: ldc.i4.1
+    IL_001E: stloc.1
+    IL_001F: br.s IL_003B
+    IL_0021: ldarga.s src
+    IL_0023: ldloc.1
+    IL_0024: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0029: ldind.r8
+    IL_002A: ldloc.0
+    IL_002B: bge.un.s IL_0037
+    IL_002D: ldarga.s src
+    IL_002F: ldloc.1
+    IL_0030: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0035: ldind.r8
+    IL_0036: stloc.0
+    IL_0037: ldloc.1
+    IL_0038: ldc.i4.1
+    IL_0039: add
+    IL_003A: stloc.1
+    IL_003B: ldloc.1
+    IL_003C: ldarga.s src
+    IL_003E: call System.Int32 System.ReadOnlySpan`1<System.Double>::get_Length()
+    IL_0043: blt.s IL_0021
+    IL_0045: ldloc.0
+    IL_0046: ret
+
+}
+Span<sbyte> Mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 20
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002D: ldind.i1
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0036: ldind.i1
+    IL_0037: call System.SByte Z0.math::mul(System.SByte,System.SByte)
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<byte> Mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 28
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002D: ldind.u1
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0036: ldind.u1
+    IL_0037: call System.Byte Z0.math::mul(System.Byte,System.Byte)
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<short> Mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 36
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002D: ldind.i2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0036: ldind.i2
+    IL_0037: call System.Int16 Z0.math::mul(System.Int16,System.Int16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<ushort> Mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 44
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002D: ldind.u2
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0036: ldind.u2
+    IL_0037: call System.UInt16 Z0.math::mul(System.UInt16,System.UInt16)
+    IL_003C: stind.i2
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<int> Mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 51
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_002D: ldind.i4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0036: ldind.i4
+    IL_0037: call System.Int32 Z0.math::mul(System.Int32,System.Int32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<uint> Mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 60
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_002D: ldind.u4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0036: ldind.u4
+    IL_0037: call System.UInt32 Z0.math::mul(System.UInt32,System.UInt32)
+    IL_003C: stind.i4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<long> Mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 68
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int64,System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.Int64 Z0.math::mul(System.Int64,System.Int64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<ulong> Mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 76
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_002D: ldind.i8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: call System.UInt64 Z0.math::mul(System.UInt64,System.UInt64)
+    IL_003C: stind.i8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<float> Mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 84
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Single,System.Single>(System.ReadOnlySpan`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_002D: ldind.r4
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0036: ldind.r4
+    IL_0037: call System.Single Z0.math::mul(System.Single,System.Single)
+    IL_003C: stind.r4
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<double> Mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 92
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Double,System.Double>(System.ReadOnlySpan`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0041
+    IL_001D: ldarga.s dst
+    IL_001F: ldloc.1
+    IL_0020: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0025: ldarga.s lhs
+    IL_0027: ldloc.1
+    IL_0028: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_002D: ldind.r8
+    IL_002E: ldarga.s rhs
+    IL_0030: ldloc.1
+    IL_0031: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0036: ldind.r8
+    IL_0037: call System.Double Z0.math::mul(System.Double,System.Double)
+    IL_003C: stind.r8
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_001D
+    IL_0045: ldarg.2
+    IL_0046: ret
+
+}
+Span<sbyte> Mul(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 100
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.SByte>(System.Span`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_002F: ldind.i1
+    IL_0030: mul
+    IL_0031: conv.i1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<byte> Mul(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 108
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Byte>(System.Span`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u1
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_002F: ldind.u1
+    IL_0030: mul
+    IL_0031: conv.u1
+    IL_0032: stind.i1
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<short> Mul(Span<short> lhs, ReadOnlySpan<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 116
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.Int16>(System.Span`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.i2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_002F: ldind.i2
+    IL_0030: mul
+    IL_0031: conv.i2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<ushort> Mul(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4.s 124
+    IL_000E: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0013: call System.Int32 zfunc::length<System.UInt16>(System.Span`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_0018: stloc.0
+    IL_0019: ldc.i4.0
+    IL_001A: stloc.1
+    IL_001B: br.s IL_0037
+    IL_001D: ldarga.s lhs
+    IL_001F: ldloc.1
+    IL_0020: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0025: dup
+    IL_0026: ldind.u2
+    IL_0027: ldarga.s rhs
+    IL_0029: ldloc.1
+    IL_002A: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_002F: ldind.u2
+    IL_0030: mul
+    IL_0031: conv.u2
+    IL_0032: stind.i2
+    IL_0033: ldloc.1
+    IL_0034: ldc.i4.1
+    IL_0035: add
+    IL_0036: stloc.1
+    IL_0037: ldloc.1
+    IL_0038: ldloc.0
+    IL_0039: blt.s IL_001D
+    IL_003B: ldarg.0
+    IL_003C: ret
+
+}
+Span<int> Mul(Span<int> lhs, ReadOnlySpan<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 132
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32>(System.Span`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0032: ldind.i4
+    IL_0033: mul
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<uint> Mul(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 140
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32>(System.Span`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.u4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0032: ldind.u4
+    IL_0033: mul
+    IL_0034: stind.i4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<long> Mul(Span<long> lhs, ReadOnlySpan<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 148
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int64>(System.Span`1<System.Int64>,System.ReadOnlySpan`1<System.Int64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: mul
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<ulong> Mul(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 156
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt64>(System.Span`1<System.UInt64>,System.ReadOnlySpan`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.i8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
+    IL_0032: ldind.i8
+    IL_0033: mul
+    IL_0034: stind.i8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<float> Mul(Span<float> lhs, ReadOnlySpan<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 164
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Single>(System.Span`1<System.Single>,System.ReadOnlySpan`1<System.Single>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Single& System.Span`1<System.Single>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r4
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Single& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Single>::get_Item(System.Int32)
+    IL_0032: ldind.r4
+    IL_0033: mul
+    IL_0034: stind.r4
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
+Span<double> Mul(Span<double> lhs, ReadOnlySpan<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldstr "Mul"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\agg\\Mul.x.cs"
+    IL_000C: ldc.i4 172
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Double>(System.Span`1<System.Double>,System.ReadOnlySpan`1<System.Double>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0039
+    IL_0020: ldarga.s lhs
+    IL_0022: ldloc.1
+    IL_0023: call System.Double& System.Span`1<System.Double>::get_Item(System.Int32)
+    IL_0028: dup
+    IL_0029: ldind.r8
+    IL_002A: ldarga.s rhs
+    IL_002C: ldloc.1
+    IL_002D: call System.Double& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Double>::get_Item(System.Int32)
+    IL_0032: ldind.r8
+    IL_0033: mul
+    IL_0034: stind.r8
+    IL_0035: ldloc.1
+    IL_0036: ldc.i4.1
+    IL_0037: add
+    IL_0038: stloc.1
+    IL_0039: ldloc.1
+    IL_003A: ldloc.0
+    IL_003B: blt.s IL_0020
+    IL_003D: ldarg.0
+    IL_003E: ret
+
+}
 sbyte sum(ReadOnlySpan<sbyte> src)
 {
     IL_0000: ldc.i4.0
@@ -21441,176 +14234,62 @@ double sum(ReadOnlySpan<double> src)
     IL_0029: ret
 
 }
-ref sbyte abs(ref sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: call System.SByte System.Math::Abs(System.SByte)
-    IL_0008: stind.i1
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref short abs(ref short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: call System.Int16 System.Math::Abs(System.Int16)
-    IL_0008: stind.i2
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref int abs(ref int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: call System.Int32 System.Math::Abs(System.Int32)
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref long abs(ref long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: call System.Int64 System.Math::Abs(System.Int64)
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref float abs(ref float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: call System.Single System.MathF::Abs(System.Single)
-    IL_0008: stind.r4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref double abs(ref double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: call System.Double System.Math::Abs(System.Double)
-    IL_0008: stind.r8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref sbyte abs(in sbyte src, out sbyte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: call System.SByte System.Math::Abs(System.SByte)
-    IL_0008: stind.i1
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref short abs(in short src, out short dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: call System.Int16 System.Math::Abs(System.Int16)
-    IL_0008: stind.i2
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref int abs(in int src, out int dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: call System.Int32 System.Math::Abs(System.Int32)
-    IL_0008: stind.i4
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref long abs(in long src, out long dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: call System.Int64 System.Math::Abs(System.Int64)
-    IL_0008: stind.i8
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref float abs(in float src, out float dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: call System.Single System.Math::Abs(System.Single)
-    IL_0008: stind.r4
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref double abs(in double src, out double dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: call System.Double System.Math::Abs(System.Double)
-    IL_0008: stind.r8
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
 sbyte abs(sbyte src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.SByte System.Math::Abs(System.SByte)
-    IL_0006: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.7
+    IL_0003: shr
+    IL_0004: add
+    IL_0005: ldarg.0
+    IL_0006: ldc.i4.7
+    IL_0007: shr
+    IL_0008: xor
+    IL_0009: conv.i1
+    IL_000A: ret
 
 }
 short abs(short src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Int16 System.Math::Abs(System.Int16)
-    IL_0006: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.s 15
+    IL_0004: shr
+    IL_0005: add
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 15
+    IL_0009: shr
+    IL_000A: xor
+    IL_000B: conv.i2
+    IL_000C: ret
 
 }
 int abs(int src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Int32 System.Math::Abs(System.Int32)
-    IL_0006: ret
-
-}
-uint abs(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.s 31
+    IL_0004: shr
+    IL_0005: add
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 31
+    IL_0009: shr
+    IL_000A: xor
+    IL_000B: ret
 
 }
 long abs(long src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Int64 System.Math::Abs(System.Int64)
-    IL_0006: ret
-
-}
-ulong abs(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ret
+    IL_0001: ldarg.0
+    IL_0002: ldc.i4.s 63
+    IL_0004: shr
+    IL_0005: add
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 63
+    IL_0009: shr
+    IL_000A: xor
+    IL_000B: ret
 
 }
 float abs(float src)
@@ -21627,24 +14306,70 @@ double abs(double src)
     IL_0006: ret
 
 }
-Decimal abs(Decimal src)
+ref sbyte abs(ref sbyte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldsfld System.Decimal System.Decimal::Zero
-    IL_0006: call System.Boolean System.Decimal::op_GreaterThanOrEqual(System.Decimal,System.Decimal)
-    IL_000B: brtrue.s IL_0014
-    IL_000D: ldarg.0
-    IL_000E: call System.Decimal System.Decimal::op_UnaryNegation(System.Decimal)
-    IL_0013: ret
-    IL_0014: ldarg.0
-    IL_0015: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: call System.SByte Z0.math::abs(System.SByte)
+    IL_0008: stind.i1
+    IL_0009: ldarg.0
+    IL_000A: ret
 
 }
-BigInteger abs(BigInteger src)
+ref short abs(ref short src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Numerics.BigInteger System.Numerics.BigInteger::Abs(System.Numerics.BigInteger)
-    IL_0006: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: call System.Int16 Z0.math::abs(System.Int16)
+    IL_0008: stind.i2
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ref int abs(ref int src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: call System.Int32 Z0.math::abs(System.Int32)
+    IL_0008: stind.i4
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ref long abs(ref long src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: call System.Int64 Z0.math::abs(System.Int64)
+    IL_0008: stind.i8
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ref float abs(ref float src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r4
+    IL_0003: call System.Single Z0.math::abs(System.Single)
+    IL_0008: stind.r4
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ref double abs(ref double src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.r8
+    IL_0003: call System.Double Z0.math::abs(System.Double)
+    IL_0008: stind.r8
+    IL_0009: ldarg.0
+    IL_000A: ret
 
 }
 sbyte add(sbyte lhs, sbyte rhs)
@@ -21989,677 +14714,226 @@ double add(double lhs, double rhs, out double dst)
     IL_0008: ret
 
 }
-sbyte and(sbyte lhs, sbyte rhs)
+Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: conv.i1
-    IL_0004: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 171
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.SByte,System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.ReadOnlySpan`1<System.SByte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0030: ldind.i1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
+    IL_0039: ldind.i1
+    IL_003A: call System.SByte Z0.math::add(System.SByte,System.SByte)
+    IL_003F: stind.i1
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-byte and(byte lhs, byte rhs)
+Span<byte> add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: conv.u1
-    IL_0004: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 179
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Byte,System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.ReadOnlySpan`1<System.Byte>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0041
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0030: ldind.u1
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
+    IL_0039: ldind.u1
+    IL_003A: add
+    IL_003B: conv.u1
+    IL_003C: stind.i1
+    IL_003D: ldloc.1
+    IL_003E: ldc.i4.1
+    IL_003F: add
+    IL_0040: stloc.1
+    IL_0041: ldloc.1
+    IL_0042: ldloc.0
+    IL_0043: blt.s IL_0020
+    IL_0045: ldarg.2
+    IL_0046: ret
 
 }
-short and(short lhs, short rhs)
+Span<short> add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: conv.i2
-    IL_0004: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 187
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int16,System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.ReadOnlySpan`1<System.Int16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0030: ldind.i2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
+    IL_0039: ldind.i2
+    IL_003A: call System.Int16 Z0.math::add(System.Int16,System.Int16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-ushort and(ushort lhs, ushort rhs)
+Span<ushort> add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: conv.u2
-    IL_0004: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 195
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt16,System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.ReadOnlySpan`1<System.UInt16>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0030: ldind.u2
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
+    IL_0039: ldind.u2
+    IL_003A: call System.UInt16 Z0.math::add(System.UInt16,System.UInt16)
+    IL_003F: stind.i2
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-int and(int lhs, int rhs)
+Span<int> add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 203
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.Int32,System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.ReadOnlySpan`1<System.Int32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0030: ldind.i4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
+    IL_0039: ldind.i4
+    IL_003A: call System.Int32 Z0.math::add(System.Int32,System.Int32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }
-uint and(uint lhs, uint rhs)
+Span<uint> add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: ret
-
-}
-long and(long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: ret
-
-}
-ulong and(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: and
-    IL_0003: ret
-
-}
-ref sbyte and(ref sbyte lhs, sbyte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: conv.i1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref byte and(ref byte lhs, byte rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: conv.u1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref short and(ref short lhs, short rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: conv.i2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ushort and(ref ushort lhs, ushort rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: conv.u2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref int and(ref int lhs, int rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref uint and(ref uint lhs, uint rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref long and(ref long lhs, long rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: stind.i8
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref ulong and(ref ulong lhs, ulong rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: and
-    IL_0005: stind.i8
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-bool between(byte x, byte a, byte b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(sbyte x, sbyte a, sbyte b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(short x, short a, short b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(ushort x, ushort a, ushort b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(int x, int a, int b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(uint x, uint a, uint b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt.un
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(long x, long a, long b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(ulong x, ulong a, ulong b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt.un
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(float x, float a, float b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt.un
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-bool between(double x, double a, double b)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: blt.un.s IL_000C
-    IL_0004: ldarg.0
-    IL_0005: ldarg.2
-    IL_0006: cgt.un
-    IL_0008: ldc.i4.0
-    IL_0009: ceq
-    IL_000B: ret
-    IL_000C: ldc.i4.0
-    IL_000D: ret
-
-}
-int bits(float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int32 System.BitConverter::SingleToInt32Bits(System.Single)
-    IL_0006: ret
-
-}
-long bits(double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int64 System.BitConverter::DoubleToInt64Bits(System.Double)
-    IL_0006: ret
-
-}
-sbyte dec(sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: conv.i1
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-byte dec(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: conv.u1
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-short dec(short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: conv.i2
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-ushort dec(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: conv.u2
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-int dec(int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: dup
-    IL_0004: starg.s src
-    IL_0006: ret
-
-}
-uint dec(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: sub
-    IL_0003: dup
-    IL_0004: starg.s src
-    IL_0006: ret
-
-}
-long dec(long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: conv.i8
-    IL_0003: sub
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-ulong dec(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.1
-    IL_0002: conv.i8
-    IL_0003: sub
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: ret
-
-}
-float dec(float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r4 1
-    IL_0006: sub
-    IL_0007: dup
-    IL_0008: starg.s src
-    IL_000A: ret
-
-}
-double dec(double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.r8 1
-    IL_000A: sub
-    IL_000B: dup
-    IL_000C: starg.s src
-    IL_000E: ret
-
-}
-ref sbyte dec(ref sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: conv.i1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref byte dec(ref byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: conv.u1
-    IL_0006: stind.i1
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref short dec(ref short src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: conv.i2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ushort dec(ref ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: conv.u2
-    IL_0006: stind.i2
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref int dec(ref int src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref uint dec(ref uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: stind.i4
-    IL_0006: ldarg.0
-    IL_0007: ret
-
-}
-ref long dec(ref long src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldc.i4.1
-    IL_0004: conv.i8
-    IL_0005: sub
-    IL_0006: stind.i8
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref ulong dec(ref ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldc.i4.1
-    IL_0004: conv.i8
-    IL_0005: sub
-    IL_0006: stind.i8
-    IL_0007: ldarg.0
-    IL_0008: ret
-
-}
-ref float dec(ref float src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r4
-    IL_0003: ldc.r4 1
-    IL_0008: sub
-    IL_0009: stind.r4
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref double dec(ref double src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: ldc.r8 1
-    IL_000C: sub
-    IL_000D: stind.r8
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref sbyte dec(sbyte src, out sbyte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: conv.i1
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i1
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref byte dec(byte src, out byte dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: conv.u1
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i1
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref short dec(short src, out short dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: conv.i2
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i2
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref ushort dec(ushort src, out ushort dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: conv.u2
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i2
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref int dec(int src, out int dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: stind.i4
-    IL_0008: ldarg.1
-    IL_0009: ret
-
-}
-ref uint dec(uint src, out uint dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: sub
-    IL_0004: dup
-    IL_0005: starg.s src
-    IL_0007: stind.i4
-    IL_0008: ldarg.1
-    IL_0009: ret
-
-}
-ref long dec(long src, out long dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: sub
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i8
-    IL_0009: ldarg.1
-    IL_000A: ret
-
-}
-ref ulong dec(ulong src, out ulong dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldc.i4.1
-    IL_0003: conv.i8
-    IL_0004: sub
-    IL_0005: dup
-    IL_0006: starg.s src
-    IL_0008: stind.i8
-    IL_0009: ldarg.1
-    IL_000A: ret
+    IL_0002: ldstr "add"
+    IL_0007: ldstr "J:\\dev\\projects\\z0\\primal\\direct\\atomic\\add.cs"
+    IL_000C: ldc.i4 211
+    IL_0011: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_0016: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.ReadOnlySpan`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_001B: stloc.0
+    IL_001C: ldc.i4.0
+    IL_001D: stloc.1
+    IL_001E: br.s IL_0044
+    IL_0020: ldarga.s dst
+    IL_0022: ldloc.1
+    IL_0023: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
+    IL_0028: ldarga.s lhs
+    IL_002A: ldloc.1
+    IL_002B: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0030: ldind.u4
+    IL_0031: ldarga.s rhs
+    IL_0033: ldloc.1
+    IL_0034: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
+    IL_0039: ldind.u4
+    IL_003A: call System.UInt32 Z0.math::add(System.UInt32,System.UInt32)
+    IL_003F: stind.i4
+    IL_0040: ldloc.1
+    IL_0041: ldc.i4.1
+    IL_0042: add
+    IL_0043: stloc.1
+    IL_0044: ldloc.1
+    IL_0045: ldloc.0
+    IL_0046: blt.s IL_0020
+    IL_0048: ldarg.2
+    IL_0049: ret
 
 }

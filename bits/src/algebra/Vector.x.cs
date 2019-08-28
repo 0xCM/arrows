@@ -98,11 +98,11 @@ namespace Z0
         public static ref Vector<N,T> Div<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
-
         {
-            var x = lhs.Unsized;
-            var y = rhs.Unsized;
-            gmath.div(ref x, y);
+            if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
+                gfp.div(lhs.Unsized, rhs.Unsized);
+            else
+                gmath.idiv(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -312,16 +312,6 @@ namespace Z0
             return ref io;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vector<N,T> Sqrt<N,T>(this ref Vector<N,T> src)
-            where N : ITypeNat, new()
-            where T : struct    
-
-        {
-            var x = src.Unsized;
-            gmath.sqrt(ref x);
-            return ref src;
-        }
 
        [MethodImpl(Inline)]
         public static ref Vector<N,T> Abs<N,T>(this ref Vector<N,T> src)
@@ -335,7 +325,7 @@ namespace Z0
         }
 
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Span<N,bool> Eq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    

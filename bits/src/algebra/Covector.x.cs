@@ -55,9 +55,10 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            gmath.div(ref x, y);
+            if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
+                gfp.div(lhs.Unsized, rhs.Unsized);
+            else
+                gmath.idiv(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -231,16 +232,6 @@ namespace Z0
             return ref src;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Covector<N,T> Sqrt<N,T>(this ref Covector<N,T> src)
-            where N : ITypeNat, new()
-            where T : struct    
-
-        {
-            var x = src.Unsize();
-            gmath.sqrt(ref x);
-            return ref src;
-        }
 
        [MethodImpl(Inline)]
         public static ref Covector<N,T> Abs<N,T>(this ref Covector<N,T> src)

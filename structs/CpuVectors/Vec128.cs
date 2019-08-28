@@ -23,7 +23,7 @@ namespace Z0
         /// <summary>
         /// The backing data
         /// </summary>
-        readonly Vector128<T> data;        
+        public readonly Vector128<T> data;        
 
         /// <summary>
         /// The number of components in the vector
@@ -57,7 +57,7 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public Vec128(in Vector128<T> src)
+        public Vec128(Vector128<T> src)
             => this.data = src;
 
         /// <summary>

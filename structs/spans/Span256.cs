@@ -157,7 +157,7 @@ namespace Z0
             => data.Slice(start,length);
 
         [MethodImpl(Inline)]
-        public Span256<T> SliceBlock(int blockIndex)
+        public Span256<T> Blocked(int blockIndex)
         {
             var slice = data.Slice(blockIndex * BlockLength, BlockLength); 
             return new Span256<T>(slice);

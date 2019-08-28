@@ -87,6 +87,19 @@ namespace Z0
             => srli(src.As<uint>(),offset).As<ulong>();
 
         /// <summary>
+        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 16-bit integers in the target vector 
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
+        /// <summary>__m256i _mm256_cvtepu8_epi16 (__m128i a) </summary>
+        [MethodImpl(Inline)]
+        public static ref Vec256<ushort> convert(in Vec128<byte> src, out Vec256<ushort> dst)
+        {
+            dst = ConvertToVector256Int16(src).AsUInt16();
+            return ref dst;
+        }
+
+        /// <summary>
         /// _mm256_srli_epi16, avx2:
         /// Shifts each component of the source vector right by a common number of bits
         /// </summary>
@@ -99,8 +112,8 @@ namespace Z0
         public static Vec256<byte> srli(in Vec256<byte> src, byte offset)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors
-            ref var srcX = ref dinx.convert(dinx.lo(src), out Vec256<ushort> _);
-            ref var srcY = ref dinx.convert(dinx.hi(src), out Vec256<ushort> _);
+            ref var srcX = ref convert(dinx.lo(src), out Vec256<ushort> _);
+            ref var srcY = ref convert(dinx.hi(src), out Vec256<ushort> _);
             
             //Shift each part with a concrete intrinsic anc convert back to bytes
             var dstA = Bits.srli(srcX, offset).As<byte>();

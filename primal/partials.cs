@@ -15,9 +15,31 @@ namespace Z0
     public static partial class math
     {
 
+    }
+
+    /// <summary>
+    /// Defines generic floating-point operations
+    /// </summary>
+    public static partial class gfp
+    {
 
     }
 
+    /// <summary>
+    /// Defines floating-point operations
+    /// </summary>
+    public static partial class fmath
+    {
+
+    }
+
+    /// <summary>
+    /// Defines floating-point extensions
+    /// </summary>
+    public static partial class fpx
+    {
+
+    }
 
     public static partial class MathX
     {

@@ -75,6 +75,50 @@ namespace Z0
             return ref src;
         }
 
+        public static Span<byte> rotr(ReadOnlySpan<byte> src, byte offset, Span<byte> dst)
+        {
+            for(var i=0; i<src.Length; i++)
+                dst[i] = rotr(src[i], offset);                            
+            return dst;
+        }
+
+        public static Span<ushort> rotr(ReadOnlySpan<ushort> src, ushort offset, Span<ushort> dst)
+        {
+            for(var i=0; i<src.Length; i++)
+                dst[i] = rotr(src[i], offset);                            
+            return dst;
+        }
+
+        public static Span<uint> rotr(ReadOnlySpan<uint> src, uint offset, Span<uint> dst)
+        {
+            for(var i=0; i<src.Length; i++)
+                dst[i] = rotr(src[i], offset);                            
+            return dst;
+        }
+
+        public static Span<ulong> rotr(ReadOnlySpan<ulong> src, ulong offset, Span<ulong> dst)
+        {
+            for(var i=0; i<src.Length; i++)
+                dst[i] = rotr(src[i], offset);                            
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<byte> rotr(ReadOnlySpan<byte> src, byte offset)
+            => rotr(src,offset,src.Replicate(true));
+
+        [MethodImpl(Inline)]
+        public static Span<ushort>  rotr(ReadOnlySpan<ushort> src, ushort offset)
+            => rotr(src,offset,src.Replicate(true));
+
+        [MethodImpl(Inline)]
+        public static Span<uint>  rotr(ReadOnlySpan<uint> src, uint offset)
+            => rotr(src,offset,src.Replicate(true));
+
+        [MethodImpl(Inline)]
+        public static Span<ulong>  rotr(ReadOnlySpan<ulong> src, ulong offset)
+            => rotr(src,offset,src.Replicate(true));
+
     }
 
 }

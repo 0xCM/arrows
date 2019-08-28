@@ -42,7 +42,37 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString operator +(BitString lhs, BitString rhs)
             => lhs.Concat(rhs);
-        
+
+        [MethodImpl(Inline)]
+        public static BitString operator &(BitString lhs, BitString rhs)
+        {            
+            var len = length(lhs.bitseq,rhs.bitseq);
+            var dst = new BitString(new byte[len]);
+            for(var i=0; i< len; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitString operator ^(BitString lhs, BitString rhs)
+        {            
+            var len = length(lhs.bitseq,rhs.bitseq);
+            var dst = new BitString(new byte[len]);
+            for(var i=0; i< len; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitString operator ~(BitString src)
+        {            
+            var len = src.Length;
+            var dst = new BitString(new byte[len]);
+            for(var i=0; i< len; i++)
+                dst[i] = ~src[i];
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         BitString(byte[] src)

@@ -31,6 +31,15 @@ namespace Z0
             => Pow2<ulong>.pow(i);
 
         /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,63], and
+        /// because .Net loves signed 32-bit integers
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ulong pow(int i)
+            => Pow2<ulong>.pow(i);
+
+        /// <summary>
         /// Given n, computes i  n = 2^63
         /// </summary>
         /// <param name="n">The exponentiated value n such that 2^n <= 2^63</param>

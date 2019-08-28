@@ -18,20 +18,6 @@ namespace Z0
         
         static readonly Vec256<int> MRev256f32 = Vec256.FromParts(7, 6, 5, 4, 3, 2, 1, 0);    
 
-        static readonly Vec128<byte> MRev128u8 = Vec128.Decrements((byte)15);
-
-        static readonly Vec128<sbyte> MRev128i8 = Vec128.Decrements((sbyte)15);
-
-        static readonly Vec256<byte> MRev256u8 = Vec256Pattern.Decrements((byte)31);
-
-        /// <summary>
-        /// Creates a mask that, when applied to a source vector, effects a sequence of transpositions
-        /// </summary>
-        /// <param name="swaps">The transpositions</param>
-        [MethodImpl(Inline)]
-        static Vec128<byte> MSwap128u8(params Swap[] swaps)
-            => Vec128.Increments((byte)0, swaps);
-
         const byte MRev128i32 = 0b00_01_10_11;
 
         const byte MRev128u32 = 0b00_01_10_11;
@@ -39,7 +25,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<byte> swap(in Vec128<byte> src, params Swap[] swaps)
-            => shuffle(src, MSwap128u8(swaps));
+            => shuffle(src, Vec128Pattern.Swap<byte>(swaps));
 
         /// <summary>
         /// Creates a new vector by reversing the componets in the source vector
@@ -47,7 +33,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec128<byte> reverse(in Vec128<byte> src)
-            => shuffle(src, MRev128u8);
+            => shuffle(src, Vec128Pattern.Decrements<byte>());
 
         /// <summary>
         /// Creates a new vector by reversing the componets in the source vector
@@ -55,7 +41,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec128<sbyte> reverse(in Vec128<sbyte> src)
-            => shuffle(src, MRev128i8);
+            => shuffle(src, Vec128Pattern.Decrements<sbyte>());
 
         /// <summary>
         /// Creates a new vector by reversing the componets in the source vector
@@ -75,7 +61,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<byte> reverse(in Vec256<byte> src)
-            => permute(src,MRev256u8);
+            => permute(src, Vec256Pattern.Decrements<byte>());
 
         [MethodImpl(Inline)]
         public static Vec256<int> reverse(in Vec256<int> src)
@@ -87,9 +73,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<float> reverse(in Vec256<float> src)
-            => perm8x32(src,MRev256f32);
-        
- 
+            => perm8x32(src,MRev256f32);    
     }
 
 }

@@ -67,8 +67,7 @@ namespace Z0
         /// Returns the average bin count
         /// </summary>
         public double AvgBinCount
-            => Counts.Average();
-        
+            => Counts.Average();        
 
         /// <summary>
         /// Distribute a single value to the histogram

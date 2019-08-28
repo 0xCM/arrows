@@ -16,20 +16,7 @@ namespace Z0
 
     partial class MathX
     {
-        public static T[] ToScalars<T>(this bool[] src)
-            where T : struct
-                => map(src, x => x ? gmath.one<T>() : gmath.zero<T>());
 
-        public static Span<T> ToScalars<T>(this Span<bool> src)
-            where T : struct
-        {
-            var dst = span<T>(src.Length);
-            var one = gmath.one<T>();
-            var zed = gmath.zero<T>();
-            for(var i = 0; i<src.Length; i++)
-                dst[i] = src[i] ? one : zed;
-            return dst;
-        }
 
         public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
             where T : struct
@@ -221,6 +208,7 @@ namespace Z0
             return SequenceEqual(ref asRef(in lhs[0]), ref asRef(in rhs[0]), lhs.Length);
         }
 
+        [MethodImpl(Inline)]
         public static T Quotient<T>(this Ratio<T> src)        
             where T : struct       
                 => gmath.div(src.A, src.B);

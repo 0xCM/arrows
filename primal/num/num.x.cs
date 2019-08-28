@@ -20,10 +20,6 @@ namespace Z0
             where T : struct
                 =>  ref Num.num(ref gmath.abs(ref Num.scalar(ref src)));
 
-        [MethodImpl(Inline)]
-        public static ref num<T> Sqrt<T>(this ref num<T> src)
-            where T : struct 
-                =>  ref Num.num(ref gmath.sqrt(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Square<T>(this ref num<T> src)

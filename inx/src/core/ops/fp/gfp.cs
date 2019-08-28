@@ -12,7 +12,7 @@ namespace Z0
     using static As;
     using static zfunc;    
     
-    public static class gfp
+    public static class gfpinx
     {
         [MethodImpl(Inline)]
         public static Vec128<T> div<T>(in Vec128<T> lhs, in Vec128<T> rhs)

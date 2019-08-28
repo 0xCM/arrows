@@ -47,15 +47,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ulong fma(ulong x, ulong y, ulong z)
-            => x*y + z;
-
-        [MethodImpl(Inline)]
-        public static float fma(float x, float y, float z)
-            => MathF.FusedMultiplyAdd(x,y,z);
-
-        [MethodImpl(Inline)]
-        public static double fma(double x, double y, double z)
-            => Math.FusedMultiplyAdd(x, y, z);
+            => x*y + z;  
     }
 
 }

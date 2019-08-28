@@ -17,6 +17,9 @@ namespace Z0
     partial class gbits
     {
 
+        /// <summary>
+        /// Constructs an integer from the most significant bit of each source vector component
+        /// </summary>
         [MethodImpl(Inline)]
         public static int movemask<T>(in Vec128<T> src)
             where T : struct
@@ -33,6 +36,9 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Constructs an integer from the most significant bit of each source vector component
+        /// </summary>
         [MethodImpl(Inline)]
         public static int movemask<T>(in Vec256<T> src)
             where T : struct

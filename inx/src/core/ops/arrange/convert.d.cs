@@ -13,6 +13,7 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx2;    
     using static System.Runtime.Intrinsics.X86.Sse41;
      
+    using static As;
     using static zfunc;
 
     partial class dinx
@@ -56,12 +57,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vec128<ushort> convert(in Vec128<byte> src, out Vec128<ushort> dst)
-        {
-            dst = convert(in src, out Vec128<short> _).As<ushort>();   
-            return ref dst;            
-        }
             
         /// <summary>__m128i _mm_cvtepu8_epi32 (__m128i a) PMOVZXBD xmm, xmm/m32</summary>
         [MethodImpl(Inline)]
@@ -86,13 +81,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vec128<ulong> convert(in Vec128<byte> src, out Vec128<ulong> dst)
-        {
-            dst = convert(in src, out Vec128<long> _).As<ulong>();   
-            return ref dst;            
-        }
-
         /// <summary>__m128i _mm_cvtepi16_epi32 (__m128i a) PMOVSXWD xmm, xmm/m64</summary>
         [MethodImpl(Inline)]
         public static Vec128<int> convert(in  Vec128<short> src, out Vec128<int> dst)
@@ -114,27 +102,12 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vec128<uint> convert(in Vec128<ushort> src, out Vec128<uint> dst)
-        {
-            dst = convert(in src, out Vec128<int> _).As<uint>();
-            return ref dst;
-        }
-
-
         /// <summary></summary>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<ushort> src, out Vec128<long> dst)
         {
            dst = ConvertToVector128Int64(src);
            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vec128<ulong> convert(in Vec128<ushort> src, out Vec128<ulong> dst)
-        {
-            dst = convert(in src, out Vec128<long> _).As<ulong>();
-            return ref dst;
         }
 
         /// <summary>__m128i _mm_cvtepi32_epi64 (__m128i a) PMOVSXDQ xmm, xmm/m64</summary>
@@ -206,18 +179,6 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 16-bit integers in the target vector 
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepu8_epi16 (__m128i a) </summary>
-        [MethodImpl(Inline)]
-        public static ref Vec256<ushort> convert(in Vec128<byte> src, out Vec256<ushort> dst)
-        {
-            dst = ConvertToVector256Int16(src).AsUInt16();
-            return ref dst;
-        }
 
         /// <summary>
         /// Zero extends packed unsigned 8-bit integers in the source vector to packed 32-bit integers in the target vector 
@@ -233,19 +194,6 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero extends packed unsigned 8-bit integers in the source vector to packed 32-bit integers in the target vector 
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepu8_epi32 (__m128i a) </summary>
-        [MethodImpl(Inline)]
-        public static ref Vec256<uint> convert(in Vec128<byte> src, out Vec256<uint> dst)
-        {
-            dst = ConvertToVector256Int32(src).AsUInt32();
-            return ref dst;
-        }
-
-        /// <summary>
         /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -255,18 +203,6 @@ namespace Z0
         public static ref Vec256<long> convert(in Vec128<byte> src, out Vec256<long> dst)
         {
             dst =ConvertToVector256Int64(src);
-            return ref dst;
-        }
-
-        /// <summary>
-        /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 64-bit integers in the target vector 
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="dst">The target vector</param>
-        [MethodImpl(Inline)]
-        public static ref Vec256<ulong> convert(in Vec128<byte> src, out Vec256<ulong> dst)
-        {
-            dst = ConvertToVector256Int32(src).AsUInt64();
             return ref dst;
         }
 
@@ -296,8 +232,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Sign-extends packed 16-bit integers in the source vector to packed 
-        /// 64-bit integers in the target vector 
+        /// Sign-extends packed 16-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -310,8 +245,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
+        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 32-bit integers in the target vector  
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
@@ -322,16 +256,10 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 
-        /// 32-bit integers in the target vector 
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
-        public static ref Vec256<uint> convert(in Vec128<ushort> src, out Vec256<uint> dst)
+        public static unsafe ref Vec256<int> convert(ref ushort src, out Vec256<int> dst)
         {
-            dst = ConvertToVector256Int32(src).AsUInt32();
+            dst = ConvertToVector256Int32(refptr(ref src));
             return ref dst;
         }
 
@@ -347,15 +275,10 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Zero-extends packed unsigned 16-bit integers in the source vector to packed 64-bit integers in the target vector 
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
-        public static ref Vec256<ulong> convert(in Vec128<ushort> src, out Vec256<ulong> dst)
+        public static unsafe ref Vec256<long> convert(ref ushort src, out Vec256<long> dst)
         {
-            dst = ConvertToVector256Int64(src).AsUInt64();
+            dst = ConvertToVector256Int64(refptr(ref src));
             return ref dst;
         }
 
@@ -372,10 +295,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vec256<ulong> convert(in Vec128<uint> src, out Vec256<ulong> dst)
+        public static unsafe ref Vec256<long> convert(ref uint src, out Vec256<long> dst)
         {
-            dst = ConvertToVector256Int64(src).AsUInt64();
+            dst = ConvertToVector256Int64(refptr(ref src));
             return ref dst;
         }
+
     }
 }
