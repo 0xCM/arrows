@@ -20,7 +20,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXOpVerify.VerifyUnaryOp(Random, blocks, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
+            CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
             TypeCaseEnd<T>();
         }
 
@@ -28,7 +28,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXOpVerify.VerifyUnaryOp(Random, blocks, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
+            CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
             TypeCaseEnd<T>();
         }
 

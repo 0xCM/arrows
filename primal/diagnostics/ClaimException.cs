@@ -68,7 +68,9 @@ namespace Z0
 
         Fail,
 
-        Nonzero
+        Nonzero,
+        
+        Between
     }
 
 }

@@ -194,8 +194,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = src.Unsize();
-            gbits.flip(in x);
+            gbits.flip(src.Unsized);
             return ref src;
         }
 

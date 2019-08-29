@@ -12,9 +12,9 @@ namespace Z0.Test
     using static zfunc;
     #pragma warning disable 1718
 
-    public class BitMatrixCreateTest : UnitTest<BitMatrixCreateTest>
+    public class tbm_create : UnitTest<tbm_create>
     {
-        public void Create8x8()
+        public void create8x8()
         {
             var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())
@@ -28,7 +28,7 @@ namespace Z0.Test
             }
         }
 
-        public void Create9x4()
+        public void create9x4()
         {
             var grid = BitGrid.Specify<N9,N4,byte>();    
             Claim.eq(9, grid.RowCount);
@@ -62,7 +62,7 @@ namespace Z0.Test
             
         }
 
-        public void Create7x9()
+        public void create7x9()
         {
             var m1 = BitMatrix.Alloc<N7,N9,byte>();
             m1.Fill(Bit.On);
@@ -70,7 +70,7 @@ namespace Z0.Test
             Claim.eq(BitMatrix<N7,N9,byte>.TotalBitCount, fmt.Length);    
 
         }
-        public void Create7x7()
+        public void create7x7()
         {
             var m1 = BitMatrix.Alloc<N7,byte>();
             m1.Fill(Bit.On);
@@ -82,7 +82,7 @@ namespace Z0.Test
 
             Claim.yea(d == x);                        
         }
-        public void Create16x16()
+        public void create16x16()
         {
             var spec = BitGrid.Specify<N16,N16,byte>();    
             Claim.eq(16, spec.RowCount);

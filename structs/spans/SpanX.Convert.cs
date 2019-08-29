@@ -505,9 +505,10 @@ namespace Z0
                 => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count * Unsafe.SizeOf<T>()));
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ReadValues<T>(this Span<byte> src, int offset, int count)
+        public static Span<T> ReadValues<T>(this Span<byte> src, int offset, int count)
             where T : struct
-                => src.ReadOnly().ReadValues<T>(offset,count);
+                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count * Unsafe.SizeOf<T>()));
+
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<T> ReadValues<T>(this ReadOnlySpan<byte> src)
@@ -515,15 +516,16 @@ namespace Z0
                 => src.ReadValues<T>(0, src.Length/Unsafe.SizeOf<T>());
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ReadValues<T>(this Span<byte> src)
+        public static Span<T> ReadValues<T>(this Span<byte> src)
             where T : struct        
-                => src.ReadOnly().ReadValues<T>();
-        public static ReadOnlySpan<T> ReadValues<T>(this Span<byte> src, out Span<byte> rem)
+                => src.ReadValues<T>(0, src.Length/Unsafe.SizeOf<T>());
+        
+        public static Span<T> ReadValues<T>(this Span<byte> src, out Span<byte> rem)
             where T : struct        
         {
             rem = Span<byte>.Empty;
             var tSize = Unsafe.SizeOf<T>();
-            var dst = src.ReadOnly().ReadValues<T>();            
+            var dst = src.ReadValues<T>();            
             var q = Math.DivRem(dst.Length, tSize, out int r);
             if(r != 0)
                 rem = src.Slice(dst.Length*tSize);

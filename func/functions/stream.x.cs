@@ -16,6 +16,7 @@ namespace Z0
 
     partial class xfunc
     {
+
         /// <summary>
         /// Defines missing Take(stream,n:uint) method
         /// </summary>

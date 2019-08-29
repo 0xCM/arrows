@@ -50,7 +50,6 @@ namespace Z0
             return or(in s1,in s2);
         }
 
-
         /// <summary>
         /// Rearranges the components of the source vector according to an identified permutation
         /// </summary>

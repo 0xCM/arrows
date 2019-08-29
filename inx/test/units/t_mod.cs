@@ -6,18 +6,15 @@ namespace Z0.Test
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
     using System.IO;
     
     using static zfunc;
     using static Nats;
 
-
     public class t_mod : UnitTest<t_mod>
     {
 
-        public void VerifyMul()
+        public void modmul()
         {
             VerifyMul(N3);
             VerifyMul(N5);
@@ -31,14 +28,14 @@ namespace Z0.Test
             VerifyMul(N1024);
         }
 
-        public void VerifyIncrement()
+        public void modinc()
         {
             VerifyIncrement(N128);
             VerifyIncrement(N5);
             VerifyIncrement(N20);            
         }
 
-        public void VerifyDecrement()
+        public void moddec()
         {
             VerifyDecrement(N13);
             VerifyDecrement(N17);
@@ -47,7 +44,7 @@ namespace Z0.Test
             VerifyDecrement(N128);
         }
 
-        public void VerifyInverse()
+        public void modinv()
         {
             VerifyInverse(N3);
             VerifyInverse(N5);
@@ -61,14 +58,13 @@ namespace Z0.Test
             VerifyInverse(N1277);
         }
 
-        public void VerifyAdd()
+        public void modadd()
         {
             var samples = Pow2.T08;
             VerifyAdd(samples,N87);
             VerifyAdd(samples,N64);
             VerifyAdd(samples,N512);
         }
-
 
         public void TestCreate()
         {
@@ -90,7 +86,6 @@ namespace Z0.Test
 
             var a0 = x + 2;
             Claim.eq(Mod.Define(7,n),a0);
-
         }
 
         void VerifyIncrement<N>(N n = default)
@@ -238,7 +233,6 @@ namespace Z0.Test
                 Claim.eq(expect[i,j], z);
             }
             TypeCaseEnd<N>();
-
         }
  
         void VerifyInverse<N>(N n = default)
@@ -256,11 +250,6 @@ namespace Z0.Test
                 Claim.eq(n1, z);
             }
             TypeCaseEnd<N>();
-
         }
-
     }
-
-
-
 }

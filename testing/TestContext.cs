@@ -39,7 +39,7 @@ namespace Z0
 
         protected static readonly N256 DefaultSampleNat = default;
 
-        protected const int DefaultScale = 4;
+        protected const int DefaultScale = 6;
 
         public ITestConfig Config {get; private set;}
 
@@ -67,14 +67,23 @@ namespace Z0
 
         }
 
-        protected virtual int Samples
+        protected virtual int SampleSize
             => DefaultSampleSize;
         
-        public virtual int Cycles
+        public virtual int CycleCount
             => DefaltCycleCount;
 
         public virtual int Scale
             => DefaultScale;
+        
+        protected virtual Interval<byte> ShiftRange<K>()
+            where K : unmanaged
+        {
+            var offsetMin = (byte)1;
+            var offsetMax = (byte)(PrimalInfo.Get<K>().BitSize - 2);
+            return closed(offsetMin,offsetMax);                
+        }
+
 
         protected void VerifyOp<K>(OpKind opKind, UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)

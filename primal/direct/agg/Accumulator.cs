@@ -24,6 +24,13 @@ namespace Z0
             return a;
         }
 
+        public static Accumulator Create(bool sum, params double[] initial)
+        {
+            var a = new Accumulator(sum);
+            a.Accumulate(initial);
+            return a;
+        }
+
         public static Accumulator operator +(Accumulator a, double value)
         {
             a.Accumulate(value);
@@ -48,16 +55,18 @@ namespace Z0
             return a;
         }
 
-        public Accumulator()
+        public Accumulator(bool sum = false)
         {
-
+            AccumulateSum = sum;
         }
 
-        public void Accumulate(ReadOnlySpan<double> values)
+        public void Accumulate(ReadOnlySpan<double> values,bool sum = false)
         {
             for(var i=0; i< values.Length; i++)
                 Accumulate(i);
         }
+
+        public readonly bool AccumulateSum;
 
         public void Accumulate(Span<double> values)
             => Accumulate(values.ReadOnly());
@@ -97,7 +106,18 @@ namespace Z0
                 AccumulateHead(value);
             else
                 AccumulateTail(value);
+            
+            if(AccumulateSum)
+                checked{sum += value;}                
         }
+
+        [MethodImpl(Inline)]
+        public void Accumulate(int value)
+            => Accumulate((double)value);
+
+        [MethodImpl(Inline)]
+        public void Accumulate(long value)
+            => Accumulate((double)value);
 
         int count = 0;
         
@@ -109,12 +129,17 @@ namespace Z0
 
         double s1 = 0;
 
+        double sum = 0;
+
         public int Count 
             => count;
 
         public double Mean
             => m1;
         
+        public double Sum
+            => sum;
+            
         public double Variance        
             => count > 1 ? s0/(count - 1) : 0;
 

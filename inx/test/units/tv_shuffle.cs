@@ -15,7 +15,7 @@ namespace Z0.Test
     
     public class tv_shuffle : UnitTest<tv_shuffle>
     {        
-        public void Shuffle128u8()
+        public void shuffle128u8()
         {
             var mask = Vec128.Fill((byte)0b10000000);
             var src = Random.CpuVec128<byte>();
@@ -25,17 +25,15 @@ namespace Z0.Test
                             
         }
 
-        public void Permute4()
+        public void permute128i32()
         {
             var id = Vec128.FromParts(0,1,2,3);
             Claim.eq(dinx.permute(id, Perm4.ADCB), Vec128.FromParts(0,3,2,1));
             Claim.eq(dinx.permute(id, Perm4.DBCA), Vec128.FromParts(3,1,2,0));
-            Permute4i32();
-        
+            Permute4i32();        
         }
 
-
-        public void Shufle128i32()
+        public void shuffle128i32()
         {
             var v1 = Vec128.FromParts(0, 1, 2, 3);
             
@@ -50,11 +48,10 @@ namespace Z0.Test
 
             var s1 = dinx.shuffle(v1,m1);
             var s2 = dinx.shuffle(v1,m2);
-            var s3 = dinx.shuffle(v1,m3);
-            
+            var s3 = dinx.shuffle(v1,m3);            
         }
 
-        public void TestPermIncrement()
+        public void perminc()
         {
             var p = Perm.Identity(16);
             for(var i=0; i<16; i++)
@@ -62,7 +59,7 @@ namespace Z0.Test
             Claim.eq(p, Perm.Identity(16));
         }
 
-        public void TestDecrement()
+        public void permdec()
         {
             var p = Perm.Identity(16);
             for(var i=0; i<16; i++)

@@ -279,49 +279,49 @@ namespace Z0
 
         ///<summary>_mm_sll_epi64 (in __m128i a, __m128i count) PSLLQ xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_sll_epi64(in __m128i a, in __m128i count)
-            => ShiftLeftLogical(v64u(a), v64u(count));
+        public static __m128i _mm_sll_epi64(in __m128i a, byte count)
+            => ShiftLeftLogical(v64u(a), count);
 
         ///<summary>m128i _mm_sll_epi32 (in __m128i a, __m128i count) PSLLD xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_sll_epi32(in __m128i a, in __m128i count)
-            => ShiftLeftLogical(v32u(a), v32u(count));
+        public static __m128i _mm_sll_epi32(in __m128i a, byte count)
+            => ShiftLeftLogical(v32u(a), count);
         
         ///<summary>m128i _mm_sll_epi16 (in __m128i a, __m128i count) PSLLW xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_sll_epi16(in __m128i a, in __m128i count)
-            => ShiftLeftLogical(v16u(a), v16u(count));
+        public static __m128i _mm_sll_epi16(in __m128i a, byte count)
+            => ShiftLeftLogical(v16u(a), count);
 
         ///<summary>m128i _mm_srl_epi16 (in __m128i a, __m128i count) PSRLW xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_srl_epi16(in __m128i a, in __m128i count)
-            => ShiftRightLogical(v16i(a), v16i(count));
+        public static __m128i _mm_srl_epi16(in __m128i a, byte count)
+            => ShiftRightLogical(v16i(a), count);
 
         
         ///<summary>m128i _mm_srl_epi32 (in __m128i a, __m128i count) PSRLD xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_srl_epi32(in __m128i a, in __m128i count)
-            => ShiftRightLogical(v32u(a), v32u(count));
+        public static __m128i _mm_srl_epi32(in __m128i a, byte count)
+            => ShiftRightLogical(v32u(a), count);
 
         ///<summary>m128i _mm_srl_epi16 (in __m128i a, __m128i count) PSRLW xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_srli_epi16(in __m128i a, in __m128i count)
-            => ShiftRightLogical(v16u(a), v16u(count));
+        public static __m128i _mm_srli_epi16(in __m128i a, byte count)
+            => ShiftRightLogical(v16u(a), count);
 
         ///<summary>m128i _mm_srl_epi64 (in __m128i a, __m128i count) PSRLQ xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_srl_epi64(in __m128i a, in __m128i count)
-            => ShiftRightLogical(v64u(a), v64u(count));
+        public static __m128i _mm_srl_epi64(in __m128i a, in byte count)
+            => ShiftRightLogical(v64u(a), count);
 
         ///<summary>m128i _mm_sra_epi32 (__m128i a, __m128i count) PSRAD xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_sra_epi32(in __m128i a, in __m128i count)
-            => ShiftRightArithmetic(v32i(a), v32i(count));
+        public static __m128i _mm_sra_epi32(in __m128i a, in byte count)
+            => ShiftRightArithmetic(v32i(a), count);
         
         ///<summary>m128i _mm_sra_epi16 (__m128i a, __m128i count) PSRAW xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static __m128i _mm_sra_epi16(in __m128i a, in __m128i count)
-            => ShiftRightArithmetic(v16i(a), v16i(count));
+        public static __m128i _mm_sra_epi16(in __m128i a, in byte count)
+            => ShiftRightArithmetic(v16i(a), count);
 
 
         ///<summary>m128i _mm_and_si128 (in __m128i a, in __m128i b) PAND xmm, xmm/m128</summary>

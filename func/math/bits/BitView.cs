@@ -57,7 +57,7 @@ namespace Z0
         public BitSize BitCount
         {
             [MethodImpl(Inline)]
-            get => ByteCount;
+            get => (BitSize)ByteCount;
         }
         
         /// <summary>

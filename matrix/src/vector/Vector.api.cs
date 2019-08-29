@@ -17,7 +17,6 @@ namespace Z0
     /// </summary>
     public static class Vector
     {     
-
         /// <summary>
         /// Allocates a vector of natural length
         /// </summary>

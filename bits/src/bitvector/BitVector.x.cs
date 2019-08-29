@@ -55,7 +55,7 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this Span<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => BitVector.Load(src,n);
+                => BitVector.FromCells(src,n);
 
         /// <summary>
         /// Constructs a bitvector of natural length from a source span
@@ -68,7 +68,7 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
-                => BitVector.Load(src,n);
+                => BitVector.FromCells(src,n);
 
         /// <summary>
         /// Constructs a bitvector from a primal span
@@ -79,7 +79,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Span<T> src, BitSize? len = null)
             where T : struct
-                => BitVector.Load(src,len);
+                => BitVector.FromCells(src,len);
 
         /// <summary>
         /// Loads a bitvector from a primal segment
@@ -90,7 +90,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Memory<T> src, BitSize? len = null)
             where T : struct
-                => BitVector.Load(src,len);
+                => BitVector.FromCells(src,len);
 
         /// <summary>
         /// Loads a bitvector from a primal span
@@ -100,7 +100,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, BitSize? len = null)
             where T : struct
-                => BitVector.Load(src,len);
+                => BitVector.FromCells(src,len);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        

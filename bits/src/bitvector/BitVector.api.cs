@@ -53,6 +53,52 @@ namespace Z0
         }
 
         /// <summary>
+        /// Defines an 4-bit bitvector from a scalar
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 FromNibble(UInt4 src)
+            => src;
+
+        /// <summary>
+        /// Defines a 32-bit bitvector from a scalar float
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromFloat(float src)
+            => (uint)BitConverter.SingleToInt32Bits(src);
+
+        /// <summary>
+        /// Defines a 64-bit bitvector from a scalar double
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromFloat(double src)
+            => (ulong)BitConverter.DoubleToInt64Bits(src);
+
+        /// <summary>
+        /// Creates a generic bitvector of natural length
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="n">The bitvector length</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> FromCell<N,T>(in T src, N n = default)        
+            where N : ITypeNat, new()
+            where T : struct
+                => new BitVector<N,T>(src);
+
+        /// <summary>
+        /// Creates a generic bitvector defined by a single segment subject to a specified length, if any
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="n">The bitvector length</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCell<T>(T src, BitSize? n = null)
+            where T : struct
+                => BitVector<T>.FromCell(src,n);
+
+        /// <summary>
         /// Loads a bitvector of natural length from a primal span
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -60,7 +106,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Load<N,T>(Span<T> src, N n = default)
+        public static BitVector<N,T> FromCells<N,T>(Span<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
@@ -73,7 +119,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Load<N,T>(Memory<T> src, N n = default)
+        public static BitVector<N,T> FromCells<N,T>(Memory<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
@@ -86,7 +132,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Load<N,T>(ReadOnlySpan<T> src, N n = default)
+        public static BitVector<N,T> FromCells<N,T>(ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
                 => new BitVector<N, T>(src);
@@ -98,20 +144,20 @@ namespace Z0
         /// <param name="n">The vector length</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Load<T>(Span<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells<T>(Span<T> src, BitSize? n = null)
             where T : struct
-                => new BitVector<T>(src.ToArray(), n);
+                => BitVector<T>.FromCells(src,n);
 
         /// <summary>
-        /// Loads a generic bitvector from a primal segment
+        /// Loads a generic bitvector from a primal memory block
         /// </summary>
         /// <param name="src">The source span</param>
         /// <param name="n">The vector length</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Load<T>(Memory<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells<T>(Memory<T> src, BitSize? n = null)
             where T : struct
-                => new BitVector<T>(src, n);
+                => BitVector<T>.FromCells(src,n);
 
         /// <summary>
         /// Loads a generic bitvector from a primal span
@@ -120,139 +166,31 @@ namespace Z0
         /// <param name="n">The vector length</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Load<T>(ReadOnlySpan<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells<T>(ReadOnlySpan<T> src, BitSize? n = null)
             where T : struct
-                => new BitVector<T>(src, n);
-
-        /// <summary>
-        /// Defines an 4-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector4 FromScalar(UInt4 src)
-            => src;
-
-        /// <summary>
-        /// Defines an 8-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 FromScalar(sbyte src)
-            => (byte)src;
-
-        /// <summary>
-        /// Defines an 8-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 FromScalar(byte src)
-            => src;
-
-        /// <summary>
-        /// Defines a 16-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 FromScalar(short src)
-            => (ushort)src;
-
-        /// <summary>
-        /// Defines a 16-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 FromScalar(ushort src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 FromScalar(int src)
-            => (uint)src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 FromScalar(uint src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 FromScalar(long src)
-            => (ulong)src;
-
-        /// <summary>
-        /// Defines a 64-bit bitvector from a scalar
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 FromScalar(ulong src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a scalar float
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 FromScalar(float src)
-            => (uint)BitConverter.SingleToInt32Bits(src);
-
-        /// <summary>
-        /// Defines a 64-bit bitvector from a scalar double
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 FromScalar(double src)
-            => (ulong)BitConverter.DoubleToInt64Bits(src);
-
-        /// <summary>
-        /// Creates a generic bitvector of natural length
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> FromScalar<N,T>(in T src, N len = default)        
-            where N : ITypeNat, new()
-            where T : struct
-                => new BitVector<N,T>(src);
+                => BitVector<T>.FromCells(src,n);
 
         /// <summary>
         /// Creates a generic bitvector defined by an arbitrary number of segments
         /// </summary>
         /// <param name="src">The source segment</param>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromSegments<T>(params T[] src)
+        public static BitVector<T> FromCells<T>(params T[] src)
             where T : struct
-                => BitVector<T>.FromSegments(src);
-
-        /// <summary>
-        /// Creates a generic bitvector defined by a single segment
-        /// </summary>
-        /// <param name="src">The source segment</param>
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromSegment<T>(T src)
-            where T : struct
-                => BitVector<T>.FromSegment(src);
+                => BitVector<T>.FromCells(src);
 
         /// <summary>
         /// Defines a generic bitvector with a specified number of components
         /// </summary>
-        /// <param name="bitcount">The number of components (bits) in the vector</param>
+        /// <param name="n">The number of components (bits) in the vector</param>
         /// <param name="src">The source from which the bits will be extracted</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromSegments<T>(BitSize bitcount, params T[] src)
+        public static BitVector<T> FromCells<T>(BitSize n, params T[] src)
             where T : struct
-                => BitVector<T>.FromSegments(bitcount, src);
+                => BitVector<T>.FromCells(n, src);
  
-         /// <summary>
+        /// <summary>
         /// Computes the number of cells required to hold a specified number of bits
         /// </summary>
         /// <param name="len">The number of bits to store</param>

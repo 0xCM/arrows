@@ -21,8 +21,8 @@ namespace Z0.Asm.Test
         public AddTest()
         {
             var src = Random.Stream<int>();
-            Lhs = src.TakeArray(Samples);
-            Rhs = src.TakeArray(Samples);
+            Lhs = src.TakeArray(SampleSize);
+            Rhs = src.TakeArray(SampleSize);
         }
 
         int[] Lhs {get;}
@@ -32,7 +32,7 @@ namespace Z0.Asm.Test
 
         public void VerifyIL()
         {                        
-            for(var i=0; i<Samples; i++)
+            for(var i=0; i<SampleSize; i++)
                 Claim.eq(Lhs[i] + Rhs[i], add(Lhs[i], Rhs[i]));                                        
         }
 
@@ -42,17 +42,17 @@ namespace Z0.Asm.Test
             var result = 0;
 
             var sw0 = stopwatch();
-            for(var j=0; j<Cycles; j++)
-            for(var i=0; i<Samples; i++)
+            for(var j=0; j<CycleCount; j++)
+            for(var i=0; i<SampleSize; i++)
                 result = Lhs[i] + Rhs[i];
-            TracePerf("add/direct", snapshot(sw0), Cycles, Samples);
+            TracePerf("add/direct", snapshot(sw0), CycleCount, SampleSize);
 
 
             var sw2 = stopwatch();
-            for(var j=0; j<Cycles; j++)
-            for(var i=0; i<Samples; i++)
+            for(var j=0; j<CycleCount; j++)
+            for(var i=0; i<SampleSize; i++)
                 result = add(Lhs[i], Rhs[i]);                                        
-            TracePerf("add/IL", snapshot(sw2), Cycles, Samples);
+            TracePerf("add/IL", snapshot(sw2), CycleCount, SampleSize);
         }
 
     }

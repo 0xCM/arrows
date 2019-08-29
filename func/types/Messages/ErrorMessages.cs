@@ -64,13 +64,16 @@ namespace Z0
         public static AppMsg LengthMismatch(int lhs, int rhs, string caller, string file, int? line)
             => AppMsg.Define($"Length mismatch: {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 
+        public static AppMsg NotBetween<T>(T x, T lhs, T rhs, string caller, string file, int? line)
+            => AppMsg.Define($"The source value {x} is not between {lhs} and {rhs}", SeverityLevel.Error, caller, file, line);
+
         public static AppMsg IndexOutOfRange(int index, int min, int max, string caller, string file, int? line)
             => AppMsg.Define($"The index {index} is not between {min} and {max}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg TooManyBytes(ByteSize requested, ByteSize available, string caller, string file, int? line)
             => AppMsg.Define($"The number of bytes, {requested} exceeds the maximum available, {available}", SeverityLevel.Error, caller, file, line);
 
-        public static AppMsg Unanticipated(Exception e, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static AppMsg Unanticipated(Exception e, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => AppMsg.Define(e?.ToString() ??"Heh?", SeverityLevel.Error, caller, file, line);
     
         public static AppMsg FileDoesNotExist(FilePath path, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)    

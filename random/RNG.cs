@@ -23,12 +23,12 @@ namespace Z0
             where T : struct
         {
             var min = gmath.signed<T>() && !gmath.floating<T>()
-                ? gmath.negate(gbits.shiftr(gmath.maxval<T>(), 1)) 
+                ? gmath.negate(gbits.sra(gmath.maxval<T>(), 1)) 
                 : gmath.zero<T>();
             
             var max = 
                 gmath.signed<T>() && !gmath.floating<T>()
-                ? gbits.shiftr(gmath.maxval<T>(), 1)
+                ? gbits.sra(gmath.maxval<T>(), 1)
                 : gmath.maxval<T>();
             
             return leftclosed(min,max);

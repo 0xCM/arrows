@@ -17,7 +17,7 @@ namespace Z0.Test
     public class tbv_concat : UnitTest<tbv_concat>
     {
 
-        public void Concat88()
+        public void concat8()
         {
             var head = BitVector8.FromScalar(0b10100);
             var tail = BitVector8.FromScalar(0b111);
@@ -27,10 +27,7 @@ namespace Z0.Test
             var bsWhole = whole.ToBitString();
             var bsHead = head.ToBitString();
             var bsTail = tail.ToBitString();
-            Claim.eq(bsWhole, bsHead + bsTail);
-
-            
-
+            Claim.eq(bsWhole, bsHead + bsTail);        
         }
 
 

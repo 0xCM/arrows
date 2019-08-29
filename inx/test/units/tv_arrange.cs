@@ -15,11 +15,10 @@ namespace Z0.Test
     {     
         public void rev128u8()
         {
-            var v1 = Vec128.Decrements((byte)15);
-            var v2 = Vec128.Increments((byte)0);
-            Claim.eq(dinx.reverse(v1), v2);
-            Claim.eq(dinx.reverse(v2), v1);
-
+            var v1 = Vec128Pattern.Increments<byte>(0);
+            var v2 = Vec128Pattern.Decrements<byte>(15);
+            var v4 = dinx.reverse(v1);
+            Claim.eq(v2,v4);
         }
 
         public void rev128i16()
@@ -36,7 +35,6 @@ namespace Z0.Test
             var rvX = dinx.shuffle(v, 0b00_01_10_11);
             var rvY = Vec128.FromParts(3,2,1,0);
             Claim.eq(rvX,rvY);
-
         }
 
         public void rev256u8()
@@ -46,7 +44,6 @@ namespace Z0.Test
                 Claim.eq((int)inc[i],i);
 
             var dec = Vec256Pattern.Decrements((byte)31);
-            Trace(() => dec);
 
             for(var i=31; i>=0; i--)
                 Claim.eq((int)dec[31 - i], i);
@@ -56,29 +53,6 @@ namespace Z0.Test
 
         }
 
-        void VerifyHi256<T>(int n = Pow2.T12)
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            var lhsSrc = Random.Span256<T>(n);
-            var rhsSrc = Random.Span256<T>(n);
-            for(var i=0; i<n; i++)
-            {
-                var lhs = lhsSrc.ToCpuVec256(i);
-                var rhs = rhsSrc.ToCpuVec256(i);
-                var x = ginx.hi(lhs, rhs);
-                
-                var k = lhs.Length();
-                var j = k/2;
-                var y1 = lhs.ToSpan().Slice(j -1,  j);
-                var y2 = rhs.ToSpan().Slice(j - 1, j);
-                var y = Vec256.Load(ref y1.Concat(y2)[0]);
-                
-                Claim.eq(x,y);                            
-
-            }
-            TypeCaseEnd<T>();
-        }
 
         public void hi256u4()
         {
@@ -101,14 +75,13 @@ namespace Z0.Test
             Claim.eq(expect, actual);
         }
 
-        public void Swap()
+        public void swap256i32()
         {
             var subject = Vec256.FromParts(2, 4, 6, 8, 10, 12, 14, 16);
             var swapped = dinx.swap(subject, 2, 3);
             var expect = Vec256.FromParts(2, 4, 8, 6, 10, 12, 14, 16);
             Claim.eq(expect, swapped);
         }
-
 
         public void rev256u32()
         {
@@ -174,6 +147,30 @@ namespace Z0.Test
             var v4 = block.ToCpuVec256();
             Claim.eq(v3, v4);
 
+        }
+
+        void VerifyHi256<T>(int n = Pow2.T12)
+            where T : struct
+        {
+            TypeCaseStart<T>();
+            var lhsSrc = Random.Span256<T>(n);
+            var rhsSrc = Random.Span256<T>(n);
+            for(var i=0; i<n; i++)
+            {
+                var lhs = lhsSrc.ToCpuVec256(i);
+                var rhs = rhsSrc.ToCpuVec256(i);
+                var x = ginx.hi(lhs, rhs);
+                
+                var k = lhs.Length();
+                var j = k/2;
+                var y1 = lhs.ToSpan().Slice(j -1,  j);
+                var y2 = rhs.ToSpan().Slice(j - 1, j);
+                var y = Vec256.Load(ref y1.Concat(y2)[0]);
+                
+                Claim.eq(x,y);                            
+
+            }
+            TypeCaseEnd<T>();
         }
 
         static string DescribeShuffle<T>(Vec256<T> src, byte spec, Vec256<T> dst)

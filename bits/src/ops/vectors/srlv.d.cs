@@ -16,9 +16,8 @@ namespace Z0
 
     partial class Bits
     {         
-
         /// <summary>
-        /// _mm_srlv_epi32, avx2:
+        ///  __m128i _mm_srlv_epi32 (__m128i a, __m128i count) VPSRLVD xmm, xmm, xmm/m128
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -29,7 +28,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm_srlv_epi32, avx2:
+        /// __m128i _mm_srlv_epi32 (__m128i a, __m128i count) VPSRLVD xmm, xmm, xmm/m128
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -40,7 +39,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm_srlv_epi64, avx2, shift right logical variable:
+        /// __m128i _mm_srlv_epi64 (__m128i a, __m128i count) VPSRLVQ xmm, xmm, xmm/m128
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -51,7 +50,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm_srlv_epi64, avx2, shift right logical variable:
+        /// __m128i _mm_srlv_epi64 (__m128i a, __m128i count) VPSRLVQ xmm, xmm, xmm/m128
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -62,7 +61,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);       
  
         /// <summary>
-        /// _mm256_srlv_epi32, avx2, shift right logical variable:
+        /// __m256i _mm256_srlv_epi32 (__m256i a, __m256i count) VPSRLVD ymm, ymm, ymm/m256
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -73,7 +72,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm256_srlv_epi32, avx2, shift right logical variable:
+        /// __m256i _mm256_srlv_epi32 (__m256i a, __m256i count) VPSRLVD ymm, ymm, ymm/m256
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -84,7 +83,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm256_srlv_epi64, avx2, shift right logical variable:
+        /// __m256i _mm256_srlv_epi64 (__m256i a, __m256i count) VPSRLVQ ymm, ymm, ymm/m256
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -95,7 +94,7 @@ namespace Z0
             => ShiftRightLogicalVariable(src, control);
 
         /// <summary>
-        /// _mm256_srlv_epi64, avx2, shift right logical variable:
+        ///  __m256i _mm256_srlv_epi64 (__m256i a, __m256i count) VPSRLVQ ymm, ymm, ymm/m256
         /// Applies a rightward logical shift to each source vector component as 
         /// specified by the amount in the corresponding control vector component
         /// </summary>
@@ -104,5 +103,79 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> srlv(in Vec256<ulong> src, in Vec256<ulong> control)
             => ShiftRightLogicalVariable(src, control); 
+    
+        public static Span128<int> srlv(ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = Span128.Length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span128<uint> srlv(ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> rhs, in  Span128<uint> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = Span128.Length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span128<long> srlv(ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<long> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = Span128.Length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span128<ulong> srlv(ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = Span128.Length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span256<int> srlv(ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> rhs, in Span256<int> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span256<uint> srlv(ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span256<long> srlv(ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<long> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+        }
+
+        public static Span256<ulong> srlv(ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
+        {
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
+                vstore(Bits.srlv(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst[i]);            
+            return dst;            
+       }
+
+    
     }
 }

@@ -49,7 +49,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 
@@ -57,7 +57,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            InXOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 

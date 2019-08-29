@@ -363,7 +363,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N4096,ulong> ToBitVector()
-            => BitVector.Load(bits, Nats.N4096);
+            => BitVector.FromCells(bits, Nats.N4096);
 
         static ref BitMatrix64 And(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {

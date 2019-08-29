@@ -157,8 +157,8 @@ namespace Z0.Test
 
             for(var i=0; i<Pow2.T08; i++)
             {
-                var v1 = Random.BitVector8();
-                var v2 = Random.BitVector8();
+                var v1 = Random.BitVec8();
+                var v2 = Random.BitVec8();
                 var p1 = Gf256.mul(v1,v2); 
                 var p2 = Gf256.mul((byte)v1, (byte)v2);
                 var p4 = Gf256.mulAlt(v1,v2);

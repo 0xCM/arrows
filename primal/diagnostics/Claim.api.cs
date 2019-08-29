@@ -45,19 +45,6 @@ namespace Z0
         public static bool eq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
-        [MethodImpl(Inline)]
-        public static bool numeq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where T : struct 
-                => gmath.eq(lhs,rhs) ? true : throw Errors.Equal(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static bool neq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => !lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.NEq, NotEqual(lhs,rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool neq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => !lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, Equal(lhs, rhs, caller, file, line));
-
         public static void eq(bool[] lhs, bool[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
         {            
             for(var i = 0; i< length(lhs,rhs); i++)
@@ -134,94 +121,9 @@ namespace Z0
             => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
-        public static bool lt(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool lt(uint lhs, uint rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool lt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lt(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool lt(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool lteq(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lteq(uint lhs, uint rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.LtEq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lteq(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.LtEq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lteq(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.LtEq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lteq(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.LtEq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool lteq(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs <= rhs ? true : throw failed(ClaimOpKind.LtEq, NotLessThanOrEqual(lhs, rhs, caller, file, line));        
-
-        [MethodImpl(Inline)]
-        public static bool gt(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs > rhs ? true : throw failed(ClaimOpKind.Gt, NotGreaterThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool gt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs > rhs ? true : throw failed(ClaimOpKind.Gt, NotGreaterThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool gt(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs > rhs ? true : throw failed(ClaimOpKind.Gt, NotGreaterThan(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool gteq(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs >= rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool gt(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool gteq(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs >= rhs ? true : throw failed(ClaimOpKind.GtEq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
-
-        [MethodImpl(Inline)]
-        public static bool yea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => src ? true 
-                : throw ClaimException.Define(NotTrue(msg, caller, file,line));
-
-        [MethodImpl(Inline)]
-        public static bool nea(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
-
-        [MethodImpl(Inline)]
-        public static unsafe bool notnull(void* p, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => (p != null) ? true : throw new ArgumentNullException(AppMsg.Define($"Pointer was null", SeverityLevel.Error, caller,file,line).ToString());
-
-        [MethodImpl(Inline)]
-        public static bool nonzero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
+        public static bool numeq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => gmath.nonzero(x) ? true : throw Errors.NotNonzero(caller,file,line);
-
-        [MethodImpl(Inline)]
-        public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
+                => gmath.eq(lhs,rhs) ? true : throw Errors.Equal(lhs,rhs);
 
         public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
@@ -241,7 +143,72 @@ namespace Z0
         public static void eq<T>(Span256<T> lhs, Span256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
                 => lhs.ClaimEqual(rhs, caller,file,line);
- 
+
+        [MethodImpl(Inline)]
+        public static bool neq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, Equal(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool within<T>(T x, Interval<T> range, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => range.Contains(x) ? true : throw failed(ClaimOpKind.Between, NotBetween(x,range.Left, range.Right, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool between<T>(T x, T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.between(x,lhs,rhs) ? true : throw failed(ClaimOpKind.Between, NotBetween(x, lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool between<T>(BitSize x, T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.between(x.Bits.Convert<T>(),lhs,rhs) ? true : throw failed(ClaimOpKind.Between, NotBetween(x.Bits.Convert<T>(),lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool between<T>(BitSize x, Interval<T> range, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => range.Contains(x.Bits.Convert<T>()) ? true : throw failed(ClaimOpKind.Between, NotBetween(x.Bits.Convert<T>(), range.Left, range.Right, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool gt<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.gt(lhs,rhs) ? true : throw failed(ClaimOpKind.Gt, NotGreaterThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool gteq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.gteq(lhs,rhs) ? true : throw failed(ClaimOpKind.GtEq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool lt<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.lt(lhs,rhs) ? true : throw failed(ClaimOpKind.Lt, NotLessThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool lteq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+                => gmath.lteq(lhs,rhs) ? true : throw failed(ClaimOpKind.GtEq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool nonzero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
+            where T : struct 
+                => gmath.nonzero(x) ? true : throw Errors.NotNonzero(caller,file,line);
+
+        [MethodImpl(Inline)]
+        public static bool yea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => src ? true 
+                : throw ClaimException.Define(NotTrue(msg, caller, file,line));
+
+        [MethodImpl(Inline)]
+        public static bool nea(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
+
+        [MethodImpl(Inline)]
+        public static unsafe bool notnull(void* p, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => (p != null) ? true : throw new ArgumentNullException(AppMsg.Define($"Pointer was null", SeverityLevel.Error, caller,file,line).ToString());
+
+        [MethodImpl(Inline)]
+        public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
 
     }
 }

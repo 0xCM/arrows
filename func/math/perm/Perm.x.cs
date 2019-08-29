@@ -14,7 +14,6 @@ namespace Z0
 
     public static class PermX
     {
-
         /// <summary>
         /// Shuffles bitstring content as determined by a permutation
         /// </summary>
@@ -181,7 +180,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool Includes(this Perm16 src, int index)
             => (((int)src & (1 << index)) != 0);
-
 
         [MethodImpl(Inline)]
         public static PermCycle Cycle(this Perm16 src)

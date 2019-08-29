@@ -20,36 +20,6 @@ namespace Z0.Test
     {   
 
 
-        void Add<N,T>(int cycles = DefaltCycleCount)
-            where N : ITypeNat, new()
-            where T : struct
-        {
-            var n = new N();
-            for(var i=0; i< cycles; i++)            
-            {
-                var v1 = Random.NatVec<N,T>();
-                var v2 = Random.NatVec<N,T>();
-                var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
-                var v4 = v1.Add(v2);
-                Claim.yea(v3 == v4);
-            }
-        }
-
-        void Sub<N,T>(int cycles = DefaltCycleCount)
-            where N : ITypeNat, new()
-            where T : struct
-        {
-            var n = new N();
-            for(var i=0; i< cycles; i++)            
-            {
-                var v1 = Random.NatVec<N,T>();
-                var v2 = Random.NatVec<N,T>();
-                var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
-                var v4 = v1.Sub(v2);
-                Claim.yea(v3 == v4);
-            }
-        }
-
         public void vadd()
         {
             Add<VecLen,byte>();
@@ -77,9 +47,7 @@ namespace Z0.Test
             Sub<VecLen,ulong>();
             Sub<VecLen,float>();
             Sub<VecLen,double>();
-
         }
-
 
         OpTimePair Add<N,T>(int cycles, T min, T max, N n = default)
             where T : struct
@@ -139,13 +107,38 @@ namespace Z0.Test
             TracePerf(Add(cycles, 0d, 2048d, N512), labelPad);
             TracePerf(Add(cycles, 0d, 2048d, N1024), labelPad);
             TracePerf(Add(cycles, 0d, 2048d, N2048), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N4096), labelPad);
-
-
-
-           
+            TracePerf(Add(cycles, 0d, 2048d, N4096), labelPad);           
         }
 
+        void Add<N,T>(int cycles = DefaltCycleCount)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var n = new N();
+            for(var i=0; i< cycles; i++)            
+            {
+                var v1 = Random.NatVec<N,T>();
+                var v2 = Random.NatVec<N,T>();
+                var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
+                var v4 = v1.Add(v2);
+                Claim.yea(v3 == v4);
+            }
+        }
+
+        void Sub<N,T>(int cycles = DefaltCycleCount)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var n = new N();
+            for(var i=0; i< cycles; i++)            
+            {
+                var v1 = Random.NatVec<N,T>();
+                var v2 = Random.NatVec<N,T>();
+                var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
+                var v4 = v1.Sub(v2);
+                Claim.yea(v3 == v4);
+            }
+        }
 
     }
 

@@ -15,6 +15,12 @@ namespace Z0
     partial class gbits
     {
 
+        /// <summary>
+        /// Applies a leftward logical shift to each source vector component as 
+        /// specified by the amount in the corresponding control vector component
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="control">The control vector</param>
         [MethodImpl(Inline)]
         public static Vec128<S> sllv<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
             where S : struct
@@ -32,7 +38,13 @@ namespace Z0
                 throw unsupported<S>();
         }
 
-        [MethodImpl(Inline)]
+         /// <summary>
+        /// Applies a leftward logical shift to each source vector component as 
+        /// specified by the amount in the corresponding control vector component
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="control">The control vector</param>
+       [MethodImpl(Inline)]
         public static Vec256<S> sllv<S,T>(in Vec256<S> lhs, in Vec256<T> shifts)
             where S : struct
             where T : struct
@@ -48,6 +60,7 @@ namespace Z0
             else
                 throw unsupported<S>();
         }
+
 
     }
 

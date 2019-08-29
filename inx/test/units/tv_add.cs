@@ -14,29 +14,6 @@ namespace Z0.Test
 
     public class tv_add : UnitTest<tv_add>
     {
-        void Add128<T>(int blocks)
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            InXOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
-            TypeCaseEnd<T>();
-        }
-
-        void Add256<T>(int blocks)
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            InXOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
-            TypeCaseEnd<T>();
-        }
-
-        void Sub128<T>(int blocks)
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            InXOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
-            TypeCaseEnd<T>();
-        }
 
         public void add128()
         {
@@ -68,19 +45,21 @@ namespace Z0.Test
             Add256<double>(blocks);
 
         }
-        public void Sub128()
+
+        void Add128<T>(int blocks)
+            where T : struct
         {
-            var blocks = Pow2.T08;
-            Sub128<sbyte>(blocks);
-            Sub128<byte>(blocks);
-            Sub128<short>(blocks);
-            Sub128<ushort>(blocks);
-            Sub128<int>(blocks);
-            Sub128<uint>(blocks);
-            Sub128<long>(blocks);
-            Sub128<ulong>(blocks);
-            Sub128<float>(blocks);
-            Sub128<double>(blocks);
+            TypeCaseStart<T>();
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
+            TypeCaseEnd<T>();
+        }
+
+        void Add256<T>(int blocks)
+            where T : struct
+        {
+            TypeCaseStart<T>();
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
+            TypeCaseEnd<T>();
         }
 
     }

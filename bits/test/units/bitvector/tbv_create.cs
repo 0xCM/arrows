@@ -162,9 +162,9 @@ namespace Z0.Test
         public void AbsoluteIndexer()
         {
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
-            var bvz = BitVector.FromSegments(40,z);
+            var bvz = BitVector.FromCells(40,z);
             Span<byte> xSrc =  BitConverter.GetBytes(z);
-            var bvx = BitVector.FromSegments(xSrc.Slice(0,5).ToArray());
+            var bvx = BitVector.FromCells(xSrc.Slice(0,5).ToArray());
             Claim.eq(gbits.pop(z), bvz.Pop());
             Claim.eq(gbits.pop(z), bvx.Pop());
 
@@ -174,7 +174,7 @@ namespace Z0.Test
 
         public void BitVector12Test()
         {
-            var bv = BitVector.FromScalar(0b101110001110,new N12());
+            var bv = BitVector.FromCell(0b101110001110,new N12());
             Claim.eq(bv[0], Bit.Off);
             Claim.eq(bv[1], Bit.On);
             Claim.eq(bv[11], Bit.On);
@@ -185,7 +185,7 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Random.BitVector64();
+                var bv = Random.BitVec64();
                 var n = Random.Next(1, bv.Length);
                 var result = bv.Lsb(n).ToBitString();
                 var expect = bv.ToBitString()[0, n - 1];
@@ -197,7 +197,7 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Random.BitVector64();
+                var bv = Random.BitVec64();
                 var n = Random.Next(1, bv.Length);
                 var result = bv.Msb(n).ToBitString();
                 var expect = bv.ToBitString().Reversed()[0, n - 1].Reversed();
@@ -218,7 +218,7 @@ namespace Z0.Test
 
         public void Powers()
         {
-            var x = Random.BitVector8();
+            var x = Random.BitVec8();
             var expect2 = x * x;
             var actual2 = x^2;
             Claim.eq(expect2, actual2);

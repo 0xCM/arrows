@@ -263,8 +263,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = src.Unsized;
-            gbits.flip(in x);
+            gbits.flip(src.Unsized);
             return ref src;
         }
 
@@ -312,8 +311,7 @@ namespace Z0
             return ref io;
         }
 
-
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static ref Vector<N,T> Abs<N,T>(this ref Vector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    

@@ -14,23 +14,28 @@ namespace Z0
     partial class gbits
     {
         
-         public static ref T pack<T>(ReadOnlySpan<Bit> src, ref T dst)         
+
+        public static ref T pack<T>(ReadOnlySpan<Bit> src, ref T dst)         
             where T : struct
         {
-            var tSize = Unsafe.SizeOf<T>();
-            Span<byte> bs = stackalloc byte[tSize];
-            dst = MemoryMarshal.Cast<byte,T>(Bits.pack(src.Slice(0, tSize*8), bs)).First();
+            var maxbytes = Unsafe.SizeOf<T>();
+            var maxbits = maxbytes * 8;
+            var slicelen = math.min(src.Length, maxbits);
+
+            Span<byte> bs = stackalloc byte[maxbytes];
+            dst = MemoryMarshal.Cast<byte,T>(Bits.pack(src.Slice(0, slicelen), bs)).First();
             return ref dst;
         }
 
-         public static Span<T> pack<T>(ReadOnlySpan<Bit> src, Span<T> dst)         
+        public static Span<T> pack<T>(ReadOnlySpan<Bit> src, Span<T> dst)         
             where T : struct
         {
             Bits.pack(src, dst.AsBytes());
             return dst;
 
         }
-         public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
+        
+        public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
             where S : struct
             where T : struct
         {

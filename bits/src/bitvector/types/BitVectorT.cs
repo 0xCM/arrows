@@ -28,35 +28,61 @@ namespace Z0
     
         readonly CellIndex<T>[] BitMap;
 
-
         /// <summary>
         /// Specifies the number of bits that can be placed in one segment
         /// </summary>
         public static readonly BitSize SegmentCapacity = BitGrid.SegmentCapacity<T>();
 
+        /// <summary>
+        /// Creates a bitvector defined by a single cell or portion thereof
+        /// </summary>
+        /// <param name="src">The source cell</param>
         [MethodImpl(Inline)]
-        public static BitVector<T> Load(Memory<T> data)
-            => new BitVector<T>(data);    
-
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromSegments(BitSize bitcount, params T[] src)
-            => new BitVector<T>(new Memory<T>(src), bitcount);
+        public static BitVector<T> FromCell(T src, BitSize? n = null)
+            => new BitVector<T>(src,n);
 
         /// <summary>
-        /// Creates a bitvector defined by an arbitrary number of segments
+        /// Creates a bitvector defined by a readonly span, subject to a specified bitsize, if any
         /// </summary>
-        /// <param name="src">The source segment</param>
+        /// <param name="src">The source cell</param>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromSegments(params T[] src)
+        public static BitVector<T> FromCells(ReadOnlySpan<T> src, BitSize? n = null)
+            => new BitVector<T>(src, n);    
+
+        /// <summary>
+        /// Creates a bitvector defined by a readonly span, subject to a specified bitsize, if any
+        /// </summary>
+        /// <param name="src">The source cell</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCells(Span<T> src, BitSize? n = null)
+            => new BitVector<T>(src, n);    
+
+
+        /// <summary>
+        /// Creates a bitvector defined by a memory block, subject to a specified bitsize, if any
+        /// </summary>
+        /// <param name="src">The source cell</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCells(Memory<T> src, BitSize? n = null)
+            => new BitVector<T>(src, n);    
+
+        /// <summary>
+        /// Creates a bitvector from a cell parameter array, subject to a specified bitsize
+        /// </summary>
+        /// <param name="n">The length of the bitvector</param>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCells(BitSize n, params T[] src)
+            => new BitVector<T>(new Memory<T>(src), n);
+
+        /// <summary>
+        /// Creates a bitvector from a cell parameter array
+        /// </summary>
+        /// <param name="n">The length of the bitvector</param>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCells(params T[] src)
             => new BitVector<T>(new Memory<T>(src));
-
-        /// <summary>
-        /// Creates a bitvector defined by a single segment
-        /// </summary>
-        /// <param name="src">The source segment</param>
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromSegment(T src)
-            => new BitVector<T>(src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVector<T> lhs, in BitVector<T> rhs)
@@ -109,34 +135,41 @@ namespace Z0
             => !src.Nonempty;
 
         [MethodImpl(Inline)]
-        public BitVector(Memory<T> data, BitSize? bitcount = null)
+        public BitVector(Memory<T> src, BitSize? n = null)
         {            
-            this.data = data;
-            this.MaxBitCount = data.Span.Length * (int)SegmentCapacity;
-            this.Length = (int)(bitcount ?? (uint)MaxBitCount);
+            this.data = src;
+            this.MaxBitCount = src.Span.Length * (int)SegmentCapacity;
+            this.Length = (int)(n ?? (uint)MaxBitCount);
             this.SegLength = BitGrid.MinSegmentCount<T>(MaxBitCount);            
             this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
 
         [MethodImpl(Inline)]
-        BitVector(T segment)
+        BitVector(T src, BitSize? n = null)
         {            
-            this.data = new T[]{segment};
+            this.data = new T[]{src};
             this.MaxBitCount = SegmentCapacity;
-            this.Length = MaxBitCount;
+            this.Length = (int)(n ?? (uint)MaxBitCount);
             this.SegLength = MaxBitCount;
             this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
 
         [MethodImpl(Inline)]
-        public BitVector(T[] data, BitSize? bitcount = null)
-            : this(new Memory<T>(data), bitcount)
+        public BitVector(T[] src, BitSize? n = null)
+            : this(new Memory<T>(src), n)
         {            
         }
 
         [MethodImpl(Inline)]
-        public BitVector(ReadOnlySpan<T> bits, BitSize? bitcount = null)
-            : this(new Memory<T>(bits.ToArray()),bitcount)
+        public BitVector(Span<T> src, BitSize? n = null)
+            : this(new Memory<T>(src.ToArray()),n)
+        {
+
+        }
+
+        [MethodImpl(Inline)]
+        public BitVector(ReadOnlySpan<T> src, BitSize? n = null)
+            : this(new Memory<T>(src.ToArray()),n)
         {
 
         }
@@ -242,7 +275,7 @@ namespace Z0
         /// Extracts the represented data as a span of bytes
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<byte> Bytes()
+        public readonly Span<byte> Bytes()
             => MemoryMarshal.AsBytes(Bits);
 
         /// <summary>

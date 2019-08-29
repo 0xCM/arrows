@@ -52,7 +52,7 @@ namespace Z0
        readonly struct ShiftR<T>
             where T : struct
         {
-            public static readonly ShiftOp<T> Op = gbits.shiftr<T>;
+            public static readonly ShiftOp<T> Op = gbits.sra<T>;
         }
 
 

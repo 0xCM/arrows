@@ -14,7 +14,6 @@ namespace Z0
 
     partial class ginx
     {
-
         [MethodImpl(Inline)]
         public static Vec256<T> blendv<T>(in Vec256<T> lhs, in Vec256<T> rhs, in Vec256<T> control)        
             where T : struct
@@ -41,10 +40,7 @@ namespace Z0
                 return generic<T>(dinx.blendv(in float64(in lhs), in float64(in rhs), in float64(in control)));
             else 
                 throw unsupported<T>();
-
         }
-
-
     }
 
 }

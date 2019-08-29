@@ -13,40 +13,57 @@ namespace Z0.Test
 
     public class tbm_identity : UnitTest<tbm_identity>
     {
-        public void VerifyGenericIdentities()
+        public void identityng()
         {   
-            VerifyIdentity<N8,byte>();
-            VerifyIdentity<N8,short>();
-            VerifyIdentity<N16,byte>();
-            VerifyIdentity<N18,byte>();
-            VerifyIdentity<N19,byte>();                    
-            VerifyIdentity<N12,ushort>();
+            identityng_check<N8,byte>();
+            identityng_check<N8,short>();
+            identityng_check<N16,byte>();
+            identityng_check<N18,byte>();
+            identityng_check<N19,byte>();                    
+            identityng_check<N12,ushort>();
         }
 
-        public void VerifyPrimalIdentities()
+        public void identity32x32()
+        {        
+            var m = BitMatrix32.Identity;
+            for(byte i=0; i < m.RowCount; i++)
+                Claim.eq(m[i,i],Bit.On);
+            Claim.yea(m.Diagonal().AllOnes());
+        }
+
+        public void identity8x8()
         {
-            var m8 = BitMatrix8.Identity;
-            for(byte i=0; i < m8.RowCount; i++)
-                Claim.eq(m8[i,i],Bit.On);
-            Claim.yea(m8.Diagonal().AllOnes());
-        
-            var m16 = BitMatrix16.Identity;
-            for(byte i=0; i < m16.RowCount; i++)
-                Claim.eq(m16[i,i],Bit.On);
-            Claim.yea(m16.Diagonal().AllOnes());
+            var m = BitMatrix8.Identity;
+            for(byte i=0; i < m.RowCount; i++)
+                Claim.eq(m[i,i],Bit.On);
+            Claim.yea(m.Diagonal().AllOnes());
 
-            var m32 = BitMatrix32.Identity;
-            for(byte i=0; i < m32.RowCount; i++)
-                Claim.eq(m32[i,i],Bit.On);
-            Claim.yea(m32.Diagonal().AllOnes());
+        }
+        public void identity16x16()
+        {
+            var m = BitMatrix16.Identity;
+            for(byte i=0; i < m.RowCount; i++)
+                Claim.eq(m[i,i],Bit.On);
+            Claim.yea(m.Diagonal().AllOnes());
+        }
 
-            var m64 = BitMatrix64.Identity;
-            for(byte i=0; i < m64.RowCount; i++)
-                Claim.eq(m64[i,i],Bit.On);
-            Claim.yea(m64.Diagonal().AllOnes());
+        public void identity64x64()
+        {
+            var m = BitMatrix64.Identity;
+            for(byte i=0; i < m.RowCount; i++)
+                Claim.eq(m[i,i],Bit.On);
+            Claim.yea(m.Diagonal().AllOnes());
 
         }
 
+        void identity4x4()
+        {
+            var m = BitMatrix4.Identity;
+            for(byte i=0; i < m.RowCount; i++)
+                Claim.eq(m[i,i],Bit.On);
+            Claim.yea(m.Diagonal().AllOnes());
+
+        }
 
         public void IsZero()
         {
@@ -67,7 +84,8 @@ namespace Z0.Test
             Claim.nea(Random.BitMatrix64().IsZero());
         }
 
-        void VerifyIdentity<N,T>()
+        
+        void identityng_check<N,T>()
             where N : ITypeNat, new()
             where T : struct
         {

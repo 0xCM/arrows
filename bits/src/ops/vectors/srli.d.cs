@@ -93,7 +93,7 @@ namespace Z0
         /// <param name="dst">The target vector</param>
         /// <summary>__m256i _mm256_cvtepu8_epi16 (__m128i a) </summary>
         [MethodImpl(Inline)]
-        public static ref Vec256<ushort> convert(in Vec128<byte> src, out Vec256<ushort> dst)
+        static ref Vec256<ushort> convert(in Vec128<byte> src, out Vec256<ushort> dst)
         {
             dst = ConvertToVector256Int16(src).AsUInt16();
             return ref dst;
@@ -116,8 +116,8 @@ namespace Z0
             ref var srcY = ref convert(dinx.hi(src), out Vec256<ushort> _);
             
             //Shift each part with a concrete intrinsic anc convert back to bytes
-            var dstA = Bits.srli(srcX, offset).As<byte>();
-            var dstB = Bits.srli(srcY, offset).As<byte>();
+            var dstA = srli(srcX, offset).As<byte>();
+            var dstB = srli(srcY, offset).As<byte>();
 
             // Truncate overflows to sets up the component pattern [X 0 X 0 ... X 0] in each vector
             ref readonly var trm = ref Vec256Pattern.ClearAlt<byte>();
@@ -178,7 +178,7 @@ namespace Z0
             => ShiftRightLogical(src, offset);
 
         /// <summary>
-        /// _mm256_srli_epi64, avx2:
+        /// __m256i _mm256_srli_epi64 (__m256i a, int imm8) VPSRLQ ymm, ymm, imm8
         /// Shifts each component of the source vector right by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -186,5 +186,174 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> srli(in Vec256<ulong> src, byte offset)
             => ShiftRightLogical(src, offset); 
+ 
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<short> srli(ReadOnlySpan128<short> src, byte offset, Span128<short> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<ushort> srli(ReadOnlySpan128<ushort> src, byte offset, Span128<ushort> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<int> srli(ReadOnlySpan128<int> src, byte offset, Span128<int> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<uint> srli(ReadOnlySpan128<uint> src, byte offset, Span128<uint> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<long> srli(ReadOnlySpan128<long> src, byte offset, Span128<long> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span128<ulong> srli(ReadOnlySpan128<ulong> src, byte offset, Span128<ulong> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec128(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<short> srli(ReadOnlySpan256<short> src, byte offset, Span256<short> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<ushort> srli(ReadOnlySpan256<ushort> src, byte offset, Span256<ushort> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<int> srli(ReadOnlySpan256<int> src, byte offset, Span256<int> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<uint> srli(ReadOnlySpan256<uint> src, byte offset, Span256<uint> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<long> srli(ReadOnlySpan256<long> src, byte offset, Span256<long> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+        }
+
+        /// <summary>
+        /// Applies a logical shift to each source value in the source and writes the result to the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The number of bits to shift</param>
+        /// <param name="dst">The target span</param>
+        public static Span256<ulong> srli(ReadOnlySpan256<ulong> src, byte offset, Span256<ulong> dst)
+        {
+            var width = dst.BlockWidth;
+            for(var i =0; i < src.Length; i += width)
+                vstore(srli(src.LoadVec256(i), offset), ref dst[i]);
+            return dst;            
+       }
+
     }
 }

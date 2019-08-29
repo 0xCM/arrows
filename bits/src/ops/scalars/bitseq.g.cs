@@ -19,12 +19,12 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The primal source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static ReadOnlySpan<byte> bitseq<T>(T src)
             where T : struct
                 => BitStore.BitSeq(src);
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static ref T packseq<T>(ReadOnlySpan<byte> src, out T dst)
             where T : struct
         {
@@ -46,7 +46,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static string bstext<T>(in T src)
         {
             if(typeof(T) == typeof(byte))

@@ -147,13 +147,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix4 Alloc(Bit? fill = null)                
             => fill == Bit.On ? Load(UInt16.MaxValue) : Load(0);
-        public int RowDim
+        public int RowCount
         {
             [MethodImpl(Inline)]
             get => N;
         }
 
-        public int ColDim
+        public int ColCount
         {
             [MethodImpl(Inline)]
             get => N;
@@ -181,7 +181,7 @@ namespace Z0
         {
             var index = row <= 1 ? 0 : 1;
             var pos = (row == 0 || row == 2) ? col : col + 4;
-            return gbits.test(in bits[index],pos);
+            return gbits.test(in bits[index], pos);
         }
 
         [MethodImpl(Inline)]
@@ -202,7 +202,7 @@ namespace Z0
         }            
 
         /// <summary>
-        /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
+        /// A mutable indexer
         /// </summary>
         /// <param name="row">The row index</param>
         public ref byte this[int row]
@@ -356,7 +356,8 @@ namespace Z0
 
         static ReadOnlySpan<byte> Identity4x4 => new byte[] 
         {
-            0b10000100, 0b00100001
+            0b1000_0100, 
+            0b0010_0001
         };
 
     }

@@ -17,7 +17,6 @@ namespace Z0
 
     partial class dinx
     {
-
         ///<intrinsic>__m128i _mm_lddqu_si128 (__m128i const* mem_addr) LDDQU xmm, m128</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<sbyte> lddqu(in sbyte src, out Vec128<sbyte> dst)

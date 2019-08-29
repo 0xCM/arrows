@@ -16,7 +16,6 @@ namespace Z0.Test
 
     public class t_perm : UnitTest<t_perm>
     {
-
         public void invert()
         {
             invert(N12);
@@ -60,8 +59,6 @@ namespace Z0.Test
         {
             var cycle = (Perm16.X3 | Perm16.X5 | Perm16.XA).Cycle();
             Trace( () => cycle);
-
-
         }
         
         public void swaps()
@@ -78,8 +75,7 @@ namespace Z0.Test
             var chain = Swap.Chain((0,1), 15);
             var x3 = dinx.swap(src, chain);
             //Trace($"{chain.Format()} |> {src.FormatHex()} = {x3.FormatHex()}");
-            Claim.eq(x3[15],(byte)0);
-            
+            Claim.eq(x3[15],(byte)0);            
         }
 
         void compose<N>(N n = default)
@@ -117,7 +113,5 @@ namespace Z0.Test
                 Claim.yea(p3 == Perm<N>.Identity);
             }
         }
-
-
     }
 }

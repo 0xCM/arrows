@@ -15,7 +15,7 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
-        /// Produces a stream of uniformly random values
+        /// Produces a stream of uniformly random values subject to an optional range and filter
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="domain">If specified, the domain of the random variable</param>
@@ -24,6 +24,17 @@ namespace Z0
         public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.UniformStream(domain,filter);
+
+        /// <summary>
+        /// Produces a stream of uniformly random values subject to a specified range and optional filter
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">If specified, the domain of the random variable</param>
+        /// <param name="filter">If specified, values that do not satisfy the predicate are excluded from the stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IEnumerable<T> Stream<T>(this IRandomSource random, T min, T max, Func<T,bool> filter = null)
+            where T : struct
+                => random.UniformStream(closed(min,max),filter);
 
         /// <summary>
         /// Produces a random stream predicated on a point source

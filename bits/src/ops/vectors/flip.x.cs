@@ -22,15 +22,7 @@ namespace Z0
             where T : struct
                 => gbits.flip(in src);
 
-        [MethodImpl(Inline)]
-        public static void Flip<T>(this Vec128<T> lhs, ref T dst)
-            where T : struct
-                => gbits.flip(in lhs, ref dst);
 
-        [MethodImpl(Inline)]
-        public static void Flip<T>(this Vec256<T> lhs, ref T dst)
-            where T : struct
-                => gbits.flip(in lhs, ref dst);
 
     }
 }

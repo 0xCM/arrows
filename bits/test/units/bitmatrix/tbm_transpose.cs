@@ -13,14 +13,14 @@ namespace Z0.Test
 
     public class tbm_transpose : UnitTest<tbm_transpose>
     {
-        public void TransposeGeneric()
+        public void transposeGn()
         {
-            Transpose<N12,N14,short>(Pow2.T07);
-            Transpose<N32,N32,byte>(Pow2.T07);
-            Transpose<N8,N8,byte>(Pow2.T07);
+            transposeGn_test<N12,N14,short>(Pow2.T07);
+            transposeGn_test<N32,N32,byte>(Pow2.T07);
+            transposeGn_test<N8,N8,byte>(Pow2.T07);
         }
 
-        public void Transpose8()
+        public void transpose8()
         {
             var m1 = Random.BitMatrix8();
             var m2 = m1.Transpose();
@@ -28,7 +28,7 @@ namespace Z0.Test
             Claim.yea(m1 == m3);
         }
 
-        public void Transpose16()
+        public void transpose16()
         {
             var m1 = Random.BitMatrix16();
             var m2 = m1.Transpose();
@@ -36,7 +36,7 @@ namespace Z0.Test
             Claim.yea(m3 == m1);
         }
 
-        public void Transpose32()
+        public void transpose32()
         {
             var m1 = Random.BitMatrix32();
             var m2 = m1.Transpose();
@@ -44,7 +44,7 @@ namespace Z0.Test
             Claim.yea(m3 == m1);
         }
 
-        public void Transpose64()
+        public void transpose64()
         {
             var m1 = Random.BitMatrix64();
             var m2 = m1.Transpose();
@@ -52,8 +52,19 @@ namespace Z0.Test
             Claim.yea(m3 == m1);    
         }
 
+        public void rowswap32()
+        {
+            var m1 = Random.BitMatrix32();
+            var m2 = m1.Replicate();
 
-        void Transpose<M,N,T>(int count)
+            m2.RowSwap(0,1);
+            m2.RowSwap(1,2);
+            m2.RowSwap(2,3);
+
+            Claim.yea(m1.RowVec(0) == m2.RowVec(3));
+        }
+
+        void transposeGn_test<M,N,T>(int count)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
@@ -69,16 +80,5 @@ namespace Z0.Test
         }
 
 
-        public void RowSwap()
-        {
-            var m1 = Random.BitMatrix32();
-            var m2 = m1.Replicate();
-
-            m2.RowSwap(0,1);
-            m2.RowSwap(1,2);
-            m2.RowSwap(2,3);
-
-            Claim.yea(m1.RowVec(0) == m2.RowVec(3));
-        }
     }
 }

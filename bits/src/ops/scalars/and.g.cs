@@ -14,7 +14,7 @@ namespace Z0
     
     partial class gbits
     {
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        [MethodImpl(Inline)]
         public static T and<T>(T lhs, T rhs)
             where T : struct
                 => gmath.and(lhs,rhs);

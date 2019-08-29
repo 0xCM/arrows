@@ -72,6 +72,10 @@ namespace Z0
             => src.Bits;
 
         [MethodImpl(Inline)]
+        public static explicit operator double(BitSize src)
+            => src.Bits;
+
+        [MethodImpl(Inline)]
         public static implicit operator BitSize(int src)
             => new BitSize((ulong)src);
 
@@ -96,7 +100,7 @@ namespace Z0
             => new BitSize(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator BitSize(ByteSize src)
+        public static explicit operator BitSize(ByteSize src)
             => src.Bytes * 8;
 
         /// <summary>

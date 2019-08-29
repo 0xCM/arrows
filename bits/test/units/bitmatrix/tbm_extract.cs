@@ -16,36 +16,36 @@ namespace Z0.Test
     {
         public void VectorExtract()
         {
-            VerifyExtract(Random.BitMatrix<N9,N9,byte>());
-            VerifyExtract(Random.BitMatrix<N9,N9,ushort>());
-            VerifyExtract(Random.BitMatrix<N128,N128,uint>());
-            VerifyExtract(Random.BitMatrix<N16,N128,uint>());
-            VerifyExtract(Random.BitMatrix<N5,N7,uint>());            
+            check_extractng(Random.BitMatrix<N9,N9,byte>());
+            check_extractng(Random.BitMatrix<N9,N9,ushort>());
+            check_extractng(Random.BitMatrix<N128,N128,uint>());
+            check_extractng(Random.BitMatrix<N16,N128,uint>());
+            check_extractng(Random.BitMatrix<N5,N7,uint>());            
         }
 
-        public void ColumnExtract8()
+        public void col8()
         {
             CycleColExtract8();
         }
 
-        public void ColExtract16()
+        public void col16()
         {
 
             CycleColExtract16();
 
         }
 
-        public void ColumnExtract32()
+        public void col32()
         {
             CycleColExtract32();
         }
 
-        public void ColumnExtract64()
+        public void col64()
         {
             CycleColExtract64();
         }
 
-        void VerifyExtract<M,N,T>(BitMatrix<M,N,T> src)
+        void check_extractng<M,N,T>(BitMatrix<M,N,T> src)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
@@ -119,7 +119,7 @@ namespace Z0.Test
 
         }
 
-        public void Eq32()
+        public void eq32()
         {
             var x = Random.BitMatrix32();
             var y = Random.BitMatrix32();
@@ -128,7 +128,7 @@ namespace Z0.Test
             Claim.yea(y.Equals(y));
         }
 
-        public void Eq64()
+        public void eq64()
         {
             var x = Random.BitMatrix64();
             var y = Random.BitMatrix64();
@@ -143,7 +143,7 @@ namespace Z0.Test
             Claim.yea(y == y);
         }
 
-        public void Flip64()
+        public void flip64()
         {
             
             var x = Random.BitMatrix64();

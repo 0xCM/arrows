@@ -16,175 +16,55 @@ namespace Z0.Test
 
     public class tbv_dot : UnitTest<tbv_dot>
     {
-        void VerifyDot4(int cycles = DefaltCycleCount)
+        public void dot4()
         {
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector4();
-                var y = Random.BitVector4();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);            
-            }
+            dot4_check();            
         }
 
-        void VerifyDot8(int cycles = DefaltCycleCount)
+        public void dot8()
         {
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector8();
-                var y = Random.BitVector8();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);            
-
-                var zx = x.ToGeneric();
-                var zy = y.ToGeneric();
-                var c = zx % zy;
-                Claim.yea(a == c);
-
-            }
+            dot8_check();            
         }
 
-        void VerifyDot16(int cycles = DefaltCycleCount)
+        public void dot16()
         {
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector16();
-                var y = Random.BitVector16();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);   
-
-                var zx = x.ToGeneric();
-                var zy = y.ToGeneric();
-                var c = zx % zy;
-                Claim.yea(a == c);
-
-            }
+            dot16_check();            
         }
 
-        void VerifyDot32(int cycles = DefaltCycleCount)
+        public void dot32()
         {
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector32();
-                var y = Random.BitVector32();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);
-            
-                var zx = x.ToGeneric();
-                var zy = y.ToGeneric();
-                var c = zx % zy;
-                Claim.yea(a == c);
-
-            }
+            dot32_check();            
         }
 
-        void VerifyDot64(int cycles = DefaltCycleCount)
+        public void dot64()
         {
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector64();
-                var y = Random.BitVector64();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);
-
-                var zx = x.ToGeneric();
-                var zy = y.ToGeneric();
-                var c = zx % zy;
-                Claim.yea(a == c);
-            
-            }
+            dot64_check();            
         }
 
-        void VerifyDot<T>(BitSize bitcount, T rep = default, int cycles = DefaltCycleCount)
-            where T : struct
+        public void dotg()
         {
-            TypeCaseStart<T>();
-
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector<T>(bitcount);
-                var y = Random.BitVector<T>(bitcount);
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);
-            
-            }
-
-            TypeCaseEnd<T>();
+            dotg_check(10,0u);
+            dotg_check(20,0u);
+            dotg_check(63,0ul);
+            dotg_check(64,0ul);
+            dotg_check(87,(byte)0);
+            dotg_check(128,(ushort)0);
+            dotg_check(25,(ushort)0);
+            dotg_check(256,0ul);
+            dotg_check(2048,0u);
         }
 
-        void VerifyDot<N,T>(N bitcount = default, T rep = default,  int cycles = DefaltCycleCount)
-            where T : struct
-            where N : ITypeNat, new()
+        public void dotng()
         {
-            NatCaseStart<N,T>();
-            for(var i=0; i<cycles; i++)
-            {
-                var x = Random.BitVector<N,T>();
-                var y = Random.BitVector<N,T>();
-                var a = x % y;
-                var b = ModProd(x,y);
-                Claim.yea(a == b);            
-            }
-
-            NatCaseStart<N,T>();
-        }
-
-
-        public void Dot4()
-        {
-            VerifyDot4();            
-        }
-
-        public void Dot8()
-        {
-            VerifyDot8();            
-        }
-
-        public void Dot16()
-        {
-            VerifyDot16();            
-        }
-
-        public void Dot32()
-        {
-            VerifyDot32();            
-        }
-
-        public void Dot64()
-        {
-            VerifyDot64();            
-        }
-
-        public void DotT()
-        {
-            VerifyDot(10,0u);
-            VerifyDot(20,0u);
-            VerifyDot(63,0ul);
-            VerifyDot(64,0ul);
-            VerifyDot(87,(byte)0);
-            VerifyDot(128,(ushort)0);
-            VerifyDot(25,(ushort)0);
-            VerifyDot(256,0ul);
-            VerifyDot(2048,0u);
-        }
-
-        public void DotNT()
-        {
-            VerifyDot(N10,0u);
-            VerifyDot(N20,0u);
-            VerifyDot(N63,0ul);
-            VerifyDot(N64,0ul);
-            VerifyDot(N87,(byte)0);
-            VerifyDot(N128,(ushort)0);
-            VerifyDot(N25,(ushort)0);
-            VerifyDot(N256,0ul);
-            VerifyDot(N2048,0u);
+            dotng_check(N10,0u);
+            dotng_check(N20,0u);
+            dotng_check(N63,0ul);
+            dotng_check(N64,0ul);
+            dotng_check(N87,(byte)0);
+            dotng_check(N128,(ushort)0);
+            dotng_check(N25,(ushort)0);
+            dotng_check(N256,0ul);
+            dotng_check(N2048,0u);
         }
 
 
@@ -205,6 +85,126 @@ namespace Z0.Test
             }
             Trace(result.ToString());
         }
+
+        void dot4_check(int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec4();
+                var y = Random.BitVec4();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);            
+            }
+        }
+
+        void dot8_check(int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec8();
+                var y = Random.BitVec8();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);            
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
+            }
+        }
+
+        void dot16_check(int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec16();
+                var y = Random.BitVec16();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);   
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
+            }
+        }
+
+        void dot32_check(int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec32();
+                var y = Random.BitVec32();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);
+            
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+
+            }
+        }
+
+        void dot64_check(int cycles = DefaltCycleCount)
+        {
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec64();
+                var y = Random.BitVec64();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);
+
+                var zx = x.ToGeneric();
+                var zy = y.ToGeneric();
+                var c = zx % zy;
+                Claim.yea(a == c);
+            
+            }
+        }
+
+        void dotg_check<T>(BitSize bitcount, T rep = default, int cycles = DefaltCycleCount)
+            where T : struct
+        {
+            TypeCaseStart<T>();
+
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec<T>(bitcount);
+                var y = Random.BitVec<T>(bitcount);
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);
+            
+            }
+
+            TypeCaseEnd<T>();
+        }
+
+        void dotng_check<N,T>(N bitcount = default, T rep = default,  int cycles = DefaltCycleCount)
+            where T : struct
+            where N : ITypeNat, new()
+        {
+            NatCaseStart<N,T>();
+            for(var i=0; i<cycles; i++)
+            {
+                var x = Random.BitVec<N,T>();
+                var y = Random.BitVec<N,T>();
+                var a = x % y;
+                var b = ModProd(x,y);
+                Claim.yea(a == b);            
+            }
+
+            NatCaseStart<N,T>();
+        }
+ 
     }
 
 }

@@ -11,25 +11,9 @@ namespace Z0
     using static zfunc;    
     using static As;
 
-    public static class Vec128Cmp
-    {
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<T> Define<T>(Bit[] Results)
-            where T : struct
-                => new Vec128Cmp<T>(Results);
-
-        public static Vec128Cmp<T> Define<T>(Vec128<T> Result)                
-            where T : struct
-        {
-            var dst = new Bit[Vec128<T>.Length];
-            for(var i = 0; i< dst.Length; i++)
-                dst[i] = gmath.nonzero(Result[i]);
-            return Define<T>(dst);
-        }
-    }
 
     /// <summary>
-    /// Defines a 128-bit vector obtained from a comparison operation
+    /// Encapsulates the result of a 128-bit cpu vector comparison operation
     /// </summary>
     public readonly struct Vec128Cmp<T>
         where T : struct
@@ -60,13 +44,17 @@ namespace Z0
             where S : struct
                 => new Vec128Cmp<S>(Results);
     
+        /// <summary>
+        /// Condenses comparison content to a single bit that is enabled if and
+        /// only if all enclosed bits are enabled
+        /// </summary>
         [MethodImpl(Inline)]
         public Bit Reduce()
         {
+            Bit result = Bit.On;
             for(var i = 0; i<Results.Length; i++)
-                if(!Results[i])
-                    return Bit.Off;
-            return Bit.On;
+                result &= this[i];
+            return result;
         }
     }
 }

@@ -13,17 +13,17 @@ namespace Z0.Test
 
     public class tbm_mul : UnitTest<tbm_mul>
     {
-        public void Mul8()
+        public void bmm8x8()
         {
             VerifyMul8();
         }
 
-        public void Mul32()
+        public void bmm32x32()
         {
             VerifyMul32();
         }
 
-        public void Mul64()
+        public void bmm64x64()
         {
             VerifyMul64();
         }
@@ -48,31 +48,30 @@ namespace Z0.Test
             VerifyMulRVec64();            
         }
 
-        public void RunMul4Bench()
+        public void bmm4_bench()
         {
             Collect(Mul4Bench(Pow2.T12));
         }
 
-        public void RunMul8Bench()
+        public void bmm8_bench()
         {
             Collect(Mul8Bench(Pow2.T12));
         }
 
-        public void RunMul16Bench()
+        public void bmm16_bench()
         {
             Collect(Mul16Bench(Pow2.T12));
         }
 
-        public void RunMul32Bench()
+        public void bmm32_bench()
         {
             Collect(Mul32Bench(Pow2.T12));
         }
 
-        public void RunMul64Bench()
+        public void bmm64_bench()
         {
             Collect(Mul64Bench(Pow2.T12));
         }
-
 
         void VerifyMul8(int cycles = DefaltCycleCount)
         {
@@ -195,7 +194,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix8();
-                var c = Random.BitVector8();
+                var c = Random.BitVec8();
                 var z1 = m * c;            
                 var z2 = BitVector8.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -213,7 +212,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix16();
-                var c = Random.BitVector16();
+                var c = Random.BitVec16();
                 var z1 = m * c;            
                 var z2 = BitVector16.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -231,7 +230,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix32();
-                var c = Random.BitVector32();
+                var c = Random.BitVec32();
                 var z1 = m * c;            
                 var z2 = BitVector32.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -249,7 +248,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix64();
-                var c = Random.BitVector64();
+                var c = Random.BitVec64();
                 var z1 = m * c;            
                 var z2 = BitVector64.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -263,6 +262,6 @@ namespace Z0.Test
         }
 
 
-    }
+}
 
 }
