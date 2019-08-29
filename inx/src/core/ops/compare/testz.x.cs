@@ -12,7 +12,7 @@ namespace Z0
     using static As;
         
 
-    partial class BitsX
+    partial class dinxx
     {
         public static bool TestZ<T>(this Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
@@ -39,7 +39,6 @@ namespace Z0
                 return float64(in lhs).TestZ(float64(in rhs));
             else
                 throw unsupported<T>();
-
         }
 
         public static bool TestZ<T>(this Vec256<T> lhs, in Vec256<T> rhs)

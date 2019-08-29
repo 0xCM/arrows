@@ -16,84 +16,74 @@ namespace Z0
     partial class Bits
     {   
         /// <summary>
-        /// _mm_slli_epi16, sse2, shift left logical:
+        /// __m128i _mm_slli_epi16 (__m128i a, int immediate) PSLLW xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> slli(in Vec128<short> src, byte offset)
+        public static Vec128<short> sll(in Vec128<short> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm_slli_epi16, sse2, shift left logical:
+        /// __m128i _mm_slli_epi16 (__m128i a, int immediate) PSLLW xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> slli(in Vec128<ushort> src, byte offset)
+        public static Vec128<ushort> sll(in Vec128<ushort> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm_slli_epi32, sse2, shift left logical:
+        /// __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> slli(in Vec128<int> src, byte offset)
+        public static Vec128<int> sll(in Vec128<int> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm_slli_epi32, sse2, shift left logical:
+        /// __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> slli(in Vec128<uint> src, byte offset)
+        public static Vec128<uint> sll(in Vec128<uint> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm_slli_epi64, sse2, shift left logical:
+        /// __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> slli(in Vec128<long> src, byte offset)
+        public static Vec128<long> sll(in Vec128<long> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm_slli_epi64, sse2, shift left logical:
+        /// __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> slli(in Vec128<ulong> src, byte offset)
+        public static Vec128<ulong> sll(in Vec128<ulong> src, byte offset)
             => Sse2.ShiftLeftLogical(src, offset);
 
-        /// <summary>
-        /// _mm_slli_epi32, sse2, shift left logical:
-        /// Shifts each component of the source vector leftwards by a common number of bits
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="offset">The number of bits to shift</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> slli32(in Vec128<ulong> src, byte offset)
-            => slli(src.As<uint>(), offset).As<ulong>();
-
-        public static Vec256<byte> slli(in Vec256<byte> src, byte offset)
+        public static Vec256<byte> sll(in Vec256<byte> src, byte offset)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors
             ref var srcX = ref convert(dinx.lo(src), out Vec256<ushort> _);
             ref var srcY = ref convert(dinx.hi(src), out Vec256<ushort> _);
             
             //Shift each part with a concrete intrinsic anc convert back to bytes
-            var dstA = slli(srcX, offset).As<byte>();
-            var dstB = slli(srcY, offset).As<byte>();
+            var dstA = sll(srcX, offset).As<byte>();
+            var dstB = sll(srcY, offset).As<byte>();
 
             // Truncate overflows to sets up the component pattern [X 0 X 0 ... X 0] in each vector
             ref readonly var trm = ref Vec256Pattern.ClearAlt<byte>();
@@ -114,63 +104,63 @@ namespace Z0
         }
 
         /// <summary>
-        /// _mm256_slli_epi16, avx2:
+        /// __m256i _mm256_slli_epi16 (__m256i a, int imm8) VPSLLW ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<short> slli(in Vec256<short> src, byte offset)
+        public static Vec256<short> sll(in Vec256<short> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm256_slli_epi16, avx2:
+        /// __m256i _mm256_slli_epi16 (__m256i a, int imm8) VPSLLW ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> slli(in Vec256<ushort> src, byte offset)
+        public static Vec256<ushort> sll(in Vec256<ushort> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm256_slli_epi32, avx2:
+        /// __m256i _mm256_slli_epi32 (__m256i a, int imm8) VPSLLD ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<int> slli(in Vec256<int> src, byte offset)
+        public static Vec256<int> sll(in Vec256<int> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm256_slli_epi32, avx2:
+        /// __m256i _mm256_slli_epi32 (__m256i a, int imm8) VPSLLD ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<uint> slli(in Vec256<uint> src, byte offset)
+        public static Vec256<uint> sll(in Vec256<uint> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm256_slli_epi64, avx2:
+        /// __m256i _mm256_slli_epi64 (__m256i a, int imm8) VPSLLQ ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<long> slli(in Vec256<long> src, byte offset)
+        public static Vec256<long> sll(in Vec256<long> src, byte offset)
             => ShiftLeftLogical(src, offset);
 
         /// <summary>
-        /// _mm256_slli_epi64, avx2:
+        /// __m256i _mm256_slli_epi64 (__m256i a, int imm8) VPSLLQ ymm, ymm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> slli(in Vec256<ulong> src, byte offset)
+        public static Vec256<ulong> sll(in Vec256<ulong> src, byte offset)
             => ShiftLeftLogical(src, offset); 
     }
 

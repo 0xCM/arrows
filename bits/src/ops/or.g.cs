@@ -14,7 +14,7 @@ namespace Z0
     partial class gbits
     {
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref readonly Span<T> or<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
             where T : struct
         {
@@ -39,12 +39,12 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static Span<T> or<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
                 => or(lhs, rhs, span<T>(length(lhs,rhs)));
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref readonly Span<T> or<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
         {
@@ -69,8 +69,8 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
-        public static ref readonly Span<T> or<T>(in Span<T> lhs, in T rhs)
+        [MethodImpl(Inline)]
+        public static Span<T> or<T>(Span<T> lhs, in T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -91,7 +91,7 @@ namespace Z0
                 or(uint64(lhs), uint64(rhs));
             else
                 throw unsupported<T>();
-            return ref lhs;
+            return lhs;
         }
 
         [MethodImpl(Inline)]

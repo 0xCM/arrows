@@ -18,7 +18,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    partial class Bits
+    partial class dinx
     {
         /// <summary>
         /// _mm_maskmoveu_si128 (__m128i a, __m128i mask, char* mem_address) MASKMOVDQU xmm, xmm

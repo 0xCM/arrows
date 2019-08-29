@@ -16,7 +16,7 @@ namespace Z0
     
     using static zfunc;    
     
-    partial class Bits
+    partial class dinx
     {
         /// <summary>
         /// _mm_testc_si128
@@ -28,7 +28,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -37,7 +37,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -46,7 +46,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -55,7 +55,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -64,7 +64,7 @@ namespace Z0
             => TestC(lhs, rhs);        
         
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -73,7 +73,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -82,7 +82,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -91,7 +91,7 @@ namespace Z0
             => TestC(lhs, rhs);                     
 
         /// <summary>
-        /// _mm_testc_ps
+        /// int _mm_testc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -100,7 +100,7 @@ namespace Z0
             => TestC(lhs, rhs);                     
 
         /// <summary>
-        /// _mm_testc_pd 
+        /// int _mm_testc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -109,7 +109,7 @@ namespace Z0
             => TestC(lhs, rhs);                     
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -118,7 +118,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -127,7 +127,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -136,7 +136,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -145,7 +145,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -154,7 +154,7 @@ namespace Z0
             => TestC(lhs, rhs);        
         
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -163,7 +163,7 @@ namespace Z0
             => TestC(lhs, rhs);        
 
         /// <summary>
-        /// _mm256_testc_si256
+        /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -181,7 +181,7 @@ namespace Z0
             => TestC(lhs, rhs);                             
 
         /// <summary>
-        /// _mm256_testc_ps
+        /// int _mm256_testc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -190,7 +190,7 @@ namespace Z0
             => TestC(lhs, rhs);                             
 
         /// <summary>
-        /// _mm256_testc_pd
+        /// int _mm256_testc_pd (__m256d a, __m256d b) VTESTPS ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>

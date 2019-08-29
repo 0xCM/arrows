@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
+
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx2;
     
@@ -142,7 +142,6 @@ namespace Z0
         /// <param name="bytes">The number of bytes to shift</param>
         [MethodImpl(Inline)]
         public static Vec256<ulong> bslli(in Vec256<ulong> src, byte bytes)
-            => ShiftLeftLogical128BitLane(src, bytes); 
-         
+            => ShiftLeftLogical128BitLane(src, bytes);          
     }
 }

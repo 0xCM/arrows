@@ -18,7 +18,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    partial class Bits
+    partial class dinx
     {
         
         /// <summary>

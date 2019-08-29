@@ -268,8 +268,8 @@ namespace Z0.Test
             for(var block = 0; block <= blocks.BlockCount; block++)
             {
                 var x = blocks.LoadVec256(block);
-                var y = Bits.slli(in x, 7);
-                var packed = Bits.movemask(in y);
+                var y = Bits.sll(in x, 7);
+                var packed = dinx.movemask(in y);
                 var expect = blocks.Blocked(block).Unblocked.ToBitString().BitSeq;
             }
 

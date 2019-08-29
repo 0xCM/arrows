@@ -70,9 +70,7 @@ namespace Z0
         public static ref Vector<T> Or<T>(ref Vector<T> lhs, Vector<T> rhs)
             where T : struct
         {
-            var x = lhs.Unblocked;
-            var y = rhs.Unblocked;
-            gbits.or(in x, y);
+            gbits.or(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 

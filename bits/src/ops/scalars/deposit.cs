@@ -35,6 +35,7 @@ namespace Z0
         /// <summary>
         /// unsigned int _pdep_u32 (unsigned int a, unsigned int mask) PDEP r32a, r32b, reg/m32
         /// Sets mask-identified bits in the source
+        /// "Scatter contiguous low order bits of the source to the result at the positions specified by the mask."
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>

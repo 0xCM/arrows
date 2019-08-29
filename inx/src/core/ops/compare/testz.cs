@@ -14,7 +14,7 @@ namespace Z0
     using Avx = System.Runtime.Intrinsics.X86.Avx;   
     using static zfunc;    
 
-    partial class Bits
+    partial class dinx
     {
         [MethodImpl(Inline)]
         public static bool testz(in Vec128<byte> lhs, in Vec128<byte> rhs)

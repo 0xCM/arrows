@@ -105,9 +105,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            var y = rhs.Unsize();
-            gbits.or(in x, y);
+            gbits.or(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -117,8 +115,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            gbits.or(in x, in rhs);
+            gbits.or(lhs.Unsized, in rhs);
             return ref lhs;
         }
 
@@ -130,7 +127,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gbits.xor(in x, y);
+            gbits.xor(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -140,8 +137,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            gbits.xor(in x, rhs);
+            gbits.xor(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -150,8 +146,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
-            BitRef.ShiftL(x, rhs);
+            BitRef.ShiftL(lhs.Unsized, rhs);
             return lhs;
         }
 
@@ -160,8 +155,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsize();
-            BitRef.ShiftR(x, rhs);
+            BitRef.ShiftR(lhs.Unsized, rhs);
             return lhs;
         }
 
@@ -173,7 +167,7 @@ namespace Z0
         {
             var x = lhs.Unsize();
             var y = rhs.Unsize();
-            gmath.pow(ref x, y);
+            gmath.pow(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -183,8 +177,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsize();
-            gmath.pow(ref x, rhs);
+            gmath.pow(lhs.Unsized, rhs);
             return ref lhs;
         }
 

@@ -17,23 +17,23 @@ namespace Z0
     partial class Bits
     {         
         /// <summary>
-        /// _mm256_srai_epi16, avx2, shift right arithmetic:
+        /// __m256i _mm256_srai_epi16 (__m256i a, int imm8) VPSRAW ymm, ymm, imm8
         /// Applies a rightward arithmetic shift to the source vector
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift rightwards</param>
         [MethodImpl(Inline)]
-        public static Vec256<short> srai(in Vec256<short> src, byte offset)
+        public static Vec256<short> sra(in Vec256<short> src, byte offset)
             => ShiftRightArithmetic(src, offset);
 
         /// <summary>
-        /// _mm256_srai_epi32, avx2, shift right arithmetic:
+        /// __m256i _mm256_srai_epi32 (__m256i a, int imm8) VPSRAD ymm, ymm, imm8
         /// Applies a rightward arithmetic shift to the source vector
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift rightwards</param>
         [MethodImpl(Inline)]
-        public static Vec256<int> srai(in Vec256<int> src, byte offset)
+        public static Vec256<int> sra(in Vec256<int> src, byte offset)
             => ShiftRightArithmetic(src, offset);
 
         /// <summary>

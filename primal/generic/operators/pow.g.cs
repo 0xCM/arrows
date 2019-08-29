@@ -41,7 +41,7 @@ namespace Z0
          }           
 
         [MethodImpl(Inline)]
-        public static ref Span<T> pow<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static Span<T> pow<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -66,11 +66,11 @@ namespace Z0
                 math.pow(float64(lhs), float64(rhs));
             else
                throw unsupported<T>();
-            return ref lhs;
+            return lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> pow<T>(ref Span<T> lhs, T rhs)
+        public static Span<T> pow<T>(Span<T> lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -95,7 +95,7 @@ namespace Z0
                 math.pow(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
-            return ref lhs;
+            return lhs;
         }
  
         [MethodImpl(Inline)]

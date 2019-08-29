@@ -173,9 +173,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsized;
-            var y = rhs.Unsized;
-            gbits.or(in x, y);
+            gbits.or(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -191,8 +189,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            var x = lhs.Unsized;
-            gbits.or(in x, in rhs);
+            gbits.or(lhs.Unsized, in rhs);
             return ref lhs;
         }
 
@@ -209,9 +206,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsized;
-            var y = rhs.Unsized;
-            gbits.xor(in x, y);
+            gbits.xor(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -228,8 +223,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsized;
-            gbits.xor(in x, rhs);
+            gbits.xor(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -246,8 +240,7 @@ namespace Z0
             where T : struct    
 
         {
-            var x = lhs.Unsized;
-            gmath.pow(ref x, rhs);
+            gmath.pow(lhs.Unsized, rhs);
             return ref lhs;
         }
 

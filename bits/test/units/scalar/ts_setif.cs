@@ -17,14 +17,12 @@ namespace Z0.Test
 
         public void deposit32u()
         {
-            var mask =      0b00000000_00000000_00000000_11111111u; 
-            var src =       0b00000000_00000000_00000000_00011100u;
-            //var expect =    0b00000000_00000000_00000000_10101010u;
-            var deposited = gbits.deposit(src, mask);
-            Trace("mask", mask.ToBitString().Format(blockWidth:8));
-            Trace("source", src.ToBitString().Format(blockWidth:8));
-            Trace("deposited", deposited.ToBitString().Format(blockWidth:8));
-            //Claim.eq(expect,actual);
+            var src1 = 0b00000000_00000000_00000000_10101010u;
+            var m1 =   0b00000011_00000011_00000011_00000011u;             
+            var d1e =  0b00000010_00000010_00000010_00000010u;
+            var d1a = gbits.deposit(src1, m1);
+            Claim.eq(d1e,d1a);
+
         }
 
         public void setif8u()

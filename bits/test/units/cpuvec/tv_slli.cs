@@ -25,7 +25,7 @@ namespace Z0.Test
             {
                 var x = Vec256.Load(src.TakeSpan(Vec256<byte>.Length));
                 var offset = offsets.First();
-                var actual = Bits.slli(x,offset);
+                var actual = Bits.sll(x,offset);
                 var expect = Vec256.Load(BitRef.ShiftL(x.ToSpan(), offset));                
                 Claim.eq(expect,actual);             
             }
@@ -52,7 +52,7 @@ namespace Z0.Test
             var src = Random.CpuVec256<ulong>();
             for(byte i=1; i<=5; i++)
             {
-                var a = Bits.slli(in src, i).ToSpan256();
+                var a = Bits.sll(in src, i).ToSpan256();
                 var b = BitRef.ShiftL(src.ToReadOnlySpan(), i, a.Replicate(true));
                 Claim.eq(a,b);
             }            
@@ -172,7 +172,7 @@ namespace Z0.Test
                 var x = Vec256.Load(src.TakeSpan(blocklen));
                 var offset = offsets.First();
                 sw.Start();
-                Bits.slli(x,offset);
+                Bits.sll(x,offset);
                 sw.Stop();
             
             }
@@ -218,7 +218,7 @@ namespace Z0.Test
                 var offset = offsets.First();
                 var x = Vec256.Load(src.TakeSpan(blocklen));
                 sw.Start();
-                var y = Bits.slli(x,offset);
+                var y = Bits.sll(x,offset);
                 var z = Bits.srli(y,offset);
                 sw.Stop();
             
