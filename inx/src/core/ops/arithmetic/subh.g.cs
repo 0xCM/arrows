@@ -25,12 +25,11 @@ namespace Z0
             else if(typeof(T) == typeof(int))
                 return generic<T>(dinx.hsub(in int32(in lhs), in int32(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.hsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.hsub(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.hsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.hsub(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-
         }
 
         [MethodImpl(Inline)]
@@ -42,13 +41,12 @@ namespace Z0
             else if(typeof(T) == typeof(int))
                 return generic<T>(dinx.hsub(in int32(in lhs), in int32(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.hsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.hsub(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.hsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.hsub(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
 
         }
-
    }
 }

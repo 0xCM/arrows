@@ -17,19 +17,6 @@ namespace Z0
     /// </summary>
     public static unsafe class UMul
     {
-        /// <summary>
-        /// Computes the 64-bit product of two unsigned 32-bit integers
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="lo">The low part of the product</param>
-        /// <param name="hi">The hi part of the product</param>
-        [MethodImpl(Inline)]
-        public static void mul(uint lhs, uint rhs, out uint lo, out uint hi)
-        {
-            lo = 0;
-            hi = Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref lo));
-        }
 
         /// <summary>
         /// Computes the 128-bit product of two 64-bit unsigned integers
@@ -57,15 +44,17 @@ namespace Z0
         }
 
         /// <summary>
-        /// Computes the hi part of the 64-bit product of two unsigned 32-bit integers
+        /// Calculates the 128-bit product of two 64-bit integers
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
+        /// <param name="dst">The 128 bit result</param>
         [MethodImpl(Inline)]
-        public static uint mulHi(uint lhs, uint rhs)
+        public static unsafe ref UInt128 mul(ulong lhs, ulong rhs, out UInt128 dst)
         {
-            var lo = 0u;
-            return  Bmi2.MultiplyNoFlags(lhs,rhs, refptr(ref lo));
+            dst = 0;
+            mul(lhs,rhs, out dst.lo, out dst.hi);
+            return ref dst;
         }
 
         /// <summary>
@@ -98,13 +87,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static void mulLo(ulong lhs, ulong rhs, out ulong dst)
             => mul(lhs,rhs, out dst, out ulong hi);
-
-        [MethodImpl(Inline)]
-        public static ulong mulLo(ulong lhs, ulong rhs)
-        {
-            mulLo(lhs,rhs, out ulong lo);
-            return lo;
-        }
 
         /// <summary>
         /// Add src to the 128 bits contained in dst. Ignores overflow, that is, the addition is done modulo 2^128.
@@ -155,21 +137,5 @@ namespace Z0
             dstLo -= srcLo;
         }
 
-        /// <summary>
-        /// Calculates the 128-bit product of two 64-bit integers
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="dst">The 128 bit result</param>
-        [MethodImpl(Inline)]
-        public static unsafe ref UInt128 mul(ulong lhs, ulong rhs, out UInt128 dst)
-        {
-            dst = 0;
-            UMul.mul(lhs,rhs, out dst.lo, out dst.hi);
-            return ref dst;
-        }
-
-
     }
-
 }

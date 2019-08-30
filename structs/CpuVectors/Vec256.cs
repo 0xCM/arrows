@@ -55,13 +55,12 @@ namespace Z0
             => new Vec256<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator Vector256<T>(in Vec256<T> src)
+        public static implicit operator Vector256<T>(Vec256<T> src)
             => src.data;
 
         [MethodImpl(Inline)]
         public Vec256(Vector256<T> src)
             => this.data = src;
-
 
         /// <summary>
         /// Manipulates a component via its 0-based index
@@ -124,18 +123,5 @@ namespace Z0
             ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
             Unsafe.Add(ref e0, index) = value;
         }
-
     }    
-
-
-    public static class VecX
-    {
-        [MethodImpl(Inline)]
-        public static ref Vec256<U> AsRef<T,U>(this in Vec256<T> src) 
-            where T : struct
-            where U : struct                
-                => ref Unsafe.As<Vec256<T>, Vec256<U>>(ref Unsafe.AsRef(in src));
-
-
-    }     
 }

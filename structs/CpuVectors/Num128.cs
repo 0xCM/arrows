@@ -29,7 +29,7 @@ namespace Z0
             => src.As<T>();
 
         [MethodImpl(Inline)]
-        public Num128(in Vector128<T> src)
+        public Num128(Vector128<T> src)
             => this.data = src;
 
         public T value

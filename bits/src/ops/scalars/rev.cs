@@ -13,26 +13,22 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class Bits
     {                
 
         /// <summary>
         /// Reverses the bits in a byte
         /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
+        /// <param name="src">The source bits</param>
         /// <reference>https://graphics.stanford.edu/~seander/bithacks.htm</reference>
         [MethodImpl(Inline)]
         public static byte rev(byte src)
-        {
-            return (byte)(((src * 0x80200802ul) & 0x0884422110ul) * 0x0101010101ul >> 32);
-        }
+            => (byte)(((src * 0x80200802ul) & 0x0884422110ul) * 0x0101010101ul >> 32);
 
         /// <summary>
         /// Reverses the bits in the source
         /// </summary>
-        /// <param name="src">The soruce bits</param>
+        /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static ushort rev(ushort src)
             => pack(rev(hi(in src)),rev(lo(in src)));
@@ -40,7 +36,7 @@ namespace Z0
         /// <summary>
         /// Reverses the bits in the source
         /// </summary>
-        /// <param name="src">The soruce bits</param>
+        /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static uint rev(uint src)
             => pack(rev(hi(in src)),rev(lo(in src)));
@@ -48,7 +44,7 @@ namespace Z0
         /// <summary>
         /// Reverses the bits in the source
         /// </summary>
-        /// <param name="src">The soruce bits</param>
+        /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static ulong rev(ulong src)
             => pack(rev(hi(in src)),rev(lo(in src)));

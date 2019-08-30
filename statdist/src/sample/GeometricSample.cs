@@ -11,6 +11,10 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
+    /// <summary>
+    /// Captures a sample from a Gemetric distribution
+    /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Geometric_distribution</remarks>
     public readonly struct GeometricSample<T>
         where T : struct
     {

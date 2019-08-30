@@ -15,7 +15,7 @@ namespace Z0
     partial class gbits
     {
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static ref T toggle<T>(ref T src, byte pos)
             where T : struct
         {

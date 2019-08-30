@@ -12,6 +12,9 @@ namespace Z0
 
     using static zfunc;
     
+    /// <summary>
+    /// Identifies a supported random number generator
+    /// </summary>
     public enum RngKind
     {
         

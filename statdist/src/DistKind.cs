@@ -12,6 +12,9 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Identifies a supported distribution
+    /// </summary>
     public enum DistKind
     {
         Uniform,
@@ -19,7 +22,6 @@ namespace Z0
         UniformRange,
 
         UniformBits,
-
 
         Bernoulli,
 

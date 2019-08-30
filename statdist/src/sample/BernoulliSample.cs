@@ -12,6 +12,10 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
+    /// <summary>
+    /// Captures a sample from a Bernoulli distribution 
+    /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
     public readonly struct BernoulliSample<T>
         where T : struct
     {

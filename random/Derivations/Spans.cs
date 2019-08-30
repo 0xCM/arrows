@@ -56,32 +56,32 @@ namespace Z0
                 => NatSpan.Load<M,N,T>(random.Span<T>(nfunc.muli(rows,cols),domain), rows, cols);
 
         [MethodImpl(Inline)]
-        public static Span128<T> Span128<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static Span128<T> Span128<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Stream(domain,filter).TakeSpan(Z0.Span128.BlockLength<T>(blocks)).ToSpan128(); 
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan128<T> ReadOnlySpan128<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static ReadOnlySpan128<T> ReadOnlySpan128<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Span128<T>(blocks, domain, filter);
 
         [MethodImpl(Inline)]
-        public static Span128<T> NonZeroSpan128<T>(this IRandomSource random, int blocks, Interval<T>? domain = null)        
+        public static Span128<T> NonZeroSpan128<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null)        
             where T : struct  
                 => random.Span128(blocks, domain, gmath.nonzero);
 
         [MethodImpl(Inline)]
-        public static Span256<T> Span256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static Span256<T> Span256<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct       
             => random.Stream(domain,filter).TakeSpan(Z0.Span256.BlockLength<T>(blocks)).ToSpan256();       
 
         [MethodImpl(Inline)]
-        public static unsafe ReadOnlySpan256<T> ReadOnlySpan256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static unsafe ReadOnlySpan256<T> ReadOnlySpan256<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Span256<T>(blocks, domain, filter);
 
         [MethodImpl(Inline)]
-        public static Span256<T> NonZeroSpan256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null)        
+        public static Span256<T> NonZeroSpan256<T>(this IRandomSource random, int blocks = 1, Interval<T>? domain = null)        
             where T : struct  
                 => random.Span256(blocks, domain, gmath.nonzero); 
     }

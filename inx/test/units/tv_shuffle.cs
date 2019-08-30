@@ -78,10 +78,10 @@ namespace Z0.Test
                 var p = pSrc.First();
                 
                 // Disassemble the spec
-                var p0 = Bits.extract((byte)p, 0b11);                
-                var p1 = Bits.extract((byte)p, 0b1100);
-                var p2 = Bits.extract((byte)p, 0b110000);
-                var p3 = Bits.extract((byte)p, 0b11000000);
+                var p0 = Bits.gather((byte)p, (byte)0b11);                
+                var p1 = Bits.gather((byte)p, (byte)0b1100);
+                var p2 = Bits.gather((byte)p, (byte)0b110000);
+                var p3 = Bits.gather((byte)p, (byte)0b11000000);
                 
                 // Reassemble the spec
                 Perm4 q = (Perm4)(p0 | p1 << 2 | p2 << 4 | p3 << 6);

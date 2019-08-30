@@ -84,7 +84,7 @@ namespace Z0
         {
             dst = new Bit[Pow2.T03];            
             for(var i=0; i < dst.Length; i++)
-                dst[i] = gbits.read(in src, in i);
+                dst[i] = gbits.test(in src, in i);
             return dst;         
         }
 

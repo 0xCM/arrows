@@ -11,6 +11,10 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
+    /// <summary>
+    /// Captures a sample from an Laplace distribution
+    /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
     public readonly struct LaplaceSample<T>
         where T : struct
     {

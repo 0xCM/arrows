@@ -39,6 +39,14 @@ namespace Z0
             => new OpTime(OpCount, WorkTime, label);
 
         [MethodImpl(Inline)]
+        public static OpTime Define(long OpCount, Stopwatch WorkTime, string label = null)
+            => new OpTime(OpCount, snapshot(WorkTime), label);
+
+        [MethodImpl(Inline)]
+        public static OpTime Define<T>(long OpCount, Stopwatch WorkTime, string label = null)
+            => new OpTime(OpCount, snapshot(WorkTime), (label ?? string.Empty) + $"<{typeof(T).DisplayName()}>");
+
+        [MethodImpl(Inline)]
         public static OpTime operator +(OpTime lhs, OpTime rhs)
             => new OpTime(lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, $"{lhs.OpName}/{rhs.OpName}");
 

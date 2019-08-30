@@ -10,6 +10,10 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Captures a sample from a Cauchy distribution 
+    /// </summary>
+    /// <remarks>https://en.wikipedia.org/wiki/Cauchy_distribution</remarks>
     public readonly struct CauchySample<T>
         where T : struct
     {

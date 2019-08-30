@@ -11,10 +11,9 @@ namespace Z0
     using static nfunc;
 
     /// <summary>
-    /// Encapsulates data sampled from a Gaussian distribution joined with
-    /// the BRNG identifier and distribution parameters that were specified
-    /// when the sample was taken
+    /// Captures a sample from a Gaussian (normal) distribution
     /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Normal_distribution</remarks>
     public readonly struct GaussianSample<T>
         where T : struct
     {

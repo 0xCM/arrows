@@ -13,10 +13,9 @@ namespace Z0
     using static nfunc;
 
     /// <summary>
-    /// Encapsulates data sampled from a Gamma distribution joined with
-    /// the BRNG identifier and distribution parameters that were specified
-    /// when the sample was taken
+    /// Captures a sample from a Gamma distribution
     /// </summary>
+    /// <remarks>https://en.wikipedia.org/wiki/Gamma_distribution</remarks>
     public readonly struct GammaSample<T>
         where T : struct
     {

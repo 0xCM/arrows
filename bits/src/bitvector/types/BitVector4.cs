@@ -292,15 +292,32 @@ namespace Z0
         public readonly Bit Get(BitPos pos)
             => Test(pos);
 
-
-        [MethodImpl(Inline)]
-        public BitString ToBitString()
-            => data.ToBitString();
-
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
             get => new byte[]{data};
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector4 ShiftL(byte offset)
+        {
+            data <<= offset;
+            return this;
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector4 ShiftR(byte offset)
+        {
+            data >>= offset;
+            return this;
         }
 
         /// <summary>
@@ -341,14 +358,13 @@ namespace Z0
         public bool AllOnes()
             => (0xF & data) == 0xF;
  
-
         /// <summary>
         /// Rearranges the vector in-place as specified by a permutation
         /// </summary>
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = (UInt4)Bits.deposit(data,Mask(spec));
+            => data = (UInt4)Bits.scatter(data,Mask(spec));
 
         /// <summary>
         /// Reverses the vector's bits
@@ -407,6 +423,10 @@ namespace Z0
             dst.Permute(p);
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public BitString ToBitString()
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)

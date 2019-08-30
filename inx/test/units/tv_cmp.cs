@@ -35,7 +35,7 @@ namespace Z0.Test
             var rDst = span<double>(2);
             rhs.ToSpan(rDst);
 
-            var expect = math.fcmp(lDst, rDst, mode);
+            var expect = fmath.fcmp(lDst, rDst, mode);
             var actual = dfp.cmpf(lhs, rhs, mode);
             Claim.eq(expect,actual);
 

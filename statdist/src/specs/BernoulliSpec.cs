@@ -25,6 +25,7 @@ namespace Z0
     /// Characterizes a bernouli distribution
     /// </summary>    
     /// <typeparam name="T">The sample value type</typeparam>
+    /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
     public readonly struct BernoulliSpec<T> : IDistributionSpec<T>
         where T : struct
     {

@@ -32,12 +32,13 @@ namespace Z0.Cpu
                     => ref Unsafe.Add(ref head<T>(), index);
 
 
+
             public Bit this[Index r]
             {
                 [MethodImpl(Inline)]
                 get
                 {
-                    math.quorem(r.Value, BitWidth, out Quorem<int> qr);
+                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
                     return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
                 }
             }        

@@ -19,7 +19,7 @@ namespace Z0
     public static partial class Bits
     {                
         /// <summary>
-        /// _mm_andnot_si128:
+        /// __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -29,7 +29,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        /// __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -39,7 +39,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -49,7 +49,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -59,7 +59,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -69,7 +69,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -79,7 +79,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -89,7 +89,7 @@ namespace Z0
             => AndNot(lhs, rhs);
  
         /// <summary>
-        /// _mm_andnot_si128:
+        ///  __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -99,7 +99,7 @@ namespace Z0
             => AndNot(lhs, rhs);
  
         /// <summary>
-        /// _mm_andnot_ps:
+        /// __m128 _mm_andnot_ps (__m128 a, __m128 b) ANDNPS xmm, xmm/m128
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -119,7 +119,7 @@ namespace Z0
             => AndNot(lhs, rhs);        
     
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -129,7 +129,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -139,7 +139,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -149,7 +149,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -159,7 +159,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -169,7 +169,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -179,7 +179,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -189,7 +189,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_si256:
+        /// __m256i _mm256_andnot_si256 (__m256i a, __m256i b) VPANDN ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -199,7 +199,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_ps:
+        /// __m256 _mm256_andnot_ps (__m256 a, __m256 b) VANDNPS ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -209,7 +209,7 @@ namespace Z0
             => AndNot(lhs, rhs);
 
         /// <summary>
-        /// _mm256_andnot_pd:
+        /// __m256d _mm256_andnot_pd (__m256d a, __m256d b) VANDNPD ymm, ymm, ymm/m256
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>

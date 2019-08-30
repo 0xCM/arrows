@@ -108,15 +108,15 @@ namespace Z0
             => rotr(src,offset,src.Replicate(true));
 
         [MethodImpl(Inline)]
-        public static Span<ushort>  rotr(ReadOnlySpan<ushort> src, ushort offset)
+        public static Span<ushort> rotr(ReadOnlySpan<ushort> src, ushort offset)
             => rotr(src,offset,src.Replicate(true));
 
         [MethodImpl(Inline)]
-        public static Span<uint>  rotr(ReadOnlySpan<uint> src, uint offset)
+        public static Span<uint> rotr(ReadOnlySpan<uint> src, uint offset)
             => rotr(src,offset,src.Replicate(true));
 
         [MethodImpl(Inline)]
-        public static Span<ulong>  rotr(ReadOnlySpan<ulong> src, ulong offset)
+        public static Span<ulong> rotr(ReadOnlySpan<ulong> src, ulong offset)
             => rotr(src,offset,src.Replicate(true));
 
     }

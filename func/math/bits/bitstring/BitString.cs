@@ -445,7 +445,7 @@ namespace Z0
             where T : struct
         {                        
             var src = bitseq.ToReadOnlySpan();
-            var packed = PackedBits(src,offset,minlen);
+            var packed = PackedBits(src, offset, minlen);
             return packed.Length != 0 ? SpanConvert.TakeSingle<byte,T>(packed) : default;
         }
 

@@ -12,55 +12,121 @@ namespace Z0.Test
     
     using static zfunc;
 
-
     public class tv_negate : UnitTest<tv_negate>
     {
+        public void negate128i8()
+        {
+            negate128_check<sbyte>();
+        }
 
-        void Negate128<T>(int blocks)
+        public void negate128u8()
+        {
+            negate128_check<byte>();
+        }
+
+        public void negate128i16()
+        {
+            negate128_check<short>();
+        }
+
+        public void negate128u16()
+        {
+            negate128_check<ushort>();
+        }
+
+        public void negate128i32()
+        {
+            negate128_check<int>();
+        }
+
+        public void negate128u32()
+        {
+            negate128_check<uint>();
+        }
+
+        public void negate128i64()
+        {
+            negate128_check<long>();
+        }
+
+        public void negate128u64()
+        {
+            negate128_check<ulong>();
+        }
+
+        public void negate128f32()
+        {
+            negate128_check<float>();
+        }
+
+        public void negate128f64()
+        {
+            negate128_check<double>();
+        }
+
+        public void negate256i8()
+        {
+            negate256_check<sbyte>();
+        }
+
+        public void negate256u8()
+        {
+            negate256_check<byte>();
+        }
+
+        public void negate256i16()
+        {
+            negate256_check<short>();
+        }
+
+        public void negate256u16()
+        {
+            negate256_check<ushort>();
+        }
+
+        public void negate256i32()
+        {
+            negate256_check<int>();
+        }
+
+        public void negate256u32()
+        {
+            negate256_check<uint>();
+        }
+
+        public void negate256i64()
+        {
+            negate256_check<long>();
+        }
+
+        public void negate256u64()
+        {
+            negate256_check<ulong>();
+        }
+
+        public void negate256f32()
+        {
+            negate256_check<float>();
+        }
+
+        public void negate256f64()
+        {
+            negate256_check<double>();
+        }
+
+
+        void negate128_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            TypeCaseStart<T>();
             CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
-            TypeCaseEnd<T>();
         }
 
-        void Negate256<T>(int blocks)
+        void negate256_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            TypeCaseStart<T>();
             CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
-            TypeCaseEnd<T>();
         }
 
-        public void Negate128()
-        {
-            var blocks = Pow2.T08;
-            Negate128<sbyte>(blocks);
-            Negate128<byte>(blocks);
-            Negate128<short>(blocks);
-            Negate128<ushort>(blocks);
-            Negate128<int>(blocks);
-            Negate128<uint>(blocks);
-            Negate128<long>(blocks);
-            Negate128<ulong>(blocks);
-            Negate128<float>(blocks);
-            Negate128<double>(blocks);
-        }
-
-        public void Negate256()
-        {
-            var blocks = Pow2.T08;
-            Negate256<sbyte>(blocks);
-            Negate256<byte>(blocks);
-            Negate256<short>(blocks);
-            Negate256<ushort>(blocks);
-            Negate256<int>(blocks);
-            Negate256<uint>(blocks);
-            Negate256<long>(blocks);
-            Negate256<ulong>(blocks);
-            Negate256<float>(blocks);
-            Negate256<double>(blocks);
-        }
 
     }
 

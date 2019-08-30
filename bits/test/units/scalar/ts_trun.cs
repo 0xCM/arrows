@@ -56,7 +56,7 @@ namespace Z0.Test
             Claim.eq(maxlen, bs1.PopCount());
             Claim.eq(maxlen, bs1.Length);
 
-            var bv1 = Bits.truncate(bv0.ToScalar(), maxlen).ToBitVector();
+            var bv1 = Bits.trunc(bv0.ToScalar(), maxlen).ToBitVector();
             Claim.eq(maxlen, bv1.Pop());
 
             var bs2 = bs1.Pad(srclen);
@@ -81,7 +81,7 @@ namespace Z0.Test
             Claim.eq(maxlen, bs1.PopCount());
             Claim.eq(maxlen, bs1.Length);
 
-            var bv1 = Bits.truncate(bv0.ToScalar(), maxlen).ToBitVector();
+            var bv1 = Bits.trunc(bv0.ToScalar(), maxlen).ToBitVector();
             Claim.eq(maxlen, bv1.Pop());
 
             var bs2 = bs1.Pad(srclen);
@@ -106,7 +106,7 @@ namespace Z0.Test
             Claim.eq(maxlen, bs1.PopCount());
             Claim.eq(maxlen, bs1.Length);
 
-            var bv1 = Bits.truncate(bv0.ToScalar(), maxlen).ToBitVector();
+            var bv1 = Bits.trunc(bv0.ToScalar(), maxlen).ToBitVector();
             Claim.eq(maxlen, bv1.Pop());
 
             var bs2 = bs1.Pad(srclen);

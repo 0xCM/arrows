@@ -38,7 +38,6 @@ namespace Z0
         /// <summary>
         /// Specifies a value within the unit interval [0,1] that represents the probability of success
         /// </summary>
-        [Symbol(Greek.lambda)]
         public readonly T Success;
     }
 }

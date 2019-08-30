@@ -9,6 +9,30 @@ namespace Z0.Cpu
 
     using static zfunc;
 
+    public static class RegisterBank
+    {
+        public static RegisterBank<T> Define<T>(int count)
+            where T : struct
+                => new RegisterBank<T>(count);
+
+        public static RegisterBank<T> Define<T>(params T[] registers)
+            where T : struct
+                => new RegisterBank<T>(registers);
+
+        [MethodImpl(Inline)]
+        internal static ref Quorem<int> quorem(in int lhs, in int rhs, out Quorem<int> dst)
+        {
+            var x = math.abs(lhs);
+            var y = math.abs(rhs);
+            var quo = x / y;
+            var rem = x - quo*y;
+            dst = Quorem.define(in quo, in rem);                   
+            return ref dst;
+        }
+
+    }
+
+
     /// <summary>
     /// Defines a sequence of registers
     /// </summary>
@@ -49,17 +73,6 @@ namespace Z0.Cpu
     }
 
 
-    public static class RegisterBank
-    {
-        public static RegisterBank<T> Define<T>(int count)
-            where T : struct
-                => new RegisterBank<T>(count);
-
-        public static RegisterBank<T> Define<T>(params T[] registers)
-            where T : struct
-                => new RegisterBank<T>(registers);
-
-    }
-
+ 
 
 }

@@ -25,6 +25,18 @@ namespace Z0
 
     }
 
+    /// <summary>
+    /// Defines direct floating-point operations
+    /// </summary>
+    public static partial class dfp
+    {
+
+    }
+    public static partial class dfpx
+    {
+
+
+    }
     public static partial class ginx
     {        
         public static IEnumerable<MethodInfo> BinOps()

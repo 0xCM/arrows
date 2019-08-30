@@ -11,10 +11,9 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Encapsulates data sampled from a Chi^2 distribution joined with
-    /// the BRNG identifier and distribution parameters that were specified
-    /// when the sample was taken
+    /// Captures a sample from a Chi^2 distribution
     /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Chi-squared_distribution</remarks>
     public readonly struct ChiSquareSample<T>
         where T : struct
     {

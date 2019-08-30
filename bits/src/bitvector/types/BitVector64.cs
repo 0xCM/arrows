@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    using static Bits;
     using static zfunc;    
 
     /// <summary>
@@ -23,8 +22,6 @@ namespace Z0
         public static readonly BitVector64 Zero = default;
 
         public static readonly BitSize BitSize = 64;
-
-        public static readonly BitPos FirstPos = 0;
 
         public static readonly BitPos LastPos = BitSize - 1;
 
@@ -89,10 +86,18 @@ namespace Z0
         public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
             => new BitVector<N64,ulong>(src.data);
 
+        /// <summary>
+        /// Implicitly converts an unsigned 64-bit integer to a 64-bit bitvector
+        /// </summary>
+        /// <param name="src">The source integer</param>
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(in ulong src)
             => new BitVector64(src);
 
+        /// <summary>
+        /// Implicitly converts a bitvector to a 64-bit unsigned integer
+        /// </summary>
+        /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator ulong(BitVector64 src)
             => src.data;        
@@ -183,7 +188,7 @@ namespace Z0
             => lhs + -rhs;    
 
         /// <summary>
-        /// Left-shifts the bits in the source
+        /// Shifts the source bits leftwards
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
@@ -191,15 +196,7 @@ namespace Z0
             => lhs.data << offset;
 
         /// <summary>
-        /// Shifts components leftwards by 1 position
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 operator ++(in BitVector64 src)
-            => src.Inc();
-
-        /// <summary>
-        /// Right-shifts the bits in the source
+        /// Shifts the source bits rightwards
         /// </summary>
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
@@ -207,7 +204,15 @@ namespace Z0
             => lhs.data >> offset;
 
         /// <summary>
-        /// Shifts components rightwards by 1 position
+        /// Increments the vector arithmetically
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 operator ++(in BitVector64 src)
+            => src.Inc();
+
+        /// <summary>
+        /// Decrements the vector arithmetically
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -247,19 +252,6 @@ namespace Z0
             => this.data = data;
 
         /// <summary>
-        /// Initializes a vector with a sequence of bit values that is clamped to 64 bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public BitVector64(in Bit[] src)
-        {
-            this.data = 0;
-            for(var i = 0; i< Math.Min(BitSize, src.Length); i++)
-                if(src[i])
-                    BitMask.enable(ref data, i);
-        }
-
-        /// <summary>
         /// Reads/Manipulates a source bit at a specified position
         /// </summary>
         public Bit this[BitPos pos]
@@ -286,7 +278,7 @@ namespace Z0
         public readonly BitVector32 Hi
         {
             [MethodImpl(Inline)]
-            get => (uint)hi(data);        
+            get => (uint)Bits.hi(data);        
         }
         
         /// <summary>
@@ -295,7 +287,7 @@ namespace Z0
         public readonly BitVector32 Lo
         {
             [MethodImpl(Inline)]
-            get => (uint)lo(data);    
+            get => (uint)Bits.lo(data);    
         }
 
         /// <summary>
@@ -304,7 +296,7 @@ namespace Z0
         public readonly BitSize Length
         {
             [MethodImpl(Inline)]
-            get => 64;
+            get => BitSize;
         }
 
         /// <summary>
@@ -367,13 +359,35 @@ namespace Z0
         [MethodImpl(Inline)]
         public ref byte Byte(int index)        
             => ref Bytes[index];
-        
+
+        /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector64 ShiftL(byte offset)
+        {
+            data <<= offset;
+            return this;
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector64 ShiftR(byte offset)
+        {
+            data >>= offset;
+            return this;
+        }
+
         /// <summary>
         /// Applies in-place rightward bit rotation by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotR(BitSize offset)
+        public BitVector64 RotR(byte offset)
             => Bits.rotr(ref data, offset);
 
         /// <summary>
@@ -381,7 +395,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotL(BitSize offset)
+        public BitVector64 RotL(byte offset)
             => Bits.rotl(ref data, offset);
 
         /// <summary>
@@ -410,24 +424,24 @@ namespace Z0
             => BitMask.set(ref data, pos, value);
 
         /// <summary>
-        /// Applies a 1-unit leftwards component shift in-place, equivalent to src << 1
+        /// Increments the vector arithmetically
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public BitVector64 Inc()
         {
-            data <<= 1;
+            ++data;
             return this;
         }
 
         /// <summary>
-        /// Applies a 1-unit righwards component shift in-place, equivalent to src >> 1
+        /// Decrements the vector arithmetically
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public BitVector64 Dec()
         {
-            data >>= 1;
+            --data;
             return this;
         }
 
@@ -455,7 +469,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.deposit(data,Mask(spec));
+            => data = Bits.scatter(data,Mask(spec));
 
         /// <summary>
         /// Determines whether a bit is enabled
@@ -494,21 +508,21 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Pop()
-            => pop(data);
+            => Bits.pop(data);
         
         /// <summary>
         /// Counts the number of 0 bits prior to the first most significant 1 bit
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Nlz()
-            => nlz(data);
+            => Bits.nlz(data);
 
         /// <summary>
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Ntz()
-            => ntz(data);
+            => Bits.ntz(data);
 
         /// <summary>
         /// Counts the number of bits set up to and including the specified position
@@ -526,7 +540,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector64 Extract(BitMask64 spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -535,7 +549,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector64 Extract(ulong spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -544,7 +558,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector32 Extract(BitMask32 spec)
-            => (uint)Bits.extract(in data, (uint)spec);
+            => (uint)Bits.gather(in data, (uint)spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -553,7 +567,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector16 Extract(BitMask16 spec)        
-            => (ushort)Bits.extract(in data, (ushort)spec);
+            => (ushort)Bits.gather(in data, (ushort)spec);
         
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -562,7 +576,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 Extract(BitMask8 spec)
-            => (byte)Bits.extract(in data, (byte)spec);
+            => (byte)Bits.gather(in data, (byte)spec);
 
         /// <summary>
         /// Tests whether all bits are on

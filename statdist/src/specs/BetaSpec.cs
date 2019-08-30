@@ -36,10 +36,8 @@ namespace Z0
             this.Beta = beta;
         }
         
-        [Symbol(Greek.alpha)]
         public readonly T Alpha;
 
-        [Symbol(Greek.beta)]
         public readonly T Beta;
     }
 }

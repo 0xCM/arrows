@@ -10,7 +10,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Characterizes a beta distribution
+    /// Characterizes a uniform distribution
     /// </summary>
     /// <typeparam name="T">The sample value type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Uniform_distribution</remarks>

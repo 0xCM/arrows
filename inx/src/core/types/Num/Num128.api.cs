@@ -48,17 +48,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
-        public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.sub(in float32(in lhs), in float32(in rhs)).As<T>();
-            else if(typeof(T) == typeof(double))
-                return dinx.sub(in float64(in lhs), in float64(in rhs)).As<T>();
-                throw unsupported<T>();
-        }
-
 
         [MethodImpl(Inline)]
         public static unsafe ref Num128<float> load(float src, out Num128<float> dst)
@@ -91,14 +80,6 @@ namespace Z0
             => Avx2.LoadScalarVector128(puint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<float> load(ref float src)
-            => Avx2.LoadScalarVector128(pfloat32(ref src));
-
-        [MethodImpl(Inline)]
-        public static unsafe Num128<double> load(ref double src)
-            => Avx2.LoadScalarVector128(pfloat64(ref src));                
-
-        [MethodImpl(Inline)]
         public static Num128<T> load<T>(in ReadOnlySpan128<T> src, int block = 0)
             where T : struct  
                 => define<T>(src[block* Span128<T>.BlockLength]);
@@ -107,186 +88,6 @@ namespace Z0
         public static Num128<T> load<T>(in Span128<T> src, int block = 0)
             where T : struct  
                 => define<T>(src[block* Span128<T>.BlockLength]);
-
-        [MethodImpl(Inline)]
-        public static bool eq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.eq(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.eq(in float64(in lhs), in float64(in rhs));
-            throw 
-                unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool neq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.neq(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.neq(in float64(in lhs), in float64(in rhs));
-            else 
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.add(in float32(in lhs), in float32(in rhs)).As<T>();
-            else if(typeof(T) == typeof(double))
-                return dinx.add(in float64(in lhs), in float64(in rhs)).As<T>();
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool gt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.gt(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.gt(in float64(in lhs), in float64(in rhs));
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool gteq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.gteq(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.gteq(in float64(in lhs), in float64(in rhs));
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool lt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.lt(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.lt(in float64(in lhs), in float64(in rhs));
-            throw unsupported<T>();
-        }
-
-
-        [MethodImpl(Inline)]
-        public static bool cmpf<T>(in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.cmpf(in float32(in lhs), in float32(in rhs), mode);            
-            else if(typeof(T) == typeof(double))
-                return dinx.cmpf(in float64(in lhs), in float64(in rhs), mode);
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool ngt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.ngt(in float32(in lhs), in float32(in rhs));            
-            else if(typeof(T) == typeof(double))
-                return dinx.ngt(in float32(in lhs), in float32(in rhs));
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool nlt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.nlt(in float32(in lhs), in float32(in rhs));            
-            else if(typeof(T) == typeof(double))
-                return dinx.nlt(in float32(in lhs), in float32(in rhs));
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static bool lteq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.lteq(in float32(in lhs), in float32(in rhs));            
-            else if(typeof(T) == typeof(double))
-                return dinx.lteq(in float32(in lhs), in float32(in rhs));
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> mul<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.mul(in float32(in lhs), in float32(in rhs)).As<T>();            
-            else if(typeof(T) == typeof(double))
-                return dinx.mul(in float32(in lhs), in float32(in rhs)).As<T>();
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> div<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.div(in float32(in lhs), in float32(in rhs)).As<T>();            
-            else if(typeof(T) == typeof(double))
-                return dinx.div(in float64(in lhs), in float64(in rhs)).As<T>();
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> max<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.max(in float32(in lhs), in float32(in rhs)).As<T>();            
-            else if(typeof(T) == typeof(double))
-                return dinx.max(in float64(in lhs), in float64(in rhs)).As<T>();
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> min<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.min(in float32(in lhs), in float32(in rhs)).As<T>();            
-            else if(typeof(T) == typeof(double))
-                return dinx.min(in float64(in lhs), in float64(in rhs)).As<T>();
-            else                
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> muladd<T>(ref Num128<T> x, in Num128<T> y, in Num128<T> z)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.mulAdd(in float64(in x), in float64(in y), in float64(in z)).As<T>();                
-            else if(typeof(T) == typeof(double))
-                return dinx.mulAdd(in float64(in x), in float64(in y), in float64(in z)).As<T>();
-            else                
-                throw unsupported<T>();
-        }
 
         [MethodImpl(Inline)]
         public static Num128<T> recip<T>(in Num128<T> src)
@@ -299,22 +100,6 @@ namespace Z0
                 => throw unsupported<T>();
 
         [MethodImpl(Inline)]
-        public static Num128<T> recipsqrt<T>(in Num128<T> src)
-            where T : struct
-                => throw unsupported<T>();
-
-        [MethodImpl(Inline)]
-        public static Num128<T> ceiling<T>(in Num128<T> src)
-            where T : struct
-                => throw unsupported<T>();
-
-        [MethodImpl(Inline)]
-        public static Num128<T> floor<T>(in Num128<T> src)
-            where T : struct
-                => throw unsupported<T>();
-
-
-         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(byte src)
             where T : struct
         {

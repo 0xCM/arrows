@@ -12,10 +12,8 @@ namespace Z0
     using static As;
     using static AsIn;
     
-
     partial class Bits
     {
-
         /// <summary>
         /// Applies an arithmetic rightwards shift to the source operand in-place
         /// </summary>

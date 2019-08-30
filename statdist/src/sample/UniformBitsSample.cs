@@ -12,6 +12,9 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
+    /// <summary>
+    /// Captures a sample of uniformly distributed bits
+    /// </summary>
     public readonly struct UniformBitsSample<T>
         where T : struct
     {

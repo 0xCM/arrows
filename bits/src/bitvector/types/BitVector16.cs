@@ -354,20 +354,43 @@ namespace Z0
             => ref Bytes[index];
 
         /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector16 ShiftL(byte offset)
+        {
+            data <<= offset;
+            return this;
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector16 ShiftR(byte offset)
+        {
+            data >>= offset;
+            return this;
+        }
+
+
+        /// <summary>
         /// Rotates vector bits rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector16 RotR(BitSize offset)
-            => Bits.rotr(ref data, (ushort)offset);
+        public BitVector16 RotR(byte offset)
+            => Bits.rotr(ref data, offset);
 
         /// <summary>
         /// Rotates vector bits leftwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector16 RotL(BitSize offset)
-            => Bits.rotl(ref data, (ushort)offset);
+        public BitVector16 RotL(byte offset)
+            => Bits.rotl(ref data, offset);
 
         [MethodImpl(Inline)]
         public BitVector16 AndNot(BitVector16 rhs)
@@ -397,7 +420,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector16 Extract(BitMask16 spec)        
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
         
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -406,7 +429,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector16 Extract(ushort spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -415,7 +438,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector8 Extract(BitMask8 spec)
-            => (byte)Bits.extract(in data, (byte)spec);
+            => (byte)Bits.gather(in data, (byte)spec);
 
         /// <summary>
         /// Enables a bit if it is disabled
@@ -521,7 +544,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.deposit(data,Mask(spec));
+            => data = Bits.scatter(data,Mask(spec));
 
         [MethodImpl(Inline)]
         public bool AllOnes()

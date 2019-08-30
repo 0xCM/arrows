@@ -9,6 +9,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx2;
     
     using static zfunc;
@@ -23,7 +24,7 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<short> sll(in Vec128<short> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
 
         /// <summary>
         /// __m128i _mm_slli_epi16 (__m128i a, int immediate) PSLLW xmm, imm8
@@ -33,7 +34,7 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<ushort> sll(in Vec128<ushort> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
 
         /// <summary>
         /// __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
@@ -43,7 +44,7 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<int> sll(in Vec128<int> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
 
         /// <summary>
         /// __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
@@ -53,7 +54,7 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<uint> sll(in Vec128<uint> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
 
         /// <summary>
         /// __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
@@ -63,7 +64,7 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<long> sll(in Vec128<long> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
 
         /// <summary>
         /// __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
@@ -73,7 +74,8 @@ namespace Z0
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
         public static Vec128<ulong> sll(in Vec128<ulong> src, byte offset)
-            => Sse2.ShiftLeftLogical(src, offset);
+            => ShiftLeftLogical(src, offset);
+
 
         public static Vec256<byte> sll(in Vec256<byte> src, byte offset)
         {

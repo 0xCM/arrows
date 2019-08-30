@@ -156,16 +156,28 @@ namespace Z0
         Bit Dot(V rhs);
 
         /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        V ShiftL(byte offset);
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        V ShiftR(byte offset);
+        
+        /// <summary>
         /// Rotates vector bits rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
-        V RotR(BitSize offset);
+        V RotR(byte offset);
 
         /// <summary>
         /// Rotates vector bits leftwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
-        V RotL(BitSize offset);
+        V RotL(byte offset);
 
         /// <summary>
         /// Extracts a contiguous sequence of bits defined by an inclusive range
@@ -180,7 +192,6 @@ namespace Z0
         /// <param name="tlz"></param>
         /// <param name="specifier"></param>
         /// <param name="blockWidth"></param>
-        /// <returns></returns>
         string FormatBits(bool tlz, bool specifier, int? blockWidth);
     }
 

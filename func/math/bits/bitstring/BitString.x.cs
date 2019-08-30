@@ -230,6 +230,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString ToBitString(this UInt128 src)
             => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo);
-
     }
 }

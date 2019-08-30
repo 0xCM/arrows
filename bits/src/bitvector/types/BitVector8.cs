@@ -370,7 +370,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector8 Extract(BitMask8 spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -379,7 +379,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector8 Extract(byte spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -449,20 +449,42 @@ namespace Z0
             => Test(pos);
 
         /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector8 ShiftL(byte offset)
+        {
+            data <<= offset;
+            return this;
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector8 ShiftR(byte offset)
+        {
+            data >>= offset;
+            return this;
+        }
+
+        /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotR(BitSize offset)
-            => Bits.rotr(ref data, (byte)offset);
+        public BitVector8 RotR(byte offset)
+            => Bits.rotr(ref data, offset);
 
         /// <summary>
         /// Rotates bits in the source leftwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotL(BitSize offset)
-            => Bits.rotl(ref data, (byte)offset);
+        public BitVector8 RotL(byte offset)
+            => Bits.rotl(ref data, offset);
 
         /// <summary>
         /// Counts the number of enabled bits in the vector
@@ -585,7 +607,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.deposit(data,Mask(spec));
+            => data = Bits.scatter(data,Mask(spec));
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise

@@ -13,12 +13,6 @@ namespace Z0
     
     partial class Bits
     {                
-        public static ref ulong mask(ref ulong dst, params byte[] indices)
-        {
-            for(var i=0; i<indices.Length; i++)
-                dst |= Pow2.pow(indices[i]);
-            return ref dst;
-        }
 
         [MethodImpl(Inline)]
         public static ref ulong mask(ref ulong dst, byte i0)

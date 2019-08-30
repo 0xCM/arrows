@@ -37,7 +37,7 @@ namespace Z0.Cpu
                 [MethodImpl(Inline)]
                 get
                 {
-                    math.quorem(r.Value, BitWidth, out Quorem<int> qr);
+                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
                     return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
                 }
             }        

@@ -13,7 +13,7 @@ namespace Z0
 
     partial class BitRef
     {
-        public static BitMatrix8 MatMul(BitMatrix8 lhs, BitMatrix8 rhs)
+        public static BitMatrix8 bmm(BitMatrix8 lhs, BitMatrix8 rhs)
         {
             var dst = BitMatrix8.Alloc();
             rhs = rhs.Transpose();
@@ -29,7 +29,7 @@ namespace Z0
             return dst;
         }
 
-        public static BitMatrix16 MatMul(BitMatrix16 lhs, BitMatrix16 rhs)
+        public static BitMatrix16 bmm(BitMatrix16 lhs, BitMatrix16 rhs)
         {
             var dst = BitMatrix16.Alloc();
             rhs = rhs.Transpose();
@@ -45,7 +45,7 @@ namespace Z0
             return dst;
         }
 
-        public static BitMatrix32 MatMul(BitMatrix32 lhs, BitMatrix32 rhs)
+        public static BitMatrix32 bmm(BitMatrix32 lhs, BitMatrix32 rhs)
         {
             var dst = BitMatrix32.Alloc();
             rhs = rhs.Transpose();
@@ -61,7 +61,7 @@ namespace Z0
             return dst;
         }
 
-        public static BitMatrix64 MatMul(BitMatrix64 lhs, BitMatrix64 rhs)
+        public static BitMatrix64 bmm(BitMatrix64 lhs, BitMatrix64 rhs)
         {
             var dst = BitMatrix64.Alloc();
             rhs = rhs.Transpose();
@@ -76,7 +76,6 @@ namespace Z0
             }
             return dst;
         }
-
 
 
     }

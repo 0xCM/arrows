@@ -422,7 +422,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)        
-            => data = Bits.deposit(data,Mask(spec));
+            => data = Bits.scatter(data,Mask(spec));
 
         /// <summary>
         /// Constructs a bitvector formed from the n lest significant bits of the current vector
@@ -441,11 +441,33 @@ namespace Z0
             => Between(LastPos - n, LastPos);                
 
         /// <summary>
+        /// Shifts the bits in the vector leftwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector32 ShiftL(byte offset)
+        {
+            data <<= offset;
+            return this;
+        }
+
+        /// <summary>
+        /// Shifts the bits in the vector rightwards
+        /// </summary>
+        /// <param name="offset">The number of bits to shift</param>
+        [MethodImpl(Inline)]
+        public BitVector32 ShiftR(byte offset)
+        {
+            data >>= offset;
+            return this;
+        }
+
+        /// <summary>
         /// Rotates bits in the source rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector32 RotR(BitSize offset)
+        public BitVector32 RotR(byte offset)
             => Bits.rotr(ref data, offset);
 
         /// <summary>
@@ -453,7 +475,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector32 RotL(BitSize offset)
+        public BitVector32 RotL(byte offset)
             => Bits.rotl(ref data, offset);
 
         /// <summary>
@@ -463,10 +485,16 @@ namespace Z0
         public readonly BitSize Pop()
             => Bits.pop(data);
         
+        /// <summary>
+        /// Counts the number of leading zeros
+        /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Nlz()
             => Bits.nlz(data);
 
+        /// <summary>
+        /// Counts the number of trailing zeros
+        /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Ntz()
             => Bits.ntz(data);
@@ -480,6 +508,10 @@ namespace Z0
         public readonly uint Rank(BitPos pos)
             => Bits.rank(data,pos);
 
+        /// <summary>
+        /// Computes the bitwise and of the vector the complement of the right operand
+        /// </summary>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public BitVector32 AndNot(in BitVector32 rhs)
             => Bits.andn((uint)this, (uint)rhs);
@@ -498,13 +530,22 @@ namespace Z0
         }
 
         /// <summary>
+        /// Returns true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public readonly bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => !Empty;
+        }
+
+        /// <summary>
         /// Populates a target vector with specified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector32 Extract(BitMask32 spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Extracts mask-identified source bits
@@ -513,7 +554,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector32 Extract(uint spec)
-            => Bits.extract(in data, spec);
+            => Bits.gather(in data, spec);
 
         /// <summary>
         /// Extracts mask-identified source bits
@@ -522,7 +563,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector16 Extract(BitMask16 spec)        
-            => (ushort)Bits.extract(in data, (ushort)spec);
+            => (ushort)Bits.gather(in data, (ushort)spec);
         
         /// <summary>
         /// Extracts mask-identified source bits
@@ -531,7 +572,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 Extract(BitMask8 spec)
-            => (byte)Bits.extract(in data, (byte)spec);
+            => (byte)Bits.gather(in data, (byte)spec);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -541,14 +582,6 @@ namespace Z0
         public readonly Bit Dot(BitVector32 rhs)
             => mod<N2>(Bits.pop(data & rhs.data));              
 
-        /// <summary>
-        /// Returns true if the vector has at least one enabled bit; false otherwise
-        /// </summary>
-        public readonly bool Nonempty
-        {
-            [MethodImpl(Inline)]
-            get => !Empty;
-        }
 
         [MethodImpl(Inline)]
         public readonly BitString ToBitString()

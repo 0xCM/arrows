@@ -67,12 +67,12 @@ namespace Z0.Test
             Claim.eq(bv64.ToBitString(), bs64);
             Claim.eq(bv64, bs64.ToBitVector64());
 
-            var bv64x = Bits.extract(bv64, BitMask64.Msb8).ToBitVector();
+            var bv64x = Bits.gather(bv64, BitMask64.Msb8).ToBitVector();
             Claim.eq((byte)0xFF, bv64x.Byte(0));
 
             var unpacked = new byte[]{1,0,0,1,1,0,1,1};
             var x = BitConverter.ToUInt64(unpacked,0);
-            var y = Bits.extract(x, BitMask64.Lsb8).ToBitVector();
+            var y = Bits.gather(x, BitMask64.Lsb8).ToBitVector();
             var z1 = y.Byte(0).ToBitString();
             var z2 = BitString.FromBitSeq(unpacked);
             Claim.eq(z1,z2);

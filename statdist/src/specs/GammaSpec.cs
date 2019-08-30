@@ -44,13 +44,10 @@ namespace Z0
             this.Rate = beta;
         }
 
-        [Symbol(Greek.alpha)]
         public readonly T Shape;
 
-        [Symbol(Greek.theta)]
         public readonly T Scale;
 
-        [Symbol(Greek.beta)]
         public readonly T Rate;
     }
 }

@@ -12,10 +12,9 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Encapsulates data sampled from an exponential distribution joined with
-    /// the BRNG identifier and distribution parameters that were specified
-    /// when the sample was taken
+    /// Captures a sample from an exponential distribution
     /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Exponential_distribution</remarks>
     public readonly struct ExponentialSample<T>
         where T : struct
     {

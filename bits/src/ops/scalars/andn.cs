@@ -27,7 +27,7 @@ namespace Z0
             => (byte)AndNot(lhs,rhs);
 
         /// <summary>
-        /// _andn_u32
+        /// unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -37,7 +37,7 @@ namespace Z0
             => (ushort)AndNot(lhs,rhs);
 
         /// <summary>
-        /// _andn_u32
+        /// unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>
@@ -47,7 +47,7 @@ namespace Z0
             => AndNot(lhs,rhs);
 
         /// <summary>
-        /// _andn_u64
+        /// unsigned __int64 _andn_u64 (unsigned __int64 a, unsigned __int64 b) ANDN r64a, r64b, reg/m64
         /// Computes the bitwise and of the left operand and the complement of the right operand
         /// </summary>
         /// <param name="lhs">The left operand</param>

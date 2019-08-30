@@ -81,7 +81,7 @@ namespace Z0.Test
                 var m2 = m1.Replicate();
                 var m3 = Random.BitMatrix8();
                 var m4 = m2 * m3;
-                var m5 = BitRef.MatMul(m1,m3);
+                var m5 = BitRef.bmm(m1,m3);
                 Claim.yea(m4 == m5);
             }            
         }
@@ -94,7 +94,7 @@ namespace Z0.Test
                 var m2 = m1.Replicate();
                 var m3 = Random.BitMatrix32();
                 var m4 = m2 * m3;
-                var m5 = BitRef.MatMul(m1,m3);
+                var m5 = BitRef.bmm(m1,m3);
                 Claim.yea(m4 == m5);
             }            
         }
@@ -182,7 +182,7 @@ namespace Z0.Test
                 sw.Start();
                 var m4 = m2 * m3;
                 sw.Stop();
-                var m5 = BitRef.MatMul(m1,m3);
+                var m5 = BitRef.bmm(m1,m3);
                 Claim.yea(m4 == m5);
             }
             return (cycles, snapshot(sw), "bmm64");

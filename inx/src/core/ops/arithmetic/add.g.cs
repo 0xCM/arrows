@@ -36,9 +36,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.add(in uint64(in lhs), in uint64(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.add(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.add(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.add(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.add(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
         }
@@ -64,9 +64,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.add(in uint64(in lhs), in uint64(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.add(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.add(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.add(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.add(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
         }    

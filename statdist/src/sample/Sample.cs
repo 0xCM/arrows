@@ -12,6 +12,9 @@ namespace Z0
         
     using static zfunc;
 
+    /// <summary>
+    /// Captures a sample from an unspecified distribution
+    /// </summary>
     public readonly struct Sample<T>
         where T : struct
     {

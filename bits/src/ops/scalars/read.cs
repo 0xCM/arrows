@@ -115,5 +115,32 @@ namespace Z0
             dst = test(in src, in pos);
             return ref dst;
         }
+
+        /// <summary>
+        /// Assigns the target bit with the value of the index-identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The bit position in the source</param>
+        /// <param name="dst">The target bit</param>
+        [MethodImpl(Inline)]
+        public static ref Bit read(in float src, in int pos, out Bit dst)
+        {
+            dst = test(in src, in pos);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Assigns the target bit with the value of the index-identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The bit position in the source</param>
+        /// <param name="dst">The target bit</param>
+        [MethodImpl(Inline)]
+        public static ref Bit read(in double src, in int pos, out Bit dst)
+        {
+            dst = test(in src, in pos);
+            return ref dst;
+        }
+
     }
 }

@@ -39,17 +39,13 @@ namespace Z0
         }
 
         /// <summary>
-        /// The mean of the distribtion that serves as the location parameter
+        /// The distribution mean
         /// </summary>
-
-        [Symbol(Greek.mu)]
         public readonly T Location;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
-
-        [Symbol(Greek.sigma)]
         public readonly T Scale;
 
 

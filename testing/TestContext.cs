@@ -133,11 +133,6 @@ namespace Z0
         protected void BlockSamplesEnd(int blocks, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller} completed with {blocks} blocks", SeverityLevel.HiliteCL));
 
-        protected void PointSamplesStart(int samples, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller} executing with {samples} samples", SeverityLevel.HiliteCL));
-        protected void PointSamplesEnd(int samples, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller} completed with {samples} samples", SeverityLevel.HiliteCL));
-
         protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
 
