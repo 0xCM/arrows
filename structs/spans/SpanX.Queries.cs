@@ -183,8 +183,6 @@ namespace Z0
             where T : struct        
                 => (src.Length - offset) * Unsafe.SizeOf<T>();
 
-
-
         public static T Reduce<T>(this ReadOnlySpan<T> src, Func<T,T,T> f)
         {
             if(src.IsEmpty)

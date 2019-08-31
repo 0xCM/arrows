@@ -21,7 +21,7 @@ namespace Z0.Test
             {
                 var m1 = BitMatrix8.Load(src.Current);
                 var n = new N8();
-                var m2 = BitMatrix.Load(n,n, src.Current.ToByteArray());
+                var m2 = BitMatrix.Load(n,n, src.Current.ToBytes());
                 for(var i=0; i<8; i++)
                 for(var j=0; j<8; j++)
                     Claim.eq(m1[i,j], m2[i,j]);

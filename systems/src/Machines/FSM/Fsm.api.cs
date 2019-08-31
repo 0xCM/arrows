@@ -68,6 +68,15 @@ namespace Z0.Machines
             => new ActionRule<S,A>(source,action);            
 
         /// <summary>
+        /// Defines an entry action function
+        /// </summary>
+        /// <param name="rules">The state entry rules</param>
+        /// <typeparam name="S">The state type</typeparam>
+        /// <typeparam name="A">The action type</typeparam>
+        public static EntryFunction<S,A> EntryFunction<S,A>(IEnumerable<IFsmActionRule<S,A>> rules)
+            => new EntryFunction<S, A>(rules);
+
+        /// <summary>
         /// Defines an action that fires upon state exit
         /// </summary>
         /// <param name="source">The source state</param>
@@ -76,6 +85,15 @@ namespace Z0.Machines
         /// <typeparam name="A">The action type</typeparam>
         public static ActionRule<S,A> ExitRuleRule<S,A>(S source, A action)
             => new ActionRule<S,A>(source,action);            
+
+        /// <summary>
+        /// Defines an exit action function
+        /// </summary>
+        /// <param name="rules">The state exit rules</param>
+        /// <typeparam name="S">The state type</typeparam>
+        /// <typeparam name="A">The action type</typeparam>
+        public static ExitFunction<S,A> ExitFunction<S,A>(IEnumerable<IFsmActionRule<S,A>> rules)
+            => new ExitFunction<S, A>(rules);
 
         /// <summary>
         /// Defines the most basic FSM, predicated only on ground-state, end-state and transition function
@@ -134,12 +152,14 @@ namespace Z0.Machines
         /// <param name="id">Identifies the machine within the context of the executing process</param>
         /// <param name="s0">The ground-state</param>
         /// <param name="sZ">The end-state</param>
-        /// <param name="f">The transiion function</param>
+        /// <param name="t">The transition function</param>
+        /// <param name="entry">The entry function</param>
+        /// <param name="exit">The exit function</param>
         /// <typeparam name="E">The event type</typeparam>
         /// <typeparam name="S">The state type</typeparam>
         /// <typeparam name="A">The entry action type</typeparam>
-        public static Fsm<E,S,A> Machine<E,S,A>(string id, IFsmContext context, S s0, S sZ, MachineTransition<E,S> t, StateAction<S,A> entry)
-            =>  new Fsm<E,S,A>(id, context, s0, sZ, t, entry);
+        public static Fsm<E,S,A> Machine<E,S,A>(string id, IFsmContext context, S s0, S sZ, MachineTransition<E,S> t, EntryFunction<S,A> entry, ExitFunction<S,A> exit)
+            =>  new Fsm<E,S,A>(id, context, s0, sZ, t, entry,exit);
 
         /// <summary>
         /// Creates a default machine observer 

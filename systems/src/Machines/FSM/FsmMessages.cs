@@ -35,8 +35,5 @@ namespace Z0.Machines
 
         public static AppMsg ReceiptBeforeStart(string machine)
             => appMsg($"{machine} received input before start", SeverityLevel.Warning);
-
     }
-
-
 }

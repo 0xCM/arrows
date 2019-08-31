@@ -147,7 +147,7 @@ namespace Z0.Rng
             if(pll)
                 values.AsParallel().ForAll(v => Count(dst, v));                
             else
-                values.ForEach(v => Count(dst, v));
+                values.Effects(v => Count(dst, v));
         }
 
         void UniformRange<T>(Interval<T> domain, int count)

@@ -19,7 +19,7 @@ namespace Z0.Test
             
             void Test()
             {
-                var x = Random.BitVec8();
+                var x = Random.BitVector8();
                 var pos = Random.Next(1,6);
                 
                 var actual = x.Rank(pos);
@@ -37,7 +37,7 @@ namespace Z0.Test
             
             void Test()
             {
-                var x = Random.BitVec64();
+                var x = Random.BitVector64();
                 var pos = Random.Next(1,50);
                 
                 var actual = x.Rank(pos);

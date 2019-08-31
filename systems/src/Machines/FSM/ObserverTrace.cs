@@ -10,7 +10,6 @@ namespace Z0.Machines
     using System.Runtime.CompilerServices;
     using static zfunc;
 
-    using static ObserverTrace;
 
     [Flags]
     public enum ObserverTrace
@@ -26,23 +25,6 @@ namespace Z0.Machines
         Errors = 8,
 
         All = Transitions | Events | Completions | Errors
-    }
-
-
-    public static class ObserverTraceX
-    {
-        public static bool TraceTransitions(this ObserverTrace trace)
-            => (trace & Transitions) == Transitions;
-
-        public static bool TraceEvents(this ObserverTrace trace)
-            => (trace & Events) == Events;
-
-        public static bool TraceCompletions(this ObserverTrace trace)
-            => (trace & Completions) == Completions;
-
-        public static bool TraceErrors(this ObserverTrace trace)
-            => (trace & Errors) == Errors;
-        
     }
 
  

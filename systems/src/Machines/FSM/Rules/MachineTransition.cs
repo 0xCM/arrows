@@ -7,13 +7,14 @@ namespace Z0.Machines
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
     /// <summary>
     /// Encapsulates the set of all rules (input : E, source : S) -> target : S that define state machine transitions
     /// </summary>
-    public class MachineTransition<E,S> : IMachineFunction
+    public class MachineTransition<E,S> : IFsmFunction<E,S>
     {
         public MachineTransition(IEnumerable<ITransitionRule<E,S>> rules)
         {
@@ -26,16 +27,11 @@ namespace Z0.Machines
         }
 
         readonly Dictionary<int,ITransitionRule<E,S>> RuleIndex;
-
-        public S Apply(E input, S source)
-        {
-            var key = Fsm.TransitionRuleKey(input,source);
-            if(RuleIndex.TryGetValue(key.Hash, out ITransitionRule<E,S> rule))
-                return rule.Target;
-            else
-                return source;
-        }
-
+    
+        [MethodImpl(Inline)]
+        public Option<S> Eval(E input, S source)        
+            => Rule(Fsm.TransitionRuleKey(input,source)).TryMap(r => r.Target);
+        
         public Option<ITransitionRule<E,S>> Rule(IRuleKey key)
         {
             if(RuleIndex.TryGetValue(key.Hash, out ITransitionRule<E,S> dst))
@@ -44,7 +40,7 @@ namespace Z0.Machines
                 return default;
         }
 
-        Option<IRule> IMachineFunction.Rule(IRuleKey key)
+        Option<IRule> IFsmFunction.Rule(IRuleKey key)
             => Rule(key).TryMap(r => r as IRule);
 
         /// <summary>

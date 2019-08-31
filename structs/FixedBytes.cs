@@ -71,7 +71,7 @@ namespace Z0
         public readonly byte Byte19;
 
         public ReadOnlySpan<byte> Bytes
-            => this.ToBytes(); 
+            => ByteSpan.FromValue(this);
         
         public static Byte20 From(ValueType src )
             => Unsafe.As<ValueType,Byte20>(ref src);

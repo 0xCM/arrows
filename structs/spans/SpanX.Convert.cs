@@ -14,7 +14,7 @@ namespace Z0
 
     using static zfunc;
 
-    public static class SpanConversion
+    partial class SpanExtensions
     {
         /// <summary>
         /// Lifts the content of a span into a LINQ enumerable
@@ -146,31 +146,6 @@ namespace Z0
              where T : struct
                 => Z0.Span256.Load(src);
 
-         [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this ushort src)
-            => BitConverter.GetBytes(src);
-
-        [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this short src)
-            => BitConverter.GetBytes(src);
-
-        [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this uint src)
-            => BitConverter.GetBytes(src);
-
-        [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this int src)
-            => BitConverter.GetBytes(src);
-
-        [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this ulong src)
-            => BitConverter.GetBytes(src);
-
-        [MethodImpl(Inline)]
-        public static byte[] ToByteArray(this long src)
-            => BitConverter.GetBytes(src);
-
-
         /// <summary>
         /// Presents a readonly span of one value-type as a span of another value-type
         /// </summary>
@@ -204,6 +179,7 @@ namespace Z0
         public static Span<byte> AsBytes<T>(this Span<T> src)
             where T : struct
                 => MemoryMarshal.AsBytes(src);
+
 
         /// <summary>
         /// Reimagines a span of generic values as a span of signed bytes
@@ -346,26 +322,6 @@ namespace Z0
                 => MemoryMarshal.Cast<T,ulong>(src);
 
         /// <summary>
-        /// Reimagines a 256-bit bloocked span of generic values as a span of bytes
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span256<byte> AsBytes<T>(this Span256<T> src)
-            where T : struct
-                => Span256.Load(MemoryMarshal.AsBytes(src.Unblocked));
-
-        /// <summary>
-        /// Reimagines a 256-bit bloocked span of generic values as a span of bytes
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span128<byte> AsBytes<T>(this Span128<T> src)
-            where T : struct
-                => Span128.Load(MemoryMarshal.AsBytes(src.Unblock()));
-
-        /// <summary>
         /// Reads a partial value if there aren't a sufficient number of bytes to comprise a target value
         /// </summary>
         /// <param name="src">The source span</param>
@@ -464,116 +420,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong TakeUInt64<T>(this Span<T> src, int offset = 0)
             where T : struct        
-                => src.ReadOnly().TakeUInt64(offset);
- 
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes<T>(this T src)
-            where T : struct
-        {
-            Span<T> s = new T[1]{src};
-            return MemoryMarshal.AsBytes(s);
-        }        
-
-        [MethodImpl(Inline)]
-        public static T ReadValue<T>(this Span<byte> src)
-            where T : struct
-        {
-            if(MemoryMarshal.TryRead(src, out T value))
-                return value;
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static T ReadValue<T>(this ReadOnlySpan<byte> src, int offset = 0)
-            where T : struct
-        {
-            if(MemoryMarshal.TryRead(src.Slice(offset), out T value))                
-                return value;
-            else 
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static T ReadValue<T>(this Span<byte> src, int offset)
-            where T : struct
-                => src.ReadOnly().ReadValue<T>(offset);
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ReadValues<T>(this ReadOnlySpan<byte> src, int offset, int count)
-            where T : struct
-                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count * Unsafe.SizeOf<T>()));
-
-        [MethodImpl(Inline)]
-        public static Span<T> ReadValues<T>(this Span<byte> src, int offset, int count)
-            where T : struct
-                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count * Unsafe.SizeOf<T>()));
-
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ReadValues<T>(this ReadOnlySpan<byte> src)
-            where T : struct
-                => src.ReadValues<T>(0, src.Length/Unsafe.SizeOf<T>());
-
-        [MethodImpl(Inline)]
-        public static Span<T> ReadValues<T>(this Span<byte> src)
-            where T : struct        
-                => src.ReadValues<T>(0, src.Length/Unsafe.SizeOf<T>());
+                => src.ReadOnly().TakeUInt64(offset); 
         
-        public static Span<T> ReadValues<T>(this Span<byte> src, out Span<byte> rem)
-            where T : struct        
-        {
-            rem = Span<byte>.Empty;
-            var tSize = Unsafe.SizeOf<T>();
-            var dst = src.ReadValues<T>();            
-            var q = Math.DivRem(dst.Length, tSize, out int r);
-            if(r != 0)
-                rem = src.Slice(dst.Length*tSize);
-            return dst;
-
-        }
-
-        /// <summary>
-        /// Reads a readonly span of bytes from a span of value types
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="offset">The number of source elements to skip from the head</param>
-        /// <param name="length">Tne number of source elements to read</param>
-        /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<byte> ReadBytes<T>(this ReadOnlySpan<T> src, int? offset = null, int? length = null)
-            where T : struct
-        {
-            if(offset == null && length == null)
-                return MemoryMarshal.AsBytes(src);
-            else if(offset != null && length == null)
-                return MemoryMarshal.AsBytes(src.Slice(offset.Value));
-            else
-                return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
-        }
-
-        /// <summary>
-        /// Reads a span of bytes from a span of value types
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="offset">The number of source elements to skip from the head</param>
-        /// <param name="length">Tne number of source elements to read</param>
-        /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<byte> ReadBytes<T>(this Span<T> src, int? offset = null, int? length = null)
-            where T : struct
-        {
-            if(offset == null && length == null)
-                return MemoryMarshal.AsBytes(src);
-            else if(offset != null && length == null)
-                return MemoryMarshal.AsBytes(src.Slice(offset.Value));
-            else
-                return MemoryMarshal.AsBytes(src.Slice(offset.Value,length.Value));
-        }
-
         static Exception unsupported<T>()
             => new Exception($"The type {typeof(T).Name} is unsupported");
-
     }
 
 }

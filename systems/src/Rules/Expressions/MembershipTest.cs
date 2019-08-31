@@ -14,13 +14,11 @@ namespace Z0
     
     using static zfunc;
 
-
-
-    public readonly struct BooleanExpr<X> 
-        where X : struct
+    public enum MembershipTest : byte
     {
+        IsMember,
 
+        IsNotMember
     }
-
 
 }

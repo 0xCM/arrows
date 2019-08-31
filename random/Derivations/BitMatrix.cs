@@ -27,7 +27,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix32 BitMatrix32(this IRandomSource random)
-            => Z0.BitMatrix32.Load(random.Span<uint>(32));
+            => Z0.BitMatrix32.Load(random.Memory<uint>(32));
 
         [MethodImpl(Inline)]
         public static BitMatrix64 BitMatrix64(this IRandomSource random)
@@ -38,7 +38,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => BM.Load(random.Span<T>(BitGrid.Specify(m,n,x).TotalCellCount),m,n);
+                => BM.Load(random.Memory<T>(BitGrid.Specify(m,n,x).TotalCellCount),m,n);
 
         /// <summary>
         /// Produces an N-square natural bitmatrix
@@ -52,7 +52,7 @@ namespace Z0
         public static BitMatrix<N,T> BitMatrix<N,T>(this IRandomSource random, N n = default, T rep = default)
             where N : ITypeNat, new()
             where T : struct
-                => BM.Load(random.Span<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);
+                => BM.Load(random.Memory<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);
                 
     }
 

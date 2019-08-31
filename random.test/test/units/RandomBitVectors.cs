@@ -22,7 +22,7 @@ namespace Z0.Rng
         public void SampleGeneric()
         {
             var lenRange = closed(3,68);
-            var src = Random.BitVecStream<int>(lenRange);
+            var src = Random.BitVectors<int>(lenRange);
             var lenStats = Accumulator.Create();
             var bitStats = Accumulator.Create(true);
             for(var i=0; i<SampleSize; i++)

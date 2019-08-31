@@ -17,9 +17,9 @@ namespace Z0
     /// <summary>
     /// Defines an assertion of truth
     /// </summary>
-    public readonly struct Claim<T>
+    public readonly struct ClaimExpr<T> : IRuleExpr
     {
-        public Claim(string name,  Func<T,T,bool> predicate)
+        public ClaimExpr(string name, Func<T,T,bool> predicate)
         {
             this.Name = name;
             this.Predicate = predicate;

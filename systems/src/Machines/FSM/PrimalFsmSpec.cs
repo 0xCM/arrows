@@ -12,24 +12,24 @@ namespace Z0.Machines
     /// <summary>
     /// Specifies a state machine via scalar values
     /// </summary>
+    /// <typeparam name="T">A scalar type of sufficient size to accomodate specified characteristics</typeparam>
      public class PrimalFsmSpec<T>
-        where T : struct
+        where T : unmanaged
     {
-        public PrimalFsmSpec(string Classifier, T StateCount, T EventCount, T MinEventSampleSize, T MaxEventSampleSize, ulong ReceiptLimit)
+        public PrimalFsmSpec(string classifier, T states, T events, T minSamples, T maxSamples, ulong maxReceipts)
         {
-            this.Classifier = Classifier;
-            this.StateCount = StateCount;
-            this.EventCount = EventCount;
-            this.MinEventSampleSize = MinEventSampleSize;
-            this.MaxEventSampleSize = MaxEventSampleSize;
-            this.ReceiptLimit = ReceiptLimit;
+            this.Classifier = classifier;
+            this.StateCount = states;
+            this.EventCount = events;
+            this.MinSampleSize = minSamples;
+            this.MaxSampleSize = maxSamples;
+            this.ReceiptLimit = maxReceipts;
             this.StartState = default;
-            this.EndState = gmath.dec(StateCount);
+            this.EndState = gmath.dec(states);
         }
 
         /// <summary>
-        /// An identifier that defines a membership class that will be
-        /// propagaged to all machines predicated on the specification
+        /// An identifier that defines a membership class that is propagaged to all machines predicated on the specification
         /// </summary>
         public string Classifier {get; private set;}
 
@@ -46,46 +46,69 @@ namespace Z0.Machines
         /// <summary>
         /// The minimum number of events that will be sampled for each state
         /// </summary>
-        public T MinEventSampleSize {get;private set;}
+        public T MinSampleSize {get;private set;}
 
         /// <summary>
         /// The maximum number of events that will be sampled for each state
         /// </summary>
-        public T MaxEventSampleSize {get;private set;}
+        public T MaxSampleSize {get;private set;}
         
+        /// <summary>
+        /// The maximum number of events that the machine will accept
+        /// </summary>
         public ulong ReceiptLimit {get;private set;}
 
+        /// <summary>
+        /// The initial state as determined by the default value of the primal type, i.e. StartState = default
+        /// </summary>
         public T StartState {get;private set;}
         
+        /// <summary>
+        /// The final state as determined by the state count, i.e. EndState := StateCount - 1
+        /// </summary>
         public T EndState {get;private set;}
 
-        public PrimalFsmSpec<T> WithStateCount(T StateCount)
+        /// <summary>
+        /// Modifies the state count in-place
+        /// </summary>
+        /// <param name="count">The new state count</param>
+        public PrimalFsmSpec<T> WithStateCount(T count)
         {
-            this.StateCount = StateCount;
-            this.EndState = gmath.dec(StateCount);
+            this.StateCount = count;
+            this.EndState = gmath.dec(count);
             return this;
         }
 
-        public PrimalFsmSpec<T> WithEventCount(T EventCount)
+        /// <summary>
+        /// Modifies the event count in-place
+        /// </summary>
+        /// <param name="count">The new state count</param>
+        public PrimalFsmSpec<T> WithEventCount(T count)
         {
-            this.EventCount = EventCount;
+            this.EventCount = count;
             return this;
         }
 
-        public PrimalFsmSpec<T> WithClassifier(string Classifier)
+        /// <summary>
+        /// Modifies the classifier in-place
+        /// </summary>
+        /// <param name="count">The new state count</param>
+        public PrimalFsmSpec<T> WithClassifier(string classifier)
         {
-            this.Classifier = Classifier;
+            this.Classifier = classifier;
             return this;
         }
 
-        public PrimalFsmSpec<T> WithEventSampleLimits(T Min, T Max)
+        /// <summary>
+        /// Modifies the min and max event sample sizes in-place
+        /// </summary>
+        /// <param name="Min">The min event sample size</param>
+        /// <param name="Max">The max event sample size</param>
+        public PrimalFsmSpec<T> WithSampleLimits(T Min, T Max)
         {
-            this.MinEventSampleSize = Min;
-            this.MaxEventSampleSize = Max;
+            this.MinSampleSize = Min;
+            this.MaxSampleSize = Max;
             return this;
         }
-
-
     }
-
 }

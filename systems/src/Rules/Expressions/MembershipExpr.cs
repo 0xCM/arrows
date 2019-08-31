@@ -14,37 +14,22 @@ namespace Z0
     
     using static zfunc;
 
-
-    public enum ScalarComparisonKind
+    /// <summary>
+    /// A rule that is satisfied when an element is/is not a member of a specified set
+    /// as determined by the membership test
+    /// </summary>
+    public readonly struct MembershipExpr<T> : IRuleExpr<HashSet<T>>
     {
-        Eq,
-        
-        NEq,
-
-        Lt,
-        
-        LtEq,
-
-        Gt,
-        
-        GtEq
-    }
-
-    public readonly struct ScalarComparison<T>
-        where T : struct
-    {
-        
-        public ScalarComparison(T Param, ScalarComparisonKind Comparison)
+        public MembershipExpr(MembershipTest test, HashSet<T> Value)
         {
-            this.Param = Param;
-            this.Comparison = Comparison;
+            this.Test = test;
+            this.Value = Value;
         }
         
-        public readonly T Param;
+        public readonly MembershipTest Test;
 
-        public readonly ScalarComparisonKind Comparison;
+        public HashSet<T> Value {get;}
 
     }
-
-
+    
 }

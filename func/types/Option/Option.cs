@@ -208,13 +208,20 @@ namespace Z0
             => Exists ? value : @default;
 
         /// <summary>
-        /// Returns the encapsulated value if it exists; otherwise, invokes the fallback function <paramref name="fallback"/>
-        /// to obtain value
+        /// Returns the encapsulated value if it exists; otherwise, invokes the supplied fallback function 
         /// </summary>
         /// <param name="fallback">The function called to produce a value when there is no value in the source</param>
         [MethodImpl(Inline)]
         public T ValueOrElse(Func<T> fallback)
             => Exists ? value : fallback();
+
+        /// <summary>
+        /// Returns the encapsulated value if it exists; otherwise, returns the supplied value
+        /// </summary>
+        /// <param name="fallback">The function called to produce a value when there is no value in the source</param>
+        [MethodImpl(Inline)]
+        public T ValueOrElse(T fallback)
+            => Exists ? value : fallback;
 
         /// <summary>
         /// Applies supplied function to value if present, otherwise returns the 

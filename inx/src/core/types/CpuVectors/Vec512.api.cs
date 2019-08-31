@@ -15,7 +15,6 @@ namespace Z0
 
     public static class Vec512
     {
-
         /// <summary>
         /// Constructs a 512-bit vector from four 128-bit vectors
         /// </summary>
@@ -92,15 +91,5 @@ namespace Z0
             CheckSegment<T>(offset,len);
             return new Span<T>(pvoid(ref Unsafe.Add(ref src, offset)),len);
         }
-
-        /// <summary>
-        /// Extracts vector content as a span
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static unsafe Span<T> ToSpan<T>(this Vec512<T> src)
-            where T : struct        
-                => new Span<T>(pvoid(ref Unsafe.Add(ref src, 0)), Vec512<T>.Length);        
     }
 }

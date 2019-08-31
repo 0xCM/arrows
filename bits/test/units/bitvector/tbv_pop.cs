@@ -20,7 +20,7 @@ namespace Z0.Test
             BitSize bitlen = 128 + 8;
             ByteSize bytelen = (ByteSize)bitlen;
             Claim.eq((int)bytelen, (int)bitlen/8);
-            var src = Random.BitVecStream<ulong>(bitlen);
+            var src = Random.BitVectors<ulong>(bitlen);
             for(var i=0; i<CycleCount; i++)
             {
                 var bv = src.First();
@@ -32,6 +32,13 @@ namespace Z0.Test
                 Claim.eq(expect, actual);
                 
             }
+
+        }
+
+        public void pop128()
+        {
+            var bv = Random.BitVector128();
+            var p1 = bv.Pop();
 
         }
 

@@ -219,7 +219,7 @@ namespace Z0.Test
             var bytes = q + (r == 0 ? 0 : 1);
             Claim.eq(bytes, y.Length);
 
-            var bulk = y.ReadValues<T>(out Span<byte> rem);
+            var bulk = ByteSpan.ReadValues<T>(y,out Span<byte> rem);
 
             Span<T> merged = rem.Length != 0 ? bulk.Extend(bulk.Length + 1) : bulk;
             if(merged.Length != bulk.Length)

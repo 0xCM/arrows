@@ -24,12 +24,10 @@ namespace Z0.Test
                 0b00100100, //6 -> [2, 5]
                 0b01100000  //7 -> [5, 6]
                 );
-            var g = m.ToGraph();
+            var g = BitGraph.FromMatrix(m);
             
             Claim.eq(8, g.VertexCount);
             Claim.eq(11, g.EdgeCount);
-            // var fmt = g.Format();
-            // print(fmt,SeverityLevel.Info);
         }
  
 

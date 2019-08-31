@@ -118,6 +118,10 @@ namespace Z0
             => src.ReadOnly().Unpack(out dst);
 
         [MethodImpl(Inline)]        
+        public static Span<Bit> Unpack(this byte[] src, out Span<Bit> dst)
+            => src.AsSpan().Unpack(out dst);
+
+        [MethodImpl(Inline)]        
         public static Span<Bit> Unpack(this Span<ushort> src, out Span<Bit> dst)
             => src.AsBytes().Unpack(out dst);
 

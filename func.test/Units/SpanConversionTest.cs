@@ -14,8 +14,7 @@ namespace Z0.Test
         void VerifySpanBytesToValue<T>(Span<byte> src, T expect)
             where T : struct
         {
-            Claim.eq(expect, src.ReadValue<T>());
-
+            Claim.eq(expect, ByteSpan.ReadValue<T>(src));
         }
 
         void VerifySpanBytesToValues<T>(Span<byte> src, Span<T> expect)
@@ -29,7 +28,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var x = Random.Next<T>();
-            var y = x.ToBytes();
+            var y = ByteSpan.FromValue(x);
             VerifySpanBytesToValue(y,x);
 
             var valSize = Unsafe.SizeOf<T>();
@@ -38,7 +37,7 @@ namespace Z0.Test
             for(int i = 0, offset = 0; i< values.Length; i++, offset += valSize)
             {
                 var value = values[i];
-                var valBytes = value.ToBytes();
+                var valBytes = ByteSpan.FromValue(value);
                 valBytes.CopyTo(bytes, offset);            
             }
             
@@ -120,7 +119,7 @@ namespace Z0.Test
             for(byte i=0; i< bits.Length; i++)
                 bits[i] = bv[i];
             var bitBytes = Bits.pack(bits);
-            var xBytes = x.ToBytes();
+            var xBytes = ByteSpan.FromValue(x);
             Claim.eq(xBytes, bitBytes);
             
         }

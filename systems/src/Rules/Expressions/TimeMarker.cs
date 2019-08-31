@@ -20,45 +20,25 @@ namespace Z0
     public enum TimeMarker : byte
     {
         /// <summary>
-        /// Indicates a value is strictly less than the comperand
+        /// Indicates the subject is antecedent to the comperand
         /// </summary>
         Before,
         
         /// <summary>
-        /// Indicates a value is identical to the comperand
+        /// Indicates the subject is identical to the comperand
         /// </summary>
         Matches,
         
         /// <summary>
-        /// Indicates a subject date is strictly greater than the comperand
+        /// Indicates the subject follows the comperand
         /// </summary>
         After,
 
         /// <summary>
-        /// Indicates a date is inclusively between a start date and an end date
+        /// Indicates the subject is inclusively between a start date and an end date
         /// </summary>
         Between
     }
 
-    /// <summary>
-    ///  Satisfied when a test date t is oriented  with the parameter(s) according to the
-    /// specified orientation
-    /// </summary>
-    public readonly struct DateOrientation
-    {        
-        public DateOrientation(TimeMarker orientation, VarExpr<Date> param1, VarExpr<Date>? param2 = null)
-        {
-            this.Param1 = param1;
-            this.Param2 = param2;
-            this.Orientation = orientation;
-        }
-
-        public readonly VarExpr<Date> Param1;
-
-        public readonly VarExpr<Date>? Param2;
-
-        public readonly TimeMarker Orientation;
-
-    }
 
 }

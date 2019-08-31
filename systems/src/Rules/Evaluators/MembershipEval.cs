@@ -15,14 +15,14 @@ namespace Z0
     using static zfunc;
 
 
-    readonly struct DiscreteMembershipEvalutor<T>
+    readonly struct MembershipEval<T>
         where T : struct
     {
-        public static readonly DateOrientationEvalutor TheOnly = default;
+        public static readonly DateCmpEval TheOnly = default;
 
-        public bool Satisfies(DiscreteMembership<T> rule, LiteralExpr<T> test)
-            => (rule.MemberDisposition == ItemMembership.IsMember && rule.Param.Contains(test.Value))
-            || (rule.MemberDisposition == ItemMembership.IsNotMember && !rule.Param.Contains(test.Value));
+        public bool Satisfies(MembershipExpr<T> rule, LiteralExpr<T> test)
+            => (rule.Test == MembershipTest.IsMember && rule.Value.Contains(test.Value))
+            || (rule.Test == MembershipTest.IsNotMember && !rule.Value.Contains(test.Value));
     }
 
 

@@ -349,7 +349,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitMatrix.ToGraph<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes()));            
+            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes().ToMemory()));            
 
         /// <summary>
         /// Counts the number of enabled bits in the matrix

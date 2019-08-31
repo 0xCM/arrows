@@ -104,55 +104,6 @@ namespace Z0
         public static ref T inAdd<T>(in T src, IntPtr offset)
             => ref Unsafe.Add(ref asRef(in src), offset);
  
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<sbyte> uint8<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<sbyte>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<byte> int8<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<byte>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<short> int16<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<short>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<ushort> uint16<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<ushort>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<int> int32<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<int>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<uint> uint32<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<uint>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<long> int64<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<long>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<ulong> uint64<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<ulong>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<float> float32<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<float>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref ReadOnlyMemory<double> float64<T>(ref ReadOnlyMemory<T> src)
-            where T : struct
-                => ref Unsafe.As<ReadOnlyMemory<T>, ReadOnlyMemory<double>>(ref src);
  
         [MethodImpl(Inline)]
         public static sbyte[] int8<T>(T[] src)

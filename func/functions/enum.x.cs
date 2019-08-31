@@ -38,10 +38,15 @@ namespace  Z0
                 yield return list.ToArray();
         }
 
+        /// <summary>
+        /// Partitions the source array into a sequence of array segments
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="width">The maximal segment width</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static IEnumerable<ArraySegment<T>> Partition<T>(this T[] src, int width)
         {
-            var count = src.Length / width;
-            var overflow = src.Length % width;
+            var count = Math.DivRem(src.Length,width, out int overflow);            
             for(var i = 0; i < count; i++)
                 yield return new ArraySegment<T>(src, i*width, width);                    
 
@@ -136,7 +141,7 @@ namespace  Z0
         /// <param name="src">The source sequence</param>
         /// <param name="f">The mapping function</param>
         public static T[] Map<S, T>(this IEnumerable<S> src, Func<S, T> f)
-            =>  src.Select(item => f(item)).ToArray();
+            => src.Select(item => f(item)).ToArray();
 
         /// <summary>
         /// Constructs an integrally-indexed stream from a source stream
@@ -188,7 +193,6 @@ namespace  Z0
                 dst[result.index] = result.value;
             return dst;
         }
-
 
         /// <summary>
         /// Creates a read-only list from a source sequence
@@ -284,20 +288,20 @@ namespace  Z0
         /// <summary>
         /// Returns the second term of the sequence if it exists; otherwise raises an exception
         /// </summary>
-        /// <typeparam name="T">The sequence item type</typeparam>
-        /// <param name="items"></param>
+        /// <typeparam name="T">The item type</typeparam>
+        /// <param name="src">The source stream</param>
         [MethodImpl(Inline)]
-        public static T Second<T>(this IEnumerable<T> items)
-            => items.Skip(1).Take(1).Single();
+        public static T Second<T>(this IEnumerable<T> src)
+            => src.Skip(1).Take(1).Single();
 
         /// <summary>
         /// Returns the third term of the sequence if it exists; otherwise raises an exception
         /// </summary>
-        /// <typeparam name="T">The sequence item type</typeparam>
-        /// <param name="items"></param>
+        /// <typeparam name="T">The item type</typeparam>
+        /// <param name="src">The source stream</param>
         [MethodImpl(Inline)]
-        public static T Third<T>(this IEnumerable<T> items)
-            => items.Skip(2).Take(1).Single();
+        public static T Third<T>(this IEnumerable<T> src)
+            => src.Skip(2).Take(1).Single();
 
         /// <summary>
         /// Returns the second term of the sequence if it exists; otherwise returns the default value
@@ -317,6 +321,7 @@ namespace  Z0
         public static IEnumerable<IEnumerable<T>> Singletons<T>(this IEnumerable<T> src)
             => singletons(src);
 
+
         /// <summary>
         /// Determines whether two streams are identical
         /// </summary>
@@ -324,32 +329,22 @@ namespace  Z0
         /// <param name="lhs">The first sequence</param>
         /// <param name="rhs">The second sequence</param>
         public static bool Eq<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
-        {            
-            var lenum = lhs.GetEnumerator();
-            var renum = rhs.GetEnumerator();
-            var lnext = lenum.MoveNext();
-            var rnext = renum.MoveNext();
-
-            while(lnext || rnext)
-            {
-                if( (lnext & not(rnext)) || (rnext && not(lnext)))
-                    return false;
-                
-                if(!lenum.Current.Equals(renum.Current))
-                    return false;
-
-                lnext = lenum.MoveNext();
-                rnext = renum.MoveNext();
-            }
-
-            return true;
-        } 
+            => System.Linq.Enumerable.SequenceEqual(lhs,rhs);            
 
         /// <summary>
-        /// Convenience wrapper for Enumerable.SelectMany that yields a sequence of elements from a sequence of sequences
+        /// Forces enumerable evaluation
         /// </summary>
-        /// <typeparam name="T">The sequence element type</typeparam>
-        /// <param name="src"></param>
+        /// <param name="src">The source stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)] 
+        public static T[] Force<T>(this IEnumerable<T> src)
+            => src.ToArray();
+
+        /// <summary>
+        /// Reduces a stream of element streams to an element stream
+        /// </summary>
+        /// <param name="src">The element streams</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Reduce<T>(this IEnumerable<IEnumerable<T>> src)
             => src.SelectMany(y => y);
@@ -363,11 +358,13 @@ namespace  Z0
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> src, params T[] preceding)
             => preceding.Concat(src);
-
-        [MethodImpl(Inline)]   
-        public static IEnumerable<T> Collapse<T>(this IEnumerable<IEnumerable<T>> src)
-            => src.SelectMany(x => x);
   
+        /// <summary>
+        /// Interleaves a specified value between each element of the source
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="x">The value to interleave</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static IEnumerable<T> Intersperse<T>(this IEnumerable<T> src, T x)
         {
             foreach(var item in src)
@@ -377,10 +374,34 @@ namespace  Z0
             }
         }
 
-        public static void ForEach<T>(this IEnumerable<T> src, Action<T> effect)
+        /// <summary>
+        /// Applies the effect to each item in the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="effect">The side-effect</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void Effects<T>(this IEnumerable<T> src, Action<T> effect)
         {
             foreach(var item in src)
                 effect(item);
+        }
+
+        /// <summary>
+        /// Enumerates stream elements in pairs, until one of the streams is exhausted,
+        /// invoking a traversal action for each enumerated pair
+        /// </summary>
+        /// <param name="lhs">The left stream</param>
+        /// <param name="rhs">The right stream</param>
+        /// <param name="effect">The side-effect</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void Effects<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs, Action<T,T> effect)
+        {
+            var lenum = lhs.GetEnumerator();
+            var renum = rhs.GetEnumerator();
+
+            while(lenum.MoveNext() && renum.MoveNext())
+                effect(lenum.Current, renum.Current);            
+
         }
 
         [MethodImpl(Inline)]   

@@ -10,11 +10,10 @@ namespace Z0.Machines
  
     using static zfunc;
 
-
     /// <summary>
     /// Defines a key, predicated on input event and current state, identifies a transition rule
     /// </summary>
-    public readonly struct TransitionRuleKey<E,S> : IRuleKey
+    public readonly struct TransitionRuleKey<E,S> : IRuleKey<E,S>
     {
         public static implicit operator TransitionRuleKey<E,S>((E trigger, S source) x)
             => new TransitionRuleKey<E, S>(x.trigger,x.source);
@@ -26,18 +25,17 @@ namespace Z0.Machines
             this.Hash = HashCode.Combine(input,source);
         }
 
-        public int Hash {get;}
-
         /// <summary>
         /// The triggering event
         /// </summary>
         public E Trigger {get;}
-
     
         /// <summary>
         /// The source state
         /// </summary>
-        public readonly S Source;
+        public S Source {get;}
+
+        public int Hash {get;}
 
         public override int GetHashCode()
             => Hash; 

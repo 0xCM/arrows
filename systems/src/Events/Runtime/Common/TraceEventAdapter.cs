@@ -57,6 +57,6 @@ namespace Z0.Events
         where T : struct
     {
         public virtual T Body
-            => Subject.Payload<byte[]>(nameof(Body)).ToSpan().ReadValue<T>();
+            => ByteSpan.ReadValue<T>(Subject.Payload<byte[]>(nameof(Body)).ToSpan());
     }
 }

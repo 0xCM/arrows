@@ -15,12 +15,12 @@ namespace Z0.Test
     {
         public void identityng()
         {   
-            identityng_check<N8,byte>();
-            identityng_check<N8,short>();
-            identityng_check<N16,byte>();
-            identityng_check<N18,byte>();
-            identityng_check<N19,byte>();                    
-            identityng_check<N12,ushort>();
+            identity_check<N8,byte>();
+            identity_check<N8,short>();
+            identity_check<N16,byte>();
+            identity_check<N18,byte>();
+            identity_check<N19,byte>();                    
+            identity_check<N12,ushort>();
         }
 
         public void identity32x32()
@@ -85,7 +85,7 @@ namespace Z0.Test
         }
 
         
-        void identityng_check<N,T>()
+        void identity_check<N,T>()
             where N : ITypeNat, new()
             where T : struct
         {

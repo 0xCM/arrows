@@ -14,7 +14,7 @@ namespace Z0.Machines
     /// Defines a key for efficient/predicatable output rule indexing/lookup
     /// </summary>
     /// <typeparam name="S">The state type</typeparam>
-    public readonly struct OutputRuleKey<E,S> : IRuleKey
+    public readonly struct OutputRuleKey<E,S> : IRuleKey<E,S>
     {
         public static implicit operator OutputRuleKey<E,S>((E trigger, S source) x)
             => new OutputRuleKey<E,S>(x.trigger, x.source);
@@ -26,14 +26,14 @@ namespace Z0.Machines
             this.Hash = HashCode.Combine(trigger,target);
         }
 
+        public readonly E Trigger {get;}
+
+        public readonly S Source {get;}
+
         /// <summary>
         /// The invariant hash
         /// </summary>
-        public int Hash {get;}
-
-        public readonly E Trigger;
-
-        public readonly S Source;
+        public readonly int Hash {get;}
 
 
         public override string ToString() 

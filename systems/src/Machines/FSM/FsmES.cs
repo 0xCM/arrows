@@ -14,44 +14,6 @@ namespace Z0.Machines
     using static zfunc;
     using System.Diagnostics;
 
-    public class FsmStats
-    {
-        
-        /// <summary>
-        /// Identifies the machine within the executing process
-        /// </summary>
-        public string MachineId {get; set;}
-
-        /// <summary>
-        /// The time the machine received the start signal
-        /// </summary>
-        public ulong? StartTime {get; set;}
-
-        /// <summary>
-        /// The time the machine workflow completed
-        /// </summary>
-        public ulong? EndTime {get; set;}
-
-        /// <summary>
-        /// The number of received events
-        /// </summary>
-        public ulong ReceiptCount {get; set;}
-
-        /// <summary>
-        /// The number of state transtions that have occurred
-        /// </summary>
-        public uint TransitionCount {get; set;}      
-
-        /// <summary>
-        /// The time spent during active execution
-        /// </summary>
-        public Duration Runtime {get; set;}  
-
-        public override int GetHashCode()
-            => MachineId.GetHashCode();
-
-    }
-
     /// <summary>
     /// Defines a state machine with minimal feature-set
     /// </summary>
@@ -59,14 +21,14 @@ namespace Z0.Machines
     /// <typeparam name="S">The state type</typeparam>
     public class Fsm<E,S>
     {
-        public Fsm(string Id, IFsmContext context, S GroundState, S EndState, MachineTransition<E,S> Transition)
+        public Fsm(string Id, IFsmContext context, S GroundState, S EndState, IFsmFunction<E,S> transition)
         {
             this.Id = Id;
             this.Context = context;
             this.CurrentState = GroundState;
             this.EndState = EndState;
             this.Error = none<Exception>();
-            this.Transition = Transition;
+            this.Transition = transition;
             this.ReceiptCount = 0;
             this.TransitionCount = 0;
             this.Runtime = stopwatch(false);
@@ -80,7 +42,7 @@ namespace Z0.Machines
         /// <summary>
         /// The machine transition function
         /// </summary>
-        MachineTransition<E,S> Transition {get;}
+        IFsmFunction<E,S> Transition {get;}
 
         /// <summary>
         /// The number of events that have been received
@@ -106,6 +68,11 @@ namespace Z0.Machines
         /// An arror that occurred, if any, prior to normal completion
         /// </summary>
         Option<Exception> Error;
+
+        /// <summary>
+        /// The machine context
+        /// </summary>
+        public IFsmContext Context {get;}
 
         /// <summary>
         /// Identifies the machine within the process
@@ -167,7 +134,6 @@ namespace Z0.Machines
         ulong ReceiptLimit
             => Context.ReceiptLimit ?? UInt64.MaxValue;
 
-
         public FsmStats QueryStats()
             => new FsmStats
             {
@@ -224,7 +190,7 @@ namespace Z0.Machines
                 {
                     OnReceipt(input);
                     var prior = CurrentState;
-                    CurrentState = Transition.Apply(input, CurrentState);
+                    CurrentState = Transition.Eval(input, CurrentState).ValueOrElse(CurrentState);
                     
                     if(!prior.Equals(CurrentState))
                         OnTransition(prior, CurrentState);
@@ -257,31 +223,24 @@ namespace Z0.Machines
             TransitionCount++;
         }
 
-        public IFsmContext Context {get;}
 
         /// <summary>
         /// Called upon state entry
         /// </summary>
         /// <param name="entry">The entry state</param>
-        protected virtual void OnEntry(S entry)
-        {
-
-
-        }
+        protected virtual void OnEntry(S entry){ }
 
         /// <summary>
         /// Called upon state exit
         /// </summary>
         /// <param name="exit">The exit state</param>
-        protected virtual void OnExit(S exit)
+        protected virtual void OnExit(S exit) { }
+
+        void RaiseWarning(AppMsg msg) 
         {
-
+            OnWarning(msg);
         }
-
-        void RaiseWarning(AppMsg msg)
-        {
-
-        }
+        
         void RaiseError(AppException e)
         {
             OnError(e);
@@ -291,6 +250,11 @@ namespace Z0.Machines
         {
             ReceiptCount++;
             Try(() => InputReceipt?.Invoke(input));            
+
+        }
+
+        void OnWarning(AppMsg msg)
+        {
 
         }
 

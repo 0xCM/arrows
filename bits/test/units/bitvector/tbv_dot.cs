@@ -90,8 +90,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec4();
-                var y = Random.BitVec4();
+                var x = Random.BitVector4();
+                var y = Random.BitVector4();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            
@@ -102,8 +102,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec8();
-                var y = Random.BitVec8();
+                var x = Random.BitVector8();
+                var y = Random.BitVector8();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            
@@ -120,8 +120,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec16();
-                var y = Random.BitVec16();
+                var x = Random.BitVector16();
+                var y = Random.BitVector16();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);   
@@ -138,8 +138,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec32();
-                var y = Random.BitVec32();
+                var x = Random.BitVector32();
+                var y = Random.BitVector32();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -156,8 +156,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec64();
-                var y = Random.BitVec64();
+                var x = Random.BitVector64();
+                var y = Random.BitVector64();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -177,8 +177,8 @@ namespace Z0.Test
 
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec<T>(bitcount);
-                var y = Random.BitVec<T>(bitcount);
+                var x = Random.BitVector<T>(bitcount);
+                var y = Random.BitVector<T>(bitcount);
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -195,8 +195,8 @@ namespace Z0.Test
             NatCaseStart<N,T>();
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVec<N,T>();
-                var y = Random.BitVec<N,T>();
+                var x = Random.BitVector<N,T>();
+                var y = Random.BitVector<N,T>();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            

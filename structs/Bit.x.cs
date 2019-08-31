@@ -22,6 +22,69 @@ namespace Z0
         public static Bit ToBit(this bool src)
             => src;
 
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this ushort src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this short src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this uint src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this int src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this ulong src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this long src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this float src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Converts the source value to an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] ToBytes(this double src)
+            => BitConverter.GetBytes(src);
 
     }
 

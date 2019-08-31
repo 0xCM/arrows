@@ -18,10 +18,10 @@ namespace Z0
     /// <summary>
     /// Defines an 8x8 matrix of bits
     /// </summary>
-    public ref struct BitMatrix8
+    public struct BitMatrix8
     {        
-        Span<byte> bits;
-
+        Memory<byte> data;
+                    
         /// <summary>
         /// The matrix order
         /// </summary>
@@ -76,7 +76,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static BitMatrix8 Load(ulong src)        
-            => new BitMatrix8(BitConverter.GetBytes(src));
+            => new BitMatrix8(BitConverter.GetBytes(src).ToMemory());
 
         /// <summary>
         /// Allocates a matrix, optionally assigning each element to the
@@ -99,7 +99,7 @@ namespace Z0
         /// <param name="row7">Specifies the bits in row7</param>
         [MethodImpl(Inline)]
         public static BitMatrix8 FromParts(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)        
-            => new BitMatrix8(new byte[]{row0,row1,row2,row3,row4,row5,row6,row7});
+            => new BitMatrix8(new Memory<byte>(new byte[]{row0,row1,row2,row3,row4,row5,row6,row7}));
 
         /// <summary>
         /// Defifines a matrix from two 32-bit unsigned integers; the upper value contains
@@ -110,14 +110,14 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static BitMatrix8 FromParts(uint upper, uint lower)
-            => Load(Bits.pack(upper,lower));
+            => Load(Z0.Bits.pack(upper, lower));
 
         /// <summary>
-        /// Creates an 8x8 bitmatrix from a span that contains exactly 8 entries
+        /// Creates an 8x8 bitmatrix from a memory segment of length 8
         /// </summary>
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 Load(Span<byte> src)        
+        public static BitMatrix8 Load(Memory<byte> src)        
             => new BitMatrix8(src);
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 Load(ReadOnlySpan<byte> src)        
+        static BitMatrix8 Load(ReadOnlySpan<byte> src)        
             => new BitMatrix8(src);
 
         [MethodImpl(Inline)]
@@ -166,28 +166,33 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(BitMatrix8 src)
-            => BitConverter.ToUInt64(src.bits);
+            => BitConverter.ToUInt64(src.Bits);
 
         [MethodImpl(Inline)]
         public static explicit operator BitMatrix8(ulong src)
             => Load(src);
+
+        [MethodImpl(Inline)]
+        BitMatrix8(Memory<byte> src)
+        {
+            require(src.Length == Pow2.T03);
+            this.data = src;
+        }
 
         /// <summary>
         /// Initializes the matrix by replicating data from a readonly span
         /// </summary>
         [MethodImpl(Inline)]
         BitMatrix8(ReadOnlySpan<byte> src)
+            : this(src.ToArray().ToMemory())
         {                    
-            var len = src.Length;
-            require(len == Pow2.T03);
-            this.bits = src.Replicate();
+
         }
 
-        [MethodImpl(Inline)]
-        BitMatrix8(Span<byte> src)
+        readonly Span<byte> Bits 
         {
-            require(src.Length == Pow2.T03);
-            this.bits = src;
+            [MethodImpl(Inline)]
+            get => data.Span;
         }
 
         /// <summary>
@@ -209,13 +214,22 @@ namespace Z0
         }
 
         /// <summary>
+        /// A readonly view of the matrix storage
+        /// </summary>
+        public readonly ReadOnlyMemory<byte> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+        /// <summary>
         /// Reads the bit in a specified cell
         /// </summary>
         /// <param name="row">The row index</param>
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public readonly Bit GetBit(int row, int col)
-            => BitMask.test(in bits[row], col);
+            => BitMask.test(in Bits[row], col);
 
         /// <summary>
         /// Sets the bit in a specified cell
@@ -225,7 +239,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public void SetBit(int row, int col, Bit src)
-            => BitMask.set(ref bits[row], (byte)col, src);
+            => BitMask.set(ref Bits[row], (byte)col, src);
 
         /// <summary>
         /// Reads/manipulates the bit in a specified cell
@@ -254,12 +268,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool IsZero()
-            => BitConverter.ToUInt64(bits) == 0;
+            => BitConverter.ToUInt64(Bits) == 0;
 
         [MethodImpl(Inline)]
         public BitMatrix8 AndNot(in BitMatrix8 rhs)
         {
-             bits = ((ulong)this &~ (ulong)rhs).ToBytes();
+             data = BitConverter.GetBytes(((ulong)this &~ (ulong)rhs));
              return this;
         }
 
@@ -281,7 +295,7 @@ namespace Z0
         /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
         public ref byte RowData(int row)
-            => ref bits[row];
+            => ref Bits[row];
 
         /// <summary>
         /// Queries the matrix for the data in an index-identified row and returns
@@ -290,7 +304,7 @@ namespace Z0
         /// <param name="index">The row index</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 RowVector(int index)
-            => bits[index];
+            => Bits[index];
 
         /// <summary>
         /// Replaces the data in an index-identified row with the data
@@ -299,7 +313,7 @@ namespace Z0
         /// <param name="index">The row index</param>
         [MethodImpl(Inline)]
         public BitVector8 RowVector(int index, BitVector8 src)
-            => bits[index] = (byte)src;
+            => Bits[index] = (byte)src;
 
         /// <summary>
         /// Transposes a copy of the matrix
@@ -308,7 +322,7 @@ namespace Z0
         {
             var dst = Replicate();
             for(var i=0; i<N; i++)
-                dst.bits[i] = ColData(i);
+                dst.Bits[i] = ColData(i);
             return dst;
         }
 
@@ -320,7 +334,7 @@ namespace Z0
         {
             byte col = 0;
             for(var r = 0; r < N; r++)
-                if(BitMask.test(in bits[r], index))
+                if(BitMask.test(in Bits[r], index))
                     BitMask.enable(ref col, r);
             return col;
         }
@@ -335,14 +349,9 @@ namespace Z0
             => ColData(index);
 
 
-        /// <summary>
-        /// Interchanges the i'th and j'th rows where  0 <= i,j < 8
-        /// </summary>
-        /// <param name="i">A row index</param>
-        /// <param name="j">A row index</param>
-        [MethodImpl(Inline)]
-        public void RowSwap(int i, int j)
-            => bits.Swap(i,j);
+        // [MethodImpl(Inline)]
+        // public void RowSwap(int i, int j)
+        //     => data.Swap(i,j);
 
         /// <summary>
         /// Creates a new matrix by cloning the existing matrix or allocating
@@ -352,31 +361,29 @@ namespace Z0
         /// only structure and is thus equivalent to an allocation</param>
         [MethodImpl(Inline)] 
         public readonly BitMatrix8 Replicate(bool structureOnly = false)
-            => structureOnly ? Alloc() : Load(bits.ReadOnly());
+            => structureOnly ? Alloc() : Load(Bits.Replicate());
 
         /// <summary>
         /// Counts the number of enabled bits in the matrix
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitSize Pop()
-            => Bits.pop((ulong)this);
+            => Z0.Bits.pop((ulong)this);
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => bits.FormatMatrixBits(8);
+            => Bits.FormatMatrixBits(8);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> dst);
+            => Bits.Unpack(out Span<Bit> dst);
 
-        /// <summary>
-        /// Constructs an 8-node graph via the adjacency matrix interpretation
-        /// </summary>
-        public readonly Graph<byte> ToGraph()
-            => BitMatrix.ToGraph<byte,N8,byte>(new BitMatrix<N8,N8,byte>(bits));            
+        [MethodImpl(Inline)]
+        public BitMatrix<N8,N8,byte> AsGeneric()
+            => new BitMatrix<N8,N8,byte>(data);
 
         /// <summary>
         /// Converts the matrix to a bitvector
@@ -387,33 +394,33 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool Equals(in BitMatrix8 rhs)
-            => BitConverter.ToUInt64(bits) == BitConverter.ToUInt64(rhs.bits);
+            => BitConverter.ToUInt64(Bits) == BitConverter.ToUInt64(rhs.Bits);
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)
         {
-             lhs.bits =((ulong)lhs & (ulong)rhs).ToBytes();
+             lhs.data = BitConverter.GetBytes((ulong)lhs & (ulong)rhs);
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 Or(ref BitMatrix8 lhs, in BitMatrix8 rhs)
         {
-             lhs.bits = ((ulong)lhs | (ulong)rhs).ToBytes();
+             lhs.data = BitConverter.GetBytes((ulong)lhs | (ulong)rhs);
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 XOr(ref BitMatrix8 lhs, in BitMatrix8 rhs)
         {
-             lhs.bits = ((ulong)lhs ^ (ulong)rhs).ToBytes();
+             lhs.data = BitConverter.GetBytes((ulong)lhs ^ (ulong)rhs);
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 Flip(ref BitMatrix8 src)
         {
-             src.bits = (~(ulong)src).ToBytes();
+             src.data = BitConverter.GetBytes((~(ulong)src));
              return ref src;
         }
 
@@ -441,7 +448,6 @@ namespace Z0
             }
             return ref dst;
         }
-
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

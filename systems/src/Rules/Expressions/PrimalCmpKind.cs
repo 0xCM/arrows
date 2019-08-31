@@ -14,14 +14,24 @@ namespace Z0
     
     using static zfunc;
 
-
-    public readonly struct DiscreteMembership<T> 
-        where T : struct
+    /// <summary>
+    /// Identifies a primal comparison operator
+    /// </summary>
+    public enum PrimalCmpKind
     {
-        public readonly HashSet<T> Param;
+        
+        Eq,
+        
+        NEq,
 
-        public readonly ItemMembership MemberDisposition;
+        Lt,
+        
+        LtEq,
 
+        Gt,
+        
+        GtEq
     }
-    
+
+
 }

@@ -194,7 +194,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix8();
-                var c = Random.BitVec8();
+                var c = Random.BitVector8();
                 var z1 = m * c;            
                 var z2 = BitVector8.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -212,7 +212,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix16();
-                var c = Random.BitVec16();
+                var c = Random.BitVector16();
                 var z1 = m * c;            
                 var z2 = BitVector16.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -230,7 +230,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix32();
-                var c = Random.BitVec32();
+                var c = Random.BitVector32();
                 var z1 = m * c;            
                 var z2 = BitVector32.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -248,7 +248,7 @@ namespace Z0.Test
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
                 var m = Random.BitMatrix64();
-                var c = Random.BitVec64();
+                var c = Random.BitVector64();
                 var z1 = m * c;            
                 var z2 = BitVector64.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           

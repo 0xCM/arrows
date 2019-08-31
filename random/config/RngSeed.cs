@@ -29,13 +29,13 @@ namespace Z0
 
         public static T TakeFixed<T>(int index)
             where T : struct
-            =>  Bytes.ReadValue<T>(VerifyIndex<T>(index));
+            => ByteSpan.ReadValue<T>(Bytes, VerifyIndex<T>(index));
 
         public static ReadOnlySpan<T> TakeFixed<T>(int offset, int length)
             where T : struct
         {
             VerifyIndex<T>(offset* Unsafe.SizeOf<T>() + length* Unsafe.SizeOf<T>());
-            return Bytes.ReadValues<T>(offset,length);
+            return ByteSpan.ReadValues<T>(Bytes, offset,length);            
         }
             
         /// <summary>

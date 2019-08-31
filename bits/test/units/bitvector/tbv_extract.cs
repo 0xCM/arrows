@@ -141,7 +141,7 @@ namespace Z0.Test
 
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
             var bvz = BitVector.FromCells(40,z);
-            Span<byte> xSrc =  z.ToBytes();
+            Span<byte> xSrc =  ByteSpan.FromValue(z);
             Span<ushort> ySrc = xSrc.AsUInt16();
             Claim.eq(ySrc.Length*2, xSrc.Length);
 

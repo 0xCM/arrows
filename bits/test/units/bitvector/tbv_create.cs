@@ -185,7 +185,7 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Random.BitVec64();
+                var bv = Random.BitVector64();
                 var n = Random.Next(1, bv.Length);
                 var result = bv.Lsb(n).ToBitString();
                 var expect = bv.ToBitString()[0, n - 1];
@@ -197,7 +197,7 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Random.BitVec64();
+                var bv = Random.BitVector64();
                 var n = Random.Next(1, bv.Length);
                 var result = bv.Msb(n).ToBitString();
                 var expect = bv.ToBitString().Reversed()[0, n - 1].Reversed();
@@ -212,13 +212,13 @@ namespace Z0.Test
             while(++x)
             {
                 var y = x.Replicate();
-                Trace($"rotl({y}:{offset}) = {y.RotL(offset)}"); 
+                Trace($"rotl({y}:{offset}) = {y.RotL((byte)offset)}"); 
             }
         }
 
         public void Powers()
         {
-            var x = Random.BitVec8();
+            var x = Random.BitVector8();
             var expect2 = x * x;
             var actual2 = x^2;
             Claim.eq(expect2, actual2);

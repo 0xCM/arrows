@@ -52,6 +52,9 @@ namespace Z0.Machines
             print(msg);
         }
 
+        /// <summary>
+        /// Receives notification that a state machine has attained its endstate
+        /// </summary>
         protected virtual void OnComplete(FsmStats stats, bool asPlanned)
         {
             CompletionCount++;
@@ -89,9 +92,12 @@ namespace Z0.Machines
             }
             
             ReceiptCounter++;
-
         }
 
+        /// <summary>
+        /// Receives notification that an error has occurred
+        /// </summary>
+        /// <param name="e">The trapped exception</param>
         protected virtual void OnError(Exception e)
         {
             if(Tracing.TraceErrors())

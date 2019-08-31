@@ -7,13 +7,14 @@ namespace Z0.Machines
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
     /// <summary>
     /// Characterizes an action that that executes per machine rules
     /// </summary>
-    public readonly struct ActionRule<S,A> : IActionRule<S,A>
+    public readonly struct ActionRule<S,A> : IFsmActionRule<S,A>
     {
         /// <summary>
         /// Constructs a rule from a source/action pair
@@ -22,9 +23,11 @@ namespace Z0.Machines
         /// <param name="action">The action</param>
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="A">The action tyep</typeparam>
+        [MethodImpl(Inline)]
         public static implicit operator ActionRule<S,A>((S src, A action) x)
             => new ActionRule<S,A>(x.src, x.action);
 
+        [MethodImpl(Inline)]
         public ActionRule(S source, A action)
         {
             this.Source = source;
@@ -43,12 +46,18 @@ namespace Z0.Machines
         public readonly A Action {get;}
 
         /// <summary>
-        /// The key that identifies the rule
+        /// The rule key
         /// </summary>
         public readonly ActionRuleKey<S> Key {get;}
 
+        /// <summary>
+        /// The rule identifier
+        /// </summary>
         public readonly int RuleId 
-            => Key.Hash;
+        {
+            [MethodImpl(Inline)]
+            get => Key.Hash;
+        }
 
         public readonly override string ToString() 
             => $"({Source}) -> {Action}";

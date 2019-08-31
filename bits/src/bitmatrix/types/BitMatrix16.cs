@@ -95,7 +95,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix16 Load<T>(in Vec256<T> src)
             where T : struct
-                => BitMatrix16.Load(src.ToBytes());
+                => BitMatrix16.Load(ByteSpan.FromValue(src));
 
         [MethodImpl(Inline)]
         public static BitMatrix16 Load(ReadOnlySpan<byte> src)        
@@ -290,7 +290,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitMatrix.ToGraph<byte,N16,byte>(new BitMatrix<N16,N16,byte>(Bytes()));            
+            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(Bytes().ToMemory()));            
 
         /// <summary>
         /// Computes the Hadamard product of the source matrix and another of the same dimension
@@ -316,6 +316,25 @@ namespace Z0
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
             => Bits.pop(bits);
+
+        /// <summary>
+        /// Extracts the bits that comprise the matrix in row-major order
+        /// </summary>
+        [MethodImpl(Inline)]
+        public readonly Span<Bit> Unpack()
+            => bits.Unpack(out Span<Bit> _);
+
+        [MethodImpl(Inline)]
+        public bool IsZero()
+        {
+            this.LoadVector(out Vec256<ushort> vSrc);
+            return vSrc.TestZ(vSrc);            
+        }
+
+        [MethodImpl(Inline)]
+        public bool Eq(in BitMatrix16 rhs)
+            => this.AndNot(rhs).IsZero();
+
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 And(ref BitMatrix16 lhs, in BitMatrix16 rhs)
@@ -372,7 +391,6 @@ namespace Z0
                     lhs[i,j] = y.RowVector(j) % r;
             }
             return ref lhs;
-
         }
 
         /// <summary>
@@ -382,24 +400,6 @@ namespace Z0
         [MethodImpl(Inline)] 
         public Span<byte> Bytes()
             => bits.AsBytes();
-
-        /// <summary>
-        /// Extracts the bits that comprise the matrix in row-major order
-        /// </summary>
-        [MethodImpl(Inline)]
-        public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> _);
-
-        [MethodImpl(Inline)]
-        public bool IsZero()
-        {
-            this.LoadVector(out Vec256<ushort> vSrc);
-            return vSrc.TestZ(vSrc);            
-        }
-
-        [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix16 rhs)
-            => this.AndNot(rhs).IsZero();
 
         /// <summary>
         /// Loads a cpu vector with the full content of the matrix
@@ -423,9 +423,9 @@ namespace Z0
         {
             var r1 = r0 + 8;
             var c1 = c0 + 8;
-            Span<byte> dst = new byte[8];
+            Memory<byte> dst = new byte[8];
             for(int i=r0; i< r0; i++)                
-                dst[i] = Bits.lo(in bits[i]);
+                dst.Span[i] = Bits.lo(in bits[i]);
             return BitMatrix8.Load(dst);
 
         }

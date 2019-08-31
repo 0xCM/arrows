@@ -94,7 +94,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<T> operator +(BitVector<T> lhs, in BitVector<T> rhs)
-            => new BitVector<T>(gbits.xor(in lhs.data, rhs.data));
+            => new BitVector<T>(gbits.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector<T> operator *(BitVector<T> lhs, in BitVector<T> rhs)

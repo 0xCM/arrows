@@ -7,11 +7,12 @@ namespace Z0.Machines
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
 
     /// <summary>
-    /// Characterizes a state transition (input : E, source : S) -> target : S 
+    /// Defines state transition rule of the form (input : E, source : S) -> target : S 
     /// </summary>
     /// <typeparam name="E">The input event type</typeparam>
     /// <typeparam name="S">The state type</typeparam>
@@ -23,9 +24,11 @@ namespace Z0.Machines
         /// <param name="input">The input event</param>
         /// <param name="source">The source state</param>
         /// <param name="target">The target state</param>
+        [MethodImpl(Inline)]
         public static implicit operator TransitionRule<E,S>((E input, S source, S target) x)
             => new TransitionRule<E, S>(x.input, x.source, x.target);
         
+        [MethodImpl(Inline)]
         public TransitionRule(E trigger, S source, S target)
         {
             this.Trigger = trigger;
@@ -49,10 +52,19 @@ namespace Z0.Machines
         /// </summary>
         public S Target {get;}
         
-        public TransitionRuleKey<E,S> Key {get;}
+        /// <summary>
+        /// The key that identifies the rule
+        /// </summary>
+        public IRuleKey<E,S> Key {get;}
 
-        public int RuleId 
-            => Key.Hash;
+        /// <summary>
+        /// The rule id as determined by the key
+        /// </summary>
+        public readonly int RuleId 
+        {
+            [MethodImpl(Inline)]
+            get => Key.Hash;
+        }
 
         public override string ToString() 
             => $"({Trigger},{Source}) -> {Target}";

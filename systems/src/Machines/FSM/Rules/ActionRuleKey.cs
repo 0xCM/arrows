@@ -7,18 +7,21 @@ namespace Z0.Machines
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
  
     using static zfunc;
     
     /// <summary>
-    /// Defines a key for efficient action rule lookup
+    /// Identifies an action rule for lookup purposes
     /// </summary>
     /// <typeparam name="S">The state type</typeparam>
     public readonly struct ActionRuleKey<S> : IRuleKey
     {
+        [MethodImpl(Inline)]
         public static implicit operator ActionRuleKey<S>(S source)
             => new ActionRuleKey<S>(source);
         
+        [MethodImpl(Inline)]
         public ActionRuleKey(S source)
         {
             this.Source = source;

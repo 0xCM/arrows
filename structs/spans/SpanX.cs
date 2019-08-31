@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
-    public static class SpanExtensions
+    public static partial class SpanExtensions
     {
         /// <summary>
         /// Presents selected span content as a readonly span of bytes
@@ -426,15 +426,8 @@ namespace Z0
             }                        
         }
 
-        /// <summary>
-        /// Interchanges span elements i and j
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="i">An index of a span element</param>
-        /// <param name="j">An index of a span element</param>
-        /// <typeparam name="T"></typeparam>
         [MethodImpl(Inline)]
-        public static ref Span<T> Swap<T>(this ref Span<T> src, int i, int j)
+        public static void Swap<T>(this T[] src, int i, int j)
         {
             if(i != j)
             {
@@ -442,7 +435,24 @@ namespace Z0
                 src[i] = src[j];
                 src[j] = tmp;
             }
-            return ref src;
+        }
+
+        /// <summary>
+        /// Interchanges span elements i and j
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="i">An index of a span element</param>
+        /// <param name="j">An index of a span element</param>
+        /// <typeparam name="T">The span element type</typeparam>
+        [MethodImpl(Inline)]
+        public static void Swap<T>(this Span<T> src, int i, int j)
+        {
+            if(i != j)
+            {
+                var tmp = src[i];
+                src[i] = src[j];
+                src[j] = tmp;
+            }
         }
 
         /// <summary>
