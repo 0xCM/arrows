@@ -13,6 +13,8 @@ namespace Z0
     
     partial class Bits
     {                
+
+
         /// <summary>
         /// Projects a contiguous sequence of bits from a source value to a target value
         /// </summary>

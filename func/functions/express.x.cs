@@ -377,7 +377,7 @@ namespace Z0
         /// Tests whether an expression is a logical disjunction
         /// </summary>
         /// <param name="x">The expression to examine</param>
-        public static bool IsDisjunction<X>(this X x)
+        static bool IsDisjunction<X>(this X x)
             where X : Expression
             => x.TryGetDisjunction().Exists;
 
@@ -385,7 +385,7 @@ namespace Z0
         /// Tests whether an expression is a logical conjunction
         /// </summary>
         /// <param name="x">The expression to examine</param>
-        public static bool IsConjunction<X>(this X x)
+        static bool IsConjunction<X>(this X x)
             where X : Expression
             => x.TryGetConjunction().Exists;
 

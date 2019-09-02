@@ -15,9 +15,29 @@ namespace Z0
     /// <summary>
     /// Defines a 32-bit bitvector
     /// </summary>
+    [StructLayout(LayoutKind.Explicit, Size = 4)]
     public struct BitVector32 : IPrimalBits<BitVector32,uint>
     {
+        [FieldOffset(0)]
         uint data;
+
+        [FieldOffset(0)]
+        ushort x000;
+
+        [FieldOffset(2)]
+        ushort x001;
+
+        [FieldOffset(0)]        
+        byte x0000;
+        
+        [FieldOffset(1)]
+        byte x0001;
+        
+        [FieldOffset(2)]
+        byte x0010;
+        
+        [FieldOffset(3)]
+        byte x0011;
 
         public static readonly BitVector32 Zero = default;
         
@@ -64,6 +84,14 @@ namespace Z0
             => new BitVector32((uint)src);    
 
         /// <summary>
+        /// Creates a vector from the least 32 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 FromScalar(ulong src)
+            => new BitVector32((uint)src);    
+
+        /// <summary>
         /// Creates a vector from four unsigned 8-bit integers
         /// </summary>
         /// <param name="src">The source value</param>
@@ -100,26 +128,20 @@ namespace Z0
             => FromParts(src[offset + 0], src[offset + 1], src[offset + 2], src[offset + 3]);
     
         /// <summary>
-        /// Enumerates each and every 32-bit bitvector exactly once
+        /// Enumerates all 32-bit bitvectors whose width is less than or equal to a specified maximum
         /// </summary>
-        public static IEnumerable<BitVector32> All
+        public static IEnumerable<BitVector32> All(int maxwidth)
         {
-           get
-           {
-                var bv = BitVector32.Zero;
-                do 
-                    yield return bv;            
-                while(++bv);
-           }
+            var maxval = Pow2.pow(maxwidth);
+            var bv = BitVector32.Zero;
+            while(bv < maxval)
+                yield return bv++;            
         }
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N32,uint>(in BitVector32 src)
             => new BitVector<N32,uint>(src.data);
 
-        [MethodImpl(Inline)]
-        public static implicit operator BitVector32(uint src)
-            => new BitVector32(src);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(BitVector32 src)
@@ -136,6 +158,30 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator uint(in BitVector32 src)
             => src.data;        
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 32-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]    
+        public static implicit operator BitVector32(byte src)
+            => FromScalar(src);
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 32-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]    
+        public static implicit operator BitVector32(ushort src)
+            => FromScalar(src);
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 32-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector32(uint src)
+            => new BitVector32(src);
 
         /// <summary>
         /// Computes the bitwise XOR of the source operands
@@ -270,7 +316,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector32(uint src)
-            => this.data = src;
+            : this()
+                => this.data = src;
 
         /// <summary>
         /// Initializes a vector with a sequence of bit values that is clamped to 32 bits
@@ -278,6 +325,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector32(in Bit[] src)
+            : this()
         {
             this.data = 0;
             for(var i = 0; i< Math.Min(32, src.Length); i++)
@@ -303,18 +351,18 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
-        public BitVector16 Hi
-        {
-            [MethodImpl(Inline)]
-            get => Bits.hi(data);        
-        }
-        
         public BitVector16 Lo
         {
             [MethodImpl(Inline)]
-            get => Bits.lo(data);    
+            get => x000;
         }
 
+        public BitVector16 Hi
+        {
+            [MethodImpl(Inline)]
+            get => x001;
+        }
+        
         /// <summary>
         /// Zero-extends the vector to a vector that accomondates
         /// the next power of 2
@@ -356,6 +404,15 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => Length;
+        }
+
+        /// <summary>
+        /// Computes the least number of bits required to represent vector content
+        /// </summary>
+        public int MinWidth
+        {
+            [MethodImpl(Inline)]
+            get => Bits.width(in data);
         }
 
 
@@ -422,7 +479,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)        
-            => data = Bits.scatter(data,Mask(spec));
+            => data = Bits.scatter(data, Mask(spec));
 
         /// <summary>
         /// Constructs a bitvector formed from the n lest significant bits of the current vector
@@ -593,6 +650,34 @@ namespace Z0
         [MethodImpl(Inline)]
         public readonly uint ToScalar()
             => data;
+
+        /// <summary>
+        /// Applies a truncating reduction Bv32 -> Bv8
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector8 ToBitVector8()
+            => BitVector8.FromScalar(data);
+
+        /// <summary>
+        /// Applies a truncating reduction Bv32 -> Bv16
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector16 ToBitVector16()
+            => BitVector16.FromScalar(data);
+
+        /// <summary>
+        /// Applies the identity conversion Bv32 -> Bv32
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector32 ToBitVector32()
+            => BitVector32.FromScalar(data);
+
+        /// <summary>
+        /// Applies a widening conversion Bv16 -> Bv64
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector64 ToBitVector64()
+            => BitVector64.FromScalar(data);
 
         /// <summary>
         /// Returns a copy of the vector

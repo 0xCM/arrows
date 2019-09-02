@@ -41,6 +41,33 @@ namespace Z0
             return ref io;
         }
 
+
+        [MethodImpl(Inline)]
+        public static T sqrt<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(fmath.sqrt(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(fmath.sqrt(float64(src)));
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline)]
+        static ref T sqrtF32<T>(ref T src)
+        {
+            fmath.sqrt(ref float32(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        static ref T sqrtF64<T>(ref T src)
+        {
+            fmath.sqrt(ref float64(ref src));            
+            return ref src;
+        }
+
     }
 
 }

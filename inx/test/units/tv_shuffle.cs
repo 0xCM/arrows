@@ -70,7 +70,7 @@ namespace Z0.Test
 
         void Permute4i32(int cycles = DefaltCycleCount, bool trace = false)
         {
-            var pSrc = Random.EnumStream<Perm4>(x => (byte)x > 5);
+            var pSrc = Polyrand.EnumStream<Perm4>(x => (byte)x > 5);
             
             for(var i=0; i<cycles; i++)
             {

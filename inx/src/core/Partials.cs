@@ -8,7 +8,9 @@ namespace Z0
     using System.Linq;
     using System.Reflection;
     using System.Collections.Generic;
-
+    using System.Runtime.Intrinsics.X86;
+    using System.Runtime.CompilerServices;
+    using static zfunc;
 
     public static partial class dinx
     {
@@ -30,6 +32,10 @@ namespace Z0
     /// </summary>
     public static partial class dfp
     {
+        [MethodImpl(Inline)]
+        static FloatComparisonMode fpmode(FpCmpMode m)
+            => (FloatComparisonMode)m;
+
 
     }
     public static partial class dfpx

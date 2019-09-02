@@ -21,7 +21,7 @@ namespace Z0
     public static class Num128
     {
         [MethodImpl(Inline)]
-        public static Num128<T> define<T>(T value)
+        public static Scalar128<T> define<T>(T value)
             where T : struct        
         {
             if(typeof(T) == typeof(sbyte))
@@ -50,143 +50,143 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static unsafe ref Num128<float> load(float src, out Num128<float> dst)
+        public static unsafe ref Scalar128<float> load(float src, out Scalar128<float> dst)
         {
              dst = LoadScalarVector128(pfloat32(ref src));
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ref Num128<double> load(double src, out Num128<double> dst)
+        public static unsafe ref Scalar128<double> load(double src, out Scalar128<double> dst)
         {
              dst = LoadScalarVector128(pfloat64(ref src));
              return ref dst;
         }
         
         [MethodImpl(Inline)]
-        public static unsafe Num128<int> load(ref int src)
+        public static unsafe Scalar128<int> load(ref int src)
             => Avx2.LoadScalarVector128(pint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<uint> load(ref uint src)
+        public static unsafe Scalar128<uint> load(ref uint src)
             => Avx2.LoadScalarVector128(puint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<long> load(ref long src)
+        public static unsafe Scalar128<long> load(ref long src)
             => Avx2.LoadScalarVector128(pint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<ulong> load(ref ulong src)
+        public static unsafe Scalar128<ulong> load(ref ulong src)
             => Avx2.LoadScalarVector128(puint64(ref src));
 
         [MethodImpl(Inline)]
-        public static Num128<T> load<T>(in ReadOnlySpan128<T> src, int block = 0)
+        public static Scalar128<T> load<T>(in ReadOnlySpan128<T> src, int block = 0)
             where T : struct  
                 => define<T>(src[block* Span128<T>.BlockLength]);
 
         [MethodImpl(Inline)]
-        public static Num128<T> load<T>(in Span128<T> src, int block = 0)
+        public static Scalar128<T> load<T>(in Span128<T> src, int block = 0)
             where T : struct  
                 => define<T>(src[block* Span128<T>.BlockLength]);
 
         [MethodImpl(Inline)]
-        public static Num128<T> recip<T>(in Num128<T> src)
+        public static Scalar128<T> recip<T>(in Scalar128<T> src)
             where T : struct
                 => throw unsupported<T>();
 
         [MethodImpl(Inline)]
-        public static Num128<T> sqrt<T>(in Num128<T> src)
+        public static Scalar128<T> sqrt<T>(in Scalar128<T> src)
             where T : struct
                 => throw unsupported<T>();
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(byte src)
+        static unsafe Scalar128<T> scalar<T>(byte src)
             where T : struct
         {
             var dst = stackalloc byte[16];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(sbyte src)
+        static unsafe Scalar128<T> scalar<T>(sbyte src)
             where T : struct
         {
             var dst = stackalloc sbyte[16];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(short src)
+        static unsafe Scalar128<T> scalar<T>(short src)
             where T : struct
         {
             var dst = stackalloc short[8];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(ushort src)
+        static unsafe Scalar128<T> scalar<T>(ushort src)
             where T : struct
         {
             var dst = stackalloc ushort[8];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(int src)
+        static unsafe Scalar128<T> scalar<T>(int src)
             where T : struct
         {
             var dst = stackalloc int[4];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(uint src)
+        static unsafe Scalar128<T> scalar<T>(uint src)
             where T : struct
         {
             var dst = stackalloc uint[4];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(long src)
+        static unsafe Scalar128<T> scalar<T>(long src)
             where T : struct
         {
             var dst = stackalloc long[2];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(ulong src)
+        static unsafe Scalar128<T> scalar<T>(ulong src)
             where T : struct
         {
             var dst = stackalloc ulong[2];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(float src)
+        static unsafe Scalar128<T> scalar<T>(float src)
             where T : struct
         {
             var dst = stackalloc float[4];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Scalar128<T>>(dst);
         }
 
         [MethodImpl(Inline)]
-        static unsafe Num128<T> scalar<T>(double src)
+        static unsafe Scalar128<T> scalar<T>(double src)
             where T : struct
         {
             var dst = stackalloc double[2];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);            
+            return Unsafe.AsRef<Scalar128<T>>(dst);            
         }
    }
 }

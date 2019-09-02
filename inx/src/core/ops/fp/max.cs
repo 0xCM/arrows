@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Num128<float> max(in Num128<float> lhs, in Num128<float> rhs)
+        public static Scalar128<float> max(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => MaxScalar(lhs, rhs);            
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>        
         [MethodImpl(Inline)]
-        public static Num128<double> max(in Num128<double> lhs, in Num128<double> rhs)
+        public static Scalar128<double> max(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => MaxScalar(lhs, rhs);
 
         /// <summary>

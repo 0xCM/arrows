@@ -8,15 +8,18 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-
     
     using static zfunc;    
     using static As;
     
-
     partial class ginx
     {
-
+        /// <summary>
+        /// __m128i _mm_cmpeq_? (__m128i a, __m128i b) PCMPEQ? xmm, xmm/m128
+        /// Compares the operands for equality and returns a comparison vector describing the result
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public static Vec128Cmp<T> eq<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
@@ -45,7 +48,13 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
+        /// <summary>
+        ///  __m256i _mm256_cmpeq_? (__m256i a, __m256i b) VPCMPEQ? ymm, ymm, ymm/m256
+        /// Compares the operands for equality and returns a comparison vector describing the result
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+       [MethodImpl(Inline)]
         public static Vec256Cmp<T> eq<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {
@@ -72,8 +81,5 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
-
-
-
     }
 }

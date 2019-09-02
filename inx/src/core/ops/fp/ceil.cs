@@ -48,14 +48,14 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref Num128<float> ceil(ref Num128<float> src)
+        public static ref Scalar128<float> ceil(ref Scalar128<float> src)
         {
             src = CeilingScalar(src);
             return ref src;
         }
         
         [MethodImpl(Inline)]
-        public static ref Num128<double> ceil(ref Num128<double> src)
+        public static ref Scalar128<double> ceil(ref Scalar128<double> src)
         {
             src = CeilingScalar(src);
             return ref src;

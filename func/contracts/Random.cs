@@ -8,8 +8,7 @@ namespace System
     using Z0;
 
     public interface IRandomSource
-    {
-        
+    {        
         ulong NextUInt64();
 
         ulong NextUInt64(ulong max);
@@ -21,13 +20,54 @@ namespace System
     }
 
     /// <summary>
-    /// Characterizes source capable of producing an interminable sequence of points
+    /// Characterizes a source capable of producing an interminable 
+    /// sequence of bounded/unbounded points of specific primal type
     /// </summary>
     /// <typeparam name="T">The primal type</typeparam>
-    public interface IPointSource<out T>
+    public interface IPointSource<T>
         where T : struct
     {
         T Next();    
+
+        T Next(T max);    
+        
+        T Next(T min, T max);
+
+    }
+
+    public interface IStepwiseSource<T> : IPointSource<T>
+        where T : struct
+    {
+        void Advance(ulong steps);
+
+        void Retreat(ulong steps);
+
+    }
+
+     /// <summary>
+    /// Characterizes source capable of producing an interminable 
+    /// sequence of bounded/unbounded points of any scalar primal type
+    /// </summary>
+   public interface IPolyrand : 
+        IPointSource<sbyte>,
+        IPointSource<byte>,
+        IPointSource<short>,
+        IPointSource<ushort>,
+        IPointSource<int>, 
+        IPointSource<uint>, 
+        IPointSource<long>,
+        IPointSource<ulong>, 
+        IPointSource<float>,
+        IPointSource<double> 
+    {
+        T Next<T>()
+            where T : struct;
+
+        T Next<T>(T max)
+            where T : struct;
+
+        T Next<T>(T min, T max)
+            where T : struct;
     }
 
     /// <summary>
@@ -41,22 +81,5 @@ namespace System
         Span<N,T> Next();
     }
 
-
-    /// <summary>
-    /// Characterizes a pseudo-random or entropic point source
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IRandomSource<T> : IPointSource<T>
-        where T : struct
-    {
-
-    }
-
-    public interface IRandomSource<N,T> : IPointSource<N,T>
-        where N : ITypeNat,new()
-        where T : struct
-    {
-
-    }
 
 }

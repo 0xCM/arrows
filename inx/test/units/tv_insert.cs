@@ -13,28 +13,28 @@ namespace Z0.Test
 
     public class tv_insert : UnitTest<tv_insert>
     {
-        public void Insert128Into256()
+        public void insert128()
         {
-            Insert<byte>();            
-            Insert<sbyte>();
-            Insert<short>();
-            Insert<ushort>();
-            Insert<int>();
-            Insert<uint>();
-            Insert<long>();
-            Insert<ulong>();
-            Insert<float>();
-            Insert<double>();
+            insert128_check<byte>();            
+            insert128_check<sbyte>();
+            insert128_check<short>();
+            insert128_check<ushort>();
+            insert128_check<int>();
+            insert128_check<uint>();
+            insert128_check<long>();
+            insert128_check<ulong>();
+            insert128_check<float>();
+            insert128_check<double>();
         
         }
 
-        void Insert<T>()
+        void insert128_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
             for(var i=0; i < Pow2.T06; i++)
             {
-                var v128Src = Random.CpuVec128<T>();
+                var v128Src = Polyrand.CpuVec128<T>();
                 var srcSpan = v128Src.ToSpan();
 
                 var dst = Vec256.Zero<T>();

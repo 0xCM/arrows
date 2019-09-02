@@ -13,7 +13,7 @@ namespace Z0
     /// <remarks>
     /// Core algorithms taken from the paper: https://arxiv.org/pdf/1402.6246.pdf
     /// </remarks>
-    public class XOrShift1024 : IRandomSource, IRandomSource<ulong>
+    public class XOrShift1024 : IRandomSource, IPointSource<ulong>
     {
         /// <summary>
         /// The jump table of predetermined constants to facilitate an efficient way
@@ -35,7 +35,7 @@ namespace Z0
         
         int p;
 
-        Polyrand MR;
+        IPolyrand MR;
 
         public XOrShift1024(ulong[] seed)
         {
@@ -82,18 +82,26 @@ namespace Z0
         
 
         [MethodImpl(Inline)]
+        public ulong Next()
+            => NextUInt64();
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
+
+        [MethodImpl(Inline)]
         public double NextDouble()
             => MR.Next<double>();
 
-        ulong IPointSource<ulong>.Next()
-            => NextUInt64();
+        int IRandomSource.NextInt32(int max)
+            => (this as IPointSource<ulong>).Next(max);
 
         ulong IRandomSource.NextUInt64(ulong max)
-            => (this as IRandomSource<ulong>).Next(max);
-
-        int IRandomSource.NextInt32(int max)
-            => (this as IRandomSource<ulong>).Next(max);
-
+            => Next(max);
     }
 
 }

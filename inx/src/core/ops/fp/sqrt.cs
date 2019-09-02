@@ -20,7 +20,7 @@ namespace Z0
         /// </summary>
         /// <param name="src"></param>
         [MethodImpl(Inline)]
-        public static Num128<float> sqrt(in Num128<float> src)
+        public static Scalar128<float> sqrt(in Scalar128<float> src)
             => SqrtScalar(src);
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Z0
         /// </summary>
         /// <param name="src"></param>
         [MethodImpl(Inline)]
-        public static Num128<double> sqrt(in Num128<double> src)
+        public static Scalar128<double> sqrt(in Scalar128<double> src)
             => SqrtScalar(src);
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Z0
         /// </summary>
         /// <param name="src"></param>
         [MethodImpl(Inline)]
-        public static ref Num128<float> rsqrt(ref Num128<float> src)
+        public static ref Scalar128<float> rsqrt(ref Scalar128<float> src)
         {
             src = ReciprocalSqrtScalar(src);
             return ref src;

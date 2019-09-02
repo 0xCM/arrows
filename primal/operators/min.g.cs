@@ -44,6 +44,11 @@ namespace Z0
                 throw unsupported<T>();
         }           
  
+        [MethodImpl(Inline)]
+        public static T min<T>(in T lhs, in T rhs)
+            where T : struct
+                => min(lhs,rhs);
+
         public static T min<T>(ReadOnlySpan<T> src)
             where T : struct
         {

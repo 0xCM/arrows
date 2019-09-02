@@ -124,10 +124,7 @@ namespace Z0
             }
         }
 
-        /// <summary>
-        /// Provides read-only access to the permutation terms
-        /// </summary>
-        public ReadOnlySpan<N,int> Terms
+        public ReadOnlySpan<int> Terms
             => perm.Terms;
 
         /// <summary>
@@ -193,6 +190,15 @@ namespace Z0
         /// </summary>
         /// <param name="random">The random source</param>
         public Perm<N> Shuffle(IRandomSource random)
+        {
+            perm.Shuffle(random);
+            return this;
+        }
+
+        /// Shuffles the permutation in-place using a provided random source.
+        /// </summary>
+        /// <param name="random">The random source</param>
+        public Perm<N> Shuffle(IPolyrand random)
         {
             perm.Shuffle(random);
             return this;

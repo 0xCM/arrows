@@ -118,13 +118,13 @@ namespace Z0.Test
         void negate128_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
+            CpuOpVerify.VerifyUnaryOp(Polyrand, blocks, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
         }
 
         void negate256_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            CpuOpVerify.VerifyUnaryOp(Random, blocks, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
+            CpuOpVerify.VerifyUnaryOp(Polyrand, blocks, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
         }
 
 

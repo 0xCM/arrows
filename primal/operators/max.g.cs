@@ -44,6 +44,11 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        [MethodImpl(Inline)]
+        public static T max<T>(in T lhs, in T rhs)
+            where T : struct
+                => max(lhs,rhs);
+
         public static T max<T>(ReadOnlySpan<T> src)
             where T : struct
         {

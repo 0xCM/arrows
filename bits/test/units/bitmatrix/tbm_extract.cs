@@ -16,11 +16,11 @@ namespace Z0.Test
     {
         public void VectorExtract()
         {
-            check_extractng(Random.BitMatrix<N9,N9,byte>());
-            check_extractng(Random.BitMatrix<N9,N9,ushort>());
-            check_extractng(Random.BitMatrix<N128,N128,uint>());
-            check_extractng(Random.BitMatrix<N16,N128,uint>());
-            check_extractng(Random.BitMatrix<N5,N7,uint>());            
+            check_extract(Polyrand.BitMatrix<N9,N9,byte>());
+            check_extract(Polyrand.BitMatrix<N9,N9,ushort>());
+            check_extract(Polyrand.BitMatrix<N128,N128,uint>());
+            check_extract(Polyrand.BitMatrix<N16,N128,uint>());
+            check_extract(Polyrand.BitMatrix<N5,N7,uint>());            
         }
 
         public void col8()
@@ -45,7 +45,7 @@ namespace Z0.Test
             CycleColExtract64();
         }
 
-        void check_extractng<M,N,T>(BitMatrix<M,N,T> src)
+        void check_extract<M,N,T>(BitMatrix<M,N,T> src)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
@@ -62,7 +62,7 @@ namespace Z0.Test
         {
             for(var j = 0; j< cycles; j++)
             {
-                var src = Random.BitMatrix64();
+                var src = Polyrand.BitMatrix64();
                 for(var c = 0; c < src.ColCount; c ++)
                 {
                     var col = src.ColVector(c);
@@ -77,7 +77,7 @@ namespace Z0.Test
         {
             for(var j = 0; j< cycles; j++)
             {
-                var src = Random.BitMatrix32();
+                var src = Polyrand.BitMatrix32();
                 for(var c = 0; c < src.ColCount; c ++)
                 {
                     var col = src.ColVec(c);
@@ -88,12 +88,11 @@ namespace Z0.Test
 
         }
 
-
         void CycleColExtract16(int cycles = DefaltCycleCount)
         {
             for(var j = 0; j< cycles; j++)
             {
-                var src = Random.BitMatrix16();
+                var src = Polyrand.BitMatrix16();
                 for(var c = 0; c < src.ColCount; c ++)
                 {
                     var col = src.ColVector(c);
@@ -108,7 +107,7 @@ namespace Z0.Test
         {
             for(var j = 0; j< cycles; j++)
             {
-                var src = Random.BitMatrix8();
+                var src = Polyrand.BitMatrix8();
                 for(var c = 0; c < src.ColCount; c ++)
                 {
                     var col = src.ColVector(c);
@@ -121,8 +120,8 @@ namespace Z0.Test
 
         public void eq32()
         {
-            var x = Random.BitMatrix32();
-            var y = Random.BitMatrix32();
+            var x = Polyrand.BitMatrix32();
+            var y = Polyrand.BitMatrix32();
             Claim.nea(x.Equals(y));
             Claim.yea(x.Equals(x));
             Claim.yea(y.Equals(y));
@@ -130,8 +129,8 @@ namespace Z0.Test
 
         public void eq64()
         {
-            var x = Random.BitMatrix64();
-            var y = Random.BitMatrix64();
+            var x = Polyrand.BitMatrix64();
+            var y = Polyrand.BitMatrix64();
             Claim.nea(x.Equals(y));
             Claim.nea(x == y);
             Claim.yea(x != y);
@@ -146,12 +145,12 @@ namespace Z0.Test
         public void flip64()
         {
             
-            var x = Random.BitMatrix64();
+            var x = Polyrand.BitMatrix64();
             var y = x.Replicate();
             var xff = -(-x);
             Claim.yea(xff == y);
 
-            var c = Random.BitMatrix64();
+            var c = Polyrand.BitMatrix64();
             var a = span<ulong>(64);
             for(var i = 0; i<64; i++)
                 a[i] = ~ c.RowData(i);

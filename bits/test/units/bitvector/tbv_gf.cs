@@ -12,84 +12,90 @@ namespace Z0.Test
 
     using static Nats;
 
-
     public class tbv_gf : UnitTest<tbv_gf>
     {
-        void VerifyPoly<N,T>(GfPoly<N,T> p, BitString match)
-            where N : ITypeNat, new()
-            where T : struct
+        protected override int SampleSize
+            => Pow2.T09;
+
+        public override int CycleCount
+            => Pow2.T12;
+
+        public void gfmul256()
         {
+            for(var i=0; i<SampleSize; i++)
+            {
+                var v1 = Random.BitVector8();
+                var v2 = Random.BitVector8();
+                var p1 = Gf256.mul(v1,v2); 
+                var p2 = Gf256.mul((byte)v1, (byte)v2);
+                var p4 = Gf256.mul_ref(v1,v2);
 
-            var bs = BitString.FromScalar(p.Scalar).Truncate(p.Degree + 1);
-            Claim.eq(bs, match);  
-
+                Claim.eq(p1,p2);
+                Claim.eq(p1,p4);
+            }
         }
 
-        public void VerifyPoly()
+        public void gfmul512()
         {
-            
-            VerifyPoly(GfPoly.Lookup<N3,byte>(), BitString.Parse("1011"));
-            
-            VerifyPoly(GfPoly.Lookup<N8,ushort>(4), BitString.Parse("100011101"));
-            Claim.eq((ushort)0b100011101, GfPoly.Lookup<N8,ushort>(4).Scalar);
-            
-            VerifyPoly(GfPoly.Lookup<N8,ushort>(5), BitString.Parse("100101011"));
-            VerifyPoly(GfPoly.Lookup<N16,uint>(), BitString.Parse("10000001111011101"));
-            
-        }
+            for(var i=0; i< SampleSize; i++)
+            {
+                var x1 = Polyrand.BitVector16(Pow2.T09);
+                var x2 = Polyrand.BitVector16(Pow2.T09);
+                var p1 = Gf512.mul(x1,x2); 
+                var p2 = Gf512.mul_ref(x1,x2);
+                Claim.eq(p1,p2);       
 
-
-        public void BenchGfBvMul()
-        {
-            var samples = Pow2.T14;
-            var cycles = Pow2.T08;
-            var lhsSrc = Random.Stream<byte>().Take(samples).Select(BitVector8.FromScalar).ToArray();
-            var rhsSrc = Random.Stream<byte>().Take(samples).Select(BitVector8.FromScalar).ToArray();
-                        
-            int Bench()
-            {                
-                var ops = 0;
-                for(var i=0; i< cycles; i++)
+                if(x1.Nonempty)
                 {
-                    for(var j=0; j< samples; j++)
-                    {
-                        var result = lhsSrc[j] * rhsSrc[j];
-                        ops++;
-                    }
+                    var order = x1.Order();
+                    Claim.eq(BitVector16.One, x1.Pow(order));
                 }
-                return ops;
-            }   
 
-            Measure(Bench);
-
+            }
+        
         }
 
-        public void BenchGfMulAlt()
+        void gfmul512_table()
         {
-            var samples = Pow2.T14;
-            var cycles = Pow2.T08;
-            var lhsSrc = Random.Array<byte>(samples);
-            var rhsSrc = Random.Array<byte>(samples);
-                        
-            int Bench()
-            {                
-                var ops = 0;
-                for(var i=0; i< cycles; i++)
+            ref var table = ref Gf512.products(out Matrix<N512,ushort> _);
+            var all = BitVector16.All(9).ToSet();
+            Claim.eq(all.Count,512);
+
+            foreach(var v in BitVector16.All(9))
+            {
+                if(v.Nonempty)
                 {
-                    for(var j=0; j< samples; j++)
-                    {
-                        Gf256.mulAlt(lhsSrc[j],rhsSrc[j]);
-                        ops++;
-                    }
+                    var square = v*v;
+                    table.First(x => square == x).Require();
+                    table.First(x => x == v).Require();
+                    //table.First(x => x * v == BitVector16.One, out (int i, int j) _).OnNone( () => Trace($"{++counter} No inverse!", v.FormatBits()));
                 }
-                return ops;
-            }   
-
-            Measure(Bench);
-
+            }
+            
         }
 
-        public void VerifyGf8()
+        public void gfmul256_table()
+        {
+            ref var table = ref Gf256.products(out Matrix<N256,byte> _);
+
+            foreach(var v in BitVector8.All)
+                if(v.Nonempty)
+                    table.First(x => x * v == BitVector8.One, out (int i, int j) _).Require();
+        }
+
+        public void gford256()
+        {                        
+            foreach(var v in BitVector8.All)
+            {
+                if(v.Nonempty)
+                {
+                    var order = v.Order();
+                    Claim.eq(BitVector8.One, v.Pow(order));
+                }
+            }
+        }
+
+        public void gfmul8()
         {
             var expect =  new byte[,]
             {
@@ -116,18 +122,57 @@ namespace Z0.Test
                 text.AppendLine();
             }
 
-
-            // Trace(text.ToString());
-            // Trace(actual.Format(render:x => x.ToBitString().Format()));
-
             for(var i=0; i<7; i++)
             for(var j=0; j<7; j++)
                 Claim.eq(expect[i,j], actual[i,j]);
+        }
 
+        public void gfpoly()
+        {            
+            gfpoly_check(GfPoly.Lookup<N3,byte>(), BitString.Parse("1011"));
+            
+            gfpoly_check(GfPoly.Lookup<N8,ushort>(), BitString.Parse("100011101"));
+            Claim.eq((ushort)0b100011101, GfPoly.Lookup<N8,ushort>().Scalar);
+            
+            gfpoly_check(GfPoly.Lookup<N16,uint>(), BitString.Parse("10000001111011101"));
+            
+        }
+
+        public void gfmulbv8_bench()
+        {
+            var lhsSrc = Random.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
+            var rhsSrc = Random.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
+            var result = BitVector8.Alloc();                        
+            int Bench()
+            {                
+                for(var i=0; i< CycleCount; i++)
+                for(var j=0; j< SampleSize; j++)
+                    result &= lhsSrc[j] * rhsSrc[j];
+                return SampleSize * CycleCount;
+            }   
+
+            Measure(Bench);
 
         }
 
-        public void BenchGfMul()
+        public void gfmul256_bench()
+        {
+            var lhsSrc = Random.Array<byte>(SampleSize);
+            var rhsSrc = Random.Array<byte>(SampleSize);
+            var result = (byte)0;
+                        
+            int Bench()
+            {                
+                for(var i=0; i< CycleCount; i++)
+                for(var j=0; j< SampleSize; j++)
+                    result &= Gf256.mul(lhsSrc[j],rhsSrc[j]);
+                return CycleCount*SampleSize;
+            }   
+
+            Measure(Bench);
+        }
+
+        void gfmul256ref_bench()
         {
             var samples = Pow2.T14;
             var cycles = Pow2.T08;
@@ -141,7 +186,7 @@ namespace Z0.Test
                 {
                     for(var j=0; j< samples; j++)
                     {
-                        Gf256.mul(lhsSrc[j],rhsSrc[j]);
+                        Gf256.mul_ref(lhsSrc[j],rhsSrc[j]);
                         ops++;
                     }
                 }
@@ -151,53 +196,13 @@ namespace Z0.Test
             Measure(Bench);
         }
 
-
-        public void VerifyGfMul()
+        void gfpoly_check<N,T>(GfPoly<N,T> p, BitString match)
+            where N : ITypeNat, new()
+            where T : struct
         {
 
-            for(var i=0; i<Pow2.T08; i++)
-            {
-                var v1 = Random.BitVector8();
-                var v2 = Random.BitVector8();
-                var p1 = Gf256.mul(v1,v2); 
-                var p2 = Gf256.mul((byte)v1, (byte)v2);
-                var p4 = Gf256.mulAlt(v1,v2);
-
-                Claim.eq(p1,p2);
-                Claim.eq(p1,p4);
-            }
-
-        }
-
-        public void VerifyMulTable()
-        {
-            var t1 = Gf256.products(1, 5);
-            var t2 = Gf256.products<N5>();
-            for(var i=1; i <= 5; i++)
-            {
-                for(var j=1; j<=5; j++)
-                {
-                    var product = Gf256.mul((byte)i,(byte)j);
-                    var e1 = t2[i - 1, j - 1];
-                    var e2 = t1[i - 1, j - 1];
-                    Claim.eq(e1, product);
-                    Claim.eq(e2, product);
-                }
-            }
-        }
-
-        public void VerifyOrders()
-        {                        
-            foreach(var u in BitVector8.All)
-            {
-                if(u.Nonempty)
-                {
-                    var order = u.Order();
-                    // Trace($"order({u}) = {order}");
-                    // Trace($"pow({u},{order}) = {u^order}");
-                    Claim.eq(BitVector8.One, u^order);
-                }
-            }
+            var bs = BitString.FromScalar(p.Scalar).Truncate(p.Degree + 1);
+            Claim.eq(bs, match);  
 
         }
 

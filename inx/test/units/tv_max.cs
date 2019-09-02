@@ -24,16 +24,15 @@ namespace Z0.Test
             Claim.eq(expect,result);
         }
         
-        public void InXMax128I32()
+        public void max128i32()
         {
-            var blocks = Pow2.T08;   
             var blocklen = Span128<int>.BlockLength;                     
-            var lhs = Random.ReadOnlySpan128<int>(blocks);
-            var rhs = Random.ReadOnlySpan128<int>(blocks);
-            var expect = Span128.AllocBlocks<int>(blocks);
-            var actual = Span128.AllocBlocks<int>(blocks);
+            var lhs = Polyrand.ReadOnlySpan128<int>(SampleSize);
+            var rhs = Polyrand.ReadOnlySpan128<int>(SampleSize);
+            var expect = Span128.AllocBlocks<int>(SampleSize);
+            var actual = Span128.AllocBlocks<int>(SampleSize);
             
-            for(var block = 0; block<blocks; block++)
+            for(var block = 0; block<SampleSize; block++)
             {
                 var offset = block*blocklen;
 
@@ -57,16 +56,15 @@ namespace Z0.Test
 
         }
 
-        public void InXMax256I32()
+        public void max256i32()
         {
-            var blocks = Pow2.T08;   
             var blocklen = Span256<int>.BlockLength;                     
-            var lhs = Random.ReadOnlySpan256<int>(blocks);
-            var rhs = Random.ReadOnlySpan256<int>(blocks);
-            var expect = Span256.AllocBlocks<int>(blocks);
-            var actual = Span256.AllocBlocks<int>(blocks);
+            var lhs = Polyrand.ReadOnlySpan256<int>(SampleSize);
+            var rhs = Polyrand.ReadOnlySpan256<int>(SampleSize);
+            var expect = Span256.AllocBlocks<int>(SampleSize);
+            var actual = Span256.AllocBlocks<int>(SampleSize);
             
-            for(var block = 0; block<blocks; block++)
+            for(var block = 0; block<SampleSize; block++)
             {
                 var offset = block*blocklen;
 

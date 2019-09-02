@@ -47,6 +47,10 @@ namespace Z0
         public static ulong inv(ulong pow2)
             => Pow2<ulong>.inv(pow2);
 
+        [MethodImpl(Inline)]
+        public static ulong inv(int pow2)
+            => Pow2<ulong>.inv((ulong)pow2);
+
         /// <summary>
         /// 2^0 = 1
         /// </summary>

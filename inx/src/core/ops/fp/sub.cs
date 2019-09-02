@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="lhs">The left vectorized scalar</param>
         /// <param name="rhs">The right vectorized scalar</param>
         [MethodImpl(Inline)]
-        public static Num128<float> sub(in Num128<float> lhs, in Num128<float> rhs)
+        public static Scalar128<float> sub(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => SubtractScalar(lhs, rhs);
             
         /// <summary>
@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="rhs">The right vectorized scalar</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Num128<double> sub(in Num128<double> lhs, in Num128<double> rhs)
+        public static Scalar128<double> sub(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => SubtractScalar(lhs, rhs);
 
         /// <summary>

@@ -14,6 +14,39 @@ namespace Z0
 
     public class tv_mul : UnitTest<tv_mul>
     {
+       public void clmul128()
+        {
+
+            for(var i=0; i<DefaultSampleSize; i++)
+            {
+                var v1 = Polyrand.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
+                var v2 = Polyrand.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
+                
+
+                UInt128 x00 = dinx.clmul(in v1, in v2, ClMulMask.X00);
+                UInt128 x01 = dinx.clmul(in v1, in v2, ClMulMask.X01);
+                UInt128 x10 = dinx.clmul(in v1, in v2, ClMulMask.X10);
+                UInt128 x11 = dinx.clmul(in v1, in v2, ClMulMask.X11);
+
+                var y00 = dinx.clmul(v1[0], v2[0]);
+                Claim.eq(x00, y00);
+                Claim.eq(x00, Bits.clmul_ref(v1[0], v2[0]));
+
+                var y01 = dinx.clmul(v1[1], v2[0]);
+                Claim.eq(x01, y01);
+                Claim.eq(x01, Bits.clmul_ref(v1[1], v2[0]));
+
+                var y10 = dinx.clmul(v1[0], v2[1]);
+                Claim.eq(x10, y10);
+                Claim.eq(x10, Bits.clmul_ref(v1[0],v2[1]));
+
+                var y11 = dinx.clmul(v1[1], v2[1]);
+                Claim.eq(x11, y11);
+                Claim.eq(x11, Bits.clmul_ref(v1[1], v2[1]));
+            }
+        
+        }
+
         public void mul256f64()
         {
             mul256f64_check();
@@ -137,55 +170,7 @@ namespace Z0
 
         }
 
-
-        static BitVector64 clmul(BitVector64 lhs, BitVector64 rhs)
-        {
-            var temp1 = lhs;
-            var temp2 = rhs;
-
-            var dst = BitVector64.Zero;            
-            var tempB = BitVector64.Zero;
-
-            for(var i=0; i<lhs.Length; i++)
-            {
-                tempB[i] = temp1[0] & temp2[i];
-                for(var j = 1; j <=i; j++)
-                    tempB[i] = tempB[i] ^ (temp1[j] & temp2[i - j]);
-                dst[i] = tempB[i];
-            }
-            return dst;
-        }
-
-        public void clmul128()
-        {
-
-            for(var i=0; i<DefaultSampleSize; i++)
-            {
-                var v1 = Random.CpuVec128(closed(50ul, 500ul));
-                var v2 = Random.CpuVec128(closed(50ul, 500ul));
-                
-
-                UInt128 x00 = dinx.clmul(in v1, in v2, ClMulMask.X00);
-                UInt128 x01 = dinx.clmul(in v1, in v2, ClMulMask.X01);
-                UInt128 x10 = dinx.clmul(in v1, in v2, ClMulMask.X10);
-                UInt128 x11 = dinx.clmul(in v1, in v2, ClMulMask.X11);
-
-                var y00 = dinx.clmul(v1[0], v2[0]);
-                Claim.eq(x00, y00);
-                Claim.eq(x00.lo, clmul(v1[0],v2[0]));
-
-                var y01 = dinx.clmul(v1[1], v2[0]);
-                Claim.eq(x01, y01);
-
-                var y10 = dinx.clmul(v1[0], v2[1]);
-                Claim.eq(x10, y10);
-
-                var y11 = dinx.clmul(v1[1], v2[1]);
-                Claim.eq(x11, y11);
-            }
-        
-        }
-
+ 
     }
 
 }

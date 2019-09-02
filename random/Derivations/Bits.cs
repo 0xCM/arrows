@@ -26,7 +26,8 @@ namespace Z0
                     yield return bs[i];                                    
             }
         }
- 
+
+
         /// <summary>
         /// Produces a random bitstring with randomized length
         /// </summary>
@@ -59,6 +60,7 @@ namespace Z0
             where N : ITypeNat, new()
                 => Z0.BitString.FromBits(random.Bits().Take((int)n.value));
 
+
         /// <summary>
         /// Produces sequences of random bitstrings with specified length
         /// </summary>
@@ -69,6 +71,7 @@ namespace Z0
             while(true)
                 yield return random.BitString(len);
         }
+
 
         /// <summary>
         /// Produces a random sequence of bitstrings with randomized length
@@ -96,6 +99,7 @@ namespace Z0
                         yield return bytes[i];
             }
         }
+
 
     }
 }

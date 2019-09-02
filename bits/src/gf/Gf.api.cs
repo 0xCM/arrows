@@ -15,6 +15,28 @@ namespace Z0
     public static class Gf
     {
         /// <summary>
+        /// Defines a binary polynomial from a monotonically decreasing exponent sequence
+        /// </summary>
+        /// <param name="exponents">The exponent sequence</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static T Poly<T>(params byte[] exponents)
+            where T : unmanaged
+        {
+            var components = default(T);
+            for(var i=0; i< exponents.Length; i++)
+                components = gbits.or(components, Pow2<T>.pow(exponents[i]));
+            return components;
+        }        
+
+        /// <summary>
+        /// Defines a binary polynomial of degree at most 15 from a monotonically decreasing exponent sequence
+        /// </summary>
+        /// <param name="exponents">The exponent sequence</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static GfPoly16 Poly16(params byte[] exponents)
+            => new GfPoly16(exponents);
+
+        /// <summary>
         /// Defines a binary polynomial of natural degree N
         /// </summary>
         /// <param name="exponents">The exponent values for nonzero coefficients</param>
@@ -56,8 +78,6 @@ namespace Z0
         /// <param name="exponents">The exponent values for nonzero coefficients</param>
         public static GfPoly<N32,ulong> Poly(N32 degree, params byte[] exponents)
             => Poly<N32,ulong>(exponents);
- 
- 
 
     }
 

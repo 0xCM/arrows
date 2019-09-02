@@ -15,7 +15,7 @@ namespace Z0
     public static class gfpv
     {
         [MethodImpl(Inline)]
-        public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> add<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -27,7 +27,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> sub<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -39,7 +39,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> mul<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> mul<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -64,7 +64,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> div<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> div<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -89,7 +89,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Num128<T> max<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> max<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -101,7 +101,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> min<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static Scalar128<T> min<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -113,7 +113,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool eq<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool eq<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -125,19 +125,19 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool neq<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool neq<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return dfp.neq(in float32(in lhs), in float32(in rhs));
+                return dfp.cmpneq(in float32(in lhs), in float32(in rhs));
             else if(typeof(T) == typeof(double))
-                return dfp.neq(in float64(in lhs), in float64(in rhs));
+                return dfp.cmpneq(in float64(in lhs), in float64(in rhs));
             else 
                 throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
-        public static bool gt<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool gt<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -149,7 +149,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool gteq<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool gteq<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -161,7 +161,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool lt<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool lt<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -174,7 +174,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bool ngt<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool ngt<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -186,7 +186,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool nlt<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool nlt<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -198,7 +198,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool lteq<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static bool lteq<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -210,7 +210,7 @@ namespace Z0
         }
  
         [MethodImpl(Inline)]
-        public static Num128<T> fmadd<T>(ref Num128<T> x, in Num128<T> y, in Num128<T> z)
+        public static Scalar128<T> fmadd<T>(ref Scalar128<T> x, in Scalar128<T> y, in Scalar128<T> z)
             where T : struct
         {
             if(typeof(T) == typeof(float))

@@ -24,7 +24,7 @@ namespace Z0
         /// </summary>
         /// <param name="src"></param>
         [MethodImpl(Inline)]
-        public static unsafe Num128<float> scalar(in float src)
+        public static unsafe Scalar128<float> scalar(in float src)
             => LoadScalarVector128(refptr(ref asRef(in src)));
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Z0
         /// </summary>
         /// <param name="src"></param>
         [MethodImpl(Inline)]
-        public static unsafe Num128<double> scalar(in double src)
+        public static unsafe Scalar128<double> scalar(in double src)
             => LoadScalarVector128(refptr(ref asRef(in src)));
 
         /// <summary>
@@ -68,14 +68,14 @@ namespace Z0
             => Floor(src);
  
          [MethodImpl(Inline)]
-        public static ref Num128<float> floor(ref Num128<float> src)
+        public static ref Scalar128<float> floor(ref Scalar128<float> src)
         {
             src = FloorScalar(src);
             return ref src;
         }
         
         [MethodImpl(Inline)]
-        public static ref Num128<double> floor(ref Num128<double> src)
+        public static ref Scalar128<double> floor(ref Scalar128<double> src)
         {
             src = FloorScalar(src);
             return ref src;

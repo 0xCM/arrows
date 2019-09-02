@@ -14,7 +14,7 @@ namespace Z0
     partial class ginxs
     {
         [MethodImpl(Inline)]
-        public static Num128<T> ToScalar128<T>(this Vec128<T> src, int index)
+        public static Scalar128<T> ToScalar128<T>(this Vec128<T> src, int index)
             where T : struct            
                 => Num128.define(src[index]);
 
@@ -25,7 +25,7 @@ namespace Z0
         /// <param name="block">The block index</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Num128<T> ToScalar128<T>(this ReadOnlySpan128<T> src, int block = 0)            
+        public static Scalar128<T> ToScalar128<T>(this ReadOnlySpan128<T> src, int block = 0)            
             where T : struct            
                 => Num128.load(src,block);
 

@@ -41,6 +41,36 @@ namespace Z0
          }           
 
         [MethodImpl(Inline)]
+        public static ref T pow<T>(ref T b, T exp)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.pow(ref int8(ref b), int8(exp));
+            else if(typeof(T) == typeof(byte))
+                math.pow(ref uint8(ref b), uint8(exp));
+            else if(typeof(T) == typeof(short))
+                math.pow(ref int16(ref b), int16(exp));
+            else if(typeof(T) == typeof(ushort))
+                math.pow(ref uint16(ref b), uint16(exp));
+            else if(typeof(T) == typeof(int))
+                math.pow(ref int32(ref b), int32(exp));
+            else if(typeof(T) == typeof(uint))
+                math.pow(ref uint32(ref b), uint32(exp));
+            else if(typeof(T) == typeof(long))
+                math.pow(ref int64(ref b), int64(exp));
+            else if(typeof(T) == typeof(ulong))
+                math.pow(ref uint64(ref b), uint64(exp));
+            else if(typeof(T) == typeof(float))
+                math.pow(ref float32(ref b), float32(exp));
+            else if(typeof(T) == typeof(double))
+                math.pow(ref float64(ref b), float64(exp));
+            else            
+               throw unsupported<T>();
+            
+            return ref b;
+         }           
+
+        [MethodImpl(Inline)]
         public static Span<T> pow<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {

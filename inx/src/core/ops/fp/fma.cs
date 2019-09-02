@@ -46,7 +46,7 @@ namespace Z0
         /// <param name="y">The second operand</param>
         /// <param name="z">The third operand</param>
         [MethodImpl(Inline)]
-        public static Num128<float> fnmadd(in Num128<float> x, in Num128<float> y, in Num128<float> z)
+        public static Scalar128<float> fnmadd(in Scalar128<float> x, in Scalar128<float> y, in Scalar128<float> z)
             => MultiplyAddNegatedScalar(x,y,z);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <param name="y">The second operand</param>
         /// <param name="z">The third operand</param>
         [MethodImpl(Inline)]
-        public static Num128<double> fnmadd(in Num128<double> x, in Num128<double> y, in Num128<double> z)
+        public static Scalar128<double> fnmadd(in Scalar128<double> x, in Scalar128<double> y, in Scalar128<double> z)
             => MultiplyAddNegatedScalar(x,y,z);
 
         /// <summary>

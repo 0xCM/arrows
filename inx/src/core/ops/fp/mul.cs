@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Num128<float> mul(in Num128<float> lhs, in Num128<float> rhs)
+        public static Scalar128<float> mul(in Scalar128<float> lhs, in Scalar128<float> rhs)
             =>  MultiplyScalar(lhs, rhs);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Num128<double> mul(in Num128<double> lhs, in Num128<double> rhs)
+        public static Scalar128<double> mul(in Scalar128<double> lhs, in Scalar128<double> rhs)
             =>  MultiplyScalar(lhs, rhs);
 
         /// <summary>

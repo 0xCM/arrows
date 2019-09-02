@@ -18,54 +18,61 @@ namespace Z0
 
     partial class dfp
     {
-
+        /// <summary>
+        /// __m128 _mm_cmp_ss (__m128 a, __m128 b, const int imm8) VCMPSD xmm, xmm, xmm/m64, imm8
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static bool gteq(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
-        
+        public static Scalar128<float> cmp(in Scalar128<float> lhs, in Scalar128<float> rhs, FpCmpMode mode)
+            => CompareScalar(lhs,rhs, fpmode(mode));
+   
+        /// <summary>
+        /// __m128d _mm_cmp_sd (__m128d a, __m128d b, const int imm8) VCMPSS xmm, xmm, xmm/m32, imm8
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static bool gteq(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
-
+        public static Scalar128<double> cmp(in Scalar128<double> lhs, in Scalar128<double> rhs, FpCmpMode mode)
+            => CompareScalar(lhs,rhs, fpmode(mode));
+    
         [MethodImpl(Inline)]
-        public static bool eq(in Num128<float> lhs,in Num128<float> rhs)
-            => CompareScalarUnorderedEqual(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static bool eq(in Num128<double> lhs,in Num128<double> rhs)
-            => CompareScalarUnorderedEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static bool gt(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarOrderedGreaterThan(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static bool gt(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarOrderedGreaterThan(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static bool lteq(in Num128<float> lhs, in Num128<float> rhs)
+        public static bool lteq(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => CompareScalarUnorderedLessThanOrEqual(lhs,rhs);
         
         [MethodImpl(Inline)]
-        public static bool lteq(in Num128<double> lhs, in Num128<double> rhs)
+        public static bool lteq(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => CompareScalarUnorderedLessThanOrEqual(lhs, rhs);
 
+        /// <summary>
+        /// __m128 _mm_cmple_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(2)
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static bool neq(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarOrderedNotEqual(lhs, rhs);
+        public static Vec128<float> lteq(in Vec128<float> lhs, in Vec128<float> rhs)
+            => CompareLessThanOrEqual(lhs, rhs);
+        
+        /// <summary>
+        /// __m128d _mm_cmple_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(2)
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">The right vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> lteq(in Vec128<double> lhs, in Vec128<double> rhs)
+            => CompareLessThanOrEqual(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static bool gteq(in Scalar128<float> lhs, in Scalar128<float> rhs)
+            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
         
         [MethodImpl(Inline)]
-        public static bool neq(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarOrderedNotEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static bool lt(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareScalarOrderedLessThan(lhs, rhs);                
-
-        [MethodImpl(Inline)]
-        public static bool lt(in Num128<double> lhs, in Num128<double> rhs)
-            => CompareScalarOrderedLessThan(lhs, rhs);
+        public static bool gteq(in Scalar128<double> lhs, in Scalar128<double> rhs)
+            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
 
         /// <summary>
         /// __m128 _mm_cmpge_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(5)
@@ -103,14 +110,15 @@ namespace Z0
         public static Vec128Cmp<float> nlt(in Vec128<float> lhs, in Vec128<float> rhs)
             => Vec128Cmp.Define<float>(CompareNotLessThan(lhs,rhs));
 
+
         /// <summary>
         /// __m128 _mm_cmpnge_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(1)
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128Cmp<float> ngteq(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareNotGreaterThanOrEqual(lhs,rhs));
+        public static Vec128<float> ngteq(in Vec128<float> lhs, in Vec128<float> rhs)
+            => CompareNotGreaterThanOrEqual(lhs,rhs);
 
         /// <summary>
         /// __m128d _mm_cmpnge_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(1)
@@ -118,26 +126,8 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128Cmp<double> ngteq(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareNotGreaterThanOrEqual(lhs,rhs));
-
-        /// <summary>
-        /// __m128 _mm_cmpneq_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(4)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<float> neq(in Vec128<float> lhs, in Vec128<float> rhs)
-            => CompareNotEqual(lhs, rhs);
-        
-        /// <summary>
-        /// __m128d _mm_cmpneq_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(4)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<double> neq(in Vec128<double> lhs, in Vec128<double> rhs)
-            => CompareNotEqual(lhs, rhs);
+        public static Vec128<double> ngteq(in Vec128<double> lhs, in Vec128<double> rhs)
+            => CompareNotGreaterThanOrEqual(lhs,rhs);
 
         /// <summary>
         /// __m128 _mm_cmpnlt_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(5)
@@ -175,135 +165,10 @@ namespace Z0
         public static Vec128<double> ngt(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareNotGreaterThan(lhs, rhs);
  
-        /// <summary>
-        /// __m128 _mm_cmple_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(2)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> lteq(in Vec128<float> lhs, in Vec128<float> rhs)
-            => CompareLessThanOrEqual(lhs, rhs);
-        
-        /// <summary>
-        /// __m128d _mm_cmple_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(2)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<double> lteq(in Vec128<double> lhs, in Vec128<double> rhs)
-            => CompareLessThanOrEqual(lhs, rhs);
+        public static bool[] cmpf(in Vec128<double> lhs,in Vec128<double> rhs, FpCmpMode mode)
+            => Compare(lhs,rhs,fpmode(mode)).TestNaN();
 
-        [MethodImpl(Inline)]
-        public static bool[] cmpf(in Vec128<double> lhs,in Vec128<double> rhs, FloatComparisonMode mode)
-            => Compare(lhs,rhs,mode).TestNaN();
-
-        /// <summary>
-        ///  __m128 _mm_cmplt_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(1)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<float> lt(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareLessThan(lhs,rhs));
-        
-        /// <summary>
-        /// __m128d _mm_cmplt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(1)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> lt(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareLessThan(lhs,rhs));
-    
-        /// <summary>
-        /// __m256 _mm256_cmp_ps (__m256 a, __m256 b, const int imm8) VCMPPS ymm, ymm, ymm/m256, imm8
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> lt(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs,FloatComparisonMode.OrderedLessThanNonSignaling));
-
-        /// <summary>
-        /// __m256d _mm256_cmp_pd (__m256d a, __m256d b, const int imm8) VCMPPD ymm, ymm, ymm/m256, imm8 
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> lt(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedLessThanNonSignaling));
-
-        /// <summary>
-        /// __m128 _mm_cmpgt_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(6)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<float> gt(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareGreaterThan(lhs,rhs));
-        
-        /// <summary>
-        /// __m128d _mm_cmpgt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(6)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> gt(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareGreaterThan(lhs,rhs));
-
-        /// <summary>
-        /// __m256 _mm256_cmp_ps (__m256 a, __m256 b, const int imm8) VCMPPS ymm, ymm, ymm/m256, imm8
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> gt(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
-
-        /// <summary>
-        /// __m256d _mm256_cmp_pd (__m256d a, __m256d b, const int imm8) VCMPPD ymm, ymm,ymm/m256, imm8
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> gt(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
-
-        /// <summary>
-        ///  __m128 _mm_cmpeq_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(0)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<float> eq(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Vec128Cmp.Define<float>(CompareEqual(lhs,rhs));
-
-        /// <summary>
-        /// __m128d _mm_cmpeq_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(0)
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128Cmp<double> eq(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Vec128Cmp.Define<double>(CompareEqual(lhs,rhs));
-
-        /// <summary>
-        /// __m256 _mm256_cmp_ps (__m256 a, __m256 b, const int imm8) VCMPPS ymm, ymm, ymm/m256, imm8
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<float> eq(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Vec256Cmp.Define<float>(Compare(lhs,rhs, FloatComparisonMode.UnorderedEqualNonSignaling));
-
-        /// <summary>
-        /// __m256d _mm256_cmp_pd (__m256d a, __m256d b, const int imm8) VCMPPD ymm, ymm, ymm/m256, imm8
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256Cmp<double> eq(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Vec256Cmp.Define<double>(Compare(lhs,rhs, FloatComparisonMode.UnorderedEqualNonSignaling));
 
         /// <summary>
         /// Determines whether the componenents are assigned the NaN value and
@@ -313,6 +178,38 @@ namespace Z0
         [MethodImpl(Inline)]
         static bool[] TestNaN(this Vector128<double> src)
             => array(src.GetElement(0).IsNaN(), src.GetElement(1).IsNaN());
+
+        [MethodImpl(Inline)]
+        public static bool[] cmpf(in Vec256<float> lhs,in Vec256<float> rhs, FpCmpMode mode)
+        {
+            Span<float> vresult = stackalloc float[8];
+            Compare(lhs,rhs,fpmode(mode)).StoreTo(ref head(vresult));
+            var bits = new bool[8];
+            bits[0] = double.IsNaN(vresult[0]);
+            bits[1] = double.IsNaN(vresult[1]);
+            bits[2] = double.IsNaN(vresult[2]);
+            bits[3] = double.IsNaN(vresult[3]);
+            bits[4] = double.IsNaN(vresult[4]);
+            bits[5] = double.IsNaN(vresult[5]);
+            bits[6] = double.IsNaN(vresult[6]);
+            bits[7] = double.IsNaN(vresult[7]);
+            return bits;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static bool[] cmpf(in Vec256<double> lhs,in Vec256<double> rhs, FpCmpMode mode)
+        {
+            Span<double> vresult = stackalloc double[4];
+            Compare(lhs,rhs,fpmode(mode)).StoreTo(ref head(vresult));
+            var bits = new bool[4];
+            bits[0] = double.IsNaN(vresult[0]);
+            bits[1] = double.IsNaN(vresult[1]);
+            bits[2] = double.IsNaN(vresult[2]);
+            bits[3] = double.IsNaN(vresult[3]);
+            return bits;
+
+        }
 
     }
 

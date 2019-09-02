@@ -16,34 +16,8 @@ namespace Z0
     partial class dinx
     {                
         /// <summary>
-        /// Returns the cary-less 16 bit product of two 8-bit operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ushort clmul(byte lhs, byte rhs)
-            => (ushort)clmul((uint)lhs, (uint)rhs);
-
-        /// <summary>
-        /// Returns the cary-less 32 bit product of two 16-bit operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static uint clmul(ushort lhs, ushort rhs)
-            => (uint)clmul((uint)lhs, (uint)rhs);
-
-        /// <summary>
-        /// Returns the cary-less 64 bit product from two 32-bit operands
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        [MethodImpl(Inline)]
-        public static ulong clmul(uint lhs, uint rhs)
-            => clmul((ulong)lhs, (ulong)rhs).lo;
-
-        /// <summary>
-        /// Returns the cary-less 128 bit product of two 64-bit operands
+        /// __m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8
+        /// Computes the caryless 128-bit product of two 64-bit operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -57,7 +31,17 @@ namespace Z0
 
         /// <summary>
         /// __m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8
-        /// Returns the cary-less 128 bit product of two 64-bit operands
+        /// Computes the caryless 128-bit product of two 64-bit operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> clmul(Scalar128<ulong> a, Scalar128<ulong> b)
+            => CarrylessMultiply(a,b,0x00);
+
+        /// <summary>
+        /// __m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8
+        /// Computes the caryless 128-bit product of two 64-bit operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -65,7 +49,34 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ClMulMask mask)
             =>  CarrylessMultiply(lhs, rhs, (byte)mask);
-    
+
+        /// <summary>
+        /// Computes the caryless 16-bit product of two 8-bit operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static ushort clmul(byte lhs, byte rhs)
+            => (ushort)clmul((uint)lhs, (uint)rhs);
+
+        /// <summary>
+        /// Returns the caryless 32 bit product of two 16-bit operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static uint clmul(ushort lhs, ushort rhs)
+            => (uint)clmul((uint)lhs, (uint)rhs);
+
+        /// <summary>
+        /// Returns the caryless 64 bit product from two 32-bit operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static ulong clmul(uint lhs, uint rhs)
+            => clmul((ulong)lhs, (ulong)rhs).lo;
+
         /// <summary>
         /// Computes carry-less product variations for two source vectors
         /// </summary>
@@ -83,9 +94,6 @@ namespace Z0
                 );
             return ref dst;
         }
-
-        //=> extract(CarrylessMultiply(Vec128.LoadScalar((ulong)lhs), Vec128.LoadScalar((ulong)rhs), 0x00), 0);
-
     }
 
     /// <summary>
@@ -114,6 +122,4 @@ namespace Z0
         /// </summary>
         X11 = 0x11,
     }
-
-
 }

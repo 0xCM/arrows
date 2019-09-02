@@ -14,7 +14,7 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/wyhash.h</remarks>
-    class WyHash64 : IRandomSource<ulong>, IRandomSource
+    class WyHash64 : IPointSource<ulong>, IRandomSource
     {
         readonly ulong Seed;
         
@@ -46,7 +46,15 @@ namespace Z0
             return m2;
         }
 
-        IRandomSource<ulong> PointSource
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
+
+        IPointSource<ulong> PointSource
             => this;
 
         ulong IRandomSource.NextUInt64()

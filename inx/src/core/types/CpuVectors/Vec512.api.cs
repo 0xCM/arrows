@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="v11">The most signficant vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec512<T> FromParts<T>(in Vec128<T> v00, in Vec128<T> v01, in Vec128<T> v10, in Vec128<T> v11)        
+        public static Vec512<T> FromParts<T>(Vec128<T> v00, Vec128<T> v01, Vec128<T> v10, Vec128<T> v11)        
             where T : struct
         {
             Vec256<T> lo = default;

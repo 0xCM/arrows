@@ -15,16 +15,37 @@ namespace Z0.Test
     public class tbv_perm : UnitTest<tbv_perm>
     {
 
-        public void perm8()
+        public void perm8_example()
         {        
-            var p1 = Perm.Define<N8>((2,3), (6,7));
-            var bsx1 = ((byte)0b10001101).ToBitString();
-            var bsy1 = BitString.Parse("01001101");
-            var bsz1 = bsx1.Permute(p1);
-            Claim.eq(bsy1, bsz1);
+            var perm = Perm.Define<N8>((2,3), (6,7));
+            var bs1 = ((byte)0b10001101).ToBitString();
+            var bs2 = BitString.Parse("01001101");
+            var bs3 = bs1.Permute(perm);
+            Claim.eq(bs2, bs3);            
+
+        }
+
+
+        public void Experiment()
+        {
+            //Create an explicit bit pattern
+            var pattern = Polyrand.Bits().Select(x => (byte)x).TakeArray(32);
+
+            //Push pattern into a 256-bit vector
+            var vPattern = Vec256.Load(pattern);
+
+            //Define permutation
+            var perm = Perm.Define<N32>((1,10), (2,11), (3, 8));
+
+            var vPerm = Vec256.Load(perm.Terms);
+
+            //var result = dinx.permute(vPattern, vPerm)
+
             
 
         }
+
+
 
         public void perm16()
         {        

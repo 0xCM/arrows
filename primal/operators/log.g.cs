@@ -15,6 +15,7 @@ namespace Z0
 
     partial class gmath
     {        
+
         /// <summary>
         /// Computes the base-2 log of the source value
         /// </summary>

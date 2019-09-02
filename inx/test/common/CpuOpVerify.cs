@@ -12,10 +12,9 @@ namespace Z0
     
     using static zfunc;
 
-
     public static class CpuOpVerify
     {
-        public static void VerifyUnaryOp<T>(IRandomSource random, int blocks, Vec128UnaryOp<T> inXOp, Func<T,T> primalOp)
+        public static void VerifyUnaryOp<T>(IPolyrand random, int blocks, Vec128UnaryOp<T> inXOp, Func<T,T> primalOp)
             where T : struct
         {
             var blocklen = Span128<T>.BlockLength;                     
@@ -50,7 +49,7 @@ namespace Z0
             Claim.eq(expect, actual);
         }
 
-        public static void VerifyUnaryOp<T>(IRandomSource random, int blocks, Vec256UnaryOp<T> inXOp, Func<T,T> primalOp)
+        public static void VerifyUnaryOp<T>(IPolyrand random, int blocks, Vec256UnaryOp<T> inXOp, Func<T,T> primalOp)
             where T : struct
         {
             var blocklen = Span256<T>.BlockLength;                     
@@ -85,7 +84,7 @@ namespace Z0
             Claim.eq(expect, actual);
         }
 
-        public static void VerifyBinOp<T>(IRandomSource random, int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
+        public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
             where T : struct
         {
             var blocklen = Span128<T>.BlockLength;                     
@@ -124,7 +123,7 @@ namespace Z0
             Claim.eq(expect, actual);
         }
 
-        public static void VerifyBinOp<T>(IRandomSource random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
+        public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
             where T : struct
         {
             var blocklen = Span256<T>.BlockLength;                     

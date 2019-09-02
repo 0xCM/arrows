@@ -21,7 +21,7 @@ namespace Z0
     
     public struct BitMatrix32
     {                
-        uint[] data;        
+        Memory<uint> data;        
 
         /// <summary>
         /// The matrix order
@@ -92,42 +92,32 @@ namespace Z0
             => new BitMatrix32(src);
 
         /// <summary>
-        /// Applies element-wise addition to corresponding operand entries. Note that this operator
-        /// is equivalent to the XOr (^) operator
-        /// </summary>
-        /// <param name="lhs">The left matrix</param>
-        /// <param name="rhs">The right matrix</param>
-        [MethodImpl(Inline)]
-        public static BitMatrix32 operator + (BitMatrix32 lhs, BitMatrix32 rhs)
-            => XOr(ref lhs, rhs);
-
-        /// <summary>
-        /// Negates the operand. Note that this operator is equivalent to the complement operator (~)
+        /// Negates the operand. 
         /// </summary>
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix32 operator - (BitMatrix32 src)
-            => Flip(ref src);
+            => Flip(in src);
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 operator - (BitMatrix32 lhs, BitMatrix32 rhs)
-            => lhs + -rhs;
+        public static BitMatrix32 operator - (in BitMatrix32 lhs, in BitMatrix32 rhs)
+            => lhs ^( -rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 operator * (BitMatrix32 lhs, BitMatrix32 rhs)
-            => Mul(lhs, rhs);
+        public static BitMatrix32 operator * (in BitMatrix32 lhs, in BitMatrix32 rhs)
+            => Mul(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector32 operator * (BitMatrix32 lhs, BitVector32 rhs)
-            => Mul(lhs,rhs);
+        public static BitVector32 operator * (in BitMatrix32 lhs, in BitVector32 rhs)
+            => Mul(in lhs,in rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 operator & (BitMatrix32 lhs, BitMatrix32 rhs)
-            => And(lhs, rhs);
+        public static BitMatrix32 operator & (in BitMatrix32 lhs, in BitMatrix32 rhs)
+            => And(in lhs, in rhs);
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 operator | (BitMatrix32 lhs, BitMatrix32 rhs)
-            => Or(ref lhs, rhs);
+        public static BitMatrix32 operator | (in BitMatrix32 lhs, in BitMatrix32 rhs)
+            => Or(in lhs, in rhs);
 
         /// <summary>
         /// Applies element-wise XOR to corresponding operand entries. Note that this
@@ -137,16 +127,15 @@ namespace Z0
         /// <param name="rhs">The right matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix32 operator ^ (BitMatrix32 lhs, BitMatrix32 rhs)
-            => XOr(ref lhs, rhs);
+            => XOr(lhs, rhs);
 
         /// <summary>
-        /// Computes the complement of the operand. Note that this operator is 
-        /// equivalent to the negation operator (-)
+        /// Computes the complement of the operand. 
         /// </summary>
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix32 operator ~ (BitMatrix32 src)
-            => Flip(ref src);
+            => Flip(src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix32 lhs, BitMatrix32 rhs)
@@ -170,10 +159,10 @@ namespace Z0
             this.data = src;
         }        
 
-        readonly uint[] Bits
+        readonly Span<uint> Bits
         {
             [MethodImpl(Inline)]
-            get => data;
+            get => data.Span;
         }
 
         /// <summary>
@@ -221,7 +210,7 @@ namespace Z0
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix32 Replicate()
-            => new BitMatrix32(Bits.Replicate()); 
+            => new BitMatrix32(data.ToArray());
 
         public readonly int RowCount
         {
@@ -293,7 +282,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)] 
         public readonly Span<byte> Bytes()
-            => Bits.AsSpan().AsBytes();
+            => Bits.AsBytes();
 
         [MethodImpl(Inline)]
         public bool Equals(in BitMatrix32 rhs)
@@ -388,82 +377,71 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
 
-        static BitMatrix32 And(BitMatrix32 lhs, BitMatrix32 rhs)
+        static BitMatrix32 And(in BitMatrix32 A, in BitMatrix32 B)
         {
             const int rowstep = 8;
             var dst = Alloc();
-            for(var i=0; i< lhs.RowCount; i += rowstep)
+            for(var i=0; i< A.RowCount; i += rowstep)
             {
-                lhs.LoadVector(out Vec256<uint> vLhs, i);
-                rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.And(vRhs).StoreTo(ref dst.data[i]);                
+                var x1 = load(ref A[i]);
+                var x2 = load(ref B[i]);
+                dinx.and(x1,x2).StoreTo(ref dst[i]);
+            }
+            return dst;
+        }
+
+        static BitMatrix32 Or(in BitMatrix32 A, in BitMatrix32 B)
+        {
+            const int rowstep = 8;
+            var dst = Alloc();
+            for(var i=0; i< A.RowCount; i += rowstep)
+            {
+                var x1 = load(ref A[i]);
+                var x2 = load(ref B[i]);
+                Z0.Bits.or(in x1, in x2).StoreTo(ref dst[i]);
             }
             return dst;
         }
 
 
-        static ref BitMatrix32 And(ref BitMatrix32 lhs, in BitMatrix32 rhs)
+        static BitMatrix32 XOr(in BitMatrix32 A, in BitMatrix32 B)
         {
             const int rowstep = 8;
-            for(var i=0; i< lhs.RowCount; i += rowstep)
+            var dst = Alloc();
+            for(var i=0; i< A.RowCount; i += rowstep)
             {
-                lhs.LoadVector(out Vec256<uint> vLhs, i);
-                rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.And(vRhs).StoreTo(ref lhs.data[i]);                
+                var x1 = load(ref A[i]);
+                var x2 = load(ref B[i]);
+                Z0.Bits.xor(in x1,in x2).StoreTo(ref dst[i]);
             }
-            return ref lhs;
+            return dst;
         }
 
-        static ref BitMatrix32 Or(ref BitMatrix32 lhs, in BitMatrix32 rhs)
+        static  BitMatrix32 Flip(in BitMatrix32 A)
         {
             const int rowstep = 8;
-            for(var i=0; i< lhs.RowCount; i += rowstep)
+            var dst = Alloc();
+            for(var i=0; i< A.RowCount; i += rowstep)
             {
-                lhs.LoadVector(out Vec256<uint> vLhs, i);
-                rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.Or(vRhs).StoreTo(ref lhs.Bits[i]);                
+                var x1 = load(ref A[i]);
+                Z0.Bits.flip(in x1).StoreTo(ref dst[i]);
             }
-            return ref lhs;
+            return dst;
         }
 
-        static ref BitMatrix32 XOr(ref BitMatrix32 lhs, in BitMatrix32 rhs)
-        {
-            const int rowstep = 8;
-            for(var i=0; i< lhs.RowCount; i += rowstep)
-            {
-                lhs.LoadVector(out Vec256<uint> vLhs, i);
-                rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.XOr(vRhs).StoreTo(ref lhs.Bits[i]);                
-            }
-            return ref lhs;
-        }
-
-        static ref BitMatrix32 Flip(ref BitMatrix32 src)
-        {
-            const int rowstep = 8;
-            for(var i=0; i< src.RowCount; i += rowstep)
-            {
-                src.LoadVector(out Vec256<uint> vSrc, i);
-                vSrc.Flip().StoreTo(ref src.Bits[i]);
-            }
-            return ref src;
-        }
-
-        static BitVector32 Mul(in BitMatrix32 x, in BitVector32 y)
+        static BitVector32 Mul(in BitMatrix32 A, in BitVector32 x)
         {
             var dst = BitVector32.Alloc();
             for(var i=0; i< N; i++)
-                dst[i] = x.RowVec(i) % y;
+                dst[i] = A.RowVec(i) % x;
             return dst;        
         }
 
-        static BitMatrix32 Mul(BitMatrix32 lhs, BitMatrix32 rhs)
+        static BitMatrix32 Mul(in BitMatrix32 A, in BitMatrix32 B)
         {
-            //var x = lhs.Replicate();
             var dst = Alloc();
-            var x = lhs;
-            var y = rhs.Transpose();
-
+            var x = A;
+            var y = B.Transpose();
             for(var row=0; row< N; row++)
             {
                 var r = x.RowVec(row);
@@ -474,26 +452,9 @@ namespace Z0
 
         }
 
-        static ref BitMatrix32 Mul(ref BitMatrix32 lhs, in BitMatrix32 rhs)
-        {
-            //var x = lhs.Replicate();
-            var x = lhs;
-            var y = rhs.Transpose();
-
-            for(var row=0; row< N; row++)
-            {
-                var r = x.RowVec(row);
-                for(var col = 0; col< N; col++)
-                    lhs[row,col] = y.RowVec(col) % r;
-            }
-            return ref lhs;
-
-        }
-
         [MethodImpl(Inline)]
         static unsafe Vec256<uint> load(ref uint head)
             => Avx.LoadVector256(refptr(ref head));
-
 
         static ReadOnlySpan<byte> Identity32x32 => new byte[]
         {

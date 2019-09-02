@@ -11,22 +11,8 @@ namespace Z0.Rng
     using static zfunc;
     using static math;
 
-    public class Pcg32 : Pcg<ulong>,  IRandomSource<uint>
+    public class Pcg32 : Pcg<ulong>, IStepwiseSource<uint>
     {
-
-        /// <summary>
-        /// Returns a sequence of generators predicated on supplied seed and index values
-        /// </summary>
-        /// <param name="seeds">A span of seed values</param>
-        /// <param name="indices">A span of index values</param>
-        public static Span<Pcg32> Suite(Span<ulong> seeds, Span<ulong> indices)        
-        {
-            var count = length(seeds,indices);
-            var g = span<Pcg32>(count);
-            for(var i=0; i<count; i++)
-                g[i] = Pcg32.Define(seeds[i], indices[i]);
-            return g;
-        }        
 
         public static Pcg32 Define(ulong s0, ulong? index = null)
             => new Pcg32(s0,index);
@@ -36,7 +22,7 @@ namespace Z0.Rng
         
 
         [MethodImpl(Inline)]
-        Pcg32(ulong s0, ulong? index = null)
+        public Pcg32(ulong s0, ulong? index = null)
         {
             Init(s0, index ?? DefaultIndex64);
         }
@@ -78,6 +64,14 @@ namespace Z0.Rng
                 yield return Next();
             }
         }
+
+        [MethodImpl(Inline)]
+        public uint Next(uint max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public uint Next(uint min, uint max)        
+            => min + Next(max - min);
 
         [MethodImpl(Inline)]
         public void Advance(ulong delta)  

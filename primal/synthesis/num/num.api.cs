@@ -12,6 +12,8 @@ namespace Z0
     using System.Runtime.InteropServices;    
         
     using static zfunc;
+    using static As;
+    
 
     public static class Num
     {
@@ -24,7 +26,7 @@ namespace Z0
         /// <param name="last">The last integer to yield</param>
         /// <typeparam name="T">The underlying integer type</typeparam>
         public static IEnumerable<num<T>> range<T>(T from, T to)
-            where T : struct
+            where T : unmanaged
         {
             var first = num(from);
             var last = num(to);
@@ -39,37 +41,42 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<num<T>> alloc<T>(int len)
-            where T : struct
+            where T : unmanaged
                 => new num<T>[len];
 
         [MethodImpl(Inline)]
+        public static num<T> from<T>(in T src)
+            where T : unmanaged
+                => Unsafe.As<T,num<T>>(ref asRef(in src));
+
+        [MethodImpl(Inline)]
         public static num<T> num<T>(T src)
-            where T : struct
+            where T : unmanaged
                 => Unsafe.As<T,num<T>>(ref src);
 
         [MethodImpl(Inline)]
         public static ref num<T> num<T>(ref T src)
-            where T : struct
+            where T : unmanaged
                 => ref Unsafe.As<T,num<T>>(ref src);
 
         [MethodImpl(Inline)]
         public static ref T scalar<T>(ref num<T> src)
-            where T : struct
+            where T : unmanaged
                 => ref Unsafe.As<num<T>,T>(ref src);
 
         [MethodImpl(Inline)]
         public static num<T> zero<T>()
-            where T : struct
+            where T : unmanaged
                 => num(gmath.zero<T>());
 
         [MethodImpl(Inline)]
         public static num<T> one<T>()
-            where T : struct
+            where T : unmanaged
                 => num(gmath.one<T>());
 
         [MethodImpl(Inline)]
         public static Span<num<T>> numbers<T>(params T[] src)
-            where T : struct
+            where T : unmanaged
         {
             var dst = alloc<T>(src.Length);
             for(var i=0; i<src.Length; i++)
@@ -79,12 +86,12 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public static ReadOnlySpan<num<T>> load<T>(ReadOnlySpan<T> src)
-            where T : struct
+            where T : unmanaged
                 => MemoryMarshal.Cast<T,num<T>>(src);
 
         [MethodImpl(Inline)]
         public static Span<num<T>> load<T>(Span<T> src)
-            where T : struct
+            where T : unmanaged
                 => MemoryMarshal.Cast<T,num<T>>(src);
    }
 }

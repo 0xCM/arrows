@@ -17,11 +17,11 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Num128<float> add(in Num128<float> lhs, in Num128<float> rhs)
+        public static Scalar128<float> add(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => AddScalar(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Num128<double> add(in Num128<double> lhs, in Num128<double> rhs)
+        public static Scalar128<double> add(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => AddScalar(lhs, rhs);
 
         [MethodImpl(Inline)]

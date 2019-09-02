@@ -44,20 +44,7 @@ namespace Z0.Mkl.Test
             where T : struct
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => Random.Matrix<M,N,T>(domain);
-
-        /// <summary>
-        /// Produces a square random matrix of natural order
-        /// </summary>
-        /// <param name="n">The square matrix order</param>
-        /// <param name="rep">A representative scalar value</param>
-        /// <typeparam name="N">The order type</typeparam>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        protected Matrix<N,T> RMat<N,T>(Interval<T>? domain = null, N n = default)
-            where T : struct
-            where N : ITypeNat, new()
-                => Random.Matrix<N,T>(domain);
+                => Polyrand.Matrix<M,N,T>(domain);
 
         [MethodImpl(Inline)]
         protected Vector<float> RVecF32(int len, int? min = null, int? max = null)
@@ -74,45 +61,10 @@ namespace Z0.Mkl.Test
             where N : ITypeNat, new()
                 => Random.NatVec<N,int,float>(closed(min ?? -25, max ?? 25));
 
-
         [MethodImpl(Inline)]
         protected Vector<double> RVecF64<N>(N len = default, long? min = null, long? max = null)
             where N : ITypeNat, new()
                 => Random.NatVec<N,long,double>(closed(min ?? -25L, max ?? 25L));
-
-
-        [MethodImpl(Inline)]
-        protected Matrix<N,float> RMatF32<N,S,T>(N n = default, int? min = null, int? max = null)
-            where T : struct
-            where S : struct
-            where N : ITypeNat, new()
-                => Random.Matrix<N,int, float>(closed(min ?? -25, max ?? 25));
-
-        [MethodImpl(Inline)]
-        protected Matrix<N,double> RMatF64<N,S,T>(N n = default, long? min = null, long? max = null)
-            where T : struct
-            where S : struct
-            where N : ITypeNat, new()
-                => Random.Matrix<N,long, double>(closed(min ?? -25L, max ?? 25L));
-
-
-        [MethodImpl(Inline)]
-        protected Matrix<M,N,float> RMatF32<M,N,S,T>(N n = default, int? min = null, int? max = null)
-            where T : struct
-            where S : struct
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-                => Random.Matrix<M,N,int, float>(closed(min ?? -25, max ?? 25));
-
-
-        [MethodImpl(Inline)]
-        protected Matrix<M,N,double> RMatF64<M,N,S,T>(N n = default, long? min = null, long? max = null)
-            where T : struct
-            where S : struct
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-                => Random.Matrix<M,N,long, double>(closed(min ?? -25L, max ?? 25L));
-
     }
 
 

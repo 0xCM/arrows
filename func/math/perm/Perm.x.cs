@@ -50,7 +50,7 @@ namespace Z0
             => src.ReadOnly().Permute(p);
 
         /// <summary>
-        /// Formats ther terms of a permutation
+        /// Formats the terms of a permutation
         /// </summary>
         /// <param name="terms">The permutation terms</param>
         /// <param name="colwidth">The width of each column</param>
@@ -75,6 +75,15 @@ namespace Z0
             
             return line1.ToString() + eol() + line2.ToString();
         }
+
+        /// <summary>
+        /// Formats the terms of a permutation
+        /// </summary>
+        /// <param name="terms">The permutation terms</param>
+        /// <param name="colwidth">The width of each column</param>
+        /// <typeparam name="T">The term type</typeparam>
+        internal static string FormatPerm<T>(this Span<T> terms,  int? colwidth = null)
+            => terms.ReadOnly().FormatPerm(colwidth);
 
         /// <summary>
         /// Applies a sequence of transpositions to source span elements

@@ -25,11 +25,11 @@ namespace Z0
             => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Num128<float> div(in Num128<float> lhs, in Num128<float> rhs)
+        public static Scalar128<float> div(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => DivideScalar(lhs, rhs);
             
         [MethodImpl(Inline)]
-        public static Num128<double> div(in Num128<double> lhs, in Num128<double> rhs)
+        public static Scalar128<double> div(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => DivideScalar(lhs, rhs);
 
         [MethodImpl(Inline)]

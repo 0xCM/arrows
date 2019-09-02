@@ -14,7 +14,7 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/splitmix64.h</remarks>
-    class SplitMix64 : IRandomSource<ulong>, IRandomSource
+    class SplitMix64 : IPointSource<ulong>//, IRandomSource
     {
         const ulong X1 = 0x9E3779B97F4A7C15;
         
@@ -26,19 +26,15 @@ namespace Z0
         
         ulong State;
 
-
-        Polyrand PR;
-
         public SplitMix64(ulong Seed)
         {
             this.Seed = Seed;
             this.State = Seed;
-            this.PR = new Polyrand(PointSource);    
 
         }
 
         [MethodImpl(Inline)]
-        public static ulong Next(ulong state)
+        static ulong NextState(ulong state)
         {
             ulong z = state + X1;
             z = (z ^ (z >> 30)) * X2;
@@ -49,25 +45,20 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong Next()
         {
-            var next = Next(State);
+            var next = NextState(State);
             State += X1;
             return next;
         }
 
-        IRandomSource<ulong> PointSource
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        public ulong Next(ulong min, ulong max)
+            => min + Next().Contract(max - min);
+
+        IPointSource<ulong> PointSource
             => this;
 
-        ulong IRandomSource.NextUInt64()
-            => PR.Next<ulong>();
- 
-        ulong IRandomSource.NextUInt64(ulong max)
-            => PR.Next(max);   
-
-        int IRandomSource.NextInt32(int max)
-            => PR.Next(max);
-
-        double IRandomSource.NextDouble()
-            => PR.Next<double>();
 
     }
 }

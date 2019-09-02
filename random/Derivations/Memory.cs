@@ -12,7 +12,14 @@ namespace Z0
 
     partial class RngX
     {
-
+        /// <summary>
+        /// Samples a memory segment of specified length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="length">The number of elements in the segment</param>
+        /// <param name="domain">The sample domain, if specified</param>
+        /// <param name="filter">The filter, if specified</param>
+        /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static Memory<T> Memory<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
@@ -21,15 +28,6 @@ namespace Z0
             return stream.TakeMemory(length);
         }
 
-        [MethodImpl(Inline)]
-        public static Memory<T> Memory<T>(this IRandomSource random, int length, Interval<T> domain)
-            where T : struct
-            => random.Stream<T>(domain).TakeMemory(length);
-
-        [MethodImpl(Inline)]
-        public static Memory<T> NonZeroMemory<T>(this IRandomSource random, int samples, Interval<T>? domain = null)
-                where T : struct
-                    => random.Memory<T>(samples, domain, gmath.nonzero);        
     }
 
 }

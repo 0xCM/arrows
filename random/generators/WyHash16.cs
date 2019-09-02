@@ -14,7 +14,7 @@ namespace Z0
     /// Implements a 16-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://lemire.me/blog/2019/07/03/a-fast-16-bit-random-number-generator/</remarks>
-    class WyHash16 : IRandomSource<ushort>
+    class WyHash16 : IPointSource<ushort>
     {
         [MethodImpl(Inline)]
         public WyHash16(ushort Seed, ushort? Increment = null)
@@ -60,8 +60,9 @@ namespace Z0
         }   
 
         [MethodImpl(Inline)]
-        public ushort Next(Interval<ushort> domain)
-            => math.add(domain.Left, Next(domain.Width()));
+        public ushort Next(ushort min, ushort max)
+            => math.add(min, Next((ushort)(max - min)));
+
 
         public IEnumerable<ushort> Stream()
         {

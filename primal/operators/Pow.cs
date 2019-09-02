@@ -20,7 +20,7 @@ namespace Z0
             if(exp < 0)
                 return 0;
 
-            var result = I8One;
+            var result = (sbyte)1;
             while(true)
             {
                 if((exp & 1) != 0)
@@ -36,7 +36,7 @@ namespace Z0
 
         public static byte pow(byte b, byte exp)
         {
-            var result = U8One;
+            var result = (byte)1;
             while(true)
             {
                 if((exp & 1) != 0)
@@ -54,7 +54,7 @@ namespace Z0
             if(exp < 0)
                 return 0;
 
-            var result = I16One;
+            var result = (short)1;
             while(true)
             {
                 if((exp & 1) != 0)
@@ -69,7 +69,7 @@ namespace Z0
 
         public static ushort pow(ushort b, ushort exp)
         {
-            var result = U16One;
+            var result = (ushort)1;
             while(true)
             {
                 if((exp & 1) != 0)
@@ -156,6 +156,76 @@ namespace Z0
         public static double pow(double src, double exp)
             => Math.Pow(src,exp);
  
+        [MethodImpl(Inline)]
+        public static ref sbyte pow(ref sbyte src, sbyte exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte pow(ref byte src, byte exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short pow(ref short src, short exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort pow(ref ushort src, ushort exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int pow(ref int src, int exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint pow(ref uint src, uint exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long pow(ref long src, long exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong pow(ref ulong src, ulong exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float pow(ref float src, float exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double pow(ref double src, double exp)
+        {
+            src = pow(src,exp);
+            return ref src;
+        }
+
         public static Span<sbyte> pow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
         {
             var len =  length(b,exp);

@@ -41,7 +41,7 @@ namespace Z0
         /// </summary>
         /// <param name="random">The point source</param>
         /// <typeparam name="T">The point type</typeparam>
-        public static IEnumerable<T> Stream<T>(this IRandomSource<T> random)
+        public static IEnumerable<T> Stream<T>(this IPointSource<T> random)
             where T : struct
         {
             while(true)
@@ -54,7 +54,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="count">The number of values to select</param>
         /// <typeparam name="T">The value type</typeparam>
-        public static IEnumerable<T> Take<T>(this IRandomSource<T> random, int count)
+        public static IEnumerable<T> Take<T>(this IPointSource<T> random, int count)
             where T : struct
                 => random.Stream().Take(count);
 
@@ -125,6 +125,8 @@ namespace Z0
                 Unsafe.Add(ref dst, counter++) = it.Current;
         }
 
+
+ 
         static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
         {
@@ -135,6 +137,7 @@ namespace Z0
                 return src.UnfilteredStream(domain);
 
         }
+
         static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
@@ -145,11 +148,12 @@ namespace Z0
                 return src.UnfilteredStream(configured);
         }
  
-       [MethodImpl(Inline)]
-       static Interval<T> Configure<T>(this Interval<T>? domain)        
+        [MethodImpl(Inline)]
+        static Interval<T> Configure<T>(this Interval<T>? domain)        
             where T : struct
                 => domain.ValueOrElse(() => RNG.TypeDomain<T>());
-                
+
+
         static IEnumerable<T> FilteredStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter)
             where T : struct
         {
@@ -195,6 +199,7 @@ namespace Z0
             }
         }
 
+        
         static IEnumerable<T> UnfilteredStream<T>(this IRandomSource src, Interval<T> domain)
             where T : struct
         {

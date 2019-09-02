@@ -29,7 +29,6 @@ namespace Z0.Test
             eq128_check<byte>();
         }
 
-
         public void eq128i16()
         {
             

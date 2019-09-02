@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyrhs   :  (c) Chris Moore, 2019
+// Copymask   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
 namespace Z0
@@ -16,85 +16,167 @@ namespace Z0
 
     partial class dinx
     {
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<byte> lhs, in Vec128<byte> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<byte> src, in Vec128<byte> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<sbyte> src, in Vec128<sbyte> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<short> lhs, in Vec128<short> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<short> src, in Vec128<short> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<ushort> src, in Vec128<ushort> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<int> lhs, in Vec128<int> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<int> src, in Vec128<int> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<uint> lhs, in Vec128<uint> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<uint> src, in Vec128<uint> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<long> lhs, in Vec128<long> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<long> src, in Vec128<long> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm_testnzc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec128<ulong> src, in Vec128<ulong> mask)
+            => TestZ(src,mask);        
 
-        [MethodImpl(Inline)]
-        public static bool testz(in Vec128<float> lhs, in Vec128<float> rhs)
-            => TestZ(lhs,rhs);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<double> lhs, in Vec128<double> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<byte> src, in Vec256<byte> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<byte> lhs, in Vec256<byte> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<short> src, in Vec256<short> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<short> lhs, in Vec256<short> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<ushort> src, in Vec256<ushort> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<int> src, in Vec256<int> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<int> lhs, in Vec256<int> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<uint> src, in Vec256<uint> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<uint> lhs, in Vec256<uint> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<long> src, in Vec256<long> mask)
+            => TestZ(src,mask);        
 
+        /// <summary>
+        /// int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether all mask-specified source bits are off
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<long> lhs, in Vec256<long> rhs)
-            => TestZ(lhs,rhs);        
+        public static bool testz(in Vec256<ulong> src, in Vec256<ulong> mask)
+            => TestZ(src,mask);        
 
-        [MethodImpl(Inline)]
-        public static bool testz(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-            => TestZ(lhs,rhs);        
-
-        [MethodImpl(Inline)]
-        public static bool testz(in Vec256<float> lhs, in Vec256<float> rhs)
-            => TestZ(lhs,rhs);        
-
-        [MethodImpl(Inline)]
-        public static bool testz(in Vec256<double> lhs, in Vec256<double> rhs)
-            => TestZ(lhs,rhs);        
 
     }    
 

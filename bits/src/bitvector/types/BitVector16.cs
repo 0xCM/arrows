@@ -8,22 +8,27 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Numerics;
 
     using static zfunc;    
-    using static Bits;
-    using static Bytes;
 
     /// <summary>
     /// Defines a 16-bit bitvector
     /// </summary>
+    [StructLayout(LayoutKind.Explicit, Size = 2)]
     public struct BitVector16 : IPrimalBits<BitVector16, ushort>
     {
+        [FieldOffset(0)]
         ushort data;
+
+        [FieldOffset(0)]        
+        byte x0000;
+        
+        [FieldOffset(1)]
+        byte x0001;
 
         public static readonly BitVector16 Zero = 0;
 
-        public static readonly BitVector8 One = 1;
+        public static readonly BitVector16 One = 1;
 
         public static readonly BitSize BitSize = 16;
 
@@ -75,6 +80,14 @@ namespace Z0
         public static BitVector16 FromScalar(int src)
             => new BitVector16((ushort)src);    
 
+        /// <summary>
+        /// Creates a vector from the least 16 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 FromScalar(ulong src)
+            => new BitVector16((ushort)src);    
+
         [MethodImpl(Inline)]
         public static BitVector16 FromScalars(byte lo, byte hi)
             => FromScalar((ushort)hi << 8 | (ushort)lo);
@@ -88,17 +101,14 @@ namespace Z0
             => src.TakeUInt16();    
 
         /// <summary>
-        /// Enumerates each and every 16-bit bitvector exactly once
+        /// Enumerates all 16-bit bitvectors whose width is less than or equal to a specified maximum width
         /// </summary>
-        public static IEnumerable<BitVector16> All
+        public static IEnumerable<BitVector16> All(int maxwidth)
         {
-           get
-           {
-                var bv = BitVector16.Zero;
-                do 
-                    yield return bv;            
-                while(++bv);
-           }
+            var maxval = Pow2.pow(maxwidth);
+            var bv = BitVector16.Zero;
+            while(bv < maxval)
+                yield return bv++;            
         }
 
         [MethodImpl(Inline)]
@@ -116,18 +126,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator ushort(BitVector16 src)
             => src.data;        
-
+        
         [MethodImpl(Inline)]
         public static implicit operator BitVector32(BitVector16 src)
-            => BitVector32.FromScalar(src.data);
+            => src.ToBitVector32();
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(BitVector16 src)
-            => BitVector64.FromScalar(src.data);
+            => src.ToBitVector64();
 
         [MethodImpl(Inline)]
         public static explicit operator BitVector8(BitVector16 src)
-            => BitVector8.FromScalar((byte)src.data);
+            => src.ToBitVector8();
 
         /// <summary>
         /// Computes the bitwise XOR of the source operands
@@ -140,8 +150,16 @@ namespace Z0
             => (ushort)(lhs.data ^ rhs.data);
 
         /// <summary>
+        /// Raises a vector b to a power n where n >= 0
+        /// </summary>
+        /// <param name="b">The base vector</param>
+        /// <param name="n">The power</param>
+        [MethodImpl(Inline)]        
+        public static BitVector16 operator ^(BitVector16 b, int n)
+            => b.Pow(n);
+
+        /// <summary>
         /// Computes the bitwise AND of the source operands
-        /// Note that the AND operator is equivalent to the (*) operator
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -178,14 +196,13 @@ namespace Z0
             => lhs ^ rhs;
 
         /// <summary>
-        /// Computes the product of the operands. Note that this operator is equivalent 
-        /// to the AND operator (&)
+        /// Computes the product of the operands. 
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static BitVector16 operator *(BitVector16 lhs, BitVector16 rhs)
-            => lhs & rhs;
+            => Gf512.mul(lhs,rhs);
 
         /// <summary>
         /// Negates the operand. 
@@ -271,6 +288,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector16(in ushort src)
+            : this()
             => this.data = src;
 
         public Bit this[BitPos pos]
@@ -307,22 +325,23 @@ namespace Z0
         }
 
         /// <summary>
-        /// The vector's 8 most significant bits
-        /// </summary>
-        public BitVector8 Hi
-        {
-            [MethodImpl(Inline)]
-            get => hi(in data);        
-        }
-        
-        /// <summary>
         /// The vector's 8 least significant bits
         /// </summary>
         public BitVector8 Lo
         {
             [MethodImpl(Inline)]
-            get => lo(in data);        
+            get => x0000;
         }
+
+        /// <summary>
+        /// The vector's 8 most significant bits
+        /// </summary>
+        public BitVector8 Hi
+        {
+            [MethodImpl(Inline)]
+            get => x0001;
+        }
+        
 
         /// <summary>
         /// Zero-extends the vector to a vector that accomondates
@@ -375,6 +394,24 @@ namespace Z0
             return this;
         }
 
+        /// <summary>
+        /// Raises the vector to a power
+        /// </summary>
+        /// <param name="n">The power</param>
+        public BitVector16 Pow(int n)
+        {
+            if(n == 0)                
+                return Zero;
+            else if(n==1)
+                return this;
+            else
+            {                
+                var dst = Replicate();
+                for(var i=2; i<=n; i++)
+                    dst *= this;
+                return dst;
+            }
+        }
 
         /// <summary>
         /// Rotates vector bits rightwards by a specified offset
@@ -569,6 +606,38 @@ namespace Z0
         }
 
         /// <summary>
+        /// Computes the least number of bits required to represent vector content
+        /// </summary>
+        public int MinWidth
+        {
+            [MethodImpl(Inline)]
+            get => Bits.width(in data);
+        }
+
+        /// <summary>
+        /// Computes the smallest integer n > 1 such that v^n = identity
+        /// </summary>
+        public int Order()
+        {
+            var dst = Replicate();
+            for(var i=2; i<512; i++)
+            {
+                dst *= this;
+                if(dst == One)
+                    return i;
+
+            }
+            return 0;
+        }
+
+        [MethodImpl(Inline)]
+        BitVector16 Mul(in BitVector16 rhs)
+        {
+            data = Gf512.mul(data, rhs.data);
+            return this;
+        }
+
+        /// <summary>
         /// Returns a copy of the vector
         /// </summary>
         [MethodImpl(Inline)]
@@ -604,6 +673,34 @@ namespace Z0
         [MethodImpl(Inline)]
         public ushort ToScalar()
             => data;
+
+        /// <summary>
+        /// Applies a truncating reduction Bv16 -> Bv8
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector8 ToBitVector8()
+            => BitVector8.FromScalar(data);
+
+        /// <summary>
+        /// The identity conversion Bv16 -> Bv16
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector16 ToBitVector16()
+            => BitVector16.FromScalar(data);
+
+        /// <summary>
+        /// A widening conversion Bv16 -> Bv32
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector32 ToBitVector32()
+            => BitVector32.FromScalar(data);
+
+        /// <summary>
+        /// A widening conversion Bv16 -> Bv64
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector64 ToBitVector64()
+            => BitVector64.FromScalar(data);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVector16 rhs)

@@ -12,37 +12,24 @@ namespace Z0.Rng
     using static zfunc;
     using static math;
 
-    public class Pcg64 : Pcg<ulong>, IRandomSource<ulong>, IRandomSource
-    {
-
-        /// <summary>
-        /// Returns a sequence of generators predicated on supplied seed and index values
-        /// </summary>
-        /// <param name="seeds">A span of seed values</param>
-        /// <param name="indices">A span of index values</param>
-        public static Span<Pcg64> Suite(Span<ulong> seeds, Span<ulong> indices)        
-        {
-            var count = length(seeds,indices);
-            var g = span<Pcg64>(count);
-            for(var i=0; i<count; i++)
-                g[i] = Pcg64.Define(seeds[i], indices[i]);
-            return g;
-        }        
-
+    /// <summary>
+    /// Implemements a 64-bit PCG generator
+    /// </summary>
+    class Pcg64 : Pcg<ulong>, IStepwiseSource<ulong>, IRandomSource
+    {    
         public static Pcg64 Define(ulong s0, ulong? index = null)
             => new Pcg64(s0,index);
      
         public readonly ulong Multiplier 
             = DefaultMultiplier64;
         
-
-        IRandomSource<ulong> PointSource
+        IPointSource<ulong> PointSource
             => this;
 
         Polyrand PR;
 
         [MethodImpl(Inline)]
-        Pcg64(ulong s0, ulong? index = null)
+        public Pcg64(ulong s0, ulong? index = null)
         {
             Init(s0, index ?? DefaultIndex64);
             this.PR = new Polyrand(PointSource);    
@@ -107,11 +94,19 @@ namespace Z0.Rng
             return dst;         
         }
 
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
+
         ulong IRandomSource.NextUInt64()
-            => PR.Next<ulong>();
+            => Next();
  
         ulong IRandomSource.NextUInt64(ulong max)
-            => PR.Next(max);   
+            => Next(max);
 
         int IRandomSource.NextInt32(int max)
             => PR.Next(max);

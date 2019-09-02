@@ -18,7 +18,15 @@ namespace Z0
     public static class Vec256Pattern
     {        
         /// <summary>
-        /// Retruns a reference to a vector that decribes a lo/hi lane merge permutation
+        /// Returns an immutable reference to a vector with all bits turned on
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static ref readonly Vec256<T> Ones<T>()
+            where T : struct
+                => ref Vec256Pattern<T>.Ones;
+
+        /// <summary>
+        /// Returns an immutable reference to a vector that decribes a lo/hi lane merge permutation
         /// For example, if X = [A E B F | C G D H] then the lane merge pattern M will
         /// describe a permutation that has the following effect: permute(X,M) = [A B C D | E F G H]
         /// </summary>
@@ -61,8 +69,7 @@ namespace Z0
                 => ref Vec256Pattern<T>.FpSignMask;
 
         /// <summary>
-        /// Creates a vector with incrementing components
-        /// v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
+        /// Creates a vector with incrementing components, v[0] = first and v[i+1] = v[i] + 1 for i=1...N-1
         /// </summary>
         /// <param name="first">The value of the first component</param>
         /// <typeparam name="T">The primal component type</typeparam>
@@ -71,8 +78,7 @@ namespace Z0
                 => Vec256Pattern<T>.Increments(first,swaps);
 
         /// <summary>
-        /// Creates a vector with decrementing components
-        /// v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
+        /// Creates a vector with decrementing components v[0] = last and v[i-1] = v[i] - 1 for i=1...N-1
         /// </summary>
         /// <param name="last">The value of the first component</param>
         /// <param name="swaps">Transpositions applied to decrements prior to vector creation</param>

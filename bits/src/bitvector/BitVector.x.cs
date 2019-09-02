@@ -236,6 +236,7 @@ namespace Z0
         public static BitVector64 ToBitVector64(this ushort src)        
             => src;
 
+
         /// <summary>
         /// Defines a 64-bit bitvector where the lower 16 bits are determined by a 16-bit signed integer 
         /// </summary>
@@ -268,6 +269,7 @@ namespace Z0
         public static BitVector64 ToBitVector64(this long src)        
             => (ulong)src;
 
+
         /// <summary>
         /// Constructs a 64-bit bitvector an integer source
         /// </summary>
@@ -275,7 +277,71 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64(this ulong src)        
             => src;
-    
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 8-bit signed integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this sbyte src)        
+            => (byte)src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 8-bit unsigned integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this byte src)        
+            => src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 16-bit signed integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this short src)        
+            => (ushort)src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 16-bit unsigned integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this ushort src)        
+            => src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 32-bit signed integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this int src)        
+            => (uint)src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 32-bit unsigned integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this uint src)        
+            => src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 64-bit signed integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this long src)        
+            => (ulong)src;
+
+        /// <summary>
+        /// Creates a 128-bit bitvector from a 64-bit unsigned integer
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this ulong src)        
+            => src;
+
         /// <summary>
         /// Converts the source bitvector it the equivalent natural/generic bitvector
         /// </summary>
@@ -307,6 +373,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N64,ulong> ToGeneric(this BitVector64 src)
             => src;
+
+        /// <summary>
+        /// Constructs a 128-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector128(this BitString src)
+            => BitVector128.FromBitString(src);
 
         /// <summary>
         /// Constructs a 64-bit bitvector from bitstring
@@ -367,6 +441,5 @@ namespace Z0
         public static Vec256<T> ToCpuVec256<T>(this BitString src)
             where T : struct        
                 => src.Pack().As<byte,T>().ToSpan256().ToCpuVec256();                
-
     }
 }

@@ -17,9 +17,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(math.ceil(float32(src)));
+                return generic<T>(fmath.ceil(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(math.ceil(float64(src)));
+                return generic<T>(fmath.ceil(float64(src)));
             else
                 throw unsupported<T>();
         }
@@ -38,12 +38,12 @@ namespace Z0
             where T : struct
             => ceil(src, span<T>(src.Length));
 
-        public static ref Span<T> ceil<T>(ref Span<T> io)
+        public static Span<T> ceil<T>(Span<T> io)
             where T : struct
         {
             for(var i =0; i<io.Length; i++)
                 io[i] = ceil(io[i]);
-            return ref io;
+            return io;
         }
 
     }

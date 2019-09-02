@@ -19,184 +19,165 @@ namespace Z0
     partial class dinx
     {
         /// <summary>
-        /// _mm_testc_si128
+        /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<sbyte> src, in Vec128<sbyte> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<byte> lhs, in Vec128<byte> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<byte> src, in Vec128<byte> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<short> lhs, in Vec128<short> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<short> src, in Vec128<short> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<ushort> src, in Vec128<ushort> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<int> lhs, in Vec128<int> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<int> src, in Vec128<int> mask)
+            => TestC(src, mask);        
         
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<uint> lhs, in Vec128<uint> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<uint> src, in Vec128<uint> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<long> lhs, in Vec128<long> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec128<long> src, in Vec128<long> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm_testc_si128 (__m128i a, __m128i b) PTEST xmm, xmm/m128
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-            => TestC(lhs, rhs);                     
+        public static bool testc(in Vec128<ulong> src, in Vec128<ulong> mask)
+            => TestC(src, mask);                     
 
-        /// <summary>
-        /// int _mm_testc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static bool testc(in Vec128<float> lhs, in Vec128<float> rhs)
-            => TestC(lhs, rhs);                     
-
-        /// <summary>
-        /// int _mm_testc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static bool testc(in Vec128<double> lhs, in Vec128<double> rhs)
-            => TestC(lhs, rhs);                     
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<byte> lhs, in Vec256<byte> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<byte> src, in Vec256<byte> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<short> lhs, in Vec256<short> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<short> src, in Vec256<short> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<ushort> src, in Vec256<ushort> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<int> lhs, in Vec256<int> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<int> src, in Vec256<int> mask)
+            => TestC(src, mask);        
         
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<uint> lhs, in Vec256<uint> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<uint> src, in Vec256<uint> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<long> lhs, in Vec256<long> rhs)
-            => TestC(lhs, rhs);        
+        public static bool testc(in Vec256<long> src, in Vec256<long> mask)
+            => TestC(src, mask);        
 
         /// <summary>
         /// _mm256_testc_si256
+        /// Determines whether mask-specified source bits are all on
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="mask">Specifies the bits in the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-            => TestC(lhs, rhs);                             
+        public static bool testc(in Vec256<ulong> src, in Vec256<ulong> mask)
+            => TestC(src, mask);                             
 
-        /// <summary>
-        /// int _mm256_testc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static bool testc(in Vec256<float> lhs, in Vec256<float> rhs)
-            => TestC(lhs, rhs);                             
-
-        /// <summary>
-        /// int _mm256_testc_pd (__m256d a, __m256d b) VTESTPS ymm, ymm/m256
-        /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]
-        public static bool testc(in Vec256<double> lhs, in Vec256<double> rhs)
-            => TestC(lhs, rhs);                             
 
     }
 

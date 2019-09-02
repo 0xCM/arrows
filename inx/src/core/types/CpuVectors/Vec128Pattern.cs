@@ -22,6 +22,8 @@ namespace Z0
 
         static readonly Vec128<T> Zero = Vec128<T>.Zero;
 
+        public static readonly Vec128<T> Ones = ginx.cmpeq(Zero,Zero);
+        
         public static readonly Vec128<T> Increasing = Increments();
 
         public static readonly Vec128<T> Decreasing = Decrements(convert<T>(Length - 1));

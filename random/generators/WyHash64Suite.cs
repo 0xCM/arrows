@@ -11,7 +11,7 @@ namespace Z0
     using System.Collections.Generic;
 
 
-    class WyHash64Suite<N> : IRandomSource<N, ulong>
+    class WyHash64Suite<N> : IPointSource<N, ulong>
         where N : ITypeNat, new()
 
     {

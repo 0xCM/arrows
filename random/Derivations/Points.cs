@@ -15,6 +15,16 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
+        /// Queries the source for the next value in the interval [0, max) if max >= 0
+        /// </summary>
+        /// <param name="random">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        internal static int Next(this IPointSource<ulong> random, int max)
+            => max >= 0 ? (int)random.Next((ulong)max) 
+                : - (int)random.Next((ulong) (Int32.MaxValue + max));        
+
+        /// <summary>
         /// Retrieves the next point from a random source over a range
         /// </summary>
         /// <param name="src">The random source</param>
@@ -47,56 +57,7 @@ namespace Z0
             where T : struct
                 => src.NextPoint<T>(); 
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static byte Next(this IRandomSource src, byte min, byte max)
-            => src.Next(closed(min,max));
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static sbyte Next(this IRandomSource src, sbyte min, sbyte max)
-            => src.Next(closed(min,max));
-
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static short Next(this IRandomSource src, short min, short max)
-            => src.Next(closed(min,max));
-
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static ushort Next(this IRandomSource src, ushort min, ushort max)
-            => src.Next(closed(min,max));
-
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static uint Next(this IRandomSource src, uint min, uint max)
-            => src.Next(closed(min,max));
-         
         /// <summary>
         /// Queries the source for the next value in the range [min,max)
         /// </summary>
@@ -107,104 +68,30 @@ namespace Z0
          public static int Next(this IRandomSource src, int min, int max)
             => src.Next(closed(min,max));
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static long Next(this IRandomSource src, long min, long max)
-            => src.Next(closed(min,max));
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static ulong Next(this IRandomSource src, ulong min, ulong max)
-            => src.Next(closed(min,max));
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static float Next(this IRandomSource src, float min, float max, bool truncate = false)
-            => truncate ?  MathF.Floor(src.Next(closed(min,max))) :  src.Next(closed(min,max));
+        // [MethodImpl(Inline)]
+        // public static byte Next(this IRandomSource<byte> src, byte max)
+        //     => src.Next().Contract(max);
 
-        /// <summary>
-        /// Queries the source for the next value in the range [min,max)
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="min">The inclusive min value</param>
-        /// <param name="max">The exclusive max value</param>
-         [MethodImpl(Inline)]
-         public static double Next(this IRandomSource src, double min, double max, bool truncate = false)
-            => truncate ?  Math.Floor(src.Next(closed(min,max))) :  src.Next(closed(min,max));
+        // [MethodImpl(Inline)]
+        // public static ushort Next(this IRandomSource<ushort> src, ushort max)
+        //     => src.Next().Contract(max);
 
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        public static byte Next(this IRandomSource<byte> src, byte max)
-            => src.Next().Contract(max);
+        // [MethodImpl(Inline)]
+        // public static uint Next(this IRandomSource<uint> src, uint max)
+        //     => src.Next().Contract(max);
 
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        public static ushort Next(this IRandomSource<ushort> src, ushort max)
-            => src.Next().Contract(max);
+        // [MethodImpl(Inline)]
+        // public static ulong Next(this IRandomSource<ulong> src, ulong max) 
+        //     => src.Next().Contract(max);
 
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        public static uint Next(this IRandomSource<uint> src, uint max)
-            => src.Next().Contract(max);
 
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        public static ushort Next(this IRandomSource<ulong> src, ushort max) 
-            => (ushort)src.Next().Contract(max);
+        // [MethodImpl(Inline)]
+        // public static ulong Next(this IPointSource<ulong> src, ulong max)
+        //     => src.Next().Contract(max);
 
-        /// <summary>
-        /// Yields the next random value from the source that conforms to a specified upper bound
-        /// </summary>
-        /// <param name="src">The random source</param>
-        /// <param name="max">The exclusive upper bound</param>
-        [MethodImpl(Inline)]
-        public static ulong Next(this IRandomSource<ulong> src, ulong max) 
-            => src.Next().Contract(max);
 
-        /// <summary>
-        /// Queries the source for the next value in the interval [0, max) if max >= 0
-        /// </summary>
-        /// <param name="random">The stateful source on which the generation is predicated</param>
-        /// <param name="max">The exclusive maximum</param>
-        [MethodImpl(Inline)]
-        internal static int Next(this IRandomSource<ulong> random, int max)
-            => max >= 0 ? (int)random.Next((ulong)max) 
-                : - (int)random.Next((ulong) (Int32.MaxValue + max));        
-
-        [MethodImpl(Inline)]
-        public static ulong Next(this IPointSource<ulong> src, ulong max)
-            => src.Next().Contract(max);
 
         /// <summary>
         /// Retrieves the next unsigned 4-bit value from the source
@@ -266,10 +153,6 @@ namespace Z0
          [MethodImpl(Inline)]
          static ulong Next(this IRandomSource src, ulong max)
              => src.NextUInt64(max);
-
-         [MethodImpl(Inline)]
-         static ulong Next(this IPointSource<ulong> src)
-            => src.Next();
 
 
         [MethodImpl(Inline)]

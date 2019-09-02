@@ -20,19 +20,19 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bool ngt(in Num128<float> lhs, in Num128<float> rhs)
+        public static bool ngt(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
-        public static bool ngt(in Num128<double> lhs, in Num128<double> rhs)
+        public static bool ngt(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
-        public static bool nlt(in Num128<float> lhs, in Num128<float> rhs)
+        public static bool nlt(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
-        public static bool nlt(in Num128<double> lhs, in Num128<double> rhs)
+        public static bool nlt(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
         
         /// <summary>

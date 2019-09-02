@@ -14,14 +14,13 @@ namespace Z0
 
     public static partial class RngX
     {            
+        [MethodImpl(Inline)]
         public static T[] Array<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Stream(domain,filter).TakeArray(length);
          
-        [MethodImpl(Inline)]
-        public static T[] NonZeroArray<T>(this IRandomSource random, int length, Interval<T>? domain = null)
-            where T : struct
-                => random.Stream(domain, gmath.nonzero).TakeArray(length);        
+
+
     }
 
 }

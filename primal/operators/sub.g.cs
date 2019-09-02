@@ -12,6 +12,7 @@ namespace Z0
         
     using static zfunc;    
     using static As;
+    using static AsIn;
 
     partial class gmath
     {
@@ -44,31 +45,32 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T sub<T>(ref T lhs, T rhs)
+        public static ref T sub<T>(ref T lhs, in T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return ref generic<T>(ref math.sub(ref int8(ref lhs), int8(ref rhs)));
+                math.sub(ref int8(ref lhs), int8(in rhs));
             else if(typeof(T) == typeof(byte))
-                return ref generic<T>(ref math.sub(ref uint8(ref lhs), uint8(ref rhs)));
+                math.sub(ref uint8(ref lhs), uint8(in rhs));
             else if(typeof(T) == typeof(short))
-                return ref generic<T>(ref math.sub(ref int16(ref lhs), int16(ref rhs)));
+                math.sub(ref int16(ref lhs), int16(in rhs));
             else if(typeof(T) == typeof(ushort))
-                return ref generic<T>(ref math.sub(ref uint16(ref lhs), uint16(ref rhs)));
+                math.sub(ref uint16(ref lhs), uint16(in rhs));
             else if(typeof(T) == typeof(int))
-                return ref generic<T>(ref math.sub(ref int32(ref lhs), int32(ref rhs)));
+                math.sub(ref int32(ref lhs), int32(in rhs));
             else if(typeof(T) == typeof(uint))
-                return ref generic<T>(ref math.sub(ref uint32(ref lhs), uint32(ref rhs)));
+                math.sub(ref uint32(ref lhs), uint32(in rhs));
             else if(typeof(T) == typeof(long))
-                return ref generic<T>(ref math.sub(ref int64(ref lhs), int64(ref rhs)));
+                math.sub(ref int64(ref lhs), int64(in rhs));
             else if(typeof(T) == typeof(ulong))
-                return ref generic<T>(ref math.sub(ref uint64(ref lhs), uint64(ref rhs)));
+                math.sub(ref uint64(ref lhs), uint64(in rhs));
             else if(typeof(T) == typeof(float))
-                return ref generic<T>(ref math.sub(ref float32(ref lhs), float32(ref rhs)));
+                math.sub(ref float32(ref lhs), float32(in rhs));
             else if(typeof(T) == typeof(double))
-                return ref generic<T>(ref math.sub(ref float64(ref lhs), float64(ref rhs)));
+                math.sub(ref float64(ref lhs), float64(in rhs));
             else            
                 throw unsupported<T>();
+            return ref lhs;
         }
 
         public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
@@ -132,6 +134,21 @@ namespace Z0
         public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T :  struct
                 => sub(lhs,rhs, span<T>(length(lhs,rhs)));
-    
+
+        /// <summary>
+        /// Subracts a common value from each element in the left operand
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, T rhs)
+            where T : struct
+        {
+            Span<T> dst = new T[lhs.Length];
+            dst.Fill(rhs);   
+            sub(lhs, dst, dst);
+            return dst;
+        }
     }
 }

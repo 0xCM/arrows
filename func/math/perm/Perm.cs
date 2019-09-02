@@ -225,9 +225,6 @@ namespace Z0
         public int Length
             => terms.Length;
 
-        /// <summary>
-        /// Provies read-only access the the permutation terms
-        /// </summary>
         public ReadOnlySpan<int> Terms
             => terms;
 
@@ -241,7 +238,19 @@ namespace Z0
         /// Shuffles the permutation in-place using a provided random source.
         /// </summary>
         /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
         public Perm Shuffle(IRandomSource random)
+        {
+            random.Shuffle(terms);
+            return this;
+        }
+
+        /// <summary>
+        /// Shuffles the permutation in-place using a provided random source.
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public Perm Shuffle(IPolyrand random)
         {
             random.Shuffle(terms);
             return this;

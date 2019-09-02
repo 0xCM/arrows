@@ -15,9 +15,53 @@ namespace Z0
     /// <summary>
     /// Defines a 64-bit bitvector
     /// </summary>
+    [StructLayout(LayoutKind.Explicit, Size = 8)]
     public struct BitVector64 : IPrimalBits<BitVector64,ulong>
     {
+        [FieldOffset(0)]
         ulong data;
+
+        [FieldOffset(0)]
+        uint x00;
+
+        [FieldOffset(4)]
+        uint x01;
+
+        [FieldOffset(0)]
+        ushort x000;
+
+        [FieldOffset(2)]
+        ushort x001;
+
+        [FieldOffset(4)]
+        ushort x010;
+
+        [FieldOffset(6)]
+        ushort x011;
+
+        [FieldOffset(0)]        
+        byte x0000;
+        
+        [FieldOffset(1)]
+        byte x0001;
+        
+        [FieldOffset(2)]
+        byte x0010;
+        
+        [FieldOffset(3)]
+        byte x0011;
+
+        [FieldOffset(4)]
+        byte x0100;
+        
+        [FieldOffset(5)]
+        byte x0101;
+        
+        [FieldOffset(6)]
+        byte x0110;
+        
+        [FieldOffset(7)]
+        byte x0111;
 
         public static readonly BitVector64 Zero = default;
 
@@ -46,7 +90,31 @@ namespace Z0
         }
 
         /// <summary>
-        /// Creates a vector from the primal source value it represents
+        /// Creates a vector from a primal source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromScalar(byte src)
+            => new BitVector64(src);    
+
+        /// <summary>
+        /// Creates a vector from a primal source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromScalar(ushort src)
+            => new BitVector64(src);    
+
+        /// <summary>
+        /// Creates a vector from a primal source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 FromScalar(uint src)
+            => new BitVector64(src);    
+
+        /// <summary>
+        /// Creates a vector from a primal source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
@@ -70,16 +138,14 @@ namespace Z0
             => src.TakeUInt64();
 
         /// <summary>
-        /// Enumerates each and every 64-bit bitvector exactly once, presuming you have the time to wait
+        /// Enumerates all 32-bit bitvectors whose width is less than or equal to a specified maximum
         /// </summary>
-        public static IEnumerable<BitVector64> All
+        public static IEnumerable<BitVector64> All(int maxwidth)
         {
-           get
-           {
-                var bv = BitVector64.Zero;                
-                do yield return bv;            
-                    while(++bv);
-           }
+            var maxval = Pow2.pow(maxwidth);
+            var bv = BitVector64.Zero;
+            while(bv < maxval)
+                yield return bv++;            
         }
 
         [MethodImpl(Inline)]
@@ -101,6 +167,30 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator ulong(BitVector64 src)
             => src.data;        
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 64-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]    
+        public static implicit operator BitVector64(byte src)
+            => FromScalar(src);
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 64-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]    
+        public static implicit operator BitVector64(ushort src)
+            => FromScalar(src);
+
+        /// <summary>
+        /// Implicitly converts a scalar value to a 64-bit bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]    
+        public static implicit operator BitVector64(uint src)
+            => FromScalar(src);
 
         /// <summary>
         /// Computes the bitwise XOR of the source operands
@@ -249,7 +339,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector64(in ulong data)
-            => this.data = data;
+            : this()
+                => this.data = data;
 
         /// <summary>
         /// Reads/Manipulates a source bit at a specified position
@@ -273,22 +364,22 @@ namespace Z0
         }
 
         /// <summary>
-        /// The vector's 32 most significant bits
-        /// </summary>
-        public readonly BitVector32 Hi
-        {
-            [MethodImpl(Inline)]
-            get => (uint)Bits.hi(data);        
-        }
-        
-        /// <summary>
         /// The vector's 32 least significant bits
         /// </summary>
         public readonly BitVector32 Lo
         {
             [MethodImpl(Inline)]
-            get => (uint)Bits.lo(data);    
+            get => x00;
         }
+
+        /// <summary>
+        /// The vector's 32 most significant bits
+        /// </summary>
+        public readonly BitVector32 Hi
+        {
+            [MethodImpl(Inline)]
+            get => x01;
+        }        
 
         /// <summary>
         /// The actual number of bits represented by the vector
@@ -306,6 +397,15 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => Length;
+        }
+
+        /// <summary>
+        /// Computes the least number of bits required to represent vector content
+        /// </summary>
+        public int MinWidth
+        {
+            [MethodImpl(Inline)]
+            get => Bits.width(in data);
         }
 
         /// <summary>
@@ -598,6 +698,41 @@ namespace Z0
         [MethodImpl(Inline)]
         public readonly ulong ToScalar()
             => data;
+
+        /// <summary>
+        /// Applies a truncating reduction Bv64 -> Bv8
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector8 ToBitVector8()
+            => BitVector8.FromScalar(data);
+
+        /// <summary>
+        /// Applies a truncating reduction Bv64 -> Bv16
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector16 ToBitVector16()
+            => BitVector16.FromScalar(data);
+
+        /// <summary>
+        /// Applies a truncating reduction Bv64 -> Bv32
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector32 ToBitVector32()
+            => BitVector32.FromScalar(data);
+
+        /// <summary>
+        /// Applies the identity conversion Bv64 -> Bv64
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector64 ToBitVector64()
+            => BitVector64.FromScalar(data);
+
+        /// <summary>
+        /// Applies a widening conversion Bv64 -> Bv128
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector128 ToBitVector128()
+            => BitVector128.FromScalar(data);
 
         /// <summary>
         /// Returns a copy of the vector

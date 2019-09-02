@@ -21,7 +21,6 @@ namespace Z0
         protected List<AppMsg> Messages {get;} 
             = new List<AppMsg>();
 
-
         protected ConcurrentBag<OpTime> OpTimes {get;}
             = new ConcurrentBag<OpTime>();
 

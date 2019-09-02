@@ -419,185 +419,185 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref Num128<sbyte> primal<T>(ref Num128<T> src, out Num128<sbyte> dst)
+        public static ref Scalar128<sbyte> primal<T>(ref Scalar128<T> src, out Scalar128<sbyte> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<sbyte>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<sbyte>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<byte> primal<T>(ref Num128<T> src, out Num128<byte> dst)
+        public static ref Scalar128<byte> primal<T>(ref Scalar128<T> src, out Scalar128<byte> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<byte>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<byte>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<short> primal<T>(ref Num128<T> src, out Num128<short> dst)
+        public static ref Scalar128<short> primal<T>(ref Scalar128<T> src, out Scalar128<short> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<short>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<short>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<ushort> primal<T>(ref Num128<T> src, out Num128<ushort> dst)
+        public static ref Scalar128<ushort> primal<T>(ref Scalar128<T> src, out Scalar128<ushort> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<ushort>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<ushort>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<int> primal<T>(ref Num128<T> src, out Num128<int> dst)
+        public static ref Scalar128<int> primal<T>(ref Scalar128<T> src, out Scalar128<int> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<int>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<int>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<uint> primal<T>(ref Num128<T> src, out Num128<uint> dst)
+        public static ref Scalar128<uint> primal<T>(ref Scalar128<T> src, out Scalar128<uint> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<uint>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<uint>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<long> primal<T>(ref Num128<T> src, out Num128<long> dst)
+        public static ref Scalar128<long> primal<T>(ref Scalar128<T> src, out Scalar128<long> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<long>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<long>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<ulong> primal<T>(ref Num128<T> src, out Num128<ulong> dst)
+        public static ref Scalar128<ulong> primal<T>(ref Scalar128<T> src, out Scalar128<ulong> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<ulong>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<ulong>>(ref src);
              return ref dst;
         }
 
 
         [MethodImpl(Inline)]
-        public static ref Num128<float> primal<T>(ref Num128<T> src, out Num128<float> dst)
+        public static ref Scalar128<float> primal<T>(ref Scalar128<T> src, out Scalar128<float> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<float>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<float>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Num128<double> primal<T>(ref Num128<T> src, out Num128<double> dst)
+        public static ref Scalar128<double> primal<T>(ref Scalar128<T> src, out Scalar128<double> dst)
             where T : struct        
         {            
-             dst = Unsafe.As<Num128<T>, Num128<double>>(ref src);
+             dst = Unsafe.As<Scalar128<T>, Scalar128<double>>(ref src);
              return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref  Num128<sbyte> int8<T>(ref Num128<T> src)
+        public static ref  Scalar128<sbyte> int8<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<sbyte>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<sbyte>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<byte> uint8<T>(ref Num128<T> src)
+        public static ref  Scalar128<byte> uint8<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<byte>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<byte>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<short> int16<T>(ref Num128<T> src)
+        public static ref  Scalar128<short> int16<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<short>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<short>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<ushort> uint16<T>(ref Num128<T> src)
+        public static ref  Scalar128<ushort> uint16<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<ushort>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<ushort>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<int> int32<T>(ref Num128<T> src)
+        public static ref  Scalar128<int> int32<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<int>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<int>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<uint> uint32<T>(ref Num128<T> src)
+        public static ref  Scalar128<uint> uint32<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<uint>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<uint>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref  Num128<long> int64<T>(ref Num128<T> src)
+        public static ref  Scalar128<long> int64<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<long>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<long>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<ulong> uint64<T>(ref Num128<T> src)
+        public static ref Scalar128<ulong> uint64<T>(ref Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<ulong>>(ref src);
+                => ref Unsafe.As<Scalar128<T>,Scalar128<ulong>>(ref src);
                         
         [MethodImpl(Inline)]
-        public static ref Num128<float> float32<T>(in Num128<T> src)
+        public static ref Scalar128<float> float32<T>(in Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<float>>(ref asRef(in src));
+                => ref Unsafe.As<Scalar128<T>,Scalar128<float>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        public static ref Num128<double> float64<T>(in Num128<T> src)
+        public static ref Scalar128<double> float64<T>(in Scalar128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<double>>(ref asRef(in src));
+                => ref Unsafe.As<Scalar128<T>,Scalar128<double>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<sbyte> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<sbyte> src)
             where T : struct        
-            => ref Unsafe.As<Num128<sbyte>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<sbyte>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<byte> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<byte> src)
             where T : struct        
-            => ref Unsafe.As<Num128<byte>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<byte>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<short> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<short> src)
             where T : struct        
-            => ref Unsafe.As<Num128<short>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<short>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<ushort> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<ushort> src)
             where T : struct        
-                => ref Unsafe.As<Num128<ushort>,Num128<T>>(ref src);
+                => ref Unsafe.As<Scalar128<ushort>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<int> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<int> src)
             where T : struct        
-            => ref Unsafe.As<Num128<int>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<int>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<uint> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<uint> src)
             where T : struct        
-            => ref Unsafe.As<Num128<uint>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<uint>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<long> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<long> src)
             where T : struct        
-            => ref Unsafe.As<Num128<long>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<long>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<ulong> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<ulong> src)
             where T : struct        
-            => ref Unsafe.As<Num128<ulong>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<ulong>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<float> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<float> src)
             where T : struct        
-            => ref Unsafe.As<Num128<float>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<float>,Scalar128<T>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Num128<T> generic<T>(ref Num128<double> src)
+        public static ref Scalar128<T> generic<T>(ref Scalar128<double> src)
             where T : struct        
-            => ref Unsafe.As<Num128<double>,Num128<T>>(ref src);
+            => ref Unsafe.As<Scalar128<double>,Scalar128<T>>(ref src);
     }
 
 }

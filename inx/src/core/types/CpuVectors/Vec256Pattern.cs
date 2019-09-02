@@ -22,6 +22,8 @@ namespace Z0
 
         static readonly Vec256<T> Zero = Vec256<T>.Zero;
 
+        public static readonly Vec256<T> Ones = ginx.cmpeq(Zero,Zero);
+
         public static readonly Vec256<T> Increasing = Increments();
 
         public static readonly Vec256<T> Decreasing = Decrements(convert<T>(Length - 1));
@@ -119,6 +121,8 @@ namespace Z0
 
             return Vec256.Load(mask);
         }
+
+        
 
         static Vec256<byte> MergeLanesU8()
         {

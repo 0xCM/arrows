@@ -7,54 +7,50 @@ namespace Z0
     using System;
     using System.Linq;
     using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Diagnostics;
-    using System.Numerics;
-    using System.Runtime.Intrinsics.X86;
-    
-    
+        
     using static zfunc;
 
     partial class fmath
     {
 
-        public static bool fcmp(double x, double y, FloatComparisonMode mode)
+        public static bool fcmp(float x, float y, FpCmpMode mode)
         {
-            var result = mode switch{
-                FloatComparisonMode.OrderedEqualNonSignaling => x == y,
-                FloatComparisonMode.OrderedEqualSignaling => x == y,
-                FloatComparisonMode.UnorderedEqualNonSignaling => x == y,
-                FloatComparisonMode.UnorderedEqualSignaling => x == y,
+            var result = mode switch
+            {
+                FpCmpMode.EQ_OQ => x == y,
+                FpCmpMode.EQ_OS => x == y,
+                FpCmpMode.EQ_UQ => x == y,
+                FpCmpMode.EQ_US => x == y,
 
-                FloatComparisonMode.OrderedNotEqualNonSignaling => x != y,
-                FloatComparisonMode.OrderedNotEqualSignaling => x != y,
-                FloatComparisonMode.UnorderedNotEqualNonSignaling => x != y,
-                FloatComparisonMode.UnorderedNotEqualSignaling => x != y,
+                FpCmpMode.NEQ_OQ => x != y,
+                FpCmpMode.NEQ_OS => x != y,
+                FpCmpMode.NEQ_UQ => x != y,
+                FpCmpMode.NEQ_US => x != y,
 
-                FloatComparisonMode.OrderedLessThanNonSignaling => x < y,
-                FloatComparisonMode.OrderedLessThanSignaling => x < y,
+                FpCmpMode.LT_OQ => x < y,
+                FpCmpMode.LT_OS => x < y,
 
-                FloatComparisonMode.OrderedGreaterThanNonSignaling=>  x > y,
-                FloatComparisonMode.OrderedGreaterThanSignaling =>  x > y,
+                FpCmpMode.GT_OQ =>  x > y,
+                FpCmpMode.GT_OS =>  x > y,
 
-                FloatComparisonMode.OrderedLessThanOrEqualNonSignaling =>  x <= y,
-                FloatComparisonMode.OrderedLessThanOrEqualSignaling =>  x <= y,
+                FpCmpMode.LE_OQ =>  x <= y,
+                FpCmpMode.LE_OS =>  x <= y,
                 
-                FloatComparisonMode.OrderedGreaterThanOrEqualNonSignaling => x >= y,
-                FloatComparisonMode.OrderedGreaterThanOrEqualSignaling => x >= y,
+                FpCmpMode.GE_OQ => x >= y,
+                FpCmpMode.GE_OS => x >= y,
 
-                FloatComparisonMode.UnorderedNotGreaterThanOrEqualNonSignaling => !(x >= y),                    
-                FloatComparisonMode.UnorderedNotGreaterThanOrEqualSignaling => !(x >= y),                    
+                FpCmpMode.NGE_UQ => !(x >= y),                    
+                FpCmpMode.NGE_US => !(x >= y),                    
                 
-                FloatComparisonMode.UnorderedNotGreaterThanNonSignaling => !(x > y),                    
-                FloatComparisonMode.UnorderedNotGreaterThanSignaling => !(x > y),
+                FpCmpMode.NGT_UQ => !(x > y),                    
+                FpCmpMode.NGT_US => !(x > y),
 
-                FloatComparisonMode.UnorderedNotLessThanOrEqualNonSignaling => !(x <= y),
-                FloatComparisonMode.UnorderedNotLessThanOrEqualSignaling => !(x <= y),
+                FpCmpMode.NLE_UQ => !(x <= y),
+                FpCmpMode.NLE_US => !(x <= y),
                 
-                FloatComparisonMode.UnorderedNotLessThanNonSignaling => !(x < y),
-                FloatComparisonMode.UnorderedNotLessThanSignaling => !(x < y),
+                FpCmpMode.NLT_UQ => !(x < y),
+                FpCmpMode.NLT_US => !(x < y),
 
                 _ => throw new NotSupportedException()
             };
@@ -62,8 +58,61 @@ namespace Z0
             return result; 
         }
 
-        
-        public static bool[] fcmp(Span<double> lhs, Span<double> rhs, FloatComparisonMode kind)
+        public static bool fcmp(double x, double y, FpCmpMode mode)
+        {
+            var result = mode switch
+            {
+                FpCmpMode.EQ_OQ => x == y,
+                FpCmpMode.EQ_OS => x == y,
+                FpCmpMode.EQ_UQ => x == y,
+                FpCmpMode.EQ_US => x == y,
+
+                FpCmpMode.NEQ_OQ => x != y,
+                FpCmpMode.NEQ_OS => x != y,
+                FpCmpMode.NEQ_UQ => x != y,
+                FpCmpMode.NEQ_US => x != y,
+
+                FpCmpMode.LT_OQ => x < y,
+                FpCmpMode.LT_OS => x < y,
+
+                FpCmpMode.GT_OQ =>  x > y,
+                FpCmpMode.GT_OS =>  x > y,
+
+                FpCmpMode.LE_OQ =>  x <= y,
+                FpCmpMode.LE_OS =>  x <= y,
+                
+                FpCmpMode.GE_OQ => x >= y,
+                FpCmpMode.GE_OS => x >= y,
+
+                FpCmpMode.NGE_UQ => !(x >= y),                    
+                FpCmpMode.NGE_US => !(x >= y),                    
+                
+                FpCmpMode.NGT_UQ => !(x > y),                    
+                FpCmpMode.NGT_US => !(x > y),
+
+                FpCmpMode.NLE_UQ => !(x <= y),
+                FpCmpMode.NLE_US => !(x <= y),
+                
+                FpCmpMode.NLT_UQ => !(x < y),
+                FpCmpMode.NLT_US => !(x < y),
+
+                _ => throw new NotSupportedException()
+            };
+                            
+            return result; 
+        }
+
+
+        public static bool[] fcmp(Span<float> lhs, Span<float> rhs, FpCmpMode kind)
+        {
+            var len = length(lhs,rhs);
+            var result = alloc<bool>(len);
+            for(var i = 0; i< len; i++)
+                result[i] = fcmp(lhs[i], rhs[i], kind);
+            return result;
+        }
+
+        public static bool[] fcmp(Span<double> lhs, Span<double> rhs, FpCmpMode kind)
         {
             var len = length(lhs,rhs);
             var result = alloc<bool>(len);

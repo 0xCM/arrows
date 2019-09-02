@@ -27,9 +27,6 @@ namespace Z0
             for(var i=0; i< io.Length; i++)
                 io[i] /= rhs;
             return io;                
-        }
-
- 
-
+        } 
     }
 }

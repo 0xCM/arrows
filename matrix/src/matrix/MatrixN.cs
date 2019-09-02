@@ -225,7 +225,35 @@ namespace Z0
             return true;
         }
 
-        
+        /// <summary>
+        /// Returns the first cell value, if any, that satisfies a supplied predicate
+        /// </summary>
+        /// <param name="f">The predicate</param>
+        /// <param name="pos">The cell position where the match was found</param>
+        public Option<T> First(Func<T,bool> f, out (int i, int j) pos)
+        {
+            pos = (0,0);
+            for(var r = 0; r < (int)RowCount; r ++)
+            for(var c = 0; c < (int)ColCount; c ++)
+            {                
+                if(f(this[r,c]))
+                {
+                    pos = (r,c);
+                    return this[r,c];
+                }
+            }
+            return default;            
+        }
+
+        public Option<T> First(Func<T,bool> f)
+        {
+            for(var r = 0; r < (int)RowCount; r ++)
+            for(var c = 0; c < (int)ColCount; c ++)
+                if(f(this[r,c]))
+                    return this[r,c];
+            return default;            
+        }
+
         [MethodImpl(Inline)]
         public Matrix<N,N,T> ToRectantular()
             => new Matrix<N,N,T>(this.data);

@@ -18,6 +18,14 @@ namespace Z0
     public static class Vec128Pattern
     {
         /// <summary>
+        /// Returns an immutable reference to a vector with all bits turned on
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static ref readonly Vec128<T> Ones<T>()
+            where T : struct
+                => ref Vec128Pattern<T>.Ones;
+
+        /// <summary>
         /// Defines a vector of 32 or 64-bit floating point values where each component 
         /// has been intialized to the value -0.0
         /// </summary>

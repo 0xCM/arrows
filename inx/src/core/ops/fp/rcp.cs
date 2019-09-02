@@ -32,7 +32,7 @@ namespace Z0
             => Reciprocal(src);
 
         [MethodImpl(Inline)]
-        public static Num128<float> rcp(Num128<float> src)
+        public static Scalar128<float> rcp(Scalar128<float> src)
             => ReciprocalScalar(src);
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
-        public static ref Num128<float> rcp(ref Num128<float> src)
+        public static ref Scalar128<float> rcp(ref Scalar128<float> src)
         {
             src = ReciprocalScalar(src);
             return ref src;

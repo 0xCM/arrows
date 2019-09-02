@@ -17,7 +17,7 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Core algorithm taken from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class XOrShift256 : IRandomSource, IRandomSource<ulong>
+    public class XOrShift256 : IRandomSource, IPointSource<ulong>
     {        
         /// <summary>
         /// Constructs a randomizer using a specific seed
@@ -46,7 +46,7 @@ namespace Z0
 
         readonly ulong[] state;
 
-        Polyrand MR;
+        IPolyrand MR;
 
         public XOrShift256(Guid g1, Guid g2)
         {
@@ -106,9 +106,17 @@ namespace Z0
             return next;
         }
 
-        // [MethodImpl(Inline)]
-        // public double NextDouble()
-        //     => ((double)NextUInt64()/(double)ulong.MaxValue);
+        [MethodImpl(Inline)]
+        public ulong Next()
+            => NextUInt64();
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
 
         [MethodImpl(Inline)]
         public double NextDouble()
@@ -120,10 +128,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         ulong IRandomSource.NextUInt64(ulong max)
-            => (this as IRandomSource<ulong>).Next(max);
+            => Next(max);
 
         [MethodImpl(Inline)]
         int IRandomSource.NextInt32(int max)
-            => (this as IRandomSource<ulong>).Next(max);
+            => (this as IPointSource<ulong>).Next(max);
     }
 }

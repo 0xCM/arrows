@@ -85,7 +85,7 @@ namespace Z0.Test
 
         public void rev256u32()
         {
-            var src = Random.CpuVec256Stream<uint>().Take(Pow2.T14);
+            var src = Polyrand.CpuVec256Stream<uint>().Take(Pow2.T14);
             foreach(var v in src)
             {
                 var expect = Vec256.FromParts(v[7],v[6],v[5],v[4],v[3],v[2],v[1],v[0]);
@@ -102,7 +102,7 @@ namespace Z0.Test
 
         public void rev256f32()
         {
-            var src = Random.CpuVec256Stream<float>().Take(Pow2.T14);
+            var src = Polyrand.CpuVec256Stream<float>().Take(Pow2.T14);
             foreach(var v in src)
             {
                 var expect = Vec256.FromParts(v[7],v[6],v[5],v[4],v[3],v[2],v[1],v[0]);
@@ -121,9 +121,9 @@ namespace Z0.Test
         {
             void Test1()
             {
-                var v0 = Random.CpuVec256<byte>();
-                var v1 = Random.CpuVec256<byte>();
-                var bits = Random.BitString<N32>();
+                var v0 = Polyrand.CpuVec256<byte>();
+                var v1 = Polyrand.CpuVec256<byte>();
+                var bits = Polyrand.BitString<N32>();
                 var mask = Vec256.Load(bits.Map(x => x ? (byte)0xFF : (byte)0));
                 var v3 = dinx.blendv(v0,v1, mask);
                 
@@ -153,8 +153,8 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhsSrc = Random.Span256<T>(n);
-            var rhsSrc = Random.Span256<T>(n);
+            var lhsSrc = Polyrand.Span256<T>(n);
+            var rhsSrc = Polyrand.Span256<T>(n);
             for(var i=0; i<n; i++)
             {
                 var lhs = lhsSrc.ToCpuVec256(i);

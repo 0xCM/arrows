@@ -13,13 +13,6 @@ namespace Z0
     
     using static zfunc;
 
-    public static class UnitInterval
-    {
-        public static UnitInterval<T> Get<T>()
-            where T : struct
-                => UnitInterval<T>.TheOnly;
-    }
-
     public readonly struct UnitInterval<T> : IInterval<T>
         where T : struct
     {
@@ -53,6 +46,5 @@ namespace Z0
         public IntervalKind Kind 
             => IntervalKind.Closed;
     }
-
 
 }

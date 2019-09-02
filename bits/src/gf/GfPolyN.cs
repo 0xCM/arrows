@@ -26,6 +26,9 @@ namespace Z0
 
         public static readonly GfPoly<N,T> Zero = default;
         
+        public static implicit operator T(GfPoly<N,T> src)
+            => src.data;
+
         public GfPoly(params byte[] exponents)
         {
             var components = default(T);

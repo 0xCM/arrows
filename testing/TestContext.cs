@@ -23,7 +23,6 @@ namespace Z0
         IEnumerable<OpTime> Benchmarks {get;}        
     }
 
-
     public abstract class TestContext<T> : Context<T>, ITestContext
         where T : TestContext<T>
     {
@@ -31,8 +30,10 @@ namespace Z0
             : base(RNG.XOrShift1024(Seed1024.TestSeed))
         {
             this.Config = config ?? TestConfigDefaults.Default();
+            this.Polyrand = Random.ToPolyrand();
         }
 
+        protected IPolyrand Polyrand {get;}
         protected const int DefaltCycleCount = Pow2.T03;
 
         protected const int DefaultSampleSize = Pow2.T08;
@@ -56,8 +57,8 @@ namespace Z0
         {
             var config = Config.Get<K>();
              return nonzero 
-                ? Random.NonZeroArray<K>(config.SampleSize, config.SampleDomain) 
-                : Random.Array<K>(config.SampleSize, config.SampleDomain);
+                ? Polyrand.NonZeroArray<K>(config.SampleSize, config.SampleDomain)                
+                : Polyrand.Array<K>(config.SampleSize, config.SampleDomain);
         }
 
         protected void Verify(Action a, int cycles = DefaltCycleCount)
@@ -84,6 +85,17 @@ namespace Z0
             return closed(offsetMin,offsetMax);                
         }
 
+        protected void VerifyOp<K>(UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where K : struct
+        {
+            var kind = PrimalKinds.kind<K>();            
+            var src = RandArray<K>(nonzero);
+            var timing = stopwatch();                        
+
+            for(var i = 0; i<src.Length; i++)
+                Claim.eq(baseline(src[i]),subject(src[i]), caller, file, line);            
+        }
 
         protected void VerifyOp<K>(OpKind opKind, UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -96,6 +108,20 @@ namespace Z0
 
             for(var i = 0; i<src.Length; i++)
                 Claim.eq(baseline(src[i]),subject(src[i]), caller, file, line);            
+        }
+
+        protected void VerifyOp<K>(BinaryPredicate<K> baseline, BinaryPredicate<K> op, bool nonzero = false, 
+            [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where K : struct
+        {
+            var kind = PrimalKinds.kind<K>();            
+            var lhs = RandArray<K>();
+            var rhs = RandArray<K>(nonzero);
+            var len = length(lhs,rhs);
+            var timing = stopwatch();            
+
+            for(var i = 0; i<len; i++)
+                Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
         }
 
         protected void VerifyOp<K>(OpKind opKind, BinaryPredicate<K> baseline, BinaryPredicate<K> op, bool nonzero = false, 
@@ -113,12 +139,25 @@ namespace Z0
                 Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
         }
 
+        protected void VerifyOp<K>(BinaryOp<K> baseline, BinaryOp<K> op, bool nonzero = false, [CallerMemberName] string caller = null, 
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where K : struct
+        {
+            var kind = PrimalKinds.kind<K>(); 
+            var lhs = RandArray<K>();
+            var rhs = RandArray<K>(nonzero);
+            var len = length(lhs,rhs);
+            var timing = stopwatch();
+            
+            for(var i = 0; i<len; i++)
+                Claim.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
+        }
+
         protected void VerifyOp<K>(OpKind opKind, BinaryOp<K> baseline, BinaryOp<K> op, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where K : struct
         {
             var kind = PrimalKinds.kind<K>(); 
-            var opid = opKind.PrimalGOpId<K>();           
             var lhs = RandArray<K>();
             var rhs = RandArray<K>(nonzero);
             var len = length(lhs,rhs);
@@ -166,6 +205,5 @@ namespace Z0
             where N : ITypeNat, new()
             where S : struct
                 => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{PrimalKinds.kind<S>()}> succeeded", SeverityLevel.HiliteCL));
-
     }
 }

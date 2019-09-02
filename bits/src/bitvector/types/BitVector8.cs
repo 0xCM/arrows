@@ -28,6 +28,7 @@ namespace Z0
         public static readonly BitPos FirstPos = 0;
 
         public static readonly BitPos LastPos = BitSize - 1;
+        
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -77,6 +78,14 @@ namespace Z0
             => new BitVector8((byte)src);
 
         /// <summary>
+        /// Creates a vector from the least 8 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 FromScalar(ulong src)
+            => new BitVector8((byte)src);
+
+        /// <summary>
         /// Creates a vector from a bitstring
         /// </summary>
         /// <param name="src">The source bitstring</param>
@@ -87,7 +96,6 @@ namespace Z0
         /// <summary>
         /// Enumerates each and every 8-bit bitvector exactly once
         /// </summary>
-        /// <value></value>
         public static IEnumerable<BitVector8> All
         {
            get
@@ -115,18 +123,17 @@ namespace Z0
         public static implicit operator byte(BitVector8 src)
             => src.data;
 
-
         [MethodImpl(Inline)]
         public static implicit operator BitVector16(BitVector8 src)
-            => src.Expand();
+            => src.ToBitVector16();
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector32(BitVector8 src)
-            => BitVector32.FromScalar(src.data);
+            => src.ToBitVector32();
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector64(BitVector8 src)
-            => BitVector64.FromScalar(src.data);
+            => src.ToBitVector64();
 
         /// <summary>
         /// Computes the XOR of the source operands. 
@@ -408,6 +415,15 @@ namespace Z0
         }
 
         /// <summary>
+        /// Computes the least number of bits required to represent vector content
+        /// </summary>
+        public int MinWidth
+        {
+            [MethodImpl(Inline)]
+            get => Bits.width(in data);
+        }
+
+        /// <summary>
         /// Enables a bit if it is disabled
         /// </summary>
         /// <param name="pos">The position of the bit to enable</param>
@@ -566,13 +582,6 @@ namespace Z0
         public readonly bool AllOnes()
             => (0xFF & data) == 0xFF;
 
-        /// <summary>
-        /// Zero-extends the vector to a vector that accomondates
-        /// the next power of 2
-        /// </summary>
-        [MethodImpl(Inline)]
-        public BitVector16 Expand()
-            => BitVector16.FromScalar(data);
 
         [MethodImpl(Inline)]
         public readonly BitString ToBitString(int? maxlen = null)
@@ -607,7 +616,7 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.scatter(data,Mask(spec));
+            => data = Bits.scatter(data, Mask(spec));
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise
@@ -668,6 +677,27 @@ namespace Z0
         public BitString ToBitString()
             => data.ToBitString();
 
+        /// <summary>
+        /// Converts the source to a 32-bit vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector16 ToBitVector16()
+            => BitVector16.FromScalar(data);
+
+        /// <summary>
+        /// Converts the source to a 32-bit vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector32 ToBitVector32()
+            => BitVector32.FromScalar(data);
+
+        /// <summary>
+        /// Converts the source to a 64-bit vector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector64 ToBitVector64()
+            => BitVector64.FromScalar(data);
+
         [MethodImpl(Inline)]
         public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
@@ -684,5 +714,6 @@ namespace Z0
         
         public override string ToString()
             => FormatBits();   
+    
     }
 }
