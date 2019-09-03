@@ -42,11 +42,11 @@ namespace Z0.Test
         }
 
         void check_bindigits<T>()
-            where T : struct
+            where T : unmanaged
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Random.Next<T>();
+                var x = Polyrand.Next<T>();
                 BinaryMatch<T>(BitString.FromScalar(x).Format(false,true),x);
             }
 
@@ -60,11 +60,11 @@ namespace Z0.Test
         }
 
         static void BinaryMatch<T>(string digits, num<T> value)
-            where T : struct 
+            where T : unmanaged
                 => Claim.eq(digits, value.ToBinaryDigits().Format(true));
 
         static void DecimalMatch<T>(string digits, num<T> value)
-            where T : struct 
+            where T : unmanaged
                 => Claim.eq(digits, value.ToDecimalDigits().Format());
 
     }

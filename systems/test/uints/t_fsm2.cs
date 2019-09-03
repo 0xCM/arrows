@@ -14,10 +14,11 @@ namespace Z0.Machines.Test
 
     using static zfunc;
     
-    public class Fsm2Test : UnitTest<Fsm2Test>
+    public class t_fsm2 : UnitTest<t_fsm2>
     {
 
-        public void Run()
+
+        public void run()
         {
             var machineCount = Pow2.T04;
             var spec1 = PrimalFsm.Specify<ushort>("Fsm2",750,750,100,120,Pow2.T15);

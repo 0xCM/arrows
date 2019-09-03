@@ -22,8 +22,8 @@ namespace Z0
         static long NextId(ref long x)
             => Interlocked.Increment(ref x);
 
-        static readonly ConcurrentDictionary<long, IRandomSource> States
-            = new ConcurrentDictionary<long, IRandomSource>();
+        static readonly ConcurrentDictionary<long, IPolyrand> States
+            = new ConcurrentDictionary<long, IPolyrand>();
 
         public static SeriesTerm<T> Term<T>(long index, T value)
             where T : struct
@@ -32,7 +32,7 @@ namespace Z0
         public static SeriesTerm<T> NextTerm<T>(TimeSeries<T> series)      
             where T : struct
         {
-            if(States.TryGetValue(series.Id, out IRandomSource random))
+            if(States.TryGetValue(series.Id, out IPolyrand random))
             {                
                 var term = Term(series.Observed.Index + 1, random.Next<T>(series.Domain));
                 series.Witnessed(term);
@@ -45,7 +45,7 @@ namespace Z0
         internal static IEnumerable<SeriesTerm<T>> Evolve<T>(TimeSeries<T> series)
             where T : struct
         {
-            if(States.TryGetValue(series.Id, out IRandomSource random))
+            if(States.TryGetValue(series.Id, out IPolyrand random))
             {                
                 while(true)
                 {

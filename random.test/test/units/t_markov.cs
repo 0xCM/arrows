@@ -11,7 +11,6 @@ namespace Z0.Rng
     using System.IO;
     using Z0.Mkl;
 
-    using static Nats;
     using static zfunc;
     
     public class t_markov : UnitTest<t_markov>
@@ -168,18 +167,18 @@ namespace Z0.Rng
         public void MarkovMatrix()
         {
             var count = Pow2.T08;
-            MarkovMatrix(count, N5, 1f);
-            MarkovMatrix(count, N20, 1d);
-            MarkovMatrix(count, N30, 1f);            
+            MarkovMatrix(count, n5, 1f);
+            MarkovMatrix(count, n20, 1d);
+            MarkovMatrix(count, n30, 1f);            
 
         }
 
         public void MarkovVector()
         {
             var count = Pow2.T08;
-            MarkovVector(count, N30, 0f);
-            MarkovVector(count, N30, 0d);
-            MarkovVector(count, N128, 0d);
+            MarkovVector(count, n30, 0f);
+            MarkovVector(count, n30, 0d);
+            MarkovVector(count, n128, 0d);
         }
 
         void MarkovMatMulF32<N>(int count, N n = default)
@@ -217,8 +216,8 @@ namespace Z0.Rng
 
         public void MarkovMatrixMul()
         {
-            MarkovMatMulF32(Pow2.T08, N12);
-            MarkovMatMulF64(Pow2.T08, N12);
+            MarkovMatMulF32(Pow2.T08, n12);
+            MarkovMatMulF64(Pow2.T08, n12);
 
         }
 

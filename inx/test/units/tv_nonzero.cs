@@ -43,7 +43,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var  src = Random.Span128<T>(blocks);
+            var  src = Polyrand.Span128<T>(blocks);
             for(var i = 0; i< blocks; i++)
             {
                 var v = Vec128.Load(ref src.Block(i));
@@ -58,7 +58,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var  src = Random.Span256<T>(blocks);
+            var  src = Polyrand.Span256<T>(blocks);
             for(var i = 0; i< blocks; i++)
             {
                 var v = Vec256.Load(ref src.Block(i));

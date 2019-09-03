@@ -254,8 +254,7 @@ namespace Z0
         /// Returns the expression if it is a logical conjunction and None otherwise
         /// </summary>
         /// <param name="x">The expression to examine</param>
-        /// <returns></returns>
-        public static Option<X> TryGetConjunction<X>(this X x)
+        static Option<X> TryGetConjunction<X>(this X x)
             where X : Expression
             => x.NodeType == ExpressionType.AndAlso ? x : none<X>();
 
@@ -263,8 +262,7 @@ namespace Z0
         /// Returns the expression if it is a logical disjunction and None otherwise
         /// </summary>
         /// <param name="x">The expression to examine</param>
-        /// <returns></returns>
-        public static Option<X> TryGetDisjunction<X>(this X x)
+        static Option<X> TryGetDisjunction<X>(this X x)
             where X : Expression
                 => x.NodeType == ExpressionType.OrElse ? x : none<X>();
 

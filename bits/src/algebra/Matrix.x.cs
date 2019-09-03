@@ -16,7 +16,6 @@ namespace Z0
 
     public static class MatrixX
     {
-
         public static string Format<M,N,T>(this Matrix<M,N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -48,42 +47,23 @@ namespace Z0
             where T : struct    
                 => src.ToRectantular().Format(cellwidth, cellsep,render);
 
-        /// <summary>
-        /// Computes the sum of two matrices and stores the result in the left matrix
-        /// </summary>
-        /// <param name="lhs">The left matrix</param>
-        /// <param name="rhs">The right matrix</param>
-        /// <typeparam name="M">The natural row count type</typeparam>
-        /// <typeparam name="N">The natural column count type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> Add<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
+        public static string Format<N,T>(this Covector<N,T> src)
             where T : struct    
-        {
-            lhs.Unsized.ReadOnly().Add(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
+            where N: ITypeNat, new()
+                => src.Unsized.FormatList();
 
         /// <summary>
-        /// Computes the difference of two matrices and stores the result in the left matrix
+        /// Renders the source vector as text
         /// </summary>
-        /// <param name="lhs">The left matrix</param>
-        /// <param name="rhs">The right matrix</param>
-        /// <typeparam name="M">The natural row count type</typeparam>
-        /// <typeparam name="N">The natural column count type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="N">The natural type</typeparam>
+        /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> Sub<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
+        public static string Fomat<N,T>(this Vector<N,T> src)
             where T : struct    
-        {
-            lhs.Unsized.ReadOnly().Sub(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
-
+            where N: ITypeNat, new()
+                => src.Unsized.FormatList();
 
         /// <summary>
         /// Writes the matrix to a delimited file

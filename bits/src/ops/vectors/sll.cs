@@ -75,8 +75,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> sll(in Vec128<ulong> src, byte offset)
             => ShiftLeftLogical(src, offset);
-
-
+    
         public static Vec256<byte> sll(in Vec256<byte> src, byte offset)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors

@@ -48,27 +48,28 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return ref squareI8(ref src);
+                squareI8(ref src);
             else if(typeof(T) == typeof(byte))
-                return ref squareU8(ref src);
+                squareU8(ref src);
             else if(typeof(T) == typeof(short))
-                return ref squareI16(ref src);
+                squareI16(ref src);
             else if(typeof(T) == typeof(ushort))
-                return ref squareU16(ref src);
+                squareU16(ref src);
             else if(typeof(T) == typeof(int))
-                return ref squareI32(ref src);
+                squareI32(ref src);
             else if(typeof(T) == typeof(uint))
-                return ref squareU32(ref src);
+                squareU32(ref src);
             else if(typeof(T) == typeof(long))
-                return ref squareI64(ref src);
+                squareI64(ref src);
             else if(typeof(T) == typeof(ulong))
-                return ref squareU64(ref src);
+                squareU64(ref src);
             else if(typeof(T) == typeof(float))
-                return ref squareF32(ref src);
+                squareF32(ref src);
             else if(typeof(T) == typeof(double))
-                return ref squareF64(ref src);
+                squareF64(ref src);
             else            
                 throw unsupported<T>();
+            return ref src;
         }           
 
 

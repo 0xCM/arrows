@@ -6,12 +6,80 @@ namespace Z0.Test
 {
     using System;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using D = PrimalDelegates;
     
+
     public class t_add : UnitTest<t_add>
     {
+
+        public void polyadd()
+        {
+            polyadd_check(in PolyOps.add<sbyte>());
+            polyadd_check(in PolyOps.add<byte>());
+            polyadd_check(in PolyOps.add<short>());
+            polyadd_check(in PolyOps.add<ushort>());
+            polyadd_check(in PolyOps.add<int>());
+            polyadd_check(in PolyOps.add<uint>());
+            polyadd_check(in PolyOps.add<long>());
+            polyadd_check(in PolyOps.add<ulong>());
+            polyadd_check(in PolyOps.add<float>());
+            polyadd_check(in PolyOps.add<double>());
+
+            
+        }
+        public void polyadd_bench()
+        {
+            Collect(polyadd_bench(in PolyOps.add<sbyte>()));
+            Collect(polyadd_bench(in PolyOps.add<byte>()));
+            Collect(polyadd_bench(in PolyOps.add<short>()));
+            Collect(polyadd_bench(in PolyOps.add<ushort>()));
+            Collect(polyadd_bench(in PolyOps.add<int>()));
+            Collect(polyadd_bench(in PolyOps.add<uint>()));
+            Collect(polyadd_bench(in PolyOps.add<long>()));
+            Collect(polyadd_bench(in PolyOps.add<ulong>()));
+            Collect(polyadd_bench(in PolyOps.add<float>()));
+            Collect(polyadd_bench(in PolyOps.add<double>()));
+
+        }
+
+        public void gadd_bench()
+        {
+            Collect(gadd_bench<sbyte>());
+            Collect(gadd_bench<byte>());
+            Collect(gadd_bench<short>());
+            Collect(gadd_bench<ushort>());
+            Collect(gadd_bench<int>());
+            Collect(gadd_bench<uint>());
+            Collect(gadd_bench<long>());
+            Collect(gadd_bench<ulong>());
+            Collect(gadd_bench<float>());
+            Collect(gadd_bench<double>());
+
+        }
+
+        OpTime gadd_bench<T>()
+            where T : unmanaged
+        {
+            var sw = stopwatch(false);
+            var accum = gmath.zero<T>();
+            for(var cycle = 0; cycle < CycleCount; cycle++)
+            for(var sample=0; sample < SampleSize; sample++)
+            {
+                var a = Polyrand.Next<T>();
+                var b = Polyrand.Next<T>();
+                
+                sw.Start();
+                accum = gmath.add(a,b);
+                sw.Stop();
+            }
+            var opname = $"gmath<{typeof(T).DisplayName()}>_add";
+            return (CycleCount*SampleSize, sw, opname);
+        }
+
+
         public void Add()
         {
             VerifyOp((x,y) => (sbyte)(x + y), D.add<sbyte>());
@@ -29,9 +97,9 @@ namespace Z0.Test
 
         public void addi32_fused()
         {
-            var lhsSrc = Random.ReadOnlySpan<int>(Pow2.T10);  
+            var lhsSrc = Polyrand.ReadOnlySpan<int>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Random.ReadOnlySpan<int>(lhsSrc.Length);
+            var rhs = Polyrand.ReadOnlySpan<int>(lhsSrc.Length);
             math.add(lhs, rhs);           
 
             var expect = span<int>(lhs.Length);
@@ -44,9 +112,9 @@ namespace Z0.Test
 
         public void addi64_fused()
         {
-            var lhsSrc = Random.ReadOnlySpan<long>(Pow2.T10);  
+            var lhsSrc = Polyrand.ReadOnlySpan<long>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Random.ReadOnlySpan<long>(lhsSrc.Length);
+            var rhs = Polyrand.ReadOnlySpan<long>(lhsSrc.Length);
             math.add(lhs,rhs);
 
             var expect = span<long>(lhs.Length);
@@ -55,6 +123,37 @@ namespace Z0.Test
             
             Claim.yea(lhs.Identical(expect));
         }
+
+        void polyadd_check<T>(in AddOp<T> op)
+            where T : unmanaged
+        {
+            for(var i=0; i< SampleSize; i++)
+            {
+                var x = Polyrand.Next<T>();
+                var y = Polyrand.Next<T>();
+                var a = op.apply(x,y);
+                var b = gmath.add(x,y);
+                Claim.eq(a,b);
+            }
+        }
+
+        OpTime polyadd_bench<T>(in AddOp<T> op)
+            where T : unmanaged
+        {
+            var sw = stopwatch(false);
+            var applied = default(T);
+            for(var i=0; i< SampleSize; i++)
+            for(var j=0; j<CycleCount; j++)
+            {
+                var x = Polyrand.Next<T>();
+                var y = Polyrand.Next<T>();
+                sw.Start();
+                applied = op.apply(x,y);
+                sw.Stop();
+            }
+            return (SampleSize*CycleCount, sw, $"polyadd<{typeof(T).DisplayName()}>");
+        }
+
     }
 
 }

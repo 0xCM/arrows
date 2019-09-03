@@ -13,7 +13,7 @@ namespace Z0
 
     public static class RVar
     {
-        public static RVar<T> Define<T>(Interval<T> domain, IRandomSource random)
+        public static RVar<T> Define<T>(Interval<T> domain, IPolyrand random)
             where T : struct
                 => new RVar<T>(domain,random);
     }
@@ -24,7 +24,7 @@ namespace Z0
     public class RVar<T>
         where T : struct
     {        
-        public RVar(Interval<T> domain, IRandomSource random)
+        public RVar(Interval<T> domain, IPolyrand random)
         {
             this.Domain = domain;
             this.stream = random.Stream<T>(domain);

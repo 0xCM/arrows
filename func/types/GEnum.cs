@@ -13,7 +13,7 @@ namespace Z0
 
     public static class GEnum
     {
-        public static GEnum<E> ToGeneric<E>(this E src)
+        public static GEnum<E> ToGeneric<E>(E src)
             where E : Enum
                 => new GEnum<E>(src);
 
@@ -98,7 +98,7 @@ namespace Z0
     {        
         public static Option<GEnum<E>> Parse(string Label)
         {
-            if(ValueIndex.TryGetValue(Label, out E value))
+            if(ValIndex.TryGetValue(Label, out E value))
                 return new GEnum<E>(value);
             else
                 return default;
@@ -131,17 +131,13 @@ namespace Z0
         public static readonly E[] Values 
             = typeof(E).GetEnumValues().AsQueryable().Cast<E>().ToArray();
 
-
         /// <summary>
         /// Correlates a 0-based index with the declared literals in an enum
         /// </summary>
         public static readonly string[] Labels
             = typeof(E).GetEnumNames();
-
-        static readonly Dictionary<E,int> PositionIndex
-            = Values.Mapi((i,v) => (v,i)).ToDictionary();
-
-        static readonly Dictionary<string,E> ValueIndex
+            
+        static readonly Dictionary<string,E> ValIndex
             = Values.Mapi((i,v) => (Labels[i], v)).ToDictionary();
 
         public GEnum(E value)

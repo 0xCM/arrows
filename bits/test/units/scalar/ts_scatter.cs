@@ -70,8 +70,8 @@ namespace Z0.Test
                 var sw = stopwatch(false);
                 for(var i=0; i<SampleSize; i++)
                 {
-                    var src = Random.Next<T>();
-                    var mask = Random.Next<T>();
+                    var src = Polyrand.Next<T>();
+                    var mask = Polyrand.Next<T>();
                     sw.Start();
                     var dst = BitRef.scatter(src,mask);
                     sw.Stop();
@@ -84,8 +84,8 @@ namespace Z0.Test
                 var sw = stopwatch(false);
                 for(var i=0; i<SampleSize; i++)
                 {
-                    var src = Random.Next<T>();
-                    var mask = Random.Next<T>();
+                    var src = Polyrand.Next<T>();
+                    var mask = Polyrand.Next<T>();
                     sw.Start();
                     var dst = gbits.scatter(src,mask);
                     sw.Stop();
@@ -107,8 +107,8 @@ namespace Z0.Test
         {
             for(var i=0; i<samples; i++)
             {
-                var src = Random.Next<T>();
-                var mask = Random.Next<T>();
+                var src = Polyrand.Next<T>();
+                var mask = Polyrand.Next<T>();
                     var s1 = BitRef.scatter(src,mask);
                     var s2 = gbits.scatter(src,mask);
                 Claim.eq(s1,s2);

@@ -357,7 +357,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N1024,uint> ToBitVector()
-            => BitVector.FromCells(Bits, Nats.N1024);
+            => BitVector.FromCells(Bits, zfunc.n1024);
 
         /// <summary>
         /// Constructs a 32-node graph via the adjacency matrix interpretation

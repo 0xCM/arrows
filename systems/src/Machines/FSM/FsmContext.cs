@@ -16,7 +16,7 @@ namespace Z0.Machines
     class FsmContext : Context<FsmContext>, IFsmContext
     {
 
-        public FsmContext(IRandomSource random, ulong? receiptLimit = null)
+        public FsmContext(IPolyrand random, ulong? receiptLimit = null)
             : base(random)
         {
             this.ReceiptLimit = receiptLimit ?? (ulong)Pow2.T14;
@@ -27,6 +27,8 @@ namespace Z0.Machines
         /// will accept prior to forced termination
         /// </summary>
         public ulong? ReceiptLimit {get;}
+
+        
 
     }
 

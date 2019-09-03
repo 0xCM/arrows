@@ -125,12 +125,6 @@ namespace Z0
             Configure(Config.WithTrace());   
         }
 
-        protected TestApp(ITestConfig config, IRandomSource random)
-            : base(config,random)
-        {
-
-        }
-
         protected virtual string AppName
             => GetType().Assembly.GetSimpleName();
 

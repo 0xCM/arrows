@@ -97,18 +97,18 @@ namespace MsInfer
         /// <returns>A random integer x, 0 &lt;= x &lt; <paramref name="maxPlus1"/>.  If <paramref name="maxPlus1"/> is zero, zero is returned.</returns>
         /// <remarks>Same as <see cref="System.Random.Next(int)"/>.</remarks>
         [Stochastic]
-        public static int Int(int maxPlus1, IRandomSource random = null)
+        public static int Int(int maxPlus1, IPolyrand random = null)
         {
-            return random?.NextInt32(maxPlus1) ?? gen.Next(maxPlus1);
+            return random?.Next(maxPlus1) ?? gen.Next(maxPlus1);
         }
 
         [MethodImpl(Inline)]
-        static int NextInt(int max, IRandomSource random)
-            => random?.NextInt32(max) ?? gen.Next(max);
+        static int NextInt(int max, IPolyrand random)
+            => random?.Next(max) ?? gen.Next(max);
 
         [MethodImpl(Inline)]
-        static double NextDouble(IRandomSource random)
-            => random?.NextDouble() ?? gen.NextDouble();
+        static double NextDouble(IPolyrand random)
+            => random?.Next<double>() ?? gen.NextDouble();
 
         /// <summary>
         /// Generates a random integer x, <paramref name="min"/> &lt;= x &lt; <paramref name="maxPlus1"/>.
@@ -131,7 +131,7 @@ namespace MsInfer
         /// <returns>A random double.</returns>
         /// <remarks>Same as <see cref="System.Random.NextDouble"/>.</remarks>
         [Stochastic,MethodImpl(Inline)]
-        public static double Double(IRandomSource random = null)
+        public static double Double(IPolyrand random = null)
             => NextDouble(random);        
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace MsInfer
         /// <param name="n">The length of permutation to make. Must be > 0.</param>
         /// <returns>An array of <paramref name="n"/> unique integers, each in the range [0,<paramref name="n"/>-1].</returns>
         [Stochastic]
-        public static int[] Perm(int n, IRandomSource random = null)
+        public static int[] Perm(int n, IPolyrand random = null)
         {
             int[] p = new int[n];
             for (int i = 0; i < n; i++) p[i] = i;
@@ -154,7 +154,7 @@ namespace MsInfer
         /// <typeparam name="T">The element type.</typeparam>
         /// <param name="array">The array to shuffle.</param>
         [Stochastic]
-        public static void Shuffle<T>(T[] array, IRandomSource random = null)
+        public static void Shuffle<T>(T[] array, IPolyrand random = null)
         {
             int n = array.Length;
             // Algorithm: repeatedly draw random integers, without replacement.
@@ -162,7 +162,7 @@ namespace MsInfer
             // (would also work the other way)
             for (int i = n - 1; i > 0; i--)
             {
-                int j = random?.NextInt32(i + 1) ??Rand.Int(i + 1);
+                int j = random?.Next(i + 1) ??Rand.Int(i + 1);
                 T temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -175,7 +175,7 @@ namespace MsInfer
         /// <typeparam name="T">The element type.</typeparam>
         /// <param name="list">The list to shuffle.</param>
         [Stochastic]
-        public static void Shuffle<T>(IList<T> list, IRandomSource random = null)
+        public static void Shuffle<T>(IList<T> list, IPolyrand random = null)
         {
             int n = list.Count;
             // Algorithm: repeatedly draw random integers, without replacement.
@@ -183,7 +183,7 @@ namespace MsInfer
             // (would also work the other way)
             for (int i = n - 1; i > 0; i--)
             {
-                int j = random?.NextInt32(i + 1) ?? Rand.Int(i + 1);
+                int j = random?.Next(i + 1) ?? Rand.Int(i + 1);
                 T temp = list[i];
                 list[i] = list[j];
                 list[j] = temp;
@@ -198,7 +198,7 @@ namespace MsInfer
         /// <param name="count">The number of elements to draw</param>
         /// <returns></returns>
         [Stochastic]
-        internal static HashSet<T> SampleWithoutReplacement<T>(IReadOnlyList<T> list, int count, IRandomSource random = null)
+        internal static HashSet<T> SampleWithoutReplacement<T>(IReadOnlyList<T> list, int count, IPolyrand random = null)
         {
             HashSet<T> set = new HashSet<T>();
             foreach (int index in SampleWithoutReplacement(list.Count, count, random))
@@ -215,7 +215,7 @@ namespace MsInfer
         /// <param name="count">The number of elements to draw</param>
         /// <returns></returns>
         [Stochastic]
-        internal static HashSet<int> SampleWithoutReplacement(int itemCount, int count, IRandomSource random = null)
+        internal static HashSet<int> SampleWithoutReplacement(int itemCount, int count, IPolyrand random = null)
         {
             if (count > itemCount)
                 throw new ArgumentException("count > itemCount");
@@ -237,7 +237,7 @@ namespace MsInfer
                 {
                     while (true)
                     {
-                        int item = random?.NextInt32(itemCount) ?? Rand.Int(itemCount);
+                        int item = random?.Next(itemCount) ?? Rand.Int(itemCount);
                         if (!set.Contains(item))
                         {
                             set.Add(item);
@@ -256,7 +256,7 @@ namespace MsInfer
         /// <returns>An integer from 0 to <c>prob.Count</c>-1.</returns>
         /// <exception cref="AllZeroException">Thrown when prob is all zeros.</exception>
         [Stochastic]
-        public static int Sample(Vector prob, IRandomSource random = null)
+        public static int Sample(Vector prob, IPolyrand random = null)
         {
             double sum = prob.Sum();
             if (sum == 0) 
@@ -271,7 +271,7 @@ namespace MsInfer
         /// <param name="sum">The sum of the prob array.  Must be > 0.</param>
         /// <returns>An integer from 0 to <c>prob.Count</c>-1.</returns>
         [Stochastic]
-        public static int Sample(Vector prob, double sum, IRandomSource random = null)
+        public static int Sample(Vector prob, double sum, IPolyrand random = null)
         {
             // Inversion method, Devroye chap 3
             int x = 0;
@@ -296,7 +296,7 @@ namespace MsInfer
         /// <param name="sum">The sum of the prob array.  Must be > 0.</param>
         /// <returns>An integer from 0 to <c>prob.Count</c>-1.</returns>
         [Stochastic]
-        public static int Sample(IList<double> prob, double sum, IRandomSource random = null)
+        public static int Sample(IList<double> prob, double sum, IPolyrand random = null)
         {
             // Inversion method, Devroye chap 3
             int x = 0;
@@ -318,7 +318,7 @@ namespace MsInfer
         /// </summary>
         /// <returns>A finite real number.</returns>
         [Stochastic]
-        public static double Normal(IRandomSource random = null)
+        public static double Normal(IPolyrand random = null)
         {
             double x1, x2;
             double w;
@@ -354,7 +354,7 @@ namespace MsInfer
         /// <param name="stdDev">The standard deviation (sqrt of the variance).</param>
         /// <returns>A finite real number.</returns>
         [Stochastic]
-        public static double Normal(double mean, double stdDev, IRandomSource random = null)        
+        public static double Normal(double mean, double stdDev, IPolyrand random = null)        
             => mean + stdDev*Normal(random);
         
 
@@ -365,7 +365,7 @@ namespace MsInfer
         /// <param name="variance">The covariance matrix.  Must be positive-definite.</param>
         /// <param name="result">Receives the result.  Must be non-null and the correct size.</param>
         [Stochastic]
-        public static void Normal(Vector mean, PositiveDefiniteMatrix variance, Vector result, IRandomSource random = null)
+        public static void Normal(Vector mean, PositiveDefiniteMatrix variance, Vector result, IPolyrand random = null)
         {
             LowerTriangularMatrix L = new LowerTriangularMatrix(variance.Rows, variance.Rows);
             bool isPosDef = L.SetToCholesky(variance);
@@ -384,7 +384,7 @@ namespace MsInfer
         /// <param name="precision">The inverse of the covariance matrix.  Must be positive-definite.</param>
         /// <param name="result">Receives the result.  Must be non-null and the correct size.</param>
         [Stochastic]
-        public static void NormalP(Vector mean, PositiveDefiniteMatrix precision, Vector result, IRandomSource random = null)
+        public static void NormalP(Vector mean, PositiveDefiniteMatrix precision, Vector result, IPolyrand random = null)
         {
             LowerTriangularMatrix L = new LowerTriangularMatrix(precision.Rows, precision.Rows);
             bool isPosDef = L.SetToCholesky(precision);
@@ -403,7 +403,7 @@ namespace MsInfer
         /// <param name="varChol">The lower triangular Cholesky factor of the covariance matrix.  Must be positive-definite.</param>
         /// <param name="result">Receives the result.  Must be non-null and the correct size.</param>
         [Stochastic]
-        public static void NormalChol(Vector mean, LowerTriangularMatrix varChol, Vector result, IRandomSource random = null)
+        public static void NormalChol(Vector mean, LowerTriangularMatrix varChol, Vector result, IPolyrand random = null)
         {
             if (ReferenceEquals(mean, result))
                 throw new ArgumentException("mean and result are the same object");
@@ -424,7 +424,7 @@ namespace MsInfer
         /// <param name="precCholT">The upper triangular transpose of the Cholesky factor of the precision matrix.  Must be positive-definite.</param>
         /// <param name="result">Receives the result.  Must be non-null and the correct size.</param>
         [Stochastic]
-        public static void NormalPChol(Vector mean, UpperTriangularMatrix precCholT, Vector result, IRandomSource random = null)
+        public static void NormalPChol(Vector mean, UpperTriangularMatrix precCholT, Vector result, IPolyrand random = null)
         {
             if (ReferenceEquals(mean, result))
                 throw new ArgumentException("mean and result are the same object");
@@ -445,7 +445,7 @@ namespace MsInfer
         /// <param name="lowerBound">The truncation point.  Can be -Infinity.</param>
         /// <returns>A real number &gt;= <paramref name="lowerBound"/></returns>
         [Stochastic]
-        public static double NormalGreaterThan(double lowerBound, IRandomSource random = null)
+        public static double NormalGreaterThan(double lowerBound, IPolyrand random = null)
         {
             if (lowerBound < 1)
             {
@@ -500,7 +500,7 @@ namespace MsInfer
         /// <param name="lowerBound">Must be finite.</param>
         /// <param name="upperBound">Must be &gt;= <paramref name="lowerBound"/>.  Must be finite.</param>
         /// <returns>A real number &gt;= <paramref name="lowerBound"/> and &lt; <paramref name="upperBound"/></returns>
-        public static double UniformBetween(double lowerBound, double upperBound, IRandomSource random = null)
+        public static double UniformBetween(double lowerBound, double upperBound, IPolyrand random = null)
         {
             double delta = upperBound - lowerBound;
             if (delta == 0)
@@ -520,7 +520,7 @@ namespace MsInfer
         /// <param name="lowerBound">Can be -Infinity.</param>
         /// <param name="upperBound">Must be &gt;= <paramref name="lowerBound"/>.  Can be Infinity.</param>
         /// <returns>A real number &gt;= <paramref name="lowerBound"/> and &lt; <paramref name="upperBound"/></returns>
-        public static double NormalBetween(double lowerBound, double upperBound, IRandomSource random = null)
+        public static double NormalBetween(double lowerBound, double upperBound, IPolyrand random = null)
         {
             if (double.IsNaN(lowerBound))
                 throw new ArgumentException("lowerBound is NaN");
@@ -583,7 +583,7 @@ namespace MsInfer
         // variables, ACM Transactions on Mathematical Software, Vol. 26, No. 3,
         // Pages 363-372, September, 2000.
         // http://portal.acm.org/citation.cfm?id=358414
-        private static double GammaShapeGE1(double a, IRandomSource random = null)
+        private static double GammaShapeGE1(double a, IPolyrand random = null)
         {
             double d = a - 1.0/3, c = 1.0/ System.Math.Sqrt(9* d);
             double v;
@@ -623,7 +623,7 @@ namespace MsInfer
         /// <remarks>The distribution is defined as p(x) = x^(a-1)*exp(-x)/Gamma(a).
         /// To incorporate a scale parameter b, multiply the result by b.</remarks>
         [Stochastic]
-        public static double Gamma(double a, IRandomSource random = null)
+        public static double Gamma(double a, IPolyrand random = null)
         {
             if (a < 1)
                 // boost using Marsaglia's (1961) method: gam(a) = gam(a+1)*U^(1/a)
@@ -632,7 +632,7 @@ namespace MsInfer
                 return GammaShapeGE1(a, random);
         }
 
-        private static double LogGamma(double a, IRandomSource random = null)
+        private static double LogGamma(double a, IPolyrand random = null)
         {
             if (a < 1)
                 // boost using Marsaglia's (1961) method: gam(a) = gam(a+1)*U^(1/a)
@@ -672,7 +672,7 @@ namespace MsInfer
         /// </code>
         /// </example>
         [Stochastic]
-        public static void Wishart(double a, LowerTriangularMatrix result, IRandomSource random = null)
+        public static void Wishart(double a, LowerTriangularMatrix result, IPolyrand random = null)
         {
             Assert.IsTrue(result.Rows == result.Cols);
             for (int i = 0; i < result.Rows; ++i)
@@ -693,7 +693,7 @@ namespace MsInfer
         /// <param name="falseCount"></param>
         /// <returns></returns>
         [Stochastic]
-        public static double Beta(double trueCount, double falseCount, IRandomSource random = null)
+        public static double Beta(double trueCount, double falseCount, IPolyrand random = null)
         {
             double gFalse, gTrue;
             if (trueCount < 1 && falseCount < 1)
@@ -736,7 +736,7 @@ namespace MsInfer
         /// value for the sparse vector is not 0, then the result will be dense; in such
         /// a case it is recommended that 'result' be a dense vector type.</remarks>
         [Stochastic]
-        public static Vector Dirichlet(Vector pseudoCount, Vector result, IRandomSource random = null)
+        public static Vector Dirichlet(Vector pseudoCount, Vector result, IPolyrand random = null)
         {
             // If pseudo-count is sparse and its common value is not 0, we need
             // to process it as a dense vector so that samples from common value
@@ -775,7 +775,7 @@ namespace MsInfer
         ///  Comm. ACM, 31, 2 (Feb. 1988), 216.
         /// </remarks>
         [Stochastic]
-        public static int Binomial(int n, double p, IRandomSource random = null)
+        public static int Binomial(int n, double p, IPolyrand random = null)
         {
             if (p*(n + 1) == n + 1) return n;
             if (n < 15)
@@ -826,7 +826,7 @@ namespace MsInfer
         /// <param name="probs">Must sum to 1</param>
         /// <returns>An array of length <c>probs.Count</c> of integers between 0 and trialCount, whose sum is trialCount.</returns>
         [Stochastic]
-        public static int[] Multinomial(int trialCount, Vector probs, IRandomSource random = null)
+        public static int[] Multinomial(int trialCount, Vector probs, IPolyrand random = null)
         {
             return Multinomial(trialCount, (DenseVector) probs, random);
         }
@@ -838,7 +838,7 @@ namespace MsInfer
         /// <param name="probs"></param>
         /// <returns></returns>
         [Stochastic]
-        public static int[] Multinomial(int trialCount, DenseVector probs, IRandomSource random = null)
+        public static int[] Multinomial(int trialCount, DenseVector probs, IPolyrand random = null)
         {
             int[] result = new int[probs.Count];
             if (probs.Count == 0) return result;
@@ -861,7 +861,7 @@ namespace MsInfer
         /// <param name="mean">Must be >= 0</param>
         /// <returns>An integer in [0,infinity)</returns>
         [Stochastic]
-        public static int Poisson(double mean, IRandomSource random = null)
+        public static int Poisson(double mean, IPolyrand random = null)
         {
             // TODO: There are more efficient samplers
             if (mean < 0) throw new ArgumentException("mean < 0");

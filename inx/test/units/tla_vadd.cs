@@ -13,7 +13,6 @@ namespace Z0.Test
     using VecLen = NatSeq<N1,N2,N3>;
     
     using static zfunc;
-    using static Nats;    
 
 
     public class tla_vadd : UnitTest<tla_vadd>
@@ -72,7 +71,7 @@ namespace Z0.Test
                 sw1.Stop();
 
                 sw2.Start();
-                VectorRefOps.Add(v1, v2, ref e3);
+                Linear.add(v1, v2, ref e3);
                 sw2.Stop();
                 Claim.eq(e3.Unsized,v3.Unsized);
             }
@@ -88,27 +87,27 @@ namespace Z0.Test
         {
             var labelPad = 30;
             var cycles = Pow2.T08;
-            TracePerf(Add(cycles, 0ul, 2048ul, N5), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N16), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N32), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N64), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N128), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N256), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N512), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N1024), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N2048), labelPad);
-            TracePerf(Add(cycles, 0ul, 2048ul, N4096), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n5), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n16), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n32), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n64), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n128), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n256), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n512), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n1024), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n2048), labelPad);
+            TracePerf(Add(cycles, 0ul, 2048ul, n4096), labelPad);
 
-            TracePerf(Add(cycles, 0d, 2048d, N5), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N16), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N32), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N64), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N128), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N256), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N512), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N1024), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N2048), labelPad);
-            TracePerf(Add(cycles, 0d, 2048d, N4096), labelPad);           
+            TracePerf(Add(cycles, 0d, 2048d, n5), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n16), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n32), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n64), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n128), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n256), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n512), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n1024), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n2048), labelPad);
+            TracePerf(Add(cycles, 0d, 2048d, n4096), labelPad);           
         }
 
         void Add<N,T>(int cycles = DefaltCycleCount)
@@ -121,7 +120,7 @@ namespace Z0.Test
                 var v1 = Polyrand.NatVec<N,T>();
                 var v2 = Polyrand.NatVec<N,T>();
                 var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
-                var v4 = v1.Add(v2);
+                var v4 = Linear.add(ref v1,v2);
                 Claim.yea(v3 == v4);
             }
         }
@@ -136,7 +135,7 @@ namespace Z0.Test
                 var v1 = Polyrand.NatVec<N,T>();
                 var v2 = Polyrand.NatVec<N,T>();
                 var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
-                var v4 = v1.Sub(v2);
+                var v4 = Linear.sub(ref v1,v2);
                 Claim.yea(v3 == v4);
             }
         }

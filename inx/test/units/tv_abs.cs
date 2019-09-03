@@ -20,7 +20,7 @@ namespace Z0.Test
         {
             for(var cycle = 0; cycle < cycles; cycle++)
             {
-                var x = Random.CpuVec256<long>();            
+                var x = Polyrand.CpuVec256<long>();            
                 var actual = dinx.abs(x);
                 var expect = x.Map256(Math.Abs);
                 Claim.eq(expect, actual);
@@ -28,7 +28,7 @@ namespace Z0.Test
 
             for(var cycle = 0; cycle < cycles; cycle++)
             {
-                var x = Random.CpuVec128<long>();            
+                var x = Polyrand.CpuVec128<long>();            
                 var actual = dinx.abs(x);
                 var expect = x.Map128(Math.Abs);
                 Claim.eq(expect, actual);

@@ -7,18 +7,6 @@ namespace System
     using System.Collections.Generic;
     using Z0;
 
-    public interface IRandomSource
-    {        
-        ulong NextUInt64();
-
-        ulong NextUInt64(ulong max);
-
-        int NextInt32(int max);
-        
-        double NextDouble();
-
-    }
-
     /// <summary>
     /// Characterizes a source capable of producing an interminable 
     /// sequence of bounded/unbounded points of specific primal type
@@ -27,24 +15,51 @@ namespace System
     public interface IPointSource<T>
         where T : struct
     {
+        /// <summary>
+        /// Retrieves the next point from the source, bound only by the domain of the type
+        /// </summary>
         T Next();    
 
+        /// <summary>
+        /// Retrieves the next point from the source, constrained by an upper bound
+        /// </summary>
+        /// <param name="max">The exclusive upper bound</param>
+        /// <typeparam name="T">The point type</typeparam>
         T Next(T max);    
         
+        /// <summary>
+        /// Retrieves the next point from the source, constrained by upper and lower bounds
+        /// </summary>
+        /// <param name="min">The inclusive lower bound</param>
+        /// <param name="max">The exclusive max value</param>
         T Next(T min, T max);
 
     }
 
-    public interface IStepwiseSource<T> : IPointSource<T>
-        where T : struct
+    public interface IStreamNav
     {
+        /// <summary>
+        /// Moves the stream a specified number of steps forward
+        /// </summary>
+        /// <param name="steps">The step count</param>
         void Advance(ulong steps);
 
+        /// <summary>
+        /// Moves the stream a specified number of steps backward
+        /// </summary>
+        /// <param name="steps">The step count</param>
         void Retreat(ulong steps);
 
     }
 
-     /// <summary>
+    public interface IStepwiseSource<T> : IPointSource<T>, IStreamNav
+        where T : struct
+    {
+
+    }
+
+
+    /// <summary>
     /// Characterizes source capable of producing an interminable 
     /// sequence of bounded/unbounded points of any scalar primal type
     /// </summary>
@@ -60,25 +75,63 @@ namespace System
         IPointSource<float>,
         IPointSource<double> 
     {
+        /// <summary>
+        /// Retrieves the next point from the source, bound only by the domain of the type
+        /// </summary>
+        /// <typeparam name="T">The point type</typeparam>
         T Next<T>()
             where T : struct;
 
+        /// <summary>
+        /// Retrieves the next point from the source, constrained by an upper bounds
+        /// </summary>
+        /// <param name="max">The exclusive max value</param>
+        /// <typeparam name="T">The point type</typeparam>
         T Next<T>(T max)
             where T : struct;
 
+        /// <summary>
+        /// Retrieves the next point from the source, constrained by upper and lower bounds
+        /// </summary>
+        /// <param name="min">The inclusive min value</param>
+        /// <param name="max">The exclusive max value</param>
+        /// <typeparam name="T">The point type</typeparam>
         T Next<T>(T min, T max)
             where T : struct;
+
+        /// <summary>
+        /// Retrieves the next point from the source, bound within a specified interval
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The domain of the random variable</param>
+        /// <typeparam name="T">The point type</typeparam>
+        T Next<T>(Interval<T> domain)
+            where T : struct;
+
+        /// <summary>
+        /// Retrieves the random  stream navigator, if supported
+        /// </summary>
+        Option<IStreamNav> Navigator {get;}
     }
 
     /// <summary>
-    /// Characterizes source capable of producing an interminable sequence of N-dimensional points/vectors
+    /// Views a stream of random values with a post-generation view
     /// </summary>
-    /// <typeparam name="T">The primal component type</typeparam>
-    public interface IPointSource<N,T>
-        where N : ITypeNat, new()
-        where T : struct
+    /// <typeparam name="T"></typeparam>
+    public interface IRandomStream<T> : IEnumerable<T>
+        where T: struct
     {
-        Span<N,T> Next();
+
+        /// <summary>
+        /// Retrieves the next element from the stream; equivalent to First()
+        /// </summary>
+        T Next();
+
+        /// <summary>
+        /// Retrieves a specified number of elements from the stream; equivalent to Take(count)
+        /// </summary>
+        /// <param name="count">The number of elements</param>
+        IEnumerable<T> Next(int count);
     }
 
 

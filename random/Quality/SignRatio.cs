@@ -15,7 +15,7 @@ namespace Z0.Rng
         /// The test succeeds if the ratio approaches unity as the sample size approaches infinity
         /// </summary>
         /// <param name="samples">The sample count</param>
-        public static double SignRatio(this IRandomSource random, long samples, long radius)
+        public static double SignRatio(this IPolyrand random, long samples, long radius)
         {
             var domain = closed(0 - math.abs(radius), 0 + math.abs(radius));
             var pos = 0L;
@@ -23,7 +23,7 @@ namespace Z0.Rng
             var zed = 0L;
             for(var i=0; i<samples; i++)
             {
-                var next = random.NextInt64(domain);
+                var next = random.Next(domain);
                 if(next > 0)
                     pos++;
                 else if(next < 0)

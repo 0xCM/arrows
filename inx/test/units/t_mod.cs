@@ -9,61 +9,60 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
-    using static Nats;
 
     public class t_mod : UnitTest<t_mod>
     {
 
         public void modmul()
         {
-            VerifyMul(N3);
-            VerifyMul(N5);
-            VerifyMul(N7);
-            VerifyMul(N10);
-            VerifyMul(N11);
-            VerifyMul(N13);
-            VerifyMul(N32);
-            VerifyMul(N64);
-            VerifyMul(N128);
-            VerifyMul(N1024);
+            VerifyMul(n3);
+            VerifyMul(n5);
+            VerifyMul(n7);
+            VerifyMul(n10);
+            VerifyMul(n11);
+            VerifyMul(n13);
+            VerifyMul(n32);
+            VerifyMul(n64);
+            VerifyMul(n128);
+            VerifyMul(n1024);
         }
 
         public void modinc()
         {
-            VerifyIncrement(N128);
-            VerifyIncrement(N5);
-            VerifyIncrement(N20);            
+            VerifyIncrement(n128);
+            VerifyIncrement(n5);
+            VerifyIncrement(n20);            
         }
 
         public void moddec()
         {
-            VerifyDecrement(N13);
-            VerifyDecrement(N17);
-            VerifyDecrement(N32);
-            VerifyDecrement(N64);
-            VerifyDecrement(N128);
+            VerifyDecrement(n13);
+            VerifyDecrement(n17);
+            VerifyDecrement(n32);
+            VerifyDecrement(n64);
+            VerifyDecrement(n128);
         }
 
         public void modinv()
         {
-            VerifyInverse(N3);
-            VerifyInverse(N5);
-            VerifyInverse(N7);
-            VerifyInverse(N11);
-            VerifyInverse(N13);
-            VerifyInverse(N17);
-            VerifyInverse(N19);
-            VerifyInverse(N31);
+            VerifyInverse(n3);
+            VerifyInverse(n5);
+            VerifyInverse(n7);
+            VerifyInverse(n11);
+            VerifyInverse(n13);
+            VerifyInverse(n17);
+            VerifyInverse(n19);
+            VerifyInverse(n31);
             VerifyInverse(N41);
-            VerifyInverse(N1277);
+            VerifyInverse(n1277);
         }
 
         public void modadd()
         {
             var samples = Pow2.T08;
-            VerifyAdd(samples,N87);
-            VerifyAdd(samples,N64);
-            VerifyAdd(samples,N512);
+            VerifyAdd(samples,n87);
+            VerifyAdd(samples,n64);
+            VerifyAdd(samples,n512);
         }
 
         public void TestCreate()
@@ -168,8 +167,8 @@ namespace Z0.Test
             var nVal = (uint)n.value;
             var n0 = Mod.Define(n);
 
-            var lhs = Random.Span<uint>(samples);
-            var rhs = Random.Span<uint>(samples);
+            var lhs = Polyrand.Span<uint>(samples);
+            var rhs = Polyrand.Span<uint>(samples);
             for(var i=0; i<samples; i++)
             {
                 var x = lhs[i];

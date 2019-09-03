@@ -12,7 +12,6 @@ namespace Z0.Test
     
     using static zfunc;
     using static nfunc;
-    using static Nats;
 
     public class tla_matwrite : UnitTest<tla_matwrite>
     {
@@ -21,7 +20,7 @@ namespace Z0.Test
             VerifyWriter<N12,N14,long>(Pow2.T03);        
             VerifyWriter<N19,N32,byte>(Pow2.T03);        
             VerifyWriter<N5,N5,float>(Pow2.T03);    
-            VerifyWriter(Pow2.T03, N31, N31, 0u);                    
+            VerifyWriter(Pow2.T03, n31, n31, 0u);                    
             VerifyWriter<N7,N7,double>(Pow2.T03);    
             
         }
@@ -43,7 +42,7 @@ namespace Z0.Test
             {
                 var filename = Matrix.DataFileName<M,N,T>();
                 var dstpath = LogSettings.Get().TestLogPath(filename);
-                var A = Random.Matrix<M,N,T>();
+                var A = Polyrand.Matrix<M,N,T>();
                 if(isFp)
                     A.Apply(round);
                 A.WriteTo(dstpath);

@@ -239,17 +239,6 @@ namespace Z0
         /// </summary>
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
-        public Perm Shuffle(IRandomSource random)
-        {
-            random.Shuffle(terms);
-            return this;
-        }
-
-        /// <summary>
-        /// Shuffles the permutation in-place using a provided random source.
-        /// </summary>
-        /// <param name="random">The random source</param>
-        [MethodImpl(Inline)]
         public Perm Shuffle(IPolyrand random)
         {
             random.Shuffle(terms);

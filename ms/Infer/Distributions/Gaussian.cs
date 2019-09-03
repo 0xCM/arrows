@@ -463,7 +463,7 @@ namespace MsInfer.Distributions
         /// </summary>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double mean, double precision, IRandomSource random = null)
+        public static double Sample(double mean, double precision, IPolyrand random = null)
         {
             if (precision <= 0) throw new ArgumentException("precision <= 0 (" + precision + ")");
             return Rand.Normal(random) / Math.Sqrt(precision) + mean;
@@ -487,7 +487,7 @@ namespace MsInfer.Distributions
         }
 
         
-        public double Sample(IRandomSource random)
+        public double Sample(IPolyrand random)
             => IsPointMass ? Point : Sample(MeanTimesPrecision / Precision, Precision, random);
 
         /// <summary>

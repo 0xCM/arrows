@@ -13,7 +13,7 @@ namespace Z0.Rng
     using static zfunc;
 
     
-    public class WyHashTest : UnitTest<WyHashTest>
+    public class t_wyhash : UnitTest<t_wyhash>
     {
 
         public void TestSuite()
@@ -28,7 +28,7 @@ namespace Z0.Rng
             var suite = RNG.WyHash64Suite(dim);
             for(var i=0; i<trials; i++)
             {
-                var vector = suite.Next();
+                var vector = suite.Next<ulong>();
                 var contracted = vector.Contract(maxVec);
                 for(var j = 0; j<dim; j++)
                 {
@@ -38,7 +38,7 @@ namespace Z0.Rng
                 }
             }
 
-            var indices = Random.Array<int>(10, leftopen(0, buckets.Length));
+            var indices = Polyrand.Array<int>(10, leftopen(0, buckets.Length));
             var bucketSample = buckets.Values(indices);
             var avg = (double)gmath.avg<ulong>(bucketSample);
             var deltas = bucketSample.Map(c => (math.abs(1 - ((double)c / avg)).Round(4)));

@@ -10,7 +10,6 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static Nats;
     using static x86;
 
     public class tv_slli : UnitTest<tv_slli>
@@ -18,8 +17,8 @@ namespace Z0.Test
 
         public void slli256u8()
         {
-            var src = Random.Stream<byte>();
-            var offsets = Random.Stream(closed<byte>(2,6));
+            var src = Polyrand.Stream<byte>();
+            var offsets = Polyrand.Stream(closed<byte>(2,6));
 
             for(var i=0; i< DefaltCycleCount; i++)
             {
@@ -34,8 +33,8 @@ namespace Z0.Test
 
         public void srli256u8()
         {
-            var src = Random.Stream<byte>();
-            var offsets = Random.Stream(closed<byte>(2,6));
+            var src = Polyrand.Stream<byte>();
+            var offsets = Polyrand.Stream(closed<byte>(2,6));
 
             for(var i=0; i< DefaltCycleCount; i++)
             {
@@ -49,7 +48,7 @@ namespace Z0.Test
 
         public void slli256u64()
         {
-            var src = Random.CpuVec256<ulong>();
+            var src = Polyrand.CpuVec256<ulong>();
             for(byte i=1; i<=5; i++)
             {
                 var a = Bits.sll(in src, i).ToSpan256();
@@ -65,7 +64,7 @@ namespace Z0.Test
             var id = ShuffleIdentityMask();
             for(var i=0; i<DefaltCycleCount; i++)
             {
-                var x = Random.CpuVec256<byte>();
+                var x = Polyrand.CpuVec256<byte>();
                 var y = dinx.shuffle(x, id);
                 Claim.eq(x,y);
             }
@@ -76,7 +75,7 @@ namespace Z0.Test
             var tr = Vec256Pattern.ClearAlt<byte>();
             for(var i=0; i<DefaltCycleCount; i++)
             {
-                var x = Random.CpuVec256<byte>();
+                var x = Polyrand.CpuVec256<byte>();
                 var y = dinx.shuffle(x, tr);
                 var xs = x.ToSpan256();
                 for(var j =0; j< xs.Length; j++)
@@ -164,8 +163,8 @@ namespace Z0.Test
             var shiftRange = closed<byte>(2,14);
             
             var sw = stopwatch(false);
-            var src = Random.Stream<ushort>();
-            var offsets = Random.Stream(shiftRange);
+            var src = Polyrand.Stream<ushort>();
+            var offsets = Polyrand.Stream(shiftRange);
             for(var cycle=0; cycle<cycles; cycle++)
             for(var block = 0; block<blocks; block++)
             {
@@ -186,8 +185,8 @@ namespace Z0.Test
             var shiftRange = closed<byte>(2,14);
             
             var sw = stopwatch(false);
-            var src = Random.Stream<ushort>();
-            var offsets = Random.Stream(shiftRange);
+            var src = Polyrand.Stream<ushort>();
+            var offsets = Polyrand.Stream(shiftRange);
 
             for(var cycle=0; cycle<cycles; cycle++)
             for(var block = 0; block<blocks; block++)
@@ -209,8 +208,8 @@ namespace Z0.Test
             var shiftRange = closed<byte>(2,6);
 
             var sw = stopwatch(false);
-            var src = Random.Stream<byte>();
-            var offsets = Random.Stream(shiftRange);
+            var src = Polyrand.Stream<byte>();
+            var offsets = Polyrand.Stream(shiftRange);
 
             for(var cycle=0; cycle<cycles; cycle++)
             for(var block = 0; block<blocks; block++)
@@ -233,8 +232,8 @@ namespace Z0.Test
             var shiftRange = closed<byte>(2,6);
 
             var sw = stopwatch(false);
-            var src = Random.Stream<byte>();
-            var offsets = Random.Stream(shiftRange);
+            var src = Polyrand.Stream<byte>();
+            var offsets = Polyrand.Stream(shiftRange);
 
             for(var cycle=0; cycle<cycles; cycle++)
             for(var block = 0; block<blocks; block++)
@@ -253,8 +252,8 @@ namespace Z0.Test
         {
             var shiftRange = closed<int>(2,6);
             var sw = stopwatch(false);
-            var src = Random.Stream<byte>();
-            var offsets = Random.Stream(shiftRange);
+            var src = Polyrand.Stream<byte>();
+            var offsets = Polyrand.Stream(shiftRange);
             byte y = 0;
             for(var i=0; i<opcount; i++)
             {

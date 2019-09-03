@@ -45,8 +45,8 @@ namespace Z0.Test
             where T : struct
         {
             var tBits = Unsafe.SizeOf<T>()*8;
-            var s2 = Random.Stream(closed(segMin,segMax)).GetEnumerator();            
-            var s3 = Random.Stream<byte>(closed((byte)0, (byte)tBits)).GetEnumerator();
+            var s2 = Polyrand.Stream(closed(segMin,segMax)).GetEnumerator();            
+            var s3 = Polyrand.Stream<byte>(closed((byte)0, (byte)tBits)).GetEnumerator();
             while(true && s2.MoveNext() && s3.MoveNext())
                 yield return CellIndex<T>.Define(s2.Current, s3.Current);
         }
@@ -55,7 +55,7 @@ namespace Z0.Test
         {
             var n = Pow2.T12;
             var positions = BitPositions<uint>(512, 1024).TakeArray(n);
-            var additions = Random.Stream(closed(0u, 100u)).TakeArray(n);
+            var additions = Polyrand.Stream(closed(0u, 100u)).TakeArray(n);
             for(var i=0; i<n; i++)
             {
                 var posX = positions[i];

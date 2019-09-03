@@ -23,28 +23,75 @@ namespace Z0
         static ClaimException failed(ClaimOpKind op, string msg, string caller, string file, int? line)
             => ClaimException.Define(op, msg, caller, file, line);
 
+        /// <summary>
+        /// Fails unconditionally
+        /// </summary>
+        /// <param name="msg">The failure reason</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static void fail(string msg, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => throw failed(ClaimOpKind.Fail, $"Unconditional failure", caller, file, line);
+            => throw failed(ClaimOpKind.Fail, AppMsg.Error(msg, caller, file,line));
 
+        /// <summary>
+        /// Asserts the equality of two enum values
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static bool eq(Enum lhs, Enum rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Equals(rhs) ? true
                 : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
+        /// <summary>
+        /// Asserts the equality of two strings
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static bool eq(string lhs, string rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Equals(rhs) ? true
                 : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
+        /// <summary>
+        /// Asserts the equality of two values via whatever equals operator is implemented
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
+        /// <summary>
+        /// Asserts the equality of the content of two arrays
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static bool eq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
+        /// <summary>
+        /// Asserts the equality of two boolean arrays
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         public static void eq(bool[] lhs, bool[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
         {            
             for(var i = 0; i< length(lhs,rhs); i++)
@@ -154,6 +201,16 @@ namespace Z0
                 => range.Contains(x) ? true : throw failed(ClaimOpKind.Between, NotBetween(x,range.Left, range.Right, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool within<T>(T x, T lower, T upper, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct
+        {
+            var range = closed(lower,upper);
+            return range.Contains(x) 
+                ? true 
+                : throw failed(ClaimOpKind.Between, NotBetween(x,range.Left, range.Right, caller, file, line));
+        }
+
+        [MethodImpl(Inline)]
         public static bool between<T>(T x, T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct
                 => gmath.between(x,lhs,rhs) ? true : throw failed(ClaimOpKind.Between, NotBetween(x, lhs, rhs, caller, file, line));
@@ -198,9 +255,17 @@ namespace Z0
             => src ? true 
                 : throw ClaimException.Define(NotTrue(msg, caller, file,line));
 
+        /// <summary>
+        /// Asserts that the operand is false
+        /// </summary>
+        /// <param name="src">The value claimed to be false</param>
+        /// <param name="msg">An optional message describint the assertion</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
-        public static bool nea(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
+        public static bool nea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !src ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
 
         [MethodImpl(Inline)]
         public static unsafe bool notnull(void* p, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)

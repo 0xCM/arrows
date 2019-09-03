@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="p">The probability of a given trial succeeding</param>
-        public static BernoulliDist<T> Bernoulli<T>(this IRandomSource random, double p = 0.5)
+        public static BernoulliDist<T> Bernoulli<T>(this IPolyrand random, double p = 0.5)
             where T : struct
                 => new BernoulliSpec<T>(p).Distribution(random);
  

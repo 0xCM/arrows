@@ -22,7 +22,7 @@ namespace Z0.Mkl.Test
             var dim = Pow2.T08;
             var range = closed(-20f,20f);
             
-            var src = Random.Array<float>(dim*obs, range);
+            var src = Polyrand.Array<float>(dim*obs, range);
             var sample = Sample.Load(src,dim);
             var sorted = sample.RadixSort();
 

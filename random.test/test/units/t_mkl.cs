@@ -11,7 +11,6 @@ namespace Z0.Rng
     using System.IO;
     using Z0.Mkl;
 
-    using static Nats;
     using static zfunc;
     
     public class t_mkl : UnitTest<t_mkl>
@@ -71,7 +70,7 @@ namespace Z0.Rng
 
         void DefaultRngTest(int segment, int total)
         {
-            var src = RNG.XOrShift1024().Stream(RangeF64);
+            var src = RNG.XOrShift1024().ToPolyrand().Stream(RangeF64);
             var sum = 0.0;
             for(var i=0; i< total; i+= segment)
             {

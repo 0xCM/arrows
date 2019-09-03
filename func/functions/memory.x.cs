@@ -25,15 +25,6 @@ namespace  Z0
             => memory(src);
 
         /// <summary>
-        /// Encloses the source memory in readonly container (non-allocating)
-        /// </summary>
-        /// <param name="src">The source memory</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlyMemory<T> Readonly<T>(this Memory<T> src)
-            => src;
-
-        /// <summary>
         ///  Constructs a memory segment from the content of the (hopefully finite) stream (allocating)
         /// </summary>
         /// <param name="src">The source stream</param>
@@ -41,23 +32,6 @@ namespace  Z0
         [MethodImpl(Inline)]
         public static ReadOnlyMemory<T> ToReadOnlyMemory<T>(this IEnumerable<T> src)
             => src.ToMemory();
-
-        /// <summary>
-        ///  Constructs a memory segment from the content of an array (non-allocating)
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static Memory<T> ToMemory<T>(this T[] src)
-            => src;
-
-        /// <summary>
-        ///  Constructs a readonly memory segment from the content of an array (non-allocating)
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        public static ReadOnlyMemory<T> ToReadOnlyMemory<T>(this T[] src)
-            => src;
 
         /// <summary>
         /// Constructs a memory segment of specified length from a stream (allocating)

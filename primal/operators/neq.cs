@@ -56,6 +56,46 @@ namespace Z0
         public static bool neq(double lhs, double rhs)
             => lhs != rhs;
 
+        [MethodImpl(Inline)]
+        public static bool neq(in sbyte lhs, in sbyte rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in byte lhs, in byte rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in short lhs, in short rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in ushort lhs, in ushort rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in int lhs, in int rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in uint lhs, in uint rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in long lhs, in long rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in ulong lhs, in ulong rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in float lhs, in float rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(in double lhs, in double rhs)
+            => lhs != rhs;
+
          public static Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
         {
             for(var i = 0; i< lhs.Length; i++)

@@ -51,56 +51,56 @@ namespace Z0
 
  
         [MethodImpl(Inline)]
-        public static ref sbyte div(ref sbyte lhs, sbyte rhs)
+        public static ref sbyte div(ref sbyte lhs, in sbyte rhs)
         {
             lhs = (sbyte)(lhs / rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref byte div(ref byte lhs, byte rhs)
+        public static ref byte div(ref byte lhs, in byte rhs)
         {
             lhs = (byte)(lhs / rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref short div(ref short lhs, short rhs)
+        public static ref short div(ref short lhs, in short rhs)
         {
             lhs = (short)(lhs / rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort div(ref ushort lhs, ushort rhs)
+        public static ref ushort div(ref ushort lhs, in ushort rhs)
         {
             lhs = (ushort)(lhs / rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref int div(ref int lhs, int rhs)
+        public static ref int div(ref int lhs, in int rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint div(ref uint lhs, uint rhs)
+        public static ref uint div(ref uint lhs, in uint rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref long div(ref long lhs, long rhs)
+        public static ref long div(ref long lhs, in long rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong div(ref ulong lhs, ulong rhs)
+        public static ref ulong div(ref ulong lhs, in ulong rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;

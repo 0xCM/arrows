@@ -850,7 +850,7 @@ namespace MsInfer.Distributions
             }
         }
 
-        public double Sample(IRandomSource random)
+        public double Sample(IPolyrand random)
         {
             if (IsPointMass)
             {
@@ -881,7 +881,7 @@ namespace MsInfer.Distributions
         /// <param name="falseCount">False count</param>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double trueCount, double falseCount, IRandomSource random = null)
+        public static double Sample(double trueCount, double falseCount, IPolyrand random = null)
         {
             return Rand.Beta(trueCount, falseCount, random);
         }

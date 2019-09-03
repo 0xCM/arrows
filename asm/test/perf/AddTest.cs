@@ -20,7 +20,7 @@ namespace Z0.Asm.Test
 
         public AddTest()
         {
-            var src = Random.Stream<int>();
+            var src = Polyrand.Stream<int>();
             Lhs = src.TakeArray(SampleSize);
             Rhs = src.TakeArray(SampleSize);
         }

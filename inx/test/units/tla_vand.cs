@@ -11,7 +11,6 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
-    using static Nats;
     using VecLen = NatSeq<N1,N2,N3>;
 
     public class tla_vand : UnitTest<tla_vand>
@@ -36,7 +35,7 @@ namespace Z0.Test
             var rep = new N();
             var len = (int)rep.value;
             var data = Polyrand.NatVecPair<N,T>();            
-            var vResult = data.Left.And(data.Right);
+            var vResult = Linear.and(ref data.Left, data.Right);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)

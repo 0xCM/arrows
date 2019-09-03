@@ -13,8 +13,65 @@ namespace Z0
     /// <remarks>
     /// Core algorithms taken from the paper: https://arxiv.org/pdf/1402.6246.pdf
     /// </remarks>
-    public class XOrShift1024 : IRandomSource, IPointSource<ulong>
+    class XOrShift1024 : IPointSource<ulong>
     {
+        readonly ulong[] state;
+        
+        int p;
+
+        [MethodImpl(Inline)]
+        public static IPointSource<ulong> Define(params ulong[] seed)
+            => new XOrShift1024(seed);
+
+        public XOrShift1024(ulong[] seed)
+        {
+            if(seed.Length < 16)
+                throw new Exception($"Not enough seed! 1024 bits = 128 bytes = 16 longs are required");
+            this.state = As.uint64(seed).ToArray();
+        }
+
+        public XOrShift1024(Span<byte> seed)
+        {
+            if(seed.Length < 128)
+                throw new Exception($"Not enough seed! 1024 bits = 128 bytes are required");
+            this.state = As.uint64(seed).ToArray();
+        }
+
+        public void Jump() 
+        {
+            ulong[] t = new ulong[16];
+
+            for(int i = 0; i < JT.Length; i++)
+            for(int b = 0; b < 64; b++) 
+            {
+                if ( (JT[i] & 1ul << b) != 0)
+                    for(int j = 0; j < 16; j++)
+                        t[j] ^= state[(j + p) & 15];
+                Next();
+            }
+
+            for(int j = 0; j < 16; j++)
+                state[(j + p) & 15] = t[j];
+        }
+
+        [MethodImpl(Inline)]
+        public ulong Next() 
+        {
+            ulong s0 = state[p];
+            ulong s1 = state[p = (p + 1) & 15];
+            s1 ^= s1 << 31; // a
+            state[p] = s1 ^ s0 ^ (s1 >> 11) ^ (s0 >> 30); // b,c
+            return state[p] * Multiplier;
+        }
+        
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
+
         /// <summary>
         /// The jump table of predetermined constants to facilitate an efficient way
         /// to simulate calls to "Next()"
@@ -31,77 +88,6 @@ namespace Z0
         /// </summary>
         const ulong Multiplier = 1181783497276652981;
 
-        readonly ulong[] state;
-        
-        int p;
-
-        IPolyrand MR;
-
-        public XOrShift1024(ulong[] seed)
-        {
-            if(seed.Length < 16)
-                throw new Exception($"Not enough seed! 1024 bits = 128 bytes = 16 longs are required");
-            this.state = As.uint64(seed).ToArray();
-            this.MR = RNG.Polyrand(this);
-        }
-
-        public XOrShift1024(Span<byte> seed)
-        {
-            if(seed.Length < 128)
-                throw new Exception($"Not enough seed! 1024 bits = 128 bytes are required");
-            this.state = As.uint64(seed).ToArray();
-            this.MR = RNG.Polyrand(this);
-        }
-
-        public void Jump() 
-        {
-            ulong[] t = new ulong[16];
-
-            for(int i = 0; i < JT.Length; i++)
-            for(int b = 0; b < 64; b++) 
-            {
-                if ( (JT[i] & 1ul << b) != 0)
-                    for(int j = 0; j < 16; j++)
-                        t[j] ^= state[(j + p) & 15];
-                NextUInt64();
-            }
-
-            for(int j = 0; j < 16; j++)
-                state[(j + p) & 15] = t[j];
-        }
-
-        [MethodImpl(Inline)]
-        public ulong NextUInt64() 
-        {
-            ulong s0 = state[p];
-            ulong s1 = state[p = (p + 1) & 15];
-            s1 ^= s1 << 31; // a
-            state[p] = s1 ^ s0 ^ (s1 >> 11) ^ (s0 >> 30); // b,c
-            return state[p] * Multiplier;
-        }
-        
-
-        [MethodImpl(Inline)]
-        public ulong Next()
-            => NextUInt64();
-
-        [MethodImpl(Inline)]
-        public ulong Next(ulong max)
-            => Next().Contract(max);
-
-        [MethodImpl(Inline)]
-        public ulong Next(ulong min, ulong max)        
-            => min + Next(max - min);
-
-        [MethodImpl(Inline)]
-        public double NextDouble()
-            => MR.Next<double>();
-
-        int IRandomSource.NextInt32(int max)
-            => (this as IPointSource<ulong>).Next(max);
-
-        ulong IRandomSource.NextUInt64(ulong max)
-            => Next(max);
     }
 
 }

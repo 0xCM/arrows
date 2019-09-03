@@ -34,10 +34,12 @@ namespace Z0
             log(messages, LogArea.Test);            
         }
 
+
         /// <summary>
-        /// Specifies the context-specific randomizer 
+        /// Defines the context-specific RNG
         /// </summary>
-        IRandomSource Random {get;}
+        IPolyrand Polyrand {get;}
+
     }
 
 

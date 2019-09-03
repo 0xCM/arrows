@@ -16,6 +16,12 @@ namespace Z0
     /// <remarks>Algorithms take from https://lemire.me/blog/2019/07/03/a-fast-16-bit-random-number-generator/</remarks>
     class WyHash16 : IPointSource<ushort>
     {
+        readonly ushort Seed;
+        
+        readonly ushort Increment;
+
+        ushort State;
+
         [MethodImpl(Inline)]
         public WyHash16(ushort Seed, ushort? Increment = null)
         {
@@ -24,12 +30,6 @@ namespace Z0
             this.Increment = Increment ?? 0xfc15;
         }
                 
-        readonly ushort Seed;
-        
-        readonly ushort Increment;
-
-        ushort State;
-
         [MethodImpl(Inline)]
         public ushort Next()
             => Hash16(State += Increment, 0x2ab);
@@ -63,11 +63,5 @@ namespace Z0
         public ushort Next(ushort min, ushort max)
             => math.add(min, Next((ushort)(max - min)));
 
-
-        public IEnumerable<ushort> Stream()
-        {
-            while(true)
-                yield return Next();
-        }
     }
 }

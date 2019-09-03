@@ -6,12 +6,9 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Text;
 
     using static zfunc;    
-
 
     /// <summary>
     /// Describes cycle in a perutation

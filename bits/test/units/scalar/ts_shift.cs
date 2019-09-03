@@ -17,8 +17,8 @@ namespace Z0.Test
 
         public void shift8i()
         {
-            var lhs = Random.Array<sbyte>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));            
+            var lhs = Polyrand.Array<sbyte>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));            
 
             Shift<sbyte>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), gbits.shiftl(lhs[i], rhs[i])));
@@ -29,8 +29,8 @@ namespace Z0.Test
 
         public void shift8u()
         {
-            var lhs = Random.Array<byte>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<byte>.BitSize));            
+            var lhs = Polyrand.Array<byte>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<byte>.BitSize));            
 
             Shift<byte>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq((byte)(lhs[i] << rhs[i]), gbits.shiftl(lhs[i], rhs[i])));
@@ -41,8 +41,8 @@ namespace Z0.Test
 
         public void shift32i()
         {
-            var lhs = Random.Array<int>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
+            var lhs = Polyrand.Array<int>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
 
             Shift<int>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
@@ -53,8 +53,8 @@ namespace Z0.Test
 
         public void shift32u()
         {
-            var lhs = Random.Array<uint>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<uint>.BitSize));            
+            var lhs = Polyrand.Array<uint>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<uint>.BitSize));            
 
             Shift<uint>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
@@ -65,8 +65,8 @@ namespace Z0.Test
         }
         public void shift64i()
         {
-            var lhs = Random.Array<long>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
+            var lhs = Polyrand.Array<long>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
 
             Shift<long>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
@@ -77,8 +77,8 @@ namespace Z0.Test
 
         public void shift64u()
         {
-            var lhs = Random.Array<ulong>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<ulong>.BitSize));            
+            var lhs = Polyrand.Array<ulong>(SampleSize);            
+            var rhs = Polyrand.Array<int>(SampleSize, closed(0, (int)SizeOf<ulong>.BitSize));            
 
             Shift<ulong>(Orientation.Left, lhs, rhs);        
             iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));

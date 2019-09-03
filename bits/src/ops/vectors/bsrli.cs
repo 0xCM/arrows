@@ -16,7 +16,7 @@ namespace Z0
     partial class Bits
     {
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -26,7 +26,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -36,7 +36,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -46,7 +46,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -56,7 +56,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -66,7 +66,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm_bsrli_si128
+        /// __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -76,7 +76,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
         
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -86,7 +86,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -96,7 +96,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -106,7 +106,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -116,7 +116,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -126,7 +126,7 @@ namespace Z0
             => ShiftRightLogical128BitLane(src, bytes);
 
         /// <summary>
-        /// _mm256_bsrli_epi128
+        /// __m256i _mm256_bsrli_epi128 (__m256i a, const int imm8) VPSRLDQ ymm, ymm, imm8
         /// Shifts the source vector rightwards with byte-level resolution
         /// </summary>
         /// <param name="src">The source vector</param>

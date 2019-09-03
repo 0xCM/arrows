@@ -11,12 +11,11 @@ namespace Z0
     using System.Runtime.CompilerServices;
         
     using static As;
+    using static AsIn;
     using static zfunc;
 
     partial class fmath
     {
-
-
         [MethodImpl(Inline)]
         public static float sqrt(float src)
             => MathF.Sqrt(src);
@@ -40,16 +39,16 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref float sqrt(float src, ref float dst)
+        public static ref float sqrt(in float src, ref float dst)
         {
-            dst = sqrt(ref src);
+            dst = sqrt(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref double sqrt(double src, ref double dst)
+        public static ref double sqrt(in double src, ref double dst)
         {
-            dst = sqrt(ref src);
+            dst = sqrt(src);
             return ref dst;
         }
 

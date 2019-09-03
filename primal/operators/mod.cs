@@ -54,70 +54,70 @@ namespace Z0
             => lhs % rhs;
 
         [MethodImpl(Inline)]
-        public static ref sbyte mod(ref sbyte lhs, sbyte rhs)
+        public static ref sbyte mod(ref sbyte lhs, in sbyte rhs)
         {
             lhs = (sbyte)(lhs % rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref byte mod(ref byte lhs, byte rhs)
+        public static ref byte mod(ref byte lhs, in byte rhs)
         {
             lhs = (byte)(lhs % rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref short mod(ref short lhs, short rhs)
+        public static ref short mod(ref short lhs, in short rhs)
         {
             lhs = (short)(lhs % rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort mod(ref ushort lhs, ushort rhs)
+        public static ref ushort mod(ref ushort lhs, in ushort rhs)
         {
             lhs = (ushort)(lhs % rhs);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref int mod(ref int lhs, int rhs)
+        public static ref int mod(ref int lhs, in int rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint mod(ref uint lhs, uint rhs)
+        public static ref uint mod(ref uint lhs, in uint rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref long mod(ref long lhs, long rhs)
+        public static ref long mod(ref long lhs, in long rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong mod(ref ulong lhs, ulong rhs)
+        public static ref ulong mod(ref ulong lhs, in ulong rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref float mod(ref float lhs, float rhs)
+        public static ref float mod(ref float lhs, in float rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref double mod(ref double lhs, double rhs)
+        public static ref double mod(ref double lhs, in double rhs)
         {
             lhs = lhs % rhs;
             return ref lhs;

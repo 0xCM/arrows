@@ -47,7 +47,7 @@ namespace Z0.Test
 
         public void range64u()
         {
-            var src = Random.Stream<ulong>().TakeSpan(Pow2.T14);
+            var src = Polyrand.Stream<ulong>().TakeSpan(Pow2.T14);
             for(var i=0; i< src.Length; i++)
             {
                 var x = src[i];
@@ -62,7 +62,7 @@ namespace Z0.Test
 
         public void range32u()
         {
-            var src = Random.Stream<uint>().TakeSpan(Pow2.T14);
+            var src = Polyrand.Stream<uint>().TakeSpan(Pow2.T14);
             for(var i=0; i< src.Length; i++)
             {
                 var x = src[i];

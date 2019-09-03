@@ -11,7 +11,6 @@ namespace Z0
     using System.IO;
     
     using static zfunc;
-    using static Nats;
     
     public class t_perm : UnitTest<t_perm>
     {
@@ -21,12 +20,12 @@ namespace Z0
 
             var sw = stopwatch();
             var p0 = Perm.Identity(n);
-            var p1 = Random.Shuffle(in p0);
-            var p2 = Random.Shuffle(in p0);
+            var p1 = Polyrand.Shuffle(in p0);
+            var p2 = Polyrand.Shuffle(in p0);
             for(var i=0; i<count; i++)
             {
-                p1 = Random.Shuffle(in p1);
-                p2 = Random.Shuffle(in p2);
+                p1 = Polyrand.Shuffle(in p1);
+                p2 = Polyrand.Shuffle(in p2);
                 if(p1 == p2)
                     duplicates++;
             }

@@ -19,27 +19,6 @@ namespace Z0
     /// </summary>
     public static class MatrixRefOps
     {
-        public static T Dot<N,T>(Vector<N,T> X, Vector<N,T> Y)
-            where T : struct
-            where N : ITypeNat, new()
-        {
-            var result = default(T);
-            var len = nati<N>();
-            for(var i=0; i< len; i++)
-                result = gmath.add(gmath.mul(X[i],Y[i]), result);
-            return result;
-        }
-
-        public static T Dot<T>(Span<T> X, Span<T> Y)
-            where T : struct
-        {
-            var result = default(T);
-            var len = length(X,Y);
-            for(var i=0; i< len; i++)
-                result = gmath.add(gmath.mul(X[i],Y[i]), result);
-            return result;
-        }
-
         public static Span<M,P,double> Mul<M,N,P>(Span<M,N,double> lhs, Span<N,P,double> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -64,7 +43,7 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< n; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Dot(A.Row(i), B.Col(j));                    
+                X[i,j] = Linear.dot(A.Row(i), B.Col(j));                    
             return ref X;
         }
 
@@ -79,7 +58,7 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< m; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Dot(A.GetRow(i), B.GetCol(j));         
+                X[i,j] = Linear.dot(A.GetRow(i), B.GetCol(j));         
             return ref X;           
         }
 
@@ -101,7 +80,7 @@ namespace Z0
         {
             var m = nati<M>();
             for(var i = 0; i< m; i++)
-                X[i] = Dot(A.GetRow(i), B);                    
+                X[i] = Linear.dot(A.GetRow(i), B);                    
         }
 
     }

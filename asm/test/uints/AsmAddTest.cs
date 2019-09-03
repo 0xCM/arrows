@@ -2,10 +2,9 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm.Test
+namespace Z0.Asm
 {
     using System;
-    using Z0.Test;
     
     using static zfunc;
 

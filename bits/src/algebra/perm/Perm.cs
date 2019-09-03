@@ -11,7 +11,6 @@ namespace Z0
  
     using static zfunc;    
 
-
     /// <summary>
     /// Defines a permutation over an integral type based at 0, [0, 1, ..., n - 1] where n is the permutation length
     /// </summary>

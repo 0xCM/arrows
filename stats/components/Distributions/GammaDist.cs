@@ -17,13 +17,13 @@ namespace Z0
     public class GammaDist<T> : Distribution<GammaSpec<T>,T>
         where T : struct
     {    
-        public GammaDist(IRandomSource random, GammaSpec<T> spec)
+        public GammaDist(IPolyrand random, GammaSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => Random.SampleGamma(Spec.Shape, Spec.Scale);
+            => Polyrand.SampleGamma(Spec.Shape, Spec.Scale);
     }
 }

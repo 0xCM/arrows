@@ -9,7 +9,6 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static Nats;
 
 
     public class tbv_perm : UnitTest<tbv_perm>

@@ -747,7 +747,7 @@ namespace MsInfer.Distributions
             }
         }
 
-        public double Sample(IRandomSource random)
+        public double Sample(IPolyrand random)
             => IsPointMass ? Point : Rand.Gamma(Shape, random) / Rate;        
 
         /// <summary>
@@ -768,7 +768,7 @@ namespace MsInfer.Distributions
         /// <param name="scale">scale parameter</param>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double shape, double scale, IRandomSource random = null)
+        public static double Sample(double shape, double scale, IPolyrand random = null)
         {
             return Rand.Gamma(shape, random) * scale;
         }
@@ -781,7 +781,7 @@ namespace MsInfer.Distributions
         /// <returns>The sample value</returns>
         [Stochastic]
         [ParameterNames("sample", "mean", "variance")]
-        public static double SampleFromMeanAndVariance(double mean, double variance, IRandomSource random = null)
+        public static double SampleFromMeanAndVariance(double mean, double variance, IPolyrand random = null)
         {
             return FromMeanAndVariance(mean, variance).Sample(random);
         }

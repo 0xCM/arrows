@@ -65,53 +65,6 @@ namespace Z0
         public static BigInteger parse(string src, out BigInteger dst)
             => dst = BigInteger.Parse(src);
 
-        // [MethodImpl(Inline)]
-        // Option<byte> IParser<byte>.tryParse(string src)
-        //         => Try( () => byte.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<sbyte> IParser<sbyte>.tryParse(string src)
-        //         => Try( () => sbyte.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<ushort> IParser<ushort>.tryParse(string src)
-        //         => Try( () => ushort.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<short> IParser<short>.tryParse(string src)
-        //         => Try( () => short.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<int> IParser<int>.tryParse(string src)
-        //         => Try( () => int.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<uint> IParser<uint>.tryParse(string src)
-        //         => Try( () => uint.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<long> IParser<long>.tryParse(string src)
-        //         => Try( () => long.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<ulong> IParser<ulong>.tryParse(string src)
-        //         => Try( () => ulong.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<float> IParser<float>.tryParse(string src)
-        //         => Try( () => float.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<double> IParser<double>.tryParse(string src)
-        //         => Try( () => double.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<decimal> IParser<decimal>.tryParse(string src)
-        //         => Try( () => decimal.Parse(src));
-
-        // [MethodImpl(Inline)]
-        // Option<BigInteger> IParser<BigInteger>.tryParse(string src)
-        //         => Try( () => BigInteger.Parse(src));
-    
+   
     }    
 }

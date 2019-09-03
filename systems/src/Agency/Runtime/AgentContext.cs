@@ -17,14 +17,14 @@ namespace Z0
         ConcurrentDictionary<ulong, IServiceAgent> Agents {get;}
             = new ConcurrentDictionary<ulong, IServiceAgent>();
 
-        public AgentContext(IRandomSource random)
+        public AgentContext(IPolyrand random)
             : base(random)
         {
 
         }
 
         public AgentContext()
-            : base(RNG.XOrShift1024(Seed1024.AppSeed))
+            : base(RNG.XOrShift1024(Seed1024.AppSeed).ToPolyrand())
         {
 
 

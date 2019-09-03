@@ -17,13 +17,13 @@ namespace Z0
     public class LaplaceDist<T> : Distribution<LaplaceSpec<T>,T>
         where T : struct
     {    
-        public LaplaceDist(IRandomSource random, LaplaceSpec<T> spec)
+        public LaplaceDist(IPolyrand random, LaplaceSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => Random.SampleLaplace(Spec.Location, Spec.Scale);
+            => Polyrand.SampleLaplace(Spec.Location, Spec.Scale);
     }
 }

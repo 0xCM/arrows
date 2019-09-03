@@ -15,26 +15,20 @@ namespace Z0.Rng
     /// <summary>
     /// Implemements a 64-bit PCG generator
     /// </summary>
-    class Pcg64 : Pcg<ulong>, IStepwiseSource<ulong>, IRandomSource
+    class Pcg64 : Pcg<ulong>, IStepwiseSource<ulong>
     {    
         public static Pcg64 Define(ulong s0, ulong? index = null)
             => new Pcg64(s0,index);
      
-        public readonly ulong Multiplier 
-            = DefaultMultiplier64;
         
-        IPointSource<ulong> PointSource
-            => this;
-
-        Polyrand PR;
-
         [MethodImpl(Inline)]
         public Pcg64(ulong s0, ulong? index = null)
         {
             Init(s0, index ?? DefaultIndex64);
-            this.PR = new Polyrand(PointSource);    
-
         }
+
+        public readonly ulong Multiplier 
+            = DefaultMultiplier64;
 
         void Init(ulong s0, ulong index)
         {
@@ -73,6 +67,14 @@ namespace Z0.Rng
         }
 
         [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
+
+        [MethodImpl(Inline)]
         public void Advance(ulong count)  
             => State = Advance(State, count, Multiplier, Index);
 
@@ -94,25 +96,7 @@ namespace Z0.Rng
             return dst;         
         }
 
-        [MethodImpl(Inline)]
-        public ulong Next(ulong max)
-            => Next().Contract(max);
 
-        [MethodImpl(Inline)]
-        public ulong Next(ulong min, ulong max)        
-            => min + Next(max - min);
-
-        ulong IRandomSource.NextUInt64()
-            => Next();
- 
-        ulong IRandomSource.NextUInt64(ulong max)
-            => Next(max);
-
-        int IRandomSource.NextInt32(int max)
-            => PR.Next(max);
-
-        double IRandomSource.NextDouble()
-            => PR.Next<double>();
     }
 
 }

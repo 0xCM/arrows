@@ -36,7 +36,7 @@ namespace Z0.Test
 
         public void pack2x16()
         {
-            var src = Random.Span<ushort>(Pow2.T11);
+            var src = Polyrand.Span<ushort>(Pow2.T11);
             foreach(var x in src)
             {
                 (var x0, var x1) = Bits.split(x);
@@ -48,7 +48,7 @@ namespace Z0.Test
 
         public void pack4x32()
         {
-            var src = Random.Span<uint>(Pow2.T11);
+            var src = Polyrand.Span<uint>(Pow2.T11);
             foreach(var x in src)
             {
                 (var x0, var x1, var x2, var x3) = Bits.split(x, new N4());
@@ -76,7 +76,7 @@ namespace Z0.Test
 
         public void pack8x64()
         {
-            var src = Random.Span<ulong>(Pow2.T11);
+            var src = Polyrand.Span<ulong>(Pow2.T11);
             foreach(var x in src)
             {
                 (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.split(x, new N8());
@@ -126,7 +126,7 @@ namespace Z0.Test
 
         public void packsplits()
         {
-            var src = Random.Span<ulong>(Pow2.T11);
+            var src = Polyrand.Span<ulong>(Pow2.T11);
             foreach(var x in src)
             {
                 (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.split(x, new N8());
@@ -154,7 +154,7 @@ namespace Z0.Test
         {
             var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
             var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
-            var src = Random.Span<byte>(Pow2.T04).ReadOnly();
+            var src = Polyrand.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<uint>(src.Length / 4);
             gbits.pack(src, packed);
 
@@ -170,7 +170,7 @@ namespace Z0.Test
         {
             var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
             var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
-            var src = Random.Span<byte>(Pow2.T04).ReadOnly();
+            var src = Polyrand.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<ulong>(src.Length / 8);
             gbits.pack(src, packed);
 
@@ -186,8 +186,8 @@ namespace Z0.Test
         void PackSplitPackU16()
         {
             var len = Pow2.T08;
-            var lhs = Random.Bytes().Take(len).ToArray();
-            var rhs = Random.Bytes().Take(len).ToArray();
+            var lhs = Polyrand.Bytes().Take(len).ToArray();
+            var rhs = Polyrand.Bytes().Take(len).ToArray();
             for(var i=0; i<len; i++)
             {
                 var dst = Bits.pack(lhs[i],rhs[i]);
@@ -206,7 +206,7 @@ namespace Z0.Test
         void pack_roundtrip_check<T>(BitSize bitcount)
             where T : struct
         {
-            var src = Random.BitStrings(bitcount);
+            var src = Polyrand.BitStrings(bitcount);
             var bsInput = src.First();
 
             var x = bsInput.ToBits();
@@ -239,22 +239,22 @@ namespace Z0.Test
 
         public void reverse()
         {
-            var x0 = Random.Next<byte>();
+            var x0 = Polyrand.Next<byte>();
             var y0 = x0.ToReversedBitString().Pack().First();
             var z0 = Bits.rev(x0);
             Claim.eq(y0,z0);
 
-            var x1 = Random.Next<ushort>();
+            var x1 = Polyrand.Next<ushort>();
             var y1 = x1.ToReversedBitString().Pack().TakeUInt16();
             var z1 = Bits.rev(x1);
             Claim.eq(y1,z1);
 
-            var x2 = Random.Next<uint>();
+            var x2 = Polyrand.Next<uint>();
             var y2 = x2.ToReversedBitString().Pack().TakeUInt32();
             var z2 = Bits.rev(x2);
             Claim.eq(y2,z2);
 
-            var x3 = Random.Next<ulong>();
+            var x3 = Polyrand.Next<ulong>();
             var y3 = x3.ToReversedBitString().Pack().TakeUInt64();
             var z3 = Bits.rev(x3);
             Claim.eq(y3,z3);
@@ -263,7 +263,7 @@ namespace Z0.Test
 
         void VerifyPack()
         {
-            var bs = Random.BitString(Pow2.T08);
+            var bs = Polyrand.BitString(Pow2.T08);
             var blocks = bs.BitSeq.ToSpan256();
             for(var block = 0; block <= blocks.BlockCount; block++)
             {
@@ -287,7 +287,7 @@ namespace Z0.Test
         {
             for(var cycle=0; cycle<cycles; cycle++)
             {
-                var src = Random.Next<T>();
+                var src = Polyrand.Next<T>();
                 var unpacked = gbits.unpack(in src, out Span<Bit> _);
                 for(var j = 0; j<unpacked.Length; j++)
                     Claim.eq(gbits.test(in src, in j), (bool)unpacked[j]);

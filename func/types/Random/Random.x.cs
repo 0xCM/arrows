@@ -5,17 +5,12 @@
 namespace  Z0
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;    
-    using System.Diagnostics;
     
     using static zfunc;
     
     partial class xfunc
     {
-
         /// <summary>
         /// Shuffles span content in-place
         /// </summary>
@@ -26,19 +21,6 @@ namespace  Z0
         {
             for (int i = 0; i < src.Length; i++)
                 swap(ref src[i], ref src[i + random.Next(0, src.Length - i)]);
-            return src;
-        }
-
-        /// <summary>
-        /// Shuffles array content in-place
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="src">The input/output array</param>
-        /// <typeparam name="T">The element type</typeparam>
-        public static T[] Shuffle<T>(this IRandomSource random, T[] src)
-        {
-            for (int i = 0; i < src.Length; i++)
-                swap(ref src[i], ref src[i + random.NextInt32(src.Length - i)]);
             return src;
         }
 
@@ -66,54 +48,16 @@ namespace  Z0
             => random.Shuffle(src.Replicate());    
 
         /// <summary>
-        /// Shuffles a permutation in-place
+        /// Shuffles a copy of the source permutation, leaving the original intact.
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="src">The permutation</param>
         [MethodImpl(Inline)]
-        public static Perm Shuffle(this IRandomSource random, Perm src)
+        public static Perm Shuffle(this IPolyrand random, in Perm src)
         {
-            src.Shuffle(random);
-            return src;
-        }
-
-        /// <summary>
-        /// Shuffles a permutation in-place
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="src">The permutation</param>
-        [MethodImpl(Inline)]
-        public static Perm Shuffle(this IPolyrand random, Perm src)
-        {
-            src.Shuffle(random);
-            return src;
-        }
-
-        /// <summary>
-        /// Shuffles a copy of the source permutatiion, leaving the original intact.
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="src">The permutation</param>
-        [MethodImpl(Inline)]
-        public static Perm Shuffle(this IRandomSource random, in Perm src) 
-        { 
             var copy = src.Replicate();
             copy.Shuffle(random);
             return copy;
-        }
-
-        /// <summary>
-        /// Shuffles a permutation in-place
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="src">The permutation</param>
-        /// <typeparam name="N">The permutation length</typeparam>
-        [MethodImpl(Inline)]
-        public static Perm<N> Shuffle<N>(this IPolyrand random, Perm<N> src)
-            where N : ITypeNat, new()
-        {
-            src.Shuffle(random);
-            return src;
         }
 
         /// <summary>

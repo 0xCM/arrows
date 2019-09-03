@@ -69,19 +69,19 @@ namespace Z0.Test
         {
             Claim.yea(BitMatrix8.Zero.IsZero());
             Claim.nea(BitMatrix8.Identity.IsZero());
-            Claim.nea(Random.BitMatrix8().IsZero());
+            Claim.nea(Polyrand.BitMatrix8().IsZero());
 
             Claim.yea(BitMatrix16.Zero.IsZero());
             Claim.nea(BitMatrix16.Identity.IsZero());
-            Claim.nea(Random.BitMatrix16().IsZero());
+            Claim.nea(Polyrand.BitMatrix16().IsZero());
 
             Claim.yea(BitMatrix32.Zero.IsZero());
             Claim.nea(BitMatrix32.Identity.IsZero());
-            Claim.nea(Random.BitMatrix32().IsZero());
+            Claim.nea(Polyrand.BitMatrix32().IsZero());
 
             Claim.yea(BitMatrix64.Zero.IsZero());
             Claim.nea(BitMatrix64.Identity.IsZero());
-            Claim.nea(Random.BitMatrix64().IsZero());
+            Claim.nea(Polyrand.BitMatrix64().IsZero());
         }
 
         

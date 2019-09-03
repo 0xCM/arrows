@@ -26,14 +26,13 @@ namespace Z0
     public abstract class TestContext<T> : Context<T>, ITestContext
         where T : TestContext<T>
     {
-        public TestContext(ITestConfig config = null, IRandomSource random = null)
-            : base(RNG.XOrShift1024(Seed1024.TestSeed))
+        public TestContext(ITestConfig config = null, IPolyrand random = null)
+            : base(random ?? RNG.XOrShift1024(Seed1024.TestSeed).ToPolyrand())
         {
             this.Config = config ?? TestConfigDefaults.Default();
-            this.Polyrand = Random.ToPolyrand();
         }
 
-        protected IPolyrand Polyrand {get;}
+        
         protected const int DefaltCycleCount = Pow2.T03;
 
         protected const int DefaultSampleSize = Pow2.T08;

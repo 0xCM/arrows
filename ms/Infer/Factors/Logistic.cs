@@ -576,7 +576,7 @@ namespace MsInfer.Factors
 #endif
 
         /// <include file='FactorDocs.xml' path='factor_docs/message_op_class[@name="LogisticOp_SJ99"]/message_doc[@name="XAverageLogarithm(Beta, Gaussian, Gaussian, double)"]/*'/>
-        public static Gaussian XAverageLogarithm([SkipIfUniform] Beta logistic, Gaussian x, Gaussian to_x, double a, IRandomSource random = null)
+        public static Gaussian XAverageLogarithm([SkipIfUniform] Beta logistic, Gaussian x, Gaussian to_x, double a, IPolyrand random = null)
         {
             if (logistic.IsPointMass)
                 return LogisticOp.XAverageLogarithm(logistic.Point);

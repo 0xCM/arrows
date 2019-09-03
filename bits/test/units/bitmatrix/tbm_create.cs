@@ -2,13 +2,13 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    using static Nats;
+
     using static zfunc;
     #pragma warning disable 1718
 
@@ -16,7 +16,7 @@ namespace Z0.Test
     {
         public void create8x8()
         {
-            var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
+            var src = Polyrand.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())
             {
                 var m1 = BitMatrix8.Load(src.Current);
@@ -131,7 +131,5 @@ namespace Z0.Test
                 for(var j=0; j<m.ColCount; j++)
                     Claim.eq(Bit.On, m[i,j]);
         }
-
     }
-
 }

@@ -145,10 +145,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Vector<N,T> Transpose()
             => Vector<N,T>.LoadAligned(ref data[0]);
-
-        [MethodImpl(Inline)]
-        public Span<T> Unsize()
-            => Unsized;
+        
  
         public bool Equals(Covector<N,T> rhs)
         {

@@ -125,13 +125,13 @@ namespace Z0.Test
         void and128<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(gbits.and), gmath.and<T>);
+            CpuOpVerify.VerifyBinOp(Polyrand, blocks, new Vec128BinOp<T>(gbits.and), gmath.and<T>);
         }
 
         void and256<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
-            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(gbits.and), gmath.and<T>);
+            CpuOpVerify.VerifyBinOp(Polyrand, blocks, new Vec256BinOp<T>(gbits.and), gmath.and<T>);
         }
     }
 

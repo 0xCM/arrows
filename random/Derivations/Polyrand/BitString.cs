@@ -82,10 +82,5 @@ namespace Z0
             while(true)
                 yield return random.BitString(minlen,maxlen);
         }
-
-
-
-
     }
-
 }

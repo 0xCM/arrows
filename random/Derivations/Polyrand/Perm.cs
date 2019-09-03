@@ -54,10 +54,6 @@ namespace Z0
             where N : ITypeNat, new()
                 => Z0.Perm.Identity(n).Shuffle(random);
 
-        [MethodImpl(Inline)]
-        public static Perm<N> Perm<N>(this IRandomSource random, N n = default)
-            where N : ITypeNat, new()
-                => Z0.Perm.Identity(n).Shuffle(random);
 
         /// <summary>
         /// Produces a stream of random permutation of natural length N

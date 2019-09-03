@@ -65,8 +65,8 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhs = Random.Span256<T>(len).ReadOnly();
-            var rhs = Random.Span256<T>(len).ReadOnly();
+            var lhs = Polyrand.Span256<T>(len).ReadOnly();
+            var rhs = Polyrand.Span256<T>(len).ReadOnly();
             var dstA = ginx.sub(lhs, rhs, lhs.Replicate());
             var dstB = Span256.AllocBlocks<T>(lhs.BlockCount);
             for(var i = 0; i < dstA.Length; i++)
@@ -87,8 +87,8 @@ namespace Z0.Test
 
         public void Sub128F32()
         {            
-            var lhs = Random.Span128<float>(Blocks);
-            var rhs = Random.Span128<float>(Blocks);
+            var lhs = Polyrand.Span128<float>(Blocks);
+            var rhs = Polyrand.Span128<float>(Blocks);
             var dDst = Span128.AllocBlocks<float>(Blocks);
             var gDst = Span128.AllocBlocks<float>(Blocks);
             Claim.eq(dinxx.Sub(lhs,rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));
@@ -96,8 +96,8 @@ namespace Z0.Test
 
         public void Sub128F64()
         {            
-            var lhs = Random.Span128<double>(Blocks);
-            var rhs = Random.Span128<double>(Blocks);
+            var lhs = Polyrand.Span128<double>(Blocks);
+            var rhs = Polyrand.Span128<double>(Blocks);
             var dDst = Span128.AllocBlocks<double>(Blocks);
             var gDst = Span128.AllocBlocks<double>(Blocks);                
             Claim.eq(dinxx.Sub(lhs, rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));

@@ -49,6 +49,17 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+ 
+        //  public static T dot<T>(Span<T> X, Span<T> Y)
+        //     where T : struct
+        // {
+        //     var result = default(T);
+        //     var len = length(X,Y);
+        //     for(var i=0; i< len; i++)
+        //         result = gmath.add(gmath.mul(X[i],Y[i]), result);
+        //     return result;
+        // }
+
     }
 
 }

@@ -21,13 +21,13 @@ namespace Z0.Rng
             var s1 = RNG.FixedSeed(54ul);
             var s2 = RNG.FixedSeed(54ul + 8ul);
 
-            var rng1 = RNG.WyHash64(s1);
-            var rng2 = RNG.WyHash64(s2);
-            var rng3 = RNG.WyHash64(s1);
+            var rng1 = RNG.WyHash64(s1).ToPolyrand();
+            var rng2 = RNG.WyHash64(s2).ToPolyrand();
+            var rng3 = RNG.WyHash64(s1).ToPolyrand();
 
-            var sample1 = rng1.Stream().Take(Pow2.T08).ToArray();
-            var sample2 = rng2.Stream().Take(Pow2.T08).ToArray();
-            var sample3 = rng3.Stream().Take(Pow2.T08).ToArray();
+            var sample1 = rng1.Stream<ulong>().Take(Pow2.T08).ToArray();
+            var sample2 = rng2.Stream<ulong>().Take(Pow2.T08).ToArray();
+            var sample3 = rng3.Stream<ulong>().Take(Pow2.T08).ToArray();
 
 
             for(var i=0; i< Pow2.T08; i++)

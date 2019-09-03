@@ -20,25 +20,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return mulI8(lhs,rhs);
+                return generic<T>(math.mul(int8(lhs), int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return mulU8(lhs, rhs);
+                return generic<T>(math.mul(uint8(lhs), uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return mulI16(lhs, rhs);
+                return generic<T>(math.mul(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return mulU16(lhs,rhs);
+                return generic<T>(math.mul(uint16(lhs), uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return mulI32(lhs, rhs);
+                return generic<T>(math.mul(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(uint))
-                return mulU32(lhs, rhs);
+                return generic<T>(math.mul(uint32(lhs), uint32(rhs)));
             else if(typeof(T) == typeof(long))
-                return mulI64(lhs,rhs);
+                return generic<T>(math.mul(int64(lhs), int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return mulU64(lhs,rhs);
+                return generic<T>(math.mul(uint64(lhs), uint64(rhs)));
             else if(typeof(T) == typeof(float))
-                return mulF32(lhs, rhs);
+                return generic<T>(math.mul(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return mulF64(lhs,rhs);
+                return generic<T>(math.mul(float64(lhs), float64(rhs)));
             else            
                 throw unsupported<T>();
         }
@@ -100,7 +100,7 @@ namespace Z0
             return dst;
         }
 
-        public static ref Span<T> mul<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static Span<T> mul<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -125,49 +125,8 @@ namespace Z0
                 float64(lhs).Mul(float64(rhs));
             else
                 throw unsupported<T>();
-            return ref lhs;
+            return lhs;
         }
-
-        [MethodImpl(Inline)]
-        static T mulI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) * int8(rhs)));
-
-        [MethodImpl(Inline)]
-        static T mulU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) * uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        static T mulI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) * int16(rhs)));
-
-        [MethodImpl(Inline)]
-        static T mulU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) * uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        static T mulI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) * int32(rhs));
-        
-        [MethodImpl(Inline)]
-        static T mulU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) * uint32(rhs));
-
-        [MethodImpl(Inline)]
-        static T mulI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) * int64(rhs));
-
-        [MethodImpl(Inline)]
-        static T mulU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) * uint64(rhs));
-
-        [MethodImpl(Inline)]
-        static T mulF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) * float32(rhs));
-
-        [MethodImpl(Inline)]
-        static T mulF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) * float64(rhs));
-
 
     }
 }

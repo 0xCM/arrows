@@ -17,14 +17,14 @@ namespace Z0
     public class BinomialDist<T> : Distribution<BinomialSpec<T>,T>
         where T : struct
     {    
-        public BinomialDist(IRandomSource random, BinomialSpec<T> spec)
+        public BinomialDist(IPolyrand random, BinomialSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => Random.SampleBinomial(Spec.Trials, Spec.Success);
+            => Polyrand.SampleBinomial(Spec.Trials, Spec.Success);
     }
      
 }

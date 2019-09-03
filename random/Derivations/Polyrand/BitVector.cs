@@ -35,16 +35,6 @@ namespace Z0
         public static BitVector4 BitVector4(this IPolyrand random)
             => BV.FromNibble(random.NextUInt4());
 
-        /// <summary>
-        /// Produces a stream of random 4-bit bitvectors
-        /// </summary>
-        /// <param name="random">The random source</param>
-        [MethodImpl(Inline)]
-        public static IEnumerable<BitVector4> Bitvectors4(this IPolyrand random)
-        {
-            while(true)
-                yield return random.NextUInt4();
-        }
 
         /// <summary>
         /// Produces a random 8-bit bitvector
@@ -54,16 +44,6 @@ namespace Z0
         public static BitVector8 BitVector8(this IPolyrand random)
             => random.Next<byte>();
 
-        /// <summary>
-        /// Produces a stream of random 8-bit bitvectors
-        /// </summary>
-        /// <param name="random">The random source</param>
-        [MethodImpl(Inline)]
-        public static IEnumerable<BitVector8> BitVectors8(this IPolyrand random)
-        {
-            while(true)
-                yield return random.BitVector8();
-        }            
 
         /// <summary>
         /// Produces a random 16-bit bitvector
@@ -86,24 +66,16 @@ namespace Z0
         }
 
         /// <summary>
-        /// Produces a stream of random 16-bit bitvectors, optionally cropping with width to a specified maximum
+        /// Produces a 16-bit bitvector with a specified maximum width <= 16
         /// </summary>
         /// <param name="random">The random source</param>
+        /// <param name="width">The with</param>
         [MethodImpl(Inline)]
-        public static IEnumerable<BitVector16> BitVectors16(this IPolyrand random, int? maxwidth = null)
+        public static BitVector16 BitVector(this IPolyrand random, N16 n, int? maxwidth = null)
         {
-            if(maxwidth != null)
-            {
-                var mw = maxwidth.Value;
-                while(true)
-                    yield return random.BitVector16(mw);
-            }
-            else
-            {
-                while(true)
-                    yield return random.BitVector16();
-            }
-        }            
+            var v = random.Next<ushort>();
+            return maxwidth == null ? v : (v >>= (16-maxwidth));
+        }
 
 
         /// <summary>
@@ -114,16 +86,9 @@ namespace Z0
         public static BitVector32 BitVector32(this IPolyrand random)
             => random.Next<uint>();
 
-        /// <summary>
-        /// Produces a stream of random 32-bit bitvectors
-        /// </summary>
-        /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
-        public static IEnumerable<BitVector32> BitVectors32(this IPolyrand random)
-        {
-            while(true)
-                yield return random.BitVector32();
-        }            
+        public static BitVector32 BitVector(this IPolyrand random, N32 n)
+            => random.Next<uint>();
 
         /// <summary>
         /// Produces a random 64-bit bitvector
@@ -134,33 +99,123 @@ namespace Z0
             => random.Next<ulong>();
 
         /// <summary>
-        /// Produces a stream of random 64-bit bitvectors
+        /// Produces a random 128-bit bitvector
         /// </summary>
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
-        public static IEnumerable<BitVector64> BitVectors64(this IPolyrand random)
-        {
-            while(true)
-                yield return random.BitVector64();
-        }            
+        public static BitVector128 BitVector128(this IPolyrand random)
+            => random.BitVector(zfunc.n128);
 
         /// <summary>
         /// Produces a random 128-bit bitvector
         /// </summary>
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
-        public static BitVector128 BitVector128(this IPolyrand random)
+        public static BitVector128 BitVector(this IPolyrand random, N128 n)
             => (random.Next<ulong>(), random.Next<ulong>());
+
+        /// <summary>
+        /// Produces a stream of random 4-bit bitvectors
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<BitVector4> BitVectors(this IPolyrand random, N4 n)
+        {
+            IEnumerable<BitVector4> produce()
+            {            
+                while(true)
+                    yield return random.NextUInt4();
+            }
+
+            return stream(produce());            
+        }
+
+        /// <summary>
+        /// Produces a stream of random 8-bit bitvectors
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<BitVector8> BitVectors(this IPolyrand random, N8 n)
+        {
+            IEnumerable<BitVector8> produce()
+            {            
+                while(true)
+                    yield return random.BitVector8();
+            }
+
+            return stream(produce());            
+        }            
+
+        /// <summary>
+        /// Produces a stream of random 16-bit bitvectors, optionally cropping with width to a specified maximum
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<BitVector16> BitVectors(this IPolyrand random, N16 n,  int? maxwidth = null)
+        {
+            IEnumerable<BitVector16> produce()
+            {
+                if(maxwidth != null)
+                {
+                    var mw = maxwidth.Value;
+                    while(true)
+                        yield return random.BitVector16(mw);
+                }
+                else
+                {
+                    while(true)
+                        yield return random.BitVector16();
+                }
+            }
+
+            return stream(produce());
+        }
+
+        /// <summary>
+        /// Produces a stream of random 32-bit bitvectors
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<BitVector32> BitVectors(this IPolyrand random, N32 n)
+        {
+            IEnumerable<BitVector32> produce()
+            {
+                while(true)
+                    yield return random.BitVector(n);
+
+            }
+            return stream(produce());
+        }            
+
+        /// <summary>
+        /// Produces a stream of random 64-bit bitvectors
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<BitVector64> BitVectors(this IPolyrand random, N64 n)
+        {
+            IEnumerable<BitVector64> produce()
+            {
+                while(true)
+                    yield return random.BitVector64();
+            }
+            return stream(produce());
+        }            
 
         /// <summary>
         /// Produces a stream of random 128-bit bitvectors
         /// </summary>
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
-        public static IEnumerable<BitVector128> BitVectors128(this IPolyrand random)
+        public static IRandomStream<BitVector128> BitVectors(this IPolyrand random, N128 n)
         {
-            while(true)
-                yield return random.BitVector128();
+            IEnumerable<BitVector128> produce()
+            {
+                while(true)
+                    yield return random.BitVector128();
+
+            }
+            return stream(produce());
         }            
 
         /// <summary>

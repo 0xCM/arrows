@@ -60,15 +60,13 @@ namespace Z0.Machines.Test
             => TransRules().ToFunction();
 
 
-
-
         public void Run()
         {
             var tasks = new Task[Pow2.T08];
             var indices = range(0xFFFFul, 0xFFFFFFFFul).Where(x => x % 2 != 0).Take(Pow2.T08).ToArray();
             for(var i=0u; i< tasks.Length; i++)
             {
-                var random = RNG.Pcg64(0,indices[i]);
+                var random = RNG.Pcg64(0,indices[i]).ToPolyrand();
                 var context = Fsm.CreateContext(random);
                 var transF = TransRules().ToFunction();
                 var machine = Fsm.Machine($"Fsm1-{i}",context, S0,S5, transF);
@@ -78,42 +76,42 @@ namespace Z0.Machines.Test
         }
 
 
-        public void VerifyEnums()
-        {
-            var lv = GEnum.LabeledValues<States>();
-            Claim.eq(6,lv.Length);
-            Claim.eq(S0, lv[0].value);
-            Claim.eq(S1, lv[1].value);
-            Claim.eq(S2, lv[2].value);
-            Claim.eq(S3, lv[3].value);  
+        // public void VerifyEnums()
+        // {
+        //     var lv = GEnum.LabeledValues<States>();
+        //     Claim.eq(6,lv.Length);
+        //     Claim.eq(S0, lv[0].value);
+        //     Claim.eq(S1, lv[1].value);
+        //     Claim.eq(S2, lv[2].value);
+        //     Claim.eq(S3, lv[3].value);  
 
-            Claim.eq(S0, GEnum.Parse<States>(S0.ToString()).Require());          
-            Claim.eq(S1, GEnum.Parse<States>(S1.ToString()).Require());          
-            Claim.eq(S2, GEnum.Parse<States>(S2.ToString()).Require());          
-            Claim.eq(S3, GEnum.Parse<States>(S3.ToString()).Require());          
+        //     Claim.eq(S0, GEnum.Parse<States>(S0.ToString()).Require());          
+        //     Claim.eq(S1, GEnum.Parse<States>(S1.ToString()).Require());          
+        //     Claim.eq(S2, GEnum.Parse<States>(S2.ToString()).Require());          
+        //     Claim.eq(S3, GEnum.Parse<States>(S3.ToString()).Require());          
 
-            Claim.eq(S0, S0.ToGeneric().Value);
-            Claim.eq(S0.ToString(), S0.ToGeneric().Label);
+        //     Claim.eq(S0, genum(S0).Value);
+        //     Claim.eq(S0.ToString(), genum(S0).Label);
 
-            Claim.eq(S1, S1.ToGeneric().Value);
-            Claim.eq(S1.ToString(), S1.ToGeneric().Label);
+        //     Claim.eq(S1, genum(S1).Value);
+        //     Claim.eq(S1.ToString(), genum(S1).Label);
 
-            Claim.eq(S2, S2.ToGeneric().Value);
-            Claim.eq(S2.ToString(), S2.ToGeneric().Label);
+        //     Claim.eq(S2, genum(S2).Value);
+        //     Claim.eq(S2.ToString(), genum(S2).Label);
 
-            var ls = GEnum.LabeledScalars<States,byte>();
-            Claim.eq((byte)0, ls[0].scalar);
-            Claim.eq((byte)1, ls[1].scalar);
-            Claim.eq((byte)2, ls[2].scalar);
-            Claim.eq((byte)3, ls[3].scalar);
+        //     var ls = GEnum.LabeledScalars<States,byte>();
+        //     Claim.eq((byte)0, ls[0].scalar);
+        //     Claim.eq((byte)1, ls[1].scalar);
+        //     Claim.eq((byte)2, ls[2].scalar);
+        //     Claim.eq((byte)3, ls[3].scalar);
 
-            Claim.eq(S0.ToString(), ls[0].label);
-            Claim.eq(S1.ToString(), ls[1].label);
-            Claim.eq(S2.ToString(), ls[2].label);
-            Claim.eq(S3.ToString(), ls[3].label);
+        //     Claim.eq(S0.ToString(), ls[0].label);
+        //     Claim.eq(S1.ToString(), ls[1].label);
+        //     Claim.eq(S2.ToString(), ls[2].label);
+        //     Claim.eq(S3.ToString(), ls[3].label);
 
 
 
-        }
+        // }
     }
 }

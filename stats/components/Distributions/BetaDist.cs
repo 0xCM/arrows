@@ -17,13 +17,13 @@ namespace Z0
     public class BetaDist<T> : Distribution<BetaSpec<T>,T>
         where T : struct
     {    
-        public BetaDist(IRandomSource random, BetaSpec<T> spec)
+        public BetaDist(IPolyrand random, BetaSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => Random.SampleBeta(Spec.Alpha, Spec.Beta);
+            => Polyrand.SampleBeta(Spec.Alpha, Spec.Beta);
     }
 }

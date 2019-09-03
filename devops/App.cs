@@ -15,7 +15,7 @@ namespace Z0
     {
 
         public App()
-             :base(SysRandSource.Create())
+            : base(null)
         {
             
         }
@@ -65,8 +65,6 @@ namespace Z0
 
         }
             
-
-
         static void Main(params string[] args)
             => new App().Run();
     }

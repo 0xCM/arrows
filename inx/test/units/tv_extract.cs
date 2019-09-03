@@ -43,7 +43,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
 
             var len = Vec128<T>.Length;
-            var src = Random.CpuVec128<T>();
+            var src = Polyrand.CpuVec128<T>();
             var expect = span<T>(len);
             src.ToSpan(expect);
             for(byte i = 0; i< len; i++)
@@ -59,7 +59,7 @@ namespace Z0.Test
 
             var len = Vec256<T>.Length;
             var half = len >> 1;
-            var src = Random.CpuVec256<T>();
+            var src = Polyrand.CpuVec256<T>();
             var srcData = src.ToSpan(span<T>(len));
             
             var x0 = ginx.lo(in src);

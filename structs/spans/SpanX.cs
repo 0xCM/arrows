@@ -15,6 +15,7 @@ namespace Z0
 
     public static partial class SpanExtensions
     {
+
         /// <summary>
         /// Presents selected span content as a readonly span of bytes
         /// </summary>
@@ -193,7 +194,6 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static Span<T> Intersperse<T>(this Span<T> src, T x)
             => src.ReadOnly().Intersperse(x);
-
 
         /// <summary>
         /// Evaluates whether two spans have identical content
@@ -482,9 +482,6 @@ namespace Z0
         public static ISet<T> ToSet<N,T>(this ReadOnlySpan<N,T> src)        
             where N : ITypeNat, new()
                 => new HashSet<T>(src.ToArray());   
-
-
-
     }
 
 }

@@ -83,206 +83,25 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref readonly Span<T> abs<T>(in ReadOnlySpan<T> src, in Span<T> dst)
+        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                int8(src).Abs(int8(dst));
+                math.abs(int8(src),int8(dst));
             else if(typeof(T) == typeof(short))
-                int16(src).Abs(int16(dst));
+                math.abs(int16(src),int16(dst));
             else if(typeof(T) == typeof(int))
-                int32(src).Abs(int32(dst));
+                math.abs(int32(src),int32(dst));
             else if(typeof(T) == typeof(long))
-                int64(src).Abs(int64(dst));
+                math.abs(int64(src),int64(dst));
             else if(typeof(T) == typeof(float))
-                float32(src).Abs(float32(dst));
+                math.abs(float32(src),float32(dst));
             else if(typeof(T) == typeof(double))
-                float64(src).Abs(float64(dst));
+                math.abs(float64(src),float64(dst));
             else
                 throw unsupported<T>();
-            return ref dst;
-        }
-
-        public static ref readonly Span<T> abs<T>(in Span<T> io)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                int8(io).Abs();
-            else if(typeof(T) == typeof(short))
-                int16(io).Abs();
-            else if(typeof(T) == typeof(int))
-                int32(io).Abs();
-            else if(typeof(T) == typeof(long))
-                int64(io).Abs();
-            else if(typeof(T) == typeof(float))
-                float32(io).Abs();
-            else if(typeof(T) == typeof(double))
-                float64(io).Abs();
-            else
-                throw unsupported<T>();
-            return ref io;
-        }
- 
-         /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<sbyte> Abs(this Span<sbyte> io)
-            => abs(io);
-
-        /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<short> Abs(this Span<short> io)
-            => abs(io);
-
-        /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<int> Abs(this Span<int> io)
-            => abs(io);
-
-        /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<long> Abs(this Span<long> io)
-            => abs(io);
-
-        /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<float> Abs(this Span<float> io)
-            => abs(io);
-
-        /// <summary>
-        /// Computes the absolute value of the source elements in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        static Span<double> Abs(this Span<double> io)
-            => abs(io);
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<sbyte> Abs(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-            => abs(src,dst);            
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<short> Abs(this ReadOnlySpan<short> src, Span<short> dst)
-            => abs(src,dst);            
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<int> Abs(this ReadOnlySpan<int> src, Span<int> dst)
-            => abs(src,dst);            
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<long> Abs(this ReadOnlySpan<long> src, Span<long> dst)
-            => abs(src,dst);            
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<float> Abs(this ReadOnlySpan<float> src, Span<float> dst )
-            => abs(src,dst);            
-
-        [MethodImpl(Inline)]
-        static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
-            => abs(src,dst);            
-
-        static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.abs(src[i]);
             return dst;
         }
 
-        static Span<short> abs(ReadOnlySpan<short> src, Span<short> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        static Span<int> abs(ReadOnlySpan<int> src, Span<int> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        static Span<long> abs(ReadOnlySpan<long> src, Span<long> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        static Span<float> abs(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        static Span<double> abs(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        static Span<sbyte> abs(Span<sbyte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }
-
-        static Span<short> abs(Span<short> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }
-
-        static Span<int> abs(Span<int> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }
-
-        static Span<long> abs(Span<long> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }
-
-        static Span<float> abs(Span<float> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }
-
-        static Span<double> abs(Span<double> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                math.abs(ref io[i]);
-            return io;
-        }  
-    }
+   }
 }

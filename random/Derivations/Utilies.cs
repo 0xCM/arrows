@@ -15,9 +15,8 @@ namespace Z0
     /// <summary>
     /// Implements component-wise vector contraction
     /// </summary>
-    public static class VContract
-    {
-        
+    public static class RandUtil
+    {        
         /// <summary>
         /// Effects a component-wise contraction on the source vector on a source vector of unsigned primal type, 
         /// dst[i] = src[i].Contract(max[i])
@@ -65,5 +64,10 @@ namespace Z0
             return dst;
         }
  
+        [MethodImpl(Inline)]
+        internal static Interval<T> Configure<T>(this Interval<T>? domain)        
+            where T : struct
+                => domain.ValueOrElse(() => RNG.TypeDomain<T>());
+
     }
 }

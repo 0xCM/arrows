@@ -12,6 +12,7 @@ namespace Z0
         
     using static zfunc;    
     using static As;
+    using static AsIn;
 
     partial class gmath
     {
@@ -39,6 +40,34 @@ namespace Z0
                 return math.neq(float32(lhs),float32(rhs));
             else if(typeof(T) == typeof(double))
                 return math.neq(float64(lhs),float64(rhs));
+            else            
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static bool neq<T>(in T lhs, in T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return math.neq(in int8(in lhs),in int8(in rhs));
+            else if(typeof(T) == typeof(byte))
+                return math.neq(in uint8(in lhs), in uint8(in rhs));
+            else if(typeof(T) == typeof(short))
+                return math.neq(in int16(in lhs), in int16(in rhs));
+            else if(typeof(T) == typeof(ushort))
+                return math.neq(in uint16(in lhs), in uint16(in rhs));
+            else if(typeof(T) == typeof(int))
+                return math.neq(in int32(in lhs), in int32(in rhs));
+            else if(typeof(T) == typeof(uint))
+                return math.neq(in uint32(in lhs), in uint32(in rhs));
+            else if(typeof(T) == typeof(long))
+                return math.neq(in int64(in lhs), in int64(in rhs));
+            else if(typeof(T) == typeof(ulong))
+                return math.neq(in uint64(in lhs), in uint64(in rhs));
+            else if(typeof(T) == typeof(float))
+                return math.neq(in float32(in lhs), in float32(in rhs));
+            else if(typeof(T) == typeof(double))
+                return math.neq(in float64(in lhs), in float64(in rhs));
             else            
                 throw unsupported<T>();
         }

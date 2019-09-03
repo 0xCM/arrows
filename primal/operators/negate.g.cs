@@ -128,32 +128,32 @@ namespace Z0
         /// <param name="dst">The target span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Span<T> negate<T>(ref Span<T> io)
+        public static Span<T> negate<T>(Span<T> src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                negate(int8(io));
+                negate(int8(src));
             else if(typeof(T) == typeof(byte))
-                negate(uint8(io));
+                negate(uint8(src));
             else if(typeof(T) == typeof(short))
-                negate(int16(io));
+                negate(int16(src));
             else if(typeof(T) == typeof(ushort))
-                negate(uint16(io));
+                negate(uint16(src));
             else if(typeof(T) == typeof(int))
-                negate(int32(io));
+                negate(int32(src));
             else if(typeof(T) == typeof(uint))
-                negate(uint32(io));
+                negate(uint32(src));
             else if(typeof(T) == typeof(long))
-                negate(int64(io));
+                negate(int64(src));
             else if(typeof(T) == typeof(ulong))
-                negate(uint64(io));
+                negate(uint64(src));
             else if(typeof(T) == typeof(float))
-                negate(float32(io));
+                negate(float32(src));
             else if(typeof(T) == typeof(double))
-                negate(float64(io));
+                negate(float64(src));
             else
                 throw unsupported<T>();
-            return ref io;
+            return  src;
         }
 
         [MethodImpl(Inline)]

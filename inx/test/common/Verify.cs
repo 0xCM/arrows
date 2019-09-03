@@ -21,7 +21,7 @@ namespace Z0.Test
             for(var i = 0; i< len; i++)
                 Claim.eq(vExpect[i], vResult[i]);
 
-            var eq = vExpect.Eq(vResult);
+            var eq = Linear.eq(vExpect, vResult);
             for(var i=0; i<len; i++)
                 Claim.yea(eq[i]);            
         }        

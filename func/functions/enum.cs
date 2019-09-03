@@ -14,6 +14,27 @@ using Z0;
 partial class zfunc
 {
     /// <summary>
+    /// Creates a generic adapter for an enum value
+    /// </summary>
+    /// <param name="src">The value for which a generic view will be presented</param>
+    /// <typeparam name="E">The enum type</typeparam>
+    [MethodImpl(Inline)]
+    public static GEnum<E> genum<E>(E src)
+        where E : Enum
+        => new GEnum<E>(src);
+
+    /// <summary>
+    /// Creates a generic adapter for an enum value that is specific to the underlying type
+    /// </summary>
+    /// <param name="src">The value for which a generic view will be presented</param>
+    /// <typeparam name="E">The enum type</typeparam>
+    [MethodImpl(Inline)]
+    public static GEnum<E,T> genum<E,T>(E src, T rep = default)
+        where E : Enum
+        where T : struct
+        => new GEnum<E,T>(src);
+
+    /// <summary>
     /// Transforms a sequence of elements into a sequence of singleton sequences 
     /// </summary>
     /// <param name="src">The source sequence</param>

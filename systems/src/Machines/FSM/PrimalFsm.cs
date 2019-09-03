@@ -40,7 +40,7 @@ namespace Z0.Machines
             where T : unmanaged
         {
             var id = $"{spec.Classifier}-{Interlocked.Increment(ref MachineCounter)}";
-            var context = Fsm.CreateContext(RNG.Pcg64(seed, index), spec.ReceiptLimit);
+            var context = Fsm.CreateContext(RNG.Pcg64(seed, index).ToPolyrand(), spec.ReceiptLimit);
             return Fsm.Machine(id, context, spec.StartState, spec.EndState, Transition(context, spec));
         }
 
@@ -107,15 +107,14 @@ namespace Z0.Machines
         static MachineTransition<T,T> Transition<T>(IFsmContext context, PrimalFsmSpec<T> spec)        
             where T : unmanaged
         {            
-            var indices = range<T>(spec.StateCount).ToArray();
-            var random = context.Random;
-            var evSampleSize = random.Next<T>(closed(spec.MinSampleSize, spec.MaxSampleSize));
+            var sources = range<T>(spec.StateCount).ToArray();
+            var random = context.Polyrand;
             var rules = new List<TransitionRule<T,T>>();
-            foreach(var source in indices)
+            foreach(var source in sources)
             {                                
-                var targets = from t in random.SampleDistinct(spec.StateCount, evSampleSize) 
-                    where gmath.neq(t,source) select t;
-                var events = random.SampleDistinct(spec.EventCount, evSampleSize);
+                var evss = random.Next<T>(spec.MinEventSamples, spec.MaxEventSamples);
+                var targets = from t in random.SampleDistinct(spec.StateCount, evss) where gmath.neq(t,source) select t;
+                var events = random.SampleDistinct(spec.EventCount, evss);
                 rules.AddRange(events.Zip(targets).Select(x => Fsm.TransitionRule(x.First, source, x.Second)));
             }
             return rules.ToFunction();

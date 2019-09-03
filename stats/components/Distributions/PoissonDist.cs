@@ -17,13 +17,13 @@ namespace Z0
     public class PoissonDist<T> : Distribution<PoissonSpec<T>,T>
         where T : struct
     {    
-        public PoissonDist(IRandomSource random, PoissonSpec<T> spec)
+        public PoissonDist(IPolyrand random, PoissonSpec<T> spec)
             : base(random, spec)
         {
 
         }
 
         public override IEnumerable<T> Sample()
-            => Random.SamplePoisson(Spec.Success);
+            => Polyrand.SamplePoisson(Spec.Success);
     }
 }

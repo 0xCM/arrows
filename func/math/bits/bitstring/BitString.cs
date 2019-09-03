@@ -54,12 +54,40 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static BitString operator |(BitString lhs, BitString rhs)
+        {            
+            var len = length(lhs.bitseq,rhs.bitseq);
+            var dst = new BitString(new byte[len]);
+            for(var i=0; i< len; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static BitString operator ^(BitString lhs, BitString rhs)
         {            
             var len = length(lhs.bitseq,rhs.bitseq);
             var dst = new BitString(new byte[len]);
             for(var i=0; i< len; i++)
                 dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitString operator <<(BitString lhs, int offset)
+        {            
+            var dst = Alloc(lhs.Length);
+            for(var i=offset; i<dst.Length; i++)
+                dst[i] = lhs[i];
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitString operator >>(BitString lhs, int offset)
+        {            
+            var dst = Alloc(lhs.Length);
+            for(var i=lhs.Length - offset; i>=0; i--)
+                dst[i] = lhs[i];
             return dst;
         }
 

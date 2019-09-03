@@ -19,13 +19,13 @@ namespace Z0
 
     {
 
-        protected IRandomSource Random {get;}
+        protected IPolyrand Polyrand {get;}
 
         public S Spec {get;}
 
-        protected Distribution(IRandomSource random, S Spec)
+        protected Distribution(IPolyrand random, S Spec)
         {
-            this.Random = random;
+            this.Polyrand = random;
             this.Spec =Spec;
         }
         

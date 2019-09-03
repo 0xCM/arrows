@@ -22,14 +22,14 @@ namespace Z0
             => lhs / rhs;
 
         [MethodImpl(Inline)]
-        public static ref float div(ref float lhs, float rhs)
+        public static ref float div(ref float lhs, in float rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref double div(ref double lhs, double rhs)
+        public static ref double div(ref double lhs, in double rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;

@@ -6,11 +6,7 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Diagnostics;
-    using System.Numerics;
     
     using static zfunc;    
 
@@ -130,6 +126,96 @@ namespace Z0
             return ref src;
         }
 
+ 
+         public static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<short> abs(ReadOnlySpan<short> src, Span<short> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<int> abs(ReadOnlySpan<int> src, Span<int> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<long> abs(ReadOnlySpan<long> src, Span<long> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<float> abs(ReadOnlySpan<float> src, Span<float> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<double> abs(ReadOnlySpan<double> src, Span<double> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] =math.abs(src[i]);
+            return dst;
+        }
+
+        public static Span<sbyte> abs(Span<sbyte> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }
+
+        public static Span<short> abs(Span<short> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }
+
+        public static Span<int> abs(Span<int> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }
+
+        public static Span<long> abs(Span<long> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }
+
+        public static Span<float> abs(Span<float> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }
+
+        public static Span<double> abs(Span<double> src)
+        {
+            for(var i = 0; i< src.Length; i++)
+                math.abs(ref src[i]);
+            return src;
+        }  
  
     }
 

@@ -37,7 +37,7 @@ namespace Z0.Mkl.Test
         {
             var gencount = Pow2.T08;
             var samplesize = Pow2.T16;
-            var seeds = Random.Array<uint>(gencount);
+            var seeds = Polyrand.Array<uint>(gencount);
             var streams = new VslStream[gencount];
             for(var i=0; i<gencount; i++)
                 streams[i] = mkl.gMt2203(seeds[i], i);

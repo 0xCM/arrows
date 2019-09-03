@@ -40,8 +40,8 @@ namespace Z0
 
             for(var cycle=0; cycle< cycles; cycle++)
             {
-                var src = Random.CpuVec256<byte>();
-                var offset = Random.Next(closed<byte>(2, 6));
+                var src = Polyrand.CpuVec256<byte>();
+                var offset = Polyrand.Next(closed<byte>(2, 6));
                 
                 var vL = Bits.rotl(src,offset);                
                 var vRL = Bits.rotr(vL,offset);                
@@ -75,8 +75,8 @@ namespace Z0
         {
             for(var cycle=0; cycle< cycles; cycle++)
             {
-                var src = Random.CpuVec256<ushort>();
-                var offset = Random.Next(closed<byte>(2, 14));
+                var src = Polyrand.CpuVec256<ushort>();
+                var offset = Polyrand.Next(closed<byte>(2, 14));
                 
                 var vL = Bits.rotl(src,offset);
                 var vRL = Bits.rotr(vL,offset);                
@@ -99,8 +99,8 @@ namespace Z0
         {
             for(var cycle=0; cycle< cycles; cycle++)
             {
-                var src = Random.CpuVec256<uint>();
-                var offsets = Random.CpuVec256(closed(2u, 30u));
+                var src = Polyrand.CpuVec256<uint>();
+                var offsets = Polyrand.CpuVec256(closed(2u, 30u));
                 
                 var vL = Bits.rotl(src,offsets);
                 var vRL = Bits.rotr(vL,offsets);

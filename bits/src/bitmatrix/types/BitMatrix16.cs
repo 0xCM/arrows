@@ -417,7 +417,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N256,ushort> ToBitVector()
-            => BitVector.FromCells(bits, Nats.N256);
+            => BitVector.FromCells(bits, zfunc.n256);
 
         public readonly BitMatrix8 Block(N0 r0, N0 c0)
         {

@@ -39,7 +39,7 @@ namespace Z0.Test
 
         public void pop6()
         {
-            var xBytes = Random.Span<byte>(5);
+            var xBytes = Polyrand.Span<byte>(5);
             var x = Bytes.read<ulong>(xBytes);
             var xPC = Bits.pop(x);
             xBytes.Unpack(out Span<Bit> xBits);
@@ -52,7 +52,7 @@ namespace Z0.Test
 
         public void pop7()
         {
-            var xBytes = Random.Span<byte>(Pow2.T10 - 3);
+            var xBytes = Polyrand.Span<byte>(Pow2.T10 - 3);
             var xBytesPC = xBytes.PopCount();
             var xBitsPC = xBytes.Unpack(out Span<Bit> bits).PopCount();
             Claim.eq(xBitsPC, xBytesPC);
@@ -62,7 +62,7 @@ namespace Z0.Test
             where T : struct
             where N : INatPow2, new()
         {
-            var src = Random.Span<T>((int)new N().value);
+            var src = Polyrand.Span<T>((int)new N().value);
 
             var pc1 = 0ul;
             for(var i = 0; i<src.Length; i++)

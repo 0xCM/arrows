@@ -10,7 +10,6 @@ namespace Z0.Test
 
     using static zfunc;
 
-    using static Nats;
 
     public class tbv_gf : UnitTest<tbv_gf>
     {
@@ -24,8 +23,8 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var v1 = Random.BitVector8();
-                var v2 = Random.BitVector8();
+                var v1 = Polyrand.BitVector8();
+                var v2 = Polyrand.BitVector8();
                 var p1 = Gf256.mul(v1,v2); 
                 var p2 = Gf256.mul((byte)v1, (byte)v2);
                 var p4 = Gf256.mul_ref(v1,v2);
@@ -140,8 +139,8 @@ namespace Z0.Test
 
         public void gfmulbv8_bench()
         {
-            var lhsSrc = Random.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
-            var rhsSrc = Random.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
+            var lhsSrc = Polyrand.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
+            var rhsSrc = Polyrand.Stream<byte>().Take(SampleSize).Select(BitVector8.FromScalar).ToArray();
             var result = BitVector8.Alloc();                        
             int Bench()
             {                
@@ -157,8 +156,8 @@ namespace Z0.Test
 
         public void gfmul256_bench()
         {
-            var lhsSrc = Random.Array<byte>(SampleSize);
-            var rhsSrc = Random.Array<byte>(SampleSize);
+            var lhsSrc = Polyrand.Array<byte>(SampleSize);
+            var rhsSrc = Polyrand.Array<byte>(SampleSize);
             var result = (byte)0;
                         
             int Bench()
@@ -176,8 +175,8 @@ namespace Z0.Test
         {
             var samples = Pow2.T14;
             var cycles = Pow2.T08;
-            var lhsSrc = Random.Array<byte>(samples);
-            var rhsSrc = Random.Array<byte>(samples);
+            var lhsSrc = Polyrand.Array<byte>(samples);
+            var rhsSrc = Polyrand.Array<byte>(samples);
                         
             int Bench()
             {                

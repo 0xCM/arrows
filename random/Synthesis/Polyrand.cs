@@ -11,40 +11,24 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    class Polyrand<T> : IPointSource<T>
-        where T : struct
-    {
-        readonly Polyrand Random;
-        
-        public Polyrand(IPointSource<ulong> Random)
-        {
-            this.Random = new Polyrand(Random);
-        }
-
-        public T Next()
-            => Random.Next<T>();
-
-        public T Next(T max)
-            => Random.Next<T>(max);
-
-        public T Next(T min, T max)
-            => Random.Next<T>(min, max);
-    }
-
     class Polyrand : IPolyrand
-
     {
-        internal Polyrand(IPointSource<ulong> Random)
+        internal Polyrand(IPointSource<ulong> Points)
         {
-            this.Random = Random;            
+            this.Points = Points;            
+            this.Navigator = default;
         }
 
-        internal Polyrand(IRandomSource Random)
+
+        internal Polyrand(IStepwiseSource<ulong> Points)
         {
-            this.Random = new PointSource(Random);
+            this.Points = Points;            
+            this.Navigator = some(Points as IStreamNav);
         }
 
-        readonly IPointSource<ulong> Random;
+        readonly IPointSource<ulong> Points;
+
+        public Option<IStreamNav> Navigator {get;}
 
 
         [MethodImpl(Inline)]
@@ -131,6 +115,11 @@ namespace Z0
                 throw unsupported<T>();                
         }
 
+        [MethodImpl(Inline)]
+        public T Next<T>(Interval<T> domain)
+            where T : struct
+            => Next(domain.Left, domain.Right);
+
         public IEnumerable<T> Take<T>(int? count = null)
             where T : struct
         {
@@ -208,13 +197,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         sbyte IPointSource<sbyte>.Next()
-             => (sbyte) (Random.Next((ulong)SByte.MaxValue*2) - (ulong)SByte.MaxValue);
+             => (sbyte) (Points.Next((ulong)SByte.MaxValue*2) - (ulong)SByte.MaxValue);
 
+ 
         [MethodImpl(Inline)]
         sbyte IPointSource<sbyte>.Next(sbyte max)
         {
             var amax = (ulong)math.abs(max);
-            return (sbyte) (Random.Next(amax*2) - amax);
+            return (sbyte) (Points.Next(amax*2) - amax);
         }
 
         [MethodImpl(Inline)]
@@ -222,31 +212,31 @@ namespace Z0
         {
             var delta = math.sub(max, min);
             return delta > 0 
-                ? math.add(min, (sbyte)Random.Next((ulong)delta)) 
-                : math.add(min, (sbyte)Random.Next((ulong)delta.Negate()));
+                ? math.add(min, (sbyte)Points.Next((ulong)delta)) 
+                : math.add(min, (sbyte)Points.Next((ulong)delta.Negate()));
         }
 
         [MethodImpl(Inline)]
         byte IPointSource<byte>.Next(byte min, byte max)
-            => (byte)Random.Next((ulong)min, (ulong)max);
+            => (byte)Points.Next((ulong)min, (ulong)max);
 
         [MethodImpl(Inline)]
         byte IPointSource<byte>.Next(byte max)
-            => (byte)Random.Next((ulong)max);
+            => (byte)Points.Next((ulong)max);
 
         [MethodImpl(Inline)]
         byte IPointSource<byte>.Next()
-            => (byte)Random.Next((ulong)Byte.MaxValue);
+            => (byte)Points.Next((ulong)Byte.MaxValue);
 
         [MethodImpl(Inline)]
         short IPointSource<short>.Next()
-            => (short) (Random.Next((ulong)Int16.MaxValue*2) - (ulong)Int16.MaxValue);
+            => (short) (Points.Next((ulong)Int16.MaxValue*2) - (ulong)Int16.MaxValue);
 
         [MethodImpl(Inline)]
         short IPointSource<short>.Next(short max)
         {
             var amax = (ulong)math.abs(max);
-            return (short) (Random.Next(amax*2) - amax);
+            return (short) (Points.Next(amax*2) - amax);
         }
 
         [MethodImpl(Inline)]
@@ -254,31 +244,35 @@ namespace Z0
         {
             var delta = math.sub(max, min);
             return delta > 0 
-                ? math.add(min, (short)Random.Next((ulong)delta)) 
-                : math.add(min, (short)Random.Next((ulong)delta.Negate()));
+                ? math.add(min, (short)Points.Next((ulong)delta)) 
+                : math.add(min, (short)Points.Next((ulong)delta.Negate()));
         }
 
         [MethodImpl(Inline)]
+        short NextI16()
+            => (short) Points.Next(((ulong)Int16.MaxValue*2) - (ulong)Int16.MaxValue);
+
+        [MethodImpl(Inline)]
         ushort IPointSource<ushort>.Next()
-            => (ushort)Random.Next((ushort)UInt16.MaxValue);
+            => (ushort)Points.Next((ushort)UInt16.MaxValue);
 
         [MethodImpl(Inline)]
         ushort IPointSource<ushort>.Next(ushort max)
-            => (ushort)Random.Next((ulong)max);
+            => (ushort)Points.Next((ulong)max);
 
         [MethodImpl(Inline)]
         ushort IPointSource<ushort>.Next(ushort min, ushort max)
-            => (ushort)Random.Next((ulong)min, (ulong)max);
+            => (ushort)Points.Next((ulong)min, (ulong)max);
 
         [MethodImpl(Inline)]
         int IPointSource<int>.Next()
-            => (int) (Random.Next((ulong)Int32.MaxValue*2) - Int32.MaxValue);
+            => (int) (Points.Next((ulong)Int32.MaxValue*2) - Int32.MaxValue);
 
         [MethodImpl(Inline)]
         int IPointSource<int>.Next(int max)
         {
             var amax = (ulong)math.abs(max);
-            return (int) (Random.Next(amax*2) - amax);
+            return (int) (Points.Next(amax*2) - amax);
         }
 
         [MethodImpl(Inline)]
@@ -286,36 +280,45 @@ namespace Z0
         {
             var delta = math.sub(max, min);
             return delta > 0 
-                ? min + (int)Random.Next((ulong)delta) 
-                : min + (int)Random.Next((ulong)delta.Negate());
+                ? min + (int)Points.Next((ulong)delta) 
+                : min + (int)Points.Next((ulong)delta.Negate());
         }
 
         [MethodImpl(Inline)]
+        int NextI32()
+            => (int) (Points.Next((ulong)Int32.MaxValue*2) - Int32.MaxValue);
+
+        [MethodImpl(Inline)]
         uint IPointSource<uint>.Next()
-            =>(uint)Random.Next((ulong)UInt32.MaxValue);
+            =>(uint)Points.Next((ulong)UInt32.MaxValue);
 
         [MethodImpl(Inline)]
         uint IPointSource<uint>.Next(uint max)
-            => (uint)Random.Next((ulong)max);
+            => (uint)Points.Next((ulong)max);
 
         [MethodImpl(Inline)]
         uint IPointSource<uint>.Next(uint min, uint max)
-            => (uint)Random.Next((ulong)min, (ulong)max);
+            => (uint)Points.Next((ulong)min, (ulong)max);
+
+        [MethodImpl(Inline)]
+        uint NextU32(uint min, uint max)
+            => math.add(min, (uint)Points.Next((ulong)(max - min)));
 
         [MethodImpl(Inline)]
         long IPointSource<long>.Next()
         {
-            var next = (long)Random.Next(Int64.MaxValue);
+            var next = (long)Points.Next(Int64.MaxValue);
             var negative = BitMask.test(next, 7);
             var result = BitMask.test(next, 7) ? BitMask.enable(ref next, 63) : next;
             return result;
         }
 
+
         [MethodImpl(Inline)]
         long IPointSource<long>.Next(long max)
         {
             var amax = (ulong)math.abs(max);
-            return (long) (Random.Next(amax*2) - amax);
+            return (long) (Points.Next(amax*2) - amax);
         }
 
         [MethodImpl(Inline)]
@@ -323,21 +326,22 @@ namespace Z0
         {
             var delta = math.sub(max, min);
             return delta > 0 
-                ? min + (long)Random.Next((ulong)delta) 
-                : min + (long)Random.Next((ulong)delta.Negate());
+                ? min + (long)Points.Next((ulong)delta) 
+                : min + (long)Points.Next((ulong)delta.Negate());
         }
+
 
         [MethodImpl(Inline)]
         ulong IPointSource<ulong>.Next()
-            => Random.Next();
+            => Points.Next();
 
         [MethodImpl(Inline)]
         ulong IPointSource<ulong>.Next(ulong max)
-            => Random.Next(max);
+            => Points.Next(max);
 
         [MethodImpl(Inline)]
         ulong IPointSource<ulong>.Next(ulong min, ulong max)
-            => Random.Next(min, max);
+            => Points.Next(min, max);
 
         [MethodImpl(Inline)]
         float IPointSource<float>.Next()
@@ -375,6 +379,7 @@ namespace Z0
             return whole + NextF64();
         }
 
+
         // For the logic of this, see http://mumble.net/~campbell/tmp/random_real.c
         [MethodImpl(Inline)]
         float NextF32()
@@ -384,8 +389,6 @@ namespace Z0
         // For the logic of this, see http://mumble.net/~campbell/tmp/random_real.c
         [MethodImpl(Inline)]
         double NextF64()
-            => math.ldexp((double)Random.Next(), -64);
-
-
+            => math.ldexp((double)Points.Next(), -64);    
     }
 }

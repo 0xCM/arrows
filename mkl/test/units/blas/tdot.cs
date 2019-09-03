@@ -12,7 +12,6 @@ namespace Z0.Mkl.Test
     using static nfunc;
     
     using Z0.Test;
-    using static Nats;
 
     public class tdot : MklTest<tdot>
     {
@@ -25,7 +24,7 @@ namespace Z0.Mkl.Test
                 var y = RVecF32(DefaultSampleSize);
                 
                 var result = mkl.dot(x,y);
-                var expect = VectorRefOps.Dot(x,y);
+                var expect = Linear.dot(x,y);
                 Claim.eq(result,expect);
             }
         }
@@ -38,7 +37,7 @@ namespace Z0.Mkl.Test
                 var y = RVecF32(DefaultSampleNat);
                 
                 var result = mkl.dot(x,y);
-                var expect = VectorRefOps.Dot(x,y);
+                var expect = Linear.dot(x,y);
                 Claim.eq(result,expect);
             }
         }
@@ -51,7 +50,7 @@ namespace Z0.Mkl.Test
                 var y = RVecF64(DefaultSampleSize);
                 
                 var result = mkl.dot(x,y);
-                var expect = VectorRefOps.Dot(x,y);
+                var expect = Linear.dot(x,y);
                 Claim.eq(result,expect);
             }
         }
@@ -64,7 +63,7 @@ namespace Z0.Mkl.Test
                 var y = RVecF64(DefaultSampleNat);
                 
                 var result = mkl.dot(x,y);
-                var expect = VectorRefOps.Dot(x,y);
+                var expect = Linear.dot(x,y);
                 Claim.eq(result,expect);
             }
         }

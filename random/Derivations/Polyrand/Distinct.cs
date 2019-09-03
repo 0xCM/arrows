@@ -16,45 +16,6 @@ namespace Z0
     {
 
         /// <summary>
-        /// Samples an indexed set without replacement
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="sourceCount">The total number of items in the set</param>
-        /// <param name="sampleCount">The number of items to draw</param>
-        /// <remarks>Derived from MsInfer algorithm</remarks>
-        public static IEnumerable<int> SampleDistinct(this IPolyrand random, int sourceCount, int sampleCount)
-        {
-            if(gmath.gt(sampleCount, sourceCount))
-                throw new ArgumentException($"The count of of distinct values {sampleCount} exceeds the number of values in the source {sourceCount}");
-
-            var set = new HashSet<int>();
-            if (sampleCount > sourceCount / 2)
-            {
-                var src = alloc<int>(sourceCount, i => i);
-                random.Shuffle(src);
-                for (int i = 0; i < sampleCount; i++)
-                    set.Add(src[i]);
-            }
-            else
-            {
-                // use rejection
-                for (int i = 0; i < sampleCount; i++)
-                {
-                    while (true)
-                    {
-                        int item = random.Next(sourceCount);
-                        if (!set.Contains(item))
-                        {
-                            set.Add(item);
-                            break;
-                        }
-                    }
-                }
-            }
-            return set;
-        }
-
-        /// <summary>
         /// Samples the source values without replacement
         /// </summary>
         /// <param name="random">The random source</param>
@@ -68,13 +29,60 @@ namespace Z0
                 yield return source[i];
         }
 
-        public static IEnumerable<T> SampleDistinct<T>(this IPolyrand random,  T sourceCount, T sampleCount)
+        public static HashSet<T> SampleDistinct<T>(this IPolyrand random, T pool, int count)
             where T : struct
-        {            
-            var indices = random.SampleDistinct(convert<T,int>(sourceCount), convert<T,int>(sampleCount));
-            foreach(var i in indices)
-                yield return convert<int,T>(i);
+        {
+            var src = random.Stream(default(T), pool);
+            var set = src.Take(count).ToHashSet();
+            while(set.Count < count)
+                set.AddRange(src.Take(count / 2));
+            return set;
         }
+
+        public static HashSet<T> SampleDistinct<T>(this IPolyrand random, T pool, T count)
+            where T : struct
+        {
+            var src = random.Stream(default(T), pool);
+            var _count = convert<T,int>(count);
+            var set = src.Take(_count).ToHashSet();
+            while(set.Count < _count)
+                set.AddRange(src.Take(_count / 2));
+            return set;
+        }
+
+        /// <summary>
+        /// Takes a specified number of distinct points from a source
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="count">The number of points to take</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static HashSet<T> SampleDistinct<T>(this IPolyrand random, int count)
+            where T : struct
+        {
+            var stream = random.Stream<T>();
+            var set = stream.Take(count).ToHashSet();
+            while(set.Count < count)
+                set.AddRange(stream.Take(set.Count - count));
+            return set;
+        }
+
+        /// <summary>
+        /// Takes a specified number of distinct points from a source
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="count">The number of points to take</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static HashSet<T> TakeSet<T>(this IPointSource<T> random, int count)
+            where T : struct
+        {
+            var src =  random.Stream();
+            var set = src.Take(count).ToHashSet();
+            while(set.Count < count)
+                set.AddRange(src.Take(count / 2));
+            return set;
+        }
+
+
     }
 
 }

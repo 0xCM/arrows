@@ -2,11 +2,10 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm.Test
+namespace Z0.Asm
 {
     using System;
     using System.Linq;
-    using Z0.Test;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
@@ -19,8 +18,8 @@ namespace Z0.Asm.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhs = Random.Array<T>(n);
-            var rhs = Random.Array<T>(n);
+            var lhs = Polyrand.Array<T>(n);
+            var rhs = Polyrand.Array<T>(n);
             var setup = from args in lhs.Zip(rhs)
                           let expect = refop(args.First, args.Second)
                           let actual = asmop(args.First, args.Second) 
@@ -36,7 +35,7 @@ namespace Z0.Asm.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Array<T>(n);
+            var src = Polyrand.Array<T>(n);
             var setup = from arg in src
                           let expect = refop(arg)
                           let actual = asmop(arg) 

@@ -22,8 +22,8 @@ namespace Z0.Test
             
             for(var i=0; i<Pow2.T08; i++)
             {
-                var x = Random.BitMatrix4();
-                var y = Random.BitMatrix4();
+                var x = Polyrand.BitMatrix4();
+                var y = Polyrand.BitMatrix4();
 
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
@@ -49,8 +49,8 @@ namespace Z0.Test
         {            
             for(var i=0; i<Pow2.T08; i++)
             {
-                var x = Random.BitMatrix64();
-                var y = Random.BitMatrix64();
+                var x = Polyrand.BitMatrix64();
+                var y = Polyrand.BitMatrix64();
 
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
@@ -93,8 +93,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Random.BitMatrix16();
-                var y = Random.BitMatrix16();
+                var x = Polyrand.BitMatrix16();
+                var y = Polyrand.BitMatrix16();
                 sw.Start();
                 var result = x & y;                               
                 sw.Stop();
@@ -107,8 +107,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Random.BitMatrix64();
-                var y = Random.BitMatrix64();
+                var x = Polyrand.BitMatrix64();
+                var y = Polyrand.BitMatrix64();
                 sw.Start();
                 var result = x & y;                               
                 sw.Stop();
@@ -121,8 +121,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Random.BitMatrix32();
-                var y = Random.BitMatrix32();
+                var x = Polyrand.BitMatrix32();
+                var y = Polyrand.BitMatrix32();
                 sw.Start();
                 var result = x & y;                               
                 sw.Stop();

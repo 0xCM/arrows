@@ -17,14 +17,77 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Core algorithm taken from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class XOrShift256 : IRandomSource, IPointSource<ulong>
+    public class XOrShift256 : IPointSource<ulong>
     {        
+        readonly ulong[] state;
+
         /// <summary>
         /// Constructs a randomizer using a specific seed
         /// </summary>
         /// <param name="seed">The seed upon which generation is predicated</param>
-        public static IRandomSource define(ulong[] seed)
+        public static IPointSource<ulong> Define(ulong[] seed)
             => new XOrShift256(seed);
+
+
+        [MethodImpl(Inline)]
+        public XOrShift256(ulong[] seed)
+        {
+            this.state = seed;
+            jump(J128);
+        }
+
+        void jump(ulong[] J) 
+        {            
+            var s0 = 0UL;
+            var s1 = 0UL;
+            var s2 = 0UL;
+            var s3 = 0UL;
+            for(var i = 0; i < J.Length; i++)
+                for(var b = 0; b < 64; b++) 
+                {
+                    var j = J[i] & 1UL << b;
+                    if (j != 0) 
+                    {
+                        s0 ^= state[0];
+                        s1 ^= state[1];
+                        s2 ^= state[2];
+                        s3 ^= state[3];
+                    }
+                    Next();	
+                }
+                
+            state[0] = s0;
+            state[1] = s1;
+            state[2] = s2;
+            state[3] = s3;
+        }          
+
+        [MethodImpl(Inline)]
+        public ulong Next()
+        {
+            var next = rotl(state[1] * 5, 7) * 9;
+            var t = state[1] << 17;
+
+            state[2] ^= state[0];
+            state[3] ^= state[1];
+            state[1] ^= state[2];
+            state[0] ^= state[3];
+
+            state[2] ^= t;
+
+            state[3] = rotl(state[3], 45);
+
+            return next;
+        }
+
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong max)
+            => Next().Contract(max);
+
+        [MethodImpl(Inline)]
+        public ulong Next(ulong min, ulong max)        
+            => min + Next(max - min);
 
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
@@ -44,94 +107,5 @@ namespace Z0
         static ulong rotl(ulong x, int k) 
             => (x << k) | (x >> (64 - k));
 
-        readonly ulong[] state;
-
-        IPolyrand MR;
-
-        public XOrShift256(Guid g1, Guid g2)
-        {
-            this.state = items(g1,g2).ToU64Array();
-            jump(J128);
-            this.MR = RNG.Polyrand(this);
-        }
-
-        public XOrShift256(ulong[] seed)
-        {
-            this.state = seed;
-            jump(J128);
-        }
-
-
-        void jump(ulong[] J) 
-        {            
-            var s0 = 0UL;
-            var s1 = 0UL;
-            var s2 = 0UL;
-            var s3 = 0UL;
-            for(var i = 0; i < J.Length; i++)
-                for(var b = 0; b < 64; b++) 
-                {
-                    var j = J[i] & 1UL << b;
-                    if (j != 0) 
-                    {
-                        s0 ^= state[0];
-                        s1 ^= state[1];
-                        s2 ^= state[2];
-                        s3 ^= state[3];
-                    }
-                    NextUInt64();	
-                }
-                
-            state[0] = s0;
-            state[1] = s1;
-            state[2] = s2;
-            state[3] = s3;
-        }          
-
-        [MethodImpl(Inline)]
-        public ulong NextUInt64()
-        {
-            var next = rotl(state[1] * 5, 7) * 9;
-            var t = state[1] << 17;
-
-            state[2] ^= state[0];
-            state[3] ^= state[1];
-            state[1] ^= state[2];
-            state[0] ^= state[3];
-
-            state[2] ^= t;
-
-            state[3] = rotl(state[3], 45);
-
-            return next;
-        }
-
-        [MethodImpl(Inline)]
-        public ulong Next()
-            => NextUInt64();
-
-        [MethodImpl(Inline)]
-        public ulong Next(ulong max)
-            => Next().Contract(max);
-
-        [MethodImpl(Inline)]
-        public ulong Next(ulong min, ulong max)        
-            => min + Next(max - min);
-
-        [MethodImpl(Inline)]
-        public double NextDouble()
-            => MR.Next<double>();
-
-        [MethodImpl(Inline)]
-        ulong IPointSource<ulong>.Next()
-            => NextUInt64();
-
-        [MethodImpl(Inline)]
-        ulong IRandomSource.NextUInt64(ulong max)
-            => Next(max);
-
-        [MethodImpl(Inline)]
-        int IRandomSource.NextInt32(int max)
-            => (this as IPointSource<ulong>).Next(max);
     }
 }

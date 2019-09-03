@@ -175,7 +175,7 @@ namespace Z0.Machines
         /// Creates a machine context
         /// </summary>
         /// <param name="random">The random source</param>
-        public static IFsmContext CreateContext(IRandomSource random, ulong? receiptLimit = null)
+        public static IFsmContext CreateContext(IPolyrand random, ulong? receiptLimit = null)
             => new FsmContext(random, receiptLimit);
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace Z0.Machines
         {
             try
             {
-                var random = machine.Context.Random;
+                var random = machine.Context.Polyrand;
                 var o = Fsm.DefaultObserver(machine, ObserverTrace.Completions | ObserverTrace.Errors);
                 var events = machine.Triggers.ToArray();
                 var domain = closed(0, events.Length);

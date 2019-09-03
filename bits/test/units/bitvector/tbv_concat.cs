@@ -10,7 +10,6 @@ namespace Z0.Test
 
     using static zfunc;
 
-    using static Nats;
     using static BitRef;
 
 

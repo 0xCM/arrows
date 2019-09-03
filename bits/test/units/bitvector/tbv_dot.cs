@@ -10,7 +10,6 @@ namespace Z0.Test
 
     using static zfunc;
 
-    using static Nats;
     using static BitRef;
 
 
@@ -56,15 +55,15 @@ namespace Z0.Test
 
         public void dotng()
         {
-            dotng_check(N10,0u);
-            dotng_check(N20,0u);
-            dotng_check(N63,0ul);
-            dotng_check(N64,0ul);
-            dotng_check(N87,(byte)0);
-            dotng_check(N128,(ushort)0);
-            dotng_check(N25,(ushort)0);
-            dotng_check(N256,0ul);
-            dotng_check(N2048,0u);
+            dotng_check(n10,0u);
+            dotng_check(n20,0u);
+            dotng_check(n63,0ul);
+            dotng_check(n64,0ul);
+            dotng_check(n87,(byte)0);
+            dotng_check(n128,(ushort)0);
+            dotng_check(n25,(ushort)0);
+            dotng_check(n256,0ul);
+            dotng_check(n2048,0u);
         }
 
 
@@ -90,8 +89,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector4();
-                var y = Random.BitVector4();
+                var x = Polyrand.BitVector4();
+                var y = Polyrand.BitVector4();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            
@@ -102,8 +101,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector8();
-                var y = Random.BitVector8();
+                var x = Polyrand.BitVector8();
+                var y = Polyrand.BitVector8();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            
@@ -120,8 +119,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector16();
-                var y = Random.BitVector16();
+                var x = Polyrand.BitVector16();
+                var y = Polyrand.BitVector16();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);   
@@ -138,8 +137,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector32();
-                var y = Random.BitVector32();
+                var x = Polyrand.BitVector(n32);
+                var y = Polyrand.BitVector(n32);
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -156,8 +155,8 @@ namespace Z0.Test
         {
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector64();
-                var y = Random.BitVector64();
+                var x = Polyrand.BitVector64();
+                var y = Polyrand.BitVector64();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -177,8 +176,8 @@ namespace Z0.Test
 
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector<T>(bitcount);
-                var y = Random.BitVector<T>(bitcount);
+                var x = Polyrand.BitVector<T>(bitcount);
+                var y = Polyrand.BitVector<T>(bitcount);
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);
@@ -195,8 +194,8 @@ namespace Z0.Test
             NatCaseStart<N,T>();
             for(var i=0; i<cycles; i++)
             {
-                var x = Random.BitVector<N,T>();
-                var y = Random.BitVector<N,T>();
+                var x = Polyrand.BitVector<N,T>();
+                var y = Polyrand.BitVector<N,T>();
                 var a = x % y;
                 var b = ModProd(x,y);
                 Claim.yea(a == b);            

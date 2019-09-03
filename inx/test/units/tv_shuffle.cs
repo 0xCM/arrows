@@ -18,7 +18,7 @@ namespace Z0.Test
         public void shuffle128u8()
         {
             var mask = Vec128.Fill((byte)0b10000000);
-            var src = Random.CpuVec128<byte>();
+            var src = Polyrand.CpuVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
             var zed = Vec128.Fill((byte)0);            
             Claim.eq(dst,zed);
@@ -74,7 +74,7 @@ namespace Z0.Test
             
             for(var i=0; i<cycles; i++)
             {
-                var v1 = Random.CpuVec128<int>(); 
+                var v1 = Polyrand.CpuVec128<int>(); 
                 var p = pSrc.First();
                 
                 // Disassemble the spec

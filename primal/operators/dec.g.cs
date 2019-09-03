@@ -84,210 +84,58 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                dec(int8(src), int8(dst));
+                math.dec(int8(src), int8(dst));
             else if(typeof(T) == typeof(byte))
-                dec(uint8(src), uint8(dst));
+                math.dec(uint8(src), uint8(dst));
             else if(typeof(T) == typeof(short))
-                dec(int16(src), int16(dst));
+                math.dec(int16(src), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                dec(uint16(src), uint16(dst));
+                math.dec(uint16(src), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dec(int32(src), int32(dst));
+                math.dec(int32(src), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dec(uint32(src), uint32(dst));
+                math.dec(uint32(src), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dec(int64(src), int64(dst));
+                math.dec(int64(src), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dec(uint64(src), uint64(dst));
+                math.dec(uint64(src), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dec(float32(src), float32(dst));
+                math.dec(float32(src), float32(dst));
             else if(typeof(T) == typeof(double))
-                dec(float64(src), float64(dst));
+                math.dec(float64(src), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
         }        
 
         [MethodImpl(Inline)]
-        public static ref Span<T> dec<T>(ref Span<T> io)
+        public static Span<T> dec<T>(Span<T> src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                dec(int8(io));
+                math.dec(int8(src));
             else if(typeof(T) == typeof(byte))
-                dec(uint8(io));
+                math.dec(uint8(src));
             else if(typeof(T) == typeof(short))
-                dec(int16(io));
+                math.dec(int16(src));
             else if(typeof(T) == typeof(ushort))
-                dec(uint16(io));
+                math.dec(uint16(src));
             else if(typeof(T) == typeof(int))
-                dec(int32(io));
+                math.dec(int32(src));
             else if(typeof(T) == typeof(uint))
-                dec(uint32(io));
+                math.dec(uint32(src));
             else if(typeof(T) == typeof(long))
-                dec(int64(io));
+                math.dec(int64(src));
             else if(typeof(T) == typeof(ulong))
-                dec(uint64(io));
+                math.dec(uint64(src));
             else if(typeof(T) == typeof(float))
-                dec(float32(io));
+                math.dec(float32(src));
             else if(typeof(T) == typeof(double))
-                dec(float64(io));
+                math.dec(float64(src));
             else
                  throw unsupported<T>();                
            
-            return ref io;
-        }
-
-        static Span<sbyte> dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<byte> dec(ReadOnlySpan<byte> src, Span<byte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<short> dec(ReadOnlySpan<short> src, Span<short> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<ushort> dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<int> dec(ReadOnlySpan<int> src, Span<int> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<uint> dec(ReadOnlySpan<uint> src, Span<uint> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<long> dec(ReadOnlySpan<long> src, Span<long> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<ulong> dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<float> dec(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        static Span<double> dec(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;                
-        }
-
-        static Span<sbyte> dec(Span<sbyte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<byte> dec(Span<byte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<short> dec(Span<short> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<ushort> dec(Span<ushort> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<int> dec(Span<int> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<uint> dec(Span<uint> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<long> dec(Span<long> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<ulong> dec(Span<ulong> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<float> dec(Span<float> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        static Span<double> dec(Span<double> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
- 
-        
+            return src;
+        }       
     }
 }

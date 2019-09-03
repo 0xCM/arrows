@@ -16,8 +16,7 @@ namespace Z0
 
     public abstract class Context : IContext
     {
-        public IRandomSource Random {get;}
-
+        
         protected List<AppMsg> Messages {get;} 
             = new List<AppMsg>();
 
@@ -35,10 +34,14 @@ namespace Z0
         public IEnumerable<OpTime> Benchmarks
             => OpTimes;
 
-        protected Context(IRandomSource Randomizer)
+
+        protected Context(IPolyrand rng)
         {
-            this.Random = Randomizer;
+            this.Polyrand = rng;            
         }
+
+
+        public virtual IPolyrand Polyrand {get;}
 
         protected virtual bool TraceEnabled {get;}
             = true;
@@ -162,8 +165,7 @@ namespace Z0
 
     public abstract class Context<T> : Context
     {                
-
-        protected Context(IRandomSource randomizer)
+        protected Context(IPolyrand randomizer)
             : base(randomizer)            
         {
 

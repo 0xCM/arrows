@@ -37,18 +37,8 @@ namespace Z0
 
         public static MethodDisassembly[] GMath()
         {
-            var opnames = set(
-                nameof(gmath.add), 
-                nameof(gmath.sub), 
-                nameof(gmath.mul), 
-                nameof(gmath.idiv), 
-                nameof(gmath.mod)
-                );
-
-            var unopnames = set(
-                nameof(gmath.negate),
-                nameof(gmath.inc),
-                nameof(gmath.dec));
+            var opnames = set("add", "sub", "mul", "idiv", "mod");
+            var unopnames = set("negate","inc","dec");
 
             var closedBinOps = CloseOpenGenerics(gmath.BinOps().Where(m => opnames.Contains(m.Name)), PrimalTypes.All);
             var closedUnaryOps = CloseOpenGenerics(gmath.UnaryOps().Where(m => unopnames.Contains(m.Name)), PrimalTypes.All);

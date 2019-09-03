@@ -12,7 +12,6 @@ namespace Z0.Mkl.Test
     using static nfunc;
     
     using Z0.Test;
-    using static Nats;
 
     public class tgemm : UnitTest<tgemm>
     {
@@ -26,8 +25,8 @@ namespace Z0.Mkl.Test
         
         public void Dot()
         {
-            var v1 = Random.NatVec<N256,double>();
-            var v2 = Random.NatVec<N256,double>();
+            var v1 = Polyrand.NatVec<N256,double>();
+            var v2 = Polyrand.NatVec<N256,double>();
 
             var x = mkl.dot(v1,v2).Round(4);
             var y = Dot(v1,v2).Round(4);
@@ -48,8 +47,8 @@ namespace Z0.Mkl.Test
         void GemmInt32Format()
         {
             var domain = closed(-32768, 32768);
-            var n = N5;
-            var m = N5;
+            var n = n5;
+            var m = n5;
             var m1 = Polyrand.Matrix(domain, m, n);
             var m2 = Polyrand.Matrix(domain, m, n);
             var m3 = Matrix.Alloc(m,n,0);
@@ -92,7 +91,7 @@ namespace Z0.Mkl.Test
 
         public void GemmFloat32D()
         {
-            var src = Random.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (float)x);
+            var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (float)x);
             var pad = 30;
 
             Collect(GemmDirect<N64,N64,N64>(src), pad);
@@ -110,7 +109,7 @@ namespace Z0.Mkl.Test
 
         public void GemmFloat64D()
         {
-            var src = Random.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (double)x);
+            var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (double)x);
             var pad = 30;
 
             Collect(GemmDirect<N64,N64,N64>(src), pad);
@@ -130,20 +129,20 @@ namespace Z0.Mkl.Test
             where T : struct
         {
             
-            var src = Random.Stream(domain);
+            var src = Polyrand.Stream(domain);
             var pad = 30;
 
-            Collect(GemmExec(src, epsilon, N64,  N64, N64), pad);
-            Collect(GemmExec(src,epsilon, N3,  N3, N3), pad);
-            Collect(GemmExec(src,epsilon, N3,  N5, N4), pad);
-            Collect(GemmExec(src,epsilon, N5,  N5, N7), pad);
-            Collect(GemmExec(src,epsilon, N10, N10, N10), pad);
-            Collect(GemmExec(src,epsilon, N17, N3, N17), pad);
-            Collect(GemmExec(src,epsilon, N2,  N2, N2), pad);
-            Collect(GemmExec(src,epsilon, N4,  N4, N4), pad);
-            Collect(GemmExec(src,epsilon, N8,  N8, N8), pad);
-            Collect(GemmExec(src,epsilon, N16, N16, N16), pad);
-            Collect(GemmExec(src,epsilon, N32, N32, N32), pad);
+            Collect(GemmExec(src, epsilon, n64,  n64, n64), pad);
+            Collect(GemmExec(src,epsilon, n3,  n3, n3), pad);
+            Collect(GemmExec(src,epsilon, n3,  n5, n4), pad);
+            Collect(GemmExec(src,epsilon, n5,  n5, n7), pad);
+            Collect(GemmExec(src,epsilon, n10, n10, n10), pad);
+            Collect(GemmExec(src,epsilon, n17, n3, n17), pad);
+            Collect(GemmExec(src,epsilon, n2,  n2, n2), pad);
+            Collect(GemmExec(src,epsilon, n4,  n4, n4), pad);
+            Collect(GemmExec(src,epsilon, n8,  n8, n8), pad);
+            Collect(GemmExec(src,epsilon, n16, n16, n16), pad);
+            Collect(GemmExec(src,epsilon, n32, n32, n32), pad);
         }
 
         

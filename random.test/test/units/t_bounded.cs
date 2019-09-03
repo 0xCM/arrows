@@ -14,6 +14,50 @@ namespace Z0.Rng
     
     public class t_bounded : UnitTest<t_bounded>
     {
+        
+        void bound<T>(T min, T max, int samples)
+            where T : struct
+        {
+            var stats = Accumulator.Create();
+            var src = Polyrand.Stream(min,max).Take(samples);
+            iter(src, value => {
+                stats.Accumulate(convert<T,double>(value));
+                Claim.yea(gmath.between(value, min, max));
+            });
+            var width = convert<T,double>(gmath.sub(max,min));
+            var idealMean = width/2.0;
+            var actualMean = stats.Mean;
+            var error = fmath.relerr(idealMean,actualMean).Round(6);
+            var tol = 0.1;
+            Claim.lteq(error, tol);
+            Trace(() => error);
+            Trace(() => stats.Count);
+            Trace(() => stats.Mean);
+            Trace(() => stats.StandardDeviation);
+        }
+
+        public void bound16u()
+        {            
+            bound(UInt16.MinValue, 750, Pow2.T15);
+        }
+
+        public void bound32i()
+        {
+            bound(0, 2500000, Pow2.T15);
+
+        }
+
+        public void bound32u()
+        {
+            bound(0u, 2500000u, Pow2.T15);
+
+        }
+
+        public void bound64u()
+        {
+            bound(0ul, 2500000ul, Pow2.T15);
+        }
+
         public void bound8i()
         {
             var samples = Pow2.T11;
@@ -23,24 +67,6 @@ namespace Z0.Rng
             h.Deposit(data,false);
         }
 
-        public void bound32u()
-        {
-            var samples = Pow2.T11;
-            var domain = closed(1u,1000u);
-            var data = Polyrand.Stream<uint>(domain).Take(samples);
-            var h = Histogram.Define(domain);
-            h.Deposit(data,false);
-        }
-
-
-        public void bound64u()
-        {
-            var samples = Pow2.T11;
-            var domain = closed(1ul,1000ul);
-            var data = Polyrand.Stream<ulong>(domain).Take(samples);
-            var h = Histogram.Define(domain);
-            h.Deposit(data,false);
-        }
 
         public void bound64i()
         {
@@ -54,7 +80,7 @@ namespace Z0.Rng
 
         public void MultiRandInt32()
         {
-            var mr = RNG.SplitMix64().ToRandSource();                        
+            var mr = RNG.SplitMix();
             var data = mr.Span<int>(Pow2.T23);
             int pos = 0, neg = 0, zed = 0;
             foreach(var x in data)
@@ -69,7 +95,8 @@ namespace Z0.Rng
         public void MultiRandInt64()
         {
             var mr = RNG.WyHash64().ToPolyrand();
-            var data = mr.Take<long>(Pow2.T15);
+            
+            var data = mr.Stream<long>().Take(Pow2.T16);
             int pos = 0, neg = 0, zed = 0;
             foreach(var x in data)
                 if(x > 0)       pos++;
@@ -81,11 +108,10 @@ namespace Z0.Rng
             Claim.lt(r, tolerance);                       
         }
 
-
         public void TestWyHash64()
         {
             var rng = RNG.WyHash64();
-            var data = rng.Take(Pow2.T20);
+            var data = rng.Array<ulong>(Pow2.T16);
             var cutpoint = (double)UInt64.MaxValue/2.0;
 
             var above = 0;
@@ -105,16 +131,13 @@ namespace Z0.Rng
         {
             var samples = Pow2.T11;
             var domain = closed(10,20);
-            var random = Random.ToSysRand();
-            var dst = span<int>(samples);
+            var random = Polyrand.ToSysRand();
             for(var i=0; i<samples; i++)            
             {
                 var next = random.Next(domain.Left, domain.Right);
-                Claim.yea(next >= domain.Left && next < domain.Right);
-                dst[i] = random.Next(domain.Left, domain.Right);
+                Claim.gteq(next, domain.Left);
+                Claim.lt(next, domain.Right);
             }
-            var h = Histogram.Define(domain);
-            h.Deposit(dst);        
         }
     
         IEnumerable<Bin<T>> DefineBins<T>(Interval<T> domain, int count)        
@@ -202,7 +225,7 @@ namespace Z0.Rng
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = BernoulliSpec<long>.Define(p).Distribution<long>(Random).Sample().Take(count);
+            var samples = BernoulliSpec<long>.Define(p).Distribution<long>(Polyrand).Sample().Take(count);
             var avg = samples.Average();
             sw.Stop();
 
@@ -221,7 +244,7 @@ namespace Z0.Rng
 
         void TestBits()
         {
-            var bits = RNG.XOrShift1024().Bits().Take(Pow2.T16);
+            var bits = RNG.XOrShift1024().ToPolyrand().Bits().Take(Pow2.T16);
             var on = 0;
             var off = 0;
 

@@ -11,7 +11,6 @@ namespace Z0.Rng
     using System.IO;
     using Z0.Mkl;
 
-    using static Nats;
     using static zfunc;
     
     public class t_bitvectors : UnitTest<t_bitvectors>
@@ -25,7 +24,7 @@ namespace Z0.Rng
             var set1 = BitVector16.All(limit).Select(x => x.ToScalar()).ToArray();
             Claim.eq(math.max(set1), (ushort)0b111111111111);
 
-            var set2 = Polyrand.BitVectors16(limit).TakeArray((int)Pow2.pow(limit*2));
+            var set2 = Polyrand.BitVectors(n16, limit).TakeArray((int)Pow2.pow(limit*2));
             Span<int> dist = stackalloc int[limit + 1];
             for(var i=0; i<set2.Length; i++)
             {
@@ -49,7 +48,7 @@ namespace Z0.Rng
         {
             var trace = false;
             var lenRange = closed(3,68);
-            var src = Random.BitVectors<int>(lenRange);
+            var src = Polyrand.BitVectors<int>(lenRange);
             var lenStats = Accumulator.Create();
             var bitStats = Accumulator.Create(true);
             for(var i=0; i<SampleSize; i++)

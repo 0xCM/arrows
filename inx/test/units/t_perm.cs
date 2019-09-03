@@ -12,47 +12,46 @@ namespace Z0.Test
     
     using static zfunc;
     using static nfunc;
-    using static Nats;
 
     public class t_perm : UnitTest<t_perm>
     {
         public void invert()
         {
-            invert(N12);
-            invert(N17);
-            invert(N64);
-            invert(N31);
-            invert(N128);
-            invert(N257);
+            invert(n12);
+            invert(n17);
+            invert(n64);
+            invert(n31);
+            invert(n128);
+            invert(n257);
         }
 
         public void identity()
         {
-            identity(N32);         
-            identity(N20);
-            identity(N17);
-            identity(N64);
-            identity(N128);
-            identity(N21);
-            identity(N257);
+            identity(n32);         
+            identity(n20);
+            identity(n17);
+            identity(n64);
+            identity(n128);
+            identity(n21);
+            identity(n257);
         }
         
 
         public void decompose()
         {
-            var p = Polyrand.Perm(N12);
+            var p = Polyrand.Perm(n12);
             var cycle = p.Cycle(3);
         }
 
         public void compose()
         {
-            compose(N32);         
-            compose(N20);
-            compose(N17);
-            compose(N64);
-            compose(N128);
-            compose(N21);
-            compose(N257);
+            compose(n32);         
+            compose(n20);
+            compose(n17);
+            compose(n64);
+            compose(n128);
+            compose(n21);
+            compose(n257);
         }
 
         public void cycle16()

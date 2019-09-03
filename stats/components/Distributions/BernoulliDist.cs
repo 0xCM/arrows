@@ -25,7 +25,7 @@ namespace Z0
 
         static readonly T One = gmath.one<T>();
 
-        public BernoulliDist(IRandomSource random, BernoulliSpec<T> spec)
+        public BernoulliDist(IPolyrand random, BernoulliSpec<T> spec)
             : base(random, spec)
         {
         }
@@ -34,7 +34,7 @@ namespace Z0
         {
             while(true)
             {
-                var success = math.lt(Random.NextDouble(), Spec.Success) ? One : Zero;
+                var success = math.lt(Polyrand.Next<double>(), Spec.Success) ? One : Zero;
                 yield return success;
             }            
         }

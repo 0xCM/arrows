@@ -13,7 +13,6 @@ namespace Z0.Mkl.Test
     using static nfunc;
     
     using Z0.Test;
-    using static Nats;
 
     public class tgetrf : MklTest<tgetrf>
     {
@@ -29,7 +28,7 @@ namespace Z0.Mkl.Test
             2.2,  2.0,  1.8,  1.6,  1.4,  1.2,  1.0,  1.2,  1.4, 
             2.4,  2.2,  2.0,  1.8,  1.6,  1.4,  1.2,  1.0,  1.2,
             2.6,  2.4,  2.2,  2.0,  1.8,  1.6,  1.4,  1.2,  1.0
-            }, N9);
+            }, n9);
             
         static Matrix<N9,double> DGETRF_Out
             => Matrix.Define(new double[]{
@@ -42,7 +41,7 @@ namespace Z0.Mkl.Test
                 0.8,  -0.2,  0.0,  0.0,  0.0,  0.0,  0.4,  0.8,  1.2,
                 0.8,  -0.1,  0.0,  0.0,  0.0,  0.0,  0.0,  0.4,  0.8,
                 0.9,  -0.1,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.4 
-            },N9);
+            },n9);
 
 
         public void Getrf32()

@@ -106,8 +106,8 @@ namespace Z0.Test
         {
             for(var i = 0; i<SampleSize; i++)
             {
-                var lhs = Random.CpuVec128<double>();
-                var rhs = Random.CpuVec128<double>();
+                var lhs = Polyrand.CpuVec128<double>();
+                var rhs = Polyrand.CpuVec128<double>();
 
                 Span<double> lDst = stackalloc double[2];
                 lhs.StoreTo(ref head(lDst));
@@ -126,8 +126,8 @@ namespace Z0.Test
         {
             for(var i = 0; i<SampleSize; i++)
             {
-                var x = Random.CpuVec256<float>();
-                var y = Random.CpuVec256<float>();
+                var x = Polyrand.CpuVec256<float>();
+                var y = Polyrand.CpuVec256<float>();
 
                 Span<float> xDst = stackalloc float[8];
                 x.StoreTo(ref head(xDst));
@@ -146,8 +146,8 @@ namespace Z0.Test
         {
             for(var i = 0; i<SampleSize; i++)
             {
-                var x = Random.CpuVec256<double>();
-                var y = Random.CpuVec256<double>();
+                var x = Polyrand.CpuVec256<double>();
+                var y = Polyrand.CpuVec256<double>();
 
                 Span<double> xDst = stackalloc double[4];
                 x.StoreTo(ref head(xDst));

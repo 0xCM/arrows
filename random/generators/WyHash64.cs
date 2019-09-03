@@ -14,28 +14,20 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/wyhash.h</remarks>
-    class WyHash64 : IPointSource<ulong>, IRandomSource
+    class WyHash64 : IPointSource<ulong>
     {
         readonly ulong Seed;
         
         ulong State;
 
-        Polyrand PR;
 
         [MethodImpl(Inline)]
         public WyHash64(ulong Seed)
         {
             this.State = Seed;
             this.Seed = Seed;
-            this.PR = new Polyrand(PointSource);    
         }
 
-        const ulong X1 = 0x60bee2bee120fc15;
-        
-        const ulong X2 = 0xa3b195354a39b70d;
-        
-        const ulong X3 = 0x1b03738712fad5c9;
-        
         public ulong Next()
         {
             State += X1;
@@ -54,21 +46,12 @@ namespace Z0
         public ulong Next(ulong min, ulong max)        
             => min + Next(max - min);
 
-        IPointSource<ulong> PointSource
-            => this;
-
-        ulong IRandomSource.NextUInt64()
-            => PR.Next<ulong>();
- 
-        ulong IRandomSource.NextUInt64(ulong max)
-            => PR.Next(max);   
-
-        int IRandomSource.NextInt32(int max)
-            => PR.Next(max);
-
-        double IRandomSource.NextDouble()
-            => PR.Next<double>();
+        const ulong X1 = 0x60bee2bee120fc15;
+        
+        const ulong X2 = 0xa3b195354a39b70d;
+        
+        const ulong X3 = 0x1b03738712fad5c9;
+        
 
     }
-
 }

@@ -21,7 +21,7 @@ namespace Z0.Mkl.Test
             var samplesize = Pow2.T14;
 
             var s1Range = closed(350.0, 1000.0);
-            var s1 = Random.Array<double>(samplesize, s1Range);
+            var s1 = Polyrand.Array<double>(samplesize, s1Range);
             var s1Max = Sample.Load(s1).Max()[0];
             Claim.neq(s1Max,0.0);
 
@@ -40,7 +40,7 @@ namespace Z0.Mkl.Test
 
         public void VerifySum()
         {
-            var src = Random.Array<double>(Pow2.T14);
+            var src = Polyrand.Array<double>(Pow2.T14);
             var expect = src.Sum().Round(4);
             var actual = Sample.Load(src).Sum()[0].Round(4);
             Claim.eq(expect,actual);
@@ -50,7 +50,7 @@ namespace Z0.Mkl.Test
         {
             var cycles = Pow2.T12;
             var samples = Pow2.T14;
-            var src = Random.Array<long>(samples, closed(-2000L, 2000L));
+            var src = Polyrand.Array<long>(samples, closed(-2000L, 2000L));
             var last = 0L;
             var dSrc = src.Convert<double>();
 
@@ -70,7 +70,7 @@ namespace Z0.Mkl.Test
         public void VerifyMean()
         {
 
-            var src = Random.Array<long>(Pow2.T14, closed(-2000L, 2000L));
+            var src = Polyrand.Array<long>(Pow2.T14, closed(-2000L, 2000L));
             var expect = src.Avg();
             var actual = (long)Sample.Load(src.Convert<double>()).Mean()[0];
             Claim.eq(expect,actual);

@@ -17,7 +17,7 @@ namespace Z0.Test
         public void movemask256u8()
         {
             var n = Pow2.T12;
-            var src = Random.Span256<byte>(n);
+            var src = Polyrand.Span256<byte>(n);
 
             for(var i=0; i<n; i++)
             {
@@ -44,7 +44,7 @@ namespace Z0.Test
         public void movemask128u8()
         {
             var n = Pow2.T12;
-            var src = Random.Span128<byte>(n);
+            var src = Polyrand.Span128<byte>(n);
             for(var i=0; i<n; i++)
             {
                 var srcVector = src.ToCpuVec128(i);
@@ -62,7 +62,7 @@ namespace Z0.Test
         public void movemask256f32()
         {
             var n = Pow2.T12;
-            var src = Random.Span256<float>(n);
+            var src = Polyrand.Span256<float>(n);
             for(var i=0; i<n; i++)
             {
                 var srcVector = src.ToCpuVec256(i);
@@ -81,7 +81,7 @@ namespace Z0.Test
         public void movemask256f64()
         {
             var n = Pow2.T12;
-            var src = Random.Span256<double>(n);
+            var src = Polyrand.Span256<double>(n);
             for(var i=0; i<n; i++)
             {
                 var srcVector = src.ToCpuVec256(i);

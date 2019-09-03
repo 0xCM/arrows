@@ -439,7 +439,7 @@ namespace MsInfer.Distributions
         /// </summary>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double mean, double precision, double lowerBound, double upperBound, IRandomSource random = null)
+        public static double Sample(double mean, double precision, double lowerBound, double upperBound, IPolyrand random = null)
         {
             if (precision < 0)
                 throw new ArgumentException("precision < 0 (" + precision + ")");
@@ -471,7 +471,7 @@ namespace MsInfer.Distributions
             }
         }
 
-        public double Sample(IRandomSource random)
+        public double Sample(IPolyrand random)
             => IsPointMass ? Point : Sample(Gaussian.GetMean(), Gaussian.Precision, LowerBound, UpperBound, random);
 
         /// <summary>

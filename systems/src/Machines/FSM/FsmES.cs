@@ -39,6 +39,7 @@ namespace Z0.Machines
         /// </summary>
         Stopwatch Runtime {get;}
 
+
         /// <summary>
         /// The machine transition function
         /// </summary>

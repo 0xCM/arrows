@@ -242,7 +242,7 @@ namespace MsInfer.Distributions
         }
 
         
-        public bool Sample(IRandomSource random)
+        public bool Sample(IPolyrand random)
         {
             return Bernoulli.Sample(GetProbTrue(),random);
         }
@@ -261,7 +261,7 @@ namespace MsInfer.Distributions
         /// <param name="probTrue">p(true)</param>
         /// <returns>The sample</returns>
         [Stochastic]
-        public static bool Sample(double probTrue, IRandomSource random = null)
+        public static bool Sample(double probTrue, IPolyrand random = null)
         {
             if (probTrue < 0 || probTrue > 1) 
                 throw new ArgumentOutOfRangeException(nameof(probTrue), $"{nameof(probTrue)} = {probTrue} is not in [0,1]");

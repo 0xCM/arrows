@@ -40,7 +40,7 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                fmath.sqrt(src[i], ref dst[i]);
+                fmath.sqrt(in src[i], ref dst[i]);
             return dst;                
         }
 
@@ -53,7 +53,7 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                fmath.sqrt(src[i], ref dst[i]);
+                fmath.sqrt(in src[i], ref dst[i]);
             return dst;                
         }
 

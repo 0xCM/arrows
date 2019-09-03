@@ -304,8 +304,10 @@ namespace Z0
         public static string FormatSequence<T>(this IEnumerable<T> src, string sep = ", ",  Func<T,string> formatter = null)
             => string.Join(sep, src.Select(x => formatter?.Invoke(x) ?? x.ToString())).TrimEnd();
 
-
-
+        /// <summary>
+        /// Formats a readonly span of characters by forming implied string
+        /// </summary>
+        /// <param name="src">The source span</param>
         [MethodImpl(Inline)]   
         public static string Format(this ReadOnlySpan<char> src)
             => new string(src);

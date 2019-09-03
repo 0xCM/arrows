@@ -21,8 +21,8 @@ namespace Z0.Machines
             this.Classifier = classifier;
             this.StateCount = states;
             this.EventCount = events;
-            this.MinSampleSize = minSamples;
-            this.MaxSampleSize = maxSamples;
+            this.MinEventSamples = minSamples;
+            this.MaxEventSamples = maxSamples;
             this.ReceiptLimit = maxReceipts;
             this.StartState = default;
             this.EndState = gmath.dec(states);
@@ -46,12 +46,12 @@ namespace Z0.Machines
         /// <summary>
         /// The minimum number of events that will be sampled for each state
         /// </summary>
-        public T MinSampleSize {get;private set;}
+        public T MinEventSamples {get;private set;}
 
         /// <summary>
         /// The maximum number of events that will be sampled for each state
         /// </summary>
-        public T MaxSampleSize {get;private set;}
+        public T MaxEventSamples {get;private set;}
         
         /// <summary>
         /// The maximum number of events that the machine will accept
@@ -106,8 +106,8 @@ namespace Z0.Machines
         /// <param name="Max">The max event sample size</param>
         public PrimalFsmSpec<T> WithSampleLimits(T Min, T Max)
         {
-            this.MinSampleSize = Min;
-            this.MaxSampleSize = Max;
+            this.MinEventSamples = Min;
+            this.MaxEventSamples = Max;
             return this;
         }
     }

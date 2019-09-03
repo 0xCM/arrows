@@ -13,9 +13,6 @@ namespace Z0.Test
 
     public class t_num : UnitTest<t_num>
     {
-        public override int CycleCount
-            => Pow2.T08;
-
 
         public void add_num()
         {
@@ -46,20 +43,6 @@ namespace Z0.Test
 
         }
 
-        public void add_gmath_bench()
-        {
-            Collect(add_gmath_bench<sbyte>());
-            Collect(add_gmath_bench<byte>());
-            Collect(add_gmath_bench<short>());
-            Collect(add_gmath_bench<ushort>());
-            Collect(add_gmath_bench<int>());
-            Collect(add_gmath_bench<uint>());
-            Collect(add_gmath_bench<long>());
-            Collect(add_gmath_bench<ulong>());
-            Collect(add_gmath_bench<float>());
-            Collect(add_gmath_bench<double>());
-
-        }
 
 
         public void add_direct_bench()
@@ -87,25 +70,6 @@ namespace Z0.Test
             }
         }
 
-
-        OpTime add_gmath_bench<T>()
-            where T : unmanaged
-        {
-            var sw = stopwatch(false);
-            var accum = gmath.zero<T>();
-            for(var cycle = 0; cycle < CycleCount; cycle++)
-            for(var sample=0; sample < SampleSize; sample++)
-            {
-                var a = Polyrand.Next<T>();
-                var b = Polyrand.Next<T>();
-                
-                sw.Start();
-                accum = gmath.add(a,b);
-                sw.Stop();
-            }
-            var opname = $"gmath<{typeof(T).DisplayName()}>_add";
-            return (CycleCount*SampleSize, sw, opname);
-        }
 
         OpTime add_num_bench<T>()
             where T : unmanaged

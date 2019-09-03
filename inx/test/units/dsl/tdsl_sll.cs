@@ -19,8 +19,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<ushort>();
-                var offset = Random.Next(ShiftRange<ushort>());            
+                var x1 = Polyrand.CpuVec128<ushort>();
+                var offset = Polyrand.Next(ShiftRange<ushort>());            
                 var y1 = x86._mm_sll_epi16(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);
@@ -34,8 +34,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<uint>();
-                var offset = Random.Next(ShiftRange<uint>());            
+                var x1 = Polyrand.CpuVec128<uint>();
+                var offset = Polyrand.Next(ShiftRange<uint>());            
                 var y1 = x86._mm_sll_epi32(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);
@@ -50,8 +50,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<ulong>();
-                var offset = Random.Next(ShiftRange<ulong>());            
+                var x1 = Polyrand.CpuVec128<ulong>();
+                var offset = Polyrand.Next(ShiftRange<ulong>());            
                 var y1 = x86._mm_sll_epi64(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);
@@ -65,8 +65,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<ushort>();
-                var offset = Random.Next(ShiftRange<ushort>());            
+                var x1 = Polyrand.CpuVec128<ushort>();
+                var offset = Polyrand.Next(ShiftRange<ushort>());            
                 var y1 = x86._mm_slli_epi16(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);
@@ -79,8 +79,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<uint>();
-                var offset = Random.Next(ShiftRange<uint>());            
+                var x1 = Polyrand.CpuVec128<uint>();
+                var offset = Polyrand.Next(ShiftRange<uint>());            
                 var y1 = x86._mm_slli_epi32(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);
@@ -93,8 +93,8 @@ namespace Z0.Test
         {
             void test()
             {
-                var x1 = Random.CpuVec128<ulong>();
-                var offset = Random.Next(ShiftRange<ulong>());            
+                var x1 = Polyrand.CpuVec128<ulong>();
+                var offset = Polyrand.Next(ShiftRange<ulong>());            
                 var y1 = x86._mm_slli_epi64(x1,offset);
                 var z1 = Bits.sll(x1,offset);
                 Claim.eq(y1,z1);

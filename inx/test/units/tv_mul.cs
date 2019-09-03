@@ -58,8 +58,8 @@ namespace Z0
             {
                 BlockSamplesStart(blocks);
                 var domain = closed(0ul, UInt32.MaxValue);
-                var lhs = Random.Span256<ulong>(blocks, domain);
-                var rhs = Random.Span256<ulong>(blocks, domain);
+                var lhs = Polyrand.Span256<ulong>(blocks, domain);
+                var rhs = Polyrand.Span256<ulong>(blocks, domain);
                 for(var block=0; block<blocks; block++)
                 {
                     var x = lhs.LoadVec256(block);
@@ -87,8 +87,8 @@ namespace Z0
         {
             void VerifyUMul64(int samples)
             {
-                var x = Random.Span<uint>(samples);
-                var y = Random.Span<uint>(samples);
+                var x = Polyrand.Span<uint>(samples);
+                var y = Polyrand.Span<uint>(samples);
                 for(var i=0; i< samples; i++)
                 {
                     var xi = x[i];
@@ -122,8 +122,8 @@ namespace Z0
             var counter = 0;
             for(var i=0; i< SampleSize; i++)
             {
-                var x = Random.CpuVec256(domain);
-                var y = Random.CpuVec256(domain);
+                var x = Polyrand.CpuVec256(domain);
+                var y = Polyrand.CpuVec256(domain);
                 sw.Start();
                 var z = dinx.mul(x,y);
                 sw.Stop();
@@ -140,8 +140,8 @@ namespace Z0
             var counter = 0;
             for(var i=0; i< SampleSize; i++)
             {
-                var x = Random.Span(4, domain);
-                var y = Random.Span(4, domain);
+                var x = Polyrand.Span(4, domain);
+                var y = Polyrand.Span(4, domain);
                 sw.Start();
                 var z = x.Mul(y);
                 sw.Stop();
@@ -156,7 +156,7 @@ namespace Z0
             for(var cycle = 0; cycle < cycles; cycle++)
             {
                 var domain = closed((long)Int32.MinValue, (long)Int32.MaxValue);
-                var src = Random.Stream(domain).Select(x => (double)x);
+                var src = Polyrand.Stream(domain).Select(x => (double)x);
                 var u = Vec256.Load(src.TakeSpan(4));
                 var v = Vec256.Load(src.TakeSpan(4));
                 var x = dfp.mul(u,v);

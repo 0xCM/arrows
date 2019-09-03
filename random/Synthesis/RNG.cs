@@ -17,8 +17,6 @@ namespace Z0
     /// </summary>
     public static class RNG
     {
-        static IRandomSource Entropic = new XOrShift1024(Seed1024.Entropic);
-
         public static Interval<T> TypeDomain<T>()
             where T : struct
         {
@@ -62,19 +60,108 @@ namespace Z0
             where T : struct
                 => (RngSeed.FixedByteCount, RngSeed.MaxFixedIndex<T>());
 
-        public static IRandomSource XOrShift1024(ulong[] seed = null)
-            => new XOrShift1024(seed ?? Seed1024.Default);
+        /// <summary>
+        /// Creates a new WyHash16 generator
+        /// </summary>
+        /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
+        public static IPolyrand WyHash64(ulong? seed = null)
+            => new WyHash64(seed ?? BitConverter.ToUInt64(Entropy.Bytes(8))).ToPolyrand();        
 
-        public static IPointSource<ulong> XOrStarStar256(ulong[] seed = null)
-            => new XOrShift256(seed ?? Seed256.Default);
+        /// <summary>
+        /// Creates an XOrShift 1024 rng
+        /// </summary>
+        /// <param name="seed">The initial state</param>
+        public static IPolyrand XOrShift1024(ulong[] seed = null)
+            => new XOrShift1024(seed ?? Seed1024.Default).ToPolyrand();
+
+        /// <summary>
+        /// Creates an XOrShift 1024 rng
+        /// </summary>
+        /// <param name="seed">The initial state</param>
+        public static IPolyrand XOrStarStar256(ulong[] seed = null)
+            => XOrShift256.Define(seed ?? Seed256.Default).ToPolyrand();
  
         /// <summary>
         /// Creates a splitmix 64-bit generator
         /// </summary>
         /// <param name="seed">The initial state of the generator, if specified; 
         /// otherwise, the seed is obtained from an entropy source</param>
-        public static IPointSource<ulong> SplitMix64(ulong? seed = null)
-            => new SplitMix64(seed ?? Entropy.Value<ulong>());
+        public static IPolyrand SplitMix(ulong? seed = null)
+            => SplitMix64.Define(seed ?? Entropy.Value<ulong>()).ToPolyrand();
+
+
+        /// <summary>
+        /// Creates a 64-bit Pcg RNG
+        /// </summary>
+        /// <param name="seed">The inital rng state</param>
+        /// <param name="index">The stream index, if any</param>
+        public static IPolyrand Pcg64(ulong seed, ulong? index = null)
+            => new Pcg64(seed, index).ToPolyrand();     
+
+        /// <summary>
+        /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
+        /// </summary>
+        /// <param name="seed">The initial state of a generator</param>
+        /// <param name="index">The stream index</param>
+        public static IRngSuite<N> Pcg64Suite<N>(N n, params (ulong seed, ulong index)[] specs)
+            where N : ITypeNat, new()
+        {
+            var suite = new IPolyrand[specs.Length];
+            for(var i=0; i < suite.Length; i++)
+            {
+                (var seed, var index) = specs[i];
+                suite[i] = Pcg64(seed, index);
+            }
+            return new RngSuite<N>(suite);
+        }
+
+        /// <summary>
+        /// Creates a 64-bit Pcg RNG suite predicated on spans of seeds and stream indices
+        /// </summary>
+        /// <param name="seed">The initial rng states</param>
+        /// <param name="indices">A span of index values</param>
+        public static IRngSuite<N> Pcg64Suite<N>(Span<ulong> seeds, Span<ulong> indices)        
+            where N : ITypeNat, new()
+
+        {
+            var count = length(seeds,indices);
+            var members = new IPolyrand[count];
+            for(var i=0; i<count; i++)
+                members[i] = Pcg64(seeds[i], indices[i]);
+            return new RngSuite<N>(members);
+        }    
+
+        /// <summary>
+        /// Creates a WyHash64 generator suite
+        /// </summary>
+        /// <param name="n">The number of suite generators</param>
+        /// <param name="seed">The optional seed which, if of nonzero length, must have matching natural length</param>
+        /// <typeparam name="N">The natural length type</typeparam>
+        public static IRngSuite<N> WyHash64Suite<N>(N n = default, params ulong[] seed)
+            where N : ITypeNat, new()
+        {
+            Span<N,ulong> _seed;
+            if(seed.Length == 0)
+                _seed = Entropy.Values<N,ulong>();
+            else if(seed.Length == (int)n.value)
+                _seed = NatSpan.Load<N,ulong>(ref seed[0]);
+            else
+                throw Errors.LengthMismatch((int)n.value, seed.Length);
+
+            var members = new IPolyrand[n.value];
+            for(var i=0; i<members.Length; i++)
+                members[i] = WyHash64(_seed[i]);
+
+            return new RngSuite<N>(members);
+        }
+
+        /// <summary>
+        /// Creates a new WyHash16 generator
+        /// </summary>
+        /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
+        /// <param name="increment">The generator step size</param>
+        public static IPointSource<ushort> WyHash16(ushort? seed = null, ushort? increment = null)
+            => new WyHash16(seed ?? BitConverter.ToUInt16(Entropy.Bytes(2)),increment);
 
         /// <summary>
         /// Creates a 32-bit Pcg RNG
@@ -83,14 +170,6 @@ namespace Z0
         /// <param name="index">The stream index, if any</param>
         public static IStepwiseSource<uint> Pcg32(ulong seed, ulong? index = null)
             => new Pcg32(seed, index);        
-
-        /// <summary>
-        /// Creates a 64-bit Pcg RNG
-        /// </summary>
-        /// <param name="seed">The inital rng state</param>
-        /// <param name="index">The stream index, if any</param>
-        public static IStepwiseSource<ulong> Pcg64(ulong seed, ulong? index = null)
-            => new Pcg64(seed, index);     
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
@@ -109,23 +188,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
-        /// </summary>
-        /// <param name="seed">The initial state of a generator</param>
-        /// <param name="index">The stream index</param>
-        public static IStepwiseSource<ulong>[] Pcg64Suite(params (ulong seed, ulong index)[] specs)
-        {
-            var suite = new IStepwiseSource<ulong>[specs.Length];
-            for(var i=0; i < suite.Length; i++)
-            {
-                (var seed, var index) = specs[i];
-                suite[i] = Pcg64(seed, index);
-            }
-            return suite;
-        }
-
-        /// <summary>
-        /// Creates a 64-bit Pcg RNG suite predicated on spans of seeds and stream indices
+        /// Creates a 32-bit Pcg RNG suite predicated on spans of seeds and stream indices
         /// </summary>
         /// <param name="seeds">A span of seed values</param>
         /// <param name="indices">A span of index values</param>
@@ -137,68 +200,5 @@ namespace Z0
                 g[i] = Pcg32(seeds[i], indices[i]);
             return g;
         }        
-
-        /// <summary>
-        /// Creates a 64-bit Pcg RNG suite predicated on spans of seeds and stream indices
-        /// </summary>
-        /// <param name="seed">The initial rng states</param>
-        /// <param name="indices">A span of index values</param>
-        public static Span<IStepwiseSource<ulong>> Pcg64Suite(Span<ulong> seeds, Span<ulong> indices)        
-        {
-            var count = length(seeds,indices);
-            var g = span<IStepwiseSource<ulong>>(count);
-            for(var i=0; i<count; i++)
-                g[i] = Pcg64(seeds[i], indices[i]);
-            return g;
-        }    
-
-        /// <summary>
-        /// Creates a new WyHash16 generator
-        /// </summary>
-        /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
-        /// <param name="increment">The generator step size</param>
-        public static IPointSource<ushort> WyHash16(ushort? seed = null, ushort? increment = null)
-            => new WyHash16(seed ?? BitConverter.ToUInt16(Entropy.Bytes(2)),increment);
-
-        /// <summary>
-        /// Creates a new WyHash16 generator
-        /// </summary>
-        /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
-        public static IPointSource<ulong> WyHash64(ulong? seed = null)
-            => new WyHash64(seed ?? BitConverter.ToUInt64(Entropy.Bytes(8)));        
-
-        /// <summary>
-        /// Creates a WyHash64 generator suite
-        /// </summary>
-        /// <param name="n">The number of suite generators</param>
-        /// <param name="seed">The optional seed which, if of nonzero length, must have matching natural length</param>
-        /// <typeparam name="N">The natural length type</typeparam>
-        public static IPointSource<N,ulong> WyHash64Suite<N>(N n = default, params ulong[] seed)
-            where N : ITypeNat, new()
-        {
-            Span<N,ulong> _seed;
-            if(seed.Length == 0)
-                _seed = Entropy.Values<N,ulong>();
-            else if(seed.Length == (int)n.value)
-                _seed = NatSpan.Load<N,ulong>(ref seed[0]);
-            else
-                throw Errors.LengthMismatch((int)n.value, seed.Length);
-            return new WyHash64Suite<N>(_seed);
-        }
-
-        /// <summary>
-        /// Creates a polyrand based on a specified source
-        /// </summary>
-        /// <param name="random">The random source</param>
-        public static IPolyrand Polyrand(IPointSource<ulong> random)
-            => new Polyrand(random);
-
-
-        [MethodImpl(Inline)]
-        public static IPointSource<T> Polyrand<T>(IPointSource<ulong> random)
-            where T : struct
-                => new Polyrand<T>(random);
-        
     }
-
 }
