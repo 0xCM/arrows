@@ -15,36 +15,36 @@ namespace Z0
     /// Captures a sample from a Gemetric distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Geometric_distribution</remarks>
-    public readonly struct GeometricSample<T>
-        where T : struct
+    public readonly struct GeometricSample<T> : ISample<T>
+        where T : unmanaged
     {
-        public GeometricSample(RngKind rng, double p, Memory<T> data)
+        public GeometricSample(RngKind rng, double p, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
+            this.Rng = rng;
             this.P = p;
-            this.SampleData = data;
+            this.Data = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
+        public RngKind Rng {get;}
 
         /// <summary>
         /// The probability of trial success
         /// </summary>
-        public readonly double P;
+        public double P {get;}
         
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The data sampled according to the distribution spec
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public MemorySpan<T> Data {get;} 
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.FormatList();
+            => Data.Span.FormatList();
 
 
     }

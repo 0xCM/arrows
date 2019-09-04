@@ -15,30 +15,31 @@ namespace Z0
     /// <summary>
     /// Captures a sample of uniformly distributed bits
     /// </summary>
-    public readonly struct UniformBitsSample<T>
-        where T : struct
+    public readonly struct UniformBitsSample<T> : ISample<T>
+        where T : unmanaged
     {
-        public UniformBitsSample(RngKind rng,  Memory<T> data)
+        [MethodImpl(Inline)]    
+        public UniformBitsSample(RngKind rng,  MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.SampleData = data;
+            this.Rng = rng;
+            this.Data = data;
         }
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
+        public readonly RngKind Rng {get;}
         
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The sampled data
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public readonly MemorySpan<T> Data {get;}       
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.FormatList();
+            => Data.Span.FormatList();
     }
 
 }

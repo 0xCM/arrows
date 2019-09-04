@@ -16,20 +16,19 @@ namespace Z0.Mkl
 
     static class MklTaskOps
     {
-
         [MethodImpl(Inline)]
         public static void Set<T>(this VslSSTaskHandle<T> task, VslSSTaskParameter param, ref int value, [CallerFilePath]string file = null, [CallerLineNumber]int? line = null)
-            where T : struct
+            where T : unmanaged
                 => VSL.vsliSSEditTask(task, param, ref value).AutoThrow();
 
         [MethodImpl(Inline)]
         public static void Set<T>(this VslSSTaskHandle<T> task, VslSSTaskParameter param, ref double value, [CallerFilePath]string file = null, [CallerLineNumber]int? line = null)
-            where T : struct
+            where T : unmanaged
             => VSL.vsldSSEditTask(task, param, ref value).AutoThrow(file,line);
 
         [MethodImpl(Inline)]
         public static void Set<T>(this VslSSTaskHandle<T> task, VslSSTaskParameter param, ref T value, [CallerFilePath]string file = null, [CallerLineNumber]int? line = null)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(float))
                VSL.vslsSSEditTask(task, param, ref As.float32(ref value)).AutoThrow(file,line); 
@@ -49,7 +48,7 @@ namespace Z0.Mkl
 
         [MethodImpl(Inline)]
         public static void Compute<T>(this VslSSTaskHandle<T> task, VslSSComputeRoutine routine, VslSSComputeMethod method, [CallerFilePath] string file = null, [CallerLineNumber]int? line = null)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(float))
                 VSL.vslsSSCompute(task, routine, method).AutoThrow(file, line);
@@ -57,8 +56,6 @@ namespace Z0.Mkl
                 VSL.vsldSSCompute(task, routine, method).AutoThrow(file, line);
             else
                 throw unsupported<T>();
-
         }
-
    }
 }

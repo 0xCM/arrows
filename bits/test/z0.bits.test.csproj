@@ -10,8 +10,7 @@
     <ProjectReference Include="../../func/z0.zfunc.csproj" />
     <ProjectReference Include="../../nats/z0.nats.csproj" />
     <ProjectReference Include="../../primal/z0.primal.csproj" />
-    <ProjectReference Include="../../matrix/src/z0.matrix.csproj" />    
-    <ProjectReference Include="../../random/z0.random.csproj" />
+    <ProjectReference Include="../../matrix/src/z0.matrix.csproj" />
     <ProjectReference Include="../../inx/src/core/z0.inx.core.csproj" />
     <ProjectReference Include="../../inx/src/dsl/z0.inx.dsl.csproj" />
     <ProjectReference Include="../src/z0.bits.csproj" />

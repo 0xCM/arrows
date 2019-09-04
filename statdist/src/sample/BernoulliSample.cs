@@ -16,44 +16,37 @@ namespace Z0
     /// Captures a sample from a Bernoulli distribution 
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
-    public readonly struct BernoulliSample<T>
-        where T : struct
+    public readonly struct BernoulliSample<T> : ISample<T,BernoulliSpec<T>>
+        where T : unmanaged
     {
-        public BernoulliSample(RngKind rng, BernoulliSpec<T> spec, Memory<T> data)
+        [MethodImpl(Inline)]
+        public BernoulliSample(RngKind rng, BernoulliSpec<T> spec, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.Distribution = spec;
-            this.SampleData = data;
+            this.Rng = rng;
+            this.DistSpec = spec;
+            this.Data = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
+        public readonly RngKind Rng {get;}
 
         /// <summary>
         /// The distribution spec that was used to draw the sample
         /// </summary>
-        public readonly BernoulliSpec<T> Distribution;
+        public readonly BernoulliSpec<T> DistSpec {get;}
         
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The data sampled according to the distribution spec
         /// </summary>
-        public readonly Memory<T> SampleData;    
-
-        public Span<Bit> GetBits()
-        {
-            Span<Bit> dst = new Bit[SampleData.Length];
-            for(var i=0; i<dst.Length; i++)
-                dst[i] =As.int32(SampleData.Span[i]);
-            return dst;
-        }
+        public readonly MemorySpan<T> Data {get;}    
 
         /// <summary>
-        /// Rnders the sample data as text
+        /// Renders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.FormatList();
+            => Data.Span.FormatList();
 
     }
 }

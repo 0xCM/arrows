@@ -15,7 +15,7 @@ namespace Z0
     /// <typeparam name="T">The sample value type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Beta_distribution</remarks>
     public readonly struct BetaSpec<T> :  IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {   
         [MethodImpl(Inline)]
         public static implicit operator (T alpha, T beta)(BetaSpec<T> spec)
@@ -39,5 +39,12 @@ namespace Z0
         public readonly T Alpha;
 
         public readonly T Beta;
+
+        /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Beta;
+
     }
 }

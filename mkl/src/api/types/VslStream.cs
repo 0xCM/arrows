@@ -21,13 +21,13 @@ namespace Z0.Mkl
         public static implicit operator IntPtr(VslStream src)
             => src.Pointer;
     
-        IntPtr Pointer;
-
         public VslStream(IntPtr Pointer, ByteSize? BlockSize  = null)
         {
             this.Pointer = Pointer;
             this.BlockSize = BlockSize ?? Pow2.T16;
         }
+
+        IntPtr Pointer;
 
         public readonly ByteSize BlockSize;
         
@@ -38,6 +38,9 @@ namespace Z0.Mkl
         }        
 
     }
+
+
+
 
  
 }

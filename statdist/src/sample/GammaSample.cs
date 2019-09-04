@@ -16,36 +16,30 @@ namespace Z0
     /// Captures a sample from a Gamma distribution
     /// </summary>
     /// <remarks>https://en.wikipedia.org/wiki/Gamma_distribution</remarks>
-    public readonly struct GammaSample<T>
-        where T : struct
+    public readonly struct GammaSample<T> : ISample<T,GammaSpec<T>>
+        where T : unmanaged
     {
-        public GammaSample(RngKind rng, T Alpha, T Dx, T Beta, Memory<T> data)
+        public GammaSample(RngKind rng, T alpa, T dx, T beta, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.Alpha = Alpha;
-            this.Dx = Dx;
-            this.Beta = Beta;
-            this.SampleData = data;
+            this.Rng = rng;
+            this.DistSpec = GammaSpec<T>.FromShapeAndRate(alpa,beta);
+            this.Data = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
-
-        public readonly T Alpha;
+        public readonly RngKind Rng {get;}
 
         /// <summary>
-        /// The displacement
+        /// Characterizes the specified sample distribution
         /// </summary>
-        public readonly T Dx; 
-
-        public readonly T Beta;
+        public readonly GammaSpec<T> DistSpec {get;}
 
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The data sampled according to the distribution spec
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public readonly MemorySpan<T> Data {get;}        
 
     }
 

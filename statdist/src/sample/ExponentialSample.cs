@@ -15,21 +15,22 @@ namespace Z0
     /// Captures a sample from an exponential distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Exponential_distribution</remarks>
-    public readonly struct ExponentialSample<T>
-        where T : struct
+    public readonly struct ExponentialSample<T> : ISample<T>
+        where T : unmanaged
     {
-        public ExponentialSample(RngKind rng, T Dx, T Beta, Memory<T> data)
+        [MethodImpl(Inline)]
+        public ExponentialSample(RngKind rng, T dx, T beta, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.Dx = Dx;
-            this.Beta = Beta;
-            this.SampleData = data;
+            this.Rng = rng;
+            this.Dx = dx;
+            this.Beta = beta;
+            this.Data = data;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
+        public readonly RngKind Rng {get;}
 
         /// <summary>
         /// The displacement
@@ -39,9 +40,9 @@ namespace Z0
         public readonly T Beta;
 
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The data sampled according to the distribution spec
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public readonly MemorySpan<T> Data {get;}        
 
     }
 

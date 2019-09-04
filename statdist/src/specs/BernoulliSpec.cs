@@ -10,25 +10,17 @@ namespace Z0
 
     using static zfunc;
 
-    public interface IDistributionSpec
-    {
-        
-    }
-
-    public interface IDistributionSpec<T> : IDistributionSpec
-        where T : struct
-    {
-
-    }
-
     /// <summary>
     /// Characterizes a bernouli distribution
     /// </summary>    
     /// <typeparam name="T">The sample value type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
     public readonly struct BernoulliSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
+        [MethodImpl(Inline)]
+        public static BernoulliSpec<T> Define(double p)
+            => new BernoulliSpec<T>(p);
         
         [MethodImpl(Inline)]
         public static implicit operator BernoulliSpec<T>(double p)
@@ -37,10 +29,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator double(BernoulliSpec<T> p)
             => p.Success;
-
-        [MethodImpl(Inline)]
-        public static BernoulliSpec<T> Define(double p)
-            => new BernoulliSpec<T>(p);
         
         [MethodImpl(Inline)]
         public BernoulliSpec(double p)
@@ -49,11 +37,11 @@ namespace Z0
         }
         
         /// <summary>
-        /// Specifies a value within the unit interval [0,1] that represents
-        /// the probability of success
+        /// Specifies a value within the unit interval [0,1] that represents the probability of success
         /// </summary>
-        [Symbol(AsciLower.p)]
         public readonly double Success;
-    }
 
+        public DistKind Kind 
+            => DistKind.Bernoulli;
+    }
 }

@@ -15,7 +15,7 @@ namespace Z0
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
     public readonly struct LaplaceSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static LaplaceSpec<T> Define(T loc, T scale)
@@ -48,6 +48,11 @@ namespace Z0
         /// </summary>
         public readonly T Scale;
 
+        /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Laplace;
 
     }
 

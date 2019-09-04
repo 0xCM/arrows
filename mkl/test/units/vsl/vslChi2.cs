@@ -18,12 +18,11 @@ namespace Z0.Mkl.Test
 
         public void Test1()
         {
-            using(var stream = mkl.stream(BRNG.SFMT19937, 1))
+            using(var stream = mkl.gSfmt19937(1))
             {
                 
                 var buffer = new float[Pow2.T04];
                 var sample = mkl.chi2(stream, 4, buffer);
-                Claim.eq(BRNG.SFMT19937, mkl.brng(stream));
 
             }
         }

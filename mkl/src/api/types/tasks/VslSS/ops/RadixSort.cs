@@ -14,7 +14,6 @@ namespace Z0.Mkl
     using static VslSSComputeRoutine;
     using static VslSSComputeMethod;
 
-
     public static partial class VssOps
     {
         /// <summary>
@@ -55,9 +54,8 @@ namespace Z0.Mkl
         public static Span<double> RadixSort(this Sample<double> samples)        
             => samples.ApplyRadixSort(Sample.Alloc<double>(samples.Dim, samples.Count));
 
-
          static unsafe Sample<T> ApplyRadixSort<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             var dim = samples.Dim;
             var sampleCount = samples.Count;
@@ -81,8 +79,6 @@ namespace Z0.Mkl
             handle.Compute(VSL_SS_SORTED_OBSERV, VSL_SS_METHOD_RADIX);
             return dst;
         }
-
-
     }
 
 }

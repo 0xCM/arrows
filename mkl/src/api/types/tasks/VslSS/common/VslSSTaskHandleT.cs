@@ -11,7 +11,7 @@ namespace Z0.Mkl
     using static zfunc;
 
     unsafe struct VslSSTaskHandle<T> : IDisposable
-        where T : struct
+        where T : unmanaged
     {
         public static VslSSTaskHandle<T> Create(Span<T> samples, int dim)
             => new VslSSTaskHandle<T>(samples, dim);

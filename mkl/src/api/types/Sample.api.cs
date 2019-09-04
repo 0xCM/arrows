@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The sample data type</typeparam>
         [MethodImpl(Inline)]
         public static Sample<T> Load<T>(T[] src, int dim = 1)
-            where T : struct
+            where T : unmanaged
                 => Sample<T>.Load(src, dim);
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace Z0
         /// <param name="dim">The sample dimension</param>
         /// <typeparam name="T">The sample data type</typeparam>
         [MethodImpl(Inline)]
-        public static Sample<T> Load<T>(Memory<T> src, int dim = 1)
-            where T : struct
+        public static Sample<T> Load<T>(MemorySpan<T> src, int dim = 1)
+            where T : unmanaged
                 => Sample<T>.Load(src, dim);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">The sample data type</typeparam>
         [MethodImpl(Inline)]
         public static Sample<T> Alloc<T>(int dim, int count)
-            where T : struct
+            where T : unmanaged
             => Sample<T>.Alloc(dim, count);
     }
 }

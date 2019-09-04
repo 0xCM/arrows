@@ -15,7 +15,7 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Normal_distribution</remarks>
     /// <typeparam name="T">The sample value type</typeparam>
     public readonly struct GaussianSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static GaussianSpec<T> Define(T mu, T sigma)
@@ -39,15 +39,11 @@ namespace Z0
         /// <summary>
         /// The mean of the distribtion that serves as the location parameter
         /// </summary>
-
-        [Symbol(Greek.mu)]
         public readonly T Mean;
 
         /// <summary>
         /// The standard deviation
         /// </summary>
-
-        [Symbol(Greek.sigma)]
         public readonly T StdDev;
 
         public T Variance 
@@ -73,7 +69,13 @@ namespace Z0
             }
         }
 
-        public GaussianSpec<float> ToFloat32()
+         /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Gaussian;
+
+       public GaussianSpec<float> ToFloat32()
             => new GaussianSpec<float>(convert<T,float>(Mean), convert<T,float>(StdDev));
 
 

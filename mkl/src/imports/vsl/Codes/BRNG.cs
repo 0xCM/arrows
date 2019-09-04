@@ -65,7 +65,7 @@ namespace Z0.Mkl
         NIEDERR = SOBOL + VSL_BRNG_INC,
         
         /// <summary>
-        /// A SIMD-oriented Fast Mersenne Twister pseudorandom number generator.
+        /// A Mersenne Twister pseudorandom number generator.
         /// </summary>
         [MklCode("A SIMD-oriented Fast Mersenne Twister pseudorandom number generator.")]
         MT19937 = NIEDERR + VSL_BRNG_INC,
@@ -110,7 +110,7 @@ namespace Z0.Mkl
         /// An ARS-5 counter-based pseudorandom number generator that uses instructions from the AES-NI set
         /// </summary>
         [MklCode("An ARS-5 counter-based pseudorandom number generator that uses instructions from the AES-NI set")]
-        ARS5 = NONDETERM+ VSL_BRNG_INC,
+        ARS5 = NONDETERM + VSL_BRNG_INC,
 
         /// <summary>
         /// A Philox4x32-10 counter-based pseudorandom number generator.

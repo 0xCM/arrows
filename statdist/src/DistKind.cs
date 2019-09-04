@@ -12,19 +12,35 @@ namespace Z0
 
     using static zfunc;
 
+
     /// <summary>
     /// Identifies a supported distribution
     /// </summary>
     public enum DistKind
-    {
+    {        
+        /// <summary>
+        /// Identifies a uniform distribution
+        /// </summary>
         Uniform,
 
+        /// <summary>
+        /// Identifies a uniform distribution bound to a particular range
+        /// </summary>
         UniformRange,
 
+        /// <summary>
+        /// Identifies a bitwise uniform distribution
+        /// </summary>
         UniformBits,
 
+        /// <summary>
+        /// Identifies a Bernoulli distribution
+        /// </summary>
         Bernoulli,
 
+        /// <summary>
+        /// Identifies a Beta distribution
+        /// </summary>
         Beta,
 
         Binomial,
@@ -50,8 +66,6 @@ namespace Z0
         Weibull,
 
         Lognormal
-
-
 
     }
 

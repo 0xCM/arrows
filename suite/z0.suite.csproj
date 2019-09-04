@@ -18,10 +18,9 @@
     <ProjectReference Include="..\ms\z0.ms.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
-    <ProjectReference Include="..\random\z0.random.csproj" />
-    <ProjectReference Include="..\stats\z0.stats.csproj" />
+    <ProjectReference Include="..\rng\src\core\z0.rng.core.csproj" />
+    <ProjectReference Include="..\rng\src\system\z0.rng.system.csproj" />
     <ProjectReference Include="..\structs\z0.structs.csproj" />
-    <ProjectReference Include="..\systems\src\z0.systems.csproj" />
 
   </ItemGroup>
 

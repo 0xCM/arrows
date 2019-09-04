@@ -31,7 +31,6 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus viRngUniform(int method, IntPtr stream, int count, ref int values, int a, int b);
 
-
         /// <summary>
         /// Generates random 32-bit floating point values uniformly distributed over the interval [a, b).
         /// </summary>
@@ -56,12 +55,34 @@ namespace Z0.Mkl
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vdRngUniform(int method, IntPtr stream, int count, ref double values, double a, double b);
 
-        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern VslRngStatus viRngUniformBits64(int method, IntPtr stream, int count, ref ulong values);
-
+        /// <summary>
+        /// Generates 32-bit integers with uniform bit distribution
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="stream">An intialized brng stream</param>
+        /// <param name="count">The number of values to sample</param>
+        /// <param name="values">The sample-receiving buffer</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus viRngUniformBits32(int method, IntPtr stream, int count, ref uint values);
         
+        /// <summary>
+        /// Generates 64-bit integers with uniform bit distribution
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="stream">An intialized brng stream</param>
+        /// <param name="count">The number of values to sample</param>
+        /// <param name="values">The sample-receiving buffer</param>
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus viRngUniformBits64(int method, IntPtr stream, int count, ref ulong values);
+        
+        /// <summary>
+        /// Generates integers from the set {0,1} that follow a Bernoulli distribution
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="stream">An intialized brng stream</param>
+        /// <param name="count">The number of values to sample</param>
+        /// <param name="values">The sample-receiving buffer</param>
+        /// <param name="p">The probabilty of trial success</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus viRngBernoulli(int method, IntPtr stream, int count, ref int values, double p);
 

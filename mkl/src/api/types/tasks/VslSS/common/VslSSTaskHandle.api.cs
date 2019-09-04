@@ -14,17 +14,17 @@ namespace Z0.Mkl
     {
         [MethodImpl(Inline)]
         public static unsafe VslSSTaskHandle<T> Create<T>(Span<T> samples, int dim)
-            where T : struct
+            where T : unmanaged
                 => VslSSTaskHandle<T>.Create(samples,dim);
 
         [MethodImpl(Inline)]
         public static unsafe VslSSTaskHandle<T> Create<T>(Sample<T> samples)
-            where T : struct
+            where T : unmanaged
                 => VslSSTaskHandle<T>.Create(samples);
 
         [MethodImpl(Inline)]
         public static VslSSTaskHandle<T> Wrap<T>(IntPtr ptr)
-            where T : struct
+            where T : unmanaged
                 => VslSSTaskHandle<T>.Wrap(ptr);
     }
 }

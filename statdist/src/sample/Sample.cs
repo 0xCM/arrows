@@ -16,9 +16,9 @@ namespace Z0
     /// Captures a sample from an unspecified distribution
     /// </summary>
     public readonly struct Sample<T>
-        where T : struct
+        where T : unmanaged
     {
-        readonly Memory<T> data;
+        public readonly MemorySpan<T> Data {get;}
 
         /// <summary>
         /// The number of observations that comprise the sample
@@ -31,27 +31,11 @@ namespace Z0
         public readonly int Dim;
 
         [MethodImpl(Inline)]
-        public static implicit operator Span<T>(Sample<T> src)
-            => src.data.Span;
-
-        [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<T> (Sample<T> src)
-            => src.data.Span;
-
-        [MethodImpl(Inline)]
-        public static bool operator == (Sample<T> lhs, Sample<T> rhs)
-            => lhs.data.Span == rhs.data.Span;
-
-        [MethodImpl(Inline)]
-        public static bool operator != (Sample<T> lhs, Sample<T> rhs)
-            => lhs.data.Span != rhs.data.Span;
-        
-        [MethodImpl(Inline)]
         public static Sample<T> Alloc(int dim, int count)
             => new Sample<T>(new T[count * dim], dim);
     
         [MethodImpl(Inline)]
-        public static Sample<T> Load(Memory<T> src, int dim)
+        public static Sample<T> Load(MemorySpan<T> src, int dim)
             => new Sample<T>(src,dim);
 
         [MethodImpl(Inline)]
@@ -59,27 +43,44 @@ namespace Z0
             => new Sample<T>(src,dim);
 
         [MethodImpl(Inline)]
+        public static implicit operator Span<T>(Sample<T> src)
+            => src.Data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan<T> (Sample<T> src)
+            => src.Data;
+
+        [MethodImpl(Inline)]
+        public static bool operator == (Sample<T> lhs, Sample<T> rhs)
+            => lhs.Data.Span == rhs.Data.Span;
+
+        [MethodImpl(Inline)]
+        public static bool operator != (Sample<T> lhs, Sample<T> rhs)
+            => lhs.Data.Span != rhs.Data.Span;
+        
+
+        [MethodImpl(Inline)]
         Sample(T[] src, int dim)
         {
             this.Dim = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
             require(remainder == 0);
-            data = src;
+            Data = src;
         }
                 
         [MethodImpl(Inline)]
-        Sample(Memory<T> src, int dim)
+        Sample(MemorySpan<T> src, int dim)
         {
             this.Dim = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
             require(remainder == 0);
-            data = src;
+            Data = src;
         }
 
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
-            get => ref data.Span[ix];
+            get => ref Data.Span[ix];
         }
 
         [MethodImpl(Inline)]
@@ -93,7 +94,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Sample<T> Observation(int vecix)
         {
-            var slice = data.Slice(vecix * Dim, Dim); 
+            var slice = Data.Slice(vecix * Dim, Dim); 
             return new Sample<T>(slice, Dim);
         }
 
@@ -105,32 +106,7 @@ namespace Z0
         /// <param name="count">The number of observations to retrieve</param>
         [MethodImpl(Inline)]
         public Sample<T> Observations(int vecix, int count)
-            => new Sample<T>(data.Slice(vecix * Dim, count * Dim), Dim);
-            
-        [MethodImpl(Inline)]
-        public Span<T> ToSpan()
-            => data.Span;
-
-        [MethodImpl(Inline)]
-        public Span<T> ToReadOnlySpan()
-            => data.Span;
-
-        [MethodImpl(Inline)]
-        public T[] ToArray()
-            => data.ToArray();   
-
-        [MethodImpl(Inline)]
-        public void Fill(T value)
-            => data.Span.Fill(value);
-
-        [MethodImpl(Inline)]
-        public Span<T>.Enumerator GetEnumerator()
-            => data.Span.GetEnumerator();
-
-        [MethodImpl(Inline)]
-        public ref T GetPinnableReference()
-            => ref data.Span.GetPinnableReference();
-
+            => new Sample<T>(Data.Slice(vecix * Dim, count * Dim), Dim);
             
         /// <summary>
         /// The data length
@@ -138,13 +114,13 @@ namespace Z0
         public int Length 
         {
             [MethodImpl(Inline)]
-            get => data.Length;
+            get => Data.Length;
         }
 
         public bool IsEmpty
         {
             [MethodImpl(Inline)]
-            get => data.IsEmpty;
+            get => Data.IsEmpty;
         }
 
         public string Format()

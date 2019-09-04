@@ -9,24 +9,12 @@ namespace Z0
 
     using static zfunc;
 
-    static class MathUtil
-    {
-        [MethodImpl(Inline)]
-        public static T recip<T>(T value)
-            where T : struct
-        {
-            var x = convert<T,double>(value);
-            var r = 1.0/x;
-            return convert<T>(r);
-        }
-    }
-
     /// <summary>
     /// Characterizes a Gamma distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Gamma_distribution</remarks>
     public readonly struct GammaSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static GammaSpec<T> FromShapeAndScale(T alpha, T theta)
@@ -49,5 +37,25 @@ namespace Z0
         public readonly T Scale;
 
         public readonly T Rate;
+
+        /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Gamma;
     }
+
+
+    static class MathUtil
+    {
+        [MethodImpl(Inline)]
+        public static T recip<T>(T value)
+            where T : struct
+        {
+            var x = convert<T,double>(value);
+            var r = 1.0/x;
+            return convert<T>(r);
+        }
+    }
+
 }

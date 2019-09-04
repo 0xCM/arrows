@@ -15,32 +15,44 @@ namespace Z0
     /// Captures a sample from an Laplace distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
-    public readonly struct LaplaceSample<T>
-        where T : struct
+    public readonly struct LaplaceSample<T>  : ISample<T,LaplaceSpec<T>>
+        where T : unmanaged
     {
-        public LaplaceSample(RngKind rng, LaplaceSpec<T> spec, Memory<T> data)
+        [MethodImpl(Inline)]    
+        public LaplaceSample(RngKind rng, T loc, T scale, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.SampleData = data;
-            this.Distribution = spec;
+            this.Rng = rng;
+            this.DistSpec = LaplaceSpec<T>.Define(loc,scale);
+            this.Data = data;
+        }
+
+        [MethodImpl(Inline)]    
+        public LaplaceSample(RngKind rng, LaplaceSpec<T> spec, MemorySpan<T> data)
+        {
+            this.Rng = rng;
+            this.Data = data;
+            this.DistSpec = spec;
         }        
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
-
-        public readonly LaplaceSpec<T> Distribution;
+        public readonly RngKind Rng {get;}
 
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// Characterizes the specified sample distribution
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public LaplaceSpec<T> DistSpec {get;}
+
+        /// <summary>
+        /// The data sampled according to the distribution spec
+        /// </summary>
+        public MemorySpan<T> Data {get;}        
 
         /// <summary>
         /// Rnders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.FormatList();
+            => Data.Span.FormatList();
     }
 }

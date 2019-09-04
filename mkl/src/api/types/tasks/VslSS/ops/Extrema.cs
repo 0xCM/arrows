@@ -14,7 +14,6 @@ namespace Z0.Mkl
     using static VslSSComputeRoutine;
     using static VslSSComputeMethod;
 
-
     partial class VssOps
     {
         /// <summary>
@@ -98,7 +97,7 @@ namespace Z0.Mkl
             => src.CalcExtrema(Sample.Alloc<double>(src.Dim,2));
 
         static unsafe Sample<T> CalcMin<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MIN, ref dst[0]);
@@ -107,7 +106,7 @@ namespace Z0.Mkl
         }
 
         static unsafe Sample<T> CalcMax<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MAX, ref dst[0]);
@@ -116,7 +115,7 @@ namespace Z0.Mkl
         }
 
         static unsafe Sample<T> CalcSum<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_SUM, ref dst[0]);
@@ -125,7 +124,7 @@ namespace Z0.Mkl
         }
 
         static unsafe Sample<T> CalcExtrema<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MIN, ref dst[0]);
@@ -135,7 +134,7 @@ namespace Z0.Mkl
         }
 
         static unsafe Sample<T> CalcMean<T>(this Sample<T> samples, Sample<T> dst)        
-            where T : struct
+            where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MEAN, ref dst[0]);

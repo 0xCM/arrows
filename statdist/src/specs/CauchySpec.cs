@@ -15,7 +15,7 @@ namespace Z0
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Cauchy_distribution</remarks>
     public readonly struct CauchySpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static CauchySpec<T> Define(T loc, T scale)
@@ -25,12 +25,10 @@ namespace Z0
         public static implicit operator (T loc, T scale)(CauchySpec<T> spec)
             => (spec.Location, spec.Scale);
 
-
         [MethodImpl(Inline)]
         public static implicit operator CauchySpec<T>((T loc, T scale) x)
             => Define(x.loc,x.scale);
-
-        
+            
         [MethodImpl(Inline)]
         public CauchySpec(T loc, T scale)
         {
@@ -48,6 +46,11 @@ namespace Z0
         /// </summary>
         public readonly T Scale;
 
+        /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Cauchy;
 
     }
 

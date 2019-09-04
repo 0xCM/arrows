@@ -9,13 +9,12 @@ namespace Z0
 
     using static zfunc;
 
-
     /// <summary>
     /// Characterizes a Poisson distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Poisson_distribution</remarks>
     public readonly struct PoissonSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static PoissonSpec<T> Define(T p)
@@ -39,5 +38,11 @@ namespace Z0
         /// Specifies a value within the unit interval [0,1] that represents the probability of success
         /// </summary>
         public readonly T Success;
-    }
+ 
+         /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Poisson;
+   }
 }

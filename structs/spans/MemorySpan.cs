@@ -164,6 +164,14 @@ namespace Z0
             get => data.Length == 0;
         }
 
+        [MethodImpl(Inline)]
+        public MemorySpan<T> Slice(int start)
+            => data.Slice(start);
+
+        [MethodImpl(Inline)]
+        public MemorySpan<T> Slice(int start, int len)
+            => data.Slice(start, len);
+
         public IEnumerable<T> ToEnumerable()
             => MemoryMarshal.ToEnumerable<T>(data);
             

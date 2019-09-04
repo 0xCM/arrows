@@ -11,7 +11,6 @@
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
-    <ProjectReference Include="..\random\z0.random.csproj" />
 
   </ItemGroup>
 

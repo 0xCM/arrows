@@ -16,33 +16,37 @@ namespace Z0
     /// Captures a sample from a Poisson distribution 
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Poisson_distribution</remarks>
-    public readonly struct PoissonSample<T>
-        where T : struct
+    public readonly struct PoissonSample<T> : ISample<T, PoissonSpec<double>>
+        where T : unmanaged
     {
-        public PoissonSample(RngKind rng, double lambda, Memory<T> data)
+        [MethodImpl(Inline)]    
+        public PoissonSample(RngKind rng, double lambda, MemorySpan<T> data)
         {
-            this.SourceRng = rng;
-            this.Lambda = lambda;
-            this.SampleData = data;
+            this.Rng = rng;
+            this.DistSpec = PoissonSpec<double>.Define(lambda);
+            this.Data = data;
         }
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
-        public readonly RngKind SourceRng;
+        public readonly RngKind Rng {get;}
         
-        public readonly double Lambda;
-
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// Characterizes the specified sample distribution
         /// </summary>
-        public readonly Memory<T> SampleData;        
+        public PoissonSpec<double> DistSpec {get;}
 
         /// <summary>
-        /// Rnders the sample data as text
+        /// The data sampled according to the distribution spec
+        /// </summary>
+        public readonly MemorySpan<T> Data {get;}
+
+        /// <summary>
+        /// Renders the sample data as text
         /// </summary>
         public string Format()
-            => SampleData.Span.FormatList();
+            => Data.Span.FormatList();
     }
 
 }

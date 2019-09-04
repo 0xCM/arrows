@@ -14,6 +14,9 @@ namespace Z0.Mkl
 
     partial class mkl
     {            
+        [MethodImpl(Inline)]    
+        internal static IntPtr Handle(this IMklTask src)
+            => (src as MklTask);
 
         [MethodImpl(Inline)]
         public static IVslSSTask<float> sstask(int dim, float[] samples)        

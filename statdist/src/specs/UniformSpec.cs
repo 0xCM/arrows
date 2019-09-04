@@ -15,7 +15,7 @@ namespace Z0
     /// <typeparam name="T">The sample value type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Uniform_distribution</remarks>
     public readonly struct UniformSpec<T> :  IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {   
         [MethodImpl(Inline)]
         public static UniformSpec<T> Define(T min, T max)
@@ -41,7 +41,6 @@ namespace Z0
         public static implicit operator Interval<T>(UniformSpec<T> x)
             => Define(x.Min, x.Max);
 
-
         [MethodImpl(Inline)]
         public UniformSpec(T min, T max)
         {
@@ -52,5 +51,11 @@ namespace Z0
         public readonly T Min;
 
         public readonly T Max;
-    }
+ 
+         /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Uniform;
+   }
 }

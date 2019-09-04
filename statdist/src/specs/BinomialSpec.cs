@@ -16,7 +16,7 @@ namespace Z0
     /// <typeparam name="T">The (integral) sample value type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Binomial_distribution</remarks>
     public readonly struct BinomialSpec<T> : IDistributionSpec<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
         public static BinomialSpec<T> Define(T n, double p)
@@ -41,5 +41,12 @@ namespace Z0
         public readonly T Trials;
 
         public readonly double Success;
+ 
+         /// <summary>
+        /// Classifies the distribution spec
+        /// </summary>
+        public DistKind Kind 
+            => DistKind.Binomial;
+
     }
 }
