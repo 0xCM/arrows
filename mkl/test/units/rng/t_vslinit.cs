@@ -22,7 +22,7 @@ namespace Z0.Mkl
             using var stream = mkl.gMt19937(54u);
             
             var sum = 0.0;
-            var buffer = stream.BernoulliBuffer(pTarget);
+            var buffer = stream.Bernoulli(pTarget);
             foreach(var point in buffer.Samples.TakeSpan(count))
                 if(point != 0) 
                     sum++;

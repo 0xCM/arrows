@@ -24,6 +24,6 @@ namespace Z0
         }
 
         public override IEnumerable<T> Sample()
-            => Polyrand.SampleGamma(Spec.Shape, Spec.Scale);
+            => Polyrand.SampleGamma(Spec.Alpha, Spec.Dx);
     }
 }

@@ -28,8 +28,7 @@ namespace Z0.Mkl
         
         
         public RngKind RngKind
-            => VslSource.RngKind();
-        
+            => VslSource.RngKind();        
 
         public void Dispose()
         {

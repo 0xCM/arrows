@@ -11,16 +11,7 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    public interface IRngStream : IDisposable
-    {
-        /// <summary>
-        /// The type of rng in use
-        /// </summary>
-        RngKind Rng {get;}
-        
-    }
-
-    public interface ISampleBuffer<T>
+    public interface ISampler<T>
         where T : unmanaged
     {
         /// <summary>

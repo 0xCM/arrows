@@ -12,16 +12,16 @@ namespace Z0.Mkl
     using static As;
 
 
-    abstract class SampleBuffer<T,S> : ISampleBuffer<T>    
+    abstract class Sampler<T,S> : ISampler<T>    
         where T : unmanaged
         where S : IDistributionSpec
     {        
         [MethodImpl(Inline)]
-        public static implicit operator RngStream(SampleBuffer<T,S> src)
+        public static implicit operator RngStream(Sampler<T,S> src)
             => src.Source;
 
         [MethodImpl(Inline)]
-        public SampleBuffer(RngStream src, S distspec, int? bufferLen = null)
+        public Sampler(RngStream src, S distspec, int? bufferLen = null)
         {
             this.Source = src;
             this.BufferLength  = bufferLen ?? Pow2.T08;

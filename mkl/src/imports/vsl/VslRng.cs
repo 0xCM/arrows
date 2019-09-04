@@ -109,7 +109,7 @@ namespace Z0.Mkl
         /// <param name="count">The number of values to sample</param>
         /// <param name="values">The sample-receiving buffer</param>
         /// <param name="alpha">The shape parameter</param>
-        /// <param name="a">The displacement value</param>
+        /// <param name="dx">The displacement value</param>
         /// <param name="beta">The scalefactor parameter</param>
         /// <remarks>
         /// alpha greater than 1 -  algorithm of Marsaglia is used, nonlinear
@@ -122,7 +122,7 @@ namespace Z0.Mkl
         /// alpha==1             - gamma distribution reduces to exponential distribution
         /// </remarks>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern VslRngStatus vsRngGamma(VslGammaMethod method, IntPtr stream, int count, ref float values, float alpha, float a, float beta);
+        public static extern VslRngStatus vsRngGamma(VslGammaMethod method, IntPtr stream, int count, ref float values, float alpha, float dx, float beta);
 
         /// <summary>
         /// Samples a double-precision Gamma distribution

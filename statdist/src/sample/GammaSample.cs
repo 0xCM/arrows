@@ -22,7 +22,7 @@ namespace Z0
         public GammaSample(RngKind rng, T alpa, T dx, T beta, MemorySpan<T> data)
         {
             this.Rng = rng;
-            this.DistSpec = GammaSpec<T>.FromShapeAndRate(alpa,beta);
+            this.DistSpec = GammaSpec<T>.Define(alpa,dx,beta);
             this.Data = data;
         }        
 

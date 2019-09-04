@@ -56,7 +56,7 @@ namespace Z0.Rng
         void MklRngTest(RngStream src, int segment, int total)
         {
             var sum = 0.0;
-            var samples = src.UniformBuffer(RangeF64).Samples;
+            var samples = src.Uniform(RangeF64).Samples;
             for(var i=0; i< total; i+= segment)
             {
                 var sample = samples.Take(segment).ToArray();                

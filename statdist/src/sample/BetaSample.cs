@@ -11,17 +11,26 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Captures a sample from a Chi^2 distribution
+    /// Captures a sample from a Beta distribution 
     /// </summary>
-    /// <remarks>See https://en.wikipedia.org/wiki/Chi-squared_distribution</remarks>
-    public readonly struct ChiSquareSample<T> : ISample<T,ChiSquareSpec<T>>
+    /// <remarks>https://en.wikipedia.org/wiki/Beta_distribution</remarks>
+    public readonly struct BetaSample<T> : ISample<T,BetaSpec<T>>
         where T : unmanaged
     {
-        public ChiSquareSample(RngKind rng, int freedom, MemorySpan<T> data)
+        [MethodImpl(Inline)]
+        public BetaSample(RngKind rng, T alpha, T beta, MemorySpan<T> data)
         {
             this.Rng = rng;
-            this.DistSpec = freedom;
             this.Data = data;
+            this.DistSpec = BetaSpec<T>.Define(alpha,beta);
+        }        
+
+        [MethodImpl(Inline)]
+        public BetaSample(RngKind rng, BetaSpec<T> spec, MemorySpan<T> data)
+        {
+            this.Rng = rng;
+            this.Data = data;
+            this.DistSpec = spec;
         }        
 
         /// <summary>
@@ -30,15 +39,14 @@ namespace Z0
         public readonly RngKind Rng {get;}
 
         /// <summary>
-        /// The degrees of freedom
+        /// The distribution spec that was used to draw the sample
         /// </summary>
-        public readonly ChiSquareSpec<T> DistSpec {get;}
+        public readonly BetaSpec<T> DistSpec {get;}
         
         /// <summary>
-        /// The data that has been sampled according to the attendant parameters
+        /// The data sampled according to the distribution spec
         /// </summary>
         public readonly MemorySpan<T> Data {get;}
 
     }
-
 }

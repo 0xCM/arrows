@@ -21,7 +21,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<float> Mean(this Sample<float> src)        
+        public static DataSet<float> Mean(this DataSet<float> src)        
             => src.CalcMean(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<double> Mean(this Sample<double> src)        
+        public static DataSet<double> Mean(this DataSet<double> src)        
             => src.CalcMean(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<float> Sum(this Sample<float> src)        
+        public static DataSet<float> Sum(this DataSet<float> src)        
             => src.CalcSum(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<double> Sum(this Sample<double> src)        
+        public static DataSet<double> Sum(this DataSet<double> src)        
             => src.CalcSum(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<float> Min(this Sample<float> src)        
+        public static DataSet<float> Min(this DataSet<float> src)        
             => src.CalcMin(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<double> Min(this Sample<double> src)        
+        public static DataSet<double> Min(this DataSet<double> src)        
             => src.CalcMin(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<float> Max(this Sample<float> src)        
+        public static DataSet<float> Max(this DataSet<float> src)        
             => src.CalcMax(Sample.Alloc<float>(src.Dim,1));
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<double> Max(this Sample<double> src)        
+        public static DataSet<double> Max(this DataSet<double> src)        
             => src.CalcMax(Sample.Alloc<double>(src.Dim,1));
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<float> Extrema(this Sample<float> src)        
+        public static DataSet<float> Extrema(this DataSet<float> src)        
             => src.CalcExtrema(Sample.Alloc<float>(src.Dim,2));
 
         /// <summary>
@@ -93,10 +93,10 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static Sample<double> Extrema(this Sample<double> src)        
+        public static DataSet<double> Extrema(this DataSet<double> src)        
             => src.CalcExtrema(Sample.Alloc<double>(src.Dim,2));
 
-        static unsafe Sample<T> CalcMin<T>(this Sample<T> samples, Sample<T> dst)        
+        static unsafe DataSet<T> CalcMin<T>(this DataSet<T> samples, DataSet<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -105,7 +105,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe Sample<T> CalcMax<T>(this Sample<T> samples, Sample<T> dst)        
+        static unsafe DataSet<T> CalcMax<T>(this DataSet<T> samples, DataSet<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -114,7 +114,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe Sample<T> CalcSum<T>(this Sample<T> samples, Sample<T> dst)        
+        static unsafe DataSet<T> CalcSum<T>(this DataSet<T> samples, DataSet<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -123,7 +123,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe Sample<T> CalcExtrema<T>(this Sample<T> samples, Sample<T> dst)        
+        static unsafe DataSet<T> CalcExtrema<T>(this DataSet<T> samples, DataSet<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -133,7 +133,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe Sample<T> CalcMean<T>(this Sample<T> samples, Sample<T> dst)        
+        static unsafe DataSet<T> CalcMean<T>(this DataSet<T> samples, DataSet<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);

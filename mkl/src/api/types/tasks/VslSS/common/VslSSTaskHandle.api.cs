@@ -18,7 +18,7 @@ namespace Z0.Mkl
                 => VslSSTaskHandle<T>.Create(samples,dim);
 
         [MethodImpl(Inline)]
-        public static unsafe VslSSTaskHandle<T> Create<T>(Sample<T> samples)
+        public static unsafe VslSSTaskHandle<T> Create<T>(DataSet<T> samples)
             where T : unmanaged
                 => VslSSTaskHandle<T>.Create(samples);
 

@@ -11,11 +11,11 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    sealed class BernoulliBuffer<T> : SampleBuffer<T, BernoulliSpec<double>>
+    sealed class BernoulliSampler<T> : Sampler<T, BernoulliSpec<double>>
         where T : unmanaged
     {
-        public BernoulliBuffer(RngStream src, BernoulliSpec<double> distspec, int? buferLen = null)
-            : base(src, distspec, buferLen)
+        public BernoulliSampler(RngStream src, BernoulliSpec<double> spec, int? buferLen = null)
+            : base(src, spec, buferLen)
         {
 
         }

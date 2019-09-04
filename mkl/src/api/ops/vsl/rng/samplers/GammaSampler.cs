@@ -11,25 +11,27 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    sealed class UniformBuffer<T> : SampleBuffer<T, UniformSpec<T>>
+    sealed class GammaSampler<T> : Sampler<T, GammaSpec<T>>
         where T : unmanaged
     {
-        public UniformBuffer(RngStream src, UniformSpec<T> distspec,  int? buferLen = null)
-            : base(src, distspec, buferLen)
+        public GammaSampler(RngStream src, GammaSpec<T> spec, int? buferLen = null)
+            : base(src, spec, buferLen)
+        {
+
+        }
+
+        public GammaSampler(RngStream src, T alpha, T dx, T beta,  int? buferLen = null)
+            : base(src, GammaSpec<T>.Define(alpha, dx, beta), buferLen)
         {
 
         }
 
         protected override int FillBuffer(MemorySpan<T> buffer)
         {
-            var min = DistSpec.Min;
-            var max = DistSpec.Max;
-            if(typeof(T) == typeof(int))
-                mkl.uniform(Source, int32(min), int32(max), buffer.As<int>());
-            else if(typeof(T) == typeof(float))
-                mkl.uniform(Source, float32(min), float32(max), buffer.As<float>());
+            if(typeof(T) == typeof(float))
+                mkl.gamma(Source, float32(DistSpec.Alpha), float32(DistSpec.Dx), float32(DistSpec.Beta), buffer.As<float>());
             else if(typeof(T) == typeof(double))
-                mkl.uniform(Source, float64(min), float64(max), buffer.As<double>());
+                mkl.gamma(Source, float64(DistSpec.Alpha), float64(DistSpec.Dx), float64(DistSpec.Beta), buffer.As<double>());
             else 
                 throw unsupported<T>();
 

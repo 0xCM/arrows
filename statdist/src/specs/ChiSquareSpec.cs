@@ -15,25 +15,25 @@ namespace Z0
     /// Characterizes a bernouli distribution
     /// </summary>    
     /// <typeparam name="T">The sample value type</typeparam>
-    public readonly struct Chi2Spec<T> : IDistributionSpec<T>
+    public readonly struct ChiSquareSpec<T> : IDistributionSpec<T>
         where T : unmanaged
     {        
         [MethodImpl(Inline)]
-        public static implicit operator Chi2Spec<T>(int p)
-            => Define(p);
+        public static implicit operator ChiSquareSpec<T>(int freedom)
+            => Define(freedom);
 
         [MethodImpl(Inline)]
-        public static implicit operator int(Chi2Spec<T> p)
-            => p.Freedom;
+        public static implicit operator int(ChiSquareSpec<T> src)
+            => src.Freedom;
 
         [MethodImpl(Inline)]
-        public static Chi2Spec<T> Define(int p)
-            => new Chi2Spec<T>(p);
+        public static ChiSquareSpec<T> Define(int freedom)
+            => new ChiSquareSpec<T>(freedom);
         
         [MethodImpl(Inline)]
-        public Chi2Spec(int p)
+        public ChiSquareSpec(int freedom)
         {
-            this.Freedom = p;
+            this.Freedom = freedom;
         }
         
         /// <summary>

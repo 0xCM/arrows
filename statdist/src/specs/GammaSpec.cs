@@ -17,26 +17,22 @@ namespace Z0
         where T : unmanaged
     {
         [MethodImpl(Inline)]
-        public static GammaSpec<T> FromShapeAndScale(T alpha, T theta)
-            => new GammaSpec<T>(alpha : alpha, theta : theta, beta : MathUtil.recip(theta));        
+        public static GammaSpec<T> Define(T alpha, T dx, T beta)
+            => new GammaSpec<T>(alpha : alpha, dx : MathUtil.recip(beta), beta : beta);
 
         [MethodImpl(Inline)]
-        public static GammaSpec<T> FromShapeAndRate(T alpha, T beta)
-            => new GammaSpec<T>(alpha : alpha, theta : MathUtil.recip(beta), beta : beta);
-
-        [MethodImpl(Inline)]
-        GammaSpec(T alpha, T theta, T beta)
+        GammaSpec(T alpha, T dx, T beta)
         {
-            this.Shape = alpha;
-            this.Scale = theta;
-            this.Rate = beta;
+            this.Alpha = alpha;
+            this.Dx = dx;
+            this.Beta = beta;
         }
 
-        public readonly T Shape;
+        public readonly T Alpha;
 
-        public readonly T Scale;
+        public readonly T Dx;
 
-        public readonly T Rate;
+        public readonly T Beta;
 
         /// <summary>
         /// Classifies the distribution spec

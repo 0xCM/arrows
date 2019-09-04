@@ -11,28 +11,26 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-
-    sealed class UniformBitsBuffer<T> : SampleBuffer<T, UniformBitsSpec<T>>
+    sealed class GeometricSampler<T> : Sampler<T, GeometricSpec<int>>
         where T : unmanaged
     {
-        public UniformBitsBuffer(RngStream src, int? buferLen = null)
-            : base(src, default, buferLen)
+        public GeometricSampler(RngStream src, GeometricSpec<int> distspec, int? buferLen = null)
+            : base(src, distspec, buferLen)
         {
 
         }
 
         protected override int FillBuffer(MemorySpan<T> buffer)
         {
-            if(typeof(T) == typeof(uint))
-                mkl.bits(Source,  buffer.As<uint>());
-            else if(typeof(T) == typeof(ulong))
-                mkl.bits(Source,  buffer.As<ulong>());
+            
+            if(typeof(T) == typeof(int))
+                mkl.bernoulli(Source,  DistSpec, buffer.As<int>());
             else 
                 throw unsupported<T>();
             
             return buffer.Length;
-        }
 
+        }
     }
 
 }
