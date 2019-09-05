@@ -18,7 +18,7 @@ namespace Z0.Test
             BitSize bitlen = 128 + 8;
             ByteSize bytelen = (ByteSize)bitlen;
             Claim.eq((int)bytelen, (int)bitlen/8);
-            var src = Polyrand.BitVectors<ulong>(bitlen);
+            var src = Random.BitVectors<ulong>(bitlen);
             for(var i=0; i<CycleCount; i++)
             {
                 var bv = src.First();
@@ -35,7 +35,7 @@ namespace Z0.Test
 
         public void pop128()
         {
-            var bv = Polyrand.BitVector128();
+            var bv = Random.BitVector128();
             var p1 = bv.Pop();
 
         }

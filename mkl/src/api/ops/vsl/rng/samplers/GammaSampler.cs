@@ -14,13 +14,13 @@ namespace Z0.Mkl
     sealed class GammaSampler<T> : Sampler<T, GammaSpec<T>>
         where T : unmanaged
     {
-        public GammaSampler(RngStream src, GammaSpec<T> spec, int? buferLen = null)
+        public GammaSampler(MklRng src, GammaSpec<T> spec, int? buferLen = null)
             : base(src, spec, buferLen)
         {
 
         }
 
-        public GammaSampler(RngStream src, T alpha, T dx, T beta,  int? buferLen = null)
+        public GammaSampler(MklRng src, T alpha, T dx, T beta,  int? buferLen = null)
             : base(src, GammaSpec<T>.Define(alpha, dx, beta), buferLen)
         {
 

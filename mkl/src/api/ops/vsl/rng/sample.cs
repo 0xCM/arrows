@@ -24,7 +24,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, Interval<int> range, MemorySpan<int> dst)
+        public static void uniform(MklRng stream, Interval<int> range, MemorySpan<int> dst)
             => VSL.viRngUniform(0,stream.Source, dst.Length, ref dst.Span[0], range.Left, range.Right).ThrowOnError();
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, int min, int max, MemorySpan<int> dst)
+        public static void uniform(MklRng stream, int min, int max, MemorySpan<int> dst)
             => VSL.viRngUniform(0,stream.Source, dst.Length, ref dst.Span[0], min, max).ThrowOnError();
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, float min, float max, MemorySpan<float> dst)
+        public static void uniform(MklRng stream, float min, float max, MemorySpan<float> dst)
             => VSL.vsRngUniform(0,stream.Source, dst.Length, ref dst.Span[0], min, max).ThrowOnError();
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, Interval<float> range, MemorySpan<float> dst)
+        public static void uniform(MklRng stream, Interval<float> range, MemorySpan<float> dst)
             => VSL.vsRngUniform(0,stream.Source, dst.Length, ref dst.Span[0], range.Left, range.Right).ThrowOnError();
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, Interval<double> range, MemorySpan<double> dst)
+        public static void uniform(MklRng stream, Interval<double> range, MemorySpan<double> dst)
             => VSL.vdRngUniform(0, stream.Source, dst.Length, ref dst.Span[0], range.Left, range.Right).ThrowOnError();
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Z0.Mkl
         /// <param name="range">The range of possible values</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void uniform(RngStream stream, double min, double max, MemorySpan<double> dst)
+        public static void uniform(MklRng stream, double min, double max, MemorySpan<double> dst)
             => VSL.vdRngUniform(0, stream.Source, dst.Length, ref dst.Span[0], min, max).ThrowOnError();
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Z0.Mkl
         /// <param name="stream">The source stream</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void bits(RngStream stream, MemorySpan<uint> dst)
+        public static void bits(MklRng stream, MemorySpan<uint> dst)
             => VSL.viRngUniformBits32(0,stream.Source, dst.Length, ref dst.Span[0]).ThrowOnError();
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Z0.Mkl
         /// <param name="stream">The source stream</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void bits(RngStream stream, MemorySpan<ulong> dst)
+        public static void bits(MklRng stream, MemorySpan<ulong> dst)
             => VSL.viRngUniformBits64(0, stream.Source, dst.Length, ref dst.Span[0]).ThrowOnError();
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Z0.Mkl
         /// <param name="b"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void cauchy(RngStream stream, float a, float b, MemorySpan<float> dst)
+        public static void cauchy(MklRng stream, float a, float b, MemorySpan<float> dst)
             => VSL.vsRngCauchy(0, stream.Source, dst.Length, ref dst.Span[0], a, b).ThrowOnError();
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Z0.Mkl
         /// <param name="b"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void cauchy(RngStream stream, double a, double b, MemorySpan<double> dst)
+        public static void cauchy(MklRng stream, double a, double b, MemorySpan<double> dst)
             => VSL.vdRngCauchy(0, stream.Source, dst.Length, ref dst.Span[0], a, b).ThrowOnError();
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Z0.Mkl
         /// <param name="p">The proability of a trial succeeding</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void geometric(RngStream stream, double p, MemorySpan<int> dst)
+        public static void geometric(MklRng stream, double p, MemorySpan<int> dst)
             => VSL.viRngGeometric(0, stream.Source, dst.Length, ref dst.Span[0], p).ThrowOnError();
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Z0.Mkl
         /// <param name="p">The probability of trial success</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void bernoulli(RngStream stream, double p, MemorySpan<int> dst)
+        public static void bernoulli(MklRng stream, double p, MemorySpan<int> dst)
             => VSL.viRngBernoulli(0, stream.Source, dst.Length, ref dst.Span[0],p).ThrowOnError();
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Z0.Mkl
         /// <param name="dof">Degrees of freedom</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void chi2(RngStream stream, int dof, MemorySpan<float> dst)
+        public static void chi2(MklRng stream, int dof, MemorySpan<float> dst)
             => VSL.vsRngChiSquare(0, stream.Source, dst.Length, ref dst.Span[0], dof).ThrowOnError();
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Z0.Mkl
         /// <param name="dof">Degrees of freedom</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void chi2(RngStream stream, int dof, MemorySpan<double> dst)
+        public static void chi2(MklRng stream, int dof, MemorySpan<double> dst)
             => VSL.vdRngChiSquare(0, stream.Source, dst.Length, ref dst.Span[0], dof).ThrowOnError();
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Z0.Mkl
         /// <param name="sigma">The distribution's standard deviation</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void gaussian(RngStream stream, float mu, float sigma, MemorySpan<float> dst)
+        public static void gaussian(MklRng stream, float mu, float sigma, MemorySpan<float> dst)
             => VSL.vsRngGaussian(VslGaussianMethod.BoxMuller1, stream.Source, dst.Length, ref dst.Span[0], mu, sigma).ThrowOnError();
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Z0.Mkl
         /// <param name="sigma">The distribution's standard deviation</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void gaussian(RngStream stream, double mu, double sigma, MemorySpan<double> dst)
+        public static void gaussian(MklRng stream, double mu, double sigma, MemorySpan<double> dst)
             => VSL.vdRngGaussian(VslGaussianMethod.BoxMuller1, stream.Source, dst.Length, ref dst.Span[0], mu, sigma).ThrowOnError();
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void gamma(RngStream stream, float alpha, float dx, float beta, MemorySpan<float> dst)
+        public static void gamma(MklRng stream, float alpha, float dx, float beta, MemorySpan<float> dst)
             => VSL.vsRngGamma(VslGammaMethod.GNorm, stream.Source, dst.Length, ref dst.Span[0], alpha, dx, beta).ThrowOnError();
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void gamma(RngStream stream, double alpha, double dx, double beta, MemorySpan<double> dst)
+        public static void gamma(MklRng stream, double alpha, double dx, double beta, MemorySpan<double> dst)
             => VSL.vdRngGamma(VslGammaMethod.GNorm, stream.Source, dst.Length, ref dst.Span[0], alpha, dx, beta).ThrowOnError();
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void exp(RngStream stream, float dx, float beta, MemorySpan<float> dst)
+        public static void exp(MklRng stream, float dx, float beta, MemorySpan<float> dst)
             => VSL.vsRngExponential(0, stream.Source, dst.Length, ref dst.Span[0], dx, beta).ThrowOnError();
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void exp(RngStream stream, double dx, double beta, MemorySpan<double> dst)
+        public static void exp(MklRng stream, double dx, double beta, MemorySpan<double> dst)
             => VSL.vdRngExponential(0, stream.Source, dst.Length, ref dst.Span[0], dx, beta).ThrowOnError();
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Z0.Mkl
         /// <param name="alpha"></param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void poisson(RngStream stream, double alpha, MemorySpan<int> dst)
+        public static void poisson(MklRng stream, double alpha, MemorySpan<int> dst)
             => VSL.viRngPoisson(0, stream.Source, dst.Length, ref dst.Span[0], alpha).ThrowOnError();
  
         /// <summary>
@@ -243,7 +243,7 @@ namespace Z0.Mkl
         /// <param name="b">The distribution scale</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void laplace(RngStream stream, float a, float b, MemorySpan<float> dst)
+        public static void laplace(MklRng stream, float a, float b, MemorySpan<float> dst)
             => VSL.vsRngLaplace(0, stream.Source, dst.Length, ref dst.Span[0], a, b).ThrowOnError();
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Z0.Mkl
         /// <param name="beta">The distribution scale</param>
         /// <param name="dst">The receiving buffer</param>
         [MethodImpl(Inline)]    
-        public static void laplace(RngStream stream, double mean, double beta, MemorySpan<double> dst)
+        public static void laplace(MklRng stream, double mean, double beta, MemorySpan<double> dst)
             => VSL.vdRngLaplace(0, stream.Source, dst.Length, ref dst.Span[0], mean, beta).ThrowOnError();
          
     }

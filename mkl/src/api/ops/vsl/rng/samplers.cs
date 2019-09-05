@@ -22,7 +22,7 @@ namespace Z0.Mkl
         /// <param name="dst">The receiving buffer</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<uint> bits32(RngStream src, int? capacity = null)        
+        public static ISampler<uint> bits32(MklRng src, int? capacity = null)        
             => new UniformBitsSampler<uint>(src, capacity); 
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Z0.Mkl
         /// <param name="dst">The receiving buffer</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<ulong> bits64(RngStream src, int? capacity = null)        
+        public static ISampler<ulong> bits64(MklRng src, int? capacity = null)        
             => new UniformBitsSampler<ulong>(src, capacity); 
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<int> uniform(RngStream src, Interval<int> range, int? capacity = null)
+        public static ISampler<int> uniform(MklRng src, Interval<int> range, int? capacity = null)
             => new UniformSampler<int>(src, range, capacity); 
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<int> uniform(RngStream src, int min, int max, int? capacity = null)
+        public static ISampler<int> uniform(MklRng src, int min, int max, int? capacity = null)
             => new UniformSampler<int>(src, (min,max), capacity); 
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> uniform(RngStream src, float min, float max, int? capacity = null)
+        public static ISampler<float> uniform(MklRng src, float min, float max, int? capacity = null)
             => new UniformSampler<float>(src, (min,max), capacity); 
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Z0.Mkl
         /// <param name="range">The sample domain</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> uniform(RngStream src, Interval<float> range, int? capacity = null)                    
+        public static ISampler<float> uniform(MklRng src, Interval<float> range, int? capacity = null)                    
             => new UniformSampler<float>(src, range, capacity); 
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> uniform(RngStream src, double min, double max, int? capacity = null)
+        public static ISampler<double> uniform(MklRng src, double min, double max, int? capacity = null)
             => new UniformSampler<double>(src, (min,max), capacity); 
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Z0.Mkl
         /// <param name="data">The sampled data</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> uniform(RngStream src, Interval<double> range, int? capacity = null)                    
+        public static ISampler<double> uniform(MklRng src, Interval<double> range, int? capacity = null)                    
             => new UniformSampler<double>(src, range, capacity); 
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Z0.Mkl
         /// <param name="p">The probability of trial success</param>
         /// <param name="capacity">The buffer allocation</param>
         [MethodImpl(Inline)]
-        public static ISampler<int> bernoulli(RngStream src, double p, int? capacity = null)
+        public static ISampler<int> bernoulli(MklRng src, double p, int? capacity = null)
             => new BernoulliSampler<int>(src, p, capacity);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Z0.Mkl
         /// <param name="sigma">The distribution's standard deviation</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> gaussian(RngStream src, float mu, float sigma, int? capacity = null)
+        public static ISampler<float> gaussian(MklRng src, float mu, float sigma, int? capacity = null)
             => new GaussianSampler<float>(src, mu,sigma, capacity); 
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Z0.Mkl
         /// <param name="sigma">The distribution's standard deviation</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> gaussian(RngStream src, double mu, double sigma, int? capacity = null)
+        public static ISampler<double> gaussian(MklRng src, double mu, double sigma, int? capacity = null)
             => new GaussianSampler<double>(src, mu,sigma, capacity); 
 
 
@@ -135,7 +135,7 @@ namespace Z0.Mkl
         /// <param name="p">The probability of trial successes</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<int> geometric(RngStream src, double p, int? capacity = null)
+        public static ISampler<int> geometric(MklRng src, double p, int? capacity = null)
             => new BernoulliSampler<int>(src, p, capacity);
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> gamma(RngStream src, float alpha, float dx, float beta, int? capacity = null)
+        public static ISampler<float> gamma(MklRng src, float alpha, float dx, float beta, int? capacity = null)
             => new GammaSampler<float>(src, GammaSpec<float>.Define(alpha, dx, beta), capacity);
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Z0.Mkl
         /// <param name="beta"></param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> gamma(RngStream src, double alpha, double dx, double beta, int? capacity = null)
+        public static ISampler<double> gamma(MklRng src, double alpha, double dx, double beta, int? capacity = null)
             => new GammaSampler<double>(src, GammaSpec<double>.Define(alpha, dx, beta), capacity);
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Z0.Mkl
         /// <param name="b"></param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> exponential(RngStream src, float a, float b, int? capacity = null)
+        public static ISampler<float> exponential(MklRng src, float a, float b, int? capacity = null)
             => new ExponentialSampler<float>(src, (a,b), capacity);
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Z0.Mkl
         /// <param name="b"></param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> exponential(RngStream src, double a, double b, int? capacity = null)
+        public static ISampler<double> exponential(MklRng src, double a, double b, int? capacity = null)
             => new ExponentialSampler<double>(src, (a,b), capacity);
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace Z0.Mkl
         /// <param name="dst"></param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<int> poisson(RngStream src, double alpha, int? capacity = null)
+        public static ISampler<int> poisson(MklRng src, double alpha, int? capacity = null)
             => new PoissonSampler<int>(src, alpha, capacity);
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Z0.Mkl
         /// <param name="dof">Degrees of freedom</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> chisquare32(RngStream src, int dof, int? capacity = null)
+        public static ISampler<float> chisquare32(MklRng src, int dof, int? capacity = null)
             => new ChiSquareSampler<float>(src, dof, capacity);
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace Z0.Mkl
         /// <param name="dof">Degrees of freedom</param>
         /// <param name="capacity">The length of the sampler's buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> chisquare64(RngStream src, int dof, int? capacity = null)
+        public static ISampler<double> chisquare64(MklRng src, int dof, int? capacity = null)
             => new ChiSquareSampler<double>(src, dof, capacity);
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace Z0.Mkl
         /// <param name="scale">The scale</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> cauchy(RngStream src, float location, float scale, int? capacity = null)
+        public static ISampler<float> cauchy(MklRng src, float location, float scale, int? capacity = null)
             => new CauchySampler<float>(src, location, scale, capacity); 
  
         /// <summary>
@@ -234,7 +234,7 @@ namespace Z0.Mkl
         /// <param name="scale">The scale</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<double> cauchy(RngStream src, double location, double scale, int? capacity = null)
+        public static ISampler<double> cauchy(MklRng src, double location, double scale, int? capacity = null)
             => new CauchySampler<double>(src, location, scale, capacity); 
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Z0.Mkl
         /// <param name="scale">The scale</param>
         /// <param name="buffer">The reception buffer</param>
         [MethodImpl(Inline)]
-        public static ISampler<float> laplace(RngStream src, float location, float scale, int? capacity = null)
+        public static ISampler<float> laplace(MklRng src, float location, float scale, int? capacity = null)
             => new LaplaceSampler<float>(src, location, scale, capacity); 
  
         /// <summary>
@@ -256,7 +256,7 @@ namespace Z0.Mkl
         /// <param name="scale">The scale</param>
         /// <param name="buffer">The reception buffer</param>
        [MethodImpl(Inline)]
-        public static ISampler<double> laplace(RngStream src, double location, double scale, int? capacity = null)
+        public static ISampler<double> laplace(MklRng src, double location, double scale, int? capacity = null)
             => new LaplaceSampler<double>(src, location, scale, capacity); 
  
     }

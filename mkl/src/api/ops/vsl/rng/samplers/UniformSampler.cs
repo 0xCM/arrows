@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class UniformSampler<T> : Sampler<T, UniformSpec<T>>
         where T : unmanaged
     {
-        public UniformSampler(RngStream src, UniformSpec<T> distspec,  int? buferLen = null)
+        public UniformSampler(MklRng src, UniformSpec<T> distspec,  int? buferLen = null)
             : base(src, distspec, buferLen)
         {
 

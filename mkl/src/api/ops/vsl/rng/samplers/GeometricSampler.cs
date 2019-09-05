@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class GeometricSampler<T> : Sampler<T, GeometricSpec<T>>
         where T : unmanaged
     {
-        public GeometricSampler(RngStream src, GeometricSpec<T> distspec, int? buferLen = null)
+        public GeometricSampler(MklRng src, GeometricSpec<T> distspec, int? buferLen = null)
             : base(src, distspec, buferLen)
         {
 

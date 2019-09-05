@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class CauchySampler<T> : Sampler<T, CauchySpec<T>>
         where T : unmanaged
     {
-        public CauchySampler(RngStream src, T a, T b, int? buferLen = null)
+        public CauchySampler(MklRng src, T a, T b, int? buferLen = null)
             : base(src, (a,b), buferLen)
         {
 

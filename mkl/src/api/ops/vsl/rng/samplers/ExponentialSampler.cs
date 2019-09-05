@@ -14,13 +14,13 @@ namespace Z0.Mkl
     sealed class ExponentialSampler<T> : Sampler<T, ExponentialSpec<T>>
         where T : unmanaged
     {
-        public ExponentialSampler(RngStream src, ExponentialSpec<T> spec, int? buferLen = null)
+        public ExponentialSampler(MklRng src, ExponentialSpec<T> spec, int? buferLen = null)
             : base(src, spec, buferLen)
         {
 
         }
 
-        public ExponentialSampler(RngStream src, T a, T b, int? buferLen = null)
+        public ExponentialSampler(MklRng src, T a, T b, int? buferLen = null)
             : base(src, ExponentialSpec<T>.Define(a, b), buferLen)
         {
 

@@ -38,8 +38,8 @@ namespace Z0.Mkl
         {
             var gencount = Pow2.T08;
             var samplesize = Pow2.T16;
-            var seeds = Polyrand.Array<uint>(gencount);
-            var streams = new RngStream[gencount];
+            var seeds = Random.Array<uint>(gencount);
+            var streams = new MklRng[gencount];
             for(var i=0; i<gencount; i++)
                 streams[i] = rng.mt2203(seeds[i], i);
             

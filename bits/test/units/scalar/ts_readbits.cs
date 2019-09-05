@@ -15,7 +15,7 @@ namespace Z0.Test
 
         public void readbits16u()
         {
-            var src = Polyrand.Stream<ushort>().TakeSpan(SampleSize);            
+            var src = Random.Stream<ushort>().TakeSpan(SampleSize);            
             for(var i=0; i< src.Length; i++)
             {
                 var x = src[i];

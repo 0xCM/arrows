@@ -167,8 +167,8 @@ namespace Z0.Test
             var nVal = (uint)n.value;
             var n0 = Mod.Define(n);
 
-            var lhs = Polyrand.Span<uint>(samples);
-            var rhs = Polyrand.Span<uint>(samples);
+            var lhs = Random.Span<uint>(samples);
+            var rhs = Random.Span<uint>(samples);
             for(var i=0; i<samples; i++)
             {
                 var x = lhs[i];

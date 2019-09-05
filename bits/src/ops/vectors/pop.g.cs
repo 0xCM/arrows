@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        [MethodImpl(Inline)]
         public static ulong pop<T>(in T src)
             where T : struct
         {        

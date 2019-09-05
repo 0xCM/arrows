@@ -52,7 +52,6 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
-        [PrimalKinds(PrimalKind.All)]
         public static Span<char> bitchars<T>(ReadOnlySpan<T> src, int? maxlen = null)
             where T : struct
         {
@@ -63,7 +62,7 @@ namespace Z0
             return maxlen != null && dst.Length >= maxlen ?  dst.Slice(0,maxlen.Value) :  dst;
         }
         
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static Span<char> bitchars<T>(Span<T> src, int? maxlen = null)
             where T : struct
                 => bitchars(src.ReadOnly(), maxlen);    

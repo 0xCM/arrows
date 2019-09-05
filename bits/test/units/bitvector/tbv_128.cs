@@ -15,7 +15,7 @@ namespace Z0
 
         public void bv_xor()
         {
-            var vectors = Polyrand.BitVectors(n128);
+            var vectors = Random.BitVectors(n128);
             for(var i=0; i< SampleSize; i++)
             {
                 var x = vectors.First();

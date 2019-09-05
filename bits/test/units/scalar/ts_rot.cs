@@ -39,11 +39,11 @@ namespace Z0
         {
             var sw = stopwatch(false);
             var swBs = stopwatch(false);
-            var offset = Polyrand.Next(closed<uint>(1, bitsize<T>()));
+            var offset = Random.Next(closed<uint>(1, bitsize<T>()));
             var offsetT = convert<uint,T>(offset);
             for(var i=0; i<cycles; i++)
             {
-                var x = Polyrand.Next<T>();                
+                var x = Random.Next<T>();                
                 var bsx = BitString.FromScalar(in x);
                 var bsxRef = bsx.Replicate();
                 Claim.eq(x,bsx.TakeValue<T>());

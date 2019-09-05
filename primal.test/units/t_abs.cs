@@ -15,7 +15,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var src = Polyrand.Next<sbyte>();
+                var src = Random.Next<sbyte>();
                 Claim.eq(gmath.abs(src),Math.Abs(src));
             }
         }
@@ -24,7 +24,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var src = Polyrand.Next<short>();
+                var src = Random.Next<short>();
                 Claim.eq(gmath.abs(src),Math.Abs(src));
             }
         }
@@ -34,7 +34,7 @@ namespace Z0.Test
 
             for(var i=0; i<SampleSize; i++)
             {
-                var src = Polyrand.Next<int>();
+                var src = Random.Next<int>();
                 Claim.eq(gmath.abs(src),Math.Abs(src));
             }
 
@@ -44,7 +44,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var src = Polyrand.Next<long>();
+                var src = Random.Next<long>();
                 Claim.eq(gmath.abs(src),Math.Abs(src));
             }
 

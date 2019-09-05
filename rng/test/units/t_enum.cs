@@ -18,7 +18,7 @@ namespace Z0
 
         public void GenEnumValues()
         {
-            var stream = Polyrand.EnumStream<OpKind>();
+            var stream = Random.EnumStream<OpKind>();
             var set = new HashSet<OpKind>(stream.Take(Pow2.T12));
             var values = GEnum<OpKind,byte>.Values;
             values.Iterate(v => Claim.yea(set.Contains(v)));

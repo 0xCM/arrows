@@ -46,7 +46,7 @@ namespace Z0.Test
 
         public void span_bits()
         {
-            var src = Polyrand.Span<byte>(Pow2.T03);
+            var src = Random.Span<byte>(Pow2.T03);
             var bvSrc = BitVector64.FromScalar(BitConverter.ToUInt64(src));
 
             for(var i=0; i<src.Length; i++)
@@ -83,8 +83,8 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Polyrand.BitVector64();
-                var n = Polyrand.Next(1, bv.Length);
+                var bv = Random.BitVector64();
+                var n = Random.Next(1, bv.Length);
                 var result = bv.Lsb(n).ToBitString();
                 var expect = bv.ToBitString()[0, n - 1];
                 Claim.eq(expect, result);
@@ -95,8 +95,8 @@ namespace Z0.Test
         {
             for(var i=0; i< DefaltCycleCount; i++)            
             {
-                var bv = Polyrand.BitVector64();
-                var n = Polyrand.Next(1, bv.Length);
+                var bv = Random.BitVector64();
+                var n = Random.Next(1, bv.Length);
                 var result = bv.Msb(n).ToBitString();
                 var expect = bv.ToBitString().Reversed()[0, n - 1].Reversed();
                 Claim.eq(expect, result);
@@ -116,7 +116,7 @@ namespace Z0.Test
 
         public void powers()
         {
-            var x = Polyrand.BitVector8();
+            var x = Random.BitVector8();
             var expect2 = x * x;
             var actual2 = x^2;
             Claim.eq(expect2, actual2);
@@ -173,7 +173,7 @@ namespace Z0.Test
             TypeCaseStart<N,T>();
             var dim = default(N);
             var segcount = BitGrid.MinSegmentCount<T>(dim.value);
-            var src = Polyrand.Span<T>(samples);
+            var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i+= segcount)
             {
                 var bvSrc = src.Slice(i,segcount);
@@ -191,7 +191,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var segcount = BitGrid.MinSegmentCount<T>(dim);
-            var src = Polyrand.Span<T>(samples);
+            var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i += segcount)
             {
                 var bvSrc = src.Slice(i,segcount);
@@ -209,7 +209,7 @@ namespace Z0.Test
             var samples = Pow2.T08;
             var dim = new N64();
             var segcount = dim / (int)gbits.width<uint>();
-            var src = Polyrand.Span<uint>(samples);
+            var src = Random.Span<uint>(samples);
             for(var i=0; i<src.Length - segcount; i++)
             {
                 var bvSrc = src.Slice(i, segcount);
@@ -225,7 +225,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Memory<T>(samples);
+            var src = Random.Memory<T>(samples);
             var segCapacity = BitGrid.SegmentCapacity<T>();
             Claim.eq(segCapacity, gbits.width<T>());
 

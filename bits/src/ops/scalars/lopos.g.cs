@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vale</param>
         /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        [MethodImpl(Inline)]
         public static T lopos<T>(T src)
             where T : struct
         {

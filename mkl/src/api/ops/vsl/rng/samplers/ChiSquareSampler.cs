@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class ChiSquareSampler<T> : Sampler<T, ChiSquareSpec<int>>
         where T : unmanaged
     {
-        public ChiSquareSampler(RngStream src, int freedom, int? buferLen = null)
+        public ChiSquareSampler(MklRng src, int freedom, int? buferLen = null)
             : base(src, freedom, buferLen)
         {
 

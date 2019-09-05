@@ -49,7 +49,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Polyrand, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 
@@ -57,7 +57,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Polyrand, blocks, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 
@@ -65,8 +65,8 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhs = Polyrand.Span256<T>(len).ReadOnly();
-            var rhs = Polyrand.Span256<T>(len).ReadOnly();
+            var lhs = Random.Span256<T>(len).ReadOnly();
+            var rhs = Random.Span256<T>(len).ReadOnly();
             var dstA = ginx.sub(lhs, rhs, lhs.Replicate());
             var dstB = Span256.AllocBlocks<T>(lhs.BlockCount);
             for(var i = 0; i < dstA.Length; i++)

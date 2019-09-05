@@ -14,13 +14,13 @@ namespace Z0.Mkl
     sealed class GaussianSampler<T> : Sampler<T, GaussianSpec<T>>
         where T : unmanaged
     {
-        public GaussianSampler(RngStream src, GaussianSpec<T> distspec,  int? buferLen = null)
+        public GaussianSampler(MklRng src, GaussianSpec<T> distspec,  int? buferLen = null)
             : base(src, distspec, buferLen)
         {
 
         }
 
-        public GaussianSampler(RngStream src, T mu, T sigma,  int? buferLen = null)
+        public GaussianSampler(MklRng src, T mu, T sigma,  int? buferLen = null)
             : base(src, new GaussianSpec<T>(mu,sigma), buferLen)
         {
 

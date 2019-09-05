@@ -129,7 +129,7 @@ namespace Z0.Rng
             var max = 250000ul;
             var cycles = Pow2.T08;
             for(var i=0; i< cycles; i++)
-                Claim.lteq(contract(Polyrand.Next<ulong>(), max),max);
+                Claim.lteq(contract(Random.Next<ulong>(), max),max);
         }
 
         void contract64f_bench()
@@ -137,7 +137,7 @@ namespace Z0.Rng
             var max = 250000ul;
             var n = Pow2.T20;
             var sw = stopwatch();
-            var src = Polyrand.Array<ulong>(n);
+            var src = Random.Array<ulong>(n);
         
             sw.Start();
             for(var i=0; i< n; i++)
@@ -158,7 +158,7 @@ namespace Z0.Rng
         public void contract64u_bench()
         {
             var n = Pow2.T20;
-            var src = Polyrand.Array<ulong>(n);
+            var src = Random.Array<ulong>(n);
             var result = measure(Pow2.T20, "divide", "contract",
                 _ => {
                     var last = 0ul;
@@ -178,7 +178,7 @@ namespace Z0.Rng
         public void contract32u_bench()
         {
             var n = Pow2.T20;
-            var src = Polyrand.Array<uint>(n);
+            var src = Random.Array<uint>(n);
             var result = measure(Pow2.T20, "divide", "contract",
                 _ => {
                     var last = 0u;
@@ -198,7 +198,7 @@ namespace Z0.Rng
         public void contract16u_bench()
         {
             var n = Pow2.T20;
-            var src = Polyrand.Array<ushort>(n);
+            var src = Random.Array<ushort>(n);
             var result = measure(Pow2.T20, "divide", "contract",
                 _ => {
                     ushort last = (ushort)0u;
@@ -218,7 +218,7 @@ namespace Z0.Rng
         public void contract8u_bench()
         {
             var n = Pow2.T20;
-            var src = Polyrand.Array<byte>(n);
+            var src = Random.Array<byte>(n);
             var result = measure(Pow2.T20, "divide", "contract",
                 _ => {
                     byte last = 0;

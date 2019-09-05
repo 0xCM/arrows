@@ -28,8 +28,8 @@ namespace Z0.Mkl.Test
 
         public void vMulF64()
         {
-            var lhs = Polyrand.NatVec<N256,double>();
-            var rhs = Polyrand.NatVec<N256,double>();
+            var lhs = Random.NatVec<N256,double>();
+            var rhs = Random.NatVec<N256,double>();
             var dst1 = Vector.Alloc<N256,double>();
             mkl.mul(lhs,rhs, ref dst1);
             

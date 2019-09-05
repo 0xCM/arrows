@@ -21,7 +21,7 @@ namespace Z0.Rng
             var max = 30;
             for(var i=0; i<SampleSize; i++)
             {
-                var next = Polyrand.Next(max);
+                var next = Random.Next(max);
                 Claim.lt(next,max);
             }
         }
@@ -30,9 +30,9 @@ namespace Z0.Rng
         {
             var src = Perm.Identity(24);
             Perm dst0 = src;
-            Perm dst1 = Polyrand.Shuffle(src.Replicate());
-            Perm dst2 = Polyrand.Shuffle(src.Replicate());
-            Perm dst3 = Polyrand.Shuffle(src.Replicate());
+            Perm dst1 = Random.Shuffle(src.Replicate());
+            Perm dst2 = Random.Shuffle(src.Replicate());
+            Perm dst3 = Random.Shuffle(src.Replicate());
 
             Claim.eq(dst1.Length, src.Length);
             Claim.eq(dst2.Length, src.Length);

@@ -17,28 +17,28 @@ namespace Z0.Test
     {
         public void AndNot8()
         {
-            var lhs = Polyrand.BitMatrix8();
+            var lhs = Random.BitMatrix8();
             var rhs = lhs.Replicate();
             Claim.yea(lhs.AndNot(rhs).IsZero());
         }
 
         public void AndNot16()
         {
-            var lhs = Polyrand.BitMatrix16();
+            var lhs = Random.BitMatrix16();
             var rhs = lhs.Replicate();
             Claim.yea(lhs.AndNot(rhs).IsZero());
         }
 
         public void AndNot32()
         {
-            var lhs = Polyrand.BitMatrix32();
+            var lhs = Random.BitMatrix32();
             var rhs = lhs.Replicate();
             Claim.yea(lhs.AndNot(rhs).IsZero());
         }
 
         public void AndNot64()
         {
-            var lhs = Polyrand.BitMatrix64();
+            var lhs = Random.BitMatrix64();
             var rhs = lhs.Replicate();
             Claim.yea(lhs.AndNot(rhs).IsZero());
         }

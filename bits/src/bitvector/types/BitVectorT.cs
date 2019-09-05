@@ -14,7 +14,6 @@ namespace Z0
     public struct BitVector<T> : IBitVector<T>
         where T : struct
     {
-
         /// <summary>
         /// The number of bits represented by the vector
         /// </summary>

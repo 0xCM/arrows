@@ -18,8 +18,8 @@ namespace Z0.Asm
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhs = Polyrand.Array<T>(n);
-            var rhs = Polyrand.Array<T>(n);
+            var lhs = Random.Array<T>(n);
+            var rhs = Random.Array<T>(n);
             var setup = from args in lhs.Zip(rhs)
                           let expect = refop(args.First, args.Second)
                           let actual = asmop(args.First, args.Second) 
@@ -35,7 +35,7 @@ namespace Z0.Asm
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Array<T>(n);
+            var src = Random.Array<T>(n);
             var setup = from arg in src
                           let expect = refop(arg)
                           let actual = asmop(arg) 

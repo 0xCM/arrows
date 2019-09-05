@@ -15,9 +15,9 @@ namespace Z0.Test
     {
         public void extract64()
         {
-            var src = Polyrand.Stream<ulong>().Take(Pow2.T12).ToArray();
-            var lower = Polyrand.Stream(leftclosed<byte>(0,32)).Take(Pow2.T12).ToArray();
-            var upper = Polyrand.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
+            var src = Random.Stream<ulong>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,32)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromCells(src[i]);
@@ -42,9 +42,9 @@ namespace Z0.Test
 
         public void extract32()
         {
-            var src = Polyrand.Stream<uint>().Take(Pow2.T12).ToArray();
-            var lower = Polyrand.Stream(leftclosed<byte>(0,16)).Take(Pow2.T12).ToArray();
-            var upper = Polyrand.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
+            var src = Random.Stream<uint>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,16)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromCells(src[i]);
@@ -59,9 +59,9 @@ namespace Z0.Test
 
         public void extract16()
         {
-            var src = Polyrand.Stream<ushort>().Take(Pow2.T12).ToArray();
-            var lower = Polyrand.Stream(leftclosed<byte>(0,8)).Take(Pow2.T12).ToArray();
-            var upper = Polyrand.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
+            var src = Random.Stream<ushort>().Take(Pow2.T12).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,8)).Take(Pow2.T12).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
                 var v1 = BitVector.FromCells(src[i]);

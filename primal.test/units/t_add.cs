@@ -68,8 +68,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<T>();
-                var b = Polyrand.Next<T>();
+                var a = Random.Next<T>();
+                var b = Random.Next<T>();
                 
                 sw.Start();
                 accum = gmath.add(a,b);
@@ -97,9 +97,9 @@ namespace Z0.Test
 
         public void addi32_fused()
         {
-            var lhsSrc = Polyrand.ReadOnlySpan<int>(Pow2.T10);  
+            var lhsSrc = Random.ReadOnlySpan<int>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Polyrand.ReadOnlySpan<int>(lhsSrc.Length);
+            var rhs = Random.ReadOnlySpan<int>(lhsSrc.Length);
             math.add(lhs, rhs);           
 
             var expect = span<int>(lhs.Length);
@@ -112,9 +112,9 @@ namespace Z0.Test
 
         public void addi64_fused()
         {
-            var lhsSrc = Polyrand.ReadOnlySpan<long>(Pow2.T10);  
+            var lhsSrc = Random.ReadOnlySpan<long>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Polyrand.ReadOnlySpan<long>(lhsSrc.Length);
+            var rhs = Random.ReadOnlySpan<long>(lhsSrc.Length);
             math.add(lhs,rhs);
 
             var expect = span<long>(lhs.Length);
@@ -129,8 +129,8 @@ namespace Z0.Test
         {
             for(var i=0; i< SampleSize; i++)
             {
-                var x = Polyrand.Next<T>();
-                var y = Polyrand.Next<T>();
+                var x = Random.Next<T>();
+                var y = Random.Next<T>();
                 var a = op.apply(x,y);
                 var b = gmath.add(x,y);
                 Claim.eq(a,b);
@@ -145,8 +145,8 @@ namespace Z0.Test
             for(var i=0; i< SampleSize; i++)
             for(var j=0; j<CycleCount; j++)
             {
-                var x = Polyrand.Next<T>();
-                var y = Polyrand.Next<T>();
+                var x = Random.Next<T>();
+                var y = Random.Next<T>();
                 sw.Start();
                 applied = op.apply(x,y);
                 sw.Stop();

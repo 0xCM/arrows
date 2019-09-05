@@ -34,7 +34,7 @@ namespace Z0.Test
         {
             var rep = new N();
             var len = (int)rep.value;
-            var data = Polyrand.NatVecPair<N,T>();            
+            var data = Random.NatVecPair<N,T>();            
             var vResult = Linear.and(ref data.Left, data.Right);
             
             var calcs = span<T>(len);

@@ -15,8 +15,8 @@ namespace Z0.Test
         Duration Mul256u64(int blocks)
         {
             var domain = closed(0ul, UInt32.MaxValue);
-            var lhs = Polyrand.Span256<ulong>(blocks, domain);
-            var rhs = Polyrand.Span256<ulong>(blocks, domain);
+            var lhs = Random.Span256<ulong>(blocks, domain);
+            var rhs = Random.Span256<ulong>(blocks, domain);
             
             var sw = stopwatch();
 

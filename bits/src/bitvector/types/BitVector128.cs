@@ -168,7 +168,6 @@ namespace Z0
         public static BitVector128 FromScalar(ulong src)
             => new BitVector128(src,0);
 
-
         /// <summary>
         /// Creates a vector from two unsigned 64-bit integers
         /// </summary>
@@ -454,7 +453,6 @@ namespace Z0
             this.x10 = x10;
             this.x11 = x11;
         }
-
 
         [MethodImpl(Inline)]    
         public BitVector128(Vec128<ulong> src)

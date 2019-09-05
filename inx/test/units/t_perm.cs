@@ -39,7 +39,7 @@ namespace Z0.Test
 
         public void decompose()
         {
-            var p = Polyrand.Perm(n12);
+            var p = Random.Perm(n12);
             var cycle = p.Cycle(3);
         }
 
@@ -80,7 +80,7 @@ namespace Z0.Test
         void compose<N>(N n = default)
             where N : ITypeNat, new()
         {
-            var p1 = Polyrand.Perm<N>();
+            var p1 = Random.Perm<N>();
             var p2 = p1 * Perm<N>.Identity;
             Claim.yea(p1 == p2);
 
@@ -106,7 +106,7 @@ namespace Z0.Test
         {
             for(var i=0; i<(int)n.value; i++)
             {
-                var p1 = Polyrand.Perm(n);
+                var p1 = Random.Perm(n);
                 var p2 = ~ p1;
                 var p3 = p1 * p2;                    
                 Claim.yea(p3 == Perm<N>.Identity);

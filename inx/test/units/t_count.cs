@@ -53,7 +53,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Polyrand.CpuVec128<T>();
+                var x = Random.CpuVec128<T>();
                 var xn = x.Next();
                 var xp = x.Prior();
 
@@ -67,7 +67,7 @@ namespace Z0.Test
                 }
 
             
-                var y = Polyrand.CpuVec256<T>();
+                var y = Random.CpuVec256<T>();
                 var yn = y.Next();
                 var yp = y.Prior();
 

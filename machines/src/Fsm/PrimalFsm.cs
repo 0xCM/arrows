@@ -108,7 +108,7 @@ namespace Z0.Machines
             where T : unmanaged
         {            
             var sources = range<T>(spec.StateCount).ToArray();
-            var random = context.Polyrand;
+            var random = context.Random;
             var rules = new List<TransitionRule<T,T>>();
             foreach(var source in sources)
             {                                

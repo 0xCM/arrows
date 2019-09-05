@@ -91,7 +91,7 @@ namespace Z0
             return src;
         }
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref Span<T> shiftr<T>(ref Span<T> src, Span<int> offsets)
             where T : struct
         {

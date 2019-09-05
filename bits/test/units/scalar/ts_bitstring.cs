@@ -59,7 +59,7 @@ namespace Z0.Test
             bsconvert_check<ulong>(Pow2.T08);
 
 
-            var n1 = Polyrand.Next<uint>();
+            var n1 = Random.Next<uint>();
             var n1bs = n1.ToBitString();
             var bs1Num = n1bs.TakeUInt64();
             Claim.eq((ulong)n1, bs1Num);
@@ -163,7 +163,7 @@ namespace Z0.Test
 
         public void bsnlz()
         {
-            var src = Polyrand.BitStrings(5, 60).Take(Pow2.T14);
+            var src = Random.BitStrings(5, 60).Take(Pow2.T14);
             foreach(var bs in src)
             {
                 var bvX = bs.TakeValue<ulong>().ToBitString();
@@ -176,8 +176,8 @@ namespace Z0.Test
 
         public void bseq()
         {
-            var srcA = Polyrand.Stream<uint>().Take(Pow2.T14);
-            var srcB = Polyrand.Stream<uint>().Take(Pow2.T14);
+            var srcA = Random.Stream<uint>().Take(Pow2.T14);
+            var srcB = Random.Stream<uint>().Take(Pow2.T14);
             var pairs = srcA.Zip(srcB);
 
             foreach(var aVal in srcA)
@@ -189,7 +189,7 @@ namespace Z0.Test
 
         public void bsbitview()
         {
-            var x = Polyrand.CpuVec256<int>();
+            var x = Random.CpuVec256<int>();
             var y = BitView.ViewBits(ref x);
             var ys = y.ToSpan().ToBitString();
             var xs = x.ToBitString();
@@ -275,7 +275,7 @@ namespace Z0.Test
 
         public void bsassemble()
         {
-            var src = Polyrand.Span<ulong>(Pow2.T08);
+            var src = Random.Span<ulong>(Pow2.T08);
 
             foreach(var x in src)
             {
@@ -326,7 +326,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 var x = src[i];
@@ -344,11 +344,11 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 Span<char> bc1 = gbits.bitchars(src[i]).ToSpan();
-                Span<char> bc2 = new char[SizeOf<T>.BitSize];
+                Span<char> bc2 = new char[bitsize<T>()];
                 for(byte j=0; j<bc2.Length; j++)
                     bc2[j] = gbits.test(src[i], j) ? '1' : '0';
                 Claim.yea(bc1.SequenceEqual(bc2));
@@ -361,7 +361,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 var bc1 =  BitString.FromScalar(src[i]).Format();
@@ -378,7 +378,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 var x0 = src[i];
@@ -393,13 +393,13 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 var x0 = src[i];
                 var x1 = gbits.bitseq(x0);
                 var seqlen = x1.Length;
-                Claim.eq(seqlen, SizeOf<T>.BitSize);
+                Claim.eq(seqlen, bitsize<T>());
 
                 for(byte j = 0; j < seqlen; j++)
                     Claim.eq(gbits.test(x0, j), x1[j] == 1);
@@ -413,7 +413,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(count);
+            var src = Random.Span<T>(count);
             foreach(var x in src)
             {
                 var y = BitString.FromScalar(x);
@@ -427,7 +427,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Polyrand.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(Pow2.T08);
             for(var i=0; i<src.Length; i++)
             {
                 var x = gbits.bitchars(src[i]);
@@ -440,7 +440,7 @@ namespace Z0.Test
 
         void bsparse_check2(int minlen, int maxlen, int cycles = DefaltCycleCount)
         {
-            var src = Polyrand.BitStrings(minlen, maxlen);
+            var src = Random.BitStrings(minlen, maxlen);
             for(var cycle=0; cycle< cycles; cycle++)
             {            
                 var x = src.First();

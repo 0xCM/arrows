@@ -49,7 +49,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var x = Polyrand.Next<T>();
+            var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec128<T> _);
             var vY = Vec128.Fill(x);
             Claim.eq(vX,vY);
@@ -60,7 +60,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var x = Polyrand.Next<T>();
+            var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec256<T> _);
             var vY = Vec256.Fill(x);
             Claim.eq(vX,vY);

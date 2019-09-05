@@ -192,7 +192,7 @@ namespace Z0.Machines
         {
             try
             {
-                var random = machine.Context.Polyrand;
+                var random = machine.Context.Random;
                 var o = Fsm.DefaultObserver(machine, ObserverTrace.Completions | ObserverTrace.Errors);
                 var events = machine.Triggers.ToArray();
                 var domain = closed(0, events.Length);

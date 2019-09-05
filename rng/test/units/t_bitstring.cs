@@ -20,7 +20,7 @@ namespace Z0.Rng.Test
             const int len = 16*16;
             var samples = Pow2.T16;
             var stats = new Accumulator();
-            var src = Polyrand.BitStrings(len);
+            var src = Random.BitStrings(len);
             for(var i=0; i< samples; i++)
                 stats.Accumulate(src.First().PopCount());
 

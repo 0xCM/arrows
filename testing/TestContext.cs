@@ -63,8 +63,8 @@ namespace Z0
         {
             var config = Config.Get<K>();
              return nonzero 
-                ? Polyrand.NonZeroArray<K>(config.SampleSize, config.SampleDomain)                
-                : Polyrand.Array<K>(config.SampleSize, config.SampleDomain);
+                ? Random.NonZeroArray<K>(config.SampleSize, config.SampleDomain)                
+                : Random.Array<K>(config.SampleSize, config.SampleDomain);
         }
 
         protected void Verify(Action a)
@@ -182,16 +182,8 @@ namespace Z0
                 Claim.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
         }
 
-        protected void BlockSamplesStart(int blocks, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller} executing with {blocks} blocks", SeverityLevel.HiliteCL));
-        protected void BlockSamplesEnd(int blocks, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller} completed with {blocks} blocks", SeverityLevel.HiliteCL));
-
         protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
-
-        static string GetTypeName<A>()
-            => typeof(A).Realizes<ITypeNat>() ? $"N{Activator.CreateInstance(typeof(A)).ToString()}" : typeof(A).Name;
         
         protected void TypeCaseStart<A,B>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> executing", SeverityLevel.HiliteCL));

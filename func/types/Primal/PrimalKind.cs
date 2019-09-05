@@ -153,30 +153,4 @@ namespace Z0
         All = Int | Floats
 
     }
-
-    public class PrimalKindsAttribute : Attribute
-    {
-        public PrimalKindsAttribute(PrimalKind SrcSupport)
-        {
-            this.SrcSupport = SrcSupport;
-        }
-
-        public PrimalKindsAttribute(PrimalKind LhsSupport, PrimalKind RhsSupport)
-        {
-            this.LhsSupport = LhsSupport;
-            this.RhsSupport = RhsSupport;
-        }
-
-        /// <summary>
-        /// Specifies the primal kinds supported by a source operand
-        /// </summary>
-        /// <value></value>
-        public PrimalKind SrcSupport {get;}
-
-        public PrimalKind LhsSupport {get;}
-
-        public PrimalKind RhsSupport {get;}
-
-
-    }
 }

@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class PoissonSampler<T> : Sampler<T, PoissonSpec<T>>
         where T : unmanaged
     {
-        public PoissonSampler(RngStream src, PoissonSpec<T> spec, int? buferLen = null)
+        public PoissonSampler(MklRng src, PoissonSpec<T> spec, int? buferLen = null)
             : base(src, spec, buferLen)
         {
 

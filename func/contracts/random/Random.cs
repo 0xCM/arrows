@@ -26,6 +26,20 @@ namespace System
         IEnumerable<T> Next(int count);
     }
 
+    public interface ISampler<T> : IRandomStream<T>
+        where T : unmanaged
+    {
+        /// <summary>
+        /// The internal buffer length
+        /// </summary>
+        int BufferLength {get;}
+
+        /// <summary>
+        /// The type of distibution being sampled
+        /// </summary>
+        DistKind DistKind{get;}
+    }
+
     /// <summary>
     /// Characterizes a random source capable of producing constraint point values 
     /// </summary>

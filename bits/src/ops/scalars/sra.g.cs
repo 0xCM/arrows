@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="offset">The number of bits to shift</param>
         /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static T sra<T>(T src, int offset)
             where T : struct
         {

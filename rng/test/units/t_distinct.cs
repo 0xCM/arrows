@@ -24,7 +24,7 @@ namespace Z0.Rng
             var selected = set<int>();
             for(var i=0; i<attempts; i++)
             {
-                selected.AddRange(Polyrand.SampleDistinct(pool, segment));
+                selected.AddRange(Random.SampleDistinct(pool, segment));
                 if(selected.Count == pool)
                     return;
             }
@@ -37,7 +37,7 @@ namespace Z0.Rng
         {
 
             
-            var src = MemorySpan.From(Polyrand.Memory<uint>(Pow2.T08));
+            var src = MemorySpan.From(Random.Memory<uint>(Pow2.T08));
             Claim.eq(src.Length, Pow2.T08);
 
             var dst = src.As<ulong>();

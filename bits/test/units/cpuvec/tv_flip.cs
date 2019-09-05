@@ -46,7 +46,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i<Pow2.T06; i++)                        
             {
-                var src = Polyrand.CpuVec128<T>();
+                var src = Random.CpuVec128<T>();
                 var srcData = src.ToSpan();
                 var expect  = Vec128.Load(ref gbits.flip(srcData)[0]);
                 var actual = gbits.flip(in src);
@@ -61,7 +61,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i<Pow2.T06; i++)                        
             {
-                var src = Polyrand.CpuVec256<T>();
+                var src = Random.CpuVec256<T>();
                 var srcData = src.ToSpan();
                 var expect  = Vec256.Load(ref gbits.flip(srcData)[0]);
                 var actual = gbits.flip(in src);

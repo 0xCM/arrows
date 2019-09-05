@@ -17,8 +17,8 @@ namespace Z0.Test
         {            
             for(var j=0; j < SampleSize; j++)
             {
-                var x = Polyrand.CpuVec256<byte>();
-                var y = Polyrand.CpuVec256<byte>();
+                var x = Random.CpuVec256<byte>();
+                var y = Random.CpuVec256<byte>();
                 var a = dinx.avg(x,y);
                 var b = math.avgi(x.ToSpan(), y.ToSpan());
                 for(var i=0; i< b.Length; i++)
@@ -30,8 +30,8 @@ namespace Z0.Test
         {            
             for(var j=0; j < SampleSize; j++)
             {
-                var x = Polyrand.CpuVec256<ushort>();
-                var y = Polyrand.CpuVec256<ushort>();
+                var x = Random.CpuVec256<ushort>();
+                var y = Random.CpuVec256<ushort>();
                 var a = dinx.avg(x,y);
                 var b = math.avgi(x.ToSpan(), y.ToSpan());
                 for(var i=0; i< b.Length; i++)
@@ -53,8 +53,8 @@ namespace Z0.Test
                 var sw = stopwatch(false);
                 for(var i=0; i<SampleSize; i++)
                 {
-                    var x = Polyrand.Span256<byte>();
-                    var y = Polyrand.Span256<byte>();
+                    var x = Random.Span256<byte>();
+                    var y = Random.Span256<byte>();
                     sw.Start();
                     var b = math.avgi(x, y);
                     sw.Stop();
@@ -67,8 +67,8 @@ namespace Z0.Test
                 var sw = stopwatch(false);
                 for(var i=0; i<SampleSize; i++)
                 {
-                    var x = Polyrand.CpuVec256<byte>();
-                    var y = Polyrand.CpuVec256<byte>();
+                    var x = Random.CpuVec256<byte>();
+                    var y = Random.CpuVec256<byte>();
                     sw.Start();
                     var a = dinx.avg(x,y);
                     sw.Stop();

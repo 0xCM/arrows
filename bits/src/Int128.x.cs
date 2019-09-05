@@ -25,15 +25,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool TestBit(this in Int128 src, int pos)
+        public static bool TestBit(this Int128 src, int pos)
             => pos < 64 ? BitMask.test(src.lo, pos) : BitMask.test(src.hi, pos) ;
 
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this in Int128 src)
+        public static BitString ToBitString(this Int128 src)
             => BitString.FromScalar(src.hi) + BitString.FromScalar(src.lo); 
 
         [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this in Int128 src)
+        public static Span<byte> ToBytes(this Int128 src)
             => span(
                     src.x0000, src.x0001, src.x0010, src.x0011,
                     src.x0100, src.x0101, src.x0110, src.x0111,                        
@@ -52,7 +52,7 @@ namespace Z0
         }
  
         [MethodImpl(Inline)]
-        public static int PopCount(this in Int128 src)
+        public static int PopCount(this Int128 src)
             => (int)(Bits.pop(src.lo) + Bits.pop(src.hi));
 
         /// <summary>
@@ -64,8 +64,6 @@ namespace Z0
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
         public static HexString ToHexString(this Int128 src, bool zpad = true, bool specifier = true)
-            => src.hi.FormatHex(false, true) + src.lo.FormatHex(true,false);
-
-        
+            => src.hi.FormatHex(false, true) + src.lo.FormatHex(true,false);        
     }
 }

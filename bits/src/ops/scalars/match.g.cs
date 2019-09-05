@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="ny">The second bit position</param>
         /// <typeparam name="S">The left operand type</typeparam>
         /// <typeparam name="T">The right operand type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All, PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static bool match<S,T>(in S lhs, in int nx, T rhs, in int ny)
             where S : struct
             where T : struct

@@ -59,8 +59,8 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var a = Polyrand.Next<T>();
-                var b = Polyrand.Next<T>();
+                var a = Random.Next<T>();
+                var b = Random.Next<T>();
                 var c = gmath.add(a,b);
 
                 var n1 = Num.from(a);
@@ -79,8 +79,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<T>();
-                var b = Polyrand.Next<T>();
+                var a = Random.Next<T>();
+                var b = Random.Next<T>();
                 
                 var n1 = Num.from(a);
                 var n2 = Num.from(b);
@@ -118,8 +118,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<int>();
-                var b = Polyrand.Next<int>();
+                var a = Random.Next<int>();
+                var b = Random.Next<int>();
                 
                 sw.Start();
                 accum = a + b;
@@ -136,8 +136,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<long>();
-                var b = Polyrand.Next<long>();
+                var a = Random.Next<long>();
+                var b = Random.Next<long>();
                 
                 sw.Start();
                 accum = a + b;
@@ -154,8 +154,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<ulong>();
-                var b = Polyrand.Next<ulong>();
+                var a = Random.Next<ulong>();
+                var b = Random.Next<ulong>();
                 
                 sw.Start();
                 accum = a + b;
@@ -172,8 +172,8 @@ namespace Z0.Test
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var sample=0; sample < SampleSize; sample++)
             {
-                var a = Polyrand.Next<double>();
-                var b = Polyrand.Next<double>();
+                var a = Random.Next<double>();
+                var b = Random.Next<double>();
                 
                 sw.Start();
                 accum = a + b;

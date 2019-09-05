@@ -8,20 +8,22 @@ namespace Z0.Mkl
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
+    using System.Collections;
+    using System.Linq;
+
     using static zfunc;
     using static As;
-    using System.Collections;
 
     abstract class Sampler<T,S> : ISampler<T>    
         where T : unmanaged
         where S : IDistributionSpec
     {        
         [MethodImpl(Inline)]
-        public static implicit operator RngStream(Sampler<T,S> src)
+        public static implicit operator MklRng(Sampler<T,S> src)
             => src.Source;
 
         [MethodImpl(Inline)]
-        public Sampler(RngStream src, S distspec, int? bufferLen = null)
+        public Sampler(MklRng src, S distspec, int? bufferLen = null)
         {
             this.Source = src;
             this.BufferLength  = bufferLen ?? Pow2.T08;
@@ -31,8 +33,13 @@ namespace Z0.Mkl
 
         }
 
+
+        public RngKind RngKind 
+            => Source.RngKind;
+
         public DistKind DistKind
             => DistSpec.Kind;
+
 
         public int BufferLength {get;}
 
@@ -40,13 +47,13 @@ namespace Z0.Mkl
 
         readonly MemorySpan<T> Buffer;
 
-        protected readonly RngStream Source;
+        protected readonly MklRng Source;
 
         /// <summary>
         /// Characterizes the distribution that will be used when sampling
         /// </summary>
         protected readonly S DistSpec;
-
+        
         protected abstract int FillBuffer(MemorySpan<T> buffer);
 
         public IEnumerator<T> GetEnumerator()
@@ -54,6 +61,9 @@ namespace Z0.Mkl
 
         IEnumerator IEnumerable.GetEnumerator()
             => Samples.GetEnumerator();
+
+        public IEnumerable<T> Next(int count)
+            => Samples.Take(count);
 
         IEnumerable<T> Samples
         {
@@ -68,8 +78,5 @@ namespace Z0.Mkl
                 }                
             }
         }
-
     }
-
-
 }

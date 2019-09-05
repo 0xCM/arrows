@@ -153,6 +153,26 @@ namespace Z0
             where T : struct
                 => stream(random.UniformStream(domain, gmath.nonzero), random.RngKind);
 
+        static IEnumerable<T> UniformStream<T>(this IPolyrand src, Interval<T> domain, Func<T,bool> filter = null)
+            where T : struct
+        {
+
+            if(filter != null)
+                return src.FilteredStream(domain,filter);
+            else
+                return src.UnfilteredStream(domain);
+        }
+
+        static IEnumerable<T> UniformStream<T>(this IPolyrand src, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+        {
+            var configured = domain.Configure();
+            if(filter != null)
+                return src.FilteredStream(configured, filter);
+            else
+                return src.UnfilteredStream(configured);
+        }
+
         static IEnumerable<T> UnfilteredStream<T>(this IPolyrand src, Interval<T> domain)
             where T : struct
         {
@@ -205,25 +225,6 @@ namespace Z0
             }
         }
 
-        static IEnumerable<T> UniformStream<T>(this IPolyrand src, Interval<T> domain, Func<T,bool> filter = null)
-            where T : struct
-        {
-
-            if(filter != null)
-                return src.FilteredStream(domain,filter);
-            else
-                return src.UnfilteredStream(domain);
-        }
-
-        static IEnumerable<T> UniformStream<T>(this IPolyrand src, Interval<T>? domain = null, Func<T,bool> filter = null)
-            where T : struct
-        {
-            var configured = domain.Configure();
-            if(filter != null)
-                return src.FilteredStream(configured, filter);
-            else
-                return src.UnfilteredStream(configured);
-        }
     }
 
 }

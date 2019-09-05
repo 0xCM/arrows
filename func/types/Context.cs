@@ -15,8 +15,7 @@ namespace Z0
     using static zfunc;
 
     public abstract class Context : IContext
-    {
-        
+    {        
         protected List<AppMsg> Messages {get;} 
             = new List<AppMsg>();
 
@@ -34,14 +33,12 @@ namespace Z0
         public IEnumerable<OpTime> Benchmarks
             => OpTimes;
 
-
         protected Context(IPolyrand rng)
         {
-            this.Polyrand = rng;            
+            this.Random = rng;            
         }
 
-
-        public virtual IPolyrand Polyrand {get;}
+        public virtual IPolyrand Random {get;}
 
         protected virtual bool TraceEnabled {get;}
             = true;

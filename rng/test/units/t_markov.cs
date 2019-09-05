@@ -18,7 +18,7 @@ namespace Z0.Rng
         const uint Seed = 0x78941u;
         public void ProbabilityVectors0()
         {
-            using var rng = RngStream.Define(BRNG.MCG31,Seed);
+            using var rng = MklRng.Define(BRNG.MCG31,Seed);
             var src = samplers.uniform(rng,.0001, .0100).Select(x => x.Round(4));
             var sum = 0.0;
             var count = 0;
@@ -48,7 +48,7 @@ namespace Z0.Rng
         /// if the factor parameter is bounded below by .005, a span of length 1024 should be sufficient</param>
         Span<double> MarkovVector(double factor, int scale,  Span<double> dst)
         {
-            var src = Polyrand.Stream<double>().Select(x => (x *factor).Round(scale));
+            var src = Random.Stream<double>().Select(x => (x *factor).Round(scale));
             var sum = 0.0;
             var count = 0;
             var min = 1.0;
@@ -108,7 +108,7 @@ namespace Z0.Rng
 
         public void ProbabilityVectors2()
         {
-            using var rng = RngStream.Define(BRNG.R250,Seed);
+            using var rng = MklRng.Define(BRNG.R250,Seed);
             var samples = samplers.uniform(rng, .0001, .0100);
             var src = samples.Select(x => x.Round(4));
             var sum = 0.0;
@@ -145,7 +145,7 @@ namespace Z0.Rng
             var m = Matrix.Alloc(n, rep);
             for(var i=0; i< count; i++)
             {
-                Polyrand.MarkovMat(ref m);
+                Random.MarkovMat(ref m);
                 VerifyRightStochastic(m);
             }
         }
@@ -159,7 +159,7 @@ namespace Z0.Rng
             var v = Vector.Alloc<N,T>();
             for(var i=0; i< count; i++)
             {
-                Polyrand.MarkovVec(ref v);
+                Random.MarkovVec(ref v);
                 var sum =  convert<T,double>(gmath.sum(v.Unsized));
                 Claim.yea(radius.Contains(sum));
             }
@@ -191,8 +191,8 @@ namespace Z0.Rng
             var m3 = Matrix.Alloc(n, 0f);
             for(var i=0; i< count; i++)
             {
-                Polyrand.MarkovMat(ref m1);
-                Polyrand.MarkovMat(ref m2);
+                Random.MarkovMat(ref m1);
+                Random.MarkovMat(ref m2);
                 m1.Mul(m2, ref m3);
                 VerifyRightStochastic(m3);
             }
@@ -208,8 +208,8 @@ namespace Z0.Rng
             var m3 = Matrix.Alloc(n, 0d);
             for(var i=0; i< count; i++)
             {
-                Polyrand.MarkovMat(ref m1);
-                Polyrand.MarkovMat(ref m2);
+                Random.MarkovMat(ref m1);
+                Random.MarkovMat(ref m2);
                 m1.Mul(m2, ref m3);
                 VerifyRightStochastic(m3);
             }        

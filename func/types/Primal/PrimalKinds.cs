@@ -15,9 +15,7 @@ namespace Z0
         public static readonly PrimalKind[] AllList = kinds<PrimalKind>();
 
         public static readonly PrimalKind[] IntList = array(int8, uint8, int16, uint16, int32, uint32, int64, uint64);
-        
-            
-
+                
         [MethodImpl(Inline)]
         public static PrimalKind kind<T>()
             => PrimalKind<T>.Kind;

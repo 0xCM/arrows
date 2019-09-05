@@ -48,7 +48,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Polyrand, SampleSize, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
+            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
 
@@ -56,7 +56,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Polyrand, SampleSize, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
+            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec256BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
 

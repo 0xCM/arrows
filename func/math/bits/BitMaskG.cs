@@ -123,7 +123,7 @@ namespace Z0
         /// <param name="pos">The bit position</param>
         /// <param name="value">The value to be applied</param>
         /// <typeparam name="T">The source element type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref T set<T>(ref T src, byte pos, in Bit value)            
             where T : struct
         {
@@ -133,7 +133,6 @@ namespace Z0
                 disable(ref src, pos);
             return ref src;
         }
-
 
         /// <summary>
         /// Enables a bit in the target if it is enabled in the source
@@ -178,7 +177,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static ref T toggle<T>(ref T src, in int pos)
             where T : struct
         {
@@ -214,7 +213,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static ref T toggle<T>(ref T src, byte pos)
             where T : struct
         {
@@ -251,7 +250,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        [MethodImpl(Inline)]
         public static T toggle<T>(T src, int pos)
             where T : struct
         {

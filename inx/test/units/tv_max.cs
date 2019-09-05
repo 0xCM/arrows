@@ -27,8 +27,8 @@ namespace Z0.Test
         public void max128i32()
         {
             var blocklen = Span128<int>.BlockLength;                     
-            var lhs = Polyrand.ReadOnlySpan128<int>(SampleSize);
-            var rhs = Polyrand.ReadOnlySpan128<int>(SampleSize);
+            var lhs = Random.ReadOnlySpan128<int>(SampleSize);
+            var rhs = Random.ReadOnlySpan128<int>(SampleSize);
             var expect = Span128.AllocBlocks<int>(SampleSize);
             var actual = Span128.AllocBlocks<int>(SampleSize);
             
@@ -59,8 +59,8 @@ namespace Z0.Test
         public void max256i32()
         {
             var blocklen = Span256<int>.BlockLength;                     
-            var lhs = Polyrand.ReadOnlySpan256<int>(SampleSize);
-            var rhs = Polyrand.ReadOnlySpan256<int>(SampleSize);
+            var lhs = Random.ReadOnlySpan256<int>(SampleSize);
+            var rhs = Random.ReadOnlySpan256<int>(SampleSize);
             var expect = Span256.AllocBlocks<int>(SampleSize);
             var actual = Span256.AllocBlocks<int>(SampleSize);
             

@@ -63,8 +63,8 @@ namespace Z0.Test
 
             for(var cycle = 0; cycle <cycles; cycle++)
             {
-                Polyrand.Fill(domain, ref v1);
-                Polyrand.Fill(domain, ref v2);
+                Random.Fill(domain, ref v1);
+                Random.Fill(domain, ref v2);
 
                 sw1.Start();
                 ginx.add(v1, v2, ref v3);
@@ -117,8 +117,8 @@ namespace Z0.Test
             var n = new N();
             for(var i=0; i< cycles; i++)            
             {
-                var v1 = Polyrand.NatVec<N,T>();
-                var v2 = Polyrand.NatVec<N,T>();
+                var v1 = Random.NatVec<N,T>();
+                var v2 = Random.NatVec<N,T>();
                 var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
                 var v4 = Linear.add(ref v1,v2);
                 Claim.yea(v3 == v4);
@@ -132,8 +132,8 @@ namespace Z0.Test
             var n = new N();
             for(var i=0; i< cycles; i++)            
             {
-                var v1 = Polyrand.NatVec<N,T>();
-                var v2 = Polyrand.NatVec<N,T>();
+                var v1 = Random.NatVec<N,T>();
+                var v2 = Random.NatVec<N,T>();
                 var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
                 var v4 = Linear.sub(ref v1,v2);
                 Claim.yea(v3 == v4);

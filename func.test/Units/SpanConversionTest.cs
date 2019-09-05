@@ -27,12 +27,12 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var x = Polyrand.Next<T>();
+            var x = Random.Next<T>();
             var y = ByteSpan.FromValue(x);
             VerifySpanBytesToValue(y,x);
 
             var valSize = Unsafe.SizeOf<T>();
-            var values = Polyrand.Stream<T>().TakeSpan(Pow2.T08);
+            var values = Random.Stream<T>().TakeSpan(Pow2.T08);
             var bytes = span<byte>(valSize*values.Length);
             for(int i = 0, offset = 0; i< values.Length; i++, offset += valSize)
             {
@@ -60,8 +60,8 @@ namespace Z0.Test
 
         public void VerifyReverse()
         {
-            var src1 = Polyrand.Span<byte>(23).ReadOnly();
-            var src2 = Polyrand.Span<byte>(24).ReadOnly();
+            var src1 = Random.Span<byte>(23).ReadOnly();
+            var src2 = Random.Span<byte>(24).ReadOnly();
 
             var rev1 = src1.Reverse();
             var rev2 = src2.Reverse();
@@ -77,7 +77,7 @@ namespace Z0.Test
 
         public void VerifyNonPrimal()
         {
-            var bits = Polyrand.Bits().TakeSpan(Pow2.T08);
+            var bits = Random.Bits().TakeSpan(Pow2.T08);
             var bytes = bits.AsBytes();
             Claim.eq(bits.Length, bytes.Length);
             for(var i = 0; i<bits.Length; i++)
@@ -86,12 +86,12 @@ namespace Z0.Test
 
         public void VerifySpanBytesToInt32()
         {
-            var x = Polyrand.Next<int>();
+            var x = Random.Next<int>();
             var y = BitConverter.GetBytes(x);
             VerifySpanBytesToValue(y,x);
 
             var valSize = sizeof(int);
-            var values = Polyrand.Stream<int>().TakeSpan(Pow2.T08);
+            var values = Random.Stream<int>().TakeSpan(Pow2.T08);
             var bytes = span<byte>(sizeof(int)*values.Length);
             for(int i = 0, offset = 0; i< values.Length; i++, offset += valSize)
             {
@@ -105,14 +105,14 @@ namespace Z0.Test
 
         public void VerifySpanBytesToInt64()
         {
-            var x = Polyrand.Next<long>();
+            var x = Random.Next<long>();
             var y = BitConverter.GetBytes(x);
             VerifySpanBytesToValue(y,x);
         }
 
         public void VerifyBitCompression()
         {
-            var x = Polyrand.Next<ulong>();
+            var x = Random.Next<ulong>();
             var bv = x.ToBitVector();
             var bits = span<Bit>(sizeof(ulong)*8);
             for(byte i=0; i< bits.Length; i++)

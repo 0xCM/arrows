@@ -16,7 +16,7 @@ namespace Z0
     {
         public void create8x8()
         {
-            var src = Polyrand.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
+            var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())
             {
                 var m1 = BitMatrix8.Load(src.Current);

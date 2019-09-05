@@ -46,7 +46,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var x = Polyrand.Next<T>();
+                var x = Random.Next<T>();
                 BinaryMatch<T>(BitString.FromScalar(x).Format(false,true),x);
             }
 

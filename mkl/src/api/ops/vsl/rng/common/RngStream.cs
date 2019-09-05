@@ -10,14 +10,14 @@ namespace Z0.Mkl
     using System.Collections.Generic;
 	using static zfunc;
 
-    public readonly struct RngStream : IRandomSource,  IDisposable
+    public readonly struct MklRng : IRandomSource,  IDisposable
     {
         [MethodImpl(Inline)]
-        public static RngStream Define(BRNG brng, uint seed = 0, int index = 0)
-            =>  new RngStream(brng, seed, index);
+        public static MklRng Define(BRNG brng, uint seed = 0, int index = 0)
+            =>  new MklRng(brng, seed, index);
 
         [MethodImpl(Inline)]
-        internal RngStream(BRNG brng, uint seed = 0, int index = 0)
+        internal MklRng(BRNG brng, uint seed = 0, int index = 0)
         {
             this.Source = brng.NewStream(seed, index);
         }

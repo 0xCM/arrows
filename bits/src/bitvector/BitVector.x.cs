@@ -235,8 +235,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64(this ushort src)        
             => src;
-
-
+            
         /// <summary>
         /// Defines a 64-bit bitvector where the lower 16 bits are determined by a 16-bit signed integer 
         /// </summary>

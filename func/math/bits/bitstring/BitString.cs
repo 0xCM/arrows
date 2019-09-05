@@ -508,7 +508,6 @@ namespace Z0
             where T : struct
                  => new BitString(ReadBitSeq(src, maxlen));
 
-        [PrimalKinds(PrimalKind.All)]
         static Span<byte> ReadBitSeq<T>(ReadOnlySpan<T> src, int? maxlen = null)
             where T : struct
         {

@@ -120,8 +120,8 @@ namespace Z0.Test
         void check_toggle<T>(int count = DefaultSampleSize)
             where T : struct
         {
-            var src = Polyrand.Span<T>(count).ReadOnly();
-            var tLen = SizeOf<T>.BitSize;
+            var src = Random.Span<T>(count).ReadOnly();
+            var tLen = bitsize<T>();
             var srcLen = src.Length;
             for(var i = 0; i< srcLen; i++)
             {

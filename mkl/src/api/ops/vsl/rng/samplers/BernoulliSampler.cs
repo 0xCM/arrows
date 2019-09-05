@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class BernoulliSampler<T> : Sampler<T, BernoulliSpec<double>>
         where T : unmanaged
     {
-        public BernoulliSampler(RngStream src, BernoulliSpec<double> spec, int? buferLen = null)
+        public BernoulliSampler(MklRng src, BernoulliSpec<double> spec, int? buferLen = null)
             : base(src, spec, buferLen)
         {
 

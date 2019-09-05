@@ -73,7 +73,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var v1 = Polyrand.CpuVec128<T>();                
+                var v1 = Random.CpuVec128<T>();                
                 var v2 = v1.Next();
                 var cmp =  ginx.gt(v2,v1);
                 Claim.yea(cmp);                    
@@ -85,7 +85,7 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var v1 = Polyrand.CpuVec256<T>();                
+                var v1 = Random.CpuVec256<T>();                
                 var v2 = v1.Next();
                 var cmp = ginx.gt(v2,v1);
                 Claim.yea(cmp);                    

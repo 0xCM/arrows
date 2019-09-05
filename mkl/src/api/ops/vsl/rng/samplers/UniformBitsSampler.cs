@@ -15,7 +15,7 @@ namespace Z0.Mkl
         where T : unmanaged
     {
         [MethodImpl(Inline)]
-        public UniformBitsSampler(RngStream src, int? buferLen = null)
+        public UniformBitsSampler(MklRng src, int? buferLen = null)
             : base(src, default, buferLen)
         {
             

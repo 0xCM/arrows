@@ -14,7 +14,7 @@ namespace Z0.Mkl
     sealed class LaplaceSampler<T> : Sampler<T, LaplaceSpec<T>>
         where T : unmanaged
     {
-        public LaplaceSampler(RngStream src, T a, T b, int? buferLen = null)
+        public LaplaceSampler(MklRng src, T a, T b, int? buferLen = null)
             : base(src, (a,b), buferLen)
         {
 

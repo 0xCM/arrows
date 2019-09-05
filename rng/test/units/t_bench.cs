@@ -30,8 +30,8 @@ namespace Z0.Rng
         
         void RunMultiply(int opcount = Pow2.T16)
         {
-            var lhsSrc = Polyrand.Stream<ulong>();
-            var rhsSrc = Polyrand.Stream<ulong>();
+            var lhsSrc = Random.Stream<ulong>();
+            var rhsSrc = Random.Stream<ulong>();
             var len = Vec256<ulong>.Length;
 
             var sw = stopwatch(false);

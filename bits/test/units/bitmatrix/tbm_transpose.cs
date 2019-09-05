@@ -22,7 +22,7 @@ namespace Z0.Test
 
         public void transpose8()
         {
-            var m1 = Polyrand.BitMatrix8();
+            var m1 = Random.BitMatrix8();
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();            
             Claim.yea(m1 == m3);
@@ -30,7 +30,7 @@ namespace Z0.Test
 
         public void transpose16()
         {
-            var m1 = Polyrand.BitMatrix16();
+            var m1 = Random.BitMatrix16();
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);
@@ -38,7 +38,7 @@ namespace Z0.Test
 
         public void transpose32()
         {
-            var m1 = Polyrand.BitMatrix32();
+            var m1 = Random.BitMatrix32();
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);
@@ -46,7 +46,7 @@ namespace Z0.Test
 
         public void transpose64()
         {
-            var m1 = Polyrand.BitMatrix64();
+            var m1 = Random.BitMatrix64();
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);    
@@ -54,7 +54,7 @@ namespace Z0.Test
 
         public void rowswap32()
         {
-            var m1 = Polyrand.BitMatrix32();
+            var m1 = Random.BitMatrix32();
             var m2 = m1.Replicate();
 
             m2.RowSwap(0,1);
@@ -71,7 +71,7 @@ namespace Z0.Test
         {
             for(var c = 0; c <count; c++)
             {
-                var src = Polyrand.BitMatrix<M, N,T>();
+                var src = Random.BitMatrix<M, N,T>();
                 var tSrc = src.Transpose();
                 for(var i=0; i<tSrc.RowCount; i++)
                 for(var j=0; j<tSrc.ColCount; j++)

@@ -77,9 +77,9 @@ namespace Z0.Test
         {
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix8();
+                var m1 = Random.BitMatrix8();
                 var m2 = m1.Replicate();
-                var m3 = Polyrand.BitMatrix8();
+                var m3 = Random.BitMatrix8();
                 var m4 = m2 * m3;
                 var m5 = BitRef.bmm(m1,m3);
                 Claim.yea(m4 == m5);
@@ -90,9 +90,9 @@ namespace Z0.Test
         {
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix32();
+                var m1 = Random.BitMatrix32();
                 var m2 = m1.Replicate();
-                var m3 = Polyrand.BitMatrix32();
+                var m3 = Random.BitMatrix32();
                 var m4 = m2 * m3;
                 var m5 = BitRef.bmm(m1,m3);
                 Claim.yea(m4 == m5);
@@ -104,8 +104,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix4();
-                var m3 = Polyrand.BitMatrix4();
+                var m1 = Random.BitMatrix4();
+                var m3 = Random.BitMatrix4();
                 sw.Start();
                 var m4 = m1 * m3;
                 sw.Stop();
@@ -118,8 +118,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix8();
-                var m3 = Polyrand.BitMatrix8();
+                var m1 = Random.BitMatrix8();
+                var m3 = Random.BitMatrix8();
                 sw.Start();
                 var m4 = m1 * m3;
                 sw.Stop();
@@ -133,8 +133,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix16();
-                var m3 = Polyrand.BitMatrix16();
+                var m1 = Random.BitMatrix16();
+                var m3 = Random.BitMatrix16();
                 sw.Start();
                 var m4 = m1 * m3;
                 sw.Stop();
@@ -148,8 +148,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix32();
-                var m3 = Polyrand.BitMatrix32();
+                var m1 = Random.BitMatrix32();
+                var m3 = Random.BitMatrix32();
                 sw.Start();
                 var m4 = m1 * m3;
                 sw.Stop();
@@ -162,8 +162,8 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix64();
-                var m3 = Polyrand.BitMatrix64();
+                var m1 = Random.BitMatrix64();
+                var m3 = Random.BitMatrix64();
                 sw.Start();
                 var m4 = m1 * m3;
                 sw.Stop();
@@ -176,9 +176,9 @@ namespace Z0.Test
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
             {
-                var m1 = Polyrand.BitMatrix64();
+                var m1 = Random.BitMatrix64();
                 var m2 = m1.Replicate();
-                var m3 = Polyrand.BitMatrix64();
+                var m3 = Random.BitMatrix64();
                 sw.Start();
                 var m4 = m2 * m3;
                 sw.Stop();
@@ -193,8 +193,8 @@ namespace Z0.Test
         {
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
-                var m = Polyrand.BitMatrix8();
-                var c = Polyrand.BitVector8();
+                var m = Random.BitMatrix8();
+                var c = Random.BitVector8();
                 var z1 = m * c;            
                 var z2 = BitVector8.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -211,8 +211,8 @@ namespace Z0.Test
         {
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
-                var m = Polyrand.BitMatrix16();
-                var c = Polyrand.BitVector16();
+                var m = Random.BitMatrix16();
+                var c = Random.BitVector16();
                 var z1 = m * c;            
                 var z2 = BitVector16.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -229,8 +229,8 @@ namespace Z0.Test
         {
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
-                var m = Polyrand.BitMatrix32();
-                var c = Polyrand.BitVector(n32);
+                var m = Random.BitMatrix32();
+                var c = Random.BitVector(n32);
                 var z1 = m * c;            
                 var z2 = BitVector32.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
@@ -247,8 +247,8 @@ namespace Z0.Test
         {
             for(var cycle = 0; cycle < cycles; cycle++)            
             {
-                var m = Polyrand.BitMatrix64();
-                var c = Polyrand.BitVector64();
+                var m = Random.BitMatrix64();
+                var c = Random.BitVector64();
                 var z1 = m * c;            
                 var z2 = BitVector64.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           

@@ -244,7 +244,6 @@ namespace Z0
         
         public static readonly Comparer<byte> Comparer 
             = new ScalarComparer<byte>(Compare);
-
     }            
 
     readonly struct Int16Info
@@ -425,7 +424,6 @@ namespace Z0
         
         public static readonly Comparer<float> Comparer 
             = new ScalarComparer<float>(Compare);
-
     }        
 
     readonly struct Float64Info
@@ -500,8 +498,8 @@ namespace Z0
         
         public static readonly Comparer<BigInteger> Comparer 
             = new ScalarComparer<BigInteger>(Compare);
-
     }                   
+
     public readonly struct PrimalInfo<T> : IPrimalInfo<T>
         where T : struct
     {
@@ -543,5 +541,4 @@ namespace Z0
         public PrimalKind Kind {get;}
             
     }
-
 }

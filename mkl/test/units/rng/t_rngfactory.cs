@@ -26,88 +26,121 @@ namespace Z0.Rng
 
         const float MaxF32 = 350000;
 
+        const int MinI32 = -350000;
+
+        const int MaxI32 = 350000;
+
+        static readonly Interval<int> RangeI32 = (MinI32, MaxI32);
+        
         static readonly Interval<float> RangeF32 = (MinF32, MaxF32);
 
         static readonly Interval<double> RangeF64 = (MinF64, MaxF64);
 
-        protected override int SampleSize => Pow2.T14;
+        public void polyrand()
+        {         
+            rng_bench(RNG.Pcg64(Seed).Stream(RangeI32));
+            rng_bench(RNG.Pcg64(Seed).Stream(RangeF64));
 
-        protected override int CycleCount => Pow2.T08;
-
-        public void DefaultRngTests()
-        {
-            PolyRng(RNG.Pcg64(Seed));
         }
 
         public void mcg31()
         {
             using var src = rng.mcg31(Seed);
-            MklRng(src);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void mrg32K31()
+        {
+            using var src = rng.mrg32K31(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
         public void mcg59()
         {
             using var src = rng.mcg31(Seed);
-            MklRng(src);
-        }
-
-        public void sfmt19937()
-        {
-            
-            using var src = rng.sfmt19937(Seed);
-            MklRng(src);
-        }
-
-        public void mt2203()
-        {
-            using var src = rng.mt2203(Seed);
-            MklRng(src);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
         public void r250()
         {
             using var src = rng.r250(Seed);
-            MklRng(src);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
-        OpTime MklRng(RngStream src)
+        public void mt19937()
+        {            
+            using var src = rng.mt19937(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void sfmt19937()
+        {            
+            using var src = rng.sfmt19937(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void mt2203()
+        {
+            using var src = rng.mt2203(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void philox()
+        {
+            using var src = rng.philox(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void wh()
+        {
+            using var src = rng.wh(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void ars5()
+        {
+            using var src = rng.ars5(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void sobol()
+        {
+            using var src = rng.sobol(Seed);
+            rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+
+        OpTime rng_bench<T>(IRandomStream<T> stream)
+            where T : struct
         {
             var segment = Pow2.T08;
             var total = Pow2.T17;
             var stats = Accumulator.Create();
-            var samples =  samplers.uniform(src, (RangeF64));
             var sw = stopwatch(false);
             for(var i=0; i< total; i+= segment)
             {
                 sw.Start();
-                var sample = samples.TakeArray(segment);
+                var sample = stream.TakeArray(segment);
                 sw.Stop();
                 for(var j=0; j< segment; j++)
-                    stats.Accumulate(sample[j]);
+                    stats.Accumulate(convert<T,double>(sample[j]));
             }
+            var time = (total, sw, $"{stream.RngKind}<{typeof(T).DisplayName()}>");
+            Collect(time);
+            Trace(stats.Format());
             
-            return (total, sw, $"{src.RngKind}");
-
-        }
-
-        OpTime PolyRng(IPolyrand random)
-        {
-            var segment = Pow2.T08;
-            var total = Pow2.T17;
-            var src = random.Stream(RangeF64);
-            var stats = Accumulator.Create();
-            var sw = stopwatch(false);
-            for(var i=0; i< total; i+= segment)
-            {
-                sw.Start();
-                var sample = src.TakeArray(segment);
-                sw.Stop();
-                for(var j=0; j< segment; j++)
-                    stats.Accumulate(sample[j]);
-            }
-            
-            return (total, sw, $"polyrand");
-
+            return time;
         }
 
     }

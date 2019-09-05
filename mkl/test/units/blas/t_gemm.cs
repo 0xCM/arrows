@@ -24,8 +24,8 @@ namespace Z0.Mkl.Test
         
         public void Dot()
         {
-            var v1 = Polyrand.NatVec<N256,double>();
-            var v2 = Polyrand.NatVec<N256,double>();
+            var v1 = Random.NatVec<N256,double>();
+            var v2 = Random.NatVec<N256,double>();
 
             var x = mkl.dot(v1,v2).Round(4);
             var y = Dot(v1,v2).Round(4);
@@ -78,7 +78,7 @@ namespace Z0.Mkl.Test
 
         void gemm32f_direct()
         {
-            var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (float)x);
+            var src = Random.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (float)x);
             var pad = 30;
 
             Collect(gemm_direct_check<N64,N64,N64>(src), pad);
@@ -96,7 +96,7 @@ namespace Z0.Mkl.Test
 
         void gemm64f_direct()
         {
-            var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (double)x);
+            var src = Random.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (double)x);
             var pad = 30;
 
             Collect(gemm_direct_check<N64,N64,N64>(src), pad);
@@ -116,7 +116,7 @@ namespace Z0.Mkl.Test
             where T : struct
         {
             
-            var src = Polyrand.Stream(domain);
+            var src = Random.Stream(domain);
             var pad = 30;
 
             Collect(gemm_check(src, epsilon, n64,  n64, n64), pad);
@@ -350,8 +350,8 @@ namespace Z0.Mkl.Test
             var domain = closed(-32768, 32768);
             var n = n5;
             var m = n5;
-            var m1 = Polyrand.Matrix(domain, m, n);
-            var m2 = Polyrand.Matrix(domain, m, n);
+            var m1 = Random.Matrix(domain, m, n);
+            var m2 = Random.Matrix(domain, m, n);
             var m3 = Matrix.Alloc(m,n,0);
             var m4 = mkl.gemm(m1,m2,ref m3);
         }

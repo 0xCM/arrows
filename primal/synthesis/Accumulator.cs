@@ -146,5 +146,10 @@ namespace Z0
         public double StandardDeviation
             => fmath.sqrt(Variance);
 
+        public string Format(int? scale = null)
+        {
+            return $"mean={Mean.Round(scale ?? 4)}, stdev={StandardDeviation.Round(scale ?? 4)}";
+        }
+
     }
 }

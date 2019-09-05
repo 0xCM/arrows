@@ -28,7 +28,7 @@ namespace Z0.Test
         public void Experiment()
         {
             //Create an explicit bit pattern
-            var pattern = Polyrand.Bits().Select(x => (byte)x).TakeArray(32);
+            var pattern = Random.Bits().Select(x => (byte)x).TakeArray(32);
 
             //Push pattern into a 256-bit vector
             var vPattern = Vec256.Load(pattern);

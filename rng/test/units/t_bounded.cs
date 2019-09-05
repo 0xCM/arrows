@@ -19,7 +19,7 @@ namespace Z0.Rng
             where T : struct
         {
             var stats = Accumulator.Create();
-            var src = Polyrand.Stream(min,max).Take(samples);
+            var src = Random.Stream(min,max).Take(samples);
             iter(src, value => {
                 stats.Accumulate(convert<T,double>(value));
                 Claim.yea(gmath.between(value, min, max));
@@ -62,7 +62,7 @@ namespace Z0.Rng
         {
             var samples = Pow2.T11;
             var domain = closed((sbyte)(-100),(sbyte)(100));
-            var data = Polyrand.Stream<sbyte>(domain).Take(samples);
+            var data = Random.Stream<sbyte>(domain).Take(samples);
             var h = Histogram.Define(domain,10);
             h.Deposit(data,false);
         }
@@ -72,7 +72,7 @@ namespace Z0.Rng
         {
             var samples = Pow2.T11;
             var domain = closed(-250L,250L);
-            var data = Polyrand.Stream<long>(domain).Take(samples);
+            var data = Random.Stream<long>(domain).Take(samples);
             var h = Histogram.Define(domain);
             h.Deposit(data,false);        
         }
@@ -131,7 +131,7 @@ namespace Z0.Rng
         {
             var samples = Pow2.T11;
             var domain = closed(10,20);
-            var random = Polyrand.ToSysRand();
+            var random = Random.ToSysRand();
             for(var i=0; i<samples; i++)            
             {
                 var next = random.Next(domain.Left, domain.Right);
@@ -175,7 +175,7 @@ namespace Z0.Rng
         {            
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Polyrand.Stream(domain).TakeArray(count);
+            var samples = Random.Stream(domain).TakeArray(count);
             var time = snapshot(sw);
             
             var avg = gmath.avg<T>(samples);
@@ -193,7 +193,7 @@ namespace Z0.Rng
         {
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Polyrand.Stream<T>().TakeArray(count);
+            var samples = Random.Stream<T>().TakeArray(count);
             var time = snapshot(sw);
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
@@ -225,7 +225,7 @@ namespace Z0.Rng
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = BernoulliSpec<long>.Define(p).Distribution<long>(Polyrand).Sample().Take(count);
+            var samples = BernoulliSpec<long>.Define(p).Distribution<long>(Random).Sample().Take(count);
             var avg = samples.Average();
             sw.Stop();
 

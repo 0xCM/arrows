@@ -38,7 +38,7 @@ namespace Z0.Rng
                 }
             }
 
-            var indices = Polyrand.Array<int>(10, leftopen(0, buckets.Length));
+            var indices = Random.Array<int>(10, leftopen(0, buckets.Length));
             var bucketSample = buckets.Values(indices);
             var avg = (double)gmath.avg<ulong>(bucketSample);
             var deltas = bucketSample.Map(c => (math.abs(1 - ((double)c / avg)).Round(4)));

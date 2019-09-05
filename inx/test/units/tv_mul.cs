@@ -14,13 +14,13 @@ namespace Z0
 
     public class tv_mul : UnitTest<tv_mul>
     {
-       public void clmul128()
+        public void clmul128()
         {
 
             for(var i=0; i<DefaultSampleSize; i++)
             {
-                var v1 = Polyrand.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
-                var v2 = Polyrand.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
+                var v1 = Random.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
+                var v2 = Random.CpuVec128<ulong>(UInt32.MinValue, UInt32.MaxValue);
                 
 
                 UInt128 x00 = dinx.clmul(in v1, in v2, ClMulMask.X00);
@@ -56,10 +56,9 @@ namespace Z0
         {
             void VerifyMul256u64(int blocks)
             {
-                BlockSamplesStart(blocks);
                 var domain = closed(0ul, UInt32.MaxValue);
-                var lhs = Polyrand.Span256<ulong>(blocks, domain);
-                var rhs = Polyrand.Span256<ulong>(blocks, domain);
+                var lhs = Random.Span256<ulong>(blocks, domain);
+                var rhs = Random.Span256<ulong>(blocks, domain);
                 for(var block=0; block<blocks; block++)
                 {
                     var x = lhs.LoadVec256(block);
@@ -71,7 +70,6 @@ namespace Z0
                     var c = a.Mul(b).LoadVec256(0);
                     Claim.eq(z,c);                                           
                 }
-                BlockSamplesEnd(blocks);
             }
 
             VerifyMul256u64(DefaltCycleCount);
@@ -87,8 +85,8 @@ namespace Z0
         {
             void VerifyUMul64(int samples)
             {
-                var x = Polyrand.Span<uint>(samples);
-                var y = Polyrand.Span<uint>(samples);
+                var x = Random.Span<uint>(samples);
+                var y = Random.Span<uint>(samples);
                 for(var i=0; i< samples; i++)
                 {
                     var xi = x[i];
@@ -122,8 +120,8 @@ namespace Z0
             var counter = 0;
             for(var i=0; i< SampleSize; i++)
             {
-                var x = Polyrand.CpuVec256(domain);
-                var y = Polyrand.CpuVec256(domain);
+                var x = Random.CpuVec256(domain);
+                var y = Random.CpuVec256(domain);
                 sw.Start();
                 var z = dinx.mul(x,y);
                 sw.Stop();
@@ -140,8 +138,8 @@ namespace Z0
             var counter = 0;
             for(var i=0; i< SampleSize; i++)
             {
-                var x = Polyrand.Span(4, domain);
-                var y = Polyrand.Span(4, domain);
+                var x = Random.Span(4, domain);
+                var y = Random.Span(4, domain);
                 sw.Start();
                 var z = x.Mul(y);
                 sw.Stop();
@@ -156,7 +154,7 @@ namespace Z0
             for(var cycle = 0; cycle < cycles; cycle++)
             {
                 var domain = closed((long)Int32.MinValue, (long)Int32.MaxValue);
-                var src = Polyrand.Stream(domain).Select(x => (double)x);
+                var src = Random.Stream(domain).Select(x => (double)x);
                 var u = Vec256.Load(src.TakeSpan(4));
                 var v = Vec256.Load(src.TakeSpan(4));
                 var x = dfp.mul(u,v);
@@ -167,10 +165,6 @@ namespace Z0
                 var yi = y.ToSpan().Convert<long>();
                 Claim.eq(xi,yi);
             }
-
-        }
-
- 
+        } 
     }
-
 }

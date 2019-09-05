@@ -19,8 +19,8 @@ namespace Z0.Test
             
             void Test()
             {
-                var x = Polyrand.BitVector8();
-                var pos = Polyrand.Next(1,6);
+                var x = Random.BitVector8();
+                var pos = Random.Next(1,6);
                 
                 var actual = x.Rank(pos);
                 var expect = 0u;
@@ -37,8 +37,8 @@ namespace Z0.Test
             
             void Test()
             {
-                var x = Polyrand.BitVector64();
-                var pos = Polyrand.Next(1,50);
+                var x = Random.BitVector64();
+                var pos = Random.Next(1,50);
                 
                 var actual = x.Rank(pos);
                 var expect = 0u;

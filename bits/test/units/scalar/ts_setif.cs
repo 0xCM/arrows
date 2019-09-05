@@ -69,7 +69,7 @@ namespace Z0.Test
             var bitcount = gbits.width<T>();
             for(var cycle = 0; cycle < cycles; cycle++)
             {
-                var src = Polyrand.Next<T>();
+                var src = Random.Next<T>();
                 var dst = gmath.zero<T>();
                 for(var i=0; i< bitcount; i++)
                 gbits.setif(in src, i, ref dst, i);

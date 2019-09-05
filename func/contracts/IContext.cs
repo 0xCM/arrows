@@ -38,7 +38,7 @@ namespace Z0
         /// <summary>
         /// Defines the context-specific RNG
         /// </summary>
-        IPolyrand Polyrand {get;}
+        IPolyrand Random {get;}
 
     }
 

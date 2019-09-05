@@ -15,7 +15,7 @@ namespace Z0
     partial class gbits
     {
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static T shiftl<T>(T src, int offset)
             where T : struct
         {
@@ -39,7 +39,7 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static T shiftl<T>(T src, T offset)
             where T : struct
         {
@@ -64,7 +64,7 @@ namespace Z0
         }           
 
 
-        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        [MethodImpl(Inline)]
         public static ref T shiftl<T>(ref T lhs, int rhs)
             where T : struct
         {

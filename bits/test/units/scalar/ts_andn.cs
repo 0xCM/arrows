@@ -59,8 +59,8 @@ namespace Z0.Test
             var vZero = Vec128<T>.Zero;
             for(var i=0; i<cycles; i++)
             {
-                var x1 = Polyrand.CpuVec128<T>();                    
-                var y1 = Polyrand.CpuVec128<T>();                    
+                var x1 = Random.CpuVec128<T>();                    
+                var y1 = Random.CpuVec128<T>();                    
                 var z1 = gbits.andnot(in x1, in y1);
                 var z2 = gbits.andnot(in x1, in x1);
 

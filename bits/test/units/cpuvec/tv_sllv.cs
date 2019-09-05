@@ -28,8 +28,8 @@ namespace Z0.Test
 
         public void sllv256u32()
         {
-            var src = Polyrand.CpuVec256<uint>();
-            var shifts = Polyrand.CpuVec256<uint>(closed(1u,7u));  
+            var src = Random.CpuVec256<uint>();
+            var shifts = Random.CpuVec256<uint>(closed(1u,7u));  
 
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
@@ -43,8 +43,8 @@ namespace Z0.Test
         
         public void sslv128u32()
         {
-            var src = Polyrand.CpuVec128<uint>();
-            var shifts = Polyrand.CpuVec128<uint>(closed(1u,7u));            
+            var src = Random.CpuVec128<uint>();
+            var shifts = Random.CpuVec128<uint>(closed(1u,7u));            
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
@@ -58,8 +58,8 @@ namespace Z0.Test
 
         public void sllv128u64()
         {
-            var src = Polyrand.CpuVec128<ulong>();
-            var shifts = Polyrand.CpuVec128<ulong>(closed(1ul,7ul));            
+            var src = Random.CpuVec128<ulong>();
+            var shifts = Random.CpuVec128<ulong>(closed(1ul,7ul));            
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
@@ -73,8 +73,8 @@ namespace Z0.Test
 
         public void sllv256u64()
         {
-            var src = Polyrand.CpuVec256<ulong>();
-            var shifts = Polyrand.CpuVec256<ulong>(closed(1ul,7ul));            
+            var src = Random.CpuVec256<ulong>();
+            var shifts = Random.CpuVec256<ulong>(closed(1ul,7ul));            
             
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)

@@ -143,8 +143,8 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var v1 = Polyrand.CpuVec128<T>();
-                var v2 = Polyrand.CpuVec128<T>();
+                var v1 = Random.CpuVec128<T>();
+                var v2 = Random.CpuVec128<T>();
                 var eq = ginx.eq(in v1, in v2);
                 Claim.nea(ginx.eq(in v1, in v2));
                 Claim.yea(ginx.eq(in v1, in v1));
@@ -158,8 +158,8 @@ namespace Z0.Test
         {
             for(var i=0; i<SampleSize; i++)
             {
-                var v1 = Polyrand.CpuVec256<T>();
-                var v2 = Polyrand.CpuVec256<T>();
+                var v1 = Random.CpuVec256<T>();
+                var v2 = Random.CpuVec256<T>();
                 var eq = ginx.eq(in v1, in v2);
                 Claim.nea(ginx.eq(in v1, in v2));
                 Claim.yea(ginx.eq(in v1, in v1));
