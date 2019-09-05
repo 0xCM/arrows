@@ -16,17 +16,17 @@ namespace Z0
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/wyhash.h</remarks>
     class WyHash64 : IPointSource<ulong>
     {
-        readonly ulong Seed;
         
         ulong State;
 
-
         [MethodImpl(Inline)]
-        public WyHash64(ulong Seed)
+        public WyHash64(ulong state)
         {
-            this.State = Seed;
-            this.Seed = Seed;
+            this.State = state;
         }
+
+        public RngKind RngKind 
+            => RngKind.WyHash64;
 
         public ulong Next()
         {
@@ -50,8 +50,6 @@ namespace Z0
         
         const ulong X2 = 0xa3b195354a39b70d;
         
-        const ulong X3 = 0x1b03738712fad5c9;
-        
-
+        const ulong X3 = 0x1b03738712fad5c9;        
     }
 }

@@ -30,7 +30,7 @@ namespace Z0
                 }
             }
 
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Z0
                     yield return random.BitString(len);
             }
 
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Z0
                     yield return random.BitString(minlen,maxlen);
             }
             
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Reifies common 128-bit vector patterns
+    /// Reifies and provides storage for common 128-bit vector patterns
     /// </summary>
     public readonly struct Vec128Pattern<T> 
         where T : struct
@@ -22,14 +22,21 @@ namespace Z0
 
         static readonly Vec128<T> Zero = Vec128<T>.Zero;
 
-        public static readonly Vec128<T> Ones = ginx.cmpeq(Zero,Zero);
-        
+        /// <summary>
+        /// A vector with all bits turned on
+        /// </summary>
+        public static readonly Vec128<T> AllOnes = ginx.cmpeq(Zero,Zero);
+
+        /// <summary>
+        /// A vector where each component is assigned the numeric value 1
+        /// </summary>
+        public static readonly Vec128<T> Units = CalcUnits();
+
         public static readonly Vec128<T> Increasing = Increments();
 
         public static readonly Vec128<T> Decreasing = Decrements(convert<T>(Length - 1));
 
         public static readonly Vec128<T> FpSignMask = CalcFpSignMask();
-
 
         /// <summary>
         /// Creates a vector with incrementing components
@@ -69,6 +76,16 @@ namespace Z0
             }
 
             return Vec128.Load(dst.Swap(swaps));
+        }
+
+       static Vec128<T> CalcUnits()
+        {
+            var n = Length;
+            var dst = Span128.Alloc<T>(n);
+            var one = gmath.one<T>();
+            for(var i=0; i<n; i++)
+                dst[i] = one;
+            return Vec128.Load(dst);
         }
 
         static Vec128<T> CalcFpSignMask()

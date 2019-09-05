@@ -43,7 +43,7 @@ namespace Z0
                 }            
             }
 
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
     }
 

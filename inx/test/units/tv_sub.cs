@@ -85,24 +85,6 @@ namespace Z0.Test
 
         const int Blocks = Pow2.T08;
 
-        public void Sub128F32()
-        {            
-            var lhs = Polyrand.Span128<float>(Blocks);
-            var rhs = Polyrand.Span128<float>(Blocks);
-            var dDst = Span128.AllocBlocks<float>(Blocks);
-            var gDst = Span128.AllocBlocks<float>(Blocks);
-            Claim.eq(dinxx.Sub(lhs,rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));
-        }
-
-        public void Sub128F64()
-        {            
-            var lhs = Polyrand.Span128<double>(Blocks);
-            var rhs = Polyrand.Span128<double>(Blocks);
-            var dDst = Span128.AllocBlocks<double>(Blocks);
-            var gDst = Span128.AllocBlocks<double>(Blocks);                
-            Claim.eq(dinxx.Sub(lhs, rhs, dDst), lhs.ReadOnly().Sub(rhs, gDst));
-        }
-
     }
 
 }

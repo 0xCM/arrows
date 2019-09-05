@@ -127,7 +127,7 @@ namespace Z0
                     yield return random.NextUInt4();
             }
 
-            return stream(produce());            
+            return stream(produce(), random.RngKind);            
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Z0
                     yield return random.BitVector8();
             }
 
-            return stream(produce());            
+            return stream(produce(), random.RngKind);            
         }            
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Z0
                 }
             }
 
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Z0
                     yield return random.BitVector(n);
 
             }
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }            
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace Z0
                 while(true)
                     yield return random.BitVector64();
             }
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }            
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Z0
                     yield return random.BitVector128();
 
             }
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }            
 
         /// <summary>

@@ -12,9 +12,9 @@ namespace Z0
     using static zfunc;
     using static dinx;
 
-    partial class dinxx
+    partial class dinx
     {
-        public static short Sum(this ReadOnlySpan<short> src, NumericSystem system = NumericSystem.Intrinsic)
+        public static short Sum(ReadOnlySpan<short> src)
         {
             var veclen = Vec128<short>.Length;
             var seglen = 2*veclen;
@@ -43,7 +43,7 @@ namespace Z0
         }
 
             
-        public static int Sum(this ReadOnlySpan<int> src, NumericSystem system = NumericSystem.Intrinsic)
+        public static int Sum(ReadOnlySpan<int> src)
         {
             var veclen = Vec128<int>.Length;
             var seglen = 2*veclen;
@@ -72,10 +72,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static int Sum(this Span<int> src)
-            => src.ReadOnly().Sum();
+        public static int Sum(Span<int> src)
+            => Sum(src.ReadOnly());
 
-        public static float Sum(this ReadOnlySpan<float> src, NumericSystem system = NumericSystem.Intrinsic)
+        public static float Sum(ReadOnlySpan<float> src)
         {
             var veclen = Vec128<float>.Length;
             var seglen = 2*veclen;
@@ -104,10 +104,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static float Sum(this Span<float> src)
+        public static float Sum(Span<float> src)
             => src.ReadOnly().Sum();
 
-        public static double Sum(this ReadOnlySpan<double> src, NumericSystem system = NumericSystem.Intrinsic)
+        public static double Sum(ReadOnlySpan<double> src)
         {
             var veclen = Vec128<double>.Length;
             var seglen = 2*veclen;
@@ -136,7 +136,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static double Sum(this Span<double> src, NumericSystem system = NumericSystem.Intrinsic)        
-            => src.ReadOnly().Sum(system);
+        public static double Sum(Span<double> src)        
+            => Sum(src.ReadOnly());
     }
 }

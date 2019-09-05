@@ -11,10 +11,10 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    sealed class GeometricSampler<T> : Sampler<T, GeometricSpec<int>>
+    sealed class GeometricSampler<T> : Sampler<T, GeometricSpec<T>>
         where T : unmanaged
     {
-        public GeometricSampler(RngStream src, GeometricSpec<int> distspec, int? buferLen = null)
+        public GeometricSampler(RngStream src, GeometricSpec<T> distspec, int? buferLen = null)
             : base(src, distspec, buferLen)
         {
 
@@ -24,7 +24,7 @@ namespace Z0.Mkl
         {
             
             if(typeof(T) == typeof(int))
-                mkl.bernoulli(Source,  DistSpec, buffer.As<int>());
+                sample.geometric(Source,  DistSpec, buffer.As<int>());
             else 
                 throw unsupported<T>();
             

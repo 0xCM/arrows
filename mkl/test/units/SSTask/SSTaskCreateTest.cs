@@ -23,7 +23,7 @@ namespace Z0.Mkl.Test
             var range = closed(-20f,20f);
             
             var src = Polyrand.Array<float>(dim*obs, range);
-            var sample = Sample.Load(src,dim);
+            var sample = Dataset.Load(src,dim);
             var sorted = sample.RadixSort();
 
             for(var i = 0; i<obs; i++)

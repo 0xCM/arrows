@@ -30,7 +30,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Unsized.ReadOnly().Add(rhs.Unsized, lhs.Unsized);
+            ginx.add(lhs.Unsized, rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 
@@ -48,7 +48,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            lhs.Unsized.ReadOnly().Sub(rhs.Unsized, lhs.Unsized);
+            ginx.sub(lhs.Unsized,rhs.Unsized, lhs.Unsized);
             return ref lhs;
         }
 

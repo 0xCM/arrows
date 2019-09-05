@@ -24,6 +24,6 @@ namespace Z0
         }
 
         public override IEnumerable<T> Sample()
-            => Polyrand.SamplePoisson(Spec.Success);
+            => Polyrand.SamplePoisson(Spec.Rate).Select(x => As.generic<T>(x));
     }
 }

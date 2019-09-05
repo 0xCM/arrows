@@ -13,31 +13,32 @@ namespace Z0
     /// Characterizes a Poisson distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Poisson_distribution</remarks>
+    /// <typeparam name="T">The sample value type</typeparam>
     public readonly struct PoissonSpec<T> : IDistributionSpec<T>
         where T : unmanaged
     {
         [MethodImpl(Inline)]
-        public static PoissonSpec<T> Define(T p)
-            => new PoissonSpec<T>(p);
+        public static PoissonSpec<T> Define(double rate)
+            => new PoissonSpec<T>(rate);
         
         [MethodImpl(Inline)]
-        public static implicit operator PoissonSpec<T>(T p)
-            => Define(p);
+        public static implicit operator PoissonSpec<T>(double rate)
+            => Define(rate);
 
         [MethodImpl(Inline)]
-        public static implicit operator T(PoissonSpec<T> p)
-            => p.Success;
+        public static implicit operator double(PoissonSpec<T> spec)
+            => spec.Rate;
 
         [MethodImpl(Inline)]
-        public PoissonSpec(T lambda)
+        public PoissonSpec(double rate)
         {
-            this.Success = lambda;
+            this.Rate = rate;
         }
         
         /// <summary>
-        /// Specifies a value within the unit interval [0,1] that represents the probability of success
+        /// Specifies the event frequency
         /// </summary>
-        public readonly T Success;
+        public readonly double Rate;
  
          /// <summary>
         /// Classifies the distribution spec

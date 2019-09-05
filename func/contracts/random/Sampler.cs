@@ -11,7 +11,7 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    public interface ISampler<T>
+    public interface ISampler<T> : IEnumerable<T>
         where T : unmanaged
     {
         /// <summary>
@@ -20,17 +20,9 @@ namespace Z0.Mkl
         int BufferLength {get;}
 
         /// <summary>
-        /// The sample values
-        /// </summary>
-        IEnumerable<T> Samples {get;}
-
-
-        /// <summary>
         /// The type of distibution being sampled
         /// </summary>
         DistKind DistKind{get;}
-
     }
-
 
 }

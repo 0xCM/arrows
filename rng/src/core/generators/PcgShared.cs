@@ -12,14 +12,13 @@ namespace Z0
     using static zfunc;
     using static math;
 
-    public abstract class Pcg<S>
-        where S : struct
+    static class PcgShared
     {
-        protected const ulong DefaultMultiplier64 = 6364136223846793005;
+        public const ulong DefaultMultiplier = 6364136223846793005;
 
-        protected const ulong DefaultIndex64 = 1442695040888963407;
+        public const ulong DefaultIndex = 1442695040888963407;
 
-        protected static ulong Advance(ulong state, ulong delta, ulong multiplier, ulong index)
+        public static ulong Advance(ulong state, ulong delta, ulong multiplier, ulong index)
         {
             ulong factor = 1u;
             ulong increment = 0u;
@@ -36,25 +35,6 @@ namespace Z0
             }
             return factor * state + increment;
         }
-
-        protected S State;
-
-        protected S Index;
-
-        protected Pcg(S s0, S index)
-        {
-            this.State = s0;
-            this.Index = index;
-        }
-
-        protected Pcg()
-        {
-
-        }
-
-        public override string ToString()
-            => $"{State}[{Index}]";
     }
-
 
 }

@@ -26,7 +26,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T fma<T>(T x, T y, T z)
             where T : struct
-        {
+        {            
             if(typeof(T) == typeof(float))
                 return generic<T>(fmath.fma(float32(x), float32(y), float32(z)));
             else if(typeof(T) == typeof(double))

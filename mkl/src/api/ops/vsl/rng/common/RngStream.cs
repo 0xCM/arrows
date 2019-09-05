@@ -9,32 +9,26 @@ namespace Z0.Mkl
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
 	using static zfunc;
-    using static As;
 
-    public readonly struct RngStream : IDisposable
+    public readonly struct RngStream : IRandomSource,  IDisposable
     {
         [MethodImpl(Inline)]
         public static RngStream Define(BRNG brng, uint seed = 0, int index = 0)
             =>  new RngStream(brng, seed, index);
 
-
         [MethodImpl(Inline)]
         internal RngStream(BRNG brng, uint seed = 0, int index = 0)
         {
-            this.VslSource = brng.NewStream(seed, index);
+            this.Source = brng.NewStream(seed, index);
         }
         
-        internal VslStream VslSource {get;}
-        
+        internal VslStream Source {get;}        
         
         public RngKind RngKind
-            => VslSource.RngKind();        
+            => Source.RngKind();        
 
         public void Dispose()
-        {
-            VslSource.Dispose();
-        }
+            => Source.Dispose();
     }
-
 
 }

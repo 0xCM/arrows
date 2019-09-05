@@ -13,18 +13,16 @@ namespace Z0.Mkl.Test
     using Z0.Test;
     using static Examples;
 
-    public class tgeev : UnitTest<tgeev>
+    public class t_geev : UnitTest<t_geev>
     {
-        public void Test1()
+        public void test1()
         {
 
             var A = Polyrand.Matrix<N5,double>();
             var eigen = mkl.geev<N5>(A);
             Claim.eq(5,eigen.Values.Length);
-            
-            
+                    
         }
-
 
     }
 

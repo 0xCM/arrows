@@ -7,12 +7,30 @@ namespace System
     using System.Collections.Generic;
     using Z0;
 
+    public interface IRandomSource
+    {
+        RngKind RngKind {get;}
+    }
+
     /// <summary>
-    /// Characterizes a source capable of producing an interminable 
-    /// sequence of bounded/unbounded points of specific primal type
+    /// Characterizes a stream of random values of parametric type
+    /// </summary>
+    /// <typeparam name="T">The random value type</typeparam>
+    public interface IRandomStream<T> : IRandomSource, IEnumerable<T>
+        where T: struct
+    {
+        /// <summary>
+        /// Retrieves a specified number of elements from the stream; equivalent to Take(count)
+        /// </summary>
+        /// <param name="count">The number of elements</param>
+        IEnumerable<T> Next(int count);
+    }
+
+    /// <summary>
+    /// Characterizes a random source capable of producing constraint point values 
     /// </summary>
     /// <typeparam name="T">The primal type</typeparam>
-    public interface IPointSource<T>
+    public interface IPointSource<T> : IRandomSource
         where T : struct
     {
         /// <summary>
@@ -36,7 +54,10 @@ namespace System
 
     }
 
-    public interface IStreamNav
+    /// <summary>
+    /// Characterizes a random source navigator
+    /// </summary>
+    public interface IRandomNav
     {
         /// <summary>
         /// Moves the stream a specified number of steps forward
@@ -49,10 +70,9 @@ namespace System
         /// </summary>
         /// <param name="steps">The step count</param>
         void Retreat(ulong steps);
-
     }
 
-    public interface IStepwiseSource<T> : IPointSource<T>, IStreamNav
+    public interface IStepwiseSource<T> : IPointSource<T>, IRandomNav
         where T : struct
     {
 
@@ -111,28 +131,8 @@ namespace System
         /// <summary>
         /// Retrieves the random  stream navigator, if supported
         /// </summary>
-        Option<IStreamNav> Navigator {get;}
+        Option<IRandomNav> Nav {get;}
+    
     }
-
-    /// <summary>
-    /// Views a stream of random values with a post-generation view
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IRandomStream<T> : IEnumerable<T>
-        where T: struct
-    {
-
-        /// <summary>
-        /// Retrieves the next element from the stream; equivalent to First()
-        /// </summary>
-        T Next();
-
-        /// <summary>
-        /// Retrieves a specified number of elements from the stream; equivalent to Take(count)
-        /// </summary>
-        /// <param name="count">The number of elements</param>
-        IEnumerable<T> Next(int count);
-    }
-
 
 }

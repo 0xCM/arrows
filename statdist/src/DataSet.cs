@@ -12,7 +12,7 @@ namespace Z0
         
     using static zfunc;
 
-    public readonly struct DataSet<T>
+    public readonly struct Dataset<T>
         where T : unmanaged
     {
         public readonly MemorySpan<T> Data {get;}
@@ -28,36 +28,36 @@ namespace Z0
         public readonly int Dim;
 
         [MethodImpl(Inline)]
-        public static DataSet<T> Alloc(int dim, int count)
-            => new DataSet<T>(new T[count * dim], dim);
+        public static Dataset<T> Alloc(int dim, int count)
+            => new Dataset<T>(new T[count * dim], dim);
     
         [MethodImpl(Inline)]
-        public static DataSet<T> Load(MemorySpan<T> src, int dim)
-            => new DataSet<T>(src,dim);
+        public static Dataset<T> Load(MemorySpan<T> src, int dim)
+            => new Dataset<T>(src,dim);
 
         [MethodImpl(Inline)]
-        public static DataSet<T> Load(T[] src, int dim)
-            => new DataSet<T>(src,dim);
+        public static Dataset<T> Load(T[] src, int dim)
+            => new Dataset<T>(src,dim);
 
         [MethodImpl(Inline)]
-        public static implicit operator Span<T>(DataSet<T> src)
+        public static implicit operator Span<T>(Dataset<T> src)
             => src.Data;
 
         [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<T> (DataSet<T> src)
+        public static implicit operator ReadOnlySpan<T> (Dataset<T> src)
             => src.Data;
 
         [MethodImpl(Inline)]
-        public static bool operator == (DataSet<T> lhs, DataSet<T> rhs)
+        public static bool operator == (Dataset<T> lhs, Dataset<T> rhs)
             => lhs.Data.Span == rhs.Data.Span;
 
         [MethodImpl(Inline)]
-        public static bool operator != (DataSet<T> lhs, DataSet<T> rhs)
+        public static bool operator != (Dataset<T> lhs, Dataset<T> rhs)
             => lhs.Data.Span != rhs.Data.Span;
         
 
         [MethodImpl(Inline)]
-        DataSet(T[] src, int dim)
+        Dataset(T[] src, int dim)
         {
             this.Dim = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
@@ -66,7 +66,7 @@ namespace Z0
         }
                 
         [MethodImpl(Inline)]
-        DataSet(MemorySpan<T> src, int dim)
+        Dataset(MemorySpan<T> src, int dim)
         {
             this.Dim = dim;            
             this.Count = Math.DivRem(src.Length, dim, out int remainder);    
@@ -89,10 +89,10 @@ namespace Z0
         /// </summary>
         /// <param name="vecix">The vector index</param>
         [MethodImpl(Inline)]
-        public DataSet<T> Observation(int vecix)
+        public Dataset<T> Observation(int vecix)
         {
             var slice = Data.Slice(vecix * Dim, Dim); 
-            return new DataSet<T>(slice, Dim);
+            return new Dataset<T>(slice, Dim);
         }
 
         /// <summary>
@@ -102,8 +102,8 @@ namespace Z0
         /// <param name="vecix">The index of the first vector</param>
         /// <param name="count">The number of observations to retrieve</param>
         [MethodImpl(Inline)]
-        public DataSet<T> Observations(int vecix, int count)
-            => new DataSet<T>(Data.Slice(vecix * Dim, count * Dim), Dim);
+        public Dataset<T> Observations(int vecix, int count)
+            => new Dataset<T>(Data.Slice(vecix * Dim, count * Dim), Dim);
             
         /// <summary>
         /// The data length

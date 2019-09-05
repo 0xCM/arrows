@@ -14,6 +14,7 @@ namespace Z0
     /// Characterizes a Laplace distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Laplace_distribution</remarks>
+    /// <typeparam name="T">The sample value type</typeparam>
     public readonly struct LaplaceSpec<T> : IDistributionSpec<T>
         where T : unmanaged
     {

@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Reifies common 256-bit vector patterns
+    /// Reifies and provides storage for common 256-bit vector patterns
     /// </summary>
     public readonly struct Vec256Pattern<T> 
         where T : struct
@@ -22,7 +22,15 @@ namespace Z0
 
         static readonly Vec256<T> Zero = Vec256<T>.Zero;
 
-        public static readonly Vec256<T> Ones = ginx.cmpeq(Zero,Zero);
+        /// <summary>
+        /// A vector with all bits turned on
+        /// </summary>
+        public static readonly Vec256<T> AllOnes = ginx.cmpeq(Zero,Zero);
+
+        /// <summary>
+        /// A vector where each component is assigned the numeric value 1
+        /// </summary>
+        public static readonly Vec256<T> Units = CalcUnits();
 
         public static readonly Vec256<T> Increasing = Increments();
 
@@ -74,6 +82,17 @@ namespace Z0
 
             return Vec256.Load(dst.Swap(swaps));
         }
+
+        static Vec256<T> CalcUnits()
+        {
+            var n = Length;
+            var dst = Span256.Alloc<T>(n);
+            var one = gmath.one<T>();
+            for(var i=0; i<n; i++)
+                dst[i] = one;
+            return Vec256.Load(dst);
+        }
+
 
         static Vec256<T> CalcLaneMerge()
         {

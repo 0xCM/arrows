@@ -13,15 +13,14 @@ namespace Z0.Mkl.Test
     
     using Z0.Test;
 
-    public class tgemm : UnitTest<tgemm>
+    public class t_gemm : UnitTest<t_gemm>
     {
 
-        public tgemm()
+        public t_gemm()
         {
 
         }
 
-        const int MMCycles = Pow2.T07;
         
         public void Dot()
         {
@@ -32,122 +31,110 @@ namespace Z0.Mkl.Test
             var y = Dot(v1,v2).Round(4);
             Claim.eq(x,y);
         }
-
         
         public void GemmInt16()
         {
-            Gemm(closed((short)-1024, (short)1024));
+            gemm_bench(closed((short)-1024, (short)1024));
         }
 
         public void GemmUInt16()
         {
-            Gemm(closed((ushort)0, (ushort)1024));
+            gemm_bench(closed((ushort)0, (ushort)1024));
         }
 
-        void GemmInt32Format()
-        {
-            var domain = closed(-32768, 32768);
-            var n = n5;
-            var m = n5;
-            var m1 = Polyrand.Matrix(domain, m, n);
-            var m2 = Polyrand.Matrix(domain, m, n);
-            var m3 = Matrix.Alloc(m,n,0);
-            var m4 = mkl.gemm(m1,m2,ref m3);
-            Trace(m4.Format(10));
-        }
         
         
-        public void GemmInt32()
+        public void gemm32i()
         {
-            Gemm(closed(-Pow2.T10, Pow2.T10));
+            gemm_bench(closed(-Pow2.T10, Pow2.T10));
         }
 
-        public void GemmUInt32()
+        public void gemm32u()
         {
-            Gemm(closed(0u, 1024u));
-        }
-
-
-        public void GemmInt64()
-        {
-            Gemm(closed((long)-Pow2.T21, (long)Pow2.T21));
-        }
-
-        public void GemmUInt64()
-        {
-            Gemm(closed(0ul, (ulong)Pow2.T21));
-        }
-
-        public void GemmFloat32()
-        {
-            Gemm(closed(-1024f, 1024f),5f);
+            gemm_bench(closed(0u, 1024u));
         }
 
 
-        public void GemmFLoat64()
+        public void gemm64i()
         {
-            Gemm(closed(-(double)Pow2.T21, (double)Pow2.T21),2d);
+            gemm_bench(closed((long)-Pow2.T21, (long)Pow2.T21));
         }
 
-        public void GemmFloat32D()
+        public void gemm64u()
+        {
+            gemm_bench(closed(0ul, (ulong)Pow2.T21));
+        }
+
+        public void gemm32f()
+        {
+            gemm_bench(closed(-1024f, 1024f),5f);
+        }
+
+
+        public void gemm64f()
+        {
+            gemm_bench(closed(-(double)Pow2.T21, (double)Pow2.T21),2d);
+        }
+
+        void gemm32f_direct()
         {
             var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (float)x);
             var pad = 30;
 
-            Collect(GemmDirect<N64,N64,N64>(src), pad);
-            Collect(GemmDirect<N3, N3, N3>(src), pad);
-            Collect(GemmDirect<N3, N5, N4>(src), pad);
-            Collect(GemmDirect<N5, N5, N7>(src), pad);
-            Collect(GemmDirect<N10,N10,N10>(src), pad);
-            Collect(GemmDirect<N17,N3,N17>(src), pad);
-            Collect(GemmDirect<N2, N2, N2>(src), pad);
-            Collect(GemmDirect<N4, N4, N4>(src), pad);
-            Collect(GemmDirect<N8, N8, N8>(src), pad);
-            Collect(GemmDirect<N16,N16,N16>(src), pad);
-            Collect(GemmDirect<N32,N32,N32>(src), pad);
+            Collect(gemm_direct_check<N64,N64,N64>(src), pad);
+            Collect(gemm_direct_check<N3, N3, N3>(src), pad);
+            Collect(gemm_direct_check<N3, N5, N4>(src), pad);
+            Collect(gemm_direct_check<N5, N5, N7>(src), pad);
+            Collect(gemm_direct_check<N10,N10,N10>(src), pad);
+            Collect(gemm_direct_check<N17,N3,N17>(src), pad);
+            Collect(gemm_direct_check<N2, N2, N2>(src), pad);
+            Collect(gemm_direct_check<N4, N4, N4>(src), pad);
+            Collect(gemm_direct_check<N8, N8, N8>(src), pad);
+            Collect(gemm_direct_check<N16,N16,N16>(src), pad);
+            Collect(gemm_direct_check<N32,N32,N32>(src), pad);
         }
 
-        public void GemmFloat64D()
+        void gemm64f_direct()
         {
             var src = Polyrand.Stream(closed(-Pow2.T21, Pow2.T21)).Select(x => (double)x);
             var pad = 30;
 
-            Collect(GemmDirect<N64,N64,N64>(src), pad);
-            Collect(GemmDirect<N3, N3, N3>(src), pad);
-            Collect(GemmDirect<N3, N5, N4>(src), pad);
-            Collect(GemmDirect<N5, N5, N7>(src), pad);
-            Collect(GemmDirect<N10,N10,N10>(src), pad);
-            Collect(GemmDirect<N17,N3,N17>(src), pad);
-            Collect(GemmDirect<N2, N2, N2>(src), pad);
-            Collect(GemmDirect<N4, N4, N4>(src), pad);
-            Collect(GemmDirect<N8, N8, N8>(src), pad);
-            Collect(GemmDirect<N16,N16,N16>(src), pad);
-            Collect(GemmDirect<N32,N32,N32>(src), pad);
+            Collect(gemm_direct_check<N64,N64,N64>(src), pad);
+            Collect(gemm_direct_check<N3, N3, N3>(src), pad);
+            Collect(gemm_direct_check<N3, N5, N4>(src), pad);
+            Collect(gemm_direct_check<N5, N5, N7>(src), pad);
+            Collect(gemm_direct_check<N10,N10,N10>(src), pad);
+            Collect(gemm_direct_check<N17,N3,N17>(src), pad);
+            Collect(gemm_direct_check<N2, N2, N2>(src), pad);
+            Collect(gemm_direct_check<N4, N4, N4>(src), pad);
+            Collect(gemm_direct_check<N8, N8, N8>(src), pad);
+            Collect(gemm_direct_check<N16,N16,N16>(src), pad);
+            Collect(gemm_direct_check<N32,N32,N32>(src), pad);
         }
 
-        void Gemm<T>(Interval<T> domain,  T epsilon = default)
+        void gemm_bench<T>(Interval<T> domain,  T epsilon = default)
             where T : struct
         {
             
             var src = Polyrand.Stream(domain);
             var pad = 30;
 
-            Collect(GemmExec(src, epsilon, n64,  n64, n64), pad);
-            Collect(GemmExec(src,epsilon, n3,  n3, n3), pad);
-            Collect(GemmExec(src,epsilon, n3,  n5, n4), pad);
-            Collect(GemmExec(src,epsilon, n5,  n5, n7), pad);
-            Collect(GemmExec(src,epsilon, n10, n10, n10), pad);
-            Collect(GemmExec(src,epsilon, n17, n3, n17), pad);
-            Collect(GemmExec(src,epsilon, n2,  n2, n2), pad);
-            Collect(GemmExec(src,epsilon, n4,  n4, n4), pad);
-            Collect(GemmExec(src,epsilon, n8,  n8, n8), pad);
-            Collect(GemmExec(src,epsilon, n16, n16, n16), pad);
-            Collect(GemmExec(src,epsilon, n32, n32, n32), pad);
+            Collect(gemm_check(src, epsilon, n64,  n64, n64), pad);
+            Collect(gemm_check(src,epsilon, n3,  n3, n3), pad);
+            Collect(gemm_check(src,epsilon, n3,  n5, n4), pad);
+            Collect(gemm_check(src,epsilon, n5,  n5, n7), pad);
+            Collect(gemm_check(src,epsilon, n10, n10, n10), pad);
+            Collect(gemm_check(src,epsilon, n17, n3, n17), pad);
+            Collect(gemm_check(src,epsilon, n2,  n2, n2), pad);
+            Collect(gemm_check(src,epsilon, n4,  n4, n4), pad);
+            Collect(gemm_check(src,epsilon, n8,  n8, n8), pad);
+            Collect(gemm_check(src,epsilon, n16, n16, n16), pad);
+            Collect(gemm_check(src,epsilon, n32, n32, n32), pad);
         }
 
         
 
-        OpTime GemmExec<M,K,N,T>(IEnumerable<T> src, T epsilon = default, M m = default, K k = default, N n = default, bool trace = false)
+        OpTime gemm_check<M,K,N,T>(IEnumerable<T> src, T epsilon = default, M m = default, K k = default, N n = default, bool trace = false)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -160,7 +147,7 @@ namespace Z0.Mkl.Test
             var E = Matrix.Alloc<M,N,T>();
         
             var runtime = Duration.Zero;
-            for(var i=0; i<MMCycles; i++)
+            for(var i=0; i<CycleCount; i++)
             {
                 src.StreamTo(A.Unblocked);
                 src.StreamTo(B.Unblocked);
@@ -176,18 +163,17 @@ namespace Z0.Mkl.Test
                     Trace($"X = {X.Format()}");
                     Trace($"E = {E.Format()}");
                 }
-
             
                 E.Unblocked.ClaimEqual(X.Unblocked,epsilon);
 
             }
 
             var label = $"gemm<N{nati<M>()},N{nati<K>()},N{nati<N>()},{typeof(T).Name}>";
-            return optime(MMCycles, runtime, label);
+            return optime(CycleCount, runtime, label);
 
         }
 
-        OpTime GemmDirect<M,K,N>(IEnumerable<float> src, M m = default, K k = default, N n = default)
+        OpTime gemm_direct_check<M,K,N>(IEnumerable<float> src, M m = default, K k = default, N n = default)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -199,7 +185,7 @@ namespace Z0.Mkl.Test
             var E = Matrix.Alloc<M,N,float>();
         
             var runtime = Duration.Zero;
-            for(var i=0; i<MMCycles; i++)
+            for(var i=0; i<CycleCount; i++)
             {
                 src.StreamTo(A.Unblocked);
                 src.StreamTo(B.Unblocked);
@@ -213,12 +199,12 @@ namespace Z0.Mkl.Test
             }
 
             var label = $"gemm<{nati<M>()},{nati<K>()},{nati<N>()}>";
-            return optime(MMCycles, runtime, label);
+            return optime(CycleCount, runtime, label);
 
         }
 
 
-        OpTime GemmDirect<M,K,N>(IEnumerable<double> src, M m = default, K k = default, N n = default)
+        OpTime gemm_direct_check<M,K,N>(IEnumerable<double> src, M m = default, K k = default, N n = default)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -230,7 +216,7 @@ namespace Z0.Mkl.Test
             var E = Matrix.Alloc<M,N,double>();
         
             var runtime = Duration.Zero;
-            for(var i=0; i<MMCycles; i++)
+            for(var i=0; i<CycleCount; i++)
             {
                 src.StreamTo(A.Unblocked);
                 src.StreamTo(B.Unblocked);
@@ -244,7 +230,7 @@ namespace Z0.Mkl.Test
             }
 
             var label = $"gemm<{nati<M>()},{nati<K>()},{nati<N>()}>";
-            return optime(MMCycles, runtime, label);
+            return optime(CycleCount, runtime, label);
 
         }
 
@@ -357,6 +343,17 @@ namespace Z0.Mkl.Test
             }
             return ref X;
 
+        }
+
+        void GemmInt32Format()
+        {
+            var domain = closed(-32768, 32768);
+            var n = n5;
+            var m = n5;
+            var m1 = Polyrand.Matrix(domain, m, n);
+            var m2 = Polyrand.Matrix(domain, m, n);
+            var m3 = Matrix.Alloc(m,n,0);
+            var m4 = mkl.gemm(m1,m2,ref m3);
         }
 
     }

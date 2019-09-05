@@ -13,29 +13,23 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    static class RngStream
-    {
-        [MethodImpl(Inline)]
-        public static IRandomStream<T> Define<T>(IEnumerable<T> src)
-            where T : struct
-                => new RngStream<T>(src);
-    }
-
-    readonly struct RngStream<T> : IRandomStream<T>
+    public struct RandomStream<T> : IRandomStream<T>
         where T : struct
     {
-        readonly IEnumerable<T> src;
 
         [MethodImpl(Inline)]
-        public RngStream(IEnumerable<T> src)
-            => this.src = src;
+        public RandomStream(RngKind rng, IEnumerable<T> src)
+        {
+            this.src = src;
+            this.RngKind = rng;
+        }
+
+        readonly IEnumerable<T> src;
+
+        public RngKind RngKind {get;}
 
         public IEnumerator<T> GetEnumerator()
             => src.GetEnumerator();
-
-        [MethodImpl(Inline)]
-        public T Next()
-            => src.First();
 
         public IEnumerable<T> Next(int count)
             => src.Take(count);
@@ -43,6 +37,4 @@ namespace Z0
         IEnumerator IEnumerable.GetEnumerator()
             => src.GetEnumerator();
     }
-
-
 }

@@ -16,7 +16,7 @@ namespace Z0.Test
         protected override int SampleSize
             => Pow2.T09;
 
-        public override int CycleCount
+        protected override int CycleCount
             => Pow2.T12;
 
         public void gfmul256()

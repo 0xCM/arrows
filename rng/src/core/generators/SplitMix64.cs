@@ -19,31 +19,21 @@ namespace Z0
         /// <summary>
         /// Defines the rng with a specified initial state
         /// </summary>
-        /// <param name="seed">The initial state</param>
+        /// <param name="state">The initial state</param>
         [MethodImpl(Inline)]
-        public static IPointSource<ulong> Define(ulong seed)
-            => new SplitMix64(seed);
-
-        readonly ulong Seed;
+        public static IPointSource<ulong> Define(ulong state)
+            => new SplitMix64(state);
         
         ulong State;
 
-
         [MethodImpl(Inline)]
-        public SplitMix64(ulong Seed)
+        SplitMix64(ulong state)
         {
-            this.Seed = Seed;
-            this.State = Seed;
+            this.State = state;
         }
 
-        [MethodImpl(Inline)]
-        static ulong NextState(ulong state)
-        {
-            ulong z = state + X1;
-            z = (z ^ (z >> 30)) * X2;
-            z = (z ^ (z >> 27)) * X3;
-            return z ^ (z >> 31);
-        }
+        public RngKind RngKind 
+            => RngKind.SplitMix64;
 
         [MethodImpl(Inline)]
         public ulong Next()
@@ -60,8 +50,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong Next(ulong min, ulong max)
             => min + Next().Contract(max - min);
- 
-         const ulong X1 = 0x9E3779B97F4A7C15;
+
+        [MethodImpl(Inline)]
+        static ulong NextState(ulong state)
+        {
+            ulong z = state + X1;
+            z = (z ^ (z >> 30)) * X2;
+            z = (z ^ (z >> 27)) * X3;
+            return z ^ (z >> 31);
+        }
+
+        const ulong X1 = 0x9E3779B97F4A7C15;
         
         const ulong X2 = 0xBF58476D1CE4E5B9;
         

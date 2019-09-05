@@ -682,7 +682,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector128 Inc()
         {
-            xmm = ginx.inc(xmm);
+            xmm = ginx.next(xmm);
             return this;
         }
 
@@ -693,7 +693,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector128 Dec()
         {
-            xmm = ginx.dec(xmm);
+            xmm = ginx.prior(xmm);
             return this;
         }
 

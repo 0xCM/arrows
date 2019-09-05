@@ -21,7 +21,6 @@ namespace Z0
 
     public static partial class dinx
     {
-
         /// <summary>
         /// __m128i _mm_subs_epu8 (__m128i a, __m128i b) PSUBUSB xmm, xmm/m128
         /// </summary>

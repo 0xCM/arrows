@@ -22,15 +22,26 @@ namespace Z0
 
     partial class dinxx
     {
-
-        public static Span128<T> Sub<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
+        /// <summary>
+        /// Computes the difference of the operands
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec128<T> Sub<T>(this Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
-                => ginx.sub(lhs,rhs,dst);
+                => ginx.sub(in lhs,in rhs);
 
-        public static Span256<T> Sub<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
+        /// <summary>
+        /// Computes the difference of the operands
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        /// <typeparam name="T">The primal component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> Sub<T>(this Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
-                => ginx.sub(lhs,rhs,dst);
-
-
+                => ginx.sub(in lhs,in rhs);
     }
 }

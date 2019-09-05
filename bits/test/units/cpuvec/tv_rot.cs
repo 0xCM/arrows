@@ -14,7 +14,7 @@ namespace Z0
 
     public class tv_rot : UnitTest<tv_rot>
     {
-        public override int CycleCount 
+        protected override int CycleCount 
             => Pow2.T08;
         
         public void rot256u8()

@@ -16,9 +16,9 @@ namespace Z0
     partial class RngX
     {
         [MethodImpl(Inline)]
-        static IRandomStream<T> stream<T>(IEnumerable<T> src)
+        static IRandomStream<T> stream<T>(IEnumerable<T> src, RngKind rng)
             where T : struct
-                => RngStream.Define(src);
+                =>  new RandomStream<T>(rng,src);
 
         /// <summary>
         /// Produces a stream of random bytes
@@ -36,7 +36,7 @@ namespace Z0
                             yield return bytes[i];
                 }
             }
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Z0
                 while(true)
                     yield return random.Next<T>();
             }
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> Stream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => stream(random.UniformStream(domain,filter));
+                => stream(random.UniformStream(domain,filter), random.RngKind);
 
         /// <summary>
         /// Produces a stream values from the source subject to a specified maximum value and optional filter
@@ -75,7 +75,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> Stream<T>(this IPolyrand random, T max, Func<T,bool> filter = null)
             where T : struct
-                => stream(random.UniformStream(closed(gmath.minval<T>(), max),filter));
+                => stream(random.UniformStream(closed(gmath.minval<T>(), max),filter), random.RngKind);
 
         /// <summary>
         /// Produces a stream values from the source subject to a specified range and optional filter
@@ -86,7 +86,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> Stream<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)
             where T : struct
-                => stream(random.UniformStream(closed(min,max),filter));
+                => stream(random.UniformStream(closed(min,max),filter), random.RngKind);
 
         /// <summary>
         /// Produces a stream of values from the random source
@@ -97,7 +97,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> Stream<T>(this IPolyrand random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
-                => stream(random.UniformStream(domain,filter));
+                => stream(random.UniformStream(domain,filter), random.RngKind);
 
         /// <summary>
         /// Fills a caller-allocated target with a specified number of values from the source
@@ -141,7 +141,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> NonZeroStream<T>(this IPolyrand random, Interval<T>? domain = null)
                 where T : struct
-                    => stream(random.UniformStream(domain, gmath.nonzero));
+                    => stream(random.UniformStream(domain, gmath.nonzero), random.RngKind);
 
         /// <summary>
         /// Produces a stream of nonzero uniformly random values
@@ -151,7 +151,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         public static IRandomStream<T> NonZeroStream<T>(this IPolyrand random, Interval<T> domain)
             where T : struct
-                => stream(random.UniformStream(domain, gmath.nonzero));
+                => stream(random.UniformStream(domain, gmath.nonzero), random.RngKind);
 
         static IEnumerable<T> UnfilteredStream<T>(this IPolyrand src, Interval<T> domain)
             where T : struct
@@ -224,8 +224,6 @@ namespace Z0
             else
                 return src.UnfilteredStream(configured);
         }
-
-
     }
 
 }

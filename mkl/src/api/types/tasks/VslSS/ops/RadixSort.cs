@@ -23,7 +23,7 @@ namespace Z0.Mkl
         /// <param name="dim">The common dimension of each vector</param>
         /// <param name="dst">The buffer that will receive the sorted vectors</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> RadixSort(this DataSet<float> samples, DataSet<float> dst)        
+        public static Dataset<float> RadixSort(this Dataset<float> samples, Dataset<float> dst)        
             => samples.ApplyRadixSort(dst);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0.Mkl
         /// <param name="dim">The common dimension of each vector</param>
         /// <param name="dst">The buffer that will receive the sorted vectors</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> RadixSort(this DataSet<double> samples, DataSet<double> dst)        
+        public static Dataset<double> RadixSort(this Dataset<double> samples, Dataset<double> dst)        
             => samples.ApplyRadixSort(dst);
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace Z0.Mkl
         /// <param name="samples">The observation vectors in row-major format</param>
         /// <param name="dim">The common dimension of each vector</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> RadixSort(this DataSet<float> samples)        
-            => samples.ApplyRadixSort(Sample.Alloc<float>(samples.Dim, samples.Count));
+        public static Dataset<float> RadixSort(this Dataset<float> samples)        
+            => samples.ApplyRadixSort(Dataset.Alloc<float>(samples.Dim, samples.Count));
 
         /// <summary>
         /// Applies the radix sort method to order the components in each observation vector
@@ -51,10 +51,10 @@ namespace Z0.Mkl
         /// <param name="samples">The observation vectors in row-major format</param>
         /// <param name="dim">The common dimension of each vector</param>
         [MethodImpl(Inline)]
-        public static Span<double> RadixSort(this DataSet<double> samples)        
-            => samples.ApplyRadixSort(Sample.Alloc<double>(samples.Dim, samples.Count));
+        public static Span<double> RadixSort(this Dataset<double> samples)        
+            => samples.ApplyRadixSort(Dataset.Alloc<double>(samples.Dim, samples.Count));
 
-         static unsafe DataSet<T> ApplyRadixSort<T>(this DataSet<T> samples, DataSet<T> dst)        
+         static unsafe Dataset<T> ApplyRadixSort<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             var dim = samples.Dim;

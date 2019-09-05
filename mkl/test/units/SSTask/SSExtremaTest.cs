@@ -22,7 +22,7 @@ namespace Z0.Mkl.Test
 
             var s1Range = closed(350.0, 1000.0);
             var s1 = Polyrand.Array<double>(samplesize, s1Range);
-            var s1Max = Sample.Load(s1).Max()[0];
+            var s1Max = Dataset.Load(s1).Max()[0];
             Claim.neq(s1Max,0.0);
 
             var zeroCount = s1.Count(x => x == 0);
@@ -33,7 +33,7 @@ namespace Z0.Mkl.Test
         public void VerifySumSimple()
         {
             var src = new double[]{4,8,10};
-            var result = Sample.Load(src).Sum()[0];
+            var result = Dataset.Load(src).Sum()[0];
             Claim.eq(22.0,result);
 
         }
@@ -42,7 +42,7 @@ namespace Z0.Mkl.Test
         {
             var src = Polyrand.Array<double>(Pow2.T14);
             var expect = src.Sum().Round(4);
-            var actual = Sample.Load(src).Sum()[0].Round(4);
+            var actual = Dataset.Load(src).Sum()[0].Round(4);
             Claim.eq(expect,actual);
         }
 
@@ -56,7 +56,7 @@ namespace Z0.Mkl.Test
 
             var sw1 = stopwatch();
             for(var i=0; i<cycles; i++)
-                last = (long)Sample.Load(dSrc).Mean()[0];
+                last = (long)Dataset.Load(dSrc).Mean()[0];
             var t1 = OpTime.Define(cycles*samples, snapshot(sw1),"mkl");
 
 
@@ -72,7 +72,7 @@ namespace Z0.Mkl.Test
 
             var src = Polyrand.Array<long>(Pow2.T14, closed(-2000L, 2000L));
             var expect = src.Avg();
-            var actual = (long)Sample.Load(src.Convert<double>()).Mean()[0];
+            var actual = (long)Dataset.Load(src.Convert<double>()).Mean()[0];
             Claim.eq(expect,actual);
 
 

@@ -32,14 +32,21 @@ namespace Z0
             this.Config = config ?? TestConfigDefaults.Default();
         }
 
-        
-        protected const int DefaltCycleCount = Pow2.T03;
 
+        /// <summary>
+        /// The default number of elements to be selected from some sort of stream
+        /// </summary>
         protected const int DefaultSampleSize = Pow2.T08;
 
-        protected static readonly N256 DefaultSampleNat = default;
+        /// <summary>
+        /// The default number times to repeat some action, usually the action of drawing a sample of some size
+        /// </summary>
+        protected const int DefaltCycleCount = Pow2.T03;
+
 
         protected const int DefaultScale = 6;
+
+        protected static readonly N256 DefaultSampleNat = default;
 
         public ITestConfig Config {get; private set;}
 
@@ -60,20 +67,29 @@ namespace Z0
                 : Polyrand.Array<K>(config.SampleSize, config.SampleDomain);
         }
 
-        protected void Verify(Action a, int cycles = DefaltCycleCount)
+        protected void Verify(Action a)
         {
-            for(var i=0; i< cycles; i++)
+            for(var i=0; i< CycleCount; i++)
                 a();
 
         }
 
+        /// <summary>
+        /// The number of elements to be selected from some sort of stream
+        /// </summary>
         protected virtual int SampleSize
             => DefaultSampleSize;
         
-        public virtual int CycleCount
+        /// <summary>
+        /// The number times to repeat some action, usually the action of drawing a sample of some size
+        /// </summary>
+        protected virtual int CycleCount
             => DefaltCycleCount;
 
-        public virtual int Scale
+        /// <summary>
+        /// Specifies the number of decimal places that relevant for some purpose
+        /// </summary>
+        protected virtual int Scale
             => DefaultScale;
         
         protected virtual Interval<byte> ShiftRange<K>()

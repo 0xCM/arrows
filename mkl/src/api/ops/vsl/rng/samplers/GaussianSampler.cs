@@ -29,9 +29,9 @@ namespace Z0.Mkl
         protected override int FillBuffer(MemorySpan<T> buffer)
         {
             if(typeof(T) == typeof(float))
-                mkl.gaussian(Source, float32(DistSpec.Mean), float32(DistSpec.StdDev), buffer.As<float>());
+                sample.gaussian(Source, float32(DistSpec.Mean), float32(DistSpec.StdDev), buffer.As<float>());
             else if(typeof(T) == typeof(double))
-                mkl.gaussian(Source, float64(DistSpec.Mean), float64(DistSpec.StdDev), buffer.As<double>());
+                sample.gaussian(Source, float64(DistSpec.Mean), float64(DistSpec.StdDev), buffer.As<double>());
             else 
                 throw unsupported<T>();
 

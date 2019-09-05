@@ -16,8 +16,7 @@ namespace Z0
     /// Identifies a supported random number generator
     /// </summary>
     public enum RngKind
-    {
-        
+    {        
         /// <summary>
         /// A crypto-sourced nondeterministic generator
         /// </summary>

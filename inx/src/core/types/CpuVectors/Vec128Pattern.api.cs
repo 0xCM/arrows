@@ -18,12 +18,20 @@ namespace Z0
     public static class Vec128Pattern
     {
         /// <summary>
+        /// Returns an immutable reference to a vector where each component is assigned the numeric value 1
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static ref readonly Vec128<T> Units<T>()
+            where T : struct
+                => ref Vec128Pattern<T>.Units;
+
+        /// <summary>
         /// Returns an immutable reference to a vector with all bits turned on
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
-        public static ref readonly Vec128<T> Ones<T>()
+        public static ref readonly Vec128<T> AllOnes<T>()
             where T : struct
-                => ref Vec128Pattern<T>.Ones;
+                => ref Vec128Pattern<T>.AllOnes;
 
         /// <summary>
         /// Defines a vector of 32 or 64-bit floating point values where each component 

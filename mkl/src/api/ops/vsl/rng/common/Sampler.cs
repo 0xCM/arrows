@@ -8,9 +8,9 @@ namespace Z0.Mkl
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
-	using static zfunc;
+    using static zfunc;
     using static As;
-
+    using System.Collections;
 
     abstract class Sampler<T,S> : ISampler<T>    
         where T : unmanaged
@@ -49,7 +49,13 @@ namespace Z0.Mkl
 
         protected abstract int FillBuffer(MemorySpan<T> buffer);
 
-        public IEnumerable<T> Samples
+        public IEnumerator<T> GetEnumerator()
+            => Samples.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => Samples.GetEnumerator();
+
+        IEnumerable<T> Samples
         {
             get
             {

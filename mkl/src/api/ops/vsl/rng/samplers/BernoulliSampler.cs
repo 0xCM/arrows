@@ -24,7 +24,7 @@ namespace Z0.Mkl
         {
             
             if(typeof(T) == typeof(int))
-                mkl.bernoulli(Source,  DistSpec, buffer.As<int>());
+                sample.bernoulli(Source,  DistSpec, buffer.As<int>());
             else 
                 throw unsupported<T>();
             

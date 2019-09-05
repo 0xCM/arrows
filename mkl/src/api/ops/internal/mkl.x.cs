@@ -14,6 +14,7 @@ namespace Z0.Mkl
 
     public static partial class mklx
     {
+
         /// <summary>
         /// Initializes a new VslStream for rng 
         /// </summary>
@@ -22,7 +23,11 @@ namespace Z0.Mkl
         /// <param name="index">The stream index, if any</param>
         [MethodImpl(Inline)]
         internal static VslStream NewStream(this BRNG brng, uint seed = 0, int index = 0)
-            => mkl.vslStream(brng, seed,index);
+        {
+            IntPtr stream = IntPtr.Zero;
+            VSL.vslNewStream(ref stream, brng + index, seed).ThrowOnError();
+            return stream;
+        }
 
         /// <summary>
         /// Gets the mkl brng identifier associated with a stream

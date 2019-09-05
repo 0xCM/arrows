@@ -18,7 +18,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The component type</typeparam>
-        public static Vec128<T> Negate<T>(in this Vec128<T> src)
+        public static Vec128<T> Negate<T>(this Vec128<T> src)
             where T : struct
                 => ginx.negate(in src);
 
@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The component type</typeparam>
-        public static Vec256<T> Negate<T>(in this Vec256<T> src)
+        public static Vec256<T> Negate<T>(this Vec256<T> src)
             where T : struct
                 => ginx.negate(in src);
     }

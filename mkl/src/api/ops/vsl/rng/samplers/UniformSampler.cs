@@ -22,19 +22,16 @@ namespace Z0.Mkl
 
         protected override int FillBuffer(MemorySpan<T> buffer)
         {
-            var min = DistSpec.Min;
-            var max = DistSpec.Max;
             if(typeof(T) == typeof(int))
-                mkl.uniform(Source, int32(min), int32(max), buffer.As<int>());
+                sample.uniform(Source, int32(DistSpec.Min), int32(DistSpec.Max), buffer.As<int>());
             else if(typeof(T) == typeof(float))
-                mkl.uniform(Source, float32(min), float32(max), buffer.As<float>());
+                sample.uniform(Source, float32(DistSpec.Min), float32(DistSpec.Max), buffer.As<float>());
             else if(typeof(T) == typeof(double))
-                mkl.uniform(Source, float64(min), float64(max), buffer.As<double>());
+                sample.uniform(Source, float64(DistSpec.Min), float64(DistSpec.Max), buffer.As<double>());
             else 
                 throw unsupported<T>();
 
             return buffer.Length;
-
         }
     }
 }

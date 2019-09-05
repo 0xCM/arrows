@@ -89,6 +89,13 @@ namespace Z0
         public static IPolyrand SplitMix(ulong? seed = null)
             => SplitMix64.Define(seed ?? Entropy.Value<ulong>()).ToPolyrand();
 
+        /// <summary>
+        /// Creates a 32-bit Pcg RNG
+        /// </summary>
+        /// <param name="seed">The inital rng state</param>
+        /// <param name="index">The stream index, if any</param>
+        public static IStepwiseSource<uint> Pcg32(ulong seed, ulong? index = null)
+            => Z0.Pcg32.Define(seed, index);        
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG
@@ -96,7 +103,7 @@ namespace Z0
         /// <param name="seed">The inital rng state</param>
         /// <param name="index">The stream index, if any</param>
         public static IPolyrand Pcg64(ulong seed, ulong? index = null)
-            => new Pcg64(seed, index).ToPolyrand();     
+            => Z0.Pcg64.Define(seed, index).ToPolyrand();     
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
@@ -163,13 +170,6 @@ namespace Z0
         public static IPointSource<ushort> WyHash16(ushort? seed = null, ushort? increment = null)
             => new WyHash16(seed ?? BitConverter.ToUInt16(Entropy.Bytes(2)),increment);
 
-        /// <summary>
-        /// Creates a 32-bit Pcg RNG
-        /// </summary>
-        /// <param name="seed">The inital rng state</param>
-        /// <param name="index">The stream index, if any</param>
-        public static IStepwiseSource<uint> Pcg32(ulong seed, ulong? index = null)
-            => new Pcg32(seed, index);        
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices

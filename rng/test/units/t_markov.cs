@@ -19,7 +19,7 @@ namespace Z0.Rng
         public void ProbabilityVectors0()
         {
             using var rng = RngStream.Define(BRNG.MCG31,Seed);
-            var src = rng.Uniform(.0001, .0100).Samples.Select(x => x.Round(4));
+            var src = samplers.uniform(rng,.0001, .0100).Select(x => x.Round(4));
             var sum = 0.0;
             var count = 0;
             var min = 1.0;
@@ -109,7 +109,7 @@ namespace Z0.Rng
         public void ProbabilityVectors2()
         {
             using var rng = RngStream.Define(BRNG.R250,Seed);
-            var samples = rng.Uniform(.0001, .0100).Samples;
+            var samples = samplers.uniform(rng, .0001, .0100);
             var src = samples.Select(x => x.Round(4));
             var sum = 0.0;
             var count = 0;

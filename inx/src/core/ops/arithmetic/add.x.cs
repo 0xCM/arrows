@@ -37,15 +37,5 @@ namespace Z0
         public static Vec256<T> Add<T>(this Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
                 => ginx.add(in lhs,in rhs);
-
-        [MethodImpl(Inline)]
-        public static Span128<T> Add<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct
-                => ginx.add(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span256<T> Add<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct
-                => ginx.add(lhs,rhs,dst); 
     }
 }

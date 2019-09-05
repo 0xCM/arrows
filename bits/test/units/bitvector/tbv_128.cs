@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
@@ -17,8 +18,8 @@ namespace Z0
             var vectors = Polyrand.BitVectors(n128);
             for(var i=0; i< SampleSize; i++)
             {
-                var x = vectors.Next();
-                var y = vectors.Next();
+                var x = vectors.First();
+                var y = vectors.First();
                 var z = x ^ y;
 
                 var xbs = x.ToBitString();

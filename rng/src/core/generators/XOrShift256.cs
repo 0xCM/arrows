@@ -28,9 +28,8 @@ namespace Z0
         public static IPointSource<ulong> Define(ulong[] seed)
             => new XOrShift256(seed);
 
-
         [MethodImpl(Inline)]
-        public XOrShift256(ulong[] seed)
+        XOrShift256(ulong[] seed)
         {
             this.state = seed;
             jump(J128);
@@ -80,6 +79,8 @@ namespace Z0
             return next;
         }
 
+        public RngKind RngKind 
+            => RngKind.XOrShift256;
 
         [MethodImpl(Inline)]
         public ulong Next(ulong max)
@@ -106,6 +107,5 @@ namespace Z0
 
         static ulong rotl(ulong x, int k) 
             => (x << k) | (x >> (64 - k));
-
     }
 }

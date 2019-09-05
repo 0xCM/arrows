@@ -64,7 +64,8 @@ namespace Z0
                     yield return random.CpuVec128(domain,filter);
             }
             
-            return stream(produce());        }
+            return stream(produce(), random.RngKind);        
+        }
 
         /// <summary>
         /// Produces a random 256-bit cpu vector
@@ -143,7 +144,7 @@ namespace Z0
                     yield return random.CpuVec256(domain,filter);
             }
 
-            return stream(produce());
+            return stream(produce(), random.RngKind);
         }
 
         /// <summary>

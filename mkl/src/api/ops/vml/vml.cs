@@ -1094,7 +1094,7 @@ namespace Z0.Mkl
         }
 
 		/// <summary>
-		/// Computes the gamma function: dst[i] = lgamma(src[i])
+		/// Computes the gamma function: dst[i] = gamma(src[i])
 		/// </summary>
 		/// <param name="src">The source vectro</param>
 		/// <param name="dst">The caller-allocated target vector</param>
@@ -1106,7 +1106,7 @@ namespace Z0.Mkl
         }
             
 		/// <summary>
-		/// Computes the gamma function: dst[i] = lgamma(src[i])
+		/// Computes the gamma function: dst[i] = gamma(src[i])
 		/// </summary>
 		/// <param name="src">The source vector</param>
 		/// <param name="dst">The caller-allocated target vector</param>

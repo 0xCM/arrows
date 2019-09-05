@@ -21,82 +21,82 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> Mean(this DataSet<float> src)        
-            => src.CalcMean(Sample.Alloc<float>(src.Dim,1));
+        public static Dataset<float> Mean(this Dataset<float> src)        
+            => src.CalcMean(Dataset.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// Finds the mean for each dimension
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> Mean(this DataSet<double> src)        
-            => src.CalcMean(Sample.Alloc<double>(src.Dim,1));
+        public static Dataset<double> Mean(this Dataset<double> src)        
+            => src.CalcMean(Dataset.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the sum
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> Sum(this DataSet<float> src)        
-            => src.CalcSum(Sample.Alloc<float>(src.Dim,1));
+        public static Dataset<float> Sum(this Dataset<float> src)        
+            => src.CalcSum(Dataset.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the sum
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> Sum(this DataSet<double> src)        
-            => src.CalcSum(Sample.Alloc<double>(src.Dim,1));
+        public static Dataset<double> Sum(this Dataset<double> src)        
+            => src.CalcSum(Dataset.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> Min(this DataSet<float> src)        
-            => src.CalcMin(Sample.Alloc<float>(src.Dim,1));
+        public static Dataset<float> Min(this Dataset<float> src)        
+            => src.CalcMin(Dataset.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> Min(this DataSet<double> src)        
-            => src.CalcMin(Sample.Alloc<double>(src.Dim,1));
+        public static Dataset<double> Min(this Dataset<double> src)        
+            => src.CalcMin(Dataset.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the maximum sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> Max(this DataSet<float> src)        
-            => src.CalcMax(Sample.Alloc<float>(src.Dim,1));
+        public static Dataset<float> Max(this Dataset<float> src)        
+            => src.CalcMax(Dataset.Alloc<float>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the maximum sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> Max(this DataSet<double> src)        
-            => src.CalcMax(Sample.Alloc<double>(src.Dim,1));
+        public static Dataset<double> Max(this Dataset<double> src)        
+            => src.CalcMax(Dataset.Alloc<double>(src.Dim,1));
 
         /// <summary>
         /// For each dimension, finds the minimum and maxim sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<float> Extrema(this DataSet<float> src)        
-            => src.CalcExtrema(Sample.Alloc<float>(src.Dim,2));
+        public static Dataset<float> Extrema(this Dataset<float> src)        
+            => src.CalcExtrema(Dataset.Alloc<float>(src.Dim,2));
 
         /// <summary>
         /// For each dimension, finds the minimum and maxim sample value
         /// </summary>
         /// <param name="src">The sample</param>
         [MethodImpl(Inline)]
-        public static DataSet<double> Extrema(this DataSet<double> src)        
-            => src.CalcExtrema(Sample.Alloc<double>(src.Dim,2));
+        public static Dataset<double> Extrema(this Dataset<double> src)        
+            => src.CalcExtrema(Dataset.Alloc<double>(src.Dim,2));
 
-        static unsafe DataSet<T> CalcMin<T>(this DataSet<T> samples, DataSet<T> dst)        
+        static unsafe Dataset<T> CalcMin<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -105,7 +105,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe DataSet<T> CalcMax<T>(this DataSet<T> samples, DataSet<T> dst)        
+        static unsafe Dataset<T> CalcMax<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -114,7 +114,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe DataSet<T> CalcSum<T>(this DataSet<T> samples, DataSet<T> dst)        
+        static unsafe Dataset<T> CalcSum<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -123,7 +123,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe DataSet<T> CalcExtrema<T>(this DataSet<T> samples, DataSet<T> dst)        
+        static unsafe Dataset<T> CalcExtrema<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);
@@ -133,7 +133,7 @@ namespace Z0.Mkl
             return dst;
         }
 
-        static unsafe DataSet<T> CalcMean<T>(this DataSet<T> samples, DataSet<T> dst)        
+        static unsafe Dataset<T> CalcMean<T>(this Dataset<T> samples, Dataset<T> dst)        
             where T : unmanaged
         {
             using var h2 = VslSSTaskHandle.Create(samples);

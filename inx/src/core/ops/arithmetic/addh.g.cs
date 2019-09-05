@@ -46,9 +46,7 @@ namespace Z0
                 return generic<T>(dfp.hadd(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-
         }
-
         
    }
 }

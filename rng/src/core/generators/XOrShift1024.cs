@@ -37,6 +37,9 @@ namespace Z0
             this.state = As.uint64(seed).ToArray();
         }
 
+        public RngKind RngKind 
+            => RngKind.XOrShift1024;
+
         public void Jump() 
         {
             ulong[] t = new ulong[16];

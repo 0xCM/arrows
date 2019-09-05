@@ -18,12 +18,20 @@ namespace Z0
     public static class Vec256Pattern
     {        
         /// <summary>
+        /// Returns an immutable reference to a vector where each component is assigned the numeric value 1
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static ref readonly Vec256<T> Units<T>()
+            where T : struct
+                => ref Vec256Pattern<T>.Units;
+
+        /// <summary>
         /// Returns an immutable reference to a vector with all bits turned on
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
-        public static ref readonly Vec256<T> Ones<T>()
+        public static ref readonly Vec256<T> AllOnes<T>()
             where T : struct
-                => ref Vec256Pattern<T>.Ones;
+                => ref Vec256Pattern<T>.AllOnes;
 
         /// <summary>
         /// Returns an immutable reference to a vector that decribes a lo/hi lane merge permutation

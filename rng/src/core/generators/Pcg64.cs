@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Rng
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -15,40 +15,37 @@ namespace Z0.Rng
     /// <summary>
     /// Implemements a 64-bit PCG generator
     /// </summary>
-    class Pcg64 : Pcg<ulong>, IStepwiseSource<ulong>
+    class Pcg64 : IStepwiseSource<ulong>
     {    
+        /// <summary>
+        /// Creates a pcg 64-bit rng
+        /// </summary>
+        /// <param name="s0">The initial state</param>
+        /// <param name="index">The stream index</param>
+        [MethodImpl(Inline)]
         public static Pcg64 Define(ulong s0, ulong? index = null)
             => new Pcg64(s0,index);
      
-        
+
         [MethodImpl(Inline)]
-        public Pcg64(ulong s0, ulong? index = null)
+        Pcg64(ulong s0, ulong? index = null)
         {
-            Init(s0, index ?? DefaultIndex64);
+            Init(s0, index ?? PcgShared.DefaultIndex);
         }
 
-        public readonly ulong Multiplier 
-            = DefaultMultiplier64;
+        ulong State;
+        
+        ulong Index;
 
-        void Init(ulong s0, ulong index)
-        {
-            if(index % 2 == 0)
-                throw new ArgumentException($"Then index value {index} is not odd");
-
-            this.Index = (index << 1) | 1u;
-            Step();
-            this.State += s0;
-            Step();
-
-        }
+        public RngKind RngKind 
+            => RngKind.Pcg64;
 
         [MethodImpl(Inline)]
         public ulong Next()
             => Grind(Step());
 
         /// <summary>
-        /// Advances the generator to the next state and returns the
-        /// prior state for consumption
+        /// Advances the generator to the next state and returns the prior state for consumption
         /// </summary>
         [MethodImpl(Inline)]
         ulong Step()
@@ -56,14 +53,6 @@ namespace Z0.Rng
             var prior = State;
             State =  prior*Multiplier + Index;
             return prior;
-        }
-
-        public IEnumerable<ulong> Stream()
-        {
-            while(true)
-            {
-                yield return Next();
-            }
         }
 
         [MethodImpl(Inline)]
@@ -76,11 +65,28 @@ namespace Z0.Rng
 
         [MethodImpl(Inline)]
         public void Advance(ulong count)  
-            => State = Advance(State, count, Multiplier, Index);
+            => State = PcgShared.Advance(State, count, Multiplier, Index);
 
         [MethodImpl(Inline)]
         public void Retreat(ulong count)
             => Advance(negate(count));        
+
+        void Init(ulong s0, ulong index)
+        {
+            if(index % 2 == 0)
+                throw new ArgumentException($"Then index value {index} is not odd");
+
+            Index = (index << 1) | 1u;
+            Step();
+            State += s0;
+            Step();
+
+        }
+
+        public override string ToString()
+            => $"{State}[{Index}]";
+
+        const ulong Multiplier = PcgShared.DefaultMultiplier;
 
         /// <summary>
         /// Produces a pseudorandom output predicated on a state
@@ -95,8 +101,5 @@ namespace Z0.Rng
             var dst = (src >> 43) ^ src; 
             return dst;         
         }
-
-
     }
-
 }

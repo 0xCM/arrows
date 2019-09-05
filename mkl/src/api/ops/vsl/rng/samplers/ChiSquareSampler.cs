@@ -11,28 +11,26 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    sealed class UniformBitsSampler<T> : Sampler<T, UniformBitsSpec<T>>
+    sealed class ChiSquareSampler<T> : Sampler<T, ChiSquareSpec<int>>
         where T : unmanaged
     {
-        [MethodImpl(Inline)]
-        public UniformBitsSampler(RngStream src, int? buferLen = null)
-            : base(src, default, buferLen)
+        public ChiSquareSampler(RngStream src, int freedom, int? buferLen = null)
+            : base(src, freedom, buferLen)
         {
-            
+
         }
 
         protected override int FillBuffer(MemorySpan<T> buffer)
-        {
-            if(typeof(T) == typeof(uint))
-                sample.bits(Source,  buffer.As<uint>());
-            else if(typeof(T) == typeof(ulong))
-                sample.bits(Source,  buffer.As<ulong>());
+        {            
+            if(typeof(T) == typeof(float))
+                sample.chi2(Source,  DistSpec, buffer.As<float>());
+            else if (typeof(T) == typeof(double))
+                sample.chi2(Source,  DistSpec, buffer.As<double>());
             else 
-                throw unsupported<T>();
-            
+                throw unsupported<T>();            
             return buffer.Length;
-        }
 
+        }
     }
 
 }

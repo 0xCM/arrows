@@ -11,28 +11,26 @@ namespace Z0.Mkl
 	using static zfunc;
     using static As;
 
-    sealed class UniformBitsSampler<T> : Sampler<T, UniformBitsSpec<T>>
+    sealed class PoissonSampler<T> : Sampler<T, PoissonSpec<T>>
         where T : unmanaged
     {
-        [MethodImpl(Inline)]
-        public UniformBitsSampler(RngStream src, int? buferLen = null)
-            : base(src, default, buferLen)
+        public PoissonSampler(RngStream src, PoissonSpec<T> spec, int? buferLen = null)
+            : base(src, spec, buferLen)
         {
-            
+
         }
 
         protected override int FillBuffer(MemorySpan<T> buffer)
         {
-            if(typeof(T) == typeof(uint))
-                sample.bits(Source,  buffer.As<uint>());
-            else if(typeof(T) == typeof(ulong))
-                sample.bits(Source,  buffer.As<ulong>());
+            
+            if(typeof(T) == typeof(int))
+                sample.poisson(Source,  float64(DistSpec.Rate), buffer.As<int>());
             else 
                 throw unsupported<T>();
             
             return buffer.Length;
-        }
 
+        }
     }
 
 }
