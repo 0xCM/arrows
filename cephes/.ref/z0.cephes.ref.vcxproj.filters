@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="double\acosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\airy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\arcdot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\asin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\asinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\atan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\atanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\bdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\bernum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\beta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\btdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\cbrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\chbevl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\chdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\cheby.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\clog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\cmplx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\const.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\cosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\cpmul.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\dawsn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\drand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\dtestvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ei.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\eigens.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ellie.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ellik.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ellpe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ellpj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ellpk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\euclid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\exp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\exp10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\exp2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\expn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\expx2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fftr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\floor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fltest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fltest2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\fresnl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\gamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\gdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\gels.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\hyp2f1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\hyperg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\i0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\i1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\igam.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\igami.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\incbet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\incbi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\isnan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\iv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\j0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\j1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\jn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\jv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\k0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\k1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\kn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\levnsn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\log10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\log2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\lrand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\lsqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\minv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\mod2pi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\mtherr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\mtransp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\mtst.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\nbdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ndtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\ndtri.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\pdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\planck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polevl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polmisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polylog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polyn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\polyr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\pow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\powi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\psi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\revers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\rgamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\round.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\setpmsvc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\setprec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\shichi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sici.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\simpsn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\simq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sincos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sindg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\spence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\sqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\stdtr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\struve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\tan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\tandg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\tanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\time-it.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\unity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\yn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\zeta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="double\zetac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="double\deinit.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="double\floor.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="double\mtst.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="double\polevl.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="double\doubldoc.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="double\dcalc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="double\mconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cephes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

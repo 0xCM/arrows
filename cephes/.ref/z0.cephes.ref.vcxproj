@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{4ED52C39-D3EE-4238-86B1-BBDD008AE5AA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="double\acosh.c" />
+    <ClCompile Include="double\airy.c" />
+    <ClCompile Include="double\arcdot.c" />
+    <ClCompile Include="double\asin.c" />
+    <ClCompile Include="double\asinh.c" />
+    <ClCompile Include="double\atan.c" />
+    <ClCompile Include="double\atanh.c" />
+    <ClCompile Include="double\bdtr.c" />
+    <ClCompile Include="double\bernum.c" />
+    <ClCompile Include="double\beta.c" />
+    <ClCompile Include="double\btdtr.c" />
+    <ClCompile Include="double\cbrt.c" />
+    <ClCompile Include="double\chbevl.c" />
+    <ClCompile Include="double\chdtr.c" />
+    <ClCompile Include="double\cheby.c" />
+    <ClCompile Include="double\clog.c" />
+    <ClCompile Include="double\cmplx.c" />
+    <ClCompile Include="double\const.c" />
+    <ClCompile Include="double\cosh.c" />
+    <ClCompile Include="double\cpmul.c" />
+    <ClCompile Include="double\dawsn.c" />
+    <ClCompile Include="double\drand.c" />
+    <ClCompile Include="double\dtestvec.c" />
+    <ClCompile Include="double\ei.c" />
+    <ClCompile Include="double\eigens.c" />
+    <ClCompile Include="double\ellie.c" />
+    <ClCompile Include="double\ellik.c" />
+    <ClCompile Include="double\ellpe.c" />
+    <ClCompile Include="double\ellpj.c" />
+    <ClCompile Include="double\ellpk.c" />
+    <ClCompile Include="double\euclid.c" />
+    <ClCompile Include="double\exp.c" />
+    <ClCompile Include="double\exp10.c" />
+    <ClCompile Include="double\exp2.c" />
+    <ClCompile Include="double\expn.c" />
+    <ClCompile Include="double\expx2.c" />
+    <ClCompile Include="double\fabs.c" />
+    <ClCompile Include="double\fac.c" />
+    <ClCompile Include="double\fdtr.c" />
+    <ClCompile Include="double\fftr.c" />
+    <ClCompile Include="double\floor.c" />
+    <ClCompile Include="double\fltest.c" />
+    <ClCompile Include="double\fltest2.c" />
+    <ClCompile Include="double\fresnl.c" />
+    <ClCompile Include="double\gamma.c" />
+    <ClCompile Include="double\gdtr.c" />
+    <ClCompile Include="double\gels.c" />
+    <ClCompile Include="double\hyp2f1.c" />
+    <ClCompile Include="double\hyperg.c" />
+    <ClCompile Include="double\i0.c" />
+    <ClCompile Include="double\i1.c" />
+    <ClCompile Include="double\igam.c" />
+    <ClCompile Include="double\igami.c" />
+    <ClCompile Include="double\incbet.c" />
+    <ClCompile Include="double\incbi.c" />
+    <ClCompile Include="double\isnan.c" />
+    <ClCompile Include="double\iv.c" />
+    <ClCompile Include="double\j0.c" />
+    <ClCompile Include="double\j1.c" />
+    <ClCompile Include="double\jn.c" />
+    <ClCompile Include="double\jv.c" />
+    <ClCompile Include="double\k0.c" />
+    <ClCompile Include="double\k1.c" />
+    <ClCompile Include="double\kn.c" />
+    <ClCompile Include="double\levnsn.c" />
+    <ClCompile Include="double\log.c" />
+    <ClCompile Include="double\log10.c" />
+    <ClCompile Include="double\log2.c" />
+    <ClCompile Include="double\lrand.c" />
+    <ClCompile Include="double\lsqrt.c" />
+    <ClCompile Include="double\minv.c" />
+    <ClCompile Include="double\mod2pi.c" />
+    <ClCompile Include="double\mtherr.c" />
+    <ClCompile Include="double\mtransp.c" />
+    <ClCompile Include="double\mtst.c" />
+    <ClCompile Include="double\nbdtr.c" />
+    <ClCompile Include="double\ndtr.c" />
+    <ClCompile Include="double\ndtri.c" />
+    <ClCompile Include="double\pdtr.c" />
+    <ClCompile Include="double\planck.c" />
+    <ClCompile Include="double\polevl.c" />
+    <ClCompile Include="double\polmisc.c" />
+    <ClCompile Include="double\polrt.c" />
+    <ClCompile Include="double\polylog.c" />
+    <ClCompile Include="double\polyn.c" />
+    <ClCompile Include="double\polyr.c" />
+    <ClCompile Include="double\pow.c" />
+    <ClCompile Include="double\powi.c" />
+    <ClCompile Include="double\psi.c" />
+    <ClCompile Include="double\revers.c" />
+    <ClCompile Include="double\rgamma.c" />
+    <ClCompile Include="double\round.c" />
+    <ClCompile Include="double\setpmsvc.c" />
+    <ClCompile Include="double\setprec.c" />
+    <ClCompile Include="double\shichi.c" />
+    <ClCompile Include="double\sici.c" />
+    <ClCompile Include="double\simpsn.c" />
+    <ClCompile Include="double\simq.c" />
+    <ClCompile Include="double\sin.c" />
+    <ClCompile Include="double\sincos.c" />
+    <ClCompile Include="double\sindg.c" />
+    <ClCompile Include="double\sinh.c" />
+    <ClCompile Include="double\spence.c" />
+    <ClCompile Include="double\sqrt.c" />
+    <ClCompile Include="double\stdtr.c" />
+    <ClCompile Include="double\struve.c" />
+    <ClCompile Include="double\tan.c" />
+    <ClCompile Include="double\tandg.c" />
+    <ClCompile Include="double\tanh.c" />
+    <ClCompile Include="double\time-it.c" />
+    <ClCompile Include="double\unity.c" />
+    <ClCompile Include="double\yn.c" />
+    <ClCompile Include="double\zeta.c" />
+    <ClCompile Include="double\zetac.c" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="double\deinit.asm" />
+    <None Include="double\doubldoc.html" />
+    <None Include="double\floor.asm" />
+    <None Include="double\mtst.asm" />
+    <None Include="double\polevl.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cephes.h" />
+    <ClInclude Include="double\dcalc.h" />
+    <ClInclude Include="double\mconf.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

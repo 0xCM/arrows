@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="../../structs/z0.structs.csproj" />
+    <ProjectReference Include="../../func/z0.zfunc.csproj" />
+    <ProjectReference Include="../../nats/z0.nats.csproj" />
+  </ItemGroup>
+
+</Project>

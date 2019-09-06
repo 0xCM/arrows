@@ -12,6 +12,7 @@
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
 
+
   </ItemGroup>
 
 </Project>
