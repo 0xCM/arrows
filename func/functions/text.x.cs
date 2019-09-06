@@ -333,10 +333,6 @@ namespace Z0
             return sb.ToString();
         }
 
-        // [MethodImpl(Inline)]   
-        // public static string Concat(this Span<string> src, string sep = null)        
-        //     => src.ReadOnly().Concat(sep);
-
         /// <summary>
         /// Defines an unsigned alterantive to the intrinsic Count property
         /// </summary>
@@ -347,65 +343,19 @@ namespace Z0
             => (uint)src.Count;
 
         /// <summary>
-        /// Replaces occurrences of specified characters is a string if any are present
-        /// </summary>
-        /// <param name="s">The string that contains characters to be replaced</param>
-        /// <param name="replacements">The characters that will be used to replace existing characters</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ReplaceAny(this string s, IReadOnlyDictionary<char, char> replacements)
-        {
-            if (s.ContainsAny(replacements.Keys))
-            {
-                var dst = new char[s.Length];
-                var src = s.ToCharArray();
-                for (int i = 0; i < s.Length; i++)
-                {
-                    if (replacements.ContainsKey(src[i]))
-                    {
-                        dst[i] = replacements[src[i]];
-                    }
-                    else
-                        dst[i] = src[i];
-                }
-                return new string(dst);
-            }
-            else
-            {
-                return s;
-            }
-        }
-
-        public static string ReplaceAny(this string s, IReadOnlyDictionary<string, string> replacements)
-        {
-            var result = s;
-            foreach (var r in replacements)
-                result = result.Replace(r.Key, r.Value);
-            return result;
-        }
-
-        public static string ReplaceExact(this string s, IReadOnlyDictionary<string, string> replacements)
-        {
-            foreach (var r in replacements)
-                if (s == r.Key)
-                    return r.Value;
-            return s;
-        }
-
-        /// <summary>
         /// Creates a new string from the first n - 1 characters of a string of length n
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="s">The source string</param>
+        [MethodImpl(Inline)]
         public static string RemoveLast(this string s)
-            => IsBlank(s)
-            ? string.Empty
-            : s.Substring(0, s.Length - 1);
+            => IsBlank(s) ? string.Empty : s.Substring(0, s.Length - 1);
 
         /// <summary>
         /// Adds a variant of split that is inexplicably missing from System.String
         /// </summary>
         /// <param name="s">The string to split</param>
         /// <param name="delimiter">The delimiter</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static IReadOnlyList<string> Split(this string s, string delimiter)
             => s.Split(array(delimiter), StringSplitOptions.RemoveEmptyEntries);
 
@@ -421,12 +371,8 @@ namespace Z0
                 var dst = String.Empty;
                 var src = s.ToCharArray();
                 for (int i = 0; i < s.Length; i++)
-                {
                     if (!removals.Contains(src[i]))
-                    {
                         dst += src[i];
-                    }
-                }
                 return dst;
             }
             else
@@ -441,36 +387,11 @@ namespace Z0
         public static string RemoveAny(this string s, params char[] removals)
             => s.RemoveAny(removals as IEnumerable<char>);
         
-
-        /// <summary>
-        /// Transforms a generic-valued dictionary into a string-valued dictionary via the generic type's 
-        /// ToString() methoc
-        /// </summary>
-        /// <typeparam name="T">The type of value contained by the dictionary</typeparam>
-        /// <param name="src">The dictionary to transform</param>
-        /// <returns></returns>
-        public static IReadOnlyDictionary<string, string> ToStringDictionary<T>(this IReadOnlyDictionary<string, T> src)
-                => src.ToDictionary(x => x.Key, x => x.Value != null ? x.Value.ToString() : String.Empty);
-
-        /// <summary>
-        /// Transforms a generic-valued dictionary into a string-valued dictionary via the generic type's 
-        /// ToString() methoc
-        /// </summary>
-        /// <typeparam name="T">The type of value contained by the dictionary</typeparam>
-        /// <param name="src">The dictionary to transform</param>
-        /// <returns></returns>
-        public static IReadOnlyDictionary<string, string> ToStringDictionary<T>(this IDictionary<string, T> src)
-            => src.ToDictionary(x => x.Key,
-                    x => x.Value != null
-                    ? x.Value.ToString()
-                    : String.Empty);
-
         /// <summary>
         /// Searches for the last index of a specified character in a string
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="c">The character to match</param>
-        /// <returns></returns>
         public static Option<int> TryGetLastIndexOf(this string s, char c)
         {
             var idx = s.LastIndexOf(c);
@@ -482,44 +403,10 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="c">The marking character</param>
-        /// <returns></returns>
         public static Option<int> TryGetFirstIndexOf(this string s, char c)
         {
             var idx = s.IndexOf(c);
             return idx != -1 ? some(idx) : none<int>();
-        }
-
-        /// <summary>
-        /// Extracts a substring determined by left/right indexes
-        /// </summary>
-        /// <param name="s">The string from which to extract a substring</param>
-        /// <param name="l">The left index</param>
-        /// <param name="r">The right index</param>
-        /// <param name="inclusive"></param>
-        public static string BetweenIndices(this string s, uint l, uint r, bool inclusive = false)
-        {
-            if (s.Length <= r)
-                return string.Empty;
-
-            var result = string.Empty;
-            for(var i = (int)l; i <= r; i++)
-            {
-                if (i == l)
-                {
-                    if(inclusive)
-                        s += s[i];
-                }
-                else if (i == r - 1 && not(inclusive))
-                {
-                    s += s[i];
-                    break;
-                }
-                else
-                    s += s[i];
-            }
-
-            return result;        
-            
         }
 
         /// <summary>
@@ -722,30 +609,37 @@ namespace Z0
                 yield return new string(trim);                
         }
 
+        /// <summary>
+        /// Joins the strings provided by the enumerable with an optional separator
+        /// </summary>
+        /// <param name="src">The source strings</param>
+        /// <param name="sep">The separator, if any</param>
+        [MethodImpl(Inline)]
         public static string Concat(this IEnumerable<string> src, string sep = null)
-        {
-            var sb = new StringBuilder();
-            var x = src.ToArray();
-            for(var i=0; i<x.Length; i++)
-            {
-                sb.Append(x[i]);
-                if(sep != null && i < x.Length - 1)
-                    sb.Append(sep);
-            }
-            return sb.ToString();
-        }
+            => string.Join(sep ?? string.Empty, src);
 
+        /// <summary>
+        /// Block-formats a string using specified block length and separator
+        /// </summary>
+        /// <param name="src">The source string</param>
+        /// <param name="blocklen">The number of characters in each block, save the last</param>
+        /// <param name="sep">The block separator</param>
         [MethodImpl(Inline)]
         public static string SeparateBlocks(this string src, int blocklen, string sep)
             => src.Partition(blocklen).Concat(sep);
 
+        /// <summary>
+        /// Block-formats a string using specified block length and separator
+        /// </summary>
+        /// <param name="src">The source string</param>
+        /// <param name="blocklen">The number of characters in each block, save the last</param>
+        /// <param name="sep">The block separator</param>
         [MethodImpl(Inline)]
         public static string SeparateBlocks(this string src, int blocklen, char sep)
             => src.Partition(blocklen).Concat(sep.ToString());
 
         /// <summary>
-        /// Creates a new string by weaving a specified character between each pari
-        /// of members in the source string
+        /// Creates a new string by weaving a specified character between each character in a source string
         /// </summary>
         /// <param name="src">The source string</param>
         /// <param name="c">The character to intersperse</param>
@@ -787,6 +681,10 @@ namespace Z0
         public static bool ContentEqual(this Span<char> lhs, Span<char> rhs)        
              =>  lhs.ReadOnly().ContentEqual(rhs);
 
+        /// <summary>
+        /// Removes whitespace characters from a string
+        /// </summary>
+        /// <param name="src">The source string</param>
         [MethodImpl(Inline)]
         public static string RemoveWhitespace(this string src)
             => src.RemoveAny(items(AsciSym.Space, AsciEscape.LineFeed, AsciEscape.NewLine, AsciEscape.Tab));

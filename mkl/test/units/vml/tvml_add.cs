@@ -13,7 +13,7 @@ namespace Z0.Mkl.Test
     using Z0.Test;
 
 
-    public class tvml_add : MklTest<tvml_add>
+    public class tvml_add : t_mkl<tvml_add>
     {
 
         public void vaddF32()

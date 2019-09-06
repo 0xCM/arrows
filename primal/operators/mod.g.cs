@@ -37,9 +37,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(math.mod(uint64(lhs),uint64(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(math.mod(float32(lhs),float32(rhs)));
+                return generic<T>(fmath.mod(float32(lhs),float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(math.mod(float64(lhs),float64(rhs)));
+                return generic<T>(fmath.mod(float64(lhs),float64(rhs)));
             else            
                 throw unsupported<T>();
         }           
@@ -65,9 +65,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.mod(ref uint64(ref lhs), in uint64(in rhs));
             else if(typeof(T) == typeof(float))
-                math.mod(ref float32(ref lhs), in float32(in rhs));
+                fmath.mod(ref float32(ref lhs), in float32(in rhs));
             else if(typeof(T) == typeof(double))
-                math.mod(ref float64(ref lhs), in float64(in rhs));
+                fmath.mod(ref float64(ref lhs), in float64(in rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;
@@ -93,9 +93,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.mod(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.mod(float32(lhs), float32(rhs), float32(dst));
+                fmath.mod(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.mod(float64(lhs), float64(rhs), float64(dst));
+                fmath.mod(float64(lhs), float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -122,9 +122,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.mod(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                math.mod(float32(lhs), float32(rhs));
+                fmath.mod(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(float))
-                math.mod(float64(lhs), float64(rhs));
+                fmath.mod(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return lhs;
@@ -151,9 +151,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.mod(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                math.mod(float32(lhs), float32(rhs));
+                fmath.mod(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(float))
-                math.mod(float64(lhs), float64(rhs));
+                fmath.mod(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;

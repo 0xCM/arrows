@@ -23,7 +23,13 @@ namespace Z0
         readonly byte degree;
 
         public static readonly GfPoly16 Zero = default;
-        
+
+        public static GfPoly16 FromExponents(params byte[] exponents)
+            => new GfPoly16(exponents);
+
+        public static GfPoly16 FromScalar(ushort data)
+            => new GfPoly16(data);
+
         [MethodImpl(Inline)]
         public static implicit operator ushort(GfPoly16 src)
             => src.data;
@@ -31,12 +37,27 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator BitVector16(GfPoly16 src)
             => src.ToBitVector();
+        
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N9,ushort>(GfPoly16 src)
+            => src.ToNatVec();
+
+        [MethodImpl(Inline)]
+        public static implicit operator GfPoly<N9,ushort>(GfPoly16 src)
+            => src.ToNatPoly();
 
         [MethodImpl(Inline)]
         public GfPoly16(params byte[] exponents)
         {
             data = Gf.Poly<ushort>(exponents);
             degree = exponents.Length != 0 ? exponents[0] : (byte)0;
+        }
+
+        [MethodImpl(Inline)]
+        public GfPoly16(ushort data)
+        {
+            this.data = data;
+            this.degree = math.sub((byte)15,Bits.nlz(data));
         }
 
         /// <summary>
@@ -75,14 +96,31 @@ namespace Z0
             get => !gmath.nonzero(data);
         }
 
+        /// <summary>
+        /// Converts the polynomial to a bitvector
+        /// </summary>
         [MethodImpl(Inline)]
         public BitVector16 ToBitVector()
             => data;
 
         /// <summary>
-        /// Formats the polynomial as a binary number
+        /// Converts the polynomial to a representation with natural degree
+        /// </summary>
+        [MethodImpl(Inline)]
+        public GfPoly<N9,ushort> ToNatPoly()
+            => new GfPoly<N9, ushort>(data);
+
+        /// <summary>
+        /// Converts the polynomial to a bitvector with natural length equal to the degree
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BitVector<N9,ushort> ToNatVec()
+            => new BitVector<N9, ushort>(data);
+        
+        /// <summary>
+        /// Formats the polynomial
         /// </summary>
         public string Format()
-            => BitString.FromScalar(data).Format(true);
+            => ToNatPoly().Format();
     }
 }

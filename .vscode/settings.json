@@ -17,6 +17,13 @@
         "xed-decoded-inst.h": "c",
         "xed-inst.h": "c",
         "main.h": "c",
-        "arithmetic.h": "c"
+        "arithmetic.h": "c",
+        "array": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp",
+        "algorithm": "cpp",
+        "random": "cpp",
+        "numeric": "cpp",
+        "mconf.h": "c"
     }
 }

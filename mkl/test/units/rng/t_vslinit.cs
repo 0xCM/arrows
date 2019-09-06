@@ -30,9 +30,7 @@ namespace Z0.Mkl
             var pActual = sum / ((double)count);
             var radius = closed(pTarget - tolerance, pTarget + tolerance);
             Claim.yea(radius.Contains(pActual));
-
         }
-
 
         public void CreateMt2203Generators()
         {

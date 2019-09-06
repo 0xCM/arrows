@@ -18,6 +18,68 @@ namespace Z0
     /// <remarks>The tables at https://www.partow.net/programming/polynomials/index.html were used for the source data</remarks>
     public static class GfPoly
     {
+
+        /// <summary>
+        /// x^2 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N2,byte> Gfp_2_1_0 = Gf.Poly<N2,byte>(2,1,0);
+        
+        /// <summary>
+        /// x^3 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N3,byte> Gfp_3_1_0 = Gf.Poly<N3,byte>(3,1,0);
+
+        /// <summary>
+        /// x^4 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N4,byte> Gfp_4_1_0 = Gf.Poly<N4,byte>(4,1,0);
+
+        /// <summary>
+        /// x^5 + x^2 + x^0
+        /// </summary>
+        public static readonly GfPoly<N5,byte> Gfp_5_2_0 = Gf.Poly<N5,byte>(5,2,0);
+
+        /// <summary>
+        /// x^6 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N6,byte> Gfp_6_1_0 = Gf.Poly<N6,byte>(6,1,0);
+
+        /// <summary>
+        /// x^7 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N7,byte> Gfp_7_1_0 = Gf.Poly<N7,byte>(7,1,0);
+
+        /// <summary>
+        /// x^8 + x^4 + x^3 + x^2 + x^0
+        /// 0b1_0001_1101
+        /// </summary>
+        public static readonly GfPoly<N8,ushort> Gfp_8_4_3_2_0 = Gf.Poly<N8,ushort>(8,4,3,2,0);
+
+        /// <summary>
+        /// x^9 + x^4 + x^0
+        /// </summary>
+        public static readonly GfPoly<N9,ushort> Gfp_9_4_0 = Gf.Poly<N9, ushort>(9,4,0);
+
+        /// <summary>
+        /// x^10 + x^3 + x^0
+        /// </summary>
+        public static readonly GfPoly<N10,ushort> Gfp_10_3_0 = Gf.Poly<N10, ushort>(10,3,0);
+
+        /// <summary>
+        /// x^11 + x^2 + x^0
+        /// </summary>
+        public static readonly GfPoly<N11,ushort> Gfp_11_2_1 = Gf.Poly<N11, ushort>(11,2,0);
+
+        /// <summary>
+        /// x^16 + x^9 + x^8 + x^7 + x^6 + x^4 + x^3 + x^2 + x^0
+        /// </summary>
+        public static readonly GfPoly<N16,uint> Gfp_16_9_8_7_6_4_3_2_0 = Gf.Poly<N16,uint>(16,9,8,7,6,4,3,2,0);
+
+        /// <summary>
+        /// x^32 + x^22 + x^2 + x^1 + x^0
+        /// </summary>
+        public static readonly GfPoly<N32,ulong> Gfp_32_22_2_1_0 = Gf.Poly<N32,ulong>(32,22,2,1,0);
+ 
         /// <summary>
         /// Searches for a primal polynomial of degree N used for reduction in GF(2^N)
         /// <typeparam name="N">The degree of the polynomial</typeparam>
@@ -44,7 +106,7 @@ namespace Z0
                 case 7:
                     return Gfp_7_1_0.As<N,T>();
                 case 8:
-                    return Gfp_8_Default.As<N,T>();
+                    return Gfp_8_4_3_2_0.As<N,T>();
                 case 9:
                     return Gfp_9_4_0.As<N,T>();
                 case 10:
@@ -59,99 +121,6 @@ namespace Z0
                     return GfPoly<N,T>.Zero;
             }
         }
-
-        /// <summary>
-        /// x^2 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N2,byte> Gfp_2_1_0 = Gf.Poly<N2,byte>(2,1,0);
-        
-        /// <summary>
-        /// x^3 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N3,byte> Gfp_3_1_0 = Gf.Poly<N3,byte>(3,1,0);
-
-        /// <summary>
-        /// x^4 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N4,byte> Gfp_4_1_0 = Gf.Poly<N4,byte>(4,1,0);
-
-        /// <summary>
-        /// x^5 + x^2 + x^0
-        /// </summary>
-        static readonly GfPoly<N5,byte> Gfp_5_2_0 = Gf.Poly<N5,byte>(5,2,0);
-
-        /// <summary>
-        /// x^6 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N6,byte> Gfp_6_1_0 = Gf.Poly<N6,byte>(6,1,0);
-
-        /// <summary>
-        /// x^7 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N7,byte> Gfp_7_1_0 = Gf.Poly<N7,byte>(7,1,0);
-
-        /// <summary>
-        /// x^8 + x^4 + x^3 + x^2 + x^0
-        /// 0b1_0001_1101
-        /// </summary>
-        static readonly GfPoly<N8,ushort> Gfp_8_4_3_2_0 = Gf.Poly<N8,ushort>(8,4,3,2,0);
-
-        /// <summary>
-        /// x^8 + x^5 + x^3 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N8,ushort> Gfp_8_5_3_1_0 = Gf.Poly<N8,ushort>(8,5,3,1,0);
-
-        /// <summary>
-        /// The default polynomial of degree 8
-        /// </summary>
-        static readonly GfPoly<N8,ushort> Gfp_8_Default = Gfp_8_4_3_2_0;
-
-        /// <summary>
-        /// x^9 + x^4 + x^0
-        /// </summary>
-        static readonly GfPoly<N9,ushort> Gfp_9_4_0 = Gf.Poly<N9, ushort>(9,4,0);
-
-        /// <summary>
-        /// x^10 + x^3 + x^0
-        /// </summary>
-        static readonly GfPoly<N10,ushort> Gfp_10_3_0 = Gf.Poly<N10, ushort>(10,3,0);
-
-        /// <summary>
-        /// x^11 + x^2 + x^0
-        /// </summary>
-        static readonly GfPoly<N11,ushort> Gfp_11_2_1 = Gf.Poly<N11, ushort>(11,2,0);
-
-        /// <summary>
-        /// x^16 + x^9 + x^8 + x^7 + x^6 + x^4 + x^3 + x^2 + x^0
-        /// </summary>
-        static readonly GfPoly<N16,uint> Gfp_16_9_8_7_6_4_3_2_0 = Gf.Poly<N16,uint>(16,9,8,7,6,4,3,2,0);
-
-        /// <summary>
-        /// x^32 + x^22 + x^2 + x^1 + x^0
-        /// </summary>
-        static readonly GfPoly<N32,ulong> Gfp_32_22_2_1_0 = Gf.Poly<N32,ulong>(32,22,2,1,0);
-
-        static GfPoly<N8,ushort> Lookup(N8 n, params byte[] exp)
-        {
-            var selected = Gfp_8_Default;
-            switch(exp.Length)
-            {
-                case 1:
-                    switch(exp[0])
-                    {
-                        case 1:
-                            selected = Gfp_8_4_3_2_0;
-                            break;
-                        case 5:
-                            selected = Gfp_8_5_3_1_0;
-                            break;
-                    }
-                break;
-            }
-
-            return selected;
-        }
-
-    }
+   }
 
 }

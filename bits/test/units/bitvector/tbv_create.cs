@@ -98,7 +98,7 @@ namespace Z0.Test
                 var bv = Random.BitVector64();
                 var n = Random.Next(1, bv.Length);
                 var result = bv.Msb(n).ToBitString();
-                var expect = bv.ToBitString().Reversed()[0, n - 1].Reversed();
+                var expect = bv.ToBitString().Reverse()[0, n - 1].Reverse();
                 Claim.eq(expect, result);
             }
         }

@@ -28,7 +28,6 @@ partial class zfunc
     public static Span<T> span<T>(uint length)
         => new Span<T>(new T[length]);
 
-
     /// <summary>
     /// Constructs a span from an array selection
     /// </summary>

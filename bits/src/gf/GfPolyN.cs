@@ -37,6 +37,12 @@ namespace Z0
             data = components;
         }
 
+        [MethodImpl(Inline)]
+        public GfPoly(T data)
+        {
+            this.data = data;
+        }
+
         /// <summary>
         /// Returns a bit indicating whether the coefficient for x^i is 1 or 0
         /// </summary>
@@ -74,10 +80,20 @@ namespace Z0
         }
 
         /// <summary>
-        /// Formats the polynomial as a binary number
+        /// Formats the polynomial 
         /// </summary>
-        public string Format()
-            => BitString.FromScalar(data).Format(true);
+        public string Format(char? variable = null)
+        {
+            var bs = BitString.FromScalar(data);
+            var terms = new List<string>();
+            
+            for(var i=0; i<bs.Length; i++)
+                if(bs[i]) terms.Add($"{variable ?? 'x'}^{i}");
+            
+            var sb = sbuild();
+            terms.Reverse();
+            return string.Join($" + ", terms);            
+        }
 
         public GfPoly<N,U> As<U>()
             where U: struct

@@ -14,6 +14,8 @@ namespace Z0.Mkl
     using static VslSSComputeRoutine;
     using static VslSSComputeMethod;
 
+    using Calcs = VslSSComputeRoutine;
+
     partial class VssOps
     {
         /// <summary>
@@ -31,6 +33,21 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static Dataset<double> Mean(this Dataset<double> src)        
             => src.CalcMean(Dataset.Alloc<double>(src.Dim,1));
+
+        /// <summary>
+        /// Finds the mean for each dimension
+        /// </summary>
+        /// <param name="src">The sample</param>
+        [MethodImpl(Inline)]
+        public static Dataset<double> Variance(this Dataset<double> src)        
+            => src.CalcVariance(Dataset.Alloc<double>(src.Dim,1));
+
+        /// <summary>
+        /// Calculates the mean
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static ref double Mean(this Dataset<double> src, ref double dst)        
+            => ref src.CalcMean(ref dst);
 
         /// <summary>
         /// For each dimension, finds the sum
@@ -101,7 +118,7 @@ namespace Z0.Mkl
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MIN, ref dst[0]);
-            h2.Compute(VSL_SS_MIN, VSL_SS_METHOD_FAST);
+            h2.Compute(Calcs.VSL_SS_MIN, VSL_SS_METHOD_FAST);
             return dst;
         }
 
@@ -110,7 +127,7 @@ namespace Z0.Mkl
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MAX, ref dst[0]);
-            h2.Compute(VSL_SS_MAX, VSL_SS_METHOD_FAST);
+            h2.Compute(Calcs.VSL_SS_MAX, VSL_SS_METHOD_FAST);
             return dst;
         }
 
@@ -119,7 +136,7 @@ namespace Z0.Mkl
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_SUM, ref dst[0]);
-            h2.Compute(VSL_SS_SUM, VSL_SS_METHOD_FAST);
+            h2.Compute(Calcs.VSL_SS_SUM, VSL_SS_METHOD_FAST);
             return dst;
         }
 
@@ -129,8 +146,18 @@ namespace Z0.Mkl
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MIN, ref dst[0]);
             h2.Set(VSL_SS_ED_MAX, ref dst[1]);
-            h2.Compute(VSL_SS_MAX | VSL_SS_MIN, VSL_SS_METHOD_FAST);
+            h2.Compute(Calcs.VSL_SS_MAX | Calcs.VSL_SS_MIN, VSL_SS_METHOD_FAST);
             return dst;
+        }
+
+
+        static unsafe ref T CalcMean<T>(this Dataset<T> samples, ref T dst)        
+            where T : unmanaged
+        {
+            using var h2 = VslSSTaskHandle.Create(samples);
+            h2.Set(VSL_SS_ED_MEAN, ref dst);
+            h2.Compute(Calcs.VSL_SS_MEAN, VSL_SS_METHOD_FAST);
+            return ref dst;
         }
 
         static unsafe Dataset<T> CalcMean<T>(this Dataset<T> samples, Dataset<T> dst)        
@@ -138,7 +165,16 @@ namespace Z0.Mkl
         {
             using var h2 = VslSSTaskHandle.Create(samples);
             h2.Set(VSL_SS_ED_MEAN, ref dst[0]);
-            h2.Compute(VSL_SS_MEAN, VSL_SS_METHOD_FAST);
+            h2.Compute(Calcs.VSL_SS_MEAN, VSL_SS_METHOD_FAST);
+            return dst;
+        }
+
+        static unsafe Dataset<T> CalcVariance<T>(this Dataset<T> samples, Dataset<T> dst)        
+            where T : unmanaged
+        {
+            using var h2 = VslSSTaskHandle.Create(samples);
+            h2.Set(VSL_SS_ED_2R_MOM, ref dst[0]);
+            h2.Compute(Calcs.VSL_SS_2R_MOM, VSL_SS_METHOD_FAST);
             return dst;
         }
 

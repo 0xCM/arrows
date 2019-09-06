@@ -91,7 +91,7 @@ namespace Z0
         public BitVector(params T[] bits)
             : this()
         {
-            this.data =bits;
+            this.data = bits;
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
@@ -198,7 +198,6 @@ namespace Z0
             get => data.Span.Length * SegmentCapacity;
         }
 
-
         /// <summary>
         /// Toggles an index-identified bit
         /// </summary>
@@ -276,8 +275,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => Pop() != 0;
         }
-
-
 
         /// <summary>
         /// Sets all the bits to align with the source value

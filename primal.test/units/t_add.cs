@@ -17,31 +17,31 @@ namespace Z0.Test
 
         public void polyadd()
         {
-            polyadd_check(in PolyOps.add<sbyte>());
-            polyadd_check(in PolyOps.add<byte>());
-            polyadd_check(in PolyOps.add<short>());
-            polyadd_check(in PolyOps.add<ushort>());
-            polyadd_check(in PolyOps.add<int>());
-            polyadd_check(in PolyOps.add<uint>());
-            polyadd_check(in PolyOps.add<long>());
-            polyadd_check(in PolyOps.add<ulong>());
-            polyadd_check(in PolyOps.add<float>());
-            polyadd_check(in PolyOps.add<double>());
+            polyadd_check(in StructOps.add<sbyte>());
+            polyadd_check(in StructOps.add<byte>());
+            polyadd_check(in StructOps.add<short>());
+            polyadd_check(in StructOps.add<ushort>());
+            polyadd_check(in StructOps.add<int>());
+            polyadd_check(in StructOps.add<uint>());
+            polyadd_check(in StructOps.add<long>());
+            polyadd_check(in StructOps.add<ulong>());
+            polyadd_check(in StructOps.add<float>());
+            polyadd_check(in StructOps.add<double>());
 
             
         }
         public void polyadd_bench()
         {
-            Collect(polyadd_bench(in PolyOps.add<sbyte>()));
-            Collect(polyadd_bench(in PolyOps.add<byte>()));
-            Collect(polyadd_bench(in PolyOps.add<short>()));
-            Collect(polyadd_bench(in PolyOps.add<ushort>()));
-            Collect(polyadd_bench(in PolyOps.add<int>()));
-            Collect(polyadd_bench(in PolyOps.add<uint>()));
-            Collect(polyadd_bench(in PolyOps.add<long>()));
-            Collect(polyadd_bench(in PolyOps.add<ulong>()));
-            Collect(polyadd_bench(in PolyOps.add<float>()));
-            Collect(polyadd_bench(in PolyOps.add<double>()));
+            Collect(polyadd_bench(in StructOps.add<sbyte>()));
+            Collect(polyadd_bench(in StructOps.add<byte>()));
+            Collect(polyadd_bench(in StructOps.add<short>()));
+            Collect(polyadd_bench(in StructOps.add<ushort>()));
+            Collect(polyadd_bench(in StructOps.add<int>()));
+            Collect(polyadd_bench(in StructOps.add<uint>()));
+            Collect(polyadd_bench(in StructOps.add<long>()));
+            Collect(polyadd_bench(in StructOps.add<ulong>()));
+            Collect(polyadd_bench(in StructOps.add<float>()));
+            Collect(polyadd_bench(in StructOps.add<double>()));
 
         }
 

@@ -11,7 +11,7 @@ namespace Z0.Test
 
     public class t_abs : UnitTest<t_abs>
     {
-        public void abs8()
+        public void abs8i()
         {
             for(var i=0; i<SampleSize; i++)
             {
@@ -20,7 +20,7 @@ namespace Z0.Test
             }
         }
 
-        public void abs16()
+        public void abs16i()
         {
             for(var i=0; i<SampleSize; i++)
             {
@@ -29,7 +29,7 @@ namespace Z0.Test
             }
         }
 
-        public void abs32()
+        public void abs32i()
         {
 
             for(var i=0; i<SampleSize; i++)
@@ -40,12 +40,23 @@ namespace Z0.Test
 
         }
 
-        public void abs64()
+        public void abs64i()
         {
             for(var i=0; i<SampleSize; i++)
             {
                 var src = Random.Next<long>();
                 Claim.eq(gmath.abs(src),Math.Abs(src));
+            }
+
+        }
+
+        public void abs64f_cephes()
+        {
+            for(var i=0; i<SampleSize; i++)
+            {
+                var src = Random.Next<double>();
+                Claim.eq(src < 0 ? -src : src, gmath.abs(src));
+                Claim.eq(gmath.abs(src), cephes.fabs(src));
             }
 
         }

@@ -14,7 +14,6 @@ namespace Z0
 
     partial class RngX
     {
-
         /// <summary>
         /// Samples the source values without replacement
         /// </summary>
@@ -25,10 +24,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static HashSet<T> SampleDistinct<T>(this IPolyrand random,  T[] source, int count)        
             => random.SampleDistinct(source.Length, count).Select(i => source[i]).ToHashSet();
-
-        // var indices = random.SampleDistinct(source.Length, count);
-        // foreach(var i in indices)
-        //     yield return source[i];
 
         public static HashSet<T> SampleDistinct<T>(this IPolyrand random, T pool, int count)
             where T : struct
@@ -82,8 +77,5 @@ namespace Z0
                 set.AddRange(src.Take(count / 2));
             return set;
         }
-
-
     }
-
 }

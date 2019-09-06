@@ -315,7 +315,6 @@ namespace Z0
             return result;
         }
 
-
         [MethodImpl(Inline)]
         long IPointSource<long>.Next(long max)
         {
@@ -331,7 +330,6 @@ namespace Z0
                 ? min + (long)Points.Next((ulong)delta) 
                 : min + (long)Points.Next((ulong)delta.Negate());
         }
-
 
         [MethodImpl(Inline)]
         ulong IPointSource<ulong>.Next()
@@ -381,16 +379,15 @@ namespace Z0
             return whole + NextF64();
         }
 
-
         // For the logic of this, see http://mumble.net/~campbell/tmp/random_real.c
         [MethodImpl(Inline)]
         float NextF32()
-            => math.ldexp((float)UInt32Source.Next(), -32);
-
+            => (float)fmath.ldexp((double)Points.Next(), -32);                
 
         // For the logic of this, see http://mumble.net/~campbell/tmp/random_real.c
         [MethodImpl(Inline)]
         double NextF64()
-            => math.ldexp((double)Points.Next(), -64);    
+            => fmath.ldexp((double)Points.Next(), -64);    
+    
     }
 }

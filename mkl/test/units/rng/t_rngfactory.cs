@@ -36,17 +36,11 @@ namespace Z0.Rng
 
         static readonly Interval<double> RangeF64 = (MinF64, MaxF64);
 
-        public void polyrand()
-        {         
-            rng_bench(RNG.Pcg64(Seed).Stream(RangeI32));
-            rng_bench(RNG.Pcg64(Seed).Stream(RangeF64));
-
-        }
-
         public void mcg31()
         {
             using var src = rng.mcg31(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -54,6 +48,7 @@ namespace Z0.Rng
         {
             using var src = rng.mrg32K31(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -61,6 +56,7 @@ namespace Z0.Rng
         {
             using var src = rng.mcg31(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -68,6 +64,7 @@ namespace Z0.Rng
         {
             using var src = rng.r250(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -75,6 +72,7 @@ namespace Z0.Rng
         {            
             using var src = rng.mt19937(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -82,6 +80,7 @@ namespace Z0.Rng
         {            
             using var src = rng.sfmt19937(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -89,6 +88,7 @@ namespace Z0.Rng
         {
             using var src = rng.mt2203(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -96,13 +96,22 @@ namespace Z0.Rng
         {
             using var src = rng.philox(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
+        }
+
+        public void polyrand()
+        {         
+            rng_bench(RNG.Pcg64(Seed).Stream(RangeI32));
+            rng_bench(RNG.Pcg64(Seed).Stream(RangeF32));
+            rng_bench(RNG.Pcg64(Seed).Stream(RangeF64));
         }
 
         public void wh()
         {
             using var src = rng.wh(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -110,6 +119,7 @@ namespace Z0.Rng
         {
             using var src = rng.ars5(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
 
@@ -117,9 +127,9 @@ namespace Z0.Rng
         {
             using var src = rng.sobol(Seed);
             rng_bench(samplers.uniform(src, (RangeI32)));
+            rng_bench(samplers.uniform(src, (RangeF32)));
             rng_bench(samplers.uniform(src, (RangeF64)));
         }
-
 
         OpTime rng_bench<T>(IRandomStream<T> stream)
             where T : struct
@@ -138,7 +148,6 @@ namespace Z0.Rng
             }
             var time = (total, sw, $"{stream.RngKind}<{typeof(T).DisplayName()}>");
             Collect(time);
-            Trace(stats.Format());
             
             return time;
         }

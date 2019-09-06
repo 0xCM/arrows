@@ -184,7 +184,85 @@ namespace Z0
             => throw new NotSupportedException();
 
         public override int GetHashCode() 
-            => throw new NotSupportedException();        
+            => throw new NotSupportedException();    
+
+        /// <summary>
+        /// Allocates/populates the span obtained by applying a supplied projector
+        /// to the current span
+        /// </summary>
+        /// <param name="f">A projector</param>
+        /// <typeparam name="U">The target type</typeparam>
+        public MemorySpan<U> Map<U>(Func<T,U> f)
+            where U : unmanaged
+        {
+            var dst = new U[Length];
+            for(var i= 0; i<Length; i++)
+                dst[i] = f(this[i]);
+            return dst;
+        }
+
+        /// <summary>
+        /// Allocates/populates the span obtained by applying a supplied projector
+        /// to the current span
+        /// </summary>
+        /// <param name="f">A projector that accepts a cell value and its index</param>
+        /// <typeparam name="U">The target type</typeparam>
+        public MemorySpan<U> Map<U>(Func<int,T,U> f)
+            where U : unmanaged
+        {
+            var dst = new U[Length];
+            for(var i= 0; i<Length; i++)
+                dst[i] = f(i,this[i]);
+            return dst;
+        }
+
+        /// <summary>
+        /// Projects span data into a caller-allocated target
+        /// </summary>
+        /// <param name="f">The projector</param>
+        /// <param name="dst">The receiving span</param>
+        /// <typeparam name="U">The target type</typeparam>
+        public MemorySpan<U> Map<U>(Func<T,U> f, MemorySpan<U> dst)
+            where U : unmanaged
+        {
+            for(var i= 0; i<Length; i++)
+                dst[i] = f(this[i]);
+            return dst;
+        }
+
+        /// <summary>
+        /// Projects span data into a caller-allocated target
+        /// </summary>
+        /// <param name="f">A projector that accepts a cell value and its index</param>
+        /// <param name="dst">The receiving span</param>
+        /// <typeparam name="U">The target type</typeparam>
+        public MemorySpan<U> Map<U>(Func<int,T,U> f, MemorySpan<U> dst)
+            where U : unmanaged
+        {
+            for(var i= 0; i<Length; i++)
+                dst[i] = f(i,this[i]);
+            return dst;
+        }
+
+        /// <summary>
+        /// Applies the supplied function to each cell to effect an in-place update
+        /// </summary>
+        /// <param name="f">A projector</param>
+        public void Iter(Func<T,T> f)
+        {
+            for(var i=0; i<Length; i++)
+                this[i] = f(this[i]);
+        }
+
+        /// <summary>
+        /// Applies the supplied function to each cell to effect an in-place update
+        /// </summary>
+        /// <param name="f">An index projector that accepts both the cell value and its index</param>
+        public void Iter(Func<int,T,T> f)
+        {
+            for(var i=0; i<Length; i++)
+                this[i] = f(i,this[i]);
+        }
     }
 
 

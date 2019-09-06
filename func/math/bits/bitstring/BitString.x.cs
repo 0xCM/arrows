@@ -154,18 +154,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]   
-        public static ref BitString Reverse(this ref BitString src)
-        {
-            src.BitSeq.Reverse();
-            return ref src;
-        }
-
-        /// <summary>
-        /// Reverses the order of bits in the source
-        /// </summary>
-        /// <param name="src">The source bits</param>
-        [MethodImpl(Inline)]   
-        public static BitString Reversed(this BitString src)
+        public static BitString Reverse(this BitString src)
         {
             src.BitSeq.Reverse();
             return src;
