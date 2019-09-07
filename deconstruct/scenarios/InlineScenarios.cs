@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using Z0.Cpu;
 
 
     [DisplayName("scenarios-inline")]

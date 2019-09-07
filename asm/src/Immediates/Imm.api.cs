@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -60,9 +60,6 @@ namespace Z0.Cpu
             else 
                 throw unsupported<T>();
         }
- 
-
     }
-
 
 }

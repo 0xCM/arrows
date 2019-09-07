@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
 
     using System;
@@ -31,15 +31,12 @@ namespace Z0.Cpu
                 where T : struct
                     => ref Unsafe.Add(ref head<T>(), index);
 
-
-
-            public Bit this[Index r]
+            public Bit this[BitPos r]
             {
                 [MethodImpl(Inline)]
                 get
                 {
-                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
-                    return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
+                    return 0;
                 }
             }        
 
@@ -51,10 +48,8 @@ namespace Z0.Cpu
                     return ref Unsafe.AsRef<T>(pSrc);
             }
         
-            Bit IMMReg.this[Index r] 
-                => this[r];                
 
-            ref T IMMReg.Part<T>(int index)
+            ref T IMMReg.Cell<T>(int index)
                 => ref Part<T>(index);
 
 

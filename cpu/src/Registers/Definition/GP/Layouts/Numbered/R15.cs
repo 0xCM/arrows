@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 20115
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;

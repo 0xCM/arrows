@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -10,6 +10,7 @@ namespace Z0.Cpu
     using R = Registers;
 
     using static zfunc;
+    using static As;
 
     partial class CpuCore
     {
@@ -696,101 +697,6 @@ namespace Z0.Cpu
             get => ref zmm15.ymm0;
         }
 
-        ref R.YMM ymm16
-        {
-            [MethodImpl(Inline)]
-            get => ref zmm16.ymm0;
-        }
-
-        ref R.YMM ymm17
-        {
-            [MethodImpl(Inline)]
-            get => ref zmm17.ymm0;
-        }
-
-        // ref R.YMM ymm18
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm18.ymm0;
-        // }
-
-        // ref R.YMM ymm19
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm19.ymm0;
-        // }
-
-        // ref R.YMM ymm20
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm20.ymm0;
-        // }
-
-        // ref R.YMM ymm21
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm21.ymm0;
-        // }
-
-        // ref R.YMM ymm22
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm22.ymm0;
-        // }
-
-        // ref R.YMM ymm23
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm23.ymm0;
-        // }
-
-        // ref R.YMM ymm24
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm24.ymm0;
-        // }
-
-        // ref R.YMM ymm25
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm25.ymm0;
-        // }
-
-        // ref R.YMM ymm26
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm26.ymm0;
-        // }
-
-        // ref R.YMM ymm27
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm27.ymm0;
-        // }
-
-        // ref R.YMM ymm28
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm28.ymm0;
-        // }
-
-        // ref R.YMM ymm29
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm29.ymm0;
-        // }
-
-        // ref R.YMM ymm30
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm30.ymm0;
-        // }
-
-        // ref R.YMM ymm31
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm31.ymm0;
-        // }
 
         //~ XMM
         //~ ----------------------------
@@ -891,100 +797,5 @@ namespace Z0.Cpu
             get => ref zmm15.xmm0;
         }
 
-        ref R.XMM xmm16
-        {
-            [MethodImpl(Inline)]
-            get => ref zmm16.xmm0;
-        }
-
-        ref R.XMM xmm17
-        {
-            [MethodImpl(Inline)]
-            get => ref zmm17.xmm0;
-        }
-
-        // ref R.XMM xmm18
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm18.xmm0;
-        // }
-
-        // ref R.XMM xmm19
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm19.xmm0;
-        // }
-
-        // ref R.XMM xmm20
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm20.xmm0;
-        // }
-
-        // ref R.XMM xmm21
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm21.xmm0;
-        // }
-
-        // ref R.XMM xmm22
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm22.xmm0;
-        // }
-
-        // ref R.XMM xmm23
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm23.xmm0;
-        // }
-
-        // ref R.XMM xmm24
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm24.xmm0;
-        // }
-
-        // ref R.XMM xmm25
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm25.xmm0;
-        // }
-
-        // ref R.XMM xmm26
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm26.xmm0;
-        // }
-
-        // ref R.XMM xmm27
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm27.xmm0;
-        // }
-
-        // ref R.XMM xmm28
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm28.xmm0;
-        // }
-
-        // ref R.XMM xmm29
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm29.xmm0;
-        // }
-
-        // ref R.XMM xmm30
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm30.xmm0;
-        // }
-
-        // ref R.XMM xmm31
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => ref zmm31.xmm0;
-        // }
     }
 }

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
 
     using System;
@@ -127,12 +127,12 @@ namespace Z0.Cpu
     public interface IMMReg : ICpuReg
     {
 
-        ref T Part<T>(int index)      
-            where T : struct;        
+        ref T Cell<T>(int index)      
+            where T : unmanaged;        
 
 
-        Bit this[Index r] {get;}            
+        Bit this[BitPos r] {get;}            
     }
 
-    
+   
 }

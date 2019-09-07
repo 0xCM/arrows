@@ -12,7 +12,6 @@ namespace Z0
 
 	using Iced.Intel;
     using Z0.Asm;
-    using Z0.Cpu;
 
     using AsmOpKind = Iced.Intel.OpKind;
     using static Iced.Intel.OpKind;

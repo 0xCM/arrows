@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -10,8 +10,6 @@ namespace Z0.Cpu
     
     using static zfunc;
     using static Registers;
-
-
 
     [StructLayout(LayoutKind.Explicit, Size = 128)]
     public struct GpRegBank

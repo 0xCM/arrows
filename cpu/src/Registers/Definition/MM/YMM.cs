@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -12,32 +12,134 @@ namespace Z0.Cpu
 
     partial class Registers
     {
+        /// <summary>
+        /// Returns a reference to an index-identified source bank slot
+        /// </summary>
+        /// <param name="slot">The zero-based index of the register</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref YMM ymm(ref YmmBank src, int slot)
+            => ref src.Slot<YMM>(slot);
 
-        [StructLayout(LayoutKind.Explicit, Size = 32)]
-        public struct YMM : IMMReg, ICpuReg256
+        [MethodImpl(Inline)]
+        public static ref Vec256<T> AsVector<T>(ref YMM src)
+            where T : unmanaged
         {
-            public static readonly BitSize BitWidth = 256;        
+            if(typeof(T) == typeof(sbyte))
+                return ref generic<T>(ref src.ymm8i);
+            else if(typeof(T) == typeof(byte))
+                return ref generic<T>(ref src.ymm8u);
+            else if(typeof(T) == typeof(short))
+                return ref generic<T>(ref src.ymm16i);
+            else if(typeof(T) == typeof(ushort))
+                return ref generic<T>(ref src.ymm16u);
+            else if(typeof(T) == typeof(int))
+                return ref generic<T>(ref src.ymm32i);
+            else if(typeof(T) == typeof(uint))
+                return ref generic<T>(ref src.ymm32u);
+            else if(typeof(T) == typeof(long))
+                return ref generic<T>(ref src.ymm64i);
+            else if(typeof(T) == typeof(ulong))
+                return ref generic<T>(ref src.ymm64u);
+            else if(typeof(T) == typeof(float))
+                return ref generic<T>(ref src.ymm32f);
+            else if(typeof(T) == typeof(double))
+                return ref generic<T>(ref src.ymm64f);
+            else
+                throw unsupported<T>();
+        }
 
-            public static readonly ByteSize ByteCount = 32;
+        [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
+        public unsafe struct YMM : IMMReg, ICpuReg256
+        {
+            public static readonly BitSize BitWidth = 256;  
 
+            public const int ByteCount = 32;      
+
+            const int HiPart = 16;
+
+            /// <summary>
+            /// Gets the vector bitmap for a specified primal type
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
             [MethodImpl(Inline)]
-            public static int PartCount<T>()
-                where T : struct => BitWidth/Unsafe.SizeOf<T>();
+            public static ref readonly BitMap256<T> BitMap<T>()
+                where T : unmanaged
+                    => ref Z0.BitMap.Map256<T>();
 
+            /// <summary>
+            /// Returns a reference to the first cell
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
             [MethodImpl(Inline)]
-            public ref T Part<T>(int pos)
-                where T : struct
-                    => ref Unsafe.Add(ref head<T>(), pos);
+            public ref T First<T>()
+                where T : unmanaged
+                => ref As.generic<T>(ref Bytes[0]);
 
-            public Bit this[Index r]
+            /// <summary>
+            /// Computes the type-polymorphic cell count
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public int CellCount<T>()
+                where T : unmanaged 
+                    => BitMap<T>().CellCount;
+
+            /// <summary>
+            /// Gets the value of an index-identified cell
+            /// </summary>
+            /// <param name="index">The zero-based cell index</param>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T Cell<T>(int index)
+                where T : unmanaged
+                    => ref Unsafe.Add(ref First<T>(), index);
+
+            /// <summary>
+            /// Gets the value of an index-identified cell
+            /// </summary>
+            /// <param name="index">The zero-based cell index</param>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T Cell<T>(uint index)
+                where T : unmanaged
+                    => ref Unsafe.Add(ref First<T>(), (int)index);
+
+            /// <summary>
+            /// Manipulates a position-identified bit
+            /// </summary>
+            public Bit this[BitPos bitpos]
             {
                 [MethodImpl(Inline)]
-                get
-                {
-                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
-                    return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
-                }
+                get => GetBit(bitpos);   
+                [MethodImpl(Inline)]
+                set => SetBit(bitpos, value);
             }        
+
+            /// <summary>
+            /// Gets the value of position-identified bit where 0 <= pos < 128
+            /// </summary>
+            /// <param name="pos">The bit position</param>
+            [MethodImpl]
+            public Bit GetBit(BitPos pos)
+            {
+                ref readonly var index = ref BitMap<ulong>()[pos];
+                ref var cell  = ref Cell<ulong>(index.CellIndex);
+                return BitMask.test(in cell, index.CellOffset);
+            }
+
+            /// <summary>
+            /// Sets a position-identified bit where 0 <= pos < 128
+            /// </summary>
+            /// <param name="pos">The bit position</param>
+            /// <param name="value">The bit value</param>
+            [MethodImpl]
+            public void SetBit(BitPos pos, Bit value)
+            {
+                ref readonly var index = ref BitMap<ulong>()[pos];
+                ref var cell  = ref Cell<ulong>(index.CellIndex);
+                BitMask.set(ref cell, index.CellOffset, value);
+            }
 
             [MethodImpl(Inline)]
             unsafe ref T head<T>()
@@ -47,12 +149,12 @@ namespace Z0.Cpu
                     return ref Unsafe.AsRef<T>(pSrc);
             }
             
-            Bit IMMReg.this[Index r] 
-                => this[r];                
+            ref T IMMReg.Cell<T>(int index)
+                => ref Cell<T>(index);
 
-            ref T IMMReg.Part<T>(int index)
-                => ref Part<T>(index);
 
+            [FieldOffset(0)]        
+            fixed byte Bytes[ByteCount];
 
             #region I8
         
@@ -452,11 +554,104 @@ namespace Z0.Cpu
 
             #endregion 
 
-            #region XMM
+            #region MM
             
             [FieldOffset(0)]
             public XMM xmm0;
 
+            [FieldOffset(16)]
+            public XMM xmm1;
+
+
+            [FieldOffset(0)]
+            public Vec256<sbyte> ymm8i;
+
+            [FieldOffset(0)]
+            public Vec256<byte> ymm8u;
+
+            [FieldOffset(0)]
+            public Vec256<short> ymm16i;
+
+            [FieldOffset(0)]
+            public Vec256<ushort> ymm16u;
+
+            [FieldOffset(0)]
+            public Vec256<int> ymm32i;
+
+            [FieldOffset(0)]
+            public Vec256<uint> ymm32u;
+
+            [FieldOffset(0)]
+            public Vec256<long> ymm64i;
+
+            [FieldOffset(0)]
+            public Vec256<ulong> ymm64u;
+
+            [FieldOffset(0)]
+            public Vec256<float> ymm32f;
+
+            [FieldOffset(0)]
+            public Vec256<double> ymm64f;
+
+            [FieldOffset(0)]
+            public Vec128<sbyte> xmm8iL;
+
+            [FieldOffset(0)]
+            public Vec128<byte> xmm8uL;
+
+            [FieldOffset(0)]
+            public Vec128<short> xmm16iL;
+
+            [FieldOffset(0)]
+            public Vec128<ushort> xmm16uL;
+
+            [FieldOffset(0)]
+            public Vec128<int> xmm32iL;
+
+            [FieldOffset(0)]
+            public Vec128<uint> xmm32uL;
+
+            [FieldOffset(0)]
+            public Vec128<long> xmm64iL;
+
+            [FieldOffset(0)]
+            public Vec128<ulong> xmm64uL;
+
+            [FieldOffset(0)]
+            public Vec128<float> xmm32fL;
+
+            [FieldOffset(0)]
+            public Vec128<double> xmm64fL;
+
+            [FieldOffset(HiPart)]
+            public Vec128<sbyte> xmm8iH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<byte> xmm8uH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<short> xmm16iH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<ushort> xmm16uH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<int> xmm32iH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<uint> xmm32uH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<long> xmm64iH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<ulong> xmm64uH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<float> xmm32fH;
+
+            [FieldOffset(HiPart)]
+            public Vec128<double> xmm64fH;
 
             #endregion
         }

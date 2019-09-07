@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -11,35 +11,41 @@ namespace Z0.Cpu
 
     using static zfunc;
 
+
     /// <summary>
-    /// Defines an 8-bit immediate
+    /// Defines a 16-bit immediate
     /// </summary>    
-    public readonly struct Imm8 : IImm<Imm8,byte>
-    {            
+    public readonly struct Imm16 : IImm<Imm16,ushort>
+    {
         /// <summary>
         /// The value of the immediate constant
         /// </summary>
-        public readonly byte Value;
+        public readonly ushort Value;
 
         /// <summary>
-        /// Specifies the size of the immediate in bytes
+        /// Specifies the size of the immediate in bits
         /// </summary>
-        public static readonly BitSize Size = 8;
+        public static readonly BitSize Size = 16;
+
 
         /// <summary>
-        /// Defines an 8-bit immediate from an 8-bit source value
+        /// Defines a 16-bit immediate from a 16-bit source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Imm8 Define(byte src)
+        public static Imm16 Define(ushort src)
             => src;
 
+        /// <summary>
+        /// Converts a 16-bit source value to a 16-bit immediate
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static implicit operator Imm8(byte src)
-            => new Imm8(src);
+        public static implicit operator Imm16(ushort src)
+            => new Imm16(src);
 
         [MethodImpl(Inline)]
-        public Imm8(byte src)
+        public Imm16(ushort src)
             => this.Value = src;
 
         public AsmImmInfo Description 
@@ -47,13 +53,19 @@ namespace Z0.Cpu
             [MethodImpl(Inline)]
             get => new AsmImmInfo(Size,Value);
         }
-            
 
-        byte IImm<byte>.Value 
-            => Value;
+        ushort IImm<ushort>.Value 
+        {
+            [MethodImpl(Inline)]
+            get => Value;
+        }
 
-        Imm8 IImm<Imm8,byte>.Redefine(byte src)
-            => new Imm8(src);
+
+        [MethodImpl(Inline)]
+        Imm16 IImm<Imm16,ushort>.Redefine(ushort src)
+            => new Imm16(src);
+
     }
+
 
 }

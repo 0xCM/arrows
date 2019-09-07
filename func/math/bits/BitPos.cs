@@ -20,6 +20,8 @@ namespace Z0
     public struct BitPos
     {
         uint index;
+
+        public static readonly BitPos Zero = default;
         
         [MethodImpl(Inline)]
         public static BitPos Define(byte value)

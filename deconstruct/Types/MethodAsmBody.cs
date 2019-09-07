@@ -12,7 +12,6 @@ namespace Z0
 
     using Iced.Intel;
     using static zfunc;
-    using Z0.Cpu;
         
     /// <summary>
     /// Adheres a set of IL instructions with the source method

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -13,59 +13,52 @@ namespace Z0.Cpu
 
 
     /// <summary>
-    /// Defines a 16-bit immediate
+    /// Defines a 64-bit immediate
     /// </summary>    
-    public readonly struct Imm16 : IImm<Imm16,ushort>
+    public readonly struct Imm64 :  IImm<Imm64, ulong>
     {
         /// <summary>
         /// The value of the immediate constant
         /// </summary>
-        public readonly ushort Value;
+        public readonly ulong Value;
 
         /// <summary>
         /// Specifies the size of the immediate in bits
         /// </summary>
-        public static readonly BitSize Size = 16;
-
+        public static readonly BitSize Size = 64;
 
         /// <summary>
-        /// Defines a 16-bit immediate from a 16-bit source value
+        /// Defines a 64-bit immediate from a 64-bit source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Imm16 Define(ushort src)
+        public static Imm64 Define(ulong src)
             => src;
 
         /// <summary>
-        /// Converts a 16-bit source value to a 16-bit immediate
+        /// Converts a source value to a 64-bit immediate
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static implicit operator Imm16(ushort src)
-            => new Imm16(src);
+        public static implicit operator Imm64(ulong src)
+            => new Imm64(src);
 
         [MethodImpl(Inline)]
-        public Imm16(ushort src)
+        public Imm64(ulong src)
             => this.Value = src;
-
+        
         public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
             get => new AsmImmInfo(Size,Value);
         }
 
-        ushort IImm<ushort>.Value 
+        ulong IImm<ulong>.Value 
         {
-            [MethodImpl(Inline)]
             get => Value;
         }
-
-
-        [MethodImpl(Inline)]
-        Imm16 IImm<Imm16,ushort>.Redefine(ushort src)
-            => new Imm16(src);
-
+            
+        Imm64 IImm<Imm64,ulong>.Redefine(ulong src)
+            => new Imm64(src);
     }
-
-
 }

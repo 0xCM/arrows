@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -13,14 +13,14 @@ namespace Z0.Cpu
     public static partial class Registers
     {
         [StructLayout(LayoutKind.Explicit, Size = 64)]
-        public struct ZMM : IMMReg, ICpuReg512
+        public unsafe struct ZMM : IMMReg, ICpuReg512
         {
             public static readonly int BitWidth = 512;        
 
-            public static readonly ByteSize ByteCount = 64;
+            public const int ByteCount = 64;
 
             [MethodImpl(Inline)]
-            public static int PartCount<T>()
+            public static int Cellcount<T>()
                 where T : struct => BitWidth/Unsafe.SizeOf<T>();
 
             [MethodImpl(Inline)]
@@ -28,14 +28,21 @@ namespace Z0.Cpu
                 where T : struct
                     => ref Unsafe.Add(ref head<T>(), pos);
 
+            /// <summary>
+            /// Returns a reference to the first element
+            /// </summary>
+            /// <typeparam name="T">The element type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T First<T>()
+                where T : unmanaged
+                => ref As.generic<T>(ref Bytes[0]);
 
-            public Bit this[Index r]
+            public Bit this[BitPos r]
             {
                 [MethodImpl(Inline)]
                 get
                 {
-                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
-                    return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
+                    return 0;
                 }
             }        
 
@@ -47,12 +54,12 @@ namespace Z0.Cpu
                     return ref Unsafe.AsRef<T>(pSrc);
             }
             
-            Bit IMMReg.this[Index r] 
-                => this[r];                
-
-            ref T IMMReg.Part<T>(int index)
+            ref T IMMReg.Cell<T>(int index)
                 => ref Part<T>(index);
 
+
+            [FieldOffset(0)]        
+            fixed byte Bytes[ByteCount];
 
             #region I8
             
@@ -811,9 +818,21 @@ namespace Z0.Cpu
             [FieldOffset(0)]
             public XMM xmm0;
 
+            [FieldOffset(16)]
+            public XMM xmm1;
+
+            [FieldOffset(32)]
+            public XMM xmm2;
+
+            [FieldOffset(48)]
+            public XMM xmm3;
 
             [FieldOffset(0)]
             public YMM ymm0;
+
+            [FieldOffset(32)]
+            public YMM ymm1;
+
 
             #endregion
 

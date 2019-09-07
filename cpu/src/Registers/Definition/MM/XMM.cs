@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
 
     using System;
@@ -14,48 +14,159 @@ namespace Z0.Cpu
 
     partial class Registers
     {
+        /// <summary>
+        /// Returns a reference to an index-identified source bank slot
+        /// </summary>
+        /// <param name="src">The source register</param>
+        /// <param name="slot">The zero-based index of the register</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref XMM xmm(ref XmmBank src, int slot)
+            => ref src.Slot<XMM>(slot);
 
-        [StructLayout(LayoutKind.Explicit, Size = 16)]
-        public struct XMM : IMMReg, ICpuReg128
+        /// <summary>
+        /// Presents a source register as a cpu vector
+        /// </summary>
+        /// <param name="src">The source register</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref Vec128<T> AsVector<T>(ref XMM src)
+            where T : unmanaged
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref generic<T>(ref src.xmm8i);
+            else if(typeof(T) == typeof(byte))
+                return ref generic<T>(ref src.xmm8u);
+            else if(typeof(T) == typeof(short))
+                return ref generic<T>(ref src.xmm16i);
+            else if(typeof(T) == typeof(ushort))
+                return ref generic<T>(ref src.xmm16u);
+            else if(typeof(T) == typeof(int))
+                return ref generic<T>(ref src.xmm32i);
+            else if(typeof(T) == typeof(uint))
+                return ref generic<T>(ref src.xmm32u);
+            else if(typeof(T) == typeof(long))
+                return ref generic<T>(ref src.xmm64i);
+            else if(typeof(T) == typeof(ulong))
+                return ref generic<T>(ref src.xmm64u);
+            else if(typeof(T) == typeof(float))
+                return ref generic<T>(ref src.xmm32f);
+            else if(typeof(T) == typeof(double))
+                return ref generic<T>(ref src.xmm64f);
+            else
+                throw unsupported<T>();
+        }
+
+        [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
+        public unsafe struct XMM : IMMReg, ICpuReg128
         {
             public static readonly BitSize BitWidth = 128;        
 
-            public static readonly ByteSize ByteCount = 16;
+            public const int ByteCount = 16;
 
             [MethodImpl(Inline)]
-            public static int PartCount<T>()
-                where T : struct => BitWidth/Unsafe.SizeOf<T>();
+            public static ref readonly BitMap128<T> BitMap<T>()
+                where T : unmanaged
+                    => ref Z0.BitMap.Map128<T>();
 
+            /// <summary>
+            /// Computes type-polymorphic cell count
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
             [MethodImpl(Inline)]
-            public ref T Part<T>(int index)
-                where T : struct
-                    => ref Unsafe.Add(ref head<T>(), index);
+            public static int CellCount<T>()
+                where T : unmanaged 
+                    => BitMap<T>().CellCount;
 
+            /// <summary>
+            /// Computes type-specific cell bitsize
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public static BitSize CellWidth<T>()
+                where T : unmanaged 
+                    => BitMap<T>().CellWidth;
 
-            public Bit this[Index r]
+            /// <summary>
+            /// Creates a register with content from a cell parameter array
+            /// </summary>
+            /// <param name="cells">The cell content</param>
+            /// <typeparam name="T">The cell type</typeparam>
+            public static XMM FromCells<T>(params T[] cells)
+                where T : unmanaged
+            {
+                XMM dst = default;
+                var len = Math.Min(cells.Length, CellCount<T>());
+                for(var i=0; i<len; i++)              
+                    dst.Cell<T>(i) = cells[i];
+                return dst;
+            }
+
+            /// <summary>
+            /// Returns a reference to the first element
+            /// </summary>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T First<T>()
+                where T : unmanaged
+                    => ref As.generic<T>(ref Bytes[0]);
+
+            /// <summary>
+            /// Gets the value of an index-identified cell
+            /// </summary>
+            /// <param name="index">The zero-based cell index</param>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T Cell<T>(int index)
+                where T : unmanaged
+                    => ref Unsafe.Add(ref First<T>(), index);
+
+            /// <summary>
+            /// Gets the value of an index-identified cell
+            /// </summary>
+            /// <param name="index">The zero-based cell index</param>
+            /// <typeparam name="T">The cell type</typeparam>
+            [MethodImpl(Inline)]
+            public ref T Cell<T>(uint index)
+                where T : unmanaged
+                    => ref Unsafe.Add(ref First<T>(), (int)index);
+            
+            public Bit this[BitPos bitpos]
             {
                 [MethodImpl(Inline)]
-                get
-                {
-                    RegisterBank.quorem(r.Value, BitWidth, out Quorem<int> qr);
-                    return Part<ulong>(qr.Quotient).TestBit((byte)qr.Remainder);                
-                }
+                get => GetBit(bitpos);                                    
+                [MethodImpl(Inline)]
+                set => SetBit(bitpos, value);
             }        
 
-            [MethodImpl(Inline)]
-            unsafe ref T head<T>()
-                where T : struct
+            /// <summary>
+            /// Gets the value of position-identified bit where 0 <= pos < 128
+            /// </summary>
+            /// <param name="pos">The bit position</param>
+            [MethodImpl]
+            public Bit GetBit(BitPos pos)
             {
-                fixed(void* pSrc = &this)
-                    return ref Unsafe.AsRef<T>(pSrc);
+                ref readonly var index = ref BitMap<ulong>()[pos];
+                ref var cell  = ref Cell<ulong>(index.CellIndex);
+                return BitMask.test(in cell, index.CellOffset);
             }
-        
-            Bit IMMReg.this[Index r] 
-                => this[r];                
 
-            ref T IMMReg.Part<T>(int index)
-                => ref Part<T>(index);
+            /// <summary>
+            /// Sets a position-identified bit where 0 <= pos < 128
+            /// </summary>
+            /// <param name="pos">The bit position</param>
+            /// <param name="value">The bit value</param>
+            [MethodImpl]
+            public void SetBit(BitPos pos, Bit value)
+            {
+                ref readonly var index = ref BitMap<ulong>()[pos];
+                ref var cell  = ref Cell<ulong>(index.CellIndex);
+                BitMask.set(ref cell, index.CellOffset, value);
+            }
 
+
+            [FieldOffset(0)]        
+            fixed byte Bytes[ByteCount];
 
             #region I8
 
@@ -158,8 +269,6 @@ namespace Z0.Cpu
             
             [FieldOffset(15)]
             public byte x000F;
-
-
             
             #endregion
 
@@ -272,6 +381,41 @@ namespace Z0.Cpu
 
             [FieldOffset(8)]
             public ulong x1;
+
+            #endregion
+
+
+            #region Vectors
+
+            [FieldOffset(0)]
+            public Vec128<sbyte> xmm8i;
+
+            [FieldOffset(0)]
+            public Vec128<byte> xmm8u;
+
+            [FieldOffset(0)]
+            public Vec128<short> xmm16i;
+
+            [FieldOffset(0)]
+            public Vec128<ushort> xmm16u;
+
+            [FieldOffset(0)]
+            public Vec128<int> xmm32i;
+
+            [FieldOffset(0)]
+            public Vec128<uint> xmm32u;
+
+            [FieldOffset(0)]
+            public Vec128<long> xmm64i;
+
+            [FieldOffset(0)]
+            public Vec128<ulong> xmm64u;
+
+            [FieldOffset(0)]
+            public Vec128<float> xmm32f;
+
+            [FieldOffset(0)]
+            public Vec128<double> xmm64f;
 
             #endregion
         }

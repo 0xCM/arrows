@@ -13,7 +13,6 @@ namespace Z0
     using Microsoft.Diagnostics.Runtime;
 	using Iced.Intel;
 
-    using Z0.Cpu;
     using static zfunc;
     
     /// <summary>

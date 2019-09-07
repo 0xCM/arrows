@@ -10,7 +10,6 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
-    using Z0.Cpu;
     
     public class MethodDisassembly
     {

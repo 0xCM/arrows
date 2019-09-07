@@ -114,6 +114,7 @@ namespace Z0
         public static ulong extract(in double src, in byte start, in byte length)        
             => BitFieldExtract((ulong)src.ToBits(), start, length);
 
+
         /// <summary>
         /// Extracts the upper 16 bits from the source
         /// </summary>

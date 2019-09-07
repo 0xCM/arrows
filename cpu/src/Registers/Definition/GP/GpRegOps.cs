@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.InteropServices;
@@ -31,8 +31,8 @@ namespace Z0.Cpu
         public static BankAddress Address(this GpRegId src)
             => new BankAddress
             {
-                Offset = Bits.hi((ulong)src),
-                Size = Bits.lo((ulong)src)            
+                Offset = (uint)((ulong)src >> 32),
+                Size = (uint)src            
             };
         
         /// <summary>

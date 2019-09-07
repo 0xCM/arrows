@@ -19,7 +19,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T read<T>(byte[] src, in int offset = 0)
             where T : struct
-                =>  Unsafe.ReadUnaligned<T>(ref src[offset]);
+                => Unsafe.ReadUnaligned<T>(ref src[offset]);
 
         [MethodImpl(Inline)]
         public static T read<T>(in Span<byte> src, in int offset = 0)

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Cpu
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -19,19 +19,7 @@ namespace Z0.Cpu
             where T : struct
                 => new RegisterBank<T>(registers);
 
-        [MethodImpl(Inline)]
-        internal static ref Quorem<int> quorem(in int lhs, in int rhs, out Quorem<int> dst)
-        {
-            var x = math.abs(lhs);
-            var y = math.abs(rhs);
-            var quo = x / y;
-            var rem = x - quo*y;
-            dst = Quorem.define(in quo, in rem);                   
-            return ref dst;
-        }
-
     }
-
 
     /// <summary>
     /// Defines a sequence of registers
