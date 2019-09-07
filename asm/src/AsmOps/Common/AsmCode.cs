@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm
+namespace Z0
 {
     using System;
     using System.Security;
@@ -58,7 +58,6 @@ namespace Z0.Asm
         public T CreateDelegate<T>()
             where T : Delegate        
                 => Marshal.GetDelegateForFunctionPointer<T>(Pointer);
-
     }
 
     

@@ -7,62 +7,56 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using Z0.Asm;
-
     using static zfunc;
 
 
     /// <summary>
-    /// Defines a 32-bit immediate
+    /// Defines a 64-bit immediate
     /// </summary>    
-    public readonly struct Imm32 :  IImm<Imm32,uint>
+    public readonly struct Imm64 :  IImm<Imm64, ulong>
     {
         /// <summary>
         /// The value of the immediate constant
         /// </summary>
-        public readonly uint Value;
+        public readonly ulong Value;
 
         /// <summary>
         /// Specifies the size of the immediate in bits
         /// </summary>
-        public static readonly BitSize Size = 32;
-
+        public static readonly BitSize Size = 64;
 
         /// <summary>
-        /// Defines an 32-bit immediate from a 32-bit source value
+        /// Defines a 64-bit immediate from a 64-bit source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Imm32 Define(uint src)
+        public static Imm64 Define(ulong src)
             => src;
 
         /// <summary>
-        /// Converts a 32-bit source value to a 32-bit immediate
+        /// Converts a source value to a 64-bit immediate
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static implicit operator Imm32(uint src)
-            => new Imm32(src);
+        public static implicit operator Imm64(ulong src)
+            => new Imm64(src);
 
         [MethodImpl(Inline)]
-        public Imm32(uint src)
+        public Imm64(ulong src)
             => this.Value = src;
-
+        
         public AsmImmInfo Description 
         {
             [MethodImpl(Inline)]
             get => new AsmImmInfo(Size,Value);
         }
 
-        uint IImm<uint>.Value 
+        ulong IImm<ulong>.Value 
         {
             get => Value;
         }
-
-        Imm32 IImm<Imm32,uint>.Redefine(uint src)
-            => new Imm32(src);
-
+            
+        Imm64 IImm<Imm64,ulong>.Redefine(ulong src)
+            => new Imm64(src);
     }
-
-
 }

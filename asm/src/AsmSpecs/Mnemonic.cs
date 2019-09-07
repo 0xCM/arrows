@@ -2,9 +2,8 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm
+namespace Z0
 {
-
     /// <summary>
     /// Instruction classifier listing
     /// </summary>

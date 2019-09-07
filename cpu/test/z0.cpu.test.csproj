@@ -9,6 +9,8 @@
     <ProjectReference Include="..\..\testing\z0.testing.csproj" />
     <ProjectReference Include="..\..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\..\nats\z0.nats.csproj" />
+    <!-- <ProjectReference Include="..\..\rng\src\core\z0.rng.core.csproj" /> -->
+
     <ProjectReference Include="..\src\z0.cpu.csproj" />
   </ItemGroup>
 

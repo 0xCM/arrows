@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm
+namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -42,7 +42,6 @@ namespace Z0.Asm
         [MethodImpl(Inline)]
         public static XmmRegId xmm(int i)
             =>  (XmmRegId) (((ulong)XmmRegId.xmm0) | ( i == 0 ? 0 : Pow2<uint>.pow(i)));
-
         
         [MethodImpl(Inline)]
         public static GpRegId? ParseGP(string src)

@@ -9,8 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     
     using static zfunc;
-    
-    using Z0.Asm;
 
     partial class Registers
     {

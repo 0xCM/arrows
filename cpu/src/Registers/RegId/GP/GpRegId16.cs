@@ -2,10 +2,9 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm
+namespace Z0
 {
     using System;
-
     
     /// <summary>
     /// Classifies 16-bit general purpose registers

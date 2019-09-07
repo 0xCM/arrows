@@ -15,7 +15,7 @@ namespace Z0
     partial class Registers
     {
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static ref Vec128<T> generic<T>(ref Vec128<sbyte> src)
             where T : struct        
                 => ref Unsafe.As<Vec128<sbyte>,Vec128<T>>(ref src);
@@ -66,7 +66,7 @@ namespace Z0
                 => ref Unsafe.As<Vec128<double>,Vec128<T>>(ref src);
 
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static ref Vec256<T> generic<T>(ref Vec256<sbyte> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<sbyte>,Vec256<T>>(ref src);
@@ -115,6 +115,8 @@ namespace Z0
         public static ref Vec256<T> generic<T>(ref Vec256<double> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<double>,Vec256<T>>(ref src);
+ 
+
     }
 
 }

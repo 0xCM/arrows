@@ -489,109 +489,109 @@ namespace Z0
 
         //~ ZMM
         //~ ----------------------------
-        ref R.ZMM zmm0
+        ref ZMM zmm0
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm0;
         }
 
-        ref R.ZMM zmm1
+        ref ZMM zmm1
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm1;
         }
 
-        ref R.ZMM zmm2
+        ref ZMM zmm2
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm2;
         }
 
-        ref R.ZMM zmm3
+        ref ZMM zmm3
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm3;
         }
 
-        ref R.ZMM zmm4
+        ref ZMM zmm4
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm4;
         }
 
-        ref R.ZMM zmm5
+        ref ZMM zmm5
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm5;
         }
 
-        ref R.ZMM zmm6
+        ref ZMM zmm6
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm6;
         }
 
-        ref R.ZMM zmm7
+        ref ZMM zmm7
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm7;
         }
 
-        ref R.ZMM zmm8
+        ref ZMM zmm8
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm8;
         }
 
-        ref R.ZMM zmm9
+        ref ZMM zmm9
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm9;
         }
 
-        ref R.ZMM zmm10
+        ref ZMM zmm10
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm10;
         }
 
-        ref R.ZMM zmm11
+        ref ZMM zmm11
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm11;
         }
 
-        ref R.ZMM zmm12
+        ref ZMM zmm12
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm12;
         }
 
-        ref R.ZMM zmm13
+        ref ZMM zmm13
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm13;
         }
 
-        ref R.ZMM zmm14
+        ref ZMM zmm14
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm14;
         }
 
-        ref R.ZMM zmm15
+        ref ZMM zmm15
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm15;
         }
 
-        ref R.ZMM zmm16
+        ref ZMM zmm16
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm16;
         }
 
-        ref R.ZMM zmm17
+        ref ZMM zmm17
         {
             [MethodImpl(Inline)]
             get => ref Zmm.zmm17;
@@ -601,97 +601,97 @@ namespace Z0
         //~ YMM
         //~ ----------------------------
 
-        ref R.YMM ymm0
+        ref YMM ymm0
         {
             [MethodImpl(Inline)]
             get => ref zmm0.ymm0;
         }
 
-        ref R.YMM ymm1
+        ref YMM ymm1
         {
             [MethodImpl(Inline)]
             get => ref zmm1.ymm0;
         }
 
-        ref R.YMM ymm2
+        ref YMM ymm2
         {
             [MethodImpl(Inline)]
             get => ref zmm2.ymm0;
         }
 
-        ref R.YMM ymm3
+        ref YMM ymm3
         {
             [MethodImpl(Inline)]
             get => ref zmm3.ymm0;
         }
 
-        ref R.YMM ymm4
+        ref YMM ymm4
         {
             [MethodImpl(Inline)]
             get => ref zmm4.ymm0;
         }
 
-        ref R.YMM ymm5
+        ref YMM ymm5
         {
             [MethodImpl(Inline)]
             get => ref zmm5.ymm0;
         }
 
-        ref R.YMM ymm6
+        ref YMM ymm6
         {
             [MethodImpl(Inline)]
             get => ref zmm6.ymm0;
         }
 
-        ref R.YMM ymm7
+        ref YMM ymm7
         {
             [MethodImpl(Inline)]
             get => ref zmm7.ymm0;
         }
 
-        ref R.YMM ymm8
+        ref YMM ymm8
         {
             [MethodImpl(Inline)]
             get => ref zmm8.ymm0;
         }
 
-        ref R.YMM ymm9
+        ref YMM ymm9
         {
             [MethodImpl(Inline)]
             get => ref zmm9.ymm0;
         }
 
-        ref R.YMM ymm10
+        ref YMM ymm10
         {
             [MethodImpl(Inline)]
             get => ref zmm10.ymm0;
         }
 
-        ref R.YMM ymm11
+        ref YMM ymm11
         {
             [MethodImpl(Inline)]
             get => ref zmm11.ymm0;
         }
 
-        ref R.YMM ymm12
+        ref YMM ymm12
         {
             [MethodImpl(Inline)]
             get => ref zmm12.ymm0;
         }
 
-        ref R.YMM ymm13
+        ref YMM ymm13
         {
             [MethodImpl(Inline)]
             get => ref zmm13.ymm0;
         }
 
-        ref R.YMM ymm14
+        ref YMM ymm14
         {
             [MethodImpl(Inline)]
             get => ref zmm14.ymm0;
         }
 
-        ref R.YMM ymm15
+        ref YMM ymm15
         {
             [MethodImpl(Inline)]
             get => ref zmm15.ymm0;
@@ -701,97 +701,97 @@ namespace Z0
         //~ XMM
         //~ ----------------------------
 
-        ref R.XMM xmm0
+        ref XMM xmm0
         {
             [MethodImpl(Inline)]
             get => ref zmm0.xmm0;
         }
 
-        ref R.XMM xmm1
+        ref XMM xmm1
         {
             [MethodImpl(Inline)]
             get => ref zmm1.xmm0;
         }
 
-        ref R.XMM xmm2
+        ref XMM xmm2
         {
             [MethodImpl(Inline)]
             get => ref zmm2.xmm0;
         }
 
-        ref R.XMM xmm3
+        ref XMM xmm3
         {
             [MethodImpl(Inline)]
             get => ref zmm3.xmm0;
         }
 
-        ref R.XMM xmm4
+        ref XMM xmm4
         {
             [MethodImpl(Inline)]
             get => ref zmm4.xmm0;
         }
 
-        ref R.XMM xmm5
+        ref XMM xmm5
         {
             [MethodImpl(Inline)]
             get => ref zmm5.xmm0;
         }
 
-        ref R.XMM xmm6
+        ref XMM xmm6
         {
             [MethodImpl(Inline)]
             get => ref zmm6.xmm0;
         }
 
-        ref R.XMM xmm7
+        ref XMM xmm7
         {
             [MethodImpl(Inline)]
             get => ref zmm7.xmm0;
         }
 
-        ref R.XMM xmm8
+        ref XMM xmm8
         {
             [MethodImpl(Inline)]
             get => ref zmm8.xmm0;
         }
 
-        ref R.XMM xmm9
+        ref XMM xmm9
         {
             [MethodImpl(Inline)]
             get => ref zmm9.xmm0;
         }
 
-        ref R.XMM xmm10
+        ref XMM xmm10
         {
             [MethodImpl(Inline)]
             get => ref zmm10.xmm0;
         }
 
-        ref R.XMM xmm11
+        ref XMM xmm11
         {
             [MethodImpl(Inline)]
             get => ref zmm11.xmm0;
         }
 
-        ref R.XMM xmm12
+        ref XMM xmm12
         {
             [MethodImpl(Inline)]
             get => ref zmm12.xmm0;
         }
 
-        ref R.XMM xmm13
+        ref XMM xmm13
         {
             [MethodImpl(Inline)]
             get => ref zmm13.xmm0;
         }
 
-        ref R.XMM xmm14
+        ref XMM xmm14
         {
             [MethodImpl(Inline)]
             get => ref zmm14.xmm0;
         }
 
-        ref R.XMM xmm15
+        ref XMM xmm15
         {
             [MethodImpl(Inline)]
             get => ref zmm15.xmm0;

@@ -9,11 +9,14 @@ namespace Z0
     using System.Runtime.InteropServices;
     
     using static zfunc;
-    using static Registers;
 
     [StructLayout(LayoutKind.Explicit, Size = SegLen*SegCount)]
     public unsafe struct XmmBank
     {
+        [MethodImpl(Inline)]
+        public static XmmBank Init()
+            => new XmmBank();
+
         /// <summary>
         /// The length of each segment
         /// </summary>
@@ -45,7 +48,6 @@ namespace Z0
         public ref XMM Slot<T>(int index)
             where T : unmanaged
                 => ref Unsafe.Add(ref First<T>(), index);
-
 
         [FieldOffset(0)]
         public XMM xmm0;

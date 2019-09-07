@@ -7,43 +7,42 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using Z0.Asm;
-
     using static zfunc;
 
     /// <summary>
-    /// Defines a 16-bit immediate that has been sign-extended from an 8-bit source value
+    /// Defines a 16-bit immediate
     /// </summary>    
-    public readonly struct Imm16i : IImm<short>
+    public readonly struct Imm16 : IImm<Imm16,ushort>
     {
         /// <summary>
         /// The value of the immediate constant
         /// </summary>
-        public readonly short Value;
+        public readonly ushort Value;
 
         /// <summary>
         /// Specifies the size of the immediate in bits
         /// </summary>
         public static readonly BitSize Size = 16;
 
+
         /// <summary>
-        /// Defines a 16-bit sign-extended immediate from an 8-bit source value
+        /// Defines a 16-bit immediate from a 16-bit source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Imm16i Define(short src)
+        public static Imm16 Define(ushort src)
             => src;
 
         /// <summary>
-        /// Converts an 8-bit source value to a 16-bit sign-extended immediate
+        /// Converts a 16-bit source value to a 16-bit immediate
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static implicit operator Imm16i(short src)
-            => new Imm16i(src);
+        public static implicit operator Imm16(ushort src)
+            => new Imm16(src);
 
         [MethodImpl(Inline)]
-        public Imm16i(short src)
+        public Imm16(ushort src)
             => this.Value = src;
 
         public AsmImmInfo Description 
@@ -52,11 +51,16 @@ namespace Z0
             get => new AsmImmInfo(Size,Value);
         }
 
-        short IImm<short>.Value 
+        ushort IImm<ushort>.Value 
         {
             [MethodImpl(Inline)]
             get => Value;
         }
+
+
+        [MethodImpl(Inline)]
+        Imm16 IImm<Imm16,ushort>.Redefine(ushort src)
+            => new Imm16(src);
 
     }
 

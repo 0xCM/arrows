@@ -2,11 +2,10 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm
+namespace Z0
 {
     using System;
     
-
     [Flags]
     public enum MaskRegId : ulong
     {
@@ -25,7 +24,6 @@ namespace Z0.Asm
         c6 = ((RegOffsets.Mask << 32) + 48) | Pow2.T06,
 
         c7 = ((RegOffsets.Mask << 32) + 56) | Pow2.T06,
-
 
     }
 }
