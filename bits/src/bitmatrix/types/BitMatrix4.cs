@@ -12,10 +12,9 @@ namespace Z0
 
     using static zfunc;
 
-
-    public ref struct BitMatrix4
+    public struct BitMatrix4 : IBitMatrix
     {        
-        Span<byte> bits;
+        MemorySpan<byte> bits;
 
         public static readonly N4 N = default;
 
@@ -43,7 +42,6 @@ namespace Z0
         /// The (aligned) number of bytes needed for a column
         /// </summary>
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
-
         
         public static BitMatrix4 Identity 
         {
@@ -126,10 +124,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        BitMatrix4(Span<byte> src)
+        BitMatrix4(MemorySpan<byte> src)
         {
             require(src.Length == Pow2.T01);
-            this.bits = src.ToArray();
+            this.bits = src;
         }
 
         /// <summary>
@@ -241,19 +239,19 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> dst);
+            => bits.Bytes.Unpack(out Span<Bit> dst);
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix4 Replicate()
-            => BitMatrix4.Define(bits.ReadOnly());
+            => BitMatrix4.Define(bits.Replicate());
 
         [MethodImpl(Inline)]
         public readonly bool Equals(in BitMatrix4 rhs)
-            => bits.TakeUInt16() == rhs.bits.TakeUInt16();
+            => bits.Bytes.TakeUInt16() == rhs.Bytes().TakeUInt16();
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => bits.FormatMatrixBits(4);
+            => bits.Bytes.FormatMatrixBits(4);
 
         /// <summary>
         /// Creates a new matrix by cloning the existing matrix or allocating
@@ -263,7 +261,7 @@ namespace Z0
         /// only structure and is thus equivalent to an allocation</param>
         [MethodImpl(Inline)] 
         public readonly BitMatrix4 Replicate(bool structureOnly = false)
-            => structureOnly ? Alloc() : Define(bits.ReadOnly());
+            => structureOnly ? Alloc() : Define(bits.Replicate());
 
         /// <summary>
         /// Queries the matrix for the data in an index-identified column 

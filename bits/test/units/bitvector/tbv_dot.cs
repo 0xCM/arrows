@@ -170,7 +170,7 @@ namespace Z0.Test
         }
 
         void dotg_check<T>(BitSize bitcount, T rep = default, int cycles = DefaltCycleCount)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
 
@@ -188,7 +188,7 @@ namespace Z0.Test
         }
 
         void dotng_check<N,T>(N bitcount = default, T rep = default,  int cycles = DefaltCycleCount)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             NatCaseStart<N,T>();

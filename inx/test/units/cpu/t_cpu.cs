@@ -5,17 +5,17 @@
 namespace Z0
 {
     using System;
-    using System.Runtime.CompilerServices;
 
-
-    public readonly struct Percentile<T>
-        where T : struct
+    public abstract class t_cpu<T> : UnitTest<T>
+        where T : t_cpu<T>, new()
     {
-        public Percentile(T Value)
-            => this.Value = Value;
 
-        public T Value {get;}
+        protected Cpu cpu;
+
+        protected t_cpu()
+        {
+            cpu = Cpu.Init();
+        }
     }
-
 
 }

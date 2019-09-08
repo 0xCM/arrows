@@ -18,9 +18,9 @@ namespace Z0
     /// <summary>
     /// Defines an 8x8 matrix of bits
     /// </summary>
-    public struct BitMatrix8
+    public struct BitMatrix8 : IBitMatrix<BitMatrix8,N8,byte>
     {        
-        Memory<byte> data;
+        MemorySpan<byte> data;
                     
         /// <summary>
         /// The matrix order
@@ -53,30 +53,14 @@ namespace Z0
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
 
         /// <summary>
-        /// Allocates an copy of the identity matrix
+        /// Defines the 8x8 identity bitmatrix
         /// </summary>
-        public static BitMatrix8 Identity 
-        {
-            [MethodImpl(Inline)]
-            get => Load(Identity8x8);
-        }
+        public static readonly BitMatrix8 Identity = Load(Identity8x8);
 
         /// <summary>
-        /// Allocates an copy of the 0 matrix
+        /// Defines the 8x8 zero bitmatrix
         /// </summary>
-        public static BitMatrix8 Zero 
-        {
-            [MethodImpl(Inline)]
-            get => Alloc();
-        }        
-
-        /// <summary>
-        /// Loads a matrix from the source value
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static BitMatrix8 Load(ulong src)        
-            => new BitMatrix8(BitConverter.GetBytes(src).ToMemory());
+        public static readonly BitMatrix8 Zero = Alloc();
 
         /// <summary>
         /// Allocates a matrix, optionally assigning each element to the
@@ -84,7 +68,15 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix8 Alloc(Bit? fill = null)                
-            => fill == Bit.On ? Load(UInt64.MaxValue) : Load(0);
+            => fill == Bit.On ? new BitMatrix8(UInt64.MaxValue) : new BitMatrix8(0ul);
+
+        /// <summary>
+        /// Loads a matrix from the source value
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 From(ulong src)        
+            => new BitMatrix8(src);
 
         /// <summary>
         /// Defines a matrix by the explicit specification of 8 bytes
@@ -98,26 +90,25 @@ namespace Z0
         /// <param name="row6">Specifies the bits in row6</param>
         /// <param name="row7">Specifies the bits in row7</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 FromParts(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)        
-            => new BitMatrix8(new Memory<byte>(new byte[]{row0,row1,row2,row3,row4,row5,row6,row7}));
+        public static BitMatrix8 From(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)        
+            => new BitMatrix8(MemorySpan.From(row0,row1,row2,row3,row4,row5,row6, row7));
 
         /// <summary>
         /// Defifines a matrix from two 32-bit unsigned integers; the upper value contains
         /// the data for rows 0...3 and the lower value contains the dat for rows [4 ... 7]
         /// </summary>
-        /// <param name="upper">The upper row data</param>
-        /// <param name="lower">The lower row data</param>
-        /// <returns></returns>
+        /// <param name="lo">The upper row data</param>
+        /// <param name="hi">The lower row data</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 FromParts(uint upper, uint lower)
-            => Load(Z0.Bits.pack(upper, lower));
+        public static BitMatrix8 From(uint lo, uint hi)
+            => From(Z0.Bits.pack(lo, hi));
 
         /// <summary>
         /// Creates an 8x8 bitmatrix from a memory segment of length 8
         /// </summary>
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 Load(Memory<byte> src)        
+        public static BitMatrix8 Load(MemorySpan<byte> src)        
             => new BitMatrix8(src);
 
         /// <summary>
@@ -166,17 +157,23 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(BitMatrix8 src)
-            => BitConverter.ToUInt64(src.Bits);
+            => BitConverter.ToUInt64(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator BitMatrix8(ulong src)
-            => Load(src);
+            => From(src);
 
         [MethodImpl(Inline)]
-        BitMatrix8(Memory<byte> src)
+        BitMatrix8(MemorySpan<byte> src)
         {
             require(src.Length == Pow2.T03);
             this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        BitMatrix8(ulong src)
+        {
+            this.data = src.ToBytes();
         }
 
         /// <summary>
@@ -184,15 +181,9 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         BitMatrix8(ReadOnlySpan<byte> src)
-            : this(src.ToArray().ToMemory())
+            : this(src.ToArray())
         {                    
 
-        }
-
-        readonly Span<byte> Bits 
-        {
-            [MethodImpl(Inline)]
-            get => data.Span;
         }
 
         /// <summary>
@@ -214,13 +205,10 @@ namespace Z0
         }
 
         /// <summary>
-        /// A readonly view of the matrix storage
+        /// Constructs an 8-node graph via the adjacency matrix interpretation
         /// </summary>
-        public readonly ReadOnlyMemory<byte> Data
-        {
-            [MethodImpl(Inline)]
-            get => data;
-        }
+        public Graph<byte> ToGraph()
+            => BitGraph.FromMatrix<byte,N8,byte>(new BitMatrix<N8,N8,byte>(data));            
 
         /// <summary>
         /// Reads the bit in a specified cell
@@ -229,7 +217,7 @@ namespace Z0
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public readonly Bit GetBit(int row, int col)
-            => BitMask.test(in Bits[row], col);
+            => BitMask.test(in data[row], col);
 
         /// <summary>
         /// Sets the bit in a specified cell
@@ -239,7 +227,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public void SetBit(int row, int col, Bit src)
-            => BitMask.set(ref Bits[row], (byte)col, src);
+            => BitMask.set(ref data[row], (byte)col, src);
 
         /// <summary>
         /// Reads/manipulates the bit in a specified cell
@@ -268,7 +256,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool IsZero()
-            => BitConverter.ToUInt64(Bits) == 0;
+            => BitConverter.ToUInt64(data.Span) == 0;
 
         [MethodImpl(Inline)]
         public BitMatrix8 AndNot(in BitMatrix8 rhs)
@@ -295,7 +283,7 @@ namespace Z0
         /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
         public ref byte RowData(int row)
-            => ref Bits[row];
+            => ref data[row];
 
         /// <summary>
         /// Queries the matrix for the data in an index-identified row and returns
@@ -304,7 +292,7 @@ namespace Z0
         /// <param name="index">The row index</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 RowVector(int index)
-            => Bits[index];
+            => data[index];
 
         /// <summary>
         /// Replaces the data in an index-identified row with the data
@@ -313,7 +301,7 @@ namespace Z0
         /// <param name="index">The row index</param>
         [MethodImpl(Inline)]
         public BitVector8 RowVector(int index, BitVector8 src)
-            => Bits[index] = (byte)src;
+            => data[index] = (byte)src;
 
         /// <summary>
         /// Transposes a copy of the matrix
@@ -322,7 +310,7 @@ namespace Z0
         {
             var dst = Replicate();
             for(var i=0; i<N; i++)
-                dst.Bits[i] = ColData(i);
+                dst.data[i] = ColData(i);
             return dst;
         }
 
@@ -334,7 +322,7 @@ namespace Z0
         {
             byte col = 0;
             for(var r = 0; r < N; r++)
-                if(BitMask.test(in Bits[r], index))
+                if(BitMask.test(in data[r], index))
                     BitMask.enable(ref col, r);
             return col;
         }
@@ -348,11 +336,6 @@ namespace Z0
         public readonly BitVector8 ColVector(int index)
             => ColData(index);
 
-
-        // [MethodImpl(Inline)]
-        // public void RowSwap(int i, int j)
-        //     => data.Swap(i,j);
-
         /// <summary>
         /// Creates a new matrix by cloning the existing matrix or allocating
         /// a matrix with the same structure
@@ -361,7 +344,7 @@ namespace Z0
         /// only structure and is thus equivalent to an allocation</param>
         [MethodImpl(Inline)] 
         public readonly BitMatrix8 Replicate(bool structureOnly = false)
-            => structureOnly ? Alloc() : Load(Bits.Replicate());
+            => structureOnly ? Alloc() : Load(data.Replicate());
 
         /// <summary>
         /// Counts the number of enabled bits in the matrix
@@ -372,14 +355,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => Bits.FormatMatrixBits(8);
+            => data.Bytes.FormatMatrixBits(8);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => Bits.Unpack(out Span<Bit> dst);
+            => data.Bytes.Unpack(out Span<Bit> dst);
 
         [MethodImpl(Inline)]
         public BitMatrix<N8,N8,byte> AsGeneric()
@@ -393,8 +376,8 @@ namespace Z0
             => BitVector64.FromScalar((ulong)this);
 
         [MethodImpl(Inline)]
-        public readonly bool Equals(in BitMatrix8 rhs)
-            => BitConverter.ToUInt64(Bits) == BitConverter.ToUInt64(rhs.Bits);
+        public readonly bool Equals(BitMatrix8 rhs)
+            => BitConverter.ToUInt64(data.Span) == BitConverter.ToUInt64(rhs.data.Span);
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)

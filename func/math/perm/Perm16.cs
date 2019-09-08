@@ -3,46 +3,55 @@ namespace Z0
     using System;
 
     /// <summary>
-    /// Defines literals that identify the 16 elements in a permutation of length 16 such
-    /// that when combined, define a cycle applied to the identity permutation
+    /// Defines canonical literals for representing terms of permutations on 16 symbols
     /// </summary>
     [Flags]
-    public enum Perm16 : ushort
+    public enum Perm16 : ulong
     {
-        X0 = 1,
+        X0 = 0,
         
-        X1 =  2,
+        X1 =  1,
         
-        X2 =  X1*2,
+        X2 =  2,
 
-        X3 = X2*2,
+        X3 = 3,
 
-        X4 = X3*2,
+        X4 = 4,
 
-        X5 = X4*2,
+        X5 = 5,
 
-        X6 = X5*2,
+        X6 = 6,
 
-        X7 = X6*2,
+        X7 = 7,
 
-        X8 = X7*2,
+        X8 = 8,
 
-        X9 = X8*2,
+        X9 = 9,
 
-        XA = X9*2,
+        XA = 10,
 
-        XB = XA*2,
+        XB = 11,
 
-        XC = XB*2,
+        XC = 12,
 
-        XD = XC*2,
+        XD = 13,
 
-        XE = XD*2,
+        XE = 14,
 
-        XF = XE*2,
+        XF = 15,
 
-        Identity = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | XA | XB | XC | XD | XE | XF,
-        
+        /// <summary>
+        /// Represents the 16 symbol identity permutation
+        /// </summary>
+        Identity = X0       | X1 << 4  | X2 << 8  | X3 << 12 | X4 << 16 | X5 << 20 | X6 << 24 | X7 << 28 
+                 | X8 << 32 | X9 << 36 | XA << 40 | XB << 44 | XC << 48 | XD << 52 | XE << 56 | XF << 60,
+            
+        /// <summary>
+        /// Represents the reversed identity permutation
+        /// </summary>
+        Reverse =  XF       | XE << 4  | XD << 8  | XC << 12 | XB << 16 | XA << 20 | X9 << 24 | X8 << 28 
+                 | X7 << 32 | X6 << 36 | X5 << 40 | X4 << 44 | X3 << 48 | X2 << 52 | X1 << 56 | X0 << 60
+
     }
 
 

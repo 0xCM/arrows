@@ -23,8 +23,5 @@ namespace Z0
                 dst ^= (byte) ((byte)src[i + offset] << i); 
             return ref dst;                       
         }
-
-
     }
-
 }

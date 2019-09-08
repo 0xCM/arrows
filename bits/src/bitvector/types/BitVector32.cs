@@ -8,7 +8,6 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Numerics;
 
     using static zfunc;    
 
@@ -351,6 +350,13 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
+        public BitVector32 this[BitPos lpos, BitPos rpos]
+        {
+            [MethodImpl(Inline)]
+            get => Between(lpos, rpos);
+        }
+
+
         public BitVector16 Lo
         {
             [MethodImpl(Inline)]
@@ -414,7 +420,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => Bits.width(in data);
         }
-
 
         /// <summary>
         /// Enables a bit if it is disabled

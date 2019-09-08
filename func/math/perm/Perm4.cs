@@ -12,7 +12,6 @@ namespace Z0
 
     using static zfunc;    
 
-
     /// <summary>
     /// Defines literals that identity each 4-element permutation
     /// </summary>

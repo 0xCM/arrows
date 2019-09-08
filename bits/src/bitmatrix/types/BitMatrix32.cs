@@ -19,9 +19,9 @@ namespace Z0
     /// Defines a 32x32 matrix of bits
     /// </summary>
     
-    public struct BitMatrix32
+    public struct BitMatrix32  : IBitMatrix<BitMatrix32,N32,uint>
     {                
-        Memory<uint> data;        
+        MemorySpan<uint> data;        
 
         /// <summary>
         /// The matrix order
@@ -54,41 +54,29 @@ namespace Z0
         public static readonly ByteSize ColByteCount = (ByteSize)ColBitCount;
 
         /// <summary>
-        /// Allocates an identity matrix
+        /// Defines the 32x32 identity bitmatrix
         /// </summary>
-        public static BitMatrix32 Identity 
-        {
-            [MethodImpl(Inline)]
-            get => Load(Identity32x32);
-        }
+        public static readonly BitMatrix32 Identity = From(Identity32x32);
 
         /// <summary>
-        /// Allocates a zero matrix
+        /// Defines the 32x32 zero bitmatrix
         /// </summary>
-        public static BitMatrix32 Zero 
-        {
-            [MethodImpl(Inline)]
-            get => new BitMatrix32(new uint[N]);
-        }
+        public static readonly BitMatrix32 Zero  = Alloc();
                 
         [MethodImpl(Inline)]
         public static BitMatrix32 Alloc()        
             => new BitMatrix32(new Memory<uint>(new uint[N]));
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 FromParts(params uint[] src)        
+        public static BitMatrix32 From(params uint[] src)        
             => src.Length == 0 ? Alloc() : new BitMatrix32(src.ToMemory());
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 Load(ReadOnlySpan<byte> src)        
-            => new BitMatrix32(src.As<byte,uint>().ToMemory());
+        public static BitMatrix32 From(ReadOnlySpan<byte> src)        
+            => new BitMatrix32(src.As<byte,uint>().ToArray());
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 Load(ReadOnlySpan<uint> src)        
-            => new BitMatrix32(src.ToMemory());
-
-        [MethodImpl(Inline)]
-        public static BitMatrix32 Load(Memory<uint> src)        
+        public static BitMatrix32 From(Memory<uint> src)        
             => new BitMatrix32(src);
 
         /// <summary>
@@ -159,10 +147,16 @@ namespace Z0
             this.data = src;
         }        
 
-        readonly Span<uint> Bits
+        public readonly int RowCount
         {
             [MethodImpl(Inline)]
-            get => data.Span;
+            get => N;
+        }
+
+        public readonly int ColCount
+        {
+            [MethodImpl(Inline)]
+            get => N;
         }
 
         /// <summary>
@@ -172,7 +166,7 @@ namespace Z0
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public readonly Bit GetBit(int row, int col)
-            => BitMask.test(in Bits[row], col);
+            => BitMask.test(in data[row], col);
 
         /// <summary>
         /// Sets the bit in a specified cell
@@ -182,14 +176,13 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public void SetBit(int row, int col, Bit src)
-            => BitMask.set(ref Bits[row], (byte)col, src);
+            => BitMask.set(ref data[row], (byte)col, src);
 
         /// <summary>
-        /// Reads/manipulates the bit in a specified cell
+        /// Queries/manipulates a bit in an identified cell
         /// </summary>
         /// <param name="row">The row index</param>
         /// <param name="col">The column index</param>
-        /// <param name="src">The source value</param>
         public Bit this[int row, int col]
         {
             [MethodImpl(Inline)]
@@ -212,30 +205,9 @@ namespace Z0
         public readonly BitMatrix32 Replicate()
             => new BitMatrix32(data.ToArray());
 
-        public readonly int RowCount
-        {
-            [MethodImpl(Inline)]
-            get => N;
-        }
-
-        public readonly int ColCount
-        {
-            [MethodImpl(Inline)]
-            get => N;
-        }
- 
-        /// <summary>
-        /// A readonly view of the matrix storage
-        /// </summary>
-        public readonly ReadOnlyMemory<uint> Data
-        {
-            [MethodImpl(Inline)]
-            get => data;
-        }
-
         [MethodImpl(Inline)]
         public readonly BitVector32 RowVec(int index)
-            => Bits[index];
+            => data[index];
 
         /// <summary>
         /// Returns a mutable reference for an index-identified matrix row
@@ -243,7 +215,7 @@ namespace Z0
         /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
         public ref uint RowData(int row)
-            => ref Bits[row];
+            => ref data[row];
 
         /// <summary>
         /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
@@ -262,13 +234,13 @@ namespace Z0
         /// <param name="j">A row index</param>
         [MethodImpl(Inline)]
         public void RowSwap(int i, int j)
-            => Bits.Swap(i,j);
+            => data.Swap(i,j);
 
         public readonly uint ColData(int index)
         {
             uint col = 0;
             for(var r = 0; r < N; r++)
-                BitMask.setif(in Bits[r], index, ref col, r);
+                BitMask.setif(in data[r], index, ref col, r);
             return col;
         }
         
@@ -276,16 +248,9 @@ namespace Z0
         public readonly BitVector32 ColVec(int index)
             => ColData(index);
 
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public readonly Span<byte> Bytes()
-            => Bits.AsBytes();
 
         [MethodImpl(Inline)]
-        public bool Equals(in BitMatrix32 rhs)
+        public bool Equals(BitMatrix32 rhs)
             => this.AndNot(rhs).IsZero();
 
         public readonly bool IsZero()
@@ -293,7 +258,7 @@ namespace Z0
             const int rowstep = 8;
             for(var i=0; i< RowCount; i += rowstep)
             {
-                this.LoadVector(out Vec256<uint> vSrc, i);
+                this.LoadCpuVec(i, out Vec256<uint> vSrc);
                 if(!vSrc.TestZ(vSrc))
                     return false;
             }
@@ -305,9 +270,9 @@ namespace Z0
             const int rowstep = 8;
             for(var i=0; i< RowCount; i += rowstep)
             {
-                this.LoadVector(out Vec256<uint> vLhs, i);
-                rhs.LoadVector(out Vec256<uint> vRhs, i);
-                vLhs.AndNot(vRhs).StoreTo(ref Bits[i]);
+                this.LoadCpuVec(i, out Vec256<uint> vLhs);
+                rhs.LoadCpuVec(i, out Vec256<uint> vRhs);
+                vLhs.AndNot(vRhs).StoreTo(ref data[i]);
             }
             return this;
         }
@@ -316,7 +281,7 @@ namespace Z0
         {
             var dst = Replicate();
             for(var i=0; i<N; i++)
-                dst.Bits[i] = ColData(i);
+                dst.data[i] = ColData(i);
             return dst;
         }
 
@@ -339,9 +304,9 @@ namespace Z0
         /// <param name="dst">The target vector</param>
         /// <param name="row">The row index of where the load should begin</param>
         [MethodImpl(Inline)]
-        public readonly ref Vec256<uint> LoadVector(out Vec256<uint> dst, int row)
+        public readonly ref Vec256<uint> LoadCpuVec(int row, out Vec256<uint> dst)
         {
-            dst = load(ref Bits[row]);
+            dst = load(ref data[row]);
             return ref dst;
         }
 
@@ -350,14 +315,14 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
-            => Z0.Bits.pop(Bits);
+            => Z0.Bits.pop(data);
 
         /// <summary>
         /// Converts the matrix to a bitvector
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N1024,uint> ToBitVector()
-            => BitVector.FromCells(Bits, zfunc.n1024);
+            => BitVector.FromCells(data, zfunc.n1024);
 
         /// <summary>
         /// Constructs a 32-node graph via the adjacency matrix interpretation
@@ -365,17 +330,20 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes().ToMemory()));
+            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(data.As<byte>()));
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => Bytes().FormatMatrixBits(32);
+            => data.Bytes.FormatMatrixBits(32);
 
         public override bool Equals(object obj)
-            => throw new NotSupportedException();
+            => obj is BitMatrix32 x && Equals(x);
         
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => 0;
+        
+        public override string ToString()
+            => Format();
 
         static BitMatrix32 And(in BitMatrix32 A, in BitMatrix32 B)
         {

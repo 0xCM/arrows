@@ -15,19 +15,6 @@ namespace Z0
 
     public static class BitGraph
     {
-        [MethodImpl(Inline)]
-        internal static Memory<T> ToMemory<T>(this Span<T> src)
-            => src.ToArray();
-
-        [MethodImpl(Inline)]
-        internal static Memory<T> ToMemory<T>(this ReadOnlySpan<T> src)
-            => src.ToArray();
-
-        /// <summary>
-        /// Constructs an 8-node graph via the adjacency matrix interpretation
-        /// </summary>
-        public static Graph<byte> FromMatrix(BitMatrix8 src)
-            => BitGraph.FromMatrix<byte,N8,byte>(new BitMatrix<N8,N8,byte>(src.Data));            
 
         /// <summary>
         /// Constructs a graph from an adjacency bitmatrix of natural dimension
@@ -41,7 +28,7 @@ namespace Z0
         internal static Graph<V> FromMatrix<V,N,T>(BitMatrix<N,N,T> src, N dim = default, V v = default)
             where N : ITypeNat, new()
             where V : struct
-            where T : struct
+            where T : unmanaged
         {
             var n = (int)dim.value;
             var nodes = Graph.Vertices<V>(n);

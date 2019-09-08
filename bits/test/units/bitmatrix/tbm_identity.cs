@@ -49,7 +49,7 @@ namespace Z0.Test
 
         public void identity64x64()
         {
-            var m = BitMatrix64.Identity;
+            ref readonly var m = ref BitMatrix64.Identity;
             for(byte i=0; i < m.RowCount; i++)
                 Claim.eq(m[i,i],Bit.On);
             Claim.yea(m.Diagonal().AllOnes());
@@ -87,8 +87,8 @@ namespace Z0.Test
         
         void identity_check<N,T>()
             where N : ITypeNat, new()
-            where T : struct
-        {
+            where T : unmanaged
+       {
             TypeCaseStart<N>();
             var identity = BitMatrix.Identity<N,T>();
             for(var i=0; i< identity.RowCount; i++)

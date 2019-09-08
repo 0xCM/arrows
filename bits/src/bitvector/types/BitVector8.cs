@@ -342,6 +342,11 @@ namespace Z0
             get => bytes(data);
         }
 
+        [MethodImpl(Inline)]
+        public ref byte Byte(int index)
+            => ref Bytes[0];
+
+        [MethodImpl(Inline)]
         public static ref byte AsBytes(ref BitVector8 src)
             => ref src.data;
 
@@ -349,6 +354,12 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => Between(range.Start.Value, range.End.Value);
+        }
+
+        public BitVector8 this[BitPos lpos, BitPos rpos]
+        {
+            [MethodImpl(Inline)]
+            get => Between(lpos, rpos);
         }
 
         /// <summary>

@@ -13,6 +13,7 @@
     <ProjectReference Include="../../../matrix/src/z0.matrix.csproj" />    
     <ProjectReference Include="../../../statdist/src/z0.statdist.csproj" />    
     <ProjectReference Include="../../../bits/src/z0.bits.csproj" />    
+    <ProjectReference Include="../../../cpu/src/z0.cpu.csproj" />    
 
     <ProjectReference Include="../../../ms/z0.ms.csproj" />
 

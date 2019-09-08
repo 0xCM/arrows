@@ -48,7 +48,7 @@ namespace Z0.Test
         void check_extract<M,N,T>(BitMatrix<M,N,T> src)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             for(var row=0; row< src.RowCount; row++)
             {
@@ -85,7 +85,6 @@ namespace Z0.Test
                         Claim.eq(col[r], src[r,c]);
                 }
             }
-
         }
 
         void CycleColExtract16(int cycles = DefaltCycleCount)
@@ -151,10 +150,10 @@ namespace Z0.Test
             Claim.yea(xff == y);
 
             var c = Random.BitMatrix64();
-            var a = span<ulong>(64);
+            var a = new ulong[64];
             for(var i = 0; i<64; i++)
                 a[i] = ~ c.RowData(i);
-            var b = BitMatrix64.Load(a);
+            var b = BitMatrix64.From((MemorySpan<ulong>)a);
             Claim.yea(b == -c);        
         }
 

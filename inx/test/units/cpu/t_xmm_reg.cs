@@ -6,33 +6,29 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using Z0.Test;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.IO;
     
     using static zfunc;
-    using static Cpu;
     using static Asm;
+    using static Reg;
 
-    public class t_xmm_reg : UnitTest<t_xmm_reg>
+
+    public class t_xmm_reg : t_cpu<t_xmm_reg>
     {
-
         public void t_vpxor()
-        {
-            var cpu = Cpu.Init();
-            xmm0(ref cpu) = Random.Xmm<uint>();
-            xmm1(ref cpu) = Random.Xmm<uint>();
-            xmm2(ref cpu) = pxor(xmm0(ref cpu), xmm1(ref cpu)); 
+        {            
+            cpu.xmm0 = Random.Xmm<uint>();
+            cpu.xmm1 = Random.Xmm<uint>();
+            cpu.xmm2 = pxor(in cpu.xmm0, in cpu.xmm1); 
 
-            ref readonly var v0 = ref xmm0(ref cpu);
-            ref readonly var v1 = ref xmm1(ref cpu);
-            ref readonly var v2 = ref xmm2(ref cpu);
+            Claim.eq(cpu.xmm2.uint64(0), cpu.xmm0.uint64(0) ^ cpu.xmm1.uint64(0));
+            Claim.eq(cpu.xmm2.uint64(1), cpu.xmm0.uint64(1) ^ cpu.xmm1.uint64(1));                 
 
-            Claim.eq(v2.Cell<ulong>(0), v0.Cell<ulong>(0) ^ v1.Cell<ulong>(0));
-            Claim.eq(v2.Cell<ulong>(1), v0.Cell<ulong>(1) ^ v1.Cell<ulong>(1));
+            cpu.xmm(0) = Random.Xmm<uint>();
+            cpu.xmm(1) = Random.Xmm<uint>();
+            cpu.xmm(2) = pxor(in cpu.xmm(0), in cpu.xmm(1)); 
 
-                 
+            Claim.eq(cpu.xmm(2).uint64(0), cpu.xmm(0).uint64(0) ^ cpu.xmm(1).uint64(0));
+            Claim.eq(cpu.xmm(2).uint64(1), cpu.xmm(0).uint64(1) ^ cpu.xmm(1).uint64(1));                 
         }
 
         public void xmm_create()
@@ -51,7 +47,7 @@ namespace Z0
 
         public void xmm_cpu()
         {
-            var cpu = Cpu.Init();
+            
             xmm(ref cpu, 4) = XMM.FromCells(5ul,10ul);
             Claim.eq(xmm(ref cpu, 4).Cell<ulong>(0), 5ul);
             Claim.eq(xmm(ref cpu, 4).Cell<ulong>(1), 10ul);

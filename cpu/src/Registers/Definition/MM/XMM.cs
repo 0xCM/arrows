@@ -13,7 +13,7 @@ namespace Z0
 
 
     [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
-    public unsafe struct XMM : IMMReg, ICpuReg128
+    public unsafe struct XMM : IMMReg, ICpuReg128, IEquatable<XMM>
     {
         public static readonly BitSize BitWidth = 128;        
 
@@ -102,6 +102,77 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Presents a generic cpu vector as a register
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static XMM FromVec<T>(Vec128<T> src)
+            where T : unmanaged
+        {
+            XMM dst = default;
+            if(typeof(T) == typeof(sbyte))
+                dst.xmm8i = Vector128.As<T,sbyte>(src.data);
+            else if(typeof(T) == typeof(byte))
+                dst.xmm8u = Vector128.As<T,byte>(src.data);
+            else if(typeof(T) == typeof(short))
+                dst.xmm16i = Vector128.As<T,short>(src.data);
+            else if(typeof(T) == typeof(ushort))
+                dst.xmm16u = Vector128.As<T,ushort>(src.data);
+            else if(typeof(T) == typeof(int))
+                dst.xmm32i = Vector128.As<T,int>(src.data);
+            else if(typeof(T) == typeof(uint))
+                dst.xmm32u = Vector128.As<T,uint>(src.data);
+            else if(typeof(T) == typeof(long))
+                dst.xmm64i = Vector128.As<T,long>(src.data);
+            else if(typeof(T) == typeof(ulong))
+                dst.xmm64u = Vector128.As<T,ulong>(src.data);
+            else if(typeof(T) == typeof(float))
+                dst.xmm32f = Vector128.As<T,float>(src.data);
+            else if(typeof(T) == typeof(double))
+                dst.xmm64f = Vector128.As<T,double>(src.data);
+            else
+                throw unsupported<T>();
+            return dst;
+        }
+
+
+        /// <summary>
+        /// Replaces the content of the target register with source vector content
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref XMM Assign<T>(Vector128<T> src, ref XMM dst)
+            where T : unmanaged
+        {
+            if(typeof(T) == typeof(sbyte))
+                dst.xmm8i= Vector128.As<T,sbyte>(src);
+            else if(typeof(T) == typeof(byte))
+                dst.xmm8u = Vector128.As<T,byte>(src);
+            else if(typeof(T) == typeof(short))
+                dst.xmm16i = Vector128.As<T,short>(src);
+            else if(typeof(T) == typeof(ushort))
+                dst.xmm16u = Vector128.As<T,ushort>(src);
+            else if(typeof(T) == typeof(int))
+                dst.xmm32i = Vector128.As<T,int>(src);
+            else if(typeof(T) == typeof(uint))
+                dst.xmm32u = Vector128.As<T,uint>(src);
+            else if(typeof(T) == typeof(long))
+                dst.xmm64i = Vector128.As<T,long>(src);
+            else if(typeof(T) == typeof(ulong))
+                dst.xmm64u = Vector128.As<T,ulong>(src);
+            else if(typeof(T) == typeof(float))
+                dst.xmm32f = Vector128.As<T,float>(src);
+            else if(typeof(T) == typeof(double))
+                dst.xmm64f = Vector128.As<T,double>(src);
+            else
+                throw unsupported<T>();
+            return ref dst;
+        }
+
+
         [MethodImpl(Inline)]
         public static implicit operator XMM(Vector128<sbyte> src)
             => FromVec(src);
@@ -134,13 +205,53 @@ namespace Z0
         public static implicit operator XMM(Vector128<ulong> src)
             => FromVec(src);
 
-
         [MethodImpl(Inline)]
         public static implicit operator XMM(Vector128<float> src)
             => FromVec(src);
 
         [MethodImpl(Inline)]
         public static implicit operator XMM(Vector128<double> src)
+            => FromVec(src);
+
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<sbyte> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<byte> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<short> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<ushort> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<int> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<uint> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<long> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<ulong> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<float> src)
+            => FromVec(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator XMM(Vec128<double> src)
             => FromVec(src);
 
 
@@ -152,34 +263,10 @@ namespace Z0
         public static bool operator !=(XMM lhs, XMM rhs)
             =>!lhs.Equals(rhs);
 
-        [MethodImpl]
+        [MethodImpl(Inline)]
         public void Assign<T>(Vector128<T> src)
             where T : unmanaged
-        {
-            if(typeof(T) == typeof(sbyte))
-                xmm8i= Vector128.As<T,sbyte>(src);
-            else if(typeof(T) == typeof(byte))
-                xmm8u = Vector128.As<T,byte>(src);
-            else if(typeof(T) == typeof(short))
-                xmm16i = Vector128.As<T,short>(src);
-            else if(typeof(T) == typeof(ushort))
-                xmm16u = Vector128.As<T,ushort>(src);
-            else if(typeof(T) == typeof(int))
-                xmm32i = Vector128.As<T,int>(src);
-            else if(typeof(T) == typeof(uint))
-                xmm32u = Vector128.As<T,uint>(src);
-            else if(typeof(T) == typeof(long))
-                xmm64i = Vector128.As<T,long>(src);
-            else if(typeof(T) == typeof(ulong))
-                xmm64u = Vector128.As<T,ulong>(src);
-            else if(typeof(T) == typeof(float))
-                xmm32f = Vector128.As<T,float>(src);
-            else if(typeof(T) == typeof(double))
-                xmm64f = Vector128.As<T,double>(src);
-            else
-                throw unsupported<T>();
-
-        }
+                => Assign(src, ref this);
 
         /// <summary>
         /// Computes type-polymorphic cell count
@@ -262,6 +349,14 @@ namespace Z0
         }
 
         [MethodImpl]
+        public string Format<T>()
+            where T : unmanaged
+                => AsVec<T>(in this).ToString();
+
+        public override string ToString()
+            => Format<ulong>();
+
+        [MethodImpl]
         public bool Equals(XMM rhs)
             => x0 == rhs.x0 && x1 == rhs.x1;
 
@@ -270,12 +365,50 @@ namespace Z0
         
         public override int GetHashCode()
             => x0.GetHashCode() + x1.GetHashCode();
+        
+
+        [MethodImpl(Inline)]
+        public ref sbyte int8(int index)
+            => ref Cell<sbyte>(index);
+
+        [MethodImpl(Inline)]
+        public ref byte uint8(int index)
+            => ref Cell<byte>(index);
+
+        [MethodImpl(Inline)]
+        public ref short int16(int index)
+            => ref Cell<short>(index);
+
+        [MethodImpl(Inline)]
+        public ref ushort uint16(int index)
+            => ref Cell<ushort>(index);
+
+        [MethodImpl(Inline)]
+        public ref int int32(int index)
+            => ref Cell<int>(index);
+
+        [MethodImpl(Inline)]
+        public ref uint uint32(int index)
+            => ref Cell<uint>(index);
+
+        [MethodImpl(Inline)]
+        public ref long int64(int index)
+            => ref Cell<long>(index);
+
+        [MethodImpl(Inline)]
+        public ref ulong uint64(int index)
+            => ref Cell<ulong>(index);
+
+        [MethodImpl(Inline)]
+        public ref float float32(int index)
+            => ref Cell<float>(index);
+
+        [MethodImpl(Inline)]
+        public ref double float64(int index)
+            => ref Cell<double>(index);
 
         [FieldOffset(0)]        
         fixed byte u8[ByteCount];
-
-        [FieldOffset(0)]        
-        fixed sbyte i8[ByteCount];
 
         #region I8
 

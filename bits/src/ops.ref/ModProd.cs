@@ -108,7 +108,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <returns></returns>
         public static int ModProd<T>(BitVector<T> lhs, BitVector<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             var result = 0;
             for(var i=0; i<lhs.Length; i++)
@@ -127,7 +127,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <returns></returns>
         public static int ModProd<N,T>(BitVector<N,T> lhs, BitVector<N,T> rhs)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             var result = 0;

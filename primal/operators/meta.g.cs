@@ -13,6 +13,7 @@ namespace Z0
     using static zfunc;    
     using static As;
     using static Constants;
+    
     partial class gmath
     {
         [MethodImpl(Inline)]
@@ -20,25 +21,25 @@ namespace Z0
             where T : struct
         {        
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(ref asRef(I8Zero));
+                return generic<T>(ref asRef((sbyte)0));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(ref asRef(U8Zero));
+                return generic<T>(ref asRef((byte)0));
             else if(typeof(T) == typeof(short))
-                return generic<T>(ref asRef(I16Zero));
+                return generic<T>(ref asRef((short)0));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(ref asRef(U16Zero));
+                return generic<T>(ref asRef((ushort)0));
             else if(typeof(T) == typeof(int))
-                return generic<T>(ref asRef(I32Zero));
+                return generic<T>(ref asRef(0));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(ref asRef(U32Zero));
+                return generic<T>(ref asRef(0u));
             else if(typeof(T) == typeof(long))
-                return generic<T>(ref asRef(I64Zero));
+                return generic<T>(ref asRef(0L));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(ref asRef(U64Zero));
+                return generic<T>(ref asRef(0ul));
             else if(typeof(T) == typeof(float))
-                return generic<T>(ref asRef(F32Zero));
+                return generic<T>(ref asRef(0f));
             else if(typeof(T) == typeof(double))
-                return generic<T>(ref asRef(F64Zero));
+                return generic<T>(ref asRef(0.0));
             else
                 throw unsupported<T>();
         }
@@ -47,25 +48,25 @@ namespace Z0
         public static T one<T>()
         {        
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(ref asRef(I8One));
+                return generic<T>(ref asRef((sbyte)1));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(ref asRef(U8One));
+                return generic<T>(ref asRef((byte)1));
             else if(typeof(T) == typeof(short))
-                return generic<T>(ref asRef(I16One));
+                return generic<T>(ref asRef((short)1));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(ref asRef(U16One));
+                return generic<T>(ref asRef((ushort)1));
             else if(typeof(T) == typeof(int))
-                return generic<T>(ref asRef(I32One));
+                return generic<T>(ref asRef(1));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(ref asRef(U32One));
+                return generic<T>(ref asRef(1u));
             else if(typeof(T) == typeof(long))
-                return generic<T>(ref asRef(I64One));
+                return generic<T>(ref asRef(1L));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(ref asRef(U64One));
+                return generic<T>(ref asRef(1ul));
             else if(typeof(T) == typeof(float))
-                return generic<T>(ref asRef(F32One));
+                return generic<T>(ref asRef(1f));
             else if(typeof(T) == typeof(double))
-                return generic<T>(ref asRef(F64One));
+                return generic<T>(ref asRef(1.0));
             else
                 throw unsupported<T>();
         }

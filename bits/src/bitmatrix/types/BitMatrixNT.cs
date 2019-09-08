@@ -17,9 +17,9 @@ namespace Z0
     /// <typeparam name="T">The element type</typeparam>
     public struct BitMatrix<N,T> : IEquatable<BitMatrix<N,T>>
         where N : ITypeNat, new()
-        where T : struct
+        where T : unmanaged
     {        
-        Memory<T> data;
+        MemorySpan<T> data;
 
         /// <summary>
         /// Specifies the MxN matrix dimension
@@ -51,7 +51,7 @@ namespace Z0
             => Mul(ref lhs, rhs);
 
         /// <summary>
-        /// Adds the left matrix to the right using bitwise semantics
+        /// Computes the bitwise XOR between the operands
         /// </summary>
         /// <param name="lhs">The left matrix</param>
         /// <param name="rhs">The right matrix</param>
@@ -59,14 +59,28 @@ namespace Z0
         public static BitMatrix<N,T> operator ^(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => XOr(ref lhs, rhs);
 
+        /// <summary>
+        /// Computes the bitwise AND between the operands
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator &(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => And(ref lhs, rhs);
 
+        /// <summary>
+        /// Computes the bitwise Or between the operands
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator |(BitMatrix<N,T> lhs, BitMatrix<N,T> rhs)
             => Or(ref lhs, rhs);
 
+        /// <summary>
+        /// Negates the operand via complemnt
+        /// </summary>
+        /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> operator -(BitMatrix<N,T> src)
             => Flip(ref src);
@@ -85,12 +99,6 @@ namespace Z0
             require(src.Length == GridLayout.TotalCellCount, 
                 $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
             this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        public BitMatrix(ReadOnlySpan<T> src)
-            : this(src.ToArray().ToMemory())
-        {
         }
 
         [MethodImpl(Inline)]
@@ -157,8 +165,15 @@ namespace Z0
             => GridLayout.Row(row)[0].Segment;
                 
         [MethodImpl(Inline)]
-        readonly Memory<T> RowData(int row)
+        public MemorySpan<T> RowData(int row)
             => data.Slice(RowOffset(row), GridLayout.RowCellCount);
+
+        [MethodImpl(Inline)]
+        public ref MemorySpan<T> RowData(int row, out MemorySpan<T> dst)
+        {
+            dst = data.Slice(RowOffset(row), GridLayout.RowCellCount);
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
         void ReplaceRow(int row, Memory<T> data)
@@ -177,7 +192,7 @@ namespace Z0
         /// </summary>
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
-        public readonly BitVector<N,T> RowVector(int index)                    
+        public BitVector<N,T> RowVector(int index)                    
             => new BitVector<N,T>(RowData(index));                
 
         public readonly BitVector<N,T> Diagonal()

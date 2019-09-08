@@ -21,7 +21,31 @@ namespace Z0
         {
             Bit0 = 0b1
         }
-        
+
+        /// <summary>
+        /// Identifies the bits in a 2-bit segment
+        /// </summary>
+        [Flags]
+        public enum Seg2x1 : byte
+        {
+            
+            /// <summary>
+            /// Identifies the first bit
+            /// </summary>
+            Bit0 = Seg1x1.Bit0,
+
+            /// <summary>
+            /// Identifies the second bit
+            /// </summary>
+            Bit1 = Bit0 << 1,
+
+
+            /// <summary>
+            /// Selects all bits of a 3-bit segment
+            /// </summary>
+            Select = Bit0 | Bit1
+        }
+
         /// <summary>
         /// Identifies the bits in a 3-bit segment
         /// </summary>
@@ -81,6 +105,218 @@ namespace Z0
             /// Selects all bits of a 4-bit segment
             /// </summary>
             Select = Bit0 | Bit1 | Bit2 | Bit3
+        }
+
+        /// <summary>
+        /// Identifies the bits in a 5-bit segment
+        /// </summary>
+        [Flags]
+        public enum Seg5x1 : byte
+        {
+            
+            /// <summary>
+            /// Identifies the first bit
+            /// </summary>
+            Bit0 = Seg1x1.Bit0,
+
+            /// <summary>
+            /// Identifies the second bit
+            /// </summary>
+            Bit1 = Bit0 << 1,
+
+            /// <summary>
+            /// Identifies the third bit
+            /// </summary>
+            Bit2 = Bit1 << 1,
+
+            /// <summary>
+            /// Identifies the fourth bit
+            /// </summary>
+            Bit3 = Bit2 << 1,
+
+            /// <summary>
+            /// Identifies the fifth bit
+            /// </summary>
+            Bit4 = Bit3 << 1,
+
+            /// <summary>
+            /// Selects all bits of a 5-bit segment
+            /// </summary>
+            Select = Bit0 | Bit1 | Bit2 | Bit3 | Bit4
+        }
+
+        /// <summary>
+        /// Identifies the bits in a byte
+        /// </summary>
+        [Flags]
+        public enum Seg8x1 : byte
+        {
+            /// <summary>
+            /// Identifies the first bit
+            /// </summary>
+            Bit0 = Seg1x1.Bit0,
+
+            /// <summary>
+            /// Identifies the second bit
+            /// </summary>
+            Bit1 = Bit0 << 1,
+
+            /// <summary>
+            /// Identifies the third bit
+            /// </summary>
+            Bit2 = Bit1 << 1,
+
+            /// <summary>
+            /// Identifies the fourth bit
+            /// </summary>
+            Bit3 = Bit2 << 1,            
+
+            /// <summary>
+            /// Identifies the fifth bit
+            /// </summary>
+            Bit4 = Bit3 << 1,
+
+            /// <summary>
+            /// Identifies the sixth bit
+            /// </summary>
+            Bit5 = Bit4 << 1,            
+
+            /// <summary>
+            /// Identifies the seventh bit
+            /// </summary>
+            Bit6 = Bit5 << 1,                    
+            
+            /// <summary>
+            /// Identifies the eighth bit
+            /// </summary>
+            Bit7 = Bit6 << 1,
+            
+            /// <summary>
+            /// Selects all bits of a byte
+            /// </summary>
+            Select = Bit0 | Bit1 | Bit2 | Bit4 | Bit5 | Bit6 | Bit7
+
+        }
+
+        /// <summary>
+        /// Identifies the bits in a 9-bit group
+        /// </summary>
+        [Flags]
+        public enum Seg9x1 : ushort
+        {
+            /// <summary>
+            /// Identifies the first bit
+            /// </summary>
+            Bit0 = Seg1x1.Bit0,
+
+            /// <summary>
+            /// Identifies the second bit
+            /// </summary>
+            Bit1 = Bit0 << 1,
+
+            /// <summary>
+            /// Identifies the third bit
+            /// </summary>
+            Bit2 = Bit1 << 1,
+
+            /// <summary>
+            /// Identifies the fourth bit
+            /// </summary>
+            Bit3 = Bit2 << 1,            
+
+            /// <summary>
+            /// Identifies the fifth bit
+            /// </summary>
+            Bit4 = Bit3 << 1,
+
+            /// <summary>
+            /// Identifies the sixth bit
+            /// </summary>
+            Bit5 = Bit4 << 1,            
+
+            /// <summary>
+            /// Identifies the seventh bit
+            /// </summary>
+            Bit6 = Bit5 << 1,                    
+            
+            /// <summary>
+            /// Identifies the eighth bit
+            /// </summary>
+            Bit7 = Bit6 << 1,
+
+            /// <summary>
+            /// Identifies the ninth bit
+            /// </summary>
+            Bit8 = Bit7 << 1,
+            
+            /// <summary>
+            /// Selects all bits of a byte
+            /// </summary>
+            Select = Bit0 | Bit1 | Bit2 | Bit4 | Bit5 | Bit6 | Bit7 | Bit8
+
+        }
+
+        /// <summary>
+        /// Identifies the bits in a 10-bit group
+        /// </summary>
+        [Flags]
+        public enum Seg10x1 : ushort
+        {
+            /// <summary>
+            /// Identifies the first bit
+            /// </summary>
+            Bit0 = Seg1x1.Bit0,
+
+            /// <summary>
+            /// Identifies the second bit
+            /// </summary>
+            Bit1 = Bit0 << 1,
+
+            /// <summary>
+            /// Identifies the third bit
+            /// </summary>
+            Bit2 = Bit1 << 1,
+
+            /// <summary>
+            /// Identifies the fourth bit
+            /// </summary>
+            Bit3 = Bit2 << 1,            
+
+            /// <summary>
+            /// Identifies the fifth bit
+            /// </summary>
+            Bit4 = Bit3 << 1,
+
+            /// <summary>
+            /// Identifies the sixth bit
+            /// </summary>
+            Bit5 = Bit4 << 1,            
+
+            /// <summary>
+            /// Identifies the seventh bit
+            /// </summary>
+            Bit6 = Bit5 << 1,                    
+            
+            /// <summary>
+            /// Identifies the eighth bit
+            /// </summary>
+            Bit7 = Bit6 << 1,
+
+            /// <summary>
+            /// Identifies the ninth bit
+            /// </summary>
+            Bit8 = Bit7 << 1,
+
+            /// <summary>
+            /// Identifies the ninth bit
+            /// </summary>
+            Bit9 = Bit8 << 1,
+
+            /// <summary>
+            /// Selects all bits of a byte
+            /// </summary>
+            Select = Bit0 | Bit1 | Bit2 | Bit4 | Bit5 | Bit6 | Bit7 | Bit8 | Bit9
+
         }
 
 
@@ -149,62 +385,8 @@ namespace Z0
             /// Selects two 3-bit segments
             /// </summary>
             Select = Seg0 | Seg1
-
         }
 
-
-        /// <summary>
-        /// Identifies the bits in a byte
-        /// </summary>
-        [Flags]
-        public enum Seg8x1 : byte
-        {
-            /// <summary>
-            /// Identifies the first bit
-            /// </summary>
-            Bit0 = Seg1x1.Bit0,
-
-            /// <summary>
-            /// Identifies the second bit
-            /// </summary>
-            Bit1 = Bit0 << 1,
-
-            /// <summary>
-            /// Identifies the third bit
-            /// </summary>
-            Bit2 = Bit1 << 1,
-
-            /// <summary>
-            /// Identifies the fourth bit
-            /// </summary>
-            Bit3 = Bit2 << 1,            
-
-            /// <summary>
-            /// Identifies the fifth bit
-            /// </summary>
-            Bit4 = Bit3 << 1,
-
-            /// <summary>
-            /// Identifies the sixth bit
-            /// </summary>
-            Bit5 = Bit4 << 1,            
-
-            /// <summary>
-            /// Identifies the seventh bit
-            /// </summary>
-            Bit6 = Bit5 << 1,                    
-            
-            /// <summary>
-            /// Identifies the eighth bit
-            /// </summary>
-            Bit7 = Bit6 << 1,
-            
-            /// <summary>
-            /// Selects all bits of a byte
-            /// </summary>
-            Select = Bit0 | Bit1 | Bit2 | Bit4 | Bit5 | Bit6 | Bit7
-
-        }
 
         /// <summary>
         /// Identifies the least significant bit in a byte
@@ -290,64 +472,6 @@ namespace Z0
             /// Selects the odd bits
             /// </summary>
             Select = Bit1 |  Bit3 |  Bit5 |  Bit7
-
-        }
-
-        /// <summary>
-        /// Identifies the bits in a 9-bit group
-        /// </summary>
-        [Flags]
-        public enum Seg9x1 : ushort
-        {
-            /// <summary>
-            /// Identifies the first bit
-            /// </summary>
-            Bit0 = Seg1x1.Bit0,
-
-            /// <summary>
-            /// Identifies the second bit
-            /// </summary>
-            Bit1 = Bit0 << 1,
-
-            /// <summary>
-            /// Identifies the third bit
-            /// </summary>
-            Bit2 = Bit1 << 1,
-
-            /// <summary>
-            /// Identifies the fourth bit
-            /// </summary>
-            Bit3 = Bit2 << 1,            
-
-            /// <summary>
-            /// Identifies the fifth bit
-            /// </summary>
-            Bit4 = Bit3 << 1,
-
-            /// <summary>
-            /// Identifies the sixth bit
-            /// </summary>
-            Bit5 = Bit4 << 1,            
-
-            /// <summary>
-            /// Identifies the seventh bit
-            /// </summary>
-            Bit6 = Bit5 << 1,                    
-            
-            /// <summary>
-            /// Identifies the eighth bit
-            /// </summary>
-            Bit7 = Bit6 << 1,
-
-            /// <summary>
-            /// Identifies the ninth bit
-            /// </summary>
-            Bit8 = Bit7 << 1,
-            
-            /// <summary>
-            /// Selects all bits of a byte
-            /// </summary>
-            Select = Bit0 | Bit1 | Bit2 | Bit4 | Bit5 | Bit6 | Bit7 | Bit8
 
         }
 
@@ -1074,8 +1198,6 @@ namespace Z0
         }
     }
 
-
-
     /// <summary>
     /// Defines common 8-bit masks
     /// </summary>
@@ -1203,22 +1325,5 @@ namespace Z0
         /// Identifies every bit
         /// </summary>
         Ones = Odd | Even
-    }
-
-    public static class BitMaskX
-    {
-        public static BitVector8 ToBitVector(this BitMask8 src)
-            => ((byte)src).ToBitVector();
-
-        public static BitVector16 ToBitVector(this BitMask16 src)
-            => ((ushort)src).ToBitVector();
-
-        public static BitVector32 ToBitVector(this BitMask32 src)
-            => ((uint)src).ToBitVector();
-
-        public static BitVector64 ToBitVector(this BitMask64 src)
-            => ((ulong)src).ToBitVector();
-
-
     }
 }

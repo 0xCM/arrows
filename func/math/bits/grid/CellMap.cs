@@ -16,17 +16,7 @@ namespace Z0
     /// </summary>
     public readonly struct CellMap<T>
         where T : struct
-    {   
-        public CellMap(CellIndex<T> BitPos, int Row, int Col)
-        {
-            this.Segment = BitPos.Segment;
-            this.Offset = BitPos.Offset;
-            this.Row =Row;
-            this.Col = Col;
-            this.LinearIndex = BitPos.LinearIndex;
-        }
-        
-
+    {           
         public CellMap(ushort Segment, byte Offset, int LinearIndex, int Row, int Col)
         {
             this.Segment = Segment;

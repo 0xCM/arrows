@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static BitVector<N,T> Alloc<N,T>(N len = default, in T fill = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var bitcount = nati<N>();
             var count = CellCount<T>(bitcount);        
@@ -41,7 +41,7 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         public static BitVector<T> Alloc<T>(BitSize len, in T fill = default)
-            where T : struct
+            where T : unmanaged
         {
             var capacity = BitVector<T>.SegmentCapacity;
             var q = Math.DivRem(len, capacity, out int r);    
@@ -85,7 +85,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCell<N,T>(in T src, N n = default)        
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => new BitVector<N,T>(src);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Z0
         /// <param name="n">The bitvector length</param>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCell<T>(T src, BitSize? n = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCell(src,n);
 
         /// <summary>
@@ -108,7 +108,20 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCells<N,T>(Span<T> src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
+                => new BitVector<N, T>(src);
+
+        /// <summary>
+        /// Loads a bitvector of natural length from a span
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="n">The natural length</param>
+        /// <typeparam name="N">The natural type</typeparam>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> FromCells<N,T>(MemorySpan<T> src, N n = default)
+            where N : ITypeNat, new()
+            where T : unmanaged
                 => new BitVector<N, T>(src);
 
         /// <summary>
@@ -121,7 +134,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCells<N,T>(T[] src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => new BitVector<N, T>(src);
 
         /// <summary>
@@ -134,7 +147,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCells<N,T>(Memory<T> src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => new BitVector<N, T>(src);
 
         /// <summary>
@@ -147,7 +160,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCells<N,T>(ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => new BitVector<N, T>(src);
 
         /// <summary>
@@ -158,7 +171,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCells<T>(Span<T> src, BitSize? n = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCells(src,n);
 
         /// <summary>
@@ -169,7 +182,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCells<T>(Memory<T> src, BitSize? n = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCells(src,n);
 
         /// <summary>
@@ -180,7 +193,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCells<T>(ReadOnlySpan<T> src, BitSize? n = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCells(src,n);
 
         /// <summary>
@@ -189,7 +202,7 @@ namespace Z0
         /// <param name="src">The source segment</param>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCells<T>(params T[] src)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCells(src);
 
         /// <summary>
@@ -200,7 +213,7 @@ namespace Z0
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> FromCells<T>(BitSize n, params T[] src)
-            where T : struct
+            where T : unmanaged
                 => BitVector<T>.FromCells(n, src);
  
         /// <summary>
@@ -210,7 +223,7 @@ namespace Z0
         /// <typeparam name="T">The primal storage type</typeparam>
         [MethodImpl(Inline)]
         public static int CellCount<T>(BitSize len)
-            where T : struct
+            where T : unmanaged
         {
             var capacity = BitVector<T>.SegmentCapacity;
             var q = Math.DivRem(len, capacity, out int r);            

@@ -92,7 +92,7 @@ namespace Z0
         /// <param name="i">The first index</param>
         /// <param name="j">The second index</param>
         /// <typeparam name="T">The element type</typeparam>
-        public static ref Span<T> Swap<T>(this ref Span<T> io, params Swap[] swaps)           
+        public static Span<T> Swap<T>(this Span<T> io, params Swap[] swaps)           
             where T : struct
         {
             for(var k = 0; k< swaps.Length; k++)
@@ -100,45 +100,43 @@ namespace Z0
                 (var i, var j) = swaps[k];
                 swap(ref io[i], ref io[j]);
             }
-            return ref io;
+            return io;
         }
 
         /// <summary>
         /// Applies a sequence of transpositions to source span elements
         /// </summary>
-        /// <param name="io">The source and target span</param>
+        /// <param name="src">The source and target span</param>
         /// <param name="i">The first index</param>
         /// <param name="j">The second index</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Span256<T> Swap<T>(this ref Span256<T> io, params Swap[] swaps)           
+        public static Span256<T> Swap<T>(this Span256<T> src, params Swap[] swaps)           
             where T : struct
         {
              if(swaps.Length == 0)
-                return ref io;
+                return src;
 
-             var src = io.Unblocked;
-             src.Swap(swaps);
-             return ref io;
+             src.Unblocked.Swap(swaps);
+             return src;
         }
                 
         /// <summary>
         /// Applies a sequence of transpositions to source span elements
         /// </summary>
-        /// <param name="io">The source and target span</param>
+        /// <param name="src">The source and target span</param>
         /// <param name="i">The first index</param>
         /// <param name="j">The second index</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Span128<T> Swap<T>(this ref Span128<T> io, params Swap[] swaps)           
+        public static Span128<T> Swap<T>(this Span128<T> src, params Swap[] swaps)           
             where T : struct
         {
              if(swaps.Length == 0)
-                return ref io;
-
-             var src = io.Unblocked;
-             src.Swap(swaps);
-             return ref io;
+                return src;
+                
+             src.Unblocked.Swap(swaps);
+             return src;
         }        
 
         /// <summary>
@@ -188,7 +186,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public static bool Includes(this Perm16 src, int index)
-            => (((int)src & (1 << index)) != 0);
+            => (((int)src & (4 << index)) != 0);
 
         [MethodImpl(Inline)]
         public static PermCycle Cycle(this Perm16 src)
@@ -203,6 +201,56 @@ namespace Z0
             }
             return new PermCycle(terms.Slice(0, counter));
 
+        }
+
+        /// <summary>
+        /// Maps a permutation on 8 symbols to its canonical scalar representation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static Perm8 ToScalar(this Perm<N8> src)
+        {
+            var dst = 0u;            
+            for(int i=0, offset = 0; i< src.Length; i++, offset +=3)
+                dst |= (uint)src[i] << offset;                        
+            return (Perm8)dst;
+        }
+
+        /// <summary>
+        /// Reifies a permutation of length 8 from its canonical scalar representative 
+        /// </summary>
+        /// <param name="rep">The representative</param>
+        public static Perm<N8> ToPerm(this Perm8 rep)
+        {
+            uint data = (uint)rep;
+            var dst = Perm<N8>.Alloc();
+            for(int i=0, offset = 0; i<dst.Length; i++, offset +=3)
+                dst[i] = (int)BitMask.between(in data, offset, offset + 2);
+            return dst;
+        }
+ 
+        /// <summary>
+        /// Maps a permutation on 16 symbols to its canonical scalar representation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static Perm16 ToScalar(this Perm<N16> src)
+        {
+            var dst = 0ul;            
+            for(int i=0, offset = 0; i< src.Length; i++, offset +=3)
+                dst |= (ulong)src[i] << offset;                        
+            return (Perm16)dst;
+        }
+
+        /// <summary>
+        /// Reifies a permutation of length 16 from its canonical scalar representative 
+        /// </summary>
+        /// <param name="rep">The representative</param>
+        public static Perm<N16> ToPerm(this Perm16 rep)
+        {
+            uint data = (uint)rep;
+            var dst = Perm<N16>.Alloc();
+            for(int i=0, offset = 0; i<dst.Length; i++, offset +=4)
+                dst[i] = (int)BitMask.between(in data, offset, offset + 3);
+            return dst;
         }
 
     }

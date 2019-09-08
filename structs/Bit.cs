@@ -10,10 +10,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zfunc;
-    using static Constants;
 
     /// <summary>
-    /// Represents a numeric or logical bit
+    /// Defines the value of a bit
     /// </summary>
     public readonly struct Bit
     {
@@ -30,7 +29,6 @@ namespace Z0
         public const char Zero = '0';
 
         public const char One = '1';
-
 
         [MethodImpl(Inline)]
         public static char And(char lhs, char rhs)
@@ -74,55 +72,95 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(Bit src)
-            => src.value ? U16One : U16Zero;
+            => src.value ? (ushort)1 : (ushort)0;
 
         [MethodImpl(Inline)]
         public static explicit operator int(Bit src)
-            => src.value ? I32One : I32Zero;
+            => src.value ? 1 : 0;
 
         [MethodImpl(Inline)]
         public static explicit operator uint(Bit src)
-            => src.value ? U32One : U32Zero;
+            => src.value ? 1u : 0u;
 
         [MethodImpl(Inline)]
         public static explicit operator long(Bit src)
-            => src.value ? I64One : I64Zero;
+            => src.value ? 1L : 0L;
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(Bit src)
-            => src.value ? U64One : U64Zero;
+            => src.value ? 1ul : 0ul;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(sbyte src)
-            => src == I8Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(byte src)
-            => src == U8Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(short src)
-            => src == I16Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(ushort src)
-            => src == U16Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(int src)
-            => src == I32Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(uint src)
-            => src == U32Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(long src)
-            => src == I64Zero ? Off : On;
+            => src == 0 ? Off : On;
 
+        /// <summary>
+        /// Implicitly converts an integral value to a bit where nonzero values
+        /// are interpreted as an On bit
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static implicit operator Bit(ulong src)
-            => src == U64Zero ? Off : On;
+            => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(Bit src)
@@ -198,7 +236,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public override int GetHashCode()
-            => value ? I32One : I32Zero;
+            => value ? 1 : 0;
     
         [MethodImpl(Inline)]
         public override string ToString()

@@ -11,7 +11,6 @@ namespace Z0
 
     public static class BitFormatX
     {
-
         /// <summary>
         /// Formats the source value as a bitstring
         /// </summary>

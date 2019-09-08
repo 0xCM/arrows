@@ -120,7 +120,7 @@ namespace Z0
             => new BitVector16(src);
 
         /// <summary>
-        /// Converts the source vector to the underlying value it represents
+        /// Converts the source vector to the underlying primal value
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -135,6 +135,10 @@ namespace Z0
         public static implicit operator BitVector64(BitVector16 src)
             => src.ToBitVector64();
 
+        /// <summary>
+        /// Truncates the source vector by half
+        /// </summary>
+        /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static explicit operator BitVector8(BitVector16 src)
             => src.ToBitVector8();
@@ -291,6 +295,9 @@ namespace Z0
             : this()
             => this.data = src;
 
+        /// <summary>
+        /// Gets/Sets an identified bit
+        /// </summary>
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
@@ -300,10 +307,23 @@ namespace Z0
             set => Set(pos,value);
         }
         
+        /// <summary>
+        /// Selects the bits that are positioned within an inclusive range
+        /// </summary>
         public BitVector16 this[Range range]
         {
             [MethodImpl(Inline)]
             get => Between(range.Start.Value, range.End.Value);
+        }
+
+        /// <summary>
+        /// Selects the bits that are between left and right positions
+        /// </summary>
+        public BitVector16 this[BitPos lpos, BitPos rpos]
+        {
+            [MethodImpl(Inline)]
+            get => Between(lpos, rpos);
+
         }
 
         /// <summary>
@@ -342,7 +362,6 @@ namespace Z0
             get => x0001;
         }
         
-
         /// <summary>
         /// Zero-extends the vector to a vector that accomondates
         /// the next power of 2

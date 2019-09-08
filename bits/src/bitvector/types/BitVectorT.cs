@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;    
 
     public struct BitVector<T> : IBitVector<T>
-        where T : struct
+        where T : unmanaged
     {
         /// <summary>
         /// The number of bits represented by the vector
@@ -134,7 +134,7 @@ namespace Z0
             => !src.Nonempty;
 
         [MethodImpl(Inline)]
-        public BitVector(Memory<T> src, BitSize? n = null)
+        public BitVector(MemorySpan<T> src, BitSize? n = null)
         {            
             this.data = src;
             this.MaxBitCount = src.Span.Length * (int)SegmentCapacity;

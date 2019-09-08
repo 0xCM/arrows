@@ -54,7 +54,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> ToBitVector<N,T>(this Span<T> src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => BitVector.FromCells(src,n);
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N,T> ToBitVector<N,T>(this ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => BitVector.FromCells(src,n);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Span<T> src, BitSize? len = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector.FromCells(src,len);
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this Memory<T> src, BitSize? len = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector.FromCells(src,len);
 
         /// <summary>
@@ -99,47 +99,47 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, BitSize? len = null)
-            where T : struct
+            where T : unmanaged
                 => BitVector.FromCells(src,len);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
-            where T : struct
+            where T : unmanaged
                 => src.Bytes().First();
 
         [MethodImpl(Inline)]
         public static BitVector8 TakeBitVector8<T>(this BitVector<T> src, int offset = 0)        
-            where T : struct
+            where T : unmanaged
                 => src.Bytes()[offset];
 
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt16(src.Bytes().Extend(2));
 
         [MethodImpl(Inline)]
         public static BitVector16 TakeBitVector16<T>(this BitVector<T> src, int offset = 0)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt16(src.Bytes().Slice(offset, 2));
 
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt32(src.Bytes().Extend(4));
 
         [MethodImpl(Inline)]
         public static BitVector32 TakeBitVector32<T>(this BitVector<T> src, int offset = 0)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt32(src.Bytes().Slice(offset, 4));
 
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt64(src.Bytes().Extend(8));
 
         [MethodImpl(Inline)]
         public static BitVector64 TakeBitVector64<T>(this BitVector<T> src, int offset = 0)        
-            where T : struct
+            where T : unmanaged
                 => BitConverter.ToUInt64(src.Bytes().Slice(offset, 8));
 
         [MethodImpl(Inline)]
@@ -428,7 +428,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type of the target vector</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> ToCpuVec128<T>(this BitString src)
-            where T : struct        
+            where T : unmanaged        
                 => src.Pack().As<byte,T>().ToSpan128().ToCpuVec128();
 
         /// <summary>
@@ -438,7 +438,40 @@ namespace Z0
         /// <typeparam name="T">The primal component type of the target vector</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> ToCpuVec256<T>(this BitString src)
-            where T : struct        
+            where T : unmanaged        
                 => src.Pack().As<byte,T>().ToSpan256().ToCpuVec256();                
+
+        /// <summary>
+        /// Converts an 8-bit bitmask to an 8-bit bitvector
+        /// </summary>
+        /// <param name="src">The source mask</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector(this BitMask8 src)
+            => ((byte)src).ToBitVector();
+
+        /// <summary>
+        /// Converts a 16-bit bitmask to a 16-bit bitvector
+        /// </summary>
+        /// <param name="src">The source mask</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector(this BitMask16 src)
+            => ((ushort)src).ToBitVector();
+
+        /// <summary>
+        /// Converts a 32-bit bitmask to a 32-bit bitvector
+        /// </summary>
+        /// <param name="src">The source mask</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector(this BitMask32 src)
+            => ((uint)src).ToBitVector();
+
+        /// <summary>
+        /// Converts a 64-bit bitmask to a 64-bit bitvector
+        /// </summary>
+        /// <param name="src">The source mask</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector(this BitMask64 src)
+            => ((ulong)src).ToBitVector();
+
     }
 }

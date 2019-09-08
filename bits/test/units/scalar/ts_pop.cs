@@ -59,7 +59,7 @@ namespace Z0.Test
         }
 
         void PopCounts<N,T>()
-            where T : struct
+            where T : unmanaged
             where N : INatPow2, new()
         {
             var src = Random.Span<T>((int)new N().value);

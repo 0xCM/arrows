@@ -18,9 +18,9 @@ namespace Z0
     /// <summary>
     /// Defines a 16x16 matrix of bits
     /// </summary>
-    public ref struct BitMatrix16
+    public struct BitMatrix16 : IBitMatrix<BitMatrix16,N16,ushort>
     {   
-        Span<ushort> bits;
+        MemorySpan<ushort> data;
 
         /// <summary>
         /// The matrix order
@@ -56,62 +56,41 @@ namespace Z0
         /// The number of bytes required to store the matrix bits = 32
         /// </summary>
         public static readonly ByteSize StorageBytes = (ByteSize)TotalBitCount;
-                        
-        
+                                
         /// <summary>
-        /// Allocates an identity matrix
+        /// Defines the 16x16 identity bitmatrix
         /// </summary>
-        public static BitMatrix16 Identity 
-        {
-            [MethodImpl(Inline)]
-            get => Load(Identity16x16);
-        }
+        public static readonly BitMatrix16 Identity = From(Identity16x16);
 
         /// <summary>
-        /// Allocates a zero matrix
+        /// Defines the 16x16 zero bitmatrix
         /// </summary>
-        public static BitMatrix16 Zero 
-        {
-            [MethodImpl(Inline)]
-            get => FromParts(new ushort[N]);
-        }
-        
-        [MethodImpl(Inline)]
-        public static BitMatrix16 FromParts(params ushort[] src)        
-            => src.Length == 0 ? Alloc() : new BitMatrix16(src);
+        public static readonly BitMatrix16 Zero = Alloc();
 
         [MethodImpl(Inline)]
         public static BitMatrix16 Alloc()        
-            => FromParts(new ushort[N]);
+            => From(new ushort[N]);
 
         [MethodImpl(Inline)]
-        public static BitMatrix16 Load(Span<ushort> src)        
+        public static BitMatrix16 From(params ushort[] src)        
+            => src.Length == 0 ? Alloc() : new BitMatrix16(src);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 From(MemorySpan<ushort> src)        
             => new BitMatrix16(src);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 From(ReadOnlySpan<byte> src)        
+            => new BitMatrix16(src.As<byte,ushort>());
 
         /// <summary>
         /// Loads a bitmatrix from the bits in cpu vector
         /// </summary>
         /// <param name="src">The matrix bits</param>
         [MethodImpl(Inline)]
-        public static BitMatrix16 Load<T>(in Vec256<T> src)
+        public static BitMatrix16 From<T>(in Vec256<T> src)
             where T : struct
-                => BitMatrix16.Load(ByteSpan.FromValue(src));
-
-        [MethodImpl(Inline)]
-        public static BitMatrix16 Load(ReadOnlySpan<byte> src)        
-            => new BitMatrix16(src.As<byte,ushort>());
-
-        [MethodImpl(Inline)]
-        public static BitMatrix16 Load(ReadOnlySpan<ushort> src)        
-            => new BitMatrix16(src);
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(BitMatrix16 lhs, BitMatrix16 rhs)
-            => lhs.Eq(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(BitMatrix16 lhs, BitMatrix16 rhs)
-            => !lhs.Eq(rhs);
+                => BitMatrix16.From(ByteSpan.FromValue(src));
 
         [MethodImpl(Inline)]
         public static BitMatrix16 operator + (BitMatrix16 lhs, BitMatrix16 rhs)
@@ -133,17 +112,22 @@ namespace Z0
         public static BitVector16 operator * (BitMatrix16 lhs, BitVector16 rhs)
             => Mul(lhs,rhs);
 
+        /// <summary>
+        /// Computes the bitwise and of the operands
+        /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
             => And(ref lhs, rhs);
 
+        /// <summary>
+        /// Computes the bitwise or of the operands
+        /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix16 operator | (BitMatrix16 lhs, BitMatrix16 rhs)
             => Or(ref lhs, rhs);
 
         /// <summary>
-        /// Computes the complement of the operand. Note that this operator is 
-        /// equivalent to the negation operator (-)
+        /// Computes the complement of the operand
         /// </summary>
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]
@@ -151,17 +135,25 @@ namespace Z0
             => Flip(ref src);
 
         [MethodImpl(Inline)]
-        BitMatrix16(Span<ushort> src)
+        public static bool operator ==(BitMatrix16 lhs, BitMatrix16 rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(BitMatrix16 lhs, BitMatrix16 rhs)
+            => !lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        BitMatrix16(MemorySpan<ushort> src)
         {                        
             require(src.Length == Pow2.T04);
-            this.bits = src;
+            this.data = src;
         }
 
         [MethodImpl(Inline)]
         BitMatrix16(ReadOnlySpan<ushort> src)
         {                        
             require(src.Length == Pow2.T04);
-            this.bits = src.Replicate();
+            this.data = MemorySpan.From(src);
         }
 
         /// <summary>
@@ -171,7 +163,7 @@ namespace Z0
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public readonly Bit GetBit(int row, int col)
-            => BitMask.test(in bits[row], col);
+            => BitMask.test(in data[row], col);
 
         /// <summary>
         /// Sets the bit in a specified cell
@@ -181,7 +173,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public void SetBit(int row, int col, Bit src)
-            => BitMask.set(ref bits[row], (byte)col, src);
+            => BitMask.set(ref data[row], (byte)col, src);
 
         /// <summary>
         /// Reads/manipulates the bit in a specified cell
@@ -214,7 +206,7 @@ namespace Z0
         {
             ushort col = 0;
             for(var r = 0; r < N; r++)
-                BitMask.setif(in bits[r], index, ref col, r);
+                BitMask.setif(in data[r], index, ref col, r);
             return col;
 
         }
@@ -230,11 +222,11 @@ namespace Z0
         /// <param name="j">A row index</param>
         [MethodImpl(Inline)]
         public void RowSwap(int i, int j)
-            => bits.Swap(i,j);
+            => data.Swap(i,j);
 
         [MethodImpl(Inline)]
         public readonly BitVector16 RowVector(int index)
-            => bits[index];
+            => data[index];
 
         /// <summary>
         /// Returns a mutable reference for an index-identified matrix row
@@ -242,7 +234,7 @@ namespace Z0
         /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
         public ref ushort RowData(int row)
-            => ref bits[row];
+            => ref data[row];
 
         /// <summary>
         /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
@@ -257,9 +249,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public readonly BitMatrix16 AndNot(in BitMatrix16 rhs)
         {
-            this.LoadVector(out Vec256<ushort> vLhs);
-            rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.AndNot(vRhs).StoreTo(ref bits[0]);
+            this.LoadCpuVec(out Vec256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            vLhs.AndNot(vRhs).StoreTo(ref data[0]);
             return this;
         }
 
@@ -280,7 +272,7 @@ namespace Z0
         {
             var dst = Replicate();
             for(var i=0; i<N; i++)
-                dst.bits[i] = ColData(i);
+                dst.data[i] = ColData(i);
             return dst;
         }
 
@@ -290,7 +282,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(Bytes().ToMemory()));            
+            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(data.As<byte>()));            
 
         /// <summary>
         /// Computes the Hadamard product of the source matrix and another of the same dimension
@@ -305,69 +297,110 @@ namespace Z0
             return dst;
         }
 
-
         [MethodImpl(Inline)] 
         public readonly BitMatrix16 Replicate()
-            => Load(bits.ReadOnly());
+            => From((MemorySpan<ushort>)data.ToArray());
         
         /// <summary>
         /// Counts the number of enabled bits in the matrix
         /// </summary>
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
-            => Bits.pop(bits);
+            => Bits.pop(data);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => bits.Unpack(out Span<Bit> _);
+            => data.Bytes.Unpack(out Span<Bit> _);
 
         [MethodImpl(Inline)]
         public bool IsZero()
         {
-            this.LoadVector(out Vec256<ushort> vSrc);
+            this.LoadCpuVec(out Vec256<ushort> vSrc);
             return vSrc.TestZ(vSrc);            
         }
 
+        public readonly BitMatrix8 Block(N0 r0, N0 c0)
+        {
+            var r1 = r0 + 8;
+            var c1 = c0 + 8;
+            Memory<byte> dst = new byte[8];
+            for(int i=r0; i< r0; i++)                
+                dst.Span[i] = Bits.lo(in data[i]);
+            return BitMatrix8.Load(dst);
+        }
+
         [MethodImpl(Inline)]
-        public bool Eq(in BitMatrix16 rhs)
+        public string Format()
+            => data.Bytes.FormatMatrixBits(16);
+
+        /// <summary>
+        /// Converts the matrix to a bitvector
+        /// </summary>
+        [MethodImpl(Inline)]
+        public readonly BitVector<N256,ushort> ToBitVector()
+            => BitVector.FromCells(data, zfunc.n256);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec256<ushort> load(ref ushort head)
+            => Avx.LoadVector256(refptr(ref head));
+
+        [MethodImpl(Inline)]
+        public bool Equals(BitMatrix16 rhs)
             => this.AndNot(rhs).IsZero();
 
+        [MethodImpl(Inline)]
+        public override bool Equals(object obj)
+            => obj is BitMatrix16 x && Equals(x);
+        
+        public override int GetHashCode()
+            => 0;
+
+        /// <summary>
+        /// Loads a cpu vector with the full content of the matrix
+        /// </summary>
+        /// <param name="dst">The target vector</param>
+        [MethodImpl(Inline)]
+        public readonly ref Vec256<ushort> LoadCpuVec(out Vec256<ushort> dst)
+        {
+            dst = load(ref data[0]);
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 And(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadVector(out Vec256<ushort> vLhs);
-            rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.And(vRhs).StoreTo(ref lhs.bits[0]);
+            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            vLhs.And(vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 Or(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadVector(out Vec256<ushort> vLhs);
-            rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.Or(vRhs).StoreTo(ref lhs.bits[0]);
+            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            vLhs.Or(vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 XOr(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadVector(out Vec256<ushort> vLhs);
-            rhs.LoadVector(out Vec256<ushort> vRhs);
-            vLhs.XOr(vRhs).StoreTo(ref lhs.bits[0]);
+            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            vLhs.XOr(vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 Flip(ref BitMatrix16 src)
         {
-            src.LoadVector(out Vec256<ushort> vSrc);
-            vSrc.Flip().StoreTo(ref src.bits[0]);
+            src.LoadCpuVec(out Vec256<ushort> vSrc);
+            vSrc.Flip().StoreTo(ref src.data[0]);
             return ref src;
         }
 
@@ -393,57 +426,6 @@ namespace Z0
             return ref lhs;
         }
 
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public Span<byte> Bytes()
-            => bits.AsBytes();
-
-        /// <summary>
-        /// Loads a cpu vector with the full content of the matrix
-        /// </summary>
-        /// <param name="dst">The target vector</param>
-        [MethodImpl(Inline)]
-        public readonly ref Vec256<ushort> LoadVector(out Vec256<ushort> dst)
-        {
-            dst = load(ref bits[0]);
-            return ref dst;
-        }
-
-        /// <summary>
-        /// Converts the matrix to a bitvector
-        /// </summary>
-        [MethodImpl(Inline)]
-        public readonly BitVector<N256,ushort> ToBitVector()
-            => BitVector.FromCells(bits, zfunc.n256);
-
-        public readonly BitMatrix8 Block(N0 r0, N0 c0)
-        {
-            var r1 = r0 + 8;
-            var c1 = c0 + 8;
-            Memory<byte> dst = new byte[8];
-            for(int i=r0; i< r0; i++)                
-                dst.Span[i] = Bits.lo(in bits[i]);
-            return BitMatrix8.Load(dst);
-
-        }
-
-        [MethodImpl(Inline)]
-        public string Format()
-            => MemoryMarshal.AsBytes(bits).FormatMatrixBits(16);
-
-        [MethodImpl(Inline)]
-        static unsafe Vec256<ushort> load(ref ushort head)
-            => Avx.LoadVector256(refptr(ref head));
-
-        public override bool Equals(object obj)
-            => throw new NotSupportedException();
-        
-        public override int GetHashCode()
-            => throw new NotSupportedException();
- 
         static ReadOnlySpan<byte> Identity16x16 => new byte[]
         {
             Pow2.T00, 0,

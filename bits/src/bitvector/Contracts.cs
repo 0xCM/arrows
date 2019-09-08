@@ -7,7 +7,6 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Numerics;
 
     using static zfunc;    
     using static nfunc;
@@ -193,6 +192,17 @@ namespace Z0
         /// <param name="specifier"></param>
         /// <param name="blockWidth"></param>
         string FormatBits(bool tlz, bool specifier, int? blockWidth);
+ 
+        /// <summary>
+        /// Retrieves an index-identied segment (1 byte)
+        /// </summary>
+        /// <param name="index">The segment index</param>
+        ref byte Byte(int index);
+
+        /// <summary>
+        /// Vector content represented as a bytespan
+        /// </summary>
+        Span<byte> Bytes {get;}
     }
 
     /// <summary>

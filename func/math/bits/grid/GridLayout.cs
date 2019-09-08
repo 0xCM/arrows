@@ -28,6 +28,8 @@ namespace Z0
             require(spec.ColCount == RowLayout.First().Value.Length);                         
         }
 
+        readonly IReadOnlyDictionary<int, CellMap<T>[]> RowLayout;
+       
         /// <summary>
         /// The specification from which the layout was calculated
         /// </summary>
@@ -63,8 +65,7 @@ namespace Z0
         /// </summary>
         public readonly int TotalCellCount;
 
-        readonly IReadOnlyDictionary<int, CellMap<T>[]> RowLayout;
-       
+        
         [MethodImpl(Inline)]
         public Span<CellMap<T>> Row(int row)
             => RowLayout[row];            

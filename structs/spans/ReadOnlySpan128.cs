@@ -14,8 +14,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// A System.Span[T] clone where the  encasulated data is always a multiple 
-    /// of 16 bytes = 128 bits
+    /// A System.Span[T] clone with length a multiple of 16 bytes = 128 bits
     /// </summary>
     public ref struct ReadOnlySpan128<T>
         where T : struct

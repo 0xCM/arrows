@@ -67,7 +67,7 @@ namespace Z0.Test
         void transposeGn_test<M,N,T>(int count)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             for(var c = 0; c <count; c++)
             {

@@ -80,6 +80,11 @@ namespace Z0
         /// </summary>
         public string Label
             => Value.ToString();
+
+        [MethodImpl(Inline)]
+        public T Scalar<T>()
+            where T : unmanaged
+                => (T)Convert.ChangeType(Value, typeof(T));
     }
 
     /// <summary>

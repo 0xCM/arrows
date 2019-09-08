@@ -226,7 +226,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<T> BitVector<T>(this IPolyrand random, BitSize len)
-            where T : struct
+            where T : unmanaged
                 => BV.FromCells<T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(len)));
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, BitSize len)
-            where T : struct
+            where T : unmanaged
         {
             var cells = BV.CellCount<T>(len);
             var src = random.Stream<T>();
@@ -254,7 +254,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, BitSize minlen, BitSize maxlen)
-            where T : struct
+            where T : unmanaged
         {
             var counts = random.Stream<int>(minlen, maxlen);
             var src = random.Stream<T>();
@@ -274,7 +274,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, Interval<int> length)
-            where T : struct
+            where T : unmanaged
                 => random.BitVectors<T>(length.Left, length.Right);
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<N,T> BitVector<N,T>(this IPolyrand random, N len = default)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
                 => BV.FromCells<N,T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(nati<N>())));
 
@@ -298,7 +298,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<N,T> BitVectors<N,T>(this IPolyrand random, N len = default)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             var cells = BV.CellCount<T>(len.value);

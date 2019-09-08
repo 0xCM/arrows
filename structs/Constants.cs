@@ -13,46 +13,6 @@ using Z0;
 
 public static class Constants
 {
-    public const sbyte I8Zero = 0;    
-
-    public const byte U8Zero = 0;
-
-    public const short I16Zero = 0;
-
-    public const ushort U16Zero = 0;
-
-    public const int I32Zero = 0;
-
-    public const uint U32Zero = 0u;
-
-    public const long I64Zero = 0L;
-
-    public const ulong U64Zero = 0ul;
-
-    public const float F32Zero = 0.0f;
-    
-    public const double F64Zero = 0.0;
-
-    public const sbyte I8One = 1;
-
-    public const byte U8One = 1;
-
-    public const short I16One = 1;
-    
-    public const ushort U16One = 1;
-
-    public const int I32One = 1;
-
-    public const uint U32One = 1u;
-
-    public const long I64One = 1L;
-
-    public const ulong U64One = 1UL;
-
-    public const float F32One = 1.0f;
-    
-    public const double F64One = 1.0;
-
     public const sbyte I8Min = sbyte.MinValue;
 
     public const byte U8Min = byte.MinValue;

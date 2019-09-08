@@ -12,33 +12,6 @@ namespace Z0
 
     public static class HexFormatX
     {
-        /*
-        
-            return string.Create(length * 3 - 1, (value, startIndex, length), (dst, state) =>
-            {
-                const string HexValues = "0123456789ABCDEF";
-
-                var src = new ReadOnlySpan<byte>(state.value, state.startIndex, state.length);
-
-                int i = 0;
-                int j = 0;
-
-                byte b = src[i++];
-                dst[j++] = HexValues[b >> 4];
-                dst[j++] = HexValues[b & 0xF];
-
-                while (i < src.Length)
-                {
-                    b = src[i++];
-                    dst[j++] = '-';
-                    dst[j++] = HexValues[b >> 4];
-                    dst[j++] = HexValues[b & 0xF];
-                }
-            });
-        
-        
-         */
-
         /// <summary>
         /// Formats a span as a delimited list using a specified formatter
         /// </summary>
@@ -58,76 +31,72 @@ namespace Z0
             return sb.ToString();
         }
 
-        static string hexstring<T>(T src, bool zpad = true, bool specifier = true)
-            where T : struct
-        {
-            var digits = string.Empty;
-            var fmt = "X";
-            if(typeof(T) == typeof(sbyte))
-                digits = As.int8(src).ToString(fmt);
-            else if(typeof(T) == typeof(byte))
-                digits = As.uint8(src).ToString(fmt);
-            else if(typeof(T) == typeof(short))
-                digits = As.int16(src).ToString(fmt);
-            else if(typeof(T) == typeof(ushort))
-                digits = As.uint16(src).ToString(fmt);
-            else if(typeof(T) == typeof(int))
-                digits = As.int32(src).ToString(fmt);
-            else if(typeof(T) == typeof(uint))
-                digits = As.uint32(src).ToString(fmt);
-            else if(typeof(T) == typeof(long))
-                digits = As.int64(src).ToString(fmt);
-            else if(typeof(T) == typeof(ulong))
-                digits = As.uint64(src).ToString(fmt);
-            else if(typeof(T) == typeof(float))
-                digits = convert<float,int>(As.float32(src)).ToString(fmt);
-            else if(typeof(T) == typeof(double))
-                digits = convert<double,long>(As.float64(src)).ToString(fmt);
-            else
-                throw unsupported<T>();
-
-            var spec = specifier ? "0x" : string.Empty;
-            return zpad ?  (spec + digits.PadLeft(SizeOf<T>.Size * 2, '0')) : (spec + digits);
-        } 
-
-       [MethodImpl(Inline)]
-       public static string FormatHex<T>(this ReadOnlySpan<T> src, bool vectorize = false, char? sep = null)
-            where T : struct
-        {
-            var delimiter = sep ?? (vectorize ? AsciSym.Comma : AsciSym.Space);
-            var fmt = sbuild();
-            if(vectorize)
-                fmt.Append(AsciSym.Lt);
-
-            for(var i = 0; i<src.Length; i++)
+        /// <summary>
+        /// Formats a span pf presumed integral values as a hexadecimal string
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="vectorize">Whether to format the result as a vector</param>
+        /// <param name="sep">The character to use when separating digits</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatHex<T>(this ReadOnlySpan<T> src, bool vectorize = false, char? sep = null)
+                where T : struct
             {
-                fmt.Append(hexstring(src[i], true, false));
-                if(i != src.Length - 1)
-                    fmt.Append((char)delimiter);
+                var delimiter = sep ?? (vectorize ? AsciSym.Comma : AsciSym.Space);
+                var fmt = sbuild();
+                if(vectorize)
+                    fmt.Append(AsciSym.Lt);
+
+                for(var i = 0; i<src.Length; i++)
+                {
+                    fmt.Append(hexstring(src[i], true, false));
+                    if(i != src.Length - 1)
+                        fmt.Append((char)delimiter);
+                }
+                
+                if(vectorize)
+                    fmt.Append(AsciSym.Gt);
+                
+                return fmt.ToString();
+
             }
-            
-            if(vectorize)
-                fmt.Append(AsciSym.Gt);
-            
-            return fmt.ToString();
 
-        }
+        /// <summary>
+        /// Formats an array pf presumed integral values as a hexadecimal string
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="vectorize">Whether to format the result as a vector</param>
+        /// <param name="sep">The character to use when separating digits</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatHex<T>(this T[] src, bool vectorize = false, char? sep = null)
+                where T : struct
+                    => FormatHex(src.ToReadOnlySpan(),vectorize,sep);
 
-       [MethodImpl(Inline)]
-       public static string FormatHex<T>(this T[] src, bool vectorize = false, char? sep = null)
-            where T : struct
-                => FormatHex(src.ToReadOnlySpan(),vectorize,sep);
+        /// <summary>
+        /// Formats a span of presumed integral values as a hexadecimal string
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="vectorize">Whether to format the result as a vector</param>
+        /// <param name="sep">The character to use when separating digits</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatHex<T>(this Span<T> src, bool vectorize = false, char? sep = null)
+                where T : struct
+                    => src.ReadOnly().FormatHex(vectorize, sep);
 
-       [MethodImpl(Inline)]
-       public static string FormatHex<T>(this Span<T> src, bool vectorize = false, char? sep = null)
-            where T : struct
-                => src.ReadOnly().FormatHex(vectorize, sep);
-
-       [MethodImpl(Inline)]
-       public static string FormatHex<N,T>(this Span<N,T> src, bool vectorize = false, char? sep = null)
-            where N : ITypeNat, new()
-            where T : struct
-                => src.Unsize().FormatHex(vectorize, sep);
+        /// <summary>
+        /// Formats a span of natural length over an integral type as a hexadecimal string
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="vectorize">Whether to format the result as a vector</param>
+        /// <param name="sep">The character to use when separating digits</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatHex<N,T>(this Span<N,T> src, bool vectorize = false, char? sep = null)
+                where N : ITypeNat, new()
+                where T : struct
+                    => src.Unsize().FormatHex(vectorize, sep);
 
         /// <summary>
         /// Formats the span cell values in base-16
@@ -268,6 +237,38 @@ namespace Z0
         public static string FormatHexBlocks<T>(this Vec512<T> src)
                 where T : struct
                     => src.FormatHex(false, AsciSym.Space);
+        
+        static string hexstring<T>(T src, bool zpad = true, bool specifier = true)
+            where T : struct
+        {
+            var digits = string.Empty;
+            var fmt = "X";
+            if(typeof(T) == typeof(sbyte))
+                digits = As.int8(src).ToString(fmt);
+            else if(typeof(T) == typeof(byte))
+                digits = As.uint8(src).ToString(fmt);
+            else if(typeof(T) == typeof(short))
+                digits = As.int16(src).ToString(fmt);
+            else if(typeof(T) == typeof(ushort))
+                digits = As.uint16(src).ToString(fmt);
+            else if(typeof(T) == typeof(int))
+                digits = As.int32(src).ToString(fmt);
+            else if(typeof(T) == typeof(uint))
+                digits = As.uint32(src).ToString(fmt);
+            else if(typeof(T) == typeof(long))
+                digits = As.int64(src).ToString(fmt);
+            else if(typeof(T) == typeof(ulong))
+                digits = As.uint64(src).ToString(fmt);
+            else if(typeof(T) == typeof(float))
+                digits = convert<float,int>(As.float32(src)).ToString(fmt);
+            else if(typeof(T) == typeof(double))
+                digits = convert<double,long>(As.float64(src)).ToString(fmt);
+            else
+                throw unsupported<T>();
+
+            var spec = specifier ? "0x" : string.Empty;
+            return zpad ?  (spec + digits.PadLeft(SizeOf<T>.Size * 2, '0')) : (spec + digits);
+        } 
 
     }
 }

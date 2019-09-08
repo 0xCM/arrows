@@ -6,344 +6,341 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
- 
+    using System.Runtime.Intrinsics.X86;
+
     using static zfunc;
-    using static As;
-    using static AsIn;
-    
 
     /// <summary>
-    /// Defines non-parametric bitmask functions
+    /// Defines non-parametric bitmasking and selection functions
     /// </summary>
-     public static class BitMask
-     {
+    public static class BitMask
+    {
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref sbyte enable(ref sbyte src, in int pos)
+        {              
+            src |= (sbyte)(1 << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref sbyte enable(ref sbyte src, in int pos)
-          {              
-               src |= (sbyte)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref byte enable(ref byte src, in int pos)
+        {
+            src |= (byte)(1 << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref byte enable(ref byte src, in int pos)
-          {
-               src |= (byte)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref short enable(ref short src, in int pos)
+        {
+            src |= (short)(1 << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref short enable(ref short src, in int pos)
-          {
-               src |= (short)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref ushort enable(ref ushort src, in int pos)
+        {
+            src |= (ushort)(1 << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref ushort enable(ref ushort src, in int pos)
-          {
-               src |= (ushort)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref int enable(ref int src, in int pos)
+        {
+            src |= (1 << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref int enable(ref int src, in int pos)
-          {
-               src |= (1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref uint enable(ref uint src, in int pos)
+        {
+            src |= (1u << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref uint enable(ref uint src, in int pos)
-          {
-               src |= (1u << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref long enable(ref long src, in int pos)
+        {
+            src |= (1L << pos);
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref long enable(ref long src, in int pos)
-          {
-               src |= (1L << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref ulong enable(ref ulong src, in int pos)
+        {
+            src |= (1ul << pos);
+            return ref src;
+        }          
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref ulong enable(ref ulong src, in int pos)
-          {
-               src |= (1ul << pos);
-               return ref src;
-          }          
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref float enable(ref float src, in int pos)
+        {
+            var srcBits = BitConverter.SingleToInt32Bits(src);
+            srcBits |= 1 << pos;
+            src = BitConverter.Int32BitsToSingle(srcBits);            
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref float enable(ref float src, in int pos)
-          {
-               var srcBits = BitConverter.SingleToInt32Bits(src);
-               srcBits |= 1 << pos;
-               src = BitConverter.Int32BitsToSingle(srcBits);            
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ref double enable(ref double src, in int pos)
+        {               
+            var srcBits = BitConverter.DoubleToInt64Bits(src);
+            srcBits |= 1L << pos;
+            src = BitConverter.Int64BitsToDouble(srcBits);                           
+            return ref src;
+        }
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ref double enable(ref double src, in int pos)
-          {               
-               var srcBits = BitConverter.DoubleToInt64Bits(src);
-               srcBits |= 1L << pos;
-               src = BitConverter.Int64BitsToDouble(srcBits);                           
-               return ref src;
-          }
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static sbyte enable(sbyte src, int pos)
+        =>  src |= (sbyte)(1 << pos);
+            
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static byte enable(byte src, int pos)
+        =>  src |= (byte)(1 << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static sbyte enable(sbyte src, int pos)
-            =>  src |= (sbyte)(1 << pos);
-               
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static byte enable(byte src, int pos)
-            =>  src |= (byte)(1 << pos);
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static short enable(short src, int pos)
+        =>  src |= (short)(1 << pos);
+            
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ushort enable(ushort src, int pos)
+        =>  src |= (ushort)(1 << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static short enable(short src, int pos)
-            =>  src |= (short)(1 << pos);
-               
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ushort enable(ushort src, int pos)
-            =>  src |= (ushort)(1 << pos);
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static int enable(int src, int pos)
+        =>  src |= (1 << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static int enable(int src, int pos)
-            =>  src |= (1 << pos);
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static uint enable(uint src, int pos)
+        =>  src |= (1u << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static uint enable(uint src, int pos)
-            =>  src |= (1u << pos);
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static long enable(long src, int pos)
+        =>  src |= (1L << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static long enable(long src, int pos)
-            =>  src |= (1L << pos);
+        /// <summary>
+        /// Enables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to enable</param>
+        [MethodImpl(Inline)]
+        public static ulong enable(ulong src, int pos)
+        =>  src |= (1ul << pos);
 
-         /// <summary>
-         /// Enables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to enable</param>
-          [MethodImpl(Inline)]
-          public static ulong enable(ulong src, int pos)
-            =>  src |= (1ul << pos);
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref byte disable(ref byte src, in int pos)
+        {
+            src &= (byte)~((byte)(1 << pos));
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref byte disable(ref byte src, in int pos)
-          {
-               src &= (byte)~((byte)(1 << pos));
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref sbyte disable(ref sbyte src, in int pos)
+        {
+            var m = (sbyte)(1 << pos);
+            src &= (sbyte)~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref sbyte disable(ref sbyte src, in int pos)
-          {
-               var m = (sbyte)(1 << pos);
-               src &= (sbyte)~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref short disable(ref short src, in int pos)
+        {
+            var m = (short)(1 << pos);
+            src &= (short)~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref short disable(ref short src, in int pos)
-          {
-               var m = (short)(1 << pos);
-               src &= (short)~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref ushort disable(ref ushort src, in int pos)
+        {
+            var m = (ushort)(1 << pos);
+            src &= (ushort)~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref ushort disable(ref ushort src, in int pos)
-          {
-               var m = (ushort)(1 << pos);
-               src &= (ushort)~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref int disable(ref int src, in int pos)
+        {
+            var m = 1 << pos;
+            src &= ~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref int disable(ref int src, in int pos)
-          {
-               var m = 1 << pos;
-               src &= ~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref uint disable(ref uint src, in int pos)
+        {
+            var m = 1u << pos;
+            src &= ~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref uint disable(ref uint src, in int pos)
-          {
-               var m = 1u << pos;
-               src &= ~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref long disable(ref long src, in int pos)
+        {
+            var m = 1L << pos;
+            src &= ~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref long disable(ref long src, in int pos)
-          {
-               var m = 1L << pos;
-               src &= ~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref ulong disable(ref ulong src, in int pos)
+        {
+            var m = 1ul << pos;
+            src &= ~m;
+            return ref src;
+        }
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref ulong disable(ref ulong src, in int pos)
-          {
-               var m = 1ul << pos;
-               src &= ~m;
-               return ref src;
-          }
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref float disable(ref float src, in int pos)
+        {
+            ref var bits = ref Unsafe.As<float,int>(ref src);
+            var m = 1 << pos;
+            bits &= ~m;
+            return ref src;
+        } 
 
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-          [MethodImpl(Inline)]
-          public static ref float disable(ref float src, in int pos)
-          {
-               ref var bits = ref Unsafe.As<float,int>(ref src);
-               var m = 1 << pos;
-               bits &= ~m;
-               return ref src;
-          } 
-
-         /// <summary>
-         /// Disables a specified source bit
-         /// </summary>
-         /// <param name="src">The source value to manipulate</param>
-         /// <param name="pos">The position of the bit to disable</param>
-         [MethodImpl(Inline)]
-         public static ref double disable(ref double src, in int pos)
-         {
-              ref var bits = ref Unsafe.As<double,long>(ref src);
-              var m = 1L << pos;
-              bits &= ~m;
-              return ref src;
-         } 
+        /// <summary>
+        /// Disables a specified source bit
+        /// </summary>
+        /// <param name="src">The source value to manipulate</param>
+        /// <param name="pos">The position of the bit to disable</param>
+        [MethodImpl(Inline)]
+        public static ref double disable(ref double src, in int pos)
+        {
+            ref var bits = ref Unsafe.As<double,long>(ref src);
+            var m = 1L << pos;
+            bits &= ~m;
+            return ref src;
+        } 
 
         /// <summary>
         /// Determines whether a bit in a specified position is enabled
@@ -818,125 +815,265 @@ namespace Z0
             return ref dst;
         }
 
-          [MethodImpl(Inline)]
-          public static sbyte toggle(sbyte src, int pos)
-               => src ^= (sbyte)(1 << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static sbyte toggle(sbyte src, int pos)
+            => src ^= (sbyte)(1 << pos);
 
-          [MethodImpl(Inline)]
-          public static byte toggle(byte src, int pos)
-               => src ^= (byte)(1 << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static byte toggle(byte src, int pos)
+            => src ^= (byte)(1 << pos);
 
-          [MethodImpl(Inline)]
-          public static short toggle(short src, int pos)
-               => src ^= (short)(1 << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static short toggle(short src, int pos)
+            => src ^= (short)(1 << pos);
 
-          [MethodImpl(Inline)]
-          public static ushort toggle(ushort src, int pos)
-               => src ^= (ushort)(1 << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ushort toggle(ushort src, int pos)
+            => src ^= (ushort)(1 << pos);
 
-          [MethodImpl(Inline)]
-          public static int toggle(int src, int pos)
-               => src ^= (1 << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static int toggle(int src, int pos)
+            => src ^= (1 << pos);
 
-          [MethodImpl(Inline)]
-          public static uint toggle(uint src, int pos)
-               => src ^= (1u << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static uint toggle(uint src, int pos)
+            => src ^= (1u << pos);
 
-          [MethodImpl(Inline)]
-          public static long toggle(long src, int pos)
-               => src ^= (1L << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static long toggle(long src, int pos)
+            => src ^= (1L << pos);
 
-          [MethodImpl(Inline)]
-          public static ulong toggle(ulong src, int pos)
-               => src ^= (1ul << pos);
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ulong toggle(ulong src, int pos)
+            => src ^= (1ul << pos);
 
-          [MethodImpl(Inline)]
-          public static float toggle(float src, int pos)
-          {
-               ref var bits = ref Unsafe.As<float,int>(ref src);
-               bits ^= (1 << pos);
-               return src;
-          }
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static float toggle(float src, int pos)
+        {
+            ref var bits = ref Unsafe.As<float,int>(ref src);
+            bits ^= (1 << pos);
+            return src;
+        }
 
-          [MethodImpl(Inline)]
-          public static double toggle(double src, int pos)
-          {
-               ref var bits = ref Unsafe.As<double,long>(ref src);
-               bits ^= (1L << pos);
-               return src;
-          }
+        /// <summary>
+        /// Flips an identified source bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static double toggle(double src, int pos)
+        {
+            ref var bits = ref Unsafe.As<double,long>(ref src);
+            bits ^= (1L << pos);
+            return src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref sbyte toggle(ref sbyte src, int pos)
-          {
-               src ^= (sbyte)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref sbyte toggle(ref sbyte src, int pos)
+        {
+            src ^= (sbyte)(1 << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref byte toggle(ref byte src, int pos)
-          {
-               src ^= (byte)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref byte toggle(ref byte src, int pos)
+        {
+            src ^= (byte)(1 << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref short toggle(ref short src, int pos)
-          {
-               src ^= (short)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref short toggle(ref short src, int pos)
+        {
+            src ^= (short)(1 << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref ushort toggle(ref ushort src, int pos)
-          {
-               src ^= (ushort)(1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref ushort toggle(ref ushort src, int pos)
+        {
+            src ^= (ushort)(1 << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref int toggle(ref int src, int pos)
-          {
-               src ^= (1 << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref int toggle(ref int src, int pos)
+        {
+            src ^= (1 << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref uint toggle(ref uint src, int pos)
-          {
-               src ^= (1u << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref uint toggle(ref uint src, int pos)
+        {
+            src ^= (1u << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref long toggle(ref long src, int pos)
-          {
-               src ^= (1L << pos);
-               return ref src;
-          }
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref long toggle(ref long src, int pos)
+        {
+            src ^= (1L << pos);
+            return ref src;
+        }
 
-          [MethodImpl(Inline)]
-          public static ref ulong toggle(ref ulong src, int pos)
-          {
-               src ^= (1ul << pos);
-               return ref src;
-          } 
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref ulong toggle(ref ulong src, int pos)
+        {
+            src ^= (1ul << pos);
+            return ref src;
+        } 
 
-          [MethodImpl(Inline)]
-          public static ref float toggle(ref float src, int pos)
-          {
-               ref var bits = ref Unsafe.As<float,int>(ref src);
-               bits ^= (1 << pos);
-               return ref src;
-          } 
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref float toggle(ref float src, int pos)
+        {
+            ref var bits = ref Unsafe.As<float,int>(ref src);
+            bits ^= (1 << pos);
+            return ref src;
+        } 
 
-          [MethodImpl(Inline)]
-          public static ref double toggle(ref double src, int pos)
-          {
-               ref var bits = ref Unsafe.As<double,long>(ref src);
-               bits ^= (1L << pos);
-               return ref src;
-          } 
+        /// <summary>
+        /// Flips an identified source bit in-place
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit to toggle</param>
+        [MethodImpl(Inline)]
+        public static ref double toggle(ref double src, int pos)
+        {
+            ref var bits = ref Unsafe.As<double,long>(ref src);
+            bits ^= (1L << pos);
+            return ref src;
+        } 
 
-     }
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static byte between(in byte src, BitPos i0, BitPos i1)        
+            => (byte)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static ushort between(in ushort src, BitPos i0, BitPos i1)        
+            => (ushort)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static uint between(in uint src, BitPos i0, BitPos i1)        
+            => Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static ulong between(in ulong src, BitPos i0, BitPos i1)
+            => Bmi1.X64.BitFieldExtract(src, i0, (byte)(i1 - i0));            
+
+    }   
 }

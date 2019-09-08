@@ -168,7 +168,7 @@ namespace Z0.Test
 
         void create_natgen<N,T>(int samples)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<N,T>();
             var dim = default(N);
@@ -187,7 +187,7 @@ namespace Z0.Test
         }
 
         void create_gen<T>(BitSize dim, int samples)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var segcount = BitGrid.MinSegmentCount<T>(dim);
@@ -222,7 +222,7 @@ namespace Z0.Test
         }
 
         void create_gen<T>(uint dim, int samples)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var src = Random.Memory<T>(samples);

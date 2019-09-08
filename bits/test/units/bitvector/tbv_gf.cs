@@ -197,7 +197,7 @@ namespace Z0.Test
 
         void gfpoly_check<N,T>(GfPoly<N,T> p, BitString match)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
 
             var bs = BitString.FromScalar(p.Scalar).Truncate(p.Degree + 1);

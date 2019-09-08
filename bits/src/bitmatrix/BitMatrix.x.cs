@@ -46,7 +46,7 @@ namespace Z0
         public static BitMatrix<M,N,T> Mul<M,N,K,T>(this BitMatrix<M,K,T> lhs, in BitMatrix<K,N,T> rhs)
             where M : ITypeNat, new()        
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
             where K : ITypeNat, new()
         {
             var x = lhs;

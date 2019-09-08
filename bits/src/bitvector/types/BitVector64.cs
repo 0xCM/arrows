@@ -363,6 +363,12 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
+        public BitVector64 this[BitPos lpos, BitPos rpos]
+        {
+            [MethodImpl(Inline)]
+            get => Between(lpos, rpos);
+        }
+
         /// <summary>
         /// The vector's 32 least significant bits
         /// </summary>

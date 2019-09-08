@@ -12,6 +12,8 @@ namespace Z0
 
     partial class RngX
     {        
+
+
         /// <summary>
         /// Produces a random 128-bit cpu vector
         /// </summary>

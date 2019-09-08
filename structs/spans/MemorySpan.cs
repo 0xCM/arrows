@@ -9,63 +9,24 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.InteropServices;
-    using System.Buffers;
 
-    using static nfunc;
     using static zfunc;
 
-    public static class MemorySpan
-    {
-        /// <summary>
-        /// Allocates a memory span of specified length
-        /// </summary>
-        /// <param name="len">The data length</param>
-        /// <param name="fill">An optional fill value</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> Alloc<T>(int len, T? fill = default)
-            where T : unmanaged
-                => new MemorySpan<T>(len,fill);
-    
-        /// <summary>
-        /// Creates a memory span from array content
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(T[] src)
-            where T : unmanaged
-                => src;
-    
-        /// <summary>
-        /// Creates a memory span from memory content
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(Memory<T> src)
-            where T : unmanaged
-                => src;
-
-        /// <summary>
-        /// Creates a memory span from readonly memory content (allocating?)
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(ReadOnlyMemory<T> src)
-            where T : unmanaged
-                => MemoryMarshal.AsMemory(src);
-    }
-
     /// <summary>
-    /// Defines a span of natural length N
+    /// Defines a contiguous sequence of memory cells
     /// </summary>
     /// <typeparam name="T">The cell type</typeparam>
     public struct MemorySpan<T>
         where T : unmanaged
     {
         Memory<T> data;
+
+        /// <summary>
+        /// Returns the source as a reference
+        /// </summary>
+        /// <param name="src">The source data</param>
+        public static ref MemorySpan<T> AsRef(in MemorySpan<T> src)
+            => ref Unsafe.AsRef(in src);
 
         public static readonly MemorySpan<T> Empty = new MemorySpan<T>(Memory<T>.Empty);
 
@@ -112,13 +73,43 @@ namespace Z0
             [MethodImpl(Inline)]
             get => MemoryMarshal.AsBytes(Span);
         }
- 
+
+        /// <summary>
+        /// Queries/manipulates an index-identified cell
+        /// </summary>
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
             get => ref Span[ix];
         }
-    
+
+        /// <summary>
+        /// Presents the memory allocation as a span
+        /// </summary>
+        public Span<T> Span
+        {
+            [MethodImpl(Inline)]
+            get => data.Span;
+        }
+
+        /// <summary>
+        /// Returns the number of allocated cells
+        /// </summary>
+        public int Length 
+        {
+            [MethodImpl(Inline)]
+            get => data.Length;
+        }
+
+        /// <summary>
+        /// Returns true if the number of allocated cells is 0 and false otherwise
+        /// </summary>
+        public bool IsEmpty
+        {
+            [MethodImpl(Inline)]
+            get => data.Length == 0;
+        }
+
         [MethodImpl(Inline)]
         public T[] ToArray()
             => data.ToArray();
@@ -143,26 +134,12 @@ namespace Z0
         public bool TryCopyTo (Span<T> dst)
             => Span.TryCopyTo(dst);                
 
+        /// <summary>
+        /// Creates a copy
+        /// </summary>
         [MethodImpl(Inline)]
         public MemorySpan<T> Replicate()        
-            => new MemorySpan<T>(Span.ToArray());
-        
-        public Span<T> Span
-        {
-            [MethodImpl(Inline)]
-            get => data.Span;
-        }
-        public int Length 
-        {
-            [MethodImpl(Inline)]
-            get => data.Length;
-        }
-                        
-        public bool IsEmpty
-        {
-            [MethodImpl(Inline)]
-            get => data.Length == 0;
-        }
+            => new MemorySpan<T>(Span.ToArray());        
 
         [MethodImpl(Inline)]
         public MemorySpan<T> Slice(int start)
@@ -264,6 +241,4 @@ namespace Z0
                 this[i] = f(i,this[i]);
         }
     }
-
-
 }

@@ -4,22 +4,14 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+
     using System;
-    using System.Runtime.CompilerServices;    
-
-    public static class Gates
+    using System.Runtime.InteropServices;
+    using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
+    
+    public static unsafe partial class Asm
     {
-        
-    }
-
-    public static class Circuits
-    {
-
-
-
-
-
-
     }
 
 

@@ -15,6 +15,11 @@ namespace Z0
 
     public static class BitView
     {
+        /// <summary>
+        /// Wraps a bitview around a generic reference
+        /// </summary>
+        /// <param name="src">The source reference</param>
+        /// <typeparam name="T">The generic type</typeparam>
         public static BitView<T> ViewBits<T>(ref T src)
             where T: struct
                 => new BitView<T>(ref src);

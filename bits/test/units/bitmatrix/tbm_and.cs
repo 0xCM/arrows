@@ -55,14 +55,14 @@ namespace Z0.Test
                 var xBytes = x.Bytes().Replicate();
                 var yBytes = y.Bytes().Replicate();
                 var zBytes = gmath.and(xBytes,yBytes);
-                var expect = BitMatrix64.Load(zBytes);
+                var expect = BitMatrix64.From(zBytes);
 
                 var actual = x & y;
                 Claim.yea(expect == actual);                
             }
 
-            var lhs = BitMatrix64.Identity;
-            var rhs = BitMatrix64.Identity;
+            ref readonly var lhs = ref BitMatrix64.Identity;
+            ref readonly var rhs = ref BitMatrix64.Identity;
             var result = lhs & rhs;
             for(var row=0; row<result.RowCount; row++)
             for(var col=0; col<result.ColCount; col++)    
@@ -72,8 +72,8 @@ namespace Z0.Test
 
         public void and8x8()
         {
-            var lhs = BitMatrix8.Identity;
-            var rhs = BitMatrix8.Identity;
+            ref readonly var lhs = ref BitMatrix8.Identity;
+            ref readonly var rhs = ref BitMatrix8.Identity;
             var result = lhs & rhs;
             for(var row=0; row< result.RowCount; row++)
             for(var col=0; col< result.ColCount; col++)    

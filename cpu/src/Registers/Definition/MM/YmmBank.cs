@@ -27,9 +27,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public ref YMM First<T>()
-            where T : unmanaged
-                => ref Unsafe.As<byte,YMM>(ref Bytes[0]);
+        public ref YMM First()
+            => ref Unsafe.As<byte,YMM>(ref Bytes[0]);
 
         /// <summary>
         /// Returns a reference to an index-identified slot
@@ -37,9 +36,17 @@ namespace Z0
         /// <param name="index">The zero-based register index</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public ref YMM Slot<T>(int index)
-            where T : unmanaged
-                => ref Unsafe.Add(ref First<T>(), index);
+        public ref YMM YmmSlot(int index)
+            => ref Unsafe.Add(ref First(), index);
+
+        /// <summary>
+        /// Returns a reference to an XMM slot from the lower half of an identified YMM register
+        /// </summary>
+        /// <param name="index">The zero-based register index</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public ref XMM XmmSlot(int index)
+            => ref YmmSlot(index).xmm0;
 
 
         //~ 00
@@ -48,10 +55,8 @@ namespace Z0
         public YMM ymm0;
 
         [FieldOffset(0)]
-        public XMM xmm0L;
+        public XMM xmm0;
 
-        [FieldOffset(HiPart)]
-        public XMM xmm0H;
 
         //~ 01
         //~ ----------------------
@@ -59,10 +64,8 @@ namespace Z0
         public YMM ymm1;
 
         [FieldOffset(SegLen)]
-        public XMM xmm1L;
+        public XMM xmm1;
 
-        [FieldOffset(SegLen + HiPart)]
-        public XMM xmm1H;
 
         //~ 02
         //~ ----------------------
@@ -70,10 +73,8 @@ namespace Z0
         public YMM ymm2;
 
         [FieldOffset(SegLen*2)]
-        public XMM xmm2L;
+        public XMM xmm2;
 
-        [FieldOffset(SegLen*2 + HiPart)]
-        public XMM xmm2H;
 
         //~ 03
         //~ ----------------------
@@ -81,10 +82,7 @@ namespace Z0
         public YMM ymm3;
 
         [FieldOffset(SegLen*3)]
-        public XMM xmm3L;
-
-        [FieldOffset(SegLen*3 + HiPart)]
-        public XMM xmm3H;
+        public XMM xmm3;
 
         //~ 04
         //~ ----------------------
@@ -92,10 +90,8 @@ namespace Z0
         public YMM ymm4;
 
         [FieldOffset(SegLen*4)]
-        public XMM xmm4L;
+        public XMM xmm4;
 
-        [FieldOffset(SegLen*4 + HiPart)]
-        public XMM xmm4H;
 
         //~ 05
         //~ ----------------------
@@ -103,10 +99,7 @@ namespace Z0
         public YMM ymm5;
 
         [FieldOffset(SegLen*5)]
-        public XMM xmm5L;
-
-        [FieldOffset(SegLen*5 + HiPart)]
-        public XMM xmm5H;
+        public XMM xmm5;
 
 
         //~ 06
@@ -115,10 +108,7 @@ namespace Z0
         public YMM ymm6;
 
         [FieldOffset(SegLen*6)]
-        public XMM xmm6L;
-
-        [FieldOffset(SegLen*6 + HiPart)]
-        public XMM xmm6H;
+        public XMM xmm6;
 
         //~ 07
         //~ ----------------------
@@ -126,7 +116,7 @@ namespace Z0
         public YMM ymm7;
 
         [FieldOffset(SegLen*7)]
-        public XMM xmm7L;
+        public XMM xmm7;
 
         [FieldOffset(SegLen*7 + HiPart)]
         public XMM xmm7H;
@@ -137,7 +127,7 @@ namespace Z0
         public YMM ymm8;
 
         [FieldOffset(SegLen*8)]
-        public XMM xmm8L;
+        public XMM xmm8;
 
         [FieldOffset(SegLen*8 + HiPart)]
         public XMM xmm8H;
@@ -148,10 +138,8 @@ namespace Z0
         public YMM ymm9;
 
         [FieldOffset(SegLen*9)]
-        public XMM xmm9L;
+        public XMM xmm9;
 
-        [FieldOffset(SegLen*9 + HiPart)]
-        public XMM xmm9H;
 
         //~ 10
         //~ ----------------------
@@ -159,67 +147,51 @@ namespace Z0
         public YMM ymm10;
 
         [FieldOffset(SegLen*10)]
-        public XMM xmm10L;
+        public XMM xmm10;
 
-        [FieldOffset(SegLen*10 + HiPart)]
-        public XMM xmm10H;
-
+ 
         //~ 11
         //~ ----------------------
         [FieldOffset(SegLen*11)]
         public YMM ymm11;
 
         [FieldOffset(SegLen*11)]
-        public XMM xmm11L;
+        public XMM xmm11;
 
-        [FieldOffset(SegLen*11 + HiPart)]
-        public XMM xmm11H;
-
+ 
         //~ 12
         //~ ----------------------
         [FieldOffset(SegLen*12)]
         public YMM ymm12;
 
         [FieldOffset(SegLen*12)]
-        public XMM xmm12L;
+        public XMM xmm12;
 
-        [FieldOffset(SegLen*12 + HiPart)]
-        public XMM xmm12H;
-
+ 
         //~ 13
         //~ ----------------------
         [FieldOffset(SegLen*13)]
         public YMM ymm13;
 
         [FieldOffset(SegLen*13)]
-        public XMM xmm13L;
+        public XMM xmm13;
 
-        [FieldOffset(SegLen*13 + HiPart)]
-        public XMM xmm13H;
-
+ 
         //~ 14
         //~ ----------------------
         [FieldOffset(SegLen*14)]
         public YMM ymm14;
 
         [FieldOffset(SegLen*14)]
-        public XMM xmm14L;
+        public XMM xmm14;
 
-        [FieldOffset(SegLen*14 + HiPart)]
-        public XMM xmm14H;
-
+ 
         //~ 15
         //~ ----------------------
         [FieldOffset(SegLen*15)]
         public YMM ymm15;
 
         [FieldOffset(SegLen*15)]
-        public XMM xmm15L;
-
-        [FieldOffset(SegLen*15 + HiPart)]
-        public XMM xmm15H;
-
-
-
+        public XMM xmm15;
     }
 }

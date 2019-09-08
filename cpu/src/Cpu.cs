@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-
     using System;
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
@@ -12,372 +11,322 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
-    using static Registers;
-
+         
     [StructLayout(LayoutKind.Explicit)]
     public struct Cpu
     {
         [FieldOffset(0)]
-        XmmBank Xmm;
-
-        [FieldOffset(0)]
-        YmmBank Ymm;
+        internal YmmBank Ymm;
 
         [MethodImpl(Inline)]
         public static Cpu Init()
             => default;
 
+        /// <summary>
+        /// Selects a slot-identified xmm register
+        /// </summary>
+        /// <param name="slot">The slot index, an integer between 0 and 15</param>
         [MethodImpl(Inline)]
-        public static ref XMM xmm(ref Cpu cpu, int slot)
-            => ref cpu.Xmm.Slot<XMM>(slot);
+        public ref XMM xmm(int slot)
+            => ref Ymm.XmmSlot(slot);
+
+        /// <summary>
+        /// Selects a slot-identified ymm register
+        /// </summary>
+        /// <param name="slot">The slot index, an integer between 0 and 15</param>
+        [MethodImpl(Inline)]
+        public ref YMM ymm(int slot)
+            => ref Ymm.YmmSlot(slot);
 
         /// <summary>
         /// Selects the xmm register at slot 0
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm0(ref Cpu src)
-            => ref src.Xmm.xmm0;         
+        public ref XMM xmm0
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(0);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 1
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm1(ref Cpu src)
-            => ref src.Xmm.xmm1;         
+        public ref XMM xmm1
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(1);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 2
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm2(ref Cpu src)
-            => ref src.Xmm.xmm2;         
+        public ref XMM xmm2
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(2);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 3
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm3(ref Cpu src)
-            => ref src.Xmm.xmm3;         
+        public ref XMM xmm3
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(3);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 4
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm4(ref Cpu src)
-            => ref src.Xmm.xmm4;         
+        public ref XMM xmm4
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(4);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 5
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm5(ref Cpu src)
-            => ref src.Xmm.xmm5;         
+        public ref XMM xmm5
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(5);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 6
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm6(ref Cpu src)
-            => ref src.Xmm.xmm6;         
+        public ref XMM xmm6
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(6);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 7
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm7(ref Cpu src)
-            => ref src.Xmm.xmm7;         
+        public ref XMM xmm7
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(7);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 8
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm8(ref Cpu src)
-            => ref src.Xmm.xmm8;         
+        public ref XMM xmm8
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(8);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 9
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm9(ref Cpu src)
-            => ref src.Xmm.xmm9;         
+        public ref XMM xmm9
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(9);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 10
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm10(ref Cpu src)
-            => ref src.Xmm.xmm10;         
+        public ref XMM xmm10
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(10);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 11
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm11(ref Cpu src)
-            => ref src.Xmm.xmm11;         
+        public ref XMM xmm11
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(11);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 12
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm12(ref Cpu src)
-            => ref src.Xmm.xmm12;         
+        public ref XMM xmm12
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(12);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 13
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm13(ref Cpu src)
-            => ref src.Xmm.xmm13;         
+        public ref XMM xmm13
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(13);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 14
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm14(ref Cpu src)
-            => ref src.Xmm.xmm14;         
+        public ref XMM xmm14
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(14);
+        }
 
         /// <summary>
         /// Selects the xmm register at slot 15
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref XMM xmm15(ref Cpu src)
-            => ref src.Xmm.xmm15;         
-
-        /// <summary>
-        /// Selects an index-identified ymm register
-        /// </summary>
-        /// <param name="slot">The zero-based index of the register</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm(ref Cpu src, int slot)
-            => ref src.Ymm.Slot<XMM>(slot);
+        public ref XMM xmm15
+        {
+            [MethodImpl(Inline)]
+            get => ref xmm(15);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 0
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm0(ref Cpu src)
-            => ref src.Ymm.ymm0;         
+        public ref YMM ymm0
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(0);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 1
         /// </summary>
         /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm1(ref Cpu src)
-            => ref src.Ymm.ymm1;         
+        public ref YMM ymm1
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(1);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 2
         /// </summary>
         /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm2(ref Cpu src)
-            => ref src.Ymm.ymm2;         
+        public ref YMM ymm2
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(2);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 3
         /// </summary>
         /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm3(ref Cpu src)
-            => ref src.Ymm.ymm3;         
+        public ref YMM ymm3
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(3);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 4
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm4(ref Cpu src)
-            => ref src.Ymm.ymm4;         
+        public ref YMM ymm4
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(4);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 5
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm5(ref Cpu src)
-            => ref src.Ymm.ymm5;         
+        public ref YMM ymm5
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(5);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 6
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm6(ref Cpu src)
-            => ref src.Ymm.ymm6;         
+        public ref YMM ymm6
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(6);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 7
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm7(ref Cpu src)
-            => ref src.Ymm.ymm7;         
+        public ref YMM ymm7
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(7);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 8
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm8(ref Cpu src)
-            => ref src.Ymm.ymm8;         
+        public ref YMM ymm8
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(8);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 9
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm9(ref Cpu src)
-            => ref src.Ymm.ymm9;         
+        public ref YMM ymm9
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(9);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 10
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm10(ref Cpu src)
-            => ref src.Ymm.ymm10;         
+        public ref YMM ymm10
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(10);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 11
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm11(ref Cpu src)
-            => ref src.Ymm.ymm11;         
+        public ref YMM ymm11
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(11);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 12
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm12(ref Cpu src)
-            => ref src.Ymm.ymm12;         
+        public ref YMM ymm12
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(12);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 13
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm13(ref Cpu src)
-            => ref src.Ymm.ymm13;         
+        public ref YMM ymm13
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(13);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 14
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm14(ref Cpu src)
-            => ref src.Ymm.ymm14;         
+        public ref YMM ymm14
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(14);
+        }
 
         /// <summary>
         /// Selects the ymm register at slot 15
         /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public static ref YMM ymm15(ref Cpu src)
-            => ref src.Ymm.ymm15;         
-
-        /// <summary>
-        /// Presents a source ymm register as a cpu vector
-        /// </summary>
-        /// <param name="src">The source register</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector128<T> vec<T>(in XMM src)
-            where T : unmanaged
-                => XMM.AsVec<T>(in src);
-
-        /// <summary>
-        /// Presents a source register as a cpu vector
-        /// </summary>
-        /// <param name="src">The source register</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector256<T> vec<T>(in YMM src)
-            where T : unmanaged
-                => YMM.AsVec<T>(in src);
-
-
-        [MethodImpl(Inline)]
-        public XMM xmm(int slot)
-            => Xmm.Slot<XMM>(slot);
-
-        /// <summary>
-        /// Selects the xmm register at slot 0
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm0()
-            => Xmm.xmm0;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 1
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm1()
-            => Xmm.xmm1;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 2
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm2()
-            => Xmm.xmm2;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 3
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm3()
-            => Xmm.xmm3;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 4
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm4()
-            => Xmm.xmm4;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 5
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm5()
-            => Xmm.xmm5;         
-
-        /// <summary>
-        /// Selects the xmm register at slot 6
-        /// </summary>
-        /// <param name="src">The source bank</param>
-        [MethodImpl(Inline)]
-        public XMM xmm6()
-            => Xmm.xmm6;         
-
+        public ref YMM ymm15
+        {
+            [MethodImpl(Inline)]
+            get => ref ymm(15);
+        }
     }
-
 }
-
-

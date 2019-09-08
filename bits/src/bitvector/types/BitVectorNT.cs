@@ -18,9 +18,9 @@ namespace Z0
     /// <typeparam name="T">The vector component type</typeparam>
     public struct BitVector<N,T> : IBitVector<N,T>
         where N : ITypeNat, new()
-        where T : struct
+        where T : unmanaged
     {        
-        Memory<T> data;
+        MemorySpan<T> data;
         
         /// <summary>
         /// The maximum number of bits contained in a vector component
@@ -96,19 +96,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public BitVector(Memory<T> memory)
+        public BitVector(MemorySpan<T> memory)
             : this()
         {
             this.data = memory;
             require(Bits.Length * SegmentCapacity >= TotalBitCount);
-        }
-
-        [MethodImpl(Inline)]
-        public BitVector(Span<T> bits)
-            : this()
-        {
-            this.data = bits.ToArray();
-            require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
 
         [MethodImpl(Inline)]

@@ -202,6 +202,11 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
+        public BitVector4 this[BitPos lpos, BitPos rpos]
+        {
+            [MethodImpl(Inline)]
+            get => Between(lpos, rpos);
+        }
 
         /// <summary>
         /// The number of bits represented by the vector

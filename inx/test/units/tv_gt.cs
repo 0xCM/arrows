@@ -18,28 +18,16 @@ namespace Z0.Test
         public void gt128i8()
         {
             gt128_check<sbyte>();
-
         }
 
         public void gt128i16()
         {
-            gt128_check<short>();
-            
+            gt128_check<short>();            
         }
 
         public void gt128i32()
         {
             gt128_check<int>();
-        }
-
-        public void gt128f32()
-        {
-            gt128_check<float>();
-        }
-
-        public void gt128f64()
-        {
-            gt128_check<double>();            
         }
 
         public void gt256i8()
@@ -58,15 +46,6 @@ namespace Z0.Test
             gt256_check<int>();
         }
 
-        public void gt256f32()
-        {
-            gt256_check<float>();
-        }
-
-        public void gt256f64()
-        {
-            gt256_check<double>();            
-        }
 
        void gt128_check<T>()
             where T : struct

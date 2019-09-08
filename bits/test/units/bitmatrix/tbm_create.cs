@@ -19,7 +19,7 @@ namespace Z0
             var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())
             {
-                var m1 = BitMatrix8.Load(src.Current);
+                var m1 = BitMatrix8.From(src.Current);
                 var n = new N8();
                 var m2 = BitMatrix.Load(n,n, src.Current.ToBytes());
                 for(var i=0; i<8; i++)

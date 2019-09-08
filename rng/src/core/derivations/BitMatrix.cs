@@ -27,7 +27,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix8 BitMatrix8(this IPolyrand random)
-            => Z0.BitMatrix8.Load(random.Next<ulong>());
+            => Z0.BitMatrix8.From(random.Next<ulong>());
 
         /// <summary>
         /// Produces a 16x16 bitmatrix from a random source
@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix16 BitMatrix16(this IPolyrand random)
-            => Z0.BitMatrix16.Load(random.Span<ushort>(16));
+            => Z0.BitMatrix16.From(random.MemorySpan<ushort>(16));
 
         /// <summary>
         /// Produces a 32x32 bitmatrix from a random source
@@ -43,7 +43,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix32 BitMatrix32(this IPolyrand random)
-            => Z0.BitMatrix32.Load(random.Memory<uint>(32));
+            => Z0.BitMatrix32.From(random.MemorySpan<uint>(32));
 
         /// <summary>
         /// Produces a 64x64 bitmatrix from a random source
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix64 BitMatrix64(this IPolyrand random)
-            => Z0.BitMatrix64.Load(random.Span<ulong>(64));        
+            => Z0.BitMatrix64.From(random.MemorySpan<ulong>(64));        
     
         /// <summary>
         /// Produces a generic bitmatrix of natural dimensions
@@ -65,7 +65,7 @@ namespace Z0
         public static BitMatrix<M,N,T> BitMatrix<M,N,T>(this IPolyrand random, M m = default, N n = default, T rep = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
                 => BM.Load(random.Memory<T>(BitGrid.Specify(m,n,rep).TotalCellCount),m,n);
 
         /// <summary>
@@ -79,9 +79,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> BitMatrix<N,T>(this IPolyrand random, N n = default, T rep = default)
             where N : ITypeNat, new()
-            where T : struct
-                => BM.Load(random.Memory<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);
-                
+            where T : unmanaged
+                => BM.Load(random.Memory<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);                
     }
-
 }

@@ -17,6 +17,18 @@ namespace Z0
     /// </summary>
     public struct Perm
     {
+        public static Perm8 Assemble8(params Perm8[] src)
+        {            
+            var dst = 0u;
+            for(int i=0, offset = 0; i< 8; i++, offset +=3)
+            {
+                var k = i < src.Length ? (uint)src[i] : (uint)i;
+                dst |=  k << offset;
+
+            }
+            return (Perm8)dst;            
+        }
+
         /// <summary>
         /// Defines the permutation (0 -> terms[0], 1 -> terms[1], ..., n - 1 -> terms[n-1])
         /// where n is the length of the array

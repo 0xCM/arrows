@@ -8,7 +8,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zfunc;
 
-
 	/// <summary>
 	/// Identifies a bit position within a contiguous sequence of T-element values
 	/// </summary>
