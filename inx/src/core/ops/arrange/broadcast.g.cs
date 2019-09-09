@@ -35,9 +35,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 dst = generic<T>(dinx.broadcast(in uint64(in src), out Vec128<ulong> x));
             else if(typeof(T) == typeof(float))
-                dst = generic<T>(dinx.broadcast(in float32(in src), out Vec128<float> x));
+                dst = generic<T>(dfp.broadcast(in float32(in src), out Vec128<float> x));
             else if(typeof(T) == typeof(double))
-                dst = generic<T>(dinx.broadcast(in float64(in src), out Vec128<double> x));
+                dst = generic<T>(dfp.broadcast(in float64(in src), out Vec128<double> x));
             else 
                 throw unsupported<T>();
             return ref dst;
@@ -64,9 +64,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 dst = generic<T>(dinx.broadcast(in uint64(in src), out Vec256<ulong> x));
             else if(typeof(T) == typeof(float))
-                dst = generic<T>(dinx.broadcast(in float32(in src), out Vec256<float> x));
+                dst = generic<T>(dfp.broadcast(in float32(in src), out Vec256<float> x));
             else if(typeof(T) == typeof(double))
-                dst = generic<T>(dinx.broadcast(in float64(in src), out Vec256<double> x));
+                dst = generic<T>(dfp.broadcast(in float64(in src), out Vec256<double> x));
             else 
                 throw unsupported<T>();
             return ref dst;

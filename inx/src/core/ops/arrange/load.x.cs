@@ -15,7 +15,6 @@ namespace Z0
 
     public static partial class ginxs
     {
-
         /// <summary>
         /// Loads a 128-bit vector from a blocked span
         /// </summary>
@@ -25,7 +24,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> LoadVec128<T>(this Span128<T> src, int block = 0)            
             where T : struct            
-                => Vec128.Load(src,block);
+                => Vec128.Load(src, block);
 
         /// <summary>
         /// Loads a 128-bit vector from a blocked readonly span

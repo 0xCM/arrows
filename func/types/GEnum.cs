@@ -101,6 +101,12 @@ namespace Z0
             = typeof(E).GetEnumValues().AsQueryable().Cast<T>().ToArray();
 
         /// <summary>
+        /// Specifies the values in the enum domain for which explicit labels exist
+        /// </summary>
+        public static readonly E[] Values 
+            = typeof(E).GetEnumValues().AsQueryable().Cast<E>().ToArray();
+
+        /// <summary>
         /// Correlates a 0-based index with the declared literals in an enum
         /// </summary>
         public static readonly string[] Labels
@@ -153,11 +159,6 @@ namespace Z0
         public static implicit operator T(GEnum<E,T> src)
             => src.Scalar;
 
-        /// <summary>
-        /// Specifies the values in the enum domain for which explicit labels exist
-        /// </summary>
-        public static readonly E[] Values 
-            = typeof(E).GetEnumValues().AsQueryable().Cast<E>().ToArray();
 
         [MethodImpl(Inline)]
         public GEnum(E value)

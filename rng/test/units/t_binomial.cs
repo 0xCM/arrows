@@ -13,25 +13,25 @@ namespace Z0.Test
     using static zfunc;
     public class t_binomial : UnitTest<t_binomial>
     {
-        void SampleBinomial(int samples, int trials, double success)
+        public void sample_set()
+        {
+            SampleBinomial(50, .5);
+            SampleBinomial(50, .5);
+            SampleBinomial(50, .5);
+        }
+
+        void SampleBinomial(int trials, double success, bool trace = false)
         {
             var spec = BinomialSpec<int>.Define(trials, success);
             var dist = spec.Distribution(Random);
-            var sample = dist.Sample().TakeSpan(samples); 
+            var sample = dist.Sample().TakeSpan(SampleSize); 
             var avg = sample.Avg();
             var min = sample.Min();
             var max = sample.Max();
-            Trace($"min = {min}, max = {max}");
             
+            if(trace)
+                Trace($"min = {min}, max = {max}");            
         }
-
-        public void BinomialSample()
-        {
-            SampleBinomial(Pow2.T11, 50, .5);
-            SampleBinomial(Pow2.T11, 50, .5);
-            SampleBinomial(Pow2.T11, 50, .5);
-        }
-
 
     }
 

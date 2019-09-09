@@ -17,7 +17,7 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Core algorithm taken from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class XOrShift256 : IPointSource<ulong>
+    public class XOrShift256 : IBoundPointSource<ulong>
     {        
         readonly ulong[] state;
 
@@ -25,7 +25,7 @@ namespace Z0
         /// Constructs a randomizer using a specific seed
         /// </summary>
         /// <param name="seed">The seed upon which generation is predicated</param>
-        public static IPointSource<ulong> Define(ulong[] seed)
+        public static IBoundPointSource<ulong> Define(ulong[] seed)
             => new XOrShift256(seed);
 
         [MethodImpl(Inline)]

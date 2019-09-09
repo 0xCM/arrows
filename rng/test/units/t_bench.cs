@@ -8,21 +8,19 @@ namespace Z0.Rng
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.IO;
-
     
     using static zfunc;
     using static x86;
     
     public class t_bench : UnitTest<t_bench>
     {
-        public void Multiply()
+        public void mul_bench()
         {
             RunMultiply();
 
         }
 
-        public void Pcg32Simd()
+        void Pcg32Simd()
         {
             RunPcg32Simd();
 
@@ -56,8 +54,6 @@ namespace Z0.Rng
                 sw.Stop();
             }            
             Collect((opcount, snapshot(sw), "dsl"));
-
-
         }
 
         static PcgAvx32Rng CreatPcgAvx()
@@ -82,7 +78,6 @@ namespace Z0.Rng
             };
             return RNG.Pcg32Suite(seed, inc);
         }
-
 
         void RunPcg32Simd(int opcount = Pow2.T16)
         {

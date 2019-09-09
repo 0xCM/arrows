@@ -85,7 +85,5 @@ namespace Z0
             var z = dinx.add(in xl_yl, in hl_lh);
             return z;
         }
-
-
     }
 }

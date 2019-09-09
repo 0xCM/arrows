@@ -54,7 +54,7 @@ namespace Z0
             return sub(xor(mask, src), mask);
         }
  
-         public static Span128<byte> abs(ReadOnlySpan128<sbyte> src, Span128<byte> dst)
+        public static Span128<byte> abs(ReadOnlySpan128<sbyte> src, Span128<byte> dst)
         {
             for(var block = 0; block <src.BlockCount; block ++)                
             {

@@ -35,9 +35,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.blendv(in uint64(in lhs), in uint64(in rhs), in uint64(in control)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.blendv(in float32(in lhs), in float32(in rhs), in float32(in control)));
+                return generic<T>(dfp.blendv(in float32(in lhs), in float32(in rhs), in float32(in control)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.blendv(in float64(in lhs), in float64(in rhs), in float64(in control)));
+                return generic<T>(dfp.blendv(in float64(in lhs), in float64(in rhs), in float64(in control)));
             else 
                 throw unsupported<T>();
         }

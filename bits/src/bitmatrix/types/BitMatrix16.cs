@@ -329,7 +329,7 @@ namespace Z0
             Memory<byte> dst = new byte[8];
             for(int i=r0; i< r0; i++)                
                 dst.Span[i] = Bits.lo(in data[i]);
-            return BitMatrix8.Load(dst);
+            return BitMatrix8.From(dst);
         }
 
         [MethodImpl(Inline)]

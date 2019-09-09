@@ -28,6 +28,59 @@ namespace Z0
             }
         }
 
+        public void create8x8_from_perm()
+        {
+            var p = Random.Perm<N8>();
+            var m = p.ToBitMatrix();
+
+            for(var i=0; i<m.RowCount; i++)
+            for(var j=0; j<m.ColCount; j++)
+            {
+                if(p[i] == j)
+                    Claim.eq(m[i,j], Bit.On);
+                else
+                    Claim.eq(m[i,j], Bit.Off);
+            }
+        }
+
+        public void create16x16_from_perm()
+        {
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var p = Random.Perm<N16>();
+                var m = p.ToBitMatrix();
+
+                for(var i=0; i<m.RowCount; i++)
+                for(var j=0; j<m.ColCount; j++)
+                {
+                    if(p[i] == j)
+                        Claim.eq(m[i,j], Bit.On);
+                    else
+                        Claim.eq(m[i,j], Bit.Off);
+                }
+
+            }
+        }
+
+        public void create64x64_from_perm()
+        {
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var p = Random.Perm<N64>();
+                var m = p.ToBitMatrix();
+
+                for(var i=0; i<m.RowCount; i++)
+                for(var j=0; j<m.ColCount; j++)
+                {
+                    if(p[i] == j)
+                        Claim.eq(m[i,j], Bit.On);
+                    else
+                        Claim.eq(m[i,j], Bit.Off);
+                }
+
+            }
+        }
+
         public void create9x4()
         {
             var grid = BitGrid.Specify<N9,N4,byte>();    

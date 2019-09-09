@@ -86,19 +86,19 @@ namespace Z0.Test
 
             byte y0 = 0b0110;
             byte y1 = 0b1101;
-            var y01 = gbits.or(y0, gbits.shiftl(y1, 4));
+            var y01 = gbits.or(y0, gbits.sal(y1, 4));
             byte y2 = 0b0101;
             byte y3 = 0b1001;
-            var y23 = gbits.or(y2, gbits.shiftl(y3, 4));
+            var y23 = gbits.or(y2, gbits.sal(y3, 4));
             byte y4 = 0b0011;
             byte y5 = 0b1010;
-            var y45 = gbits.or(y4, gbits.shiftl(y5, 4));
+            var y45 = gbits.or(y4, gbits.sal(y5, 4));
             byte y6 = 0b1101;
             byte y7 = 0b1001;
-            var y67 = gbits.or(y6, gbits.shiftl(y7, 4));
+            var y67 = gbits.or(y6, gbits.sal(y7, 4));
             byte y8 = 0b1000;
             byte y9 = 0b0101;
-            var y89 = gbits.or(y8, gbits.shiftl(y9, 4));
+            var y89 = gbits.or(y8, gbits.sal(y9, 4));
             var bvy = BitVector.FromCells(y01,y23,y45,y67,y89);            
             Claim.eq(40, bvy.Length);
 

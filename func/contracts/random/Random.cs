@@ -40,18 +40,23 @@ namespace System
         DistKind DistKind{get;}
     }
 
-    /// <summary>
-    /// Characterizes a random source capable of producing constraint point values 
-    /// </summary>
-    /// <typeparam name="T">The primal type</typeparam>
     public interface IPointSource<T> : IRandomSource
         where T : struct
     {
         /// <summary>
-        /// Retrieves the next point from the source, bound only by the domain of the type
+        /// Retrieves the next point from the source
         /// </summary>
         T Next();    
 
+    }
+
+    /// <summary>
+    /// Characterizes a random source capable of producing constraint point values 
+    /// </summary>
+    /// <typeparam name="T">The primal type</typeparam>
+    public interface IBoundPointSource<T> : IPointSource<T>
+        where T : struct
+    {
         /// <summary>
         /// Retrieves the next point from the source, constrained by an upper bound
         /// </summary>
@@ -67,6 +72,7 @@ namespace System
         T Next(T min, T max);
 
     }
+
 
     /// <summary>
     /// Characterizes a random source navigator
@@ -86,7 +92,7 @@ namespace System
         void Retreat(ulong steps);
     }
 
-    public interface IStepwiseSource<T> : IPointSource<T>, IRandomNav
+    public interface IStepwiseSource<T> : IBoundPointSource<T>, IRandomNav
         where T : struct
     {
 
@@ -98,16 +104,16 @@ namespace System
     /// sequence of bounded/unbounded points of any scalar primal type
     /// </summary>
    public interface IPolyrand : 
-        IPointSource<sbyte>,
-        IPointSource<byte>,
-        IPointSource<short>,
-        IPointSource<ushort>,
-        IPointSource<int>, 
-        IPointSource<uint>, 
-        IPointSource<long>,
-        IPointSource<ulong>, 
-        IPointSource<float>,
-        IPointSource<double> 
+        IBoundPointSource<sbyte>,
+        IBoundPointSource<byte>,
+        IBoundPointSource<short>,
+        IBoundPointSource<ushort>,
+        IBoundPointSource<int>, 
+        IBoundPointSource<uint>, 
+        IBoundPointSource<long>,
+        IBoundPointSource<ulong>, 
+        IBoundPointSource<float>,
+        IBoundPointSource<double> 
     {
         /// <summary>
         /// Retrieves the next point from the source, bound only by the domain of the type

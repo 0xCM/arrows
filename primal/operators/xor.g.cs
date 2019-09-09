@@ -18,21 +18,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(lhs) ^ int8(rhs)));
+                return generic<T>(math.xor(int8(lhs), int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(lhs) ^ uint8(rhs)));
+                return generic<T>(math.xor(uint8(lhs), uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(lhs) ^ int16(rhs)));
+                return generic<T>(math.xor(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(lhs) ^ uint16(rhs)));
+                return generic<T>(math.xor(uint16(lhs), uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(int32(lhs) ^ int32(rhs));
+                return generic<T>(math.xor(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(lhs) ^ uint32(rhs));
+                return generic<T>(math.xor(uint32(lhs), uint32(rhs)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(int64(lhs) ^ int64(rhs));
+                return generic<T>(math.xor(int64(lhs), int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) ^ uint64(rhs));
+                return generic<T>(math.xor(uint64(lhs), uint64(rhs)));
             else if(typeof(T) == typeof(float))
                 return generic<T>(math.xor(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
@@ -69,9 +69,5 @@ namespace Z0
                 throw unsupported<T>();
             return ref lhs;
         }
-
-
-
     }
-
 }

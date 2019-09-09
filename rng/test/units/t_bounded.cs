@@ -15,26 +15,6 @@ namespace Z0.Rng
     public class t_bounded : UnitTest<t_bounded>
     {
         
-        void bound<T>(T min, T max, int samples)
-            where T : struct
-        {
-            var stats = Accumulator.Create();
-            var src = Random.Stream(min,max).Take(samples);
-            iter(src, value => {
-                stats.Accumulate(convert<T,double>(value));
-                Claim.yea(gmath.between(value, min, max));
-            });
-            var width = convert<T,double>(gmath.sub(max,min));
-            var idealMean = width/2.0;
-            var actualMean = stats.Mean;
-            var error = fmath.relerr(idealMean,actualMean).Round(6);
-            var tol = 0.1;
-            Claim.lteq(error, tol);
-            Trace(() => error);
-            Trace(() => stats.Count);
-            Trace(() => stats.Mean);
-            Trace(() => stats.StandardDeviation);
-        }
 
         public void bound16u()
         {            
@@ -259,6 +239,31 @@ namespace Z0.Rng
             var offPct = ((double)off)/((double)on + (double)off); 
             print($"on = {onPct}, off={offPct}");
 
+        }
+
+        void bound<T>(T min, T max, int samples, bool trace = false)
+            where T : struct
+        {
+            var stats = Accumulator.Create();
+            var src = Random.Stream(min,max).Take(samples);
+            iter(src, value => {
+                stats.Accumulate(convert<T,double>(value));
+                Claim.yea(gmath.between(value, min, max));
+            });
+            var width = convert<T,double>(gmath.sub(max,min));
+            var idealMean = width/2.0;
+            var actualMean = stats.Mean;
+            var error = fmath.relerr(idealMean,actualMean).Round(6);
+            var tol = 0.1;
+            Claim.lteq(error, tol);
+            
+            if(trace)
+            {
+                Trace(() => error);
+                Trace(() => stats.Count);
+                Trace(() => stats.Mean);
+                Trace(() => stats.StandardDeviation);
+            }
         }
 
     }

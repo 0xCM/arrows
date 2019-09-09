@@ -21,10 +21,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));            
 
             Shift<sbyte>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), gbits.sal(lhs[i], rhs[i])));
     
             Shift<sbyte>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), gbits.sra(lhs[i], rhs[i])));    
+            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), gbits.sar(lhs[i], rhs[i])));    
         }
 
         public void shift8u()
@@ -33,10 +33,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<byte>.BitSize));            
 
             Shift<byte>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((byte)(lhs[i] << rhs[i]), gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq((byte)(lhs[i] << rhs[i]), gbits.sal(lhs[i], rhs[i])));
     
             Shift<byte>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((byte)(lhs[i] >> rhs[i]), gbits.sra(lhs[i], rhs[i])));    
+            iter(SampleSize, i => Claim.eq((byte)(lhs[i] >> rhs[i]), gbits.sar(lhs[i], rhs[i])));    
         }
 
         public void shift32i()
@@ -45,10 +45,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
 
             Shift<int>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
     
             Shift<int>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sra(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
         }
 
         public void shift32u()
@@ -57,10 +57,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<uint>.BitSize));            
 
             Shift<uint>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
     
             Shift<uint>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sra(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
 
         }
         public void shift64i()
@@ -69,10 +69,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
 
             Shift<long>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
     
             Shift<long>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sra(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
         }
 
         public void shift64u()
@@ -81,10 +81,10 @@ namespace Z0.Test
             var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<ulong>.BitSize));            
 
             Shift<ulong>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.shiftl(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
     
             Shift<ulong>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sra(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
         }
 
 
@@ -97,16 +97,16 @@ namespace Z0.Test
             {
                 for(var i=0; i< SampleSize; i++)
                 {
-                    gbits.shiftl(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gbits.shiftl(lhs[i],rhs[i]));
+                    gbits.sal(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.sal(lhs[i],rhs[i]));
                 }
             }
             else
             {
                 for(var i=0; i< SampleSize; i++)
                 {
-                    gbits.sra(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gbits.sra(lhs[i],rhs[i]));
+                    gbits.sar(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.sar(lhs[i],rhs[i]));
                 }
             }
         }

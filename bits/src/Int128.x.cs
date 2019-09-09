@@ -34,12 +34,13 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<byte> ToBytes(this Int128 src)
-            => span(
+            => new byte[]
+                {
                     src.x0000, src.x0001, src.x0010, src.x0011,
                     src.x0100, src.x0101, src.x0110, src.x0111,                        
                     src.x1100, src.x1101, src.x1110, src.x1111,            
                     src.x1000, src.x1001, src.x1010, src.x1011
-               );
+                };
 
         [MethodImpl(Inline)]
         public static ref Int128 DisableBit(this ref Int128 src, int pos)

@@ -112,8 +112,8 @@ namespace Z0
         public static Vec256<byte> srli(in Vec256<byte> src, byte offset)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors
-            ref var srcX = ref convert(dinx.lo(src), out Vec256<ushort> _);
-            ref var srcY = ref convert(dinx.hi(src), out Vec256<ushort> _);
+            ref var srcX = ref convert(dinx.extract128(src,0), out Vec256<ushort> _);
+            ref var srcY = ref convert(dinx.extract128(src,1), out Vec256<ushort> _);
             
             //Shift each part with a concrete intrinsic anc convert back to bytes
             var dstA = srli(srcX, offset).As<byte>();

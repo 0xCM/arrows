@@ -57,7 +57,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe void mulx(ulong a, ulong b, ref ulong lo, ref ulong hi)
             => hi = MultiplyNoFlags(a, b, refptr(ref lo));
-
     }
-
 }

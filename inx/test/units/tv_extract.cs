@@ -62,12 +62,12 @@ namespace Z0.Test
             var src = Random.CpuVec256<T>();
             var srcData = src.ToSpan(span<T>(len));
             
-            var x0 = ginx.lo(in src);
+            var x0 = ginx.extract128(in src,0);
             var y0 = x0.ToSpan(span<T>(half));
             var z0 = srcData.Slice(0, half);
             Claim.eq(y0,z0);
 
-            var x1 = ginx.hi(in src);
+            var x1 = ginx.extract128(in src,1);
             var y1 = x1.ToSpan(span<T>(half));
             var z1 = srcData.Slice(half);
             Claim.eq(y1,z1);

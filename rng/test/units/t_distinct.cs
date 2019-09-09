@@ -15,8 +15,7 @@ namespace Z0.Rng
     
     public class t_distinct : UnitTest<t_distinct>
     {
-
-        public void allSelected()
+        public void all_selected()
         {
             var pool = 100;
             var segment = 25;
@@ -32,19 +31,13 @@ namespace Z0.Rng
             Claim.fail($"{missing} members of the sample remain unselected");
         }
 
-
-        public void testMemory()
-        {
-
-            
+        public void memory_span()
+        {            
             var src = MemorySpan.From(Random.Memory<uint>(Pow2.T08));
             Claim.eq(src.Length, Pow2.T08);
 
             var dst = src.As<ulong>();
             Claim.eq(dst.Length << 1, src.Length);
-
-
-
         }
     }
 

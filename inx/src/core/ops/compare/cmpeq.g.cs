@@ -15,7 +15,9 @@ namespace Z0
     partial class ginx
     {
         /// <summary>
-        /// Compares the operands for equality
+        /// Compares corresponding components in each vector for equality. For equal
+        /// components, the corresponding component in the result vector has all bits 
+        /// enabled; otherwise, all bits in the component are disabled
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -48,11 +50,13 @@ namespace Z0
         }
 
         /// <summary>
-        /// Compares the operands for cmpequality and returns a comparison vector describing the result
+        /// Compares corresponding components in each vector for equality. For equal
+        /// components, the corresponding component in the result vector has all bits 
+        /// enabled; otherwise, all bits in the component are disabled
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256<T> cmpeq<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {

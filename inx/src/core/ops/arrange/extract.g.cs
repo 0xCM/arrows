@@ -12,10 +12,9 @@ namespace Z0
     using static As;
 
     partial class ginx
-    {
-        
+    {        
         /// <summary>
-        /// Extracts an index-identified component from a vector
+        /// Extracts the value of an identified source vector component
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="index">The identifying index</param>

@@ -40,7 +40,7 @@ namespace Z0
         /// <param name="random">The stateful source on which the generation is predicated</param>
         /// <param name="max">The exclusive maximum</param>
         [MethodImpl(Inline)]
-        internal static int Next(this IPointSource<ulong> random, int max)
+        internal static int Next(this IBoundPointSource<ulong> random, int max)
             => max >= 0 ? (int)random.Next((ulong)max) 
                 : - (int)random.Next((ulong) (Int32.MaxValue + max));        
 
@@ -49,7 +49,7 @@ namespace Z0
         /// </summary>
         /// <param name="random">The point source</param>
         /// <typeparam name="T">The point type</typeparam>
-        public static IEnumerable<T> Stream<T>(this IPointSource<T> random)
+        public static IEnumerable<T> Stream<T>(this IBoundPointSource<T> random)
             where T : struct
         {
             while(true)
@@ -62,7 +62,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="count">The number of values to select</param>
         /// <typeparam name="T">The value type</typeparam>
-        public static IEnumerable<T> Take<T>(this IPointSource<T> random, int count)
+        public static IEnumerable<T> Take<T>(this IBoundPointSource<T> random, int count)
             where T : struct
                 => random.Stream().Take(count);
     }

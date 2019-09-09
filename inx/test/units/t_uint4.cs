@@ -19,7 +19,7 @@ namespace Z0.Test
     public class UInt4Test : UnitTest<UInt4Test>
     {
 
-        public void VerifyInit()
+        public void uint4_create()
         {
             var x0 = (UInt4)0;
             byte y0 = x0;
@@ -53,7 +53,7 @@ namespace Z0.Test
             Claim.eq(x5,y5);
         }
 
-        public void VerifyFormat()
+        public void uint4_format()
         {
             var x0 = (UInt4)0;
             var x1 = (UInt4)1;
@@ -66,7 +66,7 @@ namespace Z0.Test
 
         }
 
-        public void VerifyIncrement()
+        public void uint4_inc()
         {
             var x = (UInt4)7;
             for(var i=0; i< 3; i++)
@@ -86,7 +86,7 @@ namespace Z0.Test
 
         }
 
-        public void VerifyDecrement()
+        public void uint4_dec()
         {
             var x = (UInt4)7;
             for(var i=0; i< 3; i++)
@@ -106,7 +106,7 @@ namespace Z0.Test
 
         }
 
-        public void VerifyComplement()
+        public void uint4_flip()
         {
             var x0 = (UInt4)0b1011;
             var y0 = ~x0;
@@ -114,7 +114,7 @@ namespace Z0.Test
             Claim.eq(y0,z0);
         }
        
-        public void VerifyAddition()
+        public void uint4_add()
         {
             var x1 = (UInt4)3;
             var x2 = (UInt4)4;
@@ -127,7 +127,7 @@ namespace Z0.Test
         
         }
 
-        public void VerifyHiLo()
+        public void uint4_hilo()
         {
             Claim.eq((UInt4)0b11, ((UInt4)0b1011).Lo);
             Claim.eq((UInt4)0b10, ((UInt4)0b1011).Hi);
@@ -140,7 +140,7 @@ namespace Z0.Test
             
         }
 
-        public void VerifyBitString()
+        public void uint4_bitstring()
         {
             var x0 = ((UInt4)0b0111).ToBitString().Format(true);
             Claim.eq("111",x0);

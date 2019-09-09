@@ -18,7 +18,7 @@ namespace Z0
         /// Creates a polyrand rng from a point source
         /// </summary>
         /// <param name="rng">The source rng</param>
-        public static IPolyrand ToPolyrand(this IPointSource<ulong> source)        
+        public static IPolyrand ToPolyrand(this IBoundPointSource<ulong> source)        
             => new Polyrand(source);
 
         /// <summary>
@@ -35,6 +35,47 @@ namespace Z0
         /// <param name="random">The random source</param>
         public static IPolyrand ToPolyrand(this IStepwiseSource<ulong> random)
             => new Polyrand(random);
+
+        /// <summary>
+        /// Samples a subsequence from a point source determined by successive sequence widths
+        /// </summary>
+        /// <param name="src">The point source</param>
+        /// <param name="batchsize">The number of samples per batch</param>
+        /// <param name="widths">The subsequence width markers</param>
+        public static Span<(ulong count, T value)> SubSeq<T>(this IPointSource<T> src, int batchsize, ReadOnlySpan<ulong> widths)
+            where T : unmanaged
+        {
+            var bufferlen = batchsize;
+
+            var subseq = new (ulong,T)[widths.Length];
+            Span<T> buffer = new T[bufferlen];
+
+            for(var i=0; i< subseq.Length; i++)
+            {
+                var count = 0ul;
+                while(count < widths[i])
+                {
+                    src.StreamTo(bufferlen, ref head(buffer));
+                    count += Math.Min(widths[i],(ulong)bufferlen);
+                }
+                subseq[i] = (count, buffer.Last());                
+            }
+            return subseq;
+
+        }
+
+        public static Span<(ulong count, T value)> SubSeq<T>(this IPointSource<T> src, int batchsize, params ulong[] widths)        
+            where T : unmanaged
+                => src.SubSeq(batchsize, widths.ToSpan());
+              
+        public static Span<(ulong count, T value)> SubSeq<T>(this IPointSource<T> src, int batchsize, ulong width, int count)        
+            where T : unmanaged
+        {
+            Span<ulong> widths = new ulong[count];
+            widths.Fill(width);
+            return src.SubSeq(batchsize, widths);
+
+        }
 
     }
 

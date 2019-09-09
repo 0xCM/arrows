@@ -36,8 +36,6 @@ namespace Z0
         /// <param name="rhs"></param>
         public static Vec256<ushort> sad(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => SumAbsoluteDifferences(lhs,rhs);
-
-
     }
 
 }

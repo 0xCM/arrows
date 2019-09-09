@@ -21,22 +21,22 @@ namespace Z0
             where T : struct
         {
             var min = gmath.signed<T>() && !gmath.floating<T>()
-                ? gmath.negate(gbits.sra(gmath.maxval<T>(), 1)) 
+                ? gmath.negate(gbits.sar(gmath.maxval<T>(), 1)) 
                 : gmath.zero<T>();
             
             var max = 
                 gmath.signed<T>() && !gmath.floating<T>()
-                ? gbits.sra(gmath.maxval<T>(), 1)
+                ? gbits.sar(gmath.maxval<T>(), 1)
                 : gmath.maxval<T>();
             
             return leftclosed(min,max);
-
         }
 
         /// <summary>
         /// Retrieves a non-deterministic seed
         /// </summary>
         /// <typeparam name="T">The seed type</typeparam>
+        [MethodImpl(Inline)]
         public static T EntropicSeed<T>()            
             where T : struct
                 => Entropy.Value<T>();
@@ -46,6 +46,7 @@ namespace Z0
         /// index, remanins fixed
         /// </summary>
         /// <typeparam name="T">The seed type</typeparam>
+        [MethodImpl(Inline)]
         public static T FixedSeed<T>(T index)
             where T : struct
                 => RngSeed.TakeFixed<T>(convert<T,int>(index));
@@ -56,6 +57,7 @@ namespace Z0
         /// <param name="ByteCount">The total number of bytes available</param>
         /// <param name="MaxIndex">The maximum index for one value of the parametric type</param>
         /// <typeparam name="T">The type relative to which the maximum index is computed</typeparam>
+        [MethodImpl(Inline)]
         public static (ByteSize ByteCount, int MaxIndex) FixedSeedStats<T>()
             where T : struct
                 => (RngSeed.FixedByteCount, RngSeed.MaxFixedIndex<T>());
@@ -64,13 +66,30 @@ namespace Z0
         /// Creates a new WyHash16 generator
         /// </summary>
         /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
+        [MethodImpl(Inline)]
         public static IPolyrand WyHash64(ulong? seed = null)
             => new WyHash64(seed ?? BitConverter.ToUInt64(Entropy.Bytes(8))).ToPolyrand();        
+
+        /// <summary>
+        /// Creates a 128-bit xorshift rng initialezed with a specified seed
+        /// </summary>
+        /// <param name="s0">The first seed value</param>
+        /// <param name="s1">The second seed value</param>
+        /// <param name="s2">The third seed value</param>
+        /// <param name="s3">The fourth seed value</param>
+        [MethodImpl(Inline)]
+        public static IPointSource<uint> XOr128(uint s0, uint s1, uint s2, uint s3)
+            => new XOrShift128(s0,s1,s2,s3);
+
+        [MethodImpl(Inline)]
+        public static IPointSource<uint> XOr128(ReadOnlySpan<uint> state, int offset = 0)
+            => new XOrShift128(state.Slice(offset));
 
         /// <summary>
         /// Creates an XOrShift 1024 rng
         /// </summary>
         /// <param name="seed">The initial state</param>
+        [MethodImpl(Inline)]
         public static IPolyrand XOrShift1024(ulong[] seed = null)
             => new XOrShift1024(seed ?? Seed1024.Default).ToPolyrand();
 
@@ -78,6 +97,7 @@ namespace Z0
         /// Creates an XOrShift 1024 rng
         /// </summary>
         /// <param name="seed">The initial state</param>
+        [MethodImpl(Inline)]
         public static IPolyrand XOrStarStar256(ulong[] seed = null)
             => XOrShift256.Define(seed ?? Seed256.Default).ToPolyrand();
  
@@ -86,6 +106,7 @@ namespace Z0
         /// </summary>
         /// <param name="seed">The initial state of the generator, if specified; 
         /// otherwise, the seed is obtained from an entropy source</param>
+        [MethodImpl(Inline)]
         public static IPolyrand SplitMix(ulong? seed = null)
             => SplitMix64.Define(seed ?? Entropy.Value<ulong>()).ToPolyrand();
 
@@ -167,9 +188,8 @@ namespace Z0
         /// </summary>
         /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
         /// <param name="increment">The generator step size</param>
-        public static IPointSource<ushort> WyHash16(ushort? seed = null, ushort? increment = null)
+        public static IBoundPointSource<ushort> WyHash16(ushort? seed = null, ushort? increment = null)
             => new WyHash16(seed ?? BitConverter.ToUInt16(Entropy.Bytes(2)),increment);
-
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
@@ -199,6 +219,6 @@ namespace Z0
             for(var i=0; i<count; i++)
                 g[i] = Pcg32(seeds[i], indices[i]);
             return g;
-        }        
+        }  
     }
 }

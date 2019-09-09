@@ -312,7 +312,7 @@ namespace Z0.Test
             var x11 = bs11.TakeValue<T>();
             var bs01 = BitString.Parse("01" + repeat('0', bitsize - 2).Concat());
             var x01 = bs01.TakeValue<T>();
-            var y = gbits.sra(x10, 1);
+            var y = gbits.sar(x10, 1);
             if(signed)
                 Claim.eq(x11, y);
             else

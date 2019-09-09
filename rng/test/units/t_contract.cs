@@ -45,7 +45,7 @@ namespace Z0.Rng
             }        
         }
 
-        public void contract16u()
+        public void contract_16u()
         {
             var upper = (ushort)100;
             var buckets = new ushort[100];
@@ -71,7 +71,7 @@ namespace Z0.Rng
             Claim.yea(math.eq(buckets,1));
         }
 
-        public void contract32u()
+        public void contract_32u()
         {
             var upper = 100u;
             var buckets = new uint[100];
@@ -97,7 +97,7 @@ namespace Z0.Rng
             Claim.yea(math.eq(buckets,1));
         }
 
-        public void contract64u()
+        public void contract_64u()
         {
             var upper = 100ul;
             var buckets = new ulong[100];
@@ -124,10 +124,10 @@ namespace Z0.Rng
 
         }
 
-        public void contract64f()
+        public void contract_64f()
         {
             var max = 250000ul;
-            var cycles = Pow2.T08;
+            var cycles = CycleCount;
             for(var i=0; i< cycles; i++)
                 Claim.lteq(contract(Random.Next<ulong>(), max),max);
         }
@@ -135,7 +135,7 @@ namespace Z0.Rng
         void contract64f_bench()
         {
             var max = 250000ul;
-            var n = Pow2.T20;
+            var n = SampleSize;
             var sw = stopwatch();
             var src = Random.Array<ulong>(n);
         
@@ -157,9 +157,9 @@ namespace Z0.Rng
 
         public void contract64u_bench()
         {
-            var n = Pow2.T20;
+            var n = SampleSize;
             var src = Random.Array<ulong>(n);
-            var result = measure(Pow2.T20, "divide", "contract",
+            var result = measure(CycleCount, "divide", "contract",
                 _ => {
                     var last = 0ul;
                     for(var i=0;i<n; i++)
@@ -177,9 +177,9 @@ namespace Z0.Rng
 
         public void contract32u_bench()
         {
-            var n = Pow2.T20;
+            var n = SampleSize;
             var src = Random.Array<uint>(n);
-            var result = measure(Pow2.T20, "divide", "contract",
+            var result = measure(CycleCount, "divide", "contract",
                 _ => {
                     var last = 0u;
                     for(var i=0;i<n; i++)
@@ -197,9 +197,9 @@ namespace Z0.Rng
 
         public void contract16u_bench()
         {
-            var n = Pow2.T20;
+            var n = SampleSize;
             var src = Random.Array<ushort>(n);
-            var result = measure(Pow2.T20, "divide", "contract",
+            var result = measure(CycleCount, "divide", "contract",
                 _ => {
                     ushort last = (ushort)0u;
                     for(var i=0;i<n; i++)
@@ -217,9 +217,9 @@ namespace Z0.Rng
 
         public void contract8u_bench()
         {
-            var n = Pow2.T20;
+            var n = SampleSize;
             var src = Random.Array<byte>(n);
-            var result = measure(Pow2.T20, "divide", "contract",
+            var result = measure(CycleCount, "divide", "contract",
                 _ => {
                     byte last = 0;
                     for(var i=0;i<n; i++)

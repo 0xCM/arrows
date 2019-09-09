@@ -14,7 +14,7 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/wyhash.h</remarks>
-    class WyHash64 : IPointSource<ulong>
+    class WyHash64 : IBoundPointSource<ulong>
     {
         
         ulong State;

@@ -14,7 +14,7 @@ namespace Z0
     /// Implements a 16-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://lemire.me/blog/2019/07/03/a-fast-16-bit-random-number-generator/</remarks>
-    class WyHash16 : IPointSource<ushort>
+    class WyHash16 : IBoundPointSource<ushort>
     {
 
         /// <summary>

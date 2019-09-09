@@ -383,7 +383,7 @@ namespace Z0
                 print($"firstCount = {firstCount}");
                 print($"LastCount = {lastCount}");
             }
-            gbits.shiftl(ref part2, firstCount);
+            gbits.sal(ref part2, firstCount);
             return gbits.or(ref part1, part2);              
         }
 

@@ -33,7 +33,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gbits.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.sal(src[i], shifts[i]);
             
             var v1 = expect.LoadVec256();
             var v2 = gbits.sllv(src, shifts);            
@@ -48,7 +48,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gbits.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.sal(src[i], shifts[i]);
             
             var v1 = expect.LoadVec128();
             var v2 = gbits.sllv(src, shifts);            
@@ -63,7 +63,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan128();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gbits.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.sal(src[i], shifts[i]);
             
             var v1 = expect.LoadVec128();
             var v2 = gbits.sllv(src, shifts);            
@@ -78,7 +78,7 @@ namespace Z0.Test
             
             var expect = src.ToSpan256();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gbits.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.sal(src[i], shifts[i]);
             
             var v1 = expect.LoadVec256();
             var v2 = gbits.sllv(src, shifts);            

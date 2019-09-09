@@ -14,14 +14,14 @@ namespace Z0
     /// Implements a 64-bit random number generator
     /// </summary>
     /// <remarks>Algorithms take from https://github.com/lemire/testingRNG/blob/master/source/splitmix64.h</remarks>
-    class SplitMix64 : IPointSource<ulong>
+    class SplitMix64 : IBoundPointSource<ulong>
     {
         /// <summary>
         /// Defines the rng with a specified initial state
         /// </summary>
         /// <param name="state">The initial state</param>
         [MethodImpl(Inline)]
-        public static IPointSource<ulong> Define(ulong state)
+        public static IBoundPointSource<ulong> Define(ulong state)
             => new SplitMix64(state);
         
         ulong State;

@@ -25,12 +25,18 @@ namespace Z0
 
         public override IEnumerable<T> Sample()
         {
-            if(typeof(T) == typeof(double))
-                foreach(var next in Gaussian(Polyrand, Spec.ToFloat32()))
+            if(typeof(T) == typeof(float))
+            {
+                var spec = Spec.ToFloat32();
+                foreach(var next in Gaussian(Polyrand, spec))
                     yield return As.generic<T>(next);
-            else if (typeof(T) == typeof(float))
-                foreach(var next in Gaussian(Polyrand, Spec.ToFloat64()))
+            }
+            else if (typeof(T) == typeof(double))
+            {
+                var spec = Spec.ToFloat64();
+                foreach(var next in Gaussian(Polyrand, spec))
                     yield return As.generic<T>(next);
+            }
             else
                 foreach(var next in Gaussian(Polyrand, Spec.ToFloat64()))
                     yield return convert<double,T>(next, out T x);
@@ -56,8 +62,8 @@ namespace Z0
                 } 
                 while (s >= 1 || s == 0);
                 
-                var x = fmath.sqrt(-2.0 * math.ln(s) / s);
-                yield return v * x;
+                var x = fmath.sqrt(-2.0 * math.ln(s) / s);                
+                yield return v * x;                
                 yield return spec.Mean + spec.StdDev * u * x;
            }
         }

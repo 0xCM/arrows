@@ -16,9 +16,6 @@ namespace Z0
 
     public partial class dinx
     {
-
-
-
         [MethodImpl(Inline)]
         public static bool ngt(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);

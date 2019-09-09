@@ -187,30 +187,33 @@ namespace Z0
         public const int T26 = 2*T25;
         
         /// <summary>
-        /// 2^27 = 134,217,728
+        /// 2^27 = 134,217,728 = 0x8000000
         /// </summary>
         public const int T27 = 2*T26;
         
         /// <summary>
-        /// 2^28 = 268,435,456
+        /// 2^28 = 268,435,456 = 0x10000000
         /// </summary>
         public const int T28 = 2*T27;
         
         /// <summary>
-        /// 2^29 = 268,435,456
+        /// 2^29 = 536,870,912 = 0x20000000;
         /// </summary>
         public const int T29 = 2*T28;
         
         /// <summary>
-        /// 2^30 = 1,073,741,824
+        /// 2^30 = 1,073,741,824 = 0x40000000
         /// </summary>
         public const int T30 = 2*T29;
         
         /// <summary>
-        /// 2^31 = 2*T30
+        /// 2^31 = 2,147,483,648 = 0x80000000
         /// </summary>
         public const uint T31 = 2*(uint)T30;
         
+        /// <summary>
+        /// 2^32 = 4,294,967,296 = 0x100000000
+        /// </summary>
         public const long T32 = 2*(long)T31;
         
         public const long T33 = 2*T32;

@@ -69,6 +69,12 @@ namespace Z0
         public static Vec256<sbyte> adds(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)        
             => AddSaturate(lhs,rhs);
 
+        /// <summary>
+        /// __m256i _mm256_adds_epi16 (__m256i a, __m256i b) VPADDSW ymm, ymm, ymm/m256
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec256<short> adds(in Vec256<short> lhs, in Vec256<short> rhs)        
             => AddSaturate(lhs,rhs);

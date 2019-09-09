@@ -21,7 +21,7 @@ namespace Z0
                 =>  new RandomStream<T>(rng,src);
 
         /// <summary>
-        /// Produces a stream of random bytes
+        /// Produces a random stream of bytes
         /// </summary>
         /// <param name="random">The random source</param>
         public static IRandomStream<byte> Bytes(this IPolyrand random)
@@ -40,7 +40,38 @@ namespace Z0
         }
 
         /// <summary>
-        /// Produces a random stream of points
+        /// Produces a random stream of unfiltered/unbounded points from a source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <typeparam name="T">The point type</typeparam>
+        public static IRandomStream<T> Stream<T>(this IPointSource<T> src)
+            where T : struct
+        {
+            IEnumerable<T> produce()
+            {
+                while(true)
+                    yield return src.Next();
+            }
+
+            return stream(produce(), src.RngKind);            
+        }
+
+        /// <summary>
+        /// Fills a caller-allocated target with a specified number of values from a source
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="count">The number of values to send to the target</param>
+        /// <param name="dst">A reference to the target location</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void StreamTo<T>(this IPointSource<T> src, int count, ref T dst)
+            where T : struct
+        {
+            for(var i=0; i<count; i++)
+                Unsafe.Add(ref dst, i) = src.Next();
+        }
+        
+        /// <summary>
+        /// Produces a random stream of unfiltered/unbounded points from a source
         /// </summary>
         /// <param name="random">The point source</param>
         /// <typeparam name="T">The point type</typeparam>
@@ -52,11 +83,12 @@ namespace Z0
                 while(true)
                     yield return random.Next<T>();
             }
+            
             return stream(produce(), random.RngKind);
         }
 
         /// <summary>
-        /// Produces a stream of uniformly random values subject to an optional range and filter
+        /// Produces a stream of random values from a source, subject to an optional range and filter
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="domain">If specified, the domain of the random variable</param>

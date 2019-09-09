@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -12,60 +12,59 @@ namespace Z0.Test
 
     public class t_mod : UnitTest<t_mod>
     {
-
-        public void modmul()
+        public void mod_mul()
         {
-            VerifyMul(n3);
-            VerifyMul(n5);
-            VerifyMul(n7);
-            VerifyMul(n10);
-            VerifyMul(n11);
-            VerifyMul(n13);
-            VerifyMul(n32);
-            VerifyMul(n64);
-            VerifyMul(n128);
-            VerifyMul(n1024);
+            mod_mul_check(n3);
+            mod_mul_check(n5);
+            mod_mul_check(n7);
+            mod_mul_check(n10);
+            mod_mul_check(n11);
+            mod_mul_check(n13);
+            mod_mul_check(n32);
+            mod_mul_check(n64);
+            mod_mul_check(n128);
+            mod_mul_check(n1024);
         }
 
-        public void modinc()
+        public void mod_inc()
         {
-            VerifyIncrement(n128);
-            VerifyIncrement(n5);
-            VerifyIncrement(n20);            
+            mod_inc_check(n128);
+            mod_inc_check(n5);
+            mod_inc_check(n20);            
         }
 
-        public void moddec()
+        public void mod_dec()
         {
-            VerifyDecrement(n13);
-            VerifyDecrement(n17);
-            VerifyDecrement(n32);
-            VerifyDecrement(n64);
-            VerifyDecrement(n128);
+            mod_dec_check(n13);
+            mod_dec_check(n17);
+            mod_dec_check(n32);
+            mod_dec_check(n64);
+            mod_dec_check(n128);
         }
 
-        public void modinv()
+        public void mod_inv()
         {
-            VerifyInverse(n3);
-            VerifyInverse(n5);
-            VerifyInverse(n7);
-            VerifyInverse(n11);
-            VerifyInverse(n13);
-            VerifyInverse(n17);
-            VerifyInverse(n19);
-            VerifyInverse(n31);
-            VerifyInverse(N41);
-            VerifyInverse(n1277);
+            mod_inverse_check(n3);
+            mod_inverse_check(n5);
+            mod_inverse_check(n7);
+            mod_inverse_check(n11);
+            mod_inverse_check(n13);
+            mod_inverse_check(n17);
+            mod_inverse_check(n19);
+            mod_inverse_check(n31);
+            mod_inverse_check(N41);
+            mod_inverse_check(n1277);
         }
 
-        public void modadd()
+        public void mod_add()
         {
             var samples = Pow2.T08;
-            VerifyAdd(samples,n87);
-            VerifyAdd(samples,n64);
-            VerifyAdd(samples,n512);
+            mod_add_check(samples,n87);
+            mod_add_check(samples,n64);
+            mod_add_check(samples,n512);
         }
 
-        public void TestCreate()
+        public void mod_create()
         {
             var n = new N32();
             
@@ -76,7 +75,7 @@ namespace Z0.Test
             Claim.eq(c,d);
         }
 
-        public void TestImplicitCreate()
+        public void mod_create_imp()
         {
             var n = new N15();
 
@@ -87,66 +86,7 @@ namespace Z0.Test
             Claim.eq(Mod.Define(7,n),a0);
         }
 
-        void VerifyIncrement<N>(N n = default)
-            where N :ITypeNat, new()
-        {
-            TypeCaseStart<N>();
-
-            var x = Mod.Define(n);
-            var y = Mod.Define(n);
-            var max = (uint)n.value;
-
-            x++; x++; x++;
-            y += 3u;
-            Claim.eq(x,y);
-
-            x++; x++; x++; x++; x++; x++; x++; x++; x++; x++;
-            y += 10u;
-            Claim.eq(x,y);
-
-
-            var a = Mod.Define(max,n);
-            var b = Mod.Define(max,n);
-
-            for(var k = 1; k<max*3; k++)            
-            {
-                ++a; 
-                Claim.eq(a, b += 1u);
-            }
-
-            TypeCaseEnd<N>();
-        }
-
-
-        void VerifyDecrement<N>(N n = default)
-            where N :ITypeNat, new()
-        {
-            TypeCaseStart<N>();
-
-            var max = (uint)n.value - 1;
-            var last = Mod.Define(max, n);
-            var m = last;
-            
-            var i = (int)max;
-            do --m;
-            while(--i >= 0);
-            
-            Claim.eq(m, last);
-
-            var x = max;
-            var y = Mod.Define(max,n);
-
-            for(var k = 1; k<i*3; k++)            
-            {
-                --x; 
-                Claim.eq(x, y -= 1u);
-            }
-
-            TypeCaseEnd<N>();
-
-        }
-
-        public void TestSubtraction()
+        public void mod_sub()
         {
             var n = new N15();
 
@@ -159,7 +99,7 @@ namespace Z0.Test
             Claim.eq(Mod.Define(14,n), b14a);
         }
 
-        public void VerifyAdd<N>(int samples, N n = default)
+        void mod_add_check<N>(int samples, N n = default)
             where N :ITypeNat, new()
         {
             TypeCaseStart<N>();
@@ -214,7 +154,7 @@ namespace Z0.Test
 
         }
 
-        void VerifyMul<N>(N n = default)
+        void mod_mul_check<N>(N n = default)
             where N : ITypeNat, new()
         {
             TypeCaseStart<N>();
@@ -234,7 +174,7 @@ namespace Z0.Test
             TypeCaseEnd<N>();
         }
  
-        void VerifyInverse<N>(N n = default)
+        void mod_inverse_check<N>(N n = default)
             where N : ITypeNat, new()
         {
 
@@ -250,5 +190,64 @@ namespace Z0.Test
             }
             TypeCaseEnd<N>();
         }
+
+        void mod_dec_check<N>(N n = default)
+            where N :ITypeNat, new()
+        {
+            TypeCaseStart<N>();
+
+            var max = (uint)n.value - 1;
+            var last = Mod.Define(max, n);
+            var m = last;
+            
+            var i = (int)max;
+            do --m;
+            while(--i >= 0);
+            
+            Claim.eq(m, last);
+
+            var x = max;
+            var y = Mod.Define(max,n);
+
+            for(var k = 1; k<i*3; k++)            
+            {
+                --x; 
+                Claim.eq(x, y -= 1u);
+            }
+
+            TypeCaseEnd<N>();
+
+        }
+
+        void mod_inc_check<N>(N n = default)
+            where N :ITypeNat, new()
+        {
+            TypeCaseStart<N>();
+
+            var x = Mod.Define(n);
+            var y = Mod.Define(n);
+            var max = (uint)n.value;
+
+            x++; x++; x++;
+            y += 3u;
+            Claim.eq(x,y);
+
+            x++; x++; x++; x++; x++; x++; x++; x++; x++; x++;
+            y += 10u;
+            Claim.eq(x,y);
+
+
+            var a = Mod.Define(max,n);
+            var b = Mod.Define(max,n);
+
+            for(var k = 1; k<max*3; k++)            
+            {
+                ++a; 
+                Claim.eq(a, b += 1u);
+            }
+
+            TypeCaseEnd<N>();
+        }
+
     }
 }

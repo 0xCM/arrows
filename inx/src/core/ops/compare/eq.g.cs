@@ -54,7 +54,7 @@ namespace Z0
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256Cmp<T> eq<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {

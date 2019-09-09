@@ -8,6 +8,10 @@ namespace Z0.Rng
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using System.Numerics;
 
     using static zfunc;
     public class App : TestApp<App>
@@ -30,20 +34,53 @@ namespace Z0.Rng
             TimeSeries.Evolve(closed(-250.75, 256.5), Show).Wait();
         }
 
-        //protected override void RunTests(params string[] filter)
-        //{
-        //    var samples = Polyrand.Bernoulli<int>(.2).Take(Pow2.T20).ToArray();
-        //    var success = (double)samples.Where(x => x == 1).Count();
-        //    var result = success / (double)Pow2.T20;
-        //    print(result.ToString());
-        //}
+        
 
+        Task<MemorySpan<uint>> Collect(uint[] state, ulong width, int points)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                var dst = MemorySpan.Alloc<uint>(points);
+
+                var src = RNG.XOr128(state);
+                var subseq = src.SubSeq(Pow2.T14, width, points);
+                var total = BigInteger.Zero;
+                            
+                for(var i=0; i< points; i++)
+                {            
+                    (var idx, var value) = subseq[i];  
+                    total += idx;                    
+
+                    print(appMsg($"src[{i.ToString().PadLeft(3,'0')}:{total.ToString().PadLeft(12,'0')}] = {value.FormatHex()}"));
+                }
+
+                return dst;
+
+            });
+        }
+
+        void CollectSubSeq()
+        {
+            var state = new uint[]
+            {
+                (uint)Seed64.Seed00, (uint)Seed64.Seed00 >> 32,
+                (uint)Seed64.Seed01, (uint)Seed64.Seed01 >> 32
+            };
+            const ulong width = Pow2.T31;
+            const int points = 4;
+
+            var result = Collect(state, width, points).Result;
+
+        }
 
         protected override void RunTests(params string[] filters)
-        {                 
+        {     
+            
             base.RunTests(filters);        
         }
         public static void Main(params string[] args)
             => Run(args);
+
+                    
     }
 }

@@ -17,60 +17,72 @@ namespace Z0
     /// </summary>
     public enum RngKind
     {        
+        None = 0,
         /// <summary>
         /// A crypto-sourced nondeterministic generator
         /// </summary>
-        EntropicCrypto,
+        EntropicCrypto = 1,
 
         /// <summary>
         /// A 32-bit PCG generator
         /// </summary>
-        Pcg32,
+        Pcg32 = 2,
 
         /// <summary>
         /// A suite of 32-bit PCG generators
         /// </summary>
-        Pcg32Suite,
+        Pcg32Suite = 3,
 
         /// <summary>
         /// A 64-bit PCG generator
         /// </summary>
-        Pcg64,
+        Pcg64 = 4,
 
         /// <summary>
         /// A suite of 64-bit PCG generators
         /// </summary>
-        Pcg64Suite,
+        Pcg64Suite = 5,
 
         /// <summary>
         /// A 64-bit SplitMix generator
         /// </summary>
-        SplitMix64,
+        SplitMix64 = 6,
 
         /// <summary>
         /// A 16-bit WyHash generator
         /// </summary>
-        WyHash16,
+        WyHash16 = 7,
 
         /// <summary>
         /// A 64-bit WyHash generator
         /// </summary>
-        WyHash64,
+        WyHash64 = 8,
 
         /// <summary>
         /// A suite of 64-bit WyHash generators
         /// </summary>
-        WyHash64Suite,
+        WyHash64Suite = 9,
         
         /// <summary>
-        /// A 256-bit xor/shift generator that produces 64 bits in a go
+        /// An xorshift generator with 128 bits of state
         /// </summary>
-        XOrShift256,
+        XOrShift128 = 10,
 
         /// <summary>
-        /// A 1024-bit xor/shift generator that produces 64 bits in a go
+        /// An xorshift generator with 256 bits of state
         /// </summary>
-        XOrShift1024,
+        XOrShift256 = 11,
+
+        /// <summary>
+        /// An xorshift generator with 1024 bits of state
+        /// </summary>
+        XOrShift1024 = 12,
+
+        User1 = 100,
+
+        User2 = 100,
+
+        User3 = 100,
         
         /// <summary>
         /// Indentifes a hardware level entropic source driven by
@@ -137,7 +149,6 @@ namespace Z0
         /// A Philox4x32-10 counter-based pseudorandom number generator.
         /// </summary>
         MklPhilox4X32X10 = 16777216
-
 
     }
 

@@ -15,43 +15,36 @@ namespace Z0.Test
 
     public class t_perm : UnitTest<t_perm>
     {
-        public void invert()
+        public void perm_invert()
         {
-            invert(n12);
-            invert(n17);
-            invert(n64);
-            invert(n31);
-            invert(n128);
-            invert(n257);
+            perm_invert_check(n12);
+            perm_invert_check(n17);
+            perm_invert_check(n64);
+            perm_invert_check(n31);
+            perm_invert_check(n128);
+            perm_invert_check(n257);
         }
 
-        public void identity()
+        public void perm_identity()
         {
-            identity(n32);         
-            identity(n20);
-            identity(n17);
-            identity(n64);
-            identity(n128);
-            identity(n21);
-            identity(n257);
-        }
-        
+            perm_identity_check(n32);         
+            perm_identity_check(n20);
+            perm_identity_check(n17);
+            perm_identity_check(n64);
+            perm_identity_check(n128);
+            perm_identity_check(n21);
+            perm_identity_check(n257);
+        }    
 
-        public void decompose()
+        public void perm_comp()
         {
-            var p = Random.Perm(n12);
-            var cycle = p.Cycle(3);
-        }
-
-        public void compose()
-        {
-            compose(n32);         
-            compose(n20);
-            compose(n17);
-            compose(n64);
-            compose(n128);
-            compose(n21);
-            compose(n257);
+            perm_comp_check(n32);         
+            perm_comp_check(n20);
+            perm_comp_check(n17);
+            perm_comp_check(n64);
+            perm_comp_check(n128);
+            perm_comp_check(n21);
+            perm_comp_check(n257);
         }
 
         public void cycle16()
@@ -60,7 +53,7 @@ namespace Z0.Test
             Trace( () => cycle);
         }
         
-        public void swaps()
+        public void perm_swaps()
         {            
             
             var src = Vec128.Increments((byte)0);
@@ -77,7 +70,7 @@ namespace Z0.Test
             Claim.eq(x3[15],(byte)0);            
         }
 
-        void compose<N>(N n = default)
+        void perm_comp_check<N>(N n = default)
             where N : ITypeNat, new()
         {
             var p1 = Random.Perm<N>();
@@ -86,7 +79,7 @@ namespace Z0.Test
 
         }
 
-        void identity<N>(N rep = default)
+        void perm_identity_check<N>(N rep = default)
             where N : ITypeNat, new()
         {
             var permA = Perm<N>.Identity;
@@ -101,7 +94,7 @@ namespace Z0.Test
             Claim.yea(permA == permB);
         }
 
-        void invert<N>(N n = default, int cycles = DefaltCycleCount)
+        void perm_invert_check<N>(N n = default, int cycles = DefaltCycleCount)
             where N: ITypeNat, new()
         {
             for(var i=0; i<(int)n.value; i++)

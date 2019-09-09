@@ -52,33 +52,36 @@ namespace Z0
             get
             {
                 var sig = convert<T,double>(StdDev);
+                require(sig != 0);
+
                 return convert<T>(sig*sig);
-            }
-            
+            }            
         }
 
-        [Symbol(Greek.tau)]
         public T Precision 
         {
             [MethodImpl(Inline)]
             get
             {
                 var sig = convert<T,double>(StdDev);
+                require(sig != 0);
+
                 var prec = MathUtil.recip(sig*sig);
                 return convert<T>(prec);
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Classifies the distribution spec
         /// </summary>
         public DistKind Kind 
             => DistKind.Gaussian;
 
-       public GaussianSpec<float> ToFloat32()
+        [MethodImpl(Inline)]
+        public GaussianSpec<float> ToFloat32()
             => new GaussianSpec<float>(convert<T,float>(Mean), convert<T,float>(StdDev));
 
-
+        [MethodImpl(Inline)]
         public GaussianSpec<double> ToFloat64()
             => new GaussianSpec<double>(convert<T,double>(Mean), convert<T,double>(StdDev));
 

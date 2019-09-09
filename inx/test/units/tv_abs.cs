@@ -16,7 +16,12 @@ namespace Z0.Test
     public class tv_abs : UnitTest<tv_abs>
     {
 
-        void VerifyAbs64(int cycles = DefaltCycleCount)
+        public void abs64()
+        {
+            abs64_check();
+        }
+
+        void abs64_check(int cycles = DefaltCycleCount)
         {
             for(var cycle = 0; cycle < cycles; cycle++)
             {
@@ -34,12 +39,6 @@ namespace Z0.Test
                 Claim.eq(expect, actual);
             }
 
-        }
-
-
-        public void Abs64()
-        {
-            VerifyAbs64();
         }
 
     }

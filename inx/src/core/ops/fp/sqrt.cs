@@ -67,7 +67,6 @@ namespace Z0
         /// __m128 _mm_rsqrt_ps (__m128 a) RSQRTPS xmm, xmm/m128
         /// </summary>
         /// <param name="src"></param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec128<float> rsqrt(Vec128<float> src)
             => ReciprocalSqrt(src);    

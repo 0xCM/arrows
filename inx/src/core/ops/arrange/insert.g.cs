@@ -75,9 +75,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.insert(in uint64(in src), in uint64(in dst), index));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.insert(in float32(in src), in float32(in dst), index));
+                return generic<T>(dfp.insert(in float32(in src), in float32(in dst), index));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.insert(in float64(in src), in float64(in dst), index));
+                return generic<T>(dfp.insert(in float64(in src), in float64(in dst), index));
             else
                 throw unsupported<T>();
         }

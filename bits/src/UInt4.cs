@@ -66,37 +66,53 @@ namespace Z0
         public static implicit operator ulong(UInt4 src)
             => src.data;
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(byte src)
             => FromLo(src);
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(sbyte src)
             => FromLo(src);
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(ushort src)
             => FromLo(src);
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(uint src)
             => FromLo(src);
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(int src)
             => FromLo(src);
 
+        /// <summary>
+        /// Creates a 4-bit integer from the least four bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static explicit operator UInt4(ulong src)
             => FromLo(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator UInt4(ReadOnlySpan<Bit> src)
-            => FromBitSpan(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator UInt4(Span<Bit> src)
-            => FromBitSpan(src);
 
         /// <summary>
         /// Constructs a <see cref='UInt4'/> from a sequence of bits ranging from low to high
@@ -326,14 +342,6 @@ namespace Z0
         public static UInt4 FromHi(long src)        
             => new UInt4((byte)((src >> 60) & MaxValue));
 
-        [MethodImpl(Inline)]
-        public bool AllOnes()
-            => data == MaxValue;
- 
-        [MethodImpl(Inline)]
-        public bool AllZeros()
-            => data == MinValue;
-
         /// <summary>
         /// Returns true if an index-identified bit is enabled; false otherwise
         /// </summary>
@@ -342,6 +350,11 @@ namespace Z0
         public bool TestBit(byte pos)
             => pos < BitCount ? BitMask.test(in data, pos) : false;
 
+        /// <summary>
+        /// Multiplies the operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static UInt4 Mul(UInt4 lhs, UInt4 rhs)
             => UInt4.FromByte(MulMod16(lhs,rhs));
@@ -406,7 +419,6 @@ namespace Z0
             set => SetBit((byte)pos, value);
         }
 
-
         /// <summary>
         /// Queries and manipulates the lower two bits
         /// </summary>
@@ -421,7 +433,6 @@ namespace Z0
                 var src = value.Lo;
                 SetBit(0, src[0]);
                 SetBit(1, src[1]);
-
             }
         }
 
@@ -444,12 +455,15 @@ namespace Z0
         }
 
         /// <summary>
-        /// Renders the value as as hexadecimal string
+        /// Renders the source value as as hexadecimal string
         /// </summary>
         [MethodImpl(Inline)]
         public string Format()
             => HexMap[data].ToString();
 
+        /// <summary>
+        /// Converts the source value to a bitstring
+        /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => BitString.FromBitSeq(gbits.bitseq(data).Slice(0,BitCount));
@@ -457,7 +471,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool Equals(UInt4 rhs)
             => data == rhs.data;
-
 
         public override bool Equals(object rhs)
             => rhs is UInt4 x ? Equals(x) : false;
@@ -470,11 +483,8 @@ namespace Z0
         /// </summary>
         /// <param name="lhs">The first byte</param>
         /// <param name="rhs">The second byte</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         static byte MulMod16(byte lhs, byte rhs)
             => (byte)Mod<N16>.mod((uint)(lhs * rhs));
-
     }
-
 }

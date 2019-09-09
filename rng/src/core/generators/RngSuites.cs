@@ -18,7 +18,7 @@ namespace Z0.Rng
         /// Samples one point from each generator
         /// </summary>
         /// <param name="sources">A set of random point sources</param>
-        public static Span<T> Next<T>(this Span<IPointSource<T>> generators)
+        public static Span<T> Next<T>(this Span<IBoundPointSource<T>> generators)
             where T : struct
         {
             Span<T> dst = new T[generators.Length];
@@ -44,7 +44,7 @@ namespace Z0.Rng
         /// Samples one point from each generator
         /// </summary>
         /// <param name="sources">A set of random point sources</param>
-        public static T[] Next<T>(this IPointSource<T>[] sources)
+        public static T[] Next<T>(this IBoundPointSource<T>[] sources)
             where T : struct
         {
             var dst = new T[sources.Length];

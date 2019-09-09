@@ -108,7 +108,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 Load(MemorySpan<byte> src)        
+        public static BitMatrix8 From(MemorySpan<byte> src)        
             => new BitMatrix8(src);
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace Z0
         /// only structure and is thus equivalent to an allocation</param>
         [MethodImpl(Inline)] 
         public readonly BitMatrix8 Replicate(bool structureOnly = false)
-            => structureOnly ? Alloc() : Load(data.Replicate());
+            => structureOnly ? Alloc() : From(data.Replicate());
 
         /// <summary>
         /// Counts the number of enabled bits in the matrix

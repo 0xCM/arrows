@@ -15,6 +15,54 @@ namespace Z0
 
     public static partial class BitMatrixOps
     {   
+        /// <summary>
+        /// Creates the matrix determined by a permutation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static BitMatrix8 ToBitMatrix(this Perm<N8> src)
+        {
+            var dst = BitMatrix8.Alloc();
+            for(var row = 0; row<src.Length; row++)
+                dst[row,src[row]] = Bit.On;
+            return dst;
+        }
+
+        /// <summary>
+        /// Creates the matrix determined by a permutation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static BitMatrix16 ToBitMatrix(this Perm<N16> src)
+        {
+            var dst = BitMatrix16.Alloc();
+            for(var row = 0; row<src.Length; row++)
+                dst[row,src[row]] = Bit.On;
+            return dst;
+        }
+
+        /// <summary>
+        /// Creates the matrix determined by a permutation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static BitMatrix32 ToBitMatrix(this Perm<N32> src)
+        {
+            var dst = BitMatrix32.Alloc();
+            for(var row = 0; row<src.Length; row++)
+                dst[row,src[row]] = Bit.On;
+            return dst;
+        }
+
+        /// <summary>
+        /// Creates the matrix determined by a permutation
+        /// </summary>
+        /// <param name="src">The source permutation</param>
+        public static BitMatrix64 ToBitMatrix(this Perm<N64> src)
+        {
+            var dst = BitMatrix64.Alloc();
+            for(var row = 0; row<src.Length; row++)
+                dst[row,src[row]] = Bit.On;
+            return dst;
+        }
+
         internal static string FormatMatrixBits(this Span<byte> src, int rowlen)            
         {
             var dst = gbits.bitchars(src);

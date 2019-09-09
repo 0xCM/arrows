@@ -5,8 +5,6 @@
 namespace Z0
 {
     using System;
-    using System.Numerics;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zfunc;    
@@ -34,25 +32,25 @@ namespace Z0
                 => Flip<T>.Op;
 
         [MethodImpl(Inline)]
-        public static ShiftOp<T> shiftl<T>(T lhs, int count)
+        public static ShiftOp<T> sal<T>(T lhs, int count)
             where T : struct
-                => ShiftL<T>.Op;
+                => Sal<T>.Op;
 
         [MethodImpl(Inline)]
-        public static ShiftOp<T> shiftr<T>(T lhs, int count)
+        public static ShiftOp<T> sar<T>(T lhs, int count)
             where T : struct
-                => ShiftR<T>.Op;
+                => Sar<T>.Op;
 
-       readonly struct ShiftL<T>
+       readonly struct Sal<T>
             where T : struct
         {
-            public static readonly ShiftOp<T> Op = gbits.shiftl<T>;
+            public static readonly ShiftOp<T> Op = gbits.sal<T>;
         }
 
-       readonly struct ShiftR<T>
+       readonly struct Sar<T>
             where T : struct
         {
-            public static readonly ShiftOp<T> Op = gbits.sra<T>;
+            public static readonly ShiftOp<T> Op = gbits.sar<T>;
         }
 
 
@@ -80,8 +78,5 @@ namespace Z0
         {
             public static readonly UnaryOp<T> Op = gbits.flip<T>;
         }
-
     }
-
-
 }

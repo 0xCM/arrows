@@ -68,7 +68,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="count">The number of points to take</param>
         /// <typeparam name="T">The element type</typeparam>
-        public static HashSet<T> TakeSet<T>(this IPointSource<T> random, int count)
+        public static HashSet<T> TakeSet<T>(this IBoundPointSource<T> random, int count)
             where T : struct
         {
             var src =  random.Stream();

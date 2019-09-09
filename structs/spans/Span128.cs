@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.InteropServices;    
     using System.Runtime.Intrinsics;    
+    using System.Runtime.Intrinsics.X86;    
     using System.Diagnostics;
         
     using static zfunc;
@@ -141,7 +142,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span<T> Slice(int offset)
             => data.Slice(offset);
-
+            
         [MethodImpl(Inline)]
         public Span<T> Slice(int offset, int length)
             => data.Slice(offset,length);

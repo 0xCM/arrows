@@ -13,14 +13,14 @@ namespace Z0
     /// <remarks>
     /// Core algorithms taken from the paper: https://arxiv.org/pdf/1402.6246.pdf
     /// </remarks>
-    class XOrShift1024 : IPointSource<ulong>
+    class XOrShift1024 : IBoundPointSource<ulong>
     {
         readonly ulong[] state;
         
         int p;
 
         [MethodImpl(Inline)]
-        public static IPointSource<ulong> Define(params ulong[] seed)
+        public static IBoundPointSource<ulong> Define(params ulong[] seed)
             => new XOrShift1024(seed);
 
         public XOrShift1024(ulong[] seed)

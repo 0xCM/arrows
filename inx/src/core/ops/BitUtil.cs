@@ -9,7 +9,6 @@ namespace Z0
 
     using static zfunc;
 
-
     static class BitUtil
     {
         [MethodImpl(Inline)]
@@ -75,7 +74,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> flip(in Vec256<ulong> src)
             => Xor(src, CompareEqual(src,src));
-
 
         [MethodImpl(Inline)]
         public static Vec128<uint> and(in Vec128<uint> lhs, in Vec128<uint> rhs)
