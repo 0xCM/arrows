@@ -88,7 +88,7 @@ namespace Z0
         /// <param name="len">The bitvector length, if specified</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this Memory<T> src, BitSize? len = null)
+        public static BitVector<T> ToBitVector<T>(this MemorySpan<T> src, BitSize? len = null)
             where T : unmanaged
                 => BitVector.FromCells(src,len);
 
@@ -105,42 +105,42 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
             where T : unmanaged
-                => src.Bytes().First();
+                => src.Bytes.First();
 
         [MethodImpl(Inline)]
         public static BitVector8 TakeBitVector8<T>(this BitVector<T> src, int offset = 0)        
             where T : unmanaged
-                => src.Bytes()[offset];
+                => src.Bytes[offset];
 
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt16(src.Bytes().Extend(2));
+                => BitConverter.ToUInt16(src.Bytes.Extend(2));
 
         [MethodImpl(Inline)]
         public static BitVector16 TakeBitVector16<T>(this BitVector<T> src, int offset = 0)        
             where T : unmanaged
-                => BitConverter.ToUInt16(src.Bytes().Slice(offset, 2));
+                => BitConverter.ToUInt16(src.Bytes.Slice(offset, 2));
 
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt32(src.Bytes().Extend(4));
+                => BitConverter.ToUInt32(src.Bytes.Extend(4));
 
         [MethodImpl(Inline)]
         public static BitVector32 TakeBitVector32<T>(this BitVector<T> src, int offset = 0)        
             where T : unmanaged
-                => BitConverter.ToUInt32(src.Bytes().Slice(offset, 4));
+                => BitConverter.ToUInt32(src.Bytes.Slice(offset, 4));
 
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt64(src.Bytes().Extend(8));
+                => BitConverter.ToUInt64(src.Bytes.Extend(8));
 
         [MethodImpl(Inline)]
         public static BitVector64 TakeBitVector64<T>(this BitVector<T> src, int offset = 0)        
             where T : unmanaged
-                => BitConverter.ToUInt64(src.Bytes().Slice(offset, 8));
+                => BitConverter.ToUInt64(src.Bytes.Slice(offset, 8));
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8(this sbyte src)        
@@ -472,6 +472,81 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector(this BitMask64 src)
             => ((ulong)src).ToBitVector();
+
+
+        /// <summary>
+        /// Converts a scalar value to a type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector8,byte> ToFixedBits(this byte src)
+            => FixedBits.FromScalar(src);
+
+        /// <summary>
+        /// Converts a scalar value to a type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector16,ushort> ToFixedBits(this ushort src)
+            => FixedBits.FromScalar(src);
+
+        /// <summary>
+        /// Converts a scalar value to a type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector32,uint> ToFixedBits(this uint src)
+            => FixedBits.FromScalar(src);
+
+        /// <summary>
+        /// Converts a scalar value to a type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector64,ulong> ToFixedBits(this ulong src)
+            => FixedBits.FromScalar(src);
+
+        /// <summary>
+        /// Converts a primal bitvector to the corresponding type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector8,byte> ToFixedBits(this BitVector8 src)
+            => src;
+
+        /// <summary>
+        /// Converts a primal bitvector to the corresponding type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector16,ushort> ToFixedBits(this BitVector16 src)
+            => src;
+
+        /// <summary>
+        /// Converts a primal bitvector to the corresponding type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector32,uint> ToFixedBits(this BitVector32 src)
+            => src;
+
+        /// <summary>
+        /// Converts a primal bitvector to the corresponding type-parametric fixed-bits bitvector
+        /// </summary>
+        /// <param name="src">The source scalar</param>
+        [MethodImpl(Inline)]
+        public static FixedBits<BitVector64,ulong> ToFixedBits(this BitVector64 src)
+            => src;
+
+        /// <summary>
+        /// Converts a parametric fixed bitvector to a primal bitvector
+        /// </summary>
+        /// <param name="v">The source vector</param>
+        [MethodImpl(Inline)]
+        public static V ToPrimalBits<V,S>(this FixedBits<V,S> v)
+            where V : unmanaged, IFixedBits<V,S>
+            where S : unmanaged
+                => v;
 
     }
 }

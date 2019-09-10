@@ -127,6 +127,76 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static ref sbyte or(in sbyte lhs, in sbyte rhs, ref sbyte dst)
+        {
+            dst = (sbyte)(lhs | rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte or(in byte lhs, in byte rhs, ref byte dst)
+        {
+            dst = (byte)(lhs | rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short or(in short lhs, in short rhs, ref short dst)
+        {
+            dst = (short)(lhs | rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort or(in ushort lhs, in ushort rhs, ref ushort dst)
+        {
+            dst = (ushort)(lhs | rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int or(in int lhs, in int rhs, ref int dst)
+        {
+            dst = lhs | rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint or(in uint lhs, in uint rhs, ref uint dst)
+        {
+            dst = lhs | rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long or(in long lhs, in long rhs, ref long dst)
+        {
+            dst = lhs | rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong or(in ulong lhs, in ulong rhs, ref ulong dst)
+        {
+            dst = lhs | rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float or(in float lhs, in float rhs, ref float dst)
+        {
+            dst = BitConverter.Int32BitsToSingle(lhs.ToBits() | rhs.ToBits());
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double or(in double lhs, in double rhs, ref double dst)
+        {
+            dst = BitConverter.Int64BitsToDouble(lhs.ToBits() | rhs.ToBits());
+            return ref dst;
+        }
+            
  
     }
 }

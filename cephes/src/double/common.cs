@@ -50,6 +50,36 @@ namespace Z0
 
         const double MINLOG = -7.451332191019412076235E2;     /* log(2**-1075) */
 
+        /// <summary>
+        /// argument domain error 
+        /// </summary>
+        const int DOMAIN = 1;	
+        
+        /// <summary>
+        /// argument singularity
+        /// </summary>
+        const int SING = 2;
+        
+        /// <summary>
+        /// overflow range error 
+        /// </summary>
+        const int OVERFLOW = 3;
+        
+        /// <summary>
+        /// underflow range error 
+        /// </summary>
+        const int UNDERFLOW = 4;
+        
+        /// <summary>
+        /// total loss of precision 
+        /// </summary>
+        const int TLOSS = 5;
+        
+        /// <summary>
+        /// partial loss of precision
+        /// </summary>
+        const int PLOSS = 6;
+
 
         [MethodImpl(Inline)]
         public static bool isfinite(double x)
@@ -63,5 +93,7 @@ namespace Z0
         public static bool isnan(double x)
             => double.IsNaN(x);
 
+        static void mtherr(string msg, int code)
+            => error($"{msg} {code}");
     }
 }

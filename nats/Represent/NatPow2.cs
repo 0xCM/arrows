@@ -15,7 +15,6 @@ namespace Z0
     using static nfunc;
     using static constant;
 
-
     /// <summary>
     /// Reifies a natural k such that e:E => k = 2^e
     /// </summary>

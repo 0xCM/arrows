@@ -355,6 +355,21 @@ partial class zfunc
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     /// <summary>
+    /// Returns the common length of the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type of the first operand</typeparam>
+    /// <typeparam name="S">The element type of the second operand</typeparam>
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan128<S> lhs, ReadOnlySpan128<T> rhs,  [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
+            where T : struct
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    /// <summary>
     /// Returns the length of spans of equal length; otherwise raises an error
     /// </summary>
     /// <param name="lhs">The left span</param>
@@ -365,6 +380,7 @@ partial class zfunc
             where T : struct
             where S : struct
                 => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
 
 
     /// <summary>
@@ -380,6 +396,35 @@ partial class zfunc
             where T : struct
             where S :struct
                 =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+
+    /// <summary>
+    /// Returns the common number of blocks in the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<S,T>(Span128<S> lhs, Span128<T> rhs, [CallerMemberName] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
+            where T : struct                
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
+
+    /// <summary>
+    /// Returns the common number of blocks in the operands if they are the same; otherwise, raises an error
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<S,T>(ReadOnlySpan128<S> lhs, ReadOnlySpan128<T> rhs, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
+            where T : struct
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
 
     /// <summary>
     /// Returns the common number of blocks in the operands if they are the same; otherwise, raises an error

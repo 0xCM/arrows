@@ -12,7 +12,6 @@ namespace Z0
     using static cephes.Floor;
     partial class cephes
     {
-
         public static double floor(double x)
         {
             Float64 u = x;

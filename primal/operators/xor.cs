@@ -124,6 +124,78 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static ref sbyte xor(in sbyte lhs, in sbyte rhs, ref sbyte dst)
+        {
+            dst = (sbyte)(lhs ^ rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte xor(in byte lhs, in byte rhs, ref byte dst)
+        {
+            dst = (byte)(lhs ^ rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short xor(in short lhs, in short rhs, ref short dst)
+        {
+            dst = (short)(lhs ^ rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort xor(in ushort lhs, in ushort rhs, ref ushort dst)
+        {
+            dst = (ushort)(lhs ^ rhs);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int xor(in int lhs, in int rhs, ref int dst)
+        {
+            dst = lhs ^ rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint xor(in uint lhs, in uint rhs, ref uint dst)
+        {
+            dst = lhs ^ rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long xor(in long lhs, in long rhs, ref long dst)
+        {
+            dst = lhs ^ rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong xor(in ulong lhs, in ulong rhs, ref ulong dst)
+        {
+            dst = lhs ^ rhs;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float xor(in float lhs, in float rhs, ref float dst)
+        {
+            dst = BitConverter.Int32BitsToSingle(lhs.ToBits() ^ rhs.ToBits());
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double xor(in double lhs, in double rhs, ref double dst)
+        {
+            dst = BitConverter.Int64BitsToDouble(lhs.ToBits() ^ rhs.ToBits());
+            return ref dst;
+        }
+            
+
+
         public static Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
         {
             for(var i = 0; i< lhs.Length; i++)

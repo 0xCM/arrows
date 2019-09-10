@@ -87,7 +87,7 @@ namespace Z0
         /// <returns>A matching polynomial, if found; otherwise, the Zero polynomial</returns>
         /// <remarks>Note that exp values should not include the order itself</remarks>
         public static GfPoly<N,T> Lookup<N,T>(N degree = default, T rep = default)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             var n = nfunc.nati<N>();

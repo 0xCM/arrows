@@ -13,33 +13,33 @@ namespace Z0
     using static BitMasks;
 
     /// <summary>
-    /// Defines common 16-bit masks
+    /// Defines common 4-bit masks
     /// </summary>
     [Flags]
-    public enum BitMask16 : ushort
+    public enum BitMask4 : byte
     {
         /// <summary>
         /// Identifies the most significant bit 
         /// </summary>
-        Msb8 = Msb16x8.Select,
+        Msb4 = Msb4x1.Select,
 
         /// <summary>
         /// Identifies the least significant bit 
         /// </summary>
-        Lsb8 = Lsb16x8.Select,
+        Lsb4 = Lsb4x1.Select,
 
         /// <summary>
         /// Identifies every other even bit
         /// </summary>
-        Even = Even16x8.Select,
+        Even = Even4x1.Select,
 
         /// <summary>
         /// Identifies every other odd bit
         /// </summary>
-        Odd = Odd16x8.Select,
+        Odd = Odd4x1.Select,
 
         /// <summary>
-        /// Selects all 16 bits
+        /// Selects all 4 bits
         /// </summary>
         All = Odd | Even
     }

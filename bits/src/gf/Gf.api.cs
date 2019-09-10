@@ -24,7 +24,7 @@ namespace Z0
         {
             var components = default(T);
             for(var i=0; i< exponents.Length; i++)
-                components = gbits.or(components, Pow2<T>.pow(exponents[i]));
+                components = gbits.or(components, Pow2.pow<T>(exponents[i]));
             return components;
         }        
 
@@ -43,7 +43,7 @@ namespace Z0
         /// <typeparam name="N">The degree of the polynomial</typeparam>
         /// <typeparam name="T">The polynomial scalar type</typeparam>
         public static GfPoly<N,T> Poly<N,T>(params byte[] exponents)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
                 => new GfPoly<N, T>(exponents);
 

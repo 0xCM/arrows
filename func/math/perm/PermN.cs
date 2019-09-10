@@ -194,12 +194,22 @@ namespace Z0
             return p;
         }
 
+        /// <summary>
         /// Shuffles the permutation in-place using a provided random source.
         /// </summary>
         /// <param name="random">The random source</param>
         public Perm<N> Shuffle(IPolyrand random)
         {
             perm.Shuffle(random);            
+            return this;
+        }
+
+        /// <summary>
+        /// Reverses the permutation in-place
+        /// </summary>
+        public Perm<N> Reverse()
+        {
+            perm.Reverse();
             return this;
         }
 

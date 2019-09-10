@@ -12,23 +12,6 @@ namespace Z0
 
     public class tbv_128 : UnitTest<tbv_128>
     {
-        public void bv_xor()
-        {
-            var vectors = Random.BitVectors(n128);
-            for(var i=0; i< SampleSize; i++)
-            {
-                var x = vectors.First();
-                var y = vectors.First();
-                var z = x ^ y;
-
-                var xbs = x.ToBitString();
-                var ybs = y.ToBitString();
-                var zbs = xbs ^ ybs;
-
-                Claim.eq(zbs, z.ToBitString());
-            }
-
-        }
 
         // public void bv_sll()
         // {

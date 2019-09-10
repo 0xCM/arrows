@@ -18,7 +18,8 @@ namespace Z0
         [MethodImpl(Inline)]
         static ref T asRef<T>(in T src)
             => ref Unsafe.AsRef(in src);
-    
+
+
         [MethodImpl(Inline)]
         public static ref sbyte int8<T>(in T src)
             => ref Unsafe.As<T,sbyte>(ref asRef(in src));

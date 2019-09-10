@@ -15,8 +15,18 @@ namespace Z0
     /// Defines a 32-bit bitvector
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size = 4)]
-    public struct BitVector32 : IPrimalBits<BitVector32,uint>
+    public struct BitVector32 : IFixedBits<BitVector32,uint>
     {
+        [FieldOffset(0)]
+        BitVector4 bv4;
+
+        [FieldOffset(0)]
+        BitVector8 bv8;
+
+        [FieldOffset(0)]
+        BitVector16 bv16;
+
+
         [FieldOffset(0)]
         uint data;
 
@@ -212,8 +222,7 @@ namespace Z0
             => Mod<N2>.mod(Bits.pop(lhs.data & rhs.data));
 
         /// <summary>
-        /// Computes the bitwise AND of the source operands
-        /// Note that the AND operator is equivalent to the (*) operator
+        /// Computes the bitwise OR of the source operands
         /// </summary>
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
@@ -360,13 +369,19 @@ namespace Z0
         public BitVector16 Lo
         {
             [MethodImpl(Inline)]
-            get => x000;
+            get => bv16;
+            
+            [MethodImpl(Inline)]
+            set => bv16 = value;
         }
 
         public BitVector16 Hi
         {
             [MethodImpl(Inline)]
             get => x001;
+
+            [MethodImpl(Inline)]
+            set => x001 = value;
         }
         
         /// <summary>
@@ -650,11 +665,13 @@ namespace Z0
             => data.ToBitString();
 
         /// <summary>
-        /// Extracts the scalar value enclosed by the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        [MethodImpl(Inline)]
-        public readonly uint ToScalar()
-            => data;
+        public readonly uint Scalar
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         /// <summary>
         /// Applies a truncating reduction Bv32 -> Bv8
@@ -707,8 +724,14 @@ namespace Z0
         public BitVector64 Concat(BitVector32 tail)
             => BitVector64.FromScalars(tail.data, data);
 
+        /// <summary>
+        /// Formats the bitvector as a bitstring
+        /// </summary>
+        /// <param name="tlz">True if leadzing zeros should be trimmed, false otherwise</param>
+        /// <param name="specifier">True if the prefix specifier '0b' should be prepended</param>
+        /// <param name="blockWidth">The width of the blocks, if any</param>
         [MethodImpl(Inline)]
-        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
@@ -722,7 +745,7 @@ namespace Z0
             => data.GetHashCode();
  
         public override string ToString()
-            => FormatBits();
+            => Format();
 
         [MethodImpl(Inline)]
         static BitVector32 FromParts(in byte x0, in byte x1, in byte x2, in byte x3)

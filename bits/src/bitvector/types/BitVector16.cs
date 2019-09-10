@@ -15,8 +15,14 @@ namespace Z0
     /// Defines a 16-bit bitvector
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size = 2)]
-    public struct BitVector16 : IPrimalBits<BitVector16, ushort>
+    public struct BitVector16 : IFixedBits<BitVector16, ushort>
     {
+        [FieldOffset(0)]
+        BitVector4 bv4;
+
+        [FieldOffset(0)]
+        BitVector8 bv8;
+
         [FieldOffset(0)]
         ushort data;
 
@@ -43,18 +49,6 @@ namespace Z0
         public static BitVector16 Alloc()
             => new BitVector16(0);    
 
-        /// <summary>
-        /// Creates a permutation-defined mask
-        /// </summary>
-        /// <param name="spec">The permutation</param>
-        public static BitVector16 Mask(Perm spec)
-        {
-            var mask = Alloc();
-            var n = math.min(spec.Length, mask.Length);
-            for(var i = 0; i < n; i++)
-                mask[spec[i]] = i; 
-            return mask;
-        }
 
         /// <summary>
         /// Loads a vector from the primal source value it represents
@@ -350,7 +344,10 @@ namespace Z0
         public BitVector8 Lo
         {
             [MethodImpl(Inline)]
-            get => x0000;
+            get => bv8;
+
+            [MethodImpl(Inline)]
+            set => bv8 = value;
         }
 
         /// <summary>
@@ -360,6 +357,9 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => x0001;
+
+            [MethodImpl(Inline)]
+            set => x0001 = value;
         }
         
         /// <summary>
@@ -595,12 +595,25 @@ namespace Z0
         }
 
         /// <summary>
+        /// Creates a permutation-defined mask
+        /// </summary>
+        /// <param name="spec">The permutation</param>
+        public static BitVector16 Mask(Perm spec)
+        {
+            var mask = Alloc();
+            var n = math.min(spec.Length, mask.Length);
+            for(var i = 0; i < n; i++)
+                mask[spec[i]] = i; 
+            return mask;
+        }
+
+        /// <summary>
         /// Rearranges the vector in-place as specified by a permutation
         /// </summary>
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.scatter(data,Mask(spec));
+            => data = Bits.scatter(data, Mask(spec));
 
         [MethodImpl(Inline)]
         public bool AllOnes()
@@ -687,11 +700,12 @@ namespace Z0
             => data.ToBitString();
 
         /// <summary>
-        /// Extracts the scalar value enclosed by the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        [MethodImpl(Inline)]
-        public ushort ToScalar()
-            => data;
+        public ushort Scalar
+        {
+            get => data;
+        }
 
         /// <summary>
         /// Applies a truncating reduction Bv16 -> Bv8
@@ -725,8 +739,14 @@ namespace Z0
         public bool Equals(BitVector16 rhs)
             => data == rhs.data;
 
+        /// <summary>
+        /// Formats the bitvector as a bitstring
+        /// </summary>
+        /// <param name="tlz">True if leadzing zeros should be trimmed, false otherwise</param>
+        /// <param name="specifier">True if the prefix specifier '0b' should be prepended</param>
+        /// <param name="blockWidth">The width of the blocks, if any</param>
         [MethodImpl(Inline)]
-        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
          public override bool Equals(object obj)
@@ -736,7 +756,7 @@ namespace Z0
             => data.GetHashCode();
         
         public override string ToString()
-            => FormatBits();
+            => Format();
    }
 
 }

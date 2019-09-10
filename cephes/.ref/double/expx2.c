@@ -47,20 +47,14 @@ double floor();
 double exp();
 #endif
 
-#ifdef DEC
-#define M 32.0
-#define MINV .03125
-#else
+
 #define M 128.0
 #define MINV .0078125
-#endif
 
 extern double MAXLOG;
 extern double INFINITY;
 
-double expx2 (x, sign)
-     double x;
-     int sign;
+double expx2 (double x, int sign)
 {
   double u, u1, m, f;
 

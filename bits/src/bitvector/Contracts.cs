@@ -110,25 +110,30 @@ namespace Z0
     }
 
     /// <summary>
-    /// Characterizes a bitvector parametrized by the underlying
-    /// storage type
+    /// Characterizes a bitvector parametrized by the storage cell type
+    /// 
     /// </summary>
-    /// <typeparam name="T">The storage type</typeparam>
-    public interface IBitVector<T> : IBitVector
-        where T : struct
+    /// <typeparam name="S">The storage type</typeparam>
+    public interface IBitVector<S> : IBitVector
+        where S : struct
     {
 
     }
 
-    public interface IPrimalBits<V,T> : IBitVector<T>, IEquatable<V>
-        where T : struct
-        where V : struct, IPrimalBits<V,T>
+    /// <summary>
+    /// Characterizes a bitvector that always reifies a fixed number of bits
+    /// </summary>
+    /// <typeparam name="V">The concrete type</typeparam>
+    /// <typeparam name="S">The scalar type over which the bitvector is formed</typeparam>
+    public interface IFixedBits<V,S> : IBitVector<S>, IEquatable<V>
+        where V : struct, IFixedBits<V,S>
+        where S : struct
         
     {
         /// <summary>
-        /// Returns the canonical scalar representation of the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        T ToScalar();
+        S Scalar {get;}
 
         /// <summary>
         /// Returns a copy of the vector
@@ -146,7 +151,7 @@ namespace Z0
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
-        V Extract(T mask);
+        V Extract(S mask);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -188,10 +193,10 @@ namespace Z0
         /// <summary>
         /// Formats the bitvector as a bitstring
         /// </summary>
-        /// <param name="tlz"></param>
-        /// <param name="specifier"></param>
-        /// <param name="blockWidth"></param>
-        string FormatBits(bool tlz, bool specifier, int? blockWidth);
+        /// <param name="tlz">True if leadzing zeros should be trimmed, false otherwise</param>
+        /// <param name="specifier">True if the prefix specifier '0b' should be prepended</param>
+        /// <param name="blockWidth">The width of the blocks, if any</param>
+        string Format(bool tlz, bool specifier, int? blockWidth);
  
         /// <summary>
         /// Retrieves an index-identied segment (1 byte)
@@ -206,11 +211,10 @@ namespace Z0
     }
 
     /// <summary>
-    /// Characterizes a bitvector parametrized by its natural length and
-    /// the underlying storage type 
+    /// Characterizes a bitvector parametrized by its natural length and cell storage type
     /// </summary>
     /// <typeparam name="T">The storage type</typeparam>
-    public interface IBitVector<N,T> : IBitVector
+    public interface INatBits<N,T> : IBitVector
         where N : ITypeNat, new()
         where T : struct
     {

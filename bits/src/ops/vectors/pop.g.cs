@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source value type</typeparam>
         [MethodImpl(Inline)]
-        public static ulong pop<T>(in T src)
+        public static uint pop<T>(in T src)
             where T : struct
         {        
             if(typeof(T) == typeof(sbyte))
@@ -46,28 +46,28 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static ulong pop(sbyte src) => Popcnt.PopCount((uint)src);
+        static uint pop(sbyte src) => Popcnt.PopCount((uint)src);
 
         [MethodImpl(Inline)]
-        static ulong pop(byte src) => Popcnt.PopCount(src);
+        static uint pop(byte src) => Popcnt.PopCount(src);
 
         [MethodImpl(Inline)]
-        static ulong pop(short src) => Popcnt.PopCount((uint)src);
+        static uint pop(short src) => Popcnt.PopCount((uint)src);
 
         [MethodImpl(Inline)]
-        static ulong pop(ushort src) => Popcnt.PopCount(src);
+        static uint pop(ushort src) => Popcnt.PopCount(src);
 
         [MethodImpl(Inline)]
-        static ulong pop(int src) => Popcnt.PopCount((uint)src);
+        static uint pop(int src) => Popcnt.PopCount((uint)src);
 
         [MethodImpl(Inline)]
-        static ulong pop(uint src) => Popcnt.PopCount(src);
+        static uint pop(uint src) => Popcnt.PopCount(src);
 
         [MethodImpl(Inline)]
-        static ulong pop(long src) => Popcnt.X64.PopCount((ulong)src);
+        static uint pop(long src) => (uint)Popcnt.X64.PopCount((ulong)src);
 
         [MethodImpl(Inline)]
-        static ulong pop(ulong src) => Popcnt.X64.PopCount(src);
+        static uint pop(ulong src) => (uint)Popcnt.X64.PopCount(src);
  
     }
 }

@@ -39,9 +39,9 @@ namespace Z0
         Even = Even32x8.Select,
 
         /// <summary>
-        /// Identifies every bit
+        /// Selects all 32 bits
         /// </summary>
-        Ones = Odd | Even
+        All = Odd | Even
     }
 
  

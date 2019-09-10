@@ -24,7 +24,7 @@ namespace Z0.Test
                 var bv = src.First();
                 var actual = bv.Pop();
                 var expect = 0ul;
-                var bytes = bv.Bytes();
+                var bytes = bv.Bytes;
                 for(var j=0; j< bytes.Length; j++)
                     expect += Bits.pop(bytes[j]);
                 Claim.eq(expect, actual);

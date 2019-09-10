@@ -99,5 +99,62 @@ namespace Z0
             src = ~src;
             return ref src;
         }
+ 
+        [MethodImpl(Inline)]
+        public static ref sbyte flip(in sbyte src, ref sbyte dst)
+        {
+            dst = (sbyte)~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte flip(in byte src, ref byte dst)
+        {
+            dst = (byte)~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short flip(in short src, ref short dst)
+        {
+            dst = (short)~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort flip(in ushort src, ref ushort dst)
+        {
+            dst = (ushort)~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int flip(in int src, ref int dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint flip(in uint src, ref uint dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long flip(in long src, ref long dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong flip(in ulong src, ref ulong dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+ 
     }
 }

@@ -41,45 +41,47 @@ Direct inquiries to 30 Frost Street, Cambridge, MA 02140
 
 #include "mconf.h"
 
-long lsqrt(x)
-long x;
+long lsqrt(long x)
 {
-long num, sq;
-long temp;
-int i, j, k, n;
+	long num, sq;
+	long temp;
+	int i, j, k, n;
 
-if( x < 0 )
+	if( x < 0 )
 	{
-	mtherr( "lsqrt", DOMAIN );
-	x = -x;
+		mtherr( "lsqrt", DOMAIN );
+		x = -x;
 	}
 
-num = 0;
-sq = 0;
-k = 24;
-n = 4;
+	num = 0;
+	sq = 0;
+	k = 24;
+	n = 4;
 
-for( j=0; j<4; j++ )
+	for( j=0; j<4; j++ )
 	{
-	num |= (x >> k) & 0xff;	/* bring in next byte of arg */
-	if( j == 3 )		/* do roundoff bit at end */
-		n = 5;
-	for( i=0; i<n; i++ )
+		num |= (x >> k) & 0xff;	/* bring in next byte of arg */
+		if( j == 3 )		/* do roundoff bit at end */
+			n = 5;
+
+		for( i=0; i<n; i++ )
 		{
-		num <<= 2;		/* next 2 bits of arg */
-		sq <<= 1;		/* shift up answer */
-		temp = (sq << 1) + 256;	/* trial divisor */
-		temp = num - temp;
-		if( temp >= 0 )
+			num <<= 2;		/* next 2 bits of arg */
+			sq <<= 1;		/* shift up answer */
+			temp = (sq << 1) + 256;	/* trial divisor */
+			temp = num - temp;
+			
+			if(temp >= 0)
 			{
-			num = temp;	/* it went in */
-			sq += 256;	/* answer bit = 1 */
+				num = temp;	/* it went in */
+				sq += 256;	/* answer bit = 1 */
 			}
 		}
-	k -= 8;	/* shift count to get next byte of arg */
+
+		k -= 8;	/* shift count to get next byte of arg */
 	}
 
-sq += 256;	/* add roundoff bit */
-sq >>= 9;	/* truncate */
-return( sq );
+	sq += 256;	/* add roundoff bit */
+	sq >>= 9;	/* truncate */
+	return( sq );
 }

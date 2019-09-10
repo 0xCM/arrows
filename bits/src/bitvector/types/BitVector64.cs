@@ -16,8 +16,21 @@ namespace Z0
     /// Defines a 64-bit bitvector
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size = 8)]
-    public struct BitVector64 : IPrimalBits<BitVector64,ulong>
+    public struct BitVector64 : IFixedBits<BitVector64,ulong>
     {
+        
+        [FieldOffset(0)]
+        internal BitVector4 bv4;
+
+        [FieldOffset(0)]
+        internal BitVector8 bv8;
+
+        [FieldOffset(0)]
+        internal BitVector16 bv16;
+
+        [FieldOffset(0)]
+        internal BitVector32 bv32;
+
         [FieldOffset(0)]
         ulong data;
 
@@ -372,19 +385,24 @@ namespace Z0
         /// <summary>
         /// The vector's 32 least significant bits
         /// </summary>
-        public readonly BitVector32 Lo
+        public BitVector32 Lo
         {
             [MethodImpl(Inline)]
-            get => x00;
+            get => bv32;
+
+            [MethodImpl(Inline)]
+            set => bv32 = value;
         }
 
         /// <summary>
         /// The vector's 32 most significant bits
         /// </summary>
-        public readonly BitVector32 Hi
+        public BitVector32 Hi
         {
             [MethodImpl(Inline)]
             get => x01;
+            [MethodImpl(Inline)]
+            set => x01 = value;
         }        
 
         /// <summary>
@@ -699,12 +717,14 @@ namespace Z0
             => data.ToBitString();
 
         /// <summary>
-        /// Extracts the scalar value enclosed by the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        [MethodImpl(Inline)]
-        public readonly ulong ToScalar()
-            => data;
-
+        public readonly ulong Scalar
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+            
         /// <summary>
         /// Applies a truncating reduction Bv64 -> Bv8
         /// </summary>
@@ -759,8 +779,14 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Formats the bitvector as a bitstring
+        /// </summary>
+        /// <param name="tlz">True if leadzing zeros should be trimmed, false otherwise</param>
+        /// <param name="specifier">True if the prefix specifier '0b' should be prepended</param>
+        /// <param name="blockWidth">The width of the blocks, if any</param>
         [MethodImpl(Inline)]
-        public readonly string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+        public readonly string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
@@ -768,13 +794,13 @@ namespace Z0
             => data == rhs.data;
 
         public override bool Equals(object obj)
-            => obj is BitVector64 x ? Equals(x) : false;
+            => obj is BitVector64 x && Equals(x); 
         
         public override int GetHashCode()
             => data.GetHashCode();
  
         public override string ToString()
-            => FormatBits();
+            => Format();
  
         /// <summary>
         /// Computes the scalar product of the source vector and another

@@ -75,41 +75,24 @@ Copyright 1984, 1995 by Stephen L. Moshier
 
 /* Return 1 if the sign bit of x is 1, else 0.  */
 
-int signbit(x)
-double x;
+int signbit(double x)
 {
-union
+	union
 	{
-	double d;
-	short s[4];
-	int i[2];
+		double d;
+		short s[4];
+		int i[2];
 	} u;
 
-u.d = x;
+	u.d = x;
 
-if( sizeof(int) == 4 )
+	if(sizeof(int) == 4 )
 	{
-#ifdef IBMPC
-	return( u.i[1] < 0 );
-#endif
-#ifdef DEC
-	return( u.s[3] < 0 );
-#endif
-#ifdef MIEEE
-	return( u.i[0] < 0 );
-#endif
+		return( u.i[1] < 0 );
 	}
-else
+	else
 	{
-#ifdef IBMPC
-	return( u.s[3] < 0 );
-#endif
-#ifdef DEC
-	return( u.s[3] < 0 );
-#endif
-#ifdef MIEEE
-	return( u.s[0] < 0 );
-#endif
+		return( u.s[3] < 0 );
 	}
 }
 

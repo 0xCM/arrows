@@ -14,7 +14,7 @@ namespace Z0.Test
 
     public class tbv_rank : UnitTest<tbv_rank>
     {
-        public void rank8u()
+        public void bvrank_8()
         {
             
             void Test()
@@ -32,7 +32,7 @@ namespace Z0.Test
             Verify(Test);            
         }
 
-        public void rank64u()
+        public void bvrank_64()
         {
             
             void Test()

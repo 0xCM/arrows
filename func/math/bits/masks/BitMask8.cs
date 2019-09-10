@@ -39,9 +39,9 @@ namespace Z0
         Odd = Odd8x1.Select,
 
         /// <summary>
-        /// Identifies every bit
+        /// Selects all 8 bits
         /// </summary>
-        Ones = Odd | Even
+        All = Odd | Even
     }
 
 

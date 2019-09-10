@@ -14,34 +14,37 @@ namespace Z0.Test
     public class tbv_create : UnitTest<tbv_create>
     {
 
-        public void create_gen()
+        public void create_primal()
         {
-            var samples = Pow2.T09;
-            var dim = (uint)Pow2.T07;
-
-            create_gen<byte>(dim - 4u, samples);
-            create_gen<ushort>(dim - 3u, samples);
-            create_gen<uint>(dim - 2u, samples);
-            create_gen<ulong>(dim - 1u, samples);
-
-            create_gen<byte>(dim, samples);
-            create_gen<ushort>(dim, samples);
-            create_gen<uint>(dim, samples);
-            create_gen<ulong>(dim, samples);
-
-            create_gen<ulong>((BitSize)63, samples);
-            create_gen<ushort>((BitSize)13, samples);
-            create_gen<uint>((BitSize)32, samples);            
+            create_primal_64_check();
 
         }
 
-        public void create_natgen()
+        public void create_gunfixed()
         {
-            var samples = Pow2.T08;
-            create64u();
-            create_natgen<N63,ulong>(samples);
-            create_natgen<N13,ushort>(samples);
-            create_natgen<N32,uint>(samples);
+            var dim = (uint)Pow2.T07;
+
+            create_gunfixed_check<byte>(dim - 4u);
+            create_gunfixed_check<ushort>(dim - 3u);
+            create_gunfixed_check<uint>(dim - 2u);
+            create_gunfixed_check<ulong>(dim - 1u);
+
+            create_gunfixed_check<byte>(dim);
+            create_gunfixed_check<ushort>(dim);
+            create_gunfixed_check<uint>(dim);
+            create_gunfixed_check<ulong>(dim);
+
+            create_gunfixed_check<ulong>(63);
+            create_gunfixed_check<ushort>(13);
+            create_gunfixed_check<uint>(32);            
+
+        }
+
+        public void create_ngunfixed()
+        {
+            create_ngunfixed_check<N63,ulong>();
+            create_ngunfixed_check<N13,ushort>();
+            create_ngunfixed_check<N32,uint>();
         }
 
         public void span_bits()
@@ -52,9 +55,26 @@ namespace Z0.Test
             for(var i=0; i<src.Length; i++)
             {
                 ref var x = ref src[i];
-                for(var j = 0; j < 8; j++)
-                    Claim.eq(gbits.test(x,j), bvSrc.Test(i*8 + j));
+                for(var j = 0; j < Pow2.T03; j++)
+                    Claim.eq(gbits.test(x,j), bvSrc.Test(i*Pow2.T03 + j));
             }
+        }
+
+        public void span_bits_check<T>()
+            where T : unmanaged
+        {
+            var sizeT = size<T>();
+            var src = Random.Span<byte>(sizeT);
+            Bytes.read(src, 0, out T dst);
+    
+            // var bvSrc = BitVector64.FromScalar(BitConverter.ToUInt64(src));
+
+            // for(var i=0; i<src.Length; i++)
+            // {
+            //     ref var x = ref src[i];
+            //     for(var j = 0; j < sizeT; j++)
+            //         Claim.eq(gbits.test(x,j), bvSrc.Test(i*Pow2.T03 + j));
+            // }
         }
 
         public void absolute_index()
@@ -81,7 +101,7 @@ namespace Z0.Test
 
         public void lsb64()
         {
-            for(var i=0; i< DefaltCycleCount; i++)            
+            for(var i=0; i< SampleSize; i++)            
             {
                 var bv = Random.BitVector64();
                 var n = Random.Next(1, bv.Length);
@@ -93,7 +113,7 @@ namespace Z0.Test
 
         public void msb64()
         {
-            for(var i=0; i< DefaltCycleCount; i++)            
+            for(var i=0; i< SampleSize; i++)            
             {
                 var bv = Random.BitVector64();
                 var n = Random.Next(1, bv.Length);
@@ -132,7 +152,6 @@ namespace Z0.Test
             var expect16 = expect8 * expect8;
             var actual16 = x^16;
             Claim.eq(expect16, actual16);
-
         }
 
         public void powers2()
@@ -166,15 +185,15 @@ namespace Z0.Test
 
         }
 
-        void create_natgen<N,T>(int samples)
+        void create_ngunfixed_check<N,T>()
             where N : ITypeNat, new()
             where T : unmanaged
         {
             TypeCaseStart<N,T>();
             var dim = default(N);
             var segcount = BitGrid.MinSegmentCount<T>(dim.value);
-            var src = Random.Span<T>(samples);
-            for(var i=0; i<samples; i+= segcount)
+            var src = Random.Span<T>(SampleSize);
+            for(var i=0; i<SampleSize; i+= segcount)
             {
                 var bvSrc = src.Slice(i,segcount);
                 var bv = bvSrc.ToBitVector(dim);
@@ -186,13 +205,13 @@ namespace Z0.Test
             TypeCaseEnd<N,T>();
         }
 
-        void create_gen<T>(BitSize dim, int samples)
+        void create_gunfixed_check<T>(BitSize dim)
             where T : unmanaged
         {
             TypeCaseStart<T>();
             var segcount = BitGrid.MinSegmentCount<T>(dim);
-            var src = Random.Span<T>(samples);
-            for(var i=0; i<samples; i += segcount)
+            var src = Random.Span<T>(SampleSize);
+            for(var i=0; i<SampleSize; i += segcount)
             {
                 var bvSrc = src.Slice(i,segcount);
                 var bv = bvSrc.ToBitVector(dim);
@@ -203,7 +222,7 @@ namespace Z0.Test
             TypeCaseEnd<T>();
         }
 
-        void create64u()
+        void create_primal_64_check()
         {
             TypeCaseStart<N64,uint>();
             var samples = Pow2.T08;
@@ -221,16 +240,16 @@ namespace Z0.Test
             TypeCaseEnd<N64,uint>();
         }
 
-        void create_gen<T>(uint dim, int samples)
+        void create_gunfixed_check<T>(uint dim, int ignored = 0)
             where T : unmanaged
         {
             TypeCaseStart<T>();
-            var src = Random.Memory<T>(samples);
+            var src = Random.MemorySpan<T>(SampleSize);
             var segCapacity = BitGrid.SegmentCapacity<T>();
             Claim.eq(segCapacity, gbits.width<T>());
 
             var segcount = BitGrid.MinSegmentCount<T>(dim);
-            for(var i=0; i<samples; i += segcount)
+            for(var i=0; i<SampleSize; i += segcount)
             {
                 var bvSrc = src.Slice(i, segcount);
                 Claim.eq(bvSrc.Length, segcount);

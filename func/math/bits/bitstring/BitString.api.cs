@@ -82,9 +82,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(Memory<T> src)
-            where T : struct
-                => FromScalars(src.Span);
+        public static BitString FromScalars<T>(MemorySpan<T> src, int? maxlen = null)
+            where T : unmanaged
+                => FromScalars(src.Span, maxlen);
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values

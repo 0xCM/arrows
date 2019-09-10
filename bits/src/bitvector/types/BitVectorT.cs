@@ -15,20 +15,32 @@ namespace Z0
         where T : unmanaged
     {
         /// <summary>
-        /// The number of bits represented by the vector
+        /// The bitvector content, indexed via a bitmap
         /// </summary>
-        public readonly BitSize Length;
-
-        readonly Memory<T> data;
+        readonly MemorySpan<T> data;
     
-        readonly BitSize MaxBitCount;
-
-        readonly BitSize SegLength;
-    
+        /// <summary>
+        /// Correlates linear bit positions and storage segments
+        /// </summary>
         readonly CellIndex<T>[] BitMap;
 
         /// <summary>
-        /// Specifies the number of bits that can be placed in one segment
+        /// The maximum number of bits that can be represented by the vector
+        /// </summary>
+        readonly BitSize MaxBitCount;
+
+        /// <summary>
+        /// The actual number of bits that are represented by the vector
+        /// </summary>
+        readonly BitSize BitCount;
+
+        /// <summary>
+        /// The number of bits represented by a segment, save the last
+        /// </summary>
+        readonly BitSize SegLength;
+        
+        /// <summary>
+        /// The maximum number of bits that can be placed a single segment segment
         /// </summary>
         public static readonly BitSize SegmentCapacity = BitGrid.SegmentCapacity<T>();
 
@@ -53,9 +65,16 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source cell</param>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromCells(Span<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells(MemorySpan<T> src, BitSize? n = null)
             => new BitVector<T>(src, n);    
 
+        /// <summary>
+        /// Creates a bitvector defined by a readonly span, subject to a specified bitsize, if any
+        /// </summary>
+        /// <param name="src">The source cell</param>
+        [MethodImpl(Inline)]
+        public static BitVector<T> FromCells(Span<T> src, BitSize? n = null)
+            => new BitVector<T>(src, n);    
 
         /// <summary>
         /// Creates a bitvector defined by a memory block, subject to a specified bitsize, if any
@@ -83,22 +102,23 @@ namespace Z0
         public static BitVector<T> FromCells(params T[] src)
             => new BitVector<T>(new Memory<T>(src));
 
+        /// <summary>
+        /// Computes the bitwise XOR between the operands
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector<T> lhs, in BitVector<T> rhs)
-            => lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector<T> lhs, in BitVector<T> rhs)
-            => !lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static BitVector<T> operator +(BitVector<T> lhs, in BitVector<T> rhs)
+        public static BitVector<T> operator ^(BitVector<T> lhs, in BitVector<T> rhs)
             => new BitVector<T>(gbits.xor(lhs.data, rhs.data));
 
+        /// <summary>
+        /// Computes the bitwias AND between the operands
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static BitVector<T> operator *(BitVector<T> lhs, in BitVector<T> rhs)
+        public static BitVector<T> operator &(BitVector<T> lhs, in BitVector<T> rhs)
             => new BitVector<T>(gbits.and(lhs.data, rhs.data));
-
 
         /// <summary>
         /// Computes the bitwise complement of the operand
@@ -133,12 +153,21 @@ namespace Z0
         public static bool operator false(BitVector<T> src)
             => !src.Nonempty;
 
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in BitVector<T> lhs, in BitVector<T> rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(in BitVector<T> lhs, in BitVector<T> rhs)
+            => !lhs.Equals(rhs);
+
         [MethodImpl(Inline)]
         public BitVector(MemorySpan<T> src, BitSize? n = null)
         {            
             this.data = src;
-            this.MaxBitCount = src.Span.Length * (int)SegmentCapacity;
-            this.Length = (int)(n ?? (uint)MaxBitCount);
+            this.MaxBitCount = src.Length * (int)SegmentCapacity;
+            this.BitCount = (int)(n ?? (uint)MaxBitCount);
             this.SegLength = BitGrid.MinSegmentCount<T>(MaxBitCount);            
             this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
@@ -148,8 +177,8 @@ namespace Z0
         {            
             this.data = new T[]{src};
             this.MaxBitCount = SegmentCapacity;
-            this.Length = (int)(n ?? (uint)MaxBitCount);
             this.SegLength = MaxBitCount;
+            this.BitCount = (int)(n ?? (uint)MaxBitCount);
             this.BitMap = BitGrid.BitMap<T>(MaxBitCount);
         }
 
@@ -173,10 +202,22 @@ namespace Z0
 
         }
 
-        readonly Span<T> Bits
+        /// <summary>
+        /// The number of bits represented by the vector
+        /// </summary>
+        public readonly BitSize Length 
         {
             [MethodImpl(Inline)]
-            get => data.Span;
+            get => BitCount;
+        }
+
+        /// <summary>
+        /// Presents the represented data as a span of bytes
+        /// </summary>
+        public readonly Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.Bytes;
         }
 
         /// <summary>
@@ -192,14 +233,42 @@ namespace Z0
         }
 
         /// <summary>
+        /// Is true if no bits are enabled, false otherwise
+        /// </summary>
+        public bool Empty
+        {
+            [MethodImpl(Inline)]
+            get => Pop() == 0;
+        }
+
+        /// <summary>
+        /// Is true if the vector has at least one enabled bit; false otherwise
+        /// </summary>
+        public readonly bool Nonempty
+        {
+            [MethodImpl(Inline)]
+            get => Pop() != 0;
+        }
+
+        /// <summary>
+        /// The maximum number of bits that can be represented by the vector
+        /// </summary>
+        public readonly BitSize Capacity
+        {
+            [MethodImpl(Inline)]
+            get => data.Length * SegmentCapacity;
+        }
+
+
+        /// <summary>
         /// Reads a bit value
         /// </summary>
         /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
         public readonly Bit Get(BitPos pos)
         {
-            ref readonly var cell = ref BitMap[pos];
-            return gbits.test(in Bits[cell.Segment], cell.Offset);
+            ref readonly var loc = ref Location(pos);
+            return gbits.test(in data[loc.Segment], loc.Offset);
         }
 
         /// <summary>
@@ -210,8 +279,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Set(BitPos pos, Bit value)
         {
-            ref readonly var cell = ref BitMap[pos];
-            gbits.set(ref Bits[cell.Segment], cell.Offset, in value);
+            ref readonly var loc = ref Location(pos);
+            gbits.set(ref data[loc.Segment], loc.Offset, in value);
         }
 
         /// <summary>
@@ -238,13 +307,13 @@ namespace Z0
         public void Disable(BitPos bit)
         {
             ref readonly var pos = ref BitMap[bit];
-            gbits.disable(ref Bits[pos.Segment], pos.Offset);
+            gbits.disable(ref data[pos.Segment], pos.Offset);
         }
 
         /// <summary>
         /// Computes the scalar product between this vector and another of identical length
         /// </summary>
-        /// <param name="rhs"></param>
+        /// <param name="rhs">The right vector</param>
         public Bit Dot(BitVector<T> rhs)
         {
             require(this.Length == rhs.Length);
@@ -256,77 +325,47 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void Toggle(BitPos bit)
+        public void Toggle(BitPos pos)
         {         
-            ref readonly var pos = ref BitMap[bit];
-            BitMaskG.toggle(ref Bits[pos.Segment],  pos.Offset);
+            ref readonly var loc = ref Location(pos);
+            BitMaskG.toggle(ref data[loc.Segment],  loc.Offset);
         }
 
         [MethodImpl(Inline)]
         public T Between(BitPos first, BitPos last)
-        {
-            ref readonly var x = ref BitMap[first];
-            ref readonly var y = ref BitMap[last];
-            return Extract(in x, in y);
-        }
-
-        /// <summary>
-        /// Extracts the represented data as a span of bytes
-        /// </summary>
-        [MethodImpl(Inline)]
-        public readonly Span<byte> Bytes()
-            => MemoryMarshal.AsBytes(Bits);
+            => Extract(in Location(first), in Location(last));
 
         /// <summary>
         /// Extracts the represented data as a bitstring
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitString ToBitString()
-            => BitString.FromScalars(Bits, Length); 
+            => BitString.FromScalars(data, Length); 
 
         /// <summary>
         /// Counts the vector's enabled bits
         /// </summary>
         [MethodImpl(Inline)]
-        public readonly ulong Pop()
+        public readonly uint Pop()
         {
-            var count = 0ul;
-            for(var i=0; i< Bits.Length; i++)
-                count += gbits.pop(Bits[i]);
+            var count = 0u;
+            for(var i=0; i< data.Length; i++)
+                count += gbits.pop(data[i]);
             return count;
         }
 
         /// <summary>
-        /// The maximum number of bits that can be represented by the vector
+        /// Counts the number of bits set up to and including the specified position
         /// </summary>
-        public readonly BitSize Capacity
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The position of the bit for which rank will be calculated</param>
+        public uint Pop(BitPos pos)
         {
-            [MethodImpl(Inline)]
-            get => data.Span.Length * SegmentCapacity;
-        }
-
-        /// <summary>
-        /// Returns true if no bits are enabled, false otherwise
-        /// </summary>
-        public bool Empty
-        {
-            [MethodImpl(Inline)]
-            get => Pop() == 0;
-        }
-
-        /// <summary>
-        /// Returns true if the vector has at least one enabled bit; false otherwise
-        /// </summary>
-        public readonly bool Nonempty
-        {
-            [MethodImpl(Inline)]
-            get => Pop() != 0;
-        }
-
-        readonly BitSize IBitVector.Length 
-        {
-            [MethodImpl(Inline)]
-            get => Length;
+            var rank = 0u;
+            var segments = Segments(pos);
+            for(var i=0; i < segments.Length; i++)
+                rank += (uint)gbits.pop(in segments[i]);            
+            return rank;
         }
 
         /// <summary>
@@ -338,67 +377,11 @@ namespace Z0
         {
             var primal = PrimalInfo.Get<T>();
             if(value)
-                Bits.Fill(primal.MaxVal);
+                data.Fill(primal.MaxVal);
             else
-                Bits.Fill(primal.Zero);
-        }
-            
-        [MethodImpl(Inline)]
-        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
-            => ToBitString().Format(tlz, specifier, blockWidth);
-
-        /// <summary>
-        /// Returns a reference to the segment in which a specified bit is defined
-        /// </summary>
-        /// <param name="pos">The segmented bit position</param>
-        [MethodImpl(Inline)]
-        ref T GetSegment(in CellIndex<T> pos)
-            => ref Bits[pos.Segment];
-
-        T Extract(in CellIndex<T> first, in CellIndex<T> last, bool describe = false)
-        {
-
-            var sameSeg = first.Segment == last.Segment;
-            var wantedCount = last - first;
-            var firstCount = sameSeg ? wantedCount : (int)SegmentCapacity - first.Offset;
-            var lastCount = wantedCount - firstCount;
-            
-            if(wantedCount > SegmentCapacity)
-                throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegmentCapacity}");
-
-            ref var seg1 = ref GetSegment(in first);
-            var part1 = gbits.extract(in seg1, first.Offset, (byte)firstCount);
-            
-            if(sameSeg)
-                return part1;
-
-            ref var seg2 = ref GetSegment(in last);
-            var part2 = gbits.extract(in seg2, 0, (byte)lastCount);            
-
-            if(describe)
-            {
-                print($"first = {first}");
-                print($"last = {last}");
-                print($"totalCount = {wantedCount}");
-                print($"firstCount = {firstCount}");
-                print($"LastCount = {lastCount}");
-            }
-            gbits.sal(ref part2, firstCount);
-            return gbits.or(ref part1, part2);              
+                data.Fill(primal.Zero);
         }
 
-        [MethodImpl(Inline)]
-        public bool Equals(in BitVector<T> rhs)
-            => ToBitString().Equals(rhs.ToBitString());
-
-        public override bool Equals(object obj)
-            => obj is BitVector<T> x ? Equals(x) : false;
-        
-        public override int GetHashCode()
-            => ToBitString().GetHashCode();
-    
-        public override string ToString()
-            => FormatBits();
 
         /// <summary>
         /// Counts the number of bits set up to and including the specified position
@@ -407,7 +390,8 @@ namespace Z0
         /// <param name="pos">The position of the bit for which rank will be calculated</param>
         [MethodImpl(Inline)]
         public uint Rank(BitPos pos)
-            => throw new NotImplementedException();
+            => Pop(pos);
+            
 
         public void Permute(Perm p)
         {
@@ -433,6 +417,88 @@ namespace Z0
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Gets the mapped bit location
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        readonly ref readonly CellIndex<T> Location(BitPos pos)
+            => ref BitMap[pos];
+
+        /// <summary>
+        /// Returns a reference to the segment in which a specified bit is defined
+        /// </summary>
+        /// <param name="pos">The segmented bit position</param>
+        [MethodImpl(Inline)]
+        ref T Segment(in CellIndex<T> pos)
+            => ref data[pos.Segment];
+
+        /// <summary>
+        /// Returns a reference to the segment in which a specified bit is defined
+        /// </summary>
+        /// <param name="pos">The segmented bit position</param>
+        [MethodImpl(Inline)]
+        ref T Segment(BitPos pos)
+            => ref Segment(in Location(pos));
+
+        /// <summary>
+        /// Retrieves the segments up to and including an identified bit
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        readonly MemorySpan<T> Segments(BitPos pos)
+            => data.Slice(0, Location(pos).Segment - 1);
+
+        T Extract(in CellIndex<T> first, in CellIndex<T> last, bool describe = false)
+        {
+
+            var sameSeg = first.Segment == last.Segment;
+            var wantedCount = last - first;
+            var firstCount = sameSeg ? wantedCount : (int)SegmentCapacity - first.Offset;
+            var lastCount = wantedCount - firstCount;
+            
+            if(wantedCount > SegmentCapacity)
+                throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegmentCapacity}");
+
+            ref var seg1 = ref Segment(in first);
+            var part1 = gbits.extract(in seg1, first.Offset, (byte)firstCount);
+            
+            if(sameSeg)
+                return part1;
+
+            ref var seg2 = ref Segment(in last);
+            var part2 = gbits.extract(in seg2, 0, (byte)lastCount);            
+
+            if(describe)
+            {
+                print($"first = {first}");
+                print($"last = {last}");
+                print($"totalCount = {wantedCount}");
+                print($"firstCount = {firstCount}");
+                print($"LastCount = {lastCount}");
+            }
+            gbits.sal(ref part2, firstCount);
+            return gbits.or(ref part1, part2);              
+        }
+
+        [MethodImpl(Inline)]
+        public bool Equals(in BitVector<T> rhs)
+            => ToBitString().Equals(rhs.ToBitString());
+
+        [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
+            => ToBitString().Format(tlz, specifier, blockWidth);
+
+        public override bool Equals(object obj)
+            => obj is BitVector<T> x && Equals(x);
+        
+        public override int GetHashCode()
+            => ToBitString().GetHashCode();
+    
+        public override string ToString()
+            => Format();
+
     }
 
 }

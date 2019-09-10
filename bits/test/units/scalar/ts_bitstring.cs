@@ -199,7 +199,7 @@ namespace Z0.Test
         public void bswordgen()
         {            
             var wordLen = 8;
-            var wordCount = Pow2<int>.pow(wordLen);
+            var wordCount = Pow2.pow(wordLen);
             var words = BinaryLanguage.Get().Words(wordLen).ToArray();
             Claim.eq(wordCount, words.Length);
             

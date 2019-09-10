@@ -181,7 +181,7 @@ namespace Z0
         /// <param name="n">The vector length</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromCells<T>(Memory<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells<T>(MemorySpan<T> src, BitSize? n = null)
             where T : unmanaged
                 => BitVector<T>.FromCells(src,n);
 

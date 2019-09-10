@@ -14,7 +14,94 @@ namespace Z0
     
     partial class cephes
     {
-    
+        public static double erfc(double a)
+        {
+            double p,q,x,y,z;
+
+            if(a < 0.0)
+                x = -a;
+            else
+                x = a;
+
+            if(x < 1.0)
+                return(1.0 - erf(a));
+
+            z = -a * a;
+
+            if(z < -MAXLOG)
+            {
+                mtherr("erfc", UNDERFLOW);
+                if(a < 0)
+                    return(2.0);
+                else
+                    return(0.0);
+            }
+
+            /* Compute z = exp(z).  */
+            z = expx2(a, -1);
+
+            if(x < 8.0)
+            {
+                p = polevl(x, P, 8);
+                q = p1evl(x, Q, 8);
+            }
+            else
+            {
+                p = polevl(x, R, 5);
+                q = p1evl(x, S, 6);
+            }
+            y = (z * p)/q;
+
+            if(a < 0)
+                y = 2.0 - y;
+
+            if(y == 0.0)
+            {
+                if(a < 0)
+                    return  2.0;
+                else
+                    return 0.0;
+
+            }
+
+            return(y);
+        }
+
+        public static double erf(double x)
+        {
+            double y, z;
+
+            if(fabs(x) > 1.0)
+                return(1.0 - erfc(x));
+                
+            z = x * x;
+            y = x * polevl(z, T, 4) / p1evl(z, U, 5);
+
+            return(y);
+        }
+
+        /// <summary>
+        /// Exponentially scaled erfc function exp(x^2) erfc(x) valid for x > 1.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double erfce(double x)
+        {
+            double p,q;
+
+            if( x < 8.0 )
+            {
+                p = polevl( x, P, 8 );
+                q = p1evl( x, Q, 8 );
+            }
+            else
+            {
+                p = polevl( x, R, 5 );
+                q = p1evl( x, S, 6 );
+            }
+            return (p/q);
+        }
+
         internal static class Erf
         {
             public static readonly double[] P = 

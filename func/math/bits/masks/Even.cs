@@ -14,6 +14,30 @@ namespace Z0
 
     partial class BitMasks
     {        
+
+        /// <summary>
+        /// Identifies the even bits in a nibble
+        /// </summary>
+        [Flags]
+        public enum Even4x1 : byte
+        {
+            /// <summary>
+            /// Identifies the first even bit
+            /// </summary>
+            Bit0 = Seg4x1.Bit0,
+            
+            /// <summary>
+            /// Identifies the second even bit
+            /// </summary>
+            Bit2 = Bit0 << 2,
+                        
+                        
+            /// <summary>
+            /// Selects the even bits in a nibble
+            /// </summary>
+            Select = Bit0 |  Bit2 
+        }
+
         /// <summary>
         /// Identifies the even bits in a byte
         /// </summary>

@@ -274,6 +274,16 @@ namespace Z0
         }
 
         /// <summary>
+        /// Reverses the permutation in-place
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Perm Reverse()
+        {
+            terms.Reverse();
+            return this;
+        }
+
+        /// <summary>
         /// Computes the inverse permutation t of the current permutation p 
         /// such that p*t = t*p = I where I denotes the identity permutation
         /// </summary>
@@ -365,7 +375,7 @@ namespace Z0
 
 
         public override bool Equals(object o)
-            => (o is Perm p) ? p == this : false;
+            => o is Perm p  && Equals(p);
     }
 
 

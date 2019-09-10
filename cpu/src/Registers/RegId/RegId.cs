@@ -41,7 +41,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static XmmRegId xmm(int i)
-            =>  (XmmRegId) (((ulong)XmmRegId.xmm0) | ( i == 0 ? 0 : Pow2<uint>.pow(i)));
+            =>  (XmmRegId) (((ulong)XmmRegId.xmm0) | ( i == 0 ? 0 : Pow2.pow(i)));
         
         [MethodImpl(Inline)]
         public static GpRegId? ParseGP(string src)

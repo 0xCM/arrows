@@ -122,8 +122,8 @@ namespace Z0
                 => BitString.FromScalars(src); 
 
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Memory<T> src)
-            where T : struct
+        public static BitString ToBitString<T>(this MemorySpan<T> src)
+            where T : unmanaged
                 => BitString.FromScalars(src); 
 
         [MethodImpl(Inline)]        

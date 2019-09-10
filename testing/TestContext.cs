@@ -32,7 +32,6 @@ namespace Z0
             this.Config = config ?? TestConfigDefaults.Default();
         }
 
-
         /// <summary>
         /// The default number of elements to be selected from some sort of stream
         /// </summary>
@@ -183,34 +182,34 @@ namespace Z0
         }
 
         protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
-        
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<{typeof(C).DisplayName()}> executing", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<{typeof(C).DisplayName()}> succeeded", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<C>(AppMsg msg, [CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<{typeof(C).DisplayName()}> succeeded: {msg}", SeverityLevel.HiliteCL));
+
         protected void TypeCaseStart<A,B>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> executing", SeverityLevel.HiliteCL));
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<{typeof(A).DisplayName()},{typeof(B).DisplayName()}> executing", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<A,B>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<{typeof(A).DisplayName()},{typeof(B).DisplayName()}> succeeded", SeverityLevel.HiliteCL));
 
         protected void NatCaseStart<N,A>([CallerMemberName] string caller = null)
             where N : ITypeNat, new()
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<N>()},{typeof(A).Name}> executing", SeverityLevel.HiliteCL));
+            => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<N{nati<N>()},{typeof(A).DisplayName()}> executing", SeverityLevel.HiliteCL));
 
         protected void TypeCaseStart<M,N,S>([CallerMemberName] string caller = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where S : struct
-                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{PrimalKinds.kind<S>()}> executing", SeverityLevel.HiliteCL));
-
-        protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded", SeverityLevel.HiliteCL));
-
-        protected void TypeCaseEnd<A,B>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(A).Name},{typeof(B).Name}> succeeded", SeverityLevel.HiliteCL));
-
-        protected void TypeCaseEnd<C>(AppMsg msg, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));
+                => Messages.Add(AppMsg.Define($"{typeof(T).DisplayName()}/{caller}<N{nati<M>()}xN{nati<N>()}:{typeof(S).DisplayName()}> executing", SeverityLevel.HiliteCL));
 
         protected void TypeCaseEnd<M,N,S>([CallerMemberName] string caller = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where S : struct
-                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{PrimalKinds.kind<S>()}> succeeded", SeverityLevel.HiliteCL));
+                => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<N{nati<M>()}xN{nati<N>()}:{typeof(S).DisplayName()}> succeeded", SeverityLevel.HiliteCL));
     }
 }

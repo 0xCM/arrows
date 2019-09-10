@@ -21,7 +21,7 @@ namespace Z0.Rng
         public void bv16width()
         {
             var limit = 12;
-            var set1 = BitVector16.All(limit).Select(x => x.ToScalar()).ToArray();
+            var set1 = BitVector16.All(limit).Select(x => x.Scalar).ToArray();
             Claim.eq(math.max(set1), (ushort)0b111111111111);
 
             var set2 = Random.BitVectors(n16, limit).TakeArray((int)Pow2.pow(limit*2));

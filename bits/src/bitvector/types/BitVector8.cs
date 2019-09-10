@@ -13,10 +13,15 @@ namespace Z0
     using static zfunc;    
     using static Bits;
 
-    public struct BitVector8 : IPrimalBits<BitVector8,byte>
+    [StructLayout(LayoutKind.Explicit, Size = 1)]
+    public struct BitVector8 : IFixedBits<BitVector8,byte>
     {
+        [FieldOffset(0)]
+        BitVector4 bv4;
+
+        [FieldOffset(0)]
         byte data;
-        
+
         public static readonly BitVector8 Zero = 0;
 
         public static readonly BitVector8 One = 1;
@@ -304,6 +309,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public BitVector8(byte src)
+            : this()
             => this.data = src;        
 
         public Bit this[BitPos pos]
@@ -316,22 +322,26 @@ namespace Z0
         }
 
         /// <summary>
+        /// The vector's 4 least significant bits
+        /// </summary>
+        public BitVector4 Lo
+        {
+            [MethodImpl(Inline)]
+            get => bv4;
+            
+            [MethodImpl(Inline)]
+            set => bv4 = value;
+        }
+
+        /// <summary>
         /// The vector's 4 most significant bits
         /// </summary>
         public readonly BitVector4 Hi
         {
             [MethodImpl(Inline)]
             get => hi(in data);        
-        }
-        
-        /// <summary>
-        /// The vector's 4 least significant bits
-        /// </summary>
-        public readonly BitVector4 Lo
-        {
-            [MethodImpl(Inline)]
-            get => lo(in data);        
-        }
+
+        }        
 
         /// <summary>
         /// Presents bitvector content as a bytespan
@@ -382,7 +392,7 @@ namespace Z0
             => Bits.between(in data, first, last);
 
         /// <summary>
-        /// Populates a target vector with specified source bits
+        /// Populates a target vector with mask-identified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
@@ -618,7 +628,7 @@ namespace Z0
         /// Reverses the vector's bits
         /// </summary>
         [MethodImpl(Inline)]
-        public void Reverse()
+        public void Reverse()        
             => data = Bits.rev(data);
 
         /// <summary>
@@ -675,11 +685,13 @@ namespace Z0
             => BitVector16.FromScalars(tail.data, data);
 
         /// <summary>
-        /// Extracts the scalar value enclosed by the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        [MethodImpl(Inline)]
-        public byte ToScalar()
-            => data;
+        public byte Scalar
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         /// <summary>
         /// Returns the vector's bitstring representation
@@ -709,8 +721,14 @@ namespace Z0
         public BitVector64 ToBitVector64()
             => BitVector64.FromScalar(data);
 
-        [MethodImpl(Inline)]
-        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+         /// <summary>
+        /// Formats the bitvector as a bitstring
+        /// </summary>
+        /// <param name="tlz">True if leadzing zeros should be trimmed, false otherwise</param>
+        /// <param name="specifier">True if the prefix specifier '0b' should be prepended</param>
+        /// <param name="blockWidth">The width of the blocks, if any</param>
+       [MethodImpl(Inline)]
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
         [MethodImpl(Inline)]
@@ -724,7 +742,7 @@ namespace Z0
             => data.GetHashCode();
         
         public override string ToString()
-            => FormatBits();   
+            => Format();   
     
     }
 }

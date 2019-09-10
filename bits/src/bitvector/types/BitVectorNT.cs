@@ -16,7 +16,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="N">The vector length type</typeparam>
     /// <typeparam name="T">The vector component type</typeparam>
-    public struct BitVector<N,T> : IBitVector<N,T>
+    public struct BitVector<N,T> : INatBits<N,T>
         where N : ITypeNat, new()
         where T : unmanaged
     {        
@@ -244,7 +244,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong Pop()
         {
-            var count = 0ul;
+            var count = 0u;
             for(var i=0; i < TotalBitCount; i++)
                 count += gbits.pop(Bits[i]);
             return count;

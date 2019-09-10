@@ -118,21 +118,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                Bits.flip(int8(src), int8(src));
+                Bits.flip(int8(src));
             else if(typeof(T) == typeof(byte))
-                Bits.flip(uint8(src), uint8(src));
+                Bits.flip(uint8(src));
             else if(typeof(T) == typeof(short))
-                Bits.flip(int16(src), int16(src));
+                Bits.flip(int16(src));
             else if(typeof(T) == typeof(ushort))
-                Bits.flip(uint16(src), uint16(src));
+                Bits.flip(uint16(src));
             else if(typeof(T) == typeof(int))
-                Bits.flip(int32(src), int32(src));
+                Bits.flip(int32(src));
             else if(typeof(T) == typeof(uint))
-                Bits.flip(uint32(src), uint32(src));
+                Bits.flip(uint32(src));
             else if(typeof(T) == typeof(long))
-                Bits.flip(int64(src), int64(src));
+                Bits.flip(int64(src));
             else if(typeof(T) == typeof(ulong))
-                Bits.flip(uint64(src), uint64(src));
+                Bits.flip(uint64(src));
             else
                 throw unsupported<T>();
             return src;

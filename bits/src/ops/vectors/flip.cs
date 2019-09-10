@@ -82,122 +82,66 @@ namespace Z0
         public static Vec256<ulong> flip(in Vec256<ulong> src)
             => Xor(src, CompareEqual(src,src));
 
-        public static Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;
-        }
-
-        public static Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
-        public static Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = math.flip(src[i]);
-            return dst;                
-        }
-
+        [MethodImpl(Inline)]
         public static Span<sbyte> flip(Span<sbyte> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<byte> flip(Span<byte> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<short> flip(Span<short> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<ushort> flip(Span<ushort> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<int> flip(Span<int> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<uint> flip(Span<uint> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<long> flip(Span<long> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static Span<ulong> flip(Span<ulong> src)
         {
-            for(var i = 0; i< src.Length; i++)
+            for(var i=0; i< src.Length; i++)
                 math.flip(ref src[i]);
             return src;
         }
@@ -233,6 +177,70 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<ulong> flip(ReadOnlySpan<ulong> src)
             => Bits.flip(src.Replicate());            
+
+        [MethodImpl(Inline)]
+        public static Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
+        {
+            for(var i=0; i< src.Length; i++)
+                math.flip(in src[i], ref dst[i]);
+            return dst;
+        }
 
     }
 }

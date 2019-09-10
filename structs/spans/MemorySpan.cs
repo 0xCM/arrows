@@ -138,8 +138,8 @@ namespace Z0
         /// Creates a copy
         /// </summary>
         [MethodImpl(Inline)]
-        public MemorySpan<T> Replicate()        
-            => new MemorySpan<T>(Span.ToArray());        
+        public MemorySpan<T> Replicate(bool structureOnly = false)        
+            => structureOnly ? new MemorySpan<T>(new T[Length]) : new MemorySpan<T>(Span.ToArray());        
 
         [MethodImpl(Inline)]
         public MemorySpan<T> Slice(int start)

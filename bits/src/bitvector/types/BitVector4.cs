@@ -9,14 +9,15 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    using static zfunc;    
+    using static zfunc;
     using static Bits;
     using static Bytes;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Defines a 4-bit bitvector
     /// </summary>
-    public struct BitVector4 : IBitVector<byte>
+    public struct BitVector4 : IFixedBits<BitVector4,UInt4>
     {
         UInt4 data;
 
@@ -404,11 +405,13 @@ namespace Z0
             => Between(LastPos - n, LastPos);                
 
         /// <summary>
-        /// Extracts the scalar value enclosed by the vector
+        /// Extracts the scalar represented by the vector
         /// </summary>
-        [MethodImpl(Inline)]
-        public UInt4 ToScalar()
-            => data;
+        public UInt4 Scalar
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         /// <summary>
         /// Returns a copy of the vector
@@ -429,22 +432,63 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Populates a target vector with mask-identified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector4 Extract(BitMask4 spec)
+            => Bits.gather(data, (byte)spec);
+
+        /// <summary>
+        /// Populates a target vector with specified source bits
+        /// </summary>
+        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="dst">Receives the identified bits</param>
+        [MethodImpl(Inline)]
+        public BitVector4 Extract(UInt4 spec)
+            => Bits.gather(data, spec);
+
+        /// <summary>
+        /// Converts the vector to a bitstring
+        /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)
+        public string Format(bool tlz = false, bool specifier = false, int? blockWidth = null)
             => ToBitString().Format(tlz, specifier, blockWidth);
 
-         public override bool Equals(object obj)
+        [MethodImpl(Inline)]
+        public bool Equals(BitVector4 other)
+            => data == other.data;
+
+        public override bool Equals(object obj)
             => obj is BitVector4 x ? Equals(x) : false;
         
         public override int GetHashCode()
             => data.GetHashCode();
         
         public override string ToString()
-            => FormatBits();
+            => Format();
+
+        public BitVector4 RotR(byte offset)
+        {
+            throw new NotImplementedException();
+            
+        }
+
+        public BitVector4 RotL(byte offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ref byte Byte(int index)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

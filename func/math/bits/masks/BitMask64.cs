@@ -7,12 +7,11 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
-    using Z0;
- 
+    
     using static zfunc;
     using static BitMasks;
 
-   /// <summary>
+    /// <summary>
     /// Defines common 64-bit masks
     /// </summary>
     [Flags]
@@ -39,9 +38,9 @@ namespace Z0
         Even = Even64x8.Select,
 
         /// <summary>
-        /// Identifies every bit
+        /// Selects all 64 bits
         /// </summary>
-        Ones = Odd | Even
+        All = Odd | Even
     }
 
 }

@@ -132,8 +132,8 @@ namespace Z0
         [MethodImpl(Inline)]
         static BitVector128 clmul(BitVector64 lhs, BitVector64 rhs)
         {
-            var a = Vec128.LoadScalar(lhs.ToScalar());
-            var b = Vec128.LoadScalar(rhs.ToScalar());
+            var a = Vec128.LoadScalar(lhs.Scalar);
+            var b = Vec128.LoadScalar(rhs.Scalar);
             return dinx.clmul(a,b,ClMulMask.X00);
         }
 

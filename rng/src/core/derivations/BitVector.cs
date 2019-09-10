@@ -66,28 +66,11 @@ namespace Z0
         }
 
         /// <summary>
-        /// Produces a 16-bit bitvector with a specified maximum width <= 16
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="width">The with</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 BitVector(this IPolyrand random, N16 n, int? maxwidth = null)
-        {
-            var v = random.Next<ushort>();
-            return maxwidth == null ? v : (v >>= (16-maxwidth));
-        }
-
-
-        /// <summary>
         /// Produces a random 32-bit bitvector
         /// </summary>
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector32 BitVector32(this IPolyrand random)
-            => random.Next<uint>();
-
-        [MethodImpl(Inline)]
-        public static BitVector32 BitVector(this IPolyrand random, N32 n)
             => random.Next<uint>();
 
         /// <summary>
@@ -105,6 +88,44 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector128 BitVector128(this IPolyrand random)
             => random.BitVector(zfunc.n128);
+
+        /// <summary>
+        /// Produces a random 8-bit bitvector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 BitVector(this IPolyrand random, N8 n)
+            => random.Next<byte>();
+
+        /// <summary>
+        /// Produces a 16-bit bitvector with a specified maximum width <= 16
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="width">The with</param>
+        [MethodImpl(Inline)]
+        public static BitVector16 BitVector(this IPolyrand random, N16 n, int? maxwidth = null)
+        {
+            var v = random.Next<ushort>();
+            return maxwidth == null ? v : (v >>= (16-maxwidth));
+        }
+
+        /// <summary>
+        /// Produces a 32-bit bitvector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="n">The singleton value for n=32</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static BitVector32 BitVector(this IPolyrand random, N32 n)
+            => random.Next<uint>();
+
+        /// <summary>
+        /// Produces a random 8-bit bitvector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 BitVector(this IPolyrand random, N64 n)
+            => random.Next<ulong>();
 
         /// <summary>
         /// Produces a random 128-bit bitvector
@@ -140,7 +161,7 @@ namespace Z0
             IEnumerable<BitVector8> produce()
             {            
                 while(true)
-                    yield return random.BitVector8();
+                    yield return random.BitVector(n);
             }
 
             return stream(produce(), random.RngKind);            
@@ -197,7 +218,7 @@ namespace Z0
             IEnumerable<BitVector64> produce()
             {
                 while(true)
-                    yield return random.BitVector64();
+                    yield return random.BitVector(n);
             }
             return stream(produce(), random.RngKind);
         }            
@@ -212,7 +233,7 @@ namespace Z0
             IEnumerable<BitVector128> produce()
             {
                 while(true)
-                    yield return random.BitVector128();
+                    yield return random.BitVector(n);
 
             }
             return stream(produce(), random.RngKind);

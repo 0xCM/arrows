@@ -14,7 +14,55 @@ namespace Z0
 
     public class tbm_create : UnitTest<tbm_create>
     {
-        public void create8x8()
+        public void bitrev_8x8()
+        {
+            for(var i= 0; i<SampleSize; i++)
+            {
+                //Creates an "exchange" matrix
+                var perm = Perm.Identity(n8).Reverse();
+                var mat = perm.ToBitMatrix();
+
+                var v1 = Random.BitVector8();
+                var v2 = mat * v1;
+                var v3 = v1.Replicate();
+                v3.Reverse();
+                Claim.eq(v3,v2);
+            }
+        }
+        public void bitrev_32x32()
+        {
+            for(var i= 0; i<SampleSize; i++)
+            {
+                //Creates an "exchange" matrix            
+                var perm = Perm.Identity(n32).Reverse();
+                var mat = perm.ToBitMatrix();
+
+                var v1 = Random.BitVector(n32);
+                var v2 = mat * v1;
+                var v3 = v1.Replicate();
+                v3.Reverse();
+                Claim.eq(v3,v2);
+            }
+        }
+
+        public void bitrev_64x64()
+        {
+            for(var i= 0; i<SampleSize; i++)
+            {
+                //Creates an "exchange" matrix            
+                var perm = Perm.Identity(n64).Reverse();
+                var mat = perm.ToBitMatrix();
+
+                var v1 = Random.BitVector(n64);
+                var v2 = mat * v1;
+                var v3 = v1.Replicate();
+                v3.Reverse();
+                Claim.eq(v3,v2);
+            }
+        }
+
+
+        public void create_8x8()
         {
             var src = Random.Stream<ulong>().Take(Pow2.T07).GetEnumerator();
             while(src.MoveNext())

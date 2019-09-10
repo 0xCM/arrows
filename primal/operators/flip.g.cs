@@ -9,6 +9,7 @@ namespace Z0
     
     using static zfunc;    
     using static As;
+    using static AsIn;
     
     partial class gmath
     {
@@ -60,6 +61,31 @@ namespace Z0
             else            
                 throw unsupported<T>();
             return ref src;
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T flip<T>(in T src, ref T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.flip(in int8(in src), ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                math.flip(in uint8(in src), ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                math.flip(in int16(in src), ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                math.flip(in uint16(in src), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                math.flip(in int32(in src), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                math.flip(in uint32(in src), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                math.flip(in int64(in src), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                math.flip(in uint64(in src), ref uint64(ref dst));
+            else            
+                throw unsupported<T>();
+            return ref dst;
         }           
 
 

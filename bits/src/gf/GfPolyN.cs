@@ -18,7 +18,7 @@ namespace Z0
     /// </summary>
     public readonly struct GfPoly<N,T>
         where N : ITypeNat, new()
-        where T : struct
+        where T : unmanaged
     {
         readonly T data;
 
@@ -33,7 +33,7 @@ namespace Z0
         {
             var components = default(T);
             for(var i=0; i< exponents.Length; i++)
-                components = gbits.or(components, Pow2<T>.pow(exponents[i]));
+                components = gbits.or(components, Pow2.pow<T>(exponents[i]));
             data = components;
         }
 
@@ -96,12 +96,12 @@ namespace Z0
         }
 
         public GfPoly<N,U> As<U>()
-            where U: struct
+            where U: unmanaged
                 => Unsafe.As<GfPoly<N,T>, GfPoly<N,U>>(ref Unsafe.AsRef(in this));
 
         public GfPoly<M,U> As<M,U>()
             where M : ITypeNat, new()
-            where U: struct
+            where U: unmanaged
                 => Unsafe.As<GfPoly<N,T>, GfPoly<M,U>>(ref Unsafe.AsRef(in this));
     }
 }

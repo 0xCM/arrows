@@ -17,7 +17,6 @@ namespace Z0
     partial class gbits
     {
 
-
         [MethodImpl(Inline)]
         public static Vec128<T> andnot<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct

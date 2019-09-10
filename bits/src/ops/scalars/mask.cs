@@ -24,8 +24,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref ulong mask(ref ulong dst, byte i0, byte i1)
         {
-            dst |= Pow2<ulong>.pow(i0);
-            dst |= Pow2<ulong>.pow(i1);
+            dst |= Pow2.pow(i0);
+            dst |= Pow2.pow(i1);
             return ref dst;
         }
 
