@@ -368,7 +368,7 @@ namespace Z0
        }
 
         /// <summary>
-        /// Selects a range of bits
+        /// Selects an inclusive range of bits
         /// </summary>
         public BitVector64 this[Range range]
         {
@@ -376,10 +376,15 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
-        public BitVector64 this[BitPos lpos, BitPos rpos]
+        /// <summary>
+        /// Selects a contiguous range of bits
+        /// </summary>
+        /// <param name="first">The position of the first bit</param>
+        /// <param name="last">The position of the last bit</param>
+        public BitVector64 this[BitPos first, BitPos last]
         {
             [MethodImpl(Inline)]
-            get => Between(lpos, rpos);
+            get => Between(first, last);
         }
 
         /// <summary>
@@ -489,9 +494,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector64 ShiftL(byte offset)
+        public BitVector64 Sll(uint offset)
         {
-            data <<= offset;
+            data <<= (int)offset;
             return this;
         }
 
@@ -500,9 +505,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector64 ShiftR(byte offset)
+        public BitVector64 Srl(uint offset)
         {
-            data >>= offset;
+            data >>= (int)offset;
             return this;
         }
 
@@ -511,7 +516,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotR(byte offset)
+        public BitVector64 Ror(uint offset)
             => Bits.rotr(ref data, offset);
 
         /// <summary>
@@ -519,7 +524,7 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector64 RotL(byte offset)
+        public BitVector64 Rol(uint offset)
             => Bits.rotl(ref data, offset);
 
         /// <summary>
@@ -593,7 +598,13 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.scatter(data,Mask(spec));
+        {
+            var src = Replicate();
+            for(var i=0; i<Length; i++)
+                this[i] = src[spec[i]];
+
+        }        
+            // => data = Bits.scatter(data, Mask(spec));
 
         /// <summary>
         /// Determines whether a bit is enabled
@@ -616,7 +627,7 @@ namespace Z0
         /// </summary>
         /// <param name="n">The count of least significant bits</param>
         [MethodImpl(Inline)]
-        public readonly BitVector64 Lsb(int n)                
+        public readonly BitVector64 Lsb(int n)
             => Between(0, n - 1);                
 
         /// <summary>
@@ -663,44 +674,35 @@ namespace Z0
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public readonly BitVector64 Extract(BitMask64 spec)
+        public readonly BitVector64 Gather(BitVector64 spec)
             => Bits.gather(in data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
         /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="mask">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public readonly BitVector64 Extract(ulong spec)
-            => Bits.gather(in data, spec);
+        public readonly BitVector32 Gather(BitVector32 mask)
+            => (uint)Bits.gather(in data, mask);
 
         /// <summary>
         /// Populates a target vector with specified source bits
         /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="mask">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public readonly BitVector32 Extract(BitMask32 spec)
-            => (uint)Bits.gather(in data, (uint)spec);
-
-        /// <summary>
-        /// Populates a target vector with specified source bits
-        /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
-        /// <param name="dst">Receives the identified bits</param>
-        [MethodImpl(Inline)]
-        public readonly BitVector16 Extract(BitMask16 spec)        
-            => (ushort)Bits.gather(in data, (ushort)spec);
+        public readonly BitVector16 Gather(BitVector16 mask)        
+            => (ushort)Bits.gather(in data, mask);
         
         /// <summary>
         /// Populates a target vector with specified source bits
         /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="mask">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public readonly BitVector8 Extract(BitMask8 spec)
-            => (byte)Bits.gather(in data, (byte)spec);
+        public readonly BitVector8 Gather(BitVector8 mask)
+            => (byte)Bits.gather(in data, mask);
 
         /// <summary>
         /// Tests whether all bits are on

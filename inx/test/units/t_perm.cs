@@ -47,10 +47,27 @@ namespace Z0.Test
             perm_comp_check(n257);
         }
 
+        public void perm_inc()
+        {
+            var p = Perm.Identity(16);
+            for(var i=0; i<16; i++)
+                p.Inc();
+            Claim.eq(p, Perm.Identity(16));
+        }
+
+        public void perm_dec()
+        {
+            var p = Perm.Identity(16);
+            for(var i=0; i<16; i++)
+                p.Dec();
+
+            Claim.eq(p, Perm.Identity(16));
+        }
+
+
         public void cycle16()
         {
             var cycle = (Perm16.X3 | Perm16.X5 | Perm16.XA).Cycle();
-            Trace( () => cycle);
         }
         
         public void perm_swaps()

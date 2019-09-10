@@ -13,7 +13,7 @@ namespace Z0.Test
 
     public class tv_arrange : UnitTest<tv_arrange>
     {     
-        public void reverse_128u8()
+        public void reverse_128_u8()
         {
             var v1 = Vec128Pattern.Increments<byte>(0);
             var v2 = Vec128Pattern.Decrements<byte>(15);
@@ -21,7 +21,7 @@ namespace Z0.Test
             Claim.eq(v2,v4);
         }
 
-        public void reverse_128i16()
+        public void reverse_128_i16()
         {
             var v1 = Vec128.Increments((ushort)0);
             var v2 = Vec128.Decrements((ushort)7);
@@ -29,7 +29,7 @@ namespace Z0.Test
             Claim.eq(v2,v3);
         }
 
-        public void reverse_128i32()
+        public void reverse_128_i32()
         {
             var v = Vec128.FromParts(0,1,2,3);
             var rvX = dinx.shuffle(v, 0b00_01_10_11);
@@ -37,7 +37,7 @@ namespace Z0.Test
             Claim.eq(rvX,rvY);
         }
 
-        public void reverse_256u8()
+        public void reverse_256_u8()
         {
             var inc = Vec256Pattern.Increments((byte)0);
             for(var i=0; i<inc.Length(); i++)
@@ -53,7 +53,7 @@ namespace Z0.Test
 
         }
 
-        public void reverse_256u32()
+        public void reverse_256_u32()
         {
             var src = Random.CpuVec256Stream<uint>().Take(Pow2.T14);
             foreach(var v in src)
@@ -70,7 +70,7 @@ namespace Z0.Test
             }
         }
 
-        public void reverse_256f32()
+        public void reverse_256_f32()
         {
             var src = Random.CpuVec256Stream<float>().Take(Pow2.T14);
             foreach(var v in src)
@@ -87,7 +87,7 @@ namespace Z0.Test
             }
         }
 
-        public void hi_256u4()
+        public void hi_256_u64()
         {            
             var x = Vec256.FromParts(1ul,2ul,3ul,4ul);
             var y = Vec256.FromParts(5ul,6ul,7ul,8ul);
@@ -97,7 +97,7 @@ namespace Z0.Test
             Claim.eq(expect, actual);
         }
 
-        public void hi_256u32()
+        public void hi_256_u32()
         {
             var x = Vec256.FromParts(1u, 2u,  3u,4u,   5u,6u,   7u,8u);
             var y = Vec256.FromParts(10u,12u, 13u,14u, 15u,16u, 17u,18u);
@@ -107,7 +107,7 @@ namespace Z0.Test
             Claim.eq(expect, actual);
         }
 
-        public void swap_256i32()
+        public void swap_256_i32()
         {
             var subject = Vec256.FromParts(2, 4, 6, 8, 10, 12, 14, 16);
             var swapped = dinx.swap(subject, 2, 3);
@@ -116,7 +116,7 @@ namespace Z0.Test
         }
 
 
-        public void blend_256u8()
+        public void blend_256_u8()
         {
             void Test1()
             {
@@ -206,7 +206,7 @@ namespace Z0.Test
             return fmt.ToString();
         }
 
-        void DescribePerm2x128u64()
+        void perm2x128_u64_describe()
         {
             var x = Vec256.FromParts(1ul,2ul,3ul,4ul);
             var y = Vec256.FromParts(5ul,6ul,7ul,8ul);
@@ -218,7 +218,7 @@ namespace Z0.Test
             }
         }
 
-        void DescribePerm2x128u32()
+        void perm2x128_u32_describe()
         {
             var x = Vec256.FromParts(0u,1u,2u,3u,4u,5u,6u,7u);
             var y = Vec256.FromParts(8u,9u,10u,11u,12u,13u,14u,15u);

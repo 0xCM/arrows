@@ -111,29 +111,42 @@ namespace Z0
 
     /// <summary>
     /// Characterizes a bitvector parametrized by the storage cell type
-    /// 
     /// </summary>
     /// <typeparam name="S">The storage type</typeparam>
-    public interface IBitVector<S> : IBitVector
+    public interface IBitVector<V,S> : IBitVector
+        where V : struct, IBitVector
         where S : struct
-    {
-
-    }
-
-    /// <summary>
-    /// Characterizes a bitvector that always reifies a fixed number of bits
-    /// </summary>
-    /// <typeparam name="V">The concrete type</typeparam>
-    /// <typeparam name="S">The scalar type over which the bitvector is formed</typeparam>
-    public interface IFixedBits<V,S> : IBitVector<S>, IEquatable<V>
-        where V : struct, IFixedBits<V,S>
-        where S : struct
-        
     {
         /// <summary>
-        /// Extracts the scalar represented by the vector
+        /// Selects a contiguous range of bits
         /// </summary>
-        S Scalar {get;}
+        /// <param name="first">The first bit position</param>
+        /// <param name="last">The last bit position</param>
+        V Between(BitPos first, BitPos last);
+
+        /// <summary>
+        /// Selects a contiguous range of bits
+        /// </summary>
+        V this[Range range] {get;}            
+
+        /// <summary>
+        /// Selects a contiguous range of bits
+        /// </summary>
+        /// <param name="first">The position of the first bit</param>
+        /// <param name="last">The position of the last bit</param>
+        V this[BitPos first, BitPos last] {get;}
+
+        /// <summary>
+        /// Constructs a bitvector formed from the n lest significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of least significant bits</param>
+        V Lsb(int n);
+    
+        /// <summary>
+        /// Constructs a bitvector formed from the n most significant bits of the current vector
+        /// </summary>
+        /// <param name="n">The count of most significant bits</param>
+        V Msb(int n);
 
         /// <summary>
         /// Returns a copy of the vector
@@ -146,12 +159,28 @@ namespace Z0
         /// <param name="p">The permutation</param>
         V Replicate(Perm p);
 
+    }
+
+    /// <summary>
+    /// Characterizes a bitvector type that represents a fixed number of bits
+    /// </summary>
+    /// <typeparam name="V">The concrete type</typeparam>
+    /// <typeparam name="S">The scalar type over which the bitvector is formed</typeparam>
+    public interface IFixedBits<V,S> : IBitVector<V,S>, IEquatable<V>
+        where V : unmanaged, IFixedBits<V,S>
+        where S : struct        
+    {
+        /// <summary>
+        /// Extracts the scalar represented by the vector
+        /// </summary>
+        S Scalar {get;}
+
         /// <summary>
         /// Populates a target vector with specified source bits
         /// </summary>
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
-        V Extract(S mask);
+        V Gather(V mask);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -163,32 +192,25 @@ namespace Z0
         /// Shifts the bits in the vector leftwards
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
-        V ShiftL(byte offset);
+        V Sll(uint offset);
 
         /// <summary>
         /// Shifts the bits in the vector rightwards
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
-        V ShiftR(byte offset);
+        V Srl(uint offset);
         
         /// <summary>
         /// Rotates vector bits rightwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
-        V RotR(byte offset);
+        V Ror(uint offset);
 
         /// <summary>
         /// Rotates vector bits leftwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
-        V RotL(byte offset);
-
-        /// <summary>
-        /// Extracts a contiguous sequence of bits defined by an inclusive range
-        /// </summary>
-        /// <param name="first">The first bit position</param>
-        /// <param name="last">The last bit position</param>
-        V Between(BitPos first, BitPos last);
+        V Rol(uint offset);
 
         /// <summary>
         /// Formats the bitvector as a bitstring

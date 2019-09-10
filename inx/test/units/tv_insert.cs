@@ -32,7 +32,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            for(var i=0; i < Pow2.T06; i++)
+            for(var i=0; i < SampleSize; i++)
             {
                 var v128Src = Random.CpuVec128<T>();
                 var srcSpan = v128Src.ToSpan();

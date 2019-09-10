@@ -366,10 +366,15 @@ namespace Z0
             get => Between(range.Start.Value, range.End.Value);
         }
 
-        public BitVector8 this[BitPos lpos, BitPos rpos]
+        /// <summary>
+        /// Selects a contiguous range of bits
+        /// </summary>
+        /// <param name="first">The position of the first bit</param>
+        /// <param name="last">The position of the last bit</param>
+        public BitVector8 this[BitPos first, BitPos last]
         {
             [MethodImpl(Inline)]
-            get => Between(lpos, rpos);
+            get => Between(first, last);
         }
 
         /// <summary>
@@ -397,16 +402,7 @@ namespace Z0
         /// <param name="spec">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector8 Extract(BitMask8 spec)
-            => Bits.gather(in data, spec);
-
-        /// <summary>
-        /// Populates a target vector with specified source bits
-        /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
-        /// <param name="dst">Receives the identified bits</param>
-        [MethodImpl(Inline)]
-        public BitVector8 Extract(byte spec)
+        public BitVector8 Gather(BitVector8 spec)
             => Bits.gather(in data, spec);
 
         /// <summary>
@@ -490,9 +486,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector8 ShiftL(byte offset)
+        public BitVector8 Sll(uint offset)
         {
-            data <<= offset;
+            data <<= (int)offset;
             return this;
         }
 
@@ -501,9 +497,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector8 ShiftR(byte offset)
+        public BitVector8 Srl(uint offset)
         {
-            data >>= offset;
+            data >>= (int)offset;
             return this;
         }
 
@@ -512,16 +508,16 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotR(byte offset)
-            => Bits.rotr(ref data, offset);
+        public BitVector8 Ror(uint offset)
+            => Bits.rotr(ref data, (byte)offset);
 
         /// <summary>
         /// Rotates bits in the source leftwards by a specified offset
         /// </summary>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public BitVector8 RotL(byte offset)
-            => Bits.rotl(ref data, offset);
+        public BitVector8 Rol(uint offset)
+            => Bits.rotl(ref data, (byte)offset);
 
         /// <summary>
         /// Counts the number of enabled bits in the vector
@@ -637,7 +633,11 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = Bits.scatter(data, Mask(spec));
+        {
+            var src = Replicate();
+            for(var i=0; i<Length; i++)
+                this[i] = src[spec[i]];
+        }
 
         /// <summary>
         /// Returns true if no bits are enabled, false otherwise

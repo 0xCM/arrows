@@ -309,9 +309,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector4 ShiftL(byte offset)
+        public BitVector4 Sll(uint offset)
         {
-            data <<= offset;
+            data <<= (int)offset;
             return this;
         }
 
@@ -320,9 +320,9 @@ namespace Z0
         /// </summary>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public BitVector4 ShiftR(byte offset)
+        public BitVector4 Srl(uint offset)
         {
-            data >>= offset;
+            data >>= (int)offset;
             return this;
         }
 
@@ -370,7 +370,13 @@ namespace Z0
         /// <param name="spec">The permutation</param>
         [MethodImpl(Inline)]
         public void Permute(Perm spec)
-            => data = (UInt4)Bits.scatter(data,Mask(spec));
+        {
+            var src = Replicate();
+            for(var i=0; i<Length; i++)
+                this[i] = src[spec[i]];
+
+        }
+            //=> data = (UInt4)Bits.scatter(data,Mask(spec));
 
         /// <summary>
         /// Reverses the vector's bits
@@ -435,20 +441,11 @@ namespace Z0
         /// <summary>
         /// Populates a target vector with mask-identified source bits
         /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
+        /// <param name="mask">Identifies the source bits of interest</param>
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
-        public BitVector4 Extract(BitMask4 spec)
-            => Bits.gather(data, (byte)spec);
-
-        /// <summary>
-        /// Populates a target vector with specified source bits
-        /// </summary>
-        /// <param name="spec">Identifies the source bits of interest</param>
-        /// <param name="dst">Receives the identified bits</param>
-        [MethodImpl(Inline)]
-        public BitVector4 Extract(UInt4 spec)
-            => Bits.gather(data, spec);
+        public BitVector4 Gather(BitVector4 mask)
+            => Bits.gather(data, mask);
 
         /// <summary>
         /// Converts the vector to a bitstring
@@ -474,13 +471,13 @@ namespace Z0
         public override string ToString()
             => Format();
 
-        public BitVector4 RotR(byte offset)
+        public BitVector4 Ror(uint offset)
         {
             throw new NotImplementedException();
             
         }
 
-        public BitVector4 RotL(byte offset)
+        public BitVector4 Rol(uint offset)
         {
             throw new NotImplementedException();
         }

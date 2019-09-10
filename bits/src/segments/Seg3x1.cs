@@ -10,7 +10,7 @@ namespace Z0
     using Z0;
 
     using static zfunc;
-    using static BitMasks;
+    using static BitParts;
 
     partial class Segments
     {
@@ -42,7 +42,7 @@ namespace Z0
                 get => ref data[2];
             }
 
-            public ref T this[Seg3x1 seg]
+            public ref T this[Part3x1 seg]
             {
                 get => ref data[0];
             }

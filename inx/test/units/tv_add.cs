@@ -17,34 +17,34 @@ namespace Z0.Test
 
         public void add128()
         {
-            Add128<sbyte>();
-            Add128<byte>();
-            Add128<short>();
-            Add128<ushort>();
-            Add128<int>();
-            Add128<uint>();
-            Add128<long>();
-            Add128<ulong>();
-            Add128<float>();
-            Add128<double>();
+            add128_check<sbyte>();
+            add128_check<byte>();
+            add128_check<short>();
+            add128_check<ushort>();
+            add128_check<int>();
+            add128_check<uint>();
+            add128_check<long>();
+            add128_check<ulong>();
+            add128_check<float>();
+            add128_check<double>();
         }
 
         public void add256()
         {
-            Add256<sbyte>();
-            Add256<byte>();
-            Add256<short>();
-            Add256<ushort>();
-            Add256<int>();
-            Add256<uint>();
-            Add256<long>();
-            Add256<ulong>();
-            Add256<float>();
-            Add256<double>();
+            add256_check<sbyte>();
+            add256_check<byte>();
+            add256_check<short>();
+            add256_check<ushort>();
+            add256_check<int>();
+            add256_check<uint>();
+            add256_check<long>();
+            add256_check<ulong>();
+            add256_check<float>();
+            add256_check<double>();
 
         }
 
-        void Add128<T>()
+        void add128_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
@@ -52,7 +52,7 @@ namespace Z0.Test
             TypeCaseEnd<T>();
         }
 
-        void Add256<T>()
+        void add256_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();

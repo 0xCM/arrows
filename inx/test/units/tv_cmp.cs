@@ -12,94 +12,94 @@ namespace Z0.Test
 
     public class tv_cmp : UnitTest<tv_cmp>
     {                    
-        public void eq128f64()
+        public void eq128_f64()
             => cmp128f64_check(FpCmpMode.EQ_OQ);
 
-        public void neq128f64()
+        public void neq128_f64()
             => cmp128f64_check(FpCmpMode.NEQ_OQ);
 
-        public void lt128f64()
+        public void lt128_f64()
             => cmp128f64_check(FpCmpMode.LT_OQ);
 
-        public void lteq128f64()
+        public void lteq128_f64()
             => cmp128f64_check(FpCmpMode.LE_OQ);
 
-        public void nlt128f64()
+        public void nlt128_f64()
             => cmp128f64_check(FpCmpMode.LE_OQ);
 
-        public void nlteqf128()
+        public void nlteq128_f64()
             => cmp128f64_check(FpCmpMode.NLE_UQ);
 
-        public void gt128f64()
+        public void gt128_f64()
             => cmp128f64_check(FpCmpMode.GT_OQ);
 
-        public void gteq128f64()
+        public void gteq128_f64()
             => cmp128f64_check(FpCmpMode.GE_OQ);
 
-        public void ngt128f64()
+        public void ngt128_f64()
             => cmp128f64_check(FpCmpMode.NGT_UQ);
 
-        public void ngteq128f64()
+        public void ngteq128_f64()
             => cmp128f64_check(FpCmpMode.NGE_UQ);
 
-        public void eq256f64()
+        public void eq256_f64()
             => cmp256f64_check(FpCmpMode.EQ_OQ);
 
-        public void neq256f64()
+        public void neq256_f64()
             => cmp256f64_check(FpCmpMode.NEQ_OQ);
 
-        public void lt256f64()
+        public void lt256_f64()
             => cmp256f64_check(FpCmpMode.LT_OQ);
 
-        public void lteq256f64()
+        public void lteq256_f64()
             => cmp256f64_check(FpCmpMode.LE_OQ);
 
-        public void nlt256f64()
+        public void nlt256_f64()
             => cmp256f64_check(FpCmpMode.LE_OQ);
 
         public void nlteq256f64()
             => cmp256f64_check(FpCmpMode.NLE_UQ);
 
-        public void gt256f64()
+        public void gt256_f64()
             => cmp256f64_check(FpCmpMode.GT_OQ);
 
-        public void gteq256f64()
+        public void gteq256_f64()
             => cmp256f64_check(FpCmpMode.GE_OQ);
 
         public void ngt256f64()
             => cmp256f64_check(FpCmpMode.NGT_UQ);
 
-        public void ngteq256f64()
+        public void ngteq256_f64()
             => cmp256f64_check(FpCmpMode.NGE_UQ);
 
-        public void eq256f32()
+        public void eq256_f32()
             => cmp256f32_check(FpCmpMode.EQ_OQ);
 
-        public void neq256f32()
+        public void neq256_f32()
             => cmp256f32_check(FpCmpMode.NEQ_OQ);
 
-        public void lt256f32()
+        public void lt256_f32()
             => cmp256f32_check(FpCmpMode.LT_OQ);
 
-        public void lteq256f32()
+        public void lteq256_f32()
             => cmp256f32_check(FpCmpMode.LE_OQ);
 
-        public void nlt256f32()
+        public void nlt256_f32()
             => cmp256f32_check(FpCmpMode.LE_OQ);
 
-        public void nlteq256f32()
+        public void nlteq256_f32()
             => cmp256f32_check(FpCmpMode.NLE_UQ);
 
-        public void gt256f32()
+        public void gt256_f32()
             => cmp256f32_check(FpCmpMode.GT_OQ);
 
-        public void gteq256f32()
+        public void gteq256_f32()
             => cmp256f32_check(FpCmpMode.GE_OQ);
 
-        public void ngt256f32()
+        public void ngt256_f32()
             => cmp256f32_check(FpCmpMode.NGT_UQ);
 
-        public void ngteq256f32()
+        public void ngteq256_f32()
             => cmp256f32_check(FpCmpMode.NGE_UQ);
 
         void cmp128f64_check(FpCmpMode mode)
@@ -139,7 +139,6 @@ namespace Z0.Test
                 var actual = dfp.cmpf(x, y, mode);
                 Claim.eq(expect,actual);
             }
-
         }
 
         void cmp256f64_check(FpCmpMode mode)

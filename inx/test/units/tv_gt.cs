@@ -15,17 +15,17 @@ namespace Z0.Test
     public class tv_gt : UnitTest<tv_gt>
     {
 
-        public void gt128i8()
+        public void gt128_i8()
         {
             gt128_check<sbyte>();
         }
 
-        public void gt128i16()
+        public void gt128_i16()
         {
             gt128_check<short>();            
         }
 
-        public void gt128i32()
+        public void gt128_i32()
         {
             gt128_check<int>();
         }
@@ -33,7 +33,6 @@ namespace Z0.Test
         public void gt256i8()
         {
             gt256_check<sbyte>();
-
         }
 
         public void gt256i16()
@@ -41,13 +40,12 @@ namespace Z0.Test
             gt256_check<short>();            
         }
 
-        public void gt256i32()
+        public void gt256_i32()
         {
             gt256_check<int>();
         }
 
-
-       void gt128_check<T>()
+        void gt128_check<T>()
             where T : struct
         {
             for(var i=0; i<SampleSize; i++)

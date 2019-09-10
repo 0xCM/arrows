@@ -17,122 +17,122 @@ namespace Z0.Test
     public class tv_eq : UnitTest<tv_eq>
     {        
 
-        public void eq128i8()
+        public void eq128_i8()
         {
             
             eq128_check<sbyte>();
         }
 
-        public void eq128u8()
+        public void eq128_u8()
         {
             
             eq128_check<byte>();
         }
 
-        public void eq128i16()
+        public void eq128_i16()
         {
             
             eq128_check<short>();
         }
 
-        public void eq128u16()
+        public void eq128_u16()
         {
             
             eq128_check<ushort>();
         }
 
-        public void eq128i32()
+        public void eq128_i32()
         {
             
             eq128_check<int>();
         }
 
-        public void eq128u32()
+        public void eq128_u32()
         {
             
             eq128_check<uint>();
         }
 
-        public void eq128i64()
+        public void eq128_i64()
         {
             
             eq128_check<long>();
         }
 
-        public void eq128u64()
+        public void eq128_u64()
         {
             
             eq128_check<ulong>();
         }
 
-        public void eq128f32()
+        public void eq128_f32()
         {
             
             eq128_check<float>();
         }
 
-        public void eq128f64()
+        public void eq128_f64()
         {
             
             eq128_check<double>();
         }
 
-        public void eq256i8()
+        public void eq256_i8()
         {
             
             eq256_check<sbyte>();
         }
 
-        public void eq256u8()
+        public void eq256_u8()
         {
             
             eq256_check<byte>();
         }
 
 
-        public void eq256i16()
+        public void eq256_i16()
         {
             
             eq256_check<short>();
         }
 
-        public void eq256u16()
+        public void eq256_u16()
         {
             
             eq256_check<ushort>();
         }
 
-        public void eq256i32()
+        public void eq256_i32()
         {
             
             eq256_check<int>();
         }
 
-        public void eq256u32()
+        public void eq256_u32()
         {
             
             eq256_check<uint>();
         }
 
-        public void eq256i64()
+        public void eq256_i64()
         {
             
             eq256_check<long>();
         }
 
-        public void eq256u64()
+        public void eq256_u64()
         {
             
             eq256_check<ulong>();
         }
 
-        public void eq256f32()
+        public void eq256_f32()
         {
             
             eq256_check<float>();
         }
 
-        public void eq256f64()
+        public void eq256_f64()
         {
             
             eq256_check<double>();

@@ -10,7 +10,7 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static BitMasks;
+    using static BitParts;
 
     partial class BitMasks
     {        
@@ -20,7 +20,7 @@ namespace Z0
         [Flags]
         public enum Lsb4x1 : byte
         {
-            Select = Seg4x1.Bit0
+            Select = Part4x1.Part0
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0
         [Flags]
         public enum Lsb8x1 : byte
         {            
-            Select = Seg8x1.Bit0
+            Select = Part8x1.Part0
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
             /// <summary>
             /// Identifies the least significant bit of the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit0,
+            Byte0 = Part8x1.Part0,
             
             /// <summary>
             /// Identifies the least significant bit of the second byte
@@ -123,7 +123,7 @@ namespace Z0
             /// <summary>
             /// Identifies the least significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit0,
+            Byte0 = Part8x1.Part0,
 
             /// <summary>
             /// Identifies the least significant bit in the second byte
@@ -157,7 +157,7 @@ namespace Z0
             /// <summary>
             /// Identifies the least significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit0,
+            Byte0 = Part8x1.Part0,
 
             /// <summary>
             /// Identifies the least significant bit in the second byte

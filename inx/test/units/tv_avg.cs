@@ -13,7 +13,7 @@ namespace Z0.Test
 
     public class tv_avg : UnitTest<tv_avg>
     {     
-        public void avg256u8()
+        public void avg256_u8()
         {            
             for(var j=0; j < SampleSize; j++)
             {
@@ -26,7 +26,7 @@ namespace Z0.Test
             }
         }
 
-        public void avg256u16()
+        public void avg256_u16()
         {            
             for(var j=0; j < SampleSize; j++)
             {
@@ -39,7 +39,7 @@ namespace Z0.Test
             }
         }
 
-        public void avg256u8_bench()
+        public void avg256_u8_bench()
         {
             Collect(avg_bench(true));
             Collect(avg_bench(false));

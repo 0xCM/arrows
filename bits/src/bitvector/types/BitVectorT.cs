@@ -11,7 +11,7 @@ namespace Z0
 
     using static zfunc;    
 
-    public struct BitVector<T> : IBitVector<T>
+    public struct BitVector<T> : IBitVector<BitVector<T>,T>
         where T : unmanaged
     {
         /// <summary>
@@ -260,6 +260,11 @@ namespace Z0
         }
 
 
+        public BitVector<T> this[BitPos first, BitPos last] => throw new NotImplementedException();
+
+        public BitVector<T> this[Range range] => throw new NotImplementedException();
+
+
         /// <summary>
         /// Reads a bit value
         /// </summary>
@@ -332,7 +337,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public T Between(BitPos first, BitPos last)
+        public T SliceCell(BitPos first, BitPos last)
             => Extract(in Location(first), in Location(last));
 
         /// <summary>
@@ -392,6 +397,10 @@ namespace Z0
         public uint Rank(BitPos pos)
             => Pop(pos);
             
+        BitVector<T> IBitVector<BitVector<T>, T>.Between(BitPos first, BitPos last)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Permute(Perm p)
         {
@@ -418,6 +427,25 @@ namespace Z0
             throw new NotImplementedException();
         }
 
+        public BitVector<T> Lsb(int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitVector<T> Msb(int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitVector<T> Replicate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BitVector<T> Replicate(Perm p)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Gets the mapped bit location
         /// </summary>
@@ -498,6 +526,7 @@ namespace Z0
     
         public override string ToString()
             => Format();
+
 
     }
 

@@ -15,16 +15,8 @@ namespace Z0.Test
 
     public class tv_max : UnitTest<tv_max>
     {
-        public void InXMax0()
-        {
-            var v1 = Vec128.FromParts(1, 2, -3, 4);
-            var v2 = Vec128.FromParts(-1, 2, 3, -4);
-            var result = dinx.max(v1,v2);
-            var expect = Vec128.FromParts(1,2,3,4);
-            Claim.eq(expect,result);
-        }
         
-        public void max128i32()
+        public void max128_i32()
         {
             var blocklen = Span128<int>.BlockLength;                     
             var lhs = Random.ReadOnlySpan128<int>(SampleSize);
@@ -52,11 +44,9 @@ namespace Z0.Test
 
             }
             Claim.eq(expect, actual);
-
-
         }
 
-        public void max256i32()
+        public void max256_i32()
         {
             var blocklen = Span256<int>.BlockLength;                     
             var lhs = Random.ReadOnlySpan256<int>(SampleSize);

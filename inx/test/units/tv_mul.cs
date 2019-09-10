@@ -47,12 +47,12 @@ namespace Z0
         
         }
 
-        public void mul256f64()
+        public void mul256_f64()
         {
             mul256f64_check();
         }
         
-        public void mul256u64()
+        public void mul256_u64()
         {
             void VerifyMul256u64(int blocks)
             {
@@ -81,7 +81,7 @@ namespace Z0
             Collect(BenchmarkMul256u64());
         }
 
-        public void VerifyUMul64()
+        public void umul64()
         {
             void VerifyUMul64(int samples)
             {

@@ -10,7 +10,7 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static BitMasks;
+    using static BitParts;
 
     partial class BitMasks
     {        
@@ -21,7 +21,7 @@ namespace Z0
         public enum Msb4x1 : byte
         {
 
-            Select = Seg4x1.Bit3,
+            Select = Part4x1.Part3,
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         [Flags]
         public enum Msb8x1 : byte
         {                        
-            Select = Seg8x1.Bit7
+            Select = Part8x1.Part7
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Z0
             /// <summary>
             /// Identifies the most significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit7,
+            Byte0 = Part8x1.Part7,
             
             /// <summary>
             /// Identifies the most significant bit in the second byte
@@ -96,7 +96,7 @@ namespace Z0
             /// <summary>
             /// Identifies the most significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit7,
+            Byte0 = Part8x1.Part7,
             
             /// <summary>
             /// Identifies the most significant bit in the second byte
@@ -123,7 +123,7 @@ namespace Z0
             /// <summary>
             /// Identifies the most significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit7,
+            Byte0 = Part8x1.Part7,
 
             /// <summary>
             /// Identifies the most significant bit in the second byte
@@ -156,7 +156,7 @@ namespace Z0
             /// <summary>
             /// Identifies the most significant bit in the first byte
             /// </summary>
-            Byte0 = Seg8x1.Bit7,
+            Byte0 = Part8x1.Part7,
 
             /// <summary>
             /// Identifies the most significant bit in the second byte

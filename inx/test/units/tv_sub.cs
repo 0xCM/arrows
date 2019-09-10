@@ -15,58 +15,63 @@ namespace Z0.Test
 
     public class tv_sub : UnitTest<tv_sub>
     {
-        public void Sub128()
+        public void sub128()
         {
-            var blocks = Pow2.T08;
-            Sub128<sbyte>(blocks);
-            Sub128<byte>(blocks);
-            Sub128<short>(blocks);
-            Sub128<ushort>(blocks);
-            Sub128<int>(blocks);
-            Sub128<uint>(blocks);
-            Sub128<long>(blocks);
-            Sub128<ulong>(blocks);
-            Sub128<float>(blocks);
-            Sub128<double>(blocks);
+            sub128_check<sbyte>();
+            sub128_check<byte>();
+            sub128_check<short>();
+            sub128_check<ushort>();
+            sub128_check<int>();
+            sub128_check<uint>();
+            sub128_check<long>();
+            sub128_check<ulong>();
+            sub128_check<float>();
+            sub128_check<double>();
         }
 
-        public void Sub256()
+        public void sub256()
         {
-            var blocks = Pow2.T08;
-            Sub256<sbyte>(blocks);
-            Sub256<byte>(blocks);
-            Sub256<short>(blocks);
-            Sub256<ushort>(blocks);
-            Sub256<int>(blocks);
-            Sub256<uint>(blocks);
-            Sub256<long>(blocks);
-            Sub256<ulong>(blocks);
-            Sub256<float>(blocks);
-            Sub256<double>(blocks);
+            sub256_check<sbyte>();
+            sub256_check<byte>();
+            sub256_check<short>();
+            sub256_check<ushort>();
+            sub256_check<int>();
+            sub256_check<uint>();
+            sub256_check<long>();
+            sub256_check<ulong>();
+            sub256_check<float>();
+            sub256_check<double>();
         }
 
-        void Sub128<T>(int blocks)
+        public void sub256_batch()
+        {
+            sub256_batch_check<long>();
+            sub256_batch_check<int>();
+            sub256_batch_check<byte>();
+        }
+
+        void sub128_check<T>(int blocks = 0)
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 
-        void Sub256<T>(int blocks)
+        void sub256_check<T>(int blocks = 0)
             where T : struct
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 
-        void SubSpans256<T>(int len)
+        void sub256_batch_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
-            var lhs = Random.Span256<T>(len).ReadOnly();
-            var rhs = Random.Span256<T>(len).ReadOnly();
+            var lhs = Random.Span256<T>(SampleSize).ReadOnly();
+            var rhs = Random.Span256<T>(SampleSize).ReadOnly();
             var dstA = ginx.sub(lhs, rhs, lhs.Replicate());
             var dstB = Span256.AllocBlocks<T>(lhs.BlockCount);
             for(var i = 0; i < dstA.Length; i++)
@@ -74,17 +79,6 @@ namespace Z0.Test
             Claim.yea(dstA.Identical(dstB));
             TypeCaseEnd<T>();
         }
-
-
-        public void SubSpans256()
-        {
-            SubSpans256<long>(Pow2.T12);
-            SubSpans256<int>(500);
-            SubSpans256<byte>(789);
-        }
-
-        const int Blocks = Pow2.T08;
-
     }
 
 }

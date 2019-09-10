@@ -36,12 +36,12 @@ namespace Z0.Test
             var z2 = (byte)0b1101;
             Claim.eq(y2,z2);
 
-            UInt4 x3 = span<Bit>(Bit.On, Bit.Off, Bit.On, Bit.On);
+            var x3 = UInt4.FromBits(Bit.On, Bit.Off, Bit.On, Bit.On);
             byte y3 = x3;
             var z3 = (byte)0b1101;
             Claim.eq(y3,z3);
 
-            UInt4 x4 = UInt4.FromByte(0);
+            var x4 = UInt4.FromByte(0);
             Claim.eq(x4,(byte)0);
 
             byte y4 = x4;

@@ -25,6 +25,8 @@ namespace Z0.Test
         }
 
 
+
+
         public void Experiment()
         {
             //Create an explicit bit pattern
@@ -44,7 +46,39 @@ namespace Z0.Test
 
         }
 
+        public void perm32()
+        {
+            var p1 = Perm.Define(n32, (31,0), (30,1), (29,2));
+            Claim.eq(p1[0],31);
+            Claim.eq(p1[1],30);
+            Claim.eq(p1[2],29);
+            Claim.eq(p1[3], 3);
 
+            var bm = p1.ToBitMatrix();
+            Claim.eq(bm[0,31], Bit.On);
+            Claim.eq(bm[1,30], Bit.On);
+            Claim.eq(bm[2,29], Bit.On);
+
+
+            var v1 = BitVector32.Zero;
+            var v2 = v1.Replicate(p1);
+
+            Claim.eq(v1[31],v2[0]);
+            Claim.eq(v1[30],v2[1]);
+            Claim.eq(v1[29],v2[2]);
+        }
+
+        public void perm64()
+        {
+            for(var j=0; j<SampleSize; j++)
+            {
+                var p1 = Random.Perm(n64);
+                var v1 = Random.BitVector64();
+                var v2 = v1.Replicate(p1);
+                for(var i=0; i<v1.Length; i++)
+                    Claim.eq(v1[p1[i]], v2[i]);
+            }
+        }
 
         public void perm16()
         {        

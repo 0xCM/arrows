@@ -130,7 +130,7 @@ namespace Z0.Test
             while(++x)
             {
                 var y = x.Replicate();
-                Trace($"rotl({y}:{offset}) = {y.RotL((byte)offset)}"); 
+                Trace($"rotl({y}:{offset}) = {y.Rol((byte)offset)}"); 
             }
         }
 

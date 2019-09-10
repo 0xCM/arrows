@@ -87,6 +87,17 @@ namespace Z0
         /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
         /// <typeparam name="N">The length type</typeparam>
         [MethodImpl(Inline)]
+        public static Perm<N> Define<N>(N n, params Swap<N>[] swaps)
+            where N : ITypeNat, new()
+                => new Perm<N>(swaps);
+
+        /// <summary>
+        /// Defines an identity permutation of natural length and applies a specified sequence of transpostions
+        /// </summary>
+        /// <param name="length">The length of the permutation</param>
+        /// <param name="terms">The ordered sequence of terms that specify the permutation</param>
+        /// <typeparam name="N">The length type</typeparam>
+        [MethodImpl(Inline)]
         public static Perm<N> Define<N>(params Swap<N>[] swaps)
             where N : ITypeNat, new()
                 => new Perm<N>(swaps);
@@ -301,10 +312,10 @@ namespace Z0
         public Perm Inc()
         {
             Span<int> src = Replicate().terms;
-            var lastix = Length - 1;
-            for(var i=0; i< lastix; i++)
-                terms[i] = src[i + 1];
-            terms[lastix] = src[0];
+            var k = 1;
+            for(var i=0; i< Length - k; i++)
+                terms[i] = src[i + k];
+            terms[Length - k] = src[k - 1];
             return this;
         }
 

@@ -10,7 +10,7 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static BitMasks;
+    using static BitParts;
 
     partial class BitMasks
     {        
@@ -23,14 +23,13 @@ namespace Z0
             /// <summary>
             /// Identifies the first even bit
             /// </summary>
-            Bit1 = Seg4x1.Bit1,
+            Bit1 = Part4x1.Part1,
             
             /// <summary>
             /// Identifies the second even bit
             /// </summary>
             Bit4 = Bit1 << 2,
-                        
-                        
+                                                
             /// <summary>
             /// Selects the odd bits in a nibble
             /// </summary>
@@ -47,7 +46,7 @@ namespace Z0
             /// <summary>
             /// Identifies the bit at position 1
             /// </summary>
-            Bit1 = Seg8x1.Bit1,
+            Bit1 = Part8x1.Part1,
             
             /// <summary>
             /// Identifies the bit at position 3
@@ -124,8 +123,6 @@ namespace Z0
             /// </summary>
             Select = Byte0 | Byte1 | Byte2 | Byte3
         }
-
-
 
         /// <summary>
         /// Identifies odd bits in a 64-bit segment

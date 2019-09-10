@@ -24,7 +24,7 @@ namespace Z0.Test
                 var v2 = BitVector64.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector64(), v2);
 
-                var r1 = v1.Between(lower[i], upper[i]);
+                var r1 = v1.SliceCell(lower[i], upper[i]);
                 var r2 = v2.Between(lower[i], upper[i]);
 
                 if(r1 != r2)
@@ -51,7 +51,7 @@ namespace Z0.Test
                 var v2 = BitVector32.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector32(),v2);
 
-                var r1 = v1.Between(lower[i], upper[i]);
+                var r1 = v1.SliceCell(lower[i], upper[i]);
                 var r2 = v2.Between(lower[i], upper[i]);
                 Claim.eq(r1,r2);                
             }
@@ -68,7 +68,7 @@ namespace Z0.Test
                 var v2 = BitVector16.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector16(),v2);
 
-                var r1 = v1.Between(lower[i], upper[i]);
+                var r1 = v1.SliceCell(lower[i], upper[i]);
                 var r2 = v2.Between(lower[i], upper[i]);
                 Claim.eq(r1,r2);                
             }
@@ -113,27 +113,27 @@ namespace Z0.Test
             Claim.eq(bsx, bsy);
             Claim.eq(bsx, bsz);
 
-            Claim.eq(y0, bvx.Between(0,3));
-            Claim.eq(y1, bvx.Between(4,7));
-            Claim.eq(y2, bvx.Between(8,11));
-            Claim.eq(y3, bvx.Between(12,15));
-            Claim.eq(y4, bvx.Between(16,19));
-            Claim.eq(y5, bvx.Between(20,23));
-            Claim.eq(y6, bvx.Between(24,27));
-            Claim.eq(y7, bvx.Between(28,31));
-            Claim.eq(y8, bvx.Between(32,35));
-            Claim.eq(y9, bvx.Between(36,39));
+            Claim.eq(y0, bvx.SliceCell(0,3));
+            Claim.eq(y1, bvx.SliceCell(4,7));
+            Claim.eq(y2, bvx.SliceCell(8,11));
+            Claim.eq(y3, bvx.SliceCell(12,15));
+            Claim.eq(y4, bvx.SliceCell(16,19));
+            Claim.eq(y5, bvx.SliceCell(20,23));
+            Claim.eq(y6, bvx.SliceCell(24,27));
+            Claim.eq(y7, bvx.SliceCell(28,31));
+            Claim.eq(y8, bvx.SliceCell(32,35));
+            Claim.eq(y9, bvx.SliceCell(36,39));
 
-            Claim.eq(y0, (byte)bvz.Between(0,3));
-            Claim.eq(y1, bvz.Between(4,7));
-            Claim.eq(y2, bvz.Between(8,11));
-            Claim.eq(y3, bvz.Between(12,15));
-            Claim.eq(y4, bvz.Between(16,19));
-            Claim.eq(y5, bvz.Between(20,23));
-            Claim.eq(y6, bvz.Between(24,27));
-            Claim.eq(y7, bvz.Between(28,31));
-            Claim.eq(y8, bvz.Between(32,35));
-            Claim.eq(y9, bvz.Between(36,39));    
+            Claim.eq(y0, (byte)bvz.SliceCell(0,3));
+            Claim.eq(y1, bvz.SliceCell(4,7));
+            Claim.eq(y2, bvz.SliceCell(8,11));
+            Claim.eq(y3, bvz.SliceCell(12,15));
+            Claim.eq(y4, bvz.SliceCell(16,19));
+            Claim.eq(y5, bvz.SliceCell(20,23));
+            Claim.eq(y6, bvz.SliceCell(24,27));
+            Claim.eq(y7, bvz.SliceCell(28,31));
+            Claim.eq(y8, bvz.SliceCell(32,35));
+            Claim.eq(y9, bvz.SliceCell(36,39));    
         }
 
         public void extractarb()
@@ -151,26 +151,26 @@ namespace Z0.Test
             var bsz = bvz.ToBitString().Format(true);
             Claim.eq(bsx, bsz);
 
-            Claim.eq((byte)0b10110, bvx.Between(0, 4));
-            Claim.eq((byte)0b01110, bvx.Between(5, 9));
-            Claim.eq((byte)0b00101, bvx.Between(10, 14));
-            Claim.eq((byte)0b00111, bvx.Between(15, 19));
-            Claim.eq((byte)0b11010, bvx.Between(20, 24));
-            Claim.eq((byte)0b01110, bvx.Between(25, 29));
+            Claim.eq((byte)0b10110, bvx.SliceCell(0, 4));
+            Claim.eq((byte)0b01110, bvx.SliceCell(5, 9));
+            Claim.eq((byte)0b00101, bvx.SliceCell(10, 14));
+            Claim.eq((byte)0b00111, bvx.SliceCell(15, 19));
+            Claim.eq((byte)0b11010, bvx.SliceCell(20, 24));
+            Claim.eq((byte)0b01110, bvx.SliceCell(25, 29));
 
-            Claim.eq((ushort)0b10110, bvy.Between(0, 4));
-            Claim.eq((ushort)0b01110, bvy.Between(5, 9));
-            Claim.eq((ushort)0b00101, bvy.Between(10, 14));
-            Claim.eq((ushort)0b00111, bvy.Between(15, 19));
-            Claim.eq((ushort)0b11010, bvy.Between(20, 24));
-            Claim.eq((ushort)0b01110, bvy.Between(25, 29));
+            Claim.eq((ushort)0b10110, bvy.SliceCell(0, 4));
+            Claim.eq((ushort)0b01110, bvy.SliceCell(5, 9));
+            Claim.eq((ushort)0b00101, bvy.SliceCell(10, 14));
+            Claim.eq((ushort)0b00111, bvy.SliceCell(15, 19));
+            Claim.eq((ushort)0b11010, bvy.SliceCell(20, 24));
+            Claim.eq((ushort)0b01110, bvy.SliceCell(25, 29));
 
-            Claim.eq((ulong)0b10110, bvz.Between(0, 4));
-            Claim.eq((ulong)0b01110, bvz.Between(5, 9));
-            Claim.eq((ulong)0b00101, bvz.Between(10, 14));
-            Claim.eq((ulong)0b00111, bvz.Between(15, 19));
-            Claim.eq((ulong)0b11010, bvz.Between(20, 24));
-            Claim.eq((ulong)0b01110, bvz.Between(25, 29));
+            Claim.eq((ulong)0b10110, bvz.SliceCell(0, 4));
+            Claim.eq((ulong)0b01110, bvz.SliceCell(5, 9));
+            Claim.eq((ulong)0b00101, bvz.SliceCell(10, 14));
+            Claim.eq((ulong)0b00111, bvz.SliceCell(15, 19));
+            Claim.eq((ulong)0b11010, bvz.SliceCell(20, 24));
+            Claim.eq((ulong)0b01110, bvz.SliceCell(25, 29));
 
         }
 

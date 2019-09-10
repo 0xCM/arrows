@@ -15,36 +15,37 @@ namespace Z0.Test
 
     public class tv_nonzero : UnitTest<tv_nonzero>
     {
-        public void NonZero()
+        public void nonzero128()
         {
-            var blocks = Pow2.T08;
-            NonZero128<sbyte>(blocks);
-            NonZero128<byte>(blocks);
-            NonZero128<short>(blocks);
-            NonZero128<ushort>(blocks);
-            NonZero128<int>(blocks);
-            NonZero128<uint>(blocks);
-            NonZero128<long>(blocks);
-            NonZero128<ulong>(blocks);
+            nonzero128_check<sbyte>();
+            nonzero128_check<byte>();
+            nonzero128_check<short>();
+            nonzero128_check<ushort>();
+            nonzero128_check<int>();
+            nonzero128_check<uint>();
+            nonzero128_check<long>();
+            nonzero128_check<ulong>();
+        }
 
-            NonZero256<sbyte>(blocks);
-            NonZero256<byte>(blocks);
-            NonZero256<short>(blocks);
-            NonZero256<ushort>(blocks);
-            NonZero256<int>(blocks);
-            NonZero256<uint>(blocks);
-            NonZero256<long>(blocks);
-            NonZero256<ulong>(blocks);
+        public void nonzero256()
+        {
+            nonzero256_check<sbyte>();
+            nonzero256_check<byte>();
+            nonzero256_check<short>();
+            nonzero256_check<ushort>();
+            nonzero256_check<int>();
+            nonzero256_check<uint>();
+            nonzero256_check<long>();
+            nonzero256_check<ulong>();
 
         }
 
-
-        void NonZero128<T>(int blocks)
+        void nonzero128_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
-            var  src = Random.Span128<T>(blocks);
-            for(var i = 0; i< blocks; i++)
+            var  src = Random.Span128<T>(blocks: SampleSize);
+            for(var i = 0; i< src.BlockCount; i++)
             {
                 var v = Vec128.Load(ref src.Block(i));
                 Claim.yea(gbits.nonzero(v));
@@ -54,12 +55,12 @@ namespace Z0.Test
             TypeCaseEnd<T>();
         }
 
-        void NonZero256<T>(int blocks)
+        void nonzero256_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
-            var  src = Random.Span256<T>(blocks);
-            for(var i = 0; i< blocks; i++)
+            var  src = Random.Span256<T>(blocks: SampleSize);
+            for(var i = 0; i< src.BlockCount; i++)
             {
                 var v = Vec256.Load(ref src.Block(i));
                 Claim.yea(gbits.nonzero(v));

@@ -12,32 +12,37 @@ namespace Z0.Test
 
     public class tv_extract : UnitTest<tv_extract>
     {     
-        public void Extract()
+        public void extract128()
         {
-            Extract128<byte>();
-            Extract128<sbyte>();
-            Extract128<short>();
-            Extract128<ushort>();
-            Extract128<int>();
-            Extract128<uint>();
-            Extract128<long>();
-            Extract128<ulong>();
-            Extract128<float>();
-            Extract128<double>();
+            extract128_check<byte>();
+            extract128_check<sbyte>();
+            extract128_check<short>();
+            extract128_check<ushort>();
+            extract128_check<int>();
+            extract128_check<uint>();
+            extract128_check<long>();
+            extract128_check<ulong>();
+            extract128_check<float>();
+            extract128_check<double>();
 
-            Extract256<byte>();
-            Extract256<sbyte>();
-            Extract256<short>();
-            Extract256<ushort>();
-            Extract256<int>();
-            Extract256<uint>();
-            Extract256<long>();
-            Extract256<ulong>();
-            Extract256<float>();
-            Extract256<double>();
         }
 
-        void Extract128<T>()
+        public void extract256()
+        {
+            extract256_check<byte>();
+            extract256_check<sbyte>();
+            extract256_check<short>();
+            extract256_check<ushort>();
+            extract256_check<int>();
+            extract256_check<uint>();
+            extract256_check<long>();
+            extract256_check<ulong>();
+            extract256_check<float>();
+            extract256_check<double>();
+            
+        }
+
+        void extract128_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
@@ -52,7 +57,7 @@ namespace Z0.Test
             TypeCaseEnd<T>();                
         }
             
-        public void Extract256<T>()
+        public void extract256_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();

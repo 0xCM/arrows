@@ -50,23 +50,6 @@ namespace Z0.Test
             var s3 = dinx.shuffle(v1,m3);            
         }
 
-        public void perminc()
-        {
-            var p = Perm.Identity(16);
-            for(var i=0; i<16; i++)
-                p.Inc();
-            Claim.eq(p, Perm.Identity(16));
-        }
-
-        public void permdec()
-        {
-            var p = Perm.Identity(16);
-            for(var i=0; i<16; i++)
-                p.Dec();
-
-            Claim.eq(p, Perm.Identity(16));
-        }
-
         void Permute4i32(int cycles = DefaltCycleCount, bool trace = false)
         {
             var pSrc = Random.EnumStream<Perm4>(x => (byte)x > 5);

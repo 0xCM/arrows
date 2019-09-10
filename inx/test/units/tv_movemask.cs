@@ -14,10 +14,10 @@ namespace Z0.Test
 
     public class tv_movemask : UnitTest<tv_movemask>
     {
-        public void movemask256u8()
+        public void movemask256_u8()
         {
-            var n = Pow2.T12;
-            var src = Random.Span256<byte>(n);
+            var n = SampleSize;
+            var src = Random.Span256<byte>(blocks:n);
 
             for(var i=0; i<n; i++)
             {
@@ -41,10 +41,10 @@ namespace Z0.Test
             }
         }
 
-        public void movemask128u8()
+        public void movemask128_u8()
         {
-            var n = Pow2.T12;
-            var src = Random.Span128<byte>(n);
+            var n = SampleSize;
+            var src = Random.Span128<byte>(blocks:n);
             for(var i=0; i<n; i++)
             {
                 var srcVector = src.ToCpuVec128(i);
@@ -59,7 +59,7 @@ namespace Z0.Test
             }
         }
 
-        public void movemask256f32()
+        public void movemask256_f32()
         {
             var n = Pow2.T12;
             var src = Random.Span256<float>(n);
@@ -78,7 +78,7 @@ namespace Z0.Test
         }
 
 
-        public void movemask256f64()
+        public void movemask256_f64()
         {
             var n = Pow2.T12;
             var src = Random.Span256<double>(n);
