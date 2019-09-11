@@ -61,8 +61,8 @@ namespace Z0.Test
             {
                 var x1 = Random.CpuVec128<T>();                    
                 var y1 = Random.CpuVec128<T>();                    
-                var z1 = gbits.andnot(in x1, in y1);
-                var z2 = gbits.andnot(in x1, in x1);
+                var z1 = gbits.andn(in x1, in y1);
+                var z2 = gbits.andn(in x1, in x1);
 
                 var z = PrimalInfo.Get<T>().Zero;
                 for(var j = 0; j<z1.Length(); j++)

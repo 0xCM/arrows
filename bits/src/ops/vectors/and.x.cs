@@ -37,7 +37,7 @@ namespace Z0
                 => gbits.and(in lhs,in rhs);
 
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> And<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        public static ref BlockMatrix<M,N,T> And<M,N,T>(this ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    

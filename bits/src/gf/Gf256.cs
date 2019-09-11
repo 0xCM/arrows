@@ -59,10 +59,10 @@ namespace Z0
         /// Creates an N^2 multiplication table for the values [1...N]
         /// </summary>
         /// <typeparam name="N">The table order</typeparam>
-        public static Matrix<N,ushort> products<N>(N n = default)
+        public static BlockMatrix<N,ushort> products<N>(N n = default)
             where N : ITypeNat, new()
         {
-            var dst = Matrix.Alloc<N,ushort>();
+            var dst = BlockMatrix.Alloc<N,ushort>();
             products(1, (ushort)n.value, ref dst.Unblocked[0]);
             return dst;
         }
@@ -71,9 +71,9 @@ namespace Z0
         /// Computes the full multiplication table for GF512
         /// </summary>
         /// <param name="dst">The target matrix</param>
-        public static ref Matrix<N512,ushort> products(out Matrix<N512,ushort> dst)
+        public static ref BlockMatrix<N512,ushort> products(out BlockMatrix<N512,ushort> dst)
         {
-            dst = Matrix.Alloc<N512,ushort>();
+            dst = BlockMatrix.Alloc<N512,ushort>();
             for(ushort i=1; i < 512; i++)
             for(ushort j=1; j < 512; j++)
                 dst[i, j] = Gf512.mul(i,j);
@@ -145,10 +145,10 @@ namespace Z0
         /// Creates an N^2 multiplication table for the values [1...N]
         /// </summary>
         /// <typeparam name="N">The table order</typeparam>
-        public static Matrix<N,byte> products<N>(N n = default)
+        public static BlockMatrix<N,byte> products<N>(N n = default)
             where N : ITypeNat, new()
         {
-            var dst = Matrix.Alloc<N,byte>();
+            var dst = BlockMatrix.Alloc<N,byte>();
             products(1, (byte)n.value, ref dst.Unblocked[0]);
             return dst;
         }
@@ -157,9 +157,9 @@ namespace Z0
         /// Computes the full multiplication table for GF256
         /// </summary>
         /// <param name="dst">The target matrix</param>
-        public static ref Matrix<N256,byte> products(out Matrix<N256,byte> dst)
+        public static ref BlockMatrix<N256,byte> products(out BlockMatrix<N256,byte> dst)
         {
-            dst = Matrix.Alloc<N256,byte>();
+            dst = BlockMatrix.Alloc<N256,byte>();
             for(uint i=1; i < 256; i++)
             for(uint j=1; j < 256; j++)
                 dst[i, j] = Gf256.mul((byte)i,(byte)j);

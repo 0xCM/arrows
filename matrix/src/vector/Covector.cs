@@ -143,8 +143,8 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,T> Transpose()
-            => Vector<N,T>.LoadAligned(ref data[0]);
+        public BlockVector<N,T> Transpose()
+            => BlockVector<N,T>.LoadAligned(ref data[0]);
         
  
         public bool Equals(Covector<N,T> rhs)

@@ -15,8 +15,8 @@ namespace Z0.Mkl
     public class t_getrf : t_mkl<t_getrf>
     {
         // Taken from https://www.ibm.com/support/knowledgecenter/en/SSFHY8_6.1/reference/am5gr_hsgetrf.html
-        static Matrix<N9,double> DGETRF_In
-            => Matrix.Define(new double[]{
+        static BlockMatrix<N9,double> DGETRF_In
+            => BlockMatrix.Define(new double[]{
             1.0,  1.2,  1.4,  1.6,  1.8,  2.0,  2.2,  2.4,  2.6,
             1.2,  1.0,  1.2,  1.4,  1.6,  1.8,  2.0,  2.2,  2.4,
             1.4,  1.2,  1.0,  1.2,  1.4,  1.6,  1.8,  2.0,  2.2,
@@ -28,8 +28,8 @@ namespace Z0.Mkl
             2.6,  2.4,  2.2,  2.0,  1.8,  1.6,  1.4,  1.2,  1.0
             }, n9);
             
-        static Matrix<N9,double> DGETRF_Out
-            => Matrix.Define(new double[]{
+        static BlockMatrix<N9,double> DGETRF_Out
+            => BlockMatrix.Define(new double[]{
                 2.6,   2.4,  2.2,  2.0,  1.8,  1.6,  1.4,  1.2,  1.0, 
                 0.4,   0.3,  0.6,  0.8,  1.1,  1.4,  1.7,  1.9,  2.2,
                 0.5,  -0.4,  0.4,  0.8,  1.2,  1.6,  2.0,  2.4,  2.8,
@@ -70,7 +70,7 @@ namespace Z0.Mkl
             Span<int> pivots = new int[math.max(m,n)*2];
 
             var A = RMat<M,N,double>(closed(1,250.0)).Apply(x => x.Truncate());
-            var X = Matrix.Alloc<M,N,double>();
+            var X = BlockMatrix.Alloc<M,N,double>();
             mkl.getrf(A, pivots, ref X);
             X.Apply(x => x.Round(4));
 

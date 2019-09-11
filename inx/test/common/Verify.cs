@@ -12,7 +12,7 @@ namespace Z0.Test
 
     public static class Verification
     {
-        public static void Equality<N,T>(Vector<N,T> vExpect, Vector<N,T> vResult)
+        public static void Equality<N,T>(BlockVector<N,T> vExpect, BlockVector<N,T> vResult)
             where T : struct
             where N : ITypeNat, new()
         {

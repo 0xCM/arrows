@@ -153,7 +153,7 @@ namespace Z0.Rng
             return markov_vgen(factor, scale, dst);
         }   
         
-        void VerifyRightStochastic<N,T>(Matrix<N,T> m, N n = default)
+        void VerifyRightStochastic<N,T>(BlockMatrix<N,T> m, N n = default)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -166,7 +166,7 @@ namespace Z0.Rng
         {
             var tol = .0001;
             var radius = closed(1 - tol,1 + tol);   
-            var m = Matrix.Alloc(n, rep);
+            var m = BlockMatrix.Alloc(n, rep);
             for(var i=0; i< count; i++)
             {
                 Random.MarkovMat(ref m);
@@ -180,7 +180,7 @@ namespace Z0.Rng
         {
             var tol = .0001;
             var radius = closed(1 - tol,1 + tol);   
-            var v = Vector.Alloc<N,T>();
+            var v = BlockVector.Alloc<N,T>();
             for(var i=0; i< count; i++)
             {
                 Random.MarkovVec(ref v);
@@ -193,9 +193,9 @@ namespace Z0.Rng
             where N : ITypeNat, new()
         {
 
-            var m1 = Matrix.Alloc(n, 0f);
-            var m2 = Matrix.Alloc(n, 0f);
-            var m3 = Matrix.Alloc(n, 0f);
+            var m1 = BlockMatrix.Alloc(n, 0f);
+            var m2 = BlockMatrix.Alloc(n, 0f);
+            var m3 = BlockMatrix.Alloc(n, 0f);
             for(var i=0; i< count; i++)
             {
                 Random.MarkovMat(ref m1);
@@ -209,9 +209,9 @@ namespace Z0.Rng
         void MarkovMatMulF64<N>(int count, N n = default)
             where N : ITypeNat, new()
         {
-            var m1 = Matrix.Alloc(n, 0d);
-            var m2 = Matrix.Alloc(n, 0d);
-            var m3 = Matrix.Alloc(n, 0d);
+            var m1 = BlockMatrix.Alloc(n, 0d);
+            var m2 = BlockMatrix.Alloc(n, 0d);
+            var m3 = BlockMatrix.Alloc(n, 0d);
             for(var i=0; i< count; i++)
             {
                 Random.MarkovMat(ref m1);

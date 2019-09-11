@@ -669,7 +669,7 @@ namespace Z0
         [MethodImpl(Inline)]        
         public BitVector128 AndNot(BitVector128 rhs)
         {
-            xmm = Bits.andnot(xmm,rhs);
+            xmm = Bits.andn(xmm,rhs);
             return this;
         }
 
@@ -709,7 +709,7 @@ namespace Z0
         /// <param name="pos">The position of the bit to enable</param>
         [MethodImpl(Inline)]
         public void Disable(BitPos pos)
-            => xmm = Bits.andnot(xmm, One << pos);                        
+            => xmm = Bits.andn(xmm, One << pos);                        
 
         [MethodImpl(Inline)]
         public readonly bool Test(BitPos pos)

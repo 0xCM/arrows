@@ -21,7 +21,7 @@ namespace Z0.Mkl
         /// <param name="a">The value by which to scale the source vector</param>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static void scale(float a, Vector<float> X)        
+        public static void scale(float a, BlockVector<float> X)        
             => CBLAS.cblas_sscal(X.Length, a, ref head(X), 1);
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Z0.Mkl
         /// <param name="y">The target vector</param>
         /// <remarks>This adds the overhead of a copy operation on the vector</remarks>
         [MethodImpl(Inline)]
-        public static ref Vector<float> scale(float a, in Vector<float> x, ref Vector<float> y)        
+        public static ref BlockVector<float> scale(float a, in BlockVector<float> x, ref BlockVector<float> y)        
         {
             CBLAS.cblas_sscal(x.Length, a, ref head(x.CopyTo(ref y)), 1);
             return ref y;
@@ -44,7 +44,7 @@ namespace Z0.Mkl
         /// <param name="a">The value by which to scale the source vector</param>
         /// <param name="x">The source vector</param>
         [MethodImpl(Inline)]
-        public static void scale(double a, Vector<double> x)        
+        public static void scale(double a, BlockVector<double> x)        
             => CBLAS.cblas_dscal(x.Length, a, ref head(x), 1);
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Z0.Mkl
         /// <param name="y">The target vector</param>
         /// <remarks>This adds the overhead of a copy operation on the vector</remarks>
         [MethodImpl(Inline)]
-        public static ref Vector<double> scale(double a, in Vector<double> x, ref Vector<double> y)        
+        public static ref BlockVector<double> scale(double a, in BlockVector<double> x, ref BlockVector<double> y)        
         {
             CBLAS.cblas_dscal(x.Length, a, ref head(x.CopyTo(ref y)), 1);
             return ref y;

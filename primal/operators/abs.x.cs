@@ -46,22 +46,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref long Abs(this ref long src)
             => ref math.abs(ref src);
-
-        /// <summary>
-        /// Computes the absolute value of the source in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static ref float Abs(this ref float src)
-            => ref math.abs(ref src);
-
-        /// <summary>
-        /// Computes the absolute value of the source in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static ref double Abs(this ref double src)
-            => ref math.abs(ref src);
-
    }
 }

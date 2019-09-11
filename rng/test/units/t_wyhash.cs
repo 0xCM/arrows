@@ -21,7 +21,7 @@ namespace Z0.Rng
             var dim = N12.Rep;
             var trials = Pow2.T16;
             var maxVal = (ulong)Pow2.T07;
-            var maxVec = Vector.Alloc(dim,maxVal);
+            var maxVec = BlockVector.Alloc(dim,maxVal);
             var buckets = new ulong[maxVal];
 
 

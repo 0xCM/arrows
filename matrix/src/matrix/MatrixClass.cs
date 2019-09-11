@@ -13,47 +13,6 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public interface IMatrixClass
-    {
-        
-    }
-
-    public interface ISquareMatrix : IMatrixClass
-    {
-        
-    }
-
-
-    public readonly struct MatrixClass : IMatrixClass
-    {        
-
-
-
-    }    
-
-    
-    
-    public readonly struct MatrixClass<T> : IMatrixClass
-        where T : struct    
-    {        
-
-
-
-    }    
-
-    /// <summary>
-    /// Defines matrix classifications 
-    /// </summary>
-    public readonly struct MatrixClass<M,N,T> : IMatrixClass
-        where M : ITypeNat, new()
-        where N : ITypeNat, new()
-        where T : struct    
-    {        
-
-
-
-    }
-
     public enum TriangularKind : byte
     {
         

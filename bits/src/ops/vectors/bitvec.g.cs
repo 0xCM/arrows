@@ -38,7 +38,7 @@ namespace Z0
                 => FixedBits.FromVector(v,rep);
 
         /// <summary>
-        /// Creates a type-parametric fixed-length bitvector from a non-parametric bitvector
+        /// Creates a primal bitvector from a fixed bitvector
         /// </summary>
         /// <param name="s">The scalar value</param>
         /// <typeparam name="V">The nonparametric vector of fixed size</typeparam>
@@ -48,35 +48,40 @@ namespace Z0
             where S : unmanaged
                 => bvfixed.PrimalBits;
         
-
+        /// <summary>
+        /// Creates a type-parametric fixed-length bitvector from a scalar source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="V">The nonparametric vector of fixed size</typeparam>
+        /// <typeparam name="S">A supported scalar type</typeparam>
         [MethodImpl(Inline)]
-        public static V bitvec<V,S>(in S scalar)
+        public static V bitvector<V,S>(in S src)
             where V : unmanaged, IFixedBits<V,S>
             where S : unmanaged
         {
             if(typeof(S) == typeof(UInt4))
             {
-                var bv = BitVector4.FromScalar(uInt4(in scalar));
+                var bv = BitVector4.FromScalar(uInt4(in src));
                 return bvgeneric<V>(ref bv);
             }
             else if (typeof(S) == typeof(byte))
             {
-                var bv = BitVector8.FromScalar(uint8(in scalar));
+                var bv = BitVector8.FromScalar(uint8(in src));
                 return bvgeneric<V>(ref bv);
             }
             else if (typeof(S) == typeof(ushort))
             {
-                var bv = BitVector16.FromScalar(uint16(in scalar));
+                var bv = BitVector16.FromScalar(uint16(in src));
                 return bvgeneric<V>(ref bv);
             }
             else if (typeof(S) == typeof(uint))
             {
-                var bv = BitVector32.FromScalar(uint32(in scalar));
+                var bv = BitVector32.FromScalar(uint32(in src));
                 return bvgeneric<V>(ref bv);
             }
             else if (typeof(S) == typeof(ulong))
             {
-                var bv = BitVector64.FromScalar(uint64(in scalar));
+                var bv = BitVector64.FromScalar(uint64(in src));
                 return bvgeneric<V>(ref bv);
             }
             else

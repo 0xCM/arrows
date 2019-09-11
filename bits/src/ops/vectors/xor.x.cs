@@ -33,7 +33,7 @@ namespace Z0
                 => gbits.xor(in lhs,in rhs);
         
         [MethodImpl(Inline)]
-        public static ref Vector<T> XOr<T>(ref Vector<T> lhs, Vector<T> rhs)
+        public static ref BlockVector<T> XOr<T>(ref BlockVector<T> lhs, BlockVector<T> rhs)
             where T : struct
         {
             gbits.xor(lhs.Unblocked, rhs.Unblocked);
@@ -41,7 +41,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> XOr<M,N,T>(this ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        public static ref BlockMatrix<M,N,T> XOr<M,N,T>(this ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    

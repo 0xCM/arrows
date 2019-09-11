@@ -155,6 +155,7 @@ namespace Z0
             return ref dst;
         }
 
+
         /// <summary>
         /// _mm256_insertf128_si256: Overwrites a 128-bit lane in the target with the content of the source vector
         /// </summary>
@@ -233,6 +234,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> insert(in Vec128<ulong> src, in Vec256<ulong> dst, byte index)        
             =>  InsertVector128(dst,src,index);
+        
 
     }
 }

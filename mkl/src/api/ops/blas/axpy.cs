@@ -24,7 +24,7 @@ namespace Z0.Mkl
         /// <param name="Y">The vector to be added</param>
         /// <param name="Z">The target vector</param>        
         [MethodImpl(Inline)]
-        public static void axpy<N>(float a, Vector<N,float> X, Vector<N,float> Y, ref Vector<N,float> Z)
+        public static void axpy<N>(float a, BlockVector<N,float> X, BlockVector<N,float> Y, ref BlockVector<N,float> Z)
             where N : ITypeNat, new()
         {
             Y.CopyTo(ref Z);        
@@ -39,7 +39,7 @@ namespace Z0.Mkl
         /// <param name="Y">The vector to be added</param>
         /// <param name="Z">The target vector</param>        
         [MethodImpl(Inline)]
-        public static void axpy(float a, Vector<float> X, Vector<float> Y, ref Vector<float> Z)
+        public static void axpy(float a, BlockVector<float> X, BlockVector<float> Y, ref BlockVector<float> Z)
         {
             Y.CopyTo(ref Z);        
             CBLAS.cblas_saxpy(length(X,Y), a, ref head(X), 1, ref head(Z), 1);
@@ -53,7 +53,7 @@ namespace Z0.Mkl
         /// <param name="Y">The vector to be added</param>
         /// <param name="Z">The target vector</param>        
         [MethodImpl(Inline)]
-        public static void axpy(double a, Vector<double> X, Vector<double> Y, ref Vector<double> Z)
+        public static void axpy(double a, BlockVector<double> X, BlockVector<double> Y, ref BlockVector<double> Z)
         {
             Y.CopyTo(ref Z);        
             CBLAS.cblas_daxpy(length(X,Y), a, ref head(X), 1, ref head(Z), 1);

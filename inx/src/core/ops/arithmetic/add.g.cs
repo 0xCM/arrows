@@ -138,7 +138,7 @@ namespace Z0
         /// <typeparam name="N">The vector length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> add<N,T>(in Vector<N,T> x, in Vector<N,T> y, ref Vector<N,T> z)
+        public static ref BlockVector<N,T> add<N,T>(in BlockVector<N,T> x, in BlockVector<N,T> y, ref BlockVector<N,T> z)
             where N : ITypeNat, new()
             where T : struct    
         {

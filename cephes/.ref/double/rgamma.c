@@ -148,62 +148,66 @@ double chbevl(), exp(), log(), sin(), lgam();
 extern double PI, MAXLOG, MAXNUM;
 
 
-double rgamma(x)
-double x;
+double rgamma(double x)
 {
-double w, y, z;
-int sign;
+	double w, y, z;
+	int sign;
 
-if( x > 34.84425627277176174)
+	if( x > 34.84425627277176174)
 	{
-	mtherr( name, UNDERFLOW );
-	return(1.0/MAXNUM);
-	}
-if( x < -34.034 )
-	{
-	w = -x;
-	z = sin( PI*w );
-	if( z == 0.0 )
-		return(0.0);
-	if( z < 0.0 )
-		{
-		sign = 1;
-		z = -z;
-		}
-	else
-		sign = -1;
-
-	y = log( w * z ) - log(PI) + lgam(w);
-	if( y < -MAXLOG )
-		{
 		mtherr( name, UNDERFLOW );
-		return( sign * 1.0 / MAXNUM );
-		}
-	if( y > MAXLOG )
+		return(1.0/MAXNUM);
+	}
+
+	if( x < -34.034 )
+	{
+		w = -x;
+		z = sin( PI*w );
+		if( z == 0.0 )
+			return(0.0);
+		if( z < 0.0 )
 		{
-		mtherr( name, OVERFLOW );
-		return( sign * MAXNUM );
+			sign = 1;
+			z = -z;
 		}
-	return( sign * exp(y));
-	}
-z = 1.0;
-w = x;
+		else
+			sign = -1;
 
-while( w > 1.0 )	/* Downward recurrence */
-	{
-	w -= 1.0;
-	z *= w;
+		y = log( w * z ) - log(PI) + lgam(w);
+		if( y < -MAXLOG )
+		{
+			mtherr( name, UNDERFLOW );
+			return( sign * 1.0 / MAXNUM );
+		}
+		if( y > MAXLOG )
+		{
+			mtherr( name, OVERFLOW );
+			return( sign * MAXNUM );
+		}
+		return( sign * exp(y));
 	}
-while( w < 0.0 )	/* Upward recurrence */
-	{
-	z /= w;
-	w += 1.0;
-	}
-if( w == 0.0 )		/* Nonpositive integer */
-	return(0.0);
-if( w == 1.0 )		/* Other integer */
-	return( 1.0/z );
+	z = 1.0;
+	w = x;
 
-y = w * ( 1.0 + chbevl( 4.0*w-2.0, R, 16 ) ) / z;
-return(y);
+	while( w > 1.0 )	/* Downward recurrence */
+	{
+		w -= 1.0;
+		z *= w;
+	}
+	
+	while( w < 0.0 )	/* Upward recurrence */
+	{
+		z /= w;
+		w += 1.0;
+	}
+	
+	if( w == 0.0 )		/* Nonpositive integer */
+		return(0.0);
+	
+	if( w == 1.0 )		/* Other integer */
+		return( 1.0/z );
+
+	y = w * ( 1.0 + chbevl( 4.0*w-2.0, R, 16 ) ) / z;
+	
+	return(y);
 }

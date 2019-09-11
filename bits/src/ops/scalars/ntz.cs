@@ -9,59 +9,67 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-    using Z0;
- 
+
+    using static System.Runtime.Intrinsics.X86.Bmi1;
+    using static System.Runtime.Intrinsics.X86.Bmi1.X64;
+
     using static zfunc;
     
     partial class Bits
     {                
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(sbyte src)
-           => Bmi1.TrailingZeroCount((uint)src);
+           => TrailingZeroCount((uint)src);
 
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(byte src)
-           => Bmi1.TrailingZeroCount(src);
+           => TrailingZeroCount(src);
 
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(short src)
-           => Bmi1.TrailingZeroCount((uint)src);
+           => TrailingZeroCount((uint)src);
 
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(ushort src)
-             => Bmi1.TrailingZeroCount(src);
+             => TrailingZeroCount(src);
 
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
          [MethodImpl(Inline)]
          public static ulong ntz(int src)
-            => Bmi1.TrailingZeroCount((uint)src);
+            => TrailingZeroCount((uint)src);
 
         /// <summary>
+        /// int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(uint src)
-            => Bmi1.TrailingZeroCount(src);
+            => TrailingZeroCount(src);
 
         /// <summary>
         /// Counts the number of trailing zero bits in the source
@@ -69,14 +77,15 @@ namespace Z0
         /// <param name="src">The bit source</param>
          [MethodImpl(Inline)]
          public static ulong ntz(long src)
-            => Bmi1.X64.TrailingZeroCount((ulong)src);
+            => TrailingZeroCount((ulong)src);
 
         /// <summary>
+        /// __int64 _mm_tzcnt_64 (unsigned __int64 a) TZCNT reg, reg/m64
         /// Counts the number of trailing zero bits in the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong ntz(ulong src)
-            => Bmi1.X64.TrailingZeroCount(src);
+            => TrailingZeroCount(src);
     }
 }

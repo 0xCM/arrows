@@ -14,74 +14,52 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public ref struct Vector<N,T>
+    public struct Vector<N,T>
         where N : ITypeNat, new()
-        where T : struct    
+        where T : unmanaged
     {
-        Span256<T> data;
-
-        static readonly N NatRep = new N();
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(ref T src)
-            => new Vector<N,T>(ref src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(Span<N,T> src)
-            => new Vector<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(ReadOnlySpan<T> src)
-            => new Vector<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(Span<T> src)
-            => new Vector<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(Span256<T> src)
-            => new Vector<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> LoadAligned(params T[] src)
-            => new Vector<N, T>(src);
+         MemorySpan<T> data;        
 
         /// <summary>
-        /// Specifies the length of the vector, i.e. its component count
+        /// The vector's dimension
         /// </summary>
-        public static readonly int Length = nati<N>();     
+        public static readonly int Dim = nati<N>();     
 
+        public static readonly Vector<N,T> Zero = new Vector<N,T>(new T[Dim]);
+         
         /// <summary>
-        /// Vec => Slice
+        /// Implicitly reveals the vector's underlying storage
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <typeparam name="N">The natural length</typeparam>
         /// <typeparam name="T">THe component type</typeparam>
         [MethodImpl(Inline)]   
         public static implicit operator Span<N,T>(Vector<N,T> src)
-            => src.data;
-
-        /// <summary>
-        /// Slice => Vec
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="N">The natural length</typeparam>
-        /// <typeparam name="T">THe component type</typeparam>
-        [MethodImpl(Inline)]   
-        public static implicit operator Vector<N,T>(Span<N,T> src)
-            => new Vector<N,T>(src);
+            => src.data.Span;
 
         [MethodImpl(Inline)]   
-        public static implicit operator Span256<T>(Vector<N,T> src)
+        public static implicit operator MemorySpan<T>(Vector<N,T> src)
             => src.data;
 
         [MethodImpl(Inline)]   
         public static implicit operator Vector<T>(Vector<N,T> src)
-            => src.Denaturalize();
+            => new Vector<T>(src.data);
 
         [MethodImpl(Inline)]   
-        public static implicit operator ReadOnlySpan256<T>(Vector<N,T> src)
-            => src.data;
+        public static implicit operator ReadOnlySpan<T>(Vector<N,T> src)
+            => src.data.Span;
+
+        [MethodImpl(Inline)]   
+        public static implicit operator Vector<N,T>(T[] src)
+            => new Vector<N, T>(src);
+
+        [MethodImpl(Inline)]   
+        public static implicit operator Vector<N,T>(MemorySpan<T> src)
+            => new Vector<N, T>(src);
+
+        [MethodImpl(Inline)]   
+        public static implicit operator Vector<N,T>(Vector<T> src)
+            => new Vector<N, T>(src.Data);
 
         [MethodImpl(Inline)]
         public static bool operator == (Vector<N,T> lhs, in Vector<N,T> rhs) 
@@ -93,70 +71,56 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T operator *(Vector<N,T> lhs, in Vector<N,T> rhs)
-            => gmath.dot<T>(lhs.Unsized, rhs.Unsized);
-         
+            => gmath.dot<T>(lhs.Unsized, rhs.Unsized);         
 
         [MethodImpl(Inline)]
-        Vector(ref T src)
-        {  
-            data =  Span256.Load<T>(ref src, Length);  
-        }
-
-        [MethodImpl(Inline)]
-        Vector(in ReadOnlySpan<N,T> src)
+        public Vector(MemorySpan<T> src)
         {
-            data = Span256.Load(src.Unsized);
-        }
-
-        [MethodImpl(Inline)]
-        Vector(in ReadOnlySpan<T> src)
-        {
-            data = Span256.Load(src);
-        }
-
-        [MethodImpl(Inline)]
-        Vector(Span<T> src)
-        {
-            data = Span256.Load(src);
-        }
-
-        [MethodImpl(Inline)]
-        Vector(Span256<T> src)
-        {
-            require(src.Length >= Length);
+            require(src.Length >= Dim);
             data = src;
         }
 
         [MethodImpl(Inline)]
-        Vector(Span<N,T> src)
+        public Vector(T[] src)
         {
-            data = Span256.Load(src);
+            require(src.Length >= Dim);
+            data = src;
         }
                     
+        /// <summary>
+        /// Queries/manipulates component values
+        /// </summary>
         public ref T this[int index] 
             => ref data[index];
 
-        public Span<T> Unsized
+        public MemorySpan<T> Unsized
         {
             [MethodImpl(Inline)]
-            get => data.Unblocked;
+            get => data;
         }
  
+         /// <summary>
+        /// The count of vector components, otherwise known as its dimension
+        /// </summary>
+        public int Length
+        {
+            [MethodImpl(Inline)]
+            get => Dim;
+        }
+
         [MethodImpl(Inline)]
         public Covector<N,T> Transpose()
             => Covector<N, T>.Define(data);
 
         [MethodImpl(Inline)]
         public Vector<N,U> As<U>()
-            where U : struct
-                => new Vector<N, U>(MemoryMarshal.Cast<T,U>(Unsized));
+            where U : unmanaged
+                => new Vector<N, U>(data.As<U>());
 
         public bool Equals(Vector<N,T> rhs)
         {
-            var lhsData = Unsized;
-            var rhsData = rhs.Unsized;
-            for(var i = 0; i<lhsData.Length; i++)
-                if(gmath.neq(lhsData[i], rhsData[i]))
+            for(var i = 0; i<Dim; i++)
+                if(gmath.neq(data[i], rhs.data[i]))
                     return false;
             return true;
         }
@@ -164,23 +128,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public ref Vector<N,T> CopyTo(ref Vector<N,T> dst)
         {
-            Unsized.CopyTo(dst.Unsized);
+            data.CopyTo(dst.data);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,U> Convert<U>()
-            where U : struct
-               => new Vector<N,U>(convert<T,U>(data));
-
         public Vector<N,T> Replicate(bool structureOnly = false)
             => new Vector<N,T>(data.Replicate(structureOnly));
 
-        public Vector<T> Denaturalize()
-            => data;
-
-        public override bool Equals(object other)
-            => throw new NotSupportedException();
+        public override bool Equals(object rhs)
+            => rhs is Vector<N,T> x  && Equals(x);
  
         public override int GetHashCode()
             => throw new NotSupportedException();
@@ -188,11 +145,6 @@ namespace Z0
         public override string ToString()
             => throw new NotSupportedException();
     
-        public Span256<T> ToSpan256()
-            => data;
-
-        public ReadOnlySpan256<T> ToReadOnlySpan256()
-            => data;
     }
 }
 

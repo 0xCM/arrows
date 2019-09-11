@@ -15,6 +15,7 @@ namespace Z0
     partial class Bits
     {                
         /// <summary>
+        /// unsigned int _pext_u32 (unsigned int a, unsigned int mask) PEXT r32a, r32b, reg/m32
         /// Extracts mask-identified bits from the source and deposits 
         /// the result to the contiguous low bits of a zero-initialied target 
         /// </summary>
@@ -32,7 +33,7 @@ namespace Z0
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
         public static sbyte gather(in sbyte src, in sbyte mask)        
-            => (sbyte)Bmi2.ParallelBitExtract((uint)src, (uint)mask);
+            => (sbyte)ParallelBitExtract((uint)src, (uint)mask);
 
         /// <summary>
         /// Extracts mask-identified bits from the source and deposits 
@@ -45,6 +46,7 @@ namespace Z0
             => (short)ParallelBitExtract((uint)src,(uint)mask);
 
         /// <summary>
+        /// unsigned int _pext_u32 (unsigned int a, unsigned int mask) PEXT r32a, r32b, reg/m32
         /// Extracts mask-identified bits from the source and deposits 
         /// the result to the contiguous low bits of a zero-initialied target 
         /// </summary>

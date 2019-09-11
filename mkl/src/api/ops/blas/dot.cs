@@ -22,7 +22,7 @@ namespace Z0.Mkl
         /// <param name="X">The left vector</param>
         /// <param name="Y">The right vector</param>
         [MethodImpl(Inline)]
-        public static float dot<N>(Vector<N,float> x, Vector<N,float> y)
+        public static float dot<N>(BlockVector<N,float> x, BlockVector<N,float> y)
             where N : ITypeNat, new()
                 => dot(x.Unsized, y.Unsized);
 
@@ -32,7 +32,7 @@ namespace Z0.Mkl
         /// <param name="X">The left vector</param>
         /// <param name="Y">The right vector</param>
         [MethodImpl(Inline)]
-        public static double dot<N>(Vector<N,double> x, Vector<N,double> y)
+        public static double dot<N>(BlockVector<N,double> x, BlockVector<N,double> y)
             where N : ITypeNat, new()
                 => dot(x.Unsized, y.Unsized);
 
@@ -42,7 +42,7 @@ namespace Z0.Mkl
         /// <param name="X">The left vector</param>
         /// <param name="Y">The right vector</param>
         [MethodImpl(Inline)]
-        public static float dot(Vector<float> x, Vector<float> y)
+        public static float dot(BlockVector<float> x, BlockVector<float> y)
             => dot(x.Unblocked, y.Unblocked);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0.Mkl
         /// <param name="X">The left vector</param>
         /// <param name="Y">The right vector</param>
         [MethodImpl(Inline)]
-        public static double dot(Vector<double> x, Vector<double> y)
+        public static double dot(BlockVector<double> x, BlockVector<double> y)
             => dot(x.Unblocked, y.Unblocked);
 
         /// <summary>

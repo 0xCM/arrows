@@ -16,7 +16,7 @@ namespace Z0
 
     public static class MatrixX
     {
-        public static string Format<M,N,T>(this Matrix<M,N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
+        public static string Format<M,N,T>(this BlockMatrix<M,N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -42,7 +42,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static string Format<N,T>(this Matrix<N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
+        public static string Format<N,T>(this BlockMatrix<N,T> src, int? cellwidth = null, char? cellsep = null, Func<T,string> render = null)
             where N : ITypeNat, new()
             where T : struct    
                 => src.ToRectantular().Format(cellwidth, cellsep,render);
@@ -60,7 +60,7 @@ namespace Z0
         /// <typeparam name="N">The natural type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static string Fomat<N,T>(this Vector<N,T> src)
+        public static string Fomat<N,T>(this BlockVector<N,T> src)
             where T : struct    
             where N: ITypeNat, new()
                 => src.Unsized.FormatList();
@@ -73,7 +73,7 @@ namespace Z0
         /// <typeparam name="M">The natural row count type</typeparam>
         /// <typeparam name="N">The natural column count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public static void WriteTo<M,N,T>(this Matrix<M,N,T> src, FilePath dst, bool overwrite = true, TextFormat? fmt = null)
+        public static void WriteTo<M,N,T>(this BlockMatrix<M,N,T> src, FilePath dst, bool overwrite = true, TextFormat? fmt = null)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -110,7 +110,7 @@ namespace Z0
         /// <param name="n">The natural dimension value</param>
         /// <typeparam name="N">The natural dimension type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static bool IsRightStochastic<N,T>(this Matrix<N,T> src, N n = default)
+         public static bool IsRightStochastic<N,T>(this BlockMatrix<N,T> src, N n = default)
             where N : ITypeNat, new()
             where T : struct
         {

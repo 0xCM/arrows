@@ -24,7 +24,7 @@ namespace Z0.Mkl
         /// <param name="P"></param>
         /// <typeparam name="M"></typeparam>
         /// <typeparam name="N"></typeparam>
-        public static ref Matrix<M,N,double> getrf<M,N>(Matrix<M,N,double> A, Span<int> P, ref Matrix<M,N,double> X)
+        public static ref BlockMatrix<M,N,double> getrf<M,N>(BlockMatrix<M,N,double> A, Span<int> P, ref BlockMatrix<M,N,double> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
         {
@@ -46,7 +46,7 @@ namespace Z0.Mkl
         /// <param name="P"></param>
         /// <typeparam name="M"></typeparam>
         /// <typeparam name="N"></typeparam>
-        public static ref Matrix<N,double> getrf<N>(Matrix<N,double> A, Span<int> P, ref Matrix<N,double> X)
+        public static ref BlockMatrix<N,double> getrf<N>(BlockMatrix<N,double> A, Span<int> P, ref BlockMatrix<N,double> X)
             where N : ITypeNat, new()
         {
             var n = nati<N>();

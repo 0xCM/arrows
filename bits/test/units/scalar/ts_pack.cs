@@ -240,22 +240,22 @@ namespace Z0.Test
         public void reverse()
         {
             var x0 = Random.Next<byte>();
-            var y0 = x0.ToReversedBitString().Pack().First();
+            var y0 = x0.ToBitString().Reverse().Pack().First();
             var z0 = Bits.rev(x0);
             Claim.eq(y0,z0);
 
             var x1 = Random.Next<ushort>();
-            var y1 = x1.ToReversedBitString().Pack().TakeUInt16();
+            var y1 = x1.ToBitString().Reverse().Pack().TakeUInt16();
             var z1 = Bits.rev(x1);
             Claim.eq(y1,z1);
 
             var x2 = Random.Next<uint>();
-            var y2 = x2.ToReversedBitString().Pack().TakeUInt32();
+            var y2 = x2.ToBitString().Reverse().Pack().TakeUInt32();
             var z2 = Bits.rev(x2);
             Claim.eq(y2,z2);
 
             var x3 = Random.Next<ulong>();
-            var y3 = x3.ToReversedBitString().Pack().TakeUInt64();
+            var y3 = x3.ToBitString().Reverse().Pack().TakeUInt64();
             var z3 = Bits.rev(x3);
             Claim.eq(y3,z3);
 

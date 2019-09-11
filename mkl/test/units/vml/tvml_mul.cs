@@ -18,7 +18,7 @@ namespace Z0.Mkl.Test
         {
             var lhs = RVec<float>();
             var rhs = RVec<float>();
-            var dst1 = Vector.Alloc<float>(lhs.Length);
+            var dst1 = BlockVector.Alloc<float>(lhs.Length);
             mkl.mul(lhs,rhs, ref dst1);
             
             var dst2 = lhs.Replicate(true);
@@ -28,9 +28,9 @@ namespace Z0.Mkl.Test
 
         public void vMulF64()
         {
-            var lhs = Random.NatVec<N256,double>();
-            var rhs = Random.NatVec<N256,double>();
-            var dst1 = Vector.Alloc<N256,double>();
+            var lhs = Random.BlockVec<N256,double>();
+            var rhs = Random.BlockVec<N256,double>();
+            var dst1 = BlockVector.Alloc<N256,double>();
             mkl.mul(lhs,rhs, ref dst1);
             
             var dst2 = lhs.Replicate(true);
@@ -42,7 +42,7 @@ namespace Z0.Mkl.Test
         {
             var lhs1 = RVec<double>(samples);
             var rhs1 = RVec<double>(samples);
-            var dst1 = Vector.Alloc<double>(samples);
+            var dst1 = BlockVector.Alloc<double>(samples);
 
 
             var sw1 = stopwatch();

@@ -17,8 +17,8 @@ namespace Z0
     public static partial class Bits
     {                
         /// <summary>
-        /// _andn_u32
-        /// Computes the bitwise and of the left operand and the complement of the right operand
+        /// unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -27,8 +27,17 @@ namespace Z0
             => (byte)AndNot(lhs,rhs);
 
         /// <summary>
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static sbyte andn(in sbyte lhs, in sbyte rhs)
+            => (sbyte)andn((int)lhs,(int)rhs);
+
+        /// <summary>
         /// unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
-        /// Computes the bitwise and of the left operand and the complement of the right operand
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -37,8 +46,17 @@ namespace Z0
             => (ushort)AndNot(lhs,rhs);
 
         /// <summary>
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static short andn(in short lhs, in short rhs)
+            => (short)andn((int)lhs,(int)rhs);
+
+        /// <summary>
         /// unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
-        /// Computes the bitwise and of the left operand and the complement of the right operand
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -47,8 +65,26 @@ namespace Z0
             => AndNot(lhs,rhs);
 
         /// <summary>
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static int andn(in int lhs, in int rhs)
+            => (int)AndNot((uint)lhs,(uint)rhs);
+
+        /// <summary>
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        [MethodImpl(Inline)]
+        public static long andn(in long lhs, in long rhs)
+            => (long)AndNot((ulong)lhs,(ulong)rhs);
+ 
+        /// <summary>
         /// unsigned __int64 _andn_u64 (unsigned __int64 a, unsigned __int64 b) ANDN r64a, r64b, reg/m64
-        /// Computes the bitwise and of the left operand and the complement of the right operand
+        /// Effects the composite operation (~ lhs) & rhs for the left and right operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>

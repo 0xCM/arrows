@@ -73,10 +73,10 @@ namespace Z0.Test
             where N : ITypeNat, new()
         {
             var domain = closed(min, max);
-            var v1 = Vector.Alloc<N,T>();
-            var v2 = Vector.Alloc<N,T>();
-            var v3 = Vector.Alloc<N,T>();
-            var e3 = Vector.Alloc<N,T>();
+            var v1 = BlockVector.Alloc<N,T>();
+            var v2 = BlockVector.Alloc<N,T>();
+            var v3 = BlockVector.Alloc<N,T>();
+            var e3 = BlockVector.Alloc<N,T>();
             var sw1 = stopwatch(false);            
             var sw2 = stopwatch(false);
 
@@ -110,9 +110,9 @@ namespace Z0.Test
             var n = new N();
             for(var i=0; i< CycleCount; i++)            
             {
-                var v1 = Random.NatVec<N,T>();
-                var v2 = Random.NatVec<N,T>();
-                var v3 = Vector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
+                var v1 = Random.BlockVec<N,T>();
+                var v2 = Random.BlockVec<N,T>();
+                var v3 = BlockVector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
                 var v4 = Linear.add(ref v1,v2);
                 Claim.yea(v3 == v4);
             }
@@ -125,9 +125,9 @@ namespace Z0.Test
             var n = new N();
             for(var i=0; i< CycleCount; i++)            
             {
-                var v1 = Random.NatVec<N,T>();
-                var v2 = Random.NatVec<N,T>();
-                var v3 = Vector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
+                var v1 = Random.BlockVec<N,T>();
+                var v2 = Random.BlockVec<N,T>();
+                var v3 = BlockVector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);
                 var v4 = Linear.sub(ref v1,v2);
                 Claim.yea(v3 == v4);
             }

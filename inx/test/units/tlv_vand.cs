@@ -34,13 +34,14 @@ namespace Z0.Test
         {
             var rep = new N();
             var len = (int)rep.value;
-            var data = Random.NatVecPair<N,T>();            
-            var vResult = Linear.and(ref data.Left, data.Right);
+            var u = Random.BlockVec<N,T>();
+            var v = Random.BlockVec<N,T>();
+            var vResult = Linear.and(ref u, v);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)
-                calcs[i] = gbits.and(data.Left[i], data.Right[i]);
-            var vExpect = Vector.Load(calcs, rep);            
+                calcs[i] = gbits.and(u[i], v[i]);
+            var vExpect = BlockVector.Load(calcs, rep);            
             
             Verification.Equality(vExpect, vResult);
         }

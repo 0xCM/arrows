@@ -62,7 +62,7 @@ namespace Z0
                 } 
                 while (s >= 1 || s == 0);
                 
-                var x = fmath.sqrt(-2.0 * math.ln(s) / s);                
+                var x = fmath.sqrt(-2.0 * fmath.ln(s) / s);                
                 yield return v * x;                
                 yield return spec.Mean + spec.StdDev * u * x;
            }
@@ -81,7 +81,7 @@ namespace Z0
                 } 
                 while (s >= 1 || s == 0);
                 
-                var x = fmath.sqrt(-2.0f * math.ln(s) / s);
+                var x = fmath.sqrt(-2.0f * fmath.ln(s) / s);
                 yield return v * x;
                 yield return spec.Mean + spec.StdDev * u * x;
            }

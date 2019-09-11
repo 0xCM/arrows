@@ -80,7 +80,7 @@ namespace Z0
         {
             while (rhs != 0)
             {
-                var rem = math.mod(lhs,rhs);
+                var rem = lhs % rhs;
                 lhs = rhs;
                 rhs = rem;
             }
@@ -106,43 +106,13 @@ namespace Z0
         {
             while (rhs != 0)
             {
-                var rem = math.mod(lhs,rhs);
+                var rem = lhs % rhs;
                 lhs = rhs;
                 rhs = rem;
             }
 
             return lhs;
         }
-
-        public static float gcd(float lhs, float rhs)
-        {
-            var x = math.abs(lhs);
-            var y = math.abs(rhs);
-            while (y != 0)
-            {
-                var rem = (x % y);
-                x = y;
-                y = rem;
-            }
-
-            return x;
-        }
-
-        public static double gcd(double lhs, double rhs)
-        {
-            var x = math.abs(lhs);
-            var y = math.abs(rhs);
-            while (y != 0)
-            {
-                var rem = x % y;
-                x = y;
-                y = rem;
-            }
-
-            return x;
-        } 
- 
-
     }
 
 }

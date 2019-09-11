@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="len">The result vector length</param>
         [MethodImpl(Inline)]
-        public static Vector<T> MarkovVec<T>(this IPolyrand random, int length)
+        public static BlockVector<T> MarkovVec<T>(this IPolyrand random, int length)
             where T : struct
         {
             if(typeof(T) == typeof(float))                
@@ -55,11 +55,11 @@ namespace Z0
         /// <param name="len">The result vector length</param>
         /// <typeparam name="N">The length type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> MarkovVec<N,T>(this IPolyrand random)
+        public static BlockVector<N,T> MarkovVec<N,T>(this IPolyrand random)
             where N : ITypeNat, new()
             where T : struct
         {
-            var dst = Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             random.MarkovVec(dst.Unsized);
             return dst;
         }
@@ -73,7 +73,7 @@ namespace Z0
         /// <param name="dim"></param>
         /// <typeparam name="N">The order type</typeparam>
         /// <typeparam name="T"></typeparam>
-        public static Matrix<N,T> MarkovMat<N,T>(this IPolyrand random, T rep = default, N dim = default)
+        public static BlockMatrix<N,T> MarkovMat<N,T>(this IPolyrand random, T rep = default, N dim = default)
             where T : struct
             where N : ITypeNat, new()
         {
@@ -81,11 +81,11 @@ namespace Z0
             var n = nati<N>();
             for(int row=0; row < n; row++)
                 random.MarkovVec<T>(data.Slice(row*n, n));                            
-            return Z0.Matrix.Load<N,T>(data);
+            return Z0.BlockMatrix.Load<N,T>(data);
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> MarkovVec<N,T>(this IPolyrand random, ref Vector<N,T> dst)
+        public static ref BlockVector<N,T> MarkovVec<N,T>(this IPolyrand random, ref BlockVector<N,T> dst)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -94,7 +94,7 @@ namespace Z0
         }
 
 
-        public static ref Matrix<N,T> MarkovMat<N,T>(this IPolyrand random, ref Matrix<N,T> dst)
+        public static ref BlockMatrix<N,T> MarkovMat<N,T>(this IPolyrand random, ref BlockMatrix<N,T> dst)
             where T : struct
             where N : ITypeNat, new()
         {
@@ -137,7 +137,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        static Vector<float> MarkovVec(this IPolyrand random, int length, float min, float max)
+        static BlockVector<float> MarkovVec(this IPolyrand random, int length, float min, float max)
         {            
             var dst = Z0.Span256.AllocBlocks<float>(Z0.Span256.MinBlocks<float>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);
@@ -145,7 +145,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static Vector<double> MarkovVec(this IPolyrand random, int length, double min, double max)
+        static BlockVector<double> MarkovVec(this IPolyrand random, int length, double min, double max)
         {                        
             var dst = Z0.Span256.AllocBlocks<double>(Z0.Span256.MinBlocks<double>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);

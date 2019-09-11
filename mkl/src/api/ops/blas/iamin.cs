@@ -20,7 +20,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static int iamin(Vector<float> X)        
+        public static int iamin(BlockVector<float> X)        
             => (int)CBLAS.cblas_isamin(X.Length, ref head(X), 1);
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static float amin(Vector<float> X)        
+        public static float amin(BlockVector<float> X)        
             => X[iamin(X)];
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static int iamin(Vector<double> X)        
+        public static int iamin(BlockVector<double> X)        
             => (int)CBLAS.cblas_idamin(X.Length, ref head(X), 1);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static double amin(Vector<double> X)        
+        public static double amin(BlockVector<double> X)        
             => X[iamin(X)];
 
 

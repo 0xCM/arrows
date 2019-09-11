@@ -16,14 +16,26 @@ namespace Z0
 
     partial class fmath
     {
+        /// <summary>
+        /// Computes the square root of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static float sqrt(float src)
             => MathF.Sqrt(src);
 
+        /// <summary>
+        /// Computes the square root of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static double sqrt(double src)
             => Math.Sqrt(src); 
 
+        /// <summary>
+        /// Computes the square root of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref float sqrt(ref float src)
         {
@@ -31,6 +43,10 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the square root of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref double sqrt(ref double src)
         {
@@ -38,6 +54,12 @@ namespace Z0
             return ref src;
         }
 
+        /// <summary>
+        /// Computes the square root of the source and stores the result 
+        /// in a specified target
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="dst">The target reference</param>
         [MethodImpl(Inline)]
         public static ref float sqrt(in float src, ref float dst)
         {
@@ -45,6 +67,12 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Computes the square root of the source and stores the result 
+        /// in a specified target
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="dst">The target reference</param>
         [MethodImpl(Inline)]
         public static ref double sqrt(in double src, ref double dst)
         {

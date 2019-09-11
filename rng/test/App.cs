@@ -33,9 +33,7 @@ namespace Z0.Rng
         {
             TimeSeries.Evolve(closed(-250.75, 256.5), Show).Wait();
         }
-
-        
-
+    
         Task<MemorySpan<uint>> Collect(uint[] state, ulong width, int points)
         {
             return Task.Factory.StartNew(() =>
@@ -73,10 +71,41 @@ namespace Z0.Rng
 
         }
 
+        void TestMrg32k3a()
+        {
+            var sw = stopwatch();
+            var rng = new MRG32k3a();
+            var min = long.MaxValue;
+            var max = long.MinValue;
+            var cycles = Pow2.T08;
+            var samples = Pow2.T22;
+            for(var cycle = 0; cycle < cycles; cycle++)
+            {
+                for(var i=0; i<samples; i++)
+                {   
+                    var next = rng.Next();
+                    if(next < min)
+                        min = next;
+                    if(next > max)
+                        max = next;
+                }
+                print('.');
+                if(cycle != 0 && cycle % 80 == 0)
+                    print();
+
+            }
+            print();
+            
+            OpTime time = (cycles*samples, sw, "MRG32k3a");
+            print(time);
+
+        }
+
         protected override void RunTests(params string[] filters)
         {     
+            TestMrg32k3a();
             
-            base.RunTests(filters);        
+            //base.RunTests(filters);        
         }
         public static void Main(params string[] args)
             => Run(args);

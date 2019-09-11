@@ -24,7 +24,7 @@ namespace Z0.Mkl
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> gemm<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, ref Matrix<M,N,T> X)
+        public static ref BlockMatrix<M,N,T> gemm<M,K,N,T>(BlockMatrix<M,K,T> A, BlockMatrix<K,N,T> B, ref BlockMatrix<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -66,7 +66,7 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-        public static ref Matrix<N,T> gemm<N,T>(Matrix<N,T> A, Matrix<N,T> B, ref Matrix<N,T> X)
+        public static ref BlockMatrix<N,T> gemm<N,T>(BlockMatrix<N,T> A, BlockMatrix<N,T> B, ref BlockMatrix<N,T> X)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -106,7 +106,7 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-        public static Matrix<M,N,float> gemm<M,K,N>(Matrix<M,K,float> A, Matrix<K,N,float> B)
+        public static BlockMatrix<M,N,float> gemm<M,K,N>(BlockMatrix<M,K,float> A, BlockMatrix<K,N,float> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -117,7 +117,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldx = n;
-            var X = Matrix.Alloc<M,N,float>();
+            var X = BlockMatrix.Alloc<M,N,float>();
             CBLAS.cblas_sgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0f, ref head(A), lda, ref head(B), ldb, 0, ref head(X), ldx);
             return X;
         }    
@@ -130,7 +130,7 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-        public static Matrix<M,N,double> gemm<M,K,N>(Matrix<M,K,double> A, Matrix<K,N,double> B)
+        public static BlockMatrix<M,N,double> gemm<M,K,N>(BlockMatrix<M,K,double> A, BlockMatrix<K,N,double> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -141,7 +141,7 @@ namespace Z0.Mkl
             var lda = k;
             var ldb = n;
             var ldx = n;
-            var X = Matrix.Alloc<M,N,double>();
+            var X = BlockMatrix.Alloc<M,N,double>();
             CBLAS.cblas_dgemm(RowMajor, NoTranspose, NoTranspose, m, n, k, 1.0f, ref head(A), lda, ref head(B), ldb, 0, ref head(X), ldx);
             return X;
         }    
@@ -154,7 +154,7 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-        public static ref Matrix<M,N,float> gemm<M,K,N>(Matrix<M,K,float> A, Matrix<K,N,float> B, ref Matrix<M,N,float> X)
+        public static ref BlockMatrix<M,N,float> gemm<M,K,N>(BlockMatrix<M,K,float> A, BlockMatrix<K,N,float> B, ref BlockMatrix<M,N,float> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -177,7 +177,7 @@ namespace Z0.Mkl
 		/// <param name="M">The number of rows in A and C</param>
 		/// <param name="N">The number of columns in B and C</param>
 		/// <param name="K">The number of columns in A and rows in B</param>
-        public static ref Matrix<M,N,double> gemm<M,K,N>(Matrix<M,K,double> A, Matrix<K,N,double> B, ref Matrix<M,N,double> X)
+        public static ref BlockMatrix<M,N,double> gemm<M,K,N>(BlockMatrix<M,K,double> A, BlockMatrix<K,N,double> B, ref BlockMatrix<M,N,double> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -199,7 +199,7 @@ namespace Z0.Mkl
         /// <param name="B">The right matrix</param>
         /// <param name="X">The target matrix</param>
 		/// <param name="N">The number of columns in B and C</param>
-        public static ref Matrix<N,float> gemm<N>(Matrix<N,float> A, Matrix<N,float> B, ref Matrix<N,float> X)
+        public static ref BlockMatrix<N,float> gemm<N>(BlockMatrix<N,float> A, BlockMatrix<N,float> B, ref BlockMatrix<N,float> X)
             where N : ITypeNat, new()
         {
             var n = nati<N>();
@@ -215,7 +215,7 @@ namespace Z0.Mkl
         /// <param name="B">The right matrix</param>
         /// <param name="X">The target matrix</param>
 		/// <param name="N">The number of columns in B and C</param>
-        public static ref Matrix<N,double> gemm<N>(Matrix<N,double> A, Matrix<N,double> B, ref Matrix<N,double> X)
+        public static ref BlockMatrix<N,double> gemm<N>(BlockMatrix<N,double> A, BlockMatrix<N,double> B, ref BlockMatrix<N,double> X)
             where N : ITypeNat, new()
         {
             var n = nati<N>();

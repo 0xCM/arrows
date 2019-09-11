@@ -18,8 +18,7 @@ namespace Z0
     /// </summary>
     public static class MatMulRef
     {
-
-        public static ref Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, ref Matrix<M,N,T> X)
+        public static ref BlockMatrix<M,N,T> Mul<M,K,N,T>(BlockMatrix<M,K,T> A, BlockMatrix<K,N,T> B, ref BlockMatrix<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()

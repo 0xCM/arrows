@@ -15,6 +15,7 @@ namespace Z0
 
     partial class gmath
     {
+
         /// <summary>
         /// Imagines the source operands are vectors of identical length and computes their canonical scalar product
         /// </summary>
@@ -50,15 +51,6 @@ namespace Z0
         }
 
  
-        //  public static T dot<T>(Span<T> X, Span<T> Y)
-        //     where T : struct
-        // {
-        //     var result = default(T);
-        //     var len = length(X,Y);
-        //     for(var i=0; i< len; i++)
-        //         result = gmath.add(gmath.mul(X[i],Y[i]), result);
-        //     return result;
-        // }
 
     }
 

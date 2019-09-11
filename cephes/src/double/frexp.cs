@@ -12,7 +12,6 @@ namespace Z0
     using static cephes.Floor;
     partial class cephes
     {
-
         /// <summary>
         /// Extracts the exponent from x; Returns an integer power of two to 
         /// expnt and the significand between 0.5 and 1 to y. 

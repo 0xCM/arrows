@@ -27,11 +27,11 @@ namespace Z0
         /// <typeparam name="K">The A colum count / B row count type</typeparam>
         /// <typeparam name="N">The B column count type</typeparam>
         [MethodImpl(Inline)]
-        public static Matrix<M,N,float> Mul<M,K,N>(this Matrix<M,K,float> A, Matrix<K,N,float> B)
+        public static BlockMatrix<M,N,float> Mul<M,K,N>(this BlockMatrix<M,K,float> A, BlockMatrix<K,N,float> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
-                => Matrix.Load<M,N,float>(mkl.gemm<M,K,N>(A.Unsized, B.Unsized));
+                => BlockMatrix.Load<M,N,float>(mkl.gemm<M,K,N>(A.Unsized, B.Unsized));
 
         /// <summary>
         /// Allocates and computes a matrix X = AB of natural dimension MxN 
@@ -42,11 +42,11 @@ namespace Z0
         /// <typeparam name="K">The A colum count / B row count type</typeparam>
         /// <typeparam name="N">The B column count type</typeparam>
         [MethodImpl(Inline)]
-        public static Matrix<M,N,double> Mul<M,K,N>(this Matrix<M,K,double> A, Matrix<K,N,double> B)
+        public static BlockMatrix<M,N,double> Mul<M,K,N>(this BlockMatrix<M,K,double> A, BlockMatrix<K,N,double> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
-                => Matrix.Load<M,N,double>(mkl.gemm<M,K,N>(A.Unsized, B.Unsized));
+                => BlockMatrix.Load<M,N,double>(mkl.gemm<M,K,N>(A.Unsized, B.Unsized));
 
         /// <summary>
         /// Computes the matrix product X = AB
@@ -58,7 +58,7 @@ namespace Z0
         /// <typeparam name="K">The A colum count / B row count type</typeparam>
         /// <typeparam name="N">The B column count type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,float> Mul<M,K,N>(this Matrix<M,K,float> A, Matrix<K,N,float> B, ref Matrix<M,N, float> X)
+        public static ref BlockMatrix<M,N,float> Mul<M,K,N>(this BlockMatrix<M,K,float> A, BlockMatrix<K,N,float> B, ref BlockMatrix<M,N, float> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -77,7 +77,7 @@ namespace Z0
         /// <typeparam name="K">The A colum count / B row count type</typeparam>
         /// <typeparam name="N">The B column count type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,double> Mul<M,K,N>(this Matrix<M,K,double> A, Matrix<K,N,double> B, ref Matrix<M,N,double> X)
+        public static ref BlockMatrix<M,N,double> Mul<M,K,N>(this BlockMatrix<M,K,double> A, BlockMatrix<K,N,double> B, ref BlockMatrix<M,N,double> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where K : ITypeNat, new()
@@ -94,7 +94,7 @@ namespace Z0
         /// <param name="X">Tht target matrix</param>
         /// <typeparam name="N">The common order of all matrices</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<N,float> Mul<N>(this Matrix<N,float> A, Matrix<N,float> B, ref Matrix<N, float> X)
+        public static ref BlockMatrix<N,float> Mul<N>(this BlockMatrix<N,float> A, BlockMatrix<N,float> B, ref BlockMatrix<N, float> X)
             where N : ITypeNat, new()
         {
             mkl.gemm(A, B, ref X);
@@ -109,7 +109,7 @@ namespace Z0
         /// <param name="X">Tht target matrix</param>
         /// <typeparam name="N">The common order of all matrices</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<N,double> Mul<N>(this Matrix<N,double> A, Matrix<N,double> B, ref Matrix<N, double> X)
+        public static ref BlockMatrix<N,double> Mul<N>(this BlockMatrix<N,double> A, BlockMatrix<N,double> B, ref BlockMatrix<N, double> X)
             where N : ITypeNat, new()
         {
             mkl.gemm(A, B, ref X);
@@ -117,27 +117,27 @@ namespace Z0
         }
         
         [MethodImpl(Inline)]
-        public static Matrix<N,T> Map<N,S,T>(this Matrix<N,S> A, Func<S,T> f)
+        public static BlockMatrix<N,T> Map<N,S,T>(this BlockMatrix<N,S> A, Func<S,T> f)
             where N : ITypeNat, new()
             where T : struct
             where S : struct
         {
             var src = A.Unblocked;
-            var dstM = Matrix.Alloc<N,T>();
+            var dstM = BlockMatrix.Alloc<N,T>();
             var dst = dstM.Unblocked;
             for(var i=0; i<dst.Length; i++)
                 dst[i] = f(src[i]);
             return dstM;
         }
 
-        public static Matrix<N,double> Pow<N>(this Matrix<N,double> A, int exp)
+        public static BlockMatrix<N,double> Pow<N>(this BlockMatrix<N,double> A, int exp)
             where N : ITypeNat, new()
         {
             if(exp == 1)
                 return A;
 
             var B = A.Replicate();
-            var X = Matrix.Alloc<N,double>();
+            var X = BlockMatrix.Alloc<N,double>();
             mkl.gemm(A,B,ref X);
             if(exp == 2)
                 return X;

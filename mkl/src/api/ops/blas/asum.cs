@@ -20,7 +20,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">A span containing the vector components</param>
         [MethodImpl(Inline)]
-        public static double asum(Vector<float> X)        
+        public static double asum(BlockVector<float> X)        
             => CBLAS.cblas_sasum(X.Length, ref head(X), 1);
         
         /// <summary>
@@ -28,7 +28,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">A span containing the vector components</param>
         [MethodImpl(Inline)]
-        public static double asum(Vector<double> X)        
+        public static double asum(BlockVector<double> X)        
             => CBLAS.cblas_dasum(X.Length, ref head(X), 1);
 
 

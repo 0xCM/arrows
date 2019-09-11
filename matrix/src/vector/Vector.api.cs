@@ -16,48 +16,44 @@ namespace Z0
     /// Defines the vector api surface
     /// </summary>
     public static class Vector
-    {     
-        /// <summary>
-        /// Allocates a vector of natural length
-        /// </summary>
-        /// <param name="n">The length, to aid type inference</param>
-        /// <param name="exemplar">An example value to aid type inference</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
+    {        
+        [MethodImpl(Inline)]
+        public static Vector<T> Alloc<T>(int minlen, T? fill = null)               
+            where T : unmanaged        
+                => new Vector<T>(MemorySpan.Alloc<T>(minlen, fill));
+
         [MethodImpl(Inline)]
         public static Vector<N,T> Alloc<N,T>(N n = default)
             where N : ITypeNat, new()
-            where T : struct
-                =>  Vector<N,T>.LoadAligned(Span256.Alloc<N,T>());
+            where T : unmanaged
+                =>  Alloc<T>((int)n.value);
 
         [MethodImpl(Inline)]
         public static Vector<N,T> Alloc<N,T>(N n, T fill)
             where N : ITypeNat, new()
-            where T : struct
-                =>  Vector<N,T>.LoadAligned(Span256.Alloc<N,T>(fill));
+            where T : unmanaged
+                =>  Alloc<T>((int)n.value, fill);
 
-        
         [MethodImpl(Inline)]
-        public static Vector<T> Alloc<T>(int minlen, T? fill = null)               
-            where T : struct
-                => Span256.Alloc<T>(minlen, fill);
+        public static Vector<T> Load<T>(T[] src)
+            where T : unmanaged
+                => new Vector<T>(src);
 
         /// <summary>
-        /// Loads a vector of natural length from a span that may not be aligned (Allocating if unaligned)
+        /// Loads a vector of natural length
         /// </summary>
         /// <param name="src">The source span</param>
         /// <param name="length">The natural length</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Load<N,T>(Span<T> src, N length = default)
+        public static Vector<N,T> Load<N,T>(MemorySpan<T> src, N length = default)
             where N : ITypeNat, new()
-            where T : struct
-                => Vector<N,T>.LoadAligned(Span256.Load(src));
+            where T : unmanaged
+                => new Vector<N, T>(src);
 
         /// <summary>
-        /// Loads a vector of natural length from a parameter array.
-        /// This method allocates if the source array is not 256-bit aligned
+        /// Loads a vector of natural length
         /// </summary>
         /// <param name="src">The source span</param>
         /// <param name="length">The natural length</param>
@@ -66,23 +62,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> Load<N,T>(N length, params T[] src)
             where N : ITypeNat, new()
-            where T : struct
-                => Vector<N,T>.LoadAligned(Span256.Load<T>(src));
+            where T : unmanaged
+                => new Vector<N, T>(src);
 
         [MethodImpl(Inline)]
-        public static Vector<T> Load<T>(Span<T> src)
-            where T : struct
-                => Span256.Load(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> Load<N,T>(Span<N,T> src)
+        public static ref readonly Vector<N,T> Zero<N,T>()
             where N : ITypeNat, new()
-            where T : struct
-                => src;
-
-        [MethodImpl(Inline)]
-        public static Vector<T> Zero<T>(int minlen)
-            where T : struct
-                => Alloc<T>(minlen);
+            where T : unmanaged
+                => ref Vector<N,T>.Zero;
     }
+
 }

@@ -22,7 +22,7 @@ namespace Z0
         /// Retrieves the next vector from the suite, where the components 
         /// are bound only by the domain of the type
         /// </summary>
-        Vector<N,T> Next<T>()
+        BlockVector<N,T> Next<T>()
             where T : struct;
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// </summary>
         /// <param name="max">The exclusive upper bound</param>
         /// <typeparam name="T">The point type</typeparam>
-        Vector<N,T> Next<T>(T max)
+        BlockVector<N,T> Next<T>(T max)
             where T : struct;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="min">The inclusive lower bound</param>
         /// <param name="max">The exclusive upper bound</param>
         /// <typeparam name="T">The point type</typeparam>
-        Vector<N,T> Next<T>(T min, T max)
+        BlockVector<N,T> Next<T>(T min, T max)
             where T : struct;
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Z0
         /// </summary>
         /// <param name="domain">The range</param>
         /// <typeparam name="T">The point type</typeparam>
-        Vector<N,T> Next<T>(Interval<T> domain)
+        BlockVector<N,T> Next<T>(Interval<T> domain)
             where T : struct;
         
         /// <summary>

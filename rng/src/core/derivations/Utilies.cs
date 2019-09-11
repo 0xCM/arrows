@@ -25,7 +25,7 @@ namespace Z0
         /// <param name="max">The upper bound</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The unsigned primal type</typeparam>
-         public static Vector<N,T> Contract<N,T>(this Vector<N,T> src, Vector<N,T> max)
+         public static BlockVector<N,T> Contract<N,T>(this BlockVector<N,T> src, BlockVector<N,T> max)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -53,12 +53,12 @@ namespace Z0
         /// <param name="max">The upper bound</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The unsigned primal type</typeparam>
-         public static Vector<T> Contract<T>(this Vector<T> src, Vector<T> max)
+         public static BlockVector<T> Contract<T>(this BlockVector<T> src, BlockVector<T> max)
             where T : struct
         {
             var len = src.Length;
             require(len == max.Length);
-            var dst = Vector.Alloc<T>(len);
+            var dst = BlockVector.Alloc<T>(len);
             for(var i=0; i<dst.Length; i++)
                 dst[i] = Contractors.Contract(src[i],max[i]);
             return dst;

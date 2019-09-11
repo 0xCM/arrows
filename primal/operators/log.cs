@@ -15,6 +15,16 @@ namespace Z0
     
     partial class math
     {
+        [MethodImpl(Inline)]
+        public static ref ulong ilog2(ref ulong dst, ref ulong x, ulong power)
+        {
+            if(x >= 1ul << (int)power)
+            {
+                x >>= (int)power;
+                dst |= power;
+            }
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
         public static ulong ilog2(ulong src)
@@ -40,42 +50,15 @@ namespace Z0
         public static ulong ilog2(uint src)
             => ilog2((ulong)src);
 
-
-        [MethodImpl(Inline)]
-        static void ilog2(ref ulong dst, ref ulong x, ulong power)
-        {
-            if(x >= 1ul << (int)power)
-            {
-                x >>= (int)power;
-                dst |= power;
-            }
-
-        }
-
-
         [MethodImpl(Inline)]
         public static sbyte log2(sbyte src)
             => (sbyte)MathF.Log2(src);
 
-        [MethodImpl(Inline)]
-        public static byte log2(byte src)
-            => (byte)MathF.Log2(src);
-
-        [MethodImpl(Inline)]
-        public static short log2(short src)
-            => (short)MathF.Log2(src);
-
-        [MethodImpl(Inline)]
-        public static ushort log2(ushort src)
-            => (ushort)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static int log2(int src)
             => (int)MathF.Log2(src);
 
-        [MethodImpl(Inline)]
-        public static uint log2(uint src)
-            => (uint)MathF.Log2(src);
 
         [MethodImpl(Inline)]
         public static long log2(long src)
@@ -85,13 +68,6 @@ namespace Z0
         public static ulong log2(ulong src)
             => (ulong)Math.Log2(src);
 
-        [MethodImpl(Inline)]
-        public static float log2(float src)
-            => MathF.Log2(src);
-
-        [MethodImpl(Inline)]
-        public static double log2(double src)
-            => Math.Log2(src);
 
         [MethodImpl(Inline)]
         public static sbyte ln(sbyte src)
@@ -125,13 +101,6 @@ namespace Z0
         public static ulong ln(ulong src)
             => (ulong)Math.Log(src);
 
-        [MethodImpl(Inline)]
-        public static float ln(float src)
-            => MathF.Log(src);
-
-        [MethodImpl(Inline)]
-        public static double ln(double src)
-            => Math.Log(src);
 
         [MethodImpl(Inline)]
         public static sbyte log(sbyte src, sbyte? @base = null)
@@ -165,13 +134,6 @@ namespace Z0
         public static ulong log(ulong src, ulong? @base = null)
             => (ulong)Math.Log(src, @base ?? 10);
 
-        [MethodImpl(Inline)]
-        public static float log(float src, float? @base = null)
-            => MathF.Log(src, @base ?? 10);
-
-        [MethodImpl(Inline)]
-        public static double log(double src, double? @base = null)
-            => Math.Log(src, @base ?? 10);
 
     }
 

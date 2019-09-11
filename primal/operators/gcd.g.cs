@@ -33,9 +33,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>((math.gcd(uint64(lhs), uint64(rhs))));
             else if(typeof(T) == typeof(float))
-                return generic<T>((math.gcd(float32(lhs), float32(rhs))));
+                return generic<T>((fmath.gcd(float32(lhs), float32(rhs))));
             else if(typeof(T) == typeof(double))
-                return generic<T>((math.gcd(float64(lhs), float64(rhs))));
+                return generic<T>((fmath.gcd(float64(lhs), float64(rhs))));
             else            
                 throw unsupported<T>();
         }           

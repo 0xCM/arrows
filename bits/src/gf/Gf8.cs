@@ -45,14 +45,14 @@ namespace Z0
         /// </summary>
         /// <param name="min">The minimum operand value</param>
         /// <param name="max">The maximum operand value</param>
-        public static Matrix<N7,byte> products()
+        public static BlockMatrix<N7,byte> products()
         {
-            var dst = Matrix.Alloc<N7,byte>();
+            var dst = BlockMatrix.Alloc<N7,byte>();
             products(1, (byte)0b111, ref dst.Unblocked[0]);
             return dst;
         }
 
-        public static string FormatTable<N,T>(Matrix<N,T> src)
+        public static string FormatTable<N,T>(BlockMatrix<N,T> src)
             where T : struct
             where N : ITypeNat, new()
                 => src.Format(render:x => BitString.FromScalar(x).Format());            

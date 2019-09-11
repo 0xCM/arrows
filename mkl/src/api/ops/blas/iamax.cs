@@ -20,7 +20,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static int iamax(Vector<float> X)        
+        public static int iamax(BlockVector<float> X)        
             => (int)CBLAS.cblas_isamax(X.Length, ref head(X), 1);
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static float amax(Vector<float> X)        
+        public static float amax(BlockVector<float> X)        
             => X[iamax(X)];
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static int iamax(Vector<double> X)        
+        public static int iamax(BlockVector<double> X)        
             => (int)CBLAS.cblas_idamax(X.Length, ref head(X), 1);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0.Mkl
         /// </summary>
         /// <param name="X">The source vector</param>
         [MethodImpl(Inline)]
-        public static double amax(Vector<double> X)        
+        public static double amax(BlockVector<double> X)        
             => X[iamax(X)];
 
 

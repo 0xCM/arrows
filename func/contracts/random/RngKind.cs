@@ -78,11 +78,16 @@ namespace Z0
         /// </summary>
         XOrShift1024 = 12,
 
+        MRG32k3a = 13,
+
+        MRG32k3aD = 14,
+
         User1 = 100,
 
         User2 = 100,
 
         User3 = 100,
+        
         
         /// <summary>
         /// Indentifes a hardware level entropic source driven by

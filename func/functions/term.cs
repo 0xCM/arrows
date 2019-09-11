@@ -9,6 +9,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
 
+using CallerLine = System.Runtime.CompilerServices.CallerLineNumberAttribute;
+using CallerFile = System.Runtime.CompilerServices.CallerFilePathAttribute;
+using CallerName = System.Runtime.CompilerServices.CallerMemberNameAttribute;
+
 using Z0;
 
 partial class zfunc
@@ -29,8 +33,27 @@ partial class zfunc
     public static void print(string msg)
         => terminal.WriteLine(msg);
 
+    /// <summary>
+    /// Writes an empty line to the console
+    /// </summary>
     public static void print()
         => terminal.WriteLine();
+    
+    /// <summary>
+    /// Writes a character to the console
+    /// </summary>
+    /// <param name="c">The character to write</param>
+    /// <param name="severity">The severity, if specified</param>
+    public static void print(char c,SeverityLevel? severity = null)
+        =>  terminal.WriteChar(c,severity);
+
+    /// <summary>
+    /// Prints an operation timing message to the console
+    /// </summary>
+    /// <param name="time">The operation timing</param>
+    /// <param name="labelPad">Option label pad width</param>
+    public static void print(OpTime time, int? labelPad = null)
+        => print(AppMsg.Define(time.Format(labelPad), SeverityLevel.Benchmark));
 
     /// <summary>
     /// Prints a sequence of messages in an unbroken block
@@ -51,9 +74,8 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void inform(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller, file, line));
+    public static void inform(object msg, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller, file, line));
 
     /// <summary>
     /// Renders the supplied value to the console with no carriage return
@@ -92,7 +114,7 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void warn(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void warn(object msg, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Warning, caller, file, line));
 
     /// <summary>
@@ -100,7 +122,7 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void hilite(object msg, SeverityLevel? level = null,  [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void hilite(object msg, SeverityLevel? level = null,  [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, level ?? SeverityLevel.HiliteBL, caller, file, line));
 
     /// <summary>
@@ -141,7 +163,7 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void babble(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void babble(object msg, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, caller, file, line));
 
     /// <summary>
@@ -150,7 +172,7 @@ partial class zfunc
     /// <param name="msg">The message to emit</param>
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
-    public static void babble<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void babble<T>(object msg, T host, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{name<T>()}/{caller}", file, line));
 
     /// <summary>
@@ -158,7 +180,7 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void error(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void error(object msg, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller, file, line));
 
     /// <summary>
@@ -167,7 +189,7 @@ partial class zfunc
     /// <param name="msg">The message to emit</param>
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
-    public static void error<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void error<T>(object msg, T host, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
         => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
 
     public static AppMsg trace(string title, string msg, int? tpad = null, SeverityLevel? severity = null)

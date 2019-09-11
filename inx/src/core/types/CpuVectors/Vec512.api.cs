@@ -27,14 +27,8 @@ namespace Z0
         public static Vec512<T> FromParts<T>(Vec128<T> v00, Vec128<T> v01, Vec128<T> v10, Vec128<T> v11)        
             where T : struct
         {
-            Vec256<T> lo = default;
-            lo = ginx.insert(v00,lo,0);
-            lo = ginx.insert(v01,lo,1);
-            
-            Vec256<T> hi = default;
-            hi = ginx.insert(v10,hi,0);
-            hi = ginx.insert(v11,hi,1);
-
+            Vec256<T> lo = ginx.set(v00,v01);            
+            Vec256<T> hi = ginx.set(v10,v11);
             return new Vec512<T>(in lo, in hi);
         }
 

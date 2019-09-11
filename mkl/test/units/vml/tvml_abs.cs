@@ -18,7 +18,7 @@ namespace Z0.Mkl.Test
 
         public void vAbsF32()
         {
-            var src = Random.GenericVec<float>(Pow2.T08);
+            var src = Random.BlockVec<float>(Pow2.T08);
             var dst1 = src.Replicate(true);
             mkl.abs(src, ref dst1);
             var dst2 = src.Replicate();
@@ -28,7 +28,7 @@ namespace Z0.Mkl.Test
 
         public void vAbsF64()
         {
-            var src = Random.GenericVec<double>(Pow2.T08);
+            var src = Random.BlockVec<double>(Pow2.T08);
             var dst1 = src.Replicate(true);
             mkl.abs(src, ref dst1);
             var dst2 = src.Replicate();

@@ -7,21 +7,46 @@ namespace Z0
     using System;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using System.Collections.Generic;
+    
     using static zfunc;
 
-
-    /// <summary>
-    /// Represents a half adder as described by https://en.wikipedia.org/wiki/Adder_(electronics)
-    /// </summary>
-    public readonly struct HalfAdder : ICircuit<HalfAdder, (Bit a, Bit b), (Bit s, Bit c)>
+    public readonly struct HalfAdder
     {
-        public static readonly HalfAdder G = default;
+        static readonly AndGate andg = Gates.andg();
+        
+        static readonly XOrGate xorg = Gates.xorg();
 
         [MethodImpl(Inline)]
-        public (Bit s, Bit c) Send((Bit a, Bit b) input)
-            => (XOrGate.G.Send(input.a, input.b), AndGate.G.Send(input.a, input.b));
+        public (Bit s, Bit c) Send(Bit a, Bit b)        
+            => (xorg.Send(a, b), andg.Send(a, b));
+
+    }
+
+    public readonly struct HalfAdder<T> : 
+        ICircuit<T, T, (T s, T c)>,        
+        ICircuit<Vec128<T>, Vec128<T>, (Vec128<T> s, Vec128<T> c)>,
+        ICircuit<Vec256<T>, Vec256<T>, (Vec256<T> s, Vec256<T> c)>
+        where T : unmanaged
+    {
+        public static readonly HalfAdder<T> Circuit = default;
+        
+        static readonly XOrGate<T> xorg = Gates.xorg<T>();
+
+        static readonly AndGate<T> andg = Gates.andg<T>();
+
+
+        [MethodImpl(Inline)]
+        public (T s, T c) Send(T a, T b)
+            => (xorg.Send(a,b), andg.Send(a,b));
+
+        [MethodImpl(Inline)]
+        public (Vec128<T> s, Vec128<T> c) Send(Vec128<T> a, Vec128<T> b)
+            => (xorg.Send(a,b), andg.Send(a,b));
+
+        [MethodImpl(Inline)]
+        public (Vec256<T> s, Vec256<T> c) Send(Vec256<T> a, Vec256<T> b)
+            => (xorg.Send(a,b), andg.Send(a,b));
+        
     }
 
 }

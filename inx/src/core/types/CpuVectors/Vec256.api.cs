@@ -330,6 +330,45 @@ namespace Z0
             where T : struct  
                 => Load(src, block, out Vec256<T> dst);
 
+        [MethodImpl(Inline)]
+        public static Vec256<byte> FromParts(in Vec128<byte> lo, in Vec128<byte> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> FromParts(in Vec128<sbyte> lo, in Vec128<sbyte> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> FromParts(in Vec128<short> lo, in Vec128<short> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> FromParts(in Vec128<ushort> lo, in Vec128<ushort> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> FromParts(in Vec128<int> lo, in Vec128<int> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> FromParts(in Vec128<uint> lo, in Vec128<uint> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> FromParts(in Vec128<long> lo, in Vec128<long> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> FromParts(in Vec128<ulong> lo, in Vec128<ulong> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> FromParts(in Vec128<float> lo, in Vec128<float> hi)
+                => Vector256.Create(lo,hi);
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> FromParts(in Vec128<double> lo, in Vec128<double> hi)
+                => Vector256.Create(lo,hi);
 
         [MethodImpl(Inline)]
         public static Vec256<byte> FromBytes(
@@ -341,6 +380,7 @@ namespace Z0
                     x8,x9,x10,x11,x12,x13,x14,x15,
                     x16,x17,x18,x19,x20,x21,x22,x23, 
                     x24,x25,x26,x27,x28,x29,x30,x31);
+
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<sbyte> FromParts(

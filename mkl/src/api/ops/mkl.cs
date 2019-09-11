@@ -42,7 +42,7 @@ namespace Z0.Mkl
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T head<T>(Vector<T> src)
+        public static ref T head<T>(BlockVector<T> src)
             where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src.Unblocked);
 
@@ -52,7 +52,7 @@ namespace Z0.Mkl
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        static ref T head<N,T>(Vector<N,T> src)
+        static ref T head<N,T>(BlockVector<N,T> src)
             where N : ITypeNat, new()
             where T : struct
                 =>  ref MemoryMarshal.GetReference<T>(src.Unsized);
@@ -63,7 +63,7 @@ namespace Z0.Mkl
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        static ref T head<N,T>(Matrix<N,T> src)
+        static ref T head<N,T>(BlockMatrix<N,T> src)
             where N : ITypeNat, new()
             where T : struct
                 =>  ref MemoryMarshal.GetReference<T>(src.Unsized);
@@ -74,7 +74,7 @@ namespace Z0.Mkl
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        static ref T head<M,N,T>(Matrix<M,N,T> src)
+        static ref T head<M,N,T>(BlockMatrix<M,N,T> src)
             where N : ITypeNat, new()
             where M : ITypeNat, new()
             where T : struct
@@ -109,7 +109,7 @@ namespace Z0.Mkl
                 => zfunc.length(lhs,rhs);
 
         [MethodImpl(Inline)]   
-        static int length<S,T>(Vector<S> lhs, Vector<T> rhs, [CallerMemberName] string caller = null, 
+        static int length<S,T>(BlockVector<S> lhs, BlockVector<T> rhs, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
             where S : struct

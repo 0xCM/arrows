@@ -19,22 +19,20 @@ namespace Z0
         /// <summary>
         /// Specifies negative polarity and can be interpreted as mathematical sign
         /// </summary>
-        Negative = -1,
+        Neg = -1,
         
         /// <summary>
         /// Specifies neutral polarity and from a mathemtatical perspectives gives 
         /// a sign classification to the number 0.
         /// </summary>
-        Neutral = 0,
+        None = 0,
         
         
         /// <summary>
         /// Specifies positive polarity and can be interpreted as mathematical sign
         /// </summary>
-        Positive = 1
+        Pos = 1
     }
-
-
 
     /// <summary>
     /// Characterizes a sign adjudication operation
@@ -46,7 +44,6 @@ namespace Z0
         /// Determines the sign of the supplied value
         /// </summary>
         Sign Sign(T x);
-
     }
 
     /// <summary>

@@ -17,8 +17,8 @@ namespace Z0.Mkl.Test
     {        
         public void dot()
         {
-            var v1 = Random.NatVec<N256,double>();
-            var v2 = Random.NatVec<N256,double>();
+            var v1 = Random.BlockVec<N256,double>();
+            var v2 = Random.BlockVec<N256,double>();
 
             var x = mkl.dot(v1,v2).Round(4);
             var y = Dot(v1,v2).Round(4);
@@ -124,10 +124,10 @@ namespace Z0.Mkl.Test
             where T : struct
 
         {
-            var A = Matrix.Alloc<M,K,T>();
-            var B = Matrix.Alloc<K,N,T>();
-            var X = Matrix.Alloc<M,N,T>();
-            var E = Matrix.Alloc<M,N,T>();
+            var A = BlockMatrix.Alloc<M,K,T>();
+            var B = BlockMatrix.Alloc<K,N,T>();
+            var X = BlockMatrix.Alloc<M,N,T>();
+            var E = BlockMatrix.Alloc<M,N,T>();
             var collect = false;
 
             var runtime = Duration.Zero;
@@ -165,10 +165,10 @@ namespace Z0.Mkl.Test
             where N : ITypeNat, new()
 
         {
-            var A = Matrix.Alloc<M,K,float>();
-            var B = Matrix.Alloc<K,N,float>();
-            var X = Matrix.Alloc<M,N,float>();
-            var E = Matrix.Alloc<M,N,float>();
+            var A = BlockMatrix.Alloc<M,K,float>();
+            var B = BlockMatrix.Alloc<K,N,float>();
+            var X = BlockMatrix.Alloc<M,N,float>();
+            var E = BlockMatrix.Alloc<M,N,float>();
             var collect = false;
         
             var runtime = Duration.Zero;
@@ -199,10 +199,10 @@ namespace Z0.Mkl.Test
             where N : ITypeNat, new()
 
         {
-            var A = Matrix.Alloc<M,K,double>();
-            var B = Matrix.Alloc<K,N,double>();
-            var X = Matrix.Alloc<M,N,double>();
-            var E = Matrix.Alloc<M,N,double>();
+            var A = BlockMatrix.Alloc<M,K,double>();
+            var B = BlockMatrix.Alloc<K,N,double>();
+            var X = BlockMatrix.Alloc<M,N,double>();
+            var E = BlockMatrix.Alloc<M,N,double>();
             var collect = false;
         
             var runtime = Duration.Zero;
@@ -232,10 +232,10 @@ namespace Z0.Mkl.Test
             where M : ITypeNat, new()
             where N : ITypeNat, new()
         {
-            var A = Matrix.Alloc<M,N,double>();
-            var x = Vector.Alloc<N,double>();
-            var y = Vector.Alloc<M,double>();
-            var z = Vector.Alloc<M,double>();
+            var A = BlockMatrix.Alloc<M,N,double>();
+            var x = BlockVector.Alloc<N,double>();
+            var y = BlockVector.Alloc<M,double>();
+            var z = BlockVector.Alloc<M,double>();
             var sw = stopwatch(false);
 
             for(var i=0; i<cycles; i++)
@@ -255,7 +255,7 @@ namespace Z0.Mkl.Test
             return optime(cycles, sw, label);
         }
 
-        static double Dot<N>(Vector<N,double> x, Vector<N,double> y)
+        static double Dot<N>(BlockVector<N,double> x, BlockVector<N,double> y)
             where N : ITypeNat, new()
         {
             var result = 0d;
@@ -266,7 +266,7 @@ namespace Z0.Mkl.Test
             return result;
         }
 
-        static float Dot<N>(Vector<N,float> x, Vector<N,float> y)
+        static float Dot<N>(BlockVector<N,float> x, BlockVector<N,float> y)
             where N : ITypeNat, new()
         {
             var result = 0f;
@@ -297,7 +297,7 @@ namespace Z0.Mkl.Test
             return result;
         }
 
-        static ref Matrix<M,N,float> Mul<M,K,N>(Matrix<M,K,float> A, Matrix<K,N,float> B, ref Matrix<M,N,float> X)
+        static ref BlockMatrix<M,N,float> Mul<M,K,N>(BlockMatrix<M,K,float> A, BlockMatrix<K,N,float> B, ref BlockMatrix<M,N,float> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -316,7 +316,7 @@ namespace Z0.Mkl.Test
             return ref X;
         }
 
-        static ref Matrix<M,N,double> Mul<M,K,N>(Matrix<M,K,double> A, Matrix<K,N,double> B, ref Matrix<M,N,double> X)
+        static ref BlockMatrix<M,N,double> Mul<M,K,N>(BlockMatrix<M,K,double> A, BlockMatrix<K,N,double> B, ref BlockMatrix<M,N,double> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -342,7 +342,7 @@ namespace Z0.Mkl.Test
             var m = n5;
             var m1 = Random.Matrix(domain, m, n);
             var m2 = Random.Matrix(domain, m, n);
-            var m3 = Matrix.Alloc(m,n,0);
+            var m3 = BlockMatrix.Alloc(m,n,0);
             var m4 = mkl.gemm(m1,m2,ref m3);
         }
     }

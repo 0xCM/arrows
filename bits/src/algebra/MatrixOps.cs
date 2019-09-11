@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="N">The natural column count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> add<M,N,T>(ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        public static ref BlockMatrix<M,N,T> add<M,N,T>(ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -43,7 +43,7 @@ namespace Z0
         /// <typeparam name="N">The natural column count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Matrix<M,N,T> sub<M,N,T>(ref Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        public static ref BlockMatrix<M,N,T> sub<M,N,T>(ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    

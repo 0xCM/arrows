@@ -132,6 +132,14 @@ namespace Z0
             }
         }
 
+        /// <summary>
+        /// Writes a single character to the console
+        /// </summary>
+        /// <param name="c">The char to emit</param>
+        /// <param name="severity">The severity</param>
+        public void WriteChar(char c, SeverityLevel? severity = null)
+            => Write(c, ForeColor(severity ?? SeverityLevel.Info));
+
         public void WriteMessage(AppMsg msg, bool cr = true)
         {   
             if(msg.Level == SeverityLevel.Error)

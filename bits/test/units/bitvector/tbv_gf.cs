@@ -56,7 +56,7 @@ namespace Z0.Test
 
         void gfmul512_table()
         {
-            ref var table = ref Gf512.products(out Matrix<N512,ushort> _);
+            ref var table = ref Gf512.products(out BlockMatrix<N512,ushort> _);
             var all = BitVector16.All(9).ToSet();
             Claim.eq(all.Count,512);
 
@@ -75,7 +75,7 @@ namespace Z0.Test
 
         public void gfmul256_table()
         {
-            ref var table = ref Gf256.products(out Matrix<N256,byte> _);
+            ref var table = ref Gf256.products(out BlockMatrix<N256,byte> _);
 
             foreach(var v in BitVector8.All)
                 if(v.Nonempty)

@@ -11,9 +11,24 @@ namespace Z0
     using System.Collections.Generic;
     using static zfunc;
 
-    public interface IGate
+    public interface ILogicGate
     {
 
+    }
+
+    public interface IUnaryBitGate : ILogicGate
+    {
+        Bit Send(Bit a);
+    }
+
+    public interface IBinaryBitGate : ILogicGate
+    {
+        Bit Send(Bit a, Bit b);
+    }
+
+    public interface ITernaryBitGate : ILogicGate
+    {
+        Bit Send(Bit a, Bit b, Bit control);
     }
 
     /// <summary>
@@ -21,83 +36,72 @@ namespace Z0
     /// </summary>
     /// <typeparam name="G">The reifying type</typeparam>
     /// <typeparam name="X">The input type, which must be isomorphic with a finte-length bitstring</typeparam>
-    public interface IGate<in X> : IGate
+    public interface ILogicGate<in X> : ILogicGate
     {
         Bit Send(X x1);
     }
-    
-
-
 
     /// <summary>
     /// A PLL logic gate where input/output type values are bistring isomorphic
     /// </summary>
     /// <typeparam name="X"></typeparam>
     /// <typeparam name="Y"></typeparam>
-    public interface IGate<in X, out Y> : IGate
+    public interface ILogicGate<in X, out Y> : ILogicGate
         where X : struct
         where Y : struct
     {
-        Y Send(X x);
+        Y Send(X a);
 
     }
 
-    public interface IGate<in X1, in X2, out Y> : IGate
+    public interface ILogicGate<in X1, in X2, out Y> : ILogicGate
         where X1 : struct
         where X2 : struct
         where Y : struct
     {
-        Y Send(X1 x1, X2 x2);
+        Y Send(X1 a, X2 b);
 
     }
 
-    public interface IGate<in X1, in X2, in X3, out Y> : IGate
+    public interface ILogicGate<in X1, in X2, in X3, out Y> : ILogicGate
         where X1 : struct
         where X2 : struct
         where Y : struct
     {
-        Y Send(X1 x1, X2 x2, X3 x3);
+        Y Send(X1 a, X2 b, X3 c);
 
     }    
 
-    public interface IUnaryGate : IGate<Bit, Bit>
-    {
 
-    }
-
-    public interface IBinaryGate : IGate<Bit, Bit, Bit>
-    {
-
-    }
-
-    public interface ITernaryGate : IGate<Bit,Bit,Bit,Bit>
-    {
-
-    }
-
-    public interface ITernaryGate<T> : IGate<T,T,T,T>
+    public interface ITernaryGate<T> : ILogicGate<T,T,T,T>
         where T : struct
     {
 
     }
 
-    public interface IUnaryGate<T> : IGate<T,T>
+    public interface IUnaryGate<T> : ILogicGate<T,T>
         where T : struct
     {
 
     }
 
-    public interface IBinaryGate<T> : IGate<T,T,T>
+    public interface IBinaryGate<T> : ILogicGate<T,T,T>
         where T : struct
     {
 
     }
 
 
-    public interface ICircuit<C, in I, out O>
-        where C : struct, ICircuit<C,I,O>
+    public interface ICircuit<in A, out B>
     {
-        O Send(I input);
+        B Send(A a);
     }
+    
+    public interface ICircuit<in A, in B, out C>
+    {
+        C Send(A a, B b);
+    }
+
+
 
 }

@@ -36,7 +36,7 @@ namespace Z0
             return dst;
         }
 
-        public static ref Matrix<N,T> Mul<N,T>(Matrix<N,T> A, Matrix<N,T> B, ref Matrix<N,T> X)
+        public static ref BlockMatrix<N,T> Mul<N,T>(BlockMatrix<N,T> A, BlockMatrix<N,T> B, ref BlockMatrix<N,T> X)
             where N : ITypeNat, new()
             where T : struct
         {
@@ -48,7 +48,7 @@ namespace Z0
         }
 
 
-        public static ref Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B, ref Matrix<M,N,T> X)
+        public static ref BlockMatrix<M,N,T> Mul<M,K,N,T>(BlockMatrix<M,K,T> A, BlockMatrix<K,N,T> B, ref BlockMatrix<M,N,T> X)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
@@ -62,18 +62,18 @@ namespace Z0
             return ref X;           
         }
 
-        public static Matrix<M,N,T> Mul<M,K,N,T>(Matrix<M,K,T> A, Matrix<K,N,T> B)
+        public static BlockMatrix<M,N,T> Mul<M,K,N,T>(BlockMatrix<M,K,T> A, BlockMatrix<K,N,T> B)
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
         {
-            var X = Matrix.Alloc<M,N,T>();
+            var X = BlockMatrix.Alloc<M,N,T>();
             Mul(A,B, ref X);
             return X;
         }
 
-        public static void Mul<M,N,T>(Matrix<M,N,T> A, Vector<N,T> B, Vector<M,T> X)
+        public static void Mul<M,N,T>(BlockMatrix<M,N,T> A, BlockVector<N,T> B, BlockVector<M,T> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct

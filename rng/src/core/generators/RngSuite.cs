@@ -35,37 +35,37 @@ namespace Z0
             require(this.members.Length == n);
         }
 
-        public Vector<N, T> Next<T>() 
+        public BlockVector<N, T> Next<T>() 
             where T : struct
         {
-            var dst = Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             for(var i=0; i<n; i++)
                 dst[i] = members[i].Next<T>();
             return dst;
         }
 
-        public Vector<N, T> Next<T>(T min) 
+        public BlockVector<N, T> Next<T>(T min) 
             where T : struct
         {
-            var dst = Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             for(var i=0; i<n; i++)
                 dst[i] = members[i].Next<T>(min);
             return dst;
         }
 
-        public Vector<N, T> Next<T>(T min, T max) 
+        public BlockVector<N, T> Next<T>(T min, T max) 
             where T : struct
         {
-            var dst = Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             for(var i=0; i<n; i++)
                 dst[i] = members[i].Next<T>(min,max);
             return dst;
         }
 
-        public Vector<N, T> Next<T>(Interval<T> domain)
+        public BlockVector<N, T> Next<T>(Interval<T> domain)
              where T : struct
         {
-            var dst = Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             for(var i=0; i<n; i++)
                 dst[i] = members[i].Next<T>(domain);
             return dst;

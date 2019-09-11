@@ -103,31 +103,8 @@ namespace Z0
             src = abs(src);
             return ref src;
         }
-
-        /// <summary>
-        /// Computes the absolute value of the source in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static ref float abs(ref float src)
-        {
-            src = abs(src);
-            return ref src;
-        }
-
-        /// <summary>
-        /// Computes the absolute value of the source in-place
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static ref double abs(ref double src)
-        {
-            src = abs(src);
-            return ref src;
-        }
-
  
-         public static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        public static Span<sbyte> abs(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
@@ -158,23 +135,7 @@ namespace Z0
                 dst[i] =math.abs(src[i]);
             return dst;
         }
-
-        public static Span<float> abs(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
-        public static Span<double> abs(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] =math.abs(src[i]);
-            return dst;
-        }
-
+    
         public static Span<sbyte> abs(Span<sbyte> src)
         {
             for(var i = 0; i< src.Length; i++)
@@ -201,22 +162,6 @@ namespace Z0
             for(var i = 0; i< src.Length; i++)
                 math.abs(ref src[i]);
             return src;
-        }
-
-        public static Span<float> abs(Span<float> src)
-        {
-            for(var i = 0; i< src.Length; i++)
-                math.abs(ref src[i]);
-            return src;
-        }
-
-        public static Span<double> abs(Span<double> src)
-        {
-            for(var i = 0; i< src.Length; i++)
-                math.abs(ref src[i]);
-            return src;
-        }  
- 
+        } 
     }
-
 }
