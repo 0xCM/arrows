@@ -78,9 +78,16 @@ namespace Z0
         /// </summary>
         XOrShift1024 = 12,
 
-        MRG32k3a = 13,
 
-        MRG32k3aD = 14,
+        /// <summary>
+        /// L’Ecuyer's combined multiple recursive generator (CMRG) with 32-bit unsigned integers
+        /// </summary>
+        Mrg32K3Au = 13,
+
+        /// <summary>
+        /// L’Ecuyer's combined multiple recursive generator (CMRG) with 64-bit floating-point arithmetic.
+        /// </summary>
+        MRG32K3Ad = 14,
 
         User1 = 100,
 

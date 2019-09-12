@@ -177,6 +177,10 @@ namespace Z0
             where U : struct
                => new BlockVector<N,U>(convert<T,U>(data));
 
+        [MethodImpl(Inline)]
+        public string Format(char? delimiter = null)
+            => data.FormatList(delimiter ?? AsciSym.Comma);    
+
         public BlockVector<N,T> Replicate(bool structureOnly = false)
             => new BlockVector<N,T>(data.Replicate(structureOnly));
 
@@ -190,7 +194,7 @@ namespace Z0
             => throw new NotSupportedException();
  
         public override string ToString()
-            => throw new NotSupportedException();
+            => Format();
     
         public Span256<T> ToSpan256()
             => data;

@@ -32,9 +32,20 @@ namespace Z0
         /// <summary>
         /// Creates a polyrand based on a specified source
         /// </summary>
-        /// <param name="random">The random source</param>
-        public static IPolyrand ToPolyrand(this IStepwiseSource<ulong> random)
-            => new Polyrand(random);
+        /// <param name="src">The random source</param>
+        [MethodImpl(Inline)]
+        public static IPolyrand ToPolyrand(this IStepwiseSource<ulong> src)
+            => new Polyrand(src);
+
+        /// <summary>
+        /// Presents the polysource as a point source
+        /// </summary>
+        /// <param name="src">The randon source</param>
+        /// <typeparam name="T">The point type</typeparam>
+        [MethodImpl(Inline)]
+        public static IPointSource<T> PointSource<T>(this IPolyrand src)
+            where T : unmanaged
+                => src as IPointSource<T>;
 
         /// <summary>
         /// Samples a subsequence from a point source determined by successive sequence widths

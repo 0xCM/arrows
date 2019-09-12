@@ -14,7 +14,7 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public struct Vector<N,T>
+    public struct Vector<N,T>  : IEquatable<Vector<N,T>>
         where N : ITypeNat, new()
         where T : unmanaged
     {
@@ -25,18 +25,11 @@ namespace Z0
         /// </summary>
         public static readonly int Dim = nati<N>();     
 
+        /// <summary>
+        /// The zero vector
+        /// </summary>
         public static readonly Vector<N,T> Zero = new Vector<N,T>(new T[Dim]);
          
-        /// <summary>
-        /// Implicitly reveals the vector's underlying storage
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="N">The natural length</typeparam>
-        /// <typeparam name="T">THe component type</typeparam>
-        [MethodImpl(Inline)]   
-        public static implicit operator Span<N,T>(Vector<N,T> src)
-            => src.data.Span;
-
         [MethodImpl(Inline)]   
         public static implicit operator MemorySpan<T>(Vector<N,T> src)
             => src.data;
@@ -47,7 +40,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static implicit operator ReadOnlySpan<T>(Vector<N,T> src)
-            => src.data.Span;
+            => src.data;
 
         [MethodImpl(Inline)]   
         public static implicit operator Vector<N,T>(T[] src)
@@ -71,15 +64,23 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T operator *(Vector<N,T> lhs, in Vector<N,T> rhs)
-            => gmath.dot<T>(lhs.Unsized, rhs.Unsized);         
+            => gmath.dot<T>(lhs.Data, rhs.Data);         
 
+        /// <summary>
+        /// Initializes a vector with a memory span
+        /// </summary>
+        /// <param name="src">The data source</param>
         [MethodImpl(Inline)]
         public Vector(MemorySpan<T> src)
         {
             require(src.Length >= Dim);
-            data = src;
+            data = src.ToArray();
         }
 
+        /// <summary>
+        /// Initializes a vector with an array
+        /// </summary>
+        /// <param name="src">The data source</param>
         [MethodImpl(Inline)]
         public Vector(T[] src)
         {
@@ -91,15 +92,21 @@ namespace Z0
         /// Queries/manipulates component values
         /// </summary>
         public ref T this[int index] 
-            => ref data[index];
+        {
+            [MethodImpl(Inline)]
+            get => ref data[index];
+        }
 
-        public MemorySpan<T> Unsized
+        /// <summary>
+        /// The vector data
+        /// </summary>
+        public MemorySpan<T> Data
         {
             [MethodImpl(Inline)]
             get => data;
         }
  
-         /// <summary>
+        /// <summary>
         /// The count of vector components, otherwise known as its dimension
         /// </summary>
         public int Length
@@ -116,6 +123,12 @@ namespace Z0
         public Vector<N,U> As<U>()
             where U : unmanaged
                 => new Vector<N, U>(data.As<U>());
+
+
+        [MethodImpl(Inline)]
+        public Vector<N,U> Convert<U>()
+            where U : unmanaged
+               => new Vector<N,U>(convert<T,U>(data));
 
         public bool Equals(Vector<N,T> rhs)
         {
@@ -136,14 +149,18 @@ namespace Z0
         public Vector<N,T> Replicate(bool structureOnly = false)
             => new Vector<N,T>(data.Replicate(structureOnly));
 
+        [MethodImpl(Inline)]
+        public string Format(char? delimiter = null)
+            => data.FormatList(delimiter ?? AsciSym.Comma);    
+
         public override bool Equals(object rhs)
             => rhs is Vector<N,T> x  && Equals(x);
  
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
  
         public override string ToString()
-            => throw new NotSupportedException();
+            => Format();
     
     }
 }

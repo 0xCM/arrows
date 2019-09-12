@@ -42,7 +42,7 @@ namespace Z0.Test
             {
                 var filename = BlockMatrix.DataFileName<M,N,T>();
                 var dstpath = LogSettings.Get().TestLogPath(filename);
-                var A = Random.Matrix<M,N,T>();
+                var A = Random.BlockMatrix<M,N,T>();
                 if(isFp)
                     A.Apply(round);
                 A.WriteTo(dstpath);

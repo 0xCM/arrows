@@ -18,7 +18,7 @@ namespace Z0.Mkl.Test
         public void test1()
         {
 
-            var A = Random.Matrix<N5,double>();
+            var A = Random.BlockMatrix<N5,double>();
             var eigen = mkl.geev<N5>(A);
             Claim.eq(5,eigen.Values.Length);
                     

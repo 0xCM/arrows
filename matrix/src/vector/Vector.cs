@@ -12,7 +12,7 @@ namespace Z0
         
     using static zfunc;
 
-    public struct Vector<T>
+    public struct Vector<T> : IEquatable<Vector<T>>
         where T : unmanaged
     {
         MemorySpan<T> data;
@@ -163,6 +163,9 @@ namespace Z0
 
         public override int GetHashCode()
             => data.GetHashCode();
+
+        public override string ToString()
+            => Format();
 
     }
 }

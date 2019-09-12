@@ -69,16 +69,48 @@ namespace Z0.Rng
 
             var result = Collect(state, width, points).Result;
 
+
         }
 
-        void TestMrg32k3a()
-        {
+        void TestMrg32k3Ad()
+        {         
             var sw = stopwatch();
-            var rng = new MRG32k3a();
-            var min = long.MaxValue;
-            var max = long.MinValue;
+            var rng = new Mrg32K3Ad();
+            var min = int.MaxValue;
+            var max = int.MinValue;
             var cycles = Pow2.T08;
             var samples = Pow2.T22;
+            for(var cycle = 0; cycle < cycles; cycle++)
+            {
+                for(var i=0; i<samples; i++)
+                {   
+                    var next = rng.Next(0, int.MaxValue);
+                    if(next < min)
+                        min = next;
+                    if(next > max)
+                        max = next;
+                }
+                print('.');
+                if(cycle != 0 && cycle % 80 == 0)
+                    print();
+
+            }
+            print();
+            
+            OpTime time = (cycles*samples, sw, "MRG32k3u");
+            print($"Min = {min}, Max = {max}");
+            print(time);
+
+        }
+
+        void TestMrg32k3A()
+        {         
+            var sw = stopwatch();
+            var rng = RNG.Mrg32k3a();
+            var min = double.MaxValue;
+            var max = double.MinValue;
+            var cycles = Pow2.T08;
+            var samples = Pow2.T17;
             for(var cycle = 0; cycle < cycles; cycle++)
             {
                 for(var i=0; i<samples; i++)
@@ -96,16 +128,15 @@ namespace Z0.Rng
             }
             print();
             
-            OpTime time = (cycles*samples, sw, "MRG32k3a");
+            OpTime time = (cycles*samples, sw, "MRG32k3u");
+            print($"Min = {min}, Max = {max}");
             print(time);
 
         }
 
         protected override void RunTests(params string[] filters)
-        {     
-            TestMrg32k3a();
-            
-            //base.RunTests(filters);        
+        {                 
+            base.RunTests(filters);        
         }
         public static void Main(params string[] args)
             => Run(args);

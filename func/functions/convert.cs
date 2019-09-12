@@ -73,6 +73,23 @@ partial class zfunc
         return dst;
     }
 
+    /// <summary>
+    /// Converts a span of one value type to a span of another value type
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static MemorySpan<T> convert<S,T>(MemorySpan<S> src)
+        where T : unmanaged
+        where S : unmanaged
+    {
+        MemorySpan<T> dst = new T[src.Length];
+        for(var i=0; i< src.Length; i++)
+            dst[i] = convert<S,T>(src[i]);
+        return dst;
+    }
+
 
     /// <summary>
     /// Converts a natural span of one value type to a natural span of another value type

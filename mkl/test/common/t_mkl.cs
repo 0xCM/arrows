@@ -43,7 +43,7 @@ namespace Z0.Mkl
             where T : struct
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => Random.Matrix<M,N,T>(domain);
+                => Random.BlockMatrix<M,N,T>(domain);
 
         [MethodImpl(Inline)]
         protected BlockVector<float> RVecF32(int len, int? min = null, int? max = null)

@@ -8,7 +8,6 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-    using static System.Runtime.Intrinsics.X86.Fma;        
     using static zfunc;
 
     partial class dinx    
@@ -87,6 +86,10 @@ namespace Z0
         public static Vec256<byte> negate(in Vec256<byte> src)
             =>  add(BitUtil.flip(src), Vec256.Ones<byte>());
 
+        /// <summary>
+        /// Negates the source vector
+        /// </summary>
+        /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static Vec256<short> negate(in Vec256<short> src)
             =>  sub(Vec256<short>.Zero, src);

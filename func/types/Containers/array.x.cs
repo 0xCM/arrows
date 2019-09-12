@@ -15,6 +15,45 @@ namespace Z0
     partial class xfunc
     {
         /// <summary>
+        /// Clones an array and optionally excludes content replication
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="structureOnly"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static T[] Replicate<T>(this T[] src, bool structureOnly = false)
+        {
+            var dst = new T[src.Length];
+            if(!structureOnly)
+                Array.Copy(src, dst, dst.Length);
+            return dst;
+        }
+
+        /// <summary>
+        /// Formats an array as a delimited list
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="delimiter">The delimiter</param>
+        /// <param name="offset">The position at which formatting should begin</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]        
+        public static string FormatList<T>(this T[] src, char delimiter = ',', int offset = 0)
+            => src.ToSpan().FormatList(delimiter, offset);
+
+        /// <summary>
+        /// Formats an array as a delimited list
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="delimiter">The delimiter</param>
+        /// <param name="offset">The position at which formatting should begin</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]        
+        public static string FormatList<T>(this MemorySpan<T> src, char delimiter = ',', int offset = 0)
+            where T : unmanaged
+                => src.Span.FormatList(delimiter, offset);
+
+        /// <summary>
         /// Constructs an array of specified length from a stream
         /// </summary>
         /// <param name="src">The source stream</param>

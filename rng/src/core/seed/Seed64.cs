@@ -8,19 +8,19 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using System.Security.Cryptography;
 
     using static zfunc;
     using static As;
 
-
     public static class Seed64
     {    
+        
+        static int Count => RawBytes.Length >> 3;
+
         public static ulong Lookup(uint i)
-            => i <= 15 
+            => i < Count
              ? ByteSpan.ReadValue<ulong>(RawBytes, (int)(i*8))
-             : Errors.ThrowOutOfRange<ulong>((int)i, 0, 15);
+             : Errors.ThrowOutOfRange<ulong>((int)i, 0, Count - 1);
                             
         public static ulong Seed00 => Lookup(0);
 
@@ -53,6 +53,20 @@ namespace Z0
         public static ulong Seed14 => Lookup(14);
 
         public static ulong Seed15 => Lookup(15);
+
+        public static ulong Seed16 => Lookup(16);
+
+        public static ulong Seed17 => Lookup(17);
+
+        public static ulong Seed18 => Lookup(18);
+
+        public static ulong Seed19 => Lookup(19);
+
+        public static ulong Seed20 => Lookup(20);
+
+        public static ulong Seed21 => Lookup(21);
+
+        public static ulong Seed22 => Lookup(22);
 
 
         /// <summary>

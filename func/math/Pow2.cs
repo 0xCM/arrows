@@ -222,7 +222,7 @@ namespace Z0
         public const int T25 = 2*T24;
         
         /// <summary>
-        /// 2^26 = 67,108,864
+        /// 2^26 = 67,108,864 = 0x4000000
         /// </summary>
         public const int T26 = 2*T25;
         
@@ -245,17 +245,27 @@ namespace Z0
         /// 2^30 = 1,073,741,824 = 0x40000000
         /// </summary>
         public const int T30 = 2*T29;
-        
+
+        /// <summary>
+        /// 2^31 - 1 = 2,147,483,647 = 0x7FFFFFFF
+        /// </summary>
+        public const uint T31m1 = int.MaxValue;
+
         /// <summary>
         /// 2^31 = 2,147,483,648 = 0x80000000
         /// </summary>
         public const uint T31 = 2*(uint)T30;
-        
+
+        /// <summary>
+        /// 2^32 - 1 = 4,294,967,295 = 0xFFFFFFFF
+        /// </summary>
+        public const uint T32m1 = uint.MaxValue; 
+
         /// <summary>
         /// 2^32 = 4,294,967,296 = 0x100000000
         /// </summary>
         public const long T32 = 2*(long)T31;
-        
+                                                         
         public const long T33 = 2*T32;
         
         public const long T34 = 2*T33;

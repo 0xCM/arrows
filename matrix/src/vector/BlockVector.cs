@@ -87,6 +87,7 @@ namespace Z0
             where U : struct
                 => data.As<U>();
                 
+        [MethodImpl(Inline)]
         public string Format(char delimiter = ',')
             => data.Unblocked.FormatList(delimiter);    
 

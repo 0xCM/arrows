@@ -15,41 +15,64 @@ namespace Z0
 
     public static partial class RngX
     {
+        [MethodImpl(Inline)]
+        static T TypeMin<T>()
+            where T : struct
+                => gmath.minval<T>();
+        
+        [MethodImpl(Inline)]
+        static T TypeMax<T>()
+            where T : struct
+                => gmath.maxval<T>();
+
         /// <summary>
-        /// Allocates a matrix of natural dimensions and populates it with random values
+        /// Allocates and fills a matrix of natural dimensions with random values
         /// </summary>
         /// <param name="random">The random source</param>
+        /// <param name="domain">The range of potiential random values</param>
+        /// <param name="m">The natural number of rows</param>
+        /// <param name="n">The natural number of columns</param>
         /// <typeparam name="M">The row type</typeparam>
         /// <typeparam name="N">The column Type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static BlockMatrix<M,N,T> Matrix<M,N,T>(this IPolyrand random, Interval<T>? domain = null)
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> Matrix<M,N,T>(this IPolyrand random, Interval<T>? domain = null, M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
-                => Z0.BlockMatrix.Load<M,N,T>(random.Span256<T>(Z0.Span256.MinBlocks<M,N,T>(), domain));                    
+            where T : unmanaged    
+                => Z0.Matrix.Load<M,N,T>(random.MemorySpan<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
 
-         public static BlockMatrix<M,N,T> Matrix<M,N,T>(this IPolyrand random, Interval<T> domain, M m = default, N n = default)
+        /// <summary>
+        /// Allocates and fills a matrix of natural dimensions with random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The range of potiential random values</param>
+        /// <param name="m">The natural number of rows</param>
+        /// <param name="n">The natural number of columns</param>
+        /// <typeparam name="M">The row type</typeparam>
+        /// <typeparam name="N">The column Type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Matrix<M,N,T> Matrix<M,N,T>(this IPolyrand random, Interval<T> domain, M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
-                => Z0.BlockMatrix.Load<M,N,T>(random.Span256<T>(Z0.Span256.MinBlocks<M,N,T>(), domain));                    
+            where T : unmanaged    
+                => Z0.Matrix.Load<M,N,T>(random.MemorySpan<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
                
         /// <summary>
         /// Samples a square matrix of natural order
         /// </summary>
         /// <param name="random">The random source</param>
+        /// <param name="min">The min random value</param>
+        /// <param name="max">The max random value</param>
+        /// <param name="transformer">The max random value</param>
         /// <typeparam name="N">The dimension type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-         public static BlockMatrix<N,T> Matrix<N,T>(this IPolyrand random, Interval<T>? domain = null, Func<T,T> transformer = null)
+        [MethodImpl(Inline)]
+        public static Matrix<N,T> Matrix<N,T>(this IPolyrand random, N n, T min, T max)
             where N : ITypeNat, new()
-            where T : struct   
-        {                 
-            var data = random.Span256<T>(Z0.Span256.MinBlocks<N,N,T>(), domain);
-            if(transformer != null)
-                for(var i=0; i<data.Length; i++)
-                    data[i] = transformer(data[i]);
-            return Z0.BlockMatrix.Load<N,T>(data);                    
-        }
+            where T : unmanaged   
+                => Z0.Matrix.Load<N,T>(random.MemorySpan<T>(Z0.Matrix<N,T>.CellCount, min,max));                    
 
          /// <summary>
          /// Samples values over an S-domain, transforms the sample into a T-domain and from this transformed
@@ -64,11 +87,12 @@ namespace Z0
          /// <typeparam name="N">The column type</typeparam>
          /// <typeparam name="S">The sample type</typeparam>
          /// <typeparam name="T">The matrix element type</typeparam>
-          public static BlockMatrix<M,N,T> Matrix<M,N,S,T>(this IPolyrand random, Interval<S>? domain = null, M m = default, N n = default,  T rep = default)
+         [MethodImpl(Inline)]
+         static Matrix<M,N,T> Matrix<M,N,S,T>(this IPolyrand random, Interval<S>? domain = null, M m = default, N n = default,  T rep = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
-            where S : struct
+            where T : unmanaged    
+            where S : unmanaged
                 => random.Matrix<M,N,S>(domain).Convert<T>();
  
          /// <summary>
@@ -83,11 +107,12 @@ namespace Z0
          /// <typeparam name="N">The order type type</typeparam>
          /// <typeparam name="S">The sample type</typeparam>
          /// <typeparam name="T">The matrix element type</typeparam>
-          public static BlockMatrix<N,T> Matrix<N,S,T>(this IPolyrand random, Interval<S>? domain = null, N n = default,  T rep = default)
+         [MethodImpl(Inline)]
+         static Matrix<N,T> Matrix<N,S,T>(this IPolyrand random, Interval<S> domain, N n = default,  T rep = default)
             where N : ITypeNat, new()
-            where T : struct    
-            where S : struct
-                => random.Matrix<N,S>(domain).Convert<T>();
+            where T : unmanaged    
+            where S : unmanaged
+                => random.Matrix<N,S>(new N(), domain.Left, domain.Right).Convert<T>();
 
          /// <summary>
          /// Samples 32-bit integers that are converted to 32-bit floats to populate a square matrix
@@ -100,14 +125,13 @@ namespace Z0
          /// <typeparam name="S">The sample type</typeparam>
          /// <typeparam name="T">The matrix element type</typeparam>
          [MethodImpl(Inline)]
-         public static BlockMatrix<N,float> MatrixF32<N,S,T>(this IPolyrand random, int? min = null, int? max = null, N n = default)
-            where T : struct
-            where S : struct
+         public static Matrix<N,float> MatrixF32<N,S>(this IPolyrand random, S? min = null, S? max = null, N n = default)
+            where S : unmanaged
             where N : ITypeNat, new()
-                => random.Matrix<N,int, float>(closed(min ?? -25, max ?? 25));
+                => random.Matrix<N,S, float>(closed(min ?? TypeMin<S>(), max ?? TypeMax<S>()));
 
         /// <summary>
-        /// Samples 64-bit integers that are converted to 64-bit floats to populate a square matrix
+        /// Samples source values of type S to populate a matrix of natural dimensions with 64-bit floating point entries
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="n">The matrix order</param>
@@ -115,53 +139,46 @@ namespace Z0
         /// <param name="min">The maximum entry value</param>
         /// <typeparam name="N">The matrix order type</typeparam>
         /// <typeparam name="S">The sample type</typeparam>
-        /// <typeparam name="T">The matrix element type</typeparam>
         [MethodImpl(Inline)]
-        public static  BlockMatrix<N,double> MatrixF64<N,S,T>(this IPolyrand random, long? min = null, long? max = null, N n = default)
-            where T : struct
-            where S : struct
+        public static  Matrix<N,double> MatrixF64<N,S>(this IPolyrand random, S? min = null, S? max = null, N n = default)
+            where S : unmanaged
             where N : ITypeNat, new()
-                => random.Matrix<N,long, double>(closed(min ?? -25L, max ?? 25L));
+                => random.Matrix<N,S, double>(closed(min ?? TypeMin<S>(), max ?? TypeMax<S>()));
 
         /// <summary>
-        /// Samples 32-bit integers that are converted to 32-bit floats to populate a matrix of natural dimensions
+        /// Samples source values of type S to populate a matrix of natural dimensions with 32-bit floating point entries
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="min">The minimum entry value</param>
         /// <param name="max">The maximum entry value</param>
         /// <param name="m">The row count</param>
         /// <param name="n">The col count</param>
-        /// <typeparam name="N">The col count type</typeparam>
+        /// <typeparam name="M">The col count type</typeparam>
         /// <typeparam name="N">The row count type</typeparam>
         /// <typeparam name="S">The sample type</typeparam>
-        /// <typeparam name="T">The matrix element type</typeparam>
         [MethodImpl(Inline)]
-        public static BlockMatrix<M,N,float> MatrixF32<M,N,S,T>(this IPolyrand random, int? min = null, int? max = null, M m = default, N n = default)
-            where T : struct
-            where S : struct
+        public static Matrix<M,N,float> MatrixF32<M,N,S>(this IPolyrand random, S? min = null, S? max = null, M m = default,  N n = default)
+            where S : unmanaged
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => random.Matrix<M,N,int, float>(closed(min ?? -25, max ?? 25));
+                => random.Matrix<M,N,S, float>(closed(min ?? TypeMin<S>(), max ?? TypeMax<S>()));
 
         /// <summary>
-        /// Samples 64-bit integers that are converted to 64-bit floats to populate a matrix of natural dimensions
+        /// Samples source values of type S to populate a matrix of natural dimensions with 64-bit floating point entries
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="min">The minimum entry value</param>
         /// <param name="max">The maximum entry value</param>
         /// <param name="m">The row count</param>
         /// <param name="n">The col count</param>
-        /// <typeparam name="N">The col count type</typeparam>
+        /// <typeparam name="M">The col count type</typeparam>
         /// <typeparam name="N">The row count type</typeparam>
         /// <typeparam name="S">The sample type</typeparam>
-        /// <typeparam name="T">The matrix element type</typeparam>
         [MethodImpl(Inline)]
-        public static BlockMatrix<M,N,double> MatrixF64<M,N,S,T>(this IPolyrand random, long? min = null, long? max = null, M m = default,  N n = default)
-            where T : struct
-            where S : struct
+        public static Matrix<M,N,double> MatrixF64<M,N,S>(this IPolyrand random, S? min = null, S? max = null, M m = default,  N n = default)
+            where S : unmanaged
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-                => random.Matrix<M,N,long, double>(closed(min ?? -25L, max ?? 25L));
-
+                => random.Matrix<M,N,S, double>(closed(min ?? TypeMin<S>(), max ?? TypeMax<S>()));
     }
 }

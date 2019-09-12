@@ -11,15 +11,35 @@ namespace Z0
     using System.Runtime.InteropServices;
 
     using static zfunc;
+    
+    public unsafe struct MemoryIndex<T>
+        where T : unmanaged
+    {
+        T* data;
+
+        [MethodImpl(Inline)]
+        public MemoryIndex(ref T data)
+        {
+            this.data = (T*)Unsafe.AsPointer(ref data);
+        }
+
+        public ref T this[int i]
+        {
+            [MethodImpl(Inline)]
+            get => ref data[i];
+        }
+    }
 
     /// <summary>
     /// Defines a contiguous sequence of memory cells
     /// </summary>
     /// <typeparam name="T">The cell type</typeparam>
-    public struct MemorySpan<T>
+    public unsafe struct MemorySpan<T>
         where T : unmanaged
     {
         Memory<T> data;
+
+        MemoryIndex<T> indexer;
 
         /// <summary>
         /// Returns the source as a reference
@@ -52,20 +72,23 @@ namespace Z0
         public MemorySpan(int len, T? fill = null)
         {                    
             this.data = new T[len];
+            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
             if(fill != null)
-            this.Span.Fill(fill.Value);
+                this.data.Span.Fill(fill.Value);
         }
 
         [MethodImpl(Inline)]
         public MemorySpan(T[] src)
         {
             this.data = src;
+            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
         }
 
         [MethodImpl(Inline)]
         public MemorySpan(Memory<T> src)
         {
             this.data = src;
+            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
         }
 
         public Span<byte> Bytes
@@ -80,7 +103,13 @@ namespace Z0
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
-            get => ref Span[ix];
+            get => ref indexer[ix];
+        }
+
+        public MemoryIndex<T> Indexer
+        {
+            [MethodImpl(Inline)]
+            get => indexer;
         }
 
         /// <summary>
@@ -157,11 +186,8 @@ namespace Z0
             where U : unmanaged
                 => new MemorySpan<U>(MemoryCast.As<T,U>(data));
 
-        public override bool Equals(object rhs) 
-            => throw new NotSupportedException();
-
         public override int GetHashCode() 
-            => throw new NotSupportedException();    
+            => data.GetHashCode();
 
         /// <summary>
         /// Allocates/populates the span obtained by applying a supplied projector

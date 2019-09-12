@@ -340,8 +340,8 @@ namespace Z0.Mkl.Test
             var domain = closed(-32768, 32768);
             var n = n5;
             var m = n5;
-            var m1 = Random.Matrix(domain, m, n);
-            var m2 = Random.Matrix(domain, m, n);
+            var m1 = Random.BlockMatrix(domain, m, n);
+            var m2 = Random.BlockMatrix(domain, m, n);
             var m3 = BlockMatrix.Alloc(m,n,0);
             var m4 = mkl.gemm(m1,m2,ref m3);
         }

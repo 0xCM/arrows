@@ -15,6 +15,50 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
+        /// Queries the source for the next nonzero value within a range
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="min">The inclusive min value</param>
+        /// <param name="max">The exclusive max value</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static T NonZero<T>(this IPolyrand src, T min, T max)
+            where T : unmanaged
+                => src.NonZeroStream<T>((min,max)).First();
+
+        /// <summary>
+        /// Queries the source for the next nonzero value less than a specified upper bound
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="max">The exclusive uper bound</param>
+        [MethodImpl(Inline)]
+        public static T NonZero<T>(this IPolyrand src, T max)
+            where T : unmanaged
+                => src.NonZeroStream<T>((TypeMin<T>(),max)).First();
+
+        /// <summary>
+        /// Queries the source for the next nonzero value
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static T NonZero<T>(this IPolyrand src)
+            where T : unmanaged
+                => src.NonZeroStream<T>().First();
+
+        /// <summary>
+        /// Queries the source for the next nonzero value within a range
+        /// </summary>
+        /// <param name="src">The random source</param>
+        /// <param name="domain">The range of potential values</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static T NonZero<T>(this IPolyrand src, Interval<T> domain)
+            where T : unmanaged
+                => src.NonZeroStream<T>(domain).First();
+
+        /// <summary>
         /// Queries the source for the next value in the range [min,max)
         /// </summary>
         /// <param name="src">The random source</param>

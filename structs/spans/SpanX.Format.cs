@@ -111,6 +111,7 @@ namespace Z0
         public static string FormatList<T>(this Span<T> src, char delimiter = ',', int offset = 0)
             => src.ReadOnly().FormatList(delimiter, offset);
 
+
         /// <summary>
         /// Formats a span as a delimited list
         /// </summary>

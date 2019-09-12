@@ -33,7 +33,7 @@ namespace Z0
         public static implicit operator ReadOnlySpan<T> (Span<N,T> src)
             => src.data;
     
-            public static implicit operator Span<N,T>(Span256<T> src)
+        public static implicit operator Span<N,T>(Span256<T> src)
             => new Span<N, T>(src);
 
         public static bool operator == (Span<N,T> lhs, Span<N,T> rhs)
@@ -137,7 +137,6 @@ namespace Z0
             
         public bool IsEmpty
             => data.IsEmpty;
-
 
        public override bool Equals(object rhs) 
             => throw new NotSupportedException();

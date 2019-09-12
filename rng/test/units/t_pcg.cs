@@ -11,9 +11,9 @@ namespace Z0.Rng
 
     using static zfunc;
 
-    public class t_pcg : UnitTest<t_pcg>
+    public class t_pcg : RngTest<t_pcg>
     {
-        public void RetreatTest()
+        public void pcg_retreat()
         {
             var rng = RNG.Pcg32(Seed64.Seed00);
             var sample1 = rng.Stream().TakeSpan(5).FormatList();
@@ -23,7 +23,7 @@ namespace Z0.Rng
             Claim.eq(sample1,sample2);
         }
 
-        public void IndexTest()
+        public void pcg_index()
         {
             var seed = Seed64.Seed00;
             var index = Seed64.Seed10;
@@ -44,5 +44,16 @@ namespace Z0.Rng
 
             Claim.lt(s1.Count + s2.Count, 10);
         }
+
+        public void pcg_bench_64()
+        {
+             Benchmark(RNG.Pcg64().PointSource<ulong>());
+        }
+
+        public void pcg_bench_32()
+        {
+             Benchmark(RNG.Pcg32());
+        }
+
     }
 }

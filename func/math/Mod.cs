@@ -12,13 +12,70 @@ namespace Z0
     using static zfunc;    
 
     /// <summary>
-    /// Enbles efficient computation of a % n and a / n for a fixed n
+    /// Defines mod/div operations
     /// </summary>
     /// <remarks>
-    /// The efficiency of the mod/div operations is due to https://github.com/lemire/fastmod
+    /// The efficiency of the mod/div operations with natural modulus is due to https://github.com/lemire/fastmod
     /// </remarks>
      public struct Mod
      {
+        /// <summary>
+        /// Computes r = a*b + c (mod m) for nonzero unsigned integers a < m and b < m
+        /// </summary>
+        /// <param name="a">The first operand</param>
+        /// <param name="b">The second operand</param>
+        /// <param name="c">The third operand</param>
+        /// <param name="m">The modulus</param>
+        [MethodImpl(Inline)]
+        public static uint fma(uint a, uint b, uint c, uint m) 
+            => (uint) (((ulong)a*(ulong)b + c) % m);
+
+        /// <summary>
+        /// Computes r = a*b + c (mod m) for nonzero unsigned 64-bit integers a < m and b < m
+        /// </summary>
+        /// <param name="a">The first operand</param>
+        /// <param name="b">The second operand</param>
+        /// <param name="c">The third operand</param>
+        /// <param name="m">The modulus</param>
+        [MethodImpl(Inline)]
+        public static ulong fma(ulong a, ulong b, ulong c, ulong m) 
+            => (a*b + c) % m;
+
+        /// <summary>
+        /// Computes r = a*b + c (mod m) for 64-bit floating-point values a < m and b < m
+        /// </summary>
+        /// <param name="a">The first operand</param>
+        /// <param name="b">The second operand</param>
+        /// <param name="c">The third operand</param>
+        /// <param name="m">The modulus</param>
+        /// <remarks>
+        /// Algorithm taken from SSJ; see LICENSE file in this project root
+        /// </remarks>
+        public static double fma (double a, double b, double c, double m) 
+        {
+            const double two17 = 131072.0;
+            
+            const double two53 = 9007199254740992.0;
+
+            int a1;
+            double v = a * b + c;
+            if (v >= two53 || v <= -two53 ) 
+            {
+                a1 = (int)(a / two17);
+                a -= a1 * two17;
+                v  = a1 * b;
+                a1 = (int)(v / m);
+                v -= a1 * m;
+                v  = v * two17 + a * b + c;
+            }
+            a1 = (int)(v / m);
+            
+            if ((v -= a1 * m) < 0.0)
+                return v += m;
+            else
+                return v;
+        }
+
         /// <summary>
         /// Constructs a modulus operator with a persistent type-natural divisor
         /// </summary>

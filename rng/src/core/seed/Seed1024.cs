@@ -58,11 +58,7 @@ namespace Z0
             = items(
                 FixedGuids[0],FixedGuids[1],FixedGuids[2],FixedGuids[3],
                 FixedGuids[4],FixedGuids[5],FixedGuids[6],FixedGuids[7]).ToU64Array();
-        
-        public static ulong[] BenchSeed 
-            = items(FixedGuids[8],FixedGuids[9],FixedGuids[10],FixedGuids[11],
-                FixedGuids[12],FixedGuids[13],FixedGuids[14],FixedGuids[15]).ToU64Array();
-        
+               
         public static ulong[] AppSeed 
             = items(FixedGuids[16],FixedGuids[17],FixedGuids[18],FixedGuids[19],
                 FixedGuids[20],FixedGuids[21],FixedGuids[22],FixedGuids[23]).ToU64Array();

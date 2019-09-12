@@ -17,16 +17,25 @@ namespace Z0
     /// </summary>
     public static class RNG
     {
+        [MethodImpl(Inline)]
+        static T TypeMin<T>()
+            where T : struct
+                => gmath.minval<T>();
+        
+        static T TypeMax<T>()
+            where T : struct
+                => gmath.maxval<T>();
+
         public static Interval<T> TypeDomain<T>()
             where T : struct
         {
             var min = gmath.signed<T>() && !gmath.floating<T>()
-                ? gmath.negate(gbits.sar(gmath.maxval<T>(), 1)) 
+                ? gmath.negate(gbits.sar(TypeMax<T>(), 1)) 
                 : gmath.zero<T>();
             
             var max = 
                 gmath.signed<T>() && !gmath.floating<T>()
-                ? gbits.sar(gmath.maxval<T>(), 1)
+                ? gbits.sar(TypeMax<T>(), 1)
                 : gmath.maxval<T>();
             
             return leftclosed(min,max);
@@ -68,7 +77,7 @@ namespace Z0
         /// <param name="seed">An optional seed; if unspecified, seed is taken from the system entropy source</param>
         [MethodImpl(Inline)]
         public static IPolyrand WyHash64(ulong? seed = null)
-            => new WyHash64(seed ?? BitConverter.ToUInt64(Entropy.Bytes(8))).ToPolyrand();        
+            => new WyHash64(seed ?? Seed64.Seed00).ToPolyrand();        
 
         /// <summary>
         /// Creates a 128-bit xorshift rng initialezed with a specified seed
@@ -78,8 +87,8 @@ namespace Z0
         /// <param name="s2">The third seed value</param>
         /// <param name="s3">The fourth seed value</param>
         [MethodImpl(Inline)]
-        public static IPointSource<uint> XOr128(uint s0, uint s1, uint s2, uint s3)
-            => new XOrShift128(s0,s1,s2,s3);
+        public static IPointSource<uint> XOr128(uint? s0 = null, uint? s1 = null, uint? s2 = null, uint? s3 = null)
+            => new XOrShift128(s0 ?? Seed32.Seed00,s1 ?? Seed32.Seed01, s2 ?? Seed32.Seed02, s3 ?? Seed32.Seed03);
 
         [MethodImpl(Inline)]
         public static IPointSource<uint> XOr128(ReadOnlySpan<uint> state, int offset = 0)
@@ -92,6 +101,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IPolyrand XOrShift1024(ulong[] seed = null)
             => new XOrShift1024(seed ?? Seed1024.Default).ToPolyrand();
+
+        static Vector<N6,uint> Seed6x32 = new uint[]{0xFA243, 0xAD941, 0xBC883, 0xDB193, 0xAA137, 0xB1B39};
+
+        [MethodImpl(Inline)]
+        public static IPointSource<uint> Mrg32k3a(Vector<N6,uint>? seed = null)
+            => new Mrg32K3A(seed ?? Seed6x32);
 
         /// <summary>
         /// Creates an XOrShift 1024 rng
@@ -108,23 +123,23 @@ namespace Z0
         /// otherwise, the seed is obtained from an entropy source</param>
         [MethodImpl(Inline)]
         public static IPolyrand SplitMix(ulong? seed = null)
-            => SplitMix64.Define(seed ?? Entropy.Value<ulong>()).ToPolyrand();
+            => SplitMix64.Define(seed ?? Seed64.Seed00).ToPolyrand();
 
         /// <summary>
         /// Creates a 32-bit Pcg RNG
         /// </summary>
         /// <param name="seed">The inital rng state</param>
         /// <param name="index">The stream index, if any</param>
-        public static IStepwiseSource<uint> Pcg32(ulong seed, ulong? index = null)
-            => Z0.Pcg32.Define(seed, index);        
+        public static IStepwiseSource<uint> Pcg32(ulong? seed = null, ulong? index = null)
+            => Z0.Pcg32.Define(seed ?? Seed64.Seed00, index);        
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG
         /// </summary>
         /// <param name="seed">The inital rng state</param>
         /// <param name="index">The stream index, if any</param>
-        public static IPolyrand Pcg64(ulong seed, ulong? index = null)
-            => Z0.Pcg64.Define(seed, index).ToPolyrand();     
+        public static IPolyrand Pcg64(ulong? seed = null, ulong? index = null)
+            => Z0.Pcg64.Define(seed ?? Seed64.Seed00, index).ToPolyrand();     
 
         /// <summary>
         /// Creates a 64-bit Pcg RNG suite predicated on an array of seed and stream indices
