@@ -15,23 +15,31 @@ namespace Z0
     partial class RngX
     {
         /// <summary>
-        /// Produces a stream of uniformly random bits
+        /// Defines a point source that produces bitstring with varying lengths
         /// </summary>
         /// <param name="random">The random source</param>
-        public static IRandomStream<Bit> Bits(this IPolyrand random)
-        {
-            IEnumerable<Bit> produce()
-            {
-                while(true)
-                {
-                    var bs = random.Next<ulong>().ToBitString();
-                    for(var i = 0; i< 64; i++)
-                        yield return bs[i];                                    
-                }
-            }
+        /// <param name="length">The potential bitstring lengths</param>
+        [MethodImpl(Inline)]
+        public static IPointSource<BitString> BitStringSource(this IPolyrand random, Interval<int> length)        
+            => new BitStringSource(random, length);
 
-            return stream(produce(), random.RngKind);
-        }
+        /// <summary>
+        /// Converts a point source to a bitstram
+        /// </summary>
+        /// <param name="src">The point source</param>
+        /// <typeparam name="T">The point type</typeparam>
+        [MethodImpl(Inline)]
+        public static IRandomStream<Bit> ToBitStream<T>(this IPointSource<T> src)
+            where T : unmanaged
+                => BitSource<T>.From(src);    
+        
+        /// <summary>
+        /// Produces a stream of random bits
+        /// </summary>
+        /// <param name="random">The random source</param>
+        [MethodImpl(Inline)]
+        public static IRandomStream<Bit> Bits(this IPolyrand random)
+            => random.PointSource<ulong>().ToBitStream();
 
         /// <summary>
         /// Produces a random bitstring with randomized length
@@ -41,7 +49,21 @@ namespace Z0
         /// <param name="maxlen">The maximum length of the bitstring</param>
         [MethodImpl(Inline)]
         public static BitString BitString(this IPolyrand random, int minlen, int maxlen)
-            => random.Bits().TakeSpan(random.Next(minlen, maxlen)).ToBitString();
+        {
+            var count = 1 + random.Next(minlen, maxlen) >> 6;
+            var data = random.Span<ulong>(count);
+            return data.ToBitString().Truncate(maxlen);
+        }
+
+        /// <summary>
+        /// Produces a random bitstring with randomized length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="minlen">The mininimum length of the bitstring</param>
+        /// <param name="maxlen">The maximum length of the bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitString BitString(this IPolyrand random, Interval<int> length)
+            => random.BitString(length.Left, length.Right);
 
         /// <summary>
         /// Produces a random bitstring with a specified length
@@ -50,7 +72,11 @@ namespace Z0
         /// <param name="len">The bitstring length</param>
         [MethodImpl(Inline)]
         public static BitString BitString(this IPolyrand random, int len)
-            => Z0.BitString.FromBits(random.Bits().Take(len));
+        {
+            var count = 1 + len >> 6;
+            var data = random.Span<ulong>(count);
+            return data.ToBitString().Truncate(len);
+        }
 
         /// <summary>
         /// Produces a random bitstring with a specified natural length
@@ -60,7 +86,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString BitString<N>(this IPolyrand random, N n = default)
             where N : ITypeNat, new()
-                => Z0.BitString.FromBits(random.Bits().Take((int)n.value));
+                => random.BitString((int)n.value);
 
         /// <summary>
         /// Produces sequences of random bitstrings with specified length

@@ -33,6 +33,16 @@ namespace Z0
             Benchmark(RNG.SplitMix().PointSource<ulong>());
         }
 
+        public void bench_splitmix_bitstring()
+        {
+            Benchmark((RNG.SplitMix().BitStringSource((Pow2.T03, Pow2.T08))));
+        }
+
+        void bench_splitmix_bitsource()
+        {
+            Benchmark(RNG.SplitMix().PointSource<ulong>().ToBitStream());
+        }
+
         public void bench_splitmix_uniform_f64()
         {
 
@@ -45,6 +55,18 @@ namespace Z0
             var gen = RNG.SplitMix();
             var sampler = gen.Bernoulli<byte>(.35);
             Benchmark(sampler);
+        }
+
+        public void bench_xor1024_uniform_u64()
+        {
+
+            Benchmark(RNG.XOrShift1024().PointSource<ulong>());
+        }
+
+        public void bench_xor256_uniform_u64()
+        {
+
+            Benchmark(RNG.XOrStarStar256().PointSource<ulong>());
         }
 
         public void bench_wyhash_uniform_u64()
@@ -110,11 +132,17 @@ namespace Z0
             Benchmark(sampler);            
         }
 
-
         public void bench_mkl_mcg59_bits_u64()
         {
             using var generator = rng.mcg59(RngSeed.TakeSingle<uint>(0));
             var sampler = generator.UniformBitsSampler<ulong>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_mcg59_gaussian_f64()
+        {
+            using var generator = rng.mcg59(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.GaussianSampler(GaussianSpec.Define(10.0, 50.0));
             Benchmark(sampler);            
         }
 
@@ -137,6 +165,13 @@ namespace Z0
             using var generator = rng.mrg32K31(RngSeed.TakeSingle<uint>(0));
             var sampler = generator.UniformSampler<double>();
             Benchmark(sampler);            
+        }
+
+        void bench_binomial()            
+        {
+            //Slow!!!
+            var spec = BinomialSpec<int>.Define(10, .5);
+            Benchmark(spec.Distribution(Random));
         }
 
         void mul_bench()

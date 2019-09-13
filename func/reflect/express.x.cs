@@ -18,7 +18,6 @@ namespace Z0
     using XPR = System.Linq.Expressions.Expression;
     using PX = System.Linq.Expressions.ParameterExpression;
 
-
     public static class expressX
     {
         /// <summary>
@@ -518,5 +517,4 @@ namespace Z0
             return XPR.Lambda<Func<X1, X2, X3, X4, Y>>(callResult, x1, x2, x3, x4).Compile();
         }
     }
-
 }

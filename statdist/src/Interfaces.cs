@@ -14,7 +14,7 @@ namespace Z0
 
     public interface IDistributionSpec
     {
-        DistKind Kind {get;}
+        DistKind DistKind {get;}
         
     }
 

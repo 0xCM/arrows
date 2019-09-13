@@ -28,6 +28,12 @@ namespace System
         T Next();    
     }
 
+    public interface IPointStream<T> : IPointSource<T>
+        where T : unmanaged
+    {
+        IEnumerable<T> Stream {get;}
+    }
+
     /// <summary>
     /// Characterizes a stream of random values of parametric type
     /// </summary>

@@ -125,7 +125,6 @@ namespace Z0
             return  lhs;
         }
 
-
         [MethodImpl(Inline)]
         public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct

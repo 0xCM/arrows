@@ -64,7 +64,7 @@ namespace Z0
                 var hostpath = host.DisplayName();
                 if(instance.Enabled)
                     iter(Tests(host), t =>  execTime += Run(instance, hostpath, t));                
-                OpTimes.AddRange(instance.Benchmarks);
+                Enqueue(instance.Benchmarks);
                 
                 print(AppMsg.Define($"{host.Name} exectime {execTime.Ms} ms, runtime = {snapshot(runtimer).Ms} ms", SeverityLevel.Info));
 
@@ -133,8 +133,9 @@ namespace Z0
             try
             {            
                 Run(false,filters);
-                if(OpTimes.Any())
-                    Log.LogBenchmarks(AppName,true,true,'|',OpTimes.ToArray());
+                var timings = DequeueTimings();
+                if(timings.Any())
+                    Log.LogBenchmarks(AppName,true,true,'|', timings);
             }
             catch (Exception e)
             {

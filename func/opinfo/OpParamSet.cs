@@ -6,7 +6,7 @@ namespace Z0
     
     using static zfunc;    
 
-    public class TypeParamSet
+    public class OpParamSet
     {        
         /// <summary>
         /// The name of the paramter, usually 'T' or some such

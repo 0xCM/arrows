@@ -21,15 +21,13 @@ namespace Z0.Mkl
         }
 
         protected override int FillBuffer(Span<T> buffer)
-        {
-            
+        {            
             if(typeof(T) == typeof(int))
                 sample.geometric(Source,  DistSpec, int32(buffer));
             else 
                 throw unsupported<T>();
             
             return buffer.Length;
-
         }
     }
 

@@ -23,7 +23,7 @@ namespace Z0.Mkl
             where T : unmanaged
         {
             var sampler = default(ISampler<T>);
-            switch(spec.Kind)
+            switch(spec.DistKind)
             {
                 case DistKind.Uniform:
                     sampler = rng.UniformSampler<T>(UniformSpec.From(spec));

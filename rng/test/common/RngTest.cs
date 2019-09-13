@@ -18,23 +18,29 @@ namespace Z0
 
         protected override int SampleSize => Pow2.T15;
 
-        protected OpTime Benchmark<T>(IPointSource<T> rng)
+        protected OpTime Benchmark<T>(ISampler<T> sampler)
             where T : unmanaged
+        {
+
+            var opname = $"{sampler.RngKind}<{type<T>().DisplayName()}>[{sampler.DistKind}]";            
+            return Benchmark(sampler as IPointSource<T>,opname);
+
+        }
+
+        protected OpTime Benchmark<T>(IPointSource<T> src, string opname = null)
+            where T : struct
         {
             var last = default(T);
             var sw = stopwatch();
 
             for(var cycle = 0; cycle < CycleCount; cycle++)
             for(var i=0; i<SampleSize; i++)
-                last = rng.Next();
+                last = src.Next();
             
-            OpTime time = (CycleCount*SampleSize, sw, $"{rng.RngKind}");
+            OpTime time = (CycleCount*SampleSize, sw, opname ?? $"{src.RngKind}<{type<T>().DisplayName()}>");
             Collect(time);
             return time;
-
         }
 
     }
-
-
 }

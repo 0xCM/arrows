@@ -12,52 +12,55 @@ namespace Z0
 
     using static zfunc;
 
-    public ref struct It
+    /// <summary>
+    /// Defines a type that implements the increment/decrement pattern over integers
+    /// </summary>
+    public ref struct It32i
     {            
         [MethodImpl(Inline)]
-        public static It Define(int start, int finish, int step = 1)
-            => new It(start, finish, step);
+        public static It32i Define(int start, int finish, int step = 1)
+            => new It32i(start, finish, step);
 
         [MethodImpl(Inline)]
-        public static bool operator false(It src)
+        public static bool operator false(It32i src)
             => !src.Valid;
         
         [MethodImpl(Inline)]
-        public static bool operator true(It src)
+        public static bool operator true(It32i src)
             => src.Valid;
 
         [MethodImpl(Inline)]
-        public static It operator ++(It src)
+        public static It32i operator ++(It32i src)
         {
             src.Next();
             return src;
         }
 
         [MethodImpl(Inline)]
-        public static It operator --(It src)
+        public static It32i operator --(It32i src)
         {
             src.Prior();
             return src;
         }
 
         [MethodImpl(Inline)]
-        public static implicit operator int(It src)
+        public static implicit operator int(It32i src)
             => src.Current;
 
         [MethodImpl(Inline)]
-        public static implicit operator uint(It src)
+        public static implicit operator uint(It32i src)
             => (uint)src.Current;
 
         [MethodImpl(Inline)]
-        public static implicit operator long(It src)
+        public static implicit operator long(It32i src)
             => src.Current;
 
         [MethodImpl(Inline)]
-        public static implicit operator ulong(It src)
+        public static implicit operator ulong(It32i src)
             => (ulong)src.Current;
 
         [MethodImpl(Inline)]
-        public It(int start, int finish, int step)
+        public It32i(int start, int finish, int step)
         {
             LowerLimit = Math.Min(start, finish);
             UpperLimit = Math.Max(start, finish);

@@ -36,7 +36,7 @@ namespace Z0.Mkl
             => Source.RngKind;
 
         public DistKind DistKind
-            => DistSpec.Kind;
+            => DistSpec.DistKind;
 
         public int BufferLength {get;}
 

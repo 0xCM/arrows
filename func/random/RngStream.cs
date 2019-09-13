@@ -13,6 +13,15 @@ namespace Z0
     using static zfunc;
     using static As;
 
+    public static class RandomStream
+    {
+        [MethodImpl(Inline)]
+        public static IRandomStream<T> From<T>(IEnumerable<T> src, RngKind rng)
+            where T : struct
+                =>  new RandomStream<T>(rng,src);
+
+    }
+
     public struct RandomStream<T> : IRandomStream<T>
         where T : struct
     {

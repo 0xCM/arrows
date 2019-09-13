@@ -73,7 +73,7 @@ namespace Z0
         /// </summary>
         public readonly double Success;
 
-        public DistKind Kind 
+        public DistKind DistKind 
             => DistKind.Bernoulli;
     }
 }

@@ -11,11 +11,30 @@ namespace Z0
     public static partial class RngQuality
     {
         /// <summary>
+        /// Counts the number of sample points that lie within a specified interval
+        /// </summary>
+        /// <param name="random">The distribution to analyze</param>
+        /// <param name="domain">The interval within which points will be counted</param>
+        /// <param name="count">The number of sample points to use</param>
+        /// <typeparam name="T">The distribution point type</typeparam>
+        public static Ratio<double> SamplesWithin<T>(IPolyrand random, Interval<T> domain, int count)
+            where T : unmanaged
+        {
+            var src = random.Stream(domain).Take((uint)count);
+            var counter = 0;
+            foreach(var sample in src)
+                if(domain.Contains(sample))
+                    counter++;
+            return new Ratio<double>(counter, count);
+
+        }    
+
+        /// <summary>
         /// Calulates the ratio of the count of positive to negative values.
         /// The test succeeds if the ratio approaches unity as the sample size approaches infinity
         /// </summary>
         /// <param name="samples">The sample count</param>
-        public static double SignRatio(this IPolyrand random, long samples, long radius)
+        public static double SignRatio(IPolyrand random, long samples, long radius)
         {
             var domain = closed(0 - math.abs(radius), 0 + math.abs(radius));
             var pos = 0L;

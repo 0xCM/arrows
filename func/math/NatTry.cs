@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -7,9 +11,11 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
+    /// <summary>
+    /// Defines proof attempts for type naturals
+    /// </summary>
     public static class NatTry
     {
-
         /// <summary>
         /// Evaluates a function within a try block and returns the value of the computation if 
         /// successful; otherwise, returns None together with the reported exceptions

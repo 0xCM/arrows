@@ -26,7 +26,6 @@ namespace Z0
             where T : unmanaged
                 => Dataset<T>.Load(src, dim);
 
-
         /// <summary>
         /// Allocates a sample 
         /// </summary>

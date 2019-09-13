@@ -14,7 +14,7 @@ namespace Z0
 
     public class OpGroup
     {
-        public OpGroup(string Name, bool IsGeneric, int Arity, TypeParamSet[] TypeParameters)
+        public OpGroup(string Name, bool IsGeneric, int Arity, OpParamSet[] TypeParameters)
         {
             this.Name = Name;
             this.IsGeneric = IsGeneric;
@@ -44,7 +44,7 @@ namespace Z0
         /// there should be at least one type parameter description
         /// </summary>
         /// <value></value>
-        public TypeParamSet[] TypeParameters {get;}
+        public OpParamSet[] TypeParameters {get;}
         
     }
 }

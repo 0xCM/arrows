@@ -7,10 +7,8 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.IO;
     using System.Diagnostics;
     using System.Reflection;
-    using System.Runtime.Versioning;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
@@ -20,38 +18,35 @@ namespace Z0
     /// </summary>
     public static partial class Reflections
     {
-
         /// <summary>
         /// Convenience accessor for the assembly's version
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The source assembly</param>
         public static Version AssemblyVersion(this Assembly a)
             => a.GetName().Version;
 
         /// <summary>
         /// Determines whether an assembly has an attribute of a given type
         /// </summary>
+        /// <param name="a">The source assembly</param>
         /// <typeparam name="T">The attribute type</typeparam>
-        /// <param name="a">The assembly to examine</param>
-        public static bool HasAttribute<T>(this Assembly a) where T : Attribute
-            => System.Attribute.IsDefined(a, typeof(T));
+        public static bool HasAttribute<T>(this Assembly a) 
+            where T : Attribute
+                => System.Attribute.IsDefined(a, typeof(T));
 
         /// <summary>
         /// Gets the identified assembly attribute if present, otherwise NULL
         /// </summary>
+        /// <param name="a">The source assembly</param>
         /// <typeparam name="A">The type of attribute for which to search</typeparam>
-        /// <param name="a">The assembly to examine</param>
-        /// <returns></returns>
         public static A GetAttribute<A>(this Assembly a) where A : Attribute
             => (A)System.Attribute.GetCustomAttribute(a, typeof(A));
 
         /// <summary>
         /// Gets the identified assembly attribute if present, otherwise None
         /// </summary>
+        /// <param name="a">The source assembly</param>
         /// <typeparam name="A">The type of attribute for which to search</typeparam>
-        /// <param name="a">The assembly to examine</param>
-        /// <returns></returns>
         public static Option<A> TryGetAttribute<A>(this Assembly a) 
             where A : Attribute
                 =>  a.GetAttribute<A>();
@@ -59,7 +54,7 @@ namespace Z0
         /// <summary>
         /// Gets the value of <see cref="AssemblyProductAttribute"/> if it exists
         /// </summary>
-        /// <param name="a">The assembly to examine</param>
+        /// <param name="a">The source assembly</param>
         public static Option<string> Product(this Assembly a)
             => from x in a.TryGetAttribute<AssemblyProductAttribute>()
             select x.Product;
@@ -67,8 +62,7 @@ namespace Z0
         /// <summary>
         /// Gets the value of <see cref="AssemblyTitleAttribute"/> if it exists
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The source assembly</param>
         public static Option<string> Title(this Assembly a)
             => from x in a.TryGetAttribute<AssemblyTitleAttribute>()
             select x.Title;
@@ -76,8 +70,7 @@ namespace Z0
         /// <summary>
         /// Gets the value of <see cref="AssemblyCompanyAttribute"/> if it exists
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The source assembly</param>
         public static Option<string> Company(this Assembly a)
             => from x in a.TryGetAttribute<AssemblyCompanyAttribute>()
             select x.Company;
@@ -85,8 +78,7 @@ namespace Z0
         /// <summary>
         /// Gets the value of <see cref="AssemblyDefaultAliasAttribute"/> if it exists
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The source assembly</param>
         public static Option<string> DefaultAlias(this Assembly a)
             => from x in a.TryGetAttribute<AssemblyDefaultAliasAttribute>()
             select x.DefaultAlias;
@@ -94,8 +86,8 @@ namespace Z0
         /// <summary>
         /// Gets the type attributions for the specified assembly
         /// </summary>
+        /// <param name="a">The source assembly</param>
         /// <typeparam name="A">The attribute type</typeparam>
-        /// <param name="a">The assembly to search</param>
         public static IDictionary<Type, A> GetTypeAttributions<A>(this Assembly a, Func<Type,bool> pred = null)
             where A : Attribute
         {
@@ -114,9 +106,8 @@ namespace Z0
         /// <summary>
         /// Gets the type attributions for the specified assembly
         /// </summary>
-        /// <param name="a">The assembly to search</param>
+        /// <param name="a">The source assembly</param>
         /// <param name="fullAttributeTypeName">The full type name of the attribute</param>
-        /// <returns></returns>
         public static IDictionary<Type, dynamic> GetTypeAttributions(this Assembly a, string fullAttributeTypeName)
         {
             var attributions = new Dictionary<Type, dynamic>();
@@ -137,7 +128,7 @@ namespace Z0
         /// <summary>
         /// Gets the simple name of an assembly
         /// </summary>
-        /// <param name="a">The assembly to examine</param>
+        /// <param name="a">The source assembly</param>
         public static string GetSimpleName(this Assembly a)
             => a?.GetName()?.Name ?? string.Empty;
  

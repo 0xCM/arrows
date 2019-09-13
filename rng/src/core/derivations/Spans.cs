@@ -27,8 +27,9 @@ namespace Z0
         public static Span<T> Span<T>(this IPolyrand random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
-            var stream = domain != null ? random.Stream<T>(domain.Value) : random.Stream<T>();
-            return stream.TakeSpan(length);
+            Span<T> dst = new T[length];
+            random.StreamTo(domain.Configure(), length,ref head(dst), filter);
+            return dst;
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> Span<T>(this IPolyrand random, int length, Interval<T> domain)
             where T : struct
-            => random.Stream<T>(domain).TakeSpan(length);
+                => random.Span<T>(length,domain,null);
 
         /// <summary>
         /// Allocates and produces a readonly span populated with random values

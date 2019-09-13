@@ -27,7 +27,7 @@ namespace Z0
         {
             if(seed.Length < 16)
                 throw new Exception($"Not enough seed! 1024 bits = 128 bytes = 16 longs are required");
-            this.state = As.uint64(seed).ToArray();
+            this.state = seed;
         }
 
         public XOrShift1024(Span<byte> seed)
