@@ -30,13 +30,8 @@ namespace Z0
             return new Polynomial<T>(expanse);
         }
 
-        readonly MemorySpan<Monomial<T>> Terms;
+        readonly Monomial<T>[] Terms;
 
-        [MethodImpl(Inline)]
-        Polynomial(MemorySpan<Monomial<T>> terms)
-        {
-            this.Terms = terms;
-        }
 
         [MethodImpl(Inline)]
         Polynomial(Monomial<T>[] terms)
@@ -104,7 +99,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : unmanaged
     {
-        public readonly MemorySpan<Monomial<M,T>> Terms;
+        public readonly Monomial<M,T>[] Terms;
 
         public static readonly int Degree = (int)new N().value;
         
@@ -113,12 +108,6 @@ namespace Z0
         /// </summary>
         public static readonly Polynomial<M,N,T> Zero = new Polynomial<M, N, T>(Monomial<M,T>.Zero(Degree));
 
-        [MethodImpl(Inline)]
-        public Polynomial(MemorySpan<Monomial<M,T>> terms)
-        {
-            require(terms[0].Exp == Degree);
-            this.Terms = terms;
-        }
 
         [MethodImpl(Inline)]
         public Polynomial(params Monomial<M,T>[] terms)

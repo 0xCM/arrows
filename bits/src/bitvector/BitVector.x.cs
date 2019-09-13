@@ -77,30 +77,11 @@ namespace Z0
         /// <param name="len">The bitvector length, if specified</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this Span<T> src, BitSize? len = null)
+        public static BitVector<T> ToBitVector<T>(this T[] src, BitSize? len = null)
             where T : unmanaged
                 => BitVector.FromCells(src,len);
 
-        /// <summary>
-        /// Loads a bitvector from a primal segment
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="len">The bitvector length, if specified</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this MemorySpan<T> src, BitSize? len = null)
-            where T : unmanaged
-                => BitVector.FromCells(src,len);
 
-        /// <summary>
-        /// Loads a bitvector from a primal span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this ReadOnlySpan<T> src, BitSize? len = null)
-            where T : unmanaged
-                => BitVector.FromCells(src,len);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        

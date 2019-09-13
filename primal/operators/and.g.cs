@@ -125,34 +125,6 @@ namespace Z0
             return  lhs;
         }
 
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> and<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs, MemorySpan<T> dst)
-            where T : unmanaged
-        {
-            if(typeof(T) == typeof(sbyte))
-                math.and(int8(lhs), int8(rhs), int8(dst));
-            else if(typeof(T) == typeof(byte))
-                math.and(uint8(lhs), uint8(rhs), uint8(dst));
-            else if(typeof(T) == typeof(short))
-                math.and(int16(lhs), int16(rhs), int16(dst));
-            else if(typeof(T) == typeof(ushort))
-                math.and(uint16(lhs), uint16(rhs), uint16(dst));
-            else if(typeof(T) == typeof(int))
-                math.and(int32(lhs), int32(rhs), int32(dst));
-            else if(typeof(T) == typeof(uint))
-                math.and(uint32(lhs), uint32(rhs), uint32(dst));
-            else if(typeof(T) == typeof(long))
-                math.and(int64(lhs), int64(rhs), int64(dst));
-            else if(typeof(T) == typeof(ulong))
-                math.and(uint64(lhs), uint64(rhs), uint64(dst));
-            else if(typeof(T) == typeof(float))
-                math.and(float32(lhs), float32(rhs), float32(dst));
-            else if(typeof(T) == typeof(double))
-                math.and(float64(lhs), float64(rhs), float64(dst));
-            else
-                throw unsupported<T>();
-            return  dst;
-        }
 
         [MethodImpl(Inline)]
         public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)

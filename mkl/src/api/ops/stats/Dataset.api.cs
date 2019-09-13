@@ -26,16 +26,6 @@ namespace Z0
             where T : unmanaged
                 => Dataset<T>.Load(src, dim);
 
-        /// <summary>
-        /// Loads a sample from a memory source
-        /// </summary>
-        /// <param name="src">The memory source</param>
-        /// <param name="dim">The sample dimension</param>
-        /// <typeparam name="T">The sample data type</typeparam>
-        [MethodImpl(Inline)]
-        public static Dataset<T> Load<T>(MemorySpan<T> src, int dim = 1)
-            where T : unmanaged
-                => Dataset<T>.Load(src, dim);
 
         /// <summary>
         /// Allocates a sample 

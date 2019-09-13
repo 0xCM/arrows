@@ -101,6 +101,20 @@ namespace Z0
                 => src.ToSpan128();
 
         /// <summary>
+        /// Allocates an array into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] ToArray<T>(this Vec128<T> src)
+            where T : struct            
+        {
+            var dst = new T[Vec128<T>.Length];
+            vstore(in src, ref head(dst));
+            return dst;
+        }
+
+        /// <summary>
         /// Allocates a span into which vector content is stored
         /// </summary>
         /// <param name="src">The source span</param>
@@ -130,6 +144,20 @@ namespace Z0
             where T : struct            
                 => src.ToSpan256();
 
+        /// <summary>
+        /// Allocates an array into which vector content is stored
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] ToArray<T>(this Vec256<T> src)
+            where T : struct            
+        {
+            var dst = new T[Vec256<T>.Length];
+            vstore(in src, ref head(dst));
+            return dst;
+        }
+            
         /// <summary>
         /// Allocates a span into which vector content is stored
         /// </summary>

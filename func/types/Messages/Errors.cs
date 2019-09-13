@@ -75,6 +75,8 @@ namespace Z0
                     => new IndexOutOfRangeException($"Value {value} is not between {min} and {max}: line {line}, member {caller} in file {file}");
         public static T ThrowOutOfRange<T>(int index, int min, int max, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => throw OutOfRange(index, min, max, caller, file, line);
+        public static void ThrowTooShort(int dstLen, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+            => throw new IndexOutOfRangeException($"The target length {dstLen} is tooShort: line {line}, member {caller} in file {file}");
 
     }
 }

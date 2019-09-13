@@ -12,10 +12,10 @@ namespace Z0
         
     using static zfunc;
 
-    public readonly struct Dataset<T>
+    public readonly ref struct Dataset<T>
         where T : unmanaged
     {
-        public readonly MemorySpan<T> Data {get;}
+        public readonly Span<T> Data;
 
         /// <summary>
         /// The number of observations that comprise the sample
@@ -32,11 +32,11 @@ namespace Z0
             => new Dataset<T>(new T[count * dim], dim);
     
         [MethodImpl(Inline)]
-        public static Dataset<T> Load(MemorySpan<T> src, int dim)
+        public static Dataset<T> Load(T[] src, int dim)
             => new Dataset<T>(src,dim);
 
         [MethodImpl(Inline)]
-        public static Dataset<T> Load(T[] src, int dim)
+        public static Dataset<T> Load(Span<T> src, int dim)
             => new Dataset<T>(src,dim);
 
         [MethodImpl(Inline)]
@@ -57,6 +57,15 @@ namespace Z0
         
 
         [MethodImpl(Inline)]
+        Dataset(Span<T> src, int dim)
+        {
+            this.Dim = dim;            
+            this.Count = Math.DivRem(src.Length, dim, out int remainder);    
+            require(remainder == 0);
+            Data = src;
+        }
+
+        [MethodImpl(Inline)]
         Dataset(T[] src, int dim)
         {
             this.Dim = dim;            
@@ -65,19 +74,10 @@ namespace Z0
             Data = src;
         }
                 
-        [MethodImpl(Inline)]
-        Dataset(MemorySpan<T> src, int dim)
-        {
-            this.Dim = dim;            
-            this.Count = Math.DivRem(src.Length, dim, out int remainder);    
-            require(remainder == 0);
-            Data = src;
-        }
-
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
-            get => ref Data.Span[ix];
+            get => ref Data[ix];
         }
 
         [MethodImpl(Inline)]

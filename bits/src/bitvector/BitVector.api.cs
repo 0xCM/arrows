@@ -144,31 +144,10 @@ namespace Z0
         /// <param name="n">The vector length</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> FromCells<T>(Span<T> src, BitSize? n = null)
+        public static BitVector<T> FromCells<T>(T[] src, BitSize? n = null)
             where T : unmanaged
-                => BitVector<T>.FromCells(src,n);
+                => BitVector<T>.FromCells(n,src);
 
-        /// <summary>
-        /// Loads a generic bitvector from a primal memory block
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="n">The vector length</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromCells<T>(MemorySpan<T> src, BitSize? n = null)
-            where T : unmanaged
-                => BitVector<T>.FromCells(src,n);
-
-        /// <summary>
-        /// Loads a generic bitvector from a primal span
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="n">The vector length</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromCells<T>(ReadOnlySpan<T> src, BitSize? n = null)
-            where T : unmanaged
-                => BitVector<T>.FromCells(src,n);
 
         /// <summary>
         /// Creates a generic bitvector defined by an arbitrary number of segments

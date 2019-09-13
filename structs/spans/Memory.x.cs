@@ -15,15 +15,6 @@ namespace Z0
 
     public static partial class MemX
     {
-        /// <summary>
-        /// Converts a memory segment to a memory span
-        /// </summary>
-        /// <param name="src">The source segment</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> ToMemorySpan<T>(this Memory<T> src)
-            where T : unmanaged
-                => src;
 
         /// <summary>
         ///  Constructs a memory segment from the content of an array (non-allocating)

@@ -80,10 +80,6 @@ namespace Z0
         public static implicit operator Span<T>(Matrix<N,T> src)
             => src.Data;
 
-        [MethodImpl(Inline)]
-        public static implicit operator MemorySpan<T>(Matrix<N,T> src)
-            => src.Data;
-
 
         [MethodImpl(Inline)]
         public static implicit operator Matrix<N,T>(T[] src)

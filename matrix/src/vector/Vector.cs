@@ -8,15 +8,18 @@ namespace Z0
     using System.Numerics;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;    
         
     using static zfunc;
 
+    /// <summary>
+    /// Defines a vector over cells of unmanaged type
+    /// </summary>
     public struct Vector<T>
         where T : unmanaged
     {
         T[] data;
-
 
         /// <summary>
         /// Implicitly converts an array to a vector
@@ -26,7 +29,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator Vector<T>(T[] src)
             => new Vector<T>(src);
-
 
         /// <summary>
         /// Implicitly reveals a vector's underlying memory span
@@ -55,6 +57,12 @@ namespace Z0
         public static T operator &(Vector<T> lhs, Vector<T> rhs)
             => gmath.dot<T>(lhs.data, rhs.data);
 
+        /// <summary>
+        /// Deems vectors are equal if they have the same number of components
+        /// and corresponding components have identical content
+        /// </summary>
+        /// <param name="lhs">The left vector</param>
+        /// <param name="rhs">Teh right vector</param>
         [MethodImpl(Inline)]
         public static bool operator == (Vector<T> lhs, Vector<T> rhs) 
             => lhs.Equals(rhs);
@@ -63,6 +71,10 @@ namespace Z0
         public static bool operator != (Vector<T> lhs, Vector<T> rhs) 
             => !lhs.Equals(rhs);
 
+        /// <summary>
+        /// Initializes a vector from array content
+        /// </summary>
+        /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
         public Vector(T[] src)
             => this.data = src;
@@ -76,6 +88,9 @@ namespace Z0
             get => ref data[i];            
         }
 
+        /// <summary>
+        /// The data wrapped by the vector
+        /// </summary>
         public T[] Data
         {
             [MethodImpl(Inline)]
@@ -110,11 +125,35 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Copies vector content into a caller-provided span
+        /// </summary>
+        /// <param name="dst">The target span</param>
+        [MethodImpl(Inline)]
+        public void CopyTo(Span<T> dst)
+        {
+            if(dst.Length < data.Length)
+                Errors.ThrowTooShort(dst.Length);
+             copy(ref this, dst);
+        }
+
+        /// <summary>
+        /// Allocates a target span and copies vector content
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Span<T> ToSpan()
+        {
+            Span<T> dst = new T[data.Length];
+            CopyTo(dst);
+            return dst;
+        }
+
         [MethodImpl(Inline)]
         public Vector<U> Convert<U>()
             where U : unmanaged
                => new Vector<U>(convert<T,U>(data));
 
+        [MethodImpl(Inline)]
         public Vector<T> Replicate(bool structureOnly = false)
             => new Vector<T>(data.Replicate(structureOnly));
 
@@ -131,11 +170,10 @@ namespace Z0
         }
 
         public override bool Equals(object rhs)
-            => throw new NotSupportedException();
+            => rhs is Vector<T> x && Equals(x);
 
         public override int GetHashCode()
-            => throw new NotSupportedException();
-
-
+            => data.GetHashCode();
     }
+
 }

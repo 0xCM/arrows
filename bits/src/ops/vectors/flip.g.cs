@@ -15,6 +15,16 @@ namespace Z0
     partial class gbits
     {
         [MethodImpl(Inline)]
+        public static T[] flip<T>(T[] src)
+            where T : unmanaged
+        {
+            var dst = new T[src.Length];
+            for(var i=0; i<dst.Length; i++)
+                gmath.flip(in src[i], ref dst[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static Vec128<T> flip<T>(in Vec128<T> src)
             where T : struct
         {
@@ -62,30 +72,6 @@ namespace Z0
                 throw unsupported<T>();
         }
  
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> flip<T>(MemorySpan<T> src)
-            where T : unmanaged
-        {
-            if(typeof(T) == typeof(sbyte))
-                Bits.flip(int8(src), int8(src));
-            else if(typeof(T) == typeof(byte))
-                Bits.flip(uint8(src), uint8(src));
-            else if(typeof(T) == typeof(short))
-                Bits.flip(int16(src), int16(src));
-            else if(typeof(T) == typeof(ushort))
-                Bits.flip(uint16(src), uint16(src));
-            else if(typeof(T) == typeof(int))
-                Bits.flip(int32(src), int32(src));
-            else if(typeof(T) == typeof(uint))
-                Bits.flip(uint32(src), uint32(src));
-            else if(typeof(T) == typeof(long))
-                Bits.flip(int64(src), int64(src));
-            else if(typeof(T) == typeof(ulong))
-                Bits.flip(uint64(src), uint64(src));
-            else
-                throw unsupported<T>();
-            return src;
-        }
         
 
         [MethodImpl(Inline)]
@@ -113,13 +99,6 @@ namespace Z0
             return src;
         }
 
-        [MethodImpl(Inline)]
-        public static T[] flip<T>(T[] src)
-            where T : struct
-        {
-            flip(src.AsSpan());
-            return src;
-        }
 
 
     }

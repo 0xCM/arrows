@@ -44,7 +44,20 @@ partial class zfunc
         return ref dst;
     }
 
-
+    /// <summary>
+    /// Copies data from an unmanaged value to a target span
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <param name="dst">The target span</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target cell type</typeparam>
+    [MethodImpl(Inline)]   
+    public static void copy<S,T>(ref S src, Span<T> dst)
+        where T : unmanaged
+    {
+        ref var dstBytes = ref Unsafe.As<T, byte>(ref head(dst));
+        Unsafe.WriteUnaligned<S>(ref dstBytes, src);
+    }
 
     /// <summary>
     /// Constructs an unpopulated span of a specified length
@@ -252,6 +265,15 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static ref T head<T>(Span<T> src)
         =>  ref MemoryMarshal.GetReference<T>(src);
+
+    /// <summary>
+    /// Returns a reference to the location of the first element
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref T head<T>(T[] src)
+        =>  ref src[0];
 
     /// <summary>
     /// Returns a reference to a span at a specified offset

@@ -83,28 +83,17 @@ namespace Z0
             where T : struct
                 => ref gmath.flip(in src, ref dst);
  
-        [MethodImpl(Inline)]
-        public static T[] and<T>(T[] lhs, T[] rhs)
-            where T : unmanaged
-        {            
-            var dst = new T[math.max(lhs.Length, rhs.Length)];
-            var len = math.min(lhs.Length, rhs.Length);
-            for(var i=0; i<len; i++)
-                and(in lhs[i],in rhs[i], ref dst[i]);
-            return dst;
-        }
-
         /// <summary>
-        /// Computes the bitwise AND between memory spans of potentially different lengths
+        /// Computes the bitwise AND between arrays of potentially different lengths
         /// </summary>
         /// <param name="lhs">The left cells</param>
         /// <param name="rhs">The right cells</param>
         /// <typeparam name="T">The memory cell type</typeparam>
         [MethodImpl(Inline)]
-        public static MemorySpan<T> and<T>(in MemorySpan<T> lhs, in MemorySpan<T> rhs)
+        public static T[] and<T>(T[] lhs, T[] rhs)
             where T : unmanaged
-        {
-            var dst = MemorySpan.Alloc<T>(math.max(lhs.Length, rhs.Length));
+        {            
+            var dst = new T[math.max(lhs.Length, rhs.Length)];
             var len = math.min(lhs.Length, rhs.Length);
             for(var i=0; i<len; i++)
                 and(in lhs[i],in rhs[i], ref dst[i]);

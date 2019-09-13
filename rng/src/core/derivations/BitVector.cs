@@ -248,7 +248,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> BitVector<T>(this IPolyrand random, BitSize len)
             where T : unmanaged
-                => BV.FromCells<T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(len)));
+                => BV.FromCells<T>(random.Stream<T>().TakeArray(BV.CellCount<T>(len)));
 
         /// <summary>
         /// Produces a stream random generic bitvector of specified length
@@ -263,7 +263,7 @@ namespace Z0
             var cells = BV.CellCount<T>(len);
             var src = random.Stream<T>();
             while(true)
-                yield return BV.FromCells(src.TakeSpan(cells));
+                yield return BV.FromCells(src.TakeArray(cells));
         }
                         
         /// <summary>

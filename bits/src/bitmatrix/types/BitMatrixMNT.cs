@@ -115,7 +115,7 @@ namespace Z0
             => Flip(ref src);
 
         [MethodImpl(Inline)]
-        public BitMatrix(MemorySpan<T> src)
+        public BitMatrix(T[] src)
         {
             require(src.Length == Layout.TotalCellCount);
             this.data = src;

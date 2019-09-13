@@ -42,18 +42,6 @@ namespace Z0
             => src.ToSpan().FormatList(delimiter, offset);
 
         /// <summary>
-        /// Formats an array as a delimited list
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="delimiter">The delimiter</param>
-        /// <param name="offset">The position at which formatting should begin</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]        
-        public static string FormatList<T>(this MemorySpan<T> src, char delimiter = ',', int offset = 0)
-            where T : unmanaged
-                => src.Span.FormatList(delimiter, offset);
-
-        /// <summary>
         /// Constructs an array of specified length from a stream
         /// </summary>
         /// <param name="src">The source stream</param>

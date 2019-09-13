@@ -158,7 +158,7 @@ namespace Z0
         /// <summary>
         /// The data over which the bitvector is constructed
         /// </summary>
-        public MemorySpan<T> Data
+        public T[] Data
         {
             [MethodImpl(Inline)]
             get => data;
@@ -223,12 +223,6 @@ namespace Z0
         public bool Test(BitPos index)
             => Get(index);
 
-        /// <summary>
-        /// Extracts the represented data as a span of bytes
-        /// </summary>
-        [MethodImpl(Inline)]
-        public Span<byte> Bytes()
-            => Data.Bytes;
 
         /// <summary>
         /// Counts the vector's enabled bits
@@ -279,7 +273,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => BitString.FromScalars(Data, Length); 
+            => BitString.FromScalars<T>(Data, Length); 
 
         [MethodImpl(Inline)]
         public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)

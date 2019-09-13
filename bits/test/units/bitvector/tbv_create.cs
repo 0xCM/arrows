@@ -197,7 +197,7 @@ namespace Z0.Test
             var src = Random.Span<T>(SampleSize);
             for(var i=0; i<SampleSize; i += segcount)
             {
-                var bvSrc = src.Slice(i,segcount);
+                var bvSrc = src.Slice(i,segcount).ToArray();
                 var bv = bvSrc.ToBitVector(dim);
                 for(var j = 0; j < dim; j++)
                     Claim.eq(gbits.test(src[i],j).ToBit(), bv[j]);                
@@ -235,7 +235,7 @@ namespace Z0.Test
             var segcount = BitGrid.MinSegmentCount<T>(dim);
             for(var i=0; i<SampleSize; i += segcount)
             {
-                var bvSrc = src.Slice(i, segcount);
+                var bvSrc = src.Slice(i, segcount).ToArray();
                 Claim.eq(bvSrc.Length, segcount);
                 var bv = bvSrc.ToBitVector(dim);
                 Claim.eq((uint)bv.Length, dim);

@@ -76,15 +76,6 @@ namespace Z0
             where T : struct
                 => FromScalars(src.Span);
 
-        /// <summary>
-        /// Constructs a bitstring from a segment of scalar values
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(MemorySpan<T> src, int? maxlen = null)
-            where T : unmanaged
-                => FromScalars(src.Span, maxlen);
 
         /// <summary>
         /// Constructs a bitstring from span of scalar values

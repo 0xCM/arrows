@@ -108,7 +108,7 @@ namespace Z0
         /// </summary>
         public int CellCount {get;}
 
-        readonly MemorySpan<BitIndex> Indices;
+        readonly BitIndex[] Indices;
 
         /// <summary>
         /// The total number of bits over which the map is defined

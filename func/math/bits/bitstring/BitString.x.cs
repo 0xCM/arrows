@@ -114,13 +114,14 @@ namespace Z0
                 => BitString.FromScalars(src); 
 
         /// <summary>
-        /// Converts a sequence of memory cells to a bitstring
+        /// Converts span content to a to a bitstring
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this MemorySpan<T> src)
-            where T : unmanaged
+        public static BitString ToBitString<T>(this T[] src)
+            where T : struct
                 => BitString.FromScalars(src); 
+
 
         /// <summary>
         /// Converts a sequence of memory cells to a bitstring
@@ -128,6 +129,15 @@ namespace Z0
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]        
         public static BitString ToBitString<T>(this ReadOnlyMemory<T> src)
+            where T : struct
+                => BitString.FromScalars(src); 
+
+        /// <summary>
+        /// Converts a sequence of memory cells to a bitstring
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]        
+        public static BitString ToBitString<T>(this Memory<T> src)
             where T : struct
                 => BitString.FromScalars(src); 
 
