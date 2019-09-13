@@ -34,7 +34,7 @@ namespace Z0.Rng
             TimeSeries.Evolve(closed(-250.75, 256.5), Show).Wait();
         }
     
-        Task<MemorySpan<uint>> Collect(uint[] state, ulong width, int points)
+        Task<uint[]> Collect(uint[] state, ulong width, int points)
         {
             return Task.Factory.StartNew(() =>
             {

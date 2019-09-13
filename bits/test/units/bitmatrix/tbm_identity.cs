@@ -65,7 +65,7 @@ namespace Z0.Test
 
         }
 
-        public void IsZero()
+        void IsZero()
         {
             Claim.yea(BitMatrix8.Zero.IsZero());
             Claim.nea(BitMatrix8.Identity.IsZero());

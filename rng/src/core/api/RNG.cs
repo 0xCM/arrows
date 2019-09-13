@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using Z0.Rng;
 
     /// <summary>
     /// Fatory for RNG's
@@ -58,7 +57,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T FixedSeed<T>(T index)
             where T : struct
-                => RngSeed.TakeFixed<T>(convert<T,int>(index));
+                => RngSeed.TakeSingle<T>(convert<T,int>(index));
 
         /// <summary>
         /// Retrieves descriptive information for fixed seed data
@@ -69,7 +68,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static (ByteSize ByteCount, int MaxIndex) FixedSeedStats<T>()
             where T : struct
-                => (RngSeed.FixedByteCount, RngSeed.MaxFixedIndex<T>());
+                => (RngSeed.SourceLength, RngSeed.MaxOffset<T>());
 
         /// <summary>
         /// Creates a new WyHash16 generator

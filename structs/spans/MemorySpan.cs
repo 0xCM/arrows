@@ -12,23 +12,6 @@ namespace Z0
 
     using static zfunc;
     
-    public unsafe struct MemoryIndex<T>
-        where T : unmanaged
-    {
-        T* data;
-
-        [MethodImpl(Inline)]
-        public MemoryIndex(ref T data)
-        {
-            this.data = (T*)Unsafe.AsPointer(ref data);
-        }
-
-        public ref T this[int i]
-        {
-            [MethodImpl(Inline)]
-            get => ref data[i];
-        }
-    }
 
     /// <summary>
     /// Defines a contiguous sequence of memory cells
@@ -39,40 +22,44 @@ namespace Z0
     {
         Memory<T> data;
 
-        MemoryIndex<T> indexer;
-
-        /// <summary>
-        /// Returns the source as a reference
-        /// </summary>
-        /// <param name="src">The source data</param>
-        public static ref MemorySpan<T> AsRef(in MemorySpan<T> src)
-            => ref Unsafe.AsRef(in src);
-
         public static readonly MemorySpan<T> Empty = new MemorySpan<T>(Memory<T>.Empty);
 
+        [MethodImpl(Inline)]
         public static implicit operator Span<T>(MemorySpan<T> src)
             => src.Span;
 
+        [MethodImpl(Inline)]
         public static implicit operator MemorySpan<T>(T[] src)
             => new MemorySpan<T>(src);
 
+        [MethodImpl(Inline)]
         public static implicit operator Memory<T>(MemorySpan<T> src)
             => src.data;
 
-        public static implicit operator ReadOnlySpan<T> (MemorySpan<T> src)
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan<T>(MemorySpan<T> src)
             => src.Span;
 
-        public static implicit operator MemorySpan<T> (Memory<T> src)
+        [MethodImpl(Inline)]
+        public static implicit operator MemorySpan<T>(Memory<T> src)
             => new MemorySpan<T>(src);
 
+        [MethodImpl(Inline)]
         public static implicit operator ReadOnlyMemory<T> (MemorySpan<T> src)
             => src.data;
+
+        [MethodImpl(Inline)]
+        public static bool operator == (MemorySpan<T> lhs, MemorySpan<T> rhs)
+            => lhs.Equals(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator != (MemorySpan<T> lhs, MemorySpan<T> rhs)
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public MemorySpan(int len, T? fill = null)
         {                    
             this.data = new T[len];
-            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
             if(fill != null)
                 this.data.Span.Fill(fill.Value);
         }
@@ -81,14 +68,12 @@ namespace Z0
         public MemorySpan(T[] src)
         {
             this.data = src;
-            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
         }
 
         [MethodImpl(Inline)]
-        public MemorySpan(Memory<T> src)
+        MemorySpan(Memory<T> src)
         {
             this.data = src;
-            this.indexer = new MemoryIndex<T>(ref data.Span[0]);
         }
 
         public Span<byte> Bytes
@@ -103,13 +88,7 @@ namespace Z0
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
-            get => ref indexer[ix];
-        }
-
-        public MemoryIndex<T> Indexer
-        {
-            [MethodImpl(Inline)]
-            get => indexer;
+            get => ref data.Span[ix];
         }
 
         /// <summary>
@@ -160,7 +139,7 @@ namespace Z0
             => Span.CopyTo(dst);
 
         [MethodImpl(Inline)]
-        public bool TryCopyTo (Span<T> dst)
+        public bool TryCopyTo(Span<T> dst)
             => Span.TryCopyTo(dst);                
 
         /// <summary>
@@ -266,5 +245,14 @@ namespace Z0
             for(var i=0; i<Length; i++)
                 this[i] = f(i,this[i]);
         }
+ 
+        [MethodImpl(Inline)]
+        public bool Equals(MemorySpan<T> rhs) 
+            => data.Equals(rhs.data);
+
+        public override bool Equals(object rhs) 
+            => rhs is MemorySpan<T> x && Equals(x);
+
+
     }
 }

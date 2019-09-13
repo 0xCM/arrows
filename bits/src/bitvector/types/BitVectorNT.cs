@@ -20,7 +20,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : unmanaged
     {        
-        MemorySpan<T> data;
+        T[] data;
         
         /// <summary>
         /// The maximum number of bits contained in a vector component
@@ -33,6 +33,10 @@ namespace Z0
         static readonly BitPos MaxBitIndex = TotalBitCount - 1;
     
         static readonly CellIndex<T>[] BitMap = BitGrid.BitMap<T>(TotalBitCount);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> From(params T[] src)
+            => new BitVector<N,T>(src);    
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<T>(BitVector<N,T> src)
@@ -96,24 +100,12 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public BitVector(MemorySpan<T> memory)
-            : this()
-        {
-            this.data = memory;
-            require(Bits.Length * SegmentCapacity >= TotalBitCount);
-        }
-
-        [MethodImpl(Inline)]
         public BitVector(ReadOnlySpan<T> bits)
             : this()
         {
             this.data = bits.ToArray();
             require(bits.Length * SegmentCapacity >= TotalBitCount);
         }
-
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> Define(params T[] src)
-            => new BitVector<N,T>(src);    
 
 
         /// <summary>
@@ -124,7 +116,7 @@ namespace Z0
         public Bit Get(BitPos pos)
         {
             ref readonly var cell = ref BitMap[CheckIndex(pos)];
-            return gbits.test(in Bits[cell.Segment], cell.Offset);
+            return gbits.test(in Data[cell.Segment], cell.Offset);
         }
             
         /// <summary>
@@ -136,7 +128,7 @@ namespace Z0
         public void Set(BitPos pos, Bit value)
         {
             ref readonly var cell = ref BitMap[CheckIndex(pos)];
-            gbits.set(ref Bits[cell.Segment], cell.Offset, in value);
+            gbits.set(ref Data[cell.Segment], cell.Offset, in value);
         }
 
         /// <summary>
@@ -166,10 +158,10 @@ namespace Z0
         /// <summary>
         /// The data over which the bitvector is constructed
         /// </summary>
-        public Span<T> Bits
+        public MemorySpan<T> Data
         {
             [MethodImpl(Inline)]
-            get => data.Span;
+            get => data;
         }
 
         /// <summary>
@@ -187,7 +179,7 @@ namespace Z0
         public readonly BitSize Capacity
         {
             [MethodImpl(Inline)]
-            get => data.Span.Length * SegmentCapacity;
+            get => data.Length * SegmentCapacity;
         }
 
         /// <summary>
@@ -198,7 +190,7 @@ namespace Z0
         public void Toggle(BitPos index)
         {         
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            BitMaskG.toggle(ref Bits[pos.Segment],  pos.Offset);
+            BitMaskG.toggle(ref Data[pos.Segment],  pos.Offset);
         }
 
         /// <summary>
@@ -209,7 +201,7 @@ namespace Z0
         public void Enable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.enable(ref Bits[pos.Segment],  pos.Offset);
+            gbits.enable(ref Data[pos.Segment],  pos.Offset);
         }
 
         /// <summary>
@@ -220,7 +212,7 @@ namespace Z0
         public void Disable(BitPos index)
         {
             ref readonly var pos = ref BitMap[CheckIndex(index)];
-            gbits.disable(ref Bits[pos.Segment], pos.Offset);
+            gbits.disable(ref Data[pos.Segment], pos.Offset);
         }
 
         /// <summary>
@@ -236,7 +228,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            => MemoryMarshal.AsBytes(Bits);
+            => Data.Bytes;
 
         /// <summary>
         /// Counts the vector's enabled bits
@@ -246,7 +238,7 @@ namespace Z0
         {
             var count = 0u;
             for(var i=0; i < TotalBitCount; i++)
-                count += gbits.pop(Bits[i]);
+                count += gbits.pop(Data[i]);
             return count;
         }
 
@@ -277,9 +269,9 @@ namespace Z0
         {
             var primal = PrimalInfo.Get<T>();
             if(value)
-                Bits.Fill(primal.MaxVal);
+                Data.Fill(primal.MaxVal);
             else
-                Bits.Fill(primal.Zero);
+                Data.Fill(primal.Zero);
         }
 
         /// <summary>
@@ -287,7 +279,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitString ToBitString()
-            => BitString.FromScalars(Bits, Length); 
+            => BitString.FromScalars(Data, Length); 
 
         [MethodImpl(Inline)]
         public string FormatBits(bool tlz = false, bool specifier = false, int? blockWidth = null)

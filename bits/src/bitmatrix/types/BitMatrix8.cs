@@ -20,7 +20,8 @@ namespace Z0
     /// </summary>
     public struct BitMatrix8 : IBitMatrix<BitMatrix8,N8,byte>
     {        
-        MemorySpan<byte> data;
+        //MemorySpan<byte> data;
+        byte[] data;
                     
         /// <summary>
         /// The matrix order
@@ -108,7 +109,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 From(MemorySpan<byte> src)        
+        public static BitMatrix8 From(byte[] src)        
             => new BitMatrix8(src);
 
         /// <summary>
@@ -164,7 +165,7 @@ namespace Z0
             => From(src);
 
         [MethodImpl(Inline)]
-        BitMatrix8(MemorySpan<byte> src)
+        BitMatrix8(byte[] src)
         {
             require(src.Length == Pow2.T03);
             this.data = src;
@@ -256,7 +257,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool IsZero()
-            => BitConverter.ToUInt64(data.Span) == 0;
+            => BitConverter.ToUInt64(data) == 0;
 
         [MethodImpl(Inline)]
         public BitMatrix8 AndNot(in BitMatrix8 rhs)
@@ -355,18 +356,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => data.Bytes.FormatMatrixBits(8);
+            => data.FormatMatrixBits(8);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => data.Bytes.Unpack(out Span<Bit> dst);
-
-        [MethodImpl(Inline)]
-        public BitMatrix<N8,N8,byte> AsGeneric()
-            => new BitMatrix<N8,N8,byte>(data);
+            => data.Unpack(out Span<Bit> dst);
 
         /// <summary>
         /// Converts the matrix to a bitvector
@@ -377,7 +374,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool Equals(BitMatrix8 rhs)
-            => BitConverter.ToUInt64(data.Span) == BitConverter.ToUInt64(rhs.data.Span);
+            => BitConverter.ToUInt64(data) == BitConverter.ToUInt64(rhs.data);
 
         [MethodImpl(Inline)]
         static ref BitMatrix8 And(ref BitMatrix8 lhs, in BitMatrix8 rhs)

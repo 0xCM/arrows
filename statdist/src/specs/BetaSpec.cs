@@ -17,6 +17,11 @@ namespace Z0
     public readonly struct BetaSpec<T> :  IDistributionSpec<T>
         where T : unmanaged
     {   
+        
+        [MethodImpl(Inline)]
+        public static BetaSpec<T> From(IDistributionSpec<T> src)
+            => (BetaSpec<T>)src;
+        
         [MethodImpl(Inline)]
         public static implicit operator (T alpha, T beta)(BetaSpec<T> spec)
             => (spec.Alpha, spec.Beta);

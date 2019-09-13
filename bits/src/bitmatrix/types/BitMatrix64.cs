@@ -19,7 +19,7 @@ namespace Z0
     /// </summary>
     public struct BitMatrix64 : IBitMatrix<BitMatrix64,N64,ulong>
     {                
-        MemorySpan<ulong> data;
+        ulong[] data;
 
         /// <summary>
         /// The matrix order
@@ -54,7 +54,7 @@ namespace Z0
         /// <summary>
         /// Defines the 64x64 identity bitmatrix
         /// </summary>
-        public static readonly BitMatrix64 Identity = From(Identity64x64);
+        public static readonly BitMatrix64 Identity = From(Identity64x64.ToArray());
 
         /// <summary>
         /// Defines the 64x64 zero bitmatrix
@@ -69,17 +69,11 @@ namespace Z0
         public static BitMatrix64 From(params ulong[] src)        
             => src.Length == 0 ? Alloc() : new BitMatrix64(src);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix64 From(MemorySpan<ulong> src)        
-            => new BitMatrix64(src);
 
         [MethodImpl(Inline)]
-        public static BitMatrix64 From(ReadOnlySpan<byte> src)        
-            => new BitMatrix64(src.As<byte,ulong>());
+        public static BitMatrix64 From(Span<byte> src)        
+            => new BitMatrix64(src.AsUInt64().ToArray());
 
-        [MethodImpl(Inline)]
-        public static BitMatrix64 From(ReadOnlySpan<ulong> src)        
-            => new BitMatrix64(src);
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator + (BitMatrix64 lhs, BitMatrix64 rhs)
@@ -121,18 +115,13 @@ namespace Z0
         public static bool operator !=(BitMatrix64 lhs, BitMatrix64 rhs)
             => !lhs.Equals(rhs);
 
+
+
         [MethodImpl(Inline)]
-        BitMatrix64(MemorySpan<ulong> src)
+        BitMatrix64(ulong[] src)
         {                        
             require(src.Length == Pow2.T06);
             this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        BitMatrix64(ReadOnlySpan<ulong> src)
-        {                        
-            require(src.Length == Pow2.T06);
-            this.data = MemorySpan.From(src);
         }
 
         /// <summary>
@@ -151,6 +140,12 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => N;
+        }
+
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.AsByteSpan();
         }
 
         /// <summary>
@@ -245,16 +240,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public readonly Span<Bit> Unpack()
-            => data.Bytes.Unpack(out Span<Bit> _);
-
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public Span<byte> Bytes()
-            => data.Bytes;
+        public Span<Bit> Unpack()
+            => Bytes.Unpack(out Span<Bit> _);
 
 
         [MethodImpl(Inline)]
@@ -401,15 +388,15 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(data.As<byte>()));            
+            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes.ToArray()));            
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix64 Replicate()
-            => From((MemorySpan<ulong>)data.ToArray()); 
+            => From(data.ToArray()); 
 
         [MethodImpl(Inline)]
         public string Format()
-            => data.Bytes.FormatMatrixBits(64);
+            => data.FormatMatrixBits(64);
 
         [MethodImpl(Inline)]
         public readonly bool Equals(BitMatrix64 rhs)

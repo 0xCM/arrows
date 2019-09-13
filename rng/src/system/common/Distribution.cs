@@ -13,7 +13,8 @@ namespace Z0
     using static zfunc;
     using System.Collections;
 
-    public abstract class Distribution<S,T> : IDistribution<T>
+    // TODO: Merge this with Sampler
+    public abstract class Distribution<S,T> : IDistribution<T>, IPointSource<T>
         where T : unmanaged
         where S : IDistributionSpec<T>
 
@@ -22,6 +23,9 @@ namespace Z0
         protected IPolyrand Polyrand {get;}
 
         public S Spec {get;}
+
+        public RngKind RngKind 
+            => Polyrand.RngKind;
 
         protected Distribution(IPolyrand random, S Spec)
         {
@@ -36,5 +40,8 @@ namespace Z0
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+
+        public T Next()
+            => Sample().First();
     }
 }

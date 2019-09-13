@@ -60,22 +60,6 @@ namespace Z0.Test
             }
         }
 
-        public void span_bits_check<T>()
-            where T : unmanaged
-        {
-            var sizeT = size<T>();
-            var src = Random.Span<byte>(sizeT);
-            Bytes.read(src, 0, out T dst);
-    
-            // var bvSrc = BitVector64.FromScalar(BitConverter.ToUInt64(src));
-
-            // for(var i=0; i<src.Length; i++)
-            // {
-            //     ref var x = ref src[i];
-            //     for(var j = 0; j < sizeT; j++)
-            //         Claim.eq(gbits.test(x,j), bvSrc.Test(i*Pow2.T03 + j));
-            // }
-        }
 
         public void absolute_index()
         {
@@ -244,7 +228,7 @@ namespace Z0.Test
             where T : unmanaged
         {
             TypeCaseStart<T>();
-            var src = Random.MemorySpan<T>(SampleSize);
+            var src = Random.Span<T>(SampleSize);
             var segCapacity = BitGrid.SegmentCapacity<T>();
             Claim.eq(segCapacity, gbits.width<T>());
 

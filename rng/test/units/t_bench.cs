@@ -2,19 +2,144 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Rng
+namespace Z0
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
+    using Mkl;
+
     using static zfunc;
     using static x86;
     
-    public class t_bench : UnitTest<t_bench>
+    public class t_bench : RngTest<t_bench>
     {
-        public void mul_bench()
+
+        public void bench_mrg32k3a_uniform_u32()
+        {
+
+            Benchmark(RNG.Mrg32k3a());
+        }
+
+        public void bench_mrg32k3a_uniform_f64()
+        {
+            Benchmark(RNG.Mrg32k3a() as IPointSource<double>);
+        }
+
+        public void bench_splitmix_uniform_u64()
+        {
+
+            Benchmark(RNG.SplitMix().PointSource<ulong>());
+        }
+
+        public void bench_splitmix_uniform_f64()
+        {
+
+            Benchmark(RNG.SplitMix().PointSource<double>());
+        }
+
+        public void bench_splitmix_bernoulli_u64()
+        {
+
+            var gen = RNG.SplitMix();
+            var sampler = gen.Bernoulli<byte>(.35);
+            Benchmark(sampler);
+        }
+
+        public void bench_wyhash_uniform_u64()
+        {
+
+            Benchmark(RNG.WyHash64().PointSource<ulong>());
+        }
+
+        public void bench_pcg64_uniform_u64()
+        {
+             Benchmark(RNG.Pcg64().PointSource<ulong>());
+        }
+
+        public void bench_pcg64_uniform_u32()
+        {
+             Benchmark(RNG.Pcg64().PointSource<int>());
+        }
+
+        public void bench_pcg_32()
+        {
+             Benchmark(RNG.Pcg32());
+        }
+
+        public void bench_mkl_sfmt19937_uniform_i32()
+        {
+            using var generator = rng.sfmt19937(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<int>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_sfmt19937_bernoulli_i32()
+        {
+            using var generator = rng.sfmt19937(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.BernoulliSampler(BernoulliSpec.Define<int>(.35));
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_r250_uniform_i32()
+        {
+            using var generator = rng.r250(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<int>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_r250_uniform_f32()
+        {
+            using var generator = rng.r250(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<float>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_r250_uniform_f64()
+        {
+            using var generator = rng.r250(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<double>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_mcg59_bits_u32()
+        {
+            using var generator = rng.mcg59(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformBitsSampler<uint>();
+            Benchmark(sampler);            
+        }
+
+
+        public void bench_mkl_mcg59_bits_u64()
+        {
+            using var generator = rng.mcg59(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformBitsSampler<ulong>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_mrg32k3a_i32()
+        {
+            using var generator = rng.mrg32K31(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<int>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_mrg32k3a_f32()
+        {
+            using var generator = rng.mrg32K31(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<float>();
+            Benchmark(sampler);            
+        }
+
+        public void bench_mkl_mrg32k3a_f64()
+        {
+            using var generator = rng.mrg32K31(RngSeed.TakeSingle<uint>(0));
+            var sampler = generator.UniformSampler<double>();
+            Benchmark(sampler);            
+        }
+
+        void mul_bench()
         {
             RunMultiply();
 
@@ -23,7 +148,6 @@ namespace Z0.Rng
         void Pcg32Simd()
         {
             RunPcg32Simd();
-
         }
         
         void RunMultiply(int opcount = Pow2.T16)

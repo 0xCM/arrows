@@ -15,9 +15,6 @@ namespace Z0
 
     public static partial class Linear
     {
-
-
-
         /// <summary>
         /// Computes lhs[i] := lhs[i] + rhs[i] for i = 0...N-1
         /// </summary>

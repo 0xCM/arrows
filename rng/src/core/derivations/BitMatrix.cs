@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix16 BitMatrix16(this IPolyrand random)
-            => Z0.BitMatrix16.From(random.MemorySpan<ushort>(16));
+            => Z0.BitMatrix16.From(random.Array<ushort>(16));
 
         /// <summary>
         /// Produces a 32x32 bitmatrix from a random source
@@ -43,7 +43,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix32 BitMatrix32(this IPolyrand random)
-            => Z0.BitMatrix32.From(random.MemorySpan<uint>(32));
+            => Z0.BitMatrix32.From(random.Array<uint>(32));
 
         /// <summary>
         /// Produces a 64x64 bitmatrix from a random source
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitMatrix64 BitMatrix64(this IPolyrand random)
-            => Z0.BitMatrix64.From(random.MemorySpan<ulong>(64));        
+            => Z0.BitMatrix64.From(random.Array<ulong>(64));        
     
         /// <summary>
         /// Produces a generic bitmatrix of natural dimensions
@@ -66,7 +66,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
-                => BM.Load(random.Memory<T>(BitGrid.Specify(m,n,rep).TotalCellCount),m,n);
+                => BM.Load(random.Array<T>(BitGrid.Specify(m,n,rep).TotalCellCount),m,n);
 
         /// <summary>
         /// Produces an generic bitmatrix of natural order
@@ -80,6 +80,6 @@ namespace Z0
         public static BitMatrix<N,T> BitMatrix<N,T>(this IPolyrand random, N n = default, T rep = default)
             where N : ITypeNat, new()
             where T : unmanaged
-                => BM.Load(random.Memory<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);                
+                => BM.Load(random.Array<T>(BitGrid.Specify(n,n,rep).TotalCellCount), n);                
     }
 }

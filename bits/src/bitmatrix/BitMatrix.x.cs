@@ -63,6 +63,10 @@ namespace Z0
             return dst;
         }
 
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this byte[] src, int rowlen)            
+            => src.AsSpan().FormatMatrixBits(rowlen);
+
         internal static string FormatMatrixBits(this Span<byte> src, int rowlen)            
         {
             var dst = gbits.bitchars(src);
@@ -79,8 +83,17 @@ namespace Z0
         }       
 
         [MethodImpl(Inline)]
-        internal static string FormatMatrixBits(this byte[] src, int rowlen)            
-            => src.AsSpan().FormatMatrixBits(rowlen);
+        internal static string FormatMatrixBits(this ulong[] src, int rowlen)            
+            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this uint[] src, int rowlen)            
+            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this ushort[] src, int rowlen)            
+            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+
                 
         /// <summary>
         /// Multiplies the left matrix by the right

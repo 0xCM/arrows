@@ -16,7 +16,7 @@ namespace Z0
     {
         protected override int CycleCount  => Pow2.T08;
 
-        protected override int SampleSize => Pow2.T17;
+        protected override int SampleSize => Pow2.T15;
 
         protected OpTime Benchmark<T>(IPointSource<T> rng)
             where T : unmanaged

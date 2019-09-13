@@ -49,20 +49,19 @@ namespace Z0.Rng
             var trace = false;
             var lenRange = closed(3,68);
             var src = Random.BitVectors<int>(lenRange);
-            var lenStats = Accumulator.Create();
-            var bitStats = Accumulator.Create(true);
+            var lenStats = Collector.Create();
+            var bitStats = Collector.Create();
             for(var i=0; i<SampleSize; i++)
             {
                 var v = src.First();
                 Claim.between(v.Length, lenRange);
                 
-                lenStats.Accumulate(v.Length);
-                bitStats.Accumulate(v.Pop());
+                lenStats.Collect(v.Length);
+                bitStats.Collect(v.Pop());
             }
             var lenMeanIdeal = ((double)lenRange.Width() * .50).Round(Scale);
             var lenMeanActual = lenStats.Mean.Round(Scale);
             var popIdeal = (long)(lenMeanIdeal)*(double)SampleSize;
-            var popActual = (long)bitStats.Sum;
 
             if(trace)
             {
@@ -72,7 +71,6 @@ namespace Z0.Rng
                 Trace($"len mean ideal", $"{lenMeanIdeal}");
                 Trace($"len mean actual", $"{lenMeanActual}");
                 Trace($"pop ideal", $"{popIdeal}");
-                Trace($"pop actual", $"{popActual}");
             }
         }
     }

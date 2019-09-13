@@ -14,11 +14,11 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public struct Vector<N,T>  : IEquatable<Vector<N,T>>
+    public struct Vector<N,T>  
         where N : ITypeNat, new()
         where T : unmanaged
     {
-         MemorySpan<T> data;        
+         T[] data;
 
         /// <summary>
         /// The vector's dimension
@@ -28,11 +28,8 @@ namespace Z0
         /// <summary>
         /// The zero vector
         /// </summary>
-        public static readonly Vector<N,T> Zero = new Vector<N,T>(new T[Dim]);
+        public static Vector<N,T> Zero => new Vector<N,T>(new T[Dim]);
          
-        [MethodImpl(Inline)]   
-        public static implicit operator MemorySpan<T>(Vector<N,T> src)
-            => src.data;
 
         [MethodImpl(Inline)]   
         public static implicit operator Vector<T>(Vector<N,T> src)
@@ -46,9 +43,6 @@ namespace Z0
         public static implicit operator Vector<N,T>(T[] src)
             => new Vector<N, T>(src);
 
-        [MethodImpl(Inline)]   
-        public static implicit operator Vector<N,T>(MemorySpan<T> src)
-            => new Vector<N, T>(src);
 
         [MethodImpl(Inline)]   
         public static implicit operator Vector<N,T>(Vector<T> src)
@@ -66,16 +60,6 @@ namespace Z0
         public static T operator *(Vector<N,T> lhs, in Vector<N,T> rhs)
             => gmath.dot<T>(lhs.Data, rhs.Data);         
 
-        /// <summary>
-        /// Initializes a vector with a memory span
-        /// </summary>
-        /// <param name="src">The data source</param>
-        [MethodImpl(Inline)]
-        public Vector(MemorySpan<T> src)
-        {
-            require(src.Length >= Dim);
-            data = src.ToArray();
-        }
 
         /// <summary>
         /// Initializes a vector with an array
@@ -100,7 +84,7 @@ namespace Z0
         /// <summary>
         /// The vector data
         /// </summary>
-        public MemorySpan<T> Data
+        public T[] Data
         {
             [MethodImpl(Inline)]
             get => data;
@@ -118,11 +102,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public Covector<N,T> Transpose()
             => Covector<N, T>.Define(data);
-
-        [MethodImpl(Inline)]
-        public Vector<N,U> As<U>()
-            where U : unmanaged
-                => new Vector<N, U>(data.As<U>());
 
 
         [MethodImpl(Inline)]
@@ -154,10 +133,10 @@ namespace Z0
             => data.FormatList(delimiter ?? AsciSym.Comma);    
 
         public override bool Equals(object rhs)
-            => rhs is Vector<N,T> x  && Equals(x);
+            => throw new NotSupportedException();
  
         public override int GetHashCode()
-            => data.GetHashCode();
+            => throw new NotSupportedException();
  
         public override string ToString()
             => Format();

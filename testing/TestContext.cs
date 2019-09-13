@@ -32,25 +32,30 @@ namespace Z0
             this.Config = config ?? TestConfigDefaults.Default();
         }
 
+        protected static readonly N256 DefaultSampleNat = default;
+
         /// <summary>
         /// The default number of elements to be selected from some sort of stream
         /// </summary>
         protected const int DefaultSampleSize = Pow2.T08;
 
         /// <summary>
-        /// The default number times to repeat some action, usually the action of drawing a sample of some size
+        /// The default number times to repeat an activity
         /// </summary>
         protected const int DefaltCycleCount = Pow2.T03;
 
+        /// <summary>
+        /// The default number times to repeat a cycle
+        /// </summary>
+        protected const int DefaultRoundCount = Pow2.T01;
 
+        /// <summary>
+        /// The default rouding precision
+        /// </summary>
         protected const int DefaultScale = 6;
-
-        protected static readonly N256 DefaultSampleNat = default;
 
         public ITestConfig Config {get; private set;}
 
-        protected override bool TraceEnabled
-            => Config.TraceEnabled;
 
         public void Configure(ITestConfig config)
             {
@@ -70,9 +75,11 @@ namespace Z0
         {
             for(var i=0; i< CycleCount; i++)
                 a();
-
         }
 
+        protected override bool TraceEnabled
+            => Config.TraceEnabled;
+        
         /// <summary>
         /// The number of elements to be selected from some sort of stream
         /// </summary>
@@ -80,10 +87,16 @@ namespace Z0
             => DefaultSampleSize;
         
         /// <summary>
-        /// The number times to repeat some action, usually the action of drawing a sample of some size
+        /// The number times to repeat an action
         /// </summary>
         protected virtual int CycleCount
             => DefaltCycleCount;
+
+        /// <summary>
+        /// The number of times to repeat a cycle
+        /// </summary>
+        protected virtual int RoundCount
+            => DefaultRoundCount;
 
         /// <summary>
         /// Specifies the number of decimal places that relevant for some purpose
@@ -97,6 +110,47 @@ namespace Z0
             var offsetMin = (byte)1;
             var offsetMax = (byte)(PrimalInfo.Get<K>().BitSize - 2);
             return closed(offsetMin,offsetMax);                
+        }
+
+        protected virtual OpTime Iterate<K>(Action<K> f, [CallerMemberName] string caller = null)
+            where K : unmanaged
+        {
+            var buffer = new K[SampleSize];
+            var sw = stopwatch(false);
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var cycle=0; cycle < CycleCount; cycle++)
+                {                
+                    Random.StreamTo(buffer.Length, ref buffer[0]);
+
+                    sw.Start();
+                    for(var k=0; k<buffer.Length; k++)
+                        f(buffer[k]);
+                    sw.Stop();
+                }
+            }
+            return (SampleSize*CycleCount*RoundCount, sw, caller);
+        }
+
+        protected virtual OpTime Iterate<K1,K2>(Func<K1,K2> f, Action<K2> g, [CallerMemberName] string caller = null)
+            where K1 : unmanaged
+            where K2 : unmanaged
+        {
+            var buffer = new K1[SampleSize];
+            var sw = stopwatch(false);
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var cycle=0; cycle < CycleCount; cycle++)
+                {                
+                    Random.StreamTo(buffer.Length, ref buffer[0]);
+
+                    sw.Start();
+                    for(var k=0; k<buffer.Length; k++)
+                        g(f(buffer[k]));
+                    sw.Stop();
+                }
+            }
+            return (SampleSize*CycleCount*RoundCount, sw, caller);
         }
 
         protected void VerifyOp<K>(UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 

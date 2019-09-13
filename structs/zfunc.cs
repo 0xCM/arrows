@@ -27,7 +27,7 @@ class zfunc
                 => new Exception($"Count mismatch, {lhs} != {rhs}: line {line}, member {caller} in file {file}");
 
     public static Exception OutOfRange<T>(T value, T min, T max, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-                => new Exception($"Value {value} is not between {min} and {max}: line {line}, member {caller} in file {file}");
+            => new Exception($"Value {value} is not between {min} and {max}: line {line}, member {caller} in file {file}");
     
     public static void ThrowOutOfRange<T>(T value, T min, T max, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         => throw OutOfRange(value,min,max,caller,file,line);

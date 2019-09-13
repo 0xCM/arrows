@@ -13,19 +13,6 @@ using Z0;
 
 partial class zfunc
 {
-    [MethodImpl(Inline)]   
-    public static ref T imagine<S,T>(ref S src)
-    {
-        ref var dst = ref Unsafe.As<S,T>(ref src);
-        return ref dst;
-    }
-
-    [MethodImpl(Inline)]   
-    public static ref T imagine<S,T>(ref S src, out T dst)
-    {
-        dst = Unsafe.As<S,T>(ref src);
-        return ref dst;
-    }
 
     [MethodImpl(Inline)]   
     public static T convert<S,T>(S src, out T dst)
@@ -80,11 +67,11 @@ partial class zfunc
     /// <typeparam name="S">The source type</typeparam>
     /// <typeparam name="T">The target type</typeparam>
     [MethodImpl(Inline)]   
-    public static MemorySpan<T> convert<S,T>(MemorySpan<S> src)
+    public static T[] convert<S,T>(S[] src)
         where T : unmanaged
         where S : unmanaged
     {
-        MemorySpan<T> dst = new T[src.Length];
+        var dst = new T[src.Length];
         for(var i=0; i< src.Length; i++)
             dst[i] = convert<S,T>(src[i]);
         return dst;

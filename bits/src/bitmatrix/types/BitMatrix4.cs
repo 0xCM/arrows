@@ -14,7 +14,7 @@ namespace Z0
 
     public struct BitMatrix4 : IBitMatrix
     {        
-        MemorySpan<byte> bits;
+        byte[] data;
 
         public static readonly N4 N = default;
 
@@ -72,7 +72,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(BitMatrix4 src)
-            => BitConverter.ToUInt16(src.bits);
+            => BitConverter.ToUInt16(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator BitMatrix4(ushort src)
@@ -106,29 +106,23 @@ namespace Z0
         BitMatrix4(params byte[] src)
         {                    
             require(src.Length == Pow2.T01);
-            this.bits = src;
+            this.data = src;
             
         }
 
         [MethodImpl(Inline)]
         BitMatrix4(ushort src)
         {                    
-            this.bits = BitConverter.GetBytes(src);            
+            this.data = BitConverter.GetBytes(src);            
         }
 
         [MethodImpl(Inline)]
         BitMatrix4(ReadOnlySpan<byte> src)
         {                    
             require(src.Length == Pow2.T01);
-            this.bits = src.ToArray();
+            this.data = src.ToArray();
         }
 
-        [MethodImpl(Inline)]
-        BitMatrix4(MemorySpan<byte> src)
-        {
-            require(src.Length == Pow2.T01);
-            this.bits = src;
-        }
 
         /// <summary>
         /// Loads a matrix from the source value
@@ -163,7 +157,7 @@ namespace Z0
         /// <param name="row">The row index</param>
         [MethodImpl(Inline)]
         public ref byte RowData(int row)
-            => ref bits[row];
+            => ref data[row];
 
         /// <summary>
         /// Queries the matrix for the data in an index-identified row and returns
@@ -172,14 +166,14 @@ namespace Z0
         /// <param name="index">The row index</param>
         [MethodImpl(Inline)]
         public readonly BitVector4 RowVector(int index)
-            => bits[index];
+            => data[index];
 
         [MethodImpl(Inline)]
         readonly Bit GetBit(int row, int col)
         {
             var index = row <= 1 ? 0 : 1;
             var pos = (row == 0 || row == 2) ? col : col + 4;
-            return gbits.test(in bits[index], pos);
+            return gbits.test(in data[index], pos);
         }
 
         [MethodImpl(Inline)]
@@ -187,7 +181,7 @@ namespace Z0
         {
             var index = row <= 1 ? 0 : 1;
             var pos = (row == 0 || row == 2) ? col : col + 4;
-            gbits.set(ref bits[index], (byte)pos, value);
+            gbits.set(ref data[index], (byte)pos, value);
         }
 
         public Bit this[int row, int col]
@@ -211,7 +205,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool IsZero()
-            => BitConverter.ToUInt16(bits) == 0;
+            => BitConverter.ToUInt16(data) == 0;
 
         /// <summary>
         /// Returns the underlying matrix bits as a span of bytes
@@ -219,7 +213,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)] 
         public Span<byte> Bytes()
-            => bits;
+            => data;
 
         [MethodImpl(Inline)] 
         public BitMatrix4 AndNot(in BitMatrix4 rhs)
@@ -239,19 +233,19 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly Span<Bit> Unpack()
-            => bits.Bytes.Unpack(out Span<Bit> dst);
+            => data.Unpack(out Span<Bit> dst);
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix4 Replicate()
-            => BitMatrix4.Define(bits.Replicate());
+            => BitMatrix4.Define(data.Replicate());
 
         [MethodImpl(Inline)]
         public readonly bool Equals(in BitMatrix4 rhs)
-            => bits.Bytes.TakeUInt16() == rhs.Bytes().TakeUInt16();
+            => BitConverter.ToUInt16(data) == rhs.Bytes().TakeUInt16();
 
         [MethodImpl(Inline)]
         public readonly string Format()
-            => bits.Bytes.FormatMatrixBits(4);
+            => data.FormatMatrixBits(4);
 
         /// <summary>
         /// Creates a new matrix by cloning the existing matrix or allocating
@@ -261,7 +255,7 @@ namespace Z0
         /// only structure and is thus equivalent to an allocation</param>
         [MethodImpl(Inline)] 
         public readonly BitMatrix4 Replicate(bool structureOnly = false)
-            => structureOnly ? Alloc() : Define(bits.Replicate());
+            => structureOnly ? Alloc() : Define(data.Replicate());
 
         /// <summary>
         /// Queries the matrix for the data in an index-identified column 
@@ -271,7 +265,7 @@ namespace Z0
         {
             byte col = 0;
             for(var r = 0; r < N; r++)
-                if(BitMask.test(in bits[r], index))
+                if(BitMask.test(in data[r], index))
                     BitMask.enable(ref col, r);
             return col;
         }
@@ -283,7 +277,7 @@ namespace Z0
         {
             var dst = Replicate();
             for(var i=0; i<N; i++)
-                dst.bits[i] = ColData(i);
+                dst.data[i] = ColData(i);
             return dst;
         }
 
@@ -297,35 +291,35 @@ namespace Z0
         [MethodImpl(Inline)]
         static ref BitMatrix4 And(ref BitMatrix4 lhs, in BitMatrix4 rhs)
         {
-             lhs.bits = BitConverter.GetBytes((ushort) ((ushort)lhs & (ushort)rhs));
+             lhs.data = BitConverter.GetBytes((ushort) ((ushort)lhs & (ushort)rhs));
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix4 XOr(ref BitMatrix4 lhs, in BitMatrix4 rhs)
         {
-             lhs.bits = BitConverter.GetBytes((ushort) ((ushort)lhs ^ (ushort)rhs));
+             lhs.data = BitConverter.GetBytes((ushort) ((ushort)lhs ^ (ushort)rhs));
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix4 Or(ref BitMatrix4 lhs, in BitMatrix4 rhs)
         {
-             lhs.bits =  BitConverter.GetBytes((ushort) ((ushort)lhs | (ushort)rhs));
+             lhs.data =  BitConverter.GetBytes((ushort) ((ushort)lhs | (ushort)rhs));
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix4 AndNot(ref BitMatrix4 lhs, in BitMatrix4 rhs)
         {
-             lhs.bits = BitConverter.GetBytes((ushort)lhs &~ (ushort)rhs);
+             lhs.data = BitConverter.GetBytes((ushort)lhs &~ (ushort)rhs);
              return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix4 Flip(ref BitMatrix4 src)
         {
-             src.bits = BitConverter.GetBytes(((ushort) (~(ushort)src)));
+             src.data = BitConverter.GetBytes(((ushort) (~(ushort)src)));
              return ref src;
         }
 

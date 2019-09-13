@@ -112,19 +112,6 @@ namespace Z0
                 => new BitVector<N, T>(src);
 
         /// <summary>
-        /// Loads a bitvector of natural length from a span
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        /// <param name="n">The natural length</param>
-        /// <typeparam name="N">The natural type</typeparam>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> FromCells<N,T>(MemorySpan<T> src, N n = default)
-            where N : ITypeNat, new()
-            where T : unmanaged
-                => new BitVector<N, T>(src);
-
-        /// <summary>
         /// Loads a bitvector of natural length from an array
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -133,19 +120,6 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static BitVector<N,T> FromCells<N,T>(T[] src, N n = default)
-            where N : ITypeNat, new()
-            where T : unmanaged
-                => new BitVector<N, T>(src);
-
-        /// <summary>
-        /// Loads a bitvector of natural length from a primal segment
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        /// <param name="n">The natural length</param>
-        /// <typeparam name="N">The natural type</typeparam>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> FromCells<N,T>(Memory<T> src, N n = default)
             where N : ITypeNat, new()
             where T : unmanaged
                 => new BitVector<N, T>(src);

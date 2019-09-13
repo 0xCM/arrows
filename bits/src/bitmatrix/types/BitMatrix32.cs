@@ -21,7 +21,7 @@ namespace Z0
     
     public struct BitMatrix32  : IBitMatrix<BitMatrix32,N32,uint>
     {                
-        MemorySpan<uint> data;        
+        uint[] data;        
 
         /// <summary>
         /// The matrix order
@@ -65,19 +65,16 @@ namespace Z0
                 
         [MethodImpl(Inline)]
         public static BitMatrix32 Alloc()        
-            => new BitMatrix32(new Memory<uint>(new uint[N]));
+            => new BitMatrix32(new uint[N]);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 From(params uint[] src)        
-            => src.Length == 0 ? Alloc() : new BitMatrix32(src.ToMemory());
+            => src.Length == 0 ? Alloc() : new BitMatrix32(src);
 
         [MethodImpl(Inline)]
         public static BitMatrix32 From(ReadOnlySpan<byte> src)        
-            => new BitMatrix32(src.As<byte,uint>().ToArray());
+            => new BitMatrix32(src.AsUInt32().ToArray());
 
-        [MethodImpl(Inline)]
-        public static BitMatrix32 From(Memory<uint> src)        
-            => new BitMatrix32(src);
 
         /// <summary>
         /// Negates the operand. 
@@ -133,12 +130,6 @@ namespace Z0
         public static bool operator !=(BitMatrix32 lhs, BitMatrix32 rhs)
             => !(lhs.Equals(rhs));
 
-        [MethodImpl(Inline)]
-        BitMatrix32(Memory<uint> src)
-        {                        
-            require(src.Length == Pow2.T05);
-            this.data = src.ToArray();
-        }        
 
         [MethodImpl(Inline)]
         BitMatrix32(uint[] src)
@@ -216,6 +207,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public ref uint RowData(int row)
             => ref data[row];
+
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.AsByteSpan();
+        }
 
         /// <summary>
         /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
@@ -330,11 +327,11 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(data.As<byte>()));
+            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes.ToArray()));
 
         [MethodImpl(Inline)]
-        public readonly string Format()
-            => data.Bytes.FormatMatrixBits(32);
+        public string Format()
+            => data.FormatMatrixBits(32);
 
         public override bool Equals(object obj)
             => obj is BitMatrix32 x && Equals(x);
@@ -370,7 +367,6 @@ namespace Z0
             }
             return dst;
         }
-
 
         static BitMatrix32 XOr(in BitMatrix32 A, in BitMatrix32 B)
         {

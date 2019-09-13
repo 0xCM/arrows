@@ -49,11 +49,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator == (Dataset<T> lhs, Dataset<T> rhs)
-            => lhs.Data.Span == rhs.Data.Span;
+            => lhs.Data == rhs.Data;
 
         [MethodImpl(Inline)]
         public static bool operator != (Dataset<T> lhs, Dataset<T> rhs)
-            => lhs.Data.Span != rhs.Data.Span;
+            => lhs.Data != rhs.Data;
         
 
         [MethodImpl(Inline)]

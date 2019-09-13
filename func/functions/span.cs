@@ -15,6 +15,37 @@ using Z0;
 
 partial class zfunc
 {
+    [MethodImpl(Inline)]
+    public static unsafe void memcpy<S,T>(ref S src, ref T dst, ByteSize srclen)
+        =>  Unsafe.CopyBlock(Unsafe.AsPointer(ref dst), Unsafe.AsPointer(ref src), srclen);
+
+    [MethodImpl(Inline)]
+    public static unsafe bool memcpy<S,T>(S[] src, T[] dst)
+        where T : unmanaged
+        where S : unmanaged
+    {
+        var srcLen = (uint)(size<S>() * src.Length);
+        var dstLen = (uint)(size<T>() * dst.Length);
+        if(srcLen != dstLen)
+            return false;
+
+        zfunc.memcpy(ref src[0], ref dst[0], srcLen);
+        return true;
+    }
+
+    [MethodImpl(Inline)]   
+    public static ref T imagine<S,T>(ref S src)
+        => ref Unsafe.As<S,T>(ref src);
+
+    [MethodImpl(Inline)]   
+    public static ref T imagine<S,T>(ref S src, out T dst)
+    {
+        dst = Unsafe.As<S,T>(ref src);
+        return ref dst;
+    }
+
+
+
     /// <summary>
     /// Constructs an unpopulated span of a specified length
     /// </summary>
@@ -223,14 +254,36 @@ partial class zfunc
         =>  ref MemoryMarshal.GetReference<T>(src);
 
     /// <summary>
-    /// Returns a readonly reference to the head of the source span presented as a specified type 
+    /// Returns a reference to a span at a specified offset
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <param name="offset">The T-relative offset</param>
+    /// <typeparam name="T">The cell type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref T cellref<T>(Span<T> src, int offset)
+        where T : unmanaged
+            =>  ref Unsafe.Add(ref MemoryMarshal.GetReference<T>(src), offset);
+
+    /// <summary>
+    /// Returns a reference to the head of a readonly span
     /// </summary>
     /// <param name="src">The source span</param>
     /// <typeparam name="T">The cell type</typeparam>
     [MethodImpl(Inline)]
-    public static ref readonly T head<T>(ReadOnlySpan<T> src)
-        where T : struct
+    public static ref T head<T>(ReadOnlySpan<T> src)
+        where T : unmanaged
             =>  ref MemoryMarshal.GetReference<T>(src);
+
+    /// <summary>
+    /// Returns a reference to a readonly span at a specified offset
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <param name="offset">The T-relative offset</param>
+    /// <typeparam name="T">The cell type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref T cellref<T>(ReadOnlySpan<T> src, int offset)
+        where T : unmanaged
+            =>  ref Unsafe.Add(ref MemoryMarshal.GetReference<T>(src), offset);
 
     /// <summary>
     /// Returns a readonly reference to the location of the first span element

@@ -13,6 +13,7 @@ namespace Z0
     public static partial class As
     {
 
+
         [MethodImpl(Inline)]
         public static Span<sbyte> int8<T>(in Memory<T> src)
             where T : struct

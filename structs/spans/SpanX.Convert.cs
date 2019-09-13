@@ -180,6 +180,11 @@ namespace Z0
             where T : struct
                 => MemoryMarshal.AsBytes(src);
 
+        [MethodImpl(Inline)]
+        public static Span<byte> AsByteSpan<T>(this T[] src)
+            where T : struct
+                => MemoryMarshal.AsBytes(src.AsSpan());
+
 
         /// <summary>
         /// Reimagines a span of generic values as a span of signed bytes

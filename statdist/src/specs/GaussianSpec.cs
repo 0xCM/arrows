@@ -10,6 +10,34 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
+    /// Defines operations specific to Gaussian distributions
+    /// </summary>
+    public static class GaussianSpec
+    {
+        /// <summary>
+        /// Interprets a supplied spec as a Gaussian spec; an error
+        /// is raised if the spec does not define a Gaussian distribution
+        /// </summary>
+        /// <param name="spec">The distribution specifier</param>
+        /// <typeparam name="T">The sample element type</typeparam>
+        [MethodImpl(Inline)]
+        public static GaussianSpec<T> From<T>(IDistributionSpec<T> src)
+            where T : unmanaged
+                => (GaussianSpec<T>)src;        
+
+        /// <summary>
+        /// Defines a Gaussian distribution with specified mean and standard deviation
+        /// </summary>
+        /// <param name="mu">The distribution mean</param>
+        /// <param name="sigma">The standard deviation</param>
+        /// <typeparam name="T">The sample element type</typeparam>
+        [MethodImpl(Inline)]
+        public static GaussianSpec<T> Define<T>(T mu, T sigma)
+            where T : unmanaged
+                => GaussianSpec<T>.Define(mu,sigma);
+    }
+
+    /// <summary>
     /// Characterizes a Gaussian (normal) distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Normal_distribution</remarks>
@@ -17,6 +45,12 @@ namespace Z0
     public readonly struct GaussianSpec<T> : IDistributionSpec<T>
         where T : unmanaged
     {
+        /// <summary>
+        /// Defines a Gaussian distribution with specified mean and standard deviation
+        /// </summary>
+        /// <param name="mu">The distribution mean</param>
+        /// <param name="sigma">The standard deviation</param>
+        /// <typeparam name="T">The sample element type</typeparam>
         [MethodImpl(Inline)]
         public static GaussianSpec<T> Define(T mu, T sigma)
             => new GaussianSpec<T>(mu,sigma);        
@@ -84,7 +118,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public GaussianSpec<double> ToFloat64()
             => new GaussianSpec<double>(convert<T,double>(Mean), convert<T,double>(StdDev));
-
     }
 
 }

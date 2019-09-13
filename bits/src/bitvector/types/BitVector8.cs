@@ -26,7 +26,7 @@ namespace Z0
 
         public static readonly BitVector8 One = 1;
 
-        public static readonly BitVector8 Max = 0xFF;
+        public static readonly BitVector8 Ones = byte.MinValue;
         
         public static readonly BitSize BitSize = 8;
 
@@ -34,7 +34,6 @@ namespace Z0
 
         public static readonly BitPos LastPos = BitSize - 1;
         
-
         /// <summary>
         /// Allocates a zero-filled vector
         /// </summary>
@@ -455,6 +454,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
+
+        /// <summary>
+        /// Disables the high bits that follow a specified bit
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void DisableAfter(BitPos pos)
+            => Bits.trunc(ref data, ++pos);
 
         /// <summary>
         /// Sets a bit value

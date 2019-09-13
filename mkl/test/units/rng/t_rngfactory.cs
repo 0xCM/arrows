@@ -136,7 +136,7 @@ namespace Z0.Rng
         {
             var segment = Pow2.T08;
             var total = Pow2.T17;
-            var stats = Accumulator.Create();
+            var stats = Collector.Create();
             var sw = stopwatch(false);
             for(var i=0; i< total; i+= segment)
             {
@@ -144,7 +144,7 @@ namespace Z0.Rng
                 var sample = stream.TakeArray(segment);
                 sw.Stop();
                 for(var j=0; j< segment; j++)
-                    stats.Accumulate(convert<T,double>(sample[j]));
+                    stats.Collect(convert<T,double>(sample[j]));
             }
             var time = (total, sw, $"{stream.RngKind}<{typeof(T).DisplayName()}>");
             Collect(time);

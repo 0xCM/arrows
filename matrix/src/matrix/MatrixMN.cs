@@ -25,7 +25,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : unmanaged    
     {        
-        MemorySpan<T> data;
+        T[] data;
 
         public static readonly Dim<M,N> Dim = default;        
 
@@ -72,12 +72,6 @@ namespace Z0
         public static bool operator != (Matrix<M,N,T> lhs, Matrix<M,N,T> rhs) 
             => !lhs.Equals(rhs);
 
-        [MethodImpl(Inline)]
-        public Matrix(MemorySpan<T> src)
-        {
-            require(src.Length >= CellCount);
-            data = src;
-        }
 
         [MethodImpl(Inline)]
         public Matrix(T[] src)
@@ -125,7 +119,7 @@ namespace Z0
         /// <summary>
         /// Provides access to the underlying data as a linear unblocked span
         /// </summary>
-        public MemorySpan<T> Data
+        public T[] Data
         {            
             [MethodImpl(Inline)]
             get => data;
@@ -154,7 +148,7 @@ namespace Z0
             if(row < 0 || row >= _RowCount)
                 throw Errors.OutOfRange(row, 0, _RowCount - 1);
             
-            return BlockVector.Load<N,T>(data.Slice(row * _RowLenth, _RowLenth));
+            return BlockVector.Load<N,T>(data.AsSpan().Slice(row * _RowLenth, _RowLenth));
         }
 
         [MethodImpl(Inline)]
@@ -162,7 +156,7 @@ namespace Z0
         {
             if(row < 0 || row >= _RowCount)
                 throw Errors.OutOfRange(row, 0, _RowCount - 1);
-             var src = data.Slice(row * _RowLenth, _RowLenth);
+             var src = data.AsSpan().Slice(row * _RowLenth, _RowLenth);
              src.CopyTo(dst.Unsized);
              return ref dst;
         }
@@ -269,26 +263,6 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>
-        /// Reinterprets the primal type of the matrix
-        /// </summary>
-        /// <typeparam name="U">The target type</typeparam>
-        [MethodImpl(Inline)]
-        public Matrix<M,N,U> As<U>()
-            where U : unmanaged
-               => new Matrix<M,N,U>(data.As<U>());
-
-        /// <summary>
-        /// Reinterprets the primal type of the matrix
-        /// </summary>
-        /// <typeparam name="U">The target type</typeparam>
-        [MethodImpl(Inline)]
-        public ref Matrix<M,N,U> As<U>(out Matrix<M,N,U> dst)
-            where U : unmanaged        
-        {
-            dst = this.As<U>();
-            return ref dst;
-        }
 
         public override bool Equals(object rhs)
             => rhs is Matrix<M,N,T> x && Equals(x);

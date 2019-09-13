@@ -13,10 +13,33 @@ namespace Z0
 
     partial class gbits
     {
+        /// <summary>
+        /// Computes the bitwise OR of two primal operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static T or<T>(T lhs, T rhs)
+            where T : struct
+                => gmath.or(lhs,rhs);
+
+        /// <summary>
+        /// Computes the bitwise OR of two primal operands and stores the
+        /// result in the left operand
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref T or<T>(ref T lhs, in T rhs)
+            where T : struct
+                => ref gmath.or(ref lhs, in rhs);
+
 
         [MethodImpl(Inline)]
-        public static ref readonly Span<T> or<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs, in Span<T> dst)
-            where T : struct
+        public static MemorySpan<T> or<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs, MemorySpan<T> dst)
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 or(int8(lhs), int8(rhs), int8(dst));
@@ -36,13 +59,33 @@ namespace Z0
                 or(uint64(lhs), uint64(rhs), uint64(dst));
             else
                 throw unsupported<T>();
-            return ref dst;
+            return dst;
         }
 
         [MethodImpl(Inline)]
-        public static Span<T> or<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
-            where T : struct
-                => or(lhs, rhs, span<T>(length(lhs,rhs)));
+        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : unmanaged
+        {
+            if(typeof(T) == typeof(sbyte))
+                or(int8(lhs), int8(rhs), int8(dst));
+            else if(typeof(T) == typeof(byte))
+                or(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(typeof(T) == typeof(short))
+                or(int16(lhs), int16(rhs), int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                or(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                or(int32(lhs), int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                or(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                or(int64(lhs), int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                or(uint64(lhs), uint64(rhs), uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static ref readonly Span<T> or<T>(in Span<T> lhs, in ReadOnlySpan<T> rhs)

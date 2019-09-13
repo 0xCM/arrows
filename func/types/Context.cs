@@ -43,6 +43,9 @@ namespace Z0
         protected virtual bool TraceEnabled {get;}
             = true;
 
+        protected virtual bool BenchEnabled
+            => true;
+
         protected void NotifyError(Exception e)
         {
             var msg = AppMsg.Define($"{e}", SeverityLevel.Error);

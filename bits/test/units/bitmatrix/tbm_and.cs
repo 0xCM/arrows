@@ -52,8 +52,8 @@ namespace Z0.Test
                 var x = Random.BitMatrix64();
                 var y = Random.BitMatrix64();
 
-                var xBytes = x.Bytes().Replicate();
-                var yBytes = y.Bytes().Replicate();
+                var xBytes = x.Bytes.Replicate();
+                var yBytes = y.Bytes.Replicate();
                 var zBytes = gmath.and(xBytes,yBytes);
                 var expect = BitMatrix64.From(zBytes);
 

@@ -16,12 +16,12 @@ namespace Z0
     /// <typeparam name="M">The row dimension</typeparam>
     /// <typeparam name="N">The column dimension</typeparam>
     /// <typeparam name="T">The element type</typeparam>
-    public struct BitMatrix<M,N,T> : IEquatable<BitMatrix<M,N,T>>
+    public ref struct BitMatrix<M,N,T> 
         where M : ITypeNat, new()        
         where N : ITypeNat, new()
         where T : unmanaged
     {        
-        MemorySpan<T> data;
+        Span<T> data;
 
         /// <summary>
         /// The row count representative
@@ -65,14 +65,14 @@ namespace Z0
 
         static readonly GridSpec<T> GridSpec = (CellBitSize, RowBitCount, ColBitCount);
         
-        public static readonly GridLayout<T> GridLayout = GridSpec.CalcLayout();
+        public static readonly GridLayout<T> Layout = GridSpec.CalcLayout();
 
         /// <summary>
         /// Allocates a Zero-filled mxn matrix
         /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Alloc()
-            => new BitMatrix<M, N, T>(new Memory<T>(new T[GridLayout.TotalCellCount]));
+            => new BitMatrix<M, N, T>(new Memory<T>(new T[Layout.TotalCellCount]));
 
         /// <summary>
         /// Allocates a One-filled mxn matrix
@@ -80,7 +80,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Ones()
         {
-            var data = new T[GridLayout.TotalCellCount];
+            var data = new T[Layout.TotalCellCount];
             var length = BitSize.Size<T>();
             for(var i=0; i<data.Length; i++)
                 for(var j = 0; j< length; j++)
@@ -117,13 +117,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitMatrix(MemorySpan<T> src)
         {
-            require(src.Length == GridLayout.TotalCellCount);
+            require(src.Length == Layout.TotalCellCount);
             this.data = src;
         }
 
         [MethodImpl(Inline)]
         public BitMatrix(ReadOnlyMemory<T> src)
-            : this(src.ToArray().ToMemory())
+            : this(src.ToArray())
         {
 
         }
@@ -136,8 +136,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public Bit GetBit(int row, int col)
         {
-            var cell = GridLayout.Row(row)[col];
-            return gbits.test(in Bits[cell.Segment], cell.Offset);                    
+            var cell = Layout.Row(row)[col];
+            return gbits.test(in Data[cell.Segment], cell.Offset);                    
         }
 
         /// <summary>
@@ -148,8 +148,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public void SetBit(int row, int col, Bit value)
         {
-            var cell = GridLayout.Row(row)[col];
-            gbits.set(ref Bits[cell.Segment], cell.Offset, value);
+            var cell = Layout.Row(row)[col];
+            gbits.set(ref data[cell.Segment], cell.Offset, value);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Z0
         public readonly int RowCount
         {
             [MethodImpl(Inline)]
-            get => GridLayout.RowCount;
+            get => Layout.RowCount;
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Z0
         public readonly int ColCount
         {
             [MethodImpl(Inline)]
-            get => GridLayout.ColCount;
+            get => Layout.ColCount;
         }
 
         /// <summary>
@@ -200,29 +200,29 @@ namespace Z0
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
-            get => data.Bytes;
+            get => data.AsBytes();
         }
 
         /// <summary>
         /// Presents matrix storage as a span of generic cells
         /// </summary>
-        public Span<T> Bits
+        public Span<T> Data
         {
             [MethodImpl(Inline)]
-            get => data.Span;
+            get => data;
         }
         
         [MethodImpl(Inline)]
         readonly int RowOffset(int row)        
-            => GridLayout.Row(row)[0].Segment;
+            => Layout.Row(row)[0].Segment;
                 
         [MethodImpl(Inline)]
-        MemorySpan<T> RowData(int row)
-            => data.Slice(RowOffset(row), GridLayout.RowCellCount);
+        Span<T> RowData(int row)
+            => data.Slice(RowOffset(row), Layout.RowCellCount);
 
         [MethodImpl(Inline)]
-        void SetRow(int row, MemorySpan<T> data)
-            => data.CopyTo(data.Slice(RowOffset(row), GridLayout.RowCellCount));     
+        void SetRow(int row, Span<T> data)
+            => data.CopyTo(data.Slice(RowOffset(row), Layout.RowCellCount));     
 
         /// <summary>
         /// Replaces an index-identied column of data with the content of a row vector
@@ -230,7 +230,7 @@ namespace Z0
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public void RowVector(int row, BitVector<N,T> src)
-            => src.Bits.CopyTo(Bits.Slice(RowOffset(row), GridLayout.RowCellCount));     
+            => src.Data.CopyTo(Data.Slice(RowOffset(row), Layout.RowCellCount));     
 
         /// <summary>
         /// Retrives an identified row of bits
@@ -242,7 +242,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly BitVector<N,T> CopyRow(int index)                    
-            => new BitVector<N,T>(data.Slice(RowOffset(index), GridLayout.RowCellCount).Replicate());
+            => new BitVector<N,T>(data.Slice(RowOffset(index), Layout.RowCellCount).Replicate());
 
         /// <summary>
         /// Replaces an index-identied column of data with the content of a column vector
@@ -277,9 +277,9 @@ namespace Z0
         {
             var primal = PrimalInfo.Get<T>();
             if(value)
-                Bits.Fill(primal.MaxVal);
+                Data.Fill(primal.MaxVal);
             else
-                Bits.Fill(primal.Zero);
+                Data.Fill(primal.Zero);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Z0
 
         public bool Equals(BitMatrix<M,N,T> rhs)        
         {
-            var eq = gmath.eq<T>(Bits, rhs.Bits);
+            var eq = gmath.eq<T>(Data, rhs.Data);
             for(var i = 0; i< eq.Length; i++)
                 if(!eq[i])
                     return false;
@@ -319,32 +319,32 @@ namespace Z0
         }
 
         public override bool Equals(object obj)
-            => obj is BitMatrix<M,N,T> x ? Equals(x) : false;
+            => throw new NotSupportedException();
         
         public override int GetHashCode()
             => 0;
 
         static ref BitMatrix<M,N,T> XOr(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.xor(lhs.Bits, rhs.Bits, lhs.Bits);
+            gbits.xor(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gmath.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            gmath.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<M,N,T> Flip(ref BitMatrix<M,N,T> src)        
         {
-            gbits.flip(src.Bits);
+            gbits.flip(src.Data);
             return ref src;
         }
 
         static ref BitMatrix<M,N,T> Or(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.or(lhs.Bits, rhs.Bits, lhs.Bits);
+            gbits.or(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 

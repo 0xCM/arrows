@@ -57,7 +57,7 @@ namespace Z0
             => lhs < rhs;
         
  
-         public static Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
+        public static Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = lt(lhs[i], rhs[i]);

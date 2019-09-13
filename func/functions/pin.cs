@@ -6,16 +6,8 @@ using System;
 
 partial class zfunc
 {
-    /// <summary>
-    /// Pins referenced memory while work is occurring
-    /// </summary>
-    /// <param name="src">The memory reference</param>
-    /// <param name="worker">The worker invoked during the pin</param>
-    /// <typeparam name="T">The memory cell type</typeparam>
-    public static void pin<T>(ref T src, Action<IntPtr> worker)
-    {
-        Z0.PinnedPointers.Pin(src, ptr => worker(ptr));
-    }
+
+
 }
 
 namespace  Z0
@@ -29,6 +21,7 @@ namespace  Z0
     
     using static zfunc;
 
+
     /// <summary>
     /// Generates a dynamic method that pins a pointer before delegate invocation and unpins it after
     /// </summary>
@@ -37,6 +30,18 @@ namespace  Z0
     /// </remarks>
     static class PinnedPointers
     {
+
+        /// <summary>
+        /// Pins referenced memory while work is occurring
+        /// </summary>
+        /// <param name="src">The memory reference</param>
+        /// <param name="worker">The worker invoked during the pin</param>
+        /// <typeparam name="T">The memory cell type</typeparam>
+        public static void pin<T>(ref T src, Action<IntPtr> worker)
+        {
+            Z0.PinnedPointers.Pin(src, ptr => worker(ptr));
+        }
+
         public static readonly Action<object, Action<IntPtr>> Pin;
 
         static PinnedPointers()

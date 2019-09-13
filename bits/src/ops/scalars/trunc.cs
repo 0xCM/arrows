@@ -33,8 +33,34 @@ namespace Z0
         /// <param name="src">The source bits</param>
         /// <param name="len">The count of lower bits that go unmolested</param>
         [MethodImpl(Inline)]
+        public static ref byte trunc(ref byte src, byte len)
+        {
+            src = (byte)ZeroHighBits(src, len);
+            return ref src;
+        }
+
+        /// <summary>
+        /// unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32, r32b    
+        /// Clears bits external to the segment [0..(len - 1)]
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="len">The count of lower bits that go unmolested</param>
+        [MethodImpl(Inline)]
         public static ushort trunc(ushort src, byte len)
             => (ushort)ZeroHighBits(src, len);
+
+        /// <summary>
+        /// unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32, r32b    
+        /// Clears bits external to the segment [0..(len - 1)]
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="len">The count of lower bits that go unmolested</param>
+        [MethodImpl(Inline)]
+        public static ref ushort trunc(ref ushort src, byte len)
+        {
+            src = (ushort)ZeroHighBits(src, len);
+            return ref src;
+        }
 
         /// <summary>
         /// unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32, r32b    
@@ -47,6 +73,19 @@ namespace Z0
             => ZeroHighBits(src, len);
 
         /// <summary>
+        /// unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32, r32b    
+        /// Clears bits external to the segment [0..(len - 1)]
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="len">The count of lower bits that go unmolested</param>
+        [MethodImpl(Inline)]
+        public static ref uint trunc(ref uint src, byte len)
+        {
+            src = ZeroHighBits(src, len);
+            return ref src;
+        }
+
+        /// <summary>
         /// unsigned __int64 _bzhi_u64 (unsigned __int64 a, unsigned int index) BZHI r64a, reg/m32, r64b 
         /// Clears bits external to the segment [0..(len - 1)]
         /// </summary>
@@ -56,7 +95,18 @@ namespace Z0
         public static ulong trunc(ulong src, byte len)
             => ZeroHighBits(src, len);
 
-
+        /// <summary>
+        /// unsigned __int64 _bzhi_u64 (unsigned __int64 a, unsigned int index) BZHI r64a, reg/m32, r64b 
+        /// Clears bits external to the segment [0..(len - 1)]
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="len">The count of lower bits that go unmolested</param>
+        [MethodImpl(Inline)]
+        public static ref ulong trunc(ref ulong src, byte len)
+        {
+            src = ZeroHighBits(src, len);
+            return ref src;
+        }
 
     }
 

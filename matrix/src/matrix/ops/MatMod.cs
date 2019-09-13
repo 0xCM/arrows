@@ -77,11 +77,9 @@ namespace Z0
             where N : ITypeNat, new()
         {
             var x = new double[u.Length];
-            for (var i = 0; i < u.Length;  ++i) 
-            {
-                for(var j = 0; j < v.Length; j++)
-                    x[i] = Mod.fma(A[i,j], v[j], x[i], m);
-            }
+            for(var i = 0; i < u.Length; ++i) 
+            for(var j = 0; j < v.Length; j++)
+                x[i] = Mod.fma(A[i,j], v[j], x[i], m);
 
             for (var i = 0; i < u.Length;  ++i)
                 u[i] = x[i];

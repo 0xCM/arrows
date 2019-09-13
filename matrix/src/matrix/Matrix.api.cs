@@ -55,7 +55,7 @@ namespace Z0
         /// <typeparam name="N">The col count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Matrix<M,N,T> Load<M,N,T>(MemorySpan<T> src, M m = default, N n = default)
+        public static Matrix<M,N,T> Load<M,N,T>(T[] src, M m = default, N n = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
@@ -69,7 +69,7 @@ namespace Z0
         /// <typeparam name="N">The col count type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Matrix<N,T> Load<N,T>(MemorySpan<T> src,  N n = default)
+        public static Matrix<N,T> Load<N,T>(T[] src,  N n = default)
             where N : ITypeNat, new()
             where T : unmanaged
                 => new Matrix<N, T>(src);

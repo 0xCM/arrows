@@ -19,6 +19,10 @@ namespace Z0
         where T : unmanaged
     {
         [MethodImpl(Inline)]
+        public static BinomialSpec<T> From(IDistributionSpec<T> src)
+            => (BinomialSpec<T>)src;
+
+        [MethodImpl(Inline)]
         public static BinomialSpec<T> Define(T n, double p)
             => new BinomialSpec<T>(n,p);
     

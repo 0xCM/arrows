@@ -15,31 +15,31 @@ namespace Z0
     /// </summary>
     /// <typeparam name="N">The matrix order</typeparam>
     /// <typeparam name="T">The element type</typeparam>
-    public struct BitMatrix<N,T> : IEquatable<BitMatrix<N,T>>
+    public ref struct BitMatrix<N,T> //: IEquatable<BitMatrix<N,T>>
         where N : ITypeNat, new()
         where T : unmanaged
     {        
-        MemorySpan<T> data;
+        Span<T> data;
 
         /// <summary>
         /// Specifies the MxN matrix dimension
         /// </summary>
         static readonly Dim<N,N> Dim = default;
 
-        static readonly GridSpec<T> GridSpec = (SizeOf<T>.BitSize, (int)Dim.I, (int)Dim.J);
+        static readonly GridSpec<T> GridSpec = (bitsize<T>(), (int)Dim.I, (int)Dim.J);
         
         public static readonly GridLayout<T> GridLayout = GridSpec.CalcLayout();
 
-        public static readonly BitMatrix<N,T> Identity = CreateIdentity();
+        public static BitMatrix<N,T> Identity => CreateIdentity();
 
-        public static readonly BitMatrix<N,T> Ones = CreateOnes();
+        public static BitMatrix<N,T> Ones => CreateOnes();
 
         /// <summary>
         /// Allocates a Zero-filled NxN matrix
         /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> Alloc()
-            => new BitMatrix<N, T>(new Memory<T>(new T[GridLayout.TotalCellCount]));
+            => new BitMatrix<N, T>(new T[GridLayout.TotalCellCount]);
 
         /// <summary>
         /// Multiplies the left matrix by the right
@@ -94,7 +94,7 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public BitMatrix(Memory<T> src)
+        public BitMatrix(T[] src)
         {
             require(src.Length == GridLayout.TotalCellCount, 
                 $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
@@ -105,14 +105,14 @@ namespace Z0
         readonly Bit GetBit(int row, int col)
         {
             var cell = GridLayout.Row(row)[col];
-            return gbits.test(in Bits[cell.Segment], cell.Offset);                    
+            return gbits.test(in Data[cell.Segment], cell.Offset);                    
         }
 
         [MethodImpl(Inline)]
         void SetBit(int row, int col, Bit value)
         {
             var cell = GridLayout.Row(row)[col];
-            gbits.set(ref Bits[cell.Segment], cell.Offset, value);
+            gbits.set(ref Data[cell.Segment], cell.Offset, value);
         }
 
         public Bit this[int row, int col]
@@ -154,10 +154,10 @@ namespace Z0
         /// <summary>
         /// Provides direct access to the underlying bitstore
         /// </summary>
-        public readonly Span<T> Bits
+        public readonly Span<T> Data
         {
             [MethodImpl(Inline)]
-            get => data.Span;
+            get => data;
         }
         
         [MethodImpl(Inline)]
@@ -165,18 +165,18 @@ namespace Z0
             => GridLayout.Row(row)[0].Segment;
                 
         [MethodImpl(Inline)]
-        public MemorySpan<T> RowData(int row)
+        public Span<T> RowData(int row)
             => data.Slice(RowOffset(row), GridLayout.RowCellCount);
 
         [MethodImpl(Inline)]
-        public ref MemorySpan<T> RowData(int row, out MemorySpan<T> dst)
+        public ref Span<T> RowData(int row, out Span<T> dst)
         {
             dst = data.Slice(RowOffset(row), GridLayout.RowCellCount);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        void ReplaceRow(int row, Memory<T> data)
+        void ReplaceRow(int row, Span<T> data)
             => data.CopyTo(this.data.Slice(RowOffset(row), GridLayout.RowCellCount));     
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Z0
         /// <param name="col">The column index</param>
         [MethodImpl(Inline)]
         public readonly void RowVector(int row, BitVector<N,T> src)
-            => src.Bits.CopyTo(Bits.Slice(RowOffset(row), GridLayout.RowCellCount));     
+            => src.Data.CopyTo(Data.Slice(RowOffset(row), GridLayout.RowCellCount));     
 
         /// <summary>
         /// Retrives an identified row of bits
@@ -244,7 +244,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public Span<Bit> Unpack()
-            => Bits.AsBytes().Unpack(out Span<Bit> dst).Slice(0, (int)Dim.Volume);
+            => data.AsBytes().Unpack(out Span<Bit> dst).Slice(0, (int)Dim.Volume);
 
         /// <summary>
         /// Sets all the bits to align with the source value
@@ -255,14 +255,14 @@ namespace Z0
         {
             var primal = PrimalInfo.Get<T>();
             if(value)
-                Bits.Fill(primal.MaxVal);
+                Data.Fill(primal.MaxVal);
             else
-                Bits.Fill(primal.Zero);
+                Data.Fill(primal.Zero);
         }
 
         [MethodImpl(Inline)]    
         public BitString ToBitString()
-            => Bits.ToBitString();
+            => Data.ToBitString();
  
         [MethodImpl(Inline)]
         public string Format()
@@ -282,26 +282,26 @@ namespace Z0
         }
 
         public BitMatrix<N,T> Replicate()
-            => new BitMatrix<N, T>(new Memory<T>(data.ToArray()));
+            => new BitMatrix<N, T>(data.ToArray());
 
         public bool Equals(BitMatrix<N,T> rhs)        
         {
-            var eq = gmath.eq<T>(Bits, rhs.Bits);
+            var eq = gmath.eq<T>(Data, rhs.Data);
             for(var i = 0; i< eq.Length; i++)
                 if(!eq[i])
                     return false;
             return true;
         }
-
-        public override bool Equals(object obj)
-            => obj is BitMatrix<N,T> x ? Equals(x) : false;
         
         public override int GetHashCode()
             => 0;
 
+        public override bool Equals(object rhs)
+            => throw new NotSupportedException();
+
         static ref BitMatrix<N,T> And(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gmath.and(lhs.Bits, rhs.Bits, lhs.Bits);
+            gmath.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
@@ -337,19 +337,19 @@ namespace Z0
 
         static ref BitMatrix<N,T> XOr(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.xor(lhs.Bits, rhs.Bits, lhs.Bits);
+            gbits.xor(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<N,T> Or(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.or(lhs.Bits, rhs.Bits, lhs.Bits);
+            gbits.or(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<N,T> Flip(ref BitMatrix<N,T> src)        
         {
-            gbits.flip(src.Bits);
+            gbits.flip(src.Data);
             return ref src;
         }
         
@@ -368,8 +368,8 @@ namespace Z0
         /// </summary>
         static BitMatrix<N,T> CreateOnes()
         {                    
-            Memory<T> data = new T[GridLayout.TotalCellCount];
-            data.Span.Fill(PrimalInfo.Get<T>().MaxVal);
+            var data = new T[GridLayout.TotalCellCount];
+            data.Fill(PrimalInfo.Get<T>().MaxVal);
             return new BitMatrix<N, T>(data);
         }
 

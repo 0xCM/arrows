@@ -20,7 +20,7 @@ namespace Z0
     /// </summary>
     public struct BitMatrix16 : IBitMatrix<BitMatrix16,N16,ushort>
     {   
-        MemorySpan<ushort> data;
+        ushort[] data;
 
         /// <summary>
         /// The matrix order
@@ -74,10 +74,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix16 From(params ushort[] src)        
             => src.Length == 0 ? Alloc() : new BitMatrix16(src);
-
-        [MethodImpl(Inline)]
-        public static BitMatrix16 From(MemorySpan<ushort> src)        
-            => new BitMatrix16(src);
 
         [MethodImpl(Inline)]
         public static BitMatrix16 From(ReadOnlySpan<byte> src)        
@@ -143,7 +139,7 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        BitMatrix16(MemorySpan<ushort> src)
+        BitMatrix16(ushort[] src)
         {                        
             require(src.Length == Pow2.T04);
             this.data = src;
@@ -153,7 +149,13 @@ namespace Z0
         BitMatrix16(ReadOnlySpan<ushort> src)
         {                        
             require(src.Length == Pow2.T04);
-            this.data = MemorySpan.From(src);
+            this.data = src.ToArray();
+        }
+
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.AsByteSpan();
         }
 
         /// <summary>
@@ -282,7 +284,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(data.As<byte>()));            
+            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(Bytes.ToArray()));            
 
         /// <summary>
         /// Computes the Hadamard product of the source matrix and another of the same dimension
@@ -299,7 +301,7 @@ namespace Z0
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix16 Replicate()
-            => From((MemorySpan<ushort>)data.ToArray());
+            => From(data.ToArray());
         
         /// <summary>
         /// Counts the number of enabled bits in the matrix
@@ -312,8 +314,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public readonly Span<Bit> Unpack()
-            => data.Bytes.Unpack(out Span<Bit> _);
+        public Span<Bit> Unpack()
+            => Bytes.Unpack(out Span<Bit> _);
 
         [MethodImpl(Inline)]
         public bool IsZero()
@@ -326,15 +328,15 @@ namespace Z0
         {
             var r1 = r0 + 8;
             var c1 = c0 + 8;
-            Memory<byte> dst = new byte[8];
+            var dst = new byte[8];
             for(int i=r0; i< r0; i++)                
-                dst.Span[i] = Bits.lo(in data[i]);
+                dst[i] = Bits.lo(in data[i]);
             return BitMatrix8.From(dst);
         }
 
         [MethodImpl(Inline)]
         public string Format()
-            => data.Bytes.FormatMatrixBits(16);
+            => Bytes.FormatMatrixBits(16);
 
         /// <summary>
         /// Converts the matrix to a bitvector

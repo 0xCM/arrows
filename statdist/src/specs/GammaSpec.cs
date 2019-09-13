@@ -9,6 +9,35 @@ namespace Z0
 
     using static zfunc;
 
+    public static class GammaSpec
+    {
+
+        /// <summary>
+        /// Interprets a supplied spec as a gamma spec; an error
+        /// is raised if the spec does not define gamma distribution
+        /// </summary>
+        /// <param name="spec">The distribution specifier</param>
+        /// <typeparam name="T">The sample element type</typeparam>
+        [MethodImpl(Inline)]
+        public static GammaSpec<T> From<T>(IDistributionSpec<T> src)
+            where T : unmanaged
+                => (GammaSpec<T>)src;        
+
+        /// <summary>
+        /// Defines a gamma distribution
+        /// </summary>
+        /// <param name="alpha"></param>
+        /// <param name="dx"></param>
+        /// <param name="beta"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static GammaSpec<T> Define<T>(T alpha, T dx, T beta)
+            where T : unmanaged
+                => GammaSpec<T>.Define(alpha,dx, beta);
+
+    }
+
     /// <summary>
     /// Characterizes a Gamma distribution
     /// </summary>

@@ -118,7 +118,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public ref readonly BitIndex Index(BitPos pos)
-            => ref Indices.Span[pos];
+            => ref Indices[pos];
 
         [MethodImpl(Inline)]
         public ref readonly uint Cell(BitPos pos)

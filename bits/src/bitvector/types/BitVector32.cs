@@ -26,7 +26,6 @@ namespace Z0
         [FieldOffset(0)]
         BitVector16 bv16;
 
-
         [FieldOffset(0)]
         uint data;
 
@@ -49,7 +48,11 @@ namespace Z0
         byte x0011;
 
         public static readonly BitVector32 Zero = default;
-        
+
+        public static readonly BitVector32 One = 1;
+
+        public static readonly BitVector32 Ones = uint.MaxValue;
+
         public static readonly BitSize BitSize = 32;
 
         public static readonly BitPos FirstPos = 0;
@@ -456,6 +459,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
+
+        /// <summary>
+        /// Disables the high bits that follow a specified bit
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void DisableAfter(BitPos pos)
+            => Bits.trunc(ref data, ++pos);
 
         /// <summary>
         /// Sets a bit value

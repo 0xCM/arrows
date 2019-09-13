@@ -15,6 +15,8 @@ namespace Z0
 
     public static class MemoryCast
     {
+
+
         /// <summary>
         /// Casts memory cells of one type to another
         /// </summary>
@@ -31,7 +33,51 @@ namespace Z0
             return new MemoryCast<S, T>(src).Memory;
         }
 
+        /// <summary>
+        /// Casts array cells of one to memory cells of another
+        /// </summary>
+        /// <param name="src">The source memory</param>
+        /// <typeparam name="S">The source type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
+        [MethodImpl(Inline)]
+        public static Memory<T> ToMemory<S,T>(S[] src)
+            where S : unmanaged
+            where T : unmanaged
+        {
+            if (typeof(S) == typeof(T)) 
+                return (T[])(object)src;
+            return new ArrayCast<S, T>(src).Memory;
+        }
+
     }
+
+
+    public sealed class ArrayCast<S,T> : MemoryManager<T>
+        where S : unmanaged
+        where T : unmanaged
+    {
+        readonly S[] source;
+
+        [MethodImpl(Inline)]
+        public ArrayCast(S[] source) 
+            => this.source = source;
+
+        Span<S> SourceSpan
+            => source;
+
+        public override Span<T> GetSpan()
+            => MemoryMarshal.Cast<S, T>(SourceSpan);
+
+        protected override void Dispose(bool disposing) {}
+
+        public override MemoryHandle Pin(int elementIndex = 0)
+            => throw new NotSupportedException();
+
+        public override void Unpin()
+            => throw new NotSupportedException();
+
+    }
+
 
     //https://stackoverflow.com/questions/54511330/how-can-i-cast-memoryt-to-another
     public sealed class MemoryCast<S, T> : MemoryManager<T>

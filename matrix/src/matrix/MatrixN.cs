@@ -23,7 +23,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : unmanaged    
     {        
-        MemorySpan<T> data;
+        T[] data;
 
         public static readonly Dim<N,N> Dim = default;        
 
@@ -84,9 +84,6 @@ namespace Z0
         public static implicit operator MemorySpan<T>(Matrix<N,T> src)
             => src.Data;
 
-        [MethodImpl(Inline)]
-        public static implicit operator Matrix<N,T>(MemorySpan<T> src)
-            => new Matrix<N, T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator Matrix<N,T>(T[] src)
@@ -100,12 +97,6 @@ namespace Z0
         public static bool operator != (Matrix<N,T> lhs, Matrix<N,T> rhs) 
             => !lhs.Equals(rhs);
 
-        [MethodImpl(Inline)]
-        public Matrix(MemorySpan<T> src)
-        {
-            require(src.Length >= CellCount);
-            data = src;
-        }
 
         [MethodImpl(Inline)]
         public Matrix(T[] src)
@@ -121,7 +112,7 @@ namespace Z0
         /// <summary>
         /// The data contained in the matrix
         /// </summary>
-        public MemorySpan<T> Data
+        public T[] Data
         {            
             [MethodImpl(Inline)]
             get => data;
@@ -176,20 +167,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Vector<N,T> Row(int row)
-        {
-            if(row < 0 || row >= _RowCount)
-                throw Errors.OutOfRange(row, 0, _RowCount - 1);
-            
-            return Vector.Load<N,T>(data.Slice(row * _RowLenth, _RowLenth));
-        }
-
-        [MethodImpl(Inline)]
         public ref Vector<N,T> Row(int row, ref Vector<N,T> dst)
         {
             if(row < 0 || row >= _RowCount)
                 throw Errors.OutOfRange(row, 0, _RowCount - 1);
-             var src = data.Slice(row * _RowLenth, _RowLenth);
+             var src = data.AsSpan(). Slice(row * _RowLenth, _RowLenth);
              src.CopyTo(dst.Data);
              return ref dst;
         }
@@ -287,12 +269,7 @@ namespace Z0
         public Matrix<N,U> Convert<U>()
             where U : unmanaged
                => new Matrix<N,U>(convert<T,U>(data));
-
-        [MethodImpl(Inline)]
-        public Matrix<N,U> As<U>()
-            where U : unmanaged
-                => new Matrix<N,U>(data.As<U>());
-
+               
         /// <summary>
         /// Creates a copy of the matrix
         /// </summary>

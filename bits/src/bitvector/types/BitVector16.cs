@@ -36,11 +36,13 @@ namespace Z0
 
         public static readonly BitVector16 One = 1;
 
-        public static readonly BitSize BitSize = 16;
+        public static readonly BitVector16 Ones = ushort.MaxValue;
+
+        public static readonly BitSize Width = 16;
 
         public static readonly BitPos FirstPos = 0;
 
-        public static readonly BitPos LastPos = BitSize - 1;
+        public static readonly BitPos LastPos = Width - 1;
 
         /// <summary>
         /// Allocates a zero-filled vector
@@ -505,6 +507,14 @@ namespace Z0
         public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
 
+        /// <summary>
+        /// Disables the high bits that follow the specified index
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void DisableAfter(BitPos pos)
+            => Bits.trunc(ref data, ++pos);
+            
         /// <summary>
         /// Sets a bit value
         /// </summary>

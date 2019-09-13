@@ -29,7 +29,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static ref T Pack<T>(this Span<byte> src, out T dst, int offset = 0)
-            where T : struct
+            where T : unmanaged
         {
             dst = Bytes.read<T>(src, offset);
             return ref dst;
@@ -37,7 +37,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static ref T Pack<T>(this ReadOnlySpan<byte> src, out T dst, int offset = 0)
-            where T : struct
+            where T : unmanaged
         {
             dst = Bytes.read<T>(src, offset);
             return ref dst;

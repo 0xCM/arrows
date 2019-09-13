@@ -5,50 +5,67 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Security.Cryptography;
 
     using static zfunc;
     using static As;
 
-
-    class RngSeed
+    /// <summary>
+    /// Defines a permanent/immutable seed store to support pseudorandom reproducibility
+    /// </summary>
+    public static class RngSeed
     {
-        static int VerifyIndex<T>(int index)
-            where T : struct
-        {
-            var needed = Unsafe.SizeOf<T>() + index;
-            if(needed < Bytes.Length)
-                return index;
-            else
-                return Errors.ThrowOutOfRange<int>(index, 0, MaxFixedIndex<T>());
-        }
+        /// <summary>
+        /// The total number of bytes in the embedded data 
+        /// </summary>
+        public static ByteSize SourceLength
+            => Bytes.Length;
 
-        public static T TakeFixed<T>(int index)
+        /// <summary>
+        /// Gets the maximum available offset for a given data type
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static int MaxOffset<T>()
             where T : struct
-            => ByteSpan.ReadValue<T>(Bytes, VerifyIndex<T>(index));
+                => (Bytes.Length - 1) - Unsafe.SizeOf<T>();
 
-        public static ReadOnlySpan<T> TakeFixed<T>(int offset, int length)
+        /// <summary>
+        /// Acquires a single value from the embedded data source
+        /// </summary>
+        /// <param name="offset">The source offset</param>
+        /// <typeparam name="T">The data type</typeparam>
+        public static T TakeSingle<T>(int offset)
+            where T : struct
+            => ByteSpan.ReadValue<T>(Bytes, VerifyIndex<T>(offset));
+
+        /// <summary>
+        /// Acauires a readonly span of values from the embedded source
+        /// </summary>
+        /// <param name="offset">The source offset</param>
+        /// <param name="length">The number of values to take</param>
+        /// <typeparam name="T">The data type</typeparam>
+        public static ReadOnlySpan<T> TakeMany<T>(int offset, int length)
             where T : struct
         {
             VerifyIndex<T>(offset* Unsafe.SizeOf<T>() + length* Unsafe.SizeOf<T>());
             return ByteSpan.ReadValues<T>(Bytes, offset,length);            
         }
-            
+                     
         /// <summary>
-        /// Gets the maximum available index for a given data type
+        /// Checks that a requested offset for a given data type is within bounds
         /// </summary>
-        /// <typeparam name="T">The primal type</typeparam>
-        public static int MaxFixedIndex<T>()
+        /// <param name="offset">The source offset</param>
+        /// <typeparam name="T">The data type</typeparam>
+        static int VerifyIndex<T>(int offset)
             where T : struct
-                => (Bytes.Length - 1) - Unsafe.SizeOf<T>();
-
-        public static ByteSize FixedByteCount
-            => Bytes.Length;
-         
+        {
+            var needed = Unsafe.SizeOf<T>() + offset;
+            if(needed < Bytes.Length)
+                return offset;
+            else
+                return Errors.ThrowOutOfRange<int>(offset, 0, MaxOffset<T>());
+        }
 
         /// <summary>
         /// Provides access to 32768 bytes of random data
@@ -4151,12 +4168,7 @@ namespace Z0
             0x0e, 0x65, 0x58, 0x14, 0x1f, 0xc2, 0xda, 0x0b,
             0x4b, 0x68, 0xd7, 0xb4, 0xef, 0xb2, 0x18, 0x6a,
             0x56, 0x6c, 0x49, 0x1f, 0xc5, 0x6a, 0x4e, 0x96,
-            0x3c, 0x68, 0x5c, 0x48, 0xeb, 0xdb, 0x25, 0xf4,
-            
+            0x3c, 0x68, 0x5c, 0x48, 0xeb, 0xdb, 0x25, 0xf4,            
         };
-
-
     }
-
-
 }

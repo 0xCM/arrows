@@ -242,12 +242,12 @@ namespace Z0
         }
 
         void bound<T>(T min, T max, int samples, bool trace = false)
-            where T : struct
+            where T : unmanaged
         {
-            var stats = Accumulator.Create();
+            var stats = Collector.Create();
             var src = Random.Stream(min,max).Take(samples);
             iter(src, value => {
-                stats.Accumulate(convert<T,double>(value));
+                stats.Collect(value);
                 Claim.yea(gmath.between(value, min, max));
             });
             var width = convert<T,double>(gmath.sub(max,min));
@@ -262,7 +262,7 @@ namespace Z0
                 Trace(() => error);
                 Trace(() => stats.Count);
                 Trace(() => stats.Mean);
-                Trace(() => stats.StandardDeviation);
+                Trace(() => stats.Stdev);
             }
         }
 

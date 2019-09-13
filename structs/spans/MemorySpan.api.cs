@@ -23,9 +23,14 @@ namespace Z0
         /// <param name="fill">An optional fill value</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static MemorySpan<T> Alloc<T>(int len, T? fill = default)
+        public static T[] Alloc<T>(int len, T? fill = default)
             where T : unmanaged
-                => new MemorySpan<T>(len,fill);
+        {
+            var dst = new T[len];
+            if(fill != null)
+                dst.AsSpan().Fill(fill.Value);
+            return dst;
+        }
     
         /// <summary>
         /// Creates a memory span from array content
@@ -33,58 +38,11 @@ namespace Z0
         /// <param name="src">The data source</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(params T[] src)
+        public static T[] From<T>(params T[] src)
             where T : unmanaged
                 => src;
     
-        /// <summary>
-        /// Creates a memory span from memory content
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(Memory<T> src)
-            where T : unmanaged
-                => src;
 
-        /// <summary>
-        /// Creates a memory span from readonly memory content (allocating?)
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(ReadOnlyMemory<T> src)
-            where T : unmanaged
-                => MemoryMarshal.AsMemory(src);
-
-        /// <summary>
-        /// Creates a memory span from a readonly span (allocating)
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static MemorySpan<T> From<T>(ReadOnlySpan<T> src)
-            where T : unmanaged
-                => new MemorySpan<T>(src.ToArray());
-    
-        /// <summary>
-        /// Interchanges elements i and j
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="i">An index of a span element</param>
-        /// <param name="j">An index of a span element</param>
-        /// <typeparam name="T">The span element type</typeparam>
-        [MethodImpl(Inline)]
-        public static void Swap<T>(this MemorySpan<T> src, int i, int j)
-            where T : unmanaged
-        {
-            if(i != j)
-            {
-                var tmp = src[i];
-                src[i] = src[j];
-                src[j] = tmp;
-            }
-        }
     }
 
 }

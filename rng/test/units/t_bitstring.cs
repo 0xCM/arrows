@@ -19,10 +19,10 @@ namespace Z0.Rng.Test
         {
             const int len = 16*16;
             var samples = Pow2.T16;
-            var stats = new Accumulator();
+            var stats = Collector.Create();
             var src = Random.BitStrings(len);
             for(var i=0; i< samples; i++)
-                stats.Accumulate(src.First().PopCount());
+                stats.Collect(src.First().PopCount());
 
             var ideal = len/2.0;
             var actual = stats.Mean;

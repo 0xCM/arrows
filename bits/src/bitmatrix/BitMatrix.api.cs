@@ -47,7 +47,7 @@ namespace Z0
         /// <typeparam name="N">The matrix order type</typeparam>
         /// <typeparam name="T">The matrix cell type</typeparam>
         [MethodImpl(Inline)]
-        public static BitMatrix<N,T> Load<N,T>(Memory<T> src, N n = default)        
+        public static BitMatrix<N,T> Load<N,T>(T[] src, N n = default)        
             where N : ITypeNat, new()
             where T : unmanaged
                 => new BitMatrix<N,T>(src); 
@@ -60,7 +60,7 @@ namespace Z0
         /// <typeparam name="N">The matrix order type</typeparam>
         /// <typeparam name="T">The matrix cell type</typeparam>
         [MethodImpl(Inline)]
-        public static BitMatrix<M,N,T> Load<M,N,T>(Memory<T> src, M m = default, N n = default)        
+        public static BitMatrix<M,N,T> Load<M,N,T>(T[] src, M m = default, N n = default)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
@@ -93,20 +93,20 @@ namespace Z0
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref readonly BitMatrix<N,T> Ones<N,T>(N n = default)
+        public static BitMatrix<N,T> Ones<N,T>(N n = default)
             where N : ITypeNat, new()
             where T : unmanaged
-                => ref BitMatrix<N,T>.Ones;
+                => BitMatrix<N,T>.Ones;
 
         /// <summary>
         /// Returns an immutable reference to the N-square identity matrix
         /// </summary>
         /// <typeparam name="N">The column/row dimension</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public static ref readonly BitMatrix<N,T> Identity<N,T>(N n = default, T rep = default)
+        public static BitMatrix<N,T> Identity<N,T>(N n = default, T rep = default)
             where N : ITypeNat, new()
             where T : unmanaged
-                => ref BitMatrix<N,T>.Identity;
+                => BitMatrix<N,T>.Identity;
 
     }
 

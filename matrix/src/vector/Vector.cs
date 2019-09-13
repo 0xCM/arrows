@@ -12,23 +12,11 @@ namespace Z0
         
     using static zfunc;
 
-    public struct Vector<T> : IEquatable<Vector<T>>
+    public struct Vector<T>
         where T : unmanaged
     {
-        MemorySpan<T> data;
+        T[] data;
 
-        [MethodImpl(Inline)]
-        public static implicit operator Vector<T>(MemorySpan<T> src)
-            => new Vector<T>(src);
-
-        /// <summary>
-        /// Implicitly reveals a vector's underlying memory span
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="T">The component type</typeparam>
-        [MethodImpl(Inline)]
-        public static implicit operator MemorySpan<T>(Vector<T> src)
-            => src.data;
 
         /// <summary>
         /// Implicitly converts an array to a vector
@@ -38,6 +26,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator Vector<T>(T[] src)
             => new Vector<T>(src);
+
 
         /// <summary>
         /// Implicitly reveals a vector's underlying memory span
@@ -78,14 +67,6 @@ namespace Z0
         public Vector(T[] src)
             => this.data = src;
 
-        [MethodImpl(Inline)]
-        public Vector(MemorySpan<T> src)
-            => this.data = src;
-
-        [MethodImpl(Inline)]
-        public Vector(ReadOnlySpan<T> src)
-            => this.data = src.ToArray();
-
         /// <summary>
         /// Queries/manipulates component values
         /// </summary>
@@ -95,7 +76,7 @@ namespace Z0
             get => ref data[i];            
         }
 
-        public MemorySpan<T> Data
+        public T[] Data
         {
             [MethodImpl(Inline)]
             get => data;
@@ -111,21 +92,12 @@ namespace Z0
         }
 
         /// <summary>
-        /// Reinterpets vector content
-        /// </summary>
-        /// <typeparam name="U">The target cell type</typeparam>
-        [MethodImpl(Inline)]
-        public Vector<U> As<U>()
-            where U : unmanaged
-                => data.As<U>();
-
-        /// <summary>
         /// Formats components as a list
         /// </summary>
         /// <param name="delimiter">The component delimiter</param>
         [MethodImpl(Inline)]
         public string Format(char? delimiter = null)
-            => data.Span.FormatList(delimiter ?? AsciSym.Comma);    
+            => data.FormatList(delimiter ?? AsciSym.Comma);    
 
         /// <summary>
         /// Copies the source vector to a specified target vector
@@ -159,13 +131,11 @@ namespace Z0
         }
 
         public override bool Equals(object rhs)
-            => rhs is Vector<T> x  && Equals(x);
+            => throw new NotSupportedException();
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => throw new NotSupportedException();
 
-        public override string ToString()
-            => Format();
 
     }
 }

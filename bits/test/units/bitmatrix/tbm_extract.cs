@@ -153,7 +153,7 @@ namespace Z0.Test
             var a = new ulong[64];
             for(var i = 0; i<64; i++)
                 a[i] = ~ c.RowData(i);
-            var b = BitMatrix64.From((MemorySpan<ulong>)a);
+            var b = BitMatrix64.From(a);
             Claim.yea(b == -c);        
         }
 

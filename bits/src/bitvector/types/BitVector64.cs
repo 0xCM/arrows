@@ -78,6 +78,10 @@ namespace Z0
 
         public static readonly BitVector64 Zero = default;
 
+        public static readonly BitVector64 One = 1;
+
+        public static readonly BitVector64 Ones = ulong.MaxValue;
+
         public static readonly BitSize BitSize = 64;
 
         public static readonly BitPos LastPos = BitSize - 1;
@@ -542,6 +546,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public void Disable(BitPos pos)
             => BitMask.disable(ref data, pos);
+
+        /// <summary>
+        /// Disables the high bits that follow a specified bit
+        /// </summary>
+        /// <param name="pos">The bit position</param>
+        [MethodImpl(Inline)]
+        public void DisableAfter(BitPos pos)
+            => Bits.trunc(ref data, ++pos);
 
         /// <summary>
         /// Sets a bit to a specified value

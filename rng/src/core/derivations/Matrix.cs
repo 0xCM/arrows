@@ -40,7 +40,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged    
-                => Z0.Matrix.Load<M,N,T>(random.MemorySpan<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
+                => Z0.Matrix.Load<M,N,T>(random.Array<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
 
         /// <summary>
         /// Allocates and fills a matrix of natural dimensions with random values
@@ -57,7 +57,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged    
-                => Z0.Matrix.Load<M,N,T>(random.MemorySpan<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
+                => Z0.Matrix.Load<M,N,T>(random.Array<T>(Z0.Matrix<M,N,T>.CellCount, domain));                    
                
         /// <summary>
         /// Samples a square matrix of natural order
@@ -72,7 +72,7 @@ namespace Z0
         public static Matrix<N,T> Matrix<N,T>(this IPolyrand random, N n, T min, T max)
             where N : ITypeNat, new()
             where T : unmanaged   
-                => Z0.Matrix.Load<N,T>(random.MemorySpan<T>(Z0.Matrix<N,T>.CellCount, min,max));                    
+                => Z0.Matrix.Load<N,T>(random.Array<T>(Z0.Matrix<N,T>.CellCount, (min,max)));                    
 
          /// <summary>
          /// Samples values over an S-domain, transforms the sample into a T-domain and from this transformed

@@ -47,7 +47,7 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Load<N,T>(MemorySpan<T> src, N length = default)
+        public static Vector<N,T> Load<N,T>(T[] src, N length = default)
             where N : ITypeNat, new()
             where T : unmanaged
                 => new Vector<N, T>(src);
@@ -66,10 +66,10 @@ namespace Z0
                 => new Vector<N, T>(src);
 
         [MethodImpl(Inline)]
-        public static ref readonly Vector<N,T> Zero<N,T>()
+        public static Vector<N,T> Zero<N,T>()
             where N : ITypeNat, new()
             where T : unmanaged
-                => ref Vector<N,T>.Zero;
+                => Vector<N,T>.Zero;
     }
 
 }

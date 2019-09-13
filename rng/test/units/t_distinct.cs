@@ -31,14 +31,6 @@ namespace Z0.Rng
             Claim.fail($"{missing} members of the sample remain unselected");
         }
 
-        public void memory_span()
-        {            
-            var src = MemorySpan.From(Random.Memory<uint>(Pow2.T08));
-            Claim.eq(src.Length, Pow2.T08);
-
-            var dst = src.As<ulong>();
-            Claim.eq(dst.Length << 1, src.Length);
-        }
     }
 
 }

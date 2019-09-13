@@ -268,6 +268,7 @@ namespace Z0.Test
             var z = ybs.TakeValue<ulong>();
             Claim.eq(x, z);
 
+            
             var byx = BitConverter.GetBytes(x).ToSpan();
             Bytes.write(x, out Span<byte> byy);
             Claim.eq(byx,byy);

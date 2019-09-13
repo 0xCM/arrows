@@ -45,15 +45,6 @@ namespace Z0.Rng
             Claim.lt(s1.Count + s2.Count, 10);
         }
 
-        public void pcg_bench_64()
-        {
-             Benchmark(RNG.Pcg64().PointSource<ulong>());
-        }
-
-        public void pcg_bench_32()
-        {
-             Benchmark(RNG.Pcg32());
-        }
 
     }
 }
