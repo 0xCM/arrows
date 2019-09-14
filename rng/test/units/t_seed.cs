@@ -18,12 +18,12 @@ namespace Z0
         public void reproduce()
         {
 
-            var s1 = RNG.FixedSeed(54ul);
-            var s2 = RNG.FixedSeed(54ul + 8ul);
+            var s1 = Rng.FixedSeed(54ul);
+            var s2 = Rng.FixedSeed(54ul + 8ul);
 
-            var rng1 = RNG.WyHash64(s1).ToPolyrand();
-            var rng2 = RNG.WyHash64(s2).ToPolyrand();
-            var rng3 = RNG.WyHash64(s1).ToPolyrand();
+            var rng1 = Rng.WyHash64(s1).ToPolyrand();
+            var rng2 = Rng.WyHash64(s2).ToPolyrand();
+            var rng3 = Rng.WyHash64(s1).ToPolyrand();
 
             var sample1 = rng1.Stream<ulong>().Take(Pow2.T08).ToArray();
             var sample2 = rng2.Stream<ulong>().Take(Pow2.T08).ToArray();
@@ -41,19 +41,19 @@ namespace Z0
 
         public void stats()
         {
-            (ByteSize byteCount, var u8Index) = RNG.FixedSeedStats<byte>();
+            (ByteSize byteCount, var u8Index) = Rng.FixedSeedStats<byte>();
 
-            (_, int i32Index) = RNG.FixedSeedStats<int>();
-            RNG.FixedSeed(i32Index);
+            (_, int i32Index) = Rng.FixedSeedStats<int>();
+            Rng.FixedSeed(i32Index);
 
-            (_, long i64Index) = RNG.FixedSeedStats<long>();
-            RNG.FixedSeed(i64Index);
+            (_, long i64Index) = Rng.FixedSeedStats<long>();
+            Rng.FixedSeed(i64Index);
 
-            (_, double f64Index) = RNG.FixedSeedStats<double>();
-            RNG.FixedSeed(f64Index);
+            (_, double f64Index) = Rng.FixedSeedStats<double>();
+            Rng.FixedSeed(f64Index);
 
-            (_, float f32Index) = RNG.FixedSeedStats<float>();
-            RNG.FixedSeed(f32Index);
+            (_, float f32Index) = Rng.FixedSeedStats<float>();
+            Rng.FixedSeed(f32Index);
 
             Claim.eq(i32Index, (int)f32Index);
             Claim.eq(i64Index, (long)f64Index);

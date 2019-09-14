@@ -60,7 +60,7 @@ namespace Z0
             where T : struct
         {
             var id = NextId(ref LastSeriesId);
-            var rng = RNG.XOrShift1024(seed);
+            var rng = Rng.XOrShift1024(seed);
             if(!States.TryAdd(id,rng))
                 throw new Exception($"Key {id} already exists");
             return new TimeSeries<T>(id, domain, Term(0, gmath.zero<T>()));

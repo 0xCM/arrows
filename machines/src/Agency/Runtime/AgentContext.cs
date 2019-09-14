@@ -24,7 +24,7 @@ namespace Z0
         }
 
         public AgentContext()
-            : base(RNG.XOrShift1024(Seed1024.AppSeed).ToPolyrand())
+            : base(Rng.XOrShift1024(Seed1024.AppSeed).ToPolyrand())
         {
 
 

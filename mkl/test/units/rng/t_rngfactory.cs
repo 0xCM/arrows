@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Rng
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -102,9 +102,9 @@ namespace Z0.Rng
 
         public void polyrand()
         {         
-            rng_bench(RNG.Pcg64(Seed).Stream(RangeI32));
-            rng_bench(RNG.Pcg64(Seed).Stream(RangeF32));
-            rng_bench(RNG.Pcg64(Seed).Stream(RangeF64));
+            rng_bench(Rng.Pcg64(Seed).Stream(RangeI32));
+            rng_bench(Rng.Pcg64(Seed).Stream(RangeF32));
+            rng_bench(Rng.Pcg64(Seed).Stream(RangeF64));
         }
 
         public void wh()

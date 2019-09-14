@@ -27,7 +27,7 @@ namespace Z0
         where T : TestContext<T>
     {
         public TestContext(ITestConfig config = null, IPolyrand random = null)
-            : base(random ?? RNG.XOrShift1024(Seed1024.TestSeed).ToPolyrand())
+            : base(random ?? Rng.XOrShift1024(Seed1024.TestSeed).ToPolyrand())
         {
             this.Config = config ?? TestConfigDefaults.Default();
         }
@@ -109,7 +109,15 @@ namespace Z0
             return closed(offsetMin,offsetMax);                
         }
 
-        protected virtual OpTime Iterate<K>(Action<K> f, [CallerMemberName] string caller = null)
+        /// <summary>
+        /// Collects benchmark stats for a specified unary operator
+        /// </summary>
+        /// <param name="f">The unary operator</param>
+        /// <param name="min">The minimum operand value</param>
+        /// <param name="max">The maximum operand value</param>
+        /// <param name="oplabel">The name of the operation, excluding type info</param>
+        /// <typeparam name="K">The primal operand type</typeparam>
+        protected OpTime BenchmarkOp<K>(UnaryOp<K> f, string oplabel, K min, K max)
             where K : unmanaged
         {
             var buffer = new K[SampleSize];
@@ -118,7 +126,7 @@ namespace Z0
             {
                 for(var cycle=0; cycle < CycleCount; cycle++)
                 {                
-                    Random.StreamTo(buffer.Length, ref buffer[0]);
+                    Random.StreamTo((min,max), buffer.Length, ref buffer[0]);
 
                     sw.Start();
                     for(var k=0; k<buffer.Length; k++)
@@ -126,28 +134,125 @@ namespace Z0
                     sw.Stop();
                 }
             }
-            return (SampleSize*CycleCount*RoundCount, sw, caller);
+            
+            var opname = oplabel + angled(type<K>().DisplayName());  
+            OpTime timing = (SampleSize*CycleCount*RoundCount, sw, opname);          
+            Collect(timing);
+            return timing;
         }
 
-        protected virtual OpTime Iterate<K1,K2>(Func<K1,K2> f, Action<K2> g, [CallerMemberName] string caller = null)
-            where K1 : unmanaged
-            where K2 : unmanaged
+        /// <summary>
+        /// Collects benchmark stats for a specified binary operator
+        /// </summary>
+        /// <param name="f">The binary operator</param>
+        /// <param name="min">The minimum operand value</param>
+        /// <param name="max">The maximum operand value</param>
+        /// <param name="oplabel">The name of the operation, excluding type info</param>
+        /// <typeparam name="K">The primal operand type</typeparam>
+        protected OpTime BenchmarkOp<K>(BinaryOp<K> f, string oplabel, K min, K max)
+            where K : unmanaged
         {
-            var buffer = new K1[SampleSize];
+            var buffer1 = new K[SampleSize];
+            var buffer2 = new K[SampleSize];
+            var sw = stopwatch(false);
+            var last = default(K);
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var cycle=0; cycle < CycleCount; cycle++)
+                {                
+                    Random.StreamTo((min,max), buffer1.Length, ref buffer1[0]);
+                    Random.StreamTo((min,max), buffer2.Length, ref buffer2[0]);
+
+                    sw.Start();
+                    for(var k=0; k<buffer1.Length; k++)
+                        last = f(buffer1[k], buffer2[k]);
+                    sw.Stop();
+                }
+            }
+            var opname = oplabel + angled(type<K>().DisplayName());
+            OpTime timing = (SampleSize*CycleCount*RoundCount, sw, opname);
+            Collect(timing);
+            return timing;
+        }
+
+
+
+        /// <summary>
+        /// Collects benchmark stats for worker that processes a sample array
+        /// </summary>
+        /// <param name="min">The minimum operand value</param>
+        /// <param name="max">The maximum operand value</param>
+        /// <param name="oplabel">The name of the operation, excluding type info</param>
+        /// <param name="worker">The sample processor to be measured</param>
+        /// <typeparam name="K">The primal operand type</typeparam>
+        protected OpTime Benchmark<K>(Action<K[]> worker, string oplabel,  K min, K max)
+            where K : unmanaged
+        {
+            var buffer = new K[SampleSize];
             var sw = stopwatch(false);
             for(var round = 0; round < RoundCount; round++)
             {
                 for(var cycle=0; cycle < CycleCount; cycle++)
                 {                
-                    Random.StreamTo(buffer.Length, ref buffer[0]);
+                    Random.StreamTo((min,max), buffer.Length, ref buffer[0]);
 
                     sw.Start();
-                    for(var k=0; k<buffer.Length; k++)
-                        g(f(buffer[k]));
+                    worker(buffer);
                     sw.Stop();
                 }
             }
-            return (SampleSize*CycleCount*RoundCount, sw, caller);
+            
+            var opname = oplabel + angled(type<K>().DisplayName());  
+            OpTime timing = (SampleSize*CycleCount*RoundCount, sw, opname);          
+            Collect(timing);
+            return timing;
+        }
+
+        /// <summary>
+        /// Collects benchmark stats for worker that processes a sample array
+        /// </summary>
+        /// <param name="oplabel">The name of the operation, excluding type info</param>
+        /// <param name="worker">The sample processor to be measured</param>
+        /// <param name="domain">The sample domain, if specified</param>
+        /// <typeparam name="K">The primal operand type</typeparam>
+        protected OpTime Benchmark<K>(Action<K[]> worker, string oplabel)
+            where K : unmanaged
+        {
+            var bounds = Interval<K>.Full;
+            return Benchmark(worker, oplabel, bounds.Left, bounds.Right);
+        }
+
+        /// <summary>
+        /// Collects benchmark stats for worker that processes two sample arrays of the same data type
+        /// </summary>
+        /// <param name="min">The minimum operand value</param>
+        /// <param name="max">The maximum operand value</param>
+        /// <param name="oplabel">The name of the operation, excluding type info</param>
+        /// <param name="worker">The sample processor to be measured</param>
+        /// <typeparam name="K">The primal operand type</typeparam>
+        protected OpTime Benchmark<K>(Action<K[],K[]> worker, string oplabel, K min, K max)
+            where K : unmanaged
+        {
+            var buffer1 = new K[SampleSize];
+            var buffer2 = new K[SampleSize];
+            var sw = stopwatch(false);
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var cycle=0; cycle < CycleCount; cycle++)
+                {                
+                    Random.StreamTo((min,max), buffer1.Length, ref buffer1[0]);
+                    Random.StreamTo((min,max), buffer2.Length, ref buffer2[0]);
+
+                    sw.Start();
+                    worker(buffer1,buffer2);
+                    sw.Stop();
+                }
+            }
+            
+            var opname = oplabel + angled(type<K>().DisplayName());  
+            OpTime timing = (SampleSize*CycleCount*RoundCount, sw, opname);          
+            Collect(timing);
+            return timing;
         }
 
         protected void VerifyOp<K>(UnaryOp<K> subject, UnaryOp<K> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 

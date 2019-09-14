@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootDir>../../</RootDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(RootDir)testing/z0.testing.csproj" />
+    <ProjectReference Include="$(RootDir)structs/z0.structs.csproj" />    
+    <ProjectReference Include="$(RootDir)func/z0.zfunc.csproj" />
+    <ProjectReference Include="$(RootDir)nats/z0.nats.csproj" />
+    <ProjectReference Include="$(RootDir)matrix/src/z0.matrix.csproj" />    
+    <ProjectReference Include="$(RootDir)rng/src/core/z0.rng.core.csproj" />
+    <ProjectReference Include="$(RootDir)primal/z0.primal.csproj" />    
+    <ProjectReference Include="../libm/z0.libm.csproj" />
+    <ProjectReference Include="../cephes/z0.cephes.csproj" />
+    
+  </ItemGroup>
+
+
+</Project>

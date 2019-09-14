@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootDir>../../</RootDir>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="$(RootDir)structs/z0.structs.csproj" />
+    <ProjectReference Include="$(RootDir)func/z0.zfunc.csproj" />
+    <ProjectReference Include="$(RootDir)nats/z0.nats.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="..\.assets\libopenlibm.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libopenlibm.dll</TargetPath>
+    </ContentWithTargetPath>    
+
+    <ContentWithTargetPath Include="..\.assets\libopenlibm.dll.a">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>libopenlibm.dll.a</TargetPath>
+    </ContentWithTargetPath>    
+
+  </ItemGroup>
+
+</Project>

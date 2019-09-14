@@ -50,16 +50,6 @@ namespace Z0.Test
 
         }
 
-        public void abs64f_cephes()
-        {
-            for(var i=0; i<SampleSize; i++)
-            {
-                var src = Random.Next<double>();
-                Claim.eq(src < 0 ? -src : src, gmath.abs(src));
-                Claim.eq(gmath.abs(src), cephes.fabs(src));
-            }
-
-        }
     }
 
 }

@@ -2,14 +2,15 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Machines.Test
+namespace Z0
 {        
     using System;
     using System.Linq;
     using System.Threading;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Z0.Test;
+
+    using Z0.Machines;
 
     using static zfunc;
 
@@ -66,7 +67,7 @@ namespace Z0.Machines.Test
             var indices = range(0xFFFFul, 0xFFFFFFFFul).Where(x => x % 2 != 0).Take(Pow2.T08).ToArray();
             for(var i=0u; i< tasks.Length; i++)
             {
-                var random = RNG.Pcg64(0,indices[i]).ToPolyrand();
+                var random = Rng.Pcg64(0,indices[i]).ToPolyrand();
                 var context = Fsm.CreateContext(random);
                 var transF = TransRules().ToFunction();
                 var machine = Fsm.Machine($"Fsm1-{i}",context, S0,S5, transF);

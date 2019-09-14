@@ -245,18 +245,47 @@ namespace Z0
             where T : struct
                 => gmath.lteq(lhs,rhs) ? true : throw failed(ClaimOpKind.GtEq, NotGreaterThanOrEqual(lhs, rhs, caller, file, line));
 
+        /// <summary>
+        /// Asserts that the source value is nonzero
+        /// </summary>
+        /// <param name="x">The source value</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
+        /// <typeparam name="T">The source value type</typeparam>
         [MethodImpl(Inline)]
         public static bool nonzero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
             where T : struct 
                 => gmath.nonzero(x) ? true : throw Errors.NotNonzero(caller,file,line);
 
+        /// <summary>
+        /// Asserts that the source value is zero
+        /// </summary>
+        /// <param name="x">The source value</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
+        /// <typeparam name="T">The source value type</typeparam>
+        [MethodImpl(Inline)]
+        public static bool zero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
+            where T : struct 
+                => !gmath.nonzero(x) ? true : throw Errors.NotNonzero(caller,file,line);
+
+        /// <summary>
+        /// Asserts the operand is true
+        /// </summary>
+        /// <param name="src">The value claimed to be true</param>
+        /// <param name="msg">An optional message describint the assertion</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static bool yea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => src ? true 
                 : throw ClaimException.Define(NotTrue(msg, caller, file,line));
 
         /// <summary>
-        /// Asserts that the operand is false
+        /// Asserts the operand is false
         /// </summary>
         /// <param name="src">The value claimed to be false</param>
         /// <param name="msg">An optional message describint the assertion</param>
@@ -267,6 +296,14 @@ namespace Z0
         public static bool nea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !src ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
 
+        /// <summary>
+        /// Asserts the pointer is not null
+        /// </summary>
+        /// <param name="p">The pointer to check</param>
+        /// <param name="msg">An optional message describint the assertion</param>
+        /// <param name="caller">The caller member name</param>
+        /// <param name="file">The source file of the calling function</param>
+        /// <param name="line">The source file line number where invocation ocurred</param>
         [MethodImpl(Inline)]
         public static unsafe bool notnull(void* p, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => (p != null) ? true : throw new ArgumentNullException(AppMsg.Define($"Pointer was null", SeverityLevel.Error, caller,file,line).ToString());

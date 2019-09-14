@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Rng
+namespace Z0
 {        
     using Z0.Test;
     using System;
@@ -15,7 +15,7 @@ namespace Z0.Rng
     {
         public void pcg_retreat()
         {
-            var rng = RNG.Pcg32(Seed64.Seed00);
+            var rng = Rng.Pcg32(Seed64.Seed00);
             var sample1 = rng.Stream().TakeSpan(5).FormatList();
             rng.Retreat(5);
             var sample2 = rng.Stream().TakeSpan(5).FormatList();

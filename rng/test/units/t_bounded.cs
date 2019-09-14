@@ -60,7 +60,7 @@ namespace Z0
 
         public void MultiRandInt32()
         {
-            var mr = RNG.SplitMix();
+            var mr = Rng.SplitMix();
             var data = mr.Span<int>(Pow2.T23);
             int pos = 0, neg = 0, zed = 0;
             foreach(var x in data)
@@ -74,7 +74,7 @@ namespace Z0
 
         public void MultiRandInt64()
         {
-            var mr = RNG.WyHash64().ToPolyrand();
+            var mr = Rng.WyHash64().ToPolyrand();
             
             var data = mr.Stream<long>().Take(Pow2.T16);
             int pos = 0, neg = 0, zed = 0;
@@ -90,7 +90,7 @@ namespace Z0
 
         public void TestWyHash64()
         {
-            var rng = RNG.WyHash64();
+            var rng = Rng.WyHash64();
             var data = rng.Array<ulong>(Pow2.T16);
             var cutpoint = (double)UInt64.MaxValue/2.0;
 
@@ -224,7 +224,7 @@ namespace Z0
 
         void TestBits()
         {
-            var bits = RNG.XOrShift1024().ToPolyrand().Bits().Take(Pow2.T16);
+            var bits = Rng.XOrShift1024().ToPolyrand().Bits().Take(Pow2.T16);
             var on = 0;
             var off = 0;
 

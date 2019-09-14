@@ -16,22 +16,6 @@ namespace Z0
 
     partial class fmath
     {
-        /// <summary>
-        /// Computes x * 2^i
-        /// </summary>
-        /// <param name="x">The multiplier</param>
-        /// <param name="i">The exponent</param>
-        [MethodImpl(Inline)]
-        public static float ldexp(float x, int i)
-            => (float)cephes.ldexp(x, i);
 
-        /// <summary>
-        /// Computes x * 2^i
-        /// </summary>
-        /// <param name="x">The multiplier</param>
-        /// <param name="i">The exponent</param>
-        [MethodImpl(Inline)]
-        public static double ldexp(double x, int i)
-            => cephes.ldexp(x, i);
     }
 }

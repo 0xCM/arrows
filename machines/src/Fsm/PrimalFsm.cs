@@ -40,7 +40,7 @@ namespace Z0.Machines
             where T : unmanaged
         {
             var id = $"{spec.Classifier}-{Interlocked.Increment(ref MachineCounter)}";
-            var context = Fsm.CreateContext(RNG.Pcg64(seed, index).ToPolyrand(), spec.ReceiptLimit);
+            var context = Fsm.CreateContext(Rng.Pcg64(seed, index).ToPolyrand(), spec.ReceiptLimit);
             return Fsm.Machine(id, context, spec.StartState, spec.EndState, Transition(context, spec));
         }
 

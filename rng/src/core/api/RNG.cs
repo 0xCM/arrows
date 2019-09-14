@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Fatory for RNG's
     /// </summary>
-    public static class RNG
+    public static class Rng
     {
         [MethodImpl(Inline)]
         static T TypeMin<T>()

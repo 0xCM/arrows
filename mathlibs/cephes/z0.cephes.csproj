@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootDir>../../</RootDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(RootDir)structs/z0.structs.csproj" />
+    <ProjectReference Include="$(RootDir)func/z0.zfunc.csproj" />
+    <ProjectReference Include="$(RootDir)nats/z0.nats.csproj" />
+  </ItemGroup>
+
+</Project>

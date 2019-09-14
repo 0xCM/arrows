@@ -19,40 +19,40 @@ namespace Z0
         public void bench_mrg32k3a_uniform_u32()
         {
 
-            Benchmark(RNG.Mrg32k3a());
+            Benchmark(Rng.Mrg32k3a());
         }
 
         public void bench_mrg32k3a_uniform_f64()
         {
-            Benchmark(RNG.Mrg32k3a() as IPointSource<double>);
+            Benchmark(Rng.Mrg32k3a() as IPointSource<double>);
         }
 
         public void bench_splitmix_uniform_u64()
         {
 
-            Benchmark(RNG.SplitMix().PointSource<ulong>());
+            Benchmark(Rng.SplitMix().PointSource<ulong>());
         }
 
         public void bench_splitmix_bitstring()
         {
-            Benchmark((RNG.SplitMix().BitStringSource((Pow2.T03, Pow2.T08))));
+            Benchmark((Rng.SplitMix().BitStringSource((Pow2.T03, Pow2.T08))));
         }
 
         void bench_splitmix_bitsource()
         {
-            Benchmark(RNG.SplitMix().PointSource<ulong>().ToBitStream());
+            Benchmark(Rng.SplitMix().PointSource<ulong>().ToBitStream());
         }
 
         public void bench_splitmix_uniform_f64()
         {
 
-            Benchmark(RNG.SplitMix().PointSource<double>());
+            Benchmark(Rng.SplitMix().PointSource<double>());
         }
 
         public void bench_splitmix_bernoulli_u64()
         {
 
-            var gen = RNG.SplitMix();
+            var gen = Rng.SplitMix();
             var sampler = gen.Bernoulli<byte>(.35);
             Benchmark(sampler);
         }
@@ -60,34 +60,34 @@ namespace Z0
         public void bench_xor1024_uniform_u64()
         {
 
-            Benchmark(RNG.XOrShift1024().PointSource<ulong>());
+            Benchmark(Rng.XOrShift1024().PointSource<ulong>());
         }
 
         public void bench_xor256_uniform_u64()
         {
 
-            Benchmark(RNG.XOrStarStar256().PointSource<ulong>());
+            Benchmark(Rng.XOrStarStar256().PointSource<ulong>());
         }
 
         public void bench_wyhash_uniform_u64()
         {
 
-            Benchmark(RNG.WyHash64().PointSource<ulong>());
+            Benchmark(Rng.WyHash64().PointSource<ulong>());
         }
 
         public void bench_pcg64_uniform_u64()
         {
-             Benchmark(RNG.Pcg64().PointSource<ulong>());
+             Benchmark(Rng.Pcg64().PointSource<ulong>());
         }
 
         public void bench_pcg64_uniform_u32()
         {
-             Benchmark(RNG.Pcg64().PointSource<int>());
+             Benchmark(Rng.Pcg64().PointSource<int>());
         }
 
         public void bench_pcg_32()
         {
-             Benchmark(RNG.Pcg32());
+             Benchmark(Rng.Pcg32());
         }
 
         public void bench_mkl_sfmt19937_uniform_i32()
@@ -235,7 +235,7 @@ namespace Z0
                 0xFFFFul, 0xFFFFul + Pow2.T07, 0xFFFFul + Pow2.T08, 0xFFFFul + Pow2.T09,
                 0xFFFFul + Pow2.T10, 0xFFFFul + Pow2.T11, 0xFFFFul + Pow2.T12, 0xFFFFul + Pow2.T13,
             };
-            return RNG.Pcg32Suite(seed, inc);
+            return Rng.Pcg32Suite(seed, inc);
         }
 
         void RunPcg32Simd(int opcount = Pow2.T16)

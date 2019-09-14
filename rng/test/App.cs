@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Rng
+namespace Z0
 {        
     using System;
     using System.Collections.Generic;
@@ -10,10 +10,10 @@ namespace Z0.Rng
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
-
     using System.Numerics;
 
     using static zfunc;
+
     public class App : TestApp<App>
     {
 
@@ -36,25 +36,25 @@ namespace Z0.Rng
     
         Task<uint[]> Collect(uint[] state, ulong width, int points)
         {
-            return Task.Factory.StartNew(() =>
+            return Task.Factory.StartNew((Func<uint[]>)(() =>
             {
                 var dst = MemorySpan.Alloc<uint>(points);
 
-                var src = RNG.XOr128(state);
-                var subseq = src.SubSeq(Pow2.T14, width, points);
+                var src = Z0.Rng.XOr128((ReadOnlySpan<uint>)state);
+                var subseq = RngX.SubSeq<uint>(src, (int)Pow2.T14, (ulong)width, (int)points);
                 var total = BigInteger.Zero;
                             
                 for(var i=0; i< points; i++)
                 {            
                     (var idx, var value) = subseq[i];  
-                    total += idx;                    
+                    total += idx;
 
                     print(appMsg($"src[{i.ToString().PadLeft(3,'0')}:{total.ToString().PadLeft(12,'0')}] = {value.FormatHex()}"));
                 }
 
                 return dst;
 
-            });
+            }));
         }
 
         void CollectSubSeq()
@@ -106,7 +106,7 @@ namespace Z0.Rng
         void TestMrg32k3A()
         {         
             var sw = stopwatch();
-            var rng = RNG.Mrg32k3a();
+            var rng = Rng.Mrg32k3a();
             var min = double.MaxValue;
             var max = double.MinValue;
             var cycles = Pow2.T08;

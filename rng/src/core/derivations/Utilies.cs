@@ -67,7 +67,7 @@ namespace Z0
         [MethodImpl(Inline)]
         internal static Interval<T> Configure<T>(this Interval<T>? domain)        
             where T : struct
-                => domain.ValueOrElse(() => RNG.TypeDomain<T>());
+                => domain.ValueOrElse(() => Rng.TypeDomain<T>());
 
     }
 }

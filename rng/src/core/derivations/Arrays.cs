@@ -14,7 +14,6 @@ namespace Z0
 
     partial class RngX
     {
-
         /// <summary>
         /// Produces an array of random values
         /// </summary>
@@ -27,6 +26,20 @@ namespace Z0
         public static T[] Array<T>(this IPolyrand random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => random.Stream(domain,filter).TakeArray(length);
+
+        /// <summary>
+        /// Produces an array of random values between specified lower and upper bounds
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="length">The length of the produced array</param>
+        /// <param name="min">The inclusive minimum potential value</param>
+        /// <param name="min">The exclusive maximum potential value</param>
+        /// <param name="filter">An optional filter that refines the domain</param>
+        /// <typeparam name="T">The generated value type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] Array<T>(this IPolyrand random, int length, T min, T max, Func<T,bool> filter = null)
+            where T : struct
+                => random.Stream((min,max),filter).TakeArray(length);
          
         /// <summary>
         /// Produces a pnuncured array of random values that excludes 0
