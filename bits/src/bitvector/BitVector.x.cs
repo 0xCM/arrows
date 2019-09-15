@@ -55,7 +55,7 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this Span<T> src, N n = default)
             where N : ITypeNat, new()
             where T : unmanaged
-                => BitVector.FromCells(src,n);
+                => BitVector.Load(src,n);
 
         /// <summary>
         /// Constructs a bitvector of natural length from a source span
@@ -68,7 +68,18 @@ namespace Z0
         public static BitVector<N,T> ToBitVector<N,T>(this ReadOnlySpan<T> src, N n = default)
             where N : ITypeNat, new()
             where T : unmanaged
-                => BitVector.FromCells(src,n);
+                => BitVector.Load(src,n);
+
+        /// <summary>
+        /// Constructs a bitvector from a primal array
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="len">The bitvector length, if specified</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<T> ToBitVector<T>(this T[] src, BitSize? len = null)
+            where T : unmanaged
+                => BitVector.Load(src,len);
 
         /// <summary>
         /// Constructs a bitvector from a primal span
@@ -77,11 +88,9 @@ namespace Z0
         /// <param name="len">The bitvector length, if specified</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> ToBitVector<T>(this T[] src, BitSize? len = null)
+        public static BitVector<T> ToBitVector<T>(this Span<T> src, BitSize? len = null)
             where T : unmanaged
-                => BitVector.FromCells(src,len);
-
-
+                => BitVector.Load(src,len);
 
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
@@ -89,19 +98,9 @@ namespace Z0
                 => src.Bytes.First();
 
         [MethodImpl(Inline)]
-        public static BitVector8 TakeBitVector8<T>(this BitVector<T> src, int offset = 0)        
-            where T : unmanaged
-                => src.Bytes[offset];
-
-        [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
             where T : unmanaged
                 => BitConverter.ToUInt16(src.Bytes.Extend(2));
-
-        [MethodImpl(Inline)]
-        public static BitVector16 TakeBitVector16<T>(this BitVector<T> src, int offset = 0)        
-            where T : unmanaged
-                => BitConverter.ToUInt16(src.Bytes.Slice(offset, 2));
 
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
@@ -109,39 +108,57 @@ namespace Z0
                 => BitConverter.ToUInt32(src.Bytes.Extend(4));
 
         [MethodImpl(Inline)]
-        public static BitVector32 TakeBitVector32<T>(this BitVector<T> src, int offset = 0)        
-            where T : unmanaged
-                => BitConverter.ToUInt32(src.Bytes.Slice(offset, 4));
-
-        [MethodImpl(Inline)]
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
             where T : unmanaged
                 => BitConverter.ToUInt64(src.Bytes.Extend(8));
 
-        [MethodImpl(Inline)]
-        public static BitVector64 TakeBitVector64<T>(this BitVector<T> src, int offset = 0)        
-            where T : unmanaged
-                => BitConverter.ToUInt64(src.Bytes.Slice(offset, 8));
-
+        /// <summary>
+        /// Creates an an 8-bit bitvector from the source value interpreted as a byte
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8(this sbyte src)        
             => (byte)src;
 
+        /// <summary>
+        /// Creates an an 8-bit bitvector via the obvious canonical bijection
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8(this byte src)        
             => src;
 
+        /// <summary>
+        /// Creates a 16-bit bitvector with the lower 8 bits populated by the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16(this byte src)        
             => src;
 
+        /// <summary>
+        /// Creates a 16-bit bitvector by interpreting the source value as an unsigned 16-bit integer
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16(this short src)        
             => (ushort)src;
 
+        /// <summary>
+        /// Creates a 16-bit bitvector via canonical bijection with the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16(this ushort src)        
             => src;
+
+        /// <summary>
+        /// Creates an an 8-bit bitvector from the lower 8 bits of the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector8 ToBitVector8(this ushort src)        
+            => (byte)src;
 
         /// <summary>
         /// Constructs a 32-bit bitvector an integer source

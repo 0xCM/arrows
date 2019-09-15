@@ -28,17 +28,17 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                int16(src).ShiftL(count, int16(in dst));
+                int16(src).sll(count, int16(in dst));
             else if(typeof(T) == typeof(uint)) 
-                uint16(src).ShiftL(count, uint16(in dst));
+                uint16(src).sll(count, uint16(in dst));
             if(typeof(T) == typeof(int))
-                int32(src).ShiftL(count, int32(in dst));
+                int32(src).sll(count, int32(in dst));
             else if(typeof(T) == typeof(uint)) 
-                uint32(src).ShiftL(count, uint32(in dst));
+                uint32(src).sll(count, uint32(in dst));
             else if(typeof(T) == typeof(long))
-                int64(src).ShiftL(count, int64(in dst));
+                int64(src).sll(count, int64(in dst));
             else if(typeof(T) == typeof(ulong))
-                uint64(src).ShiftL(count, uint64(in dst));
+                uint64(src).sll(count, uint64(in dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -66,24 +66,24 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                int16(src).ShiftL(count, int16(in dst));
+                int16(src).sll(count, int16(in dst));
             else if(typeof(T) == typeof(uint)) 
-                uint16(src).ShiftL(count, uint16(in dst));
+                uint16(src).sll(count, uint16(in dst));
             if(typeof(T) == typeof(int))
-                int32(src).ShiftL(count, int32(in dst));
+                int32(src).sll(count, int32(in dst));
             else if(typeof(T) == typeof(uint)) 
-                uint32(src).ShiftL(count, uint32(in dst));
+                uint32(src).sll(count, uint32(in dst));
             else if(typeof(T) == typeof(long))
-                int64(src).ShiftL(count, int64(in dst));
+                int64(src).sll(count, int64(in dst));
             else if(typeof(T) == typeof(ulong))
-                uint64(src).ShiftL(count, uint64(in dst));
+                uint64(src).sll(count, uint64(in dst));
             else
                 throw unsupported<T>();
             return dst;
 
         }
 
-        static Span128<short> ShiftL(this ReadOnlySpan128<short> lhs, byte offset, Span128<short> dst)
+        static Span128<short> sll(this ReadOnlySpan128<short> lhs, byte offset, Span128<short> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -91,7 +91,7 @@ namespace Z0
             return dst;
         }
 
-        static Span128<ushort> ShiftL(this ReadOnlySpan128<ushort> lhs, byte offset, Span128<ushort> dst)
+        static Span128<ushort> sll(this ReadOnlySpan128<ushort> lhs, byte offset, Span128<ushort> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -100,7 +100,7 @@ namespace Z0
         }
 
 
-        static Span128<int> ShiftL(this ReadOnlySpan128<int> lhs, byte offset, Span128<int> dst)
+        static Span128<int> sll(this ReadOnlySpan128<int> lhs, byte offset, Span128<int> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -108,7 +108,7 @@ namespace Z0
             return dst;
         }
 
-        static Span128<uint> ShiftL(this ReadOnlySpan128<uint> lhs, byte offset,  Span128<uint> dst)
+        static Span128<uint> sll(this ReadOnlySpan128<uint> lhs, byte offset,  Span128<uint> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -116,7 +116,7 @@ namespace Z0
             return dst;
         }
 
-        static Span128<long> ShiftL(this ReadOnlySpan128<long> lhs, byte offset, Span128<long> dst)
+        static Span128<long> sll(this ReadOnlySpan128<long> lhs, byte offset, Span128<long> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -124,7 +124,7 @@ namespace Z0
             return dst;
         }
 
-        static Span128<ulong> ShiftL(this ReadOnlySpan128<ulong> lhs, byte offset, Span128<ulong> dst)
+        static Span128<ulong> sll(this ReadOnlySpan128<ulong> lhs, byte offset, Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -132,7 +132,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<short> ShiftL(this ReadOnlySpan256<short> lhs, byte offset, Span256<short> dst)
+        static Span256<short> sll(this ReadOnlySpan256<short> lhs, byte offset, Span256<short> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -140,7 +140,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<ushort> ShiftL(this ReadOnlySpan256<ushort> lhs, byte offset, Span256<ushort> dst)
+        static Span256<ushort> sll(this ReadOnlySpan256<ushort> lhs, byte offset, Span256<ushort> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -148,7 +148,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<int> ShiftL(this ReadOnlySpan256<int> lhs, byte offset, Span256<int> dst)
+        static Span256<int> sll(this ReadOnlySpan256<int> lhs, byte offset, Span256<int> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -156,7 +156,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<uint> ShiftL(this ReadOnlySpan256<uint> lhs, byte offset, Span256<uint> dst)
+        static Span256<uint> sll(this ReadOnlySpan256<uint> lhs, byte offset, Span256<uint> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -164,7 +164,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<long> ShiftL(this ReadOnlySpan256<long> lhs, byte offset, Span256<long> dst)
+        static Span256<long> sll(this ReadOnlySpan256<long> lhs, byte offset, Span256<long> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
@@ -172,7 +172,7 @@ namespace Z0
             return dst;
         }
 
-        static Span256<ulong> ShiftL(this ReadOnlySpan256<ulong> lhs, byte offset, Span256<ulong> dst)
+        static Span256<ulong> sll(this ReadOnlySpan256<ulong> lhs, byte offset, Span256<ulong> dst)
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)

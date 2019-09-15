@@ -17,45 +17,45 @@ namespace Z0.Test
         protected override int SampleSize
             => Pow2.T08;
     
-        public void scatter8u()
+        public void scatter_8u()
         {
             scatter_check<byte>();
         }
 
-        public void scatter8u_bench()
+        public void scatter_8u_bench()
         {
             Collect(scatter_bench<byte>(true));
             Collect(scatter_bench<byte>(false));
         }
 
-        public void scatter16u()
+        public void scatter_16u()
         {
             scatter_check<ushort>();
         }
 
-        public void scatter16u_bench()
+        public void scatter_16u_bench()
         {
             Collect(scatter_bench<ushort>(true));
             Collect(scatter_bench<ushort>(false));
         }
 
-        public void scatter32u()
+        public void scatter_32u()
         {
             scatter_check<uint>();
         }
 
-        public void scatter32u_bench()
+        public void scatter_32u_bench()
         {
             Collect(scatter_bench<uint>(true));
             Collect(scatter_bench<uint>(false));
         }
 
-        public void scatter64u()
+        public void scatter_64u()
         {
             scatter_check<ulong>();
         }
 
-        public void scatter64u_bench()
+        public void scatter_64u_bench()
         {
             Collect(scatter_bench<ulong>(true));
             Collect(scatter_bench<ulong>(false));
@@ -98,8 +98,6 @@ namespace Z0.Test
                 return refbench();
             else
                 return opbench();
-
-
         }
 
         void scatter_check<T>(int samples = DefaultSampleSize)

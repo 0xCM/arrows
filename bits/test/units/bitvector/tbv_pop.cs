@@ -18,10 +18,9 @@ namespace Z0.Test
             BitSize bitlen = 128 + 8;
             ByteSize bytelen = (ByteSize)bitlen;
             Claim.eq((int)bytelen, (int)bitlen/8);
-            var src = Random.BitVectors<ulong>(bitlen);
             for(var i=0; i<CycleCount; i++)
             {
-                var bv = src.First();
+                var bv = Random.BitVector<ulong>(bitlen);
                 var actual = bv.Pop();
                 var expect = 0ul;
                 var bytes = bv.Bytes;

@@ -14,7 +14,7 @@ namespace Z0.Test
 
     public class ts_pos : UnitTest<ts_pos>
     {
-        public void VerifyIncrement()
+        public void bitidx_increment()
         {
             var pos = CellIndex<byte>.Zero;
             CellIndex<byte> max = (1024, 35);
@@ -25,7 +25,7 @@ namespace Z0.Test
 
         }
 
-        public void VerifyDecrement()
+        public void bitidx_decrement()
         {
             var min = CellIndex<byte>.Zero;
             CellIndex<byte> pos = (1024, 35);
@@ -33,6 +33,26 @@ namespace Z0.Test
                 pos--;
 
             Claim.eq(pos.LinearIndex, min.LinearIndex);
+        }
+
+        public void bitidx_add()
+        {
+            var n = Pow2.T12;
+            var positions = BitPositions<uint>(512, 1024).TakeArray(n);
+            var additions = Random.Stream(closed(0u, 100u)).TakeArray(n);
+            for(var i=0; i<n; i++)
+            {
+                var posX = positions[i];
+                var add = additions[i];
+                var posY = posX + add;
+                Claim.yea(posY >= posX);
+
+                var pos = posX;
+                for(var j=0; j< add; j++)
+                    pos++;
+                
+                Claim.eq(pos.LinearIndex, posY.LinearIndex);
+            }            
         }
 
         /// <summary>
@@ -51,27 +71,6 @@ namespace Z0.Test
                 yield return CellIndex<T>.Define(s2.Current, s3.Current);
         }
 
-        public void VerifyAdd()
-        {
-            var n = Pow2.T12;
-            var positions = BitPositions<uint>(512, 1024).TakeArray(n);
-            var additions = Random.Stream(closed(0u, 100u)).TakeArray(n);
-            for(var i=0; i<n; i++)
-            {
-                var posX = positions[i];
-                var add = additions[i];
-                var posY = posX + add;
-                Claim.yea(posY >= posX);
-
-                var pos = posX;
-                for(var j=0; j< add; j++)
-                    pos++;
-                
-                Claim.eq(pos.LinearIndex, posY.LinearIndex);
-
-            }
-            
-        }
 
     }
 

@@ -16,6 +16,10 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static byte select(byte src, BitMask8 mask)
+            => Bits.gather(src, mask);
+
+        [MethodImpl(Inline)]
         public static byte select(byte src, Part1x1 part)
             => Bits.gather(src, (byte)part);
 

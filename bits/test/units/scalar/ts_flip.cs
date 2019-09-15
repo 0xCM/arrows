@@ -15,55 +15,45 @@ namespace Z0.Test
 
     public class ts_flip : UnitTest<ts_flip>
     {
-        public void flip8i()
+        public void scalar_flip_8i()
         {
             VerifyOp(OpKind.Flip, x => (sbyte) ~x, D.flip<sbyte>());
 
         }
 
-        public void flip8u()
+        public void scalar_flip_8u()
         {
-            VerifyOp(OpKind.Flip, x => (byte) ~x, D.flip<byte>());
-            
+            VerifyOp(OpKind.Flip, x => (byte) ~x, D.flip<byte>());            
         }
 
-        public void flip16i()
+        public void scalar_flip_16i()
         {
-            VerifyOp(OpKind.Flip, x => (short) ~x, D.flip<short>());
-            
+            VerifyOp(OpKind.Flip, x => (short) ~x, D.flip<short>());            
         }
 
-        public void flip16u()
+        public void scalar_flip_16u()
         {
-            VerifyOp(OpKind.Flip, x => (ushort) ~x, D.flip<ushort>());
-            
+            VerifyOp(OpKind.Flip, x => (ushort) ~x, D.flip<ushort>());            
         }
 
-        public void flip32i()
+        public void scalar_flip_32i()
         {
             VerifyOp(OpKind.Flip, x => ~x, D.flip<int>());
-
         }
 
-        public void flip32u()
+        public void scalar_flip_32u()
         {
             VerifyOp(OpKind.Flip, x => ~x, D.flip<uint>());
-
         }
 
-        public void flip64i()
+        public void scalar_flip_64i()
         {
             VerifyOp(OpKind.Flip, x => ~x, D.flip<long>());
-
         }
 
-        public void flip64u()
+        public void scalar_flip_64u()
         {
             VerifyOp(OpKind.Flip, x => ~x, D.flip<ulong>());              
-
         }
-
-
     }
-
 }

@@ -26,7 +26,7 @@ namespace Z0
 
         public static readonly BitVector8 One = 1;
 
-        public static readonly BitVector8 Ones = byte.MinValue;
+        public static readonly BitVector8 Ones = byte.MaxValue;
         
         public static readonly BitSize BitSize = 8;
 
@@ -113,7 +113,7 @@ namespace Z0
          
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N8,byte>(in BitVector8 src)
-            => new BitVector<N8,byte>(src.data);
+            => BitVector<N8,byte>.Load(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector8(byte src)

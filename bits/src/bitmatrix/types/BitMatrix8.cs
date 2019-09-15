@@ -18,10 +18,9 @@ namespace Z0
     /// <summary>
     /// Defines an 8x8 matrix of bits
     /// </summary>
-    public struct BitMatrix8 : IBitMatrix<BitMatrix8,N8,byte>
+    public ref struct BitMatrix8 
     {        
-        //MemorySpan<byte> data;
-        byte[] data;
+        Span<byte> data;
                     
         /// <summary>
         /// The matrix order
@@ -56,12 +55,12 @@ namespace Z0
         /// <summary>
         /// Defines the 8x8 identity bitmatrix
         /// </summary>
-        public static readonly BitMatrix8 Identity = Load(Identity8x8);
+        public static BitMatrix8 Identity => From(Identity8x8.ToSpan());
 
         /// <summary>
         /// Defines the 8x8 zero bitmatrix
         /// </summary>
-        public static readonly BitMatrix8 Zero = Alloc();
+        public static BitMatrix8 Zero => Alloc();
 
         /// <summary>
         /// Allocates a matrix, optionally assigning each element to the
@@ -77,6 +76,14 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static BitMatrix8 From(ulong src)        
+            => new BitMatrix8(src);
+
+        /// <summary>
+        /// Creates an 8x8 bitmatrix from a span of length 8
+        /// </summary>
+        /// <param name="src">The source array</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 From(Span<byte> src)        
             => new BitMatrix8(src);
 
         /// <summary>
@@ -110,14 +117,6 @@ namespace Z0
         /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
         public static BitMatrix8 From(byte[] src)        
-            => new BitMatrix8(src);
-
-        /// <summary>
-        /// Creates an 8x8 bitmatrix from a readonly span that contains exactly 8 entries
-        /// </summary>
-        /// <param name="src">The source array</param>
-        [MethodImpl(Inline)]
-        static BitMatrix8 Load(ReadOnlySpan<byte> src)        
             => new BitMatrix8(src);
 
         [MethodImpl(Inline)]
@@ -165,6 +164,13 @@ namespace Z0
             => From(src);
 
         [MethodImpl(Inline)]
+        BitMatrix8(Span<byte> src)
+        {
+            require(src.Length == Pow2.T03);
+            this.data = src;
+        }
+
+        [MethodImpl(Inline)]
         BitMatrix8(byte[] src)
         {
             require(src.Length == Pow2.T03);
@@ -177,15 +183,6 @@ namespace Z0
             this.data = src.ToBytes();
         }
 
-        /// <summary>
-        /// Initializes the matrix by replicating data from a readonly span
-        /// </summary>
-        [MethodImpl(Inline)]
-        BitMatrix8(ReadOnlySpan<byte> src)
-            : this(src.ToArray())
-        {                    
-
-        }
 
         /// <summary>
         /// The number of rows in the matrix
@@ -205,11 +202,17 @@ namespace Z0
             get => N;
         }
 
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.AsBytes();
+        }
+
         /// <summary>
         /// Constructs an 8-node graph via the adjacency matrix interpretation
         /// </summary>
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N8,byte>(new BitMatrix<N8,N8,byte>(data));            
+            => BitGraph.FromMatrix<byte,N8,byte>(BitMatrix<N8,N8,byte>.Load(data));            
 
         /// <summary>
         /// Reads the bit in a specified cell
@@ -428,6 +431,7 @@ namespace Z0
             }
             return ref dst;
         }
+        
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

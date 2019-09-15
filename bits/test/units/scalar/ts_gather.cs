@@ -17,7 +17,7 @@ namespace Z0.Test
         protected override int SampleSize
             => Pow2.T08;
     
-        public void gather_masks()
+        public void gather__masks()
         {
             var m1 = BitMask32.Even;
             var x1 = Bits.gather(UInt32.MaxValue, m1);
@@ -36,88 +36,59 @@ namespace Z0.Test
                 Claim.eq(y2[i], i % 8 == 0 ? Bit.On : Bit.Off);
 
         }
-        public void gather8u()
+        public void gather_8u()
         {
             gather_check<byte>();
         }
 
-        public void gather8u_bench()
+        public void gather_8u_bench()
         {
-            Collect(gather_bench<byte>(true));
-            Collect(gather_bench<byte>(false));
+            Collect(gather_bench<byte>());
         }
 
-        public void gather16u()
+        public void gather_16u()
         {
             gather_check<ushort>();
         }
 
-        public void gather16u_bench()
+        public void gather_16u_bench()
         {
-            Collect(gather_bench<ushort>(true));
-            Collect(gather_bench<ushort>(false));
+            Collect(gather_bench<ushort>());
         }
 
-        public void gather32u()
+        public void gather_32u()
         {
             gather_check<uint>();
         }
 
-        public void gather32u_bench()
+        public void gather_32u_bench()
         {
-            Collect(gather_bench<uint>(true));
-            Collect(gather_bench<uint>(false));
+            Collect(gather_bench<uint>());
         }
 
-        public void gather64u()
+        public void gather_64u()
         {
             gather_check<ulong>();
         }
 
-        public void gather64u_bench()
+        public void gather_64u_bench()
         {
-            Collect(gather_bench<ulong>(true));
-            Collect(gather_bench<ulong>(false));
+            Collect(gather_bench<ulong>());
         }
         
-        OpTime gather_bench<T>(bool reference)
+        OpTime gather_bench<T>()
             where T : unmanaged
         {
-
-            OpTime refbench()        
+            var sw = stopwatch(false);
+            for(var i=0; i<SampleSize; i++)
             {
-                var sw = stopwatch(false);
-                for(var i=0; i<SampleSize; i++)
-                {
-                    var src = Random.Next<T>();
-                    var mask = Random.Next<T>();
-                    sw.Start();
-                    var dst = BitRef.gather(src,mask);
-                    sw.Stop();
-                }
-                return OpTime.Define<T>(SampleSize, sw, $"gather-ref");
+                var src = Random.Next<T>();
+                var mask = Random.Next<T>();
+                sw.Start();
+                var dst = gbits.gather(src,mask);
+                sw.Stop();
             }
-
-            OpTime opbench()
-            {
-                var sw = stopwatch(false);
-                for(var i=0; i<SampleSize; i++)
-                {
-                    var src = Random.Next<T>();
-                    var mask = Random.Next<T>();
-                    sw.Start();
-                    var dst = gbits.gather(src,mask);
-                    sw.Stop();
-                }
-                return OpTime.Define<T>(SampleSize, sw, $"gather");        
-
-            }
-
-            if(reference)
-                return refbench();
-            else
-                return opbench();
-
+            return OpTime.Define<T>(SampleSize, sw, $"gather");        
         }
 
         void gather_check<T>(int samples = DefaultSampleSize)
@@ -127,8 +98,8 @@ namespace Z0.Test
             {
                 var src = Random.Next<T>();
                 var mask = Random.Next<T>();
-                    var s1 = BitRef.gather(src,mask);
-                    var s2 = gbits.gather(src,mask);
+                var s1 = BitRef.gather(src,mask);
+                var s2 = gbits.gather(src,mask);
                 Claim.eq(s1,s2);
             }
         }

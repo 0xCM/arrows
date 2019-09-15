@@ -48,14 +48,6 @@ namespace Z0
         public static bool gteq(ulong lhs, ulong rhs)
             => lhs >= rhs;
 
-        [MethodImpl(Inline)]
-        public static bool gteq(float lhs, float rhs)
-            => lhs >= rhs;
-
-        [MethodImpl(Inline)]
-        public static bool gteq(double lhs, double rhs)
-            => lhs >= rhs;        
- 
         public static Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
         {
             for(var i = 0; i< lhs.Length; i++)
@@ -112,20 +104,6 @@ namespace Z0
             return dst;
         }
 
-        public static Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gteq(lhs[i], rhs[i]);
-            return dst;
-        }
-
-        public static Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gteq(lhs[i], rhs[i]);
-            return dst;
-        }
- 
         [MethodImpl(Inline)]
         public static Span<bool> gteq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
             => gteq(lhs,rhs, span<bool>(length(lhs,rhs)));
@@ -157,16 +135,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> gteq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
             => gteq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-            => gteq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-            => gteq(lhs,rhs, span<bool>(length(lhs,rhs)));
- 
- 
-
     }
 }

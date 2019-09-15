@@ -13,7 +13,6 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
         [MethodImpl(Inline)]
@@ -48,13 +47,6 @@ namespace Z0
         public static bool gt(ulong lhs, ulong rhs)
             => lhs > rhs;
 
-        [MethodImpl(Inline)]
-        public static bool gt(float lhs, float rhs)
-            => lhs > rhs;
-
-        [MethodImpl(Inline)]
-        public static bool gt(double lhs, double rhs)
-            => lhs > rhs;        
 
         public static Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
         {
@@ -112,19 +104,6 @@ namespace Z0
             return dst;
         }
 
-        public static Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<bool> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gt(lhs[i], rhs[i]);
-            return dst;
-        }
-
-        public static Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<bool> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gt(lhs[i], rhs[i]);
-            return dst;
-        }
 
         [MethodImpl(Inline)]
         public static Span<bool> gt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
@@ -157,15 +136,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> gt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
             => gt(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-            => gt(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-            => gt(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-
     }
 }

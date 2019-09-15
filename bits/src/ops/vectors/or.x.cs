@@ -46,10 +46,6 @@ namespace Z0
             where T : struct
                 => gbits.or(in lhs, in rhs, ref dst);
 
-        [MethodImpl(Inline)]
-        public static Span128<T> Or<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct
-                => gbits.or(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span256<T> Or<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
@@ -66,13 +62,6 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
-        public static ref BlockVector<T> Or<T>(ref BlockVector<T> lhs, BlockVector<T> rhs)
-            where T : struct
-        {
-            gbits.or(lhs.Unblocked, rhs.Unblocked);
-            return ref lhs;
-        }
 
    }
 }

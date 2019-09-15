@@ -17,9 +17,9 @@ namespace Z0
     /// <summary>
     /// Defines a 64x64 matrix of bits
     /// </summary>
-    public struct BitMatrix64 : IBitMatrix<BitMatrix64,N64,ulong>
+    public ref struct BitMatrix64 //: IBitMatrix<BitMatrix64,N64,ulong>
     {                
-        ulong[] data;
+        Span<ulong> data;
 
         /// <summary>
         /// The matrix order
@@ -54,12 +54,12 @@ namespace Z0
         /// <summary>
         /// Defines the 64x64 identity bitmatrix
         /// </summary>
-        public static readonly BitMatrix64 Identity = From(Identity64x64.ToArray());
+        public static BitMatrix64 Identity => From(Identity64x64.ToArray());
 
         /// <summary>
         /// Defines the 64x64 zero bitmatrix
         /// </summary>
-        public static readonly BitMatrix64 Zero  = Alloc();
+        public static BitMatrix64 Zero  => Alloc();
         
         [MethodImpl(Inline)]
         public static BitMatrix64 Alloc()        
@@ -69,11 +69,13 @@ namespace Z0
         public static BitMatrix64 From(params ulong[] src)        
             => src.Length == 0 ? Alloc() : new BitMatrix64(src);
 
+        [MethodImpl(Inline)]
+        public static BitMatrix64 From(BitMatrix<N64,ulong> src)        
+            => From(src.Data.AsBytes());
 
         [MethodImpl(Inline)]
         public static BitMatrix64 From(Span<byte> src)        
-            => new BitMatrix64(src.AsUInt64().ToArray());
-
+            => new BitMatrix64(src.AsUInt64());
 
         [MethodImpl(Inline)]
         public static BitMatrix64 operator + (BitMatrix64 lhs, BitMatrix64 rhs)
@@ -115,10 +117,15 @@ namespace Z0
         public static bool operator !=(BitMatrix64 lhs, BitMatrix64 rhs)
             => !lhs.Equals(rhs);
 
-
-
         [MethodImpl(Inline)]
         BitMatrix64(ulong[] src)
+        {                        
+            require(src.Length == Pow2.T06);
+            this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        BitMatrix64(Span<ulong> src)
         {                        
             require(src.Length == Pow2.T06);
             this.data = src;
@@ -145,7 +152,7 @@ namespace Z0
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
-            get => data.AsByteSpan();
+            get => data.AsBytes();
         }
 
         /// <summary>
@@ -380,7 +387,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N4096,ulong> ToBitVector()
-            => BitVector.FromCells(data, zfunc.n4096);
+            => BitVector.Load(data, zfunc.n4096);
 
         /// <summary>
         /// Constructs a 64-node graph via the adjacency matrix interpretation
@@ -388,7 +395,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes.ToArray()));            
+            => BitGraph.FromMatrix<byte,N32,byte>(BitMatrix<N32,N32,byte>.Load(Bytes));            
 
         [MethodImpl(Inline)] 
         public readonly BitMatrix64 Replicate()
@@ -403,13 +410,13 @@ namespace Z0
             => this.AndNot(rhs).IsZero();
 
         public override bool Equals(object obj)
-            => obj is BitMatrix64 x && Equals(x);
+            => throw new NotSupportedException();
         
         public override int GetHashCode()
-            => 0;
+            => throw new NotSupportedException();
         
         public override string ToString()
-            => Format();
+            => throw new NotSupportedException();
 
         static ref BitMatrix64 And(ref BitMatrix64 lhs, in BitMatrix64 rhs)
         {

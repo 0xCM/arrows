@@ -167,7 +167,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
-            => new BitVector<N64,ulong>(src.data);
+            => BitVector<N64,ulong>.Load(src.data);
 
         /// <summary>
         /// Implicitly converts an unsigned 64-bit integer to a 64-bit bitvector

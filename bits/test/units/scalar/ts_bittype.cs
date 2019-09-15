@@ -13,7 +13,7 @@ namespace Z0.Test
 
     public class ts_bittype : UnitTest<ts_bittype>
     {
-        public void convertbit()
+        public void bit_convert()
         {
             static T toInt<T>(Bit b)
                 where T : struct
@@ -42,7 +42,7 @@ namespace Z0.Test
 
         }
 
-        public void bitlogic()
+        public void bit_logic()
         {
 
             //parse
@@ -71,8 +71,7 @@ namespace Z0.Test
             Claim.eq(On, On ^ Off);
             Claim.eq(Off, Off ^ Off);
             Claim.eq(Off, On ^ On);
-        }
- 
+        } 
 
     }
 

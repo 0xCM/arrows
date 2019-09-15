@@ -115,17 +115,6 @@ namespace Z0
             => data.FormatList(delimiter ?? AsciSym.Comma);    
 
         /// <summary>
-        /// Copies the source vector to a specified target vector
-        /// </summary>
-        /// <param name="dst">The target vector</param>
-        [MethodImpl(Inline)]
-        public ref Vector<T> CopyTo(ref Vector<T> dst)
-        {
-            data.CopyTo(dst.data);
-            return ref dst;
-        }
-
-        /// <summary>
         /// Copies vector content into a caller-provided span
         /// </summary>
         /// <param name="dst">The target span</param>
@@ -134,19 +123,15 @@ namespace Z0
         {
             if(dst.Length < data.Length)
                 Errors.ThrowTooShort(dst.Length);
-             copy(ref this, dst);
+             data.CopyTo(dst);
         }
 
         /// <summary>
-        /// Allocates a target span and copies vector content
+        /// Loads the data from the source into a block vector, allocating as necessary to ensure alignment
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<T> ToSpan()
-        {
-            Span<T> dst = new T[data.Length];
-            CopyTo(dst);
-            return dst;
-        }
+        public BlockVector<T> Block()
+            => Span256.Load(data);
 
         [MethodImpl(Inline)]
         public Vector<U> Convert<U>()
@@ -170,7 +155,7 @@ namespace Z0
         }
 
         public override bool Equals(object rhs)
-            => rhs is Vector<T> x && Equals(x);
+            => rhs is Vector<T> x && Equals(rhs);
 
         public override int GetHashCode()
             => data.GetHashCode();

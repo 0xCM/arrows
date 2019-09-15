@@ -12,29 +12,27 @@ namespace Z0.Test
 
     public class ts_pack : UnitTest<ts_pack>
     {
-
-
-        public void pack1x8()
+        public void pack_1x8()
         {
             pack1xN_check<byte>();
         }
 
-        public void pack1x16()
+        public void pack_1x16()
         {
             pack1xN_check<ushort>();
         }
 
-        public void pack1x32()
+        public void pack_1x32()
         {
             pack1xN_check<uint>();
         }
 
-        public void pack1x64()
+        public void pack_1x64()
         {
             pack1xN_check<ulong>();
         }
 
-        public void pack2x16()
+        public void pack_2x16()
         {
             var src = Random.Span<ushort>(Pow2.T11);
             foreach(var x in src)
@@ -46,7 +44,7 @@ namespace Z0.Test
             }
         }
 
-        public void pack4x32()
+        public void pack_4x32()
         {
             var src = Random.Span<uint>(Pow2.T11);
             foreach(var x in src)
@@ -74,7 +72,7 @@ namespace Z0.Test
             }
         }
 
-        public void pack8x64()
+        public void pack_8x64()
         {
             var src = Random.Span<ulong>(Pow2.T11);
             foreach(var x in src)
@@ -86,7 +84,30 @@ namespace Z0.Test
             }
         }
 
-        public void packbools()
+        public void pack_reversed()
+        {
+            var x0 = Random.Next<byte>();
+            var y0 = x0.ToBitString().Reverse().Pack().First();
+            var z0 = Bits.rev(x0);
+            Claim.eq(y0,z0);
+
+            var x1 = Random.Next<ushort>();
+            var y1 = x1.ToBitString().Reverse().Pack().TakeUInt16();
+            var z1 = Bits.rev(x1);
+            Claim.eq(y1,z1);
+
+            var x2 = Random.Next<uint>();
+            var y2 = x2.ToBitString().Reverse().Pack().TakeUInt32();
+            var z2 = Bits.rev(x2);
+            Claim.eq(y2,z2);
+
+            var x3 = Random.Next<ulong>();
+            var y3 = x3.ToBitString().Reverse().Pack().TakeUInt64();
+            var z3 = Bits.rev(x3);
+            Claim.eq(y3,z3);
+        }
+
+        public void pack_bools()
         {                
             var r1 = Bits.pack(false,true, true, false);
             var e1 = (byte)0b0110;
@@ -104,18 +125,17 @@ namespace Z0.Test
             Claim.eq(e3, r3[0]);
         }
 
-        public void packbits()
+        public void unpack_bitspan()
         {
             var src = 32093283484328432ul;
             src.Unpack(out Span<Bit> bits);
             var bitsPC = bits.PopCount();
             src.Unpack(out Span<byte> bytes);
             var bytesPC = bytes.PopCount();
-            Claim.eq(bitsPC, bytesPC);
-        
+            Claim.eq(bitsPC, bytesPC);        
         }
 
-        public void packbsbits()
+        public void pack_bistring()
         {
             var x =  0b111010010110011010111001110000100001101ul;
             var xbs = BitString.Parse("111010010110011010111001110000100001101");
@@ -124,7 +144,14 @@ namespace Z0.Test
             Claim.Equals(x,joined);
         }
 
-        public void packsplits()
+        public void pack_roundtrip()
+        {            
+            pack_roundtrip_check<uint>(43);
+            pack_roundtrip_check<ushort>(73);
+            pack_roundtrip_check<ulong>(128);
+        }
+
+        public void pack_splits()
         {
             var src = Random.Span<ulong>(Pow2.T11);
             foreach(var x in src)
@@ -150,7 +177,7 @@ namespace Z0.Test
             }
         }
 
-        public void packSpan32u()
+        public void pack_span32u()
         {
             var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
             var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
@@ -166,7 +193,7 @@ namespace Z0.Test
             }        
         }
 
-        public void packSpan64u()
+        public void pack_span64u()
         {
             var x0 = BitVector32.FromScalar(0b00001010110000101001001111011001u);
             var x1 = BitVector32.FromScalar(0b00001010110110101001001111000001u);
@@ -179,37 +206,32 @@ namespace Z0.Test
                  var x = BitVector64.FromScalar(BitConverter.ToUInt64(src.Slice(8*i)));
                  var y = BitVector64.FromScalar(packed[i]);
                 Claim.eq((ulong)x, (ulong)y, AppMsg.Error($"{x.ToBitString()} != {y.ToBitString()}"));
-            }
-        
+            }        
         }
 
-        void PackSplitPackU16()
+        public void pack_split_u16()
         {
             var len = Pow2.T08;
-            var lhs = Random.Bytes().Take(len).ToArray();
-            var rhs = Random.Bytes().Take(len).ToArray();
+            var lhs = Random.Array<byte>(len);
+            var rhs = Random.Array<byte>(len);
             for(var i=0; i<len; i++)
             {
-                var dst = Bits.pack(lhs[i],rhs[i]);
+                var dst = Bits.pack(lhs[i], rhs[i]);
                 (var x0, var x1) = Bits.split(dst);
+                
                 Claim.eq(x0, lhs[i]);
                 Claim.eq(x1, rhs[i]);
 
             }        
         }
         
-        public void PackSplitPack()
-        {
-            PackSplitPackU16();
-        }
-
         void pack_roundtrip_check<T>(BitSize bitcount)
             where T : struct
         {
-            var src = Random.BitStrings(bitcount);
-            var bsInput = src.First();
+            var src = Random.BitString(bitcount);
+            Claim.eq(bitcount, src.Length);
 
-            var x = bsInput.ToBits();
+            var x = src.ToBits();
             Claim.eq(bitcount, x.Length);
             
             var y = Bits.pack(x);
@@ -221,60 +243,15 @@ namespace Z0.Test
 
             var bulk = ByteSpan.ReadValues<T>(y,out Span<byte> rem);
 
-            Span<T> merged = rem.Length != 0 ? bulk.Extend(bulk.Length + 1) : bulk;
+            var merged = rem.Length != 0 ? bulk.Extend(bulk.Length + 1) : bulk;
             if(merged.Length != bulk.Length)
                 merged[merged.Length - 1] = rem.TakePartial<T>();
 
             var bsOutput = merged.ToBitString().Truncate(bitcount);
-            Claim.eq(bsInput, bsOutput);
-            Claim.eq((bsInput & ~bsOutput).PopCount(),0);    
+            Claim.eq(src, bsOutput);
+            Claim.eq((src & ~bsOutput).PopCount(),0);    
 
         }
-        public void pack_roundtrip()
-        {            
-            pack_roundtrip_check<uint>(43);
-            pack_roundtrip_check<ushort>(73);
-            pack_roundtrip_check<ulong>(128);
-        }
-
-        public void reverse()
-        {
-            var x0 = Random.Next<byte>();
-            var y0 = x0.ToBitString().Reverse().Pack().First();
-            var z0 = Bits.rev(x0);
-            Claim.eq(y0,z0);
-
-            var x1 = Random.Next<ushort>();
-            var y1 = x1.ToBitString().Reverse().Pack().TakeUInt16();
-            var z1 = Bits.rev(x1);
-            Claim.eq(y1,z1);
-
-            var x2 = Random.Next<uint>();
-            var y2 = x2.ToBitString().Reverse().Pack().TakeUInt32();
-            var z2 = Bits.rev(x2);
-            Claim.eq(y2,z2);
-
-            var x3 = Random.Next<ulong>();
-            var y3 = x3.ToBitString().Reverse().Pack().TakeUInt64();
-            var z3 = Bits.rev(x3);
-            Claim.eq(y3,z3);
-
-        }
-
-        void VerifyPack()
-        {
-            var bs = Random.BitString(Pow2.T08);
-            var blocks = bs.BitSeq.ToSpan256();
-            for(var block = 0; block <= blocks.BlockCount; block++)
-            {
-                var x = blocks.LoadVec256(block);
-                var y = Bits.sll(in x, 7);
-                var packed = dinx.movemask(in y);
-                var expect = blocks.Blocked(block).Unblocked.ToBitString().BitSeq;
-            }
-
-        }
-
 
         /// <summary>
         /// Verifies the correct operation of the generic pack function

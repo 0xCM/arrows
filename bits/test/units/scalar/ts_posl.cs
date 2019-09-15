@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_lopos : UnitTest<ts_lopos>
+    public class ts_posl : UnitTest<ts_posl>
     {
         
         public void FindLeastOnBit()

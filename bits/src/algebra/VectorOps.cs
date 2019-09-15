@@ -235,7 +235,7 @@ namespace Z0
             where T : struct    
 
         {
-            gmath.and(lhs.Unsized, rhs.Unsized);
+            gbits.and(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -252,7 +252,7 @@ namespace Z0
             where T : struct    
 
         {
-            gmath.and(lhs.Unsized, in rhs);
+            gbits.and(lhs.Unsized, in rhs);
             return ref lhs;
         }
 

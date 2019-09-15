@@ -622,6 +622,7 @@ namespace Z0
             /// </summary>
             Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9
         }
+        
 
         /// <summary>
         /// Partitions an 11-bit container into 1-bit segments

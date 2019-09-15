@@ -48,15 +48,6 @@ namespace Z0
         public static bool divides(ulong lhs, ulong rhs)
             => rhs % lhs == 0;
 
-        [MethodImpl(Inline)]
-        public static bool divides(float lhs, float rhs)
-            => rhs % lhs == 0;
-
-        [MethodImpl(Inline)]
-        public static bool divides(double lhs, double rhs)
-            => rhs % lhs == 0;
-
-
     }
 
 }

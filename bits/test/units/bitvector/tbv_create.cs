@@ -24,19 +24,19 @@ namespace Z0.Test
         {
             var dim = (uint)Pow2.T07;
 
-            create_gunfixed_check<byte>(dim - 4u);
-            create_gunfixed_check<ushort>(dim - 3u);
-            create_gunfixed_check<uint>(dim - 2u);
-            create_gunfixed_check<ulong>(dim - 1u);
+            create_generic_unfixed_check<byte>(dim - 4u);
+            create_generic_unfixed_check<ushort>(dim - 3u);
+            create_generic_unfixed_check<uint>(dim - 2u);
+            create_generic_unfixed_check<ulong>(dim - 1u);
 
-            create_gunfixed_check<byte>(dim);
-            create_gunfixed_check<ushort>(dim);
-            create_gunfixed_check<uint>(dim);
-            create_gunfixed_check<ulong>(dim);
+            create_generic_unfixed_check<byte>(dim);
+            create_generic_unfixed_check<ushort>(dim);
+            create_generic_unfixed_check<uint>(dim);
+            create_generic_unfixed_check<ulong>(dim);
 
-            create_gunfixed_check<ulong>(63);
-            create_gunfixed_check<ushort>(13);
-            create_gunfixed_check<uint>(32);            
+            create_generic_unfixed_check<ulong>(63);
+            create_generic_unfixed_check<ushort>(13);
+            create_generic_unfixed_check<uint>(32);            
 
         }
 
@@ -64,9 +64,9 @@ namespace Z0.Test
         public void absolute_index()
         {
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
-            var bvz = BitVector.FromCells(40,z);
+            var bvz = BitVector.FromCell(z,40);
             Span<byte> xSrc =  BitConverter.GetBytes(z);
-            var bvx = BitVector.FromCells(xSrc.Slice(0,5).ToArray());
+            var bvx = BitVector.Load(xSrc.Slice(0,5).ToArray());
             Claim.eq(gbits.pop(z), bvz.Pop());
             Claim.eq(gbits.pop(z), bvx.Pop());
 
@@ -76,7 +76,7 @@ namespace Z0.Test
 
         public void create_N12i32()
         {
-            var bv = BitVector.FromCell(0b101110001110,new N12());
+            var bv = BitVector.FromCell(0b101110001110, n12);
             Claim.eq(bv[0], Bit.Off);
             Claim.eq(bv[1], Bit.On);
             Claim.eq(bv[11], Bit.On);
@@ -175,7 +175,7 @@ namespace Z0.Test
         {
             TypeCaseStart<N,T>();
             var dim = default(N);
-            var segcount = BitGrid.MinSegmentCount<T>(dim.value);
+            var segcount = BitSize.Segments<T>(dim.value);
             var src = Random.Span<T>(SampleSize);
             for(var i=0; i<SampleSize; i+= segcount)
             {
@@ -189,18 +189,21 @@ namespace Z0.Test
             TypeCaseEnd<N,T>();
         }
 
-        void create_gunfixed_check<T>(BitSize dim)
+        void create_generic_unfixed_check<T>(BitSize dim)
             where T : unmanaged
         {
             TypeCaseStart<T>();
-            var segcount = BitGrid.MinSegmentCount<T>(dim);
+            var segcount = BitSize.Segments<T>(dim);
             var src = Random.Span<T>(SampleSize);
             for(var i=0; i<SampleSize; i += segcount)
             {
-                var bvSrc = src.Slice(i,segcount).ToArray();
-                var bv = bvSrc.ToBitVector(dim);
-                for(var j = 0; j < dim; j++)
-                    Claim.eq(gbits.test(src[i],j).ToBit(), bv[j]);                
+                var data = src.Slice(i, segcount);
+                var bv = data.ToBitVector(dim);
+                var bs = data.ToBitString(dim);
+                Claim.eq(bv.Length, dim);
+                Claim.eq(bs.Length, dim);
+                for(var j=0; j<bv.Length; j++)
+                    Claim.eq(bv[j], bs[j]);
 
             }
             TypeCaseEnd<T>();
@@ -224,44 +227,34 @@ namespace Z0.Test
             TypeCaseEnd<N64,uint>();
         }
 
-        void create_gunfixed_check<T>(uint dim, int ignored = 0)
+        void create_gunfixed_check<T>(BitSize dim, int ignored = 0)
             where T : unmanaged
         {
             TypeCaseStart<T>();
             var src = Random.Span<T>(SampleSize);
-            var segCapacity = BitGrid.SegmentCapacity<T>();
+            var segCapacity = bitsize<T>();
             Claim.eq(segCapacity, gbits.width<T>());
 
-            var segcount = BitGrid.MinSegmentCount<T>(dim);
-            for(var i=0; i<SampleSize; i += segcount)
+            var seglen = BitSize.Segments<T>(dim);
+            for(var i=0; i<SampleSize; i += seglen)
             {
-                var bvSrc = src.Slice(i, segcount).ToArray();
-                Claim.eq(bvSrc.Length, segcount);
-                var bv = bvSrc.ToBitVector(dim);
-                Claim.eq((uint)bv.Length, dim);
+                var segment = src.Slice(i, seglen);
+                Claim.eq(segment.Length, seglen);
+                
+                var bs = BitString.FromScalars(segment,dim);
+                Claim.eq(bs.Length, dim);
+                var bv = segment.ToBitVector(dim);
+                Claim.eq(bv.Length, dim);
 
-                byte segOffset = 0;
-                var segIndex = 0;
-                var bs = BitString.FromScalars(bvSrc);
 
-                for(int n = 0; n < dim; n++, segOffset++)
+                for(int n = 0; n < dim; n++)
                 {                    
-                    if(segOffset == segCapacity - 1)
-                    {
-                        segOffset = 0;
-                        segIndex++;
-                    }            
 
                     if(bv[n] !=  bs[n])
                     {
-                        var bsAlt = string.Empty;
-                        for(var m = 0; m < bv.Length; m++)
-                            bsAlt += bv[m];
-
-                        Trace($"BitPos   = {CellIndex<T>.FromIndex(n)}, Segment = {segIndex}, Component = {n}, Offset = {segOffset}");
-                        Trace($"BvSource = {bvSrc.ToBitString()}");
-                        Trace($"Bv       = {bv.ToBitString()}");                        
-                        Trace($"Bv (alt) = {bsAlt}");
+                        Trace("bv", bv.Format());
+                        Trace("bs", bs.Format());
+                        Trace($"BitPos   = {CellIndex<T>.FromIndex(n)}, Component = {n}");
 
                     }
                     Claim.eq(bv[n], bs[n]);                                  

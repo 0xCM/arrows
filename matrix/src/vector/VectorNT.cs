@@ -49,17 +49,16 @@ namespace Z0
             => new Vector<N, T>(src.Data);
 
         [MethodImpl(Inline)]
-        public static bool operator == (Vector<N,T> lhs, in Vector<N,T> rhs) 
+        public static bool operator == (Vector<N,T> lhs, Vector<N,T> rhs) 
             => lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (Vector<N,T> lhs, in Vector<N,T> rhs) 
+        public static bool operator != (Vector<N,T> lhs, Vector<N,T> rhs) 
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public static T operator *(Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static T operator *(Vector<N,T> lhs, Vector<N,T> rhs)
             => gmath.dot<T>(lhs.Data, rhs.Data);         
-
 
         /// <summary>
         /// Initializes a vector with an array
@@ -101,8 +100,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Covector<N,T> Transpose()
-            => Covector<N, T>.Define(data);
+            => Covector<N, T>.Load(data);
 
+        /// <summary>
+        /// Loads the data from the source into a block vector, allocating as necessary to ensure alignment
+        /// </summary>
+        [MethodImpl(Inline)]
+        public BlockVector<N,T> Block()
+            => BlockVector.Load<N,T>(Span256.Load(data));
 
         [MethodImpl(Inline)]
         public Vector<N,U> Convert<U>()
@@ -133,10 +138,10 @@ namespace Z0
             => data.FormatList(delimiter ?? AsciSym.Comma);    
 
         public override bool Equals(object rhs)
-            => throw new NotSupportedException();
- 
+            => rhs is Vector<N,T> x && Equals(rhs);
+
         public override int GetHashCode()
-            => throw new NotSupportedException();
+            => data.GetHashCode();
  
         public override string ToString()
             => Format();

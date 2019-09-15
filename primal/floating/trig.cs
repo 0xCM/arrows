@@ -55,7 +55,6 @@ namespace Z0
         public static double acosh(double x)
             => Math.Acosh(x);
 
-
         [MethodImpl(Inline)]   
         public static float asin(float x)
             => MathF.Asin(x);

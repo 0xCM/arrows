@@ -14,101 +14,49 @@ namespace Z0.Test
 
     public class ts_shift : UnitTest<ts_shift>
     {
-
-        public void shift8i()
+        public void sal_8i()
         {
-            var lhs = Random.Array<sbyte>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));            
+            var src = Random.Array<sbyte>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));            
 
-            Shift<sbyte>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<sbyte>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), gbits.sar(lhs[i], rhs[i])));    
+            iter(SampleSize, i => Claim.eq((sbyte)(src[i] << offset[i]), gbits.sal(src[i], offset[i])));    
         }
 
-        public void shift8u()
+        public void sar_8i()
         {
-            var lhs = Random.Array<byte>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<byte>.BitSize));            
-
-            Shift<byte>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((byte)(lhs[i] << rhs[i]), gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<byte>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq((byte)(lhs[i] >> rhs[i]), gbits.sar(lhs[i], rhs[i])));    
+            var src = Random.Array<sbyte>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<sbyte>.BitSize));                
+            iter(SampleSize, i => Claim.eq((sbyte)(src[i] >> offset[i]), gbits.sar(src[i], offset[i])));    
         }
 
-        public void shift32i()
+        public void sal_32i()
         {
-            var lhs = Random.Array<int>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
-
-            Shift<int>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<int>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
+            var src = Random.Array<int>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
+            iter(SampleSize, i => Claim.eq(src[i] << offset[i], gbits.sal(src[i], offset[i])));    
         }
 
-        public void shift32u()
+        public void sar_32i()
         {
-            var lhs = Random.Array<uint>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<uint>.BitSize));            
-
-            Shift<uint>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<uint>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
-
-        }
-        public void shift64i()
-        {
-            var lhs = Random.Array<long>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
-
-            Shift<long>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<long>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
+            var src = Random.Array<int>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<int>.BitSize));            
+            iter(SampleSize, i => Claim.eq(src[i] >> offset[i], gbits.sar(src[i], offset[i])));
         }
 
-        public void shift64u()
+        public void sal_64i()
         {
-            var lhs = Random.Array<ulong>(SampleSize);            
-            var rhs = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<ulong>.BitSize));            
+            var src = Random.Array<long>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
 
-            Shift<ulong>(Orientation.Left, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] << rhs[i], gbits.sal(lhs[i], rhs[i])));
-    
-            Shift<ulong>(Orientation.Right, lhs, rhs);        
-            iter(SampleSize, i => Claim.eq(lhs[i] >> rhs[i], gbits.sar(lhs[i], rhs[i])));
+            iter(SampleSize, i => Claim.eq(src[i] << offset[i], gbits.sal(src[i], offset[i])));    
         }
 
+        public void sar_64i()
+        {
+            var src = Random.Array<long>(SampleSize);            
+            var offset = Random.Array<int>(SampleSize, closed(0, (int)SizeOf<long>.BitSize));            
 
-        void Shift<T>(Orientation dir, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
-            where T : struct
-        {            
-            var x = lhs.Replicate();
-
-            if(dir == Orientation.Left)
-            {
-                for(var i=0; i< SampleSize; i++)
-                {
-                    gbits.sal(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gbits.sal(lhs[i],rhs[i]));
-                }
-            }
-            else
-            {
-                for(var i=0; i< SampleSize; i++)
-                {
-                    gbits.sar(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gbits.sar(lhs[i],rhs[i]));
-                }
-            }
+            iter(SampleSize, i => Claim.eq(src[i] >> offset[i], gbits.sar(src[i], offset[i])));
         }
 
     }

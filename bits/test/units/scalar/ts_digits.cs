@@ -13,57 +13,56 @@ namespace Z0.Test
         
     public class ts_digits : UnitTest<ts_digits>
     {
-        public void bindigits8u()
+        public void binary_digits_8u()
         {
-            BinaryMatch<byte>("0b00000100",0b00000100);
-            BinaryMatch<byte>("0b00000101",0b00000101);
-            BinaryMatch<byte>("0b01000101",0b01000101);
-
+            bd_match_check<byte>("0b00000100",0b00000100);
+            bd_match_check<byte>("0b00000101",0b00000101);
+            bd_match_check<byte>("0b01000101",0b01000101);
         }
 
-        public void bindigits16u()
+        public void binary_digits_16u()
         {
-            check_bindigits<ushort>();
+            binary_digits_check<ushort>();
         }
 
-        public void bindigits32u()
+        public void binary_digits_32u()
         {
-            check_bindigits<uint>();
+            binary_digits_check<uint>();
         }
 
-        public void bindigits64u()
+        public void binary_digits_64u()
         {
-            check_bindigits<ulong>();
+            binary_digits_check<ulong>();
         }
 
-        public void bindigits64i()
+        public void binary_digits_64i()
         {
-            check_bindigits<long>();
+            binary_digits_check<long>();
         }
 
-        void check_bindigits<T>()
+        public void decimal_digit_match_8u()
+        {
+            dd_match_check<byte>("0", 0);
+            dd_match_check<byte>("25", 25);
+            dd_match_check<byte>("101", 101);
+            dd_match_check<byte>("255", 255);
+        }
+
+        void binary_digits_check<T>()
             where T : unmanaged
         {
             for(var i=0; i<SampleSize; i++)
             {
                 var x = Random.Next<T>();
-                BinaryMatch<T>(BitString.FromScalar(x).Format(false,true),x);
+                bd_match_check<T>(BitString.FromScalar(x).Format(false,true),x);
             }
 
         }
-        public void decimal_digits8u()
-        {
-            DecimalMatch<byte>("0", 0);
-            DecimalMatch<byte>("25", 25);
-            DecimalMatch<byte>("101", 101);
-            DecimalMatch<byte>("255", 255);
-        }
-
-        static void BinaryMatch<T>(string digits, num<T> value)
+        static void bd_match_check<T>(string digits, num<T> value)
             where T : unmanaged
                 => Claim.eq(digits, value.ToBinaryDigits().Format(true));
 
-        static void DecimalMatch<T>(string digits, num<T> value)
+        static void dd_match_check<T>(string digits, num<T> value)
             where T : unmanaged
                 => Claim.eq(digits, value.ToDecimalDigits().Format());
 

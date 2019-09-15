@@ -75,6 +75,12 @@ namespace Z0
                 => Span256.Load(src);
 
         [MethodImpl(Inline)]
+        public static BlockVector<N,T> Load<N,T>(Span256<T> src)
+            where N : ITypeNat, new()
+            where T : struct
+                => BlockVector<N, T>.LoadAligned(src);
+
+        [MethodImpl(Inline)]
         public static BlockVector<N,T> Load<N,T>(Span<N,T> src)
             where N : ITypeNat, new()
             where T : struct

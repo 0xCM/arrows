@@ -37,9 +37,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return math.gt(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                return math.gt(float32(lhs), float32(rhs));
+                return fmath.gt(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                return math.gt(float64(lhs), float64(rhs));
+                return fmath.gt(float64(lhs), float64(rhs));
             else            
                 throw unsupported<T>();
         }
@@ -66,9 +66,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return math.gt(uint64(lhs), uint64(rhs), dst);
             else if(typeof(T) == typeof(float))
-                return math.gt(float32(lhs), float32(rhs), dst);
+                return fmath.gt(float32(lhs), float32(rhs), dst);
             else if(typeof(T) == typeof(double))
-                return math.gt(float64(lhs), float64(rhs), dst);
+                return fmath.gt(float64(lhs), float64(rhs), dst);
             else
                 throw unsupported<T>();
         }

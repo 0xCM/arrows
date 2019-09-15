@@ -151,4 +151,49 @@ partial class zfunc
 
     public static readonly N16384 n16384 = default; 
 
+    /// <summary>
+    /// Creates a natural sequence of length 2
+    /// </summary>
+    /// <param name="k1">The first term</param>
+    /// <param name="k2">The second term</param>
+    /// <typeparam name="K1">The first term type</typeparam>
+    /// <typeparam name="K2">The second term type</typeparam>
+    [MethodImpl(Inline)]
+    public static NatSeq<K1,K2> nat<K1,K2>(K1 k1 = default, K2 k2 = default)
+        where K1 : INatPrimitive<K1>,new()
+        where K2 : INatPrimitive<K2>, new()
+            => NatSeq<K1,K2>.Rep;
+
+    /// <summary>
+    /// Creates a natural sequence of length 3
+    /// </summary>
+    /// <param name="k1">The first term</param>
+    /// <param name="k2">The second term</param>
+    /// <param name="k3">The third term</param>
+    /// <typeparam name="K1">The first term type</typeparam>
+    /// <typeparam name="K2">The second term type</typeparam>
+    /// <typeparam name="K3">The third term type</typeparam>
+    [MethodImpl(Inline)]
+    public static NatSeq<K1,K2,K3> nat<K1,K2,K3>(K1 k1 = default, K2 k2 = default, K3 k3 = default)
+        where K1 : INatPrimitive<K1>, new()
+        where K2 : INatPrimitive<K2>, new()
+        where K3 : INatPrimitive<K3>, new()
+            => NatSeq<K1,K2,K3>.Rep;
+
+    /// <summary>
+    /// Creates a natural sequence of length 4
+    /// </summary>
+    /// <param name="k1">The first term</param>
+    /// <param name="k2">The second term</param>
+    /// <param name="k3">The third term</param>
+    /// <typeparam name="K1">The first term type</typeparam>
+    /// <typeparam name="K2">The second term type</typeparam>
+    /// <typeparam name="K3">The third term type</typeparam>
+    [MethodImpl(Inline)]
+    public static NatSeq<K1,K2,K3,K4> nat<K1,K2,K3,K4>(K1 k1 = default, K2 k2 = default, K3 k3 = default, K4 k4 = default)
+        where K1 : INatPrimitive<K1>, new()
+        where K2 : INatPrimitive<K2>, new()
+        where K3 : INatPrimitive<K3>, new()
+        where K4 : INatPrimitive<K4>, new()
+            => NatSeq<K1,K2,K3,K4>.Rep;
 }

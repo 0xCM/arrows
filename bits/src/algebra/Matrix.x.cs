@@ -49,9 +49,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static string Format<N,T>(this Covector<N,T> src)
-            where T : struct    
+            where T : unmanaged    
             where N: ITypeNat, new()
-                => src.Unsized.FormatList();
+                => src.Span.FormatList();
 
         /// <summary>
         /// Renders the source vector as text

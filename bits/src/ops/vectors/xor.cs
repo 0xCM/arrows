@@ -29,6 +29,7 @@ namespace Z0
             return ref dst;            
         }
             
+
         [MethodImpl(Inline)]
         public static Vec128<byte> xor(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => Xor(lhs, rhs);
@@ -108,6 +109,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> xor(in Vec256<double> lhs, in Vec256<double> rhs)
             => Xor(lhs, rhs);
-
     }
 }

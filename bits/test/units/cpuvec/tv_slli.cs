@@ -40,7 +40,7 @@ namespace Z0.Test
             {
                 var x = Vec256.Load(src.TakeSpan(Vec256<byte>.Length));
                 var offset = offsets.First();
-                var actual = Bits.srli(x,offset);
+                var actual = Bits.srl(x,offset);
                 var expect = Vec256.Load(BitRef.ShiftR(x.ToSpan(), offset));                
                 Claim.eq(expect,actual);             
             }
@@ -218,7 +218,7 @@ namespace Z0.Test
                 var x = Vec256.Load(src.TakeSpan(blocklen));
                 sw.Start();
                 var y = Bits.sll(x,offset);
-                var z = Bits.srli(y,offset);
+                var z = Bits.srl(y,offset);
                 sw.Stop();
             
             }

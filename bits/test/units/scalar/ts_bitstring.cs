@@ -129,7 +129,7 @@ namespace Z0.Test
             }
         }
 
-        public void bsconvertu32()
+        public void bs_to_u32()
         {
             var x0 = 0b_01011000_00001000_11111010_01100101u;
             var x1 = x0.ToBitString();
@@ -148,7 +148,7 @@ namespace Z0.Test
 
         }
 
-        public void bsconvertu8()
+        public void bs_to_u8()
         {
             var x = (byte)0b10110110;
             var y = x.ToBitString();
@@ -161,7 +161,7 @@ namespace Z0.Test
         }
 
 
-        public void bsnlz()
+        public void bs_nlz()
         {
             var src = Random.BitStrings(5, 60).Take(Pow2.T14);
             foreach(var bs in src)
@@ -174,10 +174,10 @@ namespace Z0.Test
             }
         }
 
-        public void bseq()
+        public void bs_seq()
         {
-            var srcA = Random.Stream<uint>().Take(Pow2.T14);
-            var srcB = Random.Stream<uint>().Take(Pow2.T14);
+            var srcA = Random.Stream<uint>().Take(SampleSize);
+            var srcB = Random.Stream<uint>().Take(SampleSize);
             var pairs = srcA.Zip(srcB);
 
             foreach(var aVal in srcA)
@@ -187,16 +187,31 @@ namespace Z0.Test
                 Claim.neq(pair.First.ToBitString(), pair.Second.ToBitString());
         }
 
-        public void bsbitview()
+        public void bs_truncate()
+        {
+            for(var i=0; i<SampleSize; i++)
+            {
+                var src = Random.BitString(SampleSize);
+                Claim.eq(src.Length, SampleSize);
+
+                var len = Random.Next<int>(2, SampleSize - 2);
+                var dst = src.Truncate(len);
+                Claim.eq(len, dst.Length);
+                for(var j=0; j<len; j++)
+                    Claim.eq(src[j], dst[j]);
+            }
+        }
+
+        public void bs_bitview()
         {
             var x = Random.CpuVec256<int>();
             var y = BitView.ViewBits(ref x);
-            var ys = y.ToSpan().ToBitString();
+            var ys = y.Bytes.ToBitString();
             var xs = x.ToBitString();
             Claim.eq(ys,xs);
         }
 
-        public void bswordgen()
+        public void bs_wordgen()
         {            
             var wordLen = 8;
             var wordCount = Pow2.pow(wordLen);
@@ -229,7 +244,7 @@ namespace Z0.Test
             Claim.eq(9,b3.Length);
         }
 
-        public void bspatterns()
+        public void bs_patterns()
         {
             var p1 = (byte)0b11001110;
             var s1 = BitString.FromPattern(p1, 4);
@@ -243,7 +258,7 @@ namespace Z0.Test
         }
 
 
-        public void tlz()
+        public void bs_tlz()
         {
             Claim.eq("100", BitString.FromScalar(0b00000100).Format(true));
             Claim.eq("101", BitString.FromScalar(0b00000101).Format(true));
@@ -251,7 +266,7 @@ namespace Z0.Test
             Claim.eq("11010101", BitString.FromScalar(0b11010101).Format(true));
         }
 
-        public void bsparselit()
+        public void bs_parselit()
         {
             var a = BitString.Parse("01010111");
             var b = a.TakeValue<byte>();
@@ -274,7 +289,7 @@ namespace Z0.Test
             Claim.eq(byx,byy);
         }
 
-        public void bsassemble()
+        public void bs_assemble()
         {
             var src = Random.Span<ulong>(Pow2.T08);
 
@@ -439,18 +454,24 @@ namespace Z0.Test
             TypeCaseEnd<T>();
         }
 
-        void bsparse_check2(int minlen, int maxlen, int cycles = DefaltCycleCount)
+        protected void TraceError(string msg)
+            => Trace(errorMsg(msg));
+
+        void bsparse_check2(int minlen, int maxlen)
         {
-            var src = Random.BitStrings(minlen, maxlen);
-            for(var cycle=0; cycle< cycles; cycle++)
+            for(var cycle=0; cycle< CycleCount; cycle++)
             {            
-                var x = src.First();
+                var x = Random.BitString(minlen, maxlen);
                 var y = BitString.Parse(x).Format();
                 var z = BitString.Parse(y);
 
                 Claim.eq(x.Length, y.Length);
                 Claim.eq(z.Length, y.Length);                
-                Claim.yea(x.Equals(z));
+                for(var i=0; i< x.Length; i++)
+                    Claim.eq(x[i], z[i]);
+                
+                Claim.yea(x.Equals(z, TraceError));
+                Claim.eq(x,z);
             }
         }
 

@@ -80,7 +80,6 @@ namespace Z0
         public static implicit operator Span<T>(Matrix<N,T> src)
             => src.Data;
 
-
         [MethodImpl(Inline)]
         public static implicit operator Matrix<N,T>(T[] src)
             => new Matrix<N, T>(src);
@@ -251,15 +250,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Matrix<N,N,T> ToRectantular()
+        public Matrix<N,N,T> ToRectangular()
             => new Matrix<N,N,T>(this.data);
 
+        /// <summary>
+        /// Loads the data from the source into a block matrix, allocating as necessary to ensure alignment
+        /// </summary>
         [MethodImpl(Inline)]
-        public ref Matrix<N,T> CopyTo(ref Matrix<N,T> dst)
-        {
-            Data.CopyTo(dst.Data);
-            return ref dst;
-        }
+        public BlockMatrix<N,T> Block()
+            => Span256.Load(data);
 
         [MethodImpl(Inline)]
         public Matrix<N,U> Convert<U>()

@@ -14,56 +14,56 @@ namespace Z0.Test
     public class ts_or : UnitTest<ts_or>
     {
 
-        public void or8i()
+        public void scalar_or_8i()
         {
             VerifyOp(OpKind.Or, (x,y) => (sbyte)(x | y), D.or<sbyte>());
 
         }
 
-        public void or8u()
+        public void scalar_or_8u()
         {
             VerifyOp(OpKind.Or, (x,y) => (byte)(x | y), D.or<byte>());
             
         }
 
-        public void or16i()
+        public void scalar_or_16i()
         {
             VerifyOp(OpKind.Or, (x,y) => (short)(x | y), D.or<short>());
             
         }
 
-        public void or16u()
+        public void scalar_or_16u()
         {
             VerifyOp(OpKind.Or, (x,y) => (ushort)(x | y), D.or<ushort>());
             
         }
 
-        public void or32i()
+        public void scalar_or_32i()
         {
             VerifyOp(OpKind.Or, (x,y) => (x | y), D.or<int>());
 
         }
 
-        public void or32u()
+        public void scalar_or_32u()
         {
             VerifyOp(OpKind.Or, (x,y) => (x | y), D.or<uint>());
 
         }
 
-        public void or64i()
+        public void scalar_or_64i()
         {
             VerifyOp(OpKind.Or, (x,y) => (x | y), D.or<long>());
 
         }
 
-        public void or64u()
+        public void scalar_or_64u()
         {
             VerifyOp(OpKind.Or, (x,y) => (x | y), D.or<ulong>());
 
         }
 
 
-        public void PrimalXOr()
+        public void scalar_xor()
         {
             var op = OpKind.XOr;
             VerifyOp(op, (x,y) => (sbyte)(x ^ y), D.xor<sbyte>());

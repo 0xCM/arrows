@@ -14,7 +14,7 @@ namespace Z0.Test
 
     public class ts_extract : UnitTest<ts_extract>
     {        
-        public void extract32u()
+        public void extract_32u()
         {
             var src = 0b00001010110000101001_001_111_011_001u;
             var bsSrc = src.ToBitString().Format(true);
@@ -43,10 +43,10 @@ namespace Z0.Test
             Claim.eq(x3,y3);            
         }
 
-        public void extract64u()
+        public void extract_64u()
         {
             var bv8 = BitVector8.FromScalar(0b10000000);
-            var bv16 =bv8.Concat(bv8);
+            var bv16 = bv8.Concat(bv8);
             var bv32 = bv16.Concat(bv16);
             var bv64 = bv32.Concat(bv32);
 
@@ -77,8 +77,6 @@ namespace Z0.Test
             var z2 = BitString.FromBitSeq(unpacked);
             Claim.eq(z1,z2);
         
-
-
         }
     }
 

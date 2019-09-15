@@ -20,7 +20,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.FromCells(src[i]);
+                var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector64.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector64(), v2);
 
@@ -47,7 +47,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.FromCells(src[i]);
+                var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector32.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector32(),v2);
 
@@ -64,7 +64,7 @@ namespace Z0.Test
             var upper = Random.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
             for(var i=0; i< Pow2.T12; i++)
             {
-                var v1 = BitVector.FromCells(src[i]);
+                var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector16.FromScalar(src[i]);
                 Claim.eq(v1.ToBitVector16(),v2);
 
@@ -81,7 +81,7 @@ namespace Z0.Test
             byte x2 = 0b10100011;
             byte x3 = 0b10011101;
             byte x4 = 0b01011000;
-            var bvx = BitVector.FromCells(x0,x1,x2,x3,x4);
+            var bvx = BitVector.Load(x0,x1,x2,x3,x4);
             Claim.eq(40, bvx.Length);
 
             byte y0 = 0b0110;
@@ -99,11 +99,11 @@ namespace Z0.Test
             byte y8 = 0b1000;
             byte y9 = 0b0101;
             var y89 = gbits.or(y8, gbits.sal(y9, 4));
-            var bvy = BitVector.FromCells(y01,y23,y45,y67,y89);            
+            var bvy = BitVector.Load(y01,y23,y45,y67,y89);            
             Claim.eq(40, bvy.Length);
 
             ulong z = 0b0101100010011101101000111001010111010110;           
-            var bvz = BitVector.FromCells(40,z);
+            var bvz = BitVector.FromCell(z,40);
             Claim.eq(40, bvz.Length);
 
             var bsy = bvy.ToBitString().Format(true);
@@ -140,13 +140,13 @@ namespace Z0.Test
         {
 
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
-            var bvz = BitVector.FromCells(40,z);
+            var bvz = BitVector.FromCell(z,40);
             Span<byte> xSrc =  ByteSpan.FromValue(z);
             Span<ushort> ySrc = xSrc.AsUInt16();
             Claim.eq(ySrc.Length*2, xSrc.Length);
 
-            var bvx = BitVector.FromCells(xSrc.Slice(0,5).ToArray());
-            var bvy = BitVector.FromCells(ySrc.Slice(0,2).ToArray());            
+            var bvx = BitVector.Load(xSrc.Slice(0,5).ToArray());
+            var bvy = BitVector.Load(ySrc.Slice(0,2).ToArray());            
             var bsx = bvx.ToBitString().Format(true);
             var bsz = bvz.ToBitString().Format(true);
             Claim.eq(bsx, bsz);

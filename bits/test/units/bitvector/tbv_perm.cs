@@ -25,8 +25,6 @@ namespace Z0.Test
         }
 
 
-
-
         public void Experiment()
         {
             //Create an explicit bit pattern

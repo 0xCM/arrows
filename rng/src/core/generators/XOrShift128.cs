@@ -49,7 +49,7 @@ namespace Z0
         // The stream produced should have a period of 2^128 - 1
         public uint Next()
         {
-            var t = math.xorsl(a,15);
+            var t = Bits.xorsl(a,15);
             a = b; 
             b = c;
             c = d; 
@@ -59,7 +59,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static uint Grind(uint d, uint t)
-            => math.xorsr(d, 21) ^ math.xorsr(t, 4);
+            => Bits.xorsr(d, 21) ^ Bits.xorsr(t, 4);
 
     }
 }

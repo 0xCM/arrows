@@ -95,25 +95,6 @@ namespace Z0
         public static bool between(ulong x, ulong a, ulong b)    
             => x >= a && x <= b;
 
-        /// <summary>
-        /// Returns true if the the test value lies in the closed interval formed by lower and upper bounds
-        /// </summary>
-        /// <param name="x">The test value</param>
-        /// <param name="a">The lower bound</param>
-        /// <param name="b">The uppper bound</param>
-        [MethodImpl(Inline)]
-        public static bool between(float x, float a, float b)    
-            => x >= a && x <= b;
-
-        /// <summary>
-        /// Returns true if the the test value lies in the closed interval formed by lower and upper bounds
-        /// </summary>
-        /// <param name="x">The test value</param>
-        /// <param name="a">The lower bound</param>
-        /// <param name="b">The uppper bound</param>
-        [MethodImpl(Inline)]
-        public static bool between(double x, double a, double b)    
-            => x >= a && x <= b;
     }
 
 }

@@ -13,6 +13,22 @@ namespace Z0
 
     public static class BitMaskX
     {
+        [MethodImpl(Inline)]
+        public static byte ToScalar(this BitMask8 src)
+            => (byte)src;
+
+        [MethodImpl(Inline)]
+        public static ushort ToScalar(this BitMask16 src)
+            => (ushort)src;
+
+        [MethodImpl(Inline)]
+        public static uint ToScalar(this BitMask32 src)
+            => (uint)src;
+
+        [MethodImpl(Inline)]
+        public static ulong ToScalar(this BitMask64 src)
+            => (ulong)src;
+
         /// <summary>
         /// Determines whether a bit in a specified position is on
         /// </summary>

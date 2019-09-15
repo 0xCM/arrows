@@ -13,49 +13,64 @@ namespace Z0.Test
 
     public class tbm_mul : UnitTest<tbm_mul>
     {
+
+        protected override int RoundCount => Pow2.T01;
+
+        protected override int CycleCount => Pow2.T12;
+
         public void bmm8x8()
         {
-            VerifyMul8();
+            bmm8x8_check();
         }
 
         public void bmm32x32()
         {
-            VerifyMul32();
+            bmm32x32_check();
         }
 
         public void bmm64x64()
         {
-            VerifyMul64();
+            bmm64x64_check();
         }
 
-        public void MulRVec8()
+        public void bmv8x8()
         {
-            VerifyMulRVec8();            
+            bmv8x8_check();            
         }
 
-        public void MulRVec16()
+        public void bmv16x16()
         {
-            VerifyMulRVec16();            
+            bmv16x16_check();            
         }
 
-        public void MulRVec32()
+        public void bmv32x32()
         {
-            VerifyMulRVec32();            
+            bmv32x32_check();            
         }
 
-        public void MulRVec64()
+
+        public void bmm4x4_bench()
         {
-            VerifyMulRVec64();            
+            Mul4Bench(Pow2.T12);
         }
 
-        public void bmm4_bench()
+        public void bmm8x8_bench( )
         {
-            Collect(Mul4Bench(Pow2.T12));
-        }
+            var sw = stopwatch(false);
+            var last = BitMatrix8.Zero;
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var cycle=0; cycle < CycleCount; cycle++)
+                {
+                    var m1 = Random.BitMatrix8();
+                    var m3 = Random.BitMatrix8();
+                    sw.Start();
+                    last = m1 * m3;
+                    sw.Stop();
+                }
+            }
 
-        public void bmm8_bench()
-        {
-            Collect(Mul8Bench(Pow2.T12));
+            Collect((RoundCount*CycleCount, snapshot(sw), "bmm8"));
         }
 
         public void bmm16_bench()
@@ -63,19 +78,66 @@ namespace Z0.Test
             Collect(Mul16Bench(Pow2.T12));
         }
 
-        public void bmm32_bench()
+        public void bmm64x64_prealloc_bench()
         {
-            Collect(Mul32Bench(Pow2.T12));
+            var reps = RoundCount*CycleCount;
+            var sw = stopwatch(false);
+            var last = BitMatrix64.Zero;  
+            var dst = BitMatrix64.Alloc();          
+            for(var rep=0; rep < reps; rep++)
+            {
+                var m1 = Random.BitMatrix64();
+                var m2 = Random.BitMatrix64();
+                sw.Start();
+                last = BitMatrixOps.Mul(m1, m2, ref dst);
+                sw.Stop();                
+            }
+
+            Collect((reps, snapshot(sw), "bmm64x64_prealloc"));
         }
 
-        public void bmm64_bench()
+        public void bmm64x64_bench()
         {
-            Collect(Mul64Bench(Pow2.T12));
+            var reps = RoundCount*CycleCount;
+            var sw = stopwatch(false);
+            var last = BitMatrix64.Zero;  
+            for(var rep=0; rep < reps; rep++)
+            {
+                var m1 = Random.BitMatrix64();
+                var m2 = Random.BitMatrix64();
+                sw.Start();
+                last = BitMatrixOps.Mul(m1, m2);
+                sw.Stop();                
+            }
+
+            Collect((reps, snapshot(sw), "bmm64x64"));
         }
 
-        void VerifyMul8(int cycles = DefaltCycleCount)
+
+        public void bmm32x32_bench()
         {
-            for(var i=0; i< cycles; i++)
+            var last = BitMatrix32.Zero;            
+            var sw = stopwatch(false);
+            var dst = BitMatrix32.Alloc();
+            for(var round = 0; round < RoundCount; round++)
+            {
+                for(var i=0; i< CycleCount; i++)
+                {
+                    var m1 = Random.BitMatrix32();
+                    var m3 = Random.BitMatrix32();
+                    sw.Start();
+                    last = BitMatrixOps.Mul(in m1, in m3, ref dst);
+                    sw.Stop();
+                    
+                }
+            }
+
+            Collect((RoundCount*CycleCount, snapshot(sw), "bmm32x32"));
+        }
+
+        void bmm8x8_check()
+        {
+            for(var i=0; i< SampleSize; i++)
             {
                 var m1 = Random.BitMatrix8();
                 var m2 = m1.Replicate();
@@ -86,9 +148,9 @@ namespace Z0.Test
             }            
         }
 
-        void VerifyMul32(int cycles = DefaltCycleCount)
+        void bmm32x32_check()
         {
-            for(var i=0; i< cycles; i++)
+            for(var i=0; i< SampleSize; i++)
             {
                 var m1 = Random.BitMatrix32();
                 var m2 = m1.Replicate();
@@ -99,7 +161,7 @@ namespace Z0.Test
             }            
         }
 
-        OpTime Mul4Bench(int cycles)
+        void Mul4Bench(int cycles)
         {
             var sw = stopwatch(false);
             for(var i=0; i< cycles; i++)
@@ -110,23 +172,8 @@ namespace Z0.Test
                 var m4 = m1 * m3;
                 sw.Stop();
             }
-            return (cycles, snapshot(sw), "bmm4");
+            Collect((cycles, snapshot(sw), "bmm4x4"));
         }
-
-        OpTime Mul8Bench(int cycles)
-        {
-            var sw = stopwatch(false);
-            for(var i=0; i< cycles; i++)
-            {
-                var m1 = Random.BitMatrix8();
-                var m3 = Random.BitMatrix8();
-                sw.Start();
-                var m4 = m1 * m3;
-                sw.Stop();
-            }
-            return (cycles, snapshot(sw), "bmm8");
-        }
-
 
         OpTime Mul16Bench(int cycles)
         {
@@ -139,7 +186,7 @@ namespace Z0.Test
                 var m4 = m1 * m3;
                 sw.Stop();
             }
-            return (cycles, snapshot(sw), "bmm16");
+            return (cycles, snapshot(sw), "bmm16x16");
         }
 
 
@@ -157,41 +204,10 @@ namespace Z0.Test
             return (cycles, snapshot(sw), "bmm32");
         }
 
-        OpTime Mul64Bench(int cycles)
-        {
-            var sw = stopwatch(false);
-            for(var i=0; i< cycles; i++)
-            {
-                var m1 = Random.BitMatrix64();
-                var m3 = Random.BitMatrix64();
-                sw.Start();
-                var m4 = m1 * m3;
-                sw.Stop();
-            }
-            return (cycles, snapshot(sw), "bmm64");
-        }
 
-        OpTime VerifyMul64(int cycles = DefaltCycleCount)
+        void bmv8x8_check()
         {
-            var sw = stopwatch(false);
-            for(var i=0; i< cycles; i++)
-            {
-                var m1 = Random.BitMatrix64();
-                var m2 = m1.Replicate();
-                var m3 = Random.BitMatrix64();
-                sw.Start();
-                var m4 = m2 * m3;
-                sw.Stop();
-                var m5 = BitRef.bmm(m1,m3);
-                Claim.yea(m4 == m5);
-            }
-            return (cycles, snapshot(sw), "bmm64");
-        }
-
-
-        void VerifyMulRVec8(int cycles = DefaltCycleCount)
-        {
-            for(var cycle = 0; cycle < cycles; cycle++)            
+            for(var sample = 0; sample < SampleSize; sample++)            
             {
                 var m = Random.BitMatrix8();
                 var c = Random.BitVector8();
@@ -207,9 +223,9 @@ namespace Z0.Test
             }
         }
 
-        void VerifyMulRVec16(int cycles = DefaltCycleCount)
+        void bmv16x16_check()
         {
-            for(var cycle = 0; cycle < cycles; cycle++)            
+            for(var sample = 0; sample < SampleSize; sample++)            
             {
                 var m = Random.BitMatrix16();
                 var c = Random.BitVector16();
@@ -225,9 +241,9 @@ namespace Z0.Test
             }
         }
 
-        void VerifyMulRVec32(int cycles = DefaltCycleCount)
+        void bmv32x32_check()
         {
-            for(var cycle = 0; cycle < cycles; cycle++)            
+            for(var sample = 0; sample < SampleSize; sample++)            
             {
                 var m = Random.BitMatrix32();
                 var c = Random.BitVector(n32);
@@ -235,7 +251,7 @@ namespace Z0.Test
                 var z2 = BitVector32.Alloc();
                 for(var i = 0; i<m.RowCount; i++)           
                 {
-                    var r = m.RowVec(i);
+                    var r = m.RowVector(i);
                     z2[i] = r % c;
                 }
                 
@@ -243,9 +259,9 @@ namespace Z0.Test
             }
         }
 
-        void VerifyMulRVec64(int cycles = DefaltCycleCount)
+        void bmm64x64_check()
         {
-            for(var cycle = 0; cycle < cycles; cycle++)            
+            for(var sample = 0; sample < SampleSize; sample++)            
             {
                 var m = Random.BitMatrix64();
                 var c = Random.BitVector64();

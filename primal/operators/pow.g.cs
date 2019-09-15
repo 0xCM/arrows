@@ -12,58 +12,31 @@ namespace Z0
 
     partial class gmath
     {
-        [MethodImpl(Inline)]
-        public static T pow<T>(T b, T exp)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(math.pow(int8(b), int8(exp)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(math.pow(uint8(b), uint8(exp)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(math.pow(int16(b), int16(exp)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(math.pow(uint16(b), uint16(exp)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(math.pow(int32(b), int32(exp)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(math.pow(uint32(b), uint32(exp)));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(math.pow(int64(b), int64(exp)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(math.pow(uint64(b), uint64(exp)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(math.pow(float32(b), float32(exp)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(math.pow(float64(b), float64(exp)));
-            else            
-               throw unsupported<T>();
-         }           
 
         [MethodImpl(Inline)]
         public static ref T pow<T>(ref T b, T exp)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.pow(ref int8(ref b), int8(exp));
+                math.ipow(ref int8(ref b), int8(exp));
             else if(typeof(T) == typeof(byte))
-                math.pow(ref uint8(ref b), uint8(exp));
+                math.ipow(ref uint8(ref b), uint8(exp));
             else if(typeof(T) == typeof(short))
-                math.pow(ref int16(ref b), int16(exp));
+                math.ipow(ref int16(ref b), int16(exp));
             else if(typeof(T) == typeof(ushort))
-                math.pow(ref uint16(ref b), uint16(exp));
+                math.ipow(ref uint16(ref b), uint16(exp));
             else if(typeof(T) == typeof(int))
-                math.pow(ref int32(ref b), int32(exp));
+                math.ipow(ref int32(ref b), int32(exp));
             else if(typeof(T) == typeof(uint))
-                math.pow(ref uint32(ref b), uint32(exp));
+                math.ipow(ref uint32(ref b), uint32(exp));
             else if(typeof(T) == typeof(long))
-                math.pow(ref int64(ref b), int64(exp));
+                math.ipow(ref int64(ref b), int64(exp));
             else if(typeof(T) == typeof(ulong))
-                math.pow(ref uint64(ref b), uint64(exp));
+                math.ipow(ref uint64(ref b), uint64(exp));
             else if(typeof(T) == typeof(float))
-                math.pow(ref float32(ref b), float32(exp));
+                fmath.pow(ref float32(ref b), float32(exp));
             else if(typeof(T) == typeof(double))
-                math.pow(ref float64(ref b), float64(exp));
+                fmath.pow(ref float64(ref b), float64(exp));
             else            
                throw unsupported<T>();
             
@@ -75,25 +48,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.pow(int8(lhs), int8(rhs));
+                math.ipow(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.pow(uint8(lhs), uint8(rhs));
+                math.ipow(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.pow(int16(lhs), int16(rhs));
+                math.ipow(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.pow(uint16(lhs), uint16(rhs));
+                math.ipow(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.pow(int32(lhs), int32(rhs));
+                math.ipow(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.pow(uint32(lhs), uint32(rhs));
+                math.ipow(uint32(lhs), uint32(rhs));
             if(typeof(T) == typeof(long))
-                math.pow(int64(lhs), int64(rhs));
+                math.ipow(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.pow(uint64(lhs), uint64(rhs));
+                math.ipow(uint64(lhs), uint64(rhs));
             if(typeof(T) == typeof(float))
-                math.pow(float32(lhs), float32(rhs));
+                fmath.pow(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.pow(float64(lhs), float64(rhs));
+                fmath.pow(float64(lhs), float64(rhs));
             else
                throw unsupported<T>();
             return lhs;
@@ -104,25 +77,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.pow(int8(lhs), int8(rhs));
+                math.ipow(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.pow(uint8(lhs), uint8(rhs));
+                math.ipow(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.pow(int16(lhs), int16(rhs));
+                math.ipow(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.pow(uint16(lhs), uint16(rhs));
+                math.ipow(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.pow(int32(lhs), int32(rhs));
+                math.ipow(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.pow(uint32(lhs), uint32(rhs));
+                math.ipow(uint32(lhs), uint32(rhs));
             if(typeof(T) == typeof(long))
-                math.pow(int64(lhs), int64(rhs));
+                math.ipow(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.pow(uint64(lhs), uint64(rhs));
+                math.ipow(uint64(lhs), uint64(rhs));
             if(typeof(T) == typeof(float))
-                math.pow(float32(lhs), float32(rhs));
+                fmath.pow(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.pow(float64(lhs), float64(rhs));
+                fmath.pow(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return lhs;

@@ -101,20 +101,16 @@ namespace Z0
             return dst;
         }
 
-
         [MethodImpl(Inline)]
         BitString(byte[] src)
         {
             this.bitseq = src;
         }
 
+        [MethodImpl(Inline)]
         BitString(ReadOnlySpan<byte> src)
         {
-            var len = src.Length;            
-            var lastix = len - 1;
-            this.bitseq = new byte[len];
-            for(var i=0; i <= lastix; i++)
-                this.bitseq[i] = src[i] == 0 ? (byte)0 : (byte)1;            
+            this.bitseq = src.ToArray();
         }
 
         [MethodImpl(Inline)]
@@ -309,10 +305,8 @@ namespace Z0
         {
             if(Length <= maxlen)
                 return new BitString(bitseq);
-            
-            Span<byte> src = bitseq;
-            var dst = src.Slice(0,maxlen);
-            return new BitString(dst.ToArray());
+            var dst = bitseq.AsSpan().Slice(0, maxlen).ToArray();
+            return new BitString(dst);
         }
 
         /// <summary>
@@ -359,18 +353,22 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The bitstring with which the comparison will be made</param>
         [MethodImpl(Inline)]
-        public bool Equals(BitString rhs)
+        public bool Equals(BitString rhs, Action<string> trace = null)
         {                                                            
-            var xNlz = this.Nlz();
-            var yNlz = rhs.Nlz();
-            var xLastIx = bitseq.Length - 1 - xNlz;
-            var yLastIx = rhs.bitseq.Length - 1 - yNlz;
-            if(xLastIx != yLastIx)
+            var x = Truncate(this.Length - this.Nlz());
+            var y = rhs.Truncate(rhs.Length - rhs.Nlz());
+            if(x.Length != y.Length)
+            {
+                trace?.Invoke($"The source length {x.Length} differs from the operand length {y.Length}");                
                 return false;
-            
-            for(var i=xLastIx; i >=0; i--)
-                if(bitseq[i] != rhs.bitseq[i])
-                    return false;           
+            }
+                
+            for(var i=0; i< x.Length; i++)            
+                if(x.bitseq[i] != y.bitseq[i])
+                {
+                    trace?.Invoke($"x[{i}] = {x.bitseq[i]} != {y.bitseq[i]} = y[{i}]");
+                    return false;            
+                }
             return true;
         }
 
@@ -444,7 +442,7 @@ namespace Z0
             => bitseq.GetHashCode();
 
         public override bool Equals(object rhs)
-            => (rhs is BitString x)  ? Equals(x) : false;
+            => rhs is BitString x && Equals(x);
 
         readonly string FormatUnblocked(bool tlz, bool specifier)
         {

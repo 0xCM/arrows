@@ -14,6 +14,9 @@ namespace Z0
 
     partial class Bits
     {
+        [MethodImpl(Inline)]
+        public static uint select(uint src, BitMask32 mask)
+            => Bits.gather(src, mask);
 
         [MethodImpl(Inline)]
         public static uint select(uint src, Part1x1 part)

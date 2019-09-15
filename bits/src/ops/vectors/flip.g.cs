@@ -71,8 +71,7 @@ namespace Z0
             else 
                 throw unsupported<T>();
         }
- 
-        
+         
 
         [MethodImpl(Inline)]
         public static Span<T> flip<T>(Span<T> src)
@@ -99,6 +98,37 @@ namespace Z0
             return src;
         }
 
+        /// <summary>
+        /// Computes the bitwise complement of each source element and stores
+        /// the result at the corresponding location in the target
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="T">The primal element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                Bits.flip(int8(src), int8(dst));
+            else if(typeof(T) == typeof(byte))
+                Bits.flip(uint8(src),uint8(dst));
+            else if(typeof(T) == typeof(short))
+                Bits.flip(int16(src),int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                Bits.flip(uint16(src),uint16(dst));
+            else if(typeof(T) == typeof(int))
+                Bits.flip(int32(src), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                Bits.flip(uint32(src),uint32(dst));
+            else if(typeof(T) == typeof(long))
+                Bits.flip(int64(src),int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                Bits.flip(uint64(src),uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+        }
 
 
     }

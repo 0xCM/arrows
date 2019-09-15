@@ -10,7 +10,7 @@ namespace Z0
     
     using static zfunc;    
 
-    partial class math
+    partial class Bits
     {
         /// <summary>
         /// Computes the XOR of the source value and the result of left-shifting 

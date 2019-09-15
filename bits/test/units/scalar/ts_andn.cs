@@ -13,47 +13,47 @@ namespace Z0.Test
     public class ts_andn : UnitTest<ts_andn>
     {
 
-        public void andn8u()
+        public void scalar_andn_8u()
         {
-            andn_check<byte>();
+            scalar_andn_check<byte>();
         }
 
-        public void andn16u()
+        public void scalar_andn_16u()
         {
-            andn_check<ushort>();
+            scalar_andn_check<ushort>();
         }
 
-        public void andn32i()
+        public void scalar_and_32i()
         {
-            andn_check<int>();
+            scalar_andn_check<int>();
         }
 
-        public void andn32u()
+        public void scalar_andn_32u()
         {
-            andn_check<uint>();
+            scalar_andn_check<uint>();
         }
 
-        public void andn64i()
+        public void scalar_andn_64i()
         {
-            andn_check<long>();
+            scalar_andn_check<long>();
         }
 
-        public void andn64u()
+        public void scalar_andn_64u()
         {
-            andn_check<ulong>();
+            scalar_andn_check<ulong>();
         }
 
-        public void andn32f()
+        public void scalar_andn_32f()
         {
-            andn_check<float>();
+            scalar_andn_check<float>();
         }
 
-        public void andn64f()
+        public void scalar_andn_64f()
         {
-            andn_check<double>();
+            scalar_andn_check<double>();
         }
 
-        void andn_check<T>(int cycles = DefaltCycleCount)
+        void scalar_andn_check<T>(int cycles = DefaltCycleCount)
             where T : struct
         {
             var vZero = Vec128<T>.Zero;

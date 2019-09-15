@@ -15,6 +15,10 @@ namespace Z0
     partial class Bits
     {
         [MethodImpl(Inline)]
+        public static ushort select(ushort src, BitMask16 mask)
+            => Bits.gather(src, mask);
+
+        [MethodImpl(Inline)]
         public static ushort select(ushort src, Part1x1 part)
             => Bits.gather(src, (ushort)part);
 

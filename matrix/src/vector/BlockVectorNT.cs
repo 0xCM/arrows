@@ -146,9 +146,11 @@ namespace Z0
             get => data.Unblocked;
         }
  
-        [MethodImpl(Inline)]
-        public Covector<N,T> Transpose()
-            => Covector<N, T>.Define(data);
+        public Span256<T> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         [MethodImpl(Inline)]
         public BlockVector<N,U> As<U>()

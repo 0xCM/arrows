@@ -14,34 +14,34 @@ namespace Z0
 
     public class ts_rot : UnitTest<ts_rot>
     {
-        public void rotl8u()
+        public void scalar_rotl_8u()
         {
-            Collect(rotl_check<byte>(CycleCount));
+            Collect(scalar_rotl_check<byte>());
         }
 
-        public void rotl16u()
+        public void scalar_rotl_16u()
         {
-            Collect(rotl_check<ushort>(CycleCount));            
+            Collect(scalar_rotl_check<ushort>());            
         }
 
-        public void rotl32u()
+        public void scalar_rotl_32u()
         {
-            Collect(rotl_check<uint>(CycleCount));
+            Collect(scalar_rotl_check<uint>());
         }
 
-        public void rotl64u()
+        public void scalar_rotl_64u()
         {
-            Collect(rotl_check<ulong>(CycleCount));
+            Collect(scalar_rotl_check<ulong>());
         }
 
-        OpTimePair rotl_check<T>(int cycles = DefaltCycleCount)
+        OpTimePair scalar_rotl_check<T>()
             where T : struct
         {
             var sw = stopwatch(false);
             var swBs = stopwatch(false);
             var offset = Random.Next(closed<uint>(1, bitsize<T>()));
             var offsetT = convert<uint,T>(offset);
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<CycleCount; i++)
             {
                 var x = Random.Next<T>();                
                 var bsx = BitString.FromScalar(in x);
@@ -65,8 +65,8 @@ namespace Z0
 
             }
 
-            OpTime otBs = (cycles,snapshot(swBs), $"rotlBs<{typeof(T).DisplayName()}>");
-            OpTime ot = (cycles,snapshot(sw), $"rotl<{typeof(T).DisplayName()}>");
+            OpTime otBs = (CycleCount,snapshot(swBs), $"rotlBs<{typeof(T).DisplayName()}>");
+            OpTime ot = (CycleCount,snapshot(sw), $"rotl<{typeof(T).DisplayName()}>");
 
             return (ot,otBs);
         }

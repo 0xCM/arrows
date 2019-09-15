@@ -42,21 +42,29 @@ namespace Z0
             => random.PointSource<ulong>().ToBitStream();
 
         /// <summary>
-        /// Produces a random bitstring with randomized length
+        /// Produces a bitstring with a specified length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The bitstring length</param>
+        [MethodImpl(Inline)]
+        public static BitString BitString(this IPolyrand random, BitSize len)
+        {
+            var bytes = random.Span<byte>(len.UpperByteCount);
+            return Z0.BitString.FromScalars(bytes, len);        
+        }
+
+        /// <summary>
+        /// Produces a bitstring with randomized length
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="minlen">The mininimum length of the bitstring</param>
         /// <param name="maxlen">The maximum length of the bitstring</param>
         [MethodImpl(Inline)]
         public static BitString BitString(this IPolyrand random, int minlen, int maxlen)
-        {
-            var count = 1 + random.Next(minlen, maxlen) >> 6;
-            var data = random.Span<ulong>(count);
-            return data.ToBitString().Truncate(maxlen);
-        }
+            => random.BitString(random.Next<int>(minlen, maxlen + 1));
 
         /// <summary>
-        /// Produces a random bitstring with randomized length
+        /// Produces a bitstring with randomized length
         /// </summary>
         /// <param name="random">The random source</param>
         /// <param name="minlen">The mininimum length of the bitstring</param>
@@ -65,18 +73,6 @@ namespace Z0
         public static BitString BitString(this IPolyrand random, Interval<int> length)
             => random.BitString(length.Left, length.Right);
 
-        /// <summary>
-        /// Produces a random bitstring with a specified length
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="len">The bitstring length</param>
-        [MethodImpl(Inline)]
-        public static BitString BitString(this IPolyrand random, int len)
-        {
-            var count = 1 + len >> 6;
-            var data = random.Span<ulong>(count);
-            return data.ToBitString().Truncate(len);
-        }
 
         /// <summary>
         /// Produces a random bitstring with a specified natural length
@@ -115,7 +111,7 @@ namespace Z0
             IEnumerable<BitString> produce()
             {
                 while(true)
-                    yield return random.BitString(minlen,maxlen);
+                    yield return random.BitString(minlen, maxlen);
             }
             
             return stream(produce(), random.RngKind);

@@ -607,7 +607,7 @@ namespace Z0
        /// Partitions a 33-bit container into 3-bit segments
        /// </summary>
         [Flags]
-        public enum Part33x3 : uint
+        public enum Part33x3 : ulong
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -699,7 +699,7 @@ namespace Z0
        /// Partitions a 36-bit container into 3-bit segments
        /// </summary>
         [Flags]
-        public enum Part36x3 : uint
+        public enum Part36x3 : ulong
         {            
             /// <summary>
             /// The total count of partitioned bits

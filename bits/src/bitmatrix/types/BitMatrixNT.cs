@@ -15,7 +15,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="N">The matrix order</typeparam>
     /// <typeparam name="T">The element type</typeparam>
-    public ref struct BitMatrix<N,T> //: IEquatable<BitMatrix<N,T>>
+    public ref struct BitMatrix<N,T>
         where N : ITypeNat, new()
         where T : unmanaged
     {        
@@ -40,6 +40,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix<N,T> Alloc()
             => new BitMatrix<N, T>(new T[GridLayout.TotalCellCount]);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix<N,T> Load(T[] src)
+        {
+            require(src.Length == GridLayout.TotalCellCount, 
+                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
+            return new BitMatrix<N, T>(src);
+        }
 
         /// <summary>
         /// Multiplies the left matrix by the right
@@ -94,10 +102,8 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public BitMatrix(T[] src)
+        BitMatrix(T[] src)
         {
-            require(src.Length == GridLayout.TotalCellCount, 
-                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalCellCount}");
             this.data = src;
         }
 
@@ -193,7 +199,7 @@ namespace Z0
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
         public BitVector<N,T> RowVector(int index)                    
-            => new BitVector<N,T>(RowData(index));                
+            => BitVector<N,T>.Load(RowData(index));                
 
         public readonly BitVector<N,T> Diagonal()
         {
@@ -301,7 +307,7 @@ namespace Z0
 
         static ref BitMatrix<N,T> And(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gmath.and(lhs.Data, rhs.Data, lhs.Data);
+            gbits.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
@@ -323,17 +329,6 @@ namespace Z0
             return ref dst;
         }
 
-        static BitMatrix<N,T> Mul(BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)
-        {
-            var copy = lhs.Replicate();
-            return Mul(ref copy,in rhs);
-        }
-
-        static BitMatrix<N,T> XOr(BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
-        {
-            var copy = lhs.Replicate();
-            return XOr(ref copy, rhs);
-        }
 
         static ref BitMatrix<N,T> XOr(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {

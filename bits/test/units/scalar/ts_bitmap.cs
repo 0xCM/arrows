@@ -13,24 +13,7 @@ namespace Z0.Test
 
     public class ts_bitmap : UnitTest<ts_bitmap>
     {
-
-        public void bitlogic()
-        {
-            Claim.eq(Bit.Off ^ Bit.On,  Bit.On);
-            Claim.eq(Bit.Off ^ Bit.Off, Bit.Off);
-            Claim.eq(Bit.On ^  Bit.On,  Bit.Off);
-
-            Claim.eq(Bit.Off & Bit.On,  Bit.Off);
-            Claim.eq(Bit.Off & Bit.Off, Bit.Off);
-            Claim.eq(Bit.On &  Bit.On,  Bit.On);
-
-            Claim.eq(Bit.Off | Bit.On,  Bit.On);
-            Claim.eq(Bit.Off | Bit.Off, Bit.Off);
-            Claim.eq(Bit.On  | Bit.On,  Bit.On);
-
-        }
-
-        public void map32u()
+        public void bitmap_32u()
         {
             var src = 0b1110101_10111_0011111u;
             var dst = 0b10110100u;
@@ -39,7 +22,7 @@ namespace Z0.Test
             Claim.eq(expect,dst);
         }
 
-        public void map64u()
+        public void bitmap_64u()
         {
             var src = 0b11111111_11111111_11111111_11111111_11111111_11111111_11111111_11111111ul;
             var dst = 0b11111111_11111111_11111111_11111111_11111111_00000000_11111111_11111111ul;

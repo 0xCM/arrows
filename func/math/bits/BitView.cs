@@ -31,6 +31,8 @@ namespace Z0
     public unsafe ref struct BitView<T>
         where T : struct
     {
+        public readonly Span<byte> Bytes;
+
         [MethodImpl(Inline)]
         public static bool operator ==(BitView<T> lhs, BitView<T> rhs)
             => lhs.Bytes.Eq(rhs.Bytes);
@@ -38,8 +40,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool operator !=(BitView<T> lhs, BitView<T> rhs)
             => !(lhs == rhs);
-
-        Span<byte> Bytes;
 
         [MethodImpl(Inline)]
         public BitView(ref T src)
@@ -86,10 +86,6 @@ namespace Z0
             set => BitMask.set(ref Bytes[offset], pos, value);
                 
         }
-
-        [MethodImpl(Inline)]
-        public Span<byte> ToSpan()
-            => Bytes;
 
         [MethodImpl(Inline)]
         public void CopyTo(Span<byte> dst, int offset = 0)

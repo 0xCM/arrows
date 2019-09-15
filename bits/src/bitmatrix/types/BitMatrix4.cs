@@ -12,9 +12,9 @@ namespace Z0
 
     using static zfunc;
 
-    public struct BitMatrix4 : IBitMatrix
+    public ref struct BitMatrix4
     {        
-        byte[] data;
+        Span<byte> data;
 
         public static readonly N4 N = default;
 
@@ -46,7 +46,7 @@ namespace Z0
         public static BitMatrix4 Identity 
         {
             [MethodImpl(Inline)]
-            get => Define(Identity4x4);
+            get => Define(Identity4x4.ToSpan());
         }
 
         public static BitMatrix4 Zero 
@@ -66,9 +66,6 @@ namespace Z0
         public static BitMatrix4 Define(Span<byte> src)        
             => new BitMatrix4(src);
 
-        [MethodImpl(Inline)]
-        public static BitMatrix4 Define(ReadOnlySpan<byte> src)        
-            => new BitMatrix4(src);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(BitMatrix4 src)
@@ -117,7 +114,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        BitMatrix4(ReadOnlySpan<byte> src)
+        BitMatrix4(Span<byte> src)
         {                    
             require(src.Length == Pow2.T01);
             this.data = src.ToArray();

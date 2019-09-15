@@ -93,9 +93,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return math.gteq(uint64(lhs), uint64(rhs), dst);
             else if(typeof(T) == typeof(float))
-                return math.gteq(float32(lhs), float32(rhs), dst);
+                return fmath.gteq(float32(lhs), float32(rhs), dst);
             else if(typeof(T) == typeof(double))
-                return math.gteq(float64(lhs), float64(rhs), dst);
+                return fmath.gteq(float64(lhs), float64(rhs), dst);
             else
                 throw unsupported<T>();
         }

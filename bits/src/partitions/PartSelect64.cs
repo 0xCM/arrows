@@ -16,6 +16,10 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static ulong select(ulong src, BitMask64 mask)
+            => Bits.gather(src, mask);
+
+        [MethodImpl(Inline)]
         public static ulong select(ulong src, Part1x1 part)
             => Bits.gather(src, (ulong)part);
 

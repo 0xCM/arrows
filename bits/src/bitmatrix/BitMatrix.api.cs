@@ -13,7 +13,7 @@ namespace Z0
 
     using static zfunc;
 
-    public static class BitMatrix
+    public static partial class BitMatrix
     {
         /// <summary>
         /// Allocates a zero-filled n-square matrix
@@ -50,7 +50,7 @@ namespace Z0
         public static BitMatrix<N,T> Load<N,T>(T[] src, N n = default)        
             where N : ITypeNat, new()
             where T : unmanaged
-                => new BitMatrix<N,T>(src); 
+                => BitMatrix<N,T>.Load(src); 
 
         /// <summary>
         /// Loads an MxN bitmatrix from a memory segment
@@ -64,14 +64,14 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
-                => new BitMatrix<M,N,T>(src); 
+                => BitMatrix<M,N,T>.Load(src); 
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Load<M,N,T>(M m = default, N n = default, params T[] src)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
-                => new BitMatrix<M,N,T>(new Memory<T>(src)); 
+                => BitMatrix<M,N,T>.Load(src); 
 
         /// <summary>
         /// Allocates a one-filled mxn matrix

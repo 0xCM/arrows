@@ -55,6 +55,14 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static bool divides(float lhs, float rhs)
+            => rhs % lhs == 0;
+
+        [MethodImpl(Inline)]
+        public static bool divides(double lhs, double rhs)
+            => rhs % lhs == 0;
+
         public static void mod(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
         {
             var len = length(lhs,rhs);

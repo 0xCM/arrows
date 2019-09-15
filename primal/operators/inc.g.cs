@@ -40,9 +40,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(math.inc(uint64(src)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(math.inc(float32(src)));
+                return generic<T>(fmath.inc(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(math.inc(float64(src)));
+                return generic<T>(fmath.inc(float64(src)));
             else            
                  throw unsupported<T>();                
        }           
@@ -72,9 +72,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.inc(ref uint64(ref src));
             else if(typeof(T) == typeof(float))
-                math.inc(ref float32(ref src));
+                fmath.inc(ref float32(ref src));
             else if(typeof(T) == typeof(double))
-                math.inc(ref float64(ref src));
+                fmath.inc(ref float64(ref src));
             else            
                  throw unsupported<T>();                
 
@@ -106,9 +106,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.inc(uint64(src), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.inc(float32(src), float32(dst));
+                fmath.inc(float32(src), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.inc(float64(src), float64(dst));
+                fmath.inc(float64(src), float64(dst));
             else
                  throw unsupported<T>();                
             return dst;
@@ -138,9 +138,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.inc(uint64(src));
             else if(typeof(T) == typeof(float))
-                math.inc(float32(src));
+                fmath.inc(float32(src));
             else if(typeof(T) == typeof(double))
-                math.inc(float64(src));
+                fmath.inc(float64(src));
             else
                  throw unsupported<T>();                
            

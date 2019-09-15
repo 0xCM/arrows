@@ -79,7 +79,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => Span256.Load<M,N,T>(src);
+                => Span256.Load(src);
 
         /// <summary>
         /// Defines a square matrix

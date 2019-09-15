@@ -13,8 +13,6 @@ namespace Z0
     
     partial class fmath
     {
-
-
         [MethodImpl(Inline)]
         public static float fma(float x, float y, float z)
             => MathF.FusedMultiplyAdd(x,y,z);
@@ -55,5 +53,4 @@ namespace Z0
             return dst;                
         }
     }
-
 }

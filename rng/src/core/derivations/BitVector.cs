@@ -33,8 +33,7 @@ namespace Z0
         /// <param name="random">The random source</param>
         [MethodImpl(Inline)]
         public static BitVector4 BitVector4(this IPolyrand random)
-            => BV.FromNibble(random.NextUInt4());
-
+            => random.NextUInt4();
 
         /// <summary>
         /// Produces a random 8-bit bitvector
@@ -43,7 +42,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector8 BitVector8(this IPolyrand random)
             => random.Next<byte>();
-
 
         /// <summary>
         /// Produces a random 16-bit bitvector
@@ -240,6 +238,19 @@ namespace Z0
         }            
 
         /// <summary>
+        /// Produces a generic bitvector of natural length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The bitvector length</param>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> BitVector<N,T>(this IPolyrand random, N len = default, T rep = default)
+            where T : unmanaged
+            where N : ITypeNat, new()
+                => BV.Load<N,T>(random.Stream<T>().TakeSpan(BV.CellCount<N,T>()));
+
+        /// <summary>
         /// Produces a random generic bitvector of specified length
         /// </summary>
         /// <param name="random">The random source</param>
@@ -248,85 +259,35 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<T> BitVector<T>(this IPolyrand random, BitSize len)
             where T : unmanaged
-                => BV.FromCells<T>(random.Stream<T>().TakeArray(BV.CellCount<T>(len)));
+                => BV.Load<T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(len)), len);
 
         /// <summary>
-        /// Produces a stream random generic bitvector of specified length
+        /// Produces a random generic bitvector of randomized length
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <param name="len">The bitvector length</param>
+        /// <param name="minlen">The inclusive minimum bitvector length</param>
+        /// <param name="maxlen">The inclusive maximum bitvector length</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, BitSize len)
+        public static BitVector<T> BitVector<T>(this IPolyrand random, BitSize minlen, BitSize maxlen)
             where T : unmanaged
         {
-            var cells = BV.CellCount<T>(len);
-            var src = random.Stream<T>();
-            while(true)
-                yield return BV.FromCells(src.TakeArray(cells));
+            var len = random.Next<int>(minlen,++maxlen);
+            return BV.Load<T>(random.Stream<T>().TakeArray(BV.CellCount<T>(len),len));
         }
+
+        /// <summary>
+        /// Produces a generic bitvector of randomized length
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="range">The range of potential bitvector lengths</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<T> BitVector<T>(this IPolyrand random, Interval<int> range)
+            where T : unmanaged
+                => random.BitVector<T>(range.Left, range.Right);
                         
-        /// <summary>
-        /// Produces a stream random bitvectors of generic type and varying lengths
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="minlen">The minimum length</param>
-        /// <param name="maxlen">The maximum length</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, BitSize minlen, BitSize maxlen)
-            where T : unmanaged
-        {
-            var counts = random.Stream<int>(minlen, maxlen);
-            var src = random.Stream<T>();
-            while(true)
-            {
-                var bitcount = counts.First();
-                var cellcount = BV.CellCount<T>(bitcount);
-                yield return BV.FromCells(bitcount, src.TakeArray(cellcount));
-            }
-        }
 
-        /// <summary>
-        /// Produces a stream random bitvectors of generic type and varying lengths
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="length">The range of vector lengths</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static IEnumerable<BitVector<T>> BitVectors<T>(this IPolyrand random, Interval<int> length)
-            where T : unmanaged
-                => random.BitVectors<T>(length.Left, length.Right);
-
-        /// <summary>
-        /// Produces a random bitvector of natural length and generic type
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="len">The bitvector length</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> BitVector<N,T>(this IPolyrand random, N len = default)
-            where T : unmanaged
-            where N : ITypeNat, new()
-                => BV.FromCells<N,T>(random.Stream<T>().TakeSpan(BV.CellCount<T>(nati<N>())));
-
-        /// <summary>
-        /// Produces a stream random bitvectors of natural length and generic type
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="len">The bitvector length</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> BitVectors<N,T>(this IPolyrand random, N len = default)
-            where T : unmanaged
-            where N : ITypeNat, new()
-        {
-            var cells = BV.CellCount<T>(len.value);
-            var src = random.Stream<T>();
-            while(true)
-                BV.FromCells(src.TakeSpan(cells),len);
-        }
     }
 
 }

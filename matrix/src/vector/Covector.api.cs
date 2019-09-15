@@ -27,33 +27,11 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Covector<N,T> Load<N,T>(Span<T> src, N length = default)
+        public static Covector<N,T> Load<N,T>(T[] src, N length = default)
             where N : ITypeNat, new()
-            where T : struct
-                => Covector<N,T>.Define(src);
-
-        [MethodImpl(Inline)]
-        public static Covector<N,T> Load<N,T>(Span<N,T> src)
-            where N : ITypeNat, new()
-            where T : struct
-                => Covector<N,T>.Define(src);
-
-        /// <summary>
-        /// Loads a natural span from a readonly span that is required to have
-        /// the specified natural length. This operation replicates
-        /// the source readonly span.
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="length">The natural length</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Covector<N,T> Load<N,T>(in ReadOnlySpan<T> src, N length = default)
-            where N : ITypeNat, new()
-            where T : struct
-                => Covector<N,T>.Define(in src);
-        
- 
+            where T : unmanaged
+                => Covector<N,T>.Load(src);
+     
     }
 
 }

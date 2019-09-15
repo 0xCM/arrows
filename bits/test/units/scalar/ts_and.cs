@@ -15,7 +15,7 @@ namespace Z0.Test
     {
 
 
-        public void PrimalAnd()
+        public void scalar_and()
         {
             var op = OpKind.And;
             VerifyOp(op, (x,y) => (sbyte)(x & y), D.and<sbyte>());

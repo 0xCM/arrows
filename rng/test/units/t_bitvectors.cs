@@ -48,12 +48,11 @@ namespace Z0
         {
             var trace = false;
             var lenRange = closed(3,68);
-            var src = Random.BitVectors<int>(lenRange);
             var lenStats = Collector.Create();
             var bitStats = Collector.Create();
             for(var i=0; i<SampleSize; i++)
             {
-                var v = src.First();
+                var v = Random.BitVector<int>(lenRange);
                 Claim.between(v.Length, lenRange);
                 
                 lenStats.Collect(v.Length);

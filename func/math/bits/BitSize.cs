@@ -21,6 +21,59 @@ namespace Z0
     public readonly struct BitSize
     {
         /// <summary>
+        /// Calculates the (minimum) number of segments required to hold 
+        /// a contiguous sequence of bits
+        /// </summary>
+        /// <param name="capacity">The number of bits that comprise each segment</param>
+        /// <param name="bitcount">The number of bits</param>
+        public static int Segments(BitSize capacity, BitSize bitcount)
+        {
+            if(capacity >= bitcount)
+                return 1;
+            else
+            {
+                var q = Math.DivRem(bitcount, capacity, out int r);
+                return r == 0 ? q : q + 1;
+            }
+        }
+
+        /// <summary>
+        /// Calculates the minimum number of segments required to hold a contiguous sequence of bits
+        /// </summary>
+        /// <param name="segsize">The number of bytes that comprise each segment</param>
+        /// <param name="bitcount">The number of bits</param>
+        /// <typeparam name="T">The segment type</typeparam>
+        public static int Segments<T>(BitSize bitcount)
+            where T : struct
+                => Segments(bitsize<T>(), bitcount);
+
+        /// <summary>
+        /// Calculates a canonical bijection from a contiguous sequence of bits onto a contiguous sequence of segments
+        /// </summary>
+        /// <param name="bitcount">The total number of bits to distribute over one or more segments</param>        
+        public static CellIndex<T>[] BitMap<T>(BitSize bitcount)
+            where T : struct
+        {
+            var dst =  new CellIndex<T>[bitcount];
+            var capacity = bitsize<T>();            
+            ushort seg = 0;
+            byte offset = 0;
+            for(var i = 0; i < bitcount; i++)          
+            {
+                if(i != 0)
+                {
+                    if((i % capacity) == 0)
+                    {
+                        seg++;
+                        offset = 0;
+                    }
+                }
+                dst[i] = (seg, offset++);
+            }
+            return dst;
+        }
+
+        /// <summary>
         /// Specifies a bit count
         /// </summary>
         public readonly ulong Bits;
@@ -49,7 +102,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static explicit operator ByteSize(BitSize src)
-            => src.AlignedBytes;
+            => src.UpperByteCount;
 
         [MethodImpl(Inline)]
         public static explicit operator byte(BitSize src)
@@ -152,13 +205,9 @@ namespace Z0
         public static BitSize Define(ulong bits)
             => new BitSize(bits);
 
-
         [MethodImpl(Inline)]
         public BitSize(ulong Bits)
             => this.Bits = Bits;
-
-        public ByteSize ToBytes()
-            =>  Bits / 8;
 
         public override string ToString()
             => Bits.ToString();
@@ -173,7 +222,7 @@ namespace Z0
         public override bool Equals(object obj)
             => obj is BitSize x ? Equals(x) : false;
 
-        public ByteSize AlignedBytes
+        public ByteSize UpperByteCount
         {
             [MethodImpl(Inline)]
             get
@@ -181,6 +230,12 @@ namespace Z0
                 var q = Math.DivRem((long)Bits, 8L, out long r);
                 return r == 0 ? (ulong)q : (ulong)(q + 1);
             }
+        }
+
+        public ByteSize LowerByteCount
+        {
+            [MethodImpl(Inline)]
+            get => Bits/8ul;
         }
 
         public bool IsNonZero

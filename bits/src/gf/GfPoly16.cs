@@ -115,7 +115,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public BitVector<N9,ushort> ToNatVec()
-            => new BitVector<N9, ushort>(data);
+            => BitVector<N9, ushort>.Load(data);
         
         /// <summary>
         /// Formats the polynomial

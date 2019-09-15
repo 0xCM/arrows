@@ -267,7 +267,7 @@ namespace Z0
                 throw unsupported<T>();
 
             var spec = specifier ? "0x" : string.Empty;
-            return zpad ?  (spec + digits.PadLeft(SizeOf<T>.Size * 2, '0')) : (spec + digits);
+            return zpad ?  (spec + digits.PadLeft(size<T>() * 2, '0')) : (spec + digits);
         } 
 
     }

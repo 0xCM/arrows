@@ -11,52 +11,109 @@ namespace Z0
 
     using static zfunc;    
 
+    public readonly struct BitVectorProxy<N,T>
+        where T : unmanaged
+        where N : ITypeNat, new()
+    {
+        readonly T[] data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorProxy<N,T> From(in BitVector<N,T> src)
+            => new BitVectorProxy<N,T>(src);
+        
+        [MethodImpl(Inline)]
+        public static implicit operator BitVectorProxy<N,T>(in BitVector<N,T> src)
+            => From(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N,T>(BitVectorProxy<N,T> src)
+            => src.BitVector;
+        
+        [MethodImpl(Inline)]
+        public BitVectorProxy(in BitVector<N,T> src)
+        {
+            data = src.Data.ToArray();
+        }
+
+        /// <summary>
+        /// The subject of the proxy, in this case a T-bitvector
+        /// </summary>
+        public BitVector<N,T> BitVector
+        {
+            [MethodImpl(Inline)]
+            get => BitVector<N,T>.LoadUnchecked(data);
+        }
+
+    }
+
     /// <summary>
     /// Defines a natural bitvector parametrized by a primal component type
     /// </summary>
     /// <typeparam name="N">The vector length type</typeparam>
     /// <typeparam name="T">The vector component type</typeparam>
-    public struct BitVector<N,T> : INatBits<N,T>
+    public ref struct BitVector<N,T> //: INatBits<N,T>
         where N : ITypeNat, new()
         where T : unmanaged
     {        
-        T[] data;
+        Span<T> data;
         
         /// <summary>
         /// The maximum number of bits contained in a vector component
         /// </summary>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static readonly BitSize SegmentCapacity = BitGrid.SegmentCapacity<T>();
+        public static readonly BitSize SegmentCapacity = bitsize<T>();
 
         public static readonly BitSize TotalBitCount = new N().value;
 
         static readonly BitPos MaxBitIndex = TotalBitCount - 1;
     
-        static readonly CellIndex<T>[] BitMap = BitGrid.BitMap<T>(TotalBitCount);
+        static readonly CellIndex<T>[] BitMap = BitSize.BitMap<T>(TotalBitCount);
+
+        /// <summary>
+        /// The minimum number of cells of type T required to store N bits
+        /// </summary>
+        public static int CellCount = TotalBitCount/SegmentCapacity + (TotalBitCount % SegmentCapacity == 0 ? + 0 : + 1);
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> From(params T[] src)
+        public static BitVector<N,T> Alloc(T? fill = null)
+        {
+            Span<T> cells = new T[CellCount];
+            if(fill.HasValue)
+                cells.Fill(fill.Value);
+            return new BitVector<N,T>(cells);
+        }
+
+        [MethodImpl(Inline)]
+        internal static BitVector<N,T> LoadUnchecked(T[] src)
+            => new BitVector<N,T>(src,true);
+
+        [MethodImpl(Inline)]
+        internal static BitVector<N,T> LoadUnchecked(Span<T> src)
+            => new BitVector<N,T>(src,true);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> FromCell(T src)
+            => new BitVector<N, T>(src);        
+        
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> Load(params T[] src)
+            => new BitVector<N,T>(src);    
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> Load(Span<T> src)
             => new BitVector<N,T>(src);    
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<T>(BitVector<N,T> src)
-            => new BitVector<T>(src.data);
+            => BitVector<T>.Load(src.data);
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> operator +(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+        public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => new BitVector<N,T>(gbits.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> operator *(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+        public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => new BitVector<N,T>(gbits.and(lhs.data, rhs.data));
-
-        /// <summary>
-        /// Computes the bitwise complement of the operand
-        /// </summary>
-        /// <param name="lhs">The source operand</param>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> operator -(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(src.data));                        
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -66,6 +123,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Bit operator %(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => lhs.Dot(rhs);
+
+        /// <summary>
+        /// Computes the bitwise complement of the operand
+        /// </summary>
+        /// <param name="lhs">The source operand</param>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator ~(BitVector<N,T> src)
+            => new BitVector<N,T>(gbits.flip(src.data));                        
 
         /// <summary>
         /// Returns true if the source vector is nonzero, false otherwise
@@ -92,21 +157,32 @@ namespace Z0
             => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
-        public BitVector(params T[] bits)
+        BitVector(Span<T> src)
             : this()
         {
-            this.data = bits;
-            require(bits.Length * SegmentCapacity >= TotalBitCount);
+            require(src.Length * SegmentCapacity >= TotalBitCount);
+            this.data = src;
         }
 
         [MethodImpl(Inline)]
-        public BitVector(ReadOnlySpan<T> bits)
-            : this()
+        BitVector(params T[] src)
+            : this(src.AsSpan())
         {
-            this.data = bits.ToArray();
-            require(bits.Length * SegmentCapacity >= TotalBitCount);
+
         }
 
+        [MethodImpl(Inline)]
+        BitVector(Span<T> src,bool skipChecks)
+            : this()
+        {
+            this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        BitVector(T[] src, bool skipChecks)
+        {
+            this.data = src;
+        }
 
         /// <summary>
         /// Reads a bit value
@@ -158,10 +234,19 @@ namespace Z0
         /// <summary>
         /// The data over which the bitvector is constructed
         /// </summary>
-        public T[] Data
+        public Span<T> Data
         {
             [MethodImpl(Inline)]
             get => data;
+        }
+
+        /// <summary>
+        /// Returns a proxy that can be used where ref structs can't, but it's not free
+        /// </summary>
+        public readonly BitVectorProxy<N,T> Proxy
+        {
+            [MethodImpl(Inline)]
+            get => this;
         }
 
         /// <summary>
@@ -223,12 +308,11 @@ namespace Z0
         public bool Test(BitPos index)
             => Get(index);
 
-
         /// <summary>
         /// Counts the vector's enabled bits
         /// </summary>
         [MethodImpl(Inline)]
-        public ulong Pop()
+        public BitSize Pop()
         {
             var count = 0u;
             for(var i=0; i < TotalBitCount; i++)
@@ -283,20 +367,11 @@ namespace Z0
         public bool Equals(in BitVector<N,T> rhs)
             => ToBitString().Equals(rhs.ToBitString());
            
-        public override bool Equals(object obj)
-            => obj is BitVector<N,T> x ? Equals(x) : false;
-        
-        public override int GetHashCode()
-            => ToBitString().GetHashCode();
- 
-        public override string ToString()
-            => FormatBits();
-
         [MethodImpl(Inline)]
         static int CheckIndex(BitPos index)
             =>  index <= MaxBitIndex ? index  : Errors.ThrowOutOfRange<BitPos>(index, 0, MaxBitIndex);
 
-         /// <summary>
+        /// <summary>
         /// Counts the number of bits set up to and including the specified position
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -310,13 +385,7 @@ namespace Z0
             throw new NotImplementedException();
         }
 
-
         public void Reverse()
-        {
-            throw new NotImplementedException();
-        }
-
-        BitSize IBitVector.Pop()
         {
             throw new NotImplementedException();
         }
@@ -330,5 +399,15 @@ namespace Z0
         {
             throw new NotImplementedException();
         }
+
+        public override bool Equals(object obj)
+            => throw new NotImplementedException();
+        
+        public override int GetHashCode()
+            => throw new NotImplementedException();
+ 
+        public override string ToString()
+            => throw new NotImplementedException();
+
     }
 }

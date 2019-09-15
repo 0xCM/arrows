@@ -56,7 +56,5 @@ namespace Z0
             var im = relerr(lhs.im, rhs.im);
             return re > im ? re : im;
         }
-
     }
-
 }

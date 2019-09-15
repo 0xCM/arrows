@@ -11,13 +11,13 @@ namespace Z0
  
     using static zfunc;
     using static BitMasks;
+    using static As;
 
     /// <summary>
     /// Defines bitwise partition structures and functions
     /// </summary>
     public static partial class BitParts
     {        
-
     }
 
 

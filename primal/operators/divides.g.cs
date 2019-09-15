@@ -38,9 +38,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return math.divides(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                return math.divides(float32(lhs), float32(rhs));
+                return fmath.divides(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                return math.divides(float64(lhs), float64(rhs));
+                return fmath.divides(float64(lhs), float64(rhs));
             else            
                 throw unsupported<T>();
         }

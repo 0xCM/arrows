@@ -63,10 +63,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
-        internal static string FormatMatrixBits(this byte[] src, int rowlen)            
-            => src.AsSpan().FormatMatrixBits(rowlen);
-
         internal static string FormatMatrixBits(this Span<byte> src, int rowlen)            
         {
             var dst = gbits.bitchars(src);
@@ -83,20 +79,31 @@ namespace Z0
         }       
 
         [MethodImpl(Inline)]
-        internal static string FormatMatrixBits(this ulong[] src, int rowlen)            
-            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+        internal static string FormatMatrixBits(this byte[] src, int rowlen)            
+            => src.AsSpan().FormatMatrixBits(rowlen);
+
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this Span<ushort> src, int rowlen)            
+            => src.AsBytes().FormatMatrixBits(rowlen);
+
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this Span<uint> src, int rowlen)            
+            => src.AsBytes().FormatMatrixBits(rowlen);
 
         [MethodImpl(Inline)]
         internal static string FormatMatrixBits(this uint[] src, int rowlen)            
-            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+            => src.AsSpan().FormatMatrixBits(rowlen);
 
         [MethodImpl(Inline)]
-        internal static string FormatMatrixBits(this ushort[] src, int rowlen)            
-            => src.AsSpan().AsBytes().FormatMatrixBits(rowlen);
+        internal static string FormatMatrixBits(this Span<ulong> src, int rowlen)            
+            => src.AsBytes().FormatMatrixBits(rowlen);
 
+        [MethodImpl(Inline)]
+        internal static string FormatMatrixBits(this ulong[] src, int rowlen)            
+            => src.AsSpan().FormatMatrixBits(rowlen);
                 
         /// <summary>
-        /// Multiplies the left matrix by the right
+        /// Multiplies the left bitmatrix by the right
         /// </summary>
         /// <param name="lhs">The left matrix</param>
         /// <param name="rhs">The right matrix</param>
@@ -125,7 +132,98 @@ namespace Z0
             }
             return dst;
         }
-            
+
+        public static BitVector64 Mul(in BitMatrix64 lhs, in BitVector64 rhs)
+        {
+            var dst = BitVector64.Alloc();
+            for(var i=0; i< 64; i++)
+                dst[i] = lhs.RowVector(i) % rhs;
+            return dst;        
+        }
+
+        public static BitMatrix64 Mul(BitMatrix64 lhs, BitMatrix64 rhs)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            var n = 64;
+            var dst = BitMatrix64.Alloc();
+
+            for(var i=0; i< n; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector64.Alloc();
+                for(var j = 0; j< n; j++)
+                    z[j] = r % y.RowVector(j);
+                dst[i] = (ulong)z;
+            }
+            return dst;
+        }
+
+        public static ref BitMatrix64 Mul(BitMatrix64 lhs, BitMatrix64 rhs, ref BitMatrix64 dst)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            var n = 64;
+
+            for(var i=0; i< n; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector64.Alloc();
+                for(var j = 0; j< n; j++)
+                    z[j] = r % y.RowVector(j);
+                dst[i] = (ulong)z;
+            }
+            return ref dst;
+        }
+
+        public static ref BitMatrix32 Mul(in BitMatrix32 lhs, in BitMatrix32 rhs, ref BitMatrix32 dst)
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+            var n = 32;
+
+            for(var i=0; i< n; i++)
+            {
+                var r = x.RowVector(i);
+                var z = BitVector32.Alloc();
+                for(var j = 0; j< n; j++)
+                    z[j] = r % y.RowVector(j);
+                dst[i] = (uint)z;
+            }
+            return ref dst;
+        }
+
+
+        /// <summary>
+        /// Multiplies the left bitmatrix by the right
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        /// <typeparam name="M">The left row dimension type</typeparam>
+        /// <typeparam name="N">The right column dimension type</typeparam>
+        /// <typeparam name="K">The common column/row dimension type betwen the left and right matrices</typeparam>
+        /// <typeparam name="T">The primal segment type</typeparam>
+        public static ref BitMatrix<M,N,T> Mul<M,N,K,T>(BitMatrix<M,K,T> lhs, in BitMatrix<K,N,T> rhs, ref BitMatrix<M,N,T> dst)
+            where M : ITypeNat, new()        
+            where N : ITypeNat, new()
+            where T : unmanaged
+            where K : ITypeNat, new()
+        {
+            var x = lhs;
+            var y = rhs.Transpose();
+
+            for(var i=0; i< lhs.RowCount; i++)
+            {
+                var r = x.RowVector(i);
+                for(var j = 0; j< y.ColCount; j++)
+                {
+                    var c = y.RowVector(j);
+                    dst[i,j] = r % c;
+                }
+            }
+            return ref dst;
+        }
+
         public static ref BitMatrix<N8,N16,uint> Transpose(this ref BitMatrix<N8,N16,uint> A)
         {
             var vec = Vec128.Load(ref head(A.Bytes));
@@ -148,7 +246,6 @@ namespace Z0
             1, 5, 9, 13,
             2, 6, 10, 14,
             3, 7, 11, 15
-
         };
 
         /// <summary>

@@ -17,6 +17,14 @@ namespace Z0
     partial struct BitString
     {
         /// <summary>
+        /// Allocates a bitstring with a specified length
+        /// </summary>
+        /// <param name="len">The length of the bitstring</param>
+        [MethodImpl(Inline)]
+        public static BitString Alloc(int len)
+            => new BitString(new byte[len]);
+
+        /// <summary>
         /// Constructs a bitstring from a clr string of 0's and 1's 
         /// </summary>
         /// <param name="src">The bit source</param>
@@ -49,14 +57,6 @@ namespace Z0
         }
 
         /// <summary>
-        /// Allocates a bitstring with a specified length
-        /// </summary>
-        /// <param name="len">The length of the bitstring</param>
-        [MethodImpl(Inline)]
-        public static BitString Alloc(int len)
-            => new BitString(new byte[len]);
-
-        /// <summary>
         /// Constructs a bitstring from primal value
         /// </summary>
         /// <param name="src">The source value</param>
@@ -67,25 +67,26 @@ namespace Z0
                 => new BitString(BitStore.BitSeq(in src));
 
         /// <summary>
-        /// Constructs a bitstring from a readonly segment of scalar values
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The primal type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(ReadOnlyMemory<T> src)
-            where T : struct
-                => FromScalars(src.Span);
-
-
-        /// <summary>
         /// Constructs a bitstring from span of scalar values
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString FromScalars<T>(Span<T> src, int? maxlen = null)
+        public static BitString FromScalars<T>(Span<T> src, BitSize? maxlen = null)
             where T : struct
-                => FromScalars(src.ReadOnly(), maxlen);
+        {
+            var segbits = bitsize<T>();
+            var bitcount = maxlen ?? segbits*src.Length;
+            var k = 0;
+            var bitseq = new byte[bitcount];
+            for(int i=0; i<src.Length; i++)
+            {
+                var bits = BitStore.BitSeq(in src[i]);
+                for(var j = 0; j<segbits && k<bitcount; j++, k++)
+                    bitseq[k] = bits[j];                        
+            }
+            return new BitString(bitseq);
+        }
 
         /// <summary>
         /// Assembles a bitstring from primal parts ordered from lo to hi
@@ -95,7 +96,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString FromScalars<T>(params T[] parts)
             where T : struct
-                => FromScalars(parts.ToReadOnlySpan());
+                => FromScalars(parts.AsSpan());
 
         /// <summary>
         /// Constructs a bitstring from a power of 2
@@ -108,14 +109,6 @@ namespace Z0
             dst[exp] = 1;
             return FromBitSeq(dst);
         }
-
-        /// <summary>
-        /// Constructs a bitstring from bitseq
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static BitString FromBitSeq(Span<byte> src)                
-            => new BitString(src);
 
         /// <summary>
         /// Constructs a bitstring from bitseq parameter array

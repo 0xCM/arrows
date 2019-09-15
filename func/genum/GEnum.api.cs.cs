@@ -10,9 +10,34 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using static zfunc;
+    using static As;
 
     public static class GEnum
     {
+        public static T ToScalar<E,T>(E src)
+            where E : Enum
+            where T : unmanaged
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>((byte)(object)src);
+            else if(typeof(T) == typeof(sbyte))
+                return generic<T>((sbyte)(object)src);
+            else if(typeof(T) == typeof(short))
+                return generic<T>((short)(object)src);
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>((ushort)(object)src);
+            else if(typeof(T) == typeof(int))
+                return generic<T>((int)(object)src);
+            else if(typeof(T) == typeof(uint))
+                return generic<T>((uint)(object)src);
+            else if(typeof(T) == typeof(long))
+                return generic<T>((long)(object)src);
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>((ulong)(object)src);
+            else
+                throw unsupported<T>();        
+        }
+
         /// <summary>
         /// Creates a generic enum value
         /// </summary>

@@ -19,9 +19,9 @@ namespace Z0
     /// Defines a 32x32 matrix of bits
     /// </summary>
     
-    public struct BitMatrix32  : IBitMatrix<BitMatrix32,N32,uint>
+    public ref struct BitMatrix32  //: IBitMatrix<BitMatrix32,N32,uint>
     {                
-        uint[] data;        
+        Span<uint> data;        
 
         /// <summary>
         /// The matrix order
@@ -56,12 +56,12 @@ namespace Z0
         /// <summary>
         /// Defines the 32x32 identity bitmatrix
         /// </summary>
-        public static readonly BitMatrix32 Identity = From(Identity32x32);
+        public static BitMatrix32 Identity => From(Identity32x32.ToSpan());
 
         /// <summary>
         /// Defines the 32x32 zero bitmatrix
         /// </summary>
-        public static readonly BitMatrix32 Zero  = Alloc();
+        public static BitMatrix32 Zero => Alloc();
                 
         [MethodImpl(Inline)]
         public static BitMatrix32 Alloc()        
@@ -72,9 +72,16 @@ namespace Z0
             => src.Length == 0 ? Alloc() : new BitMatrix32(src);
 
         [MethodImpl(Inline)]
-        public static BitMatrix32 From(ReadOnlySpan<byte> src)        
-            => new BitMatrix32(src.AsUInt32().ToArray());
+        public static BitMatrix32 From(BitMatrix<N32,uint> src)        
+            => From(src.Data);
 
+        [MethodImpl(Inline)]
+        public static BitMatrix32 From(Span<uint> src)        
+            => new BitMatrix32(src);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix32 From(Span<byte> src)        
+            => new BitMatrix32(src.AsUInt32());
 
         /// <summary>
         /// Negates the operand. 
@@ -132,11 +139,19 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
+        BitMatrix32(Span<uint> src)
+        {                        
+            require(src.Length == Pow2.T05);
+            this.data = src;
+        }        
+
+        [MethodImpl(Inline)]
         BitMatrix32(uint[] src)
         {                        
             require(src.Length == Pow2.T05);
             this.data = src;
         }        
+
 
         public readonly int RowCount
         {
@@ -197,7 +212,7 @@ namespace Z0
             => new BitMatrix32(data.ToArray());
 
         [MethodImpl(Inline)]
-        public readonly BitVector32 RowVec(int index)
+        public readonly BitVector32 RowVector(int index)
             => data[index];
 
         /// <summary>
@@ -211,7 +226,7 @@ namespace Z0
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
-            get => data.AsByteSpan();
+            get => data.AsBytes();
         }
 
         /// <summary>
@@ -319,7 +334,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N1024,uint> ToBitVector()
-            => BitVector.FromCells(data, zfunc.n1024);
+            => BitVector.Load(data, zfunc.n1024);
 
         /// <summary>
         /// Constructs a 32-node graph via the adjacency matrix interpretation
@@ -327,17 +342,17 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N32,byte>(new BitMatrix<N32,N32,byte>(Bytes.ToArray()));
+            => BitGraph.FromMatrix<byte,N32,byte>(BitMatrix<N32,N32,byte>.Load(Bytes));
 
         [MethodImpl(Inline)]
         public string Format()
             => data.FormatMatrixBits(32);
 
         public override bool Equals(object obj)
-            => obj is BitMatrix32 x && Equals(x);
+            => throw new NotSupportedException();
         
         public override int GetHashCode()
-            => 0;
+            => throw new NotSupportedException();
         
         public override string ToString()
             => Format();
@@ -397,7 +412,7 @@ namespace Z0
         {
             var dst = BitVector32.Alloc();
             for(var i=0; i< N; i++)
-                dst[i] = A.RowVec(i) % x;
+                dst[i] = A.RowVector(i) % x;
             return dst;        
         }
 
@@ -408,9 +423,9 @@ namespace Z0
             var y = B.Transpose();
             for(var row=0; row< N; row++)
             {
-                var r = x.RowVec(row);
+                var r = x.RowVector(row);
                 for(var col = 0; col< N; col++)
-                    dst[row,col] = y.RowVec(col) % r;
+                    dst[row,col] = y.RowVector(col) % r;
             }
             return dst;
 

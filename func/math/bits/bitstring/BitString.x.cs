@@ -109,9 +109,9 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]        
-        public static BitString ToBitString<T>(this Span<T> src)
+        public static BitString ToBitString<T>(this Span<T> src, BitSize? maxlen = null)
             where T : struct
-                => BitString.FromScalars(src); 
+                => BitString.FromScalars(src, maxlen); 
 
         /// <summary>
         /// Converts span content to a to a bitstring
@@ -165,7 +165,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString ToBitString<T>(this BitView<T> src)
             where T : struct
-                => src.ToSpan().ToBitString();
+                => src.Bytes.ToBitString();
     
         /// <summary>
         /// Converts a 128-bit unsigned integer to a bitstring

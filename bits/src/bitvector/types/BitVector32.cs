@@ -152,7 +152,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N32,uint>(in BitVector32 src)
-            => new BitVector<N32,uint>(src.data);
+            => BitVector<N32,uint>.Load(src.data);
 
 
         [MethodImpl(Inline)]
@@ -327,8 +327,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector32(uint src)
-            : this()
-                => this.data = src;
+            : this() => this.data = src;
 
         /// <summary>
         /// Initializes a vector with a sequence of bit values that is clamped to 32 bits

@@ -104,8 +104,12 @@ namespace Z0
         static Vector<N6,uint> Seed6x32 = new uint[]{0xFA243, 0xAD941, 0xBC883, 0xDB193, 0xAA137, 0xB1B39};
 
         [MethodImpl(Inline)]
-        public static IPointSource<uint> Mrg32k3a(Vector<N6,uint>? seed = null)
-            => new Mrg32K3A(seed ?? Seed6x32);
+        public static IPointSource<uint> Mrg32k3a()
+            => new Mrg32K3A(Seed6x32);
+
+        [MethodImpl(Inline)]
+        public static IPointSource<uint> Mrg32k3a(Vector<N6,uint> seed)
+            => new Mrg32K3A(seed);
 
         /// <summary>
         /// Creates an XOrShift 1024 rng

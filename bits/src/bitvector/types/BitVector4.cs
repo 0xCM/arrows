@@ -79,7 +79,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N4,byte>(in BitVector4 src)
-            => new BitVector<N4,byte>(src.data);
+            => BitVector<N4,byte>.Load(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector4(in byte src)

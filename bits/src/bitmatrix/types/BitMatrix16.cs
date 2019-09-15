@@ -18,9 +18,9 @@ namespace Z0
     /// <summary>
     /// Defines a 16x16 matrix of bits
     /// </summary>
-    public struct BitMatrix16 : IBitMatrix<BitMatrix16,N16,ushort>
+    public ref struct BitMatrix16 //: IBitMatrix<BitMatrix16,N16,ushort>
     {   
-        ushort[] data;
+        Span<ushort> data;
 
         /// <summary>
         /// The matrix order
@@ -60,12 +60,12 @@ namespace Z0
         /// <summary>
         /// Defines the 16x16 identity bitmatrix
         /// </summary>
-        public static readonly BitMatrix16 Identity = From(Identity16x16);
+        public static BitMatrix16 Identity => From(Identity16x16.ToSpan());
 
         /// <summary>
         /// Defines the 16x16 zero bitmatrix
         /// </summary>
-        public static readonly BitMatrix16 Zero = Alloc();
+        public static BitMatrix16 Zero => Alloc();
 
         [MethodImpl(Inline)]
         public static BitMatrix16 Alloc()        
@@ -76,8 +76,16 @@ namespace Z0
             => src.Length == 0 ? Alloc() : new BitMatrix16(src);
 
         [MethodImpl(Inline)]
-        public static BitMatrix16 From(ReadOnlySpan<byte> src)        
-            => new BitMatrix16(src.As<byte,ushort>());
+        public static BitMatrix16 From(Span<ushort> src)        
+            => new BitMatrix16(src);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 From(BitMatrix<N16,ushort> src)        
+            => From(src.Data);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 From(Span<byte> src)        
+            => new BitMatrix16(src.AsUInt16());
 
         /// <summary>
         /// Loads a bitmatrix from the bits in cpu vector
@@ -146,16 +154,16 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        BitMatrix16(ReadOnlySpan<ushort> src)
+        BitMatrix16(Span<ushort> src)
         {                        
             require(src.Length == Pow2.T04);
-            this.data = src.ToArray();
+            this.data = src;
         }
 
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
-            get => data.AsByteSpan();
+            get => data.AsBytes();
         }
 
         /// <summary>
@@ -210,7 +218,6 @@ namespace Z0
             for(var r = 0; r < N; r++)
                 BitMask.setif(in data[r], index, ref col, r);
             return col;
-
         }
         
         [MethodImpl(Inline)]
@@ -284,7 +291,7 @@ namespace Z0
         /// <param name="src">The source matrix</param>
         [MethodImpl(Inline)]    
         public Graph<byte> ToGraph()
-            => BitGraph.FromMatrix<byte,N16,byte>(new BitMatrix<N16,N16,byte>(Bytes.ToArray()));            
+            => BitGraph.FromMatrix<byte,N16,byte>(BitMatrix<N16,N16,byte>.Load(Bytes));            
 
         /// <summary>
         /// Computes the Hadamard product of the source matrix and another of the same dimension
@@ -343,7 +350,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public readonly BitVector<N256,ushort> ToBitVector()
-            => BitVector.FromCells(data, zfunc.n256);
+            => BitVector.Load(data, zfunc.n256);
 
         [MethodImpl(Inline)]
         static unsafe Vec256<ushort> load(ref ushort head)
@@ -355,10 +362,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public override bool Equals(object obj)
-            => obj is BitMatrix16 x && Equals(x);
+            => throw new NotSupportedException();
         
         public override int GetHashCode()
-            => 0;
+            => throw new NotSupportedException();
 
         /// <summary>
         /// Loads a cpu vector with the full content of the matrix

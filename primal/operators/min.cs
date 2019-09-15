@@ -44,13 +44,6 @@ namespace Z0
         public static ulong min(ulong lhs, ulong rhs)
             => lhs < rhs ? lhs : rhs;
 
-        [MethodImpl(Inline)]
-        public static float min(float lhs, float rhs)
-            => lhs < rhs ? lhs : rhs;
-
-        [MethodImpl(Inline)]
-        public static double min(double lhs, double rhs)
-            => lhs < rhs ? lhs : rhs;
 
         public static sbyte min(ReadOnlySpan<sbyte> src)
         {
@@ -155,6 +148,14 @@ namespace Z0
 
             return result;
         }
+
+        [MethodImpl(Inline)]
+        public static float min(float lhs, float rhs)
+            => lhs < rhs ? lhs : rhs;
+
+        [MethodImpl(Inline)]
+        public static double min(double lhs, double rhs)
+            => lhs < rhs ? lhs : rhs;
 
         public static float min(ReadOnlySpan<float> src)
         {

@@ -16,8 +16,6 @@ namespace Z0
     
     using static zfunc;    
     using static As;
-    using static Span256;
-    using static Span128;
 
     partial class Bits
     {

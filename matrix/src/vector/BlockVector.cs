@@ -82,6 +82,12 @@ namespace Z0
             get => data;
         }
 
+        public Span256<T> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
         [MethodImpl(Inline)]
         public BlockVector<U> As<U>()
             where U : struct

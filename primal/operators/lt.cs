@@ -56,7 +56,6 @@ namespace Z0
         public static bool lt(double lhs, double rhs)
             => lhs < rhs;
         
- 
         public static Span<bool> lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<bool> dst)
         {
             for(var i = 0; i< lhs.Length; i++)

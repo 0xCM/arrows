@@ -72,7 +72,27 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Alloc()
-            => new BitMatrix<M, N, T>(new Memory<T>(new T[Layout.TotalCellCount]));
+            => new BitMatrix<M, N, T>(new T[Layout.TotalCellCount]);
+
+        /// <summary>
+        /// Loads a matrix from an array of appopriate length
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> Load(T[] src)
+        {
+            require(src.Length == Layout.TotalCellCount);
+            return new BitMatrix<M, N, T>(src);
+        }
+
+        /// <summary>
+        /// Loads a matrix from an array of appopriate length
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> Load(Span<T> src)
+        {
+            require(src.Length == Layout.TotalCellCount);
+            return new BitMatrix<M, N, T>(src);
+        }
 
         /// <summary>
         /// Allocates a One-filled mxn matrix
@@ -80,12 +100,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Ones()
         {
-            var data = new T[Layout.TotalCellCount];
-            var length = BitSize.Size<T>();
-            for(var i=0; i<data.Length; i++)
-                for(var j = 0; j< length; j++)
-                    gbits.enable(ref data[i], j);
-            return new BitMatrix<M, N, T>(new Memory<T>(data));
+            var dst = Alloc();
+            var data = dst.data;
+            var length = BitSize.Size<T>();    
+            for(var i = 0; i< data.Length; i++)
+            for(var j = 0; j< length; j++)
+                gbits.enable(ref data[i], j);
+            return dst;
         }
 
         /// <summary>
@@ -115,18 +136,17 @@ namespace Z0
             => Flip(ref src);
 
         [MethodImpl(Inline)]
-        public BitMatrix(T[] src)
+        BitMatrix(T[] src)
         {
-            require(src.Length == Layout.TotalCellCount);
             this.data = src;
         }
 
         [MethodImpl(Inline)]
-        public BitMatrix(ReadOnlyMemory<T> src)
-            : this(src.ToArray())
+        BitMatrix(Span<T> src)
         {
-
+            this.data = src;
         }
+
 
         /// <summary>
         /// Gets the the value of bit identified by row/col indices
@@ -238,11 +258,11 @@ namespace Z0
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
         public BitVector<N,T> RowVector(int index)                    
-            => new BitVector<N,T>(RowData(index));                
+            => BitVector<N,T>.Load(RowData(index));                
 
         [MethodImpl(Inline)]
         public readonly BitVector<N,T> CopyRow(int index)                    
-            => new BitVector<N,T>(data.Slice(RowOffset(index), Layout.RowCellCount).Replicate());
+            => BitVector<N,T>.Load(data.Slice(RowOffset(index), Layout.RowCellCount).Replicate());
 
         /// <summary>
         /// Replaces an index-identied column of data with the content of a column vector
@@ -332,7 +352,7 @@ namespace Z0
 
         static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gmath.and(lhs.Data, rhs.Data, lhs.Data);
+            gbits.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 

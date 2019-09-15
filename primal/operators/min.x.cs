@@ -83,12 +83,5 @@ namespace Z0
         public static ulong Min(this ReadOnlySpan<ulong> src)
             => math.min(src);
 
-        [MethodImpl(Inline)]
-        public static float Min(this ReadOnlySpan<float> src)
-            => math.min(src);
-
-        [MethodImpl(Inline)]
-        public static double Min(this ReadOnlySpan<double> src)
-            => math.min(src);
     }
 }

@@ -15,24 +15,21 @@ namespace Z0.Test
 
     public class ts_select : UnitTest<ts_select>
     {        
-
-        public void disable_after()
-        {
-            var src = BitVector16.Ones;
-            var dst = src.Replicate();
-            dst.DisableAfter(2);
-            Claim.eq((ushort)0b111, dst);
-        }
-
         public void select_16()
-        {
-            
+        {            
             var src = Random.Next<ushort>();
-            var a = Bits.select(src, Part10x1.Part0 | Part10x1.Part2 | Part10x1.Part3);
-            var b = src.ToBitVector();
-            b.DisableAfter(2);
+            var maskA = (ushort)0b111;
+            var maskB = Part10x1.Part0 | Part10x1.Part1 | Part10x1.Part2;
+            var maskC = maskB.ToScalar();
+            Claim.eq(maskA,maskC);
+            
+            var a = Bits.gather(src, maskA);
+            var b = Bits.select(src, maskB);
             Claim.eq(a,b);
 
+            var bv = src.ToBitVector();
+            bv.DisableAfter(2);
+            Claim.eq(bv, a.ToBitVector());
         }
 
 
