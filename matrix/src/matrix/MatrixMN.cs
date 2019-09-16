@@ -142,6 +142,15 @@ namespace Z0
             get => ref Cell((int)r,(int)c);
         }
 
+        /// <summary>
+        /// Returns a row data copy
+        /// </summary>
+        public BlockVector<N,T> this[int r]
+        {
+            [MethodImpl(Inline)]        
+            get => GetRow(r);
+        }
+
         [MethodImpl(Inline)]
         public BlockVector<N,T> GetRow(int row)
         {
@@ -269,7 +278,6 @@ namespace Z0
             dst = new Matrix<M,N,U>(convert<T,U>(data));
             return ref dst;
         }
-
 
 
         public override bool Equals(object rhs)

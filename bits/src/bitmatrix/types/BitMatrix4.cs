@@ -66,7 +66,6 @@ namespace Z0
         public static BitMatrix4 Define(Span<byte> src)        
             => new BitMatrix4(src);
 
-
         [MethodImpl(Inline)]
         public static explicit operator ushort(BitMatrix4 src)
             => BitConverter.ToUInt16(src.data);
@@ -107,6 +106,13 @@ namespace Z0
             
         }
 
+        // [MethodImpl(Inline)]
+        // BitMatrix4(Span<UInt4> src)
+        // {                    
+        //     require(src.Length == Pow2.T02);
+            
+        // }
+
         [MethodImpl(Inline)]
         BitMatrix4(ushort src)
         {                    
@@ -117,9 +123,8 @@ namespace Z0
         BitMatrix4(Span<byte> src)
         {                    
             require(src.Length == Pow2.T01);
-            this.data = src.ToArray();
+            this.data = src;
         }
-
 
         /// <summary>
         /// Loads a matrix from the source value
@@ -205,12 +210,13 @@ namespace Z0
             => BitConverter.ToUInt16(data) == 0;
 
         /// <summary>
-        /// Returns the underlying matrix bits as a span of bytes
+        /// The underlying matrix data
         /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public Span<byte> Bytes()
-            => data;
+        public Span<byte> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
 
         [MethodImpl(Inline)] 
         public BitMatrix4 AndNot(in BitMatrix4 rhs)
@@ -238,7 +244,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly bool Equals(in BitMatrix4 rhs)
-            => BitConverter.ToUInt16(data) == rhs.Bytes().TakeUInt16();
+            => BitConverter.ToUInt16(data) == rhs.Data.TakeUInt16();
 
         [MethodImpl(Inline)]
         public readonly string Format()

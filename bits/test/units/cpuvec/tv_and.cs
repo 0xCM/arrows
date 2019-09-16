@@ -14,121 +14,73 @@ namespace Z0.Test
 
     public class tv_and : UnitTest<tv_and>
     {
+        public void and_128x8i()
+            => and_128_check<sbyte>();
 
-        public void and128i8()
-        {
-            and128<sbyte>();
-        }
+        public void and_128x8u()
+            => and_128_check<byte>();            
 
-        public void and128u8()
-        {
-            and128<byte>();            
-        }
+        public void and_128x16i()
+            => and_128_check<short>();
 
-        public void and128i16()
-        {
-            and128<short>();
-        }
+        public void and_128x16u()
+            => and_128_check<ushort>();
 
-        public void and128u16()
-        {
-            and128<ushort>();
-        }
+        public void and_128x32i()
+            => and_128_check<int>();
 
-        public void and128i32()
-        {
-            and128<int>();
-        }
+        public void and_128x32u()
+            => and_128_check<uint>();            
 
-        public void and128u32()
-        {
-            and128<uint>();
-            
-        }
+        public void and_128x64i()
+            => and_128_check<long>();            
 
-        public void and128i64()
-        {
-            and128<long>();            
-        }
+        public void and_128x64u()
+            => and_128_check<ulong>();            
 
-        public void and128u64()
-        {
-            and128<ulong>();
-            
-        }
+        public void and_128x32f()
+            => and_128_check<float>();
 
-        public void and128f32()
-        {
-            and128<float>();
-        }
+        public void and_128x64f()
+            => and_128_check<double>();
 
-        public void and128f64()
-        {
-            and128<double>();
-        }
+        public void and_256x8i()
+            => and_256_check<sbyte>();
 
+        public void and_256x8u()
+            => and_256_check<byte>();            
 
-        public void and256i8()
-        {
-            and256<sbyte>();
-        }
+        public void and_256x16i()
+            => and_256_check<short>();
 
-        public void and256u8()
-        {
-            and256<byte>();            
-        }
+        public void and_256x16u()
+            => and_256_check<ushort>();
 
-        public void and256i16()
-        {
-            and256<short>();
-        }
+        public void and_256x32i()
+            => and_256_check<int>();
 
-        public void and256u16()
-        {
-            and256<ushort>();
-        }
+        public void and_256x32u()
+            => and_256_check<uint>();            
 
-        public void and256i32()
-        {
-            and256<int>();
-        }
+        public void and_256x64i()
+            => and_256_check<long>();            
 
-        public void and256u32()
-        {
-            and256<uint>();
-            
-        }
+        public void and_256x64u()
+            => and_256_check<ulong>();            
 
-        public void and256i64()
-        {
-            and256<long>();            
-        }
+        public void and_256x32f()
+            => and_256_check<float>();
 
-        public void and256u64()
-        {
-            and256<ulong>();
-            
-        }
+        public void and_256x64f()
+            => and_256_check<double>();
 
-        public void and256f32()
-        {
-            and256<float>();
-        }
-
-        public void and256f64()
-        {
-            and256<double>();
-        }
-
-
-
-        void and128<T>(int blocks = DefaultSampleSize)
+        void and_128_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
             CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(gbits.and), gmath.and<T>);
         }
 
-        void and256<T>(int blocks = DefaultSampleSize)
+        void and_256_check<T>(int blocks = DefaultSampleSize)
             where T : struct
         {
             CpuOpVerify.VerifyBinOp(Random, blocks, new Vec256BinOp<T>(gbits.and), gmath.and<T>);

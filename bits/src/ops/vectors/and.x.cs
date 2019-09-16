@@ -36,15 +36,6 @@ namespace Z0
             where T : struct
                 => gbits.and(in lhs,in rhs);
 
-        [MethodImpl(Inline)]
-        public static ref BlockMatrix<M,N,T> And<M,N,T>(this ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct    
-        {
-            gbits.and(lhs.Unsized,rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
  
     }
 }

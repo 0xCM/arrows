@@ -144,7 +144,6 @@ namespace Z0
             dst[count - 1] = s3.Round(scale);
             var v = dst.Slice(0, count);
             return v;
-
         }   
 
         Span<double> MarkovVector(double factor, int scale = 6)

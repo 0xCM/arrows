@@ -43,7 +43,7 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< n; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Linear.dot(A.Row(i), B.Col(j));                    
+                X[i,j] = dot(A.Row(i), B.Col(j));                    
             return ref X;
         }
 
@@ -58,7 +58,7 @@ namespace Z0
             var n = nati<N>();
             for(var i = 0; i< m; i++)
             for(var j = 0; j< n; j++)
-                X[i,j] = Linear.dot(A.GetRow(i), B.GetCol(j));         
+                X[i,j] = dot(A.GetRow(i), B.GetCol(j));         
             return ref X;           
         }
 
@@ -73,6 +73,19 @@ namespace Z0
             return X;
         }
 
+        /// <summary>
+        /// Commputes the canonical scalar product btween two vectors
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="N">The natural type</typeparam>
+        /// <typeparam name="T">The component type</typeparam>
+        [MethodImpl(Inline)]
+        static T dot<N,T>(in BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+                => gmath.dot<T>(lhs.Unsized,rhs.Unsized);
+
         public static void Mul<M,N,T>(BlockMatrix<M,N,T> A, BlockVector<N,T> B, BlockVector<M,T> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -80,7 +93,7 @@ namespace Z0
         {
             var m = nati<M>();
             for(var i = 0; i< m; i++)
-                X[i] = Linear.dot(A.GetRow(i), B);                    
+                X[i] = dot(A.GetRow(i), B);                    
         }
 
     }

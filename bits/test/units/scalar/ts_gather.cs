@@ -21,7 +21,7 @@ namespace Z0.Test
         {
             var m1 = BitMask32.Even;
             var x1 = Bits.gather(UInt32.MaxValue, m1);
-            var y1 = Bits.scatter(x1, m1).ToBitVector();
+            var y1 = Bits.scatter(x1, (uint)m1).ToBitVector();
             Claim.eq(y1,m1.ToBitVector());
             
             for(var i=0; i<y1.Length; i++)
@@ -29,7 +29,7 @@ namespace Z0.Test
 
             var m2 = BitMask32.Lsb8;
             var x2 = Bits.gather(UInt32.MaxValue, m2);
-            var y2 = Bits.scatter(x2, m2).ToBitVector();
+            var y2 = Bits.scatter(x2, (uint)m2).ToBitVector();
             Claim.eq(y2,m2.ToBitVector());
             
             for(var i=0; i<y2.Length; i++)

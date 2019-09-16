@@ -50,8 +50,12 @@ partial class zfunc
     public static string typename<T>(bool full = false)
         => full ? typeof(T).FullName : typeof(T).Name;
 
+    /// <summary>
+    /// Returns the display name of the source type
+    /// </summary>
+    /// <typeparam name="T">The source type</typeparam>
     [MethodImpl(Inline)]   
-    public static string name<T>(bool full = false)
+    public static string label<T>()
         => typeof(T).DisplayName();
     
     /// <summary>

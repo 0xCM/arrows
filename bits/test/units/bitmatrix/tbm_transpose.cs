@@ -13,14 +13,27 @@ namespace Z0.Test
 
     public class tbm_transpose : UnitTest<tbm_transpose>
     {
-        public void transposeGn()
+        public void bm_transpose_12x14x16g()
         {
-            transposeGn_test<N12,N14,short>(Pow2.T07);
-            transposeGn_test<N32,N32,byte>(Pow2.T07);
-            transposeGn_test<N8,N8,byte>(Pow2.T07);
+            bm_transpose_gn_check<N12,N14,short>();
         }
 
-        public void transpose8()
+        public void bm_transpose_13x64x32g()
+        {
+            bm_transpose_gn_check<N13,N64,uint>();
+        }
+
+        public void bm_transpose_32x32x8g()
+        {
+            bm_transpose_gn_check<N32,N32,byte>();
+        }
+
+        public void bm_transpose_8x8x8g()
+        {
+            bm_transpose_gn_check<N8,N8,byte>();
+        }
+
+        public void bm_transpose_8x8x8()
         {
             var m1 = Random.BitMatrix8();
             var m2 = m1.Transpose();
@@ -28,7 +41,8 @@ namespace Z0.Test
             Claim.yea(m1 == m3);
         }
 
-        public void transpose16()
+
+        public void bm_transpose_16x16x16()
         {
             var m1 = Random.BitMatrix16();
             var m2 = m1.Transpose();
@@ -36,7 +50,7 @@ namespace Z0.Test
             Claim.yea(m3 == m1);
         }
 
-        public void transpose32()
+        public void bm_transpose_32x32x32()
         {
             var m1 = Random.BitMatrix32();
             var m2 = m1.Transpose();
@@ -44,7 +58,7 @@ namespace Z0.Test
             Claim.yea(m3 == m1);
         }
 
-        public void transpose64()
+        public void bm_transpose_64x64x64()
         {
             var m1 = Random.BitMatrix64();
             var m2 = m1.Transpose();
@@ -52,7 +66,7 @@ namespace Z0.Test
             Claim.yea(m3 == m1);    
         }
 
-        public void rowswap32()
+        public void bm_rowswap_32x32x32()
         {
             var m1 = Random.BitMatrix32();
             var m2 = m1.Replicate();
@@ -64,12 +78,12 @@ namespace Z0.Test
             Claim.yea(m1.RowVector(0) == m2.RowVector(3));
         }
 
-        void transposeGn_test<M,N,T>(int count)
+        void bm_transpose_gn_check<M,N,T>()
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            for(var c = 0; c <count; c++)
+            for(var sample = 0; sample <SampleSize; sample++)
             {
                 var src = Random.BitMatrix<M, N,T>();
                 var tSrc = src.Transpose();

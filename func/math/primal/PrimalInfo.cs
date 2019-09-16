@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
-    using System.Diagnostics.CodeAnalysis;
+    
 
     class ScalarComparer<T> : Comparer<T>
         where T : struct

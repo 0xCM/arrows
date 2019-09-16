@@ -137,34 +137,39 @@ namespace Z0
             return lhs;
         }
 
-        
+        /// <summary>
+        /// Adds a scalar value to each element of the source span in-place
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="scalar">The scalar value</param>
+        /// <typeparam name="T">The span element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> add<T>(Span<T> lhs, T rhs)
+        public static Span<T> add<T>(Span<T> src, T scalar)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.add(int8(lhs), int8(rhs));
+                math.add(int8(src), int8(scalar));
             else if(typeof(T) == typeof(byte))
-                math.add(uint8(lhs), uint8(rhs));
+                math.add(uint8(src), uint8(scalar));
             else if(typeof(T) == typeof(short))
-                math.add(int16(lhs), int16(rhs));
+                math.add(int16(src), int16(scalar));
             else if(typeof(T) == typeof(ushort))
-                math.add(uint16(lhs), uint16(rhs));
+                math.add(uint16(src), uint16(scalar));
             else if(typeof(T) == typeof(int))
-                math.add(int32(lhs), int32(rhs));
+                math.add(int32(src), int32(scalar));
             else if(typeof(T) == typeof(uint))
-                math.add(uint32(lhs), uint32(rhs));
+                math.add(uint32(src), uint32(scalar));
             else if(typeof(T) == typeof(long))
-                math.add(int64(lhs), int64(rhs));
+                math.add(int64(src), int64(scalar));
             else if(typeof(T) == typeof(ulong))
-                math.add(uint64(lhs), uint64(rhs));
+                math.add(uint64(src), uint64(scalar));
             else if(typeof(T) == typeof(float))
-                math.add(float32(lhs), float32(rhs));
+                math.add(float32(src), float32(scalar));
             else if(typeof(T) == typeof(double))
-                math.add(float64(lhs), float64(rhs));
+                math.add(float64(src), float64(scalar));
             else
                 throw unsupported<T>();
-            return lhs;
+            return src;
         }
     }
 }

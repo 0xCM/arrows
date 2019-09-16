@@ -93,6 +93,29 @@ namespace Z0
             return ref dst;
         }
 
+        /// Evaluates whether a square matrix is right-stochasitc, i.e. the sum of the entries
+        /// in each row is equal to 1
+        /// </summary>
+        /// <param name="src">The matrix to evaluate</param>
+        /// <param name="n">The natural dimension value</param>
+        /// <typeparam name="N">The natural dimension type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+         public static bool IsRightStochastic<N,T>(this BlockMatrix<N,T> src, N n = default)
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var tol = .001;
+            var radius = closed(1 - tol,1 + tol);   
+            for(var r = 0; r < (int)n.value; r ++)
+            {
+                var row = src.Row(r);
+                var sum =  convert<T,double>(gmath.sum(row.Unsized));
+                if(!radius.Contains(sum))
+                    return false;
+            }
+            return true;
+        }
+
 
         public static ref BlockMatrix<N,T> MarkovMat<N,T>(this IPolyrand random, ref BlockMatrix<N,T> dst)
             where T : struct

@@ -107,6 +107,11 @@ namespace Z0
         /// <param name="pos">The position of the bit for which rank will be calculated</param>
         uint Rank(BitPos pos);
 
+        /// <summary>
+        /// Queries/Manipulates individual vector bits
+        /// </summary>
+        Bit this[BitPos pos] {get; set;}            
+
     }
 
     /// <summary>

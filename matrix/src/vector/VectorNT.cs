@@ -98,6 +98,34 @@ namespace Z0
             get => Dim;
         }
 
+        /// <summary>
+        /// Projects the source vector onto a target vector of the same length 
+        /// via a supplied transformation
+        /// </summary>
+        /// <param name="f">The transformation function</param>
+        /// <typeparam name="U">The target vector element type</typeparam>
+        [MethodImpl(Inline)]
+        public Vector<N,U> Map<U>(Func<T,U> f)
+            where U:unmanaged
+        {
+            var dst = Vector.Alloc<N,U>();
+            return Map(f, ref dst);
+        }
+
+        /// <summary>
+        /// Projects the source vector onto a caller-supplied target vector of the same length 
+        /// via a supplied transformation
+        /// </summary>
+        /// <param name="f">The transformation function</param>
+        /// <typeparam name="U">The target vector element type</typeparam>
+        public ref Vector<N,U> Map<U>(Func<T,U> f, ref Vector<N,U> dst)
+            where U:unmanaged
+        {
+            for(var i=0; i < Length; i++)
+                dst[i] = f(data[i]);
+            return ref dst;
+        }
+
         [MethodImpl(Inline)]
         public Covector<N,T> Transpose()
             => Covector<N, T>.Load(data);
@@ -138,7 +166,7 @@ namespace Z0
             => data.FormatList(delimiter ?? AsciSym.Comma);    
 
         public override bool Equals(object rhs)
-            => rhs is Vector<N,T> x && Equals(rhs);
+            => rhs is Vector<N,T> x && Equals(x);
 
         public override int GetHashCode()
             => data.GetHashCode();

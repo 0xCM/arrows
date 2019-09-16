@@ -1,0 +1,31 @@
+<Project>
+
+  <PropertyGroup>
+    <TopDir>J:\dev\projects\z0\</TopDir>
+    <BuildRootDir>$(TopDir)bin\</BuildRootDir>
+    <LibBuildDir>$(BuildRootDir)lib\</LibBuildDir>
+    <OutputDir>$(LibBuildDir)</OutputDir>
+    <OutputPath>$(LibBuildDir)</OutputPath>
+    <DocumentationFile>$(LibBuildDir)$(MsBuildProjectName).xml</DocumentationFile>
+    <IntermediateBuildDir>$(BuildRootDir)obj\$(MSBuildProjectName)\</IntermediateBuildDir>
+    <BaseIntermediateOutputPath>$(IntermediateBuildDir)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(IntermediateBuildDir)</IntermediateOutputPath>
+    <NoWarn>1591;1572;1573;1701;1702;1712;1711;1570;1571;1574;1710;8321;NETSDK1057</NoWarn>
+    <NullableReferenceTypes>true</NullableReferenceTypes>
+    <NullableContextOptions>disable</NullableContextOptions>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>    
+    <!-- <DebugType>full</DebugType> -->
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
+    <LangVersion>preview</LangVersion>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <AssemblyVersion>1.0.41</AssemblyVersion>
+    <VersionPrefix>$(AssemblyVersion)</VersionPrefix>
+
+  </PropertyGroup>
+
+</Project>
+
+

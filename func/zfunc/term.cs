@@ -173,7 +173,7 @@ partial class zfunc
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
     public static void babble<T>(object msg, T host, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
-        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{name<T>()}/{caller}", file, line));
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{label<T>()}/{caller}", file, line));
 
     /// <summary>
     /// Emits an error-level message
@@ -190,7 +190,7 @@ partial class zfunc
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
     public static void error<T>(object msg, T host, [CallerName] string caller = null, [CallerFile] string file = null, [CallerLine] int? line = null)
-        => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
+        => terminal.WriteError(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{label<T>()}/{caller}", file, line));
 
     public static AppMsg trace(string title, string msg, int? tpad = null, SeverityLevel? severity = null)
     {

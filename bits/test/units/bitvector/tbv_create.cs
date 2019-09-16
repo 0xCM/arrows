@@ -14,10 +14,44 @@ namespace Z0.Test
     public class tbv_create : UnitTest<tbv_create>
     {
 
-        public void create_primal()
+        public void bv_create_fixed_64()
         {
             create_primal_64_check();
 
+        }
+
+        public void bv_create_fixed_8g()
+        {
+            bv_create_fixedG<BitVector8,byte>();
+        }
+
+        public void bv_create_fixed_16g()
+        {
+            bv_create_fixedG<BitVector16,ushort>();
+        }
+
+        public void bv_create_fixed_32g()
+        {
+            bv_create_fixedG<BitVector32,uint>();
+        }
+
+        public void bv_create_fixed_64g()
+        {
+            bv_create_fixedG<BitVector64,ulong>();
+        }
+
+        void bv_create_fixedG<V,S>()
+            where V : unmanaged, IFixedBits<V,S>
+            where S : unmanaged
+        {
+            for(var i=0; i<SampleSize; i++)
+            {
+                var src = Random.Next<S>();
+                var bv = gbits.bitvector<V,S>(src);
+                var bs = BitString.FromScalar(src);
+                for(var j=0; j< bv.Length; j++)
+                    Claim.eq(bv[j], bs[j]);            
+            }
         }
 
         public void create_gunfixed()

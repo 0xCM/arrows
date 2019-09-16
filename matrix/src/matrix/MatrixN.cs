@@ -114,6 +114,16 @@ namespace Z0
         }
 
         /// <summary>
+        /// The data contained in the matrix
+        /// </summary>
+        /// <value></value>
+        public Span<T> Span
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+        /// <summary>
         /// The number of rows in the matrix
         /// </summary>
         public readonly int RowCount
@@ -161,17 +171,58 @@ namespace Z0
             get => ref Cell((int)r,(int)c);
         }
 
+        /// <summary>
+        /// Returns a row data copy
+        /// </summary>
+        public Vector<N,T> this[int r]
+        {
+            [MethodImpl(Inline)]        
+            get => Row(r);
+        }
+
         [MethodImpl(Inline)]
-        public ref Vector<N,T> Row(int row, ref Vector<N,T> dst)
+        public Vector<N,T> Row(int row)
+        {            
+            var alloc = Vector.Alloc<N,T>();
+            return GetRow(row, ref alloc);
+        }
+
+        /// <summary>
+        /// Interchages rows and columns
+        /// </summary>
+        public Matrix<N,T> Transpose()
+        {
+            var dst = Matrix.Alloc<N,T>();
+            for(var i = 0; i < RowCount; i++)
+                dst.SetRow(i,Col(i));            
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        void CheckRowIndex(int row)
         {
             if(row < 0 || row >= _RowCount)
                 throw Errors.OutOfRange(row, 0, _RowCount - 1);
-             var src = data.AsSpan(). Slice(row * _RowLenth, _RowLenth);
-             src.CopyTo(dst.Data);
+        }
+
+        [MethodImpl(Inline)]
+        public void SetRow(int row, Vector<N,T> src)
+        {
+            CheckRowIndex(row);
+            var offset = row * _RowLenth; 
+            src.Data.AsSpan().CopyTo(data, offset);                         
+        }
+
+        [MethodImpl(Inline)]
+        public ref Vector<N,T> GetRow(int row, ref Vector<N,T> dst)
+        {
+             CheckRowIndex(row);
+             var offset = row * _RowLenth;
+             data.AsSpan().Slice(offset, _RowLenth).CopyTo(dst.Data);
              return ref dst;
         }
 
-        public ref Vector<N,T> Col(int col, ref Vector<N,T> dst)
+        public ref Vector<N,T> GetCol(int col, ref Vector<N,T> dst)
         {
             if(col < 0 || col >= _ColCount)
                 throw Errors.OutOfRange(col, 0, _ColCount - 1);
@@ -185,7 +236,7 @@ namespace Z0
         public Vector<N,T> Col(int col)
         {
             var alloc = Vector.Alloc<N,T>();
-            return Col(col, ref alloc);
+            return GetCol(col, ref alloc);
         }
 
         

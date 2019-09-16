@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Defines a 64x64 matrix of bits
     /// </summary>
-    public ref struct BitMatrix64 //: IBitMatrix<BitMatrix64,N64,ulong>
+    public ref struct BitMatrix64
     {                
         Span<ulong> data;
 
@@ -149,10 +149,22 @@ namespace Z0
             get => N;
         }
 
+        /// <summary>
+        /// The underlying matrix presented as a bytespan
+        /// </summary>
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
             get => data.AsBytes();
+        }
+
+        /// <summary>
+        /// The underlying matrix data
+        /// </summary>
+        public Span<ulong> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
         }
 
         /// <summary>
@@ -286,7 +298,7 @@ namespace Z0
             {
                 this.LoadCpuVec(i, out Vec256<ulong> vLhs);
                 rhs.LoadCpuVec(i, out Vec256<ulong> vRhs);
-                vLhs.AndNot(vRhs).StoreTo(ref data[i]);                
+                Bits.andn(vLhs,vRhs).StoreTo(ref data[i]);                
             }
             return this;
         }

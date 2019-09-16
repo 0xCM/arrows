@@ -205,8 +205,18 @@ namespace Z0
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
-            get => data.AsBytes();
+            get => data;            
         }
+
+        /// <summary>
+        /// The underlying matrix data
+        /// </summary>
+        public Span<byte> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
 
         /// <summary>
         /// Constructs an 8-node graph via the adjacency matrix interpretation

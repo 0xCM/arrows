@@ -121,9 +121,6 @@ namespace Z0
         static V bvgeneric<V>(ref BitVector4 src)
             where V : unmanaged
                 =>   Unsafe.As<BitVector4,V>(ref src);
-
-
-
     }
 
 }

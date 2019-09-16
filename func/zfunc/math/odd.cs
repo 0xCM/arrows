@@ -137,8 +137,5 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static bool even(ulong test)
         => !odd(test);
-
-
-
 }
 

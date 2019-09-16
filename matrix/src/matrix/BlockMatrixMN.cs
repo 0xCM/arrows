@@ -277,7 +277,6 @@ namespace Z0
             return ref dst;
         }
 
-
         public override bool Equals(object other)
             => throw new NotSupportedException();
  

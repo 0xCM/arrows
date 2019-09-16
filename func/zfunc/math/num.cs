@@ -12,7 +12,51 @@ using static Z0.As;
 
 partial class zfunc
 {
-    
+    /// <summary>
+    /// Returns generic 0 for a primal source type
+    /// </summary>
+    /// <typeparam name="T">The primal source type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref readonly T zero<T>()
+        where T : unmanaged
+            => ref GConst.zero<T>();
+
+    /// <summary>
+    /// Returns generic 1 for a primal source type
+    /// </summary>
+    /// <typeparam name="T">The primal source type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref readonly T one<T>()
+        where T : unmanaged
+            => ref GConst.one<T>();
+
+    /// <summary>
+    /// Returns the minimum value for a primal source type
+    /// </summary>
+    /// <typeparam name="T">The primal source type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref readonly T minval<T>()
+        where T : unmanaged
+            => ref GConst.minval<T>();
+
+    /// <summary>
+    /// Returns the minimum value for a primal source type
+    /// </summary>
+    /// <typeparam name="T">The primal source type</typeparam>
+    [MethodImpl(Inline)]
+    public static ref readonly T maxval<T>()
+        where T : unmanaged
+            => ref GConst.maxval<T>();
+
+    /// <summary>
+    /// Returns true if the primal source type is signed, false otherwise
+    /// </summary>
+    /// <typeparam name="T">The primal source type</typeparam>
+    [MethodImpl(Inline)]
+    public static bool signed<T>()
+        where T : unmanaged
+            => PrimalInfo.signed<T>();
+
     /// <summary>
     /// Creates an enumerable sequence that ranges between inclusive upper and lower bounds
     /// </summary>

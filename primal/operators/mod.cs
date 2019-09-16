@@ -280,5 +280,61 @@ namespace Z0
             return lhs;
         }
 
+        public static Span<sbyte> mod(ReadOnlySpan<sbyte> lhs, sbyte rhs, Span<sbyte> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<byte> mod(ReadOnlySpan<byte> lhs, byte rhs, Span<byte> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<short> mod(ReadOnlySpan<short> lhs, short rhs, Span<short> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<ushort> mod(ReadOnlySpan<ushort> lhs, ushort rhs, Span<ushort> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<int> mod(ReadOnlySpan<int> lhs, int rhs, Span<int> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<uint> mod(ReadOnlySpan<uint> lhs, uint rhs, Span<uint> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<long> mod(ReadOnlySpan<long> lhs, long rhs, Span<long> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
+        public static Span<ulong> mod(ReadOnlySpan<ulong> lhs, ulong rhs, Span<ulong> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = math.mod(lhs[i], rhs);
+            return dst;
+        }
+
     }
 }

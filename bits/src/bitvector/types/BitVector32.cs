@@ -344,7 +344,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Reads/Manipulates a source bit at a specified position
+        /// Queries/Manipulates index-identified bits
         /// </summary>
         public Bit this[BitPos pos]
         {
@@ -371,7 +371,6 @@ namespace Z0
             [MethodImpl(Inline)]
             get => Between(first, last);
         }
-
 
         public BitVector16 Lo
         {

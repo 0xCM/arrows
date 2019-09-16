@@ -11,9 +11,10 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
-    using VecLen = NatSeq<N1,N2,N3>;
+    //using VecLen = NatSeq<N1,N2,N3>;
+    using VecLen = N64;
 
-    public class tlv_vand : UnitTest<tlv_vand>
+    public class t_blockv_and : UnitTest<t_blockv_and>
     {
         public void vand()
         {
@@ -36,14 +37,14 @@ namespace Z0.Test
             var len = (int)rep.value;
             var u = Random.BlockVec<N,T>();
             var v = Random.BlockVec<N,T>();
-            var vResult = Linear.and(ref u, v);
+            var vResult = Linear.and(u, v);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)
                 calcs[i] = gbits.and(u[i], v[i]);
             var vExpect = BlockVector.Load(calcs, rep);            
             
-            Verification.Equality(vExpect, vResult);
+            Util.ClaimEqual(vExpect, vResult);
         }
 
     }

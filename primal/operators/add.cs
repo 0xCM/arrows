@@ -166,7 +166,7 @@ namespace Z0
         public static double add(double lhs, double rhs, out double dst)
             => dst = lhs + rhs;
  
-         public static Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        public static Span<sbyte> add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)

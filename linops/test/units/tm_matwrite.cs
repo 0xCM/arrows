@@ -15,7 +15,7 @@ namespace Z0.Test
 
     public class tm_matwrite : UnitTest<tm_matwrite>
     {
-        public void WriteMatrix()
+        public void write()
         {
             VerifyWriter<N12,N14,long>(Pow2.T03);        
             VerifyWriter<N19,N32,byte>(Pow2.T03);        
@@ -45,7 +45,7 @@ namespace Z0.Test
                 var A = Random.BlockMatrix<M,N,T>();
                 if(isFp)
                     A.Apply(round);
-                A.WriteTo(dstpath);
+                Matrix.WriteTo(A,dstpath);
 
                 var srcPath = dstpath;
                 var B = BlockMatrix.ReadFrom<M,N,T>(srcPath);

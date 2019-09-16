@@ -160,10 +160,22 @@ namespace Z0
             this.data = src;
         }
 
+        /// <summary>
+        /// The underlying matrix presented as a bytespan
+        /// </summary>
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
             get => data.AsBytes();
+        }
+
+        /// <summary>
+        /// The underlying matrix data
+        /// </summary>
+        public Span<ushort> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
         }
 
         /// <summary>
@@ -260,7 +272,7 @@ namespace Z0
         {
             this.LoadCpuVec(out Vec256<ushort> vLhs);
             rhs.LoadCpuVec(out Vec256<ushort> vRhs);
-            vLhs.AndNot(vRhs).StoreTo(ref data[0]);
+            Bits.andn(vLhs,vRhs).StoreTo(ref data[0]);
             return this;
         }
 

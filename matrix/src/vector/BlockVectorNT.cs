@@ -174,6 +174,34 @@ namespace Z0
             return ref dst;
         }
 
+        /// <summary>
+        /// Projects the source vector onto a target vector of the same length 
+        /// via a supplied transformation
+        /// </summary>
+        /// <param name="f">The transformation function</param>
+        /// <typeparam name="U">The target vector element type</typeparam>
+        [MethodImpl(Inline)]
+        public BlockVector<N,U> Map<U>(Func<T,U> f)
+            where U:unmanaged
+        {
+            var dst = BlockVector.Alloc<N,U>();
+            return Map(f, ref dst);
+        }
+
+        /// <summary>
+        /// Projects the source vector onto a caller-supplied target vector of the same length 
+        /// via a supplied transformation
+        /// </summary>
+        /// <param name="f">The transformation function</param>
+        /// <typeparam name="U">The target vector element type</typeparam>
+        public ref BlockVector<N,U> Map<U>(Func<T,U> f, ref BlockVector<N,U> dst)
+            where U:unmanaged
+        {
+            for(var i=0; i < Length; i++)
+                dst[i] = f(data[i]);
+            return ref dst;
+        }
+
         [MethodImpl(Inline)]
         public BlockVector<N,U> Convert<U>()
             where U : struct

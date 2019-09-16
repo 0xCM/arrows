@@ -106,6 +106,21 @@ namespace Z0
                 lhs[i] %= rhs;
             return lhs;
         }
+
+        public static Span<float> mod(ReadOnlySpan<float> lhs, float rhs, Span<float> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lhs[i] % rhs;
+            return dst;
+        }
+
+        public static Span<double> mod(ReadOnlySpan<double> lhs, double rhs, Span<double> dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lhs[i] % rhs;
+            return dst;
+        }
+
     }
 
 }

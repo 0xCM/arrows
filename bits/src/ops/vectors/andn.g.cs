@@ -84,6 +84,21 @@ namespace Z0
                 throw unsupported<T>();
         }
     
+        public static Span128<T> andn<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
+            where T : struct
+        {
+            for(var i=0; i< blocks(lhs,rhs); i++)
+                vstore(andn(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst.Block(i));                             
+            return dst;        
+        }
+
+        public static Span256<T> andn<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
+            where T : struct
+        {
+            for(var i=0; i< blocks(lhs,rhs); i++)
+                vstore(andn(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst.Block(i));                             
+            return dst;        
+        } 
 
     }
 

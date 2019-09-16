@@ -223,6 +223,9 @@ namespace Z0
         public ref uint RowData(int row)
             => ref data[row];
 
+        /// <summary>
+        /// The underlying matrix presented as a bytespan
+        /// </summary>
         public Span<byte> Bytes
         {
             [MethodImpl(Inline)]
@@ -230,7 +233,16 @@ namespace Z0
         }
 
         /// <summary>
-        /// A mutable indexer, functionally equivalent to <see cref='RowData' /> function
+        /// The underlying matrix data
+        /// </summary>
+        public Span<uint> Data
+        {
+            [MethodImpl(Inline)]
+            get => data;
+        }
+
+        /// <summary>
+        /// Queries/manipulates row data
         /// </summary>
         /// <param name="row">The row index</param>
         public ref uint this[int row]
@@ -284,7 +296,7 @@ namespace Z0
             {
                 this.LoadCpuVec(i, out Vec256<uint> vLhs);
                 rhs.LoadCpuVec(i, out Vec256<uint> vRhs);
-                vLhs.AndNot(vRhs).StoreTo(ref data[i]);
+                Bits.andn(vLhs,vRhs).StoreTo(ref data[i]);
             }
             return this;
         }

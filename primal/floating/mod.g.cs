@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         /// <typeparam name="T">The primal floating-point type</typeparam>
         [MethodImpl(Inline)]
-        public static T mod<T>(T lhs, T rhs)
+        public static T fmod<T>(T lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         /// <typeparam name="T">The primal floating-point type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T mod<T>(ref T lhs, T rhs)
+        public static ref T fmod<T>(ref T lhs, T rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -62,7 +62,7 @@ namespace Z0
         /// <param name="rhs">The right integer source</param>
         /// <typeparam name="T">The primal floating-point type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> mod<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static Span<T> fmod<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -83,7 +83,7 @@ namespace Z0
         /// <param name="rhs">The right integer source</param>
         /// <typeparam name="T">The primal floating-point type</typeparam>
         [MethodImpl(Inline)]
-        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        public static Span<T> fmod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -94,7 +94,5 @@ namespace Z0
                 throw unsupported<T>();
             return dst;
         }
-
-
     }
 }

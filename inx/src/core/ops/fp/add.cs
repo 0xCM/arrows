@@ -40,6 +40,38 @@ namespace Z0
         public static Vec256<double> add(in Vec256<double> lhs, in Vec256<double> rhs)
             => Add(lhs, rhs); 
 
+        public static Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+            return dst;            
+        }
+
+        public static Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+            return dst;            
+        }
+
+        public static Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+            return dst;            
+        }
+
+        public static Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
+        {
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                vstore(dfp.add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+            return dst;            
+        }
+
     }
 
 }

@@ -7,12 +7,23 @@ namespace Z0.Mkl
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using static zfunc;
     using static nfunc;
     
     public class t_dot : t_mkl<t_dot>
     {
+        [MethodImpl(Inline)]
+        internal static T dot<T>(in BlockVector<T> lhs, in BlockVector<T> rhs)
+            where T : struct
+                => gmath.dot<T>(lhs.Unblocked, rhs.Unblocked);
+
+        [MethodImpl(Inline)]
+        internal static T dot<N,T>(in BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+                => gmath.dot<T>(lhs.Unsized,rhs.Unsized);
 
         public void dot32f()
         {
@@ -20,10 +31,7 @@ namespace Z0.Mkl
             {
                 var x = RVecF32(DefaultSampleSize);
                 var y = RVecF32(DefaultSampleSize);
-                
-                var result = mkl.dot(x,y);
-                var expect = Linear.dot(x,y);
-                Claim.eq(result,expect);
+                Claim.eq(mkl.dot(x,y),dot(x,y));
             }
         }
 
@@ -33,10 +41,7 @@ namespace Z0.Mkl
             {
                 var x = RVecF32(DefaultSampleNat);
                 var y = RVecF32(DefaultSampleNat);
-                
-                var result = mkl.dot(x,y);
-                var expect = Linear.dot(x,y);
-                Claim.eq(result,expect);
+                Claim.eq(mkl.dot(x,y),dot(x,y));
             }
         }
 
@@ -46,10 +51,7 @@ namespace Z0.Mkl
             {
                 var x = RVecF64(DefaultSampleSize);
                 var y = RVecF64(DefaultSampleSize);
-                
-                var result = mkl.dot(x,y);
-                var expect = Linear.dot(x,y);
-                Claim.eq(result,expect);
+                Claim.eq(mkl.dot(x,y),dot(x,y));
             }
         }
 
@@ -58,11 +60,8 @@ namespace Z0.Mkl
             for(var i=0; i< DefaltCycleCount; i++)
             {
                 var x = RVecF64(DefaultSampleNat);
-                var y = RVecF64(DefaultSampleNat);
-                
-                var result = mkl.dot(x,y);
-                var expect = Linear.dot(x,y);
-                Claim.eq(result,expect);
+                var y = RVecF64(DefaultSampleNat);                
+                Claim.eq(mkl.dot(x,y),dot(x,y));
             }
         }
     }

@@ -24,8 +24,8 @@ namespace Z0.Test
                 var x = Random.BitMatrix4();
                 var y = Random.BitMatrix4();
 
-                var xBytes = x.Bytes().Replicate();
-                var yBytes = y.Bytes().Replicate();
+                var xBytes = x.Data.Replicate();
+                var yBytes = y.Data.Replicate();
                 var zBytes = gbits.xor(xBytes, yBytes);
                 var expect = BitMatrix4.Define(zBytes);
 
@@ -131,7 +131,7 @@ namespace Z0.Test
             {
                 var A = Random.BitMatrix<N32,uint>();
                 var B = Random.BitMatrix<N32,uint>();
-                var C1 = BitMatrix.And(in A, in B);
+                var C1 = BitMatrix.and(in A, in B);
                 var C2 = BitMatrix32.From(C1);
                 var C3 = BitMatrix32.From(A) & BitMatrix32.From(B);
                 Claim.yea(C2 == C3);                    
@@ -203,7 +203,7 @@ namespace Z0.Test
             {
                 var A = Random.BitMatrix<N64,ulong>();
                 var B = Random.BitMatrix<N64,ulong>();
-                var C1 = BitMatrix.And(in A, in B);
+                var C1 = BitMatrix.and(in A, in B);
                 var C2 = BitMatrix64.From(C1);
                 var C3 = BitMatrix64.From(A) & BitMatrix64.From(B);
                 Claim.yea(C2 == C3);                    

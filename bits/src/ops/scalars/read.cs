@@ -12,6 +12,46 @@ namespace Z0
     partial class Bits
     {         
 
+        [MethodImpl(Inline)]
+        public static Bit readbit(sbyte src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(byte src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(short src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(ushort src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(int src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(uint src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(long src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(ulong src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(float src, int pos)
+            => BitMask.test(src, pos);
+
+        [MethodImpl(Inline)]
+        public static Bit readbit(double src, int pos)
+            => BitMask.test(src, pos);
+
         /// <summary>
         /// Assigns the target bit with the value of the index-identified source bit
         /// </summary>

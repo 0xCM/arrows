@@ -72,6 +72,14 @@ namespace Z0
             return ref lhs;
         }
 
+        /// <summary>
+        /// Multiplies corresponding elements in left/right primal source spans and writes
+        /// the result to a caller-supplied target span
+        /// </summary>
+        /// <param name="lhs">The left primal span</param>
+        /// <param name="rhs">The right primal span</param>
+        /// <param name="dst">The target span</param>
+        /// <typeparam name="T">The span element type</typeparam>
         public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
         {

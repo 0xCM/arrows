@@ -9,7 +9,7 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
+    using System.Text;
     using static nfunc;
     using static zfunc;
 
@@ -114,6 +114,43 @@ namespace Z0
             where T : unmanaged    
                 => FileName.Define($" {fileId ?? "mat"}_{PrimalKinds.kind<T>()}[{nati<M>()}x{nati<N>()}].csv");
         
+        /// <summary>
+        /// Writes the matrix to a delimited file
+        /// </summary>
+        /// <param name="src">The source matrix</param>
+        /// <param name="dst">The target file</param>
+        /// <typeparam name="M">The natural row count type</typeparam>
+        /// <typeparam name="N">The natural column count type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void WriteTo<M,N,T>(BlockMatrix<M,N,T> src, FilePath dst, bool overwrite = true, TextFormat? fmt = null)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            var _fmt = fmt ?? TextFormat.Default;
+            var sep = _fmt.Delimiter;
+            var rows = nati<M>();
+            var cols = nati<N>();
+            var sb = new StringBuilder();                        
+            sb.AppendLine($"{_fmt.CommentPrefix} {typeof(T).Name}[{rows}x{cols}]");
+            if(_fmt.HasHeader)
+            {
+                for(var i = 0; i<cols; i++)
+                {
+                    sb.Append($"Col{i}");
+                    if(i != cols - 1)
+                        sb.Append(sep);
+                }
+                sb.AppendLine();
+            }
+            sb.Append(src.Format(sep));
+            
+            if(overwrite)
+                dst.Overwrite(sb.ToString());
+            else
+                dst.Append(sb.ToString());
+        }
+
         /// <summary>
         /// Reads a matrix from a delimited file
         /// </summary>

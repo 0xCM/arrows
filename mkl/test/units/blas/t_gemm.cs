@@ -15,6 +15,16 @@ namespace Z0.Mkl.Test
 
     public class t_gemm : UnitTest<t_gemm>
     {        
+        internal static void refmul<M,N,T>(BlockMatrix<M,N,T> A, BlockVector<N,T> B, BlockVector<M,T> X)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var m = nati<M>();
+            for(var i = 0; i< m; i++)
+                X[i] = t_dot.dot(A.GetRow(i), B);                    
+        }
+
         public void dot()
         {
             var v1 = Random.BlockVec<N256,double>();
@@ -24,6 +34,7 @@ namespace Z0.Mkl.Test
             var y = Dot(v1,v2).Round(4);
             Claim.eq(x,y);
         }
+
         
         public void gemm16i()
         {
@@ -247,7 +258,7 @@ namespace Z0.Mkl.Test
                 sw.Start();
                 mkl.gemv(A,x, ref y);                
                 sw.Stop();
-                MatrixRefOps.Mul(A,x,z);
+                refmul(A,x,z);
                 Claim.yea(z == y);
             }
 

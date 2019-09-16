@@ -150,7 +150,6 @@ namespace Z0
             return ref dst;
         }
 
-
         public static Vec256<byte> srl(in Vec256<byte> src, byte offset)
         {
             //Fan the hi/lo parts of the u8 source vector across 2 u16 vectors

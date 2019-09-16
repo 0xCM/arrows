@@ -11,7 +11,7 @@ namespace Z0
 
     using static zfunc;
     
-    partial class math
+    partial class Bits
     {
         /// <summary>
         /// Applies an logical rightwards shift to the source operand in-place

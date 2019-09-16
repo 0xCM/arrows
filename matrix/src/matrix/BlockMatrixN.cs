@@ -79,7 +79,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BlockMatrix<N,N,T>(BlockMatrix<N,T> src)
-            => src.ToRectantular();
+            => src.ToRectangular();
 
         [MethodImpl(Inline)]
         public static implicit operator Span<N,T>(BlockMatrix<N,T> src)
@@ -182,6 +182,7 @@ namespace Z0
             get => data;
         }
 
+
         /// <summary>
         /// Provides access to the underlying data as a span of natural dimensions
         /// </summary>
@@ -252,7 +253,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public BlockMatrix<N,N,T> ToRectantular()
+        public BlockMatrix<N,N,T> ToRectangular()
             => new BlockMatrix<N,N,T>(this.data);
 
         [MethodImpl(Inline)]

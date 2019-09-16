@@ -12,6 +12,7 @@ namespace Z0
     
     partial class Bits
     {         
+
         /// <summary>
         /// Populates a target span with 8 bits from the source
         /// </summary>
@@ -24,6 +25,7 @@ namespace Z0
                 read(in src, in i, out dst[i]);
             return dst; 
         }    
+
 
         /// <summary>
         /// Populates a target span with 16 bits from the source

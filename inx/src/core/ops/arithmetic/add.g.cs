@@ -76,25 +76,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                int8(lhs).AddSpans(int8(rhs), int8(dst));
+                dinx.add(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                uint8(lhs).AddSpans(uint8(rhs), uint8(dst));
+                dinx.add(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                int16(lhs).AddSpans(int16(rhs), int16(dst));
+                dinx.add(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                uint16(lhs).AddSpans(uint16(rhs), uint16(dst));
+                dinx.add(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                int32(lhs).AddSpans(int32(rhs), int32(dst));
+                dinx.add(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                uint32(lhs).AddSpans(uint32(rhs), uint32(dst));
+                dinx.add(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                int64(lhs).AddSpans(int64(rhs), int64(dst));
+                dinx.add(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                uint64(lhs).AddSpans(uint64(rhs), uint64(dst));
+                dinx.add(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                float32(lhs).AddSpans(float32(rhs), float32(dst));
+                dfp.add(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                float64(lhs).AddSpans(float64(rhs), float64(dst));
+                dfp.add(float64(lhs), float64(rhs), float64(dst));
             else    
                 throw unsupported<T>();
             return dst;        
@@ -105,25 +105,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                int8(lhs).AddSpans(int8(rhs), int8(dst));
+                dinx.add(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                uint8(lhs).AddSpans(uint8(rhs), uint8(dst));                    
+                dinx.add(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                int16(lhs).AddSpans(int16(rhs), int16(dst));
+                dinx.add(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                uint16(lhs).AddSpans(uint16(rhs), uint16(dst));
+                dinx.add(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                int32(lhs).AddSpans(int32(rhs), int32(dst));
+                dinx.add(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                uint32(lhs).AddSpans(uint32(rhs), uint32(dst));
+                dinx.add(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                int64(lhs).AddSpans(int64(rhs), int64(dst));
+                dinx.add(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                uint64(lhs).AddSpans(uint64(rhs), uint64(dst));
+                dinx.add(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                float32(lhs).AddSpans(float32(rhs), float32(dst));
+                dfp.add(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                float64(lhs).AddSpans(float64(rhs), float64(dst));                
+                dfp.add(float64(lhs), float64(rhs), float64(dst));
             else    
                 throw unsupported<T>();
             return dst;        
@@ -146,166 +146,6 @@ namespace Z0
             return ref z;
         }
 
-        static Span128<sbyte> AddSpans(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<byte> AddSpans(this ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, Span128<byte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<short> AddSpans(this ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, Span128<short> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<ushort> AddSpans(this ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, Span128<ushort> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<int> AddSpans(this ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<int> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<uint> AddSpans(this ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<uint> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<long> AddSpans(this ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, Span128<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<ulong> AddSpans(this ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, Span128<ulong> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<float> AddSpans(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span128<double> AddSpans(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<sbyte> AddSpans(this ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, Span256<sbyte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<byte> AddSpans(this ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, Span256<byte> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<short> AddSpans(this ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, Span256<short> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<ushort> AddSpans(this ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, Span256<ushort> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        static Span256<int> AddSpans(this ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<int> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<uint> AddSpans(this ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<uint> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<long> AddSpans(this ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, Span256<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<ulong> AddSpans(this ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, Span256<ulong> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<float> AddSpans(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
-
-        static Span256<double> AddSpans(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(add(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
-            return dst;            
-        }
- 
 
     }
 }
