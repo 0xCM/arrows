@@ -98,7 +98,7 @@ namespace Z0.Test
         public void absolute_index()
         {
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
-            var bvz = BitVector.FromCell(z,40);
+            var bvz = bitvector.from(z,40);
             Span<byte> xSrc =  BitConverter.GetBytes(z);
             var bvx = BitVector.Load(xSrc.Slice(0,5).ToArray());
             Claim.eq(gbits.pop(z), bvz.Pop());
@@ -110,7 +110,7 @@ namespace Z0.Test
 
         public void create_N12i32()
         {
-            var bv = BitVector.FromCell(0b101110001110, n12);
+            var bv = bitvector.from(0b101110001110, n12);
             Claim.eq(bv[0], Bit.Off);
             Claim.eq(bv[1], Bit.On);
             Claim.eq(bv[11], Bit.On);

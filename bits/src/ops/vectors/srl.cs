@@ -18,6 +18,48 @@ namespace Z0
     partial class Bits
     {   
         /// <summary>
+        /// Shifts each component of the source vector leftwards by a common number of bits
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="offset">The offset amount</param>
+        /// <remarks>See https://stackoverflow.com/questions/35002937/sse-simd-shift-with-one-byte-element-size-granularity
+        /// for a potentially better approach</remarks>
+        public static Vec128<byte> srl(in Vec128<byte> src, byte offset)
+        {
+            convert(in src, out Vec256<ushort> dst);
+            Span<ushort> data = stackalloc ushort[Vec256<ushort>.Length];
+            vstore(srl(dst, offset), ref data[0]);
+            var i = 0;
+            return Vec128.FromBytes(
+                (byte)data[i++], (byte)data[i++], (byte)data[i++], (byte)data[i++], 
+                (byte)data[i++], (byte)data[i++], (byte)data[i++], (byte)data[i++],
+                (byte)data[i++], (byte)data[i++], (byte)data[i++], (byte)data[i++],
+                (byte)data[i++], (byte)data[i++], (byte)data[i++], (byte)data[i++]
+            );
+        }
+
+        /// <summary>
+        /// Shifts each component of the source vector leftwards by a common number of bits
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="offset">The offset amount</param>
+        /// <remarks>See https://stackoverflow.com/questions/35002937/sse-simd-shift-with-one-byte-element-size-granularity
+        /// for a potentially better approach</remarks>
+        public static Vec128<sbyte> srl(in Vec128<sbyte> src, byte offset)
+        {
+            dinx.convert(in src, out Vec256<short> dst);
+            Span<short> data = stackalloc short[Vec256<short>.Length];
+            vstore(srl(dst, offset), ref data[0]);
+            var i = 0;
+            return Vec128.FromParts(
+                (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++], 
+                (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++],
+                (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++],
+                (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++], (sbyte)data[i++]
+            );
+        }
+
+        /// <summary>
         ///  __m128i _mm_srli_epi16 (__m128i a, int immediate) PSRLW xmm, imm8
         /// Shifts each component of the source vector leftwards by a common number of bits
         /// </summary>

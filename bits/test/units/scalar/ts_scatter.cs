@@ -15,7 +15,7 @@ namespace Z0.Test
     public class ts_scatter : UnitTest<ts_scatter>
     {        
         protected override int CycleCount
-            => Pow2.T13;
+            => Pow2.T14;
     
         public void scatter_8x8()
         {
@@ -37,6 +37,7 @@ namespace Z0.Test
         {
             scatter_bench<ushort>();
             scatter_bench_ref<ushort>();
+
         }
 
         public void scatter_32x32()
@@ -87,7 +88,7 @@ namespace Z0.Test
             var opcount = CycleCount * RoundCount;
             var size = bitsize<T>();
             var opname = $"scatter_{size}x{size}";
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<opcount; i++)
             {
                 var src = Random.Next<T>();
                 var mask = Random.Next<T>();

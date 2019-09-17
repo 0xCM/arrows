@@ -13,15 +13,7 @@ namespace Z0.Test
 
     public class tv_arrange : UnitTest<tv_arrange>
     {     
-        public void reverse_128_u8()
-        {
-            var v1 = Vec128Pattern.Increments<byte>(0);
-            var v2 = Vec128Pattern.Decrements<byte>(15);
-            var v4 = dinx.reverse(v1);
-            Claim.eq(v2,v4);
-        }
-
-        public void reverse_128_i16()
+        public void increments_128x16u()
         {
             var v1 = Vec128.Increments((ushort)0);
             var v2 = Vec128.Decrements((ushort)7);
@@ -29,12 +21,25 @@ namespace Z0.Test
             Claim.eq(v2,v3);
         }
 
-        public void reverse_128_i32()
+        public void increments_128x8u()
         {
-            var v = Vec128.FromParts(0,1,2,3);
-            var rvX = dinx.shuffle(v, 0b00_01_10_11);
-            var rvY = Vec128.FromParts(3,2,1,0);
-            Claim.eq(rvX,rvY);
+            var v1 = Vec128Pattern.Increments<byte>(0);
+            var v2 = Vec128Pattern.Decrements<byte>(15);
+            var v4 = dinx.reverse(v1);
+            Claim.eq(v2,v4);
+        }
+
+
+        public void arrange_128_i32()
+        {
+            var u = Vec128Pattern.Increments<int>();
+            Claim.eq(Vec128.FromParts(0,1,2,3), u);
+
+            var v = Vec128Pattern.Decrements<int>(3);
+            Claim.eq(Vec128.FromParts(3,2,1,0),v);
+
+            Claim.eq(v,Arrange.shuffle(u, Perm4.DCBA));
+            Claim.eq(u,Arrange.shuffle(v, Perm4.DCBA));
         }
 
         public void reverse_256_u8()

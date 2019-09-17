@@ -16,6 +16,16 @@ namespace Z0
 
     partial class dfp
     {
+        ///<summary>__m128 _mm_shuffle_ps (__m128 a, __m128 b, unsigned int control) SHUFPS xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
+            => Shuffle(lhs,rhs, control);
+
+        ///<summary>__m128d _mm_shuffle_pd (__m128d a, __m128d b, int immediate) SHUFPD xmm, xmm/m128, imm8</summary>
+        [MethodImpl(Inline)]
+        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
+            =>  Shuffle(lhs,rhs, control);
+
         ///<summary>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</summary>
         [MethodImpl(Inline)]
         public static Vec128<float> permute(in Vec128<float> value, byte control)
@@ -56,7 +66,6 @@ namespace Z0
         public static Vec256<double> permvar(Vec256<double> lhs, in Vec256<long> control)
             => PermuteVar(lhs, control);
 
-
         /// <summary>
         /// __m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256, imm8
         /// Permutes components in the source vector across lanes as specified by the control byte
@@ -66,16 +75,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> perm4x64(in Vec256<double> value, byte control)
             => Permute4x64(value,control); 
-
-        ///<summary>__m256 _mm256_unpackhi_ps (__m256 a, __m256 b) VUNPCKHPS ymm, ymm, ymm/m256</summary>
-        [MethodImpl(Inline)]
-        public static Vec256<float> hi(in Vec256<float> lhs, in Vec256<float> rhs)
-            => UnpackHigh(lhs,rhs);
-
-        ///<summary>__m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256</summary>
-        [MethodImpl(Inline)]
-        public static Vec256<double> hi(in Vec256<double> lhs, in Vec256<double> rhs)
-            => UnpackHigh(lhs,rhs);
 
         /// <summary>
         /// __m256 _mm256_blend_ps (__m256 a, __m256 b, const int imm8) VBLENDPS ymm, ymm, ymm/m256, imm8
@@ -89,7 +88,7 @@ namespace Z0
             => Blend(lhs,rhs,control);
 
         /// <summary>
-        /// _mm256_blend_pd
+        /// __m256d _mm256_blend_pd (__m256d a, __m256d b, const int imm8) VBLENDPD ymm, ymm, ymm/m256, imm8
         /// Produces a new vector by assembling components from two source vectors as specified by a control mask
         /// </summary>
         /// <param name="lhs">The left vector</param>
@@ -100,7 +99,7 @@ namespace Z0
             => Blend(lhs,rhs,control);
 
         /// <summary>
-        /// _mm256_blendv_ps
+        ///  __m256 _mm256_blendv_ps (__m256 a, __m256 b, __m256 mask) VBLENDVPS ymm, ymm,ymm/m256, ymm
         /// Produces a new vector by assembling components from two source vectors as specified by a control vector
         /// </summary>
         /// <param name="lhs">The left vector</param>
@@ -304,6 +303,102 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> insert(in Vec128<double> src, in Vec256<double> dst, byte index)        
             => InsertVector128(dst,src,index);
+
+        /// <summary>
+        /// __m128 _mm_unpacklo_ps (__m128 a, __m128 b) UNPCKLPS xmm, xmm/m128
+        /// Creates a 128-bit vector where the lower 64 bits are taken from the
+        /// lower 64 bits of the first source vector and the higher 64 bits are taken 
+        /// from the lower 64 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<float> unpacklo(in Vec128<float> lhs, in Vec128<float> rhs)
+            => UnpackLow(lhs,rhs);
+
+        /// <summary>
+        /// __m128d _mm_unpacklo_pd (__m128d a, __m128d b) UNPCKLPD xmm, xmm/m128
+        /// Creates a 128-bit vector where the lower 64 bits are taken from the
+        /// lower 64 bits of the first source vector and the higher 64 bits are taken 
+        /// from the lower 64 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> unpacklo(in Vec128<double> lhs, in Vec128<double> rhs)
+            => UnpackLow(lhs,rhs);
+
+        /// <summary>
+        /// __m256 _mm256_unpacklo_ps (__m256 a, __m256 b) VUNPCKLPS ymm, ymm, ymm/m256
+        /// Creates a 256-bit vector where the lower 128 bits are taken from the
+        /// lower 128 bits of the first source vector and the higher 128 bits are taken 
+        /// from the lower 128 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<float> unpacklo(in Vec256<float> lhs, in Vec256<float> rhs)
+            => UnpackLow(lhs,rhs);
+
+        /// <summary>
+        /// __m256d _mm256_unpacklo_pd (__m256d a, __m256d b) VUNPCKLPD ymm, ymm, ymm/m256
+        /// Creates a 256-bit vector where the lower 128 bits are taken from the
+        /// lower 128 bits of the first source vector and the higher 128 bits are taken 
+        /// from the lower 128 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<double> unpacklo(in Vec256<double> lhs, in Vec256<double> rhs)
+            => UnpackLow(lhs,rhs);
+ 
+         /// <summary>
+        /// __m128 _mm_unpackhi_ps (__m128 a, __m128 b) UNPCKHPS xmm, xmm/m128
+        /// Creates a 128-bit vector where the lower 64 bits are taken from the
+        /// higher 64 bits of the first source vector and the higher 64 bits are taken 
+        /// from the higher 64 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<float> unpackhi(in Vec128<float> lhs, in Vec128<float> rhs)
+            => UnpackHigh(lhs,rhs);
+
+        /// <summary>
+        /// __m128d _mm_unpackhi_pd (__m128d a, __m128d b) UNPCKHPD xmm, xmm/m128
+        /// Creates a 128-bit vector where the lower 64 bits are taken from the
+        /// higher 64 bits of the first source vector and the higher 64 bits are taken 
+        /// from the higher 64 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> unpackhi(in Vec128<double> lhs, in Vec128<double> rhs)
+            => UnpackHigh(lhs,rhs);
+
+        /// <summary>
+        /// __m256 _mm256_unpackhi_ps (__m256 a, __m256 b) VUNPCKHPS ymm, ymm, ymm/m256
+        /// Creates a 256-bit vector where the lower 128 bits are taken from the
+        /// higher 128 bits of the first source vector and the higher 128 bits are taken 
+        /// from the higher 128 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<float> unpackhi(in Vec256<float> lhs, in Vec256<float> rhs)
+            => UnpackHigh(lhs,rhs);
+
+        /// <summary>
+        /// __m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256
+        /// Creates a 256-bit vector where the lower 128 bits are taken from the
+        /// higher 128 bits of the first source vector and the higher 128 bits are taken 
+        /// from the higher 128 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<double> unpackhi(in Vec256<double> lhs, in Vec256<double> rhs)
+            => UnpackHigh(lhs,rhs);
 
     }
 }

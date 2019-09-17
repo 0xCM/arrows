@@ -45,26 +45,6 @@ namespace Z0
         }
 
 
-        /// <summary>
-        /// Extracts the lowest set bit from the source, if any, and is logically equivalent to
-        /// the composite operation (-src) & src
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static T blsi<T>(T src)
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.blsi(uint8(src)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.blsi(uint16(src)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.blsi(uint32(src)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.blsi(uint64(src)));
-            else            
-                throw unsupported<T>();
-        }           
 
         /// <summary>
         /// Sets all the lower bits of the result up to and including the lowest set bit in the source

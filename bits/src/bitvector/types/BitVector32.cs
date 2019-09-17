@@ -344,6 +344,14 @@ namespace Z0
         }
 
         /// <summary>
+        /// Assigns the bitvector a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public void assign(uint src)
+            => this.data = src;
+
+        /// <summary>
         /// Queries/Manipulates index-identified bits
         /// </summary>
         public Bit this[BitPos pos]

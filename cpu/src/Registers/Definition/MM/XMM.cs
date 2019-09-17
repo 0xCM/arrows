@@ -137,7 +137,6 @@ namespace Z0
             return dst;
         }
 
-
         /// <summary>
         /// Replaces the content of the target register with source vector content
         /// </summary>
@@ -366,7 +365,6 @@ namespace Z0
         public override int GetHashCode()
             => x0.GetHashCode() + x1.GetHashCode();
         
-
         [MethodImpl(Inline)]
         public ref sbyte int8(int index)
             => ref Cell<sbyte>(index);

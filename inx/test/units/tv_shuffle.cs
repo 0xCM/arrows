@@ -14,14 +14,31 @@ namespace Z0.Test
     
     public class tv_shuffle : UnitTest<tv_shuffle>
     {        
-        public void shuffle128u8()
+        public void shuffle_128x8u()
         {
             var mask = Vec128.Fill((byte)0b10000000);
             var src = Random.CpuVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
             var zed = Vec128.Fill((byte)0);            
-            Claim.eq(dst,zed);
-                            
+            Claim.eq(dst,zed);                        
+        }
+
+        public void shuffle_lo_128x16u()
+        {
+            var id = Vec128.FromParts(0,1,2,3,6,7,8,9);
+            Claim.eq(Arrange.shufflelo(id, Perm4.ADCB), Vec128.FromParts(0,3,2,1,6,7,8,9));
+        }
+
+        public void shuffle_hi_128x16u()
+        {
+            var id = Vec128.FromParts(0,1,2,3,6,7,8,9);
+            Claim.eq(Arrange.shufflehi(id, Perm4.ADCB), Vec128.FromParts(0,1,2,3,6,9,8,7));
+        }
+
+        public void shuffle_128x16u()
+        {
+            var id = Vec128.FromParts(0,1,2,3,6,7,8,9);
+            Claim.eq(Arrange.shuffle(id,Perm4.ADCB, Perm4.ADCB), Vec128.FromParts(0,3,2,1,6,9,8,7));
         }
 
         public void permute128i32()

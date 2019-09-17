@@ -232,7 +232,7 @@ namespace Z0
         /// Maps a permutation on 16 symbols to its canonical scalar representation
         /// </summary>
         /// <param name="src">The source permutation</param>
-        public static Perm16 ToScalar(this Perm<N16> src)
+        public static Perm16 ToEnum(this Perm<N16> src)
         {
             var dst = 0ul;            
             for(int i=0, offset = 0; i< src.Length; i++, offset +=3)
@@ -253,6 +253,13 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Returns the source enum's underlying scalar value
+        /// </summary>
+        /// <param name="src">The source enum value</param>
+        [MethodImpl]
+        public static ulong ToScalar(this Perm16 src)
+            => (ulong)src;
         
 
     }

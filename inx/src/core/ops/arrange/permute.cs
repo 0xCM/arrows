@@ -47,6 +47,7 @@ namespace Z0
             return or(in s1,in s2);
         }
 
+
         /// <summary>
         /// Rearranges the components of the source vector according to an identified permutation
         /// </summary>
@@ -105,7 +106,13 @@ namespace Z0
         public static Vec256<float> perm2x128(in Vec256<float> lhs, in Vec256<float> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
-        ///<summary>__m256d _mm256_permute2f128_pd (__m256d a, __m256d b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</summary>
+        /// <summary>
+        /// __m256d _mm256_permute2f128_pd (__m256d a, __m256d b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec256<double> perm2x128(in Vec256<double> lhs, in Vec256<double> rhs, byte control)
             => Permute2x128(lhs,rhs,control); 

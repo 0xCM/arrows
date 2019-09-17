@@ -15,7 +15,6 @@ namespace Z0
 
     partial class dfp
     {
-
         /// <summary>
         /// __m128 _mm_sub_ss (__m128 a, __m128 b) SUBSS xmm, xmm/m32
         /// </summary>

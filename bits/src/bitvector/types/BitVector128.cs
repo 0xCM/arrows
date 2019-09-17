@@ -469,6 +469,17 @@ namespace Z0
         }
 
         /// <summary>
+        /// Assigns the bitvector a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public void assign(ulong x0, ulong x1)
+        {
+            this.x0 = x0;
+            this.x1 = x1;
+        }
+
+        /// <summary>
         /// The vector's 64 least significant bits
         /// </summary>
         public readonly BitVector64 Lo

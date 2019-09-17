@@ -14,67 +14,6 @@ namespace Z0
 
     public static class BitVector
     {   
-        /// <summary>
-        /// Defines an 4-bit bitvector from a 4-bit unsigned integer
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector4 FromScalar(UInt4 src)
-            => src;
-
-        /// <summary>
-        /// Defines an 8-bit bitvector from an 8-bit unsigned integer
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector8 FromScalar(byte src)
-            => src;
-
-        /// <summary>
-        /// Defines a 16-bit bitvector from a 16-bit unsigned integer
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 FromScalar(ushort src)
-            => src;
-
-        /// <summary>
-        /// Defines a 32-bit bitvector from a 32-bit unsigned integer
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 FromScalar(uint src)
-            => src;
-
-        /// <summary>
-        /// Defines a 64-bit bitvector from a 64-bit unsigned integer
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 FromScalar(ulong src)
-            => src;
-
-        /// <summary>
-        /// Creates a generic bitvector of natural length from a single cell
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <param name="n">The bitvector length</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitVector<N,T> FromCell<N,T>(T src, N n = default)        
-            where N : ITypeNat, new()
-            where T : unmanaged
-                => BitVector<N,T>.FromCell(src);
-
-        /// <summary>
-        /// Creates a generic bitvector from a single cell subject to an optionally-specified length
-        /// </summary>
-        /// <param name="src">The source segment</param>
-        /// <param name="n">The bitvector length</param>
-        [MethodImpl(Inline)]
-        public static BitVector<T> FromCell<T>(T src, BitSize? n = null)
-            where T : unmanaged
-                => BitVector<T>.FromCell(src,n);
 
         /// <summary>
         /// Allocates a generic bitvector of natural length

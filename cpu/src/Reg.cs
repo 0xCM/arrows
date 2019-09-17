@@ -13,11 +13,8 @@ namespace Z0
 
     using static zfunc;
 
-
     public static partial class Reg
     {
-
-
         /// <summary>
         /// Presents a source register as a 128-bit cpu vector
         /// </summary>
@@ -45,7 +42,7 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref XMM transfer<T>(Vector128<T> src, ref XMM dst)
+        public static ref XMM move<T>(Vector128<T> src, ref XMM dst)
             where T : unmanaged
                 => ref XMM.Assign(src, ref dst);
 
@@ -56,7 +53,7 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref XMEM transfer<T>(Vector128<T> src, ref XMEM dst)
+        public static ref XMEM move<T>(Vector128<T> src, ref XMEM dst)
             where T : unmanaged
                 => ref XMEM.Assign(src, ref dst);
 
@@ -67,7 +64,7 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref YMM transfer<T>(Vector256<T> src, ref YMM dst)
+        public static ref YMM move<T>(Vector256<T> src, ref YMM dst)
             where T : unmanaged
                 => ref YMM.Assign(src, ref dst);
 
@@ -78,7 +75,7 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref YMEM transfer<T>(Vector256<T> src, ref YMEM dst)
+        public static ref YMEM move<T>(Vector256<T> src, ref YMEM dst)
             where T : unmanaged
                 => ref YMEM.Assign(src, ref dst);
 

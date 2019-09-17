@@ -37,14 +37,6 @@ namespace Z0
             where T : struct
                => ref gmath.and(ref lhs, in rhs);
 
-        /// <summary>
-        /// Computes the bitwise AND of two primal operands and stores the 
-        /// result in a specified target
-        /// </summary>
-        /// <param name="lhs">The left operand</param>
-        /// <param name="rhs">The right operand</param>
-        /// <param name="dst">The target</param>
-        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref T and<T>(in T lhs, in T rhs, ref T dst)
             where T : struct
@@ -73,7 +65,7 @@ namespace Z0
                 throw unsupported<T>();
             return ref dst;
         }
-    
+
 
         /// <summary>
         /// Computes the bitwise complement of a primal source operand
@@ -204,7 +196,7 @@ namespace Z0
             var dst = new T[math.max(lhs.Length, rhs.Length)];
             var len = math.min(lhs.Length, rhs.Length);
             for(var i=0; i<len; i++)
-                and(in lhs[i],in rhs[i], ref dst[i]);
+                and(in lhs[i], in rhs[i], ref dst[i]);
             return dst;
         }
 

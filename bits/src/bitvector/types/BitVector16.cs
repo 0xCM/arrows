@@ -292,6 +292,14 @@ namespace Z0
             => this.data = src;
 
         /// <summary>
+        /// Assigns the bitvector a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public void assign(ushort src)
+            => this.data = src;
+
+        /// <summary>
         /// Gets/Sets an identified bit
         /// </summary>
         public Bit this[BitPos pos]

@@ -14,6 +14,79 @@ namespace Z0
     partial class Bits
     {
         /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static sbyte srl(sbyte src, int offset)
+            => (sbyte)(math.abs(ref src) >> offset);
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static byte srl(byte src, int offset)
+            => (byte)(src >> offset);
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static short srl(short src, int offset)
+            => (short)(math.abs(ref src) >> offset);
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static ushort srl(ushort src, int offset)
+            => (ushort)(src >> offset);
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static int srl(int src, int offset)
+            => math.abs(ref src) >> offset;
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static uint srl(uint src, int offset)
+            => src >> offset;
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static long srl(long src, int offset)
+            => math.abs(ref src) >> offset;
+
+        /// <summary>
+        /// Applies a logical right shift to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The number of bits to shift rightwards</param>
+        [MethodImpl(Inline)]
+        public static ulong srl(ulong src, int offset)
+            => src >> offset;
+
+
+        /// <summary>
         /// Applies an logical rightwards shift to the source operand in-place
         /// </summary>
         /// <param name="src">The source operand</param>

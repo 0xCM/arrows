@@ -25,7 +25,7 @@ namespace Z0
         /// <remarks>See https://www.felixcloutier.com/x86/movdqa:vmovdqa32:vmovdqa64</remarks>
         [MethodImpl(Inline)]
         public unsafe static ref XMM movdqa(in XMM src, ref XMM dst)
-            => ref transfer(load128(in src.First<ulong>()), ref dst);
+            => ref move(load128(in src.First<ulong>()), ref dst);
         
         /// <summary>
         /// MOVDQA xmm, m128
@@ -35,7 +35,7 @@ namespace Z0
         /// <remarks>See https://www.felixcloutier.com/x86/movdqa:vmovdqa32:vmovdqa64</remarks>
         [MethodImpl(Inline)]
         public unsafe static ref XMEM movdqa(in XMM src, ref XMEM dst)
-            => ref transfer(load128(in src.First<ulong>()), ref dst);
+            => ref move(load128(in src.First<ulong>()), ref dst);
 
         /// <summary>
         /// VMOVDQA ymm, m256
@@ -45,7 +45,7 @@ namespace Z0
         /// <remarks>See https://www.felixcloutier.com/x86/movdqa:vmovdqa32:vmovdqa64</remarks>
         [MethodImpl(Inline)]
         public unsafe static ref YMM vmovdqa(in YMM src, ref YMM dst)
-            => ref transfer(load256(in src.First<ulong>()), ref dst);
+            => ref move(load256(in src.First<ulong>()), ref dst);
         
         /// <summary>
         /// VMOVDQA ymm, m256
@@ -55,7 +55,7 @@ namespace Z0
         /// <remarks>See https://www.felixcloutier.com/x86/movdqa:vmovdqa32:vmovdqa64</remarks>
         [MethodImpl(Inline)]
         public unsafe static ref YMEM vmovdqa(in YMM src, ref YMEM dst)
-            => ref transfer(load256(in src.First<ulong>()), ref dst);
+            => ref move(load256(in src.First<ulong>()), ref dst);
 
         /// <summary>
         /// __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128

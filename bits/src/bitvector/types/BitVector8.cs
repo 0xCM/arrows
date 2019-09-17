@@ -309,8 +309,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector8(byte src)
             : this()
-            => this.data = src;        
+                => this.data = src;        
 
+        /// <summary>
+        /// Assigns the bitvector a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public void assign(byte src)
+            => this.data = src;
+        
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]

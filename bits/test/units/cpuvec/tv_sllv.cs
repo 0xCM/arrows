@@ -17,16 +17,16 @@ namespace Z0.Test
 
         public void Nonzero()
         {
-            Claim.yea(gbits.nonzero(Vec256.FromParts(1ul, 2ul, 3ul, 4ul)));
-            Claim.yea(gbits.nonzero(Vec256.FromParts(1ul, 0ul, 0ul, 0ul)));
-            Claim.nea(gbits.nonzero(Vec256.FromParts(0ul, 0ul, 0ul, 0ul)));
+            Claim.yea(gbits.nonz(Vec256.FromParts(1ul, 2ul, 3ul, 4ul)));
+            Claim.yea(gbits.nonz(Vec256.FromParts(1ul, 0ul, 0ul, 0ul)));
+            Claim.nea(gbits.nonz(Vec256.FromParts(0ul, 0ul, 0ul, 0ul)));
 
-            Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 2u, 3u, 4u)));
-            Claim.yea(gbits.nonzero(Vec128.FromParts(1u, 0u, 0u, 0u)));
-            Claim.nea(gbits.nonzero(Vec128.FromParts(0u, 0u, 0u, 0u)));
+            Claim.yea(gbits.nonz(Vec128.FromParts(1u, 2u, 3u, 4u)));
+            Claim.yea(gbits.nonz(Vec128.FromParts(1u, 0u, 0u, 0u)));
+            Claim.nea(gbits.nonz(Vec128.FromParts(0u, 0u, 0u, 0u)));
         }
 
-        public void sllv256u32()
+        public void sllv_256x32u()
         {
             var src = Random.CpuVec256<uint>();
             var shifts = Random.CpuVec256<uint>(closed(1u,7u));  
@@ -41,7 +41,7 @@ namespace Z0.Test
             Claim.eq(v1,v2);            
         }
         
-        public void sslv128u32()
+        public void sslv_128x32u()
         {
             var src = Random.CpuVec128<uint>();
             var shifts = Random.CpuVec128<uint>(closed(1u,7u));            
@@ -56,7 +56,7 @@ namespace Z0.Test
             Claim.eq(v1,v2);            
         }
 
-        public void sllv128u64()
+        public void sllv_128x64u()
         {
             var src = Random.CpuVec128<ulong>();
             var shifts = Random.CpuVec128<ulong>(closed(1ul,7ul));            
@@ -71,7 +71,7 @@ namespace Z0.Test
             Claim.eq(v1,v2);            
         }
 
-        public void sllv256u64()
+        public void sllv_256x64()
         {
             var src = Random.CpuVec256<ulong>();
             var shifts = Random.CpuVec256<ulong>(closed(1ul,7ul));            

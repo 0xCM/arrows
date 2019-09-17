@@ -8,37 +8,37 @@ namespace Z0
     [Flags]
     public enum Perm16 : ulong
     {
-        X0 = 0,
+        X0 = 0b0000,
         
-        X1 =  1,
+        X1 = 0b0001,
         
-        X2 =  2,
+        X2 = 0b0010,
 
-        X3 = 3,
+        X3 = 0b0011,
 
-        X4 = 4,
+        X4 = 0b0100,
 
-        X5 = 5,
+        X5 = 0b0101,
 
-        X6 = 6,
+        X6 = 0b0110,
 
-        X7 = 7,
+        X7 = 0b0111,
 
-        X8 = 8,
+        X8 = X1 << 3,
 
-        X9 = 9,
+        X9 = X8 | X1,
 
-        XA = 10,
+        XA = X8 | X2,
 
-        XB = 11,
+        XB = X8 | X3,
 
-        XC = 12,
+        XC = X8 | X4,
 
-        XD = 13,
+        XD = X8 | X5,
 
-        XE = 14,
+        XE = X8 | X6,
 
-        XF = 15,
+        XF = X8 | X7,
 
         /// <summary>
         /// Represents the 16 symbol identity permutation

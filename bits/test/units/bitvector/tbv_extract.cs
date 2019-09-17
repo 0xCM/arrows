@@ -103,7 +103,7 @@ namespace Z0.Test
             Claim.eq(40, bvy.Length);
 
             ulong z = 0b0101100010011101101000111001010111010110;           
-            var bvz = BitVector.FromCell(z,40);
+            var bvz = bitvector.from(z,40);
             Claim.eq(40, bvz.Length);
 
             var bsy = bvy.ToBitString().Format(true);
@@ -140,7 +140,7 @@ namespace Z0.Test
         {
 
             ulong z = 0b01011_00010_01110_11010_00111_00101_01110_10110;           
-            var bvz = BitVector.FromCell(z,40);
+            var bvz = bitvector.from(z,40);
             Span<byte> xSrc =  ByteSpan.FromValue(z);
             Span<ushort> ySrc = xSrc.AsUInt16();
             Claim.eq(ySrc.Length*2, xSrc.Length);

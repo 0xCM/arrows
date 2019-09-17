@@ -69,15 +69,15 @@ namespace Z0
         {
             var loMask = Vec256.Fill(LoMask64);    
             ref var xl = ref dinx.and(x, loMask).As(out Vec256<uint> _);
-            ref var xh = ref dinx.srli(x, 32).As(out Vec256<uint> _);
+            ref var xh = ref dinx.srl(x, 32).As(out Vec256<uint> _);
             ref var yl = ref dinx.and(y, loMask).As(out Vec256<uint> _);
-            ref var yh = ref dinx.srli(y, 32).As(out Vec256<uint> _);
+            ref var yh = ref dinx.srl(y, 32).As(out Vec256<uint> _);
 
             var xh_yl = dinx.mul(in xh, in yl);
-            var hl = dinx.slli(in xh_yl, 32);
+            var hl = dinx.sll(in xh_yl, 32);
 
             var xh_mh = dinx.mul(in xh, yh);
-            var lh = dinx.slli(in xh_mh, 32);
+            var lh = dinx.sll(in xh_mh, 32);
 
             var xl_yl = dinx.mul(in xl, in yl);
 

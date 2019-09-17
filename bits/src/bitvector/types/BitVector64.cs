@@ -356,8 +356,15 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public BitVector64(in ulong data)
-            : this()
-                => this.data = data;
+            : this() => this.data = data;
+
+        /// <summary>
+        /// Assigns the bitvector a specified value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public void assign(ulong src)
+            => this.data = src;
 
         /// <summary>
         /// Reads/Manipulates a source bit at a specified position

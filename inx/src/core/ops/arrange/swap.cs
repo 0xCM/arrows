@@ -58,6 +58,45 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
+        public static Vec256<sbyte> swaphl(in Vec256<sbyte> src)
+        {
+            Vec256<sbyte> dst = default;
+            dst = insert(extract128(src, 1), dst, 0);
+            dst = insert(extract128(src, 0), dst, 1);
+            return dst;         
+        }
+
+        /// <summary>
+        /// Swaps hi/lo 128-bit lanes
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<short> swaphl(in Vec256<short> src)
+        {
+            Vec256<short> dst = default;
+            dst = insert(extract128(src, 1), dst, 0);
+            dst = insert(extract128(src, 0), dst, 1);
+            return dst;         
+        }
+
+        /// <summary>
+        /// Swaps hi/lo 128-bit lanes
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> swaphl(in Vec256<ushort> src)
+        {
+            Vec256<ushort> dst = default;
+            dst = insert(extract128(src, 1), dst, 0);
+            dst = insert(extract128(src, 0), dst, 1);
+            return dst;         
+        }
+
+        /// <summary>
+        /// Swaps hi/lo 128-bit lanes
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
         public static Vec256<long> swaphl(in Vec256<long> src)
             => Permute4x64(src,MSwapHiLo);
 

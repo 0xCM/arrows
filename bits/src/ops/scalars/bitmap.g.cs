@@ -14,6 +14,7 @@ namespace Z0
 
     partial class gbits
     {
+        
         /// <summary>
         /// Projects a contiguous sequence of bits from a source value into a target value
         /// </summary>

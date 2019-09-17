@@ -1052,8 +1052,28 @@ namespace Z0
         /// <param name="i0">The bit position within the source where extraction should begin</param>
         /// <param name="i1">The bit position within the source where extraction should end</param>
         [MethodImpl(Inline)]
+        public static sbyte between(in sbyte src, BitPos i0, BitPos i1)        
+            => (sbyte)between((byte)src, i0, i1);
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
         public static ushort between(in ushort src, BitPos i0, BitPos i1)        
             => (ushort)Bmi1.BitFieldExtract(src, i0, (byte)(i1 - i0));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static short between(in short src, BitPos i0, BitPos i1)        
+            => (short)between((ushort)src, i0, i1);
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source inclusively between two index positions
@@ -1072,8 +1092,48 @@ namespace Z0
         /// <param name="i0">The bit position within the source where extraction should begin</param>
         /// <param name="i1">The bit position within the source where extraction should end</param>
         [MethodImpl(Inline)]
+        public static int between(in int src, BitPos i0, BitPos i1)        
+            => (int)between((uint)src, i0, i1);
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
         public static ulong between(in ulong src, BitPos i0, BitPos i1)
             => Bmi1.X64.BitFieldExtract(src, i0, (byte)(i1 - i0));            
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static long between(in long src, BitPos i0, BitPos i1)        
+            => (long)between((long)src, i0, i1);
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static float between(in float src, BitPos i0, BitPos i1)        
+            => BitConverter.Int32BitsToSingle(between(BitConverter.SingleToInt32Bits(src), i0, i1));
+
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source inclusively between two index positions
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="i0">The bit position within the source where extraction should begin</param>
+        /// <param name="i1">The bit position within the source where extraction should end</param>
+        [MethodImpl(Inline)]
+        public static double between(in double src, BitPos i0, BitPos i1)        
+            => BitConverter.Int64BitsToDouble(between(BitConverter.DoubleToInt64Bits(src), i0, i1));
 
     }   
 }

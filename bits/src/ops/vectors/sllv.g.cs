@@ -60,49 +60,7 @@ namespace Z0
                 throw unsupported<S>();
         }
 
-        [MethodImpl(Inline)]
-        public static Vec256<T> sll<T>(in Vec256<T> lhs, byte offset)
-            where T : unmanaged
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.sll(in uint8(in lhs), offset));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.sll(in int16(in lhs), offset));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.sll(in uint16(in lhs), offset));
-            if(typeof(T) == typeof(int))
-                return generic<T>(Bits.sll(in int32(in lhs), offset));
-            else if(typeof(T) == typeof(uint)) 
-                return generic<T>(Bits.sll(in uint32(in lhs), offset));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.sll(in int64(lhs), offset));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.sll(in uint64(lhs), offset));
-            else
-                throw unsupported<T>();
-        }
 
-        [MethodImpl(Inline)]
-        public static Vec256<T> srl<T>(in Vec256<T> lhs, byte offset)
-            where T : unmanaged
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.srl(in uint8(in lhs), offset));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.srl(in int16(in lhs), offset));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.srl(in uint16(in lhs), offset));
-            if(typeof(T) == typeof(int))
-                return generic<T>(Bits.srl(in int32(in lhs), offset));
-            else if(typeof(T) == typeof(uint)) 
-                return generic<T>(Bits.srl(in uint32(in lhs), offset));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.srl(in int64(lhs), offset));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.srl(in uint64(lhs), offset));
-            else
-                throw unsupported<T>();
-        }
 
         public static Span256<T> sll<T>(ReadOnlySpan256<T> lhs, byte offset, Span256<T> dst)
             where T : unmanaged

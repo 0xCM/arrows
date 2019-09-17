@@ -451,5 +451,124 @@ namespace Z0
             Select = Part0 | Part1 | Part2 | Part3 | Part4 | Part5 | Part6 | Part7
         }
  
+
+        /// <summary>
+        /// Partitions a 64-bit container into 16 4-bit segments
+        /// </summary>
+        [Flags]
+        public enum Part64x4 : ulong
+        {
+            /// <summary>
+            /// The total count of partitioned bits
+            /// </summary>
+            Length = 64,
+
+            /// <summary>
+            /// The partition width
+            /// </summary>
+            Width = 4,
+
+            /// <summary>
+            /// The partition count
+            /// </summary>
+            Count = Length/Width,
+
+            /// <summary>
+            /// Specifies partition 0
+            /// </summary>
+            Part0 = Part4x1.Select,
+            
+            /// <summary>
+            /// Specifies partition 2
+            /// </summary>
+            Part1 = Part0 << (int)Width,
+
+
+            /// <summary>
+            /// Specifies partition 2
+            /// </summary>
+            Part2 = Part1 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 3
+            /// </summary>
+            Part3 = Part2 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 4
+            /// </summary>
+            Part4 = Part3 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 5
+            /// </summary>
+            Part5 = Part4 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 6
+            /// </summary>
+            Part6 = Part5 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 7
+            /// </summary>
+            Part7 = Part6 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 8
+            /// </summary>
+            Part8 = Part7 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 9
+            /// </summary>
+            Part9 = Part8 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 10
+            /// </summary>
+            Part10 = Part9 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 11
+            /// </summary>
+            Part11 = Part10 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 12
+            /// </summary>
+            Part12 = Part11 << (int)Width,
+
+             /// <summary>
+             /// Specifies partition 13
+            /// </summary>
+            Part13 = Part12 << (int)Width,
+
+             /// <summary>
+            /// Specifies partition 14
+            /// </summary>
+            Part14 = Part13 << (int)Width,
+
+            /// <summary>
+            /// Specifies partition 15
+            /// </summary>
+            Part15 = Part14 << (int)Width,
+
+            /// <summary>
+            /// Identifies the first partition
+            /// </summary>
+            First = Part0,
+
+            /// <summary>
+            /// Identifies the last partition
+            /// </summary>
+            Last = Part15,
+
+            /// <summary>
+            /// Selects all container bits
+            /// </summary>
+            Select = Part0 | Part1 | Part2 | Part3 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9 | Part10 | Part11 | Part12 | Part13 | Part14 | Part15
+        }
+
     }
 }

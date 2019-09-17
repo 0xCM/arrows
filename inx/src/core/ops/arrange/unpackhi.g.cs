@@ -15,12 +15,12 @@ namespace Z0
     partial class ginx
     {
         /// <summary>
-        /// Extracts the hi 64 bits from each operand and forms a new 128-bit vector
-        /// from the extracted data
+        /// Creates a 128-bit vector where the lower 64 bits are taken from the
+        /// higher 64 bits of the first source vector and the higher 64 bits are taken 
+        /// from the higher 64 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
-        /// <typeparam name="T">The primal component type</typeparam>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
         [MethodImpl(Inline)]
         public static Vec128<T> unpackhi<T>(in Vec128<T> lhs, in Vec128<T> rhs)        
             where T : struct
@@ -42,14 +42,22 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.unpackhi(in uint64(in lhs), in uint64(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.unpackhi(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.unpackhi(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.unpackhi(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.unpackhi(in float64(in lhs), in float64(in rhs)));
             else
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
+        /// <summary>
+        /// __m256i _mm256_unpackhi_epi32 (__m256i a, __m256i b) VPUNPCKHDQ ymm, ymm, ymm/m256
+        /// Creates a 256-bit vector where the lower 128 bits are taken from the
+        /// higher 128 bits of the first source vector and the higher 128 bits are taken 
+        /// from the higher 128 bits of the second source vector
+        /// </summary>
+        /// <param name="lhs">The left source vector</param>
+        /// <param name="rhs">The right source vector</param>
+       [MethodImpl(Inline)]
         public static Vec256<T> unpackhi<T>(in Vec256<T> lhs, in Vec256<T> rhs)        
             where T : struct
         {
@@ -70,9 +78,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.unpackhi(in uint64(in lhs), in uint64(in rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.hi(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.unpackhi(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.hi(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.unpackhi(in float64(in lhs), in float64(in rhs)));
             else
                 throw unsupported<T>();
         }

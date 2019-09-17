@@ -52,14 +52,6 @@ namespace Z0
             => Xor(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> xor(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Xor(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static Vec128<double> xor(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Xor(lhs, rhs);
-
-        [MethodImpl(Inline)]
         public static Vec256<byte> xor(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => Xor(lhs, rhs);
 
@@ -90,14 +82,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => Xor(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> xor(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Xor(lhs, rhs);
-        
-        [MethodImpl(Inline)]
-        public static Vec256<double> xor(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Xor(lhs, rhs);
-    }
+   }
 
 }

@@ -31,7 +31,7 @@ namespace Z0
             dst = ConvertToVector128Int16(src);
             return ref dst;
         }
-        
+
         /// <summary>
         /// __m128i _mm_cvtepi8_epi32 (__m128i a) PMOVSXBD xmm, xmm/m32
         /// </summary>
@@ -44,7 +44,7 @@ namespace Z0
             dst = ConvertToVector128Int32(src);
             return ref dst;
         }
-        
+
         /// <summary>
         /// __m128i _mm_cvtepi8_epi64 (__m128i a) PMOVSXBQ xmm, xmm/m16
         /// Sign-extends packed 8-bit integers in the low 8 bytes of the source vector to packed 
@@ -71,7 +71,6 @@ namespace Z0
             dst = ConvertToVector128Int16(src);
             return ref dst;
         }
-
             
         /// <summary>
         /// __m128i _mm_cvtepu8_epi32 (__m128i a) PMOVZXBD xmm, xmm/m32
@@ -79,25 +78,11 @@ namespace Z0
         /// <param name="src"></param>
         /// <param name="dst"></param>
         /// <returns></returns>
-        /*
-        FOR j := 0 to 3
-            i := 32*j
-            k := 8*j
-            dst[i+31:i] := ZeroExtend(a[k+7:k])
-        ENDFOR        
-         */
         [MethodImpl(Inline)]
         public static ref Vec128<int> convert(in Vec128<byte> src, out Vec128<int> dst)
         {
             dst = ConvertToVector128Int32(src);
             return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref Vec128<uint> convert(in Vec128<byte> src, out Vec128<uint> dst)
-        {
-            dst = convert(in src, out Vec128<int> _).As<uint>();   
-            return ref dst;            
         }
 
         /// <summary>
@@ -113,12 +98,20 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>__m128i _mm_cvtepi16_epi32 (__m128i a) PMOVSXWD xmm, xmm/m64</summary>
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi32 (__m128i a) PMOVSXWD xmm, xmm/m64
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
         [MethodImpl(Inline)]
         public static Vec128<int> convert(in  Vec128<short> src, out Vec128<int> dst)
             => dst = ConvertToVector128Int32(src);
 
-        /// <summary></summary>
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi64 (__m128i a) PMOVSXWQ xmm, xmm/m32
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<short> src, out Vec128<long> dst)
         {
@@ -126,7 +119,11 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary> __m128i _mm_cvtepu16_epi32 (__m128i a) PMOVZXWD xmm, xmm/m64 </summary>
+        /// <summary>
+        /// __m128i _mm_cvtepu16_epi32 (__m128i a) PMOVZXWD xmm, xmm/m64
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
         [MethodImpl(Inline)]
         public static ref Vec128<int> convert(in Vec128<ushort> src, out Vec128<int> dst)
         {
@@ -134,7 +131,12 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary></summary>
+        /// <summary>
+        ///  __m128i _mm_cvtepu16_epi64 (__m128i a) PMOVZXWQ xmm, xmm/m32
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<ushort> src, out Vec128<long> dst)
         {
@@ -150,7 +152,11 @@ namespace Z0
            return ref dst;
         }
 
-        /// <summary> __m128i _mm_cvtepu32_epi64 (__m128i a) PMOVZXDQ xmm, xmm/m64</summary>
+        /// <summary>
+        /// __m128i _mm_cvtepu32_epi64 (__m128i a) PMOVZXDQ xmm, xmm/m64
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
         [MethodImpl(Inline)]
         public static ref Vec128<long> convert(in Vec128<uint> src, out Vec128<long> dst)
         {
@@ -158,19 +164,12 @@ namespace Z0
            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static ref Vec128<ulong> convert(in Vec128<uint> src, out Vec128<ulong> dst)
-        {
-            dst = convert(in src, out Vec128<long> _).As<ulong>();
-            return ref dst;
-        }
-
         /// <summary>
+        /// __m256i _mm256_cvtepi8_epi16 (__m128i a) VPMOVSXBW ymm, xmm/m128
         /// Sign-extends packed 8-bit integers in the source vector to packed 16-bit integers in the target vector  
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepi8_epi16 (__m128i a) VPMOVSXBW ymm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static ref Vec256<short> convert(in Vec128<sbyte> src, out Vec256<short> dst)
         {
@@ -178,7 +177,9 @@ namespace Z0
             return ref dst;
         }
 
+
         /// <summary>
+        /// __m256i _mm256_cvtepi8_epi32 (__m128i a) VPMOVSXBD ymm, xmm/m128
         /// Sign-extends packed 8-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -190,7 +191,11 @@ namespace Z0
             return ref dst;
         }
 
-        /// <summary>__m256i _mm256_cvtepi8_epi64 (__m128i a) VPMOVSXBQ ymm, xmm/m128</summary>
+        /// <summary>
+        /// __m256i _mm256_cvtepi8_epi64 (__m128i a) VPMOVSXBQ ymm, xmm/m128
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<sbyte> src, out Vec256<long> dst)
         {
@@ -199,11 +204,11 @@ namespace Z0
         }
         
         /// <summary>
+        /// __m256i _mm256_cvtepu8_epi16 (__m128i a) vpmovzxbw ymm, xmm
         /// Zero extends packed unsigned 8-bit integers in the source vector to packed 16-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepu8_epi16 (__m128i a) </summary>
         [MethodImpl(Inline)]
         public static ref Vec256<short> convert(in Vec128<byte> src, out Vec256<short> dst)
         {
@@ -212,11 +217,11 @@ namespace Z0
         }
 
         /// <summary>
+        /// __m256i _mm256_cvtepu8_epi32 (__m128i a) vpmovzxbd ymm, xmm
         /// Zero extends packed unsigned 8-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepu8_epi32 (__m128i a) </summary>
         [MethodImpl(Inline)]
         public static ref Vec256<int> convert(in Vec128<byte> src, out Vec256<int> dst)
         {
@@ -225,11 +230,11 @@ namespace Z0
         }
 
         /// <summary>
+        /// __m256i _mm256_cvtepu8_epi64 (__m128i a) vpmovzxbq ymm, xmm
         /// Zero-extends packed unsigned 8-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepu8_epi64 (__m128i a) </summary>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<byte> src, out Vec256<long> dst)
         {
@@ -238,6 +243,7 @@ namespace Z0
         }
 
         /// <summary>
+        /// __m256i _mm256_cvtepi16_epi32 (__m128i a) vpmovsxwd ymm, xmm
         /// Sign-extends packed 16-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
@@ -250,11 +256,11 @@ namespace Z0
         }
 
         /// <summary>
+        /// __m256i _mm256_cvtepi32_epi64 (__m128i a) VPMOVSXDQ ymm, xmm/m128
         /// Sign-extends packed 32-bit integers in the source vector to packed 32-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepi32_epi64 (__m128i a) VPMOVSXDQ ymm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<int> src, out Vec256<long> dst)
         {
@@ -263,11 +269,11 @@ namespace Z0
         }
 
         /// <summary>
+        /// __m256i _mm256_cvtepi16_epi64 (__m128i a) VPMOVSXDQ ymm, xmm/m128
         /// Sign-extends packed 16-bit integers in the source vector to packed 64-bit integers in the target vector 
         /// </summary>
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target vector</param>
-        /// <summary>__m256i _mm256_cvtepi16_epi64 (__m128i a) VPMOVSXDQ ymm, xmm/m128</summary>
         [MethodImpl(Inline)]
         public static ref Vec256<long> convert(in Vec128<short> src, out Vec256<long> dst)
         {
