@@ -14,31 +14,29 @@ namespace Z0
 
     partial class gbits
     {
+
         /// <summary>
-        /// Copies all bits from the source to the result, and disable the bit in the 
-        /// result that corresponds to the lowest set bit in a. 
-        /// Exquivalent to the composite operation (src - 1) & src
+        /// Replicates the source bits to the target and disables the high target bits starting at a specified index.
         /// </summary>
-        /// <param name="src">The bit source</param>
+        /// <param name="src">The source bits</param>
+        /// <param name="index">The index at which to begin disabling target bits</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static T blsr<T>(T src)
+        public static T bzhi<T>(T src, uint index)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.blsr(uint8(src)));
+                return generic<T>(Bits.bzhi(uint8(src), index));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.blsr(uint16(src)));
+                return generic<T>(Bits.bzhi(uint16(src), index));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.blsr(uint32(src)));
+                return generic<T>(Bits.bzhi(uint32(src), index));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.blsr(uint64(src)));
+                return generic<T>(Bits.bzhi(uint64(src),index));
             else            
                 throw unsupported<T>();
         }           
 
-        
-
- 
     }
 
 }

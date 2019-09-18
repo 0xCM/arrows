@@ -14,15 +14,169 @@ namespace Z0
 
     public class tv_rot : UnitTest<tv_rot>
     {
+        protected override int CycleCount => Pow2.T14;
 
-
-
-        void rotv_128x32u()
+        public void rotl_128x8_check()
         {
-            rotv_128<uint>((2u, 30u));
+            rotl_128_check<byte>();
         }
 
-        public void rotv_128x64u()
+        public void rotl_128x8_bench()
+        {
+            rotl_128_bench<byte>();
+        }
+
+        public void rotl_128x16_check()
+        {
+            rotl_128_check<ushort>();
+        }
+
+        public void rotl_128x16_bench()
+        {
+            rotl_128_bench<ushort>();
+        }
+
+        public void rotl_128x32_check()
+        {
+            rotl_128_check<uint>();
+        }
+
+        public void rotl_128x32_bench()
+        {
+            rotl_128_bench<uint>();
+        }
+
+        public void rotl_128x64_check()
+        {
+            rotl_128_check<ulong>();
+        }
+
+        public void rotl_128x64_bench()
+        {
+            rotl_128_bench<ulong>();
+        }
+
+        public void rotr_128x8_check()
+        {
+            rotr_128_check<byte>();
+        }
+
+        public void rotr_128x8_bench()
+        {
+            rotr_128_bench<byte>();
+        }
+
+        public void rotr_128x16_check()
+        {
+            rotr_128_check<ushort>();
+        }
+
+        public void rotr_128x16_bench()
+        {
+            rotr_128_bench<ushort>();
+        }
+
+        public void rotr_128x32_check()
+        {
+            rotr_128_check<uint>();
+        }
+
+        public void rotr_128x32_bench()
+        {
+            rotr_128_bench<uint>();
+        }
+
+        public void rotr_128x64_check()
+        {
+            rotr_128_check<ulong>();
+        }
+
+        public void rotr_128x64_bench()
+        {
+            rotr_128_bench<ulong>();
+        }
+
+        public void rotl_256x8_check()
+        {
+            rotl_256_check<byte>();
+        }
+
+        public void rotl_256x8_bench()
+        {
+            rotl_256_bench<byte>();
+        }
+
+        public void rotl_256x16_check()
+        {
+            rotl_256_check<ushort>();
+        }
+
+        public void rotl_256x16_bench()
+        {
+            rotl_256_bench<ushort>();
+        }
+
+        public void rotl_256x32_check()
+        {
+            rotl_256_check<uint>();
+        }
+
+        public void rotl_256x32_bench()
+        {
+            rotl_256_bench<uint>();
+        }
+
+        public void rotl_256x64_check()
+        {
+            rotl_256_check<ulong>();
+        }
+
+        public void rotl_256x64_bench()
+        {
+            rotl_256_bench<ulong>();
+        }
+
+        public void rotr_256x8_check()
+        {
+            rotr_256_check<byte>();
+        }
+
+        public void rotr_256x8_bench()
+        {
+            rotr_256_bench<byte>();
+        }
+
+        public void rotr_256x16_check()
+        {
+            rotr_256_check<ushort>();
+        }
+
+        public void rotr_256x16_bench()
+        {
+            rotr_256_bench<ushort>();
+        }
+
+        public void rotr_256x32_check()
+        {
+            rotr_256_check<uint>();
+        }
+
+        public void rotr_256x32_bench()
+        {
+            rotr_256_bench<uint>();
+        }
+
+        public void rotr_256x64_check()
+        {
+            rotr_256_check<ulong>();
+        }
+
+        public void rotr_256x64_bench()
+        {
+            rotr_256_bench<ulong>();
+        }
+
+        public void rotv_128x64_check()
         {
             for(var sample=0; sample < SampleSize; sample++)
             {
@@ -49,7 +203,33 @@ namespace Z0
             }
         }
 
-        public void rot_256x8u()
+        public void rotv_256x64_check()
+        {
+            for(var sample=0; sample < SampleSize; sample++)
+            {
+                var src = Random.CpuVec256<ulong>();
+                var offsets = Random.CpuVec256(closed(2ul, 30ul));
+                
+                var vL = Bits.rotl(src,offsets);
+                var vRL = Bits.rotr(vL,offsets);
+                Claim.eq(src,vRL);
+                
+                var vR = Bits.rotr(src,offsets);
+                var vLR = Bits.rotl(vR,offsets);
+                Claim.eq(src,vLR);
+
+                for(var i=0; i<src.Length(); i++)
+                {
+                    Claim.eq(Bits.rotl(src[i], offsets[i]), vL[i]);
+                    Claim.eq(Bits.rotr(vL[i], offsets[i]), vRL[i]);
+                    
+                    Claim.eq(Bits.rotr(src[i], offsets[i]), vR[i]);
+                    Claim.eq(Bits.rotl(vR[i], offsets[i]), vLR[i]);
+                }        
+            }
+        }
+
+        void rot_256x8_check()
         {
             for(var i=0; i< SampleSize; i++)
             {
@@ -73,7 +253,7 @@ namespace Z0
 
         }
 
-        public void rot_256x16u()
+        void rot_256x16u()
         {
             for(var i=0; i< SampleSize; i++)
             {
@@ -95,7 +275,7 @@ namespace Z0
             }
         }
 
-        public void rot_256x32u()
+        void rot_256x32u()
         {
             for(var i=0; i< SampleSize; i++)
             {
@@ -117,7 +297,7 @@ namespace Z0
             }
         }
 
-        public void rot_256x64u()
+        void rot_256x64u()
         {
             for(var i=0; i< SampleSize; i++)
             {
@@ -140,38 +320,12 @@ namespace Z0
         }
 
 
-        public void rotv_256x32u()
+        void rotv_256x32u()
         {
             for(var sample=0; sample < SampleSize; sample++)
             {
                 var src = Random.CpuVec256<uint>();
                 var offsets = Random.CpuVec256(closed(2u, 30u));
-                
-                var vL = Bits.rotl(src,offsets);
-                var vRL = Bits.rotr(vL,offsets);
-                Claim.eq(src,vRL);
-                
-                var vR = Bits.rotr(src,offsets);
-                var vLR = Bits.rotl(vR,offsets);
-                Claim.eq(src,vLR);
-
-                for(var i=0; i<src.Length(); i++)
-                {
-                    Claim.eq(Bits.rotl(src[i], offsets[i]), vL[i]);
-                    Claim.eq(Bits.rotr(vL[i], offsets[i]), vRL[i]);
-                    
-                    Claim.eq(Bits.rotr(src[i], offsets[i]), vR[i]);
-                    Claim.eq(Bits.rotl(vR[i], offsets[i]), vLR[i]);
-                }        
-            }
-        }
-
-        public void rotv_256x64u()
-        {
-            for(var sample=0; sample < SampleSize; sample++)
-            {
-                var src = Random.CpuVec256<ulong>();
-                var offsets = Random.CpuVec256(closed(2ul, 30ul));
                 
                 var vL = Bits.rotl(src,offsets);
                 var vRL = Bits.rotr(vL,offsets);
@@ -256,6 +410,161 @@ namespace Z0
             }
         }
 
+        void rotl_128_check<T>()
+            where T : unmanaged
+        {
+            byte offMin = 2;
+            byte offMax = (byte)(bitsize<T>() - 2);
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var x = Random.CpuVec128<T>();
+                var offset = Random.Next(offMin,offMax);
+                var result = gbits.rotl(x,offset).ToSpan();
+                var expect = x.ToSpan().Map(src => gbits.rotl(src, convert<T>(offset)));
+                for(var i=0; i<expect.Length; i++)
+                    Claim.eq(expect[i],result[i]);
+            }
+        }
+
+        void rotl_128_bench<T>()
+            where T : unmanaged
+        {
+            var bz = bitsize<T>();
+            var opname = $"rotl_128x{bz}";
+            var sw = stopwatch();
+            var opcount = RoundCount*CycleCount;
+            var last = default(Vec128<T>);
+
+            byte offMin = 2;
+            byte offMax = (byte)(bz - 2);
+            
+            for(var rep=0; rep < opcount; rep++)
+            {
+                var x = Random.CpuVec128<T>();
+                var offset = Random.Next(offMin,offMax);
+                sw.Start();
+                last = gbits.rotl(x,offset);
+                sw.Stop();
+            }
+            Collect((opcount,sw,opname));
+        }
+
+        void rotl_256_bench<T>()
+            where T : unmanaged
+        {
+            var bz = bitsize<T>();
+            var opname = $"rotl_256x{bz}";
+            var sw = stopwatch();
+            var opcount = RoundCount*CycleCount;
+            var last = default(Vec256<T>);
+
+            byte offMin = 2;
+            byte offMax = (byte)(bz - 2);
+            
+            for(var rep=0; rep < opcount; rep++)
+            {
+                var x = Random.CpuVec256<T>();
+                var offset = Random.Next(offMin,offMax);
+                sw.Start();
+                last = gbits.rotl(x,offset);
+                sw.Stop();
+            }
+            Collect((opcount,sw,opname));
+        }
+
+        void rotr_128_bench<T>()
+            where T : unmanaged
+        {
+            var bz = bitsize<T>();
+            var opname = $"rotr_128x{bz}";
+            var sw = stopwatch();
+            var opcount = RoundCount*CycleCount;
+            var last = default(Vec128<T>);
+
+            byte offMin = 2;
+            byte offMax = (byte)(bz - 2);
+            
+            for(var rep=0; rep < opcount; rep++)
+            {
+                var x = Random.CpuVec128<T>();
+                var offset = Random.Next(offMin,offMax);
+                sw.Start();
+                last = gbits.rotr(x,offset);
+                sw.Stop();
+            }
+            Collect((opcount,sw,opname));
+        }
+
+        void rotr_256_bench<T>()
+            where T : unmanaged
+        {
+            var bz = bitsize<T>();
+            var opname = $"rotr_256x{bz}";
+            var sw = stopwatch();
+            var opcount = RoundCount*CycleCount;
+            var last = default(Vec256<T>);
+
+            byte offMin = 2;
+            byte offMax = (byte)(bz - 2);
+            
+            for(var rep=0; rep < opcount; rep++)
+            {
+                var x = Random.CpuVec256<T>();
+                var offset = Random.Next(offMin,offMax);
+                sw.Start();
+                last = gbits.rotr(x,offset);
+                sw.Stop();
+            }
+            Collect((opcount,sw,opname));
+        }
+
+        void rotl_256_check<T>()
+            where T : unmanaged
+        {
+            byte offMin = 2;
+            byte offMax = (byte)(bitsize<T>() - 2);
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var x = Random.CpuVec256<T>();
+                var offset = Random.Next(offMin,offMax);
+                var result = gbits.rotl(x,offset).ToSpan();
+                var expect = x.ToSpan().Map(src => gbits.rotl(src, convert<T>(offset)));
+                for(var i=0; i<expect.Length; i++)
+                    Claim.eq(expect[i],result[i]);
+            }
+        }
+
+        void rotr_128_check<T>()
+            where T : unmanaged
+        {
+            byte offMin = 2;
+            byte offMax = (byte)(bitsize<T>() - 2);
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var x = Random.CpuVec128<T>();
+                var offset = Random.Next(offMin,offMax);
+                var result = gbits.rotr(x,offset).ToSpan();
+                var expect = x.ToSpan().Map(src => gbits.rotr(src, convert<T>(offset)));
+                for(var i=0; i<expect.Length; i++)
+                    Claim.eq(expect[i],result[i]);
+            }
+        }
+
+        void rotr_256_check<T>()
+            where T : unmanaged
+        {
+            byte offMin = 2;
+            byte offMax = (byte)(bitsize<T>() - 2);
+            for(var sample=0; sample<SampleSize; sample++)
+            {
+                var x = Random.CpuVec256<T>();
+                var offset = Random.Next(offMin,offMax);
+                var result = gbits.rotr(x,offset).ToSpan();
+                var expect = x.ToSpan().Map(src => gbits.rotr(src, convert<T>(offset)));
+                for(var i=0; i<expect.Length; i++)
+                    Claim.eq(expect[i],result[i]);
+            }
+        }
 
     }
 

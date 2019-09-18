@@ -17,6 +17,21 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
+        public static Vec128<byte> rotl(in Vec128<byte> src, byte offset)
+        {
+            const byte bitsize = 8;
+            return Bits.or(
+                Bits.sll(in src, offset),
+                Bits.srl(in src, (byte)(bitsize - offset))
+                );             
+        }
+
+        /// <summary>
+        /// Rotates each component in the source vector leftwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="offset">The magnitude of the rotation</param>
+        [MethodImpl(Inline)]
         public static Vec128<ushort> rotl(in Vec128<ushort> src, byte offset)
         {
             const byte bitsize = 16;
@@ -54,33 +69,6 @@ namespace Z0
             return Bits.or(x,y);             
         }
 
-        /// <summary>
-        /// Rotates each component in the source vector leftwards by the amount specified
-        /// int the corresponding offset vector component
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="offsets">The offset vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> rotl(in Vec128<ulong> src, in Vec128<ulong> offsets)
-        {
-            var x = Bits.sllv(src,offsets);
-            var y = Bits.srlv(src, dinx.sub(Vec128u64,offsets));
-            return Bits.or(x,y);
-        }
-
-        /// <summary>
-        /// Rotates each component in the source vector leftwards by the amount specified
-        /// int the corresponding offset vector component
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="offsets">The offset vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<uint> rotl(in Vec128<uint> src, in Vec128<uint> offsets)
-        {
-            var x = Bits.sllv(src, offsets);
-            var y = Bits.srlv(src, dinx.sub(Vec128u32, offsets));
-            return Bits.or(x,y);
-        }
 
         /// <summary>
         /// Rotates each component in the source vector leftwards by a specified offset
@@ -137,7 +125,35 @@ namespace Z0
             var y = Bits.srl(in src, (byte)(bitsize - offset));   
             return Bits.or(x,y);             
         }
-        
+
+        /// <summary>
+        /// Rotates each component in the source vector leftwards by the amount specified
+        /// int the corresponding offset vector component
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="offsets">The offset vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> rotl(in Vec128<ulong> src, in Vec128<ulong> offsets)
+        {
+            var x = Bits.sllv(src,offsets);
+            var y = Bits.srlv(src, dinx.sub(Vec128u64,offsets));
+            return Bits.or(x,y);
+        }
+
+        /// <summary>
+        /// Rotates each component in the source vector leftwards by the amount specified
+        /// int the corresponding offset vector component
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="offsets">The offset vector</param>
+        [MethodImpl(Inline)]
+        public static Vec128<uint> rotl(in Vec128<uint> src, in Vec128<uint> offsets)
+        {
+            var x = Bits.sllv(src, offsets);
+            var y = Bits.srlv(src, dinx.sub(Vec128u32, offsets));
+            return Bits.or(x,y);
+        }
+
         /// <summary>
         /// Rotates each component in the source vector leftwards by the 
         /// corresponding component in the offsets vector

@@ -54,9 +54,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong blsi(ulong src)
             => ExtractLowestSetBit(src);
- 
- 
- 
     }
 
 }

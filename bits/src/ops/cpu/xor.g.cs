@@ -16,7 +16,7 @@ namespace Z0
     partial class gbits
     {                        
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec128<T> xor<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
         {

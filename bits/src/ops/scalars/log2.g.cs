@@ -13,32 +13,28 @@ namespace Z0
     using static AsIn;
 
     partial class gbits
-    {
+    {        
+
         /// <summary>
-        /// Copies all bits from the source to the result, and disable the bit in the 
-        /// result that corresponds to the lowest set bit in a. 
-        /// Exquivalent to the composite operation (src - 1) & src
+        /// Computes floor(log(src,2))
         /// </summary>
-        /// <param name="src">The bit source</param>
+        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static T blsr<T>(T src)
+        public static T log2<T>(in T src)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.blsr(uint8(src)));
+                 return generic<T>(Bits.log2(AsIn.uint8(in asRef(in src))));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.blsr(uint16(src)));
+                 return generic<T>(Bits.log2(AsIn.uint16(in asRef(in src))));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.blsr(uint32(src)));
+                 return generic<T>(Bits.log2(AsIn.uint32(in asRef(in src))));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.blsr(uint64(src)));
-            else            
+                 return generic<T>(Bits.log2(AsIn.uint64(in asRef(in src))));
+            else 
                 throw unsupported<T>();
-        }           
+        }
 
-        
-
- 
     }
 
 }

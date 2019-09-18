@@ -18,7 +18,6 @@ namespace Z0
         /// </summary>
         /// <param name="dst">The mask reference</param>
         /// <param name="exponents">The exponent values, each of which should be within the integral range [0,63] </param>
-        /// <returns></returns>
         public static ref ulong mask(ref ulong dst, params int[] exponents)
         {
             for(var i=0; i<exponents.Length; i++)
@@ -27,36 +26,36 @@ namespace Z0
         }
 
         /// <summary>
-        /// Calculates the base-2 log of the source
+        /// Computes floor(log(src,2))
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int log2(byte src)
-            => BitOperations.Log2(src);
+        public static byte log2(byte src)
+            => (byte)BitOperations.Log2(src);
 
         /// <summary>
-        /// Calculates the base-2 log of the source
+        /// Computes floor(log(src,2))
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int log2(ushort src)
-            => BitOperations.Log2(src);
+        public static ushort log2(ushort src)
+            => (ushort)BitOperations.Log2(src);
 
         /// <summary>
-        /// Calculates the base-2 log of the source
+        /// Computes floor(log(src,2))
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int log2(uint src)
-            => BitOperations.Log2(src);
+        public static uint log2(uint src)
+            => (uint)BitOperations.Log2(src);
 
         /// <summary>
-        /// Calculates the base-2 log of the source
+        /// Computes floor(log(src,2))
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int log2(ulong src)
-            => BitOperations.Log2(src);
+        public static ulong log2(ulong src)
+            => (ulong)BitOperations.Log2(src);
     }
 
 }

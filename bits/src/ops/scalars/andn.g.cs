@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <param name="lhs">The left scalar</param>
         /// <param name="rhs">The right scalar</param>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static T andn<T>(in T lhs, in T rhs)
             where T : struct
