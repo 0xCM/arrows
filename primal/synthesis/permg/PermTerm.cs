@@ -18,6 +18,16 @@ namespace Z0
     public readonly struct PermTerm<T>
         where T : unmanaged
     {
+        /// <summary>
+        /// The point at which the permuation is evaluated
+        /// </summary>
+        public readonly T Source;
+
+        /// <summary>
+        /// The result of evaluating the permuation over the source
+        /// </summary>                
+        public readonly T Target;
+
         [MethodImpl(Inline)]
         public static implicit operator PermTerm<T>((T src, T dst) x)
             => new PermTerm<T>(x.src, x.dst);
@@ -33,16 +43,6 @@ namespace Z0
             this.Target = dst;
         }
         
-        /// <summary>
-        /// The point at which the permuation is evaluated
-        /// </summary>
-        public readonly T Source;
-
-        /// <summary>
-        /// The result of evaluating the permuation over the source
-        /// </summary>                
-        public readonly T Target;
-
         public bool IsDegenerate
             => gmath.eq(Source,Target);
 

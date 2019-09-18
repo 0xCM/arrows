@@ -115,11 +115,6 @@ namespace Z0
             
         }
 
-        [MethodImpl(Inline)]
-        public static IntervalPoint<T> Point<T>(this Interval<T> src, T value)        
-            where T : struct
-                => IntervalPoint<T>.Define(src,value);
-
         // <summary>
         /// Calculates the partition points in an interval
         /// </summary>

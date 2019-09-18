@@ -12,6 +12,9 @@ namespace Z0
     using static zfunc;    
     using static As;
 
+    /// <summary>
+    /// Defines a data structure for sparse/partial sequence representation
+    /// </summary>
     public readonly ref struct ScalarSeq<T>
         where T : unmanaged
     {            
@@ -52,6 +55,10 @@ namespace Z0
                 this.terms = Empty.terms;
         }
 
+        /// <summary>
+        /// Specifies the sequence terms
+        /// </summary>
+        /// <value></value>
         public ReadOnlySpan<SeqTerm<T>> Terms
         {
             [MethodImpl(Inline)]

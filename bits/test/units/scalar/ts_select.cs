@@ -15,7 +15,7 @@ namespace Z0.Test
 
     public class ts_select : UnitTest<ts_select>
     {        
-        public void select_16()
+        public void select_10x1()
         {            
             var src = Random.Next<ushort>();
             var maskA = (ushort)0b111;
@@ -30,6 +30,36 @@ namespace Z0.Test
             var bv = src.ToBitVector();
             bv.DisableAfter(2);
             Claim.eq(bv, a.ToBitVector());
+        }
+
+        public void select_32x4()
+        {
+            var src = Random.Next<uint>();
+            var bv = src.ToBitVector();
+            var x0 = Bits.select(src,Part32x4.Part0).ToBitVector32();
+            Claim.eq(bv[0..3], x0);
+                    
+        }
+
+        public void select_32x8()
+        {
+            var src = 0b11100111_01010101_11001100_11110000u;
+
+            var x0 = 0b11110000u;
+            var y0 = Bits.select(src, Part32x8.Part0);
+            Claim.eq(x0, y0);
+
+            var y1  = Bits.select(src, Part32x8.Part1);
+            var x1 = 0b11001100u;
+            Claim.eq(x1, y1);
+
+            var x2 = 0b01010101u;
+            var y2  = Bits.select(src, Part32x8.Part2);
+            Claim.eq(x2, y2);
+            
+            var x3 = 0b11100111u;
+            var y3  = Bits.select(src, Part32x8.Part3);
+            Claim.eq(x3, y3);
         }
 
 

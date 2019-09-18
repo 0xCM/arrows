@@ -19,37 +19,40 @@ namespace Z0.Test
 
         public void VerifyEnums()
         {
-            var lv = GEnum.LabeledValues<Choices>();
-            Claim.eq(6,lv.Length);
-            Claim.eq(C0, lv[0].value);
-            Claim.eq(C1, lv[1].value);
-            Claim.eq(C2, lv[2].value);
-            Claim.eq(C3, lv[3].value);  
+            var values = EnumValues.NamedValues<Choices>();
+            var choices = EnumValues.Get<Choices>();
+            var scalars = EnumValues.NamedScalars<Choices,byte>();
 
-            Claim.eq(C0, GEnum.Parse<Choices>(C0.ToString()).Require());          
-            Claim.eq(C1, GEnum.Parse<Choices>(C1.ToString()).Require());          
-            Claim.eq(C2, GEnum.Parse<Choices>(C2.ToString()).Require());          
-            Claim.eq(C3, GEnum.Parse<Choices>(C3.ToString()).Require());          
+            Claim.eq(6,values.Count);
+            Claim.eq(C0, values[C0.ToString()].Value);
+            Claim.eq(C1, values[C1.ToString()].Value);
+            Claim.eq(C2, values[C2.ToString()].Value);
+            Claim.eq(C3, values[C3.ToString()].Value);  
+            
 
-            Claim.eq(C0, genum(C0).Value);
-            Claim.eq(C0.ToString(), genum(C0).Label);
+            Claim.eq(C0, choices.Parse(C0.ToString()).Require());          
+            Claim.eq(C1, choices.Parse(C1.ToString()).Require());          
+            Claim.eq(C2, choices.Parse(C2.ToString()).Require());          
+            Claim.eq(C3, choices.Parse(C3.ToString()).Require());          
 
-            Claim.eq(C1, genum(C1).Value);
-            Claim.eq(C1.ToString(), genum(C1).Label);
+            Claim.eq(C0, EnumValues.ToGeneric(C0).Value);
+            Claim.eq(C0.ToString(), EnumValues.ToGeneric(C0).Label);
 
-            Claim.eq(C2, genum(C2).Value);
-            Claim.eq(C2.ToString(), genum(C2).Label);
+            Claim.eq(C1, EnumValues.ToGeneric(C1).Value);
+            Claim.eq(C1.ToString(), EnumValues.ToGeneric(C1).Label);
 
-            var ls = GEnum.LabeledScalars<Choices,byte>();
-            Claim.eq((byte)0, ls[0].scalar);
-            Claim.eq((byte)1, ls[1].scalar);
-            Claim.eq((byte)2, ls[2].scalar);
-            Claim.eq((byte)3, ls[3].scalar);
+            Claim.eq(C2, EnumValues.ToGeneric(C2).Value);
+            Claim.eq(C2.ToString(), EnumValues.ToGeneric(C2).Label);
 
-            Claim.eq(C0.ToString(), ls[0].label);
-            Claim.eq(C1.ToString(), ls[1].label);
-            Claim.eq(C2.ToString(), ls[2].label);
-            Claim.eq(C3.ToString(), ls[3].label);
+            Claim.eq((byte)0, scalars[0].Value);
+            Claim.eq((byte)1, scalars[1].Value);
+            Claim.eq((byte)2, scalars[2].Value);
+            Claim.eq((byte)3, scalars[3].Value);
+
+            Claim.eq(C0.ToString(), scalars[0].Name);
+            Claim.eq(C1.ToString(), scalars[1].Name);
+            Claim.eq(C2.ToString(), scalars[2].Name);
+            Claim.eq(C3.ToString(), scalars[3].Name);
 
 
 

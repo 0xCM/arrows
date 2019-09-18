@@ -11,7 +11,6 @@ namespace Z0
 
     using static zfunc;    
 
-
     public static class PrimalDelegates
     {        
         [MethodImpl(Inline)]

@@ -20,6 +20,7 @@ namespace Z0
         public static BitVector8 ToBitVector(this byte src)
             => src;
 
+
         /// <summary>
         /// Constructs a canonical 18-bit bitvector from a 16-bit primal value
         /// </summary>
@@ -111,6 +112,23 @@ namespace Z0
         public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
             where T : unmanaged
                 => BitConverter.ToUInt64(src.Bytes.Extend(8));
+
+        /// <summary>
+        /// Constructs a 4-bit bitvector from the lower 4 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 ToBitVector4(this byte src)
+            => src;
+
+        /// <summary>
+        /// Constructs a 4-bit bitvector from the lower 4 bits of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector4 ToBitVector4(this ushort src)
+            => (UInt4)src;
+
 
         /// <summary>
         /// Creates an an 8-bit bitvector from the source value interpreted as a byte

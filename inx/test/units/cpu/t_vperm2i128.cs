@@ -16,11 +16,10 @@ namespace Z0
 
     public class t_vperm2i128 : t_cpu<t_vperm2i128>
     {
-        public void exhaustive()
+        public void vperm_2x128()
         {            
             YMM ymm0 = Vec256.FromParts(1ul, 2u, 3ul, 4ul);
             YMM ymm1 = Vec256.FromParts(5ul, 6ul, 7ul, 8ul);
-
             YMM ymm2 = default, ymm2e = default;
 
             ymm2e = Vec256.FromParts(1ul, 2ul, 5ul, 6ul); 
@@ -62,7 +61,7 @@ namespace Z0
             YMM ymm2 = vperm2i128(in ymm0, in ymm1, spec);
             Trace("ymm0", ymm0.Format<ulong>());
             Trace("ymm1", ymm1.Format<ulong>());
-            Trace($"{spec} {genum(spec).Scalar<byte>().FormatBits()}", ymm2.Format<ulong>());
+            Trace($"{spec} {EnumValues.ToGeneric(spec).Scalar<byte>().FormatBits()}", ymm2.Format<ulong>());
         }
     }
 

@@ -248,7 +248,7 @@ namespace Z0.Test
             TypeCaseStart<N64,uint>();
             var samples = Pow2.T08;
             var dim = new N64();
-            var segcount = dim / (int)gbits.width<uint>();
+            var segcount = dim / (int)bitsize<uint>();
             var src = Random.Span<uint>(samples);
             for(var i=0; i<src.Length - segcount; i++)
             {
@@ -267,7 +267,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             var src = Random.Span<T>(SampleSize);
             var segCapacity = bitsize<T>();
-            Claim.eq(segCapacity, gbits.width<T>());
+            Claim.eq(segCapacity, bitsize<T>());
 
             var seglen = BitSize.Segments<T>(dim);
             for(var i=0; i<SampleSize; i += seglen)

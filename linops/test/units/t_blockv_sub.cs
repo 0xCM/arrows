@@ -127,7 +127,7 @@ namespace Z0
                 var v1 = Random.BlockVec<N,T>();
                 var v2 = Random.BlockVec<N,T>();
                 var v3 = BlockVector.Load(gmath.sub(v1.Unsized,v2.Unsized), n);                
-                Linear.sub(ref v1, v2);
+                Linear.sub(v1, v2, ref v1);
                 Claim.yea(v3 == v1);
             } 
         }
@@ -145,7 +145,7 @@ namespace Z0
                 var v1 = Random.BlockVec<N,T>();
                 var v2 = Random.BlockVec<N,T>();
                 sw.Start();
-                Linear.sub(ref v1, v2);
+                Linear.sub(v1, v2, ref v1);
                 sw.Stop();
             }
             Collect((opcount,sw,opname));

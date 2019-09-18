@@ -234,13 +234,13 @@ namespace Z0.Test
             var bs = BitString.Parse(src);
             Claim.eq(bs.Length, 25);
             
-            var b1 = bs.Blocks(1);
+            var b1 = bs.Partition(1);
             Claim.eq(src.Length, b1.Length);
             
-            var b5 = bs.Blocks(5);
+            var b5 = bs.Partition(5);
             Claim.eq(5,b5.Length);
 
-            var b3 = bs.Blocks(3);
+            var b3 = bs.Partition(3);
             Claim.eq(9,b3.Length);
         }
 
@@ -297,7 +297,7 @@ namespace Z0.Test
             {
                 var bsX = x.ToBitString();
                 Claim.eq(64, bsX.Length);
-                var blocks = bsX.Blocks(8);
+                var blocks = bsX.Partition(8);
                 Claim.eq(8, blocks.Length);   
 
                 var bsY = BitString.Assemble(blocks.Select(x => x.Format()).ToArray());

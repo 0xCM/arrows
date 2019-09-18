@@ -335,51 +335,6 @@ namespace Z0
         /// <param name="test">The left bits</param>
         /// <param name="set">The right bits</param>
         [MethodImpl(Inline)]
-        public static bool subset(uint test, uint set)
-            => (set & test) == test;
-
-        /// <summary>
-        /// Determines whether the left bitsource is a subset of the right bitsource
-        /// </summary>
-        /// <param name="test">The left bits</param>
-        /// <param name="set">The right bits</param>
-        [MethodImpl(Inline)]
-        public static bool subset(uint test, long set)
-            => (set & test) == test;
-
-        /// <summary>
-        /// Determines whether the left bitsource is a subset of the right bitsource
-        /// </summary>
-        /// <param name="test">The left bits</param>
-        /// <param name="set">The right bits</param>
-        [MethodImpl(Inline)]
-        public static bool subset(uint test, ulong set)
-            => ((ushort)set & test) == test;
-
-        /// <summary>
-        /// Determines whether the left bitsource is a subset of the right bitsource
-        /// </summary>
-        /// <param name="test">The left bits</param>
-        /// <param name="set">The right bits</param>
-        [MethodImpl(Inline)]
-        public static bool subset(uint test, float set)
-            => (set.ToBits() & test) == test;
-
-        /// <summary>
-        /// Determines whether the left bitsource is a subset of the right bitsource
-        /// </summary>
-        /// <param name="test">The left bits</param>
-        /// <param name="set">The right bits</param>
-        [MethodImpl(Inline)]
-        public static bool subset(uint test, double set)
-            => (set.ToBits() & test) == test;
-
-        /// <summary>
-        /// Determines whether the left bitsource is a subset of the right bitsource
-        /// </summary>
-        /// <param name="test">The left bits</param>
-        /// <param name="set">The right bits</param>
-        [MethodImpl(Inline)]
         public static bool subset(int test, int set)
             => (set & test) == test;
 
@@ -426,6 +381,51 @@ namespace Z0
         /// <param name="set">The right bits</param>
         [MethodImpl(Inline)]
         public static bool subset(int test, double set)
+            => (set.ToBits() & test) == test;
+
+        /// <summary>
+        /// Determines whether the left bitsource is a subset of the right bitsource
+        /// </summary>
+        /// <param name="test">The left bits</param>
+        /// <param name="set">The right bits</param>
+        [MethodImpl(Inline)]
+        public static bool subset(uint test, uint set)
+            => (set & test) == test;
+
+        /// <summary>
+        /// Determines whether the left bitsource is a subset of the right bitsource
+        /// </summary>
+        /// <param name="test">The left bits</param>
+        /// <param name="set">The right bits</param>
+        [MethodImpl(Inline)]
+        public static bool subset(uint test, long set)
+            => (set & test) == test;
+
+        /// <summary>
+        /// Determines whether the left bitsource is a subset of the right bitsource
+        /// </summary>
+        /// <param name="test">The left bits</param>
+        /// <param name="set">The right bits</param>
+        [MethodImpl(Inline)]
+        public static bool subset(uint test, ulong set)
+            => ((ushort)set & test) == test;
+
+        /// <summary>
+        /// Determines whether the left bitsource is a subset of the right bitsource
+        /// </summary>
+        /// <param name="test">The left bits</param>
+        /// <param name="set">The right bits</param>
+        [MethodImpl(Inline)]
+        public static bool subset(uint test, float set)
+            => (set.ToBits() & test) == test;
+
+        /// <summary>
+        /// Determines whether the left bitsource is a subset of the right bitsource
+        /// </summary>
+        /// <param name="test">The left bits</param>
+        /// <param name="set">The right bits</param>
+        [MethodImpl(Inline)]
+        public static bool subset(uint test, double set)
             => (set.ToBits() & test) == test;
 
         /// <summary>

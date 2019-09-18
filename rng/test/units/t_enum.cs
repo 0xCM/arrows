@@ -20,7 +20,7 @@ namespace Z0
         {
             var stream = Random.EnumStream<OpKind>();
             var set = new HashSet<OpKind>(stream.Take(Pow2.T12));
-            var values = GEnum<OpKind,byte>.Values;
+            var values = EnumG<OpKind,byte>.Values.ToArray();
             values.Iterate(v => Claim.yea(set.Contains(v)));
         }
     }

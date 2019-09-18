@@ -12,14 +12,24 @@ namespace Z0
     using static zfunc;    
     using static As;
 
+    /// <summary>
+    /// Defines a sequence term
+    /// </summary>
     public readonly struct SeqTerm<T> : IEquatable<SeqTerm<T>>
         where T : unmanaged
     {
+        /// <summary>
+        /// The integer that maps to the term value
+        /// </summary>
         public readonly int Index;
 
+        /// <summary>
+        /// The term's value
+        /// </summary>        
         public readonly T Value;
 
-        public static readonly SeqTerm<T> Empty = new SeqTerm<T>(-1, default(T));
+        public static readonly SeqTerm<T> Empty = new SeqTerm<T>(0, default(T));
+        
         
         [MethodImpl(Inline)]
         public static implicit operator (int i, T t)(SeqTerm<T> src)
@@ -40,9 +50,17 @@ namespace Z0
             this.Value = value;
         }
         
+        /// <summary>
+        /// Specifies whether the term is empty
+        /// </summary>
         public bool IsEmpty
-            => Index == -1 && !gmath.nonzero(Value);
+            => Index == 0 && !gmath.nonzero(Value);
 
+        /// <summary>
+        /// Renders the term by default as 'a_i = Value' where i denotes the term index
+        /// </summary>
+        /// <param name="id">The sequence identifier, if specified</param>
+        /// <returns></returns>
         public string Format(char? id = null)
             => IsEmpty ? "{}" : $"{id ?? 'a'}_{Index} = {Value}";
         

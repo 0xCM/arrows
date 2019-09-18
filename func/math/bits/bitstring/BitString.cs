@@ -376,7 +376,7 @@ namespace Z0
         /// Partitions the bitstring into blocks of a specified maximum width
         /// </summary>
         /// <param name="width">The maximum block width</param>
-        public BitString[] Blocks(int width)
+        public BitString[] Partition(int width)
         {
             var minCount = Math.DivRem(bitseq.Length, width, out int remainder);
             var count = remainder != 0 ? minCount + 1 : minCount;
@@ -413,7 +413,7 @@ namespace Z0
             {
                 var sep = blocksep ?? ' ';
                 var sb = sbuild();
-                var blocks = Blocks(blockWidth.Value).Reverse();
+                var blocks = Partition(blockWidth.Value).Reverse();
                 var lastix = blocks.Length - 1;
                 for(var i=0; i<=lastix; i++)
                 {

@@ -18,7 +18,6 @@ namespace Z0
 
     partial class Asm
     {
-
         /// <summary>
         /// VEX.256.66.0F38.W0 36 /r VPERMD ymm1, ymm2, ymm3/m256
         /// Permute doublewords in ymm3/m256 using indices in ymm2 and store the result in ymm1.

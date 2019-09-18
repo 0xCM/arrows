@@ -10,7 +10,6 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static BitParts;
 
     public static partial class BitMasks
     {        
@@ -24,7 +23,7 @@ namespace Z0
             /// <summary>
             /// Identifies the first even bit
             /// </summary>
-            Bit0 = Part4x1.Part0,
+            Bit0 = 1,
             
             /// <summary>
             /// Identifies the second even bit
@@ -47,7 +46,7 @@ namespace Z0
             /// <summary>
             /// Identifies the first even bit
             /// </summary>
-            Bit0 = Part8x1.Part0,
+            Bit0 = 1,
             
             /// <summary>
             /// Identifies the second even bit

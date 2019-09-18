@@ -93,12 +93,7 @@ namespace Z0
         /// <param name="x3">Taken from bits 24-31 of the source value</param>
         [MethodImpl(Inline)]
         public static (byte x0, byte x1, byte x2, byte x3) split(uint src, N4 parts)
-          => (
-              (byte)(src >> 0*8), 
-              (byte)(src >> 1*8), 
-              (byte)(src >> 2*8), 
-              (byte)(src >> 3*8)
-              );
+          => ((byte)(src >> 0*8), (byte)(src >> 1*8), (byte)(src >> 2*8), (byte)(src >> 3*8));
 
         /// <summary>
         /// Partitions a 64-bit unsigned integer int eight unsigned 8-bit integers
@@ -114,16 +109,8 @@ namespace Z0
         /// <param name="x7">Take from bits 58-63 of the source value</param>
         [MethodImpl(Inline)]
         public static (byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7) split(ulong src, N8 parts)
-            => (
-            (byte)(src >> 0*8),
-            (byte)(src >> 1*8),
-            (byte)(src >> 2*8),
-            (byte)(src >> 3*8),
-            (byte)(src >> 4*8),
-            (byte)(src >> 5*8),
-            (byte)(src >> 6*8),
-            (byte)(src >> 7*8)
-            );
+            => ((byte)(src >> 0*8),(byte)(src >> 1*8),(byte)(src >> 2*8),(byte)(src >> 3*8), 
+                (byte)(src >> 4*8),(byte)(src >> 5*8),(byte)(src >> 6*8),(byte)(src >> 7*8));
     }
 
 }

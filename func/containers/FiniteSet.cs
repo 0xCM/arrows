@@ -18,7 +18,6 @@ namespace Z0
         /// </summary>
         /// <param name="members">The defining members</param>
         /// <typeparam name="T">The member type</typeparam>
-        /// <returns></returns>
         public static FiniteSet<T> define<T>(params T[] members)
             where T : ISemigroup<T>, new()
                 => new FiniteSet<T>(members);

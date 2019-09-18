@@ -66,7 +66,7 @@ namespace Z0.Test
             where T : struct
         {
     
-            var bitcount = gbits.width<T>();
+            var bitcount = bitsize<T>();
             for(var cycle = 0; cycle < cycles; cycle++)
             {
                 var src = Random.Next<T>();

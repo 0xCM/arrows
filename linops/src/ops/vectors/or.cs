@@ -25,6 +25,15 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static BlockVector<T> or<T>(BlockVector<T> lhs, BlockVector<T> rhs)
+            where T : struct
+        {
+            var dst = lhs.Replicate(true);
+            gbits.or(lhs.Data, rhs.Data, dst.Data);
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static BlockVector<N,T> or<N,T>(BlockVector<N,T> x, BlockVector<N,T> y)
@@ -38,17 +47,17 @@ namespace Z0
         /// <summary>
         /// Computes lhs[i] := lhs[i] | rhs for i = 0...N-1
         /// </summary>
-        /// <param name="lhs">The left operand which will be updated in-place</param>
-        /// <param name="rhs">The right operand</param>
+        /// <param name="x">The left operand which will be updated in-place</param>
+        /// <param name="k">The right operand</param>
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref BlockVector<N,T> or<N,T>(ref BlockVector<N,T> lhs, in T rhs)
+        public static ref BlockVector<N,T> or<N,T>(BlockVector<N,T> x, T k, ref BlockVector<N,T> z)
             where N : ITypeNat, new()
             where T : struct    
         {
-            gbits.or(lhs.Unsized, in rhs);
-            return ref lhs;
+            gbits.or(x.Unsized, k, z.Unsized);
+            return ref z;
         }
 
     }

@@ -423,41 +423,6 @@ namespace Z0
         Convert
     }
 
-    public class EnumKinds<T,E> : IEnumerable<E>
-        where T : EnumKinds<T,E>, new()
-        where E : Enum
-    {
-        protected static readonly IEnumerable<E> Kinds
-            = typeof(E).GetEnumValues().AsQueryable().Cast<E>();
-        
-        public static IEnumerable<E> All
-            => Kinds;
-
-        public IEnumerator<E> GetEnumerator()
-            => All.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
-    }
-
-
-    public class OpKinds : EnumKinds<OpKinds, OpKind>
-    {
-
-        public static IEnumerable<OpKind> Bitwise 
-            => All.Where(o => o.IsBitwise());
-
-        public static IEnumerable<OpKind> BitwiseLogical
-            => All.Where(o => o.IsBitwiseLogical());
-
-        public static IEnumerable<OpKind> BinaryAritmetic
-            => All.Where(o => o.IsBinaryArithmetic());
-
-        public static IEnumerable<OpKind> UnaryArithmetic
-            => All.Where(o => o.IsUnaryArithmetic());
-
-    }
-
 
     public enum Multiplicity : byte
     {
