@@ -15,7 +15,6 @@ namespace Z0
 
     partial class Linear
     {
-
         /// <summary>
         /// Negates the value of each source vector component in-place
         /// </summary>

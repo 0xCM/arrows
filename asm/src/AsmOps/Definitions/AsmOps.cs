@@ -55,10 +55,8 @@ namespace Z0
                 => Reified;
         }
 
-
         public static uint Rand()
             => RandHost<uint>.TheOnly.Operator();
-
 
         /// <summary>
         /// The handle for the current process

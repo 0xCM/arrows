@@ -226,7 +226,7 @@ namespace Z0.Test
         }
         
         void pack_roundtrip_check<T>(BitSize bitcount)
-            where T : struct
+            where T : unmanaged
         {
             var src = Random.BitString(bitcount);
             Claim.eq(bitcount, src.Length);
@@ -245,7 +245,7 @@ namespace Z0.Test
 
             var merged = rem.Length != 0 ? bulk.Extend(bulk.Length + 1) : bulk;
             if(merged.Length != bulk.Length)
-                merged[merged.Length - 1] = rem.TakePartial<T>();
+                merged[merged.Length - 1] = rem.TakeScalar<T>();
 
             var bsOutput = merged.ToBitString().Truncate(bitcount);
             Claim.eq(src, bsOutput);

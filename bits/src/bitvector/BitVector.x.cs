@@ -20,7 +20,6 @@ namespace Z0
         public static BitVector8 ToBitVector(this byte src)
             => src;
 
-
         /// <summary>
         /// Constructs a canonical 18-bit bitvector from a 16-bit primal value
         /// </summary>
@@ -93,25 +92,78 @@ namespace Z0
             where T : unmanaged
                 => BitVector.Load(src,len);
 
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to an 8-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
         public static BitVector8 ToBitVector8<T>(this BitVector<T> src)        
             where T : unmanaged
-                => src.Bytes.First();
+                => src.Nonempty ? src.Bytes.First() : (byte)0;
 
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 16-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
         public static BitVector16 ToBitVector16<T>(this BitVector<T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt16(src.Bytes.Extend(2));
+                => src.Data.TakeUInt16();
 
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 16-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
+        [MethodImpl(Inline)]
+        public static BitVector16 ToBitVector16<N,T>(this BitVector<N,T> src)        
+            where T : unmanaged
+            where N : ITypeNat, new()
+                => src.Data.TakeUInt16();
+
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 32-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
         public static BitVector32 ToBitVector32<T>(this BitVector<T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt32(src.Bytes.Extend(4));
+                => src.Data.TakeUInt32();
 
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 32-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64<T>(this BitVector<T> src)        
+        public static BitVector32 ToBitVector32<N,T>(this BitVector<N,T> src)        
             where T : unmanaged
-                => BitConverter.ToUInt64(src.Bytes.Extend(8));
+            where N : ITypeNat, new()
+                => src.Data.TakeUInt32();
+
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 64-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64<T>(this BitVector<T> src)
+            where T : unmanaged
+                => src.Data.TakeUInt64();
+
+        /// <summary>
+        /// Converts the leading elements of generic bitvector to a 64-bit primal bitvector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <typeparam name="T">The primal source type</typeparam>        
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector64<N,T>(this BitVector<N,T> src)        
+            where T : unmanaged
+            where N : ITypeNat, new()
+                => src.Data.TakeUInt64();
 
         /// <summary>
         /// Constructs a 4-bit bitvector from the lower 4 bits of the source
@@ -128,7 +180,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector4 ToBitVector4(this ushort src)
             => (UInt4)src;
-
 
         /// <summary>
         /// Creates an an 8-bit bitvector from the source value interpreted as a byte
@@ -358,7 +409,7 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Converts the source bitvector it the equivalent natural/generic bitvector
+        /// Converts the source bitvector to an equivalent generic bitvector of natural length
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -366,7 +417,7 @@ namespace Z0
             => src;
     
         /// <summary>
-        /// Converts the source bitvector it the equivalent natural/generic bitvector
+        /// Converts the source bitvector to an equivalent generic bitvector of natural length
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -374,7 +425,7 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Converts the source bitvector it the equivalent natural/generic bitvector
+        /// Converts the source bitvector to an equivalent generic bitvector of natural length
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -563,6 +614,7 @@ namespace Z0
             where V : unmanaged, IFixedBits<V,S>
             where S : unmanaged
                 => v;
+
 
     }
 }

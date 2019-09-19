@@ -18,7 +18,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static float abs(float src)
+        public static float fabs(float src)
             => MathF.Abs(src);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static double abs(double src)
+        public static double fabs(double src)
             => Math.Abs(src);
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref float abs(ref float src)
         {
-            src = abs(src);
+            src = fabs(src);
             return ref src;
         }
 
@@ -45,9 +45,9 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ref double abs(ref double src)
+        public static ref double fabs(ref double src)
         {
-            src = abs(src);
+            src = fabs(src);
             return ref src;
         }
 
@@ -56,11 +56,11 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source values</param>
         /// <param name="dst">The result receiver</param>
-        public static Span<float> abs(ReadOnlySpan<float> src, Span<float> dst)
+        public static Span<float> fabs(ReadOnlySpan<float> src, Span<float> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                dst[i] = fabs(src[i]);
             return dst;
         }
 
@@ -69,11 +69,11 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source values</param>
         /// <param name="dst">The result receiver</param>
-        public static Span<double> abs(ReadOnlySpan<double> src, Span<double> dst)
+        public static Span<double> fabs(ReadOnlySpan<double> src, Span<double> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                dst[i] = fabs(src[i]);
             return dst;
         }
 
@@ -81,7 +81,7 @@ namespace Z0
         /// Computes the absolute value of the source values in-place
         /// </summary>
         /// <param name="src">The source value</param>
-        public static Span<float> abs(Span<float> src)
+        public static Span<float> fabs(Span<float> src)
         {
             for(var i = 0; i< src.Length; i++)
                 abs(ref src[i]);
@@ -92,10 +92,10 @@ namespace Z0
         /// Computes the absolute value of the source values in-place
         /// </summary>
         /// <param name="src">The source value</param>
-        public static Span<double> abs(Span<double> src)
+        public static Span<double> fabs(Span<double> src)
         {
             for(var i = 0; i< src.Length; i++)
-                abs(ref src[i]);
+                fabs(ref src[i]);
             return src;
         }  
  

@@ -43,7 +43,7 @@ namespace Z0.Test
                 var vec2 = Vec128.FromParts(5.0f, 2.0f, 8.0f, 4.0f);
                 var expect = Vec128.FromParts(10.0f, 6.0f, 32.0f, 20.0f);
                 var result = Vec128<float>.Zero;
-                result = dfp.mul(vec1,vec2);
+                result = dfp.fmul(vec1,vec2);
                 Claim.eq(expect,result);
             }
         }

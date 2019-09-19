@@ -39,10 +39,21 @@ namespace Z0
         /// <param name="dst">A target span of sufficient length</param>
         public static void part32x8(uint src, Span<byte> dst)
         {
-            dst[0] = (byte)project(select(src, Part32x8.Part0), Part32x8.First);
-            dst[1] = (byte)project(select(src, Part32x8.Part1), Part32x8.First);
-            dst[2] = (byte)project(select(src, Part32x8.Part2), Part32x8.First);
-            dst[3] = (byte)project(select(src, Part32x8.Part3), Part32x8.First);
+            dst[0] = project<byte>(select(src, Part32x8.Part0), Part32x8.First);
+            dst[1] = project<byte>(select(src, Part32x8.Part1), Part32x8.First);
+            dst[2] = project<byte>(select(src, Part32x8.Part2), Part32x8.First);
+            dst[3] = project<byte>(select(src, Part32x8.Part3), Part32x8.First);
+        }
+
+        /// <summary>
+        /// Partitions a 32-bit source value into 2 segments of bit width 16
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="dst">A target span of sufficient length</param>
+        public static void part32x16(uint src, Span<ushort> dst)
+        {
+            dst[0] = project<ushort>(select(src, Part32x16.Part0), Part32x16.First);
+            dst[1] = project<ushort>(select(src, Part32x16.Part1), Part32x16.First);
         }
 
     }

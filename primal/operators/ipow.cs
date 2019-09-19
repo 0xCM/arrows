@@ -15,10 +15,10 @@ namespace Z0
     partial class math
     {
         // See https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int
-        public static sbyte ipow(sbyte b, sbyte exp)
+        public static sbyte ipow(sbyte b, uint exp)
         {
-            if(exp < 0)
-                return 0;
+            if(exp == 0)
+                return 1;
 
             var result = (sbyte)1;
             while(true)
@@ -33,8 +33,11 @@ namespace Z0
             return result;
         }
 
-        public static byte ipow(byte b, byte exp)
+        public static byte ipow(byte b, uint exp)
         {
+            if(exp == 0)
+                return 1;
+            
             var result = (byte)1;
             while(true)
             {
@@ -48,10 +51,10 @@ namespace Z0
             return result;
         }
 
-        public static short ipow(short b, short exp)
+        public static short ipow(short b, uint exp)
         {
-            if(exp < 0)
-                return 0;
+            if(exp == 0)
+                return 1;
 
             var result = (short)1;
             while(true)
@@ -66,8 +69,11 @@ namespace Z0
             return result;
         }
 
-        public static ushort ipow(ushort b, ushort exp)
+        public static ushort ipow(ushort b, uint exp)
         {
+            if(exp == 0)
+                return 1;
+
             var result = (ushort)1;
             while(true)
             {
@@ -81,10 +87,10 @@ namespace Z0
             return result;
         }
 
-        public static int ipow(int b, int exp)
+        public static int ipow(int b, uint exp)
         {
-            if(exp < 0)
-                return 0;
+            if(exp == 0)
+                return 1;
 
             var result = 1;
             while(true)
@@ -101,6 +107,9 @@ namespace Z0
 
         public static uint ipow(uint b, uint exp)
         {
+            if(exp == 0)
+                return 1;
+
             var result = 1u;
             while(true)
             {
@@ -114,10 +123,10 @@ namespace Z0
             return result;
         }
 
-        public static long ipow(long b, long exp)
+        public static long ipow(long b, uint exp)
         {
-            if(exp < 0)
-                return 0;
+            if(exp == 0)
+                return 1;
             
             var result = 1L;
             while(true)
@@ -132,8 +141,11 @@ namespace Z0
             return result;
         }
 
-        public static ulong ipow(ulong b, ulong exp)
+        public static ulong ipow(ulong b, uint exp)
         {
+            if(exp == 0)
+                return 1;
+            
             var result = 1ul;
             while(true)
             {
@@ -148,35 +160,35 @@ namespace Z0
         }
  
         [MethodImpl(Inline)]
-        public static ref sbyte ipow(ref sbyte src, sbyte exp)
+        public static ref sbyte ipow(ref sbyte src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref byte ipow(ref byte src, byte exp)
+        public static ref byte ipow(ref byte src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref short ipow(ref short src, short exp)
+        public static ref short ipow(ref short src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort ipow(ref ushort src, ushort exp)
+        public static ref ushort ipow(ref ushort src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref int ipow(ref int src, int exp)
+        public static ref int ipow(ref int src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
@@ -190,55 +202,55 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref long ipow(ref long src, long exp)
+        public static ref long ipow(ref long src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong ipow(ref ulong src, ulong exp)
+        public static ref ulong ipow(ref ulong src, uint exp)
         {
             src = ipow(src,exp);
             return ref src;
         }
 
 
-        public static Span<sbyte> ipow(Span<sbyte> b, ReadOnlySpan<sbyte> exp)
+        public static Span<sbyte> ipow(Span<sbyte> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<byte> ipow(Span<byte> b, ReadOnlySpan<byte> exp)
+        public static Span<byte> ipow(Span<byte> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<short> ipow(Span<short> b, ReadOnlySpan<short> exp)
+        public static Span<short> ipow(Span<short> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<ushort> ipow(Span<ushort> b, ReadOnlySpan<ushort> exp)
+        public static Span<ushort> ipow(Span<ushort> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<int> ipow(Span<int> b, ReadOnlySpan<int> exp)
+        public static Span<int> ipow(Span<int> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
@@ -246,80 +258,88 @@ namespace Z0
 
         public static Span<uint> ipow(Span<uint> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<long> ipow(Span<long> b, ReadOnlySpan<long> exp)
+        public static Span<long> ipow(Span<long> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<ulong> ipow(Span<ulong> b, ReadOnlySpan<ulong> exp)
+        public static Span<ulong> ipow(Span<ulong> b, ReadOnlySpan<uint> exp)
         {
-            var len =  length(b,exp);
+            var len =  b.Length;
             for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp[i]);
             return b;
         }
 
-        public static Span<sbyte> ipow(Span<sbyte> b, sbyte exp)
+        public static Span<sbyte> ipow(Span<sbyte> b, uint exp)
         {
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
+                b[i] = ipow(b[i], exp);
+            return b;
+        }
+
+        public static Span<byte> ipow(Span<byte> b, uint exp)
+        {
+            var len =  b.Length;
             for(var i = 0; i<b.Length; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
-        public static Span<byte> ipow(Span<byte> b, byte exp)
+        public static Span<short> ipow(Span<short> b, uint exp)
         {
+            var len =  b.Length;
             for(var i = 0; i<b.Length; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
-        public static Span<short> ipow(Span<short> b, short exp)
+        public static Span<ushort> ipow(Span<ushort> b, uint exp)
         {
-            for(var i = 0; i<b.Length; i++) 
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
-        public static Span<ushort> ipow(Span<ushort> b, ushort exp)
+        public static Span<int> ipow(Span<int> b, uint exp)
         {
-            for(var i = 0; i<b.Length; i++) 
-                b[i] = ipow(b[i], exp);
-            return b;
-        }
-
-        public static Span<int> ipow(Span<int> b, int exp)
-        {
-            for(var i = 0; i<b.Length; i++) 
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
         public static Span<uint> ipow(Span<uint> b, uint exp)
         {
-            for(var i = 0; i<b.Length; i++) 
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
-        public static Span<long> ipow(Span<long> b, long exp)
+        public static Span<long> ipow(Span<long> b, uint exp)
         {
-            for(var i = 0; i<b.Length; i++) 
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }
 
-        public static Span<ulong> ipow(Span<ulong> b, ulong exp)
+        public static Span<ulong> ipow(Span<ulong> b, uint exp)
         {
-            for(var i = 0; i<b.Length; i++) 
+            var len =  b.Length;
+            for(var i = 0; i<len; i++) 
                 b[i] = ipow(b[i], exp);
             return b;
         }

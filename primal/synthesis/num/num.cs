@@ -237,9 +237,9 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public num<T> pow(T exp) 
+        public num<T> ipow(uint exp) 
         {
-            ref var result = ref gmath.pow(ref unwrap(in this), exp);
+            ref var result = ref gmath.ipow(ref unwrap(in this), exp);
             return Unsafe.As<T,num<T>>(ref result);
         }
 

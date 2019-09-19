@@ -2,17 +2,15 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
 
     using static zfunc;
 
-    public class t_erf : UnitTest<t_erf>
+    public class t_erf : MathTest<t_erf>
     {
-        protected override int RoundCount
-            => Pow2.T10;
 
         void erf64f_cephes_validate()
         {

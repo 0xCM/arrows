@@ -19,10 +19,19 @@ namespace Z0
 
     partial class dinx
     {
+        
         [MethodImpl(Inline)]
         public static Vec128<sbyte> alignr(Vec128<sbyte> left, Vec128<sbyte> right, byte offset)
             => AlignRight(left, right, offset);
 
+        /// <summary>
+        /// _m128i _mm_alignr_epi8 (__m128i a, __m128i b, int count) PALIGNR xmm, xmm/m128, imm8 
+        /// Concatenate 16-byte blocks in a and b into a 32-byte temporary result, shift the result right 
+        /// by count bytes, and store the low 16 bytes in dst.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <param name="offset"></param>
         [MethodImpl(Inline)]
         public static Vec128<byte> alignr(Vec128<byte> left, Vec128<byte> right, byte offset)
             => AlignRight(left, right, offset);

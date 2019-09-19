@@ -26,15 +26,24 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec128<byte> subs(in Vec128<byte> lhs, in Vec128<byte> rhs)        
             => SubtractSaturate(lhs,rhs);
 
+        /// <summary>
+        /// __m128i _mm_subs_epi8 (__m128i a, __m128i b) PSUBSB xmm, xmm/m128
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
         [MethodImpl(Inline)]
         public static Vec128<sbyte> subs(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)        
             => SubtractSaturate(lhs,rhs);
 
+        /// <summary>
+        /// __m128i _mm_subs_epi16 (__m128i a, __m128i b) PSUBSW xmm, xmm/m128
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
         [MethodImpl(Inline)]
         public static Vec128<short> subs(in Vec128<short> lhs, in Vec128<short> rhs)        
             => SubtractSaturate(lhs,rhs);

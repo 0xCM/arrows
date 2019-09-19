@@ -252,7 +252,7 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part3 | Part4
+            Select = Part0 | Part1 | Part2  | Part3  | Part4
         }
 
 
@@ -321,7 +321,7 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part3 | Part4 | Part5
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5
         }
 
         /// <summary>
@@ -393,7 +393,7 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part3 | Part4 | Part5 | Part6 | Part7
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
         }
 
         /// <summary>
@@ -553,7 +553,8 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8
 
         }
 
@@ -631,7 +632,8 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8 | Part9
         }
         
 
@@ -714,7 +716,8 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9 | Part10
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8 | Part9 | Part10 
         }
 
         /// <summary>
@@ -811,7 +814,8 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9 | Part10 | Part11
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8 | Part9 | Part10 | Part11
         }
 
         /// <summary>
@@ -836,67 +840,67 @@ namespace Z0
             Count = Length/Width,
 
             /// <summary>
-            /// Identifies bit 1
+            /// Identifies bit 0
             /// </summary>
             Part0 = Part1x1.Part0,
 
             /// <summary>
-            /// Identifies bit 2
+            /// Identifies bit 1
             /// </summary>
             Part1 = Part0 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 3
+            /// Identifies bit 2
             /// </summary>
             Part2 = Part1 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 4
+            /// Identifies bit 3
             /// </summary>
             Part3 = Part2 << (int)Width,            
 
             /// <summary>
-            /// Identifies tbit 5
+            /// Identifies tbit 4
             /// </summary>
             Part4 = Part3 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 6
+            /// Identifies bit 5
             /// </summary>
             Part5 = Part4 << (int)Width,            
 
             /// <summary>
-            /// Identifies bit 7
+            /// Identifies bit 6
             /// </summary>
             Part6 = Part5 << (int)Width,                    
             
             /// <summary>
-            /// Identifies bit 8
+            /// Identifies bit 7
             /// </summary>
             Part7 = Part6 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 9
+            /// Identifies bit 8
             /// </summary>
             Part8 = Part7 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 10
+            /// Identifies bit 9
             /// </summary>
             Part9 = Part8 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 11
+            /// Identifies bit 10
             /// </summary>
             Part10 = Part9 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 12
+            /// Identifies bit 11
             /// </summary>
             Part11 = Part10 << (int)Width,
 
             /// <summary>
-            /// Identifies bit 13
+            /// Identifies bit 12
             /// </summary>
             Part12 = Part11 << (int)Width,
 
@@ -913,7 +917,127 @@ namespace Z0
             /// <summary>
             /// Selects all container bits
             /// </summary>
-            Select = Part0 | Part1 | Part2 | Part4 | Part5 | Part6 | Part7 | Part8 | Part9 | Part10 | Part11 | Part12
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8 | Part9 | Part10 | Part11 | Part12
+        }
+
+
+        /// <summary>
+        /// Partitions a 16-bit container into 1-bit segments
+        /// </summary>
+        [Flags]
+        public enum Part16x1 : ushort
+        {
+            /// <summary>
+            /// The partition width
+            /// </summary>
+            Width = 1,
+
+            /// <summary>
+            /// The total count of partitioned bits
+            /// </summary>
+            Length = 16,
+
+            /// <summary>
+            /// The partition count
+            /// </summary>
+            Count = Length/Width,
+
+            /// <summary>
+            /// Identifies bit 0
+            /// </summary>
+            Part0 = Part1x1.Part0,
+
+            /// <summary>
+            /// Identifies bit 1
+            /// </summary>
+            Part1 = Part0 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 2
+            /// </summary>
+            Part2 = Part1 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 3
+            /// </summary>
+            Part3 = Part2 << (int)Width,            
+
+            /// <summary>
+            /// Identifies tbit 4
+            /// </summary>
+            Part4 = Part3 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 5
+            /// </summary>
+            Part5 = Part4 << (int)Width,            
+
+            /// <summary>
+            /// Identifies bit 6
+            /// </summary>
+            Part6 = Part5 << (int)Width,                    
+            
+            /// <summary>
+            /// Identifies bit 7
+            /// </summary>
+            Part7 = Part6 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 8
+            /// </summary>
+            Part8 = Part7 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 9
+            /// </summary>
+            Part9 = Part8 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 10
+            /// </summary>
+            Part10 = Part9 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 11
+            /// </summary>
+            Part11 = Part10 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 12
+            /// </summary>
+            Part12 = Part11 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 13
+            /// </summary>
+            Part13 = Part12 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 14
+            /// </summary>
+            Part14 = Part13 << (int)Width,
+
+            /// <summary>
+            /// Identifies bit 15
+            /// </summary>
+            Part15 = Part14 << (int)Width,
+
+            /// <summary>
+            /// Identifies the first partition
+            /// </summary>
+            First = Part0,
+
+            /// <summary>
+            /// Identifies the last partition
+            /// </summary>
+            Last = Part15,
+
+            /// <summary>
+            /// Selects all container bits
+            /// </summary>
+            Select = Part0 | Part1 | Part2  | Part3  | Part4  | Part5  | Part6  | Part7 
+                   | Part8 | Part9 | Part10 | Part11 | Part12 | Part13 | Part14 | Part15
         }
 
     }

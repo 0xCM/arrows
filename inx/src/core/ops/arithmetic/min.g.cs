@@ -8,7 +8,6 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-
     
     using static zfunc;
     
@@ -33,10 +32,6 @@ namespace Z0
                 return generic<T>(dinx.min(in int32(in lhs), in int32(in rhs)));
             else if(typeof(T) == typeof(uint))
                 return generic<T>(dinx.min(in uint32(in lhs), in uint32(in rhs)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.min(in float32(in lhs), in float32(in rhs)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.min(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
 
@@ -58,10 +53,6 @@ namespace Z0
                 return generic<T>(dinx.min(in int32(in lhs), in int32(in rhs)));
             else if(typeof(T) == typeof(uint))
                 return generic<T>(dinx.min(in uint32(in lhs), in uint32(in rhs)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.min(in float32(in lhs), in float32(in rhs)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.min(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
         }        

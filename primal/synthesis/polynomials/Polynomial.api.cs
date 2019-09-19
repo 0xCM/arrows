@@ -16,7 +16,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Polynomial<T> Define<T>(params (T scalar, int exp)[] terms)
+        public static Polynomial<T> Define<T>(params (T scalar, uint exp)[] terms)
             where T : unmanaged
                 => Polynomial<T>.Define(terms);
     }

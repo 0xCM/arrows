@@ -21,7 +21,18 @@ namespace Z0
     public readonly struct Polynomial<T>
         where T : unmanaged
     {
-        public static Polynomial<T> Define(params (T scalar, int exp)[] terms)
+        readonly Monomial<T>[] terms;
+
+        /// <summary>
+        /// The canonical zero polynomial - with one term of order 0 with coefficient 0
+        /// </summary>
+        public static readonly Polynomial<T> Zero = Define((zero<T>(), 0));
+
+        /// <summary>
+        /// Constructs a polynomial from a sparse term sequence of scalar coefficients  paired with the
+        /// corresponding term exponent value
+        /// </summary>
+        public static Polynomial<T> Define(params (T scalar, uint exp)[] terms)
         {
             var expanse = new Monomial<T>[terms[0].exp + 1];
             for(var i = 0; i < terms.Length; i++)
@@ -29,56 +40,133 @@ namespace Z0
             expanse.Reverse();              
             return new Polynomial<T>(expanse);
         }
-
-        readonly Monomial<T>[] Terms;
-
-
+        
+        /// <summary>
+        /// Initializes a polynomial from a dense sequence of monomials
+        /// </summary>
         [MethodImpl(Inline)]
         Polynomial(Monomial<T>[] terms)
         {
-            this.Terms = terms;
+            this.terms = terms;
         }
 
-        public Polynomial(params (T scalar, int exp)[] terms)
+        /// <summary>
+        /// Specifies the degree of the polynomial as determined by the value of
+        /// the exponent of greatest order
+        /// </summary>
+        public uint Degree
         {
-            this.Terms = new Monomial<T>[terms.Length];
-            for(var i=0; i<terms.Length; i++)
-                Terms[i] = terms[i];
+            [MethodImpl(Inline)]
+            get => terms[0].Exp;
+        }
+        
+        /// <summary>
+        /// The dense sequence of terms that define the polynomial
+        /// </summary>
+        public Monomial<T>[] Terms
+        {
+            [MethodImpl(Inline)]
+            get => terms;
         }
 
-        public int Degree
-            => Terms[0].Exp;
-        
+        public T[] Coefficients()
+        {
+            var dst = new T[terms.Length];
+            for(var i=0; i< terms.Length; i++)
+                dst[i] = terms[i].Scalar;
+            return dst;
+        }
+
+        /// <summary>
+        /// Selects the term with the specified order if it exists; otherwise, returns the zero monomial
+        /// </summary>
+        public Monomial<T> this[uint exp]
+        {
+            [MethodImpl(Inline)]
+            get => Term(exp);
+        }
+
+        /// <summary>
+        /// Selects the term with the specified order if it exists; otherwise, returns the zero monomial
+        /// </summary>
+        public Monomial<T> this[int exp]
+        {
+            [MethodImpl(Inline)]
+            get => Term((uint)exp);
+        }
+
+        /// <summary>
+        /// Specifies whether some term has a nonzero coeficient value
+        /// </summary>
+        public bool Nonzero
+        {
+            get
+            {
+                for(var i=0; i<terms.Length; i++)
+                    if(terms[i].Nonzero)
+                        return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Selects the term with the specified order if it exists;
+        /// otherwise, returns the zero monomial
+        /// </summary>
+        [MethodImpl(Inline)]
+        public Monomial<T> Term(uint exp)
+        {
+            var index = terms.Length - (exp + 1);
+            if(index >=0)
+                return terms[index];
+            else
+                return Monomial<T>.Zero(exp);
+        }
+
+        [MethodImpl(Inline)]
+        public Monomial<T> Term(int exp)
+            => Term(exp);
+
+        public Monomial<T> LeadingTerm
+        {
+            [MethodImpl(Inline)]
+            get => terms[0];
+        }
+
+        /// <summary>
+        /// Evaluates the polynomial at a specified point
+        /// </summary>
+        /// <param name="x">The value at which to evaluate the polynomial</param>
         public T Eval(T x)
         {
-            var result = Terms[0].Scalar;
-            var i = Terms.Length - 1;
-
-            do 
-                result = gmath.add(gmath.mul(result, x), Terms[i].Scalar);
-            while(--i != 0 );
-
+            var result = default(T);
+            for(var i=0; i<Terms.Length; i++)
+                result = gmath.add(result, terms[i].Eval(x));
             return result ;
         }
 
         static string GetSep(Monomial<T> term)
             => gmath.negative(term.Scalar) ? " - " : " + ";
 
+        /// <summary>
+        /// Formats the polynomial in canonical form
+        /// </summary>
+        /// <param name="variable">The name of the placeholder variable</param>
         public string Format(char? variable = null)
         {
             var dst = new List<string>();
-            for(var i=0; i< Terms.Length; i++)            
-                if(Terms[i].Nonzero)
+            for(var i=0; i< terms.Length; i++)            
+                if(terms[i].Nonzero)
                 {
                     if(dst.Count != 0)
-                        dst.Add(GetSep(Terms[i]));
+                        dst.Add(GetSep(terms[i]));
                     else
                     {
-                        if(gmath.negative(Terms[i].Scalar))
+                        if(gmath.negative(terms[i].Scalar))
                             dst.Add("-");
                     }
 
-                    dst.Add(Terms[i].Format(variable,true));
+                    dst.Add(terms[i].Format(variable,true));
                 }
             
             return dst.Concat();
@@ -101,7 +189,7 @@ namespace Z0
     {
         public readonly Monomial<M,T>[] Terms;
 
-        public static readonly int Degree = (int)new N().value;
+        public static readonly uint Degree = (uint)new N().value;
         
         /// <summary>
         /// The zero polynomial of degree N
@@ -120,7 +208,7 @@ namespace Z0
         /// Selects the term with the specified order if it exists;
         /// otherwise, returns the zero monomial
         /// </summary>
-        public Monomial<M,T> this[int exp]
+        public Monomial<M,T> this[uint exp]
         {
             [MethodImpl(Inline)]
             get => Term(exp);
@@ -130,7 +218,7 @@ namespace Z0
         /// Selects the term with the specified order if it exists;
         /// otherwise, returns the zero monomial
         /// </summary>
-        public Monomial<M,T> Term(int exp)
+        public Monomial<M,T> Term(uint exp)
         {
             for(var j = 0; j<Terms.Length; j++)
                 if(Terms[j].Exp == exp)

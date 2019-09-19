@@ -39,7 +39,7 @@ namespace Z0
             /// <summary>
             /// Identifies the first 8-bit group
             /// </summary>
-            Part0 = Part6x1.Select,
+            Part0 = Part8x1.Select,
 
             /// <summary>
             /// Identifies the second 8-bit group

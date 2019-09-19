@@ -31,13 +31,8 @@ namespace Z0
                 return generic<T>(dinx.max(in int32(in lhs), in int32(in rhs)));
             else if(typeof(T) == typeof(uint))
                 return generic<T>(dinx.max(in uint32(in lhs), in uint32(in rhs)));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.max(in float32(in lhs), in float32(in rhs)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.max(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-
         }
          
        [MethodImpl(Inline)]

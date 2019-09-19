@@ -44,9 +44,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(math.idiv(uint64(lhs), uint64(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(fmath.div(float32(lhs), float32(rhs)));
+                return generic<T>(fmath.fdiv(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(fmath.div(float64(lhs), float64(rhs)));
+                return generic<T>(fmath.fdiv(float64(lhs), float64(rhs)));
             else            
                 throw unsupported<T>();
         }
@@ -78,9 +78,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.idiv(ref uint64(ref lhs), in uint64(in rhs));
             else if(typeof(T) == typeof(float))
-                fmath.div(ref float32(ref lhs), in float32(in rhs));
+                fmath.fdiv(ref float32(ref lhs), in float32(in rhs));
             else if(typeof(T) == typeof(double))
-                fmath.div(ref float64(ref lhs), in float64(in rhs));
+                fmath.fdiv(ref float64(ref lhs), in float64(in rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;

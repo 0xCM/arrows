@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="lhs">The left vectorized scalar</param>
         /// <param name="rhs">The right vectorized scalar</param>
         [MethodImpl(Inline)]
-        public static Scalar128<float> sub(in Scalar128<float> lhs, in Scalar128<float> rhs)
+        public static Scalar128<float> fsub(in Scalar128<float> lhs, in Scalar128<float> rhs)
             => SubtractScalar(lhs, rhs);
             
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// <param name="rhs">The right vectorized scalar</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Scalar128<double> sub(in Scalar128<double> lhs, in Scalar128<double> rhs)
+        public static Scalar128<double> fsub(in Scalar128<double> lhs, in Scalar128<double> rhs)
             => SubtractScalar(lhs, rhs);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> sub(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vec256<float> fsub(in Vec256<float> lhs, in Vec256<float> rhs)
             => Subtract(lhs, rhs);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> sub(in Vec256<double> lhs, in Vec256<double> rhs)  
+        public static Vec256<double> fsub(in Vec256<double> lhs, in Vec256<double> rhs)  
             => Subtract(lhs, rhs);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec128<float> sub(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vec128<float> fsub(in Vec128<float> lhs, in Vec128<float> rhs)
             => Subtract(lhs,rhs);
 
         /// <summary>
@@ -70,41 +70,10 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<double> sub(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vec128<double> fsub(in Vec128<double> lhs, in Vec128<double> rhs)
             => Subtract(lhs,rhs);
 
 
-        /// <summary>
-        /// Negates the source vector
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<float> negate(in Vec128<float> src)
-            =>  sub(Vec128<float>.Zero, src);
-
-        /// <summary>
-        /// Negates the source vector
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static Vec128<double> negate(in Vec128<double> src)
-            =>  sub(Vec128<double>.Zero, src);
-
-        /// <summary>
-        /// Negates the source vector
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256<float> negate(in Vec256<float> src)
-            =>  sub(Vec256<float>.Zero, src);
-
-        /// <summary>
-        /// Negates the source vector
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        [MethodImpl(Inline)]
-        public static Vec256<double> negate(in Vec256<double> src)
-            =>  sub(Vec256<double>.Zero, src);
     }
 
 }

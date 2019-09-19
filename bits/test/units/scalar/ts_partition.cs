@@ -36,6 +36,13 @@ namespace Z0
             bitpart_check<uint,byte>(Bits.part24x3, count,width);
         }
 
+        public void bitpart_32x16()
+        {                 
+            var count = (int)Part32x16.Count;
+            var width = (int)Part32x16.Width;
+            bitpart_check<uint,ushort>(Bits.part32x16, count, width);
+        }
+
         public void bitpart_32x4()
         {
             var count = (int)Part32x4.Count;

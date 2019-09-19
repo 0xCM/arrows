@@ -14,28 +14,28 @@ namespace Z0
     partial class fmath
     {
         [MethodImpl(Inline)]
-        public static float div(float lhs, float rhs)
+        public static float fdiv(float lhs, float rhs)
             => lhs / rhs;
 
         [MethodImpl(Inline)]
-        public static double div(double lhs, double rhs)
+        public static double fdiv(double lhs, double rhs)
             => lhs / rhs;
 
         [MethodImpl(Inline)]
-        public static ref float div(ref float lhs, in float rhs)
+        public static ref float fdiv(ref float lhs, in float rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref double div(ref double lhs, in double rhs)
+        public static ref double fdiv(ref double lhs, in double rhs)
         {
             lhs = lhs / rhs;
             return ref lhs;
         }
 
-        public static Span<float> div(Span<float> lhs, ReadOnlySpan<float> rhs)
+        public static Span<float> fdiv(Span<float> lhs, ReadOnlySpan<float> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -43,7 +43,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<double> div(Span<double> lhs, ReadOnlySpan<double> rhs)
+        public static Span<double> fdiv(Span<double> lhs, ReadOnlySpan<double> rhs)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -51,7 +51,7 @@ namespace Z0
             return lhs;
         }
 
-        public static Span<float> div(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+        public static Span<float> fdiv(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -59,7 +59,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span<double> div(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+        public static Span<double> fdiv(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)

@@ -2,17 +2,15 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
 
     using static zfunc;
 
-    public class t_exp : UnitTest<t_exp>
+    public class t_exp : MathTest<t_exp>
     {
-        protected override int RoundCount
-            => Pow2.T10;
 
         const double MinExp = 2.0;
         const double MaxExp = 50.0;

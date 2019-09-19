@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2004 David Schultz <das@FreeBSD.ORG>
+ * Copyright (c) 2003 Mike Barcroft <mike@FreeBSD.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,39 +23,31 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * $FreeBSD: src/lib/msun/src/s_isnormal.c,v 1.1 2004/07/09 03:32:39 das Exp $
+ * $FreeBSD: src/lib/msun/src/s_signbit.c,v 1.1 2004/07/19 08:16:10 das Exp $
  */
 
-#include <openlibm_math.h>
+#include "cdefs-compat.h"
+#include <float.h>
+
+#include "openlibm_math.h"
 
 #include "fpmath.h"
 #include "math_private.h"
 
 OLM_DLLEXPORT int
-__isnormal(double d)
+__signbit(double d)
 {
 	union IEEEd2bits u;
 
 	u.d = d;
-	return (u.bits.exp != 0 && u.bits.exp != 2047);
+	return (u.bits.sign);
 }
 
 OLM_DLLEXPORT int
-__isnormalf(float f)
+__signbitf(float f)
 {
 	union IEEEf2bits u;
 
 	u.f = f;
-	return (u.bits.exp != 0 && u.bits.exp != 255);
+	return (u.bits.sign);
 }
-
-#ifdef OLM_LONG_DOUBLE
-OLM_DLLEXPORT int
-__isnormall(long double e)
-{
-	union IEEEl2bits u;
-
-	u.e = e;
-	return (u.bits.exp != 0 && u.bits.exp != 32767);
-}
-#endif

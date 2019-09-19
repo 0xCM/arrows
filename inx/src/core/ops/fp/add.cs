@@ -39,7 +39,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> add(in Vec256<double> lhs, in Vec256<double> rhs)
             => Add(lhs, rhs); 
-
+            
         public static Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
             var blocks = dst.BlockCount;

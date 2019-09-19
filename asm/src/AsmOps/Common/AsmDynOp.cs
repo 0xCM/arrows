@@ -25,8 +25,6 @@ namespace Z0
     [SuppressUnmanagedCodeSecurity]
     public static unsafe class AsmDynOp
     {
-
-
         /// <summary>
         /// Creates a value emitter that upon invocate produces a value by executing the supplice source
         /// </summary>

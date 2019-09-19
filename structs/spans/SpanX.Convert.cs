@@ -180,32 +180,6 @@ namespace Z0
             where T : struct
                 => MemoryMarshal.AsBytes(src);
 
-        [MethodImpl(Inline)]
-        public static Span<byte> AsByteSpan<T>(this T[] src)
-            where T : struct
-                => MemoryMarshal.AsBytes(src.AsSpan());
-
-
-        /// <summary>
-        /// Reimagines a span of generic values as a span of signed bytes
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<sbyte> AsSBytes<T>(this Span<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,sbyte>(src);
-
-        /// <summary>
-        /// Reimagines a span of generic values as a span of int16
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<short> AsInt16<T>(this Span<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,short>(src);
-
         /// <summary>
         /// Reimagines a span of generic values as a span of uint16
         /// </summary>
@@ -217,16 +191,6 @@ namespace Z0
                 => MemoryMarshal.Cast<T,ushort>(src);
 
         /// <summary>
-        /// Reimagines a span of generic values as a span of int32
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<int> AsInt32<T>(this Span<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,int>(src);
-
-        /// <summary>
         /// Reimagines a span of generic values as a span of uint32
         /// </summary>
         /// <param name="src">The source span</param>
@@ -235,17 +199,7 @@ namespace Z0
         public static Span<uint> AsUInt32<T>(this Span<T> src)
             where T : struct        
                 => MemoryMarshal.Cast<T,uint>(src);
-
-        /// <summary>
-        /// Reimagines a span of generic values as a span of int64
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<long> AsInt64<T>(this Span<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,long>(src);
-
+ 
         /// <summary>
         /// Reimagines a span of generic values as a span of uint64
         /// </summary>
@@ -257,16 +211,6 @@ namespace Z0
                 => MemoryMarshal.Cast<T,ulong>(src);
 
         /// <summary>
-        /// Reimagines a span of generic values as a span of sbytes
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<sbyte> AsSBytes<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,sbyte>(src);
-
-       /// <summary>
         /// Reimagines a readonly span of generic values as a span of readonly bytes
         /// </summary>
         /// <param name="src">The source span</param>
@@ -277,63 +221,13 @@ namespace Z0
                 => MemoryMarshal.AsBytes(src);
 
         /// <summary>
-        /// Reimagines a span of generic values as a span of int16
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<short> AsInt16<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,short>(src);
-
-        /// <summary>
-        /// Reimagines a readonly span of generic values as a readonly span of uint16
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<ushort> AsUInt16<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,ushort>(src);
-
-        /// <summary>
-        /// Reimagines a readonly span of generic values as a readonly span of int32
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<int> AsInt32<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,int>(src);
-
-        /// <summary>
-        /// Reimagines a readonly span of generic values as a readonly span of uint32
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <typeparam name="T">The source value type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<uint> AsUInt32<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,uint>(src);
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<long> AsInt64<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,long>(src);
-        
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<ulong> AsUInt64<T>(this ReadOnlySpan<T> src)
-            where T : struct        
-                => MemoryMarshal.Cast<T,ulong>(src);
-
-        /// <summary>
         /// Reads a partial value if there aren't a sufficient number of bytes to comprise a target value
         /// </summary>
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]
-        public static T TakePartial<T>(this Span<byte> src)
-            where T : struct
+        public static T TakeScalar<T>(this Span<byte> src)
+            where T : unmanaged
         {
             if(src.Length >= Unsafe.SizeOf<T>())
                 return MemoryMarshal.Read<T>(src);
@@ -347,88 +241,214 @@ namespace Z0
             }
         }
 
+        /// <summary>
+        /// Copies at most n bytes from the source span to the target span where n is the length of the target span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="dst">The target span</param>
         [MethodImpl(Inline)]
-        public static sbyte TakeInt8<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.Slice(offset).AsSBytes()[0];
+        public static Span<byte> TakeBytes(this ReadOnlySpan<byte> src, Span<byte> dst)
+        {
+            if(src.Length > dst.Length)
+                src.Slice(0,dst.Length).CopyTo(dst);
+            else
+                src.CopyTo(dst);
+            return dst;
+        }
 
+        /// <summary>
+        /// If the source is nonempty, converts the leading element to an 8-bit signed integer;
+        /// otherwise, returns 0
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static byte TakeUInt8<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.Slice(offset).AsBytes()[0];
+        public static sbyte TakeInt8<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged        
+            => src.Length > 0 ? (sbyte)src.AsBytes()[0] : (sbyte)0;            
 
+        /// <summary>
+        /// If the source is nonempty, converts the leading element to an 8-bit signed integer;
+        /// otherwise, returns 0
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static short TakeInt16<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.ByteCount(offset) >= sizeof(ushort) ? src.Slice(offset).AsInt16()[0] : (short)0;
+        public static sbyte TakeInt8<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeInt8();
 
+        /// <summary>
+        /// If the source is nonempty, converts the leading element to an 8-bit unsigned integer;
+        /// otherwise, returns 0
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static ushort TakeUInt16<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.ByteCount(offset) >= sizeof(ushort) ? src.Slice(offset).AsUInt16()[0] : (ushort)0;
+        public static byte TakeUInt8<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged        
+            => src.Length > 0 ? src.AsBytes()[0] : (byte)0;
 
+        /// <summary>
+        /// If the source is nonempty, converts the leading element to an 8-bit unsigned integer;
+        /// otherwise, returns 0
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static uint TakeUInt32<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.ByteCount(offset) >= sizeof(uint) ? src.Slice(offset).AsUInt32()[0] : 0;
+        public static byte TakeUInt8<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeUInt8();
+ 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 16-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        [MethodImpl(Inline)]
+        public static short TakeInt16<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged        
+        {
+            Span<byte> dst = stackalloc byte[2];       
+            return BitConverter.ToInt16(src.AsBytes().TakeBytes(dst));
+        }
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 16-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static int TakeInt32<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.ByteCount(offset) >= sizeof(int) ? src.Slice(offset).AsInt32()[0] : 0;
+        public static short TakeInt16<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeInt16();
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 16-bit unsigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static long TakeInt64<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct        
-                => src.ByteCount(offset) >= sizeof(long) ? src.Slice(offset).AsInt64()[0] : 0;
+        public static ushort TakeUInt16<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged
+        {
+            Span<byte> dst = stackalloc byte[2];       
+            return BitConverter.ToUInt16(src.AsBytes().TakeBytes(dst));
+        }
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 16-bit unsigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static ulong TakeUInt64<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct
-                => src.ByteCount(offset) >= sizeof(ulong) ? src.Slice(offset).AsUInt64()[0] : 0;                
-        
-        [MethodImpl(Inline)]
-        public static sbyte TakeInt8<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeInt8(offset);
+        public static ushort TakeUInt16<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeUInt16();
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 32-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static byte TakeUInt8<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeUInt8(offset);
-        
-        [MethodImpl(Inline)]
-        public static short TakeInt16<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeInt16(offset);
+        public static int TakeInt32<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged
+        {
+            Span<byte> dst = stackalloc byte[4];       
+            return BitConverter.ToInt32(src.AsBytes().TakeBytes(dst));
+        }
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 32-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static ushort TakeUInt16<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeUInt16(offset);
+        public static int TakeInt32<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeInt32();
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 32-bit usigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static uint TakeUInt32<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeUInt32(offset);
+        public static uint TakeUInt32<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged
+        {
+            Span<byte> dst = stackalloc byte[4];       
+            return BitConverter.ToUInt32(src.AsBytes().TakeBytes(dst));
+        }
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 32-bit usigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static int TakeInt32<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeInt32(offset);
+        public static uint TakeUInt32<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeUInt32();
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 64-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static long TakeInt64<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeInt64(offset);
+        public static long TakeInt64<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged
+        {
+            Span<byte> dst = stackalloc byte[8];       
+            return BitConverter.ToInt64(src.AsBytes().TakeBytes(dst));
+        }
 
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 64-bit signed integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
         [MethodImpl(Inline)]
-        public static ulong TakeUInt64<T>(this Span<T> src, int offset = 0)
-            where T : struct        
-                => src.ReadOnly().TakeUInt64(offset); 
-        
-        static Exception unsupported<T>()
-            => new Exception($"The type {typeof(T).Name} is unsupported");
+        public static long TakeInt64<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeInt64();
+
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 64-bit unsigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        [MethodImpl(Inline)]
+        public static ulong TakeUInt64<T>(this ReadOnlySpan<T> src)
+            where T : unmanaged
+        {
+            Span<byte> dst = stackalloc byte[8];       
+            return BitConverter.ToUInt64(src.AsBytes().TakeBytes(dst));
+        }
+
+        /// <summary>
+        /// Converts the leading elements of a primal source span to a 64-bit unsigned integer,
+        /// 0-filling the high bits if the source is too short
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        [MethodImpl(Inline)]
+        public static ulong TakeUInt64<T>(this Span<T> src)
+            where T : unmanaged        
+                => src.ReadOnly().TakeUInt64();         
     }
 
 }

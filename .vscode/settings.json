@@ -24,6 +24,7 @@
         "algorithm": "cpp",
         "random": "cpp",
         "numeric": "cpp",
-        "mconf.h": "c"
+        "mconf.h": "c",
+        "cdefs-compat.h": "c"
     }
 }

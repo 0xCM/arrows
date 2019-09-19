@@ -18,34 +18,13 @@ namespace Z0
     public struct BitVector32 : IFixedBits<BitVector32,uint>
     {
         [FieldOffset(0)]
-        BitVector4 bv4;
-
-        [FieldOffset(0)]
-        BitVector8 bv8;
-
-        [FieldOffset(0)]
-        BitVector16 bv16;
-
-        [FieldOffset(0)]
         uint data;
 
         [FieldOffset(0)]
-        ushort x000;
+        BitVector16 bv16Lo;
 
         [FieldOffset(2)]
-        ushort x001;
-
-        [FieldOffset(0)]        
-        byte x0000;
-        
-        [FieldOffset(1)]
-        byte x0001;
-        
-        [FieldOffset(2)]
-        byte x0010;
-        
-        [FieldOffset(3)]
-        byte x0011;
+        BitVector16 bv16Hi;
 
         public static readonly BitVector32 Zero = default;
 
@@ -383,19 +362,19 @@ namespace Z0
         public BitVector16 Lo
         {
             [MethodImpl(Inline)]
-            get => bv16;
+            get => bv16Lo;
             
             [MethodImpl(Inline)]
-            set => bv16 = value;
+            set => bv16Lo = value;
         }
 
         public BitVector16 Hi
         {
             [MethodImpl(Inline)]
-            get => x001;
+            get => bv16Hi;
 
             [MethodImpl(Inline)]
-            set => x001 = value;
+            set => bv16Hi = value;
         }
         
         /// <summary>

@@ -43,8 +43,7 @@ namespace Z0
         public static Vec128<uint> min(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => Min(lhs, rhs);
 
- 
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256<byte> min(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => Min(lhs, rhs);
 

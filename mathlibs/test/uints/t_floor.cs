@@ -2,17 +2,15 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
 
     using static zfunc;
 
-    public class t_floor : UnitTest<t_floor>
+    public class t_floor : MathTest<t_floor>
     {
-        protected override int RoundCount
-            => Pow2.T10;
 
         public void floor64f_cephes_validate()
         {

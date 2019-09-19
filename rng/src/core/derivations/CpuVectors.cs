@@ -12,8 +12,6 @@ namespace Z0
 
     partial class RngX
     {        
-
-
         /// <summary>
         /// Produces a random 128-bit cpu vector
         /// </summary>
@@ -182,5 +180,7 @@ namespace Z0
             var v4 = random.CpuVec256(domain,filter);
             return Vec1024.Define(v1,v2,v3,v4);
         }
+
+ 
     }
 }

@@ -16,32 +16,44 @@ namespace Z0
 
     partial class gmath
     {
+        /// <summary>
+        /// Adds two primal integers
+        /// </summary>
+        /// <param name="lhs">The left integer</param>
+        /// <param name="rhs">The right integer</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static T iadd<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(math.add(int8(lhs), int8(rhs)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(math.add(uint8(lhs), uint8(rhs)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(math.add(int16(lhs), int16(rhs)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(math.add(uint16(lhs), uint16(rhs)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(math.add(int32(lhs), int32(rhs)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(math.add(uint32(lhs), uint32(rhs)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(math.add(int64(lhs), int64(rhs)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(math.add(uint64(lhs), uint64(rhs)));
+            else            
+                throw unsupported<T>();
+        }
+
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)
             where T : struct
         {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>((sbyte)(int8(lhs) + int8(rhs)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>((byte)(uint8(lhs) + uint8(rhs)));
-            else if(typeof(T) == typeof(short))
-                return generic<T>((short)(int16(lhs) + int16(rhs)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(int32(lhs) + int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(uint32(lhs) + uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(int64(lhs) + int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(uint64(lhs) + uint64(rhs));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(float32(lhs) + float32(rhs));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(float64(lhs) + float64(rhs));
-            else            
-                throw unsupported<T>();
+            if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
+                return gfp.fadd(lhs,rhs);
+            else
+                return iadd(lhs,rhs);
         }
                     
         [MethodImpl(Inline)]
@@ -65,9 +77,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                  math.add(ref uint64(ref lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                 math.add(ref float32(ref lhs), float32(rhs));
+                 fmath.fadd(ref float32(ref lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                 math.add(ref float64(ref lhs), float64(rhs));
+                 fmath.fadd(ref float64(ref lhs), float64(rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;
@@ -94,18 +106,13 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.add(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.add(float32(lhs), float32(rhs), float32(dst));
+                fmath.fadd(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.add(float64(lhs), float64(rhs), float64(dst));
+                fmath.fadd(float64(lhs), float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
         }
-
-        [MethodImpl(Inline)]
-        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-                => add(lhs,rhs, span<T>(length(lhs,rhs)));
 
 
         [MethodImpl(Inline)]
@@ -129,9 +136,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.add(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                math.add(float32(lhs), float32(rhs));
+                fmath.fadd(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                math.add(float64(lhs), float64(rhs));
+                fmath.fadd(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return lhs;
@@ -164,9 +171,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.add(uint64(src), uint64(scalar));
             else if(typeof(T) == typeof(float))
-                math.add(float32(src), float32(scalar));
+                fmath.fadd(float32(src), float32(scalar));
             else if(typeof(T) == typeof(double))
-                math.add(float64(src), float64(scalar));
+                fmath.fadd(float64(src), float64(scalar));
             else
                 throw unsupported<T>();
             return src;

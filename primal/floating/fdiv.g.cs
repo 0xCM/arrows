@@ -26,9 +26,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                 return generic<T>(fmath.div(float32(lhs), float32(rhs)));
+                 return generic<T>(fmath.fdiv(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                 return generic<T>(fmath.div(float64(lhs), float64(rhs)));
+                 return generic<T>(fmath.fdiv(float64(lhs), float64(rhs)));
             else            
                 throw unsupported<T>();
         }
@@ -44,9 +44,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                 fmath.div(ref float32(ref lhs), float32(rhs));
+                 fmath.fdiv(ref float32(ref lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                 fmath.div(ref float64(ref lhs), float64(rhs));
+                 fmath.fdiv(ref float64(ref lhs), float64(rhs));
             else            
                 throw unsupported<T>();
             return ref lhs;
@@ -65,9 +65,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                fmath.div(float32(lhs), float32(rhs));
+                fmath.fdiv(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(float))
-                fmath.div(float64(lhs), float64(rhs));
+                fmath.fdiv(float64(lhs), float64(rhs));
             else
                 throw unsupported<T>();
             return lhs;
@@ -86,9 +86,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                fmath.div(float32(lhs), float32(rhs), float32(dst));
+                fmath.fdiv(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                fmath.div(float64(lhs), float64(rhs), float64(dst));
+                fmath.fdiv(float64(lhs), float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return dst;

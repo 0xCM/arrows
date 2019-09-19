@@ -31,9 +31,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return dfp.sub(in float32(in lhs), in float32(in rhs)).As<T>();
+                return dfp.fsub(in float32(in lhs), in float32(in rhs)).As<T>();
             else if(typeof(T) == typeof(double))
-                return dfp.sub(in float64(in lhs), in float64(in rhs)).As<T>();
+                return dfp.fsub(in float64(in lhs), in float64(in rhs)).As<T>();
             throw 
                 unsupported<T>();
         }
@@ -43,9 +43,9 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return dfp.mul(in float32(in lhs), in float32(in rhs)).As<T>();            
+                return dfp.fmul(in float32(in lhs), in float32(in rhs)).As<T>();            
             else if(typeof(T) == typeof(double))
-                return dfp.mul(in float64(in lhs), in float64(in rhs)).As<T>();
+                return dfp.fmul(in float64(in lhs), in float64(in rhs)).As<T>();
             else                
                 throw unsupported<T>();
         }
@@ -89,7 +89,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Scalar128<T> max<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
+        public static Scalar128<T> fmax<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -101,7 +101,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Scalar128<T> min<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
+        public static Scalar128<T> fmin<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -111,6 +111,56 @@ namespace Z0
             else                
                 throw unsupported<T>();
         }
+
+       [MethodImpl(Inline)]
+       public static Vec128<T> fmax<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.max(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.max(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported<T>();
+        }        
+
+
+       [MethodImpl(Inline)]
+       public static Vec256<T> fmax<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.max(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.max(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported<T>();
+        }        
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> fmin<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.min(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.min(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported<T>();
+
+        }
+         
+       [MethodImpl(Inline)]
+       public static Vec256<T> fmin<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.min(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.min(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported<T>();
+        }        
 
         [MethodImpl(Inline)]
         public static bool eq<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)

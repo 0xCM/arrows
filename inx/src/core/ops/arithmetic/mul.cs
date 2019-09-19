@@ -21,6 +21,7 @@ namespace Z0
 
     partial class dinx
     {
+        
         /// <summary>
         /// _mm_mul_epi32
         /// </summary>
@@ -40,14 +41,15 @@ namespace Z0
             => Multiply(lhs, rhs);
 
         /// <summary>
-        /// _mm256_mul_epi32
+        /// __m256i _mm256_mul_epi32 (__m256i a, __m256i b) VPMULDQ ymm, ymm, ymm/m256
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
+        public static Vec256<long> mul(in Vec256<int> lhs,in Vec256<int> rhs)
             => Multiply(lhs, rhs);
-        
+
+
         /// <summary>
         /// _mm256_mul_epu32
         /// </summary>

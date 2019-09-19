@@ -67,22 +67,22 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref Covector<N,T> pow<N,T>(ref Covector<N,T> lhs, in Covector<N,T> rhs)
+        public static ref Covector<N,T> ipow<N,T>(ref Covector<N,T> lhs, in Covector<N,uint> exp)
             where N : ITypeNat, new()
             where T : unmanaged    
 
         {
-            gmath.pow(lhs.Span, rhs.Span);
+            gmath.ipow(lhs.Span, exp.Span);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref Covector<N,T> pow<N,T>(ref Covector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> ipow<N,T>(ref Covector<N,T> lhs, in uint rhs)
             where N : ITypeNat, new()
             where T : unmanaged    
 
         {
-            gmath.pow(lhs.Span, rhs);
+            gmath.ipow(lhs.Span, rhs);
             return ref lhs;
         }
 
@@ -181,12 +181,12 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref BlockVector<N,T> pow<N,T>(ref BlockVector<N,T> lhs, in T rhs)
+        public static ref BlockVector<N,T> pow<N,T>(ref BlockVector<N,T> lhs, uint rhs)
             where N : ITypeNat, new()
             where T : struct    
 
         {
-            gmath.pow(lhs.Unsized, rhs);
+            gmath.ipow(lhs.Unsized, rhs);
             return ref lhs;
         }
 

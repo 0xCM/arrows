@@ -47,6 +47,29 @@ namespace Z0
         
         }
 
+        public void mulnew()
+        {
+            var v1 = Random.CpuVec128<int>();
+            var v2 = Random.CpuVec128<int>();
+            // var v3 = dinx.insert(v1, Vec256<int>.Zero,0);
+            // var v4 = dinx.insert(v2, Vec256<int>.Zero,0);
+            var v3 = Vec256.FromParts(1,0,2,0,3,0,4,0);
+            var v4 = Vec256.FromParts(5,0,6,0,7,0,8,0);
+            var v5 = dinx.mul(v3,v4);
+            Trace(() => v3);
+            Trace(() => v4);
+            Trace(() => v5);
+
+            // var lhs = v1.ToSpan();
+            // var rhs = v2.ToSpan();
+            // var dst = new long[4];
+            // for(var i=0; i<dst.Length; i++)
+            //     dst[i] = ((long)lhs[i]) * ((long)rhs[i]);
+            
+            // var v4 = Vec256.Load(dst);
+            // Claim.eq(v3,v4);
+        }
+
         public void mul256_f64()
         {
             mul256f64_check();
@@ -157,7 +180,7 @@ namespace Z0
                 var src = Random.Stream(domain).Select(x => (double)x);
                 var u = Vec256.Load(src.TakeSpan(4));
                 var v = Vec256.Load(src.TakeSpan(4));
-                var x = dfp.mul(u,v);
+                var x = dfp.fmul(u,v);
                 var y = Vec256.Load(gmath.mul(u.ToSpan(), v.ToSpan(), v.ToSpan().Replicate(true)));
                 Claim.eq(x,y);
 

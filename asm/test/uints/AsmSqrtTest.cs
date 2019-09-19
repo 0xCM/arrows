@@ -13,7 +13,7 @@ namespace Z0.Asm
         public void Verify()
         {
             VerifyOp(AsmOps.Sqrt<float>(), fmath.sqrt, SampleSize);
-            VerifyOp(AsmOps.Add<double>(), math.add, SampleSize);
+            VerifyOp(AsmOps.Add<double>(), fmath.fadd, SampleSize);
         }
 
          

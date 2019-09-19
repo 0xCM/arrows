@@ -240,6 +240,12 @@ namespace Z0
             get => data;
         }
 
+        public Span<byte> Bytes
+        {
+            [MethodImpl(Inline)]
+            get => data.AsBytes();
+        }
+
         /// <summary>
         /// Returns a proxy that can be used where ref structs can't, but it's not free
         /// </summary>

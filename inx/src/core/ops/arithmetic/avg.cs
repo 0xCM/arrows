@@ -21,7 +21,6 @@ namespace Z0
           /// </summary>
           /// <param name="lhs"></param>
           /// <param name="rhs"></param>
-          /// <returns></returns>
           [MethodImpl(Inline)]          
           public static Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
                => Average(lhs,rhs);
@@ -50,7 +49,6 @@ namespace Z0
           /// </summary>
           /// <param name="lhs"></param>
           /// <param name="rhs"></param>
-          /// <returns></returns>
           [MethodImpl(Inline)]          
           public static Vec256<ushort> avg(in Vec256<ushort> lhs,in Vec256<ushort> rhs)
                => Average(lhs,rhs);

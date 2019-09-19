@@ -41,9 +41,9 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return src;
             else if(typeof(T) == typeof(float))
-                return generic<T>(fmath.abs(float32(src)));
+                return generic<T>(fmath.fabs(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(fmath.abs(float64(src)));
+                return generic<T>(fmath.fabs(float64(src)));
             else            
                 throw unsupported<T>();
         }           
@@ -76,7 +76,7 @@ namespace Z0
             else if(typeof(T) == typeof(float))
                 fmath.abs(ref float32(ref src));
             else if(typeof(T) == typeof(double))
-                fmath.abs(ref float64(ref src));
+                fmath.fabs(ref float64(ref src));
             else            
                 throw unsupported<T>();
             return ref src;                
@@ -95,9 +95,9 @@ namespace Z0
             else if(typeof(T) == typeof(long))
                 math.abs(int64(src),int64(dst));
             else if(typeof(T) == typeof(float))
-                fmath.abs(float32(src),float32(dst));
+                fmath.fabs(float32(src),float32(dst));
             else if(typeof(T) == typeof(double))
-                fmath.abs(float64(src),float64(dst));
+                fmath.fabs(float64(src),float64(dst));
             else
                 throw unsupported<T>();
             return dst;

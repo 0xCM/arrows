@@ -2,18 +2,15 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
 
     using static zfunc;
 
-    public class t_log10 : UnitTest<t_log10>
+    public class t_log10 : MathTest<t_log10>
     {
-        protected override int RoundCount
-            => Pow2.T10;
-
         public void log10_libm_validate()
         {
             for(var i=0; i<SampleSize; i++)

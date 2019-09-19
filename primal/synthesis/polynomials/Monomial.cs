@@ -26,26 +26,30 @@ namespace Z0
         /// <summary>
         /// The monomial exponent/order
         /// </summary>
-        public readonly int Exp;
+        public readonly uint Exp;
 
         [MethodImpl(Inline)]
-        public static implicit operator (T scalar, int exp)(Monomial<T> src)
-            => src.ToPair();
-
-        [MethodImpl(Inline)]
-        public static implicit operator Monomial<T>((T scalar, int exp) src)
-            => new Monomial<T>(src.scalar, src.exp);
+        public static Monomial<T> Define(T scalar, uint exp)
+            => new Monomial<T>(scalar, exp);
 
         /// <summary>
         /// Produces the zero monomial of a given order
         /// </summary>
         /// <param name="exp">The monomial exponent/order</param>
         [MethodImpl(Inline)]
-        public static Monomial<T> Zero(int exp)
+        public static Monomial<T> Zero(uint exp)
             => new Monomial<T>(default, exp);        
 
         [MethodImpl(Inline)]
-        public Monomial(T scalar, int exp)
+        public static implicit operator (T scalar, uint exp)(Monomial<T> src)
+            => (src.Scalar, src.Exp);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Monomial<T>((T scalar, uint exp) src)
+            => new Monomial<T>(src.scalar, src.exp);
+
+        [MethodImpl(Inline)]
+        Monomial(T scalar, uint exp)
         {
             this.Scalar = scalar;
             this.Exp = exp;
@@ -60,19 +64,38 @@ namespace Z0
             get => gmath.nonzero(Scalar);
         }
 
-        string FormatScalar(bool abs)
-            => abs ? gmath.abs(Scalar).ToString() : Scalar.ToString();
-
-        public string Format(char? variable = null, bool abs = false)
-            => Nonzero 
-            ? (Exp != 0 ? $"{FormatScalar(abs)}{variable ?? 'x' }^{Exp}" : $"{FormatScalar(abs)}") 
-            : string.Empty;
+        /// <summary>
+        /// Evaluates the monomial at a specified point
+        /// </summary>
+        /// <param name="x">The point of evaluation</param>
+        [MethodImpl(Inline)]
+        public T Eval(T x)
+            => gmath.mul(Scalar, gmath.pow(x,(uint)Exp));
         
-        public (T scalar, int exp) ToPair()
-            => (Scalar, Exp);
+        public string Format(char? variable = null, bool abs = false)
+        {
+            if(Nonzero)
+            {
+                var scalarFmt = FormatScalar(abs);
+                var varname = variable ?? 'x';
+                if(Exp == 1)
+                    return $"{scalarFmt}{varname}";
+                else if(Exp == 0)
+                    return scalarFmt;
+                else
+                    return $"{scalarFmt}{varname}^{Exp}";                    
+            }
+            else
+                return string.Empty;
+
+        }
+        
 
         public override string ToString()
             => Format();
+
+        string FormatScalar(bool abs)
+            => abs ? gmath.abs(Scalar).ToString() : Scalar.ToString();
 
     }
 
@@ -92,18 +115,18 @@ namespace Z0
         /// <summary>
         /// The monomial exponent/order
         /// </summary>
-        public readonly int Exp;
+        public readonly uint Exp;
 
         [MethodImpl(Inline)]
-        public static implicit operator Monomial<N,T>((T scalar, int exp) src)
+        public static implicit operator Monomial<N,T>((T scalar, uint exp) src)
             => new Monomial<N,T>(src.scalar, src.exp);
 
         [MethodImpl(Inline)]
-        public static Monomial<N,T> Zero(int exp) 
+        public static Monomial<N,T> Zero(uint exp) 
             => new Monomial<N,T>(default, exp);
 
         [MethodImpl(Inline)]
-        public Monomial(T scalar, int exp)
+        public Monomial(T scalar, uint exp)
         {
             this.Scalar = scalar;
             this.Exp = exp;
@@ -112,7 +135,7 @@ namespace Z0
         public Monomial<T> Unsized
         {
             [MethodImpl(Inline)]
-            get => new Monomial<T>(Scalar, Exp);
+            get => Monomial<T>.Define(Scalar, Exp);
         }
 
         /// <summary>
@@ -121,7 +144,7 @@ namespace Z0
         public bool Nonzero
             => gmath.nonzero(Scalar);
 
-        public (T scalar, int exp) ToPair()
+        public (T scalar, uint exp) ToPair()
             => (Scalar, Exp);
 
         public string Format(char? variable = null)

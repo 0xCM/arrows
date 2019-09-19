@@ -26,7 +26,6 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec128<byte> adds(in Vec128<byte> lhs, in Vec128<byte> rhs)        
             => AddSaturate(lhs,rhs);
@@ -46,7 +45,6 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec128<short> adds(in Vec128<short> lhs, in Vec128<short> rhs)        
             => AddSaturate(lhs,rhs);
@@ -84,7 +82,6 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static Vec256<ushort> adds(in Vec256<ushort> lhs, in Vec256<ushort> rhs)        
             =>  AddSaturate(lhs,rhs);

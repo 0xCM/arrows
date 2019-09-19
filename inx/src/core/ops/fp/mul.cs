@@ -16,7 +16,6 @@ namespace Z0
 
     partial class dfp
     {
-
         /// <summary>
         ///  __m128 _mm_mul_ss (__m128 a, __m128 b) MULPS xmm, xmm/m32
         /// </summary>
@@ -24,7 +23,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Scalar128<float> mul(in Scalar128<float> lhs, in Scalar128<float> rhs)
+        public static Scalar128<float> fmul(in Scalar128<float> lhs, in Scalar128<float> rhs)
             =>  MultiplyScalar(lhs, rhs);
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Scalar128<double> mul(in Scalar128<double> lhs, in Scalar128<double> rhs)
+        public static Scalar128<double> fmul(in Scalar128<double> lhs, in Scalar128<double> rhs)
             =>  MultiplyScalar(lhs, rhs);
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> mul(in Vec128<float> lhs,in Vec128<float> rhs)
+        public static Vec128<float> fmul(in Vec128<float> lhs,in Vec128<float> rhs)
             => Multiply(lhs, rhs);        
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> mul(in Vec128<double> lhs,in Vec128<double> rhs)
+        public static Vec128<double> fmul(in Vec128<double> lhs,in Vec128<double> rhs)
             => Multiply(lhs, rhs);
         
         /// <summary>
@@ -62,7 +61,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> mul(in Vec256<float> lhs,in Vec256<float> rhs)
+        public static Vec256<float> fmul(in Vec256<float> lhs,in Vec256<float> rhs)
             => Multiply(lhs, rhs);
 
         /// <summary>
@@ -72,38 +71,38 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> mul(in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vec256<double> fmul(in Vec256<double> lhs, in Vec256<double> rhs)
             => Multiply(lhs, rhs);
 
-        public static Span128<float> mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
+        public static Span128<float> fmul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                vstore(dfp.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                vstore(dfp.fmul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<double> mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
+        public static Span128<double> fmul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                vstore(dfp.mul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
+                vstore(dfp.fmul(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));
             return dst;            
         }
         
-        public static Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
+        public static Span256<float> fmul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                vstore(dfp.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+                vstore(dfp.fmul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
+        public static Span256<double> fmul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                vstore(dfp.mul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
+                vstore(dfp.fmul(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));
             return dst;            
         }
 
