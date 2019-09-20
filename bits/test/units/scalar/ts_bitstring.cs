@@ -168,7 +168,7 @@ namespace Z0.Test
             {
                 var bvX = bs.TakeValue<ulong>().ToBitString();
                 var nlzX = bvX.PopCount();
-                var bv = bs.ToBitVector64();
+                var bv = bs.ToBitVector(n64);
                 var nlzY = bv.Pop();
                 Claim.eq(nlzX, nlzY);
             }

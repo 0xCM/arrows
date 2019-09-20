@@ -10,10 +10,10 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Represents 17 bits with 17 8-bit values that may range over {0,1}
+    /// Represents 21 bits with 21 bytes
     /// </summary>
-    [StructLayout(LayoutKind.Explicit, Size=17)]
-    public struct BitBlock17 : IBitBlock
+    [StructLayout(LayoutKind.Explicit, Size=21)]
+    public struct BitBlock21 : IBitBlock
     {
         /// <summary>
         ///  Bit 0
@@ -117,6 +117,95 @@ namespace Z0
         [FieldOffset(16)]
         public byte Bit16;
 
+        /// <summary>
+        ///  Bit 17
+        /// </summary>
+        [FieldOffset(17)]
+        public byte Bit17;
+
+        /// <summary>
+        ///  Bit 18
+        /// </summary>
+        [FieldOffset(18)]
+        public byte Bit18;
+
+        /// <summary>
+        ///  Bit 19
+        /// </summary>
+        [FieldOffset(19)]
+        public byte Bit19;
+
+        /// <summary>
+        ///  Bit 20
+        /// </summary>
+        [FieldOffset(20)]
+        public byte Bit20;
+
+        /// <summary>
+        ///  Bit 21
+        /// </summary>
+        [FieldOffset(21)]
+        public byte Bit21;
+
+        /// <summary>
+        /// Block 0 of width 3
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock3 Block3x0;
+
+        /// <summary>
+        /// Block 1 of width 3
+        /// </summary>
+        [FieldOffset(3)]
+        public BitBlock3 Block3x1;
+
+        /// <summary>
+        /// Block 2 of width 3
+        /// </summary>
+        [FieldOffset(6)]
+        public BitBlock3 Block3x2;
+
+        /// <summary>
+        /// Block 3 of width 3
+        /// </summary>
+        [FieldOffset(9)]
+        public BitBlock3 Block3x3;
+
+        /// <summary>
+        /// Block 4 of width 3
+        /// </summary>
+        [FieldOffset(12)]
+        public BitBlock3 Block3x4;
+
+        /// <summary>
+        /// Block 5 of width 3
+        /// </summary>
+        [FieldOffset(15)]
+        public BitBlock3 Block3x5;
+
+        /// <summary>
+        /// Block 6 of width 3
+        /// </summary>
+        [FieldOffset(18)]
+        public BitBlock3 Block3x6;
+
+       /// <summary>
+        /// Block 0 of width 7
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock7 Block7x0;
+
+        /// <summary>
+        /// Block 1 of width 7
+        /// </summary>
+        [FieldOffset(7)]
+        public BitBlock7 Block7x1;    
+
+        /// <summary>
+        /// Block 2 of width 7
+        /// </summary>
+        [FieldOffset(7)]
+        public BitBlock7 Block7x2;    
 
         [MethodImpl(Inline)]
         public Span<byte> AsSpan()
@@ -124,11 +213,11 @@ namespace Z0
                 
         [MethodImpl(Inline)]
         public byte GetPart(int i)
-            => Unsafe.Add(ref Unsafe.As<BitBlock17, byte>(ref this), i);
+            => Unsafe.Add(ref Unsafe.As<BitBlock21, byte>(ref this), i);
 
         [MethodImpl(Inline)]
         public void SetPart(int i, byte value)
-            => Unsafe.Add(ref Unsafe.As<BitBlock17, byte>(ref this), i) = value;
+            => Unsafe.Add(ref Unsafe.As<BitBlock21, byte>(ref this), i) = value;
         
         public byte this [int i]
         {

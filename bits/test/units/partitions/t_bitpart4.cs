@@ -28,7 +28,7 @@ namespace Z0
                 Span<byte> dstRef = stackalloc byte[count];
                 part32x4_ref(x, dstRef);
                 var xbs = x.ToBitString();   
-                var bsparts = xbs.Partition(width).Map(bs => bs.ToBitVector8());
+                var bsparts = xbs.Partition(width).Map(bs => bs.ToBitVector(n8));
                 for(var i=0; i<count; i++)  
                 {          
                     Claim.eq(bsparts[i], dst[i].ToBitVector());

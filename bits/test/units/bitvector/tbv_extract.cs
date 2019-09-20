@@ -22,7 +22,7 @@ namespace Z0.Test
             {
                 var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector64.FromScalar(src[i]);
-                Claim.eq(v1.ToBitVector64(), v2);
+                Claim.eq(v1.ToBitVector(n64), v2);
 
                 var r1 = v1.SliceCell(lower[i], upper[i]);
                 var r2 = v2.Between(lower[i], upper[i]);

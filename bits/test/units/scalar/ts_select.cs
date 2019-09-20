@@ -36,7 +36,7 @@ namespace Z0.Test
         {
             var src = Random.Next<uint>();
             var bv = src.ToBitVector();
-            var x0 = Bits.select(src,Part32x4.Part0).ToBitVector32();
+            var x0 = Bits.select(src,Part32x4.Part0).ToBitVector(n32);
             Claim.eq(bv[0..3], x0);
                     
         }

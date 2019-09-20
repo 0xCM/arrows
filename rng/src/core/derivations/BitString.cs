@@ -53,6 +53,7 @@ namespace Z0
             return Z0.BitString.FromScalars(bytes, len);        
         }
 
+
         /// <summary>
         /// Produces a bitstring with randomized length
         /// </summary>
@@ -72,7 +73,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString BitString(this IPolyrand random, Interval<int> length)
             => random.BitString(length.Left, length.Right);
-
 
         /// <summary>
         /// Produces a random bitstring with a specified natural length

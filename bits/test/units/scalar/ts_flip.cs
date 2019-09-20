@@ -18,7 +18,6 @@ namespace Z0.Test
         public void scalar_flip_8i()
         {
             VerifyOp(OpKind.Flip, x => (sbyte) ~x, D.flip<sbyte>());
-
         }
 
         public void scalar_flip_8u()

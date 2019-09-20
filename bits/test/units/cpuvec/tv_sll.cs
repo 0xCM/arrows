@@ -573,7 +573,7 @@ namespace Z0.Test
         public void TestReflect()
         {
             var bs = BitString.FromPattern((ushort)0b1001_0101_1010_0110, 8);
-            var v1 = bs.ToCpuVec128<byte>();
+            var v1 = bs.ToCpuVec<byte>(n128);
             var v2 = (Vec128<byte>)reflect_xmm(v1);                    
         }
 

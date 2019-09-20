@@ -55,23 +55,23 @@ partial class zfunc
 
     public static readonly N20 n20 = default;
 
-    public static readonly NatSeq<N2,N1> n21 = default;
+    public static readonly N21 n21 = default;
 
-    public static readonly NatSeq<N2,N2> n22 = default;
+    public static readonly N22 n22 = default;
 
-    public static readonly NatSeq<N2,N3> n23 = default;
+    public static readonly N23 n23 = default;
 
-    public static readonly NatSeq<N2,N4> n24 = default;
+    public static readonly N24 n24 = default;
 
-    public static readonly NatSeq<N2,N5> n25 = default;
+    public static readonly N25 n25 = default;
 
     public static readonly N26 N26 = default;
 
-    public static readonly NatSeq<N2,N7> n27 = default;
+    public static readonly N27 n27 = default;
 
-    public static readonly NatSeq<N2,N8> n28 = default;
+    public static readonly N28 n28 = default;
 
-    public static readonly NatSeq<N2,N9> n29 = default;
+    public static readonly N29 n29 = default;
 
     public static readonly NatSeq<N3,N0> n30 = default;
 

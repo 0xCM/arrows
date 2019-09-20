@@ -16,7 +16,7 @@ namespace Z0
     /// Represents 3 bits with 3 8-bit values that may range over {0,1}
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size=3)]
-    public struct BitBlock3
+    public struct BitBlock3  : IBitBlock
     {
         /// <summary>
         ///  Bit 0
@@ -36,7 +36,28 @@ namespace Z0
         [FieldOffset(2)]
         public byte Bit2;
         
+        [MethodImpl(Inline)]
+        public byte GetPart(int i)
+            => Unsafe.Add(ref Unsafe.As<BitBlock3, byte>(ref this), i);
 
+        [MethodImpl(Inline)]
+        public void SetPart(int i, byte value)
+            => Unsafe.Add(ref Unsafe.As<BitBlock3, byte>(ref this), i) = value;
+        
+        public byte this [int i]
+        {
+            [MethodImpl(Inline)]
+            get => GetPart(i);
+            
+            [MethodImpl(Inline)]
+            set => SetPart(i,value);
+        }
+
+        public string Format()
+            => BitBlock.AsGeneric(ref this).Format();
+
+        public override string ToString() 
+            => Format();
 
     }
 

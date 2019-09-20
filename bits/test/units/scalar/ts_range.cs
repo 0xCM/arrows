@@ -12,13 +12,14 @@ namespace Z0.Test
 
     public class ts_range : ScalarBitTest<ts_range>
     {
-        const ulong U64_00 = 0b00001001_11110000_11001001_10011111_00010001_10111100_00111000_11110000;
-        
-        const uint U32_01 = 0b00001001_11110000_11001001_10011111;
 
 
         public void range8u()
         {
+            const ulong U64_00 = 0b00001001_11110000_11001001_10011111_00010001_10111100_00111000_11110000;
+            
+            const uint U32_01 = 0b00001001_11110000_11001001_10011111;
+
             Span<byte> dst = stackalloc byte[8];
             
             BitPos pos1 = 0;
@@ -45,27 +46,11 @@ namespace Z0.Test
             Claim.eq((byte)0b11, dst[2]);                    
         }
 
-        public void range64u()
-        {
-            var src = Random.Stream<ulong>().TakeSpan(SampleSize);
-            for(var i=0; i< src.Length; i++)
-            {
-                var x = src[i];
-                (var x0, var x1) = Bits.split(x);
-                var y0 = gbits.range(x, 0, 31);
-                var y1 = gbits.range(x, 32, 63);
-
-                Claim.eq(y0,x0);
-                Claim.eq(y1,x1);
-            }
-        }
-
         public void range32u()
         {
-            var src = Random.Stream<uint>().TakeSpan(SampleSize);
-            for(var i=0; i< src.Length; i++)
+            for(var i=0; i< SampleSize; i++)
             {
-                var x = src[i];
+                var x = Random.Next<uint>();
                 (var x0, var x1) = Bits.split(x);
 
                 var y0 = gbits.range(x, 0, 15);
@@ -75,6 +60,21 @@ namespace Z0.Test
                 Claim.eq(y1,x1);
             }
         }
+
+        public void range64u()
+        {
+            for(var i=0; i< SampleSize; i++)
+            {
+                var x = Random.Next<ulong>();
+                (var x0, var x1) = Bits.split(x);
+                var y0 = gbits.range(x, 0, 31);
+                var y1 = gbits.range(x, 32, 63);
+
+                Claim.eq(y0,x0);
+                Claim.eq(y1,x1);
+            }
+        }
+
 
     }
 }

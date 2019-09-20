@@ -139,7 +139,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32<N,T>(this BitVector<N,T> src)        
+        public static BitVector32 ToBitVector<N,T>(this BitVector<N,T> src, N32 n)        
             where T : unmanaged
             where N : ITypeNat, new()
                 => src.Data.TakeUInt32();
@@ -150,7 +150,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64<T>(this BitVector<T> src)
+        public static BitVector64 ToBitVector<T>(this BitVector<T> src, N64 n)
             where T : unmanaged
                 => src.Data.TakeUInt64();
 
@@ -160,7 +160,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal source type</typeparam>        
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64<N,T>(this BitVector<N,T> src)        
+        public static BitVector64 ToBitVector<N,T>(this BitVector<N,T> src, N64 n)        
             where T : unmanaged
             where N : ITypeNat, new()
                 => src.Data.TakeUInt64();
@@ -170,7 +170,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector4 ToBitVector4(this byte src)
+        public static BitVector4 ToBitVector(this byte src, N4 n)
             => src;
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector4 ToBitVector4(this ushort src)
+        public static BitVector4 ToBitVector(this ushort src, N4 n)
             => (UInt4)src;
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this sbyte src)        
+        public static BitVector8 ToBitVector(this sbyte src, N8 n)        
             => (byte)src;
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this byte src)        
+        public static BitVector8 ToBitVector(this byte src, N8 n)        
             => src;
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this byte src)        
+        public static BitVector16 ToBitVector(this byte src, N16 n)        
             => src;
 
         /// <summary>
@@ -210,23 +210,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this short src)        
+        public static BitVector16 ToBitVector(this short src, N16 n)        
             => (ushort)src;
-
-        /// <summary>
-        /// Creates a 16-bit bitvector via canonical bijection with the source value
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this ushort src)        
-            => src;
 
         /// <summary>
         /// Creates an an 8-bit bitvector from the lower 8 bits of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this ushort src)        
+        public static BitVector8 ToBitVector(this ushort src, N8 n)        
             => (byte)src;
 
         /// <summary>
@@ -234,7 +226,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this sbyte src)        
+        public static BitVector32 ToBitVector(this sbyte src, N32 n)        
             => (byte)src;
 
         /// <summary>
@@ -242,7 +234,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this byte src)        
+        public static BitVector32 ToBitVector(this byte src, N32 n)        
             => src;
 
         /// <summary>
@@ -250,7 +242,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this ushort src)        
+        public static BitVector32 ToBitVector(this ushort src, N32 n)        
             => src;
 
         /// <summary>
@@ -258,7 +250,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this short src)        
+        public static BitVector32 ToBitVector32(this short src, N32 n)        
             => (ushort)src;
 
         /// <summary>
@@ -266,7 +258,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this uint src)        
+        public static BitVector32 ToBitVector(this uint src, N32 n)        
             => src;
 
         /// <summary>
@@ -274,7 +266,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this int src)        
+        public static BitVector32 ToBitVector(this int src, N32 n)        
             => (uint)src;
 
         /// <summary>
@@ -283,7 +275,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this byte src)        
+        public static BitVector64 ToBitVector(this byte src, N64 n)        
             => src;
 
         /// <summary>
@@ -292,7 +284,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this sbyte src)        
+        public static BitVector64 ToBitVector(this sbyte src, N64 n)        
             => (byte)src;
 
         /// <summary>
@@ -300,7 +292,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this ushort src)        
+        public static BitVector64 ToBitVector(this ushort src, N64 n)        
             => src;
             
         /// <summary>
@@ -308,7 +300,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this short src)        
+        public static BitVector64 ToBitVector(this short src, N64 n)        
             => (ushort)src;
 
         /// <summary>
@@ -316,7 +308,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this uint src)        
+        public static BitVector64 ToBitVector(this uint src, N64 n)        
             => src;
 
         /// <summary>
@@ -324,7 +316,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this int src)        
+        public static BitVector64 ToBitVector(this int src, N64 n)        
             => (uint)src;
 
         /// <summary>
@@ -332,7 +324,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this long src)        
+        public static BitVector64 ToBitVector(this long src, N64 n)        
             => (ulong)src;
 
 
@@ -341,7 +333,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this ulong src)        
+        public static BitVector64 ToBitVector(this ulong src, N64 n)        
             => src;
 
         /// <summary>
@@ -349,7 +341,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this sbyte src)        
+        public static BitVector128 ToBitVector(this sbyte src, N128 n)        
             => (byte)src;
 
         /// <summary>
@@ -357,7 +349,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this byte src)        
+        public static BitVector128 ToBitVector(this byte src, N128 n)        
             => src;
 
         /// <summary>
@@ -365,7 +357,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this short src)        
+        public static BitVector128 ToBitVector(this short src, N128 n)        
             => (ushort)src;
 
         /// <summary>
@@ -373,7 +365,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this ushort src)        
+        public static BitVector128 ToBitVector(this ushort src, N128 n)        
             => src;
 
         /// <summary>
@@ -381,7 +373,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this int src)        
+        public static BitVector128 ToBitVector(this int src, N128 n)        
             => (uint)src;
 
         /// <summary>
@@ -389,7 +381,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this uint src)        
+        public static BitVector128 ToBitVector(this uint src, N128 n)        
             => src;
 
         /// <summary>
@@ -397,7 +389,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this long src)        
+        public static BitVector128 ToBitVector(this long src, N128 n)        
             => (ulong)src;
 
         /// <summary>
@@ -405,7 +397,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this ulong src)        
+        public static BitVector128 ToBitVector(this ulong src, N128 n)        
             => src;
 
         /// <summary>
@@ -441,52 +433,52 @@ namespace Z0
             => src;
 
         /// <summary>
-        /// Constructs a 128-bit bitvector from bitstring
+        /// Constructs a 4-bit bitvector from bitstring
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector128 ToBitVector128(this BitString src)
-            => BitVector128.FromBitString(src);
-
-        /// <summary>
-        /// Constructs a 64-bit bitvector from bitstring
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector64 ToBitVector64(this BitString src)
-            => BitVector64.FromBitString(src);
-
-        /// <summary>
-        /// Constructs a 32-bit bitvector from bitstring
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector32 ToBitVector32(this BitString src)
-            => BitVector32.FromBitString(src);
-
-        /// <summary>
-        /// Constructs a 16-bit bitvector from bitstring
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static BitVector16 ToBitVector16(this BitString src)
-            => BitVector16.FromBitString(src);
+        public static BitVector4 ToBitVector(this BitString src, N4 n)
+            => BitVector4.FromBitString(src);
 
         /// <summary>
         /// Constructs a 8-bit bitvector from bitstring
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector8 ToBitVector8(this BitString src)
+        public static BitVector8 ToBitVector(this BitString src, N8 n)
             => BitVector8.FromBitString(src);
 
         /// <summary>
-        /// Constructs a 4-bit bitvector from bitstring
+        /// Constructs a 16-bit bitvector from bitstring
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static BitVector4 ToBitVector4(this BitString src)
-            => BitVector4.FromBitString(src);
+        public static BitVector16 ToBitVector(this BitString src, N16 n)
+            => BitVector16.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 32-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector32 ToBitVector(this BitString src, N32 n)
+            => BitVector32.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 64-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector64 ToBitVector(this BitString src, N64 n)
+            => BitVector64.FromBitString(src);
+
+        /// <summary>
+        /// Constructs a 128-bit bitvector from bitstring
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static BitVector128 ToBitVector(this BitString src, N128 n)
+            => BitVector128.FromBitString(src);
 
         /// <summary>
         /// Extracts a 128-bit cpu vector from a bitsring of length 128 or greater
@@ -494,7 +486,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         /// <typeparam name="T">The primal component type of the target vector</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> ToCpuVec128<T>(this BitString src)
+        public static Vec128<T> ToCpuVec<T>(this BitString src, N128 n)
             where T : unmanaged        
                 => src.Pack().As<byte,T>().ToSpan128().ToCpuVec128();
 
@@ -504,7 +496,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         /// <typeparam name="T">The primal component type of the target vector</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> ToCpuVec256<T>(this BitString src)
+        public static Vec256<T> ToCpuVec<T>(this BitString src, N256 n)
             where T : unmanaged        
                 => src.Pack().As<byte,T>().ToSpan256().ToCpuVec256();                
 
@@ -539,7 +531,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector64 ToBitVector(this BitMask64 src)
             => ((ulong)src).ToBitVector();
-
 
         /// <summary>
         /// Converts a scalar value to a type-parametric fixed-bits bitvector

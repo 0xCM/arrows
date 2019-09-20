@@ -41,7 +41,6 @@ namespace Z0.Test
         public void scalar_or_32i()
         {
             VerifyOp(OpKind.Or, (x,y) => (x | y), D.or<int>());
-
         }
 
         public void scalar_or_32u()
@@ -62,20 +61,48 @@ namespace Z0.Test
 
         }
 
-
-        public void scalar_xor()
+        public void scalar_xor_8i()
         {
-            var op = OpKind.XOr;
-            VerifyOp(op, (x,y) => (sbyte)(x ^ y), D.xor<sbyte>());
-            VerifyOp(op, (x,y) => (byte)(x ^ y), D.xor<byte>());
-            VerifyOp(op, (x,y) => (short)(x ^ y), D.xor<short>());
-            VerifyOp(op, (x,y) => (ushort)(x ^ y), D.xor<ushort>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<int>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<uint>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<long>());
-            VerifyOp(op, (x,y) => (x ^ y), D.xor<ulong>());              
+            VerifyOp(OpKind.XOr, (x,y) => (sbyte)(x ^ y), D.xor<sbyte>());
+
         }
 
+        public void scalar_xor_8u()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (byte)(x ^ y), D.xor<byte>());
+            
+        }
+
+        public void scalar_xor_16i()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (short)(x ^ y), D.xor<short>());
+        }
+
+        public void scalar_xor_16u()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (ushort)(x ^ y), D.xor<ushort>());            
+        }
+
+        public void scalar_xor_32i()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (x ^ y), D.xor<int>());
+        }
+
+        public void scalar_xor_32u()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (x ^ y), D.xor<uint>());
+
+        }
+
+        public void scalar_xor_64i()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (x ^ y), D.xor<long>());
+        }
+
+        public void scalar_xor_64u()
+        {
+            VerifyOp(OpKind.XOr, (x,y) => (x ^ y), D.xor<ulong>());              
+        }
 
     }
 

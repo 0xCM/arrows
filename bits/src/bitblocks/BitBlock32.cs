@@ -12,15 +12,20 @@ namespace Z0
     using System.Runtime.InteropServices;
     using static zfunc;
 
+
     /// <summary>
     /// Represents 32 bits with 32 8-bit values that may range over {0,1}
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size=32)]
-    public struct BitBlock32
+    public struct BitBlock32 : IBitBlock
     {
         [MethodImpl(Inline)]
         public static BitBlock32 FromSpan(Span<byte> src)
             => MemoryMarshal.AsRef<BitBlock32>(src);
+
+        [MethodImpl(Inline)]
+        public static BitBlock32 Alloc()
+            => default;
 
         /// <summary>
         ///  Bit 0
@@ -336,13 +341,30 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span<byte> AsSpan()
-            => BitView.ViewBits(ref this).Bytes;
-        
+            => BitView.ViewBits(ref this).Bytes;        
+                
         [MethodImpl(Inline)]
-        public void CopyTo(Span<byte> dst)        
-            => BitView.ViewBits(ref this).CopyTo(dst);            
-        
+        public byte GetPart(int i)
+            => Unsafe.Add(ref Unsafe.As<BitBlock32, byte>(ref this), i);
 
+        [MethodImpl(Inline)]
+        public void SetPart(int i, byte value)
+            => Unsafe.Add(ref Unsafe.As<BitBlock32, byte>(ref this), i) = value;
+        
+        public byte this [int i]
+        {
+            [MethodImpl(Inline)]
+            get => GetPart(i);
+            
+            [MethodImpl(Inline)]
+            set => SetPart(i,value);
+        }
+
+        public string Format()
+            => BitBlock.AsGeneric(ref this).Format();
+
+        public override string ToString() 
+            => Format();
     }
 
 }

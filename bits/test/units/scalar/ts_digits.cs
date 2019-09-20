@@ -18,6 +18,8 @@ namespace Z0.Test
             bd_match_check<byte>("0b00000100",0b00000100);
             bd_match_check<byte>("0b00000101",0b00000101);
             bd_match_check<byte>("0b01000101",0b01000101);
+            binary_digits_check<byte>();
+
         }
 
         public void binary_digits_16u()
@@ -58,6 +60,7 @@ namespace Z0.Test
             }
 
         }
+
         static void bd_match_check<T>(string digits, num<T> value)
             where T : unmanaged
                 => Claim.eq(digits, value.ToBinaryDigits().Format(true));

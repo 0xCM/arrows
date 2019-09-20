@@ -13,7 +13,7 @@ namespace Z0
     /// Represents 20 bits with 20 8-bit values that may range over {0,1}
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size=20)]
-    public struct BitBlock20
+    public struct BitBlock20 : IBitBlock
     {
         /// <summary>
         ///  Bit 0
@@ -248,6 +248,45 @@ namespace Z0
         /// </summary>
         [FieldOffset(15)]
         public BitBlock5 Block5x3;    
+
+        /// <summary>
+        /// Block 0 of width 10
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock10 Block10x0;    
+
+        /// <summary>
+        /// Block 1 of width 10
+        /// </summary>
+        [FieldOffset(10)]
+        public BitBlock10 Block10x1;    
+
+        [MethodImpl(Inline)]
+        public Span<byte> AsSpan()
+            => BitView.ViewBits(ref this).Bytes;        
+                
+        [MethodImpl(Inline)]
+        public byte GetPart(int i)
+            => Unsafe.Add(ref Unsafe.As<BitBlock20, byte>(ref this), i);
+
+        [MethodImpl(Inline)]
+        public void SetPart(int i, byte value)
+            => Unsafe.Add(ref Unsafe.As<BitBlock20, byte>(ref this), i) = value;
+        
+        public byte this [int i]
+        {
+            [MethodImpl(Inline)]
+            get => GetPart(i);
+            
+            [MethodImpl(Inline)]
+            set => SetPart(i,value);
+        }
+
+        public string Format()
+            => BitBlock.AsGeneric(ref this).Format();
+
+        public override string ToString() 
+            => Format();
 
     }
 

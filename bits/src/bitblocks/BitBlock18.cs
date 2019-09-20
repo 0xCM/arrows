@@ -13,7 +13,7 @@ namespace Z0
     /// Represents 18 bits with 18 8-bit values that may range over {0,1}
     /// </summary>
     [StructLayout(LayoutKind.Explicit, Size=18)]
-    public struct BitBlock18
+    public struct BitBlock18 : IBitBlock
     {
         /// <summary>
         ///  Bit 0
@@ -145,38 +145,130 @@ namespace Z0
         /// Block 3 of width 2
         /// </summary>
         [FieldOffset(6)]
-        public BitBlock2 Block3x2;    
+        public BitBlock2 Block2x3;    
 
         /// <summary>
         /// Block 4 of width 2
         /// </summary>
         [FieldOffset(8)]
-        public BitBlock2 Block4x2;    
+        public BitBlock2 Block2x4;    
 
         /// <summary>
         /// Block 5 of width 2
         /// </summary>
         [FieldOffset(10)]
-        public BitBlock2 Block5x2;    
+        public BitBlock2 Block2x5;    
 
         /// <summary>
         /// Block 6 of width 2
         /// </summary>
         [FieldOffset(12)]
-        public BitBlock2 Block6x2;    
+        public BitBlock2 Block2x6;    
 
         /// <summary>
         /// Block 7 of width 2
         /// </summary>
         [FieldOffset(14)]
-        public BitBlock2 Block7x2;    
+        public BitBlock2 Block2x7;    
 
         /// <summary>
         /// Block 8 of width 2
         /// </summary>
         [FieldOffset(16)]
-        public BitBlock2 Block8x2;    
+        public BitBlock2 Block2x8;    
 
+        /// <summary>
+        /// Block 0 of width 3
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock3 Block3x0;
+
+        /// <summary>
+        /// Block 1 of width 3
+        /// </summary>
+        [FieldOffset(3)]
+        public BitBlock3 Block3x1;
+
+        /// <summary>
+        /// Block 2 of width 3
+        /// </summary>
+        [FieldOffset(6)]
+        public BitBlock3 Block3x2;
+
+        /// <summary>
+        /// Block 3 of width 3
+        /// </summary>
+        [FieldOffset(9)]
+        public BitBlock3 Block3x3;
+
+        /// <summary>
+        /// Block 4 of width 3
+        /// </summary>
+        [FieldOffset(12)]
+        public BitBlock3 Block3x4;
+
+        /// <summary>
+        /// Block 5 of width 3
+        /// </summary>
+        [FieldOffset(15)]
+        public BitBlock3 Block3x5;
+
+        /// <summary>
+        /// Block 0 of width 6
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock6 Block6x0;
+
+        /// <summary>
+        /// Block 1 of width 6
+        /// </summary>
+        [FieldOffset(6)]
+        public BitBlock6 Block6x1;
+
+        /// <summary>
+        /// Block 2 of width 6
+        /// </summary>
+        [FieldOffset(12)]
+        public BitBlock6 Block6x2;
+
+        /// <summary>
+        /// Block 0 of width 9
+        /// </summary>
+        [FieldOffset(0)]
+        public BitBlock9 Block9x0;
+
+        /// <summary>
+        /// Block 1 of width 9
+        /// </summary>
+        [FieldOffset(9)]
+        public BitBlock9 Block9x1;
+
+        [MethodImpl(Inline)]
+        public Span<byte> AsSpan()
+            => BitView.ViewBits(ref this).Bytes;        
+                
+        [MethodImpl(Inline)]
+        public byte GetPart(int i)
+            => Unsafe.Add(ref Unsafe.As<BitBlock18, byte>(ref this), i);
+
+        [MethodImpl(Inline)]
+        public void SetPart(int i, byte value)
+            => Unsafe.Add(ref Unsafe.As<BitBlock18, byte>(ref this), i) = value;
+        
+        public byte this [int i]
+        {
+            [MethodImpl(Inline)]
+            get => GetPart(i);
+            
+            [MethodImpl(Inline)]
+            set => SetPart(i,value);
+        }
+
+        public string Format()
+            => BitBlock.AsGeneric(ref this).Format();
+
+        public override string ToString() 
+            => Format();
 
     }
 

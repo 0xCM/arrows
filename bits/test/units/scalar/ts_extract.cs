@@ -56,16 +56,16 @@ namespace Z0.Test
             var bs64 = bs32.Concat(bs32);
 
             Claim.eq(bv8.ToBitString(), bs8);
-            Claim.eq(bv8, bs8.ToBitVector8());
+            Claim.eq(bv8, bs8.ToBitVector(n8));
 
             Claim.eq(bv16.ToBitString(), bs16);
-            Claim.eq(bv16, bs16.ToBitVector16());
+            Claim.eq(bv16, bs16.ToBitVector(n16));
 
             Claim.eq(bv32.ToBitString(), bs32);
-            Claim.eq(bv32, bs32.ToBitVector32());
+            Claim.eq(bv32, bs32.ToBitVector(n32));
 
             Claim.eq(bv64.ToBitString(), bs64);
-            Claim.eq(bv64, bs64.ToBitVector64());
+            Claim.eq(bv64, bs64.ToBitVector(n64));
 
             var bv64x = Bits.gather(bv64, BitMask64.Msb8).ToBitVector();
             Claim.eq((byte)0xFF, bv64x.Byte(0));

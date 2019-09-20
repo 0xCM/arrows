@@ -29,9 +29,9 @@ namespace Z0
                 var x = Random.Next<A>();
                 
                 part(x, dst);
-                var y = BitString.FromScalar(x).Partition(width).Map(bs => bs.ToBitVector8());
+                var y = BitString.FromScalar(x).Partition(width).Map(bs => bs.ToBitVector(n8));
                 for(var i=0; i<count; i++)  
-                    Claim.eq(y[i], BitString.FromScalar(dst[i]).ToBitVector8());
+                    Claim.eq(y[i], BitString.FromScalar(dst[i]).ToBitVector(n8));
             }
         }
 

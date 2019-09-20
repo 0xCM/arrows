@@ -12,13 +12,11 @@ namespace Z0.Test
 
     public class ts_readbits : ScalarBitTest<ts_readbits>
     {
-
         public void readbits16u()
         {
-            var src = Random.Stream<ushort>().TakeSpan(SampleSize);            
-            for(var i=0; i< src.Length; i++)
+            for(var i=0; i< SampleSize; i++)
             {
-                var x = src[i];
+                var x = Random.Next<ushort>();
                 var x0 = (ushort)x.ReadBits(0, 2)[0];
                 var x1 = (ushort)(((ushort)x.ReadBits(3, 5)[0]) << 3);
                 var x2 = (ushort)(((ushort)x.ReadBits(6, 8)[0]) << 6);

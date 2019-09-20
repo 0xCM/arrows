@@ -172,6 +172,21 @@ namespace Z0
             return ref dst;
         }
 
+        public static ref ushort pack16x1(in BitBlock16 src, ref ushort dst)
+        {            
+            dst |= (ushort)Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8);
+            dst |= (ushort)(Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8) << 8);
+            return ref dst;
+        }
+
+        public static ref uint pack32x1(in BitBlock32 src, ref uint dst)
+        {            
+            dst |= (uint)Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8);
+            dst |= (uint)(Bits.gather(src.Block8x1.ToUInt64(), (ulong)BitMask64.Lsb8) << 8);
+            dst |= (uint)(Bits.gather(src.Block8x2.ToUInt64(), (ulong)BitMask64.Lsb8) << 16);
+            dst |= (uint)(Bits.gather(src.Block8x3.ToUInt64(), (ulong)BitMask64.Lsb8) << 24);            
+            return ref dst;
+        }
 
         /// <summary>
         /// Partitions 32 bits from the source into 32 target segments of effective width 1 
@@ -272,43 +287,6 @@ namespace Z0
             dst[31] = project<byte>(select(src, Part32x1.Part31), Part32x1.First);
         }
 
-
-        public static void part32x1_test(uint src, Span<byte> dst)
-        {
-            dst[0] = ((src & (1u << 0)) != 0u).ToByte();
-            dst[1] = ((src & (1u << 1)) != 0u).ToByte();
-            dst[2] = ((src & (1u << 2)) != 0u).ToByte();
-            dst[3] = ((src & (1u << 3)) != 0u).ToByte();
-            dst[4] = ((src & (1u << 4)) != 0u).ToByte();
-            dst[5] = ((src & (1u << 5)) != 0u).ToByte();
-            dst[6] = ((src & (1u << 6)) != 0u).ToByte();
-            dst[7] = ((src & (1u << 7)) != 0u).ToByte();
-            dst[8] = ((src & (1u << 8)) != 0u).ToByte();
-            dst[9] = ((src & (1u << 9)) != 0u).ToByte();
-            dst[10] = ((src & (1u << 10)) != 0u).ToByte();
-            dst[11] = ((src & (1u << 11)) != 0u).ToByte();
-            dst[12] = ((src & (1u << 12)) != 0u).ToByte();
-            dst[13] = ((src & (1u << 13)) != 0u).ToByte();
-            dst[14] = ((src & (1u << 14)) != 0u).ToByte();
-            dst[15] = ((src & (1u << 15)) != 0u).ToByte();
-            dst[16] = ((src & (1u << 16)) != 0u).ToByte();
-            dst[17] = ((src & (1u << 17)) != 0u).ToByte();
-            dst[18] = ((src & (1u << 18)) != 0u).ToByte();
-            dst[19] = ((src & (1u << 19)) != 0u).ToByte();
-            dst[20] = ((src & (1u << 20)) != 0u).ToByte();
-            dst[21] = ((src & (1u << 21)) != 0u).ToByte();
-            dst[22] = ((src & (1u << 22)) != 0u).ToByte();
-            dst[23] = ((src & (1u << 23)) != 0u).ToByte();
-            dst[24] = ((src & (1u << 24)) != 0u).ToByte();
-            dst[25] = ((src & (1u << 25)) != 0u).ToByte();
-            dst[26] = ((src & (1u << 26)) != 0u).ToByte();
-            dst[27] = ((src & (1u << 27)) != 0u).ToByte();
-            dst[28] = ((src & (1u << 29)) != 0u).ToByte();
-            dst[29] = ((src & (1u << 29)) != 0u).ToByte();
-            dst[30] = ((src & (1u << 30)) != 0u).ToByte();
-            dst[31] = ((src & (1u << 31)) != 0u).ToByte();
-        }
-
         /// <summary>
         /// Partitions 32 bits from the source into 32 target segments of effective width 1 
         /// </summary>
@@ -318,10 +296,8 @@ namespace Z0
         public static Span<byte> part32x1(uint src)
         {
             BitBlock32 block = default;
-            return part32x1(src, ref block).AsSpan();
+            return BitBlock.AsSpan(ref part32x1(src, ref block));
         }
-
-    
 
     }
 

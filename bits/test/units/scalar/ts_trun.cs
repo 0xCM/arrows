@@ -49,7 +49,7 @@ namespace Z0.Test
             Claim.eq(srclen, bs0.PopCount());
             Claim.eq(srclen, bs0.Length);
 
-            var bv0 = bs0.ToBitVector64();
+            var bv0 = bs0.ToBitVector(n64);
             Claim.eq(srclen, bv0.Pop());
             
             var bs1 = bs0.Truncate(maxlen);
@@ -70,7 +70,7 @@ namespace Z0.Test
             var srclen = 16;
 
             var bs0 = source.ToBitString();
-            var bv0 = bs0.ToBitVector16();
+            var bv0 = bs0.ToBitVector(n16);
 
             Claim.eq(srclen, bs0.PopCount());
             Claim.eq(srclen, bs0.Length);
@@ -95,7 +95,7 @@ namespace Z0.Test
             var srclen = 8;
 
             var bs0 = source.ToBitString();
-            var bv0 = bs0.ToBitVector8();
+            var bv0 = bs0.ToBitVector(n8);
 
             Claim.eq(srclen, bs0.PopCount());
             Claim.eq(srclen, bs0.Length);
