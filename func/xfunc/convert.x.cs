@@ -15,6 +15,15 @@ namespace Z0
     partial class xfunc
     {
         /// <summary>
+        /// Converts a bool to a byte quickly
+        /// </summary>
+        /// <param name="src"></param>
+        /// <remarks>Taken from https://stackoverflow.com/questions/4980881/what-is-fastest-way-to-convert-bool-to-byte</remarks>
+        [MethodImpl(Inline)]
+        public static unsafe byte ToByte(this bool src)
+            =>  *((byte*)(&src));
+
+        /// <summary>
         /// Unconditionally converts the source value to the target type
         /// </summary>
         /// <param name="src">The source value</param>

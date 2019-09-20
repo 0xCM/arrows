@@ -11,9 +11,8 @@ namespace Z0.Test
     using static zfunc;
     using static Bit;
 
-    public class ts_unpack : UnitTest<ts_unpack>
+    public class ts_unpack : ScalarBitTest<ts_unpack>
     {
-        protected override int CycleCount => Pow2.T13;
 
         public void unpack_8x8()
         {

@@ -12,7 +12,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_extract : UnitTest<ts_extract>
+    public class ts_extract : ScalarBitTest<ts_extract>
     {        
         public void extract_32u()
         {

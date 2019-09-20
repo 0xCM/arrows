@@ -12,11 +12,8 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_scatter : UnitTest<ts_scatter>
+    public class ts_scatter : ScalarBitTest<ts_scatter>
     {        
-        protected override int CycleCount
-            => Pow2.T14;
-    
         public void scatter_8x8()
         {
             scatter_check<byte>();

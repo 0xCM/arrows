@@ -13,7 +13,7 @@ namespace Z0.Test
     using static zfunc;
     using static BitParts;
 
-    public class ts_select : UnitTest<ts_select>
+    public class ts_select : ScalarBitTest<ts_select>
     {        
         public void select_10x1()
         {            

@@ -12,7 +12,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_pos : UnitTest<ts_pos>
+    public class ts_pos : ScalarBitTest<ts_pos>
     {
         public void bitidx_increment()
         {

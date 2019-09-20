@@ -12,7 +12,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_setif : UnitTest<ts_setif>
+    public class ts_setif : ScalarBitTest<ts_setif>
     {
 
         public void deposit32u()
@@ -62,12 +62,12 @@ namespace Z0.Test
             Claim.yea(bs.Format(true) == string.Empty);
         }
 
-        void setif_check<T>(int cycles = DefaltCycleCount)
+        void setif_check<T>()
             where T : struct
         {
     
             var bitcount = bitsize<T>();
-            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var sample = 0; sample < SampleSize; sample++)
             {
                 var src = Random.Next<T>();
                 var dst = gmath.zero<T>();

@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
     using static Bit;
 
-    public class ts_bittype : UnitTest<ts_bittype>
+    public class ts_bittype : ScalarBitTest<ts_bittype>
     {
         public void bit_convert()
         {

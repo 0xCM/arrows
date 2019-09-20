@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class tbv_partition : UnitTest<tbv_partition>
+    public class tbv_partition : BitVectorTest<tbv_partition>
     {
         public void bvpart_32x16()
         {

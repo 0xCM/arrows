@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_readbits : UnitTest<ts_readbits>
+    public class ts_readbits : ScalarBitTest<ts_readbits>
     {
 
         public void readbits16u()

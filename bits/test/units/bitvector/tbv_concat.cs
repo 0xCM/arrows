@@ -13,7 +13,7 @@ namespace Z0.Test
     using static BitRef;
 
 
-    public class tbv_concat : UnitTest<tbv_concat>
+    public class tbv_concat : BitVectorTest<tbv_concat>
     {
 
         public void bv_inc_8()

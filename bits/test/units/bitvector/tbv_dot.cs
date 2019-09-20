@@ -13,7 +13,7 @@ namespace Z0.Test
     using static BitRef;
 
 
-    public class tbv_dot : UnitTest<tbv_dot>
+    public class tbv_dot : BitVectorTest<tbv_dot>
     {
         public void dot4()
         {
@@ -97,9 +97,9 @@ namespace Z0.Test
             }
         }
 
-        void dot8_check(int cycles = DefaltCycleCount)
+        void dot8_check()
         {
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var x = Random.BitVector8();
                 var y = Random.BitVector8();
@@ -115,9 +115,9 @@ namespace Z0.Test
             }
         }
 
-        void dot16_check(int cycles = DefaltCycleCount)
+        void dot16_check()
         {
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var x = Random.BitVector16();
                 var y = Random.BitVector16();
@@ -133,9 +133,9 @@ namespace Z0.Test
             }
         }
 
-        void dot32_check(int cycles = DefaltCycleCount)
+        void dot32_check()
         {
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var x = Random.BitVector(n32);
                 var y = Random.BitVector(n32);
@@ -151,9 +151,9 @@ namespace Z0.Test
             }
         }
 
-        void dot64_check(int cycles = DefaltCycleCount)
+        void dot64_check()
         {
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var x = Random.BitVector64();
                 var y = Random.BitVector64();

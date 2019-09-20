@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
     using D = BitwiseDelegates;
 
-    public class ts_bitmap : UnitTest<ts_bitmap>
+    public class ts_bitmap : ScalarBitTest<ts_bitmap>
     {
         void bitmap_assorted()
         {

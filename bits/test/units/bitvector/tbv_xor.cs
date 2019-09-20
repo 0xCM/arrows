@@ -11,7 +11,7 @@ namespace Z0
 
     using static zfunc;
 
-    public class tbv_xor : UnitTest<tbv_xor>
+    public class tbv_xor : BitVectorTest<tbv_xor>
     {
         public void bv_xor8()
         {
@@ -53,11 +53,9 @@ namespace Z0
                 var v2 = gbits.fixedbits<V,S>(y);
                 var v3 = v1 ^ v2;
                 Claim.eq(v3.Scalar, z);
-
             }
 
         }
-
 
         void bv_xor128_check()
         {

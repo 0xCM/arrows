@@ -13,7 +13,7 @@ namespace Z0.Test
     using static zfunc;
     using static BitParts;
 
-    public class tbv_disable : UnitTest<tbv_disable>
+    public class tbv_disable : BitVectorTest<tbv_disable>
     {        
 
         public void disable_after_16()

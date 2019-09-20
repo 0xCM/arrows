@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
  
-    public class ts_andn : UnitTest<ts_andn>
+    public class ts_andn : ScalarBitTest<ts_andn>
     {
 
         public void scalar_andn_8u()
@@ -53,11 +53,11 @@ namespace Z0.Test
             scalar_andn_check<double>();
         }
 
-        void scalar_andn_check<T>(int cycles = DefaltCycleCount)
+        void scalar_andn_check<T>()
             where T : struct
         {
             var vZero = Vec128<T>.Zero;
-            for(var i=0; i<cycles; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var x1 = Random.CpuVec128<T>();                    
                 var y1 = Random.CpuVec128<T>();                    

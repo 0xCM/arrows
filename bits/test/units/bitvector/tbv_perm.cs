@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class tbv_perm : UnitTest<tbv_perm>
+    public class tbv_perm : BitVectorTest<tbv_perm>
     {
 
         public void perm8_example()

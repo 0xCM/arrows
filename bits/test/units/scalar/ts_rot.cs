@@ -12,9 +12,8 @@ namespace Z0
 
     using static zfunc;
 
-    public class ts_rot : UnitTest<ts_rot>
+    public class ts_rot : ScalarBitTest<ts_rot>
     {
-        protected override int CycleCount => Pow2.T14;
 
         public void rotl_8_check()
         {

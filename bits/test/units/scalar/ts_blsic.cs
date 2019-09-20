@@ -10,9 +10,8 @@ namespace Z0
 
     using static zfunc;
 
-    public class ts_blsic : UnitTest<ts_blsic>
+    public class ts_blsic : ScalarBitTest<ts_blsic>
     {
-        protected override int CycleCount => Pow2.T14;
 
 
         public void blsic_8()

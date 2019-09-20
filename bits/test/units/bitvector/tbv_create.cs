@@ -11,7 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class tbv_create : UnitTest<tbv_create>
+    public class tbv_create : BitVectorTest<tbv_create>
     {
 
         public void bv_create_fixed_64()
@@ -246,10 +246,9 @@ namespace Z0.Test
         void create_primal_64_check()
         {
             TypeCaseStart<N64,uint>();
-            var samples = Pow2.T08;
             var dim = new N64();
             var segcount = dim / (int)bitsize<uint>();
-            var src = Random.Span<uint>(samples);
+            var src = Random.Span<uint>(SampleSize);
             for(var i=0; i<src.Length - segcount; i++)
             {
                 var bvSrc = src.Slice(i, segcount);

@@ -10,7 +10,7 @@ namespace Z0.Test
     
     using static zfunc;
     
-    public class ts_pop : UnitTest<ts_pop>
+    public class ts_pop : ScalarBitTest<ts_pop>
     {
         public void pop1()
         {

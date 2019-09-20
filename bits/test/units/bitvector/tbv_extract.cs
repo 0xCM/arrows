@@ -11,14 +11,14 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class tbv_extract : UnitTest<tbv_extract>
+    public class tbv_extract : BitVectorTest<tbv_extract>
     {
         public void extract64()
         {
-            var src = Random.Stream<ulong>().Take(Pow2.T12).ToArray();
-            var lower = Random.Stream(leftclosed<byte>(0,32)).Take(Pow2.T12).ToArray();
-            var upper = Random.Stream(leftclosed<byte>(32,64)).Take(Pow2.T12).ToArray();
-            for(var i=0; i< Pow2.T12; i++)
+            var src = Random.Stream<ulong>().Take(SampleSize).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,32)).Take(SampleSize).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(32,64)).Take(SampleSize).ToArray();
+            for(var i=0; i< SampleSize; i++)
             {
                 var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector64.FromScalar(src[i]);
@@ -42,10 +42,10 @@ namespace Z0.Test
 
         public void extract32()
         {
-            var src = Random.Stream<uint>().Take(Pow2.T12).ToArray();
-            var lower = Random.Stream(leftclosed<byte>(0,16)).Take(Pow2.T12).ToArray();
-            var upper = Random.Stream(leftclosed<byte>(16,32)).Take(Pow2.T12).ToArray();
-            for(var i=0; i< Pow2.T12; i++)
+            var src = Random.Stream<uint>().Take(SampleSize).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,16)).Take(SampleSize).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(16,32)).Take(SampleSize).ToArray();
+            for(var i=0; i< SampleSize; i++)
             {
                 var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector32.FromScalar(src[i]);
@@ -59,10 +59,10 @@ namespace Z0.Test
 
         public void extract16()
         {
-            var src = Random.Stream<ushort>().Take(Pow2.T12).ToArray();
-            var lower = Random.Stream(leftclosed<byte>(0,8)).Take(Pow2.T12).ToArray();
-            var upper = Random.Stream(leftclosed<byte>(8,16)).Take(Pow2.T12).ToArray();
-            for(var i=0; i< Pow2.T12; i++)
+            var src = Random.Stream<ushort>().Take(SampleSize).ToArray();
+            var lower = Random.Stream(leftclosed<byte>(0,8)).Take(SampleSize).ToArray();
+            var upper = Random.Stream(leftclosed<byte>(8,16)).Take(SampleSize).ToArray();
+            for(var i=0; i< SampleSize; i++)
             {
                 var v1 = BitVector.Load(src[i]);
                 var v2 = BitVector16.FromScalar(src[i]);

@@ -10,9 +10,8 @@ namespace Z0
 
     using static zfunc;
 
-    public class ts_blsi : UnitTest<ts_blsi>
+    public class ts_blsi : ScalarBitTest<ts_blsi>
     {
-        protected override int CycleCount => Pow2.T14;
 
         /// <summary>
         /// Illustrates blsi is an identity function over a domain consisting of powers of 2

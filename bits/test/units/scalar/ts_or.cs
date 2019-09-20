@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
     using D = BitwiseDelegates;
 
-    public class ts_or : UnitTest<ts_or>
+    public class ts_or : ScalarBitTest<ts_or>
     {
 
         public void scalar_or_8i()

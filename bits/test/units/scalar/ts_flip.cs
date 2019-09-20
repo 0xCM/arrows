@@ -13,7 +13,7 @@ namespace Z0.Test
     using static zfunc;
     using D = BitwiseDelegates;
 
-    public class ts_flip : UnitTest<ts_flip>
+    public class ts_flip : ScalarBitTest<ts_flip>
     {
         public void scalar_flip_8i()
         {

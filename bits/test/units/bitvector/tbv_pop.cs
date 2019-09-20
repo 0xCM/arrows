@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class tbv_pop : UnitTest<tbv_pop>
+    public class tbv_pop : BitVectorTest<tbv_pop>
     {
 
         public void pop_generic()

@@ -12,7 +12,7 @@ namespace Z0.Test
     
     using static zfunc;
 
-    public class ts_bitstring : UnitTest<ts_bitstring>
+    public class ts_bitstring : ScalarBitTest<ts_bitstring>
     {
 
         public void bsshiftr()
@@ -53,10 +53,10 @@ namespace Z0.Test
 
         public void bsconvert()
         {
-            bsconvert_check<byte>(Pow2.T08);
-            bsconvert_check<ushort>(Pow2.T08);
-            bsconvert_check<uint>(Pow2.T08);
-            bsconvert_check<ulong>(Pow2.T08);
+            bsconvert_check<byte>();
+            bsconvert_check<ushort>();
+            bsconvert_check<uint>();
+            bsconvert_check<ulong>();
 
 
             var n1 = Random.Next<uint>();
@@ -342,7 +342,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 var x = src[i];
@@ -360,7 +360,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 Span<char> bc1 = gbits.bitchars(src[i]).ToSpan();
@@ -377,7 +377,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 var bc1 =  BitString.FromScalar(src[i]).Format();
@@ -394,7 +394,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 var x0 = src[i];
@@ -409,7 +409,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 var x0 = src[i];
@@ -425,11 +425,11 @@ namespace Z0.Test
         }
 
  
-         void bsconvert_check<T>(int count)
+         void bsconvert_check<T>()
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(count);
+            var src = Random.Span<T>(SampleSize);
             foreach(var x in src)
             {
                 var y = BitString.FromScalar(x);
@@ -443,7 +443,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var src = Random.Span<T>(Pow2.T08);
+            var src = Random.Span<T>(SampleSize);
             for(var i=0; i<src.Length; i++)
             {
                 var x = gbits.bitchars(src[i]);

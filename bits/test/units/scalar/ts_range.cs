@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_range : UnitTest<ts_range>
+    public class ts_range : ScalarBitTest<ts_range>
     {
         const ulong U64_00 = 0b00001001_11110000_11001001_10011111_00010001_10111100_00111000_11110000;
         
@@ -47,7 +47,7 @@ namespace Z0.Test
 
         public void range64u()
         {
-            var src = Random.Stream<ulong>().TakeSpan(Pow2.T14);
+            var src = Random.Stream<ulong>().TakeSpan(SampleSize);
             for(var i=0; i< src.Length; i++)
             {
                 var x = src[i];
@@ -62,7 +62,7 @@ namespace Z0.Test
 
         public void range32u()
         {
-            var src = Random.Stream<uint>().TakeSpan(Pow2.T14);
+            var src = Random.Stream<uint>().TakeSpan(SampleSize);
             for(var i=0; i< src.Length; i++)
             {
                 var x = src[i];

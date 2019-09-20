@@ -10,7 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_pack : UnitTest<ts_pack>
+    public class ts_pack : ScalarBitTest<ts_pack>
     {
         public void pack_1x8()
         {
@@ -34,7 +34,7 @@ namespace Z0.Test
 
         public void pack_2x16()
         {
-            var src = Random.Span<ushort>(Pow2.T11);
+            var src = Random.Span<ushort>(SampleSize);
             foreach(var x in src)
             {
                 (var x0, var x1) = Bits.split(x);
@@ -46,7 +46,7 @@ namespace Z0.Test
 
         public void pack_4x32()
         {
-            var src = Random.Span<uint>(Pow2.T11);
+            var src = Random.Span<uint>(SampleSize);
             foreach(var x in src)
             {
                 (var x0, var x1, var x2, var x3) = Bits.split(x, new N4());
@@ -74,7 +74,7 @@ namespace Z0.Test
 
         public void pack_8x64()
         {
-            var src = Random.Span<ulong>(Pow2.T11);
+            var src = Random.Span<ulong>(SampleSize);
             foreach(var x in src)
             {
                 (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.split(x, new N8());
@@ -259,10 +259,10 @@ namespace Z0.Test
         /// </summary>
         /// <param name="cycles">The number of times the test is repeated</param>
         /// <typeparam name="T">The primal type</typeparam>
-        void pack1xN_check<T>(int cycles = DefaltCycleCount)
+        void pack1xN_check<T>()
             where T : struct
         {
-            for(var cycle=0; cycle<cycles; cycle++)
+            for(var cycle=0; cycle<SampleSize; cycle++)
             {
                 var src = Random.Next<T>();
                 var unpacked = gbits.unpack(in src, out Span<Bit> _);

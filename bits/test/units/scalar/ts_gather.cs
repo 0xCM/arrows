@@ -12,10 +12,8 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_gather : UnitTest<ts_gather>
+    public class ts_gather : ScalarBitTest<ts_gather>
     {        
-        protected override int SampleSize
-            => Pow2.T08;
     
         public void gather__masks()
         {
@@ -79,8 +77,9 @@ namespace Z0.Test
         OpTime gather_bench<T>()
             where T : unmanaged
         {
+            var opcount = CycleCount * RoundCount;
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<opcount; i++)
             {
                 var src = Random.Next<T>();
                 var mask = Random.Next<T>();
@@ -88,13 +87,14 @@ namespace Z0.Test
                 var dst = gbits.gather(src,mask);
                 sw.Stop();
             }
-            return OpTime.Define<T>(SampleSize, sw, $"gather");        
+            
+            return (opcount, sw, $"gather{bitsize<T>()}");        
         }
 
-        void gather_check<T>(int samples = DefaultSampleSize)
+        void gather_check<T>()
             where T : unmanaged
         {
-            for(var i=0; i<samples; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var src = Random.Next<T>();
                 var mask = Random.Next<T>();

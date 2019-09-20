@@ -12,7 +12,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class ts_shift : UnitTest<ts_shift>
+    public class ts_shift : ScalarBitTest<ts_shift>
     {
         public void sal_8i()
         {

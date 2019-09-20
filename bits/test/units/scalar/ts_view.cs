@@ -13,7 +13,7 @@ namespace Z0.Test
 
     using static zfunc;
         
-    public class ts_view : UnitTest<ts_view>
+    public class ts_view : ScalarBitTest<ts_view>
     {
 
         public void VerifyPrimalView()

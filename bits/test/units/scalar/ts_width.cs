@@ -8,7 +8,7 @@ namespace Z0.Test
 
     using static zfunc;
         
-    public class ts_width : UnitTest<ts_width>
+    public class ts_width : ScalarBitTest<ts_width>
     {
 
         public void width8u()

@@ -11,7 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
         
-    public class ts_digits : UnitTest<ts_digits>
+    public class ts_digits : ScalarBitTest<ts_digits>
     {
         public void binary_digits_8u()
         {

@@ -11,13 +11,8 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class tbv_gf : UnitTest<tbv_gf>
+    public class tbv_gf : BitVectorTest<tbv_gf>
     {
-        protected override int SampleSize
-            => Pow2.T09;
-
-        protected override int CycleCount
-            => Pow2.T12;
 
         public void gfmul256()
         {
@@ -36,10 +31,10 @@ namespace Z0.Test
 
         public void gfmul512()
         {
-            for(var i=0; i< SampleSize; i++)
+            for(var i=0; i< CycleCount; i++)
             {
-                var x1 = Random.BitVector16(Pow2.T09);
-                var x2 = Random.BitVector16(Pow2.T09);
+                var x1 = Random.BitVector16(2*32);
+                var x2 = Random.BitVector16(2*32);
                 var p1 = Gf512.mul(x1,x2); 
                 var p2 = Gf512.mul_ref(x1,x2);
                 Claim.eq(p1,p2);       
@@ -173,17 +168,15 @@ namespace Z0.Test
 
         void gfmul256ref_bench()
         {
-            var samples = Pow2.T14;
-            var cycles = Pow2.T08;
-            var lhsSrc = Random.Array<byte>(samples);
-            var rhsSrc = Random.Array<byte>(samples);
+            var lhsSrc = Random.Array<byte>(SampleSize);
+            var rhsSrc = Random.Array<byte>(SampleSize);
                         
             int Bench()
             {                
                 var ops = 0;
-                for(var i=0; i< cycles; i++)
+                for(var i=0; i< CycleCount; i++)
                 {
-                    for(var j=0; j< samples; j++)
+                    for(var j=0; j< SampleSize; j++)
                     {
                         Gf256.mul_ref(lhsSrc[j],rhsSrc[j]);
                         ops++;

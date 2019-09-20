@@ -11,7 +11,7 @@ namespace Z0.Test
     using static zfunc;
     using static Bit;
 
-    public class ts_trunc : UnitTest<ts_trunc>
+    public class ts_trunc : ScalarBitTest<ts_trunc>
     {
         public void trunc8u()
         {

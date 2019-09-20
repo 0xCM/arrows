@@ -10,7 +10,6 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static BitPartKind;
 
     /// <summary>
     /// Defines bitwise partition structures and functions

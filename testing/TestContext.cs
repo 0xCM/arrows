@@ -96,6 +96,12 @@ namespace Z0
             => DefaultRoundCount;
 
         /// <summary>
+        /// The number of operations performed in a benchmarking expercise
+        /// </summary>
+        protected virtual int OpCount
+            => RoundCount*CycleCount;
+
+        /// <summary>
         /// Specifies the number of decimal places that relevant for some purpose
         /// </summary>
         protected virtual int Scale

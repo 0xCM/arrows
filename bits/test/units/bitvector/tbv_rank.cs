@@ -12,7 +12,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class tbv_rank : UnitTest<tbv_rank>
+    public class tbv_rank : BitVectorTest<tbv_rank>
     {
         public void bvrank_8()
         {
