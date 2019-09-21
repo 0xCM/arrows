@@ -46,7 +46,7 @@ namespace Z0.Test
         }
 
         void broadcast128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var x = Random.Next<T>();
@@ -57,7 +57,7 @@ namespace Z0.Test
         }
 
         void broadcast256_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var x = Random.Next<T>();

@@ -81,7 +81,7 @@ namespace Z0
             => src.xmm;
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -92,7 +92,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -103,7 +103,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -114,7 +114,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -125,7 +125,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -136,7 +136,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -147,7 +147,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -158,7 +158,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -169,7 +169,7 @@ namespace Z0
         }
         
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -180,7 +180,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an xmem value
+        /// Implicitly converts a source vector to a 128-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -285,9 +285,6 @@ namespace Z0
         public Vector128<T> Vec<T>()
             where T : unmanaged
                 => Vector128.As<byte,T>(vxmm);
-
-
     }
-
 }
 

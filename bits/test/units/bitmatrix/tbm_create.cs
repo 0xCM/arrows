@@ -12,9 +12,9 @@ namespace Z0
     using static zfunc;
     #pragma warning disable 1718
 
-    public class tbm_create : UnitTest<tbm_create>
+    public class tbm_create : BitMatrixTest<tbm_create>
     {
-        public void bitrev_8x8()
+        public void permrev_8x8()
         {
             for(var i= 0; i<SampleSize; i++)
             {
@@ -29,7 +29,7 @@ namespace Z0
                 Claim.eq(v3,v2);
             }
         }
-        public void bitrev_32x32()
+        public void permrev_32x32()
         {
             for(var i= 0; i<SampleSize; i++)
             {
@@ -45,7 +45,7 @@ namespace Z0
             }
         }
 
-        public void bitrev_64x64()
+        public void permrev_64x64()
         {
             for(var i= 0; i<SampleSize; i++)
             {
@@ -106,7 +106,6 @@ namespace Z0
                     else
                         Claim.eq(m[i,j], Bit.Off);
                 }
-
             }
         }
 

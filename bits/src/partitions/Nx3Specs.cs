@@ -19,7 +19,7 @@ namespace Z0
         /// Partitions a 6-bit container into 3-bit segments
         /// </summary>
         [Flags]
-        public enum Part6x3 : ushort
+        public enum Part6x3 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -68,7 +68,7 @@ namespace Z0
         /// Partitions a 9-bit container into 3-bit segments
         /// </summary>
         [Flags]
-        public enum Part9x3 : ushort
+        public enum Part9x3 : uint
         {
             /// <summary>
             /// The total count of partitioned bits

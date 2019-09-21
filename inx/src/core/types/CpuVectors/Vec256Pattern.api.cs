@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
         public static ref readonly Vec256<T> Units<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.Units;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
         public static ref readonly Vec256<T> AllOnes<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.AllOnes;
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec256<T> LaneMerge<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.LaneMerge;
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec256<T> Increasing<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.Increasing;
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec256<T> Decreasing<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.Decreasing;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec256<T> ClearAlt<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.ClearAlt;
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The floating point type</typeparam>
         public static ref readonly Vec256<T> FpSignMask<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec256Pattern<T>.FpSignMask;
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Z0
         /// <param name="first">The value of the first component</param>
         /// <typeparam name="T">The primal component type</typeparam>
         public static Vec256<T> Increments<T>(T first = default, params Swap[] swaps)
-            where T : struct  
+            where T : unmanaged  
                 => Vec256Pattern<T>.Increments(first,swaps);
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Z0
         /// <param name="swaps">Transpositions applied to decrements prior to vector creation</param>
         /// <typeparam name="T">The primal component type</typeparam>        
         public static Vec256<T> Decrements<T>(T last = default, params Swap[] swaps)
-            where T : struct  
+            where T : unmanaged  
                 => Vec256Pattern<T>.Decrements(last, swaps);
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Z0
         /// <param name="b">The second operand</param>
         /// <typeparam name="T">The primal component type</typeparam>
         public static Vec256<T> Alternate<T>(T a, T b)
-            where T : struct
+            where T : unmanaged
         {            
             var n = Vec256<T>.Length;
             var dst = Span256.AllocBlock<T>();

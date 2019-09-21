@@ -45,7 +45,7 @@ namespace Z0.Test
         }
 
         void add128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
@@ -53,7 +53,7 @@ namespace Z0.Test
         }
 
         void add256_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec256BinOp<T>(ginx.add), gmath.add<T>);

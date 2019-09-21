@@ -154,7 +154,7 @@ namespace Z0.Test
         }
 
         void VerifyHi256<T>(int n = Pow2.T12)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var lhsSrc = Random.Span256<T>(n);
@@ -178,7 +178,7 @@ namespace Z0.Test
         }
 
         static string DescribeShuffle<T>(Vec256<T> src, byte spec, Vec256<T> dst)
-            where T : struct
+            where T : unmanaged
         {
             var xFmt = src.FormatHexBlocks();
             var specFmt = spec.ToBitString();
@@ -195,7 +195,7 @@ namespace Z0.Test
         }
 
         static string Describe2x128Perm<T>(Vec256<T> x, Vec256<T> y, byte spec, Vec256<T> dst)
-            where T : struct
+            where T : unmanaged
         {
             var xFmt = x.FormatHexBlocks();
             var yFmt = y.FormatHexBlocks();

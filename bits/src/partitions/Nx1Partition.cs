@@ -21,12 +21,12 @@ namespace Z0
         /// <param name="dst">A target span of sufficient length</param>
         public static void part6x1(byte src, Span<byte> dst)
         {
-            dst[0] = project(select(src, Part6x1.Part0), Part6x1.First);
-            dst[1] = project(select(src, Part6x1.Part1), Part6x1.First);
-            dst[2] = project(select(src, Part6x1.Part2), Part6x1.First);
-            dst[3] = project(select(src, Part6x1.Part3), Part6x1.First);
-            dst[4] = project(select(src, Part6x1.Part4), Part6x1.First);
-            dst[5] = project(select(src, Part6x1.Part5), Part6x1.First);
+            dst[0] = project<byte>(select(src, Part6x1.Part0), Part6x1.First);
+            dst[1] = project<byte>(select(src, Part6x1.Part1), Part6x1.First);
+            dst[2] = project<byte>(select(src, Part6x1.Part2), Part6x1.First);
+            dst[3] = project<byte>(select(src, Part6x1.Part3), Part6x1.First);
+            dst[4] = project<byte>(select(src, Part6x1.Part4), Part6x1.First);
+            dst[5] = project<byte>(select(src, Part6x1.Part5), Part6x1.First);
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace Z0
         /// <param name="dst">A target span of sufficient length</param>
         public static ref BitBlock6 part6x1(byte src, ref BitBlock6 dst)
         {
-            dst.Bit0 = project(select(src, Part6x1.Part0), Part6x1.First);
-            dst.Bit1 = project(select(src, Part6x1.Part1), Part6x1.First);
-            dst.Bit2 = project(select(src, Part6x1.Part2), Part6x1.First);
-            dst.Bit3 = project(select(src, Part6x1.Part3), Part6x1.First);
-            dst.Bit4 = project(select(src, Part6x1.Part4), Part6x1.First);
-            dst.Bit5 = project(select(src, Part6x1.Part5), Part6x1.First);
+            dst.Bit0 = project<byte>(select(src, Part6x1.Part0), Part6x1.First);
+            dst.Bit1 = project<byte>(select(src, Part6x1.Part1), Part6x1.First);
+            dst.Bit2 = project<byte>(select(src, Part6x1.Part2), Part6x1.First);
+            dst.Bit3 = project<byte>(select(src, Part6x1.Part3), Part6x1.First);
+            dst.Bit4 = project<byte>(select(src, Part6x1.Part4), Part6x1.First);
+            dst.Bit5 = project<byte>(select(src, Part6x1.Part5), Part6x1.First);
             return ref dst;
         }
 
@@ -50,15 +50,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part7x1(byte src, Span<byte> dst)
+        public static void part7x1(uint src, Span<byte> dst)
         {
-            dst[0] = project(select(src, Part7x1.Part0), Part7x1.First);
-            dst[1] = project(select(src, Part7x1.Part1), Part7x1.First);
-            dst[2] = project(select(src, Part7x1.Part2), Part7x1.First);
-            dst[3] = project(select(src, Part7x1.Part3), Part7x1.First);
-            dst[4] = project(select(src, Part7x1.Part4), Part7x1.First);
-            dst[5] = project(select(src, Part7x1.Part5), Part7x1.First);
-            dst[6] = project(select(src, Part7x1.Part6), Part7x1.First);
+            dst[0] = project<byte>(select(src, Part7x1.Part0), Part7x1.First);
+            dst[1] = project<byte>(select(src, Part7x1.Part1), Part7x1.First);
+            dst[2] = project<byte>(select(src, Part7x1.Part2), Part7x1.First);
+            dst[3] = project<byte>(select(src, Part7x1.Part3), Part7x1.First);
+            dst[4] = project<byte>(select(src, Part7x1.Part4), Part7x1.First);
+            dst[5] = project<byte>(select(src, Part7x1.Part5), Part7x1.First);
+            dst[6] = project<byte>(select(src, Part7x1.Part6), Part7x1.First);
         }
 
         /// <summary>
@@ -66,16 +66,16 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part8x1(byte src, Span<byte> dst)
+        public static void part8x1(uint src, Span<byte> dst)
         {
-            dst[0] = project(select(src, Part8x1.Part0), Part8x1.First);
-            dst[1] = project(select(src, Part8x1.Part1), Part8x1.First);
-            dst[2] = project(select(src, Part8x1.Part2), Part8x1.First);
-            dst[3] = project(select(src, Part8x1.Part3), Part8x1.First);
-            dst[4] = project(select(src, Part8x1.Part4), Part8x1.First);
-            dst[5] = project(select(src, Part8x1.Part5), Part8x1.First);
-            dst[6] = project(select(src, Part8x1.Part6), Part8x1.First);
-            dst[7] = project(select(src, Part8x1.Part7), Part8x1.First);
+            dst[0] = project<byte>(select(src, Part8x1.Part0), Part8x1.First);
+            dst[1] = project<byte>(select(src, Part8x1.Part1), Part8x1.First);
+            dst[2] = project<byte>(select(src, Part8x1.Part2), Part8x1.First);
+            dst[3] = project<byte>(select(src, Part8x1.Part3), Part8x1.First);
+            dst[4] = project<byte>(select(src, Part8x1.Part4), Part8x1.First);
+            dst[5] = project<byte>(select(src, Part8x1.Part5), Part8x1.First);
+            dst[6] = project<byte>(select(src, Part8x1.Part6), Part8x1.First);
+            dst[7] = project<byte>(select(src, Part8x1.Part7), Part8x1.First);
         }
 
         /// <summary>
@@ -83,15 +83,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static ref BitBlock8 part8x1(byte src, ref BitBlock8 dst)
+        public static ref BitBlock8 part8x1(uint src, ref BitBlock8 dst)
         {
-            dst.Bit1 = project(select(src, Part8x1.Part0), Part8x1.First);
-            dst.Bit2 = project(select(src, Part8x1.Part1), Part8x1.First);
-            dst.Bit3= project(select(src, Part8x1.Part2), Part8x1.First);
-            dst.Bit4 = project(select(src, Part8x1.Part3), Part8x1.First);
-            dst.Bit5 = project(select(src, Part8x1.Part4), Part8x1.First);
-            dst.Bit6 = project(select(src, Part8x1.Part5), Part8x1.First);
-            dst.Bit7 = project(select(src, Part8x1.Part6), Part8x1.First);
+            dst.Bit1 = project<byte>(select(src, Part8x1.Part0), Part8x1.First);
+            dst.Bit2 = project<byte>(select(src, Part8x1.Part1), Part8x1.First);
+            dst.Bit3 = project<byte>(select(src, Part8x1.Part2), Part8x1.First);
+            dst.Bit4 = project<byte>(select(src, Part8x1.Part3), Part8x1.First);
+            dst.Bit5 = project<byte>(select(src, Part8x1.Part4), Part8x1.First);
+            dst.Bit6 = project<byte>(select(src, Part8x1.Part5), Part8x1.First);
+            dst.Bit7 = project<byte>(select(src, Part8x1.Part6), Part8x1.First);
             return ref dst;
         }
 
@@ -100,7 +100,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part9x1(ushort src, Span<byte> dst)
+        public static void part9x1(uint src, Span<byte> dst)
         {
             dst[0] = project<byte>(select(src, Part9x1.Part0), Part9x1.First);
             dst[1] = project<byte>(select(src, Part9x1.Part1), Part9x1.First);
@@ -157,7 +157,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static ref BitBlock10 part10x1(ushort src, ref BitBlock10 dst)
+        public static ref BitBlock10 part10x1(uint src, ref BitBlock10 dst)
         {
             dst.Bit0 = project<byte>(select(src, Part10x1.Part0), Part10x1.First);
             dst.Bit1 = project<byte>(select(src, Part10x1.Part1), Part10x1.First);

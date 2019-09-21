@@ -78,7 +78,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static ref BlockVector<T> add<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)            
-            where T : struct
+            where T : unmanaged
         {
             gmath.add(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
@@ -94,7 +94,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> add<N,T>(ref BlockVector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             gmath.add(lhs.Unsized, rhs);
             return ref lhs;
@@ -110,7 +110,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> add<N,T>(ref BlockVector<N,T> x, in BlockVector<N,T> y)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             ginx.add<T>(x,y,x);
             return ref x;
@@ -127,7 +127,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> add<N,T>(in BlockVector<N,T> x, in BlockVector<N,T> y, ref BlockVector<N,T> z)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             gmath.add(x.Unsized, y.Unsized, z.Unsized);
             return ref z;

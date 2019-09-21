@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
         public static ref readonly Vec128<T> Units<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec128Pattern<T>.Units;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal type</typeparam>
         public static ref readonly Vec128<T> AllOnes<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec128Pattern<T>.AllOnes;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The floating point type</typeparam>
         public static ref readonly Vec128<T> FpSignMask<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec128Pattern<T>.FpSignMask;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec128<T> Increasing<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec128Pattern<T>.Increasing;
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primal component type</typeparam>
         public static ref readonly Vec128<T> Decreasing<T>()
-            where T : struct
+            where T : unmanaged
                 => ref Vec128Pattern<T>.Decreasing;
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Z0
         /// <param name="first">The value of the first component</param>
         /// <typeparam name="T">The primal component type</typeparam>
         public static Vec128<T> Increments<T>(T first = default, params Swap[] swaps)
-            where T : struct  
+            where T : unmanaged  
                 => Vec128Pattern<T>.Increments(first,swaps);
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Z0
         /// <param name="swaps">Transpositions applied to decrements prior to vector creation</param>
         /// <typeparam name="T">The primal component type</typeparam>        
         public static Vec128<T> Decrements<T>(T last = default, params Swap[] swaps)
-            where T : struct  
+            where T : unmanaged  
                 => Vec128Pattern<T>.Decrements(last, swaps);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Z0
         /// <param name="swaps">The transpositions</param>
         [MethodImpl(Inline)]
         public static Vec128<T> Swap<T>(params Swap[] swaps)
-            where T : struct  
+            where T : unmanaged  
                 => Vec128.Increments(default(T), swaps);
 
     }

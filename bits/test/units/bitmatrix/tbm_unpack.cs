@@ -11,7 +11,7 @@ namespace Z0.Test
     
     using static zfunc;
 
-    public class tbm_unpack : UnitTest<tbm_unpack>
+    public class tbm_unpack : BitMatrixTest<tbm_unpack>
     {
         public void bm_unpack_8x8x8_8x8x8()
         {

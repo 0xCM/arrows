@@ -19,7 +19,7 @@ namespace Z0
         /// Paritions a 4-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part4x2 : byte
+        public enum Part4x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -56,7 +56,7 @@ namespace Z0
         /// Partitions a 6-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part6x2 : ushort
+        public enum Part6x2 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -99,7 +99,7 @@ namespace Z0
         /// Partitions am 8-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part8x2 : byte
+        public enum Part8x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -156,7 +156,7 @@ namespace Z0
         /// Partitions a 10-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part10x2 : ushort
+        public enum Part10x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -218,7 +218,7 @@ namespace Z0
         /// Partitions a 12-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part12x2 : ushort
+        public enum Part12x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -287,7 +287,7 @@ namespace Z0
         /// Partitions a 14-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part14x2 : ushort
+        public enum Part14x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -359,7 +359,7 @@ namespace Z0
         /// Partitions a 16-bit container into 2-bit segments
         /// </summary>
         [Flags]
-        public enum Part16x2 : ushort
+        public enum Part16x2 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits

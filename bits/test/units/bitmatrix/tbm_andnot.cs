@@ -11,9 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-
-
-    public class tbm_andnot : UnitTest<tbm_andnot>
+    public class tbm_andnot : BitMatrixTest<tbm_andnot>
     {
         public void AndNot8()
         {

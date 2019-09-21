@@ -20,7 +20,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this in Vec512<T> src)
-            where T : struct            
+            where T : unmanaged            
         {
             var dst = span<T>(Vec512<T>.Length);
             src.ToSpan(dst);
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> Extract128<T>(this Vec512<T> src, byte index)
-            where T : struct            
+            where T : unmanaged            
         {
             if(index == 0)
                 return ginx.extract128(src.lo,0);
@@ -58,7 +58,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static void ToSpan<T>(this in Vec512<T> src, Span<T> dst)
-            where T : struct            
+            where T : unmanaged            
         {
             Vec256.Store(in src.lo, ref dst[0]);
             Vec256.Store(in src.hi, ref dst[Vec256<T>.Length]);
@@ -72,12 +72,12 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static unsafe Span<T> AsSpan<T>(this ref Vec512<T> src)
-            where T : struct            
+            where T : unmanaged            
                 => new Span<T>(Unsafe.AsPointer(ref src), Vec512<T>.Length);
 
         [MethodImpl(Inline)]
         public static string FormatHex<T>(this Vec512<T> src, int? bwidth = null, char? bsep = null)
-            where T : struct
+            where T : unmanaged
                 => src.hi.ToSpan().FormatHexBlocks(bwidth, bsep) 
                     + src.lo.ToSpan().FormatHexBlocks(bwidth, bsep);
     }

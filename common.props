@@ -16,14 +16,12 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>    
-    <!-- <DebugType>full</DebugType> -->
     <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
     <LangVersion>preview</LangVersion>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <AssemblyVersion>1.0.41</AssemblyVersion>
     <VersionPrefix>$(AssemblyVersion)</VersionPrefix>
-
   </PropertyGroup>
 
 </Project>

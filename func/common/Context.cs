@@ -58,7 +58,7 @@ namespace Z0
 
         protected OpTime[] DequeueTimings()
         {
-            var timings = OpTimes.ToArray();
+            var timings = OpTimes.OrderBy(x => x.OpName).ToArray();
             OpTimes.Clear();
             return timings;
         }
@@ -231,6 +231,7 @@ namespace Z0
             if(TraceEnabled)
                 TracePerf(time.Format(labelPad));
         }
+
 
         /// <summary>
         /// Collects function evaluation timing

@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> CpuVec128<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span128<T>(1, domain, filter).LoadVec128();
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> CpuVec128<T>(this IPolyrand random, Interval<T> domain, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span128<T>(1, domain, filter).LoadVec128();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> CpuVec128<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span128<T>(1, closed(min,max), filter).LoadVec128();
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         public static IRandomStream<Vec128<T>> CpuVec128Stream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
         {
             IEnumerable<Vec128<T>> produce()
             {
@@ -76,7 +76,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> CpuVec256<T>(this IPolyrand random, Interval<T> domain)        
-            where T : struct
+            where T : unmanaged
                 => random.Span256<T>(1, domain).LoadVec256();
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> CpuVec256<T>(this IPolyrand random)        
-            where T : struct
+            where T : unmanaged
                 => random.Span256<T>(1).LoadVec256();
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> CpuVec256<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span256<T>(1, domain, filter).LoadVec256();
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> CpuVec256<T>(this IPolyrand random, Interval<T> domain, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span256<T>(1, domain, filter).LoadVec256();
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> CpuVec256<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
                 => random.Span256<T>(1, closed(min,max), filter).LoadVec256();
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         public static IRandomStream<Vec256<T>> CpuVec256Stream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
         {
             IEnumerable<Vec256<T>> produce()
             {
@@ -156,7 +156,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec512<T> CpuVec512<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
         {
             var v1 = random.CpuVec256(domain,filter);
             var v2 = random.CpuVec256(domain,filter);
@@ -172,7 +172,7 @@ namespace Z0
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec1024<T> CpuVec1024<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : struct
+            where T : unmanaged
         {
             var v1 = random.CpuVec256(domain,filter);
             var v2 = random.CpuVec256(domain,filter);

@@ -227,7 +227,6 @@ namespace Z0
                 return scalar64(in src);
             else 
                 throw unsupported<S>();
-
         }
 
         [MethodImpl(Inline)]
@@ -247,9 +246,6 @@ namespace Z0
                 return Unsafe.As<BitVector64,V>(ref asRef(in src.data));
             else 
                 throw unsupported<V>();
-
         }
-
     }
-
 }

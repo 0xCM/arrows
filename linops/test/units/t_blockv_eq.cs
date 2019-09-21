@@ -13,7 +13,7 @@ namespace Z0
     public static class Util
     {
         public static void ClaimEqual<N,T>(BlockVector<N,T> x, BlockVector<N,T> y)
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             var len = (int)(new N().value);

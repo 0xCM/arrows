@@ -26,7 +26,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref readonly Vec256<T> Zero<T>() 
-            where T : struct
+            where T : unmanaged
                 => ref Vec256<T>.Zero;        
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static int Length<T>()
-            where T : struct
+            where T : unmanaged
                 => Vec256<T>.Length;
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0
         /// <param name="src">The fill value</param>
         [MethodImpl(Inline)]
          public static Vec256<T> Fill<T>(T value)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(fill(int8(value)));
@@ -76,7 +76,7 @@ namespace Z0
         /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
          public static ref readonly Vec256<T> Ones<T>()
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return ref generic<T>(in OneI8);
@@ -109,7 +109,7 @@ namespace Z0
         /// <param name="dst">The target memory</param>
         [MethodImpl(Inline)]
         public static void Store<T>(in Vec256<T> src, ref T dst)
-            where T : struct
+            where T : unmanaged
         {            
             if(typeof(T) == typeof(sbyte))
                 vstore(in int8(src), ref int8(ref dst));
@@ -142,7 +142,7 @@ namespace Z0
         /// <param name="dst">The target memory</param>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(ref T src)
-            where T : struct  
+            where T : unmanaged  
         {            
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(load(ref int8(ref src)));
@@ -175,7 +175,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(Span<T> src)
-            where T : struct  
+            where T : unmanaged  
                 => Load(ref src[0]);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(ReadOnlySpan<T> src)
-            where T : struct  
+            where T : unmanaged  
                 => Load(ref asRef( in src[0]));
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Loadi<T>(in T src)
-            where T : struct  
+            where T : unmanaged  
         {
             
             if(typeof(T) == typeof(sbyte))
@@ -232,7 +232,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static ref Vec256<T> Load<T>(in ReadOnlySpan256<T> src, int block, out Vec256<T> dst)
-            where T : struct
+            where T : unmanaged
         {            
             ref var head = ref asRef(in src.Block(block));            
             if(typeof(T) == typeof(sbyte))
@@ -269,7 +269,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static ref Vec256<T> Load<T>(in Span256<T> src, int block, out Vec256<T> dst)
-            where T : struct
+            where T : unmanaged
         {            
             ref var head = ref asRef(in src.Block(block));            
             if(typeof(T) == typeof(sbyte))
@@ -305,7 +305,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(T[] src, int block = 0)
-            where T : struct  
+            where T : unmanaged  
                 => Load(src, block, out Vec256<T> dst);
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in ReadOnlySpan256<T> src, int block = 0)
-            where T : struct  
+            where T : unmanaged  
                 => Load(in src, block, out Vec256<T> dst);
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in Span256<T> src, int block = 0)
-            where T : struct  
+            where T : unmanaged  
                 => Load(src, block, out Vec256<T> dst);
 
         [MethodImpl(Inline)]

@@ -14,7 +14,7 @@ namespace Z0
     using static Reg;
     using static Asm;
 
-    public class t_vperm2i128 : t_cpu<t_vperm2i128>
+    public class t_cpu_vperm2i128 : t_cpu<t_cpu_vperm2i128>
     {
         public void vperm_2x128()
         {            

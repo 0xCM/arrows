@@ -51,7 +51,6 @@ namespace Z0
         public static BitVector16 Alloc()
             => new BitVector16(0);    
 
-
         /// <summary>
         /// Loads a vector from the primal source value it represents
         /// </summary>
@@ -84,6 +83,11 @@ namespace Z0
         public static BitVector16 FromScalar(ulong src)
             => new BitVector16((ushort)src);    
 
+        /// <summary>
+        /// Creates a vector from two bytes
+        /// </summary>
+        /// <param name="lo">The byte that will constitute the lo vector bits</param>
+        /// <param name="hi">The byte that will constitute the hi vector bits</param>
         [MethodImpl(Inline)]
         public static BitVector16 FromScalars(byte lo, byte hi)
             => FromScalar((ushort)hi << 8 | (ushort)lo);
@@ -329,7 +333,6 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => Between(first, last);
-
         }
 
         /// <summary>

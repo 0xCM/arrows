@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> next<T>(in Vec128<T> src)
-            where T : struct
+            where T : unmanaged
                 => add(in src, in Vec128Pattern.Units<T>());
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> next<T>(in Vec256<T> src)
-            where T : struct
+            where T : unmanaged
                 => add(in src, in Vec256Pattern.Units<T>());
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> prior<T>(in Vec128<T> src)
-            where T : struct
+            where T : unmanaged
                 => sub(in src, in Vec128Pattern.Units<T>());
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> prior<T>(in Vec256<T> src)
-            where T : struct
+            where T : unmanaged
                 => sub(in src, in Vec256Pattern.Units<T>());
     }
 

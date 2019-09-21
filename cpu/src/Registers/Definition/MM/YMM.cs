@@ -20,7 +20,34 @@ namespace Z0
 
         public const int ByteCount = 32;      
 
+        /// <summary>
+        /// Defines a 1-filled YMM register
+        /// </summary>
+        public static readonly YMM Ones = FromCells(ulong.MaxValue, ulong.MaxValue, ulong.MaxValue, ulong.MaxValue);    
+
+        /// <summary>
+        /// Defines a 0-filled YMM register
+        /// </summary>
+        public static readonly YMM Zero = FromCells(0ul, 0ul, 0ul, 0ul);
+
+
         const int HiPart = 16;
+
+
+        /// <summary>
+        /// Creates a register with content from a cell parameter array
+        /// </summary>
+        /// <param name="cells">The cell content</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        public static YMM FromCells<T>(params T[] cells)
+            where T : unmanaged
+        {
+            YMM dst = default;
+            var len = Math.Min(cells.Length, CellCount<T>());
+            for(var i=0; i<len; i++)              
+                dst.Cell<T>(i) = cells[i];
+            return dst;
+        }
 
         /// <summary>
         /// Gets the vector bitmap for a specified primal type
@@ -985,94 +1012,94 @@ namespace Z0
         #region MM
         
         [FieldOffset(0)]
-        Vector256<sbyte> v256i8;
+        public Vector256<sbyte> v256i8;
 
         [FieldOffset(0)]
-        Vector256<byte> v256u8;
+        public Vector256<byte> v256u8;
 
         [FieldOffset(0)]
-        Vector256<short> v256i16;
+        public Vector256<short> v256i16;
 
         [FieldOffset(0)]
-        Vector256<ushort> v256u16;
+        public Vector256<ushort> v256u16;
 
         [FieldOffset(0)]
-        Vector256<int> v256i32;
+        public Vector256<int> v256i32;
 
         [FieldOffset(0)]
-        Vector256<uint> v256u32;
+        public Vector256<uint> v256u32;
 
         [FieldOffset(0)]
-        Vector256<long> v256i64;
+        public Vector256<long> v256i64;
 
         [FieldOffset(0)]
-        Vector256<ulong> v256u64;
+        public Vector256<ulong> v256u64;
 
         [FieldOffset(0)]
-        Vector256<float> v256f32;
+        public Vector256<float> v256f32;
 
         [FieldOffset(0)]
-        Vector256<double> v256f64;
+        public Vector256<double> v256f64;
 
         [FieldOffset(0)]
-        Vector128<sbyte> v128i8L;
+        public Vector128<sbyte> v128i8L;
 
         [FieldOffset(HiPart)]
-        Vector128<sbyte> v128i8H;
+        public Vector128<sbyte> v128i8H;
 
         [FieldOffset(0)]
-        Vector128<byte> v128u8L;
+        public Vector128<byte> v128u8L;
 
         [FieldOffset(HiPart)]
-        Vector128<byte> v128u8H;
+        public Vector128<byte> v128u8H;
         
         [FieldOffset(0)]
-        Vector128<short> v128i16L;
+        public Vector128<short> v128i16L;
 
         [FieldOffset(HiPart)]
-        Vector128<short> v128i16H;
+        public Vector128<short> v128i16H;
 
         [FieldOffset(0)]
         Vector128<ushort> v128u16L;
 
         [FieldOffset(HiPart)]
-        Vector128<ushort> v128u16H;
+        public Vector128<ushort> v128u16H;
 
         [FieldOffset(0)]
-        Vector128<int> v128i32L;
+        public Vector128<int> v128i32L;
 
         [FieldOffset(HiPart)]
-        Vector128<int> v128i32H;
+        public Vector128<int> v128i32H;
 
         [FieldOffset(0)]
-        Vector128<uint> v128u32L;
+        public Vector128<uint> v128u32L;
 
         [FieldOffset(HiPart)]
-        Vector128<uint> v128u32H;
+        public Vector128<uint> v128u32H;
 
         [FieldOffset(0)]
-        Vector128<long> v128i64L;
+        public Vector128<long> v128i64L;
 
         [FieldOffset(HiPart)]
-        Vector128<long> v128i64H;
+        public Vector128<long> v128i64H;
 
         [FieldOffset(0)]
-        Vector128<ulong> v128u64L;
+        public Vector128<ulong> v128u64L;
 
         [FieldOffset(HiPart)]
-        Vector128<ulong> v128u64H;
+        public Vector128<ulong> v128u64H;
 
         [FieldOffset(0)]
-        Vector128<float> v128f32L;
+        public Vector128<float> v128f32L;
 
         [FieldOffset(HiPart)]
-        Vector128<float> v128f32H;
+        public Vector128<float> v128f32H;
 
         [FieldOffset(0)]
-        Vector128<double> v128f64L;
+        public Vector128<double> v128f64L;
 
         [FieldOffset(HiPart)]
-        Vector128<double> v128f64H;            
+        public Vector128<double> v128f64H;            
 
         #endregion
 

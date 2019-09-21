@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> LoadVec128<T>(this Span128<T> src, int block = 0)            
-            where T : struct            
+            where T : unmanaged            
                 => Vec128.Load(src, block);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> LoadVec128<T>(this ReadOnlySpan128<T> src, int block = 0)            
-            where T : struct            
+            where T : unmanaged            
                 => Vec128.Load(src, block);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> LoadVec256<T>(this Span256<T> src, int block = 0)            
-            where T : struct            
+            where T : unmanaged            
                 => Vec256.Load(src, block);
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> LoadVec256<T>(this ReadOnlySpan256<T> src, int block = 0)            
-            where T : struct            
+            where T : unmanaged            
                 => Vec256.Load(src,block);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Z0
         /// <param name="offset">The position of the fist source element </param>
         [MethodImpl(Inline)]
         public static Vec128<T> LoadVec128<T>(this Span<T> src, int offset = 0)
-            where T : struct            
+            where T : unmanaged            
                 => Vec128.Load(ref src[offset]);
 
         /// Loads a 128-bit vector from a span beginning at a specified offset
@@ -75,7 +75,7 @@ namespace Z0
         /// <param name="offset">The position of the fist source element </param>
         [MethodImpl(Inline)]
         public static Vec128<T> LoadVec128<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct            
+            where T : unmanaged            
                 => Vec128.Load(ref asRef(in src[offset]));
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Z0
         /// <param name="offset">The position of the fist source element </param>
         [MethodImpl(Inline)]
         public static Vec256<T> LoadVec256<T>(this Span<T> src, int offset = 0)
-            where T : struct            
+            where T : unmanaged            
                 => Vec256.Load(ref src[offset]);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Z0
         /// <param name="offset">The position of the fist source element </param>
         [MethodImpl(Inline)]
         public static Vec256<T> LoadVec256<T>(this ReadOnlySpan<T> src, int offset = 0)
-            where T : struct            
+            where T : unmanaged            
                 => Vec256.Load(ref asRef(in src[offset]));
 
 

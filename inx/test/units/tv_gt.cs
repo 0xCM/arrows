@@ -46,7 +46,7 @@ namespace Z0.Test
         }
 
         void gt128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             for(var i=0; i<SampleSize; i++)
             {
@@ -58,7 +58,7 @@ namespace Z0.Test
         }
 
         void gt256_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             for(var i=0; i<SampleSize; i++)
             {

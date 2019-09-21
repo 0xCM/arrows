@@ -41,7 +41,7 @@ namespace Z0.Test
         }
 
         void Flip128<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             for(var i=0; i<Pow2.T06; i++)                        
@@ -56,7 +56,7 @@ namespace Z0.Test
         }
 
         void Flip256<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             for(var i=0; i<Pow2.T06; i++)                        

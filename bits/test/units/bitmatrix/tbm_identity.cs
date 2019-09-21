@@ -11,7 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class tbm_identity : UnitTest<tbm_identity>
+    public class tbm_identity : BitMatrixTest<tbm_identity>
     {
         public void identityng()
         {   
@@ -85,19 +85,19 @@ namespace Z0.Test
         {
             Claim.yea(BitMatrix8.Zero.IsZero());
             Claim.nea(BitMatrix8.Identity.IsZero());
-            Claim.nea(Random.BitMatrix8().IsZero());
+            Claim.nea(Random.BitMatrix(n8).IsZero());
 
             Claim.yea(BitMatrix16.Zero.IsZero());
             Claim.nea(BitMatrix16.Identity.IsZero());
-            Claim.nea(Random.BitMatrix16().IsZero());
+            Claim.nea(Random.BitMatrix(n16).IsZero());
 
             Claim.yea(BitMatrix32.Zero.IsZero());
             Claim.nea(BitMatrix32.Identity.IsZero());
-            Claim.nea(Random.BitMatrix32().IsZero());
+            Claim.nea(Random.BitMatrix(n32).IsZero());
 
             Claim.yea(BitMatrix64.Zero.IsZero());
             Claim.nea(BitMatrix64.Identity.IsZero());
-            Claim.nea(Random.BitMatrix64().IsZero());
+            Claim.nea(Random.BitMatrix(n64).IsZero());
         }
 
         

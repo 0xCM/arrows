@@ -18,7 +18,7 @@ namespace Z0
     /// <summary>
     /// Defines a 16x16 matrix of bits
     /// </summary>
-    public ref struct BitMatrix16 //: IBitMatrix<BitMatrix16,N16,ushort>
+    public ref struct BitMatrix16
     {   
         Span<ushort> data;
 
@@ -96,6 +96,24 @@ namespace Z0
             where T : struct
                 => BitMatrix16.From(ByteSpan.FromValue(src));
 
+        /// <summary>
+        /// Computes the bitwise and of the operands
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
+            => And(ref lhs, rhs);
+
+        /// <summary>
+        /// Computes the bitwise or of the operands
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static BitMatrix16 operator | (BitMatrix16 lhs, BitMatrix16 rhs)
+            => Or(ref lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix16 operator ^ (BitMatrix16 lhs, BitMatrix16 rhs)
+            => XOr(ref lhs, rhs);
+
         [MethodImpl(Inline)]
         public static BitMatrix16 operator + (BitMatrix16 lhs, BitMatrix16 rhs)
             => XOr(ref lhs, rhs);
@@ -116,19 +134,6 @@ namespace Z0
         public static BitVector16 operator * (BitMatrix16 lhs, BitVector16 rhs)
             => Mul(lhs,rhs);
 
-        /// <summary>
-        /// Computes the bitwise and of the operands
-        /// </summary>
-        [MethodImpl(Inline)]
-        public static BitMatrix16 operator & (BitMatrix16 lhs, BitMatrix16 rhs)
-            => And(ref lhs, rhs);
-
-        /// <summary>
-        /// Computes the bitwise or of the operands
-        /// </summary>
-        [MethodImpl(Inline)]
-        public static BitMatrix16 operator | (BitMatrix16 lhs, BitMatrix16 rhs)
-            => Or(ref lhs, rhs);
 
         /// <summary>
         /// Computes the complement of the operand

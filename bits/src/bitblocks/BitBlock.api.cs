@@ -28,9 +28,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The block type</typeparam>
         [MethodImpl(Inline)]
-        public static T FromSpan<T>(Span<byte> src)
+        public static BitBlock<T> FromSpan<T>(Span<byte> src)
             where T : unmanaged, IBitBlock
-                => BitBlock<T>.FromSpan(src.Slice(0, Unsafe.SizeOf<T>())).Data;
+                => BitBlock<T>.FromSpan(src.Slice(0, Unsafe.SizeOf<T>()));
 
         /// <summary>
         /// Loads a bitblock from a span
@@ -42,7 +42,7 @@ namespace Z0
         public static ref T FromSpan<T>(Span<byte> src, out T dst)
             where T : unmanaged, IBitBlock
         {
-            dst = FromSpan<T>(src);
+            dst = FromSpan<T>(src).Data;
             return ref dst;
         }
 
@@ -51,9 +51,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The block type</typeparam>
         [MethodImpl(Inline)]
-        public static T Alloc<T>()
+        public static BitBlock<T> Alloc<T>()
             where T : unmanaged, IBitBlock
-                => BitBlock<T>.Alloc().Data;
+                => BitBlock<T>.Alloc();
 
         /// <summary>
         /// Presents the bitblock as a bytespan

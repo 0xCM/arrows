@@ -16,7 +16,7 @@ namespace Z0
     /// Reifies and provides storage for common 128-bit vector patterns
     /// </summary>
     public readonly struct Vec128Pattern<T> 
-        where T : struct
+        where T : unmanaged
     {
         static readonly int Length = Vec128<T>.Length;
 

@@ -11,7 +11,7 @@ namespace Z0.Test
 
     using static zfunc;
 
-    public class tbm_transpose : UnitTest<tbm_transpose>
+    public class tbm_transpose : BitMatrixTest<tbm_transpose>
     {
         public void bm_transpose_12x14x16g()
         {
@@ -35,7 +35,7 @@ namespace Z0.Test
 
         public void bm_transpose_8x8x8()
         {
-            var m1 = Random.BitMatrix8();
+            var m1 = Random.BitMatrix(n8);
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();            
             Claim.yea(m1 == m3);
@@ -44,7 +44,7 @@ namespace Z0.Test
 
         public void bm_transpose_16x16x16()
         {
-            var m1 = Random.BitMatrix16();
+            var m1 = Random.BitMatrix(n16);
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);
@@ -52,7 +52,7 @@ namespace Z0.Test
 
         public void bm_transpose_32x32x32()
         {
-            var m1 = Random.BitMatrix32();
+            var m1 = Random.BitMatrix(n32);
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);
@@ -60,7 +60,7 @@ namespace Z0.Test
 
         public void bm_transpose_64x64x64()
         {
-            var m1 = Random.BitMatrix64();
+            var m1 = Random.BitMatrix(n64);
             var m2 = m1.Transpose();
             var m3 = m2.Transpose();
             Claim.yea(m3 == m1);    
@@ -68,7 +68,7 @@ namespace Z0.Test
 
         public void bm_rowswap_32x32x32()
         {
-            var m1 = Random.BitMatrix32();
+            var m1 = Random.BitMatrix(n32);
             var m2 = m1.Replicate();
 
             m2.RowSwap(0,1);

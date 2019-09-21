@@ -41,7 +41,7 @@ namespace Z0.Test
         }
 
         void nonzero128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var  src = Random.Span128<T>(blocks: SampleSize);
@@ -56,7 +56,7 @@ namespace Z0.Test
         }
 
         void nonzero256_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var  src = Random.Span256<T>(blocks: SampleSize);

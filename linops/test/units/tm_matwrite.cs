@@ -26,7 +26,7 @@ namespace Z0.Test
         }
 
         static T round<T>(T src)
-            where T : struct
+            where T : unmanaged
         {
             return gfp.round(src, 4);
         }
@@ -34,7 +34,7 @@ namespace Z0.Test
         void VerifyWriter<M,N,T>(int count, M m = default, N n = default, T exemplar = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             var isFp = gmath.isFloat<T>();
             TypeCaseStart<M,N,T>();

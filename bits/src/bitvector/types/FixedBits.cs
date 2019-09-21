@@ -22,7 +22,6 @@ namespace Z0
 
         public static readonly FixedBits<V,S> Zero = default;
 
-
         [MethodImpl(Inline)]
         public static implicit operator V(FixedBits<V,S> src)
             => src.PrimalBits;

@@ -20,12 +20,12 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part8x2(byte src, Span<byte> dst)
+        public static void part8x2(uint src, Span<byte> dst)
         {
-            dst[0] = project(select(src, Part8x2.Part0), Part8x2.First);
-            dst[1] = project(select(src, Part8x2.Part1), Part8x2.First);
-            dst[2] = project(select(src, Part8x2.Part2), Part8x2.First);
-            dst[3] = project(select(src, Part8x2.Part3), Part8x2.First);
+            dst[0] = project<byte>(select(src, Part8x2.Part0), Part8x2.First);
+            dst[1] = project<byte>(select(src, Part8x2.Part1), Part8x2.First);
+            dst[2] = project<byte>(select(src, Part8x2.Part2), Part8x2.First);
+            dst[3] = project<byte>(select(src, Part8x2.Part3), Part8x2.First);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part16x2(ushort src, Span<byte> dst)
+        public static void part16x2(uint src, Span<byte> dst)
         {
             dst[0] = project<byte>(select(src, Part16x2.Part0), Part16x2.First);
             dst[1] = project<byte>(select(src, Part16x2.Part1), Part16x2.First);
@@ -50,7 +50,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part32x2(ushort src, Span<byte> dst)
+        public static void part32x2(uint src, Span<byte> dst)
         {
             dst[0] = project<byte>(select(src, Part32x2.Part0), Part32x2.First);
             dst[1] = project<byte>(select(src, Part32x2.Part1), Part32x2.First);

@@ -58,7 +58,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static ref BlockVector<T> sub<T>(BlockVector<T> x, BlockVector<T> y, ref BlockVector<T> z)
-            where T : struct
+            where T : unmanaged
         {
             gmath.sub(x.Unblocked, y.Unblocked, z.Unblocked);
             return ref z;
@@ -72,7 +72,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static BlockVector<T> sub<T>(BlockVector<T> x, BlockVector<T> y)
-            where T : struct
+            where T : unmanaged
         {                
             var z = x.Replicate(true);
             return sub(x,y,ref z);

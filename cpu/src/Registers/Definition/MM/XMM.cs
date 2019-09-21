@@ -15,9 +15,19 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size = ByteCount)]
     public unsafe struct XMM : IMMReg, ICpuReg128, IEquatable<XMM>
     {
-        public static readonly BitSize BitWidth = 128;        
-
         public const int ByteCount = 16;
+
+        public static readonly BitSize BitWidth = 128;    
+
+        /// <summary>
+        /// Defines a 1-filled XMM register
+        /// </summary>
+        public static readonly XMM Ones = FromCells(ulong.MaxValue, ulong.MaxValue);    
+
+        /// <summary>
+        /// Defines a 0-filled XMM register
+        /// </summary>
+        public static readonly XMM Zero = FromCells(0ul, 0ul);
 
         [MethodImpl(Inline)]
         public static ref readonly BitMap128<T> BitMap<T>()
@@ -268,6 +278,15 @@ namespace Z0
                 => Assign(src, ref this);
 
         /// <summary>
+        /// Presents the data in the register as a span
+        /// </summary>
+        /// <typeparam name="T">The span cell type</typeparam>
+        [MethodImpl(Inline)]
+        public Span<T> AsSpan<T>()
+            where T : unmanaged
+                => MemoryMarshal.Cast<byte,T>(BitView.ViewBits(ref this).Bytes);
+
+        /// <summary>
         /// Computes type-polymorphic cell count
         /// </summary>
         /// <typeparam name="T">The cell type</typeparam>
@@ -346,16 +365,23 @@ namespace Z0
             ref var cell  = ref Cell<ulong>(index.CellIndex);
             BitMask.set(ref cell, index.CellOffset, value);
         }
-
-        [MethodImpl]
+    
+        /// <summary>
+        /// Block-formats the register content as cells of a specified type
+        /// </summary>
+        /// <typeparam name="T">The cell type</typeparam>
         public string Format<T>()
             where T : unmanaged
-                => AsVec<T>(in this).ToString();
+                => AsSpan<T>().FormatCellBlocks();
 
         public override string ToString()
             => Format<ulong>();
 
-        [MethodImpl]
+        /// <summary>
+        /// Evaluates registers for content equality
+        /// </summary>
+        /// <param name="rhs">The other registers</param>
+        [MethodImpl(Inline)]
         public bool Equals(XMM rhs)
             => x0 == rhs.x0 && x1 == rhs.x1;
 

@@ -116,7 +116,7 @@ namespace Z0
 
         void blockv_add_check<N,T>()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var n = new N();
             var v4 = BlockVector.Alloc<N,T>();

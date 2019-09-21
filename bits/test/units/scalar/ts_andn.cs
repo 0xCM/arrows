@@ -54,7 +54,7 @@ namespace Z0.Test
         }
 
         void scalar_andn_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             var vZero = Vec128<T>.Zero;
             for(var i=0; i<SampleSize; i++)

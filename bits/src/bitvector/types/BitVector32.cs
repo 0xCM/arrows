@@ -621,7 +621,6 @@ namespace Z0
             get => !Empty;
         }
 
-
         /// <summary>
         /// Extracts mask-identified source bits
         /// </summary>

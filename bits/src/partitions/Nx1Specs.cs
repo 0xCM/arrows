@@ -18,7 +18,7 @@ namespace Z0
         /// Identifies the single bit in a segment with 1 bit
         /// </summary>
         [Flags]
-        public enum Part1x1 : byte
+        public enum Part1x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -50,7 +50,7 @@ namespace Z0
         /// Partitions a 2-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part2x1 : byte
+        public enum Part2x1 : uint
         {                    
             /// <summary>
             /// The total count of partitioned bits
@@ -88,7 +88,7 @@ namespace Z0
         /// Partitions a 3 bit containter into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part3x1 : byte
+        public enum Part3x1 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -140,7 +140,7 @@ namespace Z0
         /// Partitions a 4 bit containter into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part4x1 : byte
+        public enum Part4x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -197,7 +197,7 @@ namespace Z0
         /// Partitions a 5-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part5x1 : byte
+        public enum Part5x1 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -261,7 +261,7 @@ namespace Z0
         /// Partitions a 6-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part6x1 : byte
+        public enum Part6x1 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -328,7 +328,7 @@ namespace Z0
         /// Partitions an 8-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part7x1 : byte
+        public enum Part7x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -400,7 +400,7 @@ namespace Z0
         /// Partitions an 8-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part8x1 : byte
+        public enum Part8x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -477,7 +477,7 @@ namespace Z0
         /// Partitions a 9-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part9x1 : ushort
+        public enum Part9x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -562,7 +562,7 @@ namespace Z0
         /// Partitions an 10-bit container into 1-bit segments
        /// </summary>
         [Flags]
-        public enum Part10x1 : ushort
+        public enum Part10x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -651,7 +651,7 @@ namespace Z0
         /// Partitions an 11-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part11x1 : ushort
+        public enum Part11x1 : uint
         {
             /// <summary>
             /// The total count of partitioned bits
@@ -734,7 +734,7 @@ namespace Z0
         /// Partitions a 12-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part12x1 : ushort
+        public enum Part12x1 : uint
         {
             /// <summary>
             /// The partition width
@@ -832,7 +832,7 @@ namespace Z0
         /// Partitions a 13-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part13x1 : ushort
+        public enum Part13x1 : uint
         {
             /// <summary>
             /// The partition width
@@ -936,7 +936,7 @@ namespace Z0
         /// Partitions a 16-bit container into 1-bit segments
         /// </summary>
         [Flags]
-        public enum Part16x1 : ushort
+        public enum Part16x1 : uint
         {
             /// <summary>
             /// The partition width

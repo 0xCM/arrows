@@ -7,11 +7,14 @@ namespace Z0
     using System;
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
+    using System.Security;
     using static zfunc;
+
 
     /// <summary>
     /// Defines API for directly accessing OS resources
     /// </summary>
+    [SuppressUnmanagedCodeSecurity]
     public static class OS
     {
         const string kernel = "kernel32.dll";
@@ -55,6 +58,13 @@ namespace Z0
                 QueryPerformanceCounter(ref count);
                 return count;
             }
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long GetCount(ref long count)
+        {
+            QueryPerformanceCounter(ref count);
+            return ref count;
         }
 
         /// <summary>
@@ -112,7 +122,6 @@ namespace Z0
         /// </summary>
         /// <param name="hProc">The handle to the process</param>
         /// <param name="cycles">The number of cpu clock cycles used by the threads of the process</param>
-        /// <returns></returns>
         [DllImport(kernel)]
         static extern bool QueryProcessCycleTime(IntPtr hProc, ref ulong cycles);
 

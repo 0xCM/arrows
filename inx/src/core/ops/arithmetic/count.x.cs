@@ -20,7 +20,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> Next<T>(this Vec128<T> src)
-            where T : struct
+            where T : unmanaged
                 => ginx.next(src);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Next<T>(this Vec256<T> src)
-            where T : struct
+            where T : unmanaged
                 => ginx.next(src);
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> Prior<T>(this Vec128<T> src)
-            where T : struct
+            where T : unmanaged
                 => ginx.prior(src);
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Prior<T>(this Vec256<T> src)
-            where T : struct
+            where T : unmanaged
                 => ginx.prior(src);
 
     }

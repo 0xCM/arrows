@@ -20,8 +20,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The source partition to select/extract</param>
         [MethodImpl(Inline)]
-        public static byte select(ushort src, Part16x8 part)
-            => (byte)Bits.gather(src, (ushort)part);
+        public static uint select(uint src, Part16x8 part)
+            => Bits.gather(src, (uint)part);
 
         /// <summary>
         /// Replicates an identified partition of a bit source to the low bits of a target 
@@ -29,8 +29,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The source partition to select/extract</param>
         [MethodImpl(Inline)]
-        public static byte select(uint src, Part32x8 part)
-            => (byte)Bits.gather(src, (uint)part);
+        public static uint select(uint src, Part32x8 part)
+            => Bits.gather(src, (uint)part);
 
         /// <summary>
         /// Replicates an identified partition of a bit source to the low bits of a target 
@@ -38,8 +38,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The source partition to select/extract</param>
         [MethodImpl(Inline)]
-        public static byte select(uint src, Part24x8 part)
-            => (byte)Bits.gather(src, (uint)part);
+        public static uint select(uint src, Part24x8 part)
+            => Bits.gather(src, (uint)part);
 
     }
 }

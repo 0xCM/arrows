@@ -21,8 +21,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The target partition</param>
         [MethodImpl(Inline)]
-        public static ushort project(ushort src, Part10x5 part)
-            => Bits.scatter(src, (ushort)part);
+        public static uint project(uint src, Part10x5 part)
+            => Bits.scatter(src, (uint)part);
 
         /// <summary>
         /// Replicates the low bits of a source to an identified partition of an empty target
@@ -30,8 +30,35 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The target partition</param>
         [MethodImpl(Inline)]
-        public static ushort project(ushort src, Part15x5 part)
-            => Bits.scatter(src, (ushort)part);
+        public static uint project(uint src, Part15x5 part)
+            => Bits.scatter(src, (uint)part);
+
+        /// <summary>
+        /// Replicates the low bits of a source to an identified partition of an empty target
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="part">The target partition</param>
+        [MethodImpl(Inline)]
+        public static uint project(uint src, Part20x5 part)
+            => Bits.scatter(src, (uint)part);
+
+        /// <summary>
+        /// Replicates the low bits of a source to an identified partition of an empty target
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="part">The target partition</param>
+        [MethodImpl(Inline)]
+        public static uint project(uint src, Part25x5 part)
+            => Bits.scatter(src, (uint)part);
+
+        /// <summary>
+        /// Replicates the low bits of a source to an identified partition of an empty target
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="part">The target partition</param>
+        [MethodImpl(Inline)]
+        public static uint project(uint src, Part30x5 part)
+            => Bits.scatter(src, (uint)part);
 
 
     }

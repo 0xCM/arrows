@@ -20,32 +20,32 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte ToScalar(this Part6x3 src)
-            => (byte)src;
+        public static uint ToScalar(this Part6x3 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part9x3 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part9x3 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part12x3 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part12x3 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part15x3 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part15x3 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value

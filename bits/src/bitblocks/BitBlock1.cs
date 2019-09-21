@@ -42,7 +42,7 @@ namespace Z0
         }
 
         public string Format()
-            => BitBlock.AsGeneric(ref this).Format();
+            => this.AsGeneric().Format(); 
 
         public override string ToString() 
             => Format();

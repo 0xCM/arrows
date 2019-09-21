@@ -11,7 +11,7 @@ namespace Z0.Test
     
     using static zfunc;
 
-    public class tbm_mul : UnitTest<tbm_mul>
+    public class tbm_mul : BitMatrixTest<tbm_mul>
     {
 
         protected override int RoundCount => Pow2.T01;

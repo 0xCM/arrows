@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The common vector component type</typeparam>
         [MethodImpl(Inline)]
         public static T dot<T>(BlockVector<T> x, BlockVector<T> y)
-            where T : struct
+            where T : unmanaged
                 => gmath.dot<T>(x.Unblocked, y.Unblocked);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T dot<N,T>(BlockVector<N,T> x, BlockVector<N,T> y)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
                 => gmath.dot<T>(x.Unsized,y.Unsized);
 
 

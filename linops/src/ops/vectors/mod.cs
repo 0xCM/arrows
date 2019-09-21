@@ -44,7 +44,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static ref BlockVector<T> mod<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             gmath.mod(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
@@ -60,7 +60,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> mod<N,T>(ref BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;

@@ -45,7 +45,7 @@ namespace Z0
         }
 
         public static Span256<T> ShiftL<T>(this ReadOnlySpan256<T> lhs, in ReadOnlySpan256<T> shifts, in Span256<T> dst)
-            where T : struct
+            where T : unmanaged
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);

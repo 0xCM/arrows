@@ -392,7 +392,7 @@ namespace Z0.Test
 
         // Truncates alternating source vector components
         static Vec256<T> ShuffleTruncateMask<T>()
-            where T : struct
+            where T : unmanaged
 
         {
             var mask = Span256.Alloc<T>(1);
@@ -421,7 +421,7 @@ namespace Z0.Test
         }
 
         static Vec256<T> BlendAltMask<T>()
-            where T : struct
+            where T : unmanaged
         {
             Span256<T> mask = Span256.Alloc<T>(1);
             var no = PrimalInfo.Get<T>().MaxVal;

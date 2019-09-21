@@ -1,68 +1,15 @@
-// 2019-08-27 17:10:31:255
-Vec256<int> xor(in Vec256<int> lhs, in Vec256<int> rhs)
+// 2019-09-20 23:09:46:546
+Vec256<long> cmplt(in Vec256<long> lhs, in Vec256<long> rhs)
 {
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<uint> xor(in Vec256<uint> lhs, in Vec256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec256<long> xor(in Vec256<long> lhs, in Vec256<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
-
-}
-Vec256<ulong> xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
-
-}
-Vec256<float> xor(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Xor(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> xor(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Xor(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0000: ldarg.1
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec128Cmp<sbyte> eq(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
@@ -75,8 +22,10 @@ Vec128Cmp<sbyte> eq(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: call Z0.Vec128Cmp`1<System.SByte> Z0.Vec128Cmp::Define<System.SByte>(Z0.Vec128`1<System.SByte>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.SByte> Z0.Vec128Cmp::Define<System.SByte>(Z0.Vec128`1<System.SByte>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<byte> eq(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -89,8 +38,10 @@ Vec128Cmp<byte> eq(in Vec128<byte> lhs, in Vec128<byte> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
     IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Byte> Z0.Vec128Cmp::Define<System.Byte>(Z0.Vec128`1<System.Byte>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.Byte> Z0.Vec128Cmp::Define<System.Byte>(Z0.Vec128`1<System.Byte>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<short> eq(in Vec128<short> lhs, in Vec128<short> rhs)
@@ -103,8 +54,10 @@ Vec128Cmp<short> eq(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
     IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int16> Z0.Vec128Cmp::Define<System.Int16>(Z0.Vec128`1<System.Int16>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.Int16> Z0.Vec128Cmp::Define<System.Int16>(Z0.Vec128`1<System.Int16>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<ushort> eq(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
@@ -117,8 +70,10 @@ Vec128Cmp<ushort> eq(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
     IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: call Z0.Vec128Cmp`1<System.UInt16> Z0.Vec128Cmp::Define<System.UInt16>(Z0.Vec128`1<System.UInt16>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.UInt16> Z0.Vec128Cmp::Define<System.UInt16>(Z0.Vec128`1<System.UInt16>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<int> eq(in Vec128<int> lhs, in Vec128<int> rhs)
@@ -131,8 +86,10 @@ Vec128Cmp<int> eq(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int32> Z0.Vec128Cmp::Define<System.Int32>(Z0.Vec128`1<System.Int32>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.Int32> Z0.Vec128Cmp::Define<System.Int32>(Z0.Vec128`1<System.Int32>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<uint> eq(in Vec128<uint> lhs, in Vec128<uint> rhs)
@@ -145,8 +102,10 @@ Vec128Cmp<uint> eq(in Vec128<uint> lhs, in Vec128<uint> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
     IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: call Z0.Vec128Cmp`1<System.UInt32> Z0.Vec128Cmp::Define<System.UInt32>(Z0.Vec128`1<System.UInt32>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.UInt32> Z0.Vec128Cmp::Define<System.UInt32>(Z0.Vec128`1<System.UInt32>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<long> eq(in Vec128<long> lhs, in Vec128<long> rhs)
@@ -159,8 +118,10 @@ Vec128Cmp<long> eq(in Vec128<long> lhs, in Vec128<long> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse41::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
     IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int64> Z0.Vec128Cmp::Define<System.Int64>(Z0.Vec128`1<System.Int64>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.Int64> Z0.Vec128Cmp::Define<System.Int64>(Z0.Vec128`1<System.Int64>&)
+    IL_0028: ret
 
 }
 Vec128Cmp<ulong> eq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
@@ -173,107 +134,141 @@ Vec128Cmp<ulong> eq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
     IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse41::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
     IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0020: call Z0.Vec128Cmp`1<System.UInt64> Z0.Vec128Cmp::Define<System.UInt64>(Z0.Vec128`1<System.UInt64>)
-    IL_0025: ret
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec128Cmp`1<System.UInt64> Z0.Vec128Cmp::Define<System.UInt64>(Z0.Vec128`1<System.UInt64>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<sbyte> eq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: call Z0.Vec256Cmp`1<System.SByte> Z0.Vec256Cmp::Define<System.SByte>(Z0.Vec256`1<System.SByte>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.SByte> Z0.Vec256Cmp::Define<System.SByte>(Z0.Vec256`1<System.SByte>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<byte> eq(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Byte> Z0.Vec256Cmp::Define<System.Byte>(Z0.Vec256`1<System.Byte>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.Byte> Z0.Vec256Cmp::Define<System.Byte>(Z0.Vec256`1<System.Byte>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<short> eq(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int16> Z0.Vec256Cmp::Define<System.Int16>(Z0.Vec256`1<System.Int16>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.Int16> Z0.Vec256Cmp::Define<System.Int16>(Z0.Vec256`1<System.Int16>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<ushort> eq(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: call Z0.Vec256Cmp`1<System.UInt16> Z0.Vec256Cmp::Define<System.UInt16>(Z0.Vec256`1<System.UInt16>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.UInt16> Z0.Vec256Cmp::Define<System.UInt16>(Z0.Vec256`1<System.UInt16>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<int> eq(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int32> Z0.Vec256Cmp::Define<System.Int32>(Z0.Vec256`1<System.Int32>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.Int32> Z0.Vec256Cmp::Define<System.Int32>(Z0.Vec256`1<System.Int32>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<uint> eq(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: call Z0.Vec256Cmp`1<System.UInt32> Z0.Vec256Cmp::Define<System.UInt32>(Z0.Vec256`1<System.UInt32>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.UInt32> Z0.Vec256Cmp::Define<System.UInt32>(Z0.Vec256`1<System.UInt32>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<long> eq(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int64> Z0.Vec256Cmp::Define<System.Int64>(Z0.Vec256`1<System.Int64>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.Int64> Z0.Vec256Cmp::Define<System.Int64>(Z0.Vec256`1<System.Int64>&)
+    IL_0028: ret
 
 }
 Vec256Cmp<ulong> eq(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: call Z0.Vec256Cmp`1<System.UInt64> Z0.Vec256Cmp::Define<System.UInt64>(Z0.Vec256`1<System.UInt64>)
-    IL_001B: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: stloc.0
+    IL_0021: ldloca.s V_0
+    IL_0023: call Z0.Vec256Cmp`1<System.UInt64> Z0.Vec256Cmp::Define<System.UInt64>(Z0.Vec256`1<System.UInt64>&)
+    IL_0028: ret
 
 }
-Vec128Cmp<sbyte> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+bool testc(in Vec128<sbyte> src, in Vec128<sbyte> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -281,13 +276,23 @@ Vec128Cmp<sbyte> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: call Z0.Vec128Cmp`1<System.SByte> Z0.Vec128Cmp::Define<System.SByte>(Z0.Vec128`1<System.SByte>)
-    IL_0025: ret
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: ret
 
 }
-Vec128Cmp<short> gt(in Vec128<short> lhs, in Vec128<short> rhs)
+bool testc(in Vec128<byte> src, in Vec128<byte> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: ret
+
+}
+bool testc(in Vec128<short> src, in Vec128<short> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -295,13 +300,23 @@ Vec128Cmp<short> gt(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int16>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int16> Z0.Vec128Cmp::Define<System.Int16>(Z0.Vec128`1<System.Int16>)
-    IL_0025: ret
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: ret
 
 }
-Vec128Cmp<int> gt(in Vec128<int> lhs, in Vec128<int> rhs)
+bool testc(in Vec128<ushort> src, in Vec128<ushort> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: ret
+
+}
+bool testc(in Vec128<int> src, in Vec128<int> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -309,61 +324,155 @@ Vec128Cmp<int> gt(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int32>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int32> Z0.Vec128Cmp::Define<System.Int32>(Z0.Vec128`1<System.Int32>)
-    IL_0025: ret
-
-}
-Vec256Cmp<sbyte> gt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: call Z0.Vec256Cmp`1<System.SByte> Z0.Vec256Cmp::Define<System.SByte>(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_001B: ret
 
 }
-Vec256Cmp<short> gt(in Vec256<short> lhs, in Vec256<short> rhs)
+bool testc(in Vec128<uint> src, in Vec128<uint> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int16> Z0.Vec256Cmp::Define<System.Int16>(Z0.Vec256`1<System.Int16>)
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
     IL_001B: ret
 
 }
-Vec256Cmp<int> gt(in Vec256<int> lhs, in Vec256<int> rhs)
+bool testc(in Vec128<long> src, in Vec128<long> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int32> Z0.Vec256Cmp::Define<System.Int32>(Z0.Vec256`1<System.Int32>)
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
     IL_001B: ret
 
 }
-Vec256Cmp<long> gt(in Vec256<long> lhs, in Vec256<long> rhs)
+bool testc(in Vec128<ulong> src, in Vec128<ulong> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: call Z0.Vec256Cmp`1<System.Int64> Z0.Vec256Cmp::Define<System.Int64>(Z0.Vec256`1<System.Int64>)
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestC(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
     IL_001B: ret
 
 }
-Vec128Cmp<sbyte> lt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+bool testc(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<byte> src, in Vec256<byte> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<short> src, in Vec256<short> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<ushort> src, in Vec256<ushort> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<int> src, in Vec256<int> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<uint> src, in Vec256<uint> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<long> src, in Vec256<long> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: ret
+
+}
+bool testc(in Vec256<ulong> src, in Vec256<ulong> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestC(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: ret
+
+}
+bool testz(in Vec128<byte> src, in Vec128<byte> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: ret
+
+}
+bool testz(in Vec128<sbyte> src, in Vec128<sbyte> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -371,13 +480,11 @@ Vec128Cmp<sbyte> lt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: call Z0.Vec128Cmp`1<System.SByte> Z0.Vec128Cmp::Define<System.SByte>(Z0.Vec128`1<System.SByte>)
-    IL_0025: ret
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: ret
 
 }
-Vec128Cmp<short> lt(in Vec128<short> lhs, in Vec128<short> rhs)
+bool testz(in Vec128<short> src, in Vec128<short> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -385,13 +492,23 @@ Vec128Cmp<short> lt(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int16>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int16> Z0.Vec128Cmp::Define<System.Int16>(Z0.Vec128`1<System.Int16>)
-    IL_0025: ret
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: ret
 
 }
-Vec128Cmp<int> lt(in Vec128<int> lhs, in Vec128<int> rhs)
+bool testz(in Vec128<ushort> src, in Vec128<ushort> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: ret
+
+}
+bool testz(in Vec128<int> src, in Vec128<int> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -399,716 +516,400 @@ Vec128Cmp<int> lt(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int32>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: call Z0.Vec128Cmp`1<System.Int32> Z0.Vec128Cmp::Define<System.Int32>(Z0.Vec128`1<System.Int32>)
-    IL_0025: ret
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: ret
 
 }
-uint crc(uint crc, byte data)
+bool testz(in Vec128<uint> src, in Vec128<uint> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Sse42::Crc32(System.UInt32,System.Byte)
-    IL_0007: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: ret
 
 }
-uint crc(uint crc, ushort data)
+bool testz(in Vec128<long> src, in Vec128<long> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Sse42::Crc32(System.UInt32,System.UInt16)
-    IL_0007: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_001B: ret
 
 }
-uint crc(uint crc, uint data)
+bool testz(in Vec128<ulong> src, in Vec128<ulong> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Sse42::Crc32(System.UInt32,System.UInt32)
-    IL_0007: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestZ(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: ret
 
 }
-ulong crc(uint crc, ulong data)
+bool testz(in Vec256<sbyte> src, in Vec256<sbyte> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: conv.u8
-    IL_0002: ldarg.1
-    IL_0003: call System.UInt64 System.Runtime.Intrinsics.X86.Sse42/X64::Crc32(System.UInt64,System.UInt64)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: ret
 
 }
-Vec128<byte> encrypt(Vec128<byte> src, Vec128<byte> key)
+bool testz(in Vec256<byte> src, in Vec256<byte> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Aes::Encrypt(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: ret
 
 }
-Vec128<byte> encryptLast(Vec128<byte> src, Vec128<byte> key)
+bool testz(in Vec256<short> src, in Vec256<short> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Aes::EncryptLast(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: ret
 
 }
-Vec128<byte> decrypt(Vec128<byte> src, Vec128<byte> key)
+bool testz(in Vec256<ushort> src, in Vec256<ushort> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Aes::Decrypt(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: ret
 
 }
-Vec128<byte> decryptLast(Vec128<byte> src, Vec128<byte> key)
+bool testz(in Vec256<int> src, in Vec256<int> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Aes::DecryptLast(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: ret
 
 }
-Vec128<byte> keygen(Vec128<byte> src, byte control)
+bool testz(in Vec256<uint> src, in Vec256<uint> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Aes::KeygenAssist(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: ret
 
 }
-Num128<float> max(in Num128<float> lhs, in Num128<float> rhs)
+bool testz(in Vec256<long> src, in Vec256<long> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::MaxScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: ret
 
 }
-Num128<double> max(in Num128<double> lhs, in Num128<double> rhs)
+bool testz(in Vec256<ulong> src, in Vec256<ulong> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::MaxScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: ret
 
 }
-Num128<float> min(in Num128<float> lhs, in Num128<float> rhs)
+bool testznc(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::MinScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: ret
 
 }
-Num128<double> min(in Num128<double> lhs, in Num128<double> rhs)
+bool testznc(in Vec128<byte> lhs, in Vec128<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::MinScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: ret
 
 }
-void add(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
+bool testznc(in Vec128<short> lhs, in Vec128<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::AddScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Single>&,System.Single&)
-    IL_001A: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: ret
 
 }
-void add(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
+bool testznc(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::AddScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Double>&,System.Double&)
-    IL_001A: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: ret
 
 }
-Num128<float> add(in Num128<float> lhs, in Num128<float> rhs)
+bool testznc(in Vec128<int> lhs, in Vec128<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::AddScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: ret
 
 }
-Num128<double> add(in Num128<double> lhs, in Num128<double> rhs)
+bool testznc(in Vec128<uint> lhs, in Vec128<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::AddScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Sse41::TestNotZAndNotC(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: ret
 
 }
-void sub(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
+bool testznc(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::SubtractScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Single>&,System.Single&)
-    IL_001A: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: ret
 
 }
-void sub(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
+bool testznc(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::SubtractScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Double>&,System.Double&)
-    IL_001A: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: ret
 
 }
-Num128<float> sub(in Num128<float> lhs, in Num128<float> rhs)
+bool testznc(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::SubtractScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: ret
 
 }
-Num128<double> sub(in Num128<double> lhs, in Num128<double> rhs)
+bool testznc(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::SubtractScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: ret
 
 }
-Num128<float> div(in Num128<float> lhs, in Num128<float> rhs)
+bool testznc(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::DivideScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: ret
 
 }
-Num128<double> div(in Num128<double> lhs, in Num128<double> rhs)
+bool testznc(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::DivideScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestNotZAndNotC(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: ret
 
 }
-void div(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::DivideScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Single>&,System.Single&)
-    IL_001A: ret
-
-}
-void div(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::DivideScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: ldarg.2
-    IL_0015: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Double>&,System.Double&)
-    IL_001A: ret
-
-}
-bool cmpf(in Num128<float> lhs, in Num128<float> rhs, byte mode)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::CompareScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.X86.FloatComparisonMode)
-    IL_0012: ldc.i4.0
-    IL_0013: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Int32)
-    IL_0018: ret
-
-}
-bool cmpf(in Num128<double> lhs, in Num128<double> rhs, byte mode)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::CompareScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.X86.FloatComparisonMode)
-    IL_0012: ldc.i4.0
-    IL_0013: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Int32)
-    IL_0018: ret
-
-}
-bool lt(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarOrderedLessThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool lt(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarOrderedLessThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<float> gteq(Vec128<float> lhs, Vec128<float> rhs)
+Vec128<float> dot(Vec128<float> lhs, Vec128<float> rhs, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
     IL_0006: ldarg.1
     IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0016: ret
+    IL_000C: ldarg.2
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call System.Boolean System.Nullable`1<System.Byte>::get_HasValue()
+    IL_0015: brtrue.s IL_001E
+    IL_0017: ldc.i4 255
+    IL_001C: br.s IL_0025
+    IL_001E: ldloca.s V_0
+    IL_0020: call System.Byte System.Nullable`1<System.Byte>::GetValueOrDefault()
+    IL_0025: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
+    IL_002A: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_002F: ret
 
 }
-Vec128<double> gteq(Vec128<double> lhs, Vec128<double> rhs)
+Vec128<double> dot(Vec128<double> lhs, Vec128<double> rhs, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
     IL_0006: ldarg.1
     IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0016: ret
-
-}
-bool gteq(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarOrderedGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool gteq(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarOrderedGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool eq(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarUnorderedEqual(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool eq(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarUnorderedEqual(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool gt(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarOrderedGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool gt(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarOrderedGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool lteq(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarUnorderedLessThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool lteq(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarUnorderedLessThanOrEqual(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool neq(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse::CompareScalarOrderedNotEqual(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-bool neq(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Boolean System.Runtime.Intrinsics.X86.Sse2::CompareScalarOrderedNotEqual(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-bool ngt(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::CompareScalarNotGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Int32)
-    IL_0017: ret
-
-}
-bool ngt(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::CompareScalarNotGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Int32)
-    IL_0017: ret
-
-}
-bool nlt(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::CompareScalarNotLessThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Int32)
-    IL_0017: ret
-
-}
-bool nlt(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::CompareScalarNotLessThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Int32)
-    IL_0017: ret
-
-}
-ref Num128<float> ceil(ref Num128<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::CeilingScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0014: stobj Z0.Num128`1<System.Single>
-    IL_0019: ldarg.0
-    IL_001A: ret
-
-}
-ref Num128<double> ceil(ref Num128<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::CeilingScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0014: stobj Z0.Num128`1<System.Double>
-    IL_0019: ldarg.0
-    IL_001A: ret
-
-}
-ref Num128<float> floor(ref Num128<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::FloorScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0014: stobj Z0.Num128`1<System.Single>
-    IL_0019: ldarg.0
-    IL_001A: ret
-
-}
-ref Num128<double> floor(ref Num128<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::FloorScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0014: stobj Z0.Num128`1<System.Double>
-    IL_0019: ldarg.0
-    IL_001A: ret
-
-}
-Num128<float> mul(in Num128<float> lhs, in Num128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::MultiplyScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0019: ret
-
-}
-Num128<double> mul(in Num128<double> lhs, in Num128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::MultiplyScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: stloc.0
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0019: ret
-
-}
-Num128<float> mulAdd(in Num128<float> x, in Num128<float> y, in Num128<float> z)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
     IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Fma::MultiplyAddScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0017: stloc.0
-    IL_0018: ldloca.s V_0
-    IL_001A: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_001F: ret
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call System.Boolean System.Nullable`1<System.Byte>::get_HasValue()
+    IL_0015: brtrue.s IL_001E
+    IL_0017: ldc.i4 255
+    IL_001C: br.s IL_0025
+    IL_001E: ldloca.s V_0
+    IL_0020: call System.Byte System.Nullable`1<System.Byte>::GetValueOrDefault()
+    IL_0025: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
+    IL_002A: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_002F: ret
 
 }
-Num128<double> mulAdd(in Num128<double> x, in Num128<double> y, in Num128<double> z)
+Vec256<float> dot(Vec256<float> lhs, Vec256<float> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
     IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
     IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Fma::MultiplyAddScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0017: stloc.0
-    IL_0018: ldloca.s V_0
-    IL_001A: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_001F: ret
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call System.Boolean System.Nullable`1<System.Byte>::get_HasValue()
+    IL_0015: brtrue.s IL_001E
+    IL_0017: ldc.i4 255
+    IL_001C: br.s IL_0025
+    IL_001E: ldloca.s V_0
+    IL_0020: call System.Byte System.Nullable`1<System.Byte>::GetValueOrDefault()
+    IL_0025: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::DotProduct(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
+    IL_002A: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_002F: ret
 
 }
-Vec128<float> recipsqrt(Vec128<float> src)
+bool ngt(in Scalar128<float> lhs, in Scalar128<float> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::ReciprocalSqrt(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0010: ret
+    IL_0001: ldobj Z0.Scalar128`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Scalar128`1<System.Single>::op_Implicit(Z0.Scalar128`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Scalar128`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Scalar128`1<System.Single>::op_Implicit(Z0.Scalar128`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::CompareScalarNotGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_001B: ldc.i4.0
+    IL_001C: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Int32)
+    IL_0021: ret
 
 }
-ref Num128<float> recipsqrt(ref Num128<float> src)
+bool ngt(in Scalar128<double> lhs, in Scalar128<double> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::ReciprocalSqrtScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0014: stobj Z0.Num128`1<System.Single>
-    IL_0019: ldarg.0
-    IL_001A: ret
+    IL_0001: ldobj Z0.Scalar128`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Scalar128`1<System.Double>::op_Implicit(Z0.Scalar128`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Scalar128`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Scalar128`1<System.Double>::op_Implicit(Z0.Scalar128`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::CompareScalarNotGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_001B: ldc.i4.0
+    IL_001C: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Int32)
+    IL_0021: ret
 
 }
-Vec128<float> recip(Vec128<float> src)
+bool nlt(in Scalar128<float> lhs, in Scalar128<float> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Reciprocal(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0010: ret
+    IL_0001: ldobj Z0.Scalar128`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Scalar128`1<System.Single>::op_Implicit(Z0.Scalar128`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Scalar128`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Scalar128`1<System.Single>::op_Implicit(Z0.Scalar128`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::CompareScalarNotLessThan(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_001B: ldc.i4.0
+    IL_001C: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Int32)
+    IL_0021: ret
 
 }
-Vec256<float> recip(Vec256<float> src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Reciprocal(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_000C: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: ret
-
-}
-ref Num128<float> recip(ref Num128<float> src)
+bool nlt(in Scalar128<double> lhs, in Scalar128<double> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::ReciprocalScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0014: stobj Z0.Num128`1<System.Single>
-    IL_0019: ldarg.0
-    IL_001A: ret
-
-}
-Num128<float> sqrt(in Num128<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(Z0.Num128`1<System.Single>&)
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::SqrtScalar(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_000B: stloc.0
-    IL_000C: ldloca.s V_0
-    IL_000E: call Z0.Num128`1<System.Single> Z0.Num128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>&)
-    IL_0013: ret
-
-}
-Num128<double> sqrt(in Num128<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(Z0.Num128`1<System.Double>&)
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::SqrtScalar(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_000B: stloc.0
-    IL_000C: ldloca.s V_0
-    IL_000E: call Z0.Num128`1<System.Double> Z0.Num128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>&)
-    IL_0013: ret
+    IL_0001: ldobj Z0.Scalar128`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Scalar128`1<System.Double>::op_Implicit(Z0.Scalar128`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Scalar128`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Scalar128`1<System.Double>::op_Implicit(Z0.Scalar128`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::CompareScalarNotLessThan(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_001B: ldc.i4.0
+    IL_001C: call System.Boolean Z0.dinx::IsNaN(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Int32)
+    IL_0021: ret
 
 }
 bool IsNaN(Vector128<float> src, int index)
@@ -1129,269 +930,20 @@ bool IsNaN(Vector128<double> src, int index)
     IL_000C: ret
 
 }
-Vec256<uint> perm8x32(in Vec256<uint> src, in Vec256<uint> control)
+Vec256<ulong> unpackhi(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec256<float> perm8x32(in Vec256<float> src, in Vec256<int> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<byte> perm4x64(in Vec256<byte> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.Byte>::As<System.UInt64>()
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: ldarg.1
-    IL_000A: call Z0.Vec256`1<System.UInt64> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt64>&,System.Byte)
-    IL_000F: stloc.1
-    IL_0010: ldloca.s V_1
-    IL_0012: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.UInt64>::As<System.Byte>()
-    IL_0017: ret
-
-}
-Vec256<sbyte> perm4x64(in Vec256<sbyte> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.SByte>::As<System.Int64>()
-    IL_0006: ldarg.1
-    IL_0007: call Z0.Vec256`1<System.Int64> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int64>,System.Byte)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.Int64>::As<System.SByte>()
-    IL_0014: ret
-
-}
-Vec256<short> perm4x64(in Vec256<short> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int16>::As<System.Int64>()
-    IL_0006: ldarg.1
-    IL_0007: call Z0.Vec256`1<System.Int64> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int64>,System.Byte)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int64>::As<System.Int16>()
-    IL_0014: ret
-
-}
-Vec256<ushort> perm4x64(in Vec256<ushort> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt16>::As<System.UInt64>()
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: ldarg.1
-    IL_000A: call Z0.Vec256`1<System.UInt64> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt64>&,System.Byte)
-    IL_000F: stloc.1
-    IL_0010: ldloca.s V_1
-    IL_0012: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt64>::As<System.UInt16>()
-    IL_0017: ret
-
-}
-Vec256<uint> perm4x64(Vec256<uint> value, byte control)
-{
-    IL_0000: ldarga.s value
-    IL_0002: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt32>::As<System.UInt64>()
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.1
-    IL_000B: call Z0.Vec256`1<System.UInt64> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt64>&,System.Byte)
-    IL_0010: stloc.1
-    IL_0011: ldloca.s V_1
-    IL_0013: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt64>::As<System.UInt32>()
-    IL_0018: ret
-
-}
-Vec256<int> perm4x64(Vec256<int> value, byte control)
-{
-    IL_0000: ldarga.s value
-    IL_0002: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int32>::As<System.Int64>()
-    IL_0007: ldarg.1
-    IL_0008: call Z0.Vec256`1<System.Int64> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int64>,System.Byte)
-    IL_000D: stloc.0
-    IL_000E: ldloca.s V_0
-    IL_0010: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int64>::As<System.Int32>()
-    IL_0015: ret
-
-}
-Vec256<long> perm4x64(Vec256<long> value, byte control)
-{
-    IL_0000: ldarga.s value
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0007: ldarg.1
-    IL_0008: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000D: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0012: ret
-
-}
-Vec256<long> perm4x64test(in Vector256<long> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj System.Runtime.Intrinsics.Vector256`1<System.Int64>
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: ret
-
-}
-Vec256<ulong> perm4x64(in Vec256<ulong> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: ret
-
-}
-Vec256<float> perm4x64(in Vec256<float> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Single>::As<System.Int64>()
-    IL_0006: ldarg.1
-    IL_0007: call Z0.Vec256`1<System.Int64> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int64>,System.Byte)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Int64>::As<System.Single>()
-    IL_0014: ret
-
-}
-Vec256<double> perm4x64(in Vec256<double> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<byte> swap(in Vec128<byte> src, Swap[] swaps)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec128`1<System.Byte> Z0.Vec128Pattern::SwapU8(Z0.Swap[])
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: call Z0.Vec128`1<System.Byte> Z0.dinx::shuffle(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_000F: ret
-
-}
-Vec128<byte> reverse(in Vec128<byte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldsflda Z0.Vec128`1<System.Byte> Z0.Vec128Pattern::ReverseU8
-    IL_0006: call Z0.Vec128`1<System.Byte> Z0.dinx::shuffle(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
-    IL_000B: ret
-
-}
-Vec128<sbyte> reverse(in Vec128<sbyte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldsflda Z0.Vec128`1<System.SByte> Z0.Vec128Pattern::ReverseI8
-    IL_0006: call Z0.Vec128`1<System.SByte> Z0.dinx::shuffle(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
-    IL_000B: ret
-
-}
-Vec128<int> reverse(in Vec128<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 27
-    IL_0003: call Z0.Vec128`1<System.Int32> Z0.dinx::shuffle(Z0.Vec128`1<System.Int32>&,System.Byte)
-    IL_0008: ret
-
-}
-Vec128<uint> reverse(in Vec128<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 27
-    IL_0003: call Z0.Vec128`1<System.UInt32> Z0.dinx::shuffle(Z0.Vec128`1<System.UInt32>&,System.Byte)
-    IL_0008: ret
-
-}
-Vec256<byte> reverse(in Vec256<byte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call Z0.Vec256`1<System.Byte>& modreq(System.Runtime.InteropServices.InAttribute) Z0.Vec256Pattern::get_ReverseU8()
-    IL_0006: call Z0.Vec256`1<System.Byte> Z0.dinx::permute(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
-    IL_000B: ret
-
-}
-Vec256<int> reverse(in Vec256<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldsflda Z0.Vec256`1<System.Int32> Z0.dinx::MRev256i32
-    IL_0006: call Z0.Vec256`1<System.Int32> Z0.dinx::perm8x32(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_000B: ret
-
-}
-Vec256<uint> reverse(in Vec256<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldsflda Z0.Vec256`1<System.UInt32> Z0.dinx::MRev256u32
-    IL_0006: call Z0.Vec256`1<System.UInt32> Z0.dinx::perm8x32(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_000B: ret
-
-}
-Vec256<float> reverse(in Vec256<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldsflda Z0.Vec256`1<System.Int32> Z0.dinx::MRev256f32
-    IL_0006: call Z0.Vec256`1<System.Single> Z0.dinx::perm8x32(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Int32>&)
-    IL_000B: ret
-
-}
-Vec128<int> shuffle(in Vec128<int> src, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
     IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec128<uint> shuffle(in Vec128<uint> src, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Ssse3::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
     IL_0020: ret
 
 }
-Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
+Vec128<sbyte> unpacklo(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -1399,305 +951,204 @@ Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Ssse3::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_0020: ret
 
 }
-Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs, byte control)
+Vec128<byte> unpacklo(in Vec128<byte> lhs, in Vec128<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: ldarg.2
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_001C: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0021: ret
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
 
 }
-Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: ldarg.2
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_001C: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0021: ret
-
-}
-Vec128<short> shuffleHi(in Vec128<short> src, byte control)
+Vec128<short> unpacklo(in Vec128<short> lhs, in Vec128<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
     IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::ShuffleHigh(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0016: ret
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
 
 }
-Vec128<ushort> shuffleHi(in Vec128<ushort> src, byte control)
+Vec128<ushort> unpacklo(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
     IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::ShuffleHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0016: ret
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
 
 }
-Vec128<short> shuffleLo(in Vec128<short> src, byte control)
+Vec128<int> unpacklo(in Vec128<int> lhs, in Vec128<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
     IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::ShuffleLow(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0016: ret
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
 
 }
-Vec128<ushort> shuffleLo(in Vec128<ushort> src, byte control)
+Vec128<uint> unpacklo(in Vec128<uint> lhs, in Vec128<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
     IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::ShuffleLow(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0016: ret
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Vec256<int> shuffle(in Vec256<int> src, byte control)
+Vec128<long> unpacklo(in Vec128<long> lhs, in Vec128<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: ret
-
-}
-Vec256<uint> shuffle(in Vec256<uint> src, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: ret
-
-}
-Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
-
-}
-Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
-
-}
-void transpose(ref Vec128<float> row0, ref Vec128<float> row1, ref Vec128<float> row2, ref Vec128<float> row3)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 68
-    IL_0004: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0009: stloc.0
-    IL_000A: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
     IL_000B: ldarg.1
-    IL_000C: ldc.i4 238
-    IL_0011: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0016: stloc.1
-    IL_0017: ldarg.2
-    IL_0018: ldarg.3
-    IL_0019: ldc.i4.s 68
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0020: stloc.2
-    IL_0021: ldarg.2
-    IL_0022: ldarg.3
-    IL_0023: ldc.i4 238
-    IL_0028: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_002D: stloc.3
-    IL_002E: ldarg.0
-    IL_002F: ldloca.s V_0
-    IL_0031: ldloca.s V_2
-    IL_0033: ldc.i4 136
-    IL_0038: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_003D: stobj Z0.Vec128`1<System.Single>
-    IL_0042: ldarg.1
-    IL_0043: ldloca.s V_0
-    IL_0045: ldloca.s V_2
-    IL_0047: ldc.i4 221
-    IL_004C: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0051: stobj Z0.Vec128`1<System.Single>
-    IL_0056: ldarg.2
-    IL_0057: ldloca.s V_1
-    IL_0059: ldloca.s V_3
-    IL_005B: ldc.i4 136
-    IL_0060: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0065: stobj Z0.Vec128`1<System.Single>
-    IL_006A: ldarg.3
-    IL_006B: ldloca.s V_1
-    IL_006D: ldloca.s V_3
-    IL_006F: ldc.i4 221
-    IL_0074: call Z0.Vec128`1<System.Single> Z0.dinx::shuffle(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&,System.Byte)
-    IL_0079: stobj Z0.Vec128`1<System.Single>
-    IL_007E: ret
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0020: ret
 
 }
-Vec256<int> swap(Vec256<int> src, byte i, byte j)
-{
-    IL_0000: ldsfld System.Int32 Z0.Vec256`1<System.Int32>::Length
-    IL_0005: stloc.1
-    IL_0006: ldloc.1
-    IL_0007: conv.u
-    IL_0008: ldc.i4.4
-    IL_0009: mul.ovf.un
-    IL_000A: localloc
-    IL_000C: ldloc.1
-    IL_000D: newobj System.Void System.Span`1<System.Int32>::.ctor(System.Void*,System.Int32)
-    IL_0012: stloc.2
-    IL_0013: ldloc.2
-    IL_0014: stloc.0
-    IL_0015: ldc.i4.0
-    IL_0016: stloc.3
-    IL_0017: br.s IL_0048
-    IL_0019: ldloc.3
-    IL_001A: ldarg.1
-    IL_001B: bne.un.s IL_0029
-    IL_001D: ldloca.s V_0
-    IL_001F: ldloc.3
-    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0025: ldarg.2
-    IL_0026: stind.i4
-    IL_0027: br.s IL_0043
-    IL_0029: ldloc.3
-    IL_002A: ldarg.2
-    IL_002B: bne.un.s IL_0039
-    IL_002D: ldloca.s V_0
-    IL_002F: ldloc.3
-    IL_0030: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0035: ldarg.1
-    IL_0036: stind.i4
-    IL_0037: br.s IL_0043
-    IL_0039: ldloca.s V_0
-    IL_003B: ldloc.3
-    IL_003C: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0041: ldloc.3
-    IL_0042: stind.i4
-    IL_0043: ldloc.3
-    IL_0044: ldc.i4.1
-    IL_0045: add
-    IL_0046: conv.u1
-    IL_0047: stloc.3
-    IL_0048: ldloc.3
-    IL_0049: ldloca.s V_0
-    IL_004B: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_0050: blt.s IL_0019
-    IL_0052: ldarga.s src
-    IL_0054: ldloc.0
-    IL_0055: call Z0.Vec256`1<System.Int32> Z0.Vec256::Load<System.Int32>(System.Span`1<System.Int32>)
-    IL_005A: stloc.s V_4
-    IL_005C: ldloca.s V_4
-    IL_005E: call Z0.Vec256`1<System.Int32> Z0.dinx::perm8x32(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0063: ret
-
-}
-Vec256<byte> swaphl(in Vec256<byte> src)
+Vec128<ulong> unpacklo(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.Byte> Z0.dinx::perm4x64(Z0.Vec256`1<System.Byte>&,System.Byte)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0020: ret
 
 }
-Vec256<sbyte> swaphl(in Vec256<sbyte> src)
+Vec256<byte> unpacklo(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.SByte> Z0.dinx::perm4x64(Z0.Vec256`1<System.SByte>&,System.Byte)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
-Vec256<short> swaphl(in Vec256<short> src)
+Vec256<sbyte> unpacklo(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.Int16> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int16>&,System.Byte)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
-Vec256<ushort> swaphl(in Vec256<ushort> src)
+Vec256<short> unpacklo(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.UInt16> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt16>&,System.Byte)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
-Vec256<int> swaphl(in Vec256<int> src)
+Vec256<ushort> unpacklo(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<int> unpacklo(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec256`1<System.Int32>
-    IL_0006: ldc.i4.s 78
-    IL_0008: call Z0.Vec256`1<System.Int32> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int32>,System.Byte)
-    IL_000D: ret
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
-Vec256<uint> swaphl(in Vec256<uint> src)
+Vec256<uint> unpacklo(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0006: ldc.i4.s 78
-    IL_0008: call Z0.Vec256`1<System.UInt32> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt32>,System.Byte)
-    IL_000D: ret
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Vec256<long> swaphl(in Vec256<long> src)
+Vec256<long> unpacklo(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec256`1<System.Int64>
-    IL_0006: ldc.i4.s 78
-    IL_0008: call Z0.Vec256`1<System.Int64> Z0.dinx::perm4x64(Z0.Vec256`1<System.Int64>,System.Byte)
-    IL_000D: ret
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
-Vec256<ulong> swaphl(in Vec256<ulong> src)
+Vec256<ulong> unpacklo(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.UInt64> Z0.dinx::perm4x64(Z0.Vec256`1<System.UInt64>&,System.Byte)
-    IL_0008: ret
-
-}
-Vec256<double> swaphl(in Vec256<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.s 78
-    IL_0003: call Z0.Vec256`1<System.Double> Z0.dinx::perm4x64(Z0.Vec256`1<System.Double>&,System.Byte)
-    IL_0008: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
 UInt128 and(in UInt128 lhs, in UInt128 rhs)
@@ -1874,111 +1325,131 @@ Vec128<double> and(in Vec128<double> lhs, in Vec128<double> rhs)
 Vec256<byte> and(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<short> and(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<ushort> and(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
 Vec256<int> and(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec256<uint> and(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
 Vec256<long> and(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> and(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::And(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
 Vec256<float> and(in Vec256<float> lhs, in Vec256<float> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::And(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::And(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_001B: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_0020: ret
 
 }
 Vec256<double> and(in Vec256<double> lhs, in Vec256<double> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::And(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::And(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_001B: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_0020: ret
 
 }
 Vec128<byte> or(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -2114,114 +1585,134 @@ Vec128<double> or(in Vec128<double> lhs, in Vec128<double> rhs)
 Vec256<byte> or(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<short> or(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> or(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<ushort> or(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
 Vec256<int> or(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec256<uint> or(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
 Vec256<long> or(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> or(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
 Vec256<float> or(in Vec256<float> lhs, in Vec256<float> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Or(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Or(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_001B: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_0020: ret
 
 }
 Vec256<double> or(in Vec256<double> lhs, in Vec256<double> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Or(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Or(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_001B: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_0020: ret
 
 }
-Vec128<short> slli(in Vec128<short> src, byte offset)
+Vec128<short> sll(in Vec128<short> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -2232,7 +1723,7 @@ Vec128<short> slli(in Vec128<short> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<ushort> slli(in Vec128<ushort> src, byte offset)
+Vec128<ushort> sll(in Vec128<ushort> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
@@ -2243,7 +1734,7 @@ Vec128<ushort> slli(in Vec128<ushort> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<int> slli(in Vec128<int> src, byte offset)
+Vec128<int> sll(in Vec128<int> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -2254,7 +1745,7 @@ Vec128<int> slli(in Vec128<int> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<uint> slli(in Vec128<uint> src, byte offset)
+Vec128<uint> sll(in Vec128<uint> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt32>
@@ -2265,7 +1756,7 @@ Vec128<uint> slli(in Vec128<uint> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<long> slli(in Vec128<long> src, byte offset)
+Vec128<long> sll(in Vec128<long> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int64>
@@ -2276,7 +1767,7 @@ Vec128<long> slli(in Vec128<long> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<ulong> slli(in Vec128<ulong> src, byte offset)
+Vec128<ulong> sll(in Vec128<ulong> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt64>
@@ -2287,81 +1778,73 @@ Vec128<ulong> slli(in Vec128<ulong> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<ulong> slli32(in Vec128<ulong> src, byte offset)
+Vec256<short> sll(in Vec256<short> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt64>::As<System.UInt32>()
-    IL_0006: stloc.0
-    IL_0007: ldloca.s V_0
-    IL_0009: ldarg.1
-    IL_000A: call Z0.Vec128`1<System.UInt32> Z0.dinx::slli(Z0.Vec128`1<System.UInt32>&,System.Byte)
-    IL_000F: stloc.1
-    IL_0010: ldloca.s V_1
-    IL_0012: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt32>::As<System.UInt64>()
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0016: ret
 
 }
-Vec256<short> slli(in Vec256<short> src, byte offset)
+Vec256<ushort> sll(in Vec256<ushort> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0016: ret
 
 }
-Vec256<ushort> slli(in Vec256<ushort> src, byte offset)
+Vec256<int> sll(in Vec256<int> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0016: ret
 
 }
-Vec256<int> slli(in Vec256<int> src, byte offset)
+Vec256<uint> sll(in Vec256<uint> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: ret
-
-}
-Vec256<uint> slli(in Vec256<uint> src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0016: ret
 
 }
 Vec256<long> slli(in Vec256<long> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0016: ret
 
 }
-Vec256<ulong> slli(in Vec256<ulong> src, byte offset)
+Vec256<ulong> sll(in Vec256<ulong> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftLeftLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0016: ret
 
 }
-Vec128<short> srli(in Vec128<short> src, byte offset)
+Vec128<short> srl(in Vec128<short> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -2372,7 +1855,7 @@ Vec128<short> srli(in Vec128<short> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<ushort> srli(in Vec128<ushort> src, byte offset)
+Vec128<ushort> srl(in Vec128<ushort> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
@@ -2383,7 +1866,7 @@ Vec128<ushort> srli(in Vec128<ushort> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<int> srli(in Vec128<int> src, byte offset)
+Vec128<int> srl(in Vec128<int> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -2394,7 +1877,7 @@ Vec128<int> srli(in Vec128<int> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<uint> srli(in Vec128<uint> src, byte offset)
+Vec128<uint> srl(in Vec128<uint> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt32>
@@ -2405,7 +1888,7 @@ Vec128<uint> srli(in Vec128<uint> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<long> srli(in Vec128<long> src, byte offset)
+Vec128<long> srl(in Vec128<long> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int64>
@@ -2416,7 +1899,7 @@ Vec128<long> srli(in Vec128<long> src, byte offset)
     IL_0016: ret
 
 }
-Vec128<ulong> srli(in Vec128<ulong> src, byte offset)
+Vec128<ulong> srl(in Vec128<ulong> src, byte offset)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt64>
@@ -2427,64 +1910,70 @@ Vec128<ulong> srli(in Vec128<ulong> src, byte offset)
     IL_0016: ret
 
 }
-Vec256<short> srli(in Vec256<short> src, byte offset)
+Vec256<short> srl(in Vec256<short> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0016: ret
 
 }
-Vec256<ushort> srli(in Vec256<ushort> src, byte offset)
+Vec256<ushort> srl(in Vec256<ushort> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0016: ret
 
 }
-Vec256<int> srli(in Vec256<int> src, byte offset)
+Vec256<int> srl(in Vec256<int> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0016: ret
 
 }
-Vec256<uint> srli(in Vec256<uint> src, byte offset)
+Vec256<uint> srl(in Vec256<uint> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0016: ret
 
 }
-Vec256<long> srli(in Vec256<long> src, byte offset)
+Vec256<long> srl(in Vec256<long> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0016: ret
 
 }
-Vec256<ulong> srli(in Vec256<ulong> src, byte offset)
+Vec256<ulong> srl(in Vec256<ulong> src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogical(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0016: ret
 
 }
 Vec128<byte> xor(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -2591,267 +2080,111 @@ Vec128<ulong> xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
     IL_0020: ret
 
 }
-Vec128<float> xor(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Xor(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> xor(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
 Vec256<byte> xor(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<short> xor(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<ushort> xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
-Vec128<byte> extract128(in Vec256<byte> src, byte pos)
+Vec256<int> xor(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
-Vec128<short> extract128(in Vec256<short> src, byte pos)
+Vec256<uint> xor(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Vec128<ushort> extract128(in Vec256<ushort> src, byte pos)
+Vec256<long> xor(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
-Vec128<int> extract128(in Vec256<int> src, byte pos)
+Vec256<ulong> xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0011: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
-Vec128<uint> extract128(in Vec256<uint> src, byte pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0011: ret
-
-}
-Vec128<long> extract128(in Vec256<long> src, byte pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0011: ret
-
-}
-Vec128<ulong> extract128(in Vec256<ulong> src, byte pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0011: ret
-
-}
-Vec128<float> extract128(in Vec256<float> src, byte pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-Vec128<double> extract128(in Vec256<double> src, byte pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<sbyte> hi(in Vec256<sbyte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0011: ret
-
-}
-Vec128<byte> hi(in Vec256<byte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: ret
-
-}
-Vec128<short> hi(in Vec256<short> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0011: ret
-
-}
-Vec128<ushort> hi(in Vec256<ushort> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: ret
-
-}
-Vec128<int> hi(in Vec256<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0011: ret
-
-}
-Vec128<uint> hi(in Vec256<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0011: ret
-
-}
-Vec128<long> hi(in Vec256<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0011: ret
-
-}
-Vec128<ulong> hi(in Vec256<ulong> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0011: ret
-
-}
-Vec128<float> hi(in Vec256<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-Vec128<double> hi(in Vec256<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldc.i4.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<sbyte> hi(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+Vec128<sbyte> cmpeq(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -2859,12 +2192,12 @@ Vec128<sbyte> hi(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_0020: ret
 
 }
-Vec128<byte> hi(in Vec128<byte> lhs, in Vec128<byte> rhs)
+Vec128<byte> cmpeq(in Vec128<byte> lhs, in Vec128<byte> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Byte>
@@ -2872,12 +2205,12 @@ Vec128<byte> hi(in Vec128<byte> lhs, in Vec128<byte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Byte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
     IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
     IL_0020: ret
 
 }
-Vec128<short> hi(in Vec128<short> lhs, in Vec128<short> rhs)
+Vec128<short> cmpeq(in Vec128<short> lhs, in Vec128<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -2885,12 +2218,12 @@ Vec128<short> hi(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int16>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
     IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
     IL_0020: ret
 
 }
-Vec128<ushort> hi(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+Vec128<ushort> cmpeq(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
@@ -2898,12 +2231,12 @@ Vec128<ushort> hi(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.UInt16>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
     IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
     IL_0020: ret
 
 }
-Vec128<int> hi(in Vec128<int> lhs, in Vec128<int> rhs)
+Vec128<int> cmpeq(in Vec128<int> lhs, in Vec128<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -2911,12 +2244,12 @@ Vec128<int> hi(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int32>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_0020: ret
 
 }
-Vec128<uint> hi(in Vec128<uint> lhs, in Vec128<uint> rhs)
+Vec128<uint> cmpeq(in Vec128<uint> lhs, in Vec128<uint> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt32>
@@ -2924,12 +2257,12 @@ Vec128<uint> hi(in Vec128<uint> lhs, in Vec128<uint> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.UInt32>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
     IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
     IL_0020: ret
 
 }
-Vec128<long> hi(in Vec128<long> lhs, in Vec128<long> rhs)
+Vec128<long> cmpeq(in Vec128<long> lhs, in Vec128<long> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int64>
@@ -2937,12 +2270,12 @@ Vec128<long> hi(in Vec128<long> lhs, in Vec128<long> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int64>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse41::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
     IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
     IL_0020: ret
 
 }
-Vec128<ulong> hi(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+Vec128<ulong> cmpeq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt64>
@@ -2950,205 +2283,282 @@ Vec128<ulong> hi(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.UInt64>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse41::CompareEqual(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
     IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
     IL_0020: ret
 
 }
-Vec128<float> hi(in Vec128<float> lhs, in Vec128<float> rhs)
+Vec256<sbyte> cmpeq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
     IL_0020: ret
 
 }
-Vec128<double> hi(in Vec128<double> lhs, in Vec128<double> rhs)
+Vec256<byte> cmpeq(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
     IL_0020: ret
 
 }
-Vec256<byte> hi(in Vec256<byte> lhs, in Vec256<byte> rhs)
+Vec256<short> cmpeq(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
-Vec256<sbyte> hi(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+Vec256<ushort> cmpeq(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
-Vec256<short> hi(in Vec256<short> lhs, in Vec256<short> rhs)
+Vec256<int> cmpeq(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
-Vec256<ushort> hi(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+Vec256<uint> cmpeq(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Vec256<int> hi(in Vec256<int> lhs, in Vec256<int> rhs)
+Vec256<long> cmpeq(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
-Vec256<uint> hi(in Vec256<uint> lhs, in Vec256<uint> rhs)
+Vec256<ulong> cmpeq(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::CompareEqual(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
-Vec256<long> hi(in Vec256<long> lhs, in Vec256<long> rhs)
+Vec128<sbyte> cmpgt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
-
-}
-Vec256<ulong> hi(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
-
-}
-Vec256<float> hi(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> hi(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
-
-}
-Vec128<byte> insert(byte src, in Vec128<byte> dst, byte index)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000B: ldarg.0
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte,System.Byte)
-    IL_0012: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0017: ret
-
-}
-Vec128<sbyte> insert(sbyte src, in Vec128<sbyte> dst, byte index)
-{
-    IL_0000: ldarg.1
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_000B: ldarg.0
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.SByte,System.Byte)
-    IL_0012: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0017: ret
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
 
 }
-Vec128<short> insert(short src, in Vec128<short> dst, byte index)
+Vec128<short> cmpgt(in Vec128<short> lhs, in Vec128<short> rhs)
 {
-    IL_0000: ldarg.1
+    IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.0
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Insert(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Int16,System.Byte)
-    IL_0012: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0017: ret
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
 
 }
-Vec128<ushort> insert(ushort src, in Vec128<ushort> dst, byte index)
+Vec128<int> cmpgt(in Vec128<int> lhs, in Vec128<int> rhs)
 {
-    IL_0000: ldarg.1
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.0
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Insert(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.UInt16,System.Byte)
-    IL_0012: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0017: ret
-
-}
-Vec128<int> insert(int src, in Vec128<int> dst, byte index)
-{
-    IL_0000: ldarg.1
+    IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareGreaterThan(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> cmpgt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<short> cmpgt(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<int> cmpgt(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<long> cmpgt(in Vec256<long> lhs, in Vec256<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> cmplt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<short> cmplt(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<int> cmplt(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::CompareLessThan(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> cmplt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
     IL_000B: ldarg.0
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Int32,System.Byte)
-    IL_0012: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0017: ret
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<short> cmplt(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<int> cmplt(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::CompareGreaterThan(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec128<uint> insert(uint src, in Vec128<uint> dst, byte index)
@@ -3190,200 +2600,179 @@ Vec128<ulong> insert(ulong src, in Vec128<ulong> dst, byte index)
 Vec256<sbyte> insert(in Vec128<sbyte> src, in Vec256<sbyte> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.SByte>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0021: ret
 
 }
 ref Vec256<sbyte> insert(in Vec128<sbyte> lo, in Vec128<sbyte> hi, ref Vec256<sbyte> dst)
 {
     IL_0000: ldarg.2
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.SByte>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
-    IL_0017: stloc.0
-    IL_0018: ldarg.2
-    IL_0019: ldloc.0
-    IL_001A: ldarg.1
-    IL_001B: ldobj Z0.Vec128`1<System.SByte>
-    IL_0020: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0025: ldc.i4.1
-    IL_0026: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
-    IL_002B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0030: stobj Z0.Vec256`1<System.SByte>
-    IL_0035: ldarg.2
-    IL_0036: ret
+    IL_0001: ldarg.2
+    IL_0002: ldobj Z0.Vec256`1<System.SByte>
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000C: ldarg.0
+    IL_000D: ldobj Z0.Vec128`1<System.SByte>
+    IL_0012: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0017: ldc.i4.0
+    IL_0018: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
+    IL_001D: ldarg.1
+    IL_001E: ldobj Z0.Vec128`1<System.SByte>
+    IL_0023: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0028: ldc.i4.1
+    IL_0029: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
+    IL_002E: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0033: stobj Z0.Vec256`1<System.SByte>
+    IL_0038: ldarg.2
+    IL_0039: ret
 
 }
 Vec256<byte> insert(in Vec128<byte> src, in Vec256<byte> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Byte>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0021: ret
 
 }
 ref Vec256<byte> insert(in Vec128<byte> lo, in Vec128<byte> hi, ref Vec256<byte> dst)
 {
     IL_0000: ldarg.2
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Byte>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
-    IL_0017: stloc.0
-    IL_0018: ldarg.2
-    IL_0019: ldloc.0
-    IL_001A: ldarg.1
-    IL_001B: ldobj Z0.Vec128`1<System.Byte>
-    IL_0020: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0025: ldc.i4.1
-    IL_0026: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
-    IL_002B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0030: stobj Z0.Vec256`1<System.Byte>
-    IL_0035: ldarg.2
-    IL_0036: ret
+    IL_0001: ldarg.2
+    IL_0002: ldobj Z0.Vec256`1<System.Byte>
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000C: ldarg.0
+    IL_000D: ldobj Z0.Vec128`1<System.Byte>
+    IL_0012: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0017: ldc.i4.0
+    IL_0018: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
+    IL_001D: ldarg.1
+    IL_001E: ldobj Z0.Vec128`1<System.Byte>
+    IL_0023: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0028: ldc.i4.1
+    IL_0029: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
+    IL_002E: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0033: stobj Z0.Vec256`1<System.Byte>
+    IL_0038: ldarg.2
+    IL_0039: ret
 
 }
 Vec256<short> insert(in Vec128<short> src, in Vec256<short> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Int16>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0021: ret
 
 }
 ref Vec256<short> insert(in Vec128<short> lo, in Vec128<short> hi, ref Vec256<short> dst)
 {
     IL_0000: ldarg.2
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Int16>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0011: ldc.i4.0
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
-    IL_0017: stloc.0
-    IL_0018: ldarg.2
-    IL_0019: ldloc.0
-    IL_001A: ldarg.1
-    IL_001B: ldobj Z0.Vec128`1<System.Int16>
-    IL_0020: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0025: ldc.i4.1
-    IL_0026: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
-    IL_002B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0030: stobj Z0.Vec256`1<System.Int16>
-    IL_0035: ldarg.2
-    IL_0036: ret
+    IL_0001: ldarg.2
+    IL_0002: ldobj Z0.Vec256`1<System.Int16>
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000C: ldarg.0
+    IL_000D: ldobj Z0.Vec128`1<System.Int16>
+    IL_0012: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0017: ldc.i4.0
+    IL_0018: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_001D: ldarg.1
+    IL_001E: ldobj Z0.Vec128`1<System.Int16>
+    IL_0023: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0028: ldc.i4.1
+    IL_0029: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_002E: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0033: stobj Z0.Vec256`1<System.Int16>
+    IL_0038: ldarg.2
+    IL_0039: ret
 
 }
 Vec256<ushort> insert(in Vec128<ushort> src, in Vec256<ushort> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.UInt16>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0021: ret
 
 }
 Vec256<int> insert(in Vec128<int> src, in Vec256<int> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Int32>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0021: ret
 
 }
 Vec256<uint> insert(in Vec128<uint> src, in Vec256<uint> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.UInt32>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0021: ret
 
 }
 Vec256<long> insert(in Vec128<long> src, in Vec256<long> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Int64>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0021: ret
 
 }
 Vec256<ulong> insert(in Vec128<ulong> src, in Vec256<ulong> dst, byte index)
 {
     IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.UInt64>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001C: ret
-
-}
-Vec256<float> insert(in Vec128<float> src, in Vec256<float> dst, byte index)
-{
-    IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Single>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_001C: ret
-
-}
-Vec256<double> insert(in Vec128<double> src, in Vec256<double> dst, byte index)
-{
-    IL_0000: ldarg.1
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.0
-    IL_0007: ldobj Z0.Vec128`1<System.Double>
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0011: ldarg.2
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_0017: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::InsertVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0021: ret
 
 }
 ref Vec128<sbyte> lddqu(in sbyte src, out Vec128<sbyte> dst)
@@ -3578,107 +2967,62 @@ ref Vec256<ulong> lddqu(in ulong src, out Vec256<ulong> dst)
     IL_0017: ret
 
 }
-Vec128<sbyte> lo(in Vec256<sbyte> src)
+Vec128<int> maskload(ref int src, Vec128<int> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0011: ret
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::MaskLoad(System.Int32*,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0011: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: ret
 
 }
-Vec128<byte> lo(in Vec256<byte> src)
+Vec256<int> maskload(ref int src, Vec256<int> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: ret
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::MaskLoad(System.Int32*,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0016: ret
 
 }
-Vec128<short> lo(in Vec256<short> src)
+Vec256<uint> maskload(ref uint src, Vec256<uint> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0011: ret
+    IL_0001: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::MaskLoad(System.UInt32*,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0016: ret
 
 }
-Vec128<ushort> lo(in Vec256<ushort> src)
+Vec256<long> maskload(ref long src, Vec256<long> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: ret
+    IL_0001: call System.Int64* Z0.As::refptr(System.Int64&)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::MaskLoad(System.Int64*,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0016: ret
 
 }
-Vec128<int> lo(in Vec256<int> src)
+Vec256<ulong> maskload(ref ulong src, Vec256<ulong> mask)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0011: ret
+    IL_0001: call System.UInt64* Z0.As::refptr(System.UInt64&)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::MaskLoad(System.UInt64*,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0016: ret
 
 }
-Vec128<uint> lo(in Vec256<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0011: ret
-
-}
-Vec128<long> lo(in Vec256<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0011: ret
-
-}
-Vec128<ulong> lo(in Vec256<ulong> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0011: ret
-
-}
-Vec128<float> lo(in Vec256<float> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0011: ret
-
-}
-Vec128<double> lo(in Vec256<double> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldc.i4.0
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<sbyte> lo(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+void maskmove(in Vec128<sbyte> src, in Vec128<sbyte> mask, ref sbyte dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -3686,12 +3030,13 @@ Vec128<sbyte> lo(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: ret
+    IL_0016: ldarg.2
+    IL_0017: call System.SByte* Z0.As::refptr(System.SByte&)
+    IL_001C: call System.Void System.Runtime.Intrinsics.X86.Sse2::MaskMove(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.SByte*)
+    IL_0021: ret
 
 }
-Vec128<byte> lo(in Vec128<byte> lhs, in Vec128<byte> rhs)
+void maskmove(in Vec128<byte> src, in Vec128<byte> mask, ref byte dst)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Byte>
@@ -3699,223 +3044,318 @@ Vec128<byte> lo(in Vec128<byte> lhs, in Vec128<byte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Byte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
+    IL_0016: ldarg.2
+    IL_0017: call System.Byte* Z0.As::refptr(System.Byte&)
+    IL_001C: call System.Void System.Runtime.Intrinsics.X86.Sse2::MaskMove(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte*)
+    IL_0021: ret
 
 }
-Vec128<short> lo(in Vec128<short> lhs, in Vec128<short> rhs)
+void maskstore(Vec128<int> src, Vec128<int> mask, ref int dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.0
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000C: ldarg.1
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0012: call System.Void System.Runtime.Intrinsics.X86.Avx2::MaskStore(System.Int32*,System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0017: ret
+
+}
+void maskstore(Vec256<int> src, Vec256<int> mask, ref int dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.0
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000C: ldarg.1
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0012: call System.Void System.Runtime.Intrinsics.X86.Avx2::MaskStore(System.Int32*,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0017: ret
+
+}
+void maskstore(Vec256<uint> src, Vec256<uint> mask, ref uint dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0006: ldarg.0
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000C: ldarg.1
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0012: call System.Void System.Runtime.Intrinsics.X86.Avx2::MaskStore(System.UInt32*,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0017: ret
+
+}
+void maskstore(Vec256<long> src, Vec256<long> mask, ref long dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: call System.Int64* Z0.As::refptr(System.Int64&)
+    IL_0006: ldarg.0
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000C: ldarg.1
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0012: call System.Void System.Runtime.Intrinsics.X86.Avx2::MaskStore(System.Int64*,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0017: ret
+
+}
+void maskstore(Vec256<ulong> src, Vec256<ulong> mask, ref ulong dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: call System.UInt64* Z0.As::refptr(System.UInt64&)
+    IL_0006: ldarg.0
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000C: ldarg.1
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0012: call System.Void System.Runtime.Intrinsics.X86.Avx2::MaskStore(System.UInt64*,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0017: ret
+
+}
+void movdqa(in Vec128<sbyte> src, ref sbyte dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.SByte* Z0.As::refptr(System.SByte&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.SByte>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.SByte*,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<byte> src, ref byte dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Byte* Z0.As::refptr(System.Byte&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.Byte>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.Byte*,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<short> src, ref short dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int16* Z0.As::refptr(System.Int16&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.Int16>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.Int16*,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<ushort> src, ref ushort dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt16* Z0.As::refptr(System.UInt16&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.UInt16>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.UInt16*,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<int> src, ref int dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.Int32>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.Int32*,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<uint> src, ref uint dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.UInt32>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.UInt32*,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<long> src, ref long dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int64* Z0.As::refptr(System.Int64&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.Int64>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.Int64*,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec128<ulong> src, ref ulong dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt64* Z0.As::refptr(System.UInt64&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec128`1<System.UInt64>
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Sse2::StoreAligned(System.UInt64*,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<sbyte> src, ref sbyte dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.SByte* Z0.As::refptr(System.SByte&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.SByte>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.SByte*,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<byte> src, ref byte dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Byte* Z0.As::refptr(System.Byte&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.Byte>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.Byte*,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<short> src, ref short dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int16* Z0.As::refptr(System.Int16&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.Int16>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.Int16*,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<ushort> src, ref ushort dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt16* Z0.As::refptr(System.UInt16&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.UInt16>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.UInt16*,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<int> src, ref int dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int32* Z0.As::refptr(System.Int32&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.Int32>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.Int32*,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<uint> src, ref uint dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.UInt32>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.UInt32*,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<long> src, ref long dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int64* Z0.As::refptr(System.Int64&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.Int64>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.Int64*,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0016: ret
+
+}
+void movdqa(in Vec256<ulong> src, ref ulong dst)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.UInt64* Z0.As::refptr(System.UInt64&)
+    IL_0006: ldarg.0
+    IL_0007: ldobj Z0.Vec256`1<System.UInt64>
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0011: call System.Void System.Runtime.Intrinsics.X86.Avx::StoreAligned(System.UInt64*,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0016: ret
+
+}
+int movemask(in Vec128<byte> src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Sse2::MoveMask(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0010: ret
 
 }
-Vec128<ushort> lo(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+int movemask(in Vec128<sbyte> src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Sse2::MoveMask(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0010: ret
 
 }
-Vec128<int> lo(in Vec128<int> lhs, in Vec128<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
-
-}
-Vec128<uint> lo(in Vec128<uint> lhs, in Vec128<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
-
-}
-Vec128<long> lo(in Vec128<long> lhs, in Vec128<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0020: ret
-
-}
-Vec128<ulong> lo(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0020: ret
-
-}
-Vec128<float> lo(in Vec128<float> lhs, in Vec128<float> rhs)
+int movemask(in Vec128<float> src)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Single>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Sse::MoveMask(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_0010: ret
 
 }
-Vec128<double> lo(in Vec128<double> lhs, in Vec128<double> rhs)
+int movemask(in Vec128<double> src)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Double>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::UnpackLow(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Sse2::MoveMask(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_0010: ret
 
 }
-Vec256<byte> lo(in Vec256<byte> lhs, in Vec256<byte> rhs)
+int movemask(in Vec256<sbyte> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Avx2::MoveMask(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0010: ret
 
 }
-Vec256<sbyte> lo(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+int movemask(in Vec256<byte> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Avx2::MoveMask(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0010: ret
 
 }
-Vec256<short> lo(in Vec256<short> lhs, in Vec256<short> rhs)
+int movemask(in Vec256<float> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Avx::MoveMask(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_0010: ret
 
 }
-Vec256<ushort> lo(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+int movemask(in Vec256<double> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
-
-}
-Vec256<int> lo(in Vec256<int> lhs, in Vec256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<uint> lo(in Vec256<uint> lhs, in Vec256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec256<long> lo(in Vec256<long> lhs, in Vec256<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
-
-}
-Vec256<ulong> lo(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
-
-}
-Vec256<float> lo(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> lo(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::UnpackLow(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: call System.Int32 System.Runtime.Intrinsics.X86.Avx::MoveMask(System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_0010: ret
 
 }
 Vec256<byte> permute(in Vec256<byte> src, in Vec256<byte> spec)
@@ -3970,228 +3410,374 @@ Vec128<uint> permute(in Vec128<uint> src, byte spec)
     IL_0016: ret
 
 }
-Vec128<float> permute(in Vec128<float> value, byte spec)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Permute(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec128<double> permute(in Vec128<double> value, byte spec)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Permute(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_0011: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0016: ret
-
-}
-Vec256<float> permute(in Vec256<float> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Permute(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: ret
-
-}
-Vec256<double> permute(in Vec256<double> value, byte control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Permute(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_000C: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: ret
-
-}
-Vec128<float> permvar(in Vec128<float> lhs, in Vec128<int> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::PermuteVar(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> permvar(in Vec128<double> lhs, in Vec128<long> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::PermuteVar(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
-Vec256<float> permvar(Vec256<float> lhs, in Vec256<int> control)
-{
-    IL_0000: ldarga.s lhs
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0007: ldarg.1
-    IL_0008: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::PermuteVar(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0012: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0017: ret
-
-}
-Vec256<double> permvar(Vec256<double> lhs, in Vec256<long> control)
-{
-    IL_0000: ldarga.s lhs
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0007: ldarg.1
-    IL_0008: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::PermuteVar(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0012: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0017: ret
-
-}
 Vec256<sbyte> perm2x128(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0021: ret
 
 }
 Vec256<byte> perm2x128(in Vec256<byte> lhs, in Vec256<byte> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0021: ret
 
 }
 Vec256<short> perm2x128(in Vec256<short> lhs, in Vec256<short> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0021: ret
 
 }
 Vec256<ushort> perm2x128(in Vec256<ushort> lhs, in Vec256<ushort> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0021: ret
 
 }
 Vec256<int> perm2x128(in Vec256<int> lhs, in Vec256<int> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0021: ret
 
 }
 Vec256<uint> perm2x128(in Vec256<uint> lhs, in Vec256<uint> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0021: ret
 
 }
 Vec256<long> perm2x128(in Vec256<long> lhs, in Vec256<long> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0021: ret
 
 }
 Vec256<ulong> perm2x128(in Vec256<ulong> lhs, in Vec256<ulong> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0021: ret
 
 }
 Vec256<float> perm2x128(in Vec256<float> lhs, in Vec256<float> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_0021: ret
 
 }
 Vec256<double> perm2x128(in Vec256<double> lhs, in Vec256<double> rhs, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Permute2x128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_0021: ret
 
 }
 Vec256<int> perm8x32(in Vec256<int> src, in Vec256<int> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> perm8x32(in Vec256<uint> src, in Vec256<uint> control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<float> perm8x32(in Vec256<float> src, in Vec256<int> control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx2::PermuteVar8x32(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_0020: ret
+
+}
+Vec256<long> perm4x64(in Vec256<long> value, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
     IL_0016: ret
 
 }
-Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+Vec256<ulong> perm4x64(in Vec256<ulong> value, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0016: ret
+
+}
+Vec128<byte> swap(in Vec128<byte> src, Swap[] swaps)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call Z0.Vec128`1<System.Byte> Z0.Vec128Pattern::Swap<System.Byte>(Z0.Swap[])
+    IL_0007: stloc.0
+    IL_0008: ldloca.s V_0
+    IL_000A: call Z0.Vec128`1<System.Byte> Z0.dinx::shuffle(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_000F: ret
+
+}
+Vec128<byte> reverse(in Vec128<byte> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 15
+    IL_0003: call Z0.Swap[] System.Array::Empty<Z0.Swap>()
+    IL_0008: call Z0.Vec128`1<System.Byte> Z0.Vec128Pattern::Decrements<System.Byte>(System.Byte,Z0.Swap[])
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call Z0.Vec128`1<System.Byte> Z0.dinx::shuffle(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0015: ret
+
+}
+Vec128<sbyte> reverse(in Vec128<sbyte> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 15
+    IL_0003: call Z0.Swap[] System.Array::Empty<Z0.Swap>()
+    IL_0008: call Z0.Vec128`1<System.SByte> Z0.Vec128Pattern::Decrements<System.SByte>(System.SByte,Z0.Swap[])
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call Z0.Vec128`1<System.SByte> Z0.dinx::shuffle(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_0015: ret
+
+}
+Vec128<int> reverse(in Vec128<int> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 27
+    IL_0003: call Z0.Vec128`1<System.Int32> Z0.dinx::shuffle(Z0.Vec128`1<System.Int32>&,System.Byte)
+    IL_0008: ret
+
+}
+Vec128<uint> reverse(in Vec128<uint> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 27
+    IL_0003: call Z0.Vec128`1<System.UInt32> Z0.dinx::shuffle(Z0.Vec128`1<System.UInt32>&,System.Byte)
+    IL_0008: ret
+
+}
+Vec256<byte> reverse(in Vec256<byte> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 31
+    IL_0003: call Z0.Swap[] System.Array::Empty<Z0.Swap>()
+    IL_0008: call Z0.Vec256`1<System.Byte> Z0.Vec256Pattern::Decrements<System.Byte>(System.Byte,Z0.Swap[])
+    IL_000D: stloc.0
+    IL_000E: ldloca.s V_0
+    IL_0010: call Z0.Vec256`1<System.Byte> Z0.dinx::permute(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0015: ret
+
+}
+Vec256<int> reverse(in Vec256<int> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldsflda Z0.Vec256`1<System.Int32> Z0.dinx::MRev256i32
+    IL_0006: call Z0.Vec256`1<System.Int32> Z0.dinx::perm8x32(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_000B: ret
+
+}
+Vec256<uint> reverse(in Vec256<uint> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldsflda Z0.Vec256`1<System.UInt32> Z0.dinx::MRev256u32
+    IL_0006: call Z0.Vec256`1<System.UInt32> Z0.dinx::perm8x32(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_000B: ret
+
+}
+Vec256<float> reverse(in Vec256<float> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldsflda Z0.Vec256`1<System.Int32> Z0.dinx::MRev256f32
+    IL_0006: call Z0.Vec256`1<System.Single> Z0.dinx::perm8x32(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Int32>&)
+    IL_000B: ret
+
+}
+Vec128<short> shufflehi(in Vec128<short> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::ShuffleHigh(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: ret
+
+}
+Vec128<ushort> shufflehi(in Vec128<ushort> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::ShuffleHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0016: ret
+
+}
+Vec128<short> shufflelo(in Vec128<short> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::ShuffleLow(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: ret
+
+}
+Vec128<ushort> shufflelo(in Vec128<ushort> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::ShuffleLow(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0016: ret
+
+}
+Vec128<int> shuffle(in Vec128<int> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: ret
+
+}
+Vec128<uint> shuffle(in Vec128<uint> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0016: ret
+
+}
+Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Ssse3::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
@@ -4199,12 +3785,281 @@ Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.SByte>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Ssse3::Shuffle(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_0020: ret
 
 }
-Vec128<short> sign(in Vec128<short> lhs, in Vec128<short> rhs)
+Vec256<int> shuffle(in Vec256<int> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0016: ret
+
+}
+Vec256<uint> shuffle(in Vec256<uint> src, byte control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0016: ret
+
+}
+Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> control)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Shuffle(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<int> swap(Vec256<int> src, byte i, byte j)
+{
+    IL_0000: ldsfld System.Int32 Z0.Vec256`1<System.Int32>::Length
+    IL_0005: stloc.1
+    IL_0006: ldloc.1
+    IL_0007: conv.u
+    IL_0008: ldc.i4.4
+    IL_0009: mul.ovf.un
+    IL_000A: localloc
+    IL_000C: ldloc.1
+    IL_000D: newobj System.Void System.Span`1<System.Int32>::.ctor(System.Void*,System.Int32)
+    IL_0012: stloc.2
+    IL_0013: ldloc.2
+    IL_0014: stloc.0
+    IL_0015: ldc.i4.0
+    IL_0016: stloc.3
+    IL_0017: br.s IL_0048
+    IL_0019: ldloc.3
+    IL_001A: ldarg.1
+    IL_001B: bne.un.s IL_0029
+    IL_001D: ldloca.s V_0
+    IL_001F: ldloc.3
+    IL_0020: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0025: ldarg.2
+    IL_0026: stind.i4
+    IL_0027: br.s IL_0043
+    IL_0029: ldloc.3
+    IL_002A: ldarg.2
+    IL_002B: bne.un.s IL_0039
+    IL_002D: ldloca.s V_0
+    IL_002F: ldloc.3
+    IL_0030: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0035: ldarg.1
+    IL_0036: stind.i4
+    IL_0037: br.s IL_0043
+    IL_0039: ldloca.s V_0
+    IL_003B: ldloc.3
+    IL_003C: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_0041: ldloc.3
+    IL_0042: stind.i4
+    IL_0043: ldloc.3
+    IL_0044: ldc.i4.1
+    IL_0045: add
+    IL_0046: conv.u1
+    IL_0047: stloc.3
+    IL_0048: ldloc.3
+    IL_0049: ldloca.s V_0
+    IL_004B: call System.Int32 System.Span`1<System.Int32>::get_Length()
+    IL_0050: blt.s IL_0019
+    IL_0052: ldarga.s src
+    IL_0054: ldloc.0
+    IL_0055: call Z0.Vec256`1<System.Int32> Z0.Vec256::Load<System.Int32>(System.Span`1<System.Int32>)
+    IL_005A: stloc.s V_4
+    IL_005C: ldloca.s V_4
+    IL_005E: call Z0.Vec256`1<System.Int32> Z0.dinx::perm8x32(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0063: ret
+
+}
+Vec256<byte> swaphl(in Vec256<byte> src)
+{
+    IL_0000: ldloca.s V_0
+    IL_0002: initobj Z0.Vec256`1<System.Byte>
+    IL_0008: ldarg.0
+    IL_0009: ldc.i4.1
+    IL_000A: call Z0.Vec128`1<System.Byte> Z0.dinx::extract128(Z0.Vec256`1<System.Byte>&,System.Byte)
+    IL_000F: stloc.1
+    IL_0010: ldloca.s V_1
+    IL_0012: ldloca.s V_0
+    IL_0014: ldc.i4.0
+    IL_0015: call Z0.Vec256`1<System.Byte> Z0.dinx::insert(Z0.Vec128`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte)
+    IL_001A: stloc.0
+    IL_001B: ldarg.0
+    IL_001C: ldc.i4.0
+    IL_001D: call Z0.Vec128`1<System.Byte> Z0.dinx::extract128(Z0.Vec256`1<System.Byte>&,System.Byte)
+    IL_0022: stloc.1
+    IL_0023: ldloca.s V_1
+    IL_0025: ldloca.s V_0
+    IL_0027: ldc.i4.1
+    IL_0028: call Z0.Vec256`1<System.Byte> Z0.dinx::insert(Z0.Vec128`1<System.Byte>&,Z0.Vec256`1<System.Byte>&,System.Byte)
+    IL_002D: stloc.0
+    IL_002E: ldloc.0
+    IL_002F: ret
+
+}
+Vec256<sbyte> swaphl(in Vec256<sbyte> src)
+{
+    IL_0000: ldloca.s V_0
+    IL_0002: initobj Z0.Vec256`1<System.SByte>
+    IL_0008: ldarg.0
+    IL_0009: ldc.i4.1
+    IL_000A: call Z0.Vec128`1<System.SByte> Z0.dinx::extract128(Z0.Vec256`1<System.SByte>&,System.Byte)
+    IL_000F: stloc.1
+    IL_0010: ldloca.s V_1
+    IL_0012: ldloca.s V_0
+    IL_0014: ldc.i4.0
+    IL_0015: call Z0.Vec256`1<System.SByte> Z0.dinx::insert(Z0.Vec128`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.Byte)
+    IL_001A: stloc.0
+    IL_001B: ldarg.0
+    IL_001C: ldc.i4.0
+    IL_001D: call Z0.Vec128`1<System.SByte> Z0.dinx::extract128(Z0.Vec256`1<System.SByte>&,System.Byte)
+    IL_0022: stloc.1
+    IL_0023: ldloca.s V_1
+    IL_0025: ldloca.s V_0
+    IL_0027: ldc.i4.1
+    IL_0028: call Z0.Vec256`1<System.SByte> Z0.dinx::insert(Z0.Vec128`1<System.SByte>&,Z0.Vec256`1<System.SByte>&,System.Byte)
+    IL_002D: stloc.0
+    IL_002E: ldloc.0
+    IL_002F: ret
+
+}
+Vec256<short> swaphl(in Vec256<short> src)
+{
+    IL_0000: ldloca.s V_0
+    IL_0002: initobj Z0.Vec256`1<System.Int16>
+    IL_0008: ldarg.0
+    IL_0009: ldc.i4.1
+    IL_000A: call Z0.Vec128`1<System.Int16> Z0.dinx::extract128(Z0.Vec256`1<System.Int16>&,System.Byte)
+    IL_000F: stloc.1
+    IL_0010: ldloca.s V_1
+    IL_0012: ldloca.s V_0
+    IL_0014: ldc.i4.0
+    IL_0015: call Z0.Vec256`1<System.Int16> Z0.dinx::insert(Z0.Vec128`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Byte)
+    IL_001A: stloc.0
+    IL_001B: ldarg.0
+    IL_001C: ldc.i4.0
+    IL_001D: call Z0.Vec128`1<System.Int16> Z0.dinx::extract128(Z0.Vec256`1<System.Int16>&,System.Byte)
+    IL_0022: stloc.1
+    IL_0023: ldloca.s V_1
+    IL_0025: ldloca.s V_0
+    IL_0027: ldc.i4.1
+    IL_0028: call Z0.Vec256`1<System.Int16> Z0.dinx::insert(Z0.Vec128`1<System.Int16>&,Z0.Vec256`1<System.Int16>&,System.Byte)
+    IL_002D: stloc.0
+    IL_002E: ldloc.0
+    IL_002F: ret
+
+}
+Vec256<ushort> swaphl(in Vec256<ushort> src)
+{
+    IL_0000: ldloca.s V_0
+    IL_0002: initobj Z0.Vec256`1<System.UInt16>
+    IL_0008: ldarg.0
+    IL_0009: ldc.i4.1
+    IL_000A: call Z0.Vec128`1<System.UInt16> Z0.dinx::extract128(Z0.Vec256`1<System.UInt16>&,System.Byte)
+    IL_000F: stloc.1
+    IL_0010: ldloca.s V_1
+    IL_0012: ldloca.s V_0
+    IL_0014: ldc.i4.0
+    IL_0015: call Z0.Vec256`1<System.UInt16> Z0.dinx::insert(Z0.Vec128`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.Byte)
+    IL_001A: stloc.0
+    IL_001B: ldarg.0
+    IL_001C: ldc.i4.0
+    IL_001D: call Z0.Vec128`1<System.UInt16> Z0.dinx::extract128(Z0.Vec256`1<System.UInt16>&,System.Byte)
+    IL_0022: stloc.1
+    IL_0023: ldloca.s V_1
+    IL_0025: ldloca.s V_0
+    IL_0027: ldc.i4.1
+    IL_0028: call Z0.Vec256`1<System.UInt16> Z0.dinx::insert(Z0.Vec128`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&,System.Byte)
+    IL_002D: stloc.0
+    IL_002E: ldloc.0
+    IL_002F: ret
+
+}
+Vec256<long> swaphl(in Vec256<long> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldc.i4.s 78
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0017: ret
+
+}
+Vec256<ulong> swaphl(in Vec256<ulong> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldc.i4.s 78
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0017: ret
+
+}
+Vec256<double> swaphl(in Vec256<double> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldc.i4.s 78
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx2::Permute4x64(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_0017: ret
+
+}
+Vec128<sbyte> unpackhi(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<byte> unpackhi(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<short> unpackhi(in Vec128<short> lhs, in Vec128<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -4212,12 +4067,25 @@ Vec128<short> sign(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int16>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
     IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
     IL_0020: ret
 
 }
-Vec128<int> sign(in Vec128<int> lhs, in Vec128<int> rhs)
+Vec128<ushort> unpackhi(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<int> unpackhi(in Vec128<int> lhs, in Vec128<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -4225,42 +4093,139 @@ Vec128<int> sign(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_000B: ldarg.1
     IL_000C: ldobj Z0.Vec128`1<System.Int32>
     IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
     IL_0020: ret
 
 }
-Vec256<sbyte> sign(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+Vec128<uint> unpackhi(in Vec128<uint> lhs, in Vec128<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Vec256<short> sign(in Vec256<short> lhs, in Vec256<short> rhs)
+Vec128<long> unpackhi(in Vec128<long> lhs, in Vec128<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0020: ret
 
 }
-Vec256<int> sign(in Vec256<int> lhs, in Vec256<int> rhs)
+Vec128<ulong> unpackhi(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::UnpackHigh(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> unpackhi(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<byte> unpackhi(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<short> unpackhi(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<ushort> unpackhi(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<int> unpackhi(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> unpackhi(in Vec256<uint> lhs, in Vec256<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<long> unpackhi(in Vec256<long> lhs, in Vec256<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::UnpackHigh(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec128<byte> sub(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -4367,140 +4332,108 @@ Vec128<ulong> sub(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
     IL_0020: ret
 
 }
-Vec128<float> sub(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Subtract(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> sub(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Subtract(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
 Vec256<byte> sub(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> sub(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<short> sub(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<ushort> sub(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
 Vec256<int> sub(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec256<uint> sub(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
 Vec256<long> sub(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> sub(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
-
-}
-Vec256<float> sub(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> sub(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Subtract(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Subtract(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
 Vec128<short> hsub(in Vec128<short> lhs, in Vec128<short> rhs)
@@ -4529,74 +4462,30 @@ Vec128<int> hsub(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_0020: ret
 
 }
-Vec128<float> hsub(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse3::HorizontalSubtract(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> hsub(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse3::HorizontalSubtract(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
 Vec256<short> subh(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<int> hsub(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<float> hsub(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> hsub(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::HorizontalSubtract(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec128<byte> subs(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -4654,48 +4543,461 @@ Vec128<ushort> subs(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
 Vec256<byte> subs(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> subs(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<short> subs(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<ushort> subs(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::SubtractSaturate(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
-Vec128<short> blend(in Vec128<short> lhs, in Vec128<short> rhs, byte control)
+short Sum(ReadOnlySpan<short> src)
+{
+    IL_0000: ldsfld System.Int32 Z0.Vec128`1<System.Int16>::Length
+    IL_0005: stloc.0
+    IL_0006: ldc.i4.2
+    IL_0007: ldloc.0
+    IL_0008: mul
+    IL_0009: stloc.1
+    IL_000A: ldarga.s src
+    IL_000C: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
+    IL_0011: stloc.2
+    IL_0012: ldloc.2
+    IL_0013: ldloc.1
+    IL_0014: rem
+    IL_0015: ldc.i4.0
+    IL_0016: ceq
+    IL_0018: ldnull
+    IL_0019: ldstr "J:\\dev\\projects\\z0\\inx\\src\\core\\ops\\arithmetic\\sum.cs"
+    IL_001E: ldstr "J:\\dev\\projects\\z0\\inx\\src\\core\\ops\\arithmetic\\sum.cs"
+    IL_0023: ldc.i4.s 22
+    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_002A: call System.Boolean zfunc::require(System.Boolean,System.String,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_002F: pop
+    IL_0030: ldc.i4.0
+    IL_0031: call Z0.Vec128`1<System.Int16> Z0.Vec128::Fill<System.Int16>(System.Int16)
+    IL_0036: stloc.3
+    IL_0037: ldc.i4.0
+    IL_0038: stloc.s V_4
+    IL_003A: ldc.i4.0
+    IL_003B: stloc.s V_7
+    IL_003D: br.s IL_007C
+    IL_003F: ldarga.s src
+    IL_0041: ldloc.s V_4
+    IL_0043: call Z0.Vec128`1<System.Int16> Z0.Vec128::Load<System.Int16>(System.ReadOnlySpan`1<System.Int16>&,System.Int32)
+    IL_0048: stloc.s V_8
+    IL_004A: ldloc.s V_4
+    IL_004C: ldloc.0
+    IL_004D: add
+    IL_004E: stloc.s V_4
+    IL_0050: ldarga.s src
+    IL_0052: ldloc.s V_4
+    IL_0054: call Z0.Vec128`1<System.Int16> Z0.Vec128::Load<System.Int16>(System.ReadOnlySpan`1<System.Int16>&,System.Int32)
+    IL_0059: stloc.s V_9
+    IL_005B: ldloc.s V_4
+    IL_005D: ldloc.0
+    IL_005E: add
+    IL_005F: stloc.s V_4
+    IL_0061: ldloca.s V_8
+    IL_0063: ldloca.s V_9
+    IL_0065: call Z0.Vec128`1<System.Int16> Z0.dinx::hadd(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_006A: stloc.s V_10
+    IL_006C: ldloca.s V_3
+    IL_006E: ldloca.s V_10
+    IL_0070: call Z0.Vec128`1<System.Int16> Z0.dinx::add(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_0075: stloc.3
+    IL_0076: ldloc.s V_7
+    IL_0078: ldloc.1
+    IL_0079: add
+    IL_007A: stloc.s V_7
+    IL_007C: ldloc.s V_7
+    IL_007E: ldloc.2
+    IL_007F: blt.s IL_003F
+    IL_0081: ldloc.0
+    IL_0082: stloc.s V_11
+    IL_0084: ldloc.s V_11
+    IL_0086: conv.u
+    IL_0087: ldc.i4.2
+    IL_0088: mul.ovf.un
+    IL_0089: localloc
+    IL_008B: ldloc.s V_11
+    IL_008D: newobj System.Void System.Span`1<System.Int16>::.ctor(System.Void*,System.Int32)
+    IL_0092: stloc.s V_12
+    IL_0094: ldloc.s V_12
+    IL_0096: stloc.s V_5
+    IL_0098: ldloca.s V_3
+    IL_009A: ldloca.s V_5
+    IL_009C: ldc.i4.0
+    IL_009D: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_00A2: call System.Void zfunc::vstore<System.Int16>(Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_00A7: ldc.i4.0
+    IL_00A8: stloc.s V_6
+    IL_00AA: ldc.i4.0
+    IL_00AB: stloc.s V_13
+    IL_00AD: br.s IL_00C5
+    IL_00AF: ldloc.s V_6
+    IL_00B1: ldloca.s V_5
+    IL_00B3: ldloc.s V_13
+    IL_00B5: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
+    IL_00BA: ldind.i2
+    IL_00BB: add
+    IL_00BC: conv.i2
+    IL_00BD: stloc.s V_6
+    IL_00BF: ldloc.s V_13
+    IL_00C1: ldc.i4.1
+    IL_00C2: add
+    IL_00C3: stloc.s V_13
+    IL_00C5: ldloc.s V_13
+    IL_00C7: ldloc.0
+    IL_00C8: blt.s IL_00AF
+    IL_00CA: ldloc.s V_6
+    IL_00CC: ret
+
+}
+int Sum(ReadOnlySpan<int> src)
+{
+    IL_0000: ldsfld System.Int32 Z0.Vec128`1<System.Int32>::Length
+    IL_0005: stloc.0
+    IL_0006: ldc.i4.2
+    IL_0007: ldloc.0
+    IL_0008: mul
+    IL_0009: stloc.1
+    IL_000A: ldarga.s src
+    IL_000C: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
+    IL_0011: stloc.2
+    IL_0012: ldloc.2
+    IL_0013: ldloc.1
+    IL_0014: rem
+    IL_0015: ldc.i4.0
+    IL_0016: ceq
+    IL_0018: ldnull
+    IL_0019: ldstr "J:\\dev\\projects\\z0\\inx\\src\\core\\ops\\arithmetic\\sum.cs"
+    IL_001E: ldstr "J:\\dev\\projects\\z0\\inx\\src\\core\\ops\\arithmetic\\sum.cs"
+    IL_0023: ldc.i4.s 51
+    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
+    IL_002A: call System.Boolean zfunc::require(System.Boolean,System.String,System.String,System.String,System.Nullable`1<System.Int32>)
+    IL_002F: pop
+    IL_0030: ldc.i4.0
+    IL_0031: call Z0.Vec128`1<System.Int32> Z0.Vec128::Fill<System.Int32>(System.Int32)
+    IL_0036: stloc.3
+    IL_0037: ldc.i4.0
+    IL_0038: stloc.s V_4
+    IL_003A: ldc.i4.0
+    IL_003B: stloc.s V_7
+    IL_003D: br.s IL_007C
+    IL_003F: ldarga.s src
+    IL_0041: ldloc.s V_4
+    IL_0043: call Z0.Vec128`1<System.Int32> Z0.Vec128::Load<System.Int32>(System.ReadOnlySpan`1<System.Int32>&,System.Int32)
+    IL_0048: stloc.s V_8
+    IL_004A: ldloc.s V_4
+    IL_004C: ldloc.0
+    IL_004D: add
+    IL_004E: stloc.s V_4
+    IL_0050: ldarga.s src
+    IL_0052: ldloc.s V_4
+    IL_0054: call Z0.Vec128`1<System.Int32> Z0.Vec128::Load<System.Int32>(System.ReadOnlySpan`1<System.Int32>&,System.Int32)
+    IL_0059: stloc.s V_9
+    IL_005B: ldloc.s V_4
+    IL_005D: ldloc.0
+    IL_005E: add
+    IL_005F: stloc.s V_4
+    IL_0061: ldloca.s V_8
+    IL_0063: ldloca.s V_9
+    IL_0065: call Z0.Vec128`1<System.Int32> Z0.dinx::hadd(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_006A: stloc.s V_10
+    IL_006C: ldloca.s V_3
+    IL_006E: ldloca.s V_10
+    IL_0070: call Z0.Vec128`1<System.Int32> Z0.dinx::add(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0075: stloc.3
+    IL_0076: ldloc.s V_7
+    IL_0078: ldloc.1
+    IL_0079: add
+    IL_007A: stloc.s V_7
+    IL_007C: ldloc.s V_7
+    IL_007E: ldloc.2
+    IL_007F: blt.s IL_003F
+    IL_0081: ldloc.0
+    IL_0082: stloc.s V_11
+    IL_0084: ldloc.s V_11
+    IL_0086: conv.u
+    IL_0087: ldc.i4.4
+    IL_0088: mul.ovf.un
+    IL_0089: localloc
+    IL_008B: ldloc.s V_11
+    IL_008D: newobj System.Void System.Span`1<System.Int32>::.ctor(System.Void*,System.Int32)
+    IL_0092: stloc.s V_12
+    IL_0094: ldloc.s V_12
+    IL_0096: stloc.s V_5
+    IL_0098: ldloca.s V_3
+    IL_009A: ldloca.s V_5
+    IL_009C: ldc.i4.0
+    IL_009D: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_00A2: call System.Void zfunc::vstore<System.Int32>(Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_00A7: ldc.i4.0
+    IL_00A8: stloc.s V_6
+    IL_00AA: ldc.i4.0
+    IL_00AB: stloc.s V_13
+    IL_00AD: br.s IL_00C4
+    IL_00AF: ldloc.s V_6
+    IL_00B1: ldloca.s V_5
+    IL_00B3: ldloc.s V_13
+    IL_00B5: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
+    IL_00BA: ldind.i4
+    IL_00BB: add
+    IL_00BC: stloc.s V_6
+    IL_00BE: ldloc.s V_13
+    IL_00C0: ldc.i4.1
+    IL_00C1: add
+    IL_00C2: stloc.s V_13
+    IL_00C4: ldloc.s V_13
+    IL_00C6: ldloc.0
+    IL_00C7: blt.s IL_00AF
+    IL_00C9: ldloc.s V_6
+    IL_00CB: ret
+
+}
+int Sum(Span<int> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.ReadOnlySpan`1<System.Int32> Z0.SpanExtensions::ReadOnly<System.Int32>(System.Span`1<System.Int32>)
+    IL_0006: call System.Int32 Z0.dinx::Sum(System.ReadOnlySpan`1<System.Int32>)
+    IL_000B: ret
+
+}
+Vec128<sbyte> alignr(Vec128<sbyte> left, Vec128<sbyte> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0017: ret
+
+}
+Vec128<byte> alignr(Vec128<byte> left, Vec128<byte> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0017: ret
+
+}
+Vec128<short> alignr(Vec128<short> left, Vec128<short> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0017: ret
+
+}
+Vec128<ushort> alignr(Vec128<ushort> left, Vec128<ushort> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0017: ret
+
+}
+Vec128<int> alignr(Vec128<int> left, Vec128<int> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0017: ret
+
+}
+Vec128<uint> alignr(Vec128<uint> left, Vec128<uint> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0017: ret
+
+}
+Vec128<long> alignr(Vec128<long> left, Vec128<long> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0017: ret
+
+}
+Vec128<ulong> alignr(Vec128<ulong> left, Vec128<ulong> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Ssse3::AlignRight(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0017: ret
+
+}
+Vec256<byte> alignr(Vec256<byte> left, Vec256<byte> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0017: ret
+
+}
+Vec256<sbyte> alignr(Vec256<sbyte> left, Vec256<sbyte> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0017: ret
+
+}
+Vec256<short> alignr(Vec256<short> left, Vec256<short> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0017: ret
+
+}
+Vec256<ushort> alignr(Vec256<ushort> left, Vec256<ushort> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0017: ret
+
+}
+Vec256<int> alignr(Vec256<int> left, Vec256<int> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0017: ret
+
+}
+Vec256<uint> alignr(Vec256<uint> left, Vec256<uint> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0017: ret
+
+}
+Vec256<long> alignr(Vec256<long> left, Vec256<long> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0017: ret
+
+}
+Vec256<ulong> alignr(Vec256<ulong> left, Vec256<ulong> right, byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0006: ldarg.1
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::AlignRight(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0012: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0017: ret
+
+}
+Vec128<short> blend(in Vec128<short> x, in Vec128<short> y, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -4709,7 +5011,7 @@ Vec128<short> blend(in Vec128<short> lhs, in Vec128<short> rhs, byte control)
     IL_0021: ret
 
 }
-Vec128<ushort> blend(in Vec128<ushort> lhs, in Vec128<ushort> rhs, byte control)
+Vec128<ushort> blend(in Vec128<ushort> x, in Vec128<ushort> y, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
@@ -4723,7 +5025,7 @@ Vec128<ushort> blend(in Vec128<ushort> lhs, in Vec128<ushort> rhs, byte control)
     IL_0021: ret
 
 }
-Vec128<int> blend(in Vec128<int> lhs, in Vec128<int> rhs, byte control)
+Vec128<int> blend(in Vec128<int> x, in Vec128<int> y, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -4737,7 +5039,7 @@ Vec128<int> blend(in Vec128<int> lhs, in Vec128<int> rhs, byte control)
     IL_0021: ret
 
 }
-Vec128<uint> blend(in Vec128<uint> lhs, in Vec128<uint> rhs, byte control)
+Vec128<uint> blend(in Vec128<uint> x, in Vec128<uint> y, byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.UInt32>
@@ -4751,234 +5053,188 @@ Vec128<uint> blend(in Vec128<uint> lhs, in Vec128<uint> rhs, byte control)
     IL_0021: ret
 
 }
-Vec128<float> blend(in Vec128<float> lhs, in Vec128<float> rhs, byte control)
+Vec256<short> blend(in Vec256<short> x, in Vec256<short> y, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
     IL_0016: ldarg.2
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::Blend(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_001C: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
     IL_0021: ret
 
 }
-Vec128<double> blend(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
+Vec256<ushort> blend(in Vec256<ushort> x, in Vec256<ushort> y, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
     IL_0016: ldarg.2
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::Blend(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_001C: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
     IL_0021: ret
 
 }
-Vec256<short> blend(in Vec256<short> lhs, in Vec256<short> rhs, byte control)
+Vec256<int> blend(in Vec256<int> x, in Vec256<int> y, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0021: ret
 
 }
-Vec256<ushort> blend(in Vec256<ushort> lhs, in Vec256<ushort> rhs, byte control)
+Vec256<uint> blend(in Vec256<uint> x, in Vec256<uint> y, byte control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_001C: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0021: ret
 
 }
-Vec256<int> blend(in Vec256<int> lhs, in Vec256<int> rhs, byte control)
+Vec256<byte> blendv(in Vec256<byte> x, in Vec256<byte> y, in Vec256<byte> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.Byte>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0026: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_002B: ret
 
 }
-Vec256<uint> blend(in Vec256<uint> lhs, in Vec256<uint> rhs, byte control)
+Vec256<sbyte> blendv(in Vec256<sbyte> x, in Vec256<sbyte> y, in Vec256<sbyte> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.SByte>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0026: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_002B: ret
 
 }
-Vec256<float> blend(in Vec256<float> lhs, in Vec256<float> rhs, byte control)
+Vec256<short> blendv(in Vec256<short> x, in Vec256<short> y, in Vec256<short> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Blend(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.Int16>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0026: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_002B: ret
 
 }
-Vec256<double> blend(in Vec256<double> lhs, in Vec256<double> rhs, byte control)
+Vec256<ushort> blendv(in Vec256<ushort> x, in Vec256<ushort> y, in Vec256<ushort> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Blend(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
-    IL_0012: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0017: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.UInt16>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0026: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_002B: ret
 
 }
-Vec256<byte> blendv(in Vec256<byte> lhs, in Vec256<byte> rhs, in Vec256<byte> control)
+Vec256<int> blendv(in Vec256<int> x, in Vec256<int> y, in Vec256<int> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0017: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.Int32>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0026: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_002B: ret
 
 }
-Vec256<sbyte> blendv(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, in Vec256<sbyte> control)
+Vec256<uint> blendv(in Vec256<uint> x, in Vec256<uint> y, in Vec256<uint> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0017: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.UInt32>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0026: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_002B: ret
 
 }
-Vec256<short> blendv(in Vec256<short> lhs, in Vec256<short> rhs, in Vec256<short> control)
+Vec256<long> blendv(in Vec256<long> x, in Vec256<long> y, in Vec256<long> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0017: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.Int64>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0026: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_002B: ret
 
 }
-Vec256<ushort> blendv(in Vec256<ushort> lhs, in Vec256<ushort> rhs, in Vec256<ushort> control)
+Vec256<ulong> blendv(in Vec256<ulong> x, in Vec256<ulong> y, in Vec256<ulong> control)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0017: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001C: ret
-
-}
-Vec256<int> blendv(in Vec256<int> lhs, in Vec256<int> rhs, in Vec256<int> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0017: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_001C: ret
-
-}
-Vec256<uint> blendv(in Vec256<uint> lhs, in Vec256<uint> rhs, in Vec256<uint> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0017: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001C: ret
-
-}
-Vec256<long> blendv(in Vec256<long> lhs, in Vec256<long> rhs, in Vec256<long> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0017: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_001C: ret
-
-}
-Vec256<ulong> blendv(in Vec256<ulong> lhs, in Vec256<ulong> rhs, in Vec256<ulong> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0017: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001C: ret
-
-}
-Vec256<float> blendv(in Vec256<float> lhs, in Vec256<float> rhs, in Vec256<float> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0017: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_001C: ret
-
-}
-Vec256<double> blendv(in Vec256<double> lhs, in Vec256<double> rhs, in Vec256<double> control)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: ldarg.2
-    IL_000D: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0012: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0017: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_001C: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: ldarg.2
+    IL_0017: ldobj Z0.Vec256`1<System.UInt64>
+    IL_001C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0021: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::BlendVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0026: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_002B: ret
 
 }
 ref Vec256<sbyte> broadcast(in sbyte src, out Vec256<sbyte> dst)
@@ -5081,32 +5337,6 @@ ref Vec256<ulong> broadcast(in ulong src, out Vec256<ulong> dst)
     IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::BroadcastScalarToVector256(System.UInt64*)
     IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
     IL_0016: stobj Z0.Vec256`1<System.UInt64>
-    IL_001B: ldarg.1
-    IL_001C: ret
-
-}
-ref Vec256<float> broadcast(in float src, out Vec256<float> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: call System.Single& Z0.As::asRef<System.Single>(System.Single&)
-    IL_0007: call System.Single* Z0.As::refptr(System.Single&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::BroadcastScalarToVector256(System.Single*)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: stobj Z0.Vec256`1<System.Single>
-    IL_001B: ldarg.1
-    IL_001C: ret
-
-}
-ref Vec256<double> broadcast(in double src, out Vec256<double> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: call System.Double& Z0.As::asRef<System.Double>(System.Double&)
-    IL_0007: call System.Double* Z0.As::refptr(System.Double&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::BroadcastScalarToVector256(System.Double*)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: stobj Z0.Vec256`1<System.Double>
     IL_001B: ldarg.1
     IL_001C: ret
 
@@ -5215,32 +5445,6 @@ ref Vec128<ulong> broadcast(in ulong src, out Vec128<ulong> dst)
     IL_001C: ret
 
 }
-ref Vec128<float> broadcast(in float src, out Vec128<float> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: call System.Single& Z0.As::asRef<System.Single>(System.Single&)
-    IL_0007: call System.Single* Z0.As::refptr(System.Single&)
-    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::BroadcastScalarToVector128(System.Single*)
-    IL_0011: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0016: stobj Z0.Vec128`1<System.Single>
-    IL_001B: ldarg.1
-    IL_001C: ret
-
-}
-ref Vec128<double> broadcast(in double src, out Vec128<double> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldind.r8
-    IL_0003: ldarg.0
-    IL_0004: ldind.r8
-    IL_0005: call Z0.Vec128`1<System.Double> Z0.Vec128::FromParts(System.Double,System.Double)
-    IL_000A: stobj Z0.Vec128`1<System.Double>
-    IL_000F: ldarg.1
-    IL_0010: ret
-
-}
 ref Vec128<short> convert(in Vec128<sbyte> src, out Vec128<short> dst)
 {
     IL_0000: ldarg.1
@@ -5293,18 +5497,6 @@ ref Vec128<short> convert(in Vec128<byte> src, out Vec128<short> dst)
     IL_001C: ret
 
 }
-ref Vec128<ushort> convert(in Vec128<byte> src, out Vec128<ushort> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int16>& Z0.dinx::convert(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Int16>&)
-    IL_0009: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.Int16>::As<System.UInt16>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt16>
-    IL_0013: ldarg.1
-    IL_0014: ret
-
-}
 ref Vec128<int> convert(in Vec128<byte> src, out Vec128<int> dst)
 {
     IL_0000: ldarg.1
@@ -5318,18 +5510,6 @@ ref Vec128<int> convert(in Vec128<byte> src, out Vec128<int> dst)
     IL_001C: ret
 
 }
-ref Vec128<uint> convert(in Vec128<byte> src, out Vec128<uint> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int32>& Z0.dinx::convert(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Int32>&)
-    IL_0009: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.Int32>::As<System.UInt32>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt32>
-    IL_0013: ldarg.1
-    IL_0014: ret
-
-}
 ref Vec128<long> convert(in Vec128<byte> src, out Vec128<long> dst)
 {
     IL_0000: ldarg.1
@@ -5341,18 +5521,6 @@ ref Vec128<long> convert(in Vec128<byte> src, out Vec128<long> dst)
     IL_0016: stobj Z0.Vec128`1<System.Int64>
     IL_001B: ldarg.1
     IL_001C: ret
-
-}
-ref Vec128<ulong> convert(in Vec128<byte> src, out Vec128<ulong> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int64>& Z0.dinx::convert(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Int64>&)
-    IL_0009: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.Int64>::As<System.UInt64>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt64>
-    IL_0013: ldarg.1
-    IL_0014: ret
 
 }
 Vec128<int> convert(in Vec128<short> src, out Vec128<int> dst)
@@ -5396,18 +5564,6 @@ ref Vec128<int> convert(in Vec128<ushort> src, out Vec128<int> dst)
     IL_001C: ret
 
 }
-ref Vec128<uint> convert(in Vec128<ushort> src, out Vec128<uint> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int32>& Z0.dinx::convert(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.Int32>&)
-    IL_0009: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.Int32>::As<System.UInt32>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt32>
-    IL_0013: ldarg.1
-    IL_0014: ret
-
-}
 ref Vec128<long> convert(in Vec128<ushort> src, out Vec128<long> dst)
 {
     IL_0000: ldarg.1
@@ -5419,18 +5575,6 @@ ref Vec128<long> convert(in Vec128<ushort> src, out Vec128<long> dst)
     IL_0016: stobj Z0.Vec128`1<System.Int64>
     IL_001B: ldarg.1
     IL_001C: ret
-
-}
-ref Vec128<ulong> convert(in Vec128<ushort> src, out Vec128<ulong> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int64>& Z0.dinx::convert(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.Int64>&)
-    IL_0009: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.Int64>::As<System.UInt64>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt64>
-    IL_0013: ldarg.1
-    IL_0014: ret
 
 }
 ref Vec128<long> convert(in Vec128<int> src, out Vec128<long> dst)
@@ -5457,18 +5601,6 @@ ref Vec128<long> convert(in Vec128<uint> src, out Vec128<long> dst)
     IL_0016: stobj Z0.Vec128`1<System.Int64>
     IL_001B: ldarg.1
     IL_001C: ret
-
-}
-ref Vec128<ulong> convert(in Vec128<uint> src, out Vec128<ulong> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldloca.s V_0
-    IL_0004: call Z0.Vec128`1<System.Int64>& Z0.dinx::convert(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.Int64>&)
-    IL_0009: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.Int64>::As<System.UInt64>()
-    IL_000E: stobj Z0.Vec128`1<System.UInt64>
-    IL_0013: ldarg.1
-    IL_0014: ret
 
 }
 ref Vec256<short> convert(in Vec128<sbyte> src, out Vec256<short> dst)
@@ -5523,20 +5655,6 @@ ref Vec256<short> convert(in Vec128<byte> src, out Vec256<short> dst)
     IL_001C: ret
 
 }
-ref Vec256<ushort> convert(in Vec128<byte> src, out Vec256<ushort> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.Byte>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int16(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.Vector256::AsUInt16<System.Int16>(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt16>
-    IL_0020: ldarg.1
-    IL_0021: ret
-
-}
 ref Vec256<int> convert(in Vec128<byte> src, out Vec256<int> dst)
 {
     IL_0000: ldarg.1
@@ -5550,20 +5668,6 @@ ref Vec256<int> convert(in Vec128<byte> src, out Vec256<int> dst)
     IL_001C: ret
 
 }
-ref Vec256<uint> convert(in Vec128<byte> src, out Vec256<uint> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.Byte>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int32(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.Vector256::AsUInt32<System.Int32>(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt32>
-    IL_0020: ldarg.1
-    IL_0021: ret
-
-}
 ref Vec256<long> convert(in Vec128<byte> src, out Vec256<long> dst)
 {
     IL_0000: ldarg.1
@@ -5575,20 +5679,6 @@ ref Vec256<long> convert(in Vec128<byte> src, out Vec256<long> dst)
     IL_0016: stobj Z0.Vec256`1<System.Int64>
     IL_001B: ldarg.1
     IL_001C: ret
-
-}
-ref Vec256<ulong> convert(in Vec128<byte> src, out Vec256<ulong> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.Byte>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int32(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.Vector256::AsUInt64<System.Int32>(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt64>
-    IL_0020: ldarg.1
-    IL_0021: ret
 
 }
 ref Vec256<int> convert(in Vec128<short> src, out Vec256<int> dst)
@@ -5643,18 +5733,16 @@ ref Vec256<int> convert(in Vec128<ushort> src, out Vec256<int> dst)
     IL_001C: ret
 
 }
-ref Vec256<uint> convert(in Vec128<ushort> src, out Vec256<uint> dst)
+ref Vec256<int> convert(ref ushort src, out Vec256<int> dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int32(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.Vector256::AsUInt32<System.Int32>(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt32>
-    IL_0020: ldarg.1
-    IL_0021: ret
+    IL_0002: call System.UInt16* Z0.As::refptr(System.UInt16&)
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int32(System.UInt16*)
+    IL_000C: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0011: stobj Z0.Vec256`1<System.Int32>
+    IL_0016: ldarg.1
+    IL_0017: ret
 
 }
 ref Vec256<long> convert(in Vec128<ushort> src, out Vec256<long> dst)
@@ -5670,18 +5758,16 @@ ref Vec256<long> convert(in Vec128<ushort> src, out Vec256<long> dst)
     IL_001C: ret
 
 }
-ref Vec256<ulong> convert(in Vec128<ushort> src, out Vec256<ulong> dst)
+ref Vec256<long> convert(ref ushort src, out Vec256<long> dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int64(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.Vector256::AsUInt64<System.Int64>(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt64>
-    IL_0020: ldarg.1
-    IL_0021: ret
+    IL_0002: call System.UInt16* Z0.As::refptr(System.UInt16&)
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int64(System.UInt16*)
+    IL_000C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0011: stobj Z0.Vec256`1<System.Int64>
+    IL_0016: ldarg.1
+    IL_0017: ret
 
 }
 ref Vec256<long> convert(in Vec128<uint> src, out Vec256<long> dst)
@@ -5697,18 +5783,16 @@ ref Vec256<long> convert(in Vec128<uint> src, out Vec256<long> dst)
     IL_001C: ret
 
 }
-ref Vec256<ulong> convert(in Vec128<uint> src, out Vec256<ulong> dst)
+ref Vec256<long> convert(ref uint src, out Vec256<long> dst)
 {
     IL_0000: ldarg.1
     IL_0001: ldarg.0
-    IL_0002: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int64(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.Vector256::AsUInt64<System.Int64>(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: stobj Z0.Vec256`1<System.UInt64>
-    IL_0020: ldarg.1
-    IL_0021: ret
+    IL_0002: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ConvertToVector256Int64(System.UInt32*)
+    IL_000C: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0011: stobj Z0.Vec256`1<System.Int64>
+    IL_0016: ldarg.1
+    IL_0017: ret
 
 }
 byte extract(in Vec128<byte> src, byte pos)
@@ -5784,443 +5868,171 @@ float extract(in Vec128<float> src, byte pos)
 Vec128<sbyte> extract128(in Vec256<sbyte> src, byte pos)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
-    IL_000C: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0011: ret
-
-}
-Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Average(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
-
-}
-Vec128<ushort> avg(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Average(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
-
-}
-Vec256<byte> avg(in Vec256<byte> lhs, in Vec256<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Average(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
     IL_0016: ret
 
 }
-Vec256<ushort> avg(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+Vec128<byte> extract128(in Vec256<byte> src, byte pos)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Average(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
     IL_0016: ret
 
 }
-Vec128<byte> max(in Vec128<byte> lhs, in Vec128<byte> rhs)
+Vec128<short> extract128(in Vec256<short> src, byte pos)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Max(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0016: ret
 
 }
-Vec128<sbyte> max(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+Vec128<ushort> extract128(in Vec256<ushort> src, byte pos)
 {
     IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0016: ret
+
+}
+Vec128<int> extract128(in Vec256<int> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0016: ret
+
+}
+Vec128<uint> extract128(in Vec256<uint> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0016: ret
+
+}
+Vec128<long> extract128(in Vec256<long> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0016: ret
+
+}
+Vec128<ulong> extract128(in Vec256<ulong> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0016: ret
+
+}
+Vec128<float> extract128(in Vec256<float> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_0016: ret
+
+}
+Vec128<double> extract128(in Vec256<double> src, byte pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Avx::ExtractVector128(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Byte)
+    IL_0011: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_0016: ret
+
+}
+Vec128<byte> insert(byte src, in Vec128<byte> dst, byte index)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.0
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Byte,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0017: ret
+
+}
+Vec128<sbyte> insert(sbyte src, in Vec128<sbyte> dst, byte index)
+{
+    IL_0000: ldarg.1
     IL_0001: ldobj Z0.Vec128`1<System.SByte>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: ret
+    IL_000B: ldarg.0
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.SByte,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0017: ret
 
 }
-Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
+Vec128<short> insert(short src, in Vec128<short> dst, byte index)
 {
-    IL_0000: ldarg.0
+    IL_0000: ldarg.1
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Max(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: ret
+    IL_000B: ldarg.0
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Insert(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Int16,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0017: ret
 
 }
-Vec128<int> max(in Vec128<int> lhs, in Vec128<int> rhs)
+Vec128<ushort> insert(ushort src, in Vec128<ushort> dst, byte index)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
-
-}
-Vec128<uint> max(in Vec128<uint> lhs, in Vec128<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
-
-}
-Vec128<float> max(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Max(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> max(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Max(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
-Vec256<byte> max(in Vec256<byte> lhs, in Vec256<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
-
-}
-Vec256<sbyte> max(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
-
-}
-Vec256<short> max(in Vec256<short> lhs, in Vec256<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
-
-}
-Vec128<ushort> max(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-{
-    IL_0000: ldarg.0
+    IL_0000: ldarg.1
     IL_0001: ldobj Z0.Vec128`1<System.UInt16>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
+    IL_000B: ldarg.0
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Insert(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.UInt16,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0017: ret
 
 }
-Vec256<ushort> max(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+Vec128<int> insert(int src, in Vec128<int> dst, byte index)
 {
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
-
-}
-Vec256<int> max(in Vec256<int> lhs, in Vec256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<uint> max(in Vec256<uint> lhs, in Vec256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec256<float> max(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Max(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> max(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Max(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
-
-}
-Vec128<byte> min(in Vec128<byte> lhs, in Vec128<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Min(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
-
-}
-Vec128<sbyte> min(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.SByte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: ret
-
-}
-Vec128<short> min(in Vec128<short> lhs, in Vec128<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Min(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: ret
-
-}
-Vec128<ushort> min(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
-
-}
-Vec128<int> min(in Vec128<int> lhs, in Vec128<int> rhs)
-{
-    IL_0000: ldarg.0
+    IL_0000: ldarg.1
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
     IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
-
-}
-Vec128<uint> min(in Vec128<uint> lhs, in Vec128<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
-
-}
-Vec128<float> min(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Min(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> min(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Min(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
-Vec256<byte> min(in Vec256<byte> lhs, in Vec256<byte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
-
-}
-Vec256<sbyte> min(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
-
-}
-Vec256<short> min(in Vec256<short> lhs, in Vec256<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
-
-}
-Vec256<ushort> min(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
-
-}
-Vec256<int> min(in Vec256<int> lhs, in Vec256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<uint> min(in Vec256<uint> lhs, in Vec256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
-
-}
-Vec256<float> min(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Min(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> min(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Min(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_000B: ldarg.0
+    IL_000C: ldarg.2
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Insert(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Int32,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0017: ret
 
 }
 Vec128<byte> abs(in Vec128<sbyte> src)
@@ -6257,7 +6069,7 @@ Vec128<long> abs(in Vec128<long> src)
 {
     IL_0000: ldarg.0
     IL_0001: ldc.i4.s 63
-    IL_0003: call Z0.Vec128`1<System.Int64> Z0.dinx::srli(Z0.Vec128`1<System.Int64>&,System.Byte)
+    IL_0003: call Z0.Vec128`1<System.Int64> Z0.dinx::srl(Z0.Vec128`1<System.Int64>&,System.Byte)
     IL_0008: stloc.1
     IL_0009: ldloca.s V_1
     IL_000B: call Z0.Vec128`1<System.Int64> Z0.dinx::negate(Z0.Vec128`1<System.Int64>&)
@@ -6275,35 +6087,38 @@ Vec128<long> abs(in Vec128<long> src)
 Vec256<byte> abs(in Vec256<sbyte> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_000B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0010: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0010: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0015: ret
 
 }
 Vec256<ushort> abs(in Vec256<short> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_000B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0010: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0010: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0015: ret
 
 }
 Vec256<uint> abs(in Vec256<int> src)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_000B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0010: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Abs(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0010: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0015: ret
 
 }
 Vec256<long> abs(Vec256<long> src)
 {
     IL_0000: ldarga.s src
     IL_0002: ldc.i4.s 63
-    IL_0004: call Z0.Vec256`1<System.Int64> Z0.dinx::srli(Z0.Vec256`1<System.Int64>&,System.Byte)
+    IL_0004: call Z0.Vec256`1<System.Int64> Z0.dinx::srl(Z0.Vec256`1<System.Int64>&,System.Byte)
     IL_0009: stloc.1
     IL_000A: ldloca.s V_1
     IL_000C: call Z0.Vec256`1<System.Int64> Z0.dinx::negate(Z0.Vec256`1<System.Int64>&)
@@ -6316,6 +6131,192 @@ Vec256<long> abs(Vec256<long> src)
     IL_001E: ldloca.s V_0
     IL_0020: call Z0.Vec256`1<System.Int64> Z0.dinx::sub(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
     IL_0025: ret
+
+}
+Span128<byte> abs(ReadOnlySpan128<sbyte> src, Span128<byte> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_002D
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan128`1<System.SByte>::Block(System.Int32)
+    IL_000C: call Z0.Vec128`1<System.SByte> Z0.Vec128::Loadi<System.SByte>(System.SByte&)
+    IL_0011: stloc.1
+    IL_0012: ldloca.s V_1
+    IL_0014: call Z0.Vec128`1<System.Byte> Z0.dinx::abs(Z0.Vec128`1<System.SByte>&)
+    IL_0019: stloc.2
+    IL_001A: ldloca.s V_2
+    IL_001C: ldarga.s dst
+    IL_001E: ldloc.0
+    IL_001F: call System.Byte& Z0.Span128`1<System.Byte>::get_Item(System.Int32)
+    IL_0024: call System.Void zfunc::vstore<System.Byte>(Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0029: ldloc.0
+    IL_002A: ldc.i4.1
+    IL_002B: add
+    IL_002C: stloc.0
+    IL_002D: ldloc.0
+    IL_002E: ldarga.s src
+    IL_0030: call System.Int32 Z0.ReadOnlySpan128`1<System.SByte>::get_BlockCount()
+    IL_0035: blt.s IL_0004
+    IL_0037: ldarg.1
+    IL_0038: ret
+
+}
+Span128<ushort> abs(ReadOnlySpan128<short> src, Span128<ushort> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_002D
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan128`1<System.Int16>::Block(System.Int32)
+    IL_000C: call Z0.Vec128`1<System.Int16> Z0.Vec128::Loadi<System.Int16>(System.Int16&)
+    IL_0011: stloc.1
+    IL_0012: ldloca.s V_1
+    IL_0014: call Z0.Vec128`1<System.UInt16> Z0.dinx::abs(Z0.Vec128`1<System.Int16>&)
+    IL_0019: stloc.2
+    IL_001A: ldloca.s V_2
+    IL_001C: ldarga.s dst
+    IL_001E: ldloc.0
+    IL_001F: call System.UInt16& Z0.Span128`1<System.UInt16>::get_Item(System.Int32)
+    IL_0024: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_0029: ldloc.0
+    IL_002A: ldc.i4.1
+    IL_002B: add
+    IL_002C: stloc.0
+    IL_002D: ldloc.0
+    IL_002E: ldarga.s src
+    IL_0030: call System.Int32 Z0.ReadOnlySpan128`1<System.Int16>::get_BlockCount()
+    IL_0035: blt.s IL_0004
+    IL_0037: ldarg.1
+    IL_0038: ret
+
+}
+Span128<uint> abs(ReadOnlySpan128<int> src, Span128<uint> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_002D
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan128`1<System.Int32>::Block(System.Int32)
+    IL_000C: call Z0.Vec128`1<System.Int32> Z0.Vec128::Loadi<System.Int32>(System.Int32&)
+    IL_0011: stloc.1
+    IL_0012: ldloca.s V_1
+    IL_0014: call Z0.Vec128`1<System.UInt32> Z0.dinx::abs(Z0.Vec128`1<System.Int32>&)
+    IL_0019: stloc.2
+    IL_001A: ldloca.s V_2
+    IL_001C: ldarga.s dst
+    IL_001E: ldloc.0
+    IL_001F: call System.UInt32& Z0.Span128`1<System.UInt32>::get_Item(System.Int32)
+    IL_0024: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0029: ldloc.0
+    IL_002A: ldc.i4.1
+    IL_002B: add
+    IL_002C: stloc.0
+    IL_002D: ldloc.0
+    IL_002E: ldarga.s src
+    IL_0030: call System.Int32 Z0.ReadOnlySpan128`1<System.Int32>::get_BlockCount()
+    IL_0035: blt.s IL_0004
+    IL_0037: ldarg.1
+    IL_0038: ret
+
+}
+Span256<byte> abs(ReadOnlySpan256<sbyte> src, Span256<byte> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_002D
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan256`1<System.SByte>::Block(System.Int32)
+    IL_000C: call Z0.Vec256`1<System.SByte> Z0.Vec256::Loadi<System.SByte>(System.SByte&)
+    IL_0011: stloc.1
+    IL_0012: ldloca.s V_1
+    IL_0014: call Z0.Vec256`1<System.Byte> Z0.dinx::abs(Z0.Vec256`1<System.SByte>&)
+    IL_0019: stloc.2
+    IL_001A: ldloca.s V_2
+    IL_001C: ldarga.s dst
+    IL_001E: ldloc.0
+    IL_001F: call System.Byte& Z0.Span256`1<System.Byte>::get_Item(System.Int32)
+    IL_0024: call System.Void zfunc::vstore<System.Byte>(Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0029: ldloc.0
+    IL_002A: ldc.i4.1
+    IL_002B: add
+    IL_002C: stloc.0
+    IL_002D: ldloc.0
+    IL_002E: ldarga.s src
+    IL_0030: call System.Int32 Z0.ReadOnlySpan256`1<System.SByte>::get_BlockCount()
+    IL_0035: blt.s IL_0004
+    IL_0037: ldarg.1
+    IL_0038: ret
+
+}
+Span256<ushort> abs(ReadOnlySpan256<short> src, Span256<ushort> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_002D
+    IL_0004: ldarga.s src
+    IL_0006: ldloc.0
+    IL_0007: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan256`1<System.Int16>::Block(System.Int32)
+    IL_000C: call Z0.Vec256`1<System.Int16> Z0.Vec256::Loadi<System.Int16>(System.Int16&)
+    IL_0011: stloc.1
+    IL_0012: ldloca.s V_1
+    IL_0014: call Z0.Vec256`1<System.UInt16> Z0.dinx::abs(Z0.Vec256`1<System.Int16>&)
+    IL_0019: stloc.2
+    IL_001A: ldloca.s V_2
+    IL_001C: ldarga.s dst
+    IL_001E: ldloc.0
+    IL_001F: call System.UInt16& Z0.Span256`1<System.UInt16>::get_Item(System.Int32)
+    IL_0024: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_0029: ldloc.0
+    IL_002A: ldc.i4.1
+    IL_002B: add
+    IL_002C: stloc.0
+    IL_002D: ldloc.0
+    IL_002E: ldarga.s src
+    IL_0030: call System.Int32 Z0.ReadOnlySpan256`1<System.Int16>::get_BlockCount()
+    IL_0035: blt.s IL_0004
+    IL_0037: ldarg.1
+    IL_0038: ret
+
+}
+Span256<uint> abs(in ReadOnlySpan256<int> src, Span256<uint> dst)
+{
+    IL_0000: ldc.i4.0
+    IL_0001: stloc.0
+    IL_0002: br.s IL_0034
+    IL_0004: ldarg.0
+    IL_0005: ldobj Z0.ReadOnlySpan256`1<System.Int32>
+    IL_000A: stloc.2
+    IL_000B: ldloca.s V_2
+    IL_000D: ldloc.0
+    IL_000E: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) Z0.ReadOnlySpan256`1<System.Int32>::Block(System.Int32)
+    IL_0013: call Z0.Vec256`1<System.Int32> Z0.Vec256::Loadi<System.Int32>(System.Int32&)
+    IL_0018: stloc.1
+    IL_0019: ldloca.s V_1
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.dinx::abs(Z0.Vec256`1<System.Int32>&)
+    IL_0020: stloc.3
+    IL_0021: ldloca.s V_3
+    IL_0023: ldarga.s dst
+    IL_0025: ldloc.0
+    IL_0026: call System.UInt32& Z0.Span256`1<System.UInt32>::get_Item(System.Int32)
+    IL_002B: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0030: ldloc.0
+    IL_0031: ldc.i4.1
+    IL_0032: add
+    IL_0033: stloc.0
+    IL_0034: ldloc.0
+    IL_0035: ldarg.0
+    IL_0036: ldobj Z0.ReadOnlySpan256`1<System.Int32>
+    IL_003B: stloc.2
+    IL_003C: ldloca.s V_2
+    IL_003E: call System.Int32 Z0.ReadOnlySpan256`1<System.Int32>::get_BlockCount()
+    IL_0043: blt.s IL_0004
+    IL_0045: ldarg.1
+    IL_0046: ret
 
 }
 Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -6422,143 +6423,687 @@ Vec128<ulong> add(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
     IL_0020: ret
 
 }
-Vec128<float> add(in Vec128<float> lhs, in Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Add(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
-
-}
-Vec128<double> add(in Vec128<double> lhs, in Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Add(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
-
-}
 Vec256<byte> add(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> add(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<short> add(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<ushort> add(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }
 Vec256<int> add(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }
 Vec256<uint> add(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
 Vec256<long> add(in Vec256<long> lhs, in Vec256<long> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> add(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Add(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
-Vec256<float> add(in Vec256<float> lhs, in Vec256<float> rhs)
+Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::Add(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.SByte>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.SByte> Z0.ginxs::LoadVec128<System.SByte>(Z0.ReadOnlySpan128`1<System.SByte>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.SByte> Z0.ginxs::LoadVec128<System.SByte>(Z0.ReadOnlySpan128`1<System.SByte>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.SByte> Z0.dinx::add(Z0.Vec128`1<System.SByte>&,Z0.Vec128`1<System.SByte>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.SByte& Z0.Span128`1<System.SByte>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.SByte>(Z0.Vec128`1<System.SByte>&,System.SByte&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
 
 }
-Vec256<double> add(in Vec256<double> lhs, in Vec256<double> rhs)
+Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, Span128<byte> dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::Add(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.Byte>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.Byte> Z0.ginxs::LoadVec128<System.Byte>(Z0.ReadOnlySpan128`1<System.Byte>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.Byte> Z0.ginxs::LoadVec128<System.Byte>(Z0.ReadOnlySpan128`1<System.Byte>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.Byte> Z0.dinx::add(Z0.Vec128`1<System.Byte>&,Z0.Vec128`1<System.Byte>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Byte& Z0.Span128`1<System.Byte>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Byte>(Z0.Vec128`1<System.Byte>&,System.Byte&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
 
 }
-Vec128<short> addh(in Vec128<short> lhs, in Vec128<short> rhs)
+Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, Span128<short> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.Int16>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.Int16> Z0.ginxs::LoadVec128<System.Int16>(Z0.ReadOnlySpan128`1<System.Int16>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.Int16> Z0.ginxs::LoadVec128<System.Int16>(Z0.ReadOnlySpan128`1<System.Int16>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.Int16> Z0.dinx::add(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int16& Z0.Span128`1<System.Int16>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int16>(Z0.Vec128`1<System.Int16>&,System.Int16&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, Span128<ushort> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.UInt16>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.UInt16> Z0.ginxs::LoadVec128<System.UInt16>(Z0.ReadOnlySpan128`1<System.UInt16>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.UInt16> Z0.ginxs::LoadVec128<System.UInt16>(Z0.ReadOnlySpan128`1<System.UInt16>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.UInt16> Z0.dinx::add(Z0.Vec128`1<System.UInt16>&,Z0.Vec128`1<System.UInt16>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt16& Z0.Span128`1<System.UInt16>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec128`1<System.UInt16>&,System.UInt16&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<int> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.Int32>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.Int32> Z0.ginxs::LoadVec128<System.Int32>(Z0.ReadOnlySpan128`1<System.Int32>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.Int32> Z0.ginxs::LoadVec128<System.Int32>(Z0.ReadOnlySpan128`1<System.Int32>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.Int32> Z0.dinx::add(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int32& Z0.Span128`1<System.Int32>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int32>(Z0.Vec128`1<System.Int32>&,System.Int32&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<uint> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.UInt32>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.UInt32> Z0.dinx::add(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt32& Z0.Span128`1<System.UInt32>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec128`1<System.UInt32>&,System.UInt32&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, Span128<long> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.Int64>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.Int64> Z0.ginxs::LoadVec128<System.Int64>(Z0.ReadOnlySpan128`1<System.Int64>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.Int64> Z0.ginxs::LoadVec128<System.Int64>(Z0.ReadOnlySpan128`1<System.Int64>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.Int64> Z0.dinx::add(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int64& Z0.Span128`1<System.Int64>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int64>(Z0.Vec128`1<System.Int64>&,System.Int64&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, Span128<ulong> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span128`1<System.UInt64>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec128`1<System.UInt64> Z0.dinx::add(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt64& Z0.Span128`1<System.UInt64>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec128`1<System.UInt64>&,System.UInt64&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, Span256<sbyte> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.SByte>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.SByte> Z0.ginxs::LoadVec256<System.SByte>(Z0.ReadOnlySpan256`1<System.SByte>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.SByte> Z0.ginxs::LoadVec256<System.SByte>(Z0.ReadOnlySpan256`1<System.SByte>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.SByte> Z0.dinx::add(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.SByte& Z0.Span256`1<System.SByte>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.SByte>(Z0.Vec256`1<System.SByte>&,System.SByte&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, Span256<byte> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.Byte>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.Byte> Z0.ginxs::LoadVec256<System.Byte>(Z0.ReadOnlySpan256`1<System.Byte>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.Byte> Z0.ginxs::LoadVec256<System.Byte>(Z0.ReadOnlySpan256`1<System.Byte>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.Byte> Z0.dinx::add(Z0.Vec256`1<System.Byte>&,Z0.Vec256`1<System.Byte>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Byte& Z0.Span256`1<System.Byte>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Byte>(Z0.Vec256`1<System.Byte>&,System.Byte&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, Span256<short> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.Int16>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.Int16> Z0.ginxs::LoadVec256<System.Int16>(Z0.ReadOnlySpan256`1<System.Int16>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.Int16> Z0.ginxs::LoadVec256<System.Int16>(Z0.ReadOnlySpan256`1<System.Int16>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.Int16> Z0.dinx::add(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int16& Z0.Span256`1<System.Int16>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int16>(Z0.Vec256`1<System.Int16>&,System.Int16&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, Span256<ushort> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.UInt16>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.UInt16> Z0.ginxs::LoadVec256<System.UInt16>(Z0.ReadOnlySpan256`1<System.UInt16>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.UInt16> Z0.ginxs::LoadVec256<System.UInt16>(Z0.ReadOnlySpan256`1<System.UInt16>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.UInt16> Z0.dinx::add(Z0.Vec256`1<System.UInt16>&,Z0.Vec256`1<System.UInt16>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt16& Z0.Span256`1<System.UInt16>::get_Item(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec256`1<System.UInt16>&,System.UInt16&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<int> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.Int32>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.Int32> Z0.ginxs::LoadVec256<System.Int32>(Z0.ReadOnlySpan256`1<System.Int32>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.Int32> Z0.ginxs::LoadVec256<System.Int32>(Z0.ReadOnlySpan256`1<System.Int32>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.Int32> Z0.dinx::add(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int32& Z0.Span256`1<System.Int32>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int32>(Z0.Vec256`1<System.Int32>&,System.Int32&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<uint> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.UInt32>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.UInt32> Z0.dinx::add(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt32& Z0.Span256`1<System.UInt32>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec256`1<System.UInt32>&,System.UInt32&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, Span256<long> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.Int64>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.Int64> Z0.ginxs::LoadVec256<System.Int64>(Z0.ReadOnlySpan256`1<System.Int64>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.Int64> Z0.ginxs::LoadVec256<System.Int64>(Z0.ReadOnlySpan256`1<System.Int64>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.Int64> Z0.dinx::add(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.Int64>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.Int64& Z0.Span256`1<System.Int64>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.Int64>(Z0.Vec256`1<System.Int64>&,System.Int64&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, Span256<ulong> dst)
+{
+    IL_0000: ldarga.s dst
+    IL_0002: call System.Int32 Z0.Span256`1<System.UInt64>::get_BlockCount()
+    IL_0007: stloc.0
+    IL_0008: ldc.i4.0
+    IL_0009: stloc.1
+    IL_000A: br.s IL_003A
+    IL_000C: ldarg.0
+    IL_000D: ldloc.1
+    IL_000E: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
+    IL_0013: stloc.2
+    IL_0014: ldloca.s V_2
+    IL_0016: ldarg.1
+    IL_0017: ldloc.1
+    IL_0018: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
+    IL_001D: stloc.3
+    IL_001E: ldloca.s V_3
+    IL_0020: call Z0.Vec256`1<System.UInt64> Z0.dinx::add(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
+    IL_0025: stloc.s V_4
+    IL_0027: ldloca.s V_4
+    IL_0029: ldarga.s dst
+    IL_002B: ldloc.1
+    IL_002C: call System.UInt64& Z0.Span256`1<System.UInt64>::Block(System.Int32)
+    IL_0031: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec256`1<System.UInt64>&,System.UInt64&)
+    IL_0036: ldloc.1
+    IL_0037: ldc.i4.1
+    IL_0038: add
+    IL_0039: stloc.1
+    IL_003A: ldloc.1
+    IL_003B: ldloc.0
+    IL_003C: blt.s IL_000C
+    IL_003E: ldarg.2
+    IL_003F: ret
+
+}
+Vec128<short> hadd(in Vec128<short> lhs, in Vec128<short> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int16>
@@ -6571,7 +7116,7 @@ Vec128<short> addh(in Vec128<short> lhs, in Vec128<short> rhs)
     IL_0020: ret
 
 }
-Vec128<int> addh(in Vec128<int> lhs, in Vec128<int> rhs)
+Vec128<int> hadd(in Vec128<int> lhs, in Vec128<int> rhs)
 {
     IL_0000: ldarg.0
     IL_0001: ldobj Z0.Vec128`1<System.Int32>
@@ -6584,170 +7129,30 @@ Vec128<int> addh(in Vec128<int> lhs, in Vec128<int> rhs)
     IL_0020: ret
 
 }
-Vec128<float> addh(in Vec128<float> lhs, in Vec128<float> rhs)
+Vec256<short> hadd(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse3::HorizontalAdd(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
     IL_0020: ret
 
 }
-Vec128<double> addh(in Vec128<double> lhs, in Vec128<double> rhs)
+Vec256<int> hadd(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
     IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse3::HorizontalAdd(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
     IL_0020: ret
-
-}
-Vec256<short> addh(in Vec256<short> lhs, in Vec256<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
-
-}
-Vec256<int> addh(in Vec256<int> lhs, in Vec256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0016: ret
-
-}
-Vec256<float> addh(in Vec256<float> lhs, in Vec256<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0011: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_0016: ret
-
-}
-Vec256<double> addh(in Vec256<double> lhs, in Vec256<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Double> System.Runtime.Intrinsics.X86.Avx::HorizontalAdd(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0011: call Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_0016: ret
-
-}
-void addh(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec128`1<System.Int16> Z0.dinx::addh(Z0.Vec128`1<System.Int16>&,Z0.Vec128`1<System.Int16>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_0010: ret
-
-}
-void addh(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec128`1<System.Int32> Z0.dinx::addh(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.Int32>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_0010: ret
-
-}
-void addh(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec128`1<System.Single> Z0.dinx::addh(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec128`1<System.Single>&,System.Single&)
-    IL_0010: ret
-
-}
-void addh(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec128`1<System.Double> Z0.dinx::addh(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec128`1<System.Double>&,System.Double&)
-    IL_0010: ret
-
-}
-void addh(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec256`1<System.Int16> Z0.dinx::addh(Z0.Vec256`1<System.Int16>&,Z0.Vec256`1<System.Int16>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_0010: ret
-
-}
-void addh(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec256`1<System.Int32> Z0.dinx::addh(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_0010: ret
-
-}
-void addh(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec256`1<System.Single> Z0.dinx::addh(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec256`1<System.Single>&,System.Single&)
-    IL_0010: ret
-
-}
-void addh(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call Z0.Vec256`1<System.Double> Z0.dinx::addh(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
-    IL_0007: stloc.0
-    IL_0008: ldloca.s V_0
-    IL_000A: ldarg.2
-    IL_000B: call System.Void zfunc::vstore(Z0.Vec256`1<System.Double>&,System.Double&)
-    IL_0010: ret
 
 }
 Vec128<byte> adds(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -6805,45 +7210,151 @@ Vec128<ushort> adds(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
 Vec256<byte> adds(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
 
 }
 Vec256<sbyte> adds(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0011: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
 
 }
 Vec256<short> adds(in Vec256<short> lhs, in Vec256<short> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0011: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
 
 }
 Vec256<ushort> adds(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Average(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<ushort> avg(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Average(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<byte> avg(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Average(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<ushort> avg(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Average(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+UInt128 clmul(ulong lhs, ulong rhs)
+{
+    IL_0000: ldarga.s lhs
+    IL_0002: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
+    IL_0007: stloc.0
+    IL_0008: ldarga.s rhs
+    IL_000A: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
+    IL_000F: stloc.1
+    IL_0010: ldloc.0
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: ldloc.1
+    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_001C: ldc.i4.0
+    IL_001D: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
+    IL_0022: stloc.2
+    IL_0023: ldloca.s V_2
+    IL_0025: call Z0.UInt128 Z0.UInt128::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>&)
+    IL_002A: ret
+
+}
+Vec128<ulong> clmul(Scalar128<ulong> a, Scalar128<ulong> b)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Scalar128`1<System.UInt64>::op_Implicit(Z0.Scalar128`1<System.UInt64>)
     IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::AddSaturate(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Scalar128`1<System.UInt64>::op_Implicit(Z0.Scalar128`1<System.UInt64>)
+    IL_000C: ldc.i4.0
+    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
+    IL_0012: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0017: ret
+
+}
+Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: ldarg.2
+    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
+    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0021: ret
 
 }
 ushort clmul(byte lhs, byte rhs)
@@ -6868,58 +7379,11 @@ ulong clmul(uint lhs, uint rhs)
 {
     IL_0000: ldarg.0
     IL_0001: conv.u8
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
-    IL_000A: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000F: ldarg.1
-    IL_0010: conv.u8
-    IL_0011: stloc.1
-    IL_0012: ldloca.s V_1
-    IL_0014: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
-    IL_0019: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_001E: ldc.i4.0
-    IL_001F: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
-    IL_0024: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0029: stloc.2
-    IL_002A: ldloca.s V_2
-    IL_002C: ldc.i4.0
-    IL_002D: call System.UInt64 Z0.dinx::extract(Z0.Vec128`1<System.UInt64>&,System.Byte)
-    IL_0032: ret
-
-}
-UInt128 clmul(ulong lhs, ulong rhs)
-{
-    IL_0000: ldarga.s lhs
-    IL_0002: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
-    IL_0007: stloc.0
-    IL_0008: ldarga.s rhs
-    IL_000A: call Z0.Vec128`1<System.UInt64> Z0.Vec128::LoadScalar<System.UInt64>(System.UInt64&)
-    IL_000F: stloc.1
-    IL_0010: ldloc.0
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: ldloc.1
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_001C: ldc.i4.0
-    IL_001D: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
-    IL_0022: stloc.2
-    IL_0023: ldloca.s V_2
-    IL_0025: call Z0.UInt128 Z0.UInt128::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>&)
-    IL_002A: ret
-
-}
-Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: ldarg.2
-    IL_0017: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Pclmulqdq::CarrylessMultiply(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Byte)
-    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0021: ret
+    IL_0002: ldarg.1
+    IL_0003: conv.u8
+    IL_0004: call Z0.UInt128 Z0.dinx::clmul(System.UInt64,System.UInt64)
+    IL_0009: ldfld System.UInt64 Z0.UInt128::lo
+    IL_000E: ret
 
 }
 ref Vec512<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, out Vec512<ulong> dst)
@@ -6929,30 +7393,22 @@ ref Vec512<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, out Vec512<u
     IL_0002: ldarg.1
     IL_0003: ldc.i4.0
     IL_0004: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
-    IL_0009: stloc.0
-    IL_000A: ldloca.s V_0
-    IL_000C: ldarg.0
-    IL_000D: ldarg.1
-    IL_000E: ldc.i4.1
-    IL_000F: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
-    IL_0014: stloc.1
-    IL_0015: ldloca.s V_1
-    IL_0017: ldarg.0
-    IL_0018: ldarg.1
-    IL_0019: ldc.i4.s 16
-    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
-    IL_0020: stloc.2
-    IL_0021: ldloca.s V_2
-    IL_0023: ldarg.0
-    IL_0024: ldarg.1
-    IL_0025: ldc.i4.s 17
-    IL_0027: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
-    IL_002C: stloc.3
-    IL_002D: ldloca.s V_3
-    IL_002F: call Z0.Vec512`1<System.UInt64> Z0.Vec512::FromParts<System.UInt64>(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0034: stobj Z0.Vec512`1<System.UInt64>
-    IL_0039: ldarg.2
-    IL_003A: ret
+    IL_0009: ldarg.0
+    IL_000A: ldarg.1
+    IL_000B: ldc.i4.1
+    IL_000C: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
+    IL_0011: ldarg.0
+    IL_0012: ldarg.1
+    IL_0013: ldc.i4.s 16
+    IL_0015: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
+    IL_001A: ldarg.0
+    IL_001B: ldarg.1
+    IL_001C: ldc.i4.s 17
+    IL_001E: call Z0.Vec128`1<System.UInt64> Z0.dinx::clmul(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&,Z0.ClMulMask)
+    IL_0023: call Z0.Vec512`1<System.UInt64> Z0.Vec512::FromParts<System.UInt64>(Z0.Vec128`1<System.UInt64>,Z0.Vec128`1<System.UInt64>,Z0.Vec128`1<System.UInt64>,Z0.Vec128`1<System.UInt64>)
+    IL_0028: stobj Z0.Vec512`1<System.UInt64>
+    IL_002D: ldarg.2
+    IL_002E: ret
 
 }
 long dot(Vec256<int> lhs, Vec256<int> rhs)
@@ -6962,109 +7418,375 @@ long dot(Vec256<int> lhs, Vec256<int> rhs)
     IL_0004: call Z0.Vec256`1<System.Int64> Z0.dinx::mul(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.Int32>&)
     IL_0009: stloc.0
     IL_000A: ldloca.s V_0
-    IL_000C: call Z0.Vec128`1<System.Int64> Z0.dinx::lo(Z0.Vec256`1<System.Int64>&)
-    IL_0011: stloc.1
-    IL_0012: ldloca.s V_0
-    IL_0014: call Z0.Vec128`1<System.Int64> Z0.dinx::hi(Z0.Vec256`1<System.Int64>&)
-    IL_0019: stloc.2
-    IL_001A: ldloca.s V_1
-    IL_001C: ldloca.s V_2
-    IL_001E: call Z0.Vec128`1<System.Int64> Z0.dinx::add(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
-    IL_0023: stloc.3
-    IL_0024: ldloc.3
-    IL_0025: call Z0.Span128`1<System.Int64> Z0.ginxs::ToSpan128<System.Int64>(Z0.Vec128`1<System.Int64>)
-    IL_002A: stloc.s V_4
-    IL_002C: ldloca.s V_4
-    IL_002E: ldc.i4.0
-    IL_002F: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
-    IL_0034: ldind.i8
-    IL_0035: ldloca.s V_4
-    IL_0037: ldc.i4.1
-    IL_0038: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
-    IL_003D: ldind.i8
-    IL_003E: add
-    IL_003F: ret
-
-}
-Vec128<float> dot(Vec128<float> lhs, Vec128<float> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000C: ldc.i4 255
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_0016: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: ret
-
-}
-Vec128<double> dot(Vec128<double> lhs, Vec128<double> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000C: ldc.i4 255
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_0016: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: ret
-
-}
-Vec256<float> dot(Vec256<float> lhs, Vec256<float> rhs)
-{
-    IL_0000: ldarga.s lhs
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0007: ldarga.s rhs
-    IL_0009: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000E: ldc.i4 255
-    IL_0013: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::DotProduct(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_0018: call Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_001D: ret
-
-}
-void dot(Vec128<float> lhs, Vec128<float> rhs, ref float dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
     IL_000C: ldc.i4.0
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Byte)
-    IL_0012: stloc.0
-    IL_0013: ldloca.s V_0
-    IL_0015: ldarg.2
-    IL_0016: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Single>&,System.Single&)
-    IL_001B: ret
-
-}
-void dot(Vec128<double> lhs, Vec128<double> rhs, ref double dst)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000C: ldc.i4.0
-    IL_000D: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse41::DotProduct(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Byte)
-    IL_0012: stloc.0
-    IL_0013: ldloca.s V_0
-    IL_0015: ldarg.2
-    IL_0016: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector128`1<System.Double>&,System.Double&)
-    IL_001B: ret
-
-}
-void dot(Vec256<float> lhs, Vec256<float> rhs, ref float dst)
-{
-    IL_0000: ldarga.s lhs
-    IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_0007: ldarga.s rhs
-    IL_0009: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>&)
-    IL_000E: ldc.i4.0
-    IL_000F: call System.Runtime.Intrinsics.Vector256`1<System.Single> System.Runtime.Intrinsics.X86.Avx::DotProduct(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Byte)
-    IL_0014: stloc.0
+    IL_000D: call Z0.Vec128`1<System.Int64> Z0.dinx::extract128(Z0.Vec256`1<System.Int64>&,System.Byte)
+    IL_0012: stloc.3
+    IL_0013: ldloca.s V_3
     IL_0015: ldloca.s V_0
-    IL_0017: ldarg.2
-    IL_0018: call System.Void zfunc::vstore(System.Runtime.Intrinsics.Vector256`1<System.Single>&,System.Single&)
-    IL_001D: ret
+    IL_0017: ldc.i4.1
+    IL_0018: call Z0.Vec128`1<System.Int64> Z0.dinx::extract128(Z0.Vec256`1<System.Int64>&,System.Byte)
+    IL_001D: stloc.s V_4
+    IL_001F: ldloca.s V_4
+    IL_0021: call Z0.Vec128`1<System.Int64> Z0.dinx::add(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.Int64>&)
+    IL_0026: stloc.1
+    IL_0027: ldloc.1
+    IL_0028: call Z0.Span128`1<System.Int64> Z0.VSpanX::ToSpan128<System.Int64>(Z0.Vec128`1<System.Int64>)
+    IL_002D: stloc.2
+    IL_002E: ldloca.s V_2
+    IL_0030: ldc.i4.0
+    IL_0031: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: ldloca.s V_2
+    IL_0039: ldc.i4.1
+    IL_003A: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
+    IL_003F: ldind.i8
+    IL_0040: add
+    IL_0041: ret
+
+}
+ulong dot(Vec256<uint> lhs, Vec256<uint> rhs)
+{
+    IL_0000: ldarga.s lhs
+    IL_0002: ldarga.s rhs
+    IL_0004: call Z0.Vec256`1<System.UInt64> Z0.dinx::mul(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
+    IL_0009: stloc.0
+    IL_000A: ldloca.s V_0
+    IL_000C: ldc.i4.0
+    IL_000D: call Z0.Vec128`1<System.UInt64> Z0.dinx::extract128(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_0012: stloc.3
+    IL_0013: ldloca.s V_3
+    IL_0015: ldloca.s V_0
+    IL_0017: ldc.i4.1
+    IL_0018: call Z0.Vec128`1<System.UInt64> Z0.dinx::extract128(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_001D: stloc.s V_4
+    IL_001F: ldloca.s V_4
+    IL_0021: call Z0.Vec128`1<System.UInt64> Z0.dinx::add(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0026: stloc.1
+    IL_0027: ldloc.1
+    IL_0028: call Z0.Span128`1<System.UInt64> Z0.VSpanX::ToSpan128<System.UInt64>(Z0.Vec128`1<System.UInt64>)
+    IL_002D: stloc.2
+    IL_002E: ldloca.s V_2
+    IL_0030: ldc.i4.0
+    IL_0031: call System.UInt64& Z0.Span128`1<System.UInt64>::get_Item(System.Int32)
+    IL_0036: ldind.i8
+    IL_0037: ldloca.s V_2
+    IL_0039: ldc.i4.1
+    IL_003A: call System.UInt64& Z0.Span128`1<System.UInt64>::get_Item(System.Int32)
+    IL_003F: ldind.i8
+    IL_0040: add
+    IL_0041: ret
+
+}
+Vec128<byte> max(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Max(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> max(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Max(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<int> max(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec128<uint> max(in Vec128<uint> lhs, in Vec128<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<byte> max(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> max(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<short> max(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<ushort> max(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse41::Max(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<ushort> max(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<int> max(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> max(in Vec256<uint> lhs, in Vec256<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Max(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec128<byte> min(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Min(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> min(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<short> min(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Min(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<ushort> min(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<int> min(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec128<uint> min(in Vec128<uint> lhs, in Vec128<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse41::Min(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<byte> min(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> min(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<short> min(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<ushort> min(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<int> min(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> min(in Vec256<uint> lhs, in Vec256<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Min(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
 
 }
 Vec128<long> mul(in Vec128<int> lhs, in Vec128<int> rhs)
@@ -7096,23 +7818,27 @@ Vec128<ulong> mul(in Vec128<uint> lhs, in Vec128<uint> rhs)
 Vec256<long> mul(in Vec256<int> lhs, in Vec256<int> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Multiply(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0011: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Multiply(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> mul(in Vec256<uint> lhs, in Vec256<uint> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Multiply(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0011: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::Multiply(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
 
 }
 Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
@@ -7131,7 +7857,7 @@ Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
     IL_001B: stloc.1
     IL_001C: ldarg.0
     IL_001D: ldc.i4.s 32
-    IL_001F: call Z0.Vec256`1<System.UInt64> Z0.dinx::srli(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_001F: call Z0.Vec256`1<System.UInt64> Z0.dinx::srl(Z0.Vec256`1<System.UInt64>&,System.Byte)
     IL_0024: stloc.s V_13
     IL_0026: ldloca.s V_13
     IL_0028: ldloca.s V_14
@@ -7147,7 +7873,7 @@ Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
     IL_0043: stloc.3
     IL_0044: ldarg.1
     IL_0045: ldc.i4.s 32
-    IL_0047: call Z0.Vec256`1<System.UInt64> Z0.dinx::srli(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_0047: call Z0.Vec256`1<System.UInt64> Z0.dinx::srl(Z0.Vec256`1<System.UInt64>&,System.Byte)
     IL_004C: stloc.s V_13
     IL_004E: ldloca.s V_13
     IL_0050: ldloca.s V_16
@@ -7159,7 +7885,7 @@ Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
     IL_0060: stloc.s V_5
     IL_0062: ldloca.s V_5
     IL_0064: ldc.i4.s 32
-    IL_0066: call Z0.Vec256`1<System.UInt64> Z0.dinx::slli(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_0066: call Z0.Vec256`1<System.UInt64> Z0.dinx::sll(Z0.Vec256`1<System.UInt64>&,System.Byte)
     IL_006B: stloc.s V_6
     IL_006D: ldloc.2
     IL_006E: ldloc.s V_4
@@ -7167,7 +7893,7 @@ Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
     IL_0075: stloc.s V_7
     IL_0077: ldloca.s V_7
     IL_0079: ldc.i4.s 32
-    IL_007B: call Z0.Vec256`1<System.UInt64> Z0.dinx::slli(Z0.Vec256`1<System.UInt64>&,System.Byte)
+    IL_007B: call Z0.Vec256`1<System.UInt64> Z0.dinx::sll(Z0.Vec256`1<System.UInt64>&,System.Byte)
     IL_0080: stloc.s V_8
     IL_0082: ldloc.1
     IL_0083: ldloc.3
@@ -7183,6 +7909,47 @@ Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)
     IL_009F: stloc.s V_11
     IL_00A1: ldloc.s V_11
     IL_00A3: ret
+
+}
+ushort mulx(byte a, byte b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::MultiplyNoFlags(System.UInt32,System.UInt32)
+    IL_0007: conv.u2
+    IL_0008: ret
+
+}
+uint mulx(ushort a, ushort b)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::MultiplyNoFlags(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+void mulx(uint a, uint b, ref uint lo, ref uint hi)
+{
+    IL_0000: ldarg.3
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldarg.2
+    IL_0004: call System.UInt32* Z0.As::refptr(System.UInt32&)
+    IL_0009: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::MultiplyNoFlags(System.UInt32,System.UInt32,System.UInt32*)
+    IL_000E: stind.i4
+    IL_000F: ret
+
+}
+void mulx(ulong a, ulong b, ref ulong lo, ref ulong hi)
+{
+    IL_0000: ldarg.3
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldarg.2
+    IL_0004: call System.UInt64* Z0.As::refptr(System.UInt64&)
+    IL_0009: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::MultiplyNoFlags(System.UInt64,System.UInt64,System.UInt64*)
+    IL_000E: stind.i8
+    IL_000F: ret
 
 }
 Vec128<sbyte> negate(in Vec128<sbyte> src)
@@ -7261,30 +8028,6 @@ Vec128<ulong> negate(in Vec128<ulong> src)
     IL_0013: ret
 
 }
-Vec128<float> negate(in Vec128<float> src)
-{
-    IL_0000: ldsflda Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::Zero
-    IL_0005: ldarg.0
-    IL_0006: call Z0.Vec128`1<System.Single> Z0.dinx::sub(Z0.Vec128`1<System.Single>&,Z0.Vec128`1<System.Single>&)
-    IL_000B: ret
-
-}
-Vec128<double> negate(in Vec128<double> src)
-{
-    IL_0000: ldsflda Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::Zero
-    IL_0005: ldarg.0
-    IL_0006: call Z0.Vec128`1<System.Double> Z0.dinx::sub(Z0.Vec128`1<System.Double>&,Z0.Vec128`1<System.Double>&)
-    IL_000B: ret
-
-}
-Vec256<sbyte> negate(in Vec256<sbyte> src)
-{
-    IL_0000: ldsflda Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::Zero
-    IL_0005: ldarg.0
-    IL_0006: call Z0.Vec256`1<System.SByte> Z0.dinx::sub(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
-    IL_000B: ret
-
-}
 Vec256<byte> negate(in Vec256<byte> src)
 {
     IL_0000: ldarg.0
@@ -7353,19 +8096,11 @@ Vec256<ulong> negate(in Vec256<ulong> src)
     IL_0013: ret
 
 }
-Vec256<float> negate(in Vec256<float> src)
+Vec256<sbyte> negate(in Vec256<sbyte> src)
 {
-    IL_0000: ldsflda Z0.Vec256`1<System.Single> Z0.Vec256`1<System.Single>::Zero
+    IL_0000: ldsflda Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::Zero
     IL_0005: ldarg.0
-    IL_0006: call Z0.Vec256`1<System.Single> Z0.dinx::sub(Z0.Vec256`1<System.Single>&,Z0.Vec256`1<System.Single>&)
-    IL_000B: ret
-
-}
-Vec256<double> negate(in Vec256<double> src)
-{
-    IL_0000: ldsflda Z0.Vec256`1<System.Double> Z0.Vec256`1<System.Double>::Zero
-    IL_0005: ldarg.0
-    IL_0006: call Z0.Vec256`1<System.Double> Z0.dinx::sub(Z0.Vec256`1<System.Double>&,Z0.Vec256`1<System.Double>&)
+    IL_0006: call Z0.Vec256`1<System.SByte> Z0.dinx::sub(Z0.Vec256`1<System.SByte>&,Z0.Vec256`1<System.SByte>&)
     IL_000B: ret
 
 }
@@ -7385,11 +8120,91 @@ Vec128<ushort> sad(in Vec128<byte> lhs, in Vec128<byte> rhs)
 Vec256<ushort> sad(in Vec256<byte> lhs, in Vec256<byte> rhs)
 {
     IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_0006: ldarg.1
-    IL_0007: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>&)
-    IL_000C: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::SumAbsoluteDifferences(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0011: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0016: ret
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::SumAbsoluteDifferences(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<short> sign(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<int> sign(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Ssse3::Sign(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> sign(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<short> sign(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<int> sign(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Sign(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
 
 }

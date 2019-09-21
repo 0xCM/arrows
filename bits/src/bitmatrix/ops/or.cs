@@ -16,6 +16,43 @@ namespace Z0
     partial class BitMatrix
     {
         /// <summary>
+        /// Computes the logical OR between two primal bitmatrices of order 8
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 or(in BitMatrix8 lhs, in BitMatrix8 rhs)
+             => BitMatrix8.From((ulong)lhs | (ulong)rhs);             
+
+        /// <summary>
+        /// Computes the logical OR between two primal bitmatrices of order 16
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix16 or(in BitMatrix16 lhs, in BitMatrix16 rhs)
+        {
+            ref var A = ref lhs.LoadCpuVec(out Vec256<ushort> _);
+            ref var B = ref rhs.LoadCpuVec(out Vec256<ushort> _);
+            var C = dinx.or(in A,in B);
+            return BitMatrix16.From(in C);
+        }
+
+        /// <summary>
+        /// Computes the logical AND between two primal bitmatrices of order 16
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        public static BitMatrix32 or(in BitMatrix32 A, in BitMatrix32 B)
+        {
+            const int rowstep = 8;
+            var dst = BitMatrix32.Alloc();
+            for(var i=0; i< A.RowCount; i += rowstep)
+                dinx.or(Vec256.Load(ref A[i]), Vec256.Load(ref B[i])).StoreTo(ref dst[i]);
+            return dst;
+        }
+
+        /// <summary>
         /// Computes the bitwise OR between two square bitmatrices of common natural order and stores the
         /// result a caller-supplied target matrix
         /// </summary>
@@ -51,8 +88,6 @@ namespace Z0
             gbits.or(A.Data, B.Data, C.Data);
             return ref C;
         }
-
-
     }
 
 }

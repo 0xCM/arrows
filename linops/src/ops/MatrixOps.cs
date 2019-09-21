@@ -30,7 +30,7 @@ namespace Z0
         public static ref BlockMatrix<M,N,T> add<M,N,T>(BlockMatrix<M,N,T> A, BlockMatrix<M,N,T> B, ref BlockMatrix<M,N,T> C)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             ginx.add(A.Unsized, B.Unsized, C.Unsized);
             return ref C;
@@ -49,7 +49,7 @@ namespace Z0
         public static ref BlockMatrix<M,N,T> sub<M,N,T>(BlockMatrix<M,N,T> A, BlockMatrix<M,N,T> B, ref BlockMatrix<M,N,T> C)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             ginx.sub(A.Unsized, B.Unsized, C.Unsized);
             return ref C;
@@ -68,7 +68,7 @@ namespace Z0
         public static ref BlockMatrix<M,N,T> and<M,N,T>(BlockMatrix<M,N,T> A, BlockMatrix<M,N,T> B, ref BlockMatrix<M,N,T> C)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             gbits.and(A.Unsized,B.Unsized, C.Unsized);
             return ref C;

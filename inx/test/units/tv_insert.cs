@@ -29,7 +29,7 @@ namespace Z0.Test
         }
 
         void insert128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             for(var i=0; i < SampleSize; i++)

@@ -20,56 +20,56 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte ToScalar(this Part4x2 src)
-            => (byte)src;
+        public static uint ToScalar(this Part4x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte ToScalar(this Part6x2 src)
-            => (byte)src;
+        public static uint ToScalar(this Part6x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte ToScalar(this Part8x2 src)
-            => (byte)src;
+        public static uint ToScalar(this Part8x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part10x2 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part10x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part12x2 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part12x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part14x2 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part14x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static ushort ToScalar(this Part16x2 src)
-            => (ushort)src;
+        public static uint ToScalar(this Part16x2 src)
+            => (uint)src;
 
         /// <summary>
         /// Converts the source to its underlying scalar value

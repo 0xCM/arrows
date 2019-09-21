@@ -22,7 +22,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> And<T>(this Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct
+            where T : unmanaged
                 => gbits.and(in lhs,in rhs);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> And<T>(this Vec256<T> lhs, in Vec256<T> rhs)
-            where T : struct
+            where T : unmanaged
                 => gbits.and(in lhs,in rhs);
 
  

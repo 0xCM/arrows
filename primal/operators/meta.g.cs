@@ -76,25 +76,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(ref asRef(I8Min));
+                return generic<T>(sbyte.MinValue);
             else if(typeof(T) == typeof(byte))
-                return generic<T>(ref asRef(U8Min));
+                return generic<T>(byte.MinValue);
             else if(typeof(T) == typeof(short))
-                return generic<T>(ref asRef(I16Min));
+                return generic<T>(short.MinValue);
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(ref asRef(U16Min));
+                return generic<T>(ushort.MinValue);
             else if(typeof(T) == typeof(int))
-                return generic<T>(ref asRef(I32Min));
+                return generic<T>(int.MinValue);
             else if(typeof(T) == typeof(uint))
-                return generic<T>(ref asRef(U32Min));
+                return generic<T>(uint.MinValue);
             else if(typeof(T) == typeof(long))
-                return generic<T>(ref asRef(I64Min));
+                return generic<T>(long.MinValue);
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(ref asRef(U64Min));
+                return generic<T>(ulong.MinValue);
             else if(typeof(T) == typeof(float))
-                return generic<T>(ref asRef(F32Min));
+                return generic<T>(float.MinValue);
             else if(typeof(T) == typeof(double))
-                return generic<T>(ref asRef(F64Min));
+                return generic<T>(double.MinValue);
             else
                 throw unsupported<T>();
         }
@@ -104,25 +104,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(ref asRef(I8Max));
+                return generic<T>(sbyte.MaxValue);
             else if(typeof(T) == typeof(byte))
-                return generic<T>(ref asRef(U8Max));
+                return generic<T>(byte.MaxValue);
             else if(typeof(T) == typeof(short))
-                return generic<T>(ref asRef(I16Max));
+                return generic<T>(short.MaxValue);
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(ref asRef(U16Max));
+                return generic<T>(ushort.MaxValue);
             else if(typeof(T) == typeof(int))
-                return generic<T>(ref asRef(I32Max));
+                return generic<T>(int.MaxValue);
             else if(typeof(T) == typeof(uint))
-                return generic<T>(ref asRef(U32Max));
+                return generic<T>(uint.MaxValue);
             else if(typeof(T) == typeof(long))
-                return generic<T>(ref asRef(I64Max));
+                return generic<T>(long.MaxValue);
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(ref asRef(U64Max));
+                return generic<T>(ulong.MaxValue);
             else if(typeof(T) == typeof(float))
-                return generic<T>(ref asRef(F32Max));
+                return generic<T>(float.MaxValue);
             else if(typeof(T) == typeof(double))
-                return generic<T>(ref asRef(F64Max));
+                return generic<T>(double.MaxValue);
             else
                 throw unsupported<T>();
         }

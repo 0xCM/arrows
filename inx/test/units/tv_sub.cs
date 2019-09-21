@@ -51,7 +51,7 @@ namespace Z0.Test
         }
 
         void sub128_check<T>(int blocks = 0)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
@@ -59,7 +59,7 @@ namespace Z0.Test
         }
 
         void sub256_check<T>(int blocks = 0)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
@@ -67,7 +67,7 @@ namespace Z0.Test
         }
 
         void sub256_batch_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var lhs = Random.Span256<T>(SampleSize).ReadOnly();

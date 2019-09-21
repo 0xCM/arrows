@@ -1,0 +1,1 @@
+./bin/lib/netcoreapp3.0/z0.deconstruct.exe

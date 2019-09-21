@@ -63,32 +63,32 @@ namespace Z0
             => new Bit(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator char(Bit src)
+        public static implicit operator byte(Bit src)
+            => src.ToByte();
+
+        [MethodImpl(Inline)]
+        public static explicit operator char(Bit src)
             => src ? One : Zero;
 
         [MethodImpl(Inline)]
-        public static explicit operator byte(Bit src)
-            => src.value ? (byte)1 : (byte)0;
-
-        [MethodImpl(Inline)]
         public static explicit operator ushort(Bit src)
-            => src.value ? (ushort)1 : (ushort)0;
+            => src.ToByte();
 
         [MethodImpl(Inline)]
         public static explicit operator int(Bit src)
-            => src.value ? 1 : 0;
+            => src.ToByte();
 
         [MethodImpl(Inline)]
         public static explicit operator uint(Bit src)
-            => src.value ? 1u : 0u;
+            => src.ToByte();
 
         [MethodImpl(Inline)]
         public static explicit operator long(Bit src)
-            => src.value ? 1L : 0L;
+            => src.ToByte();
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(Bit src)
-            => src.value ? 1ul : 0ul;
+            => src.ToByte();
 
         /// <summary>
         /// Implicitly converts an integral value to a bit where nonzero values
@@ -225,6 +225,19 @@ namespace Z0
                     (false, true) => false,
                     (true, false) => false
                 };
+
+        /// <summary>
+        /// Converts a bool to a byte quickly
+        /// </summary>
+        /// <param name="src"></param>
+        /// <remarks>Taken from https://stackoverflow.com/questions/4980881/what-is-fastest-way-to-convert-bool-to-byte</remarks>
+        [MethodImpl(Inline)]
+        static unsafe byte ToByte(bool src)
+            =>  *((byte*)(&src));
+
+        [MethodImpl(Inline)]
+        public byte ToByte()
+            => ToByte(value);
 
         [MethodImpl(Inline)]
         public bool Equals(Bit rhs)

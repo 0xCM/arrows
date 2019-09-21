@@ -3,29 +3,33 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootDir>../</RootDir>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../func/z0.zfunc.csproj" />
-    <ProjectReference Include="../nats/z0.nats.csproj" />
-    <ProjectReference Include="../structs/z0.structs.csproj" />
-    <ProjectReference Include="../primal/z0.primal.csproj" />
-    <ProjectReference Include="../cpu/src/z0.cpu.csproj" />
-    <ProjectReference Include="../inx/src/core/z0.inx.core.csproj" />
-    <ProjectReference Include="../mkl/src/z0.mkl.csproj" />
-    <ProjectReference Include="../asm/src/z0.asm.csproj" />
+    <ProjectReference Include="$(RootDir)func/z0.zfunc.csproj" />
+    <ProjectReference Include="$(RootDir)nats/z0.nats.csproj" />
+    <ProjectReference Include="$(RootDir)structs/z0.structs.csproj" />
+    <ProjectReference Include="$(RootDir)primal/z0.primal.csproj" />
+    <ProjectReference Include="$(RootDir)matrix/src/z0.matrix.csproj" />  
+    <ProjectReference Include="$(RootDir)cpu/src/z0.cpu.csproj" />
+    <ProjectReference Include="$(RootDir)inx/src/core/z0.inx.core.csproj" />
+    <ProjectReference Include="$(RootDir)inx/src/dsl/z0.inx.dsl.csproj" />
+    <ProjectReference Include="$(RootDir)bits/src/z0.bits.csproj" />
+    <ProjectReference Include="$(RootDir)mkl/src/z0.mkl.csproj" />
+    <ProjectReference Include="$(RootDir)asm/src/z0.asm.csproj" />
 
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.0.5" />
+    <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.1.46104" />
     <PackageReference Include="SharpDisasm" Version="1.1.11" />
     <PackageReference Include="dnlib" Version="3.2.0" />
     <PackageReference Include="Iced" Version="1.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="../.settings/Settings.cs" />
+    <Compile Include="$(RootDir).settings/Settings.cs" />
   </ItemGroup>
 
 </Project>

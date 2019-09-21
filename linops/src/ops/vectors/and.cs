@@ -26,7 +26,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BlockVector<N,T> and<N,T>(BlockVector<N,T> lhs, BlockVector<N,T> rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             var dst = BlockVector.Alloc<N,T>();
             gbits.and<T>(lhs.Data, rhs.Data, dst);
@@ -36,7 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> and<N,T>(BlockVector<N,T> lhs, BlockVector<N,T> rhs, ref BlockVector<N,T> dst)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             gbits.and<T>(lhs.Data, rhs.Data, dst);
             return ref dst;

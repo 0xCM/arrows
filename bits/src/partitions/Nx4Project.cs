@@ -21,17 +21,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The target partition</param>
         [MethodImpl(Inline)]
-        public static byte project(byte src, Part8x4 part)
-            => Bits.scatter(src, (byte)part);
-
-        /// <summary>
-        /// Replicates the low bits of a source to an identified partition of an empty target
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        /// <param name="part">The target partition</param>
-        [MethodImpl(Inline)]
-        public static ushort project(ushort src, Part12x4 part)
-            => Bits.scatter(src, (ushort)part);
+        public static uint project(uint src, Part8x4 part)
+            => Bits.scatter(src, (uint)part);
 
         /// <summary>
         /// Replicates the low bits of a source to an identified partition of an empty target
@@ -41,7 +32,7 @@ namespace Z0
         /// <param name="part">The target partition</param>
         /// <typeparam name="T">The primal conversion type</typeparam>
         [MethodImpl(Inline)]
-        public static T project<T>(ushort src, Part12x4 part)
+        public static T project<T>(uint src, Part8x4 part)
             where T : unmanaged
                 => convert<T>(project(src,part));
 
@@ -51,8 +42,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The target partition</param>
         [MethodImpl(Inline)]
-        public static ushort project(ushort src, Part16x4 part)
-            => Bits.scatter(src, (ushort)part);
+        public static uint project(uint src, Part12x4 part)
+            => Bits.scatter(src, (uint)part);
 
         /// <summary>
         /// Replicates the low bits of a source to an identified partition of an empty target
@@ -62,7 +53,28 @@ namespace Z0
         /// <param name="part">The target partition</param>
         /// <typeparam name="T">The primal conversion type</typeparam>
         [MethodImpl(Inline)]
-        public static T project<T>(ushort src, Part16x4 part)
+        public static T project<T>(uint src, Part12x4 part)
+            where T : unmanaged
+                => convert<T>(project(src,part));
+
+        /// <summary>
+        /// Replicates the low bits of a source to an identified partition of an empty target
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="part">The target partition</param>
+        [MethodImpl(Inline)]
+        public static uint project(uint src, Part16x4 part)
+            => Bits.scatter(src, (uint)part);
+
+        /// <summary>
+        /// Replicates the low bits of a source to an identified partition of an empty target
+        /// which is then converted to a specified primal type
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="part">The target partition</param>
+        /// <typeparam name="T">The primal conversion type</typeparam>
+        [MethodImpl(Inline)]
+        public static T project<T>(uint src, Part16x4 part)
             where T : unmanaged
                 => convert<T>(project(src,part));
 

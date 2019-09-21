@@ -14,9 +14,6 @@ namespace Z0
     public abstract class BitPartTest<T> : UnitTest<T>
         where T : BitPartTest<T>, new()
     {
-
-        protected override int CycleCount => Pow2.T14;
-
         
         protected void bitpart_check<A,B>(Partitioner<A,B> part, int count, int width)
             where A : unmanaged

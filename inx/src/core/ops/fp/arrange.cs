@@ -10,61 +10,122 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx2;
     using static System.Runtime.Intrinsics.X86.Sse;
     using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Sse41;
     
     using static As;
     using static zfunc;    
 
     partial class dfp
     {
-        ///<summary>__m128 _mm_shuffle_ps (__m128 a, __m128 b, unsigned int control) SHUFPS xmm, xmm/m128, imm8</summary>
+        /// <summary>
+        /// __m128 _mm_blend_ps (__m128 a, __m128 b, const int imm8) BLENDPS xmm, xmm/m128, imm8
+        /// Produces a new vector by assembling components from two source vectors as specified by a control mask
+        /// </summary>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
+        /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
-            => Shuffle(lhs,rhs, control);
+        public static Vec128<float> blend(in Vec128<float> x, in Vec128<float> y, byte control)        
+            => Blend(x,y,control);
 
-        ///<summary>__m128d _mm_shuffle_pd (__m128d a, __m128d b, int immediate) SHUFPD xmm, xmm/m128, imm8</summary>
+        /// <summary>
+        /// __m128d _mm_blend_pd (__m128d a, __m128d b, const int imm8) BLENDPD xmm, xmm/m128, imm8
+        /// Produces a new vector by assembling components from two source vectors as specified by a control mask
+        /// </summary>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
+        /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
-            =>  Shuffle(lhs,rhs, control);
+        public static Vec128<double> blend(in Vec128<double> x, in Vec128<double> y, byte control)        
+            => Blend(x,y,control);
+
+        /// <summary>
+        /// __m128 _mm_shuffle_ps (__m128 a, __m128 b, unsigned int control) SHUFPS xmm, xmm/m128, imm8
+        /// </summary>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
+        /// <param name="control"></param>
+        [MethodImpl(Inline)]
+        public static Vec128<float> shuffle(in Vec128<float> x, in Vec128<float> y,  byte control)
+            => Shuffle(x,y, control);
+
+        /// <summary>
+        /// __m128d _mm_shuffle_pd (__m128d a, __m128d b, int immediate) SHUFPD xmm, xmm/m128, imm8
+        /// </summary>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
+        /// <param name="control"></param>
+        [MethodImpl(Inline)]
+        public static Vec128<double> shuffle(in Vec128<double> x, in Vec128<double> y, byte control)
+            =>  Shuffle(x,y, control);
 
         ///<summary>__m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</summary>
         [MethodImpl(Inline)]
-        public static Vec128<float> permute(in Vec128<float> value, byte control)
-            => Permute(value, control);
+        public static Vec128<float> permute(in Vec128<float> x, byte control)
+            => Permute(x, control);
 
-        ///<summary>__m128d _mm_permute_pd (__m128d a, int imm8) VPERMILPD xmm, xmm, imm8</summary>
+        /// <summary>
+        /// __m128d _mm_permute_pd (__m128d a, int imm8) VPERMILPD xmm, xmm, imm8
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<double> permute(in Vec128<double> value, byte control)
-            => Permute(value, control);
+        public static Vec128<double> permute(in Vec128<double> x, byte control)
+            => Permute(x, control);
 
-        ///<summary>__m256 _mm256_permute_ps (__m256 a, int imm8) VPERMILPS ymm, ymm, imm8</summary>
+        /// <summary>
+        /// __m256 _mm256_permute_ps (__m256 a, int imm8) VPERMILPS ymm, ymm, imm8
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
         [MethodImpl(Inline)]
-        public static Vec256<float> permute(in Vec256<float> value, byte control)
-            => Permute(value, control);
+        public static Vec256<float> permute(in Vec256<float> x, byte control)
+            => Permute(x, control);
 
-        ///<summary>__m256d _mm256_permute_pd (__m256d a, int imm8) VPERMILPD ymm, ymm, imm8</summary>
+        /// <summary>
+        /// __m256d _mm256_permute_pd (__m256d a, int imm8) VPERMILPD ymm, ymm, imm8
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
         [MethodImpl(Inline)]
-        public static Vec256<double> permute(in Vec256<double> value, byte control)
-            => Permute(value, control);
+        public static Vec256<double> permute(in Vec256<double> x, byte control)
+            => Permute(x, control);
 
         ///<summary>__m128 _mm_permutevar_ps (__m128 a, __m128i b) VPERMILPS xmm, xmm, xmm/m128</summary>
         [MethodImpl(Inline)]
-        public static Vec128<float> permvar(in Vec128<float> lhs, in Vec128<int> control)
-            => PermuteVar(lhs, control);
+        public static Vec128<float> permvar(in Vec128<float> x, in Vec128<int> control)
+            => PermuteVar(x, control);
 
-        ///<summary>__m128d _mm_permutevar_pd (__m128d a, __m128i b) VPERMILPD xmm, xmm, xmm/m128</summary>
+        /// <summary>
+        /// __m128d _mm_permutevar_pd (__m128d a, __m128i b) VPERMILPD xmm, xmm, xmm/m128
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<double> permvar(in Vec128<double> lhs, in Vec128<long> control)
-            => PermuteVar(lhs, control);
+        public static Vec128<double> permvar(in Vec128<double> x, in Vec128<long> control)
+            => PermuteVar(x, control);
 
-        ///<summary>__m256 _mm256_permutevar_ps (__m256 a, __m256i b) VPERMILPS ymm, ymm, ymm/m256</summary>
+        /// <summary>
+        /// __m256 _mm256_permutevar_ps (__m256 a, __m256i b) VPERMILPS ymm, ymm, ymm/m256
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec256<float> permvar(Vec256<float> lhs, in Vec256<int> control)
-            => PermuteVar(lhs, control);
+        public static Vec256<float> permvar(Vec256<float> x, in Vec256<int> control)
+            => PermuteVar(x, control);
 
-        ///<summary>__m256d _mm256_permutevar_pd (__m256d a, __m256i b) VPERMILPD ymm, ymm, ymm/m256</summary>
+        /// <summary>
+        /// __m256d _mm256_permutevar_pd (__m256d a, __m256i b) VPERMILPD ymm, ymm, ymm/m256
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec256<double> permvar(Vec256<double> lhs, in Vec256<long> control)
-            => PermuteVar(lhs, control);
+        public static Vec256<double> permvar(Vec256<double> x, in Vec256<long> control)
+            => PermuteVar(x, control);
 
         /// <summary>
         /// __m256d _mm256_permute4x64_pd (__m256d a, const int imm8) VPERMPD ymm, ymm/m256, imm8
@@ -73,52 +134,52 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="control">The control byte</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> perm4x64(in Vec256<double> value, byte control)
-            => Permute4x64(value,control); 
+        public static Vec256<double> perm4x64(in Vec256<double> x, byte control)
+            => Permute4x64(x,control); 
 
         /// <summary>
         /// __m256 _mm256_blend_ps (__m256 a, __m256 b, const int imm8) VBLENDPS ymm, ymm, ymm/m256, imm8
         /// Produces a new vector by assembling components from two source vectors as specified by a control mask
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> blend(in Vec256<float> lhs, in Vec256<float> rhs, byte control)        
-            => Blend(lhs,rhs,control);
+        public static Vec256<float> blend(in Vec256<float> x, in Vec256<float> y, byte control)        
+            => Blend(x,y,control);
 
         /// <summary>
         /// __m256d _mm256_blend_pd (__m256d a, __m256d b, const int imm8) VBLENDPD ymm, ymm, ymm/m256, imm8
         /// Produces a new vector by assembling components from two source vectors as specified by a control mask
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> blend(in Vec256<double> lhs, in Vec256<double> rhs, byte control)        
-            => Blend(lhs,rhs,control);
+        public static Vec256<double> blend(in Vec256<double> x, in Vec256<double> y, byte control)        
+            => Blend(x,y,control);
 
         /// <summary>
         ///  __m256 _mm256_blendv_ps (__m256 a, __m256 b, __m256 mask) VBLENDVPS ymm, ymm,ymm/m256, ymm
         /// Produces a new vector by assembling components from two source vectors as specified by a control vector
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> blendv(in Vec256<float> lhs, in Vec256<float> rhs, in Vec256<float> control)        
-            => BlendVariable(lhs,rhs,control);
+        public static Vec256<float> blendv(in Vec256<float> x, in Vec256<float> y, in Vec256<float> control)        
+            => BlendVariable(x,y,control);
 
         /// <summary>
         /// _mm256_blendv_ps
         /// Produces a new vector by assembling components from two source vectors as specified by a control vector
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         /// <param name="control">The blend specification</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> blendv(in Vec256<double> lhs, in Vec256<double> rhs, in Vec256<double> control)        
-            => BlendVariable(lhs,rhs,control);
+        public static Vec256<double> blendv(in Vec256<double> x, in Vec256<double> y, in Vec256<double> control)        
+            => BlendVariable(x,y,control);
  
          /// <summary>
         /// Transposes a 4x4 matrix of floats, adapted from MSVC intrinsic headers
@@ -268,19 +329,19 @@ namespace Z0
         /// the upper 3 elements from a to the upper elements of dst.
         /// </summary>
         [MethodImpl(Inline)]
-        public static Vec128<float> movescalar(in Vec128<float> lhs, in Vec128<float> rhs)
-            => MoveScalar(rhs,lhs);
+        public static Vec128<float> movescalar(in Vec128<float> x, in Vec128<float> y)
+            => MoveScalar(y,x);
 
         /// <summary>
         /// __m128d _mm_move_sd (__m128d a, __m128d b) MOVSD xmm, xmm
         /// Moves the lower double-precision (64-bit) floating-point element from "b" to the lower element of "dst", and copy 
         /// the upper element from "a" to the upper element of "dst"
         /// </summary>
-        /// <param name="lhs">The left vector</param>
-        /// <param name="rhs">The right vector</param>
+        /// <param name="x">The left vector</param>
+        /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> movescalar(in Vec128<double> lhs, in Vec128<double> rhs)
-            => MoveScalar(lhs,rhs);
+        public static Vec128<double> movescalar(in Vec128<double> x, in Vec128<double> y)
+            => MoveScalar(x,y);
 
         /// <summary>
         /// _mm256_insertf128_ps: Overwrites a 128-bit lane in the target with the content of the source vector
@@ -310,11 +371,11 @@ namespace Z0
         /// lower 64 bits of the first source vector and the higher 64 bits are taken 
         /// from the lower 64 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> unpacklo(in Vec128<float> lhs, in Vec128<float> rhs)
-            => UnpackLow(lhs,rhs);
+        public static Vec128<float> unpacklo(in Vec128<float> x, in Vec128<float> y)
+            => UnpackLow(x,y);
 
         /// <summary>
         /// __m128d _mm_unpacklo_pd (__m128d a, __m128d b) UNPCKLPD xmm, xmm/m128
@@ -322,11 +383,11 @@ namespace Z0
         /// lower 64 bits of the first source vector and the higher 64 bits are taken 
         /// from the lower 64 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> unpacklo(in Vec128<double> lhs, in Vec128<double> rhs)
-            => UnpackLow(lhs,rhs);
+        public static Vec128<double> unpacklo(in Vec128<double> x, in Vec128<double> y)
+            => UnpackLow(x,y);
 
         /// <summary>
         /// __m256 _mm256_unpacklo_ps (__m256 a, __m256 b) VUNPCKLPS ymm, ymm, ymm/m256
@@ -334,11 +395,11 @@ namespace Z0
         /// lower 128 bits of the first source vector and the higher 128 bits are taken 
         /// from the lower 128 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> unpacklo(in Vec256<float> lhs, in Vec256<float> rhs)
-            => UnpackLow(lhs,rhs);
+        public static Vec256<float> unpacklo(in Vec256<float> x, in Vec256<float> y)
+            => UnpackLow(x,y);
 
         /// <summary>
         /// __m256d _mm256_unpacklo_pd (__m256d a, __m256d b) VUNPCKLPD ymm, ymm, ymm/m256
@@ -346,11 +407,11 @@ namespace Z0
         /// lower 128 bits of the first source vector and the higher 128 bits are taken 
         /// from the lower 128 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> unpacklo(in Vec256<double> lhs, in Vec256<double> rhs)
-            => UnpackLow(lhs,rhs);
+        public static Vec256<double> unpacklo(in Vec256<double> x, in Vec256<double> y)
+            => UnpackLow(x,y);
  
          /// <summary>
         /// __m128 _mm_unpackhi_ps (__m128 a, __m128 b) UNPCKHPS xmm, xmm/m128
@@ -358,11 +419,11 @@ namespace Z0
         /// higher 64 bits of the first source vector and the higher 64 bits are taken 
         /// from the higher 64 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> unpackhi(in Vec128<float> lhs, in Vec128<float> rhs)
-            => UnpackHigh(lhs,rhs);
+        public static Vec128<float> unpackhi(in Vec128<float> x, in Vec128<float> y)
+            => UnpackHigh(x,y);
 
         /// <summary>
         /// __m128d _mm_unpackhi_pd (__m128d a, __m128d b) UNPCKHPD xmm, xmm/m128
@@ -370,11 +431,11 @@ namespace Z0
         /// higher 64 bits of the first source vector and the higher 64 bits are taken 
         /// from the higher 64 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> unpackhi(in Vec128<double> lhs, in Vec128<double> rhs)
-            => UnpackHigh(lhs,rhs);
+        public static Vec128<double> unpackhi(in Vec128<double> x, in Vec128<double> y)
+            => UnpackHigh(x,y);
 
         /// <summary>
         /// __m256 _mm256_unpackhi_ps (__m256 a, __m256 b) VUNPCKHPS ymm, ymm, ymm/m256
@@ -382,11 +443,11 @@ namespace Z0
         /// higher 128 bits of the first source vector and the higher 128 bits are taken 
         /// from the higher 128 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> unpackhi(in Vec256<float> lhs, in Vec256<float> rhs)
-            => UnpackHigh(lhs,rhs);
+        public static Vec256<float> unpackhi(in Vec256<float> x, in Vec256<float> y)
+            => UnpackHigh(x,y);
 
         /// <summary>
         /// __m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256
@@ -394,11 +455,11 @@ namespace Z0
         /// higher 128 bits of the first source vector and the higher 128 bits are taken 
         /// from the higher 128 bits of the second source vector
         /// </summary>
-        /// <param name="lhs">The left source vector</param>
-        /// <param name="rhs">The right source vector</param>
+        /// <param name="x">The left source vector</param>
+        /// <param name="y">The right source vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> unpackhi(in Vec256<double> lhs, in Vec256<double> rhs)
-            => UnpackHigh(lhs,rhs);
+        public static Vec256<double> unpackhi(in Vec256<double> x, in Vec256<double> y)
+            => UnpackHigh(x,y);
 
     }
 }

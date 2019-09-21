@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Test
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -10,19 +10,17 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
 
     using static zfunc;
+    using static nfunc;
     
-
-    public class tbm_and : UnitTest<tbm_and>
+    public class tbm_and : BitMatrixTest<tbm_and>
     {
-        protected override int SampleSize
-            => Pow2.T14;
 
-        public void bm_and_4x4x4()
+        public void bm_and_4x4_check()
         {            
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
-                var x = Random.BitMatrix4();
-                var y = Random.BitMatrix4();
+                var x = Random.BitMatrix(n4);
+                var y = Random.BitMatrix(n4);
 
                 var xBytes = x.Data.Replicate();
                 var yBytes = y.Data.Replicate();
@@ -34,12 +32,12 @@ namespace Z0.Test
             }
         }
 
-        public void bm_and_8x8x8()
+        public void bm_and_8x8_check()
         {
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
-                var A = Random.BitMatrix8();
-                var B = Random.BitMatrix8();
+                var A = Random.BitMatrix(n8);
+                var B = Random.BitMatrix(n8);
 
                 var xBytes = A.Bytes.Replicate();
                 var yBytes = B.Bytes.Replicate();
@@ -65,24 +63,29 @@ namespace Z0.Test
             Collect((SampleSize, sw, "bm_and_8x8x8g"));            
         }
 
-        public void bm_and_16x16x16_bench()
+        public void bm_and_16x16_bench()
         {
-            var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            bm_and_16x16_bench_run();
+        }
+
+        void bm_and_16x16_bench_run(SystemCounter counter = default)
+        {
+            //var sw = stopwatch(false);
+            for(var i=0; i<OpCount; i++)
             {
-                var x = Random.BitMatrix16();
-                var y = Random.BitMatrix16();
-                sw.Start();
+                var x = Random.BitMatrix(n16);
+                var y = Random.BitMatrix(n16);
+                counter.Start();
                 var result = x & y;                               
-                sw.Stop();
+                counter.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_16x16x16"));            
+            Benchmark("bm_and_16x16", counter);            
         }
 
         public void bm_and_16x16x16g_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
                 var A = Random.BitMatrix<N16,ushort>();
                 var B = Random.BitMatrix<N16,ushort>();
@@ -90,15 +93,15 @@ namespace Z0.Test
                 var result = A & B;                               
                 sw.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_16x16x16g"));            
+            Collect((OpCount, sw, "bm_and_16x16x16g"));            
         }
 
-        public void bm_and_32x32x32()
+        public void bm_and_32x32_check()
         {            
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
-                var A = Random.BitMatrix32();
-                var B = Random.BitMatrix32();
+                var A = Random.BitMatrix(n32);
+                var B = Random.BitMatrix(n32);
 
                 var xBytes = A.Bytes.Replicate();
                 var yBytes = B.Bytes.Replicate();
@@ -113,21 +116,21 @@ namespace Z0.Test
         public void bm_and_32x32x32_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
-                var x = Random.BitMatrix32();
-                var y = Random.BitMatrix32();
+                var x = Random.BitMatrix(n32);
+                var y = Random.BitMatrix(n32);
                 sw.Start();
                 var result = x & y;                               
                 sw.Stop();
             }
-            OpTime time = (SampleSize, sw, "bm_and_32x32x32");            
+            OpTime time = (OpCount, sw, "bm_and_32x32");            
             Collect(time);
         }
 
         public void bm_and_32x32x32g()
         {            
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var A = Random.BitMatrix<N32,uint>();
                 var B = Random.BitMatrix<N32,uint>();
@@ -141,7 +144,7 @@ namespace Z0.Test
         public void bm_and_32x32x32g_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
                 var A = Random.BitMatrix<N32,uint>();
                 var B = Random.BitMatrix<N32,uint>();
@@ -149,13 +152,13 @@ namespace Z0.Test
                 var result = A & B;                               
                 sw.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_32x32x32g"));            
+            Collect((OpCount, sw, "bm_and_32x32x32g"));            
         }
 
         public void bm_and_63x63x8g_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
                 var A = Random.BitMatrix<N63,byte>();
                 var B = Random.BitMatrix<N63,byte>();
@@ -163,15 +166,15 @@ namespace Z0.Test
                 var result = A & B;                               
                 sw.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_63x63x8g"));            
+            Collect((OpCount, sw, "bm_and_63x63x8g"));            
         }
 
-        public void bm_and_64x64x64()
+        public void bm_and_64x64_check()
         {            
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
-                var A = Random.BitMatrix64();
-                var B = Random.BitMatrix64();
+                var A = Random.BitMatrix(n64);
+                var B = Random.BitMatrix(n64);
 
                 var xBytes = A.Bytes.Replicate();
                 var yBytes = B.Bytes.Replicate();
@@ -186,20 +189,20 @@ namespace Z0.Test
         public void bm_and_64x64x64_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
-                var x = Random.BitMatrix64();
-                var y = Random.BitMatrix64();
+                var x = Random.BitMatrix(n64);
+                var y = Random.BitMatrix(n64);
                 sw.Start();
                 var result = x & y;                               
                 sw.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_64x64x64"));            
+            Collect((OpCount, sw, "bm_and_64x64"));            
         }
 
-        public void bm_and_64x64x64g()
+        public void bm_and_64x64x64g_check()
         {
-            for(var i=0; i<CycleCount; i++)
+            for(var i=0; i<SampleSize; i++)
             {
                 var A = Random.BitMatrix<N64,ulong>();
                 var B = Random.BitMatrix<N64,ulong>();
@@ -214,7 +217,7 @@ namespace Z0.Test
         public void bm_and_64x64x64g_bench()
         {
             var sw = stopwatch(false);
-            for(var i=0; i<SampleSize; i++)
+            for(var i=0; i<OpCount; i++)
             {
                 var A = Random.BitMatrix<N64,ulong>();
                 var B = Random.BitMatrix<N64,ulong>();
@@ -222,7 +225,7 @@ namespace Z0.Test
                 var result = A & B;                               
                 sw.Stop();
             }
-            Collect((SampleSize, sw, "bm_and_64x64x64g"));            
+            Collect((OpCount, sw, "bm_and_64x64x64g"));            
         }
 
 

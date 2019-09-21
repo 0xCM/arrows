@@ -42,7 +42,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static ref BlockVector<T> div<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
                 gfp.fdiv(lhs.Unblocked, rhs.Unblocked);
@@ -61,7 +61,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> div<N,T>(ref BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
                 gfp.fdiv(lhs.Unsized, rhs.Unsized);

@@ -45,7 +45,7 @@ namespace Z0
 
     }
 
-    public ref struct BitVector<T> //: IBitVector<BitVector<T>,T>
+    public ref struct BitVector<T>
         where T : unmanaged
     {
         /// <summary>
@@ -434,7 +434,6 @@ namespace Z0
                 data.Fill(primal.Zero);
         }
 
-
         /// <summary>
         /// Counts the number of bits set up to and including the specified position
         /// </summary>
@@ -444,46 +443,6 @@ namespace Z0
         public uint Rank(BitPos pos)
             => Pop(pos);
             
-
-        public void Permute(Perm p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reverse()
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitSize Nlz()
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitSize Ntz()
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitVector<T> Lsb(int n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitVector<T> Msb(int n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitVector<T> Replicate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public BitVector<T> Replicate(Perm p)
-        {
-            throw new NotImplementedException();
-        }
         /// <summary>
         /// Gets the mapped bit location
         /// </summary>
@@ -497,7 +456,7 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The segmented bit position</param>
         [MethodImpl(Inline)]
-        ref T Segment(in CellIndex<T> pos)
+        public ref T Segment(in CellIndex<T> pos)
             => ref data[pos.Segment];
 
         /// <summary>
@@ -505,7 +464,7 @@ namespace Z0
         /// </summary>
         /// <param name="pos">The segmented bit position</param>
         [MethodImpl(Inline)]
-        ref T Segment(BitPos pos)
+        public ref T Segment(BitPos pos)
             => ref Segment(in Location(pos));
 
         /// <summary>

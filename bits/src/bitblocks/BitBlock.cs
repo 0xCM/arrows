@@ -72,6 +72,16 @@ namespace Z0
             get => data;
         }
 
+        /// <summary>
+        /// Reverses the bits in the block
+        /// </summary>
+        public void Reverse()
+        {
+            var span = AsSpan();
+            span.Reverse();
+            data = MemoryMarshal.AsRef<T>(span);
+        }
+
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => BitString.FromBitSeq(AsSpan());

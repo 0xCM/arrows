@@ -260,7 +260,7 @@ namespace Z0.Test
         /// <param name="cycles">The number of times the test is repeated</param>
         /// <typeparam name="T">The primal type</typeparam>
         void pack1xN_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             for(var cycle=0; cycle<SampleSize; cycle++)
             {

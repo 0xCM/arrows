@@ -129,7 +129,7 @@ namespace Z0
         [FieldOffset(18)]
         public byte Bit18;
 
-       /// <summary>
+        /// <summary>
         ///  Bit 19
         /// </summary>
         [FieldOffset(19)]
@@ -283,7 +283,7 @@ namespace Z0
         }
 
         public string Format()
-            => BitBlock.AsGeneric(ref this).Format();
+            => this.AsGeneric().Format(); 
 
         public override string ToString() 
             => Format();

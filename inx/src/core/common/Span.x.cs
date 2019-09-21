@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> Replicate<T>(this Vec128<T> src)
-            where T : struct
+            where T : unmanaged
                 => Vec128.Load(src.ToSpan128());
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> Replicate<T>(this Vec256<T> src)
-            where T : struct
+            where T : unmanaged
                 => Vec256.Load(src.ToSpan256());    
     }
 }

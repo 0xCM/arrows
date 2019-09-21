@@ -27,7 +27,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BlockVector<T> or<T>(BlockVector<T> lhs, BlockVector<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             var dst = lhs.Replicate(true);
             gbits.or(lhs.Data, rhs.Data, dst.Data);
@@ -54,7 +54,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> or<N,T>(BlockVector<N,T> x, T k, ref BlockVector<N,T> z)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             gbits.or(x.Unsized, k, z.Unsized);
             return ref z;

@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static int Length<T>(this in Vec128<T> src)
-            where T : struct            
+            where T : unmanaged            
                 => Vec128<T>.Length;
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static int Length<T>(this in Vec256<T> src)
-            where T : struct            
+            where T : unmanaged            
                 => Vec256<T>.Length;    
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static Vec256<T> ToCpuVec256<T>(this Span256<T> src, int block = 0)
-            where T : struct
+            where T : unmanaged
                 => Vec256.Load(ref src.Block(block));
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static Vec128<T> ToCpuVec128<T>(this Span128<T> src, int block = 0)
-            where T : struct
+            where T : unmanaged
                 => Vec128.Load(ref src.Block(block));
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
         /// <typeparam name="S">The source primal type</typeparam>
         /// <typeparam name="T">The target primal type</typeparam>
         public static Vec128<T> Map128<S,T>(this Vec128<S> src, Func<S,T> f)
-            where T : struct
+            where T : unmanaged
             where S : struct
         {
             var xLen = Math.Min(Vec128<S>.Length, Vec128<T>.Length);
@@ -88,7 +88,7 @@ namespace Z0
         /// <typeparam name="S">The source primal type</typeparam>
         /// <typeparam name="T">The target primal type</typeparam>
         public static Vec128<T> Map128<S,T>(this Vec128<S> lhs, Vec128<S> rhs, Func<S,S,T> f)
-            where T : struct
+            where T : unmanaged
             where S : struct
         {
             var xLen = Math.Min(Vec128<S>.Length, Vec128<T>.Length);
@@ -111,7 +111,7 @@ namespace Z0
         /// <typeparam name="S">The source primal type</typeparam>
         /// <typeparam name="T">The target primal type</typeparam>
         public static Vec256<T> Map256<T>(this Vec128<T> lhs, Vec128<T> rhs, Func<T,T> f)
-            where T : struct
+            where T : unmanaged
         {
             var srcLen = Vec128<T>.Length;
             var dstLen = 2*srcLen;
@@ -135,7 +135,7 @@ namespace Z0
         /// <typeparam name="S">The source primal type</typeparam>
         /// <typeparam name="T">The target primal type</typeparam>
         public static Vec256<T> Map256<S,T>(this Vec256<S> src, Func<S,T> f)
-            where T : struct
+            where T : unmanaged
             where S : struct
         {
             var xLen = Math.Min(Vec256<S>.Length, Vec256<T>.Length);
@@ -156,7 +156,7 @@ namespace Z0
         /// <typeparam name="S">The source primal type</typeparam>
         /// <typeparam name="T">The target primal type</typeparam>
         public static Vec256<T> Map256<S,T>(this Vec256<S> lhs, Vec256<S> rhs, Func<S,S,T> f)
-            where T : struct
+            where T : unmanaged
             where S : struct
         {
             var xLen = Math.Min(Vec256<S>.Length, Vec256<T>.Length);

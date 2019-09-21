@@ -43,7 +43,7 @@ namespace Z0.Test
         }
 
         void extract128_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
 
@@ -58,7 +58,7 @@ namespace Z0.Test
         }
             
         public void extract256_check<T>()
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
 

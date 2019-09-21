@@ -19,7 +19,7 @@ namespace Z0
     /// Defines a 32x32 matrix of bits
     /// </summary>
     
-    public ref struct BitMatrix32  //: IBitMatrix<BitMatrix32,N32,uint>
+    public ref struct BitMatrix32
     {                
         Span<uint> data;        
 

@@ -38,7 +38,7 @@ namespace Z0
 
         public static ref BlockMatrix<N,T> Mul<N,T>(BlockMatrix<N,T> A, BlockMatrix<N,T> B, ref BlockMatrix<N,T> X)
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var n = nati<N>();
             for(var i = 0; i< n; i++)
@@ -52,7 +52,7 @@ namespace Z0
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var m = nati<M>();
             var n = nati<N>();
@@ -66,7 +66,7 @@ namespace Z0
             where M : ITypeNat, new()
             where K : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var X = BlockMatrix.Alloc<M,N,T>();
             Mul(A,B, ref X);
@@ -83,13 +83,13 @@ namespace Z0
         [MethodImpl(Inline)]
         static T dot<N,T>(in BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
                 => gmath.dot<T>(lhs.Unsized,rhs.Unsized);
 
         public static void Mul<M,N,T>(BlockMatrix<M,N,T> A, BlockVector<N,T> B, BlockVector<M,T> X)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct
+            where T : unmanaged
         {
             var m = nati<M>();
             for(var i = 0; i< m; i++)

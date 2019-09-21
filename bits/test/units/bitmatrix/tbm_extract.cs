@@ -12,7 +12,7 @@ namespace Z0.Test
     using static zfunc;
     #pragma warning disable 1718
 
-    public class tbm_extract : UnitTest<tbm_extract>
+    public class tbm_extract : BitMatrixTest<tbm_extract>
     {
         public void VectorExtract()
         {

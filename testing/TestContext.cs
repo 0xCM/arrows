@@ -115,6 +115,11 @@ namespace Z0
             return closed(offsetMin,offsetMax);                
         }
 
+        protected void Benchmark(string opname,TimeSpan time)
+        {
+            Collect((OpCount, time, opname));
+        }
+
         /// <summary>
         /// Collects benchmark stats for a specified unary operator
         /// </summary>

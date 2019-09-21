@@ -24,7 +24,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static bool all<N,T>(in BlockVector<N,T> src, T match)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             for(var i=0; i< BlockVector<N,T>.Length; i++)            
                 if(gmath.neq(src[i],match))

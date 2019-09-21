@@ -13,6 +13,14 @@ using Z0;
 
 partial class zfunc
 {
+ 
+    /// <summary>
+    /// Allocates, but does not start, a system counter
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static SystemCounter counter() 
+        => SystemCounter.New();
+
     /// <summary>
     /// Creates a new stopwatch and optionally start it
     /// </summary>

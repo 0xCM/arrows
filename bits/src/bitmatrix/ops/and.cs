@@ -10,11 +10,49 @@ namespace Z0
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
+    using static As;
 
     partial class BitMatrix
     {
+        /// <summary>
+        /// Computes the logical AND between two primal bitmatrices of order 8
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix8 and(in BitMatrix8 lhs, in BitMatrix8 rhs)
+             => BitMatrix8.From((ulong)lhs & (ulong)rhs);             
+
+        /// <summary>
+        /// Computes the logical AND between two primal bitmatrices of order 16
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        [MethodImpl(Inline)]
+        public static BitMatrix16 and(in BitMatrix16 lhs, in BitMatrix16 rhs)
+        {
+            ref var A = ref lhs.LoadCpuVec(out Vec256<ushort> _);
+            ref var B = ref rhs.LoadCpuVec(out Vec256<ushort> _);
+            var C = dinx.and(in A,in B);
+            return BitMatrix16.From(in C);
+        }
+
+        /// <summary>
+        /// Computes the logical AND between two primal bitmatrices of order 16
+        /// </summary>
+        /// <param name="lhs">The left matrix</param>
+        /// <param name="rhs">The right matrix</param>
+        public static BitMatrix32 and(in BitMatrix32 A, in BitMatrix32 B)
+        {
+            const int rowstep = 8;
+            var dst = BitMatrix32.Alloc();
+            for(var i=0; i< A.RowCount; i += rowstep)
+                dinx.and(Vec256.Load(ref A[i]), Vec256.Load(ref B[i])).StoreTo(ref dst[i]);
+            return dst;
+        }
 
         /// <summary>
         /// Computes the bitwise AND between two square bitmatrices of common natural order and stores the

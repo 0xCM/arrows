@@ -15,7 +15,7 @@ namespace Z0
     public static class CpuOpVerify
     {
         public static void VerifyUnaryOp<T>(IPolyrand random, int blocks, Vec128UnaryOp<T> inXOp, Func<T,T> primalOp)
-            where T : struct
+            where T : unmanaged
         {
             var blocklen = Span128<T>.BlockLength;                     
             
@@ -50,7 +50,7 @@ namespace Z0
         }
 
         public static void VerifyUnaryOp<T>(IPolyrand random, int blocks, Vec256UnaryOp<T> inXOp, Func<T,T> primalOp)
-            where T : struct
+            where T : unmanaged
         {
             var blocklen = Span256<T>.BlockLength;                     
             
@@ -85,7 +85,7 @@ namespace Z0
         }
 
         public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
-            where T : struct
+            where T : unmanaged
         {
             var blocklen = Span128<T>.BlockLength;                     
             
@@ -124,7 +124,7 @@ namespace Z0
         }
 
         public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
-            where T : struct
+            where T : unmanaged
         {
             var blocklen = Span256<T>.BlockLength;                     
             

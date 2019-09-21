@@ -156,7 +156,7 @@ namespace Z0
             => src.Vec<double>();
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -167,7 +167,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -178,7 +178,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -189,7 +189,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -200,7 +200,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -211,7 +211,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -222,7 +222,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -233,7 +233,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -244,7 +244,7 @@ namespace Z0
         }
         
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
@@ -255,7 +255,7 @@ namespace Z0
         }
 
         /// <summary>
-        /// Implicitly converts a source vector to an ymem value
+        /// Implicitly converts a source vector to a 256-bit memory block
         /// </summary>
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]

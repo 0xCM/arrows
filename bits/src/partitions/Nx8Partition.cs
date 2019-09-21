@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="dst">A target span of sufficient length</param>
-        public static void part16x8(byte src, Span<byte> dst)
+        public static void part16x8(uint src, Span<byte> dst)
         {
             dst[0] = project<byte>(select(src, Part16x8.Part0), Part16x8.First);            
             dst[1] = project<byte>(select(src, Part16x8.Part1), Part16x8.First);

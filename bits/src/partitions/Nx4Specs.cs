@@ -18,7 +18,7 @@ namespace Z0
         /// Partitions an 8-bit container into 4-bit segments
         /// </summary>
         [Flags]
-        public enum Part8x4 : byte
+        public enum Part8x4 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -65,7 +65,7 @@ namespace Z0
         /// Partitions an 12-bit container into 4-bit segments
         /// </summary>
         [Flags]
-        public enum Part12x4 : ushort
+        public enum Part12x4 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits
@@ -118,7 +118,7 @@ namespace Z0
         /// Partitions an 16-bit container into 4-bit segments
         /// </summary>
         [Flags]
-        public enum Part16x4 : ushort
+        public enum Part16x4 : uint
         {            
             /// <summary>
             /// The total count of partitioned bits

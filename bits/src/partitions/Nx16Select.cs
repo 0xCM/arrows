@@ -21,8 +21,8 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="part">The source partition to select/extract</param>
         [MethodImpl(Inline)]
-        public static ushort select(uint src, Part32x16 part)
-            => (ushort)Bits.gather(src, (uint)part);
+        public static uint select(uint src, Part32x16 part)
+            => Bits.gather(src, (uint)part);
 
 
     }

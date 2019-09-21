@@ -31,6 +31,24 @@ namespace Z0
             => ref Ymm.XmmSlot(slot);
 
         /// <summary>
+        /// Selects the memory from a slot-identified xmm register
+        /// </summary>
+        /// <param name="slot">The slot index, an integer between 0 and 15</param>
+        [MethodImpl(Inline)]
+        public ref T xmem<T>(int slot)
+            where T : unmanaged
+                => ref Ymm.XmmSlot(slot).First<T>();
+
+        /// <summary>
+        /// Selects the memory from a slot-identified ymm register
+        /// </summary>
+        /// <param name="slot">The slot index, an integer between 0 and 15</param>
+        [MethodImpl(Inline)]
+        public ref T ymem<T>(int slot)
+            where T : unmanaged
+                => ref Ymm.YmmSlot(slot).First<T>();
+
+        /// <summary>
         /// Selects a slot-identified ymm register
         /// </summary>
         /// <param name="slot">The slot index, an integer between 0 and 15</param>
@@ -328,5 +346,34 @@ namespace Z0
             [MethodImpl(Inline)]
             get => ref ymm(15);
         }
+
+        /// <summary>
+        /// Formats a slot-identified XMM register as cells of specified type
+        /// </summary>
+        /// <param name="slot">The slot index</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        public string XmmFormat<T>(int slot)
+            where T : unmanaged
+        {
+            var label = $"xmm{slot}".PadRight(6);
+            var content = xmm(slot);
+            var format = content.Format<T>();
+            return $"{label}{format}";
+        }
+
+        /// <summary>
+        /// Formats a slot-identified YMM register as cells of specified type
+        /// </summary>
+        /// <param name="slot">The slot index</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        public string YmmFormat<T>(int slot)
+            where T : unmanaged
+        {
+            var label = $"ymm{slot}".PadRight(6);
+            var content = ymm(slot);
+            var format = content.Format<T>();
+            return $"{label}{format}";
+        }
+
     }
 }

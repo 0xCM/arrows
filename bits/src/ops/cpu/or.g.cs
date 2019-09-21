@@ -17,7 +17,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<T> or<T>(in Vec256<T> lhs, in Vec256<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(Bits.or(in int8(in lhs), in int8(in rhs)));
@@ -45,7 +45,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void or<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
-            where T : struct
+            where T : unmanaged
         {
             if (typeof(T) == typeof(sbyte))
                 Bits.or(int8(lhs), int8(rhs), ref int8(ref dst));
@@ -73,7 +73,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static Vec128<T> or<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(Bits.or(in int8(in lhs), in int8(in rhs)));
@@ -101,7 +101,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void or<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
-            where T : struct
+            where T : unmanaged
         {
             if (typeof(T) == typeof(sbyte))
                 Bits.or(int8(lhs), int8(rhs), ref int8(ref dst));
@@ -128,7 +128,7 @@ namespace Z0
         }         
 
         public static Span128<T> or<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct
+            where T : unmanaged
         {
             for(var i=0; i< blocks(lhs,rhs); i++)
                 vstore(or(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst.Block(i));                             
@@ -136,7 +136,7 @@ namespace Z0
         }
 
         public static Span256<T> or<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct
+            where T : unmanaged
         {
             for(var i=0; i< blocks(lhs,rhs); i++)
                 vstore(or(lhs.LoadVec256(i), rhs.LoadVec256(i)), ref dst.Block(i));                             

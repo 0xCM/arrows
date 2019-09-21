@@ -17,6 +17,12 @@ namespace Z0
     /// </summary>
     public readonly struct ByteSize
     {
+        /// <summary>
+        /// Specifies a number of bytes
+        /// </summary>
+        public readonly int Bytes;
+
+        [MethodImpl(Inline)]
         public static bool operator ==(ByteSize lhs, ByteSize rhs)
             => lhs.Bytes == rhs.Bytes;
 
@@ -56,7 +62,6 @@ namespace Z0
         public static implicit operator uint(ByteSize src)
             => (uint)src.Bytes;
 
-
         [MethodImpl(Inline)]
         public static implicit operator ByteSize(int src)
             => new ByteSize(src);
@@ -65,15 +70,9 @@ namespace Z0
         public static implicit operator ByteSize(ulong src)
             => new ByteSize((int)src);
 
-
         [MethodImpl(Inline)]
         public ByteSize(int Bytes)
             => this.Bytes = Bytes;
-
-        /// <summary>
-        /// Specifies the number of bytes
-        /// </summary>
-        public readonly int Bytes;
 
         [MethodImpl(Inline)]
         public ulong ToBits()
@@ -90,6 +89,5 @@ namespace Z0
     
         public override bool Equals(object obj)
             => obj is ByteSize ? Equals((ByteSize)obj) : false;
-
     }
 }

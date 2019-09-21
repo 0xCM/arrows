@@ -48,9 +48,9 @@ namespace Z0
         public void xmm_cpu()
         {
             
-            xmm(ref cpu, 4) = XMM.FromCells(5ul,10ul);
-            Claim.eq(xmm(ref cpu, 4).Cell<ulong>(0), 5ul);
-            Claim.eq(xmm(ref cpu, 4).Cell<ulong>(1), 10ul);
+            xmm(4) = XMM.FromCells(5ul,10ul);
+            Claim.eq(xmm(4).Cell<ulong>(0), 5ul);
+            Claim.eq(xmm(4).Cell<ulong>(1), 10ul);
         }
 
         void xmm_create<T>()

@@ -22,7 +22,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static ref BlockVector<T> negate<T>(ref BlockVector<T> src)
-            where T : struct
+            where T : unmanaged
         {
             gmath.negate(src.Unblocked);
             return ref src;
@@ -37,7 +37,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> negate<N,T>(ref BlockVector<N,T> src)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
         {
             var x = src.Unsized;
             gmath.negate(src.Unsized);

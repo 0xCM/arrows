@@ -30,7 +30,7 @@ namespace Z0.Test
         }
 
         void and<N,T>()
-            where T : struct
+            where T : unmanaged
             where N : ITypeNat, new()
         {
             var rep = new N();
