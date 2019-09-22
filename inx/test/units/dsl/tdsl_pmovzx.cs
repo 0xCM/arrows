@@ -15,13 +15,13 @@ namespace Z0
     public class tdsl_pmovzx : UnitTest<tdsl_pmovzx>
     {
 
-        public void dsl_pmovzxbw()
-        {
-            var src = Random.Xmm<byte>();
-            var dst = Asm.pmovzxbw(in src);
-            for(var i=0; i<8; i++)
-                Claim.eq(src.uint8(i), dst.uint16(i));                           
-        }
+        // public void dsl_pmovzxbw()
+        // {
+        //     var src = Random.Xmm<byte>();
+        //     var dst = Asm.pmovzxbw(src);
+        //     for(var i=0; i<8; i++)
+        //         Claim.eq(src.Cell<byte>(i), dst.Cell<ushort>(i));                           
+        // }
 
 
     }

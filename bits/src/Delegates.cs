@@ -23,7 +23,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public static BinaryOp<T> xor<T>()
-            where T : struct
+            where T : unmanaged
                 => XOr<T>.Op;
 
         [MethodImpl(Inline)]
@@ -68,7 +68,7 @@ namespace Z0
         }
 
         readonly struct XOr<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly BinaryOp<T> Op = gbits.xor<T>;
         }

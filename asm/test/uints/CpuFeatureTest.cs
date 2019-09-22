@@ -2,14 +2,12 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Asm.Test
+namespace Z0
 {
     using System;
     using System.Linq;
-    using Z0.Test;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.IO;
     
     using static zfunc;
 
@@ -28,12 +26,7 @@ namespace Z0.Asm.Test
             Claim.yea(bits.Contains(CpuIdEcx.PCLMULQDQ));
             Claim.yea(bits.Contains(CpuIdEcx.SSE3));
             Claim.yea(bits.Contains(CpuIdEcx.MONITOR));
-            Claim.nea(bits.Contains(CpuIdEcx.DS_CPL));
-
-            
-
+            Claim.nea(bits.Contains(CpuIdEcx.DS_CPL));        
         }
-
     }
-
 }

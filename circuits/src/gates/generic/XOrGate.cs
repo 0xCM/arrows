@@ -10,31 +10,27 @@ namespace Z0
 
     using static zfunc;
 
-
-    public readonly struct XOrGate<T> : 
-        IBinaryGate<T>, 
-        IBinaryGate<Vec128<T>>,
-        IBinaryGate<Vec256<T>>,
-        IBinaryBitGate
-        where T : struct
+    public readonly struct XOrGate<T> : IBinaryGate<T>, IBinaryGate<Vec128<T>>, IBinaryGate<Vec256<T>>
+        where T : unmanaged
     {
         internal static readonly XOrGate<T> Gate = default;
 
         [MethodImpl(Inline)]
-        public T Send(T a, T b)
-            => gbits.xor(a,b);
-
-        [MethodImpl(Inline)]
-        public Vec128<T> Send(Vec128<T> a, Vec128<T> b)
-            => gbits.xor(a,b);
-
-        [MethodImpl(Inline)]
-        public Vec256<T> Send(Vec256<T> a, Vec256<T> b)
-            => gbits.xor(a,b);
-
-        [MethodImpl(Inline)]
         public Bit Send(Bit x, Bit y)
             => x ^ y;
+
+        [MethodImpl(Inline)]
+        public T Send(in T a, in T b)
+            => gbits.xor(a,b);
+
+        [MethodImpl(Inline)]
+        public Vec128<T> Send(in Vec128<T> a, in Vec128<T> b)
+            => gbits.xor(in a,in b);
+
+        [MethodImpl(Inline)]
+        public Vec256<T> Send(in Vec256<T> a, in Vec256<T> b)
+            => gbits.xor(in a,in b);
+
     }
 
 }

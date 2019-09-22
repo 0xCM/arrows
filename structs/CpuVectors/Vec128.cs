@@ -23,7 +23,7 @@ namespace Z0
         /// <summary>
         /// The backing data
         /// </summary>
-        public readonly Vector128<T> data;        
+        public readonly Vector128<T> xmm;        
 
         /// <summary>
         /// The number of components in the vector
@@ -46,7 +46,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Vector128<T>(Vec128<T> src)
-            => src.data;
+            => src.xmm;
 
         [MethodImpl(Inline)]
         public static bool operator ==(in Vec128<T> lhs, in Vec128<T> rhs)
@@ -58,7 +58,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec128(Vector128<T> src)
-            => this.data = src;
+            => this.xmm = src;
 
         /// <summary>
         /// Manipulates a component via its 0-based index
@@ -83,17 +83,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public Vec128<U> As<U>() 
             where U : struct
-                => Unsafe.As<Vector128<T>, Vec128<U>>(ref Unsafe.AsRef(in data));         
+                => Unsafe.As<Vector128<T>, Vec128<U>>(ref Unsafe.AsRef(in xmm));         
 
         [MethodImpl(Inline)]
         public bool Equals(Vec128<T> rhs)
-             => data.Equals(rhs.data);
+             => xmm.Equals(rhs.xmm);
 
         public override string ToString()
-            => data.ToString();
+            => xmm.ToString();
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => xmm.GetHashCode();
 
         public override bool Equals(object obj)
             => obj is Vec128<T> v ? Equals(v) : false;

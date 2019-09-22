@@ -64,8 +64,8 @@ namespace Z0
         {
             var config = Config.Get<K>();
              return nonzero 
-                ? Random.NonZeroArray<K>(config.SampleSize, config.SampleDomain)                
-                : Random.Array<K>(config.SampleSize, config.SampleDomain);
+                ? Random.NonZeroArray<K>(config.SampleSize, SampleDomain<K>())                
+                : Random.Array<K>(config.SampleSize, SampleDomain<K>());
         }
 
         protected void Verify(Action a)
@@ -76,7 +76,11 @@ namespace Z0
 
         protected override bool TraceEnabled
             => Config.TraceEnabled;
-        
+
+        protected virtual Interval<K> SampleDomain<K>()
+            where K : struct
+                => RngDefaults.get<K>().SampleDomain;
+                
         /// <summary>
         /// The number of elements to be selected from some sort of stream
         /// </summary>

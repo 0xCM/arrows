@@ -26,18 +26,44 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static XMM pmovzxbw(in XMM a)        
-            => ConvertToVector128Int16(vec<byte>(a));
+        public static XMM pmovzxbw(XMM a)        
+            => ConvertToVector128Int16(vload<byte>(ref a));
+
+        [MethodImpl(Inline)]
+        public static Vector128<short> pmovzxbw_ref(Vector128<byte> a)        
+            => ConvertToVector128Int16(a);
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi32 (__m128i a) PMOVZXBD xmm1, xmm2/m32
         /// Zero extend 4 packed 8-bit integers in the low 4 bytes of xmm2/m32 to 4 packed 32-bit integers in xmm1.
         /// </summary>
         /// <param name="a">The source operand operand</param>
-        /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
+        /// <reference>https://www.felixcloutier.com/x86/pmovzx</reference>
+        /// <remarks>Codegen OK</remarks>            
         [MethodImpl(Inline)]
-        public static XMM pmovzxbd(in XMM a)        
-            => ConvertToVector128Int32(vec<byte>(a));
+        public static XMM pmovzxbd(XMM a)        
+            => ConvertToVector128Int32(vload<byte>(ref a));
+
+        //Codegen OK
+        [MethodImpl(Inline)]
+        static ref XMM pmovzxbd_out_xmm(XMM a, out XMM dst)        
+        {
+            dst = ConvertToVector128Int32(vload<byte>(ref a));
+            return ref dst;
+        }
+
+        //Codegen OK
+        [MethodImpl(Inline)]
+        static ref Vector128<int> pmovzxbd_out_vec(XMM a, out Vector128<int> dst)        
+        {
+            dst = ConvertToVector128Int32(vload<byte>(ref a));
+            return ref dst;
+        }
+
+        //Codegen OK
+        [MethodImpl(Inline)]
+        static Vector128<int> pmovzxbd_ref(Vector128<byte> a)        
+            => ConvertToVector128Int32(a);
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi64 (__m128i a) PMOVZXBQ xmm1, xmm2/m16
@@ -46,8 +72,8 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static XMM pmovzxbq(in XMM a)        
-            => ConvertToVector128Int64(vec<byte>(a));
+        public static XMM pmovzxbq(XMM a)        
+            => ConvertToVector128Int64(vload<byte>(ref a));
 
         /// <summary>
         /// __m128i _mm_cvtepu16_epi32 (__m128i a) PMOVZXWD xmm1, xmm2/m64
@@ -56,8 +82,8 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static XMM pmovzxwd(in XMM a)        
-            => ConvertToVector128Int32(vec<ushort>(a));
+        public static XMM pmovzxwd(XMM a)        
+            => ConvertToVector128Int32(vload<ushort>(ref a));
 
         /// <summary>
         /// __m128i _mm_cvtepu16_epi64 (__m128i a) PMOVZXWQ xmm1, xmm2/m32
@@ -66,8 +92,8 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static XMM pmovzxwq(in XMM a)        
-            => ConvertToVector128Int64(vec<ushort>(a));
+        public static XMM pmovzxwq(XMM a)        
+            => ConvertToVector128Int64(vload<ushort>(ref a));
 
         /// <summary>
         /// __m128i _mm_cvtepu32_epi64 (__m128i a) PMOVZXDQ xmm1, xmm2/m64
@@ -76,8 +102,8 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static XMM pmovzxdq(in XMM a)        
-            => ConvertToVector128Int64(vec<uint>(a));
+        public static XMM pmovzxdq(XMM a)        
+            => ConvertToVector128Int64(vload<uint>(ref a));
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi32 (__m128i a) PMOVZXBD xmm1, xmm2/m32
@@ -86,12 +112,9 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static ref XMM pmovzxbd(in XMM a, ref XMM b)        
-        {
-            b = ConvertToVector128Int32(vec<byte>(a));
-            return ref b;
-        }
-
+        public static XMM pmovzxbd32(XMM a)        
+            => ConvertToVector128Int32(vload<byte>(ref a));
+      
         /// <summary>
         /// __m128i _mm_cvtepu8_epi64 (__m128i a) PMOVZXBQ xmm1, xmm2/m16
         /// Zero extend 2 packed 8-bit integers in the low 2 bytes of xmm2/m16 to 2 packed 64-bit integers in xmm1.
@@ -99,11 +122,8 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static ref XMM pmovzxbq(in XMM a, ref XMM b)        
-        {
-            b = ConvertToVector128Int64(vec<byte>(a));
-            return ref b;
-        }
+        public static XMM pmovzxbq64(XMM a)        
+            => ConvertToVector128Int64(vload<byte>(ref a));
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi16 (__m128i a) PMOVZXBW xmm1, xmm2/m64
@@ -112,10 +132,7 @@ namespace Z0
         /// <param name="a">The source operand operand</param>
         /// <remarks>See https://www.felixcloutier.com/x86/pmovzx</remarks>
         [MethodImpl(Inline)]
-        public static ref XMM pmovzxbw(in XMM a, ref XMM b)        
-        {
-            b = ConvertToVector128Int16(vec<byte>(a));
-            return ref b;
-        }
+        public static XMM pmovzxbw16(XMM a)        
+            => ConvertToVector128Int16(vload<byte>(ref a));
     }
 }

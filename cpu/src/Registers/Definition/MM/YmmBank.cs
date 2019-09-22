@@ -7,8 +7,11 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+
     using static zfunc;
+    using static As;
 
     [StructLayout(LayoutKind.Explicit, Size = SegLen*SegCount)]
     public unsafe struct YmmBank
@@ -18,6 +21,42 @@ namespace Z0
         public const int SegCount = 16;
 
         const int HiPart = 16;
+
+
+        /// <summary>
+        /// Loads the registger from an unaligned memory reference
+        /// </summary>
+        /// <param name="src">The memory source</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static unsafe Vector256<T> LoadDqu<T>(in T src)
+            where T: unmanaged
+        {
+            if(typeof(T) == typeof(sbyte))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.int8(in src))));
+            else if(typeof(T) == typeof(byte))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.uint8(in src))));
+            else if(typeof(T) == typeof(short))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.int16(in src))));
+            else if(typeof(T) == typeof(ushort))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.uint8(in src))));
+            else if(typeof(T) == typeof(int))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.int32(in src))));
+            else if(typeof(T) == typeof(uint))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.uint32(in src))));
+            else if(typeof(T) == typeof(long))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.int64(in src))));
+            else if(typeof(T) == typeof(ulong))
+               return generic<T>(Avx2.LoadDquVector256(constptr(in AsIn.uint64(in src))));
+            else if(typeof(T) == typeof(float))
+               return generic<T>(Avx2.LoadVector256(constptr(in AsIn.float32(in src))));
+            else if(typeof(T) == typeof(double))
+               return generic<T>(Avx2.LoadVector256(constptr(in AsIn.float64(in src))));
+            else
+                throw unsupported<T>();
+        }
+
+
 
         [FieldOffset(0)]        
         fixed byte Bytes[SegLen*SegCount];
@@ -46,152 +85,106 @@ namespace Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public ref XMM XmmSlot(int index)
-            => ref YmmSlot(index).xmm0;
-
-
-        //~ 00
-        //~ ----------------------
-        [FieldOffset(0)]
-        public YMM ymm0;
+        {
+            ref var y = ref YmmSlot(index);
+            return ref  Unsafe.As<YMM,XMM>(ref y);            
+        }
 
         [FieldOffset(0)]
-        public XMM xmm0;
+        YMM ymm0;
 
-
-        //~ 01
-        //~ ----------------------
-        [FieldOffset(SegLen)]
-        public YMM ymm1;
+        [FieldOffset(0)]
+        XMM xmm0;
 
         [FieldOffset(SegLen)]
-        public XMM xmm1;
+        YMM ymm1;
 
-
-        //~ 02
-        //~ ----------------------
-        [FieldOffset(SegLen*2)]
-        public YMM ymm2;
+        [FieldOffset(SegLen)]
+        XMM xmm1;
 
         [FieldOffset(SegLen*2)]
-        public XMM xmm2;
+        YMM ymm2;
 
-
-        //~ 03
-        //~ ----------------------
-        [FieldOffset(SegLen*3)]
-        public YMM ymm3;
+        [FieldOffset(SegLen*2)]
+        XMM xmm2;
 
         [FieldOffset(SegLen*3)]
-        public XMM xmm3;
+        YMM ymm3;
 
-        //~ 04
-        //~ ----------------------
-        [FieldOffset(SegLen*4)]
-        public YMM ymm4;
+        [FieldOffset(SegLen*3)]
+        XMM xmm3;
 
         [FieldOffset(SegLen*4)]
-        public XMM xmm4;
+        YMM ymm4;
 
-
-        //~ 05
-        //~ ----------------------
-        [FieldOffset(SegLen*5)]
-        public YMM ymm5;
+        [FieldOffset(SegLen*4)]
+        XMM xmm4;
 
         [FieldOffset(SegLen*5)]
-        public XMM xmm5;
+        YMM ymm5;
 
-
-        //~ 06
-        //~ ----------------------
-        [FieldOffset(SegLen*6)]
-        public YMM ymm6;
+        [FieldOffset(SegLen*5)]
+        XMM xmm5;
 
         [FieldOffset(SegLen*6)]
-        public XMM xmm6;
+        YMM ymm6;
 
-        //~ 07
-        //~ ----------------------
-        [FieldOffset(SegLen*7)]
-        public YMM ymm7;
+        [FieldOffset(SegLen*6)]
+        XMM xmm6;
 
         [FieldOffset(SegLen*7)]
-        public XMM xmm7;
+        YMM ymm7;
 
-        [FieldOffset(SegLen*7 + HiPart)]
-        public XMM xmm7H;
-
-        //~ 08
-        //~ ----------------------
-        [FieldOffset(SegLen*8)]
-        public YMM ymm8;
+        [FieldOffset(SegLen*7)]
+        XMM xmm7;
 
         [FieldOffset(SegLen*8)]
-        public XMM xmm8;
+        YMM ymm8;
 
-        [FieldOffset(SegLen*8 + HiPart)]
-        public XMM xmm8H;
+        [FieldOffset(SegLen*8)]
+        XMM xmm8;
 
-        //~ 09
-        //~ ----------------------
-        [FieldOffset(SegLen*9)]
-        public YMM ymm9;
 
         [FieldOffset(SegLen*9)]
-        public XMM xmm9;
+        YMM ymm9;
 
-
-        //~ 10
-        //~ ----------------------
-        [FieldOffset(SegLen*10)]
-        public YMM ymm10;
+        [FieldOffset(SegLen*9)]
+        XMM xmm9;
 
         [FieldOffset(SegLen*10)]
-        public XMM xmm10;
+        YMM ymm10;
 
- 
-        //~ 11
-        //~ ----------------------
-        [FieldOffset(SegLen*11)]
-        public YMM ymm11;
+        [FieldOffset(SegLen*10)]
+        XMM xmm10;
 
         [FieldOffset(SegLen*11)]
-        public XMM xmm11;
+        YMM ymm11;
 
+        [FieldOffset(SegLen*11)]
+        XMM xmm11;
  
-        //~ 12
-        //~ ----------------------
         [FieldOffset(SegLen*12)]
-        public YMM ymm12;
+        YMM ymm12;
 
         [FieldOffset(SegLen*12)]
-        public XMM xmm12;
-
- 
-        //~ 13
-        //~ ----------------------
-        [FieldOffset(SegLen*13)]
-        public YMM ymm13;
+        XMM xmm12;
 
         [FieldOffset(SegLen*13)]
-        public XMM xmm13;
+        YMM ymm13;
 
- 
-        //~ 14
-        //~ ----------------------
-        [FieldOffset(SegLen*14)]
-        public YMM ymm14;
+        [FieldOffset(SegLen*13)]
+        XMM xmm13;
 
         [FieldOffset(SegLen*14)]
-        public XMM xmm14;
+        YMM ymm14;
 
+        [FieldOffset(SegLen*14)]
+        XMM xmm14;
  
-        //~ 15
-        //~ ----------------------
         [FieldOffset(SegLen*15)]
-        public YMM ymm15;
+        YMM ymm15;
 
         [FieldOffset(SegLen*15)]
-        public XMM xmm15;
+        XMM xmm15;
     }
 }

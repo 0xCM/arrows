@@ -44,33 +44,10 @@ namespace Z0
             this.xmm = xmm;
         }
 
-        /// <summary>
-        /// Assigns the source vector to an exising instance of a target memory/register
-        /// </summary>
-        /// <param name="src">The source</param>
-        /// <param name="dst">The target</param>
-        /// <typeparam name="T">The primal vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref XMEM Assign<T>(Vector128<T> src, ref XMEM dst)
+        public static XMEM From<T>(Vector128<T> src)
             where T : unmanaged
-        {
-            dst.vxmm = Vector128.As<T,byte>(src);
-            return ref dst;
-        }
-
-        /// <summary>
-        /// Allocates the target and populates it with a source vector
-        /// </summary>
-        /// <param name="src">The source</param>
-        /// <param name="dst">The target</param>
-        /// <typeparam name="T">The primal vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static ref XMEM Load<T>(Vector128<T> src, out XMEM dst)
-            where T : unmanaged
-        {
-            dst = new XMEM(Vector128.As<T,byte>(src));
-            return ref dst;
-        }
+                => Unsafe.As<Vector128<T>,XMEM>(ref src);
 
         /// <summary>
         /// Implicitly converts ymem source value to a ymm register
@@ -86,10 +63,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<sbyte> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -97,10 +71,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<byte> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -108,10 +79,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<short> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -119,10 +87,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<ushort> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -130,10 +95,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<int> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -141,10 +103,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<uint> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -152,10 +111,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<long> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -163,10 +119,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<ulong> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
         
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -174,10 +127,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<float> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 128-bit memory block
@@ -185,10 +135,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator XMEM(Vector128<double> src)
-        {
-            Load(src, out XMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicly converts an xmem source value to a 128-bit vector of usigned 8-bit integers
@@ -267,15 +214,6 @@ namespace Z0
             where T : unmanaged
                 => ref As.generic<T>(ref mem[0]);
 
-        /// <summary>
-        /// Gets the value of an index-identified memory cell
-        /// </summary>
-        /// <param name="index">The zero-based cell index</param>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public ref T Cell<T>(int index)
-            where T : unmanaged
-                => ref Unsafe.Add(ref First<T>(), index);
             
         /// <summary>
         /// Presents the source content as a 128-bit cpu vector

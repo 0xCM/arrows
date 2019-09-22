@@ -32,19 +32,19 @@ namespace Z0
             
         }
 
-        public void reverse()
+        void reverse()
         {
-            YMM src = Vec256Pattern.Increasing<uint>();
-            YMM expect = Vec256Pattern.Decrements(7u);
-            var actual = vpermd(in src, Perm8.Reverse);
+            YMM src = YmmPattern.Increasing<uint>();
+            YMM expect = YmmPattern.Decrements(7u);
+            var actual = vpermd(src, Perm8.Reverse);
             Claim.eq(expect,actual);            
         }
 
         public void identity()
         {
-            YMM src = Vec256Pattern.Increasing<uint>();
-            YMM expect =Vec256Pattern.Increasing<uint>();
-            var actual = vpermd(in src, Perm.Assemble8());
+            YMM src = YmmPattern.Increasing<uint>();
+            YMM expect =YmmPattern.Increasing<uint>();
+            var actual = vpermd(src, Perm.Assemble8());
             Claim.eq(expect,actual);            
         }
         

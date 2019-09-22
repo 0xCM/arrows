@@ -101,6 +101,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.libm", "mathlibs\libm\z0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.mathlibs.test", "mathlibs\test\z0.mathlibs.test.csproj", "{27DFCE97-F7B7-4D7F-A070-039C0501A325}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "circuits", "circuits", "{477109CD-4F6C-443F-887B-038EB81A12D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.circuits", "circuits\src\z0.circuits.csproj", "{29AE0502-D378-41A7-B48F-E01941090B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.circuits.test", "circuits\test\z0.circuits.test.csproj", "{516A5AEF-AF54-4038-94CA-8864240FFE84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -251,6 +257,14 @@ Global
 		{27DFCE97-F7B7-4D7F-A070-039C0501A325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27DFCE97-F7B7-4D7F-A070-039C0501A325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27DFCE97-F7B7-4D7F-A070-039C0501A325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29AE0502-D378-41A7-B48F-E01941090B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29AE0502-D378-41A7-B48F-E01941090B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29AE0502-D378-41A7-B48F-E01941090B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29AE0502-D378-41A7-B48F-E01941090B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{516A5AEF-AF54-4038-94CA-8864240FFE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{516A5AEF-AF54-4038-94CA-8864240FFE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{516A5AEF-AF54-4038-94CA-8864240FFE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{516A5AEF-AF54-4038-94CA-8864240FFE84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +306,8 @@ Global
 		{B4DE2F54-4631-4B53-825D-D4CBA5392B41} = {98666D44-B162-4ACF-8284-3A416880E820}
 		{C24586B6-7516-49E4-8775-25FBD4F37842} = {98666D44-B162-4ACF-8284-3A416880E820}
 		{27DFCE97-F7B7-4D7F-A070-039C0501A325} = {98666D44-B162-4ACF-8284-3A416880E820}
+		{29AE0502-D378-41A7-B48F-E01941090B8E} = {477109CD-4F6C-443F-887B-038EB81A12D6}
+		{516A5AEF-AF54-4038-94CA-8864240FFE84} = {477109CD-4F6C-443F-887B-038EB81A12D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B25BF6D0-13CC-4F6F-B23A-D4D8878FED3E}

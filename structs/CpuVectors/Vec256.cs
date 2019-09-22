@@ -25,7 +25,7 @@ namespace Z0
         /// <summary>
         /// The backing data
         /// </summary>
-        public readonly Vector256<T> data;        
+        public readonly Vector256<T> ymm;        
 
         /// <summary>
         /// The number of components in the vector
@@ -56,11 +56,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Vector256<T>(Vec256<T> src)
-            => src.data;
+            => src.ymm;
 
         [MethodImpl(Inline)]
         public Vec256(Vector256<T> src)
-            => this.data = src;
+            => this.ymm = src;
 
         /// <summary>
         /// Manipulates a component via its 0-based index
@@ -85,30 +85,30 @@ namespace Z0
         public Vec256<U> As<U>() 
             where U : struct                
         {
-            return Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));
+            return Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in ymm));
         }
              
         [MethodImpl(Inline)]
         public ref Vec256<U> As<U>(out Vec256<U> dst) 
             where U : struct                
         {
-            dst = Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));
+            dst = Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in ymm));
             return ref dst;
         }
         
 
         [MethodImpl(Inline)]
         public bool Equals(Vec256<T> rhs)
-            => data.Equals(rhs.data);
+            => ymm.Equals(rhs.ymm);
 
         public override string ToString()
-            => data.ToString();
+            => ymm.ToString();
         
         public override int GetHashCode()
-            => data.GetHashCode();
+            => ymm.GetHashCode();
 
         public override bool Equals(object obj)
-            => obj is Vec256<T> v ? Equals(v) : false;
+            => obj is Vec256<T> v && Equals(v);
 
         [MethodImpl(Inline)]
         static T component(Vec256<T> src, int index)

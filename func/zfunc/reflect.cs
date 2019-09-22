@@ -59,6 +59,19 @@ partial class zfunc
         => typeof(T).DisplayName();
     
     /// <summary>
+    /// Returns the canonical designator for a primal type
+    /// </summary>
+    /// <typeparam name="T">The source type</typeparam>
+    [MethodImpl(Inline)]   
+    public static string moniker<T>()
+        where T : unmanaged
+    {
+        var size = bitsize<T>();
+        var indicator = isFloat<T>() ? 'f' : (isSigned<T>() ? 'i' : 'u');
+        return $"{size}{indicator}";
+    }
+
+    /// <summary>
     /// Returns the System.Type of the supplied parametric type
     /// </summary>
     /// <typeparam name="T">The source type</typeparam>
@@ -75,6 +88,16 @@ partial class zfunc
         where T : struct
             => typeof(T) == typeof(float) 
             || typeof(T) == typeof(double);
+
+    [MethodImpl(Inline)]
+    public static bool isFloat32<T>()
+        where T : unmanaged
+            => isFloat<T>() && bitsize<T>() == 32;
+
+    [MethodImpl(Inline)]
+    public static bool isFloat64<T>()
+        where T : unmanaged
+            => isFloat<T>() && bitsize<T>() == 64;
 
     /// <summary>
     /// Determines whether a type is a native integral type

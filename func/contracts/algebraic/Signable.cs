@@ -13,7 +13,7 @@ namespace Z0
     /// Note also that this fills in the need for a true mathematical "sign": A number
     /// is either Negative, Positive or Neutral=0.
     /// </remaks>
-    public enum Sign : sbyte
+    public enum Sign : int
     {
         
         /// <summary>

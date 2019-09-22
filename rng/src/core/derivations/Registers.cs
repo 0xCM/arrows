@@ -16,17 +16,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static XMM Xmm<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span128<T>(1, domain, filter).LoadVec128().ToRegister();
+                => XMM.From(random.Span128<T>(1, domain, filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static XMM Xmm<T>(this IPolyrand random, Interval<T> domain, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span128<T>(1, domain, filter).LoadVec128().ToRegister();
+                => XMM.From(random.Span128<T>(1, domain, filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static XMM Xmm<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span128<T>(1, (min,max), filter).LoadVec128().ToRegister();
+                => XMM.From(random.Span128<T>(1, (min,max), filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static IEnumerable<XMM> XmmStream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)
@@ -44,17 +44,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static YMM Ymm<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span256<T>(1, domain, filter).LoadVec256().ToRegister();
+                => YMM.From(random.Span256<T>(1, domain, filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static YMM Ymm<T>(this IPolyrand random, Interval<T> domain, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span256<T>(1, domain, filter).LoadVec256().ToRegister();
+                => YMM.From(random.Span256<T>(1, domain, filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static YMM Ymm<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)
             where T : unmanaged
-                => random.Span256<T>(1, (min,max), filter).LoadVec256().ToRegister();
+                => YMM.From(random.Span256<T>(1, (min,max), filter).Unblocked);
 
         [MethodImpl(Inline)]
         public static IEnumerable<YMM> YmmStream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)

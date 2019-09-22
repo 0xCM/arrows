@@ -15,25 +15,6 @@ namespace Z0
 
     public static class RegX 
     {
-        /// <summary>
-        /// Presents a source register as a 128-bit cpu vector
-        /// </summary>
-        /// <param name="src">The source register</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector128<T> ToVector<T>(this in XMM src)
-            where T : unmanaged
-                => Reg.vec<T>(src);
-
-        /// <summary>
-        /// Presents a source register as a 256-bit cpu vector
-        /// </summary>
-        /// <param name="src">The source register</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector256<T> ToVector<T>(this in YMM src)
-            where T : unmanaged
-                => Reg.vec<T>(src);
 
         /// <summary>
         /// Moves source vector content to a 128-bit register/memory target

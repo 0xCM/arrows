@@ -28,8 +28,12 @@ namespace Z0
         /// <param name="control"></param>
         /// <remarks>See https://www.felixcloutier.com/x86/vperm2i128</remarks>
         [MethodImpl(Inline)]
-        public static YMM vperm2i128(in YMM a, in YMM b, byte control)        
-            => Permute2x128(vec<ulong>(a), vec<ulong>(b), control);
+        public static Vector256<ulong> vperm2i128(YMM a, YMM b, byte control)        
+            => Permute2x128(vload<ulong>(ref a), vload<ulong>(ref b), control);
+
+        [MethodImpl(Inline)]
+        public static Vector256<ulong> vperm2i128(Vector256<ulong> a, Vector256<ulong> b, byte control)        
+            => Permute2x128(a, b, control);
 
         /// <summary>
         /// VPERM2F128 ymm, ymm, ymm/m256, imm8
@@ -40,8 +44,8 @@ namespace Z0
         /// <param name="control"></param>
         /// <remarks>See https://www.felixcloutier.com/x86/vperm2f128</remarks>
         [MethodImpl(Inline)]
-        public static YMM vperm2f128(in YMM a, in YMM b, byte control)        
-            => Permute2x128(vec<double>(a), vec<double>(b), control);
+        public static Vector256<double> vperm2f128(YMM a, YMM b, byte control)        
+            => Permute2x128(vload<double>(ref a), vload<double>(ref b), control);
 
         /// <summary>
         /// VPERM2I128 ymm, ymm, ymm/m256, imm8
@@ -51,8 +55,8 @@ namespace Z0
         /// <param name="b">The second source vector</param>
         /// <param name="control">Specifies how to form the target fromthe sources</param>
         [MethodImpl(Inline)]
-        public static YMM vperm2i128(in YMM a, in YMM b, Perm2x128 control)        
-            => vperm2i128(in a,in b, (byte)control);
+        public static YMM vperm2i128(YMM a, YMM b, Perm2x128 control)        
+            => YMM.From(vperm2i128(a,b, (byte)control));
 
         /// <summary>
         /// VPERM2F128 ymm, ymm, ymm/m256, imm8
@@ -62,8 +66,8 @@ namespace Z0
         /// <param name="b">The second source vector</param>
         /// <param name="control">Specifies how to form the target fromthe sources</param>
         [MethodImpl(Inline)]
-        public static YMM vperm2f128(in YMM a, in YMM b, Perm2x128 control)        
-            => vperm2f128(in a,in b, (byte)control);
+        public static Vector256<byte> vperm2f128(YMM a, YMM b, Perm2x128 control)        
+            => Permute2x128(vload<byte>(ref a), vload<byte>(ref  b), (byte)control);
     }
 
     /// <summary>

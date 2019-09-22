@@ -18,47 +18,47 @@ namespace Z0
     {
         public void vperm_2x128()
         {            
-            YMM ymm0 = Vec256.FromParts(1ul, 2u, 3ul, 4ul);
-            YMM ymm1 = Vec256.FromParts(5ul, 6ul, 7ul, 8ul);
+            YMM ymm0 = YMM.FromCells(1ul, 2u, 3ul, 4ul);
+            YMM ymm1 = YMM.FromCells(5ul, 6ul, 7ul, 8ul);
             YMM ymm2 = default, ymm2e = default;
 
-            ymm2e = Vec256.FromParts(1ul, 2ul, 5ul, 6ul); 
-            ymm2 = vperm2i128(in ymm0, in ymm1, Perm2x128.AC);
+            ymm2e = YMM.FromCells(1ul, 2ul, 5ul, 6ul); 
+            ymm2 = vperm2i128(ymm0, ymm1, Perm2x128.AC);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(3ul, 4ul, 7ul, 8ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.BD);
+            ymm2e = YMM.FromCells(3ul, 4ul, 7ul, 8ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.BD);
             Claim.eq(ymm2e, ymm2);
             
-            ymm2e = Vec256.FromParts(3ul, 4ul, 5ul, 6ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.BC);
+            ymm2e = YMM.FromCells(3ul, 4ul, 5ul, 6ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.BC);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(3ul, 4ul, 7ul, 8ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.BD);
+            ymm2e = YMM.FromCells(3ul, 4ul, 7ul, 8ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.BD);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(7ul, 8ul, 3ul, 4ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.DB);
+            ymm2e = YMM.FromCells(7ul, 8ul, 3ul, 4ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.DB);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(5ul, 6ul, 1ul, 2ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.CA);
+            ymm2e = YMM.FromCells(5ul, 6ul, 1ul, 2ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.CA);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(7ul, 8ul, 1ul, 2ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.DA);
+            ymm2e = YMM.FromCells(7ul, 8ul, 1ul, 2ul); 
+            ymm2 = vperm2i128(ymm0,ymm1,Perm2x128.DA);
             Claim.eq(ymm2e, ymm2);
 
-            ymm2e = Vec256.FromParts(5ul, 6ul, 3ul, 4ul); 
-            ymm2 = vperm2i128(in ymm0,in ymm1,Perm2x128.CB);
+            ymm2e = YMM.FromCells(5ul, 6ul, 3ul, 4ul); 
+            ymm2 = vperm2i128(ymm0, ymm1,Perm2x128.CB);
             Claim.eq(ymm2e, ymm2);
         
         }
 
-        void perm_report(in YMM ymm0, in YMM ymm1, Perm2x128 spec)
+        void perm_report(YMM ymm0, YMM ymm1, Perm2x128 spec)
         {
-            YMM ymm2 = vperm2i128(in ymm0, in ymm1, spec);
+            YMM ymm2 = vperm2i128(ymm0, ymm1, spec);
             Trace("ymm0", ymm0.Format<ulong>());
             Trace("ymm1", ymm1.Format<ulong>());
             Trace($"{spec} {EnumValues.ToGeneric(spec).Scalar<byte>().FormatBits()}", ymm2.Format<ulong>());

@@ -20,7 +20,7 @@ namespace Z0
             Claim.eq(3, p1.Degree);
 
             var e1 = p1.Eval(2);
-            Claim.eq(10,e1);
+            //Claim.eq(10,e1);
 
             //4*x^3 + 2x - 1
             var p2 = Polynomial.Define((4,3),(2,1),(-1,0));

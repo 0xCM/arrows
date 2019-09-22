@@ -41,11 +41,9 @@ namespace Z0
             using var decon = new Deconstructor(modules);
             foreach(var m in methods)
             {
-                var d = decon.Disassemble(m);
+                var d = decon.Disassemble(m, onError);
                 if(d)
                     yield return d.ValueOrDefault();
-                else
-                    onError($"Could not disassemble {MethodSig.Define(m).Format()}");
             }            
         }
         
@@ -69,15 +67,20 @@ namespace Z0
         /// <param name="rt">The source runtime</param>
         /// <param name="src">The represented method</param>
         ClrMethod GetRuntimeMethod(MethodBase src)
-            =>  Runtime.GetMethodByAddress((ulong)src.MethodHandle.GetFunctionPointer());
+            =>  Runtime.GetMethodByHandle((ulong)src.MethodHandle.Value.ToInt64());
+            
+            //Runtime.GetMethodByAddress((ulong)src.MethodHandle.GetFunctionPointer());
 
-        Option<MethodDisassembly> Disassemble(MethodInfo method)
+        Option<MethodDisassembly> Disassemble(MethodInfo method, Action<string> onError)
         {
             try
             {
                 var clrMethod = GetRuntimeMethod(method);
-                if(clrMethod == null)
+                if(clrMethod == null || clrMethod.NativeCode == 0)
+                {
+                    onError($"Method {method.Name} not found");
                     return null;
+                }
                 
                 var asmBody = DecodeAsm(method);
                 var ilBytes = ReadCilBytes(clrMethod);            
@@ -97,8 +100,9 @@ namespace Z0
 
                 return d;            
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                onError(e.ToString());
                 return none<MethodDisassembly>();
             }
         }

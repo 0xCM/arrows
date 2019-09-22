@@ -36,8 +36,9 @@ namespace Z0
                 gmath.signed<T>() && !gmath.floating<T>()
                 ? gbits.sar(TypeMax<T>(), 1)
                 : gmath.maxval<T>();
-            
-            return leftclosed(min,max);
+            return (min,max);
+
+            //return leftclosed(TypeMin<T>(),TypeMax<T>());
         }
 
         /// <summary>

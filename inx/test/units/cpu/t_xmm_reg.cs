@@ -18,17 +18,17 @@ namespace Z0
         {            
             cpu.xmm0 = Random.Xmm<uint>();
             cpu.xmm1 = Random.Xmm<uint>();
-            cpu.xmm2 = pxor(in cpu.xmm0, in cpu.xmm1); 
+            cpu.xmm2 = pxor(cpu.xmm0, cpu.xmm1); 
 
-            Claim.eq(cpu.xmm2.uint64(0), cpu.xmm0.uint64(0) ^ cpu.xmm1.uint64(0));
-            Claim.eq(cpu.xmm2.uint64(1), cpu.xmm0.uint64(1) ^ cpu.xmm1.uint64(1));                 
+            Claim.eq(cpu.xmm2.Cell<ulong>(0), cpu.xmm0.Cell<ulong>(0) ^ cpu.xmm1.Cell<ulong>(0));
+            Claim.eq(cpu.xmm2.Cell<ulong>(1), cpu.xmm0.Cell<ulong>(1) ^ cpu.xmm1.Cell<ulong>(1));                 
 
             cpu.xmm(0) = Random.Xmm<uint>();
             cpu.xmm(1) = Random.Xmm<uint>();
-            cpu.xmm(2) = pxor(in cpu.xmm(0), in cpu.xmm(1)); 
+            cpu.xmm(2) = pxor(cpu.xmm(0), cpu.xmm(1)); 
 
-            Claim.eq(cpu.xmm(2).uint64(0), cpu.xmm(0).uint64(0) ^ cpu.xmm(1).uint64(0));
-            Claim.eq(cpu.xmm(2).uint64(1), cpu.xmm(0).uint64(1) ^ cpu.xmm(1).uint64(1));                 
+            Claim.eq(cpu.xmm(2).Cell<ulong>(0), cpu.xmm(0).Cell<ulong>(0) ^ cpu.xmm(1).Cell<ulong>(0));
+            Claim.eq(cpu.xmm(2).Cell<ulong>(1), cpu.xmm(0).Cell<ulong>(1) ^ cpu.xmm(1).Cell<ulong>(1));                 
         }
 
         public void xmm_create()

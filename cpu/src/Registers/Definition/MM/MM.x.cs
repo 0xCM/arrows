@@ -16,15 +16,42 @@ namespace Z0
 
     public static class MMx
     {
-        [MethodImpl(Inline)]
-        public static XMM ToRegister<T>(this Vec128<T> src)
-            where T : unmanaged
-                => XMM.FromVec<T>(src);
 
         [MethodImpl(Inline)]
-        public static YMM ToRegister<T>(this Vec256<T> src)
+        public static ref T As<T>(this ref XMM src)
             where T : unmanaged
-                => YMM.FromVec<T>(src);
+                => ref Unsafe.As<XMM, T>(ref src);
+
+
+        [MethodImpl(Inline)]
+        public static ref T As<T>(this ref YMM src)
+            where T : unmanaged
+                => ref Unsafe.As<YMM, T>(ref src);
+
+        /// <summary>
+        /// Gets the value of an index-identified memory cell
+        /// </summary>
+        /// <param name="index">The zero-based cell index</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref T Cell<T>(this ref XMM src, int index)
+            where T : unmanaged
+                => ref Unsafe.Add(ref src.As<T>(), index);
+
+        /// <summary>
+        /// Gets the value of an index-identified memory cell
+        /// </summary>
+        /// <param name="index">The zero-based cell index</param>
+        /// <typeparam name="T">The cell type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref T Cell<T>(this ref YMM src, int index)
+            where T : unmanaged
+                => ref Unsafe.Add(ref src.As<T>(), index);
+
+        [MethodImpl(Inline)]
+        public static ref T Head<T>(this ref YMM src)
+            where T : unmanaged
+                => ref src.As<T>();
 
     }
 

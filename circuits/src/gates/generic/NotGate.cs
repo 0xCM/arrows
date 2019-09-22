@@ -10,13 +10,8 @@ namespace Z0
     
     using static zfunc;
 
-    public readonly struct NotGate<T> : 
-        IUnaryBitGate,
-        IUnaryGate<T>,
-        IUnaryGate<Vec128<T>>,
-        IUnaryGate<Vec256<T>>
-        
-        where T : struct
+    public readonly struct NotGate<T> : IUnaryGate<T>, IUnaryGate<Vec128<T>>, IUnaryGate<Vec256<T>>        
+        where T : unmanaged
     {
         internal static readonly NotGate<T> Gate = default;
         
@@ -25,16 +20,16 @@ namespace Z0
             => !input;    
 
         [MethodImpl(Inline)]
-        public T Send(T x)
+        public T Send(in T x)
             => gbits.flip(x);
 
         [MethodImpl(Inline)]
-        public Vec128<T> Send(Vec128<T> x)
-            => gbits.flip(x);
+        public Vec128<T> Send(in Vec128<T> x)
+            => gbits.flip(in x);
 
         [MethodImpl(Inline)]
-        public Vec256<T> Send(Vec256<T> x)
-            => gbits.flip(x);
+        public Vec256<T> Send(in Vec256<T> x)
+            => gbits.flip(in x);
  
 
     }

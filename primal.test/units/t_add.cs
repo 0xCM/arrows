@@ -66,8 +66,7 @@ namespace Z0.Test
         {
             var sw = stopwatch(false);
             var accum = gmath.zero<T>();
-            for(var cycle = 0; cycle < CycleCount; cycle++)
-            for(var sample=0; sample < SampleSize; sample++)
+            for(var i = 0; i < OpCount; i++)
             {
                 var a = Random.Next<T>();
                 var b = Random.Next<T>();
@@ -76,8 +75,7 @@ namespace Z0.Test
                 accum = gmath.add(a,b);
                 sw.Stop();
             }
-            var opname = $"gmath<{typeof(T).DisplayName()}>_add";
-            return (CycleCount*SampleSize, sw, opname);
+            return (OpCount, sw, $"add{moniker<T>()}");
         }
 
 
@@ -143,8 +141,7 @@ namespace Z0.Test
         {
             var sw = stopwatch(false);
             var applied = default(T);
-            for(var i=0; i< SampleSize; i++)
-            for(var j=0; j<CycleCount; j++)
+            for(var i=0; i< OpCount; i++)
             {
                 var x = Random.Next<T>();
                 var y = Random.Next<T>();
@@ -152,7 +149,7 @@ namespace Z0.Test
                 applied = op.apply(x,y);
                 sw.Stop();
             }
-            return (SampleSize*CycleCount, sw, $"polyadd<{typeof(T).DisplayName()}>");
+            return (OpCount, sw, $"add{moniker<T>()}");
         }
 
     }

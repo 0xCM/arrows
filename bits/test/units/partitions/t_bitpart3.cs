@@ -15,7 +15,7 @@ namespace Z0
     {
         public void bitpart_15x3()
         {                 
-            bitpart_check<ushort,byte>(BitParts.part15x3, (int)Part15x3.Count,(int)Part15x3.Width);
+            bitpart_check<uint,byte>(BitParts.part15x3, (int)Part15x3.Count,(int)Part15x3.Width);
         }
 
         public void bitpart_18x3()

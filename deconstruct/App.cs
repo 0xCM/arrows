@@ -48,7 +48,7 @@ namespace Z0
             //Disassemble(true,true, typeof(Bits));
             // Disassemble(true,true, typeof(BitRef));
             //Disassemble(true,true, typeof(math));
-            //Disassemble(true,true, typeof(Asm));
+            Disassemble(true,true, typeof(Asm));
             Disassemble(new IntrinsicScenarios());
             // Disassemble(new PrimalScenarios());
             // Disassemble(new SysMathCases());

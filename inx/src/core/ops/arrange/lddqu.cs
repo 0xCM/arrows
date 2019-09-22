@@ -144,6 +144,26 @@ namespace Z0
             => LoadDquVector128(constptr(in src));
 
         [MethodImpl(Inline)]
+        public static unsafe Vector128<short> lddqu128(in short src)
+            => LoadDquVector128(constptr(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe Vector128<ushort> lddqu128(in ushort src)
+            => LoadDquVector128(constptr(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe Vector128<int> lddqu128(in int src)
+            => LoadDquVector128(constptr(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe Vector128<uint> lddqu128(in uint src)
+            => LoadDquVector128(constptr(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe Vector128<long> lddqu128(in long src)
+            => LoadDquVector128(constptr(in src));
+
+        [MethodImpl(Inline)]
         public static unsafe Vector128<ulong> lddqu128(in ulong src)
             => LoadDquVector128(constptr(in src));
 

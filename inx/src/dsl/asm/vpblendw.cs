@@ -14,11 +14,11 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Sse41;
 
     using static zfunc;
-    using static Reg;
     using static IMM;
 
     partial class Asm
     {
+
 
         /// <summary>
         /// Selects words from xmm2 and xmm3/m128 according to a control mask imm8 
@@ -35,24 +35,37 @@ namespace Z0
         /// xmm1                : [9       2       11      4       13      6       15      8]
         /// </remarks>
         [MethodImpl(Inline)]
-        public static ref XMM vpblendw(ref XMM xmm1, in XMM xmm2, in XMM xmm3, Imm8 imm8)        
+        public static XMM vpblendw(XMM xmm2, XMM xmm3, Imm8 imm8)        
         {
-            xmm1 = Blend(vec<ushort>(xmm2), vec<ushort>(xmm3), imm8);
-            return ref xmm1;
+            return Blend(vload<ushort>(ref xmm2), vload<ushort>(ref xmm3), imm8);
         }
             
         [MethodImpl(Inline)]
-        public static XMM vpblendw(XMM xmm2, XMM xmm3, Imm8 imm8)        
+        static Vector128<ushort> vpblendw_ref(Vector128<ushort> xmm0, Vector128<ushort> xmm1, byte imm8)        
         {
-            return Blend(vec<ushort>(xmm2), vec<ushort>(xmm3), imm8);
+            return Blend(xmm0, xmm1, imm8);
         }
-
 
         [MethodImpl(Inline)]
-        public static YMM vpaddd(YMM ymm2, YMM ymm3)
+        static Vector256<ushort> vpblendw_ref(Vector256<ushort> xmm0, Vector256<ushort> xmm1, byte imm8)        
         {
-            return Add(vec<int>(ymm2), vec<int>(ymm3));
+            return Blend(xmm0, xmm1, imm8);
         }
+
+        [MethodImpl(Inline)]
+        static Vector256<uint> vpblendd_ref(Vector256<uint> xmm0, Vector256<uint> xmm1, byte imm8)        
+        {
+            return Blend(xmm0, xmm1, imm8);
+        }
+
+        [MethodImpl(Inline)]
+        static Vector256<float> vpblendps_ref(Vector256<float> xmm0, Vector256<float> xmm1, byte imm8)        
+        {
+            return Blend(xmm0, xmm1, imm8);
+        }
+
     }
+
+
 
 }

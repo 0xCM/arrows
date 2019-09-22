@@ -44,41 +44,12 @@ namespace Z0
             this.vymm = vymm;
         }
 
-        [MethodImpl(Inline)]
-        YMEM(YMM ymm)
-            : this()
-        {
-            this.ymm = vymm;
-        }
 
-        /// <summary>
-        /// Assigns the source vector to the target memory/register
-        /// </summary>
-        /// <param name="src">The source</param>
-        /// <param name="dst">The target</param>
-        /// <typeparam name="T">The primal vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static ref YMEM Assign<T>(Vector256<T> src, ref YMEM dst)
+        public static YMEM From<T>(Vector256<T> src)
             where T : unmanaged
-        {
-            dst.vymm = Vector256.As<T,byte>(src);
-            return ref dst;
-        }
-
-        /// <summary>
-        /// Allocates the target and populates it with a source vector
-        /// </summary>
-        /// <param name="src">The source</param>
-        /// <param name="dst">The target</param>
-        /// <typeparam name="T">The primal vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static ref YMEM Load<T>(Vector256<T> src, out YMEM dst)
-            where T : unmanaged
-        {
-            dst = new YMEM(Vector256.As<T,byte>(src));
-            return ref dst;
-        }
-
+                => Unsafe.As<Vector256<T>,YMEM>(ref src);
+                
         /// <summary>
         /// Implicitly converts ymem source value to a ymm register
         /// </summary>
@@ -161,10 +132,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<sbyte> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -172,10 +140,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<byte> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -183,10 +148,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<short> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -194,10 +156,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<ushort> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -205,10 +164,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<int> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -216,10 +172,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<uint> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -227,10 +180,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<long> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -238,10 +188,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<ulong> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
         
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -249,10 +196,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<float> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Implicitly converts a source vector to a 256-bit memory block
@@ -260,10 +204,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         [MethodImpl(Inline)]
         public static implicit operator YMEM(Vector256<double> src)
-        {
-            Load(src, out YMEM dst);
-            return dst;
-        }
+            => From(src);
 
         /// <summary>
         /// Returns a reference to the first element

@@ -22,20 +22,6 @@ namespace Z0
     using static zfunc;
     using static BitParts;
 
-    static class Util
-    {
-
-
-        /// <summary>
-        /// Presents a source register as a 256-bit cpu vector
-        /// </summary>
-        /// <param name="src">The source register</param>
-        /// <typeparam name="T">The primal component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector256<T> vec<T>(YMM src)
-            where T : unmanaged
-                => YMM.Vec256<T>(src);
-    }
 
     public struct PseudoByte
     {
@@ -66,6 +52,27 @@ namespace Z0
         {
 
         }
+
+        /*
+        ; function: Vector256<long> perm_256x64i(Vector256<long> ymm0, byte imm8)
+        0000h push rsi
+        0001h sub rsp,50h
+        0005h vzeroupper
+        0008h mov rsi,rcx
+        000bh vmovupd ymm0,[rdx]
+        000fh mov rcx,rsi
+        0012h vmovupd [rsp+20h],ymm0
+        0018h lea rdx,[rsp+20h]
+        001dh movzx r8d,r8b
+        0021h call 7FFC7C09A120h
+        0026h mov rax,rsi
+        0029h vzeroupper
+        002ch add rsp,50h
+        0030h pop rsi
+        0031h ret
+        */
+        public static Vector256<long> perm_256x64i(Vector256<long> ymm0, byte imm8)
+            => Permute4x64(ymm0,imm8);
 
         /*
         0000h nop dword ptr [rax+rax]       ; NOP(Nop_rm32) [mem(32u,RAX:br,DS:sr)]                encoding(5 bytes) = 0f 1f 44 00 00
@@ -129,6 +136,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public static PseudoByte project6(PseudoByte src, Part6x3 part)
             => Bits.scatter(src,(uint)part);
+
+        
+        /*
+        0000h nop dword ptr [rax+rax]       ; NOP(Nop_rm32) [mem(32u,RAX:br,DS:sr)]                encoding(5 bytes) = 0f 1f 44 00 00
+        0005h pdep eax,ecx,edx              ; PDEP(VEX_Pdep_r32_r32_rm32) [EAX,ECX,EDX]            encoding(VEX, 5 bytes) = c4 e2 73 f5 c2
+        000ah ret                           ; RET(Retnq)                                           encoding(1 byte ) = c3        
+         */
+        [MethodImpl(Inline)]
+        public static uint project7(uint src, Part2x1 part)
+            => Bits.scatter(src, (uint)part);
 
         public static Vector256<byte> vpxor(in byte ymm0, in byte ymm1, in byte ymm2, in byte ymm3)
         {
@@ -343,6 +360,8 @@ namespace Z0
 
             return d1;
         }
+
+
         #endif
 
         // public static Vector128<byte> add_128x8u_a(Vector128<byte> lhs, Vector128<byte> rhs)

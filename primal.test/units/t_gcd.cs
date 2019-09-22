@@ -13,16 +13,103 @@ namespace Z0.Test
 
     public class t_gcd : UnitTest<t_add>
     {
-        /// <summary>
-        /// Implements the extended Euclidean algorithm
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="pu"></param>
-        /// <param name="pv"></param>
-        /// <remarks>Adapted from http://www.hackersdelight.org/MontgomeryMultiplication.pdf</remarks>
-        static void xgcd(ulong a, ulong b, out ulong u, out ulong v)     
+        protected override int CycleCount => Pow2.T13;
+
+
+        public void bingcd_8u_check()
         {
+            gcdbin_check((byte)2, (byte)225);
+        }   
+
+        public void bingcd_8u_bench()
+        {
+            gcdbin_bench((byte)2, (byte)225);
+        }   
+
+        public void bingcd_16u_check()
+        {
+            gcdbin_check((ushort)2, (ushort)22000);
+        }   
+
+        public void bingcd_16u_bench()
+        {
+            gcdbin_bench((ushort)2, (ushort)22000);
+        }   
+
+        public void bingcd_32u_check()
+        {
+            gcdbin_check(2u, 500000u);
+        }   
+
+        public void bingcd_32u_bench()
+        {
+            gcdbin_bench(2u, 500000u);
+        }   
+
+        public void bingcd_64u_check()
+        {
+            gcdbin_check(2ul, 500000ul);
+        }   
+
+        public void bingcd_64u_bench()
+        {
+            gcdbin_bench(2ul, 500000ul);
+        }   
+
+        void gcdbin_check<T>(T min, T max)
+            where T : unmanaged
+        {
+            for(var i=0; i<SampleSize; i++)
+            {
+                var a = Random.Next(min, max);
+                var b = Random.Next(min, max);
+                var c = gmath.gcdbin(a,b);
+                var d = gmath.gcd(a,b);
+                Claim.eq(c,d);
+            }
+
+        }
+
+        void gcdbin_bench<T>(T min, T max, SystemCounter subject = default, SystemCounter compare = default)
+            where T : unmanaged
+        {
+            var last = default(T);
+            for(var i=0; i<OpCount; i++)
+            {
+                var a = Random.Next(min, max);
+                var b = Random.Next(min, max);
+
+                subject.Start();
+                last = gmath.gcdbin(a,b);
+                subject.Stop();
+
+                compare.Start();
+                last = gmath.gcd(a,b);
+                compare.Stop();
+            }
+
+            Benchmark($"gcdbin{moniker<T>()}", subject);
+            Benchmark($"gcd{moniker<T>()}", compare);
+
+        }
+
+
+        /// <summary>
+        /// Extended binary gcd
+        /// </summary>
+        /// <param name="a">Must be a power of 2</param>
+        /// <param name="b">Must be odd</param>
+        /// <param name="u"></param>
+        /// <param name="v"></param>
+        /// <remarks>Adapted from http://www.hackersdelight.org/MontgomeryMultiplication.pdf</remarks>
+        static void binxgcd(ulong a, ulong b, out ulong u, out ulong v)     
+        {
+            if(!math.isPow2(a))
+                throw new Exception($"{a} is not a power of 2");
+            
+            if(!odd(b))
+                throw new Exception($"{b} is not odd");
+            
             u = 1ul;
             v = 0ul;
             
@@ -49,6 +136,41 @@ namespace Z0.Test
             }
         }
 
+
+        /// <summary>
+        /// Divides (x || y) by z, for 64-bit integers x, y,
+        /// and z, giving the remainder (modulus) as the result.
+        /// Must have x < z (to get a 64-bit result). This is
+        /// checked for.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <remarks>Adapted from http://www.hackersdelight.org/MontgomeryMultiplication.pdf</remarks>
+        static ulong mod(ulong x, ulong y, ulong z) 
+        {
+            if (x >= z) 
+                throw new Exception("Bad call to modul64, must have x < z.");
+                        
+            for (var i = 1; i <= 64; i++) 
+            { 
+                // All 1's if x(63) = 1.
+                var t = (ulong)((long)x >> 63); 
+
+                // Shift x || y left
+                x = (x << 1) | (y >> 63); 
+
+                // one bit.
+                y = y << 1;
+
+                if ((x | t) >= z) 
+                {
+                    x = x - z;
+                    y = y + 1;
+                }
+            }
+            return x; // Quotient is y.
+        } 
 
     }
 

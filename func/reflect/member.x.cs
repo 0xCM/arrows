@@ -489,14 +489,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static void JitMethod(this MethodBase method)
         {
-            try
-            {
-                RuntimeHelpers.PrepareMethod(method.MethodHandle);
-            }
-            catch(Exception e)
-            {
-                error(errorMsg(e));
-            }
+            RuntimeHelpers.PrepareMethod(method.MethodHandle);
         }
 
         public static void JitMethods(this IEnumerable<MethodBase> methods)

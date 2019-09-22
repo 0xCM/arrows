@@ -185,11 +185,7 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static ReadOnlySpan<byte> bytes<T>(in T src)
         where T : struct
-    {
-        return bytespan(MemoryMarshal.CreateReadOnlySpan(ref As.asRef(in src), 1));         
-        // Span<T> s = new T[1]{src};
-        // return MemoryMarshal.AsBytes(s);
-    }       
+            => bytespan(MemoryMarshal.CreateReadOnlySpan(ref As.asRef(in src), 1));         
 
     /// <summary>
     /// Converts a source value of any value type to its bytespan representation

@@ -16,14 +16,21 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static T xor<T>(T lhs, T rhs)
-            where T : struct
+            where T : unmanaged
                 => gmath.xor(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static ref T xor<T>(ref T lhs, in T rhs)
-            where T : struct
-                => ref gmath.xor(ref lhs,in rhs);
+        public static T xor<T>(in T lhs, in T rhs)
+            where T : unmanaged
+                => gmath.xor(lhs,rhs);
 
+        [MethodImpl(Inline)]
+        public static ref T xor<T>(ref T lhs, in T rhs, ref T dst)
+            where T : struct
+        {
+            dst = gmath.xor(lhs,rhs);
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
         public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
@@ -50,22 +57,6 @@ namespace Z0
             return  dst;
         }
 
-        /// <summary>
-        /// Computes the bitwise AND between arrays of potentially different lengths
-        /// </summary>
-        /// <param name="lhs">The left cells</param>
-        /// <param name="rhs">The right cells</param>
-        /// <typeparam name="T">The memory cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] xor<T>(T[] lhs, T[] rhs)
-            where T : unmanaged
-        {            
-            var dst = new T[math.max(lhs.Length, rhs.Length)];
-            var len = math.min(lhs.Length, rhs.Length);
-            for(var i=0; i<len; i++)
-                and(in lhs[i],in rhs[i], ref dst[i]);
-            return dst;
-        }
 
 
         [MethodImpl(Inline)]

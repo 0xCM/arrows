@@ -10,8 +10,8 @@ namespace Z0
     
     using static zfunc;
 
-    public readonly struct OrGate<T> : IBinaryBitGate, IBinaryGate<T>
-        where T : struct
+    public readonly struct OrGate<T> : IBinaryGate<T>,  IBinaryGate<Vec128<T>>, IBinaryGate<Vec256<T>>
+        where T : unmanaged
     {
         internal static readonly OrGate<T> Gate = default;
 
@@ -20,16 +20,16 @@ namespace Z0
             => x | y;
 
         [MethodImpl(Inline)]
-        public T Send(T x, T y)
-            => gbits.or(x,y);
+        public T Send(in T x, in T y)
+            => gbits.or(in x, in y);
 
         [MethodImpl(Inline)]
-        public Vec128<T> Send(Vec128<T> a, Vec128<T> b)
-            => gbits.or(a,b);
+        public Vec128<T> Send(in Vec128<T> a, in Vec128<T> b)
+            => gbits.or(in a,in b);
 
         [MethodImpl(Inline)]
-        public Vec256<T> Send(Vec256<T> a, Vec256<T> b)
-            => gbits.or(a,b);
+        public Vec256<T> Send(in Vec256<T> a, in Vec256<T> b)
+            => gbits.or(in a, in b);
     }
 
 

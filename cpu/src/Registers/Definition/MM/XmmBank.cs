@@ -7,8 +7,12 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+
     using static zfunc;
+    using static As;
+
 
     [StructLayout(LayoutKind.Explicit, Size = SegLen*SegCount)]
     public unsafe struct XmmBank
@@ -16,6 +20,42 @@ namespace Z0
         [MethodImpl(Inline)]
         public static XmmBank Init()
             => new XmmBank();
+
+        /// <summary>
+        /// Loads the registger from an unaligned memory reference
+        /// </summary>
+        /// <param name="src">The memory source</param>
+        /// <typeparam name="T">The primal type</typeparam>
+        [MethodImpl(Inline)]
+        public static unsafe Vector128<T> LoadDqu<T>(in T src)
+            where T: unmanaged
+        {
+           
+            if(typeof(T) == typeof(sbyte))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.int8(in src))));
+            else if(typeof(T) == typeof(byte))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.uint8(in src))));
+            else if(typeof(T) == typeof(short))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.int16(in src))));
+            else if(typeof(T) == typeof(ushort))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.uint8(in src))));
+            else if(typeof(T) == typeof(int))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.int32(in src))));
+            else if(typeof(T) == typeof(uint))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.uint32(in src))));
+            else if(typeof(T) == typeof(long))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.int64(in src))));
+            else if(typeof(T) == typeof(ulong))
+               return generic<T>(Avx2.LoadDquVector128(constptr(in AsIn.uint64(in src))));
+            else if(typeof(T) == typeof(float))
+               return generic<T>(Avx2.LoadVector128(constptr(in AsIn.float32(in src))));
+            else if(typeof(T) == typeof(double))
+               return generic<T>(Avx2.LoadVector128(constptr(in AsIn.float64(in src))));
+            else
+                throw unsupported<T>();
+        }
+
+
 
         /// <summary>
         /// The length of each segment
@@ -50,52 +90,52 @@ namespace Z0
                 => ref Unsafe.Add(ref First<T>(), index);
 
         [FieldOffset(0)]
-        public XMM xmm0;
+        XMM xmm0;
 
         [FieldOffset(SegLen)]
-        public XMM xmm1;
+        XMM xmm1;
 
         [FieldOffset(SegLen*2)]
-        public XMM xmm2;
+        XMM xmm2;
 
         [FieldOffset(SegLen*3)]
-        public XMM xmm3;
+        XMM xmm3;
 
         [FieldOffset(SegLen*4)]
-        public XMM xmm4;
+        XMM xmm4;
 
         [FieldOffset(SegLen*5)]
-        public XMM xmm5;
+        XMM xmm5;
 
         [FieldOffset(SegLen*6)]
-        public XMM xmm6;
+        XMM xmm6;
 
         [FieldOffset(SegLen*7)]
-        public XMM xmm7;
+        XMM xmm7;
 
         [FieldOffset(SegLen*8)]
-        public XMM xmm8;
+        XMM xmm8;
 
         [FieldOffset(SegLen*9)]
-        public XMM xmm9;
+        XMM xmm9;
 
         [FieldOffset(SegLen*10)]
-        public XMM xmm10;
+        XMM xmm10;
 
         [FieldOffset(SegLen*11)]
-        public XMM xmm11;
+        XMM xmm11;
 
         [FieldOffset(SegLen*12)]
-        public XMM xmm12;
+        XMM xmm12;
 
         [FieldOffset(SegLen*13)]
-        public XMM xmm13;
+        XMM xmm13;
 
         [FieldOffset(SegLen*14)]
-        public XMM xmm14;
+        XMM xmm14;
 
         [FieldOffset(SegLen*15)]
-        public XMM xmm15;
+        XMM xmm15;
 
     }
 }

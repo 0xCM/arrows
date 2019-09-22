@@ -11,6 +11,8 @@ namespace Z0.Test
 
     public class t_abs : UnitTest<t_abs>
     {
+        
+        
         public void abs8i()
         {
             for(var i=0; i<SampleSize; i++)

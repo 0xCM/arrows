@@ -199,7 +199,16 @@ namespace Z0
         public static Span<uint> AsUInt32<T>(this Span<T> src)
             where T : struct        
                 => MemoryMarshal.Cast<T,uint>(src);
- 
+
+        /// Reimagines a span of generic values as a span of uint32
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source value type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span<T> As<T>(this Span<byte> src)
+            where T : unmanaged
+                => MemoryMarshal.Cast<byte,T>(src);
+
         /// <summary>
         /// Reimagines a span of generic values as a span of uint64
         /// </summary>

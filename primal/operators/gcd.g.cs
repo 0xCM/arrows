@@ -40,6 +40,22 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
+        [MethodImpl(Inline)]
+        public static T gcdbin<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>((math.gcdbin(uint8(lhs), uint8(rhs))));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>((math.gcdbin(uint16(lhs), uint16(rhs))));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>((math.gcdbin(uint32(lhs), uint32(rhs))));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>((math.gcdbin(uint64(lhs), uint64(rhs))));
+            else            
+                throw unsupported<T>();
+        }           
+
    }
 
 }
