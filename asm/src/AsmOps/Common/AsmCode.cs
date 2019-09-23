@@ -8,6 +8,7 @@ namespace Z0
     using System.Security;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
 
     using static zfunc;
 
@@ -16,29 +17,29 @@ namespace Z0
     /// </summary>
     public readonly ref struct AsmCode
     {
-        public static AsmCode<T> FromBytes<T>(in ReadOnlySpan<byte> Bytes)
-            where T:struct
-                => Bytes;
-        
-        [MethodImpl(Inline)]
-        public static implicit operator AsmCode(in ReadOnlySpan<byte> Bytes)
-            => new AsmCode(in Bytes);
-
-        [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<byte>(in AsmCode code)
-            => code.Bytes;
-
-        [MethodImpl(Inline)]
-        public AsmCode(in ReadOnlySpan<byte> Bytes)
-        {
-            this.Bytes = Bytes;
-        }
-
         /// <summary>
         /// Specifies the encoded asm bytes
         /// </summary>
         public readonly ReadOnlySpan<byte> Bytes;
 
+        [MethodImpl(Inline)]
+        public static AsmCode<T> FromBytes<T>(ReadOnlySpan<byte> Bytes)
+            where T:unmanaged
+                => Bytes;
+        
+        [MethodImpl(Inline)]
+        public static implicit operator AsmCode(ReadOnlySpan<byte> Bytes)
+            => new AsmCode(Bytes);
+
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan<byte>(AsmCode code)
+            => code.Bytes;
+
+        [MethodImpl(Inline)]
+        public AsmCode(ReadOnlySpan<byte> Bytes)
+        {
+            this.Bytes = Bytes;
+        }
 
         /// <summary>
         /// Returns a pointer to the endoded bytes
@@ -46,10 +47,10 @@ namespace Z0
         public readonly IntPtr Pointer
             => GetPointer();
 
+        [MethodImpl(Inline)]
         unsafe IntPtr GetPointer()        
             => (IntPtr)Unsafe.AsPointer(ref  As.asRef( in Bytes[0]));
         
-
         /// <summary>
         /// Creates a delegate to execute the encapsulated code
         /// </summary>
@@ -60,27 +61,25 @@ namespace Z0
                 => Marshal.GetDelegateForFunctionPointer<T>(Pointer);
     }
 
-    
     /// <summary>
     /// Encapsulates a block of encoded assembly
     /// </summary>
     public readonly ref struct AsmCode<T>
-        where T : struct
+        where T : unmanaged
     {
         [MethodImpl(Inline)]
-        public static implicit operator AsmCode<T>(in ReadOnlySpan<byte> Bytes)
-            => new AsmCode<T>(in Bytes);
+        public static implicit operator AsmCode<T>(ReadOnlySpan<byte> Bytes)
+            => new AsmCode<T>(Bytes);
 
         [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<byte>(in AsmCode<T> code)
+        public static implicit operator ReadOnlySpan<byte>(AsmCode<T> code)
             => code.Bytes;
 
         [MethodImpl(Inline)]
-        public AsmCode(in ReadOnlySpan<byte> Bytes)
+        public AsmCode(ReadOnlySpan<byte> Bytes)
         {
             this.Bytes = Bytes;
         }
-
 
         /// <summary>
         /// Specifies the encoded asm bytes
@@ -107,9 +106,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public AsmCode<S> As<S>()
-            where S : struct
+            where S : unmanaged
                 => new AsmCode<S>(Bytes);        
 
     }
 
+ 
 }

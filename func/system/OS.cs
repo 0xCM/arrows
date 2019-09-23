@@ -9,18 +9,24 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Security;
     using static zfunc;
+    using static As;
 
 
     /// <summary>
     /// Defines API for directly accessing OS resources
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
-    public static class OS
+    public static unsafe class OS
     {
         const string kernel = "kernel32.dll";
 
         public static readonly long CounterFrequency;
-        
+
+        /// <summary>
+        /// The handle for the current process
+        /// </summary>
+        public static readonly IntPtr CurrentProcess = System.Diagnostics.Process.GetCurrentProcess().Handle;
+
         /// <summary>
         /// Gets the OS thread ID, not the "ManagedThreadId" which is useless
         /// </summary>
@@ -81,6 +87,23 @@ namespace Z0
                 return cycles;
             }
         }
+
+        static void ThrowLiberationError(IntPtr pCode, ReadOnlySpan<byte> src)
+        {
+            var start = (ulong)pCode;
+            var end = start + (ulong)src.Length;            
+            throw new Exception($"Attempting to liberate the memory range [{start.FormatHex(false)},{end.FormatHex(false)}] ({src.Length} bytes) for execution failed");     
+        }
+
+        [MethodImpl(Inline)]
+        public static IntPtr Liberate(ReadOnlySpan<byte> src)
+        {
+            var pCode = (IntPtr)refptr(ref asRef(in src[0]));
+            if (!OS.VirtualProtectEx(CurrentProcess, pCode, (UIntPtr)src.Length, 0x40, out uint _))
+                ThrowLiberationError(pCode, src);
+            return pCode;
+        }
+
 
         static OS()
         {

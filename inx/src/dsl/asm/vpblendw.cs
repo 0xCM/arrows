@@ -40,29 +40,6 @@ namespace Z0
             return Blend(vload<ushort>(ref xmm2), vload<ushort>(ref xmm3), imm8);
         }
             
-        [MethodImpl(Inline)]
-        static Vector128<ushort> vpblendw_ref(Vector128<ushort> xmm0, Vector128<ushort> xmm1, byte imm8)        
-        {
-            return Blend(xmm0, xmm1, imm8);
-        }
-
-        [MethodImpl(Inline)]
-        static Vector256<ushort> vpblendw_ref(Vector256<ushort> xmm0, Vector256<ushort> xmm1, byte imm8)        
-        {
-            return Blend(xmm0, xmm1, imm8);
-        }
-
-        [MethodImpl(Inline)]
-        static Vector256<uint> vpblendd_ref(Vector256<uint> xmm0, Vector256<uint> xmm1, byte imm8)        
-        {
-            return Blend(xmm0, xmm1, imm8);
-        }
-
-        [MethodImpl(Inline)]
-        static Vector256<float> vpblendps_ref(Vector256<float> xmm0, Vector256<float> xmm1, byte imm8)        
-        {
-            return Blend(xmm0, xmm1, imm8);
-        }
 
     }
 

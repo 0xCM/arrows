@@ -20,6 +20,7 @@ namespace Z0
     
     public static partial class Vec128
     {
+
         /// <summary>
         /// Returns a readonly reference to the zero vector
         /// </summary>
@@ -182,10 +183,37 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Vector128<T> LoadVector<T>(ref T src)
+            where T : struct  
+        {            
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(LoadVector(ref int8(ref src)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(LoadVector(ref uint8(ref src)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(LoadVector(ref int16(ref src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(LoadVector(ref uint16(ref src)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(LoadVector(ref int32(ref src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(LoadVector(ref uint32(ref src)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(LoadVector(ref int64(ref src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(LoadVector(ref uint64(ref src)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(LoadVector(ref float32(ref src)));
+            else if(typeof(T) == typeof(double))
+                return  generic<T>(LoadVector(ref float64(ref src)));
+            else 
+                throw unsupported<T>();            
+        }
+
+        [MethodImpl(Inline)]
         public static Vec128<T> Loadi<T>(in T src)
             where T : struct  
-        {
-            
+        {            
             if(typeof(T) == typeof(sbyte))
                 return generic<T>(load(ref int8(ref asRef(in src))));
             else if(typeof(T) == typeof(byte))
@@ -211,7 +239,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vec128<T> Load<T>(in ReadOnlySpan128<T> src, int block, out Vec128<T> dst)
+        public static ref Vec128<T> Load<T>(ReadOnlySpan128<T> src, int block, out Vec128<T> dst)
             where T : struct
         {            
             ref var head = ref asRef(in src.Block(block));            
@@ -351,7 +379,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(ReadOnlySpan128<T> src, int block = 0)
             where T : struct  
-                => Load(in src, block, out Vec128<T> dst);
+                => Load(src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
         public static ref Vec128<T> Load<T>(ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
@@ -598,44 +626,84 @@ namespace Z0
             => Vector128.CreateScalarUnsafe(src);
 
         [MethodImpl(Inline)]
-        static unsafe Vec128<sbyte> load(ref sbyte src)
+        static unsafe Vector128<sbyte> LoadVector(ref sbyte src)
             => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<byte> LoadVector(ref byte src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<short> LoadVector(ref short src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<ushort> LoadVector(ref ushort src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<int> LoadVector(ref int src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<uint> LoadVector(ref uint src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<long> LoadVector(ref long src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<ulong> LoadVector(ref ulong src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<float> LoadVector(ref float src)
+            => LoadVector128(refptr(ref src));
+
+        [MethodImpl(Inline)]
+        static unsafe Vector128<double> LoadVector(ref double src)
+            => LoadVector128(refptr(ref src)); 
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<sbyte> load(ref sbyte src)
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<byte> load(ref byte src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<short> load(ref short src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<ushort> load(ref ushort src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<int> load(ref int src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<uint> load(ref uint src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<long> load(ref long src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<ulong> load(ref ulong src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<float> load(ref float src)
-            => LoadVector128(refptr(ref src));
+            => LoadVector(ref src);
 
         [MethodImpl(Inline)]
         static unsafe Vec128<double> load(ref double src)
-            => LoadVector128(refptr(ref src)); 
+            => LoadVector(ref src);
  
         /// <summary>
         /// Creates a new vector where all components have been assigned the same value

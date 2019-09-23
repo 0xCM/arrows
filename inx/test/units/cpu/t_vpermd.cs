@@ -19,32 +19,24 @@ namespace Z0
 
         public void represent()
         {
-            var r = Perm8.Reverse;
+            var r = Perm8Symbol.Reverse;
             var f = r.ToPerm();
 
             for(int i=0, j=7; i<8; i++, j--)
             {
-                var x = (Perm8)f[i];
-                var y = (Perm8)j;
+                var x = (Perm8Symbol)f[i];
+                var y = (Perm8Symbol)j;
                 Claim.eq(x,y);
 
             }
             
         }
 
-        void reverse()
-        {
-            YMM src = YmmPattern.Increasing<uint>();
-            YMM expect = YmmPattern.Decrements(7u);
-            var actual = vpermd(src, Perm8.Reverse);
-            Claim.eq(expect,actual);            
-        }
-
         public void identity()
         {
             YMM src = YmmPattern.Increasing<uint>();
-            YMM expect =YmmPattern.Increasing<uint>();
-            var actual = vpermd(src, Perm.Assemble8());
+            YMM expect = YmmPattern.Increasing<uint>();
+            var actual = vpermd(src, Perm8.Identity);
             Claim.eq(expect,actual);            
         }
         

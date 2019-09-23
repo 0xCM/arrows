@@ -8,31 +8,35 @@ namespace Z0
     using System.Security;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
     using System.Reflection;
     using System.Reflection.Emit;
 
     using static zfunc;
 
     public delegate T AsmBinOp<T>(T x, T y)
-        where T : struct;
+        where T : unmanaged;
+
+    public delegate Vector128<T> Asm128BinOp<T>(Vector128<T> x, Vector128<T> y)
+        where T : unmanaged;
 
     public delegate T AsmUnaryOp<T>(T x)
-        where T : struct;
+        where T : unmanaged;
 
     public delegate T AsmEmitter<T>()
-        where T : struct;
+        where T : unmanaged;
 
     [SuppressUnmanagedCodeSecurity]
     public static unsafe class AsmDynOp
     {
         /// <summary>
-        /// Creates a value emitter that upon invocate produces a value by executing the supplice source
+        /// Creates a value-producing assembly operator that accepts no arguments
         /// </summary>
         /// <param name="code">The code to execute</param>
         /// <param name="name">The emitter name</param>
         /// <typeparam name="T">The emission type</typeparam>
         public static AsmEmitter<T> CreateEmitter<T>(this AsmCode<T> code, string name = null)
-            where T : struct
+            where T : unmanaged
 
         {
             var t = typeof(T);
@@ -48,14 +52,13 @@ namespace Z0
         }
 
         /// <summary>
-        /// Creates a unary operator that invokes an assembly function via the calli instruction
-        /// through generated IL. 
+        /// Creates a unary assembly operator 
         /// </summary>
         /// <param name="code">The code to execute</param>
         /// <param name="name">The operator name</param>
         /// <typeparam name="T">The operand type</typeparam>
         public static AsmUnaryOp<T> CreateUnaryOp<T>(this AsmCode<T> code, string name = null)
-            where T : struct
+            where T : unmanaged
         {
             var t = typeof(T);
             var argTypes = new Type[]{t};
@@ -70,14 +73,13 @@ namespace Z0
         }
 
         /// <summary>
-        /// Creates a binary operator that invokes an assembly function via the calli instruction
-        /// through generated IL. 
+        /// Creates a binary assembly operator 
         /// </summary>
         /// <param name="code">The code to execute</param>
         /// <param name="name">The operator name</param>
         /// <typeparam name="T">The operand type</typeparam>
         public static AsmBinOp<T> CreateBinOp<T>(this AsmCode<T> code, string name = null)
-            where T : struct
+            where T : unmanaged
         {
             var t = typeof(T);
             var argTypes = new Type[]{t,t};
@@ -91,9 +93,5 @@ namespace Z0
             g.Emit(OpCodes.Ret);
             return (AsmBinOp<T>)method.CreateDelegate(typeof(AsmBinOp<T>));
         }
-
-
     }
-
-
 }

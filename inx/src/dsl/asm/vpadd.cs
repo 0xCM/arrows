@@ -18,30 +18,34 @@ namespace Z0
 
     partial class Asm
     {
-
-        static Vector256<int> vpadd_ref1(Vector256<int> v1, Vector256<int> v2)
-        {
-            return Add(v1,v2);
-        }
-
-        static Vec256<int> vpadd_ref2(Vec256<int> v1, Vec256<int> v2)
-        {
-            return Add(v1,v2);
-        }
-
-        public static YMM vpadd(YMM ymm0, YMM ymm1)
+        
+        [MethodImpl(Inline)]
+        public static YMM vpaddq(YMM ymm0, YMM ymm1)
         {            
-            return Add(vload<long>(ref ymm0),vload<long>(ref ymm1));
+            return Add(vload<ulong>(ref ymm0),vload<ulong>(ref ymm1));
         }
 
-        public static ref Vector256<long> vpadd(YMM ymm0, YMM ymm1, ref Vector256<long> dst)
-        {            
+        [MethodImpl(Inline)]
+        public static YMM<long> vpaddq(YMM<long> ymm0, YMM<long> ymm1)        
+            => Add(ymm0,ymm1);
+
+        [MethodImpl(Inline)]
+        public static YMM<ulong> vpaddq(YMM<ulong> ymm0, YMM<ulong> ymm1)        
+            => Add(ymm0,ymm1);
+
+        [MethodImpl(Inline)]
+        public static ref YMM<long> vpaddq(YMM ymm0, YMM ymm1, ref YMM<long> dst)
+        {
             dst = Add(vload<long>(ref ymm0),vload<long>(ref ymm1));
             return ref dst;
         }
 
-
-
+        [MethodImpl(Inline)]
+        public static ref YMM<ulong> vpaddq(YMM ymm0, YMM ymm1, ref YMM<ulong> dst)
+        {
+            dst = Add(vload<ulong>(ref ymm0),vload<ulong>(ref ymm1));
+            return ref dst;
+        }
 
     }
 

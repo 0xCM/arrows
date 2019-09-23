@@ -20,38 +20,26 @@ namespace Z0
     partial class Asm
     {
 
-        /// <summary>
-        /// VEX.256.66.0F38.W0 36 /r VPERMD ymm1, ymm2, ymm3/m256
-        /// Permute doublewords in ymm3/m256 using indices in ymm2 and store the result in ymm1.
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <param name="control">The control vector</param>
         [MethodImpl(Inline)]
-        public static Vector256<uint> vpermd(YMM src, YMM control)
+        public static YMM vpermd(YMM src, YMM control)
             => PermuteVar8x32(vload<uint>(ref src), vload<uint>(ref control));
 
-        /// <summary>
-        /// Reifies a permutation of length 8 from its canonical scalar representative 
-        /// </summary>
-        /// <param name="rep">The representative</param>
-        static Perm<N8> ToPerm(Perm8 rep)
+
+        [MethodImpl(Inline)]
+        public static YMM<uint> vpermd(YMM<uint> ymm0, Perm8 spec)
         {
-            uint data = (uint)rep;
-            var dst = Perm<N8>.Alloc();
-            for(int i=0, offset = 0; i<dst.Length; i++, offset +=3)
-                dst[i] = (int)BitMask.between(in data, offset, offset + 2);
-            return dst;
+            var control = vload<uint>(ref spec);
+            return PermuteVar8x32(ymm0, control);
         }
- 
 
         [MethodImpl(Inline)]
         public static YMM vpermd(YMM src, Perm8 spec)
         {
-            var perm = ToPerm(spec);
-            var subject = vload<int>(ref src);
-            var control = ginx.lddqu256(in perm[0]);            
-            return YMM.From(PermuteVar8x32(subject, control));                        
+            var control = vload<uint>(ref spec);
+            var subject = vload<uint>(ref src);
+            return PermuteVar8x32(subject, control);
         }
+
 
     }
 

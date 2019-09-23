@@ -14,12 +14,13 @@ namespace Z0
     public delegate T AsmQuadOp<T>(T x, T y, out T a, out T b)
         where T : struct;
 
+    [SuppressUnmanagedCodeSecurity]
     public static unsafe class AsmQuadOp
     {
 
         [MethodImpl(Inline)]
         public static AsmQuadOp<T> Create<T>(AsmCode<T> code)
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(int))
                 return code.CreateDelegate<QuadOpI32>().ToGeneric<QuadOpI32,T>();                
@@ -27,7 +28,7 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        [SuppressUnmanagedCodeSecurity, UnmanagedFunctionPointer(CallingConvention.Cdecl)] 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] 
         delegate void QuadOpI32(int x, int y, out int a, out int b);
 
         [MethodImpl(Inline)]

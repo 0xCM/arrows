@@ -6,7 +6,7 @@
     <RootDir>../../</RootDir>
   </PropertyGroup>
 
-  <Import Project="..\..\package.targets" />
+  <!-- <Import Project="..\..\package.targets" /> -->
 
   <ItemGroup>
     <ProjectReference Include="$(RootDir)structs\z0.structs.csproj" />

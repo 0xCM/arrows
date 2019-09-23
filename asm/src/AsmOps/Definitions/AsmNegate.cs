@@ -15,7 +15,7 @@ namespace Z0
     partial class AsmOps
     {
         readonly struct NegateHost<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly NegateHost<T> TheOnly = default;
 
@@ -27,12 +27,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static AsmUnaryOp<T> Negate<T>()
-            where T : struct
+            where T : unmanaged
                 => NegateHost<T>.TheOnly.Operator;
 
         [MethodImpl(Inline)]
         static AsmCode<T> NegateCode<T>()
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return AsmCode.FromBytes<T>(negate8iBytes);

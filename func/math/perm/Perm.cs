@@ -17,7 +17,7 @@ namespace Z0
     /// </summary>
     public struct Perm
     {
-        public static Perm8 Assemble8(params Perm8[] src)
+        public static Perm8Symbol Assemble8(params Perm8Symbol[] src)
         {            
             var dst = 0u;
             for(int i=0, offset = 0; i< 8; i++, offset +=3)
@@ -26,8 +26,35 @@ namespace Z0
                 dst |=  k << offset;
 
             }
-            return (Perm8)dst;            
+            return (Perm8Symbol)dst;            
         }
+        /// <summary>
+        /// Formats the terms of a permutation
+        /// </summary>
+        /// <param name="terms">The permutation terms</param>
+        /// <param name="colwidth">The width of each column</param>
+        /// <typeparam name="T">The term type</typeparam>
+        internal static string Format<T>(ReadOnlySpan<T> terms,  int? colwidth = null)
+        {
+            var line1 = sbuild();
+            var line2 = sbuild();
+            var pad = colwidth ?? 3;
+            var leftBoundary = $"{AsciSym.Pipe}".PadRight(2);
+            var rightBoundary = $"{AsciSym.Pipe}";
+            
+            line1.Append(leftBoundary);
+            line2.Append(leftBoundary);
+            for(var i=0; i < terms.Length; i++)
+            {
+                line1.Append($"{i}".PadRight(pad));
+                line2.Append($"{terms[i]}".PadRight(pad));
+            }
+            line1.Append(rightBoundary);
+            line2.Append(rightBoundary);
+            
+            return line1.ToString() + eol() + line2.ToString();
+        }
+
 
         /// <summary>
         /// Defines the permutation (0 -> terms[0], 1 -> terms[1], ..., n - 1 -> terms[n-1])

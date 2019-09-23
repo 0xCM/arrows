@@ -9,6 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
     
     using static zfunc;
     using static As;
@@ -25,6 +26,7 @@ namespace Z0
         public static Vec128<T> LoadVec128<T>(this Span128<T> src, int block = 0)            
             where T : unmanaged            
                 => Vec128.Load(src, block);
+
 
         /// <summary>
         /// Loads a 128-bit vector from a blocked readonly span
@@ -99,6 +101,26 @@ namespace Z0
                 => Vec256.Load(ref asRef(in src[offset]));
 
 
+        /// <summary>
+        /// Loads a 128-bit vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vector128<T> LoadVector128<T>(this Span128<T> src, int block = 0)            
+            where T : unmanaged            
+                => Vec128.LoadVector(ref src.Block(block));
+
+        /// <summary>
+        /// Loads a 128-bit vector from a span beginning at a specified offset
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The position of the fist source element </param>
+        [MethodImpl(Inline)]
+        public static Vector128<T> LoadVector128<T>(this Span<T> src, int offset = 0)
+            where T : unmanaged            
+                => Vec128.LoadVector(ref src[offset]);
 
     }
 

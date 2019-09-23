@@ -18,7 +18,7 @@ namespace Z0
     {
     
         readonly struct AddHost<T>
-            where T : struct
+            where T : unmanaged
         {
             
             public static readonly AddHost<T> TheOnly = default;
@@ -32,13 +32,13 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static AsmBinOp<T> Add<T>()
-            where T : struct
+            where T : unmanaged
             => AddHost<T>.TheOnly.Operator;
 
 
         [MethodImpl(Inline)]
         static AsmCode<T> AddCode<T>()
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
                 return AsmCode.FromBytes<T>(add8iBytes);

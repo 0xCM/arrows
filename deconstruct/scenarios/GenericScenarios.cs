@@ -13,8 +13,8 @@ namespace Z0
         {
             var opnames = set
             (
-                nameof(ginx.add),
-                nameof(ginx.sub)
+                "add",
+                "sub"
             );
             var open = typeof(ginx).Methods().Public().OpenGeneric().Where(m => opnames.Contains(m.Name));
             var closed = from om in open

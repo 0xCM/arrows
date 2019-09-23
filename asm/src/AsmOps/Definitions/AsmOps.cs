@@ -11,14 +11,13 @@ namespace Z0
     using System.Runtime.InteropServices;
 
     using static zfunc;
+    using static As;
 
     public static partial class AsmOps
     {
      
         static AsmOps()
-        {
-
-                            
+        {                            
             add8iBytes.Liberate();   
             add8uBytes.Liberate();   
             add16iBytes.Liberate();   
@@ -41,10 +40,12 @@ namespace Z0
             negate32fBytes.Liberate();   
             negate64fBytes.Liberate();               
             rand32uBytes.Liberate();
+
+            Add128Host.Init();
         }
 
         readonly struct RandHost<T>
-            where T : struct
+            where T : unmanaged
         {
             
             public static readonly RandHost<T> TheOnly = default;
@@ -63,29 +64,8 @@ namespace Z0
         /// </summary>
         static readonly IntPtr ProcHandle = System.Diagnostics.Process.GetCurrentProcess().Handle;
 
-        public unsafe static IntPtr Liberate(this ReadOnlySpan<byte> src)
-        {
-            var pCode = (IntPtr)Z0.As.refptr(ref Z0.As.asRef(in src[0]));
-            var start = (ulong)pCode;
-            var end = start + (ulong)src.Length;            
-            var msg = appMsg($"Liberating the memory range [{start.FormatHex(false)},{end.FormatHex(false)}] ({src.Length} bytes) for execution", SeverityLevel.Babble);
-            print(msg);
-            
-            if (!OS.VirtualProtectEx(ProcHandle, pCode, (UIntPtr)src.Length, 0x40, out uint _))
-                throw new Exception("VirtualProtectEx failed");     
-            return pCode;
-        }
-
-        public unsafe static IntPtr Liberate(this byte[] src)
-        {
-
-            var pCode = (IntPtr)Z0.As.refptr(ref src[0]);
-            if (!OS.VirtualProtectEx(ProcHandle, pCode, (UIntPtr)src.Length, 0x40, out uint _))
-                throw new Exception("VirtualProtectEx failed");     
-            return pCode;
-
-        }
-
+        unsafe static IntPtr Liberate(this ReadOnlySpan<byte> src)
+            => OS.Liberate(src);
    }
 
 }

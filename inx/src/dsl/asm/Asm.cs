@@ -26,6 +26,11 @@ namespace Z0
             where T : unmanaged
             => ginx.lddqu128(in src.As<T>());
 
+        [MethodImpl(Inline)]
+        static Vector256<T> vload<T>(ref Perm8 src)
+            where T : unmanaged
+                => ginx.lddqu256(in head(src.ToSpan<T>()));
+
     }
 
 

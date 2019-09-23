@@ -56,25 +56,7 @@ namespace Z0
         /// <param name="colwidth">The width of each column</param>
         /// <typeparam name="T">The term type</typeparam>
         internal static string FormatPerm<T>(this ReadOnlySpan<T> terms,  int? colwidth = null)
-        {
-            var line1 = sbuild();
-            var line2 = sbuild();
-            var pad = colwidth ?? 3;
-            var leftBoundary = $"{AsciSym.Pipe}".PadRight(2);
-            var rightBoundary = $"{AsciSym.Pipe}";
-            
-            line1.Append(leftBoundary);
-            line2.Append(leftBoundary);
-            for(var i=0; i < terms.Length; i++)
-            {
-                line1.Append($"{i}".PadRight(pad));
-                line2.Append($"{terms[i]}".PadRight(pad));
-            }
-            line1.Append(rightBoundary);
-            line2.Append(rightBoundary);
-            
-            return line1.ToString() + eol() + line2.ToString();
-        }
+            => Perm.Format(terms, colwidth);
 
         /// <summary>
         /// Formats the terms of a permutation
@@ -207,19 +189,19 @@ namespace Z0
         /// Maps a permutation on 8 symbols to its canonical scalar representation
         /// </summary>
         /// <param name="src">The source permutation</param>
-        public static Perm8 ToScalar(this Perm<N8> src)
+        public static Perm8Symbol ToScalar(this Perm<N8> src)
         {
             var dst = 0u;            
             for(int i=0, offset = 0; i< src.Length; i++, offset +=3)
                 dst |= (uint)src[i] << offset;                        
-            return (Perm8)dst;
+            return (Perm8Symbol)dst;
         }
 
         /// <summary>
         /// Reifies a permutation of length 8 from its canonical scalar representative 
         /// </summary>
         /// <param name="rep">The representative</param>
-        public static Perm<N8> ToPerm(this Perm8 rep)
+        public static Perm<N8> ToPerm(this Perm8Symbol rep)
         {
             uint data = (uint)rep;
             var dst = Perm<N8>.Alloc();

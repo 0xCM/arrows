@@ -25,18 +25,7 @@ namespace Z0
         public static XMM vpcmpeqb(XMM xmm0, XMM xmm1)        
             => CompareEqual(vload<byte>(ref xmm0), vload<byte>(ref xmm1));
 
-        [MethodImpl(Inline)]
-        public static ref Vector128<byte> vpcmpeqb(XMM xmm0, XMM xmm1, ref Vector128<byte> dst)        
-        {
-            dst = CompareEqual(vload<byte>(ref xmm0), vload<byte>(ref xmm1));
-            return ref dst;
-        }
 
-        [MethodImpl(Inline)]
-        static Vector256<ulong> vcmpeqq_ref(Vector256<ulong> ymm0, Vector256<ulong> ymm1)
-        {
-            return CompareEqual(ymm0,ymm1);
-        }
 
         [MethodImpl(Inline)]
         public static YMM vcmpeqq(YMM ymm0, YMM ymm1)
@@ -51,7 +40,6 @@ namespace Z0
             return ref dst;
         }
 
-
         /// <summary>
         /// VPCMPEQB ymm, ymm, ymm/m256
         /// </summary>
@@ -65,16 +53,6 @@ namespace Z0
             return CompareEqual(vload<byte>(ref ymm0), vload<byte>(ref ymm1));
             
         }
-
-        [MethodImpl(Inline)]
-        public static Vector256<byte> vcmpeqb(MemoryBuffer ymm0, MemoryBuffer ymm1)
-        {
-            
-            var v1 = dinx.load256(in ymm0.Head<byte>());
-            var v2 = dinx.load256(in ymm1.Head<byte>());
-            return CompareEqual(v1,v2);
-        }
-
 
 
     }

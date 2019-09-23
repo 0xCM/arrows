@@ -8,7 +8,7 @@ namespace Z0.Asm
     
     using static zfunc;
 
-    public class AsmSqrtTest : AsmOpTest<AsmSqrtTest>
+    public class tasm_sqrt : AsmOpTest<tasm_sqrt>
     {        
         public void Verify()
         {

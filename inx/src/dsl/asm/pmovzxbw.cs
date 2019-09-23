@@ -29,9 +29,6 @@ namespace Z0
         public static XMM pmovzxbw(XMM a)        
             => ConvertToVector128Int16(vload<byte>(ref a));
 
-        [MethodImpl(Inline)]
-        public static Vector128<short> pmovzxbw_ref(Vector128<byte> a)        
-            => ConvertToVector128Int16(a);
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi32 (__m128i a) PMOVZXBD xmm1, xmm2/m32
@@ -52,18 +49,6 @@ namespace Z0
             return ref dst;
         }
 
-        //Codegen OK
-        [MethodImpl(Inline)]
-        static ref Vector128<int> pmovzxbd_out_vec(XMM a, out Vector128<int> dst)        
-        {
-            dst = ConvertToVector128Int32(vload<byte>(ref a));
-            return ref dst;
-        }
-
-        //Codegen OK
-        [MethodImpl(Inline)]
-        static Vector128<int> pmovzxbd_ref(Vector128<byte> a)        
-            => ConvertToVector128Int32(a);
 
         /// <summary>
         /// __m128i _mm_cvtepu8_epi64 (__m128i a) PMOVZXBQ xmm1, xmm2/m16

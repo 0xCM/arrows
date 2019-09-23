@@ -18,7 +18,7 @@ namespace Z0
     {
     
         readonly struct SqrtHost<T>
-            where T : struct
+            where T : unmanaged
         {
             
             public static readonly SqrtHost<T> TheOnly = default;
@@ -29,13 +29,13 @@ namespace Z0
                 => Reified;
         }
 
-        [MethodImpl(Inline)]
+         [MethodImpl(Inline)]
          public static AsmUnaryOp<T> Sqrt<T>()
-            where T : struct
+            where T : unmanaged
                 => SqrtHost<T>.TheOnly.Operator;
 
         static AsmCode<T> SqrtCode<T>()
-            where T : struct
+            where T : unmanaged
         {
             if(typeof(T) == typeof(float))
                 return AsmCode.FromBytes<T>(SqrtF32Bytes);

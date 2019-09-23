@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
+    using System.Runtime.Intrinsics;
 
     using static zfunc;
 
@@ -47,26 +48,7 @@ namespace Z0
         public static Vec128<T> CpuVec128<T>(this IPolyrand random, T min, T max, Func<T,bool> filter = null)        
             where T : unmanaged
                 => random.Span128<T>(1, closed(min,max), filter).LoadVec128();
-
-        /// <summary>
-        /// Produces a stream of random 128-bit cpu vectors
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <param name="domain">The domain from which the vector components will be chosen</param>
-        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
-        /// <typeparam name="T">The vector component type</typeparam>
-        public static IRandomStream<Vec128<T>> CpuVec128Stream<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
-            where T : unmanaged
-        {
-            IEnumerable<Vec128<T>> produce()
-            {
-                while(true)            
-                    yield return random.CpuVec128(domain,filter);
-            }
-            
-            return stream(produce(), random.RngKind);        
-        }
-
+                
         /// <summary>
         /// Produces a random 256-bit cpu vector
         /// </summary>
@@ -180,6 +162,18 @@ namespace Z0
             var v4 = random.CpuVec256(domain,filter);
             return Vec1024.Define(v1,v2,v3,v4);
         }
+
+        /// <summary>
+        /// Produces a random 128-bit cpu vector
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain from which the vector components will be chosen</param>
+        /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
+        /// <typeparam name="T">The vector component type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vector128<T> CpuVector128<T>(this IPolyrand random, Interval<T>? domain = null, Func<T,bool> filter = null)        
+            where T : unmanaged
+                => random.Span128<T>(1, domain, filter).LoadVector128();
 
  
     }
